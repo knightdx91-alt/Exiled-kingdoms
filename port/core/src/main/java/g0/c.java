@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 public final class c<T> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final Future<T> f2213a;
+    public final Future<T> f2213a;
 
     c(Future<T> future) {
         this.f2213a = future;

@@ -17,25 +17,25 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class n extends Window implements r {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3922a;
+    public Label f3922a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private n0.t f3923b;
+    public n0.t f3923b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private n0.t f3924c;
+    public n0.t f3924c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private n0.t f3925d;
+    public n0.t f3925d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Label f3926e;
+    public Label f3926e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Stage f3927f;
+    public Stage f3927f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private z f3928g;
+    public z f3928g;
 
     public n(z zVar) {
         super("", Assets.g());
@@ -85,7 +85,7 @@ public final class n extends Window implements r {
         setVisible(false);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public static String d(String str) {
         return GameString.b(str, false).replace("##BACKUP##", Gdx.files.getExternalStoragePath() + "EK.bak");
     }

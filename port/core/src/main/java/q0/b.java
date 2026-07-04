@@ -24,49 +24,49 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class b extends Window {
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static float f3816o;
+    public static float f3816o;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f3817a;
+    public int f3817a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3818b;
+    public Label f3818b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3819c;
+    public Label f3819c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private y[] f3820d;
+    public y[] f3820d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private ImageButton[] f3821e;
+    public ImageButton[] f3821e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private n0.t f3822f;
+    public n0.t f3822f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private n0.t f3823g;
+    public n0.t f3823g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Stage f3824h;
+    public Stage f3824h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private v f3825i;
+    public v f3825i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private n0.g f3826j;
+    public n0.g f3826j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private float f3827k;
+    public float f3827k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private a.f f3828l;
+    public a.f f3828l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Color f3829m;
+    public Color f3829m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Table f3830n;
+    public Table f3830n;
 
     /* JADX INFO: compiled from: ChooseGameWindow.java */
     final class a extends InputListener {

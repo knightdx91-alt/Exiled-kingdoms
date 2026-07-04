@@ -16,25 +16,25 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class a extends Image {
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static Color f3439c = new Color(Color.DARK_GRAY);
+    public static Color f3439c = new Color(Color.DARK_GRAY);
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static final float f3440d = (Gdx.graphics.getHeight() * 1.0f) / 720.0f;
+    public static final float f3440d = (Gdx.graphics.getHeight() * 1.0f) / 720.0f;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final float f3441e = (Gdx.graphics.getWidth() * 1.0f) / 1280.0f;
+    public static final float f3441e = (Gdx.graphics.getWidth() * 1.0f) / 1280.0f;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static float f3442f = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3442f = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static int f3443g = 50;
+    public static int f3443g = 50;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f3444a = 0;
+    public int f3444a = 0;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private GlyphLayout f3445b = new GlyphLayout();
+    public GlyphLayout f3445b = new GlyphLayout();
 
     public a() {
         setDrawable(new TextureRegionDrawable(Assets.a("shield")));

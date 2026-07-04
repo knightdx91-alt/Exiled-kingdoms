@@ -12,10 +12,10 @@ import net.fdgames.ek.ExiledKingdoms;
 public class j extends Dialog {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f2723b;
+    public static float f2723b;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private float f2724a;
+    public float f2724a;
 
     public j(String str) {
         super("", Assets.g());

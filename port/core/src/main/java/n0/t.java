@@ -18,19 +18,19 @@ import net.fdgames.ek.ExiledKingdoms;
 public class t extends TextButton {
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static BitmapFont f2886e = GameAssets.f3336k0;
+    public static BitmapFont f2886e = GameAssets.f3336k0;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private boolean f2887a;
+    public boolean f2887a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private boolean f2888b;
+    public boolean f2888b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private boolean f2889c;
+    public boolean f2889c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private ControllerCommand f2890d;
+    public ControllerCommand f2890d;
 
     /* JADX INFO: compiled from: ExtendedTextButton.java */
     final class a extends InputListener {

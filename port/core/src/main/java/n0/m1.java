@@ -69,7 +69,7 @@ public final class m1 extends Window {
     TextButton f2803q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private float f2804r;
+    public float f2804r;
 
     /* JADX INFO: compiled from: TeleportWindow.java */
     final class a extends ChangeListener {

@@ -6,15 +6,15 @@ import net.fdgames.Rules.Rules;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class CharacterStats {
-    private int XP;
-    private boolean cache_valid;
-    private int cached_armorbonus;
-    private int cached_damage;
-    private int cached_level;
-    private int cached_maxhp;
-    private int cached_maxmana;
-    private boolean cached_monster;
-    private Rules.CharacterClass characterClass;
+    public int XP;
+    public boolean cache_valid;
+    public int cached_armorbonus;
+    public int cached_damage;
+    public int cached_level;
+    public int cached_maxhp;
+    public int cached_maxmana;
+    public boolean cached_monster;
+    public Rules.CharacterClass characterClass;
     public Rules.CharacterRace characterRace;
     public int missingHP;
     public int missingMana;
@@ -24,7 +24,7 @@ public class CharacterStats {
         this.cache_valid = false;
     }
 
-    private int e() {
+    public int e() {
         if (!j()) {
             return f();
         }

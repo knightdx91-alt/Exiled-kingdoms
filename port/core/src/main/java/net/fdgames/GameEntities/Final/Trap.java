@@ -31,29 +31,29 @@ import com.badlogic.gdx.maps.MapProperties;
 public class Trap extends MapSprite {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Color f3038a = new Color(Color.RED);
-    private int animationIndex;
-    private boolean beingDisarmed;
-    private boolean damageDealt;
-    private Damage.DamageType damageType;
+    public static Color f3038a = new Color(Color.RED);
+    public int animationIndex;
+    public boolean beingDisarmed;
+    public boolean damageDealt;
+    public Damage.DamageType damageType;
     public boolean discovered;
-    private int dmgPerLevel;
-    private float duration;
-    private String effect;
-    private int explosion_level;
-    private float lastDetectCheck;
-    private int level;
-    private String name;
-    private int owner_id;
-    private float rearm;
-    private String region_id;
-    private boolean respawned;
-    private String soundName;
-    private TrapState state;
-    private float stateRelativeTime;
-    private String trapType;
-    private Rectangle trappedArea;
-    private boolean triggered;
+    public int dmgPerLevel;
+    public float duration;
+    public String effect;
+    public int explosion_level;
+    public float lastDetectCheck;
+    public int level;
+    public String name;
+    public int owner_id;
+    public float rearm;
+    public String region_id;
+    public boolean respawned;
+    public String soundName;
+    public TrapState state;
+    public float stateRelativeTime;
+    public String trapType;
+    public Rectangle trappedArea;
+    public boolean triggered;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -69,7 +69,7 @@ public class Trap extends MapSprite {
         this.beingDisarmed = false;
     }
 
-    private DamageData Q() {
+    public DamageData Q() {
         int i2 = this.level * this.dmgPerLevel;
         if (GameData.v().E()) {
             i2 = (int) (i2 * 1.2f);
@@ -80,7 +80,7 @@ public class Trap extends MapSprite {
         return new DamageData(this.damageType, FDUtils.b(i2 / 2, i2), false);
     }
 
-    private void S(int i2) {
+    public void S(int i2) {
         Character characterF;
         int i3 = this.owner_id;
         if (i3 > 0) {
@@ -99,7 +99,7 @@ public class Trap extends MapSprite {
         characterF.s0(5.0f);
     }
 
-    private void W() {
+    public void W() {
         this.state = TrapState.SPENT;
         this.stateRelativeTime = 0.0f;
         if (this.rearm > 0.0f) {

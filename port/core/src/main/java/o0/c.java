@@ -19,10 +19,10 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class c extends Table {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static float f3464a = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3464a = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f3465b;
+    public static float f3465b;
 
     public c() {
         new Image(new TextureRegionDrawable(Assets.a("fire")));

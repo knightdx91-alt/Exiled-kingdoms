@@ -10,13 +10,13 @@ import net.fdgames.assets.GameAssets;
 public final class b extends Actor {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private NinePatchDrawable f2533a;
+    public NinePatchDrawable f2533a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private NinePatchDrawable f2534b;
+    public NinePatchDrawable f2534b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2535c = 0.5f;
+    public float f2535c = 0.5f;
 
     public b(int i2) {
         if (i2 == 0) {

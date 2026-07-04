@@ -32,10 +32,10 @@ import net.fdgames.TiledMap.Objects.Trigger;
 public class GameLevelData {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static GameLevelData f3102a;
+    public static GameLevelData f3102a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static ArrayList<MapSprite> f3103b = new ArrayList<>();
+    public static ArrayList<MapSprite> f3103b = new ArrayList<>();
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public static boolean f3104c = false;
@@ -55,7 +55,7 @@ public class GameLevelData {
     public ArrayList<SecretDoor> secretDoors = new ArrayList<>();
     public int lastID = 0;
 
-    private GameLevelData() {
+    public GameLevelData() {
     }
 
     public static ArrayList<Trigger> A() {

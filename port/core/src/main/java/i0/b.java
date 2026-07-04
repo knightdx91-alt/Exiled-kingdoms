@@ -14,28 +14,28 @@ import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 public abstract class b {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private OrthographicCamera f2259a;
+    public OrthographicCamera f2259a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f2260b;
+    public float f2260b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2261c;
+    public float f2261c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private int f2262d;
+    public int f2262d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f2263e;
+    public int f2263e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private int f2264f;
+    public int f2264f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f2265g;
+    public int f2265g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private final com.badlogic.gdx.math.Vector3 f2266h = new com.badlogic.gdx.math.Vector3();
+    public final com.badlogic.gdx.math.Vector3 f2266h = new com.badlogic.gdx.math.Vector3();
 
     public final void a() {
         HdpiUtils.glViewport(this.f2262d, this.f2263e, this.f2264f, this.f2265g);

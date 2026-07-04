@@ -12,17 +12,17 @@ import net.fdgames.assets.Assets;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Activable {
-    private String IconName;
-    private String castleID;
-    private MapConversation conversation;
-    private MapItem item;
-    private PlantSpawn plant;
-    private RestPoint rest;
-    private SecretDoor sd;
-    private Shop shop;
-    private Trap trap;
-    private int type;
-    private int uniqueID;
+    public String IconName;
+    public String castleID;
+    public MapConversation conversation;
+    public MapItem item;
+    public PlantSpawn plant;
+    public RestPoint rest;
+    public SecretDoor sd;
+    public Shop shop;
+    public Trap trap;
+    public int type;
+    public int uniqueID;
 
     public Activable() {
     }

@@ -15,8 +15,8 @@ public class WorldEvent {
     public FDUtils.Rarity rarity;
     public String spawn_id;
     public String spawn_id2;
-    private String text;
-    private String title;
+    public String text;
+    public String title;
 
     public WorldEvent(String str) {
         String[] strArrSplit = str.replace("\"", "").split("\t", -1);

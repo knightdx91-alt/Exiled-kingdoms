@@ -14,15 +14,15 @@ import net.fdgames.assets.Assets;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class StaticNPC extends MapSprite {
-    private Character.Gender gender;
+    public Character.Gender gender;
     public Boolean isLeft;
-    private String name;
-    private int portraitIndex;
-    private String region_id;
-    private Shop shop;
+    public String name;
+    public int portraitIndex;
+    public String region_id;
+    public Shop shop;
     public ConditionsSet spawnConditions;
-    private int spriteIndex;
-    private boolean updatedSpriteIndex;
+    public int spriteIndex;
+    public boolean updatedSpriteIndex;
 
     public StaticNPC() {
         this.updatedSpriteIndex = false;

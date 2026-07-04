@@ -12,7 +12,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class b extends Table {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static float f3463a = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3463a = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     public final void a(CharacterSheet characterSheet) {
         clear();

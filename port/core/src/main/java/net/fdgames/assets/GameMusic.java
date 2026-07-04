@@ -9,7 +9,7 @@ import com.badlogic.gdx.audio.Music;
 public class GameMusic {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Music f3361a;
+    public static Music f3361a;
 
     public static void a(String str) {
         Music cVar = f3361a;

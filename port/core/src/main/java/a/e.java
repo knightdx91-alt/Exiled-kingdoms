@@ -18,16 +18,16 @@ import net.fdgames.ek.Settings;
 public final class e extends Table {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static final float f7d = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static final float f7d = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Image f8a;
+    public Image f8a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f9b;
+    public Table f9b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f10c;
+    public float f10c;
 
     public e(int i2) {
         Image image = new Image();

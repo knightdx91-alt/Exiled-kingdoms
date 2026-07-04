@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 public final class b implements d {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private ServerSocket f1428a;
+    public ServerSocket f1428a;
 
     public b(String str, int i2) {
         try {

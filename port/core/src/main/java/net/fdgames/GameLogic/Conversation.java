@@ -12,7 +12,7 @@ import net.fdgames.ek.Settings;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Conversation {
-    private ArrayList<ConversationSentence> conversationSentences;
+    public ArrayList<ConversationSentence> conversationSentences;
 
     /* JADX WARN: Removed duplicated region for block: B:35:0x0133 A[EDGE_INSN: B:61:0x0133->B:35:0x0133 BREAK  A[LOOP:1: B:28:0x0116->B:39:0x013c]] */
     /*

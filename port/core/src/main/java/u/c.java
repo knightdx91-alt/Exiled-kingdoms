@@ -5,7 +5,7 @@ package u;
 public final class c extends d {
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private e f4057f = new e();
+    public e f4057f = new e();
 
     @Override // u.d
     public final void e() {

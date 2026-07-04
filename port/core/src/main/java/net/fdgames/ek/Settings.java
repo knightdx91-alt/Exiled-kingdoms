@@ -31,10 +31,10 @@ public class Settings {
     public static KeyboardConfig f3419b = new KeyboardConfig();
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static SettingsData f3420c = new SettingsData();
+    public static SettingsData f3420c = new SettingsData();
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static GameVariables f3421d = new GameVariables();
+    public static GameVariables f3421d = new GameVariables();
 
     public static void A(int i2, String str) {
         if (f3421d == null) {

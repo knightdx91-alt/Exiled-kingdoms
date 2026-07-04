@@ -20,7 +20,7 @@ public final class a {
         return Color.argb(i4, b(Color.red(i2), iAlpha2, Color.red(i3), iAlpha, i4), b(Color.green(i2), iAlpha2, Color.green(i3), iAlpha, i4), b(Color.blue(i2), iAlpha2, Color.blue(i3), iAlpha, i4));
     }
 
-    private static int b(int i2, int i3, int i4, int i5, int i6) {
+    public static int b(int i2, int i3, int i4, int i5, int i6) {
         if (i6 == 0) {
             return 0;
         }

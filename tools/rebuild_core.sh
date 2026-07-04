@@ -61,6 +61,9 @@ def skills(s):
 edit('net/fdgames/Rules/Skills.java',skills)
 PY
 
+echo ">> 5b. widen jadx-over-restricted private members"
+python3 "$T/widen_private.py" "$DST" >/dev/null
+
 echo ">> 6. type-aware method-call de-obfuscation (JavaParser symbol solver)"
 GDX="$CACHE/gdx-1.12.1.jar"
 [ -f "$GDX" ] || curl -sSf -o "$GDX" "https://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx/1.12.1/gdx-1.12.1.jar"

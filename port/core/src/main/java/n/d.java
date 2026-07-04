@@ -11,22 +11,22 @@ import android.view.LayoutInflater;
 public final class d extends ContextWrapper {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2456a;
+    public int f2456a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Resources.Theme f2457b;
+    public Resources.Theme f2457b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private LayoutInflater f2458c;
+    public LayoutInflater f2458c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Resources f2459d;
+    public Resources f2459d;
 
     public d() {
         super(null);
     }
 
-    private void b() {
+    public void b() {
         if (this.f2457b == null) {
             this.f2457b = getResources().newTheme();
             Resources.Theme theme = getBaseContext().getTheme();

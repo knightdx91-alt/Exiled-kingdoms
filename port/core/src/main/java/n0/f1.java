@@ -15,28 +15,28 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class f1 extends ImageButton {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static final Color f2647b = new Color(0.19607843f, 0.8235294f, 0.27450982f, 1.0f);
+    public static final Color f2647b = new Color(0.19607843f, 0.8235294f, 0.27450982f, 1.0f);
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static final float f2648c;
+    public static final float f2648c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static final float f2649d;
+    public static final float f2649d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final float f2650e;
+    public static final float f2650e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static Color f2651f;
+    public static Color f2651f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static float f2652g;
+    public static float f2652g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f2653h;
+    public static float f2653h;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private BitmapFont f2654a;
+    public BitmapFont f2654a;
 
     static {
         float fMin = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);

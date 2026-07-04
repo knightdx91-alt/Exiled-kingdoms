@@ -5,7 +5,7 @@ import java.io.Serializable;
 /* JADX INFO: compiled from: Ray.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class b implements Serializable {
-    private static final long serialVersionUID = -620692054835390878L;
+    public static final long serialVersionUID = -620692054835390878L;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public final com.badlogic.gdx.math.Vector3 f1416a;

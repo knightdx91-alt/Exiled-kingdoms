@@ -13,7 +13,7 @@ import net.fdgames.ek.Settings;
 public class WorldEvents {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<WorldEvent> f3198a = new ArrayList<>();
+    public static ArrayList<WorldEvent> f3198a = new ArrayList<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static ArrayList<EventLocation> f3199b = new ArrayList<>();
@@ -121,7 +121,7 @@ public class WorldEvents {
         return d(FDUtils.n());
     }
 
-    private static WorldEvent d(FDUtils.Rarity rarity) {
+    public static WorldEvent d(FDUtils.Rarity rarity) {
         AStarPathFinder aStarPathFinder = GameLevel.f3094a;
         int iF = GameData.v().player.sheet.stats.f();
         ArrayList arrayList = new ArrayList();

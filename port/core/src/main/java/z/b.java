@@ -10,16 +10,16 @@ import w.d;
 public final class b implements d {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f4103a;
+    public int f4103a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private MapProperties f4104b;
+    public MapProperties f4104b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private g f4105c;
+    public g f4105c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextureRegion f4106d;
+    public TextureRegion f4106d;
 
     public b(TextureRegion textureRegion) {
         this.f4106d = textureRegion;

@@ -23,50 +23,50 @@ import net.fdgames.ek.Settings;
 public final class i extends Image {
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private static final Color f3524m = new Color(0.98039216f, 0.54901963f, 0.23529412f, 1.0f);
+    public static final Color f3524m = new Color(0.98039216f, 0.54901963f, 0.23529412f, 1.0f);
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static final Color f3525n = new Color(Color.YELLOW);
+    public static final Color f3525n = new Color(Color.YELLOW);
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static final Color f3526o = new Color(Color.CYAN);
+    public static final Color f3526o = new Color(Color.CYAN);
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static final float f3527p = (Gdx.graphics.getHeight() * 0.75f) / 720.0f;
+    public static final float f3527p = (Gdx.graphics.getHeight() * 0.75f) / 720.0f;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private static final float f3528q = (Gdx.graphics.getWidth() * 0.75f) / 1280.0f;
+    public static final float f3528q = (Gdx.graphics.getWidth() * 0.75f) / 1280.0f;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private static float f3529r = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
-    private static Color s = new Color();
+    public static float f3529r = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static Color s = new Color();
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
     public static boolean f3530t = false;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private NinePatchDrawable f3531a = new NinePatchDrawable(GameAssets.P);
+    public NinePatchDrawable f3531a = new NinePatchDrawable(GameAssets.P);
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextureRegionDrawable f3532b = new TextureRegionDrawable(Assets.a("empty_slot_bg"));
+    public TextureRegionDrawable f3532b = new TextureRegionDrawable(Assets.a("empty_slot_bg"));
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextureRegionDrawable f3533c = new TextureRegionDrawable(Assets.a("redcross"));
+    public TextureRegionDrawable f3533c = new TextureRegionDrawable(Assets.a("redcross"));
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextureRegionDrawable f3534d = null;
+    public TextureRegionDrawable f3534d = null;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private BitmapFont f3535e = GameAssets.f3336k0;
+    public BitmapFont f3535e = GameAssets.f3336k0;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     public int f3536f = 0;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f3537g = 0;
+    public int f3537g = 0;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private int f3538h = 0;
+    public int f3538h = 0;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
     public int f3539i = -1;

@@ -23,43 +23,43 @@ public final class a0 extends Window {
     static float f3446m = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static float f3447n;
+    public static float f3447n;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3448a;
+    public n0.t f3448a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private n0.t f3449b;
+    public n0.t f3449b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3450c;
+    public Label f3450c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private y f3451d;
+    public y f3451d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private y f3452e;
+    public y f3452e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private y f3453f;
+    public y f3453f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private y f3454g;
+    public y f3454g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private y f3455h;
+    public y f3455h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private y f3456i;
+    public y f3456i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private CharacterSheet f3457j;
+    public CharacterSheet f3457j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private Stage f3458k;
+    public Stage f3458k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private boolean f3459l;
+    public boolean f3459l;
 
     /* JADX INFO: compiled from: TraitsWindow.java */
     final class a extends InputListener {

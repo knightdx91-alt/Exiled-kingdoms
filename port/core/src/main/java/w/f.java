@@ -8,10 +8,10 @@ import java.util.Iterator;
 public final class f implements Iterable<d> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private q<d> f4084a = new q<>();
+    public q<d> f4084a = new q<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private u.h f4085b = new u.h();
+    public u.h f4085b = new u.h();
 
     public final u.h a() {
         return this.f4085b;

@@ -13,10 +13,10 @@ public final class s extends Label {
     static NinePatchDrawable f2883c = new NinePatchDrawable(GameAssets.H);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private boolean f2884a;
+    public boolean f2884a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private boolean f2885b;
+    public boolean f2885b;
 
     public s(Label.LabelStyle labelStyle) {
         super("", labelStyle);

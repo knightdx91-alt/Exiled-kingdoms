@@ -26,31 +26,31 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class g1 extends Window {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static g1 f2672g;
+    public static g1 f2672g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f2673h;
+    public static float f2673h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
     static final float f2674i;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private t f2675a;
+    public t f2675a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private t f2676b;
+    public t f2676b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private t f2677c;
+    public t f2677c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private t f2678d;
+    public t f2678d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private RestPoint f2679e;
+    public RestPoint f2679e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private a1 f2680f;
+    public a1 f2680f;
 
     /* JADX INFO: compiled from: RestWindow.java */
     final class a extends ChangeListener {

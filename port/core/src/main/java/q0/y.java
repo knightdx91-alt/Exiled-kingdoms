@@ -16,25 +16,25 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class y extends n0.t {
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private static float f4019k = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f4019k = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private static float f4020l;
+    public static float f4020l;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Label f4021f;
+    public Label f4021f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Label f4022g;
+    public Label f4022g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Image f4023h;
+    public Image f4023h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private float f4024i;
+    public float f4024i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private int f4025j;
+    public int f4025j;
 
     public y(int i2) {
         super("", Assets.g(), "menuButton");

@@ -11,10 +11,10 @@ import net.fdgames.ek.Settings;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Quest {
     public String ID;
-    private String Name;
+    public String Name;
     int questType;
-    private ArrayList<QuestState> states;
-    private ArrayList<QuestVariation> variations = new ArrayList<>();
+    public ArrayList<QuestState> states;
+    public ArrayList<QuestVariation> variations = new ArrayList<>();
 
     public Quest(String str) {
         this.states = new ArrayList<>();

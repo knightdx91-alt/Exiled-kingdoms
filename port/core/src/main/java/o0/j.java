@@ -20,91 +20,91 @@ import net.fdgames.ek.ExiledKingdoms;
 /* JADX INFO: compiled from: ItemDescriptionTable.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class j extends Table {
-    private static Label L = new Label(" ", Assets.g(), "menuLabelStyle");
-    private static float M;
-    private static float N;
-    private static float O;
+    public static Label L = new Label(" ", Assets.g(), "menuLabelStyle");
+    public static float M;
+    public static float N;
+    public static float O;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private CharacterResistances f3543a;
+    public CharacterResistances f3543a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private int f3544b;
+    public int f3544b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private int f3545c;
+    public int f3545c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private int f3546d;
+    public int f3546d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f3547e;
+    public int f3547e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private int f3548f;
+    public int f3548f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Damage.DamageType f3549g;
+    public Damage.DamageType f3549g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private WeaponStats f3550h;
+    public WeaponStats f3550h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private int[] f3551i;
+    public int[] f3551i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private PlayerRequirements f3552j;
+    public PlayerRequirements f3552j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private boolean f3553k;
+    public boolean f3553k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private boolean f3554l;
+    public boolean f3554l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private boolean f3555m;
+    public boolean f3555m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Image f3556n = new Image(new TextureRegionDrawable(Assets.a("shield_small")));
+    public Image f3556n = new Image(new TextureRegionDrawable(Assets.a("shield_small")));
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private Image f3557o = new Image(new TextureRegionDrawable(Assets.a("heart")));
+    public Image f3557o = new Image(new TextureRegionDrawable(Assets.a("heart")));
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private Image f3558p = new Image(new TextureRegionDrawable(Assets.a("mana")));
+    public Image f3558p = new Image(new TextureRegionDrawable(Assets.a("mana")));
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private Image f3559q = new Image(new TextureRegionDrawable(Assets.a("fire")));
+    public Image f3559q = new Image(new TextureRegionDrawable(Assets.a("fire")));
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private Image f3560r = new Image(new TextureRegionDrawable(Assets.a("cold")));
-    private Image s = new Image(new TextureRegionDrawable(Assets.a("shock")));
+    public Image f3560r = new Image(new TextureRegionDrawable(Assets.a("cold")));
+    public Image s = new Image(new TextureRegionDrawable(Assets.a("shock")));
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private Image f3561t = new Image(new TextureRegionDrawable(Assets.a("death")));
+    public Image f3561t = new Image(new TextureRegionDrawable(Assets.a("death")));
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private Image f3562u = new Image(new TextureRegionDrawable(Assets.a("poison")));
+    public Image f3562u = new Image(new TextureRegionDrawable(Assets.a("poison")));
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private Image f3563v = new Image(new TextureRegionDrawable(Assets.a("holy")));
+    public Image f3563v = new Image(new TextureRegionDrawable(Assets.a("holy")));
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private Image f3564w = new Image(new TextureRegionDrawable(Assets.a("fire")));
+    public Image f3564w = new Image(new TextureRegionDrawable(Assets.a("fire")));
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private Image f3565z = new Image(new TextureRegionDrawable(Assets.a("cold")));
-    private Image A = new Image(new TextureRegionDrawable(Assets.a("shock")));
-    private Image B = new Image(new TextureRegionDrawable(Assets.a("death")));
-    private Image C = new Image(new TextureRegionDrawable(Assets.a("poison")));
-    private Image D = new Image(new TextureRegionDrawable(Assets.a("holy")));
-    private Label E = new Label("Bonus: ", Assets.g(), "menuLabelSmallStyle");
-    private Label F = new Label(a.a.m(GameString.b("DAMAGE", false), ": ", new StringBuilder()), Assets.g(), "menuLabelSubStrongStyle");
-    private Label G = new Label("", Assets.g(), "menuLabelStyle");
-    private Label H = new Label(a.a.o("SPEED", false, new StringBuilder(), ": "), Assets.g(), "menuLabelSubStrongStyle");
-    private Label I = new Label("", Assets.g(), "menuLabelStyle");
-    private Label J = new Label(a.a.o("CRITICAL", false, new StringBuilder(), ": "), Assets.g(), "menuLabelSubStrongStyle");
-    private Label K = new Label("", Assets.g(), "menuLabelStyle");
+    public Image f3565z = new Image(new TextureRegionDrawable(Assets.a("cold")));
+    public Image A = new Image(new TextureRegionDrawable(Assets.a("shock")));
+    public Image B = new Image(new TextureRegionDrawable(Assets.a("death")));
+    public Image C = new Image(new TextureRegionDrawable(Assets.a("poison")));
+    public Image D = new Image(new TextureRegionDrawable(Assets.a("holy")));
+    public Label E = new Label("Bonus: ", Assets.g(), "menuLabelSmallStyle");
+    public Label F = new Label(a.a.m(GameString.b("DAMAGE", false), ": ", new StringBuilder()), Assets.g(), "menuLabelSubStrongStyle");
+    public Label G = new Label("", Assets.g(), "menuLabelStyle");
+    public Label H = new Label(a.a.o("SPEED", false, new StringBuilder(), ": "), Assets.g(), "menuLabelSubStrongStyle");
+    public Label I = new Label("", Assets.g(), "menuLabelStyle");
+    public Label J = new Label(a.a.o("CRITICAL", false, new StringBuilder(), ": "), Assets.g(), "menuLabelSubStrongStyle");
+    public Label K = new Label("", Assets.g(), "menuLabelStyle");
 
     static {
         float fMin = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
@@ -112,7 +112,7 @@ public final class j extends Table {
         O = fMin * 11.0f;
     }
 
-    private static String a(int i2) {
+    public static String a(int i2) {
         String str = i2 < 0 ? "-" : "+";
         if (i2 <= -10 || i2 >= 10) {
             return str + i2 + " ";
@@ -120,7 +120,7 @@ public final class j extends Table {
         return str + i2 + "   ";
     }
 
-    private static float b(int i2) {
+    public static float b(int i2) {
         float f2;
         float f3;
         if (i2 > 9 || i2 < -99) {

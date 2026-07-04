@@ -36,28 +36,28 @@ import net.fdgames.ek.Settings;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MonsterSpawn extends MapObject {
-    private boolean alwaysReward;
-    private Trigger conversationTrigger;
-    private String conversation_ID;
-    private Daycycle cycle;
+    public boolean alwaysReward;
+    public Trigger conversationTrigger;
+    public String conversation_ID;
+    public Daycycle cycle;
     public String eventLocation;
     public int eventSpawn;
-    private boolean markRespawn;
-    private String name;
-    private int portrait;
+    public boolean markRespawn;
+    public String name;
+    public int portrait;
     public MapActor.Facing preferredFacing;
     public String questLocation;
     public int questSpawn;
-    private int respawn;
-    private Shop shop;
-    private ConditionsSet spawnConditions;
-    private Factions.Faction spawnFaction;
+    public int respawn;
+    public Shop shop;
+    public ConditionsSet spawnConditions;
+    public Factions.Faction spawnFaction;
     public int spawnLevel;
-    private String spawn_id;
-    private String spawn_id_rare;
-    private String spawn_id_uncommon;
-    private String unique_tag;
-    private int wander;
+    public String spawn_id;
+    public String spawn_id_rare;
+    public String spawn_id_uncommon;
+    public String unique_tag;
+    public int wander;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -69,7 +69,7 @@ public class MonsterSpawn extends MapObject {
         this.spawnLevel = 0;
     }
 
-    private void H() {
+    public void H() {
         int iB = FDUtils.b(1, 100);
         if (!this.spawn_id_rare.equals("") && iB > 92) {
             this.spawn_id = this.spawn_id_rare;

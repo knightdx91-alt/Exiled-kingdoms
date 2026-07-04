@@ -8,9 +8,9 @@ import net.fdgames.GameEntities.MapActor;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class SlashAnimation {
-    private EnumMap<MapActor.Facing, Animation> facingAnimations;
+    public EnumMap<MapActor.Facing, Animation> facingAnimations;
     public String name = "slash";
-    private Texture texture = new Texture(Gdx.files.internal("data/sprites/composite/slash/slash.png"));
+    public Texture texture = new Texture(Gdx.files.internal("data/sprites/composite/slash/slash.png"));
 
     public SlashAnimation() {
         EnumMap<MapActor.Facing, Animation> enumMap = new EnumMap<>(MapActor.Facing.class);

@@ -51,7 +51,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public class Serializer {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Integer[] f3224a;
+    public static Integer[] f3224a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static a f3225b;
@@ -60,7 +60,7 @@ public class Serializer {
     public static boolean f3226c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static Json f3227d = new Json();
+    public static Json f3227d = new Json();
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     public static boolean f3228e = false;
@@ -457,11 +457,11 @@ public class Serializer {
         Gdx.files.local(e(i2) + str + ".sav").delete();
     }
 
-    private static String h(String str) {
+    public static String h(String str) {
         return new String(c.a(str), Charset.forName("UTF-8"));
     }
 
-    private static String i(String str) {
+    public static String i(String str) {
         char[] cArrD;
         try {
             cArrD = c.d(str.getBytes("UTF-8"));
@@ -495,7 +495,7 @@ public class Serializer {
         return propertiesW.getProperty("width") + " x " + propertiesW.getProperty("height");
     }
 
-    private static int n(String str) {
+    public static int n(String str) {
         if (str.trim().equals("")) {
             return 699;
         }

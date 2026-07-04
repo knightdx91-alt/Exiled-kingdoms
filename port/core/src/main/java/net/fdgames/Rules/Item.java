@@ -19,13 +19,13 @@ public class Item {
     public ActionsSet OnTake;
     public ConditionsSet OnTakeconditions;
     public ActionsSet OnUse;
-    private CharacterResistances ResistanceBonus;
+    public CharacterResistances ResistanceBonus;
     public int armorBonus;
     public ItemAttributes attributes;
     public ClassRestriction classes;
     public int damageBonus;
     public Damage.DamageType damageBonusType;
-    private String description;
+    public String description;
     public boolean hasDamageBonus;
     public boolean hasProc;
     public String icon;

@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class a {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final ThreadPoolExecutor f1418a;
+    public final ThreadPoolExecutor f1418a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     final y<l.a, HttpURLConnection> f1419b;
@@ -111,7 +111,7 @@ public final class a {
     static class c implements l.b {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final HttpURLConnection f1427a;
+        public final HttpURLConnection f1427a;
 
         public c(HttpURLConnection httpURLConnection) {
             this.f1427a = httpURLConnection;

@@ -11,6 +11,12 @@ PAIRS={
  'a0/q':'com.badlogic.gdx.math.Vector2',
  'a0/p':'com.badlogic.gdx.math.Rectangle',
 }
+PAIRS.update({
+ 'com/badlogic/gdx/math/a':'com.badlogic.gdx.math.Vector3',
+ 'com/badlogic/gdx/utils/l':'com.badlogic.gdx.utils.GdxNativesLoader',
+ 'i0/b':'com.badlogic.gdx.utils.viewport.Viewport',
+})
+
 sig=re.compile(r'((?:public|protected|private|static|final|synchronized|native|\s)+)([\w\[\]<>?.,\s]+?)\s+([A-Za-z_$][\w$]*)\s*\(([^;{}]*)\)\s*(?:throws [\w., ]+)?\{')
 PRIM=set('boolean byte char short int long float double void'.split())
 def normret(t):

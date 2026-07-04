@@ -17,19 +17,19 @@ import net.fdgames.ek.android.MainActivity;
 public final class p extends Table {
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final float f3937e = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f3937e = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Image f3938a;
+    public Image f3938a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextureRegionDrawable f3939b;
+    public TextureRegionDrawable f3939b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextureRegionDrawable f3940c;
+    public TextureRegionDrawable f3940c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private com.badlogic.gdx.Game f3941d;
+    public com.badlogic.gdx.Game f3941d;
 
     /* JADX INFO: compiled from: GPGSConnectButton.java */
     final class a extends ClickListener {

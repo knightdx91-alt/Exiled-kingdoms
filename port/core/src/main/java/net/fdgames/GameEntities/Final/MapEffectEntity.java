@@ -21,16 +21,16 @@ import com.badlogic.gdx.maps.MapProperties;
 public class MapEffectEntity extends MapSprite {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Color f3005a = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    public static Color f3005a = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     float activationTime;
     public boolean active;
-    private boolean addedlight;
+    public boolean addedlight;
     float alpha;
     float baseDelay;
-    private int caster_id;
+    public int caster_id;
     float deactivationTime;
-    private boolean debug;
-    private float destructionTime;
+    public boolean debug;
+    public float destructionTime;
     float fadeInStartTime;
     float fadeOutEndTime;
     float fadein_duration;
@@ -38,8 +38,8 @@ public class MapEffectEntity extends MapSprite {
     public boolean fullyActive;
     String id;
     float lastbounce;
-    private MapEffect mapeffect;
-    private boolean mustaddlight;
+    public MapEffect mapeffect;
+    public boolean mustaddlight;
     float nextDirectionChange;
     int originX;
     int originY;
@@ -52,7 +52,7 @@ public class MapEffectEntity extends MapSprite {
         this.debug = false;
     }
 
-    private void P() {
+    public void P() {
         int iB;
         int iB2;
         if (this.debug) {
@@ -78,7 +78,7 @@ public class MapEffectEntity extends MapSprite {
         this.nextDirectionChange = ((float) ((Math.random() * ((double) 0.6f)) + ((double) 0.0f))) + GameData.v().u() + 5.0f;
     }
 
-    private void T() {
+    public void T() {
         MapEffectData.MapEffectDataLine mapEffectDataLineA = Rules.f3257k.a(this.id);
         if (mapEffectDataLineA.duration > 0.0f) {
             float fU = GameData.v().u() + this.baseDelay;

@@ -15,34 +15,34 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class a extends Actor {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static GlyphLayout f2516i = new GlyphLayout();
+    public static GlyphLayout f2516i = new GlyphLayout();
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static final float f2517j = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f2517j = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private NinePatchDrawable f2518a;
+    public NinePatchDrawable f2518a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private NinePatchDrawable f2519b;
+    public NinePatchDrawable f2519b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2520c = 0.5f;
+    public float f2520c = 0.5f;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private String f2521d = "";
+    public String f2521d = "";
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Color f2522e;
+    public Color f2522e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f2523f;
+    public float f2523f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private float f2524g;
+    public float f2524g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2525h;
+    public float f2525h;
 
     public a(int i2, float f2) {
         if (i2 == 0) {

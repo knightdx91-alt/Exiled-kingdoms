@@ -18,8 +18,8 @@ public class Spawn {
     public String lootTable;
     public int maxlevel;
     public int minlevel;
-    private String name;
-    private String name_ES;
+    public String name;
+    public String name_ES;
     public String onAggroSound;
     public String onDieActions;
     public String onDieConditions;

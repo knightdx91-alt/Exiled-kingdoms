@@ -9,11 +9,11 @@ import net.fdgames.assets.Assets;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class WorldFaction {
     public Integer code;
-    private String description;
-    private String flag;
+    public String description;
+    public String flag;
     public Set<Integer> hostileFactions;
     public String id;
-    private String name;
+    public String name;
 
     public WorldFaction(String str) {
         String[] strArrSplit = str.replace("\"", "").split("\t", -1);

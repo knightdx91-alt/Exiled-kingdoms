@@ -20,13 +20,13 @@ import net.fdgames.ek.Settings;
 public final class b1 extends Table {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static NinePatchDrawable f2539g = new NinePatchDrawable(GameAssets.H);
+    public static NinePatchDrawable f2539g = new NinePatchDrawable(GameAssets.H);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private boolean f2540a;
+    public boolean f2540a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private boolean f2541b = false;
+    public boolean f2541b = false;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     ControllerCommand f2542c;

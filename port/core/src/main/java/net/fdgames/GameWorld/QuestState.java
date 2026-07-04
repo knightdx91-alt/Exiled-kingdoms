@@ -5,9 +5,9 @@ import net.fdgames.Helpers.FDUtils;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class QuestState {
-    private ActionsSet actions;
-    private String description;
-    private int value;
+    public ActionsSet actions;
+    public String description;
+    public int value;
 
     public QuestState(int i2, String str, String str2) {
         this.value = i2;

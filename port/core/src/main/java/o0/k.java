@@ -23,28 +23,28 @@ import net.fdgames.ek.Settings;
 public final class k extends Table {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static float f3566g = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3566g = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f3567h;
+    public static float f3567h;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3568a;
+    public Label f3568a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3569b;
+    public Label f3569b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3570c;
+    public Label f3570c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Label f3571d;
+    public Label f3571d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private j f3572e;
+    public j f3572e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private i f3573f;
+    public i f3573f;
 
     /* JADX INFO: compiled from: ItemPreviewTable.java */
     final class a extends InputListener {

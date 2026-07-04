@@ -45,189 +45,189 @@ import net.fdgames.ek.Settings;
 /* JADX INFO: compiled from: CharacterWindow.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class f extends Window {
-    private static Lootable K0 = null;
+    public static Lootable K0 = null;
     static int L0 = 0;
-    private static float M0 = 1.0f;
-    private static float N0;
-    private static float O0;
-    private static float P0;
-    private static float Q0;
-    private static float R0;
-    private static float S0;
-    private static float T0;
-    private static float U0;
-    private static int V0;
-    private static int W0;
-    private Label A;
-    private n0.t A0;
-    private Label B;
-    private n0.t B0;
-    private Label C;
-    private ImageButton C0;
-    private Label D;
-    private ImageButton D0;
-    private Label E;
-    private n0.a E0;
-    private Label F;
-    private n0.a F0;
-    private Label G;
-    private n0.a G0;
-    private Label H;
-    private float H0;
-    private Label I;
-    private int I0;
-    private o0.c J;
-    private int J0;
-    private o0.b K;
-    private Label L;
-    private o0.a M;
-    private Label N;
-    private Label O;
-    private Label P;
-    private Label Q;
-    private Image R;
-    private o0.d S;
-    private o0.i T;
-    private Image U;
-    private Image V;
-    private Image W;
-    private Image X;
-    private Image Y;
-    private Image Z;
+    public static float M0 = 1.0f;
+    public static float N0;
+    public static float O0;
+    public static float P0;
+    public static float Q0;
+    public static float R0;
+    public static float S0;
+    public static float T0;
+    public static float U0;
+    public static int V0;
+    public static int W0;
+    public Label A;
+    public n0.t A0;
+    public Label B;
+    public n0.t B0;
+    public Label C;
+    public ImageButton C0;
+    public Label D;
+    public ImageButton D0;
+    public Label E;
+    public n0.a E0;
+    public Label F;
+    public n0.a F0;
+    public Label G;
+    public n0.a G0;
+    public Label H;
+    public float H0;
+    public Label I;
+    public int I0;
+    public o0.c J;
+    public int J0;
+    public o0.b K;
+    public Label L;
+    public o0.a M;
+    public Label N;
+    public Label O;
+    public Label P;
+    public Label Q;
+    public Image R;
+    public o0.d S;
+    public o0.i T;
+    public Image U;
+    public Image V;
+    public Image W;
+    public Image X;
+    public Image Y;
+    public Image Z;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Table f3470a;
+    public Table f3470a;
 
     /* JADX INFO: renamed from: a0, reason: collision with root package name */
-    private Image f3471a0;
+    public Image f3471a0;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f3472b;
+    public Table f3472b;
 
     /* JADX INFO: renamed from: b0, reason: collision with root package name */
-    private n0.t f3473b0;
+    public n0.t f3473b0;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Table f3474c;
+    public Table f3474c;
 
     /* JADX INFO: renamed from: c0, reason: collision with root package name */
-    private n0.t f3475c0;
+    public n0.t f3475c0;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Table f3476d;
+    public Table f3476d;
 
     /* JADX INFO: renamed from: d0, reason: collision with root package name */
-    private n0.t f3477d0;
+    public n0.t f3477d0;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private z f3478e;
+    public z f3478e;
 
     /* JADX INFO: renamed from: e0, reason: collision with root package name */
-    private o0.i f3479e0;
+    public o0.i f3479e0;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Table f3480f;
+    public Table f3480f;
 
     /* JADX INFO: renamed from: f0, reason: collision with root package name */
-    private o0.i f3481f0;
+    public o0.i f3481f0;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Table f3482g;
+    public Table f3482g;
 
     /* JADX INFO: renamed from: g0, reason: collision with root package name */
-    private o0.i f3483g0;
+    public o0.i f3483g0;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Table f3484h;
+    public Table f3484h;
 
     /* JADX INFO: renamed from: h0, reason: collision with root package name */
-    private o0.i f3485h0;
+    public o0.i f3485h0;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Table f3486i;
+    public Table f3486i;
 
     /* JADX INFO: renamed from: i0, reason: collision with root package name */
-    private o0.i f3487i0;
+    public o0.i f3487i0;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private Table f3488j;
+    public Table f3488j;
 
     /* JADX INFO: renamed from: j0, reason: collision with root package name */
-    private o0.i f3489j0;
+    public o0.i f3489j0;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private Table f3490k;
+    public Table f3490k;
 
     /* JADX INFO: renamed from: k0, reason: collision with root package name */
-    private o0.i f3491k0;
+    public o0.i f3491k0;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private o0.k f3492l;
+    public o0.k f3492l;
 
     /* JADX INFO: renamed from: l0, reason: collision with root package name */
-    private o0.i f3493l0;
+    public o0.i f3493l0;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Table f3494m;
+    public Table f3494m;
 
     /* JADX INFO: renamed from: m0, reason: collision with root package name */
-    private o0.i f3495m0;
+    public o0.i f3495m0;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Table f3496n;
+    public Table f3496n;
 
     /* JADX INFO: renamed from: n0, reason: collision with root package name */
-    private o0.i f3497n0;
+    public o0.i f3497n0;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private Character f3498o;
+    public Character f3498o;
 
     /* JADX INFO: renamed from: o0, reason: collision with root package name */
-    private o0.i f3499o0;
+    public o0.i f3499o0;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private Label f3500p;
+    public Label f3500p;
 
     /* JADX INFO: renamed from: p0, reason: collision with root package name */
-    private o0.i f3501p0;
+    public o0.i f3501p0;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private Label f3502q;
+    public Label f3502q;
 
     /* JADX INFO: renamed from: q0, reason: collision with root package name */
-    private o0.i[] f3503q0;
+    public o0.i[] f3503q0;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private Label f3504r;
+    public Label f3504r;
 
     /* JADX INFO: renamed from: r0, reason: collision with root package name */
-    private Image f3505r0;
-    private Label s;
+    public Image f3505r0;
+    public Label s;
 
     /* JADX INFO: renamed from: s0, reason: collision with root package name */
-    private o0.i[] f3506s0;
+    public o0.i[] f3506s0;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private Label f3507t;
-    private Image t0;
+    public Label f3507t;
+    public Image t0;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private Label f3508u;
-    private Label u0;
+    public Label f3508u;
+    public Label u0;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private Label f3509v;
-    private n0.t v0;
+    public Label f3509v;
+    public n0.t v0;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private Label f3510w;
-    private n0.t w0;
-    private n0.t x0;
-    private n0.t y0;
+    public Label f3510w;
+    public n0.t w0;
+    public n0.t x0;
+    public n0.t y0;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private Label f3511z;
-    private n0.t z0;
+    public Label f3511z;
+    public n0.t z0;
 
     /* JADX INFO: compiled from: CharacterWindow.java */
     final class a extends z0 {
@@ -578,7 +578,7 @@ public final class f extends Window {
         }
     }
 
-    private void D() {
+    public void D() {
         this.f3472b = new Table();
         this.f3474c = new Table();
         this.f3476d = new Table();
@@ -593,7 +593,7 @@ public final class f extends Window {
         this.f3496n = new Table();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void L() {
         if (this.f3477d0.isDisabled() || V0 != 1) {
             return;
@@ -620,7 +620,7 @@ public final class f extends Window {
         X();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void M(int i2) {
         int iR = R();
         int i3 = 1;
@@ -641,7 +641,7 @@ public final class f extends Window {
         X();
     }
 
-    private void N() {
+    public void N() {
         Lootable lootable;
         this.f3496n.clear();
         this.f3496n.row().center().padRight(Q0).padBottom(Q0).padTop(Q0 * 2.0f).colspan(4);
@@ -725,7 +725,7 @@ public final class f extends Window {
         this.v0.addListener(new g());
     }
 
-    private static int P(int i2) {
+    public static int P(int i2) {
         if (M0 == 0.0f || i2 == 0) {
             return 0;
         }
@@ -740,7 +740,7 @@ public final class f extends Window {
         return str + i2 + "   ";
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public int R() {
         int i2 = V0;
         if (i2 == 1) {
@@ -756,7 +756,7 @@ public final class f extends Window {
         return 0;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void V(int i2, int i3) {
         int i4 = V0;
         o0.i[] iVarArr = this.f3503q0;

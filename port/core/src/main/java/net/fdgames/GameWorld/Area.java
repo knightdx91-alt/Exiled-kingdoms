@@ -8,11 +8,11 @@ import net.fdgames.ek.Settings;
 public class Area {
     public boolean free;
     public String id;
-    private String name;
+    public String name;
     public boolean outdoor;
-    private int posX;
-    private int posY;
-    private String region_id;
+    public int posX;
+    public int posY;
+    public String region_id;
     public boolean worldmap;
 
     public Area(String str) {

@@ -22,19 +22,19 @@ import java.util.List;
 public final class e {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static final android.support.v4.util.f<String, Typeface> f2228a = new android.support.v4.util.f<>(16);
+    public static final android.support.v4.util.f<String, Typeface> f2228a = new android.support.v4.util.f<>(16);
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static final f f2229b = new f();
+    public static final f f2229b = new f();
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static final Object f2230c = new Object();
+    public static final Object f2230c = new Object();
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static final i<String, ArrayList<f.d<d>>> f2231d = new i<>();
+    public static final i<String, ArrayList<f.d<d>>> f2231d = new i<>();
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final Comparator<byte[]> f2232e = new a();
+    public static final Comparator<byte[]> f2232e = new a();
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     public static final /* synthetic */ int f2233f = 0;
@@ -63,10 +63,10 @@ public final class e {
     public static class b {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final int f2234a;
+        public final int f2234a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private final c[] f2235b;
+        public final c[] f2235b;
 
         public b(int i2, c[] cVarArr) {
             this.f2234a = i2;
@@ -86,19 +86,19 @@ public final class e {
     public static class c {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final Uri f2236a;
+        public final Uri f2236a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private final int f2237b;
+        public final int f2237b;
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private final int f2238c;
+        public final int f2238c;
 
         /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private final boolean f2239d;
+        public final boolean f2239d;
 
         /* JADX INFO: renamed from: e, reason: collision with root package name */
-        private final int f2240e;
+        public final int f2240e;
 
         public c(Uri uri, int i2, int i3, boolean z2, int i4) {
             uri.getClass();
@@ -130,7 +130,7 @@ public final class e {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     /* JADX INFO: compiled from: FontsContractCompat.java */
     static final class d {
 
@@ -221,7 +221,7 @@ public final class e {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public static d f(Context context, i.a aVar, int i2) {
         try {
             b bVarE = e(context, aVar);

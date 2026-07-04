@@ -7,18 +7,18 @@ import net.fdgames.Helpers.FDUtils;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class SkillRequirements {
-    private int Archery;
-    private int Crusader;
-    private int Fury;
-    private int Lesser_summoning;
-    private int Mage_armor;
-    private int Mana_surge;
-    private int Nivarias_barrier;
-    private int Sacred_Fire;
-    private int Shield_Expert;
-    private int Stab;
-    private int Stealth;
-    private int Trap_Master;
+    public int Archery;
+    public int Crusader;
+    public int Fury;
+    public int Lesser_summoning;
+    public int Mage_armor;
+    public int Mana_surge;
+    public int Nivarias_barrier;
+    public int Sacred_Fire;
+    public int Shield_Expert;
+    public int Stab;
+    public int Stealth;
+    public int Trap_Master;
 
     public SkillRequirements(String str) {
         Iterator it = FDUtils.s(str).iterator();

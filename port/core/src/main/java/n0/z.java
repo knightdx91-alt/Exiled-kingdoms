@@ -44,13 +44,13 @@ import net.fdgames.ek.Settings;
 public final class z {
 
     /* JADX INFO: renamed from: f0, reason: collision with root package name */
-    private static final Color f2922f0 = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.66f);
+    public static final Color f2922f0 = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.66f);
 
     /* JADX INFO: renamed from: g0, reason: collision with root package name */
     public static Color f2923g0;
 
     /* JADX INFO: renamed from: h0, reason: collision with root package name */
-    private static o f2924h0;
+    public static o f2924h0;
 
     /* JADX INFO: renamed from: i0, reason: collision with root package name */
     public static Color f2925i0;
@@ -59,55 +59,55 @@ public final class z {
     public static boolean f2926j0;
 
     /* JADX INFO: renamed from: k0, reason: collision with root package name */
-    private static float f2927k0;
+    public static float f2927k0;
 
     /* JADX INFO: renamed from: l0, reason: collision with root package name */
-    private static float f2928l0;
+    public static float f2928l0;
 
     /* JADX INFO: renamed from: m0, reason: collision with root package name */
-    private static float f2929m0;
+    public static float f2929m0;
 
     /* JADX INFO: renamed from: n0, reason: collision with root package name */
-    private static float f2930n0;
+    public static float f2930n0;
 
     /* JADX INFO: renamed from: o0, reason: collision with root package name */
-    private static float f2931o0;
+    public static float f2931o0;
 
     /* JADX INFO: renamed from: p0, reason: collision with root package name */
-    private static float f2932p0;
+    public static float f2932p0;
 
     /* JADX INFO: renamed from: q0, reason: collision with root package name */
-    private static int f2933q0;
+    public static int f2933q0;
 
     /* JADX INFO: renamed from: r0, reason: collision with root package name */
     static final int f2934r0;
 
     /* JADX INFO: renamed from: s0, reason: collision with root package name */
-    private static z f2935s0;
+    public static z f2935s0;
     public static float t0;
     public static float u0;
     public static float v0;
     public static boolean w0;
-    private v A;
-    private l1[] B;
-    private o0.i[] C;
-    private e1 D;
-    private ImageButton E;
-    private Table F;
-    private Table G;
-    private Table H;
-    private v I;
-    private v J;
-    private TextButton K;
-    private f1 L;
-    private Label M;
-    private Image N;
-    private com.badlogic.gdx.math.Vector3 O;
-    private u P;
-    private j1 Q;
-    private i1 R;
+    public v A;
+    public l1[] B;
+    public o0.i[] C;
+    public e1 D;
+    public ImageButton E;
+    public Table F;
+    public Table G;
+    public Table H;
+    public v I;
+    public v J;
+    public TextButton K;
+    public f1 L;
+    public Label M;
+    public Image N;
+    public com.badlogic.gdx.math.Vector3 O;
+    public u P;
+    public j1 Q;
+    public i1 R;
     public c1 S;
-    private p T;
+    public p T;
     public g U;
     public o0.f V;
     public o0.a0 W;
@@ -116,43 +116,43 @@ public final class z {
     public a.f Z;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2936a;
+    public int f2936a;
 
     /* JADX INFO: renamed from: a0, reason: collision with root package name */
     public n1 f2937a0;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Stage f2938b;
+    public Stage f2938b;
 
     /* JADX INFO: renamed from: b0, reason: collision with root package name */
     public o0.s f2939b0;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Touchpad f2940c;
+    public Touchpad f2940c;
 
     /* JADX INFO: renamed from: c0, reason: collision with root package name */
     public m1 f2941c0;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private ImageButton f2942d;
+    public ImageButton f2942d;
 
     /* JADX INFO: renamed from: d0, reason: collision with root package name */
-    private float f2943d0;
+    public float f2943d0;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private v f2944e;
+    public v f2944e;
 
     /* JADX INFO: renamed from: e0, reason: collision with root package name */
     public int f2945e0;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private v f2946f;
+    public v f2946f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Label f2947g;
+    public Label f2947g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private b0 f2948h;
+    public b0 f2948h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
     public q1 f2949i;
@@ -164,47 +164,47 @@ public final class z {
     public boolean f2951k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private float f2952l;
+    public float f2952l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private float f2953m;
+    public float f2953m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private float f2954n;
+    public float f2954n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private float f2955o;
+    public float f2955o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private float f2956p;
+    public float f2956p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private float f2957q;
+    public float f2957q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private float f2958r;
+    public float f2958r;
     Boolean[] s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private n0.a f2959t;
+    public n0.a f2959t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private n0.a f2960u;
+    public n0.a f2960u;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private n0.a f2961v;
+    public n0.a f2961v;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private n0.b f2962w;
+    public n0.b f2962w;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    private n0.b f2963x;
+    public n0.b f2963x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    private n0.a f2964y;
+    public n0.a f2964y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private v[] f2965z;
+    public v[] f2965z;
 
     /* JADX INFO: compiled from: GameHUD.java */
     final class a extends e {

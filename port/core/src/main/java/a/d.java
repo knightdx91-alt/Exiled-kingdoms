@@ -15,16 +15,16 @@ import net.fdgames.ek.Settings;
 public final class d extends Window {
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static float f3c = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3c = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     public static final /* synthetic */ int f4d = 0;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextButton f5a;
+    public TextButton f5a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f6b;
+    public Label f6b;
 
     public d() {
         super("", Assets.g());

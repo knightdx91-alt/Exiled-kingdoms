@@ -40,21 +40,21 @@ public class Assets implements i {
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     public static Cursor f3313e;
-    private TextureAtlas activables;
-    private AssetManager assetManager;
-    private TextureRegion[] femalePortraits;
-    private TextureAtlas flags;
-    private TextureAtlas items;
-    private String lastMusicName;
-    private TextureRegion[] malePortraits;
-    private TextureAtlas mapItems;
-    private TextureAtlas mapThumbs;
-    private Music music;
-    private TextureAtlas plants;
-    private TextureAtlas projectiles;
-    private TextureAtlas skills;
-    private ArrayList<StaticNPCRegion> staticNPCs;
-    private TextureAtlas ui_icons;
+    public TextureAtlas activables;
+    public AssetManager assetManager;
+    public TextureRegion[] femalePortraits;
+    public TextureAtlas flags;
+    public TextureAtlas items;
+    public String lastMusicName;
+    public TextureRegion[] malePortraits;
+    public TextureAtlas mapItems;
+    public TextureAtlas mapThumbs;
+    public Music music;
+    public TextureAtlas plants;
+    public TextureAtlas projectiles;
+    public TextureAtlas skills;
+    public ArrayList<StaticNPCRegion> staticNPCs;
+    public TextureAtlas ui_icons;
 
     /* JADX INFO: renamed from: net.fdgames.assets.Assets$1, reason: invalid class name */
     static /* synthetic */ class AnonymousClass1 {
@@ -76,7 +76,7 @@ public class Assets implements i {
         }
     }
 
-    private Assets() {
+    public Assets() {
     }
 
     public static TextureRegion a(String str) {
@@ -113,7 +113,7 @@ public class Assets implements i {
         return new TextureRegion(b(str));
     }
 
-    private static Texture b(String str) {
+    public static Texture b(String str) {
         Assets assets = f3309a;
         if (!assets.assetManager.isLoaded("data/ui/" + str + ".png")) {
             return assets.malePortraits[0].getTexture();
@@ -272,7 +272,7 @@ public class Assets implements i {
         return new TextureRegion(b(str));
     }
 
-    private static String p() {
+    public static String p() {
         String str = ExiledKingdoms.f3378h ? "_desktop" : "";
         return Settings.M() ? a.l("uiskin_ru", str, ".json") : a.l("uiskin", str, ".json");
     }

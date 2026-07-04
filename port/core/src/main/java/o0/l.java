@@ -33,46 +33,46 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class l extends Window {
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private static l f3577l;
+    public static l f3577l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private static float f3578m = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3578m = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static float f3579n;
+    public static float f3579n;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3580a;
+    public n0.t f3580a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f3581b;
+    public Table f3581b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ScrollPane f3582c;
+    public ScrollPane f3582c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private CheckBox f3583d;
+    public CheckBox f3583d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private CheckBox f3584e;
+    public CheckBox f3584e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private CheckBox f3585f;
+    public CheckBox f3585f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private CheckBox f3586g;
+    public CheckBox f3586g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
     boolean f3587h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private boolean f3588i;
+    public boolean f3588i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private boolean f3589j;
+    public boolean f3589j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private int f3590k;
+    public int f3590k;
 
     /* JADX INFO: compiled from: JournalWindow.java */
     final class a extends InputListener {

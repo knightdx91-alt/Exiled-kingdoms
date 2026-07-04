@@ -20,14 +20,14 @@ public abstract class MapActor extends MapSprite {
     public float speedX;
     public float speedY;
     public boolean stuck;
-    private ActorState state = ActorState.IDLE;
-    private boolean movementBlocked = false;
+    public ActorState state = ActorState.IDLE;
+    public boolean movementBlocked = false;
     public float pushmaxtime = 0.0f;
     public Facing facing = Facing.LD;
     public float stateRelativeTime = 0.0f;
     protected int timesStuck = 0;
     protected Coords destination = new Coords(-1, -1);
-    private Rectangle projectCollisionRectangle = new Rectangle ();
+    public Rectangle projectCollisionRectangle = new Rectangle ();
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -41,14 +41,14 @@ public abstract class MapActor extends MapSprite {
         U, RU, R, RD, D, LD, L, LU;
     }
 
-    private boolean P(int i2, int i3) {
+    public boolean P(int i2, int i3) {
         b bVarP = b.P();
         int i4 = this.uniqueID;
         ActorState actorState = this.state;
         return bVarP.f(i2, i3, i4, (actorState == ActorState.PUSHED || actorState == ActorState.SKILL_CHARGE) ? false : true);
     }
 
-    private void Y() {
+    public void Y() {
         for (int i2 = 1; P(this.f3092x, this.f3093y) && i2 < 72; i2++) {
             if (!P(this.f3092x, this.f3093y - i2)) {
                 this.f3093y -= i2;

@@ -30,28 +30,28 @@ public class Rules {
     public static Item[] f3247a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static Spawn[] f3248b;
+    public static Spawn[] f3248b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static GameText[] f3249c;
+    public static GameText[] f3249c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static GameText[] f3250d;
+    public static GameText[] f3250d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static GameText[] f3251e;
+    public static GameText[] f3251e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     public static int[] f3252f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static ArrayList<LootItem> f3253g;
+    public static ArrayList<LootItem> f3253g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static ArrayList<WeaponStats> f3254h;
+    public static ArrayList<WeaponStats> f3254h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static ArrayList<RewardTable> f3255i;
+    public static ArrayList<RewardTable> f3255i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
     public static TrapData f3256j;

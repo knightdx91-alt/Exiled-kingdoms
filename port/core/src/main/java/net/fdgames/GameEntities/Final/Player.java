@@ -55,10 +55,10 @@ import net.fdgames.ek.Settings;
 public class Player extends Character {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f3024b = 0.35f;
+    public static float f3024b = 0.35f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static Set<Integer> f3025c;
+    public static Set<Integer> f3025c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     public static boolean f3026d;
@@ -71,47 +71,47 @@ public class Player extends Character {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
     public static float f3029g;
-    private float TransitionTime;
+    public float TransitionTime;
     public Activable[] activables;
-    private String activeSkill_1;
-    private String activeSkill_2;
-    private String activeSkill_3;
-    private String activeSkill_4;
-    private String activeSkill_5;
-    private String activeSkill_6;
-    private String activeSkill_7;
-    private String activeSkill_8;
-    private ArrayList<String> activeSkills;
+    public String activeSkill_1;
+    public String activeSkill_2;
+    public String activeSkill_3;
+    public String activeSkill_4;
+    public String activeSkill_5;
+    public String activeSkill_6;
+    public String activeSkill_7;
+    public String activeSkill_8;
+    public ArrayList<String> activeSkills;
     public AreasVisited areasVisited;
-    private ArrayList<Bed> beds;
-    private ArrayList<MapContainer> containers;
+    public ArrayList<Bed> beds;
+    public ArrayList<MapContainer> containers;
     public ArrayList<MapConversation> conversations;
-    private int gold;
-    private float lastPlayerCollisionCheck;
-    private float lastPlayerFOVCheck;
-    private float last_casual_regen;
-    private float last_mana_regen;
-    private float lastplayerattack;
-    private ArrayList<Loot> loots;
-    private ArrayList<MapCastle> mapCastles;
+    public int gold;
+    public float lastPlayerCollisionCheck;
+    public float lastPlayerFOVCheck;
+    public float last_casual_regen;
+    public float last_mana_regen;
+    public float lastplayerattack;
+    public ArrayList<Loot> loots;
+    public ArrayList<MapCastle> mapCastles;
     public int numActivables;
-    private ArrayList<PlantSpawn> plants;
-    private int quickSlot1;
-    private int quickSlot2;
-    private int quickSlot3;
-    private int quickSlot4;
-    private int quickSlot5;
-    private int quickSlotOrigin1;
-    private int quickSlotOrigin2;
-    private int quickSlotOrigin3;
-    private int quickSlotOrigin4;
-    private int quickSlotOrigin5;
-    private ArrayList<RestPoint> restpoints;
-    private ArrayList<Shop> shops;
+    public ArrayList<PlantSpawn> plants;
+    public int quickSlot1;
+    public int quickSlot2;
+    public int quickSlot3;
+    public int quickSlot4;
+    public int quickSlot5;
+    public int quickSlotOrigin1;
+    public int quickSlotOrigin2;
+    public int quickSlotOrigin3;
+    public int quickSlotOrigin4;
+    public int quickSlotOrigin5;
+    public ArrayList<RestPoint> restpoints;
+    public ArrayList<Shop> shops;
     public Transition tempTransition;
-    private ArrayList<MapItem> toggles;
-    private int tolCurseCounter;
-    private int usedEndurance;
+    public ArrayList<MapItem> toggles;
+    public int tolCurseCounter;
+    public int usedEndurance;
     public int usedRecover;
 
     public Player() {
@@ -146,7 +146,7 @@ public class Player extends Character {
         this.quickSlotOrigin5 = 0;
     }
 
-    private void E1() {
+    public void E1() {
         if (this.activables == null) {
             this.activables = new Activable[]{null, null, null, null};
             this.numActivables = 0;

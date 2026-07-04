@@ -24,7 +24,7 @@ public final class a {
     public static final class b implements InterfaceC0030a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final c[] f2169a;
+        public final c[] f2169a;
 
         public b(c[] cVarArr) {
             this.f2169a = cVarArr;
@@ -39,16 +39,16 @@ public final class a {
     public static final class c {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final String f2170a;
+        public final String f2170a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private int f2171b;
+        public int f2171b;
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private boolean f2172c;
+        public boolean f2172c;
 
         /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private int f2173d;
+        public int f2173d;
 
         public c(String str, int i2, boolean z2, int i3) {
             this.f2170a = str;
@@ -78,13 +78,13 @@ public final class a {
     public static final class d implements InterfaceC0030a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final i.a f2174a;
+        public final i.a f2174a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private final int f2175b;
+        public final int f2175b;
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private final int f2176c;
+        public final int f2176c;
 
         public d(i.a aVar, int i2, int i3) {
             this.f2174a = aVar;
@@ -190,7 +190,7 @@ public final class a {
         return arrayList != null ? arrayList : Collections.emptyList();
     }
 
-    private static void c(XmlResourceParser xmlResourceParser) throws XmlPullParserException, IOException {
+    public static void c(XmlResourceParser xmlResourceParser) throws XmlPullParserException, IOException {
         int i2 = 1;
         while (i2 > 0) {
             int next = xmlResourceParser.next();

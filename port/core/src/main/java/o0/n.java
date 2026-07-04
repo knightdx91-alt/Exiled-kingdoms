@@ -22,25 +22,25 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class n extends Window {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static n f3612d;
+    public static n f3612d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     static float f3613e = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static float f3614f;
+    public static float f3614f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
     static float f3615g;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3616a;
+    public n0.t f3616a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f3617b;
+    public Table f3617b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ScrollPane f3618c;
+    public ScrollPane f3618c;
 
     /* JADX INFO: compiled from: ReputationWindow.java */
     final class a extends InputListener {

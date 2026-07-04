@@ -25,25 +25,25 @@ public final class m extends Window {
     static float f3597h = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static m f3598i;
+    public static m f3598i;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3599a;
+    public n0.t f3599a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private n0.t f3600b;
+    public n0.t f3600b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3601c;
+    public Label f3601c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private i[] f3602d;
+    public i[] f3602d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private o0.f f3603e;
+    public o0.f f3603e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f3604f;
+    public float f3604f;
 
     /* JADX INFO: compiled from: QuickSlotWindow.java */
     final class a extends InputListener {
@@ -208,7 +208,7 @@ public final class m extends Window {
         return f3596g > -1;
     }
 
-    private void k() {
+    public void k() {
         f3596g = -1;
         setModal(true);
         l();
@@ -217,7 +217,7 @@ public final class m extends Window {
         this.f3601c.setText("");
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void l() {
         for (int i2 = 0; i2 < 5; i2++) {
             AStarPathFinder aStarPathFinder = GameLevel.f3094a;

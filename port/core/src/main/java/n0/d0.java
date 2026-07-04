@@ -18,31 +18,31 @@ import net.fdgames.ek.GPGSUpdate;
 public final class d0 extends Window {
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static d0 f2607h;
+    public static d0 f2607h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static float f2608i;
+    public static float f2608i;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private t f2609a;
+    public t f2609a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private t f2610b;
+    public t f2610b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private t f2611c;
+    public t f2611c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private t f2612d;
+    public t f2612d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private t f2613e;
+    public t f2613e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private t f2614f;
+    public t f2614f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Label f2615g;
+    public Label f2615g;
 
     /* JADX INFO: compiled from: GameOptionsWindow.java */
     final class a extends ChangeListener {

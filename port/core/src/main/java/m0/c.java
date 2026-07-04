@@ -12,10 +12,10 @@ import net.fdgames.Helpers.FDUtils;
 public final class c {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private ArrayList<MapEffect> f2441a = new ArrayList<>();
+    public ArrayList<MapEffect> f2441a = new ArrayList<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private MapEffect[][] f2442b = (MapEffect[][]) Array.newInstance((Class<?>) MapEffect.class, 96, 96);
+    public MapEffect[][] f2442b = (MapEffect[][]) Array.newInstance((Class<?>) MapEffect.class, 96, 96);
 
     public final void a(int i2, int i3, String str) {
         int iB = FDUtils.b(1, 100);

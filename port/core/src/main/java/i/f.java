@@ -15,16 +15,16 @@ import java.util.concurrent.locks.ReentrantLock;
 public final class f {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private HandlerThread f2244b;
+    public HandlerThread f2244b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Handler f2245c;
+    public Handler f2245c;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final Object f2243a = new Object();
+    public final Object f2243a = new Object();
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Handler.Callback f2246d = new a();
+    public Handler.Callback f2246d = new a();
 
     /* JADX INFO: compiled from: SelfDestructiveThread.java */
     final class a implements Handler.Callback {
@@ -165,7 +165,7 @@ public final class f {
         }
     }
 
-    private void c(Runnable runnable) {
+    public void c(Runnable runnable) {
         synchronized (this.f2243a) {
             try {
                 if (this.f2244b == null) {

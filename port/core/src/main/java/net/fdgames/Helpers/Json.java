@@ -26,19 +26,19 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Json {
-    private final y<Class, Object[]> classToDefaultValues;
-    private final y<Class, Serializer> classToSerializer;
-    private final y<Class, String> classToTag;
-    private Serializer defaultSerializer;
-    private boolean enumNames;
-    private boolean ignoreUnknownFields;
-    private u.Constructor outputType;
-    private boolean quoteLongValues;
-    private final y<String, Class> tagToClass;
-    private String typeName;
-    private final y<Class, y<String, a>> typeToFields;
-    private boolean usePrototypes;
-    private u writer;
+    public final y<Class, Object[]> classToDefaultValues;
+    public final y<Class, Serializer> classToSerializer;
+    public final y<Class, String> classToTag;
+    public Serializer defaultSerializer;
+    public boolean enumNames;
+    public boolean ignoreUnknownFields;
+    public u.Constructor outputType;
+    public boolean quoteLongValues;
+    public final y<String, Class> tagToClass;
+    public String typeName;
+    public final y<Class, y<String, a>> typeToFields;
+    public boolean usePrototypes;
+    public u writer;
 
     public static abstract class ReadOnlySerializer<T> implements Serializer<T> {
         @Override // net.fdgames.Helpers.Json.Serializer
@@ -61,7 +61,7 @@ public class Json {
         void write(Json json, T t2, Class cls);
     }
 
-    private static class a {
+    public static class a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
         Field f3222a;
@@ -86,7 +86,7 @@ public class Json {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private y<String, a> cacheFields(Class cls) {
+    public y<String, a> cacheFields(Class cls) {
         ArrayList arrayList = new ArrayList();
         for (Class superclass = cls; superclass != Object.class; superclass = superclass.getSuperclass()) {
             Collections.addAll(arrayList, h0.a.d(superclass));
@@ -121,11 +121,11 @@ public class Json {
         return yVar;
     }
 
-    private String convertToString(Object obj) {
+    public String convertToString(Object obj) {
         return obj instanceof Class ? ((Class) obj).getName() : String.valueOf(obj);
     }
 
-    private Object[] getDefaultValues(Class cls) {
+    public Object[] getDefaultValues(Class cls) {
         if (!this.usePrototypes) {
             return null;
         }

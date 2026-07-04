@@ -4,8 +4,8 @@ package net.fdgames.Rules;
 public class BonusSet {
     public int HP = 0;
     public int damage = 0;
-    private int critChance = 0;
-    private int critDamage = this.critDamage;
+    public int critChance = 0;
+    public int critDamage = this.critDamage;
     public int armor = 0;
     public int gossip = 0;
     public int detect = 0;

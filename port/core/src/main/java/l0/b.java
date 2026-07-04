@@ -70,7 +70,7 @@ import u.f;
 public final class b implements n, j {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static GameLevel f2308i = null;
+    public static GameLevel f2308i = null;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
     public static boolean f2309j = false;
@@ -91,38 +91,38 @@ public final class b implements n, j {
     public static float f2314o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static float f2315p;
+    public static float f2315p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private static com.badlogic.gdx.Game f2316q;
+    public static com.badlogic.gdx.Game f2316q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
     public static boolean f2317r;
     public static boolean s;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private float f2318a = 0.0f;
+    public float f2318a = 0.0f;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f2319b = 0.0f;
+    public float f2319b = 0.0f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2320c = 0.0f;
+    public float f2320c = 0.0f;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private float f2321d;
+    public float f2321d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Vector2 f2322e;
+    public Vector2 f2322e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Vector2 f2323f;
+    public Vector2 f2323f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Vector2 f2324g;
+    public Vector2 f2324g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2325h;
+    public float f2325h;
 
     public b(com.badlogic.gdx.Game eVar, Transition transition) {
         this.f2325h = 0.5f;
@@ -146,7 +146,7 @@ public final class b implements n, j {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private static void d(Transition transition) {
+    public static void d(Transition transition) {
         Assets assets = Assets.f3309a;
         assets.x();
         f2309j = true;
@@ -400,7 +400,7 @@ public final class b implements n, j {
         f2314o = (float) (GameData.v().realTime + 0.25d);
     }
 
-    private void j() {
+    public void j() {
         f2312m = false;
         this.f2318a = 0.0f;
         if (f2309j) {
@@ -497,7 +497,7 @@ public final class b implements n, j {
         }
     }
 
-    private void k(float f2, float f3) {
+    public void k(float f2, float f3) {
         if (this.f2324g == null) {
             this.f2324g = new Vector2 (0.0f, 0.0f);
         }
@@ -534,7 +534,7 @@ public final class b implements n, j {
         f2315p = GameData.v().u() + 0.8f;
     }
 
-    private void m() {
+    public void m() {
         f2313n = false;
         this.f2320c = (float) GameData.v().realTime;
     }

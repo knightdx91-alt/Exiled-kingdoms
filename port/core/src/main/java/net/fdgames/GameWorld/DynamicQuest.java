@@ -82,7 +82,7 @@ public class DynamicQuest {
         return j(dynamicQuest.location_ID) > 0;
     }
 
-    private static boolean c(DynamicQuest dynamicQuest) {
+    public static boolean c(DynamicQuest dynamicQuest) {
         Quests quests = GameWorld.f3187a;
         String str = dynamicQuest.quest_ID;
         String str2 = dynamicQuest.variation_ID;

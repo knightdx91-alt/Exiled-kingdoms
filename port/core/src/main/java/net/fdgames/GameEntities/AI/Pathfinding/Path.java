@@ -5,7 +5,7 @@ import net.fdgames.TiledMap.Objects.Coords;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Path {
-    private a<Step> steps = new a<>();
+    public a<Step> steps = new a<>();
 
     public final void a(int i2, int i3) {
         for (int i4 = this.steps.f1750b - 1; i4 >= 0; i4--) {

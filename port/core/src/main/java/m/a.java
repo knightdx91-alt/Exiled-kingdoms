@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 public class a extends Drawable implements Drawable.Callback {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Drawable f2385b;
+    public Drawable f2385b;
 
     public a(Drawable drawable) {
         Drawable drawable2 = this.f2385b;

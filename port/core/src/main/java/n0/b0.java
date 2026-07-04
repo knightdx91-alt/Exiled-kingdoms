@@ -17,12 +17,12 @@ public final class b0 extends Table implements a.c {
     static float f2536b = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static final Color f2537c = Color.WHITE;
+    public static final Color f2537c = Color.WHITE;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     Label f2538a;
 
-    private static float a() {
+    public static float a() {
         if (GameData.v().log == null) {
             return 0.0f;
         }

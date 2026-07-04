@@ -33,7 +33,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class o extends Window {
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private static float f2825w;
+    public static float f2825w;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public Conversation f2826a;
@@ -42,62 +42,62 @@ public final class o extends Window {
     public int f2827b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private int f2828c;
+    public int f2828c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private int f2829d;
+    public int f2829d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f2830e;
+    public int f2830e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private int f2831f;
+    public int f2831f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Label f2832g;
+    public Label f2832g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Label f2833h;
+    public Label f2833h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private s f2834i;
+    public s f2834i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private s f2835j;
+    public s f2835j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private s f2836k;
+    public s f2836k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private s f2837l;
+    public s f2837l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Label f2838m;
+    public Label f2838m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Image f2839n;
+    public Image f2839n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private float f2840o;
+    public float f2840o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private MapConversation f2841p;
+    public MapConversation f2841p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private ActionsSet f2842q;
+    public ActionsSet f2842q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private ActionsSet f2843r;
-    private ActionsSet s;
+    public ActionsSet f2843r;
+    public ActionsSet s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private ActionsSet f2844t;
+    public ActionsSet f2844t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private Coords f2845u;
+    public Coords f2845u;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private int f2846v;
+    public int f2846v;
 
     public o(Skin skin, Stage stage) {
         super("", skin);
@@ -191,7 +191,7 @@ public final class o extends Window {
         sVar4.addListener(new n(this));
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void u(int i2) {
         if (i2 == 0) {
             setVisible(false);

@@ -24,10 +24,10 @@ public final class i extends Window {
     static float f3913b = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static float f3914c;
+    public static float f3914c;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Table f3915a;
+    public Table f3915a;
 
     /* JADX INFO: compiled from: CreditsWindow.java */
     final class a extends InputListener {

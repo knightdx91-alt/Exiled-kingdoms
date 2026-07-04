@@ -69,7 +69,7 @@ public class ExiledKingdoms extends e {
     public static Controller f3384n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static MainActivity f3385o;
+    public static MainActivity f3385o;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
     public static boolean f3387q;

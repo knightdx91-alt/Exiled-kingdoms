@@ -8,10 +8,10 @@ public class Follower {
     public int dismissTime;
     public int lastLevel;
     public int missingHP;
-    private e spawnData;
+    public e spawnData;
     public String spawn_id;
-    private boolean updated;
-    private NPCSerializedSpawnData updatedData;
+    public boolean updated;
+    public NPCSerializedSpawnData updatedData;
 
     public Follower(String str, e eVar) {
         String str2 = eVar.f2445a;

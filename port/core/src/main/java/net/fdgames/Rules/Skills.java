@@ -15,7 +15,7 @@ import net.fdgames.ek.Settings;
 public class Skills {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<Skill> f3280a = new ArrayList<>();
+    public static ArrayList<Skill> f3280a = new ArrayList<>();
 
     public static ArrayList<Skill> a() {
         ArrayList<Skill> arrayList = new ArrayList<>();
@@ -88,7 +88,7 @@ public class Skills {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private static void f(String str, boolean z2) {
+    public static void f(String str, boolean z2) {
         String[] strArrSplit;
         ArrayList<Skill> arrayList;
         String str2;

@@ -5,13 +5,13 @@ import java.util.List;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class CharacterResistances {
-    private int all;
-    private int cold;
-    private int death;
-    private int fire;
-    private int shock;
-    private int spirit;
-    private int toxic;
+    public int all;
+    public int cold;
+    public int death;
+    public int fire;
+    public int shock;
+    public int spirit;
+    public int toxic;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */

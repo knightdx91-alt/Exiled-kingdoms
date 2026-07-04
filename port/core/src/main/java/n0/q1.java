@@ -30,7 +30,7 @@ public final class q1 extends Image {
     static final float f2865m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static Color f2866n;
+    public static Color f2866n;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     String f2867a;
@@ -42,19 +42,19 @@ public final class q1 extends Image {
     final int f2869c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private float f2870d;
+    public float f2870d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private float f2871e;
+    public float f2871e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f2872f;
+    public float f2872f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private float f2873g;
+    public float f2873g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2874h;
+    public float f2874h;
 
     static {
         float fMin = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);

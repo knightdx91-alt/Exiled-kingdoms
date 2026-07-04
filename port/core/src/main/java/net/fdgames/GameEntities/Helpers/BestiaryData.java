@@ -15,10 +15,10 @@ import net.fdgames.ek.ExiledKingdoms;
 public class BestiaryData {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<BestiaryEntry> f3044a = new ArrayList<>();
+    public static ArrayList<BestiaryEntry> f3044a = new ArrayList<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static CharacterSheet f3045b;
+    public static CharacterSheet f3045b;
 
     public static void a(NPC npc) {
         if (ExiledKingdoms.f3378h) {

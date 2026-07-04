@@ -12,11 +12,11 @@ import q.f;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapLight {
-    private Color color;
-    private boolean colorup;
+    public Color color;
+    public boolean colorup;
     public boolean destroy;
     float destructionTime;
-    private boolean flash;
+    public boolean flash;
     float isoX;
     float isoY;
     float lastUpdate;
@@ -72,7 +72,7 @@ public class MapLight {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    private enum lightType {
+    public enum lightType {
         TORCH, AURA_YELLOW, FLASH_RED, FLASH_WHITE, AURA_BLUE, FLASH_BLUE;
     }
 

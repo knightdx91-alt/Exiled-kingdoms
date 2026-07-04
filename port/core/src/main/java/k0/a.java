@@ -49,29 +49,29 @@ import q.f;
 public final class a {
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static final float f2269p;
+    public static final float f2269p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
     public static int f2270q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
     public static int f2271r;
-    private static a s;
+    public static a s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private static BitmapFont f2272t;
+    public static BitmapFont f2272t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private static ArrayList<MapSprite> f2273u;
+    public static ArrayList<MapSprite> f2273u;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private World f2274a;
+    public World f2274a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private f f2275b;
+    public f f2275b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private GlyphLayout f2276c;
+    public GlyphLayout f2276c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     public com.badlogic.gdx.math.Vector3 f2277d;
@@ -80,31 +80,31 @@ public final class a {
     public OrthographicCamera f2278e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private ArrayList<w> f2279f;
+    public ArrayList<w> f2279f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private com.badlogic.gdx.utils.Array<MapParticleEffectPool.MapPooledEffect> f2280g;
+    public com.badlogic.gdx.utils.Array<MapParticleEffectPool.MapPooledEffect> f2280g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private com.badlogic.gdx.utils.Array<SpriteEffect> f2281h;
+    public com.badlogic.gdx.utils.Array<SpriteEffect> f2281h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private float f2282i;
+    public float f2282i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
     public m0.a f2283j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private double f2284k;
+    public double f2284k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private double f2285l;
+    public double f2285l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Coords f2286m;
+    public Coords f2286m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Coords f2287n;
+    public Coords f2287n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
     public boolean f2288o;
@@ -127,7 +127,7 @@ public final class a {
         f2273u = new ArrayList<>();
     }
 
-    private static boolean f(com.badlogic.gdx.math.Vector3 aVar) {
+    public static boolean f(com.badlogic.gdx.math.Vector3 aVar) {
         Vector2 qVarB = b.B((int) aVar.f1729a, (int) aVar.f1730b);
         float f2 = qVarB.f91a;
         if ((f2 > ((float) b.P().f2420e)) || ((f2 > 0.0f ? 1 : (f2 == 0.0f ? 0 : -1)) < 0)) {
@@ -149,7 +149,7 @@ public final class a {
         }
     }
 
-    private double k() {
+    public double k() {
         if (this.f2284k >= 0.0d) {
             double dS = GameData.v().s() - this.f2284k;
             if (dS <= 1.0d) {

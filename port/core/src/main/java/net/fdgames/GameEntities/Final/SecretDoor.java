@@ -18,10 +18,10 @@ import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class SecretDoor extends MapObject {
-    private float lastDetectCheck = 0.0f;
-    private int level;
-    private String secretdoor_tag;
-    private SecretDoorState state;
+    public float lastDetectCheck = 0.0f;
+    public int level;
+    public String secretdoor_tag;
+    public SecretDoorState state;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */

@@ -22,7 +22,7 @@ public class QuestVariation {
     public String spawn_id;
     public String spawn_id2;
     public String spawn_id3;
-    private String target;
+    public String target;
     public String target_ES;
 
     public QuestVariation(String str) {

@@ -24,19 +24,19 @@ public final class c1 extends Window {
     public boolean f2587a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f2588b;
+    public Label f2588b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ArrayList<b1> f2589c;
+    public ArrayList<b1> f2589c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private ControllerCommand f2590d;
+    public ControllerCommand f2590d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private float f2591e;
+    public float f2591e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f2592f;
+    public float f2592f;
 
     /* JADX INFO: compiled from: KeyboardWindow.java */
     final class a extends ClickListener {
@@ -160,7 +160,7 @@ public final class c1 extends Window {
         setVisible(false);
     }
 
-    private void b(b1 b1Var, b1 b1Var2) {
+    public void b(b1 b1Var, b1 b1Var2) {
         float f2 = this.f2591e;
         float f3 = 400.0f * f2;
         float f4 = 32.0f * f2;
@@ -171,7 +171,7 @@ public final class c1 extends Window {
         add(b1Var2).width(f3).padRight(f6).left();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void d() {
         this.f2590d = null;
         this.f2587a = false;

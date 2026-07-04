@@ -12,7 +12,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public class h extends Dialog {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f3522b;
+    public static float f3522b;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     float f3523a;

@@ -11,8 +11,8 @@ public class ConversationSentence {
     public ConditionsSet conditions;
     public String newQuestionOwner;
     public int next;
-    private PlayerRequirements requirements;
-    private String text;
+    public PlayerRequirements requirements;
+    public String text;
     public SentenceType type;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */

@@ -8,12 +8,12 @@ import net.fdgames.Helpers.FDUtils;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class PlayerRequirements {
-    private int AGI;
-    private int AWA;
-    private int END;
-    private int INT;
-    private int PER;
-    private int STR;
+    public int AGI;
+    public int AWA;
+    public int END;
+    public int INT;
+    public int PER;
+    public int STR;
 
     public PlayerRequirements(String str) {
         Iterator it = FDUtils.s(str).iterator();
@@ -42,7 +42,7 @@ public class PlayerRequirements {
         }
     }
 
-    private static String b(boolean z2) {
+    public static String b(boolean z2) {
         return z2 ? "[BLACK]" : "[RED]";
     }
 

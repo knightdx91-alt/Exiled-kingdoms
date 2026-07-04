@@ -28,41 +28,41 @@ import w.e;
 /* JADX INFO: compiled from: ADTIsometricTiledMapRenderer.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class a extends y.a {
-    private static float D;
-    private static Color E = new Color();
+    public static float D;
+    public static Color E = new Color();
     boolean A;
     e.a B;
     Door C;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Matrix4 f2386g;
+    public Matrix4 f2386g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Matrix4 f2387h;
+    public Matrix4 f2387h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private com.badlogic.gdx.math.Vector3 f2388i;
+    public com.badlogic.gdx.math.Vector3 f2388i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private Vector2 f2389j;
+    public Vector2 f2389j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private Vector2 f2390k;
+    public Vector2 f2390k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private Vector2 f2391l;
+    public Vector2 f2391l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Vector2 f2392m;
+    public Vector2 f2392m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
     public ArrayList<MapSprite> f2393n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private ArrayList<MapSprite>[][] f2394o;
+    public ArrayList<MapSprite>[][] f2394o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private float f2395p;
+    public float f2395p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
     float f2396q;
@@ -110,7 +110,7 @@ public final class a extends y.a {
         matrix42.e();
     }
 
-    private void e(int i2, int i3) {
+    public void e(int i2, int i3) {
         if (b.P().f2428m.c(i2, i3)) {
             b.P().f2428m.b(i2, i3, (SpriteBatch) c());
         }
@@ -131,7 +131,7 @@ public final class a extends y.a {
         return E;
     }
 
-    private com.badlogic.gdx.math.Vector3 j(Vector2 qVar) {
+    public com.badlogic.gdx.math.Vector3 j(Vector2 qVar) {
         float f2 = qVar.f91a;
         float f3 = qVar.f92b;
         com.badlogic.gdx.math.Vector3 aVar = this.f2388i;

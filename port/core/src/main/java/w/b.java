@@ -8,10 +8,10 @@ import com.badlogic.gdx.utils.Disposable;
 public final class b extends u.b {
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private g f4076c = new g();
+    public g f4076c = new g();
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private com.badlogic.gdx.utils.Array<? extends i> f4077d;
+    public com.badlogic.gdx.utils.Array<? extends i> f4077d;
 
     public final g c() {
         return this.f4076c;

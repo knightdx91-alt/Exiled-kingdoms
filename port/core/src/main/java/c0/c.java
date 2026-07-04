@@ -9,7 +9,7 @@ import java.net.Socket;
 public final class c implements f {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Socket f1429a;
+    public Socket f1429a;
 
     public c(String str, int i2) {
         try {

@@ -23,25 +23,25 @@ import net.fdgames.ek.Settings;
 public final class c extends Window {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3844a;
+    public n0.t f3844a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3845b;
+    public Label f3845b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Table f3846c;
+    public Table f3846c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private float f3847d;
+    public float f3847d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     s[] f3848e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Stage f3849f;
+    public Stage f3849f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private boolean f3850g;
+    public boolean f3850g;
 
     /* JADX INFO: compiled from: ChooseLanguageDialog.java */
     final class a extends InputListener {

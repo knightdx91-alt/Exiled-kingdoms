@@ -5,15 +5,15 @@ import net.fdgames.Rules.Rules;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class CharacterTraits {
-    private Rules.CharacterClass charClass;
-    private int extraTraitPoints;
-    private int[] spentPoints;
-    private int[] value;
+    public Rules.CharacterClass charClass;
+    public int extraTraitPoints;
+    public int[] spentPoints;
+    public int[] value;
 
     public CharacterTraits() {
     }
 
-    private void a() {
+    public void a() {
         if (this.value == null) {
             this.value = new int[6];
         }

@@ -8,7 +8,7 @@ import net.fdgames.assets.GameAssets;
 public class SpriteEffect {
     public float creationTime;
     public float destructionTime;
-    private String effectName;
+    public String effectName;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     public int f3105x;

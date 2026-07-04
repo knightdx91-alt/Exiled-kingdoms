@@ -10,19 +10,19 @@ import net.fdgames.Rules.WeaponStats;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class CharacterInventory {
-    private int XPBonus;
-    private int detectionBonus;
-    private int devicesBonus;
-    private int gossipBonus;
+    public int XPBonus;
+    public int detectionBonus;
+    public int devicesBonus;
+    public int gossipBonus;
     public boolean shield;
     public boolean stability;
     public boolean stunimmunity;
-    private int DefenseBonus = 0;
-    private int HPBonus = 0;
-    private int ManaBonus = 0;
-    private CharacterResistances ResistanceBonus = new CharacterResistances();
-    private int[] traits = new int[6];
-    private boolean twohander = false;
+    public int DefenseBonus = 0;
+    public int HPBonus = 0;
+    public int ManaBonus = 0;
+    public CharacterResistances ResistanceBonus = new CharacterResistances();
+    public int[] traits = new int[6];
+    public boolean twohander = false;
     public int slot_body = 0;
     public int slot_head = 0;
     public int slot_hands = 0;
@@ -35,9 +35,9 @@ public class CharacterInventory {
     public int slot_necklace = 0;
     public int slot_ring2 = 0;
     public int slot_belt = 0;
-    private boolean antirad = false;
+    public boolean antirad = false;
 
-    private void a(Item item) {
+    public void a(Item item) {
         if (item != null) {
             int i2 = this.gossipBonus;
             ItemAttributes itemAttributes = item.attributes;

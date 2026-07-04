@@ -13,22 +13,22 @@ import n.b;
 public final class e extends b implements h.a {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Context f2460d;
+    public Context f2460d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private ActionBarContextView f2461e;
+    public ActionBarContextView f2461e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private b.a f2462f;
+    public b.a f2462f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private WeakReference<View> f2463g;
+    public WeakReference<View> f2463g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private boolean f2464h;
+    public boolean f2464h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private android.support.v7.view.menu.h f2465i;
+    public android.support.v7.view.menu.h f2465i;
 
     public e(Context context, ActionBarContextView actionBarContextView, b.a aVar) {
         this.f2460d = context;

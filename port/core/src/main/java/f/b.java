@@ -11,10 +11,10 @@ import i.e;
 public final class b {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static final d f2199a = new d();
+    public static final d f2199a = new d();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static final android.support.v4.util.f<String, Typeface> f2200b = new android.support.v4.util.f<>(16);
+    public static final android.support.v4.util.f<String, Typeface> f2200b = new android.support.v4.util.f<>(16);
 
     public static Typeface a(Context context, e.c[] cVarArr, int i2) {
         return f2199a.g(context, cVarArr, i2);
@@ -47,7 +47,7 @@ public final class b {
         return typefaceH;
     }
 
-    private static String d(Resources resources, int i2, int i3) {
+    public static String d(Resources resources, int i2, int i3) {
         return resources.getResourcePackageName(i2) + "-" + i2 + "-" + i3;
     }
 

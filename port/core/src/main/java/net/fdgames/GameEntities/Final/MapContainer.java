@@ -23,7 +23,7 @@ public class MapContainer extends MapObject implements Lootable {
     public int gold = 0;
     public String loot_table = "";
     public String quest_location = "";
-    private String container_tag = "";
+    public String container_tag = "";
 
     @Override // net.fdgames.GameEntities.MapObject
     public final TextureRegion E() {

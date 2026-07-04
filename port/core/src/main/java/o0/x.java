@@ -33,22 +33,22 @@ import net.fdgames.ek.GPGSUpdate;
 public final class x extends Window {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static x f3677d;
+    public static x f3677d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     static float f3678e = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static float f3679f;
+    public static float f3679f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     CharacterSheet f3680a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f3681b;
+    public Table f3681b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ScrollPane f3682c;
+    public ScrollPane f3682c;
 
     /* JADX INFO: compiled from: StatsDetailWindow.java */
     final class a extends InputListener {
@@ -108,7 +108,7 @@ public final class x extends Window {
         return f3677d;
     }
 
-    private static Table c(String str, boolean z2, String str2) {
+    public static Table c(String str, boolean z2, String str2) {
         Table table = new Table();
         table.pad(f3678e * 5.0f);
         String str3 = z2 ? "    -" : "";

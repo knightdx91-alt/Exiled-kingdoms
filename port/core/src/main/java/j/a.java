@@ -11,9 +11,9 @@ import com.google.android.gms.drive.MetadataChangeSet;
 public final class a {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final AccessibilityNodeInfo f2267a;
+    public final AccessibilityNodeInfo f2267a;
 
-    private a(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public a(AccessibilityNodeInfo accessibilityNodeInfo) {
         this.f2267a = accessibilityNodeInfo;
     }
 

@@ -8,7 +8,7 @@ import u.f;
 public final class b extends f {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Rectangle f4067b;
+    public Rectangle f4067b;
 
     public b() {
         this(0.0f, 0.0f, 1.0f, 1.0f);

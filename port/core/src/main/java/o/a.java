@@ -19,59 +19,59 @@ import android.view.View;
 public final class a implements h.b {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private CharSequence f3423a;
+    public CharSequence f3423a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private CharSequence f3424b;
+    public CharSequence f3424b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Intent f3425c;
+    public Intent f3425c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private char f3426d;
+    public char f3426d;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private char f3428f;
+    public char f3428f;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Drawable f3430h;
+    public Drawable f3430h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Context f3431i;
+    public Context f3431i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private CharSequence f3432j;
+    public CharSequence f3432j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private CharSequence f3433k;
+    public CharSequence f3433k;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f3427e = 4096;
+    public int f3427e = 4096;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f3429g = 4096;
+    public int f3429g = 4096;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private ColorStateList f3434l = null;
+    public ColorStateList f3434l = null;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private PorterDuff.Mode f3435m = null;
+    public PorterDuff.Mode f3435m = null;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private boolean f3436n = false;
+    public boolean f3436n = false;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private boolean f3437o = false;
+    public boolean f3437o = false;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private int f3438p = 16;
+    public int f3438p = 16;
 
     public a(Context context, CharSequence charSequence) {
         this.f3431i = context;
         this.f3423a = charSequence;
     }
 
-    private void c() {
+    public void c() {
         Drawable drawable = this.f3430h;
         if (drawable != null) {
             if (this.f3436n || this.f3437o) {

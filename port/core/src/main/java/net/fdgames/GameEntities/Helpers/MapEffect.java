@@ -21,28 +21,28 @@ import net.fdgames.ek.Settings;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapEffect {
-    private int animationIndex;
-    private Rectangle collisionRectangle;
-    private int damage;
-    private Damage.DamageType damageType;
-    private boolean drawn;
+    public int animationIndex;
+    public Rectangle collisionRectangle;
+    public int damage;
+    public Damage.DamageType damageType;
+    public boolean drawn;
     public float duration;
-    private String effect;
+    public String effect;
     public boolean fullyActive;
     public String name;
-    private int owner_id;
+    public int owner_id;
     public int size;
-    private float stateRelativeTime;
+    public float stateRelativeTime;
     public String tag_id;
-    private ArrayList<Integer> targets;
-    private float timeSinceLastDamage;
-    private boolean weak;
+    public ArrayList<Integer> targets;
+    public float timeSinceLastDamage;
+    public boolean weak;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    private int f3068x;
+    public int f3068x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    private int f3069y;
+    public int f3069y;
 
     public MapEffect() {
     }

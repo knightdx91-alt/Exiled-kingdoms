@@ -7,7 +7,7 @@ import android.view.accessibility.AccessibilityNodeProvider;
 public final class b {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final AccessibilityNodeProvider f2268a;
+    public final AccessibilityNodeProvider f2268a;
 
     public b(AccessibilityNodeProvider accessibilityNodeProvider) {
         this.f2268a = accessibilityNodeProvider;

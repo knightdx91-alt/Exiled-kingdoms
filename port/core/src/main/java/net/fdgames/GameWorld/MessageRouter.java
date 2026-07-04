@@ -11,10 +11,10 @@ import net.fdgames.GameLevel.GameLevel;
 public class MessageRouter {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<Message> f3194a = new ArrayList<>();
+    public static ArrayList<Message> f3194a = new ArrayList<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static Message f3195b;
+    public static Message f3195b;
 
     public static void a(String str, int i2, int i3, String str2, float f2, DamageData damageData) {
         if (str.startsWith("UN")) {

@@ -12,10 +12,10 @@ import net.fdgames.assets.Assets;
 public class Skill {
     public boolean NPCSkill;
     public boolean advanced;
-    private String baseDescription;
+    public String baseDescription;
     public String id;
     public ArrayList<SkillLevel> levels;
-    private String name;
+    public String name;
     public boolean requiresMelee;
     public boolean requiresRanged;
     public ClassRestriction skillClass;

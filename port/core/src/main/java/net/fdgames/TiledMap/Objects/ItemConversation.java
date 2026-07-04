@@ -6,11 +6,11 @@ import net.fdgames.assets.Assets;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class ItemConversation implements MapConversation {
-    private ConditionsSet conditions;
-    private String conversation_id;
-    private String iconName;
-    private String name;
-    private Coords position;
+    public ConditionsSet conditions;
+    public String conversation_id;
+    public String iconName;
+    public String name;
+    public Coords position;
     public String tag;
 
     public ItemConversation() {

@@ -7,7 +7,7 @@ import java.util.Iterator;
 public final class g implements Iterable<f> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private com.badlogic.gdx.utils.Array<f> f4065a = new com.badlogic.gdx.utils.Array<>();
+    public com.badlogic.gdx.utils.Array<f> f4065a = new com.badlogic.gdx.utils.Array<>();
 
     public final void a(f fVar) {
         this.f4065a.add(fVar);

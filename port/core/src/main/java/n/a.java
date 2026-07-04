@@ -11,7 +11,7 @@ import k.j;
 public final class a {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Context f2453a;
+    public Context f2453a;
 
     public static a b(Context context) {
         a aVar = new a();

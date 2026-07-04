@@ -17,7 +17,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class r1 extends Table {
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static r1 f2876e;
+    public static r1 f2876e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     static float f2877f;
@@ -26,16 +26,16 @@ public final class r1 extends Table {
     static float f2878g;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Image f2879a;
+    public Image f2879a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f2880b;
+    public Label f2880b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f2881c;
+    public Label f2881c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private float f2882d;
+    public float f2882d;
 
     /* JADX INFO: compiled from: WorldMapInfoTable.java */
     final class a extends InputListener {

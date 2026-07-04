@@ -9,10 +9,10 @@ import w.d;
 public final class a extends f {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextureRegion f4087b;
+    public TextureRegion f4087b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private d f4088c;
+    public d f4088c;
 
     public a(d dVar, boolean z2, boolean z3) {
         this.f4087b = null;

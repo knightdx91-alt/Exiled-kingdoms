@@ -11,7 +11,7 @@ import net.fdgames.GameWorld.GameData;
 public class Trigger extends MapArea {
     public ActionsSet actions;
     public ConditionsSet conditions;
-    private float lastActivated;
+    public float lastActivated;
     public int owner;
     public int size;
 

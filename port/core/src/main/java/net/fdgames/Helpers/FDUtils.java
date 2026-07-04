@@ -16,10 +16,10 @@ import net.fdgames.ek.Settings;
 public class FDUtils {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Random f3212a;
+    public static Random f3212a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static byte[] f3213b = new byte[CredentialsApi.ACTIVITY_RESULT_ADD_ACCOUNT];
+    public static byte[] f3213b = new byte[CredentialsApi.ACTIVITY_RESULT_ADD_ACCOUNT];
 
     public enum Rarity {
         COMMON,

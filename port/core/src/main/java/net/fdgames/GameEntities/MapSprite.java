@@ -10,7 +10,7 @@ import net.fdgames.TiledMap.Objects.Coords;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public abstract class MapSprite extends MapObject {
     public Boolean visibleToPlayer = Boolean.FALSE;
-    private Coords isoCoords = new Coords();
+    public Coords isoCoords = new Coords();
 
     public abstract void F(SpriteBatch spriteBatch);
 

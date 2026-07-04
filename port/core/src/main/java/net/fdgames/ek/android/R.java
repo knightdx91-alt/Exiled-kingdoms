@@ -6,7 +6,7 @@ public final class R {
     public static final class drawable {
         public static int icon = 0x7f060068;
 
-        private drawable() {
+        public drawable() {
         }
     }
 
@@ -14,14 +14,14 @@ public final class R {
         public static int app_id = 0x7f0a001d;
         public static int app_name = 0x7f0a001e;
 
-        private string() {
+        public string() {
         }
     }
 
     public static final class style {
         public static int GdxTheme = 0x7f0b00a3;
 
-        private style() {
+        public style() {
         }
     }
 
@@ -33,10 +33,10 @@ public final class R {
         public static int global_tracker = 0x7f0d0004;
         public static int global_tracker_reg = 0x7f0d0005;
 
-        private xml() {
+        public xml() {
         }
     }
 
-    private R() {
+    public R() {
     }
 }

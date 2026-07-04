@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 public final class h {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private y<String, Object> f4066a = new y<>();
+    public y<String, Object> f4066a = new y<>();
 
     public final boolean a(String str) {
         return this.f4066a.a(str);

@@ -12,10 +12,10 @@ public class IntroStage {
     public Color color;
     public Direction direction;
     public float duration;
-    private String textTag;
+    public String textTag;
     public float text_right;
     public float text_up;
-    private Texture texture;
+    public Texture texture;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */

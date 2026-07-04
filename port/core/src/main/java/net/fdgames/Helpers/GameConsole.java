@@ -8,14 +8,14 @@ import k0.a;
 public class GameConsole {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static GameConsole f3219a;
+    public static GameConsole f3219a;
     public Boolean initialized = Boolean.FALSE;
-    private String currentText = "";
-    private float TextAge = 0.0f;
-    private float WaitAge = 0.0f;
-    private LinkedList<String> messages = new LinkedList<>();
+    public String currentText = "";
+    public float TextAge = 0.0f;
+    public float WaitAge = 0.0f;
+    public LinkedList<String> messages = new LinkedList<>();
 
-    private GameConsole() {
+    public GameConsole() {
     }
 
     public static void a(String str) {

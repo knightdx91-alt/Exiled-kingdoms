@@ -16,8 +16,8 @@ import net.fdgames.ek.ExiledKingdoms;
 public class e extends Dialog {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static float f2624a;
-    private float SCALE;
+    public static float f2624a;
+    public float SCALE;
 
     public e(String str, String str2) {
         this(str, str2, Boolean.TRUE);

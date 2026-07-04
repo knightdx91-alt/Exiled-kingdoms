@@ -15,16 +15,16 @@ import net.fdgames.ek.Settings;
 public final class s extends Image {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static NinePatchDrawable f3950d = new NinePatchDrawable(GameAssets.R);
+    public static NinePatchDrawable f3950d = new NinePatchDrawable(GameAssets.R);
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final float f3951e = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f3951e = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextureRegionDrawable f3952a;
+    public TextureRegionDrawable f3952a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private int f3953b;
+    public int f3953b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public boolean f3954c;

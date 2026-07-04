@@ -10,14 +10,14 @@ import net.fdgames.Rules.Rules;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Shop implements Lootable {
-    private int owner_ID;
-    private Items items = new Items();
+    public int owner_ID;
+    public Items items = new Items();
     public float modifier = 1.0f;
-    private boolean sellsWeapons = false;
-    private boolean sellsJewelry = false;
-    private boolean sellsArmor = false;
-    private boolean sellsMagic = false;
-    private boolean sellsGeneral = false;
+    public boolean sellsWeapons = false;
+    public boolean sellsJewelry = false;
+    public boolean sellsArmor = false;
+    public boolean sellsMagic = false;
+    public boolean sellsGeneral = false;
 
     public static ArrayList<Integer> t(String str) {
         String[] strArrSplit = str.split(",");

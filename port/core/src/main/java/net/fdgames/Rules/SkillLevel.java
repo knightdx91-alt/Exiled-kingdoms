@@ -6,7 +6,7 @@ import net.fdgames.Helpers.GameString;
 public class SkillLevel {
     public int cooldown;
     public int cost;
-    private String description;
+    public String description;
     public int mana_cost;
     public String name;
 

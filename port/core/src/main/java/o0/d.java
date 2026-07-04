@@ -14,10 +14,10 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class d extends Image {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f3466b = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3466b = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Character f3467a;
+    public Character f3467a;
 
     public d(Character character) {
         this.f3467a = character;

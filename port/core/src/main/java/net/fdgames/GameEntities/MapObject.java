@@ -7,7 +7,7 @@ import net.fdgames.TiledMap.Objects.Coords;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public abstract class MapObject extends GameObject implements Comparable<MapObject> {
     protected String conversationTag = "";
-    private Coords coords;
+    public Coords coords;
     public String tag;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */

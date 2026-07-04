@@ -28,68 +28,68 @@ import net.fdgames.ek.Settings;
 public final class j1 extends Window {
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private static float f2725v;
+    public static float f2725v;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     boolean f2726a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private q0.c f2727b;
+    public q0.c f2727b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private t f2728c;
+    public t f2728c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     q0.s f2729d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private CheckBox f2730e;
+    public CheckBox f2730e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private CheckBox f2731f;
+    public CheckBox f2731f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private CheckBox f2732g;
+    public CheckBox f2732g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private CheckBox f2733h;
+    public CheckBox f2733h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private CheckBox f2734i;
+    public CheckBox f2734i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private Label f2735j;
+    public Label f2735j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private Label f2736k;
+    public Label f2736k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private Label f2737l;
+    public Label f2737l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Label f2738m;
+    public Label f2738m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Slider f2739n;
+    public Slider f2739n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private Slider f2740o;
+    public Slider f2740o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private Slider f2741p;
+    public Slider f2741p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private Slider f2742q;
+    public Slider f2742q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private Slider f2743r;
+    public Slider f2743r;
     float s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private Stage f2744t;
+    public Stage f2744t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private q0.h f2745u;
+    public q0.h f2745u;
 
     /* JADX INFO: compiled from: SettingsWindow.java */
     final class a extends InputListener {

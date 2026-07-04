@@ -28,10 +28,10 @@ public final class a extends Window {
     static float f3710h;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Table f3711a;
+    public Table f3711a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private ScrollPane f3712b;
+    public ScrollPane f3712b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     Label f3713c;
@@ -174,7 +174,7 @@ public final class a extends Window {
         setVisible(false);
     }
 
-    private static Table b(String str, String str2, TextureRegion textureRegion) {
+    public static Table b(String str, String str2, TextureRegion textureRegion) {
         Table table = new Table();
         table.pad(f3709g * 5.0f);
         Label label = new Label(str, Assets.g(), "menuLabelStrongStyle");

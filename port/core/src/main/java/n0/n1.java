@@ -25,16 +25,16 @@ public final class n1 extends Window {
     static final float f2811e = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private ImageButton f2812a;
+    public ImageButton f2812a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private ImageButton f2813b;
+    public ImageButton f2813b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ImageButton f2814c;
+    public ImageButton f2814c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private ImageButton f2815d;
+    public ImageButton f2815d;
 
     /* JADX INFO: compiled from: VaultWindow.java */
     final class a extends ChangeListener {
@@ -328,7 +328,7 @@ public final class n1 extends Window {
         return GameString.b("VAULT_COST", false).replace("{COST}", "[BLUE]" + e(i2) + "[]");
     }
 
-    private static int e(int i2) {
+    public static int e(int i2) {
         return i2 == 1 ? CredentialsApi.ACTIVITY_RESULT_ADD_ACCOUNT : i2 == 2 ? GamesStatusCodes.STATUS_SNAPSHOT_NOT_FOUND : i2 == 3 ? 10000 : 20000;
     }
 

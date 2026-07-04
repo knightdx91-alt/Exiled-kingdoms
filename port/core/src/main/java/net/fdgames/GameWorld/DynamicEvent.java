@@ -12,7 +12,7 @@ public class DynamicEvent {
     public Float generationDate;
     public int knowledge;
     public String location_ID;
-    private int lootseed;
+    public int lootseed;
     public String name;
 
     public DynamicEvent() {

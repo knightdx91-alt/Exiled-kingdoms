@@ -54,42 +54,42 @@ import w.h;
 public final class b {
 
     /* JADX INFO: renamed from: b0, reason: collision with root package name */
-    private static int f2405b0;
+    public static int f2405b0;
 
     /* JADX INFO: renamed from: c0, reason: collision with root package name */
-    private static Rectangle f2406c0 = new Rectangle (0.0f, 0.0f, 1.0f, 1.0f);
+    public static Rectangle f2406c0 = new Rectangle (0.0f, 0.0f, 1.0f, 1.0f);
 
     /* JADX INFO: renamed from: d0, reason: collision with root package name */
-    private static ArrayList<Loot> f2407d0 = new ArrayList<>();
+    public static ArrayList<Loot> f2407d0 = new ArrayList<>();
 
     /* JADX INFO: renamed from: e0, reason: collision with root package name */
-    private static m f2408e0 = new m();
+    public static m f2408e0 = new m();
 
     /* JADX INFO: renamed from: f0, reason: collision with root package name */
-    private static float[] f2409f0 = new float[8];
+    public static float[] f2409f0 = new float[8];
 
     /* JADX INFO: renamed from: g0, reason: collision with root package name */
-    private static Vector2 f2410g0 = new Vector2 (0.0f, 0.0f);
+    public static Vector2 f2410g0 = new Vector2 (0.0f, 0.0f);
 
     /* JADX INFO: renamed from: h0, reason: collision with root package name */
-    private static Vector2 f2411h0 = new Vector2 (0.0f, 0.0f);
+    public static Vector2 f2411h0 = new Vector2 (0.0f, 0.0f);
 
     /* JADX INFO: renamed from: i0, reason: collision with root package name */
-    private static b f2412i0;
+    public static b f2412i0;
 
     /* JADX INFO: renamed from: j0, reason: collision with root package name */
-    private static Vector2 f2413j0;
+    public static Vector2 f2413j0;
 
     /* JADX INFO: renamed from: k0, reason: collision with root package name */
     public static final /* synthetic */ int f2414k0 = 0;
-    private ArrayList<MapCastle> A;
-    private ArrayList<ItemConversation> B;
-    private ArrayList<Waypoint> C;
+    public ArrayList<MapCastle> A;
+    public ArrayList<ItemConversation> B;
+    public ArrayList<Waypoint> C;
     public ArrayList<MapLight> D;
     public String E;
     public String F;
     public String G;
-    private w.b H;
+    public w.b H;
     public w.e I;
     public w.e J;
     public w.e K;
@@ -99,21 +99,21 @@ public final class b {
     public Transition O;
     public Transition P;
     public Transition Q;
-    private ArrayList<MapConversation> R;
-    private ArrayList<MapContainer> S;
-    private ArrayList<Shop> T;
-    private ArrayList<PlantSpawn> U;
-    private ArrayList<MapItem> V;
-    private ArrayList<RestPoint> W;
-    private ArrayList<MapCastle> X;
-    private ArrayList<Bed> Y;
-    private MapActor Z;
+    public ArrayList<MapConversation> R;
+    public ArrayList<MapContainer> S;
+    public ArrayList<Shop> T;
+    public ArrayList<PlantSpawn> U;
+    public ArrayList<MapItem> V;
+    public ArrayList<RestPoint> W;
+    public ArrayList<MapCastle> X;
+    public ArrayList<Bed> Y;
+    public MapActor Z;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public String f2415a;
 
     /* JADX INFO: renamed from: a0, reason: collision with root package name */
-    private MapActor f2416a0;
+    public MapActor f2416a0;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public int f2417b;
@@ -155,17 +155,17 @@ public final class b {
     public int[][] f2429n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private int[][] f2430o;
+    public int[][] f2430o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
     public int[][] f2431p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private boolean f2432q;
+    public boolean f2432q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private int[][] f2433r;
-    private int[][] s;
+    public int[][] f2433r;
+    public int[][] s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
     public int[][] f2434t;
@@ -174,19 +174,19 @@ public final class b {
     public int[][] f2435u;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private com.badlogic.gdx.utils.Array<Coords> f2436v;
+    public com.badlogic.gdx.utils.Array<Coords> f2436v;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private ArrayList<Transition> f2437w;
+    public ArrayList<Transition> f2437w;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    private ArrayList<MapEntry> f2438x;
+    public ArrayList<MapEntry> f2438x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    private ArrayList<RestPoint> f2439y;
+    public ArrayList<RestPoint> f2439y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private ArrayList<Bed> f2440z;
+    public ArrayList<Bed> f2440z;
 
     public static Coords A(int i2, Coords coords) {
         int i3 = coords.f3287x;

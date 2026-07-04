@@ -32,7 +32,7 @@ public class GameLevel {
     public static AStarPathFinder f3094a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static boolean f3095b;
+    public static boolean f3095b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public static ArrayList<MapActor> f3096c = new ArrayList<>();
@@ -41,7 +41,7 @@ public class GameLevel {
     public static ArrayList<MapSprite> f3097d = new ArrayList<>();
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static double f3098e;
+    public static double f3098e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     public static int f3099f;
@@ -51,8 +51,8 @@ public class GameLevel {
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
     public static int f3101h;
-    private boolean checkedDuplicatedIDs;
-    private float initializationTime;
+    public boolean checkedDuplicatedIDs;
+    public float initializationTime;
 
     public GameLevel(Transition transition) {
         this.initializationTime = 0.0f;

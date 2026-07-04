@@ -12,13 +12,13 @@ import net.fdgames.ek.ExiledKingdoms;
 public class k1 extends Dialog {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f2761b = Gdx.graphics.getHeight() / 720.0f;
+    public static float f2761b = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static float f2762c;
+    public static float f2762c;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2763a;
+    public int f2763a;
 
     public k1(String str, int i2) {
         super("", Assets.g());

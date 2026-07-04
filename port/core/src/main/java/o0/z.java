@@ -16,34 +16,34 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class z extends Table {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static float f3697i = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3697i = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static float f3698j;
+    public static float f3698j;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3699a;
+    public Label f3699a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3700b;
+    public Label f3700b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3701c;
+    public Label f3701c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Label f3702d;
+    public Label f3702d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Label f3703e;
+    public Label f3703e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Label f3704f;
+    public Label f3704f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private n0.t f3705g;
+    public n0.t f3705g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private CharacterSheet f3706h;
+    public CharacterSheet f3706h;
 
     /* JADX INFO: compiled from: TraitsTable.java */
     final class a extends InputListener {
@@ -130,7 +130,7 @@ public final class z extends Table {
         add(label12).height(f2).bottom();
     }
 
-    private String b(int i2) {
+    public String b(int i2) {
         return this.f3706h.W(i2) == -1 ? "[RED]" : this.f3706h.W(i2) == 1 ? "[#B040FF]" : "[BLACK]";
     }
 

@@ -10,7 +10,7 @@ import net.fdgames.Rules.WeaponStats;
 public class SheetBonus {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static int f3002a;
+    public static int f3002a;
 
     public static ArrayList<DamageEffect> a(CharacterSheet characterSheet, WeaponStats.weaponType weapontype) {
         int iG;

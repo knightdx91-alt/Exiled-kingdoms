@@ -27,52 +27,52 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class c implements n {
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static float f2327o;
+    public static float f2327o;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2329a;
+    public int f2329a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f2330b;
+    public float f2330b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2331c;
+    public float f2331c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Stage f2332d;
+    public Stage f2332d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Image f2333e;
+    public Image f2333e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Label f2334f;
+    public Label f2334f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Image f2335g;
+    public Image f2335g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private boolean f2336h;
+    public boolean f2336h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Color f2337i;
+    public Color f2337i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private Label f2338j;
+    public Label f2338j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private float f2339k;
+    public float f2339k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private com.badlogic.gdx.Game f2340l;
+    public com.badlogic.gdx.Game f2340l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Transition f2341m;
+    public Transition f2341m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static float f2326n = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f2326n = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static GlyphLayout f2328p = new GlyphLayout();
+    public static GlyphLayout f2328p = new GlyphLayout();
 
     /* JADX INFO: compiled from: IntroScreen.java */
     final class a extends InputListener {
@@ -169,7 +169,7 @@ public final class c implements n {
         Gdx.input.setCatchBackKey(true);
     }
 
-    private void g() {
+    public void g() {
         int i2 = this.f2329a;
         ArrayList<IntroStage> arrayList = GameAssets.w0.stages;
         if (i2 >= (arrayList == null ? 0 : arrayList.size() - 1)) {

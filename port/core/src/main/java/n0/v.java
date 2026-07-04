@@ -14,34 +14,34 @@ import net.fdgames.ek.Settings;
 public class v extends ImageButton {
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static BitmapFont f2894j = GameAssets.f3336k0;
+    public static BitmapFont f2894j = GameAssets.f3336k0;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private boolean f2895a;
+    public boolean f2895a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Color f2896b;
+    public Color f2896b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2897c;
+    public float f2897c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private int f2898d;
+    public int f2898d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Color f2899e;
+    public Color f2899e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f2900f;
+    public float f2900f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private float f2901g;
+    public float f2901g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2902h;
+    public float f2902h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private float f2903i;
+    public float f2903i;
 
     public v(ImageButton.ImageButtonStyle imageButtonStyle, Color color, boolean z2) {
         super(imageButtonStyle);

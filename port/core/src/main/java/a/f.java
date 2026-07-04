@@ -32,37 +32,37 @@ import net.fdgames.ek.Settings;
 public final class f extends Window {
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static float f11j = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f11j = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
     public static String f12k = "$0";
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextButton f13a;
+    public TextButton f13a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextButton f14b;
+    public TextButton f14b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextButton f15c;
+    public TextButton f15c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Label f16d;
+    public Label f16d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private e f17e;
+    public e f17e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private e f18f;
+    public e f18f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Table f19g;
+    public Table f19g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private boolean f20h;
+    public boolean f20h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Stage f21i;
+    public Stage f21i;
 
     /* JADX INFO: compiled from: StoreWindow.java */
     final class a extends ChangeListener {
@@ -184,7 +184,7 @@ public final class f extends Window {
         setVisible(false);
     }
 
-    private void e() {
+    public void e() {
         Table table = this.f19g;
         table.clear();
         this.f18f = new e(0);

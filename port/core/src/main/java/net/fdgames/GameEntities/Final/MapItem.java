@@ -14,21 +14,21 @@ import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapItem extends MapSprite {
-    private String activeEffect;
-    private String activeSprite;
-    private int animationIndex;
+    public String activeEffect;
+    public String activeSprite;
+    public int animationIndex;
     public boolean barrier;
     public boolean blocksview;
     public boolean bridge;
-    private String conditionsActivate;
-    private String conditionsDeactivate;
-    private boolean effect;
-    private String inactiveSprite;
+    public String conditionsActivate;
+    public String conditionsDeactivate;
+    public boolean effect;
+    public String inactiveSprite;
     public String mapitem_tag;
-    private MapItemState state;
-    private float stateRelativeTime;
-    private String toggleItems;
-    private boolean walkable;
+    public MapItemState state;
+    public float stateRelativeTime;
+    public String toggleItems;
+    public boolean walkable;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -45,7 +45,7 @@ public class MapItem extends MapSprite {
     public MapItem() {
     }
 
-    private void S() {
+    public void S() {
         if (this.toggleItems == null) {
             this.toggleItems = "";
         }

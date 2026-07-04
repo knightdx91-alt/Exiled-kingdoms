@@ -11,7 +11,7 @@ import net.fdgames.assets.Assets;
 public final class h1 extends Window {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static h1 f2685a;
+    public static h1 f2685a;
 
     public static h1 a() {
         if (f2685a == null) {

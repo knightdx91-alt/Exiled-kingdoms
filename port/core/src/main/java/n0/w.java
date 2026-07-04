@@ -15,43 +15,43 @@ import net.fdgames.assets.GameAssets;
 public final class w {
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private static final float f2904m = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f2904m = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private String f2905a;
+    public String f2905a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f2906b;
+    public float f2906b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2907c;
+    public float f2907c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     public int f2908d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Color f2909e;
+    public Color f2909e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private float f2910f;
+    public float f2910f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f2911g;
+    public int f2911g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2912h;
+    public float f2912h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Color f2913i;
+    public Color f2913i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private float f2914j;
+    public float f2914j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private Coords f2915k;
+    public Coords f2915k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private MapActor f2916l;
+    public MapActor f2916l;
 
     public w(int i2, String str, float f2, Color color, float f3, float f4) {
         float fU = GameData.v().u();

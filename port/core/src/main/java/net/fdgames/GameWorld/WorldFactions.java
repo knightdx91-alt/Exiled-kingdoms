@@ -11,11 +11,11 @@ import net.fdgames.Helpers.GameText;
 public class WorldFactions {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static GameText[] f3200a;
+    public static GameText[] f3200a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static GameText[] f3201b;
-    private ArrayList<WorldFaction> factionList = new ArrayList<>();
+    public static GameText[] f3201b;
+    public ArrayList<WorldFaction> factionList = new ArrayList<>();
 
     public WorldFactions() {
         GameText gameText;
@@ -78,7 +78,7 @@ public class WorldFactions {
         }
     }
 
-    private boolean e(int i2, int i3) {
+    public boolean e(int i2, int i3) {
         for (int i4 = 0; i4 < this.factionList.size(); i4++) {
             if (this.factionList.get(i4).code.intValue() == i2) {
                 return this.factionList.get(i4).hostileFactions.contains(Integer.valueOf(i3));
@@ -87,7 +87,7 @@ public class WorldFactions {
         return false;
     }
 
-    private static int h(String str) {
+    public static int h(String str) {
         for (WorldFaction worldFaction : GameWorld.f3189c.factionList) {
             if (worldFaction.id.equals(str)) {
                 return worldFaction.code.intValue();

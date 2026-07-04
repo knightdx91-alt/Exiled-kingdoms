@@ -21,31 +21,31 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class y extends Table {
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f3684h = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3684h = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static float f3685i;
+    public static float f3685i;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3686a;
+    public Label f3686a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3687b;
+    public Label f3687b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3688c;
+    public Label f3688c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private ImageButton f3689d;
+    public ImageButton f3689d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f3690e;
+    public int f3690e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private CharacterSheet f3691f;
+    public CharacterSheet f3691f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Stage f3692g;
+    public Stage f3692g;
 
     /* JADX INFO: compiled from: TraitDescriptionTable.java */
     final class a extends InputListener {
@@ -176,7 +176,7 @@ public final class y extends Table {
         return yVar.f3691f.K(yVar.f3690e) + 1;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void h() {
         String strB;
         int iK = this.f3691f.K(this.f3690e) + 1;

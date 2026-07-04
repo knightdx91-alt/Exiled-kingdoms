@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public final class b implements i {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final ExecutorService f2211a = Executors.newFixedThreadPool(1, new g0.a());
+    public final ExecutorService f2211a = Executors.newFixedThreadPool(1, new g0.a());
 
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: compiled from: AsyncExecutor.java */

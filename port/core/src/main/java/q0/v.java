@@ -27,80 +27,80 @@ import net.fdgames.ek.ExiledKingdoms;
 /* JADX INFO: compiled from: NewGameWindow.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class v extends Window {
-    private static int D = 60;
-    private a.f A;
-    private int B;
-    private Stage C;
+    public static int D = 60;
+    public a.f A;
+    public int B;
+    public Stage C;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private PlayerCreation f3974a;
+    public PlayerCreation f3974a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3975b;
+    public Label f3975b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3976c;
+    public Label f3976c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Label f3977d;
+    public Label f3977d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private TextField f3978e;
+    public TextField f3978e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Label f3979f;
+    public Label f3979f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Image f3980g;
+    public Image f3980g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Label f3981h;
+    public Label f3981h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Label f3982i;
+    public Label f3982i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private q0.f f3983j;
+    public q0.f f3983j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private q0.f f3984k;
+    public q0.f f3984k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private q0.f f3985l;
+    public q0.f f3985l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private q0.f f3986m;
+    public q0.f f3986m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private Label f3987n;
+    public Label f3987n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private Label f3988o;
+    public Label f3988o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private q0.o f3989p;
+    public q0.o f3989p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private q0.o f3990q;
+    public q0.o f3990q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private q0.o f3991r;
-    private q0.o s;
+    public q0.o f3991r;
+    public q0.o s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private q0.o f3992t;
+    public q0.o f3992t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private q0.q f3993u;
+    public q0.q f3993u;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private q0.q f3994v;
+    public q0.q f3994v;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private n0.t f3995w;
+    public n0.t f3995w;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private n0.t f3996z;
+    public n0.t f3996z;
 
     /* JADX INFO: compiled from: NewGameWindow.java */
     final class a extends InputListener {

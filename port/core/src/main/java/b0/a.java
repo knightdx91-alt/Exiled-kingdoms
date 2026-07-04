@@ -5,7 +5,7 @@ import java.io.Serializable;
 /* JADX INFO: compiled from: BoundingBox.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class a implements Serializable {
-    private static final long serialVersionUID = -1286036817192127343L;
+    public static final long serialVersionUID = -1286036817192127343L;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public final com.badlogic.gdx.math.Vector3 f1412a;
@@ -14,10 +14,10 @@ public final class a implements Serializable {
     public final com.badlogic.gdx.math.Vector3 f1413b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private final com.badlogic.gdx.math.Vector3 f1414c;
+    public final com.badlogic.gdx.math.Vector3 f1414c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private final com.badlogic.gdx.math.Vector3 f1415d;
+    public final com.badlogic.gdx.math.Vector3 f1415d;
 
     static {
         new com.badlogic.gdx.math.Vector3();

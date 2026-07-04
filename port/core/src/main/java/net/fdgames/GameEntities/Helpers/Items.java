@@ -8,8 +8,8 @@ import net.fdgames.Rules.Rules;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Items {
-    private int[] itemList = new int[20];
-    private int[] stackUnits = new int[20];
+    public int[] itemList = new int[20];
+    public int[] stackUnits = new int[20];
 
     public class ItemsSlot {
         public int itemID;
@@ -21,7 +21,7 @@ public class Items {
         }
     }
 
-    private void o() {
+    public void o() {
         if (this.stackUnits == null) {
             this.stackUnits = new int[20];
             g();

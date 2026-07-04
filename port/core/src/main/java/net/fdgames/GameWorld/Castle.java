@@ -10,8 +10,8 @@ public class Castle {
     public String faction_id2;
     public String id;
     public int level;
-    private String name;
-    private String quests;
+    public String name;
+    public String quests;
 
     public Castle(String str) {
         String[] strArrSplit = str.replace("\"", "").split("\t", -1);

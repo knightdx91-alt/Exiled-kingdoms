@@ -11,7 +11,7 @@ import net.fdgames.ek.GPGSUpdate;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class GameVariables {
-    private ArrayList<Variable> variables = new ArrayList<>();
+    public ArrayList<Variable> variables = new ArrayList<>();
 
     public static void g(String str) {
         GameConsole.a(str);

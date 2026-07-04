@@ -15,28 +15,28 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class o extends Image {
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static NinePatchDrawable f3929f = new NinePatchDrawable(GameAssets.P);
+    public static NinePatchDrawable f3929f = new NinePatchDrawable(GameAssets.P);
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static NinePatchDrawable f3930g = new NinePatchDrawable(GameAssets.R);
+    public static NinePatchDrawable f3930g = new NinePatchDrawable(GameAssets.R);
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static final float f3931h = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f3931h = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextureRegionDrawable f3932a;
+    public TextureRegionDrawable f3932a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextureRegionDrawable f3933b;
+    public TextureRegionDrawable f3933b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextureRegionDrawable f3934c;
+    public TextureRegionDrawable f3934c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private boolean f3935d;
+    public boolean f3935d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private int f3936e;
+    public int f3936e;
 
     public o(int i2, boolean z2) {
         this.f3932a = null;

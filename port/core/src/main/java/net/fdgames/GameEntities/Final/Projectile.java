@@ -23,16 +23,16 @@ import net.fdgames.assets.GameAssets;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Projectile extends MapSprite {
     public ArrayList<Integer> AlreadyHit;
-    private boolean addedlight;
-    private float angle;
-    private float creationTime;
-    private DamageData damageData;
-    private String explosionID;
-    private boolean mustaddlight;
+    public boolean addedlight;
+    public float angle;
+    public float creationTime;
+    public DamageData damageData;
+    public String explosionID;
+    public boolean mustaddlight;
     int owner_id;
     public float speedX;
     public float speedY;
-    private String sprite;
+    public String sprite;
     public ProjectileType type;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */

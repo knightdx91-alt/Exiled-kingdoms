@@ -7,10 +7,10 @@ import com.badlogic.gdx.utils.Disposable;
 public class b implements i {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private e f4055a = new e();
+    public e f4055a = new e();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private h f4056b = new h();
+    public h f4056b = new h();
 
     public final e a() {
         return this.f4055a;

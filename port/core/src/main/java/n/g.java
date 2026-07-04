@@ -44,19 +44,19 @@ public final class g extends MenuInflater {
     Context f2476c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Object f2477d;
+    public Object f2477d;
 
     /* JADX INFO: compiled from: SupportMenuInflater.java */
-    private static class a implements MenuItem.OnMenuItemClickListener {
+    public static class a implements MenuItem.OnMenuItemClickListener {
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private static final Class<?>[] f2478c = {MenuItem.class};
+        public static final Class<?>[] f2478c = {MenuItem.class};
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private Object f2479a;
+        public Object f2479a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private Method f2480b;
+        public Method f2480b;
 
         public a(Object obj, String str) {
             this.f2479a = obj;
@@ -91,84 +91,84 @@ public final class g extends MenuInflater {
     }
 
     /* JADX INFO: compiled from: SupportMenuInflater.java */
-    private class b {
-        private CharSequence A;
-        private CharSequence B;
-        private ColorStateList C = null;
-        private PorterDuff.Mode D = null;
+    public class b {
+        public CharSequence A;
+        public CharSequence B;
+        public ColorStateList C = null;
+        public PorterDuff.Mode D = null;
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private Menu f2481a;
+        public Menu f2481a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private int f2482b;
+        public int f2482b;
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private int f2483c;
+        public int f2483c;
 
         /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private int f2484d;
+        public int f2484d;
 
         /* JADX INFO: renamed from: e, reason: collision with root package name */
-        private int f2485e;
+        public int f2485e;
 
         /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private boolean f2486f;
+        public boolean f2486f;
 
         /* JADX INFO: renamed from: g, reason: collision with root package name */
-        private boolean f2487g;
+        public boolean f2487g;
 
         /* JADX INFO: renamed from: h, reason: collision with root package name */
-        private boolean f2488h;
+        public boolean f2488h;
 
         /* JADX INFO: renamed from: i, reason: collision with root package name */
-        private int f2489i;
+        public int f2489i;
 
         /* JADX INFO: renamed from: j, reason: collision with root package name */
-        private int f2490j;
+        public int f2490j;
 
         /* JADX INFO: renamed from: k, reason: collision with root package name */
-        private CharSequence f2491k;
+        public CharSequence f2491k;
 
         /* JADX INFO: renamed from: l, reason: collision with root package name */
-        private CharSequence f2492l;
+        public CharSequence f2492l;
 
         /* JADX INFO: renamed from: m, reason: collision with root package name */
-        private int f2493m;
+        public int f2493m;
 
         /* JADX INFO: renamed from: n, reason: collision with root package name */
-        private char f2494n;
+        public char f2494n;
 
         /* JADX INFO: renamed from: o, reason: collision with root package name */
-        private int f2495o;
+        public int f2495o;
 
         /* JADX INFO: renamed from: p, reason: collision with root package name */
-        private char f2496p;
+        public char f2496p;
 
         /* JADX INFO: renamed from: q, reason: collision with root package name */
-        private int f2497q;
+        public int f2497q;
 
         /* JADX INFO: renamed from: r, reason: collision with root package name */
-        private int f2498r;
-        private boolean s;
+        public int f2498r;
+        public boolean s;
 
         /* JADX INFO: renamed from: t, reason: collision with root package name */
-        private boolean f2499t;
+        public boolean f2499t;
 
         /* JADX INFO: renamed from: u, reason: collision with root package name */
-        private boolean f2500u;
+        public boolean f2500u;
 
         /* JADX INFO: renamed from: v, reason: collision with root package name */
-        private int f2501v;
+        public int f2501v;
 
         /* JADX INFO: renamed from: w, reason: collision with root package name */
-        private int f2502w;
+        public int f2502w;
 
         /* JADX INFO: renamed from: x, reason: collision with root package name */
-        private String f2503x;
+        public String f2503x;
 
         /* JADX INFO: renamed from: y, reason: collision with root package name */
-        private String f2504y;
+        public String f2504y;
 
         /* JADX INFO: renamed from: z, reason: collision with root package name */
         android.support.v4.view.c f2505z;
@@ -178,7 +178,7 @@ public final class g extends MenuInflater {
             g();
         }
 
-        private <T> T d(String str, Class<?>[] clsArr, Object[] objArr) {
+        public <T> T d(String str, Class<?>[] clsArr, Object[] objArr) {
             try {
                 Constructor<?> constructor = g.this.f2476c.getClassLoader().loadClass(str).getConstructor(clsArr);
                 constructor.setAccessible(true);
@@ -189,7 +189,7 @@ public final class g extends MenuInflater {
             }
         }
 
-        private void h(MenuItem menuItem) {
+        public void h(MenuItem menuItem) {
             boolean z2 = false;
             menuItem.setChecked(this.s).setVisible(this.f2499t).setEnabled(this.f2500u).setCheckable(this.f2498r >= 1).setTitleCondensed(this.f2492l).setIcon(this.f2493m);
             int i2 = this.f2501v;
@@ -383,11 +383,11 @@ public final class g extends MenuInflater {
         this.f2475b = objArr;
     }
 
-    private static Object a(Object obj) {
+    public static Object a(Object obj) {
         return (!(obj instanceof Activity) && (obj instanceof ContextWrapper)) ? a(((ContextWrapper) obj).getBaseContext()) : obj;
     }
 
-    private void c(XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Menu menu) throws XmlPullParserException, IOException {
+    public void c(XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Menu menu) throws XmlPullParserException, IOException {
         b bVar = new b(menu);
         int eventType = xmlResourceParser.getEventType();
         while (true) {

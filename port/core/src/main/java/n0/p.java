@@ -27,19 +27,19 @@ public final class p extends Window {
     static final float f2849f = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2850a;
+    public int f2850a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextButton f2851b;
+    public TextButton f2851b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2852c;
+    public float f2852c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private float f2853d;
+    public float f2853d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Label f2854e;
+    public Label f2854e;
 
     /* JADX INFO: compiled from: EndingWindow.java */
     final class a extends ChangeListener {

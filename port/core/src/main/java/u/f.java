@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 public class f {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private h f4064a = new h();
+    public h f4064a = new h();
 
     public f() {
         Color.WHITE.cpy();

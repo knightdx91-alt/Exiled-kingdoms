@@ -10,33 +10,33 @@ import net.fdgames.TiledMap.Objects.Coords;
 public class AStarPathFinder {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static int[][] f2981a;
-    private com.badlogic.gdx.utils.Array<a> closed = new com.badlogic.gdx.utils.Array<>();
-    private b open = new b();
+    public static int[][] f2981a;
+    public com.badlogic.gdx.utils.Array<a> closed = new com.badlogic.gdx.utils.Array<>();
+    public b open = new b();
     final Coords originTile = new Coords();
     final Coords targetTile = new Coords();
-    private int maxSearchDistance = 12;
-    private a[][] nodes = (a[][]) Array.newInstance((Class<?>) a.class, m0.b.S(), m0.b.R());
+    public int maxSearchDistance = 12;
+    public a[][] nodes = (a[][]) Array.newInstance((Class<?>) a.class, m0.b.S(), m0.b.R());
 
-    private class a implements Comparable<a> {
+    public class a implements Comparable<a> {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private int f2982a;
+        public int f2982a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private int f2983b;
+        public int f2983b;
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private float f2984c;
+        public float f2984c;
 
         /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private a f2985d;
+        public a f2985d;
 
         /* JADX INFO: renamed from: e, reason: collision with root package name */
-        private float f2986e;
+        public float f2986e;
 
         /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private int f2987f;
+        public int f2987f;
 
         public a(int i2, int i3) {
             this.f2982a = i2;
@@ -74,10 +74,10 @@ public class AStarPathFinder {
         }
     }
 
-    private class b {
+    public class b {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private LinkedList<a> f2988a = new LinkedList<>();
+        public LinkedList<a> f2988a = new LinkedList<>();
 
         b() {
         }

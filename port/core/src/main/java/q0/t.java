@@ -26,31 +26,31 @@ import net.fdgames.ek.android.MainActivity;
 public final class t extends Window {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static float f3955i = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3955i = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3956a;
+    public Label f3956a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextButton f3957b;
+    public TextButton f3957b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextButton f3958c;
+    public TextButton f3958c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextButton f3959d;
+    public TextButton f3959d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Label f3960e;
+    public Label f3960e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private TextButton f3961f;
+    public TextButton f3961f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private com.badlogic.gdx.Game f3962g;
+    public com.badlogic.gdx.Game f3962g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Stage f3963h;
+    public Stage f3963h;
 
     /* JADX INFO: compiled from: LibraryWindow.java */
     final class a extends ChangeListener {

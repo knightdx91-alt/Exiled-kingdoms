@@ -17,9 +17,9 @@ import net.fdgames.ek.GPGSUpdate;
 public class Party {
     public ArrayList<Follower> followers = new ArrayList<>();
     public ArrayList<NPC> companions = new ArrayList<>();
-    private String activeCompanion = "";
-    private boolean hiddenFollowers = false;
-    private String hiddenCompanion = "";
+    public String activeCompanion = "";
+    public boolean hiddenFollowers = false;
+    public String hiddenCompanion = "";
 
     public static void q() {
         for (NPC npc : GameLevelData.o().npcs) {

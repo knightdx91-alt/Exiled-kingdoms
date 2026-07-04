@@ -16,29 +16,29 @@ import net.fdgames.ek.Settings;
 public final class e1 extends v {
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private static float f2625l;
+    public static float f2625l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private static float f2626m;
+    public static float f2626m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private static float f2627n;
+    public static float f2627n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static Color f2628o;
+    public static Color f2628o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static float f2629p;
+    public static float f2629p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private static float f2630q;
+    public static float f2630q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private static GlyphLayout f2631r;
-    private static int s;
+    public static GlyphLayout f2631r;
+    public static int s;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private final TextureRegion f2632k;
+    public final TextureRegion f2632k;
 
     static {
         new Color(0.0f, 0.0f, 0.0f, 1.0f);

@@ -29,49 +29,49 @@ import net.fdgames.ek.android.MainActivity;
 public final class a extends Window implements r {
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static float f3784o = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3784o = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f3785a;
+    public Label f3785a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextButton f3786b;
+    public TextButton f3786b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private TextButton f3787c;
+    public TextButton f3787c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextButton f3788d;
+    public TextButton f3788d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private TextButton f3789e;
+    public TextButton f3789e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private TextButton f3790f;
+    public TextButton f3790f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private Label f3791g;
+    public Label f3791g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private Label f3792h;
+    public Label f3792h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Label f3793i;
+    public Label f3793i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private Label f3794j;
+    public Label f3794j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private TextButton f3795k;
+    public TextButton f3795k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private com.badlogic.gdx.Game f3796l;
+    public com.badlogic.gdx.Game f3796l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private Stage f3797m;
+    public Stage f3797m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private z f3798n;
+    public z f3798n;
 
     /* JADX INFO: renamed from: q0.a$a, reason: collision with other inner class name */
     /* JADX INFO: compiled from: BackupWindow.java */
@@ -398,7 +398,7 @@ public final class a extends Window implements r {
         setVisible(false);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public static String e(String str) {
         if (ExiledKingdoms.f3388r) {
             return GameString.b(str, false).replace("##BACKUP##", "EK.bak");
@@ -409,7 +409,7 @@ public final class a extends Window implements r {
         return GameString.b(str, false).replace("##BACKUP##", Gdx.files.getExternalStoragePath() + "EK.bak");
     }
 
-    private static String i(k kVar, int i2, String str) {
+    public static String i(k kVar, int i2, String str) {
         int iOrdinal = kVar.ordinal();
         if (iOrdinal == 0) {
             return GameString.b("CLOUD_UPLOAD_OK", false);

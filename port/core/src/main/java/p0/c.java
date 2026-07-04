@@ -19,7 +19,7 @@ import net.fdgames.assets.GameAssets;
 public final class c extends Window {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static c f3724a;
+    public static c f3724a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     static float f3725b = Gdx.graphics.getHeight() / 720.0f;

@@ -16,7 +16,7 @@ import net.fdgames.Rules.SkillActions;
 public class AISkillUsage {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static Character f2980a;
+    public static Character f2980a;
 
     public static void a(NPC npc) {
         if (!npc.U0() && npc.sheet.skillSet.k("flurry") && FDUtils.b(1, 100) < 20) {
@@ -98,7 +98,7 @@ public class AISkillUsage {
         }
     }
 
-    private static Character d(NPC npc) {
+    public static Character d(NPC npc) {
         if (npc.sheet.r() > 0.5f) {
             return npc;
         }

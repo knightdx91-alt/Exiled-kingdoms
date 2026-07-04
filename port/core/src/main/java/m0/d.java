@@ -12,10 +12,10 @@ import net.fdgames.TiledMap.Objects.MapConversation;
 public final class d implements MapConversation {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private int f2443a;
+    public int f2443a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private String f2444b;
+    public String f2444b;
 
     public d(int i2, String str) {
         this.f2443a = i2;

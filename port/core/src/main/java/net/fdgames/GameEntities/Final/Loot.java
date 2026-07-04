@@ -12,15 +12,15 @@ import net.fdgames.assets.GameAssets;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class Loot extends MapSprite implements Lootable {
-    private int gold;
-    private Items items;
+    public int gold;
+    public Items items;
 
     public Loot() {
         this.items = new Items();
         this.gold = 0;
     }
 
-    private void N() {
+    public void N() {
         Boolean bool = Boolean.TRUE;
         for (int i2 = 0; i2 < 20; i2++) {
             if (this.items.h(i2) != 0) {

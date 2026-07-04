@@ -8,10 +8,10 @@ import android.view.View;
 public abstract class b {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Object f2454b;
+    public Object f2454b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private boolean f2455c;
+    public boolean f2455c;
 
     /* JADX INFO: compiled from: ActionMode.java */
     public interface a {

@@ -27,16 +27,16 @@ public final class s extends Window {
     static float f3640e = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private n0.t f3641a;
+    public n0.t f3641a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private p f3642b;
+    public p f3642b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private CharacterSheet f3643c;
+    public CharacterSheet f3643c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Skill f3644d;
+    public Skill f3644d;
 
     /* JADX INFO: compiled from: SkillTrainWindow.java */
     final class a extends InputListener {

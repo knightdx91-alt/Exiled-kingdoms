@@ -11,10 +11,10 @@ import java.util.Locale;
 public class GameString {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<GameText> f3220a;
+    public static ArrayList<GameText> f3220a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static ArrayList<GameText> f3221b;
+    public static ArrayList<GameText> f3221b;
 
     public static String a(String str) {
         return b(str, false);
@@ -52,7 +52,7 @@ public class GameString {
         d("texts");
     }
 
-    private static void d(String str) {
+    public static void d(String str) {
         try {
             e(str, false);
         } catch (Exception e2) {
@@ -66,7 +66,7 @@ public class GameString {
         }
     }
 
-    private static void e(String str, boolean z2) {
+    public static void e(String str, boolean z2) {
         String[] strArrSplit = Gdx.files.internal("data/ui/strings/" + str + ".txt").readString("UTF-8").split("\n");
         for (int i2 = 0; i2 < strArrSplit.length; i2++) {
             String strReplace = strArrSplit[i2].replace("\n", "");

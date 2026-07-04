@@ -16,22 +16,22 @@ import net.fdgames.assets.GameAssets;
 public final class q extends Image {
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static NinePatchDrawable f3630e = new NinePatchDrawable(GameAssets.P);
+    public static NinePatchDrawable f3630e = new NinePatchDrawable(GameAssets.P);
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static final float f3631f = Gdx.graphics.getHeight() / 720.0f;
+    public static final float f3631f = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextureRegionDrawable f3632a;
+    public TextureRegionDrawable f3632a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private TextureRegionDrawable f3633b;
+    public TextureRegionDrawable f3633b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public boolean f3634c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Color f3635d;
+    public Color f3635d;
 
     public q(Skill skill, int i2) {
         this.f3632a = null;

@@ -8,19 +8,19 @@ import java.util.List;
 public final class a {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private final String f2217a;
+    public final String f2217a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private final String f2218b;
+    public final String f2218b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private final String f2219c;
+    public final String f2219c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private final List<List<byte[]>> f2220d;
+    public final List<List<byte[]>> f2220d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private final String f2221e;
+    public final String f2221e;
 
     public a(String str, String str2, String str3, List<List<byte[]>> list) {
         this.f2217a = str;

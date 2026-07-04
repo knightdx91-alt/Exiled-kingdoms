@@ -21,13 +21,13 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class g extends Window {
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static boolean f2655j;
+    public static boolean f2655j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private static float f2656k;
+    public static float f2656k;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f2657a;
+    public Label f2657a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     TextButton f2658b;
@@ -39,19 +39,19 @@ public final class g extends Window {
     t f2660d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private float f2661e;
+    public float f2661e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Table f2662f;
+    public Table f2662f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f2663g;
+    public int f2663g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private int f2664h;
+    public int f2664h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Stage f2665i;
+    public Stage f2665i;
 
     /* JADX INFO: compiled from: ChooseSaveWindow.java */
     final class a extends ChangeListener {
@@ -202,7 +202,7 @@ public final class g extends Window {
         GameConsole.a(GameString.b("GAME_SAVED", false));
     }
 
-    private void f() {
+    public void f() {
         char c2;
         Table table = this.f2662f;
         table.clear();
@@ -264,7 +264,7 @@ public final class g extends Window {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void g(int i2) {
         if (this.f2663g == 1) {
             if (f2655j) {
@@ -282,7 +282,7 @@ public final class g extends Window {
         }
     }
 
-    private static String h(int i2) {
+    public static String h(int i2) {
         if (i2 == 0) {
             return a.a.o("CONTINUE_PLAYING", false, new StringBuilder("[BLUE]"), ":[] ");
         }

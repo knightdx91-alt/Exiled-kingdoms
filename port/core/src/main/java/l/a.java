@@ -10,7 +10,7 @@ import java.util.WeakHashMap;
 public final class a {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static final Object f2306a = null;
+    public static final Object f2306a = null;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ int f2307b = 0;

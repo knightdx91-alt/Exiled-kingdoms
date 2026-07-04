@@ -25,16 +25,16 @@ import net.fdgames.ek.Settings;
 public final class p extends Table {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static float f3625d = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f3625d = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static float f3626e;
+    public static float f3626e;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private float f3627a;
+    public float f3627a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private boolean f3628b;
+    public boolean f3628b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public Dialog f3629c;
@@ -51,7 +51,7 @@ public final class p extends Table {
         b(skill, characterSheet, bool.booleanValue(), false);
     }
 
-    private Table a(Skill skill, int i2, CharacterSheet characterSheet) {
+    public Table a(Skill skill, int i2, CharacterSheet characterSheet) {
         SkillSet skillSet;
         float f2 = Settings.M() ? 0.9f : 1.0f;
         Table table = new Table();

@@ -20,80 +20,80 @@ import q0.g;
 /* JADX INFO: compiled from: ControllerSettingsWindow.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class h extends Window {
-    private ArrayList<g> A;
-    private n0.t B;
-    private float C;
-    private float D;
+    public ArrayList<g> A;
+    public n0.t B;
+    public float C;
+    public float D;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private boolean f3887a;
+    public boolean f3887a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f3888b;
+    public Label f3888b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f3889c;
+    public Label f3889c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private g f3890d;
+    public g f3890d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private g f3891e;
+    public g f3891e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private g f3892f;
+    public g f3892f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private g f3893g;
+    public g f3893g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private g f3894h;
+    public g f3894h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private g f3895i;
+    public g f3895i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private g f3896j;
+    public g f3896j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private g f3897k;
+    public g f3897k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private g f3898l;
+    public g f3898l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private g f3899m;
+    public g f3899m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private g f3900n;
+    public g f3900n;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private g f3901o;
+    public g f3901o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private g f3902p;
+    public g f3902p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private g f3903q;
+    public g f3903q;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
-    private g f3904r;
-    private g s;
+    public g f3904r;
+    public g s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private g f3905t;
+    public g f3905t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private g f3906u;
+    public g f3906u;
 
     /* JADX INFO: renamed from: v, reason: collision with root package name */
-    private g f3907v;
+    public g f3907v;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private g f3908w;
+    public g f3908w;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private ControllerCommand f3909z;
+    public ControllerCommand f3909z;
 
     /* JADX INFO: compiled from: ControllerSettingsWindow.java */
     final class a extends ClickListener {
@@ -284,7 +284,7 @@ public final class h extends Window {
         label.setText(sb.toString());
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void c() {
         this.f3909z = null;
         this.f3887a = false;

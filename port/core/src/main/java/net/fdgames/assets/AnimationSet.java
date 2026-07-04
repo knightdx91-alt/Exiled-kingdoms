@@ -13,8 +13,8 @@ import net.fdgames.GameEntities.MapActor;
 public class AnimationSet {
     public Animation<TextureRegion> animation;
     public String name;
-    private EnumMap<MapActor.ActorState, EnumMap<SpriteFacing, Animation>> stateFacingAnimations;
-    private Texture texture;
+    public EnumMap<MapActor.ActorState, EnumMap<SpriteFacing, Animation>> stateFacingAnimations;
+    public Texture texture;
     public Texture texture_ranged;
 
     /* JADX INFO: renamed from: net.fdgames.assets.AnimationSet$1, reason: invalid class name */
@@ -92,7 +92,7 @@ public class AnimationSet {
         U, RU, R, RD, D;
     }
 
-    private class frameInfo {
+    public class frameInfo {
         Boolean flipped;
         int row;
 
@@ -260,7 +260,7 @@ public class AnimationSet {
         return new Animation(f2, aVar, playMode);
     }
 
-    private static EnumMap c(Texture texture, int i2, int i3, int i4, Animation.PlayMode playMode, float f2, boolean z2) {
+    public static EnumMap c(Texture texture, int i2, int i3, int i4, Animation.PlayMode playMode, float f2, boolean z2) {
         EnumMap enumMap = new EnumMap(SpriteFacing.class);
         int i5 = i2;
         for (SpriteFacing spriteFacing : SpriteFacing.values()) {

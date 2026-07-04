@@ -45,38 +45,38 @@ import q0.z;
 /* JADX INFO: compiled from: MainMenuScreen.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public final class e implements com.badlogic.gdx.Screen {
-    private static t A;
+    public static t A;
     public static o0.r B;
     public static p0.a C;
-    private static o1 D;
-    private static float E = Gdx.graphics.getHeight() / 720.0f;
-    private static float F;
-    private static final float G;
-    private static final float H;
-    private static final float I;
-    private static int J;
-    private static float K;
-    private static int L;
-    private static int M;
-    private static float N;
-    private static float O;
-    private static float P;
-    private static float Q;
-    private static float R;
-    private static int S;
-    private static int T;
-    private static float U;
-    private static int V;
-    private static int W;
-    private static TextureRegion X;
-    private static TextureRegionDrawable Y;
+    public static o1 D;
+    public static float E = Gdx.graphics.getHeight() / 720.0f;
+    public static float F;
+    public static final float G;
+    public static final float H;
+    public static final float I;
+    public static int J;
+    public static float K;
+    public static int L;
+    public static int M;
+    public static float N;
+    public static float O;
+    public static float P;
+    public static float Q;
+    public static float R;
+    public static int S;
+    public static int T;
+    public static float U;
+    public static int V;
+    public static int W;
+    public static TextureRegion X;
+    public static TextureRegionDrawable Y;
     public static boolean Z;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static Stage f2353o;
+    public static Stage f2353o;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static com.badlogic.gdx.Game f2354p;
+    public static com.badlogic.gdx.Game f2354p;
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
     static TextButton f2355q;
@@ -104,49 +104,49 @@ public final class e implements com.badlogic.gdx.Screen {
     static Table f2362y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    private static a0 f2363z;
+    public static a0 f2363z;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private v f2364a;
+    public v f2364a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private j1 f2365b;
+    public j1 f2365b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private i1 f2366c;
+    public i1 f2366c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private c1 f2367d;
+    public c1 f2367d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private q0.c f2368e;
+    public q0.c f2368e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private q0.b f2369f;
+    public q0.b f2369f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private q0.i f2370g;
+    public q0.i f2370g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private a.f f2371h;
+    public a.f f2371h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private a.d f2372i;
+    public a.d f2372i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private q0.a f2373j;
+    public q0.a f2373j;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private n0.g f2374k;
+    public n0.g f2374k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private q0.t f2375l;
+    public q0.t f2375l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private x f2376m;
+    public x f2376m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private float f2377n;
+    public float f2377n;
 
     /* JADX INFO: compiled from: MainMenuScreen.java */
     final class a extends ChangeListener {

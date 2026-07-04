@@ -28,31 +28,31 @@ import net.fdgames.ek.Settings;
 public final class d extends Window {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static d f2594g;
+    public static d f2594g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f2595h;
+    public static float f2595h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
     static final float f2596i;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private String f2597a;
+    public String f2597a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private t f2598b;
+    public t f2598b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private t f2599c;
+    public t f2599c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private t f2600d;
+    public t f2600d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private t f2601e;
+    public t f2601e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private n0.c f2602f;
+    public n0.c f2602f;
 
     /* JADX INFO: compiled from: CastleWindow.java */
     final class a extends ChangeListener {
@@ -202,7 +202,7 @@ public final class d extends Window {
         return f2594g;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: public */
     public void h() {
         this.f2602f.a(this.f2597a);
         t tVar = this.f2598b;

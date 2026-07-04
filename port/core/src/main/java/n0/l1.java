@@ -45,65 +45,65 @@ import net.fdgames.ek.Settings;
 public final class l1 extends Image {
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
-    private static final Color f2765o = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.66f);
+    public static final Color f2765o = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.66f);
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    private static final Color f2766p = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.3f);
+    public static final Color f2766p = new Color(0.9411765f, 0.7058824f, 0.3529412f, 0.3f);
 
     /* JADX INFO: renamed from: q, reason: collision with root package name */
-    private static BitmapFont f2767q = GameAssets.f3336k0;
+    public static BitmapFont f2767q = GameAssets.f3336k0;
 
     /* JADX INFO: renamed from: r, reason: collision with root package name */
     public static boolean f2768r;
-    private static boolean s;
+    public static boolean s;
 
     /* JADX INFO: renamed from: t, reason: collision with root package name */
-    private static float f2769t;
+    public static float f2769t;
 
     /* JADX INFO: renamed from: u, reason: collision with root package name */
-    private static float f2770u;
+    public static float f2770u;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public String f2771a;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextureRegionDrawable f2774d;
+    public TextureRegionDrawable f2774d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private NinePatchDrawable f2775e;
+    public NinePatchDrawable f2775e;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private boolean f2777g;
+    public boolean f2777g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private boolean f2778h;
+    public boolean f2778h;
 
     /* JADX INFO: renamed from: k, reason: collision with root package name */
-    private int f2781k;
+    public int f2781k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private float f2782l;
+    public float f2782l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
-    private float f2783m;
+    public float f2783m;
 
     /* JADX INFO: renamed from: n, reason: collision with root package name */
-    private float f2784n;
+    public float f2784n;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f2772b = 0.0f;
+    public float f2772b = 0.0f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private float f2773c = 0.0f;
+    public float f2773c = 0.0f;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private Color f2776f = new Color();
+    public Color f2776f = new Color();
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private boolean f2779i = false;
+    public boolean f2779i = false;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private boolean f2780j = false;
+    public boolean f2780j = false;
 
     /* JADX INFO: compiled from: SkillButton.java */
     final class a extends InputListener {

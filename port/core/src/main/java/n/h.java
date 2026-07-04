@@ -10,19 +10,19 @@ import java.util.Iterator;
 public final class h {
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private BaseInterpolator f2508c;
+    public BaseInterpolator f2508c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
     l f2509d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private boolean f2510e;
+    public boolean f2510e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private long f2507b = -1;
+    public long f2507b = -1;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private final l f2511f = new a();
+    public final l f2511f = new a();
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     final ArrayList<android.support.v4.view.l> f2506a = new ArrayList<>();
@@ -31,10 +31,10 @@ public final class h {
     final class a extends l {
 
         /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private boolean f2512c = false;
+        public boolean f2512c = false;
 
         /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private int f2513d = 0;
+        public int f2513d = 0;
 
         a() {
         }

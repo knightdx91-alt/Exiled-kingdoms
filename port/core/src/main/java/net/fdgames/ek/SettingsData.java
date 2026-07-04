@@ -8,11 +8,11 @@ public class SettingsData {
     public int activationCode;
     public boolean attackInteracts;
     public boolean combatLog;
-    private int installID;
+    public int installID;
     public int language;
-    private boolean licenseCode;
+    public boolean licenseCode;
     public boolean licenseFull;
-    private boolean licenseTest;
+    public boolean licenseTest;
     public float lowMControls;
     public String orderID;
     public String registrationDate;

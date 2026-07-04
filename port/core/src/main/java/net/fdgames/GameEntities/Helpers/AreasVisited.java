@@ -9,7 +9,7 @@ import net.fdgames.Helpers.Serializer;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class AreasVisited {
-    private ArrayList<AreaVisited> areasVisited = new ArrayList<>();
+    public ArrayList<AreaVisited> areasVisited = new ArrayList<>();
 
     public final void a() {
         Gdx.files.local(Serializer.e(GameData.v().slot)).deleteDirectory();

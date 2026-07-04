@@ -26,14 +26,14 @@ public class CharacterSheet {
     final float MITIGATION_CAP;
     public AttributesSet attributes;
     public CharacterEffects effects;
-    private int hardcoded_defense;
-    private CharacterResistances hardcoded_resistances;
-    private WeaponStats hardcoded_weapon;
+    public int hardcoded_defense;
+    public CharacterResistances hardcoded_resistances;
+    public WeaponStats hardcoded_weapon;
     public CharacterInventory inventory;
     public SheetEffects sheetEffects;
     public SkillSet skillSet;
     public CharacterStats stats;
-    private CharacterTraits traits;
+    public CharacterTraits traits;
 
     final class a extends k1 {
     }

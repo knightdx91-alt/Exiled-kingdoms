@@ -7,25 +7,25 @@ import java.lang.reflect.Array;
 public final class e extends u.d {
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private int f4078f;
+    public int f4078f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private int f4079g;
+    public int f4079g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private int f4080h;
+    public int f4080h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private int f4081i;
+    public int f4081i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private a[][] f4082j;
+    public a[][] f4082j;
 
     /* JADX INFO: compiled from: TiledMapTileLayer.java */
     public static class a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private d f4083a;
+        public d f4083a;
 
         public final d a() {
             return this.f4083a;

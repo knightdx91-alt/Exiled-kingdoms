@@ -10,34 +10,34 @@ import net.fdgames.Helpers.GameText;
 public class WorldRandomNames {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static ArrayList<GameText> f3202a;
+    public static ArrayList<GameText> f3202a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static ArrayList<GameText> f3203b;
+    public static ArrayList<GameText> f3203b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static ArrayList<GameText> f3204c;
+    public static ArrayList<GameText> f3204c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static ArrayList<GameText> f3205d;
+    public static ArrayList<GameText> f3205d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static ArrayList<GameText> f3206e;
+    public static ArrayList<GameText> f3206e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static ArrayList<GameText> f3207f;
+    public static ArrayList<GameText> f3207f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static ArrayList<GameText> f3208g;
+    public static ArrayList<GameText> f3208g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static ArrayList<GameText> f3209h;
+    public static ArrayList<GameText> f3209h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static ArrayList<GameText> f3210i;
+    public static ArrayList<GameText> f3210i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static ArrayList<GameText> f3211j;
+    public static ArrayList<GameText> f3211j;
 
     public WorldRandomNames() {
         f3202a = new ArrayList<>();
@@ -81,7 +81,7 @@ public class WorldRandomNames {
         }
     }
 
-    private static String a(Character.Gender gender) {
+    public static String a(Character.Gender gender) {
         if (gender == Character.Gender.Male) {
             return f3202a.get(FDUtils.b(0, f3202a.size() - 1)).get();
         }

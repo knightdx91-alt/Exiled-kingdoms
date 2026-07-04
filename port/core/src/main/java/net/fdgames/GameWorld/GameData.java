@@ -29,7 +29,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class GameData {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static GameData f3182a;
+    public static GameData f3182a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static boolean f3183b;
@@ -38,10 +38,10 @@ public final class GameData {
     public Items backpack;
     public ArrayList<CastleData> castleData;
     public String currentMapName;
-    private int difficulty;
-    private ArrayList<DynamicEvent> dynamicEvents;
+    public int difficulty;
+    public ArrayList<DynamicEvent> dynamicEvents;
     public ArrayList<DynamicQuest> dynamicQuests;
-    private double gameTime;
+    public double gameTime;
     public boolean hasVault;
     public boolean hasVault2;
     public boolean hasVault3;
@@ -49,9 +49,9 @@ public final class GameData {
     public ArrayList<InnData> innData;
     public boolean introMessageShown;
     public int lastDynamicQuest;
-    private int lastRoll;
+    public int lastRoll;
     public GameLog log;
-    private ArrayList<String> lootedContainers;
+    public ArrayList<String> lootedContainers;
     public Items lostBackpack;
     public Items lostEquipment;
     public int lostGold;
@@ -62,20 +62,20 @@ public final class GameData {
     public boolean shardsCompleted;
     public boolean shardsMessageShown;
     public int slot;
-    private GameStats stats;
-    private int times_reset;
-    private int times_reset_companion;
+    public GameStats stats;
+    public int times_reset;
+    public int times_reset_companion;
     public boolean tolCurse;
     public boolean tolCurseMessageShown;
-    private ArrayList<WorldContainer> worldContainers;
-    private double last_hour_check = 0.0d;
-    private double last_day_check = 0.0d;
+    public ArrayList<WorldContainer> worldContainers;
+    public double last_hour_check = 0.0d;
+    public double last_day_check = 0.0d;
     public float lastQuickSave = 0.0f;
-    private int daysToLetterTremadan = -1;
+    public int daysToLetterTremadan = -1;
     public boolean msg_letter_tremadan = false;
     public GameVariables gameVariables = new GameVariables();
     public ArrayList<String> deadNPCs = new ArrayList<>();
-    private ArrayList<String> secrets = new ArrayList<>();
+    public ArrayList<String> secrets = new ArrayList<>();
     public boolean TIP_MOVEMENT = false;
     public boolean TIP_INTERACTION = false;
     public boolean TIP_DUNGEON = false;
@@ -93,8 +93,8 @@ public final class GameData {
     public boolean WARNING_EVASION = false;
     public boolean WARNING_CRUSADER = false;
     public boolean WARNING_TRAITS = false;
-    private boolean bagHolding = false;
-    private boolean blood = false;
+    public boolean bagHolding = false;
+    public boolean blood = false;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -102,7 +102,7 @@ public final class GameData {
         RUNNING, STOPPED;
     }
 
-    private GameData() {
+    public GameData() {
         if (this.party == null) {
             this.party = new Party();
         }

@@ -20,28 +20,28 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class c extends Table {
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static float f2573g = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
+    public static float f2573g = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private static float f2574h;
+    public static float f2574h;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private Label f2575a;
+    public Label f2575a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Label f2576b;
+    public Label f2576b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Label f2577c;
+    public Label f2577c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private Image f2578d;
+    public Image f2578d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Image f2579e;
+    public Image f2579e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private String f2580f;
+    public String f2580f;
 
     public c() {
         super(Assets.g());

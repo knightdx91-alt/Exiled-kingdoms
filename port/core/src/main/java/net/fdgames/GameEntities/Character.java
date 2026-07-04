@@ -60,30 +60,30 @@ import net.fdgames.ek.Settings;
 public abstract class Character extends MapActor {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static final Color f2991a = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+    public static final Color f2991a = new Color(0.0f, 0.0f, 0.0f, 0.5f);
     public int SkillUseData_consecutive_hits;
     public float SkillUseData_consecutive_lasthit;
     public float SkillUseData_lastStabTime;
     public int SkillUseData_lastStabbed_id;
     public float SkillUseData_last_melee_kill;
-    private float drawsize;
+    public float drawsize;
     public Gender gender;
     protected boolean killedByNPC;
     public float lastItemUsed;
-    private float lastSkillEffectCheck;
+    public float lastSkillEffectCheck;
     public int lastTargetHit_id;
     public float lastWeakEffect;
-    private String logString;
-    private String name;
+    public String logString;
+    public String name;
     public int nextStep;
     public Path path;
     public int portraitIndex;
     protected DamageData receivedDamage;
     public CharacterSheet sheet;
-    private float size;
+    public float size;
     public Coords skillOrigin;
     public float speedModifier;
-    private int spellTarget;
+    public int spellTarget;
     public String spell_id;
     public a<Integer> spriteIndex;
     public boolean wasJustHitByMageBarrier;
@@ -115,7 +115,7 @@ public abstract class Character extends MapActor {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private void J0() {
+    public void J0() {
         Coords coords;
         String str;
         int iC;
@@ -598,11 +598,11 @@ public abstract class Character extends MapActor {
         t0();
     }
 
-    private int S0() {
+    public int S0() {
         return (int) (((1.0f - this.drawsize) * 140) / 2.0f);
     }
 
-    private void x0() {
+    public void x0() {
         Coords coords = this.destination;
         if (coords.f3287x == -1 || coords.f3288y == -1) {
             return;

@@ -29,7 +29,7 @@ import com.badlogic.gdx.audio.Sound;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class GameAssets {
     public static TextureRegion A = null;
-    private static long A0 = 0;
+    public static long A0 = 0;
     public static TextureRegion B = null;
     public static TextureRegion C = null;
     public static NinePatch D = null;
@@ -69,7 +69,7 @@ public class GameAssets {
     public static Label.LabelStyle f3318b0;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static Texture f3319c;
+    public static Texture f3319c;
 
     /* JADX INFO: renamed from: c0, reason: collision with root package name */
     public static Label.LabelStyle f3320c0;
@@ -138,7 +138,7 @@ public class GameAssets {
     public static MapParticleEffectPool f3341n;
 
     /* JADX INFO: renamed from: n0, reason: collision with root package name */
-    private static ArrayList<GameSound> f3342n0;
+    public static ArrayList<GameSound> f3342n0;
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
     public static MapParticleEffectPool f3343o;
@@ -181,20 +181,20 @@ public class GameAssets {
     public static Texture v0;
 
     /* JADX INFO: renamed from: w, reason: collision with root package name */
-    private static Skin f3355w;
+    public static Skin f3355w;
     public static Intro w0;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    private static ImageButton.ImageButtonStyle f3356x;
+    public static ImageButton.ImageButtonStyle f3356x;
     public static Texture x0;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public static TextureRegion f3357y;
-    private static Slider.SliderStyle y0;
+    public static Slider.SliderStyle y0;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public static TextureRegion f3358z;
-    private static String z0;
+    public static String z0;
 
     /* JADX INFO: renamed from: net.fdgames.assets.GameAssets$1, reason: invalid class name */
     static /* synthetic */ class AnonymousClass1 {

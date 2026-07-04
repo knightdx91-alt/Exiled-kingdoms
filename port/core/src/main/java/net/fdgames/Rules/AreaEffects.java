@@ -10,7 +10,7 @@ import net.fdgames.assets.GameAssets;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class AreaEffects {
-    private static void a(int i2, int i3, int i4, String str, float f2, float f3) {
+    public static void a(int i2, int i3, int i4, String str, float f2, float f3) {
         if (b.P().y(i2 / 32, i3 / 32)) {
             return;
         }

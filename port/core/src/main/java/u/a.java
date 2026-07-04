@@ -13,7 +13,7 @@ public interface a {
     public static class C0060a implements a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final r.d f4053a;
+        public final r.d f4053a;
 
         public C0060a(r.d dVar) {
             this.f4053a = dVar;
@@ -29,7 +29,7 @@ public interface a {
     public static class b implements a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final y<String, Texture> f4054a;
+        public final y<String, Texture> f4054a;
 
         public b(y<String, Texture> yVar) {
             this.f4054a = yVar;

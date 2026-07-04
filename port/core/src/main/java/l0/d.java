@@ -19,34 +19,34 @@ import net.fdgames.ek.Settings;
 public final class d implements n {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private static float f2343i = Gdx.graphics.getHeight() / 720.0f;
+    public static float f2343i = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
-    private static float f2344j = 0.35f;
+    public static float f2344j = 0.35f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private ExiledKingdoms f2345a;
+    public ExiledKingdoms f2345a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private SpriteBatch f2346b;
+    public SpriteBatch f2346b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private Texture f2347c;
+    public Texture f2347c;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private Sprite f2349e;
+    public Sprite f2349e;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private float f2352h;
+    public float f2352h;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private TextureRegion f2348d = new TextureRegion(new Texture(Gdx.files.internal("data/ui/logo.png")));
+    public TextureRegion f2348d = new TextureRegion(new Texture(Gdx.files.internal("data/ui/logo.png")));
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private float f2351g = 0.0f;
+    public float f2351g = 0.0f;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private boolean f2350f = false;
+    public boolean f2350f = false;
 
     public d(ExiledKingdoms exiledKingdoms) {
         this.f2345a = exiledKingdoms;

@@ -20,19 +20,19 @@ import net.fdgames.assets.GameAssets;
 public final class c0 extends Window {
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static c0 f2581d;
+    public static c0 f2581d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     static float f2582e = Gdx.graphics.getHeight() / 720.0f;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private TextButton f2583a;
+    public TextButton f2583a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private Table f2584b;
+    public Table f2584b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private ScrollPane f2585c;
+    public ScrollPane f2585c;
 
     /* JADX INFO: compiled from: GameLogWindow.java */
     final class a extends InputListener {

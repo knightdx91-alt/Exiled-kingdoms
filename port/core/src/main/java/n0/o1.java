@@ -12,7 +12,7 @@ import net.fdgames.ek.ExiledKingdoms;
 public final class o1 extends Window {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static float f2847b;
+    public static float f2847b;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     float f2848a;

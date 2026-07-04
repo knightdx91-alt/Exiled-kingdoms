@@ -9,8 +9,8 @@ import net.fdgames.ek.ExiledKingdoms;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class GameLog {
     public String lastLines;
-    private ArrayList<LogLine> lines = new ArrayList<>();
-    private float lastUpdate = 0.0f;
+    public ArrayList<LogLine> lines = new ArrayList<>();
+    public float lastUpdate = 0.0f;
 
     public final void a(String str) {
         this.lines.add(new LogLine(str.replace("--", "+")));

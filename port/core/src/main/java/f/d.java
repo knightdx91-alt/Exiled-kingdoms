@@ -30,25 +30,25 @@ import java.util.Map;
 public final class d extends c {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static final Class f2201a;
+    public static final Class f2201a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private static final Constructor f2202b;
+    public static final Constructor f2202b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private static final Method f2203c;
+    public static final Method f2203c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private static final Method f2204d;
+    public static final Method f2204d;
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private static final Method f2205e;
+    public static final Method f2205e;
 
     /* JADX INFO: renamed from: f, reason: collision with root package name */
-    private static final Method f2206f;
+    public static final Method f2206f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private static final Method f2207g;
+    public static final Method f2207g;
 
     static {
         Class<?> cls;
@@ -87,7 +87,7 @@ public final class d extends c {
         f2207g = declaredMethod;
     }
 
-    private static void d(Object obj) {
+    public static void d(Object obj) {
         try {
             f2206f.invoke(obj, null);
         } catch (IllegalAccessException | InvocationTargetException e2) {
@@ -95,7 +95,7 @@ public final class d extends c {
         }
     }
 
-    private static boolean e(Context context, Object obj, String str, int i2, int i3) {
+    public static boolean e(Context context, Object obj, String str, int i2, int i3) {
         try {
             return ((Boolean) f2203c.invoke(obj, context.getAssets(), str, 0, Boolean.FALSE, 0, Integer.valueOf(i2), Integer.valueOf(i3), null)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException e2) {
@@ -103,7 +103,7 @@ public final class d extends c {
         }
     }
 
-    private static Typeface f(Object obj) {
+    public static Typeface f(Object obj) {
         try {
             Object objNewInstance = Array.newInstance((Class<?>) f2201a, 1);
             Array.set(objNewInstance, 0, obj);
@@ -113,7 +113,7 @@ public final class d extends c {
         }
     }
 
-    private static boolean i(Object obj) {
+    public static boolean i(Object obj) {
         try {
             return ((Boolean) f2205e.invoke(obj, null)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException e2) {
@@ -121,15 +121,15 @@ public final class d extends c {
         }
     }
 
-    private static boolean j() {
+    public static boolean j() {
         Method method = f2203c;
         if (method == null) {
-            Log.w("TypefaceCompatApi26Impl", "Unable to collect necessary private methods. Fallback to legacy implementation.");
+            Log.w("TypefaceCompatApi26Impl", "Unable to collect necessary public methods. Fallback to legacy implementation.");
         }
         return method != null;
     }
 
-    private static Object k() {
+    public static Object k() {
         try {
             return f2202b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException e2) {

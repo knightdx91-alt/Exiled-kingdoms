@@ -5,19 +5,19 @@ package u;
 public class d {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private String f4058a = "";
+    public String f4058a = "";
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    private float f4059b = 1.0f;
+    public float f4059b = 1.0f;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    private boolean f4060c = true;
+    public boolean f4060c = true;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private g f4061d = new g();
+    public g f4061d = new g();
 
     /* JADX INFO: renamed from: e, reason: collision with root package name */
-    private h f4062e = new h();
+    public h f4062e = new h();
 
     public final String a() {
         return this.f4058a;

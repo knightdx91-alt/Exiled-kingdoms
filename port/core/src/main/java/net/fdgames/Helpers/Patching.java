@@ -163,7 +163,7 @@ public class Patching {
         b();
     }
 
-    private static void b() {
+    public static void b() {
         if (GameData.v().gameVariables.b("web_terror") != 50 || GameData.v().CurrentLevel.equals("E9_cave")) {
             return;
         }
