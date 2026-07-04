@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GWT module for the Exiled Kingdoms web build.
+     `assets/data` (from the APK, extracted via tools/extract.sh) must be placed
+     under html/webapp/ so GWT bundles it into the served site. -->
+<module rename-to="html">
+    <inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
+    <inherits name='net.fdgames.ek' />  <!-- core game module; add module descriptor in step 2 -->
+    <entry-point class='net.fdgames.gwt.GwtLauncher' />
+    <set-configuration-property name='gdx.assetpath' value='../assets' />
+</module>

@@ -1,0 +1,47 @@
+// Root build for the Exiled Kingdoms port.
+// NOTE: this scaffold defines the module/dependency structure. It does not yet
+// compile — the recovered `core` sources must first have the de-obfuscation map
+// (../deobf/deobf_map_full.json) applied and the ~81 relocated UI classes folded
+// in (step 2). See port/README.md.
+buildscript {
+    repositories { mavenCentral(); gradlePluginPortal() }
+    dependencies {
+        classpath "org.wisepersist:gwt-gradle-plugin:${gwtPluginVersion}"
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+}
+
+project(':core') {
+    dependencies {
+        implementation "com.badlogicgames.gdx:gdx:${gdxVersion}"
+        implementation "com.badlogicgames.gdx:gdx-box2d:${gdxVersion}"
+        implementation "com.badlogicgames.box2dlights:box2dlights:${box2dLightsVersion}"
+        implementation "com.badlogicgames.gdx-pay:gdx-pay-client:${gdxPayVersion}"
+    }
+}
+
+project(':lwjgl3') {
+    dependencies {
+        implementation project(':core')
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:${gdxVersion}"
+        implementation "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-box2d-platform:${gdxVersion}:natives-desktop"
+    }
+}
+
+project(':html') {
+    apply plugin: 'org.wisepersist.gwt'
+    dependencies {
+        implementation project(':core')
+        implementation "com.badlogicgames.gdx:gdx-backend-gwt:${gdxVersion}"
+        implementation "com.badlogicgames.gdx:gdx:${gdxVersion}:sources"
+        implementation "com.badlogicgames.gdx:gdx-backend-gwt:${gdxVersion}:sources"
+    }
+}
