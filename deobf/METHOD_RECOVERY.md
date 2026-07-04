@@ -30,6 +30,34 @@ Every entry needs verification against the call-site's actual behaviour. Treat
 `method_map.json` as a ranked hint list for a human/assisted pass, not an
 auto-apply table.
 
+## Improved recovery: two-signal matching (`method_map_hybrid.json`)
+
+`tools/method_match_hybrid.py` + `tools/method_body_match.py` combine two
+obfuscation-surviving signals to raise confidence and flag certainty per method:
+
+1. **Parameter-type signature** — primitives, `java.*`, and kept-name gdx types
+   survive obfuscation. A signature unique in the class (or an equal-size
+   overload group matched positionally) gives a **certain** mapping regardless
+   of body. Marked `certain: true`.
+2. **Method-body similarity** — string/numeric literals and kept-name calls in a
+   method body are preserved verbatim; strong for large methods, weak for tiny
+   accessors. Used to disambiguate and validate.
+
+Result over the 15 used libGDX classes: **54 / 143 renamed methods
+high-confidence** (spot-checked correct: `Array.e→contains`, `.q→removeValue`,
+`.g→pop`, `.k→peek`, `.a→add`). The remaining ~89 are flagged `certain: false`
+(guesses needing verification) — e.g. same-return/void(int) collisions that the
+matcher deliberately does **not** claim.
+
+Known limits: libGDX generic types (`T`, `Array<T>`) collapse to `?` in the
+signature, reducing discrimination; tiny 1-line accessors have too little body to
+match. These are exactly the cases left for manual/assisted verification.
+
+### The step that still gates the render tier
+Even a perfect method map does not auto-rewrite call sites: `x.a(v)` → `x.add(v)`
+only when `x` is statically an `Array`. That receiver-type resolution across
+~250 classes remains the manual/assisted core of the render/UI grind.
+
 ## The harder blocker: type-aware call-site rewriting
 
 Even with a perfect method map, rewriting the game is not find-and-replace.
