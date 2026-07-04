@@ -23,7 +23,7 @@ public class Trigger extends MapArea {
     }
 
     @Override // net.fdgames.TiledMap.Objects.MapArea
-    public final p a() {
+    public final Rectangle a() {
         int i2 = this.owner;
         if (i2 == 0) {
             return super.a();

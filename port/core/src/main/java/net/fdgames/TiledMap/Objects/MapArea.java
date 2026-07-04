@@ -7,7 +7,7 @@ public class MapArea {
     public Coords coords = new Coords(0, 0);
     private Rectangle rectangle;
 
-    public p a() {
+    public Rectangle a() {
         return this.rectangle;
     }
 

@@ -43,6 +43,7 @@ def rewrite(text):
         text=re.sub(rf'\({o}\)',f'({real})',text)
         if len(obf)>1: text=re.sub(rf'\b{o}\.',real+'.',text)  # skip single-letter to avoid var/pkg collisions
         text=re.sub(rf'\b{o}\[\]',real+'[]',text)
+        text=re.sub(rf'\b{o}\s+([A-Za-z_]\w*\s*\()',real+r' \1',text)  # return-type position
     return text
 
 n=0

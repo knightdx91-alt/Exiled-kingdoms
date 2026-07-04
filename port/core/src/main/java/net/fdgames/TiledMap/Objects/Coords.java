@@ -16,7 +16,7 @@ public class Coords {
         this.f3288y = i3;
     }
 
-    public final q a() {
+    public final Vector2 a() {
         return new Vector2 (this.f3287x, this.f3288y);
     }
 

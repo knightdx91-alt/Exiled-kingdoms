@@ -514,7 +514,7 @@ public class NPC extends Character {
     }
 
     @Override // net.fdgames.GameEntities.MapActor
-    public final p S(boolean z2) {
+    public final Rectangle S(boolean z2) {
         if (i0()) {
             return null;
         }

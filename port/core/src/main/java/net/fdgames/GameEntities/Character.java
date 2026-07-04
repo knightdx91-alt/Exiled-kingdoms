@@ -3000,7 +3000,7 @@ public abstract class Character extends MapActor {
         y1(str, 1.0f);
     }
 
-    public final p y0() {
+    public final Rectangle y0() {
         int iA = (int) (this.sheet.a() * 0.75f);
         float f2 = this.f3092x - iA;
         float f3 = this.f3093y - iA;

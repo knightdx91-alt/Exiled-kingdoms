@@ -279,14 +279,14 @@ public abstract class MapActor extends MapSprite {
         u0((i2 / fAbs) * 125.0f, (i3 / fAbs) * 125.0f);
     }
 
-    public p S(boolean z2) {
+    public Rectangle S(boolean z2) {
         if (this.state == ActorState.DEAD) {
             return null;
         }
         return T(this.f3092x, this.f3093y, z2);
     }
 
-    public final p T(int i2, int i3, boolean z2) {
+    public final Rectangle T(int i2, int i3, boolean z2) {
         if (z2) {
             this.projectCollisionRectangle.setPosition(i2 - (b0() / 2), i3 - (b0() / 2));
             this.projectCollisionRectangle.setSize(b0(), b0());
