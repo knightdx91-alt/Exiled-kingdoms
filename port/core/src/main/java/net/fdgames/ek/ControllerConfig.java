@@ -27,13 +27,13 @@ public class ControllerConfig {
     public ControllerCommand useItem;
 
     public ControllerConfig() {
-        ControllerCommand.commandType commandtype = ControllerCommand.commandType.f3365a;
+        ControllerCommand.commandType commandtype = ControllerCommand.commandType.NEGATIVE_AXIS;
         this.up = new ControllerCommand(commandtype, 1);
-        ControllerCommand.commandType commandtype2 = ControllerCommand.commandType.f3366b;
+        ControllerCommand.commandType commandtype2 = ControllerCommand.commandType.POSITIVE_AXIS;
         this.down = new ControllerCommand(commandtype2, 1);
         this.left = new ControllerCommand(commandtype, 0);
         this.right = new ControllerCommand(commandtype2, 0);
-        ControllerCommand.commandType commandtype3 = ControllerCommand.commandType.f3367c;
+        ControllerCommand.commandType commandtype3 = ControllerCommand.commandType.BUTTON;
         this.action = new ControllerCommand(commandtype3, 96);
         this.cancel = new ControllerCommand(commandtype3, 97);
         this.skill1 = new ControllerCommand(commandtype3, 99);

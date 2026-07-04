@@ -127,7 +127,7 @@ public class MapEffect {
                             String str = this.effect;
                             characterF.s0(12.0f);
                             boolean zEquals = str.equals("deathcloud1");
-                            CharacterResistances.ResistanceType resistanceType = CharacterResistances.ResistanceType.f2998d;
+                            CharacterResistances.ResistanceType resistanceType = CharacterResistances.ResistanceType.Death;
                             if (zEquals) {
                                 characterF.q1(resistanceType, -30, 12.0f);
                             }
@@ -158,9 +158,9 @@ public class MapEffect {
                             } else {
                                 i3 = i4;
                             }
-                            characterF.q1(CharacterResistances.ResistanceType.f2995a, i3, 15.0f);
-                            characterF.q1(CharacterResistances.ResistanceType.f2996b, i3, 15.0f);
-                            characterF.q1(CharacterResistances.ResistanceType.f2997c, i3, 15.0f);
+                            characterF.q1(CharacterResistances.ResistanceType.Fire, i3, 15.0f);
+                            characterF.q1(CharacterResistances.ResistanceType.Cold, i3, 15.0f);
+                            characterF.q1(CharacterResistances.ResistanceType.Shock, i3, 15.0f);
                             characterF.t1(i2, 15.0f);
                         }
                     }

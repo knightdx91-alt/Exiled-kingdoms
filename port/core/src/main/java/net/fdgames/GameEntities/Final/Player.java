@@ -397,14 +397,14 @@ public class Player extends Character {
 
     @Override // net.fdgames.GameEntities.Character
     public final boolean L0(Character character) {
-        return (character.sheet == null || character.d0() == MapActor.ActorState.f3078h || character.d0() == MapActor.ActorState.f3077g || character.sheet.stats.f() <= 2 || !b.Z(character, this)) ? false : true;
+        return (character.sheet == null || character.d0() == MapActor.ActorState.SKILL_CHARGE || character.d0() == MapActor.ActorState.SKILL_WHIRLWIND || character.sheet.stats.f() <= 2 || !b.Z(character, this)) ? false : true;
     }
 
     @Override // net.fdgames.GameEntities.Character, net.fdgames.GameEntities.MapActor, net.fdgames.GameEntities.MapSprite
     public final void M(float f2) {
         int i2;
         boolean z2 = this.destroy;
-        MapActor.ActorState actorState = MapActor.ActorState.f3074d;
+        MapActor.ActorState actorState = MapActor.ActorState.DEAD;
         if (z2 && d0() != actorState && this.sheet.o() > 0) {
             this.destroy = false;
         }
@@ -666,15 +666,15 @@ public class Player extends Character {
                     this.tolCurseCounter = i23 + 1;
                 } else {
                     this.tolCurseCounter = 0;
-                    R0(new Damage(Damage.DamageType.f3050e, 12, false), 0, false, 0);
-                    if (this.sheet.F(CharacterResistances.ResistanceType.f2998d) <= 178) {
+                    R0(new Damage(Damage.DamageType.Death, 12, false), 0, false, 0);
+                    if (this.sheet.F(CharacterResistances.ResistanceType.Death) <= 178) {
                         GameData.v().log.a("[RED]" + GameString.b("TOL_CURSE_LOG", false) + "[]");
                     }
                 }
             } else {
                 boolean zD = GameData.v().D();
-                MapActor.ActorState actorState2 = MapActor.ActorState.f3072b;
-                MapActor.ActorState actorState3 = MapActor.ActorState.f3071a;
+                MapActor.ActorState actorState2 = MapActor.ActorState.MOVING;
+                MapActor.ActorState actorState3 = MapActor.ActorState.IDLE;
                 if (!zD || f3027e || (!(d0() == actorState3 || d0() == actorState2) || this.sheet.r() < 0.5f || this.sheet.o() >= 80)) {
                     if (GameData.v().F() && !f3027e && (d0() == actorState3 || d0() == actorState2)) {
                         if (this.sheet.stats.missingHP > 0 && GameData.v().u() > this.last_casual_regen + 0.7f) {
@@ -854,7 +854,7 @@ public class Player extends Character {
             GameAssets.f3315a.a((TextureRegion) GameAssets.i(aVar2.get(i2).intValue()).a(d0(), this.facing).getKeyFrame(V()));
             i2++;
         }
-        if (this.sheet.inventory.slot_mainhand > 0 && ((d0().equals(MapActor.ActorState.f3073c) || d0().equals(MapActor.ActorState.f3078h)) && !this.sheet.N().c())) {
+        if (this.sheet.inventory.slot_mainhand > 0 && ((d0().equals(MapActor.ActorState.ATTACKING) || d0().equals(MapActor.ActorState.SKILL_CHARGE)) && !this.sheet.N().c())) {
             GameAssets.f3315a.a((TextureRegion) GameAssets.f3354v.b(this.facing).getKeyFrame(V()));
         }
         D0();
@@ -902,7 +902,7 @@ public class Player extends Character {
     @Override // net.fdgames.GameEntities.Character
     public final void R0(Damage damage, int i2, boolean z2, int i3) {
         if (z2 || damage.hp >= this.sheet.z() / 12) {
-            if (this.gender == Character.Gender.f2992a) {
+            if (this.gender == Character.Gender.Male) {
                 GameAssets.p("male_grunt_1;male_grunt_2;male_grunt_3;male_grunt_4");
             } else {
                 GameAssets.p("female_grunt_1;female_grunt_2;female_grunt_3");
@@ -969,7 +969,7 @@ public class Player extends Character {
         Iterator<NPC> it = GameLevelData.t().iterator();
         while (true) {
             boolean zHasNext = it.hasNext();
-            actorState = MapActor.ActorState.f3071a;
+            actorState = MapActor.ActorState.IDLE;
             if (!zHasNext) {
                 break;
             }
@@ -1040,7 +1040,7 @@ public class Player extends Character {
     protected final void X() {
         l0.b.e();
         GPGSUpdate.c(false);
-        if (this.gender == Character.Gender.f2992a) {
+        if (this.gender == Character.Gender.Male) {
             GameAssets.o("male_death");
         } else {
             GameAssets.o("female_death");
@@ -1333,7 +1333,7 @@ public class Player extends Character {
             this.spriteIndex = new com.badlogic.gdx.utils.a<>();
         }
         this.spriteIndex.clear();
-        String str2 = this.gender == Character.Gender.f2992a ? "male" : "female";
+        String str2 = this.gender == Character.Gender.Male ? "male" : "female";
         CharacterSheet characterSheet = this.sheet;
         CharacterInventory characterInventory = characterSheet.inventory;
         int i2 = characterInventory.slot_body;
@@ -1375,7 +1375,7 @@ public class Player extends Character {
             z2 = true;
         }
         MapActor.ActorState actorStateD0 = d0();
-        MapActor.ActorState actorState = MapActor.ActorState.f3075e;
+        MapActor.ActorState actorState = MapActor.ActorState.ACTING;
         if (actorStateD0 != actorState && !strD.equals("")) {
             int iH3 = GameAssets.h("composite/" + str2 + "_" + strD);
             if (iH3 != -1) {
@@ -1412,7 +1412,7 @@ public class Player extends Character {
     }
 
     public Player(PlayerCreation playerCreation) {
-        super(Rules.CharacterRace.f3266a, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
+        super(Rules.CharacterRace.HUMAN, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
         this.tolCurseCounter = 0;
         this.gold = 0;
         this.tempTransition = null;
@@ -1488,7 +1488,7 @@ public class Player extends Character {
         }
         this.sheet.getClass();
         CharacterSheet.b(2515);
-        this.facing = MapActor.Facing.f3090h;
+        this.facing = MapActor.Facing.LU;
         if (ExiledKingdoms.f3378h) {
             f3024b = 0.15f;
         }

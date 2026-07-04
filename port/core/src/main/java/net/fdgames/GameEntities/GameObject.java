@@ -14,7 +14,7 @@ public abstract class GameObject {
     protected int uniqueID;
     protected int worldfaction;
     public boolean destroy = false;
-    protected Factions.Faction faction = Factions.Faction.f3061b;
+    protected Factions.Faction faction = Factions.Faction.NEUTRAL;
     protected int[] worldfactions = new int[2];
 
     public GameObject() {

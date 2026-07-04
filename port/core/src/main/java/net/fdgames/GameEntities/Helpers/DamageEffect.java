@@ -12,51 +12,8 @@ public class DamageEffect {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class EffectType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final EffectType f3054a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final EffectType f3055b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final EffectType f3056c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final EffectType f3057d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final EffectType f3058e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private static final /* synthetic */ EffectType[] f3059f;
-
-        static {
-            EffectType effectType = new EffectType("STUN", 0);
-            f3054a = effectType;
-            EffectType effectType2 = new EffectType("SLOW", 1);
-            f3055b = effectType2;
-            EffectType effectType3 = new EffectType("CRUSADER", 2);
-            f3056c = effectType3;
-            EffectType effectType4 = new EffectType("PARALYZE", 3);
-            f3057d = effectType4;
-            EffectType effectType5 = new EffectType("EMP", 4);
-            f3058e = effectType5;
-            f3059f = new EffectType[]{effectType, effectType2, effectType3, effectType4, effectType5};
-        }
-
-        private EffectType() {
-            throw null;
-        }
-
-        public static EffectType valueOf(String str) {
-            return (EffectType) Enum.valueOf(EffectType.class, str);
-        }
-
-        public static EffectType[] values() {
-            return (EffectType[]) f3059f.clone();
-        }
+    public enum EffectType {
+        STUN, SLOW, CRUSADER, PARALYZE, EMP;
     }
 
     public DamageEffect(EffectType effectType, int i2, int i3) {
@@ -76,7 +33,7 @@ public class DamageEffect {
     public final String toString() {
         EffectType effectType = this.type;
         String strB = "";
-        if (effectType == EffectType.f3058e) {
+        if (effectType == EffectType.EMP) {
             return "";
         }
         int iOrdinal = effectType.ordinal();

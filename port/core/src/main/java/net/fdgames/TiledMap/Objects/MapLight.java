@@ -72,52 +72,8 @@ public class MapLight {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    private static final class lightType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final lightType f3292a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final lightType f3293b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final lightType f3294c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final lightType f3295d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final lightType f3296e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private static final /* synthetic */ lightType[] f3297f;
-
-        static {
-            lightType lighttype = new lightType("TORCH", 0);
-            f3292a = lighttype;
-            lightType lighttype2 = new lightType("AURA_YELLOW", 1);
-            lightType lighttype3 = new lightType("FLASH_RED", 2);
-            f3293b = lighttype3;
-            lightType lighttype4 = new lightType("FLASH_WHITE", 3);
-            f3294c = lighttype4;
-            lightType lighttype5 = new lightType("AURA_BLUE", 4);
-            f3295d = lighttype5;
-            lightType lighttype6 = new lightType("FLASH_BLUE", 5);
-            f3296e = lighttype6;
-            f3297f = new lightType[]{lighttype, lighttype2, lighttype3, lighttype4, lighttype5, lighttype6};
-        }
-
-        private lightType() {
-            throw null;
-        }
-
-        public static lightType valueOf(String str) {
-            return (lightType) Enum.valueOf(lightType.class, str);
-        }
-
-        public static lightType[] values() {
-            return (lightType[]) f3297f.clone();
-        }
+    private enum lightType {
+        TORCH, AURA_YELLOW, FLASH_RED, FLASH_WHITE, AURA_BLUE, FLASH_BLUE;
     }
 
     public MapLight(float f2, int i2, int i3, String str) {
@@ -265,16 +221,16 @@ public class MapLight {
         this.f3290y = i3 + 64;
         this.owner = null;
         boolean zEquals = str.equals("torch");
-        lightType lighttype = lightType.f3292a;
+        lightType lighttype = lightType.TORCH;
         if (!zEquals && !str.equals("fire") && !str.equals("torch") && !str.equals("aura_yellow")) {
             if (str.equals("flash_red")) {
-                lighttype = lightType.f3293b;
+                lighttype = lightType.FLASH_RED;
             } else if (str.equals("flash_white")) {
-                lighttype = lightType.f3294c;
+                lighttype = lightType.FLASH_WHITE;
             } else if (str.equals("flash_blue")) {
-                lighttype = lightType.f3296e;
+                lighttype = lightType.FLASH_BLUE;
             } else if (str.equals("aura_blue")) {
-                lighttype = lightType.f3295d;
+                lighttype = lightType.AURA_BLUE;
             }
         }
         this.type = lighttype;

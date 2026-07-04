@@ -98,36 +98,8 @@ public final class GameData {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class GameStatus {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final GameStatus f3184a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final GameStatus f3185b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private static final /* synthetic */ GameStatus[] f3186c;
-
-        static {
-            GameStatus gameStatus = new GameStatus("RUNNING", 0);
-            f3184a = gameStatus;
-            GameStatus gameStatus2 = new GameStatus("STOPPED", 1);
-            f3185b = gameStatus2;
-            f3186c = new GameStatus[]{gameStatus, gameStatus2};
-        }
-
-        private GameStatus() {
-            throw null;
-        }
-
-        public static GameStatus valueOf(String str) {
-            return (GameStatus) Enum.valueOf(GameStatus.class, str);
-        }
-
-        public static GameStatus[] values() {
-            return (GameStatus[]) f3186c.clone();
-        }
+    public enum GameStatus {
+        RUNNING, STOPPED;
     }
 
     private GameData() {
@@ -137,7 +109,7 @@ public final class GameData {
     }
 
     public static boolean I() {
-        return ExiledKingdoms.f3382l == GameStatus.f3184a;
+        return ExiledKingdoms.f3382l == GameStatus.RUNNING;
     }
 
     public static void K(GameData gameData) {
@@ -149,7 +121,7 @@ public final class GameData {
         if (v().player.sheet.o() > 0) {
             Serializer.D();
         }
-        ExiledKingdoms.f3382l = GameStatus.f3185b;
+        ExiledKingdoms.f3382l = GameStatus.STOPPED;
     }
 
     public static void k() {
@@ -428,8 +400,8 @@ public final class GameData {
                 Iterator<NPC> it3 = gameLevelDataO.npcs.iterator();
                 while (true) {
                     boolean zHasNext = it3.hasNext();
-                    daycycle = MonsterSpawn.Daycycle.f3021c;
-                    daycycle2 = MonsterSpawn.Daycycle.f3020b;
+                    daycycle = MonsterSpawn.Daycycle.NIGHT;
+                    daycycle2 = MonsterSpawn.Daycycle.DAY;
                     if (!zHasNext) {
                         break;
                     }
@@ -498,7 +470,7 @@ public final class GameData {
     public final void b(PlayerCreation playerCreation, int i2) {
         this.introMessageShown = true;
         f3183b = true;
-        ExiledKingdoms.f3382l = GameStatus.f3185b;
+        ExiledKingdoms.f3382l = GameStatus.STOPPED;
         this.gameVariables = new GameVariables();
         this.lastDynamicQuest = 0;
         this.dynamicQuests = new ArrayList<>();

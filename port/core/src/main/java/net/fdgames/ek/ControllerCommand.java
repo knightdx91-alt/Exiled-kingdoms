@@ -42,51 +42,8 @@ public class ControllerCommand {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class commandType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final commandType f3365a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final commandType f3366b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final commandType f3367c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final commandType f3368d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final commandType f3369e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private static final /* synthetic */ commandType[] f3370f;
-
-        static {
-            commandType commandtype = new commandType("NEGATIVE_AXIS", 0);
-            f3365a = commandtype;
-            commandType commandtype2 = new commandType("POSITIVE_AXIS", 1);
-            f3366b = commandtype2;
-            commandType commandtype3 = new commandType("BUTTON", 2);
-            f3367c = commandtype3;
-            commandType commandtype4 = new commandType("KEY", 3);
-            f3368d = commandtype4;
-            commandType commandtype5 = new commandType("POV", 4);
-            f3369e = commandtype5;
-            f3370f = new commandType[]{commandtype, commandtype2, commandtype3, commandtype4, commandtype5};
-        }
-
-        private commandType() {
-            throw null;
-        }
-
-        public static commandType valueOf(String str) {
-            return (commandType) Enum.valueOf(commandType.class, str);
-        }
-
-        public static commandType[] values() {
-            return (commandType[]) f3370f.clone();
-        }
+    public enum commandType {
+        NEGATIVE_AXIS, POSITIVE_AXIS, BUTTON, KEY, POV;
     }
 
     public ControllerCommand(commandType commandtype, int i2) {

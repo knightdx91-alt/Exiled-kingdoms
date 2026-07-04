@@ -15,17 +15,17 @@ public class SlashAnimation {
     public SlashAnimation() {
         EnumMap<MapActor.Facing, Animation> enumMap = new EnumMap<>(MapActor.Facing.class);
         this.facingAnimations = enumMap;
-        MapActor.Facing facing = MapActor.Facing.f3085c;
+        MapActor.Facing facing = MapActor.Facing.R;
         Texture texture = this.texture;
         Animation.PlayMode playMode = Animation.PlayMode.NORMAL;
         enumMap.put(facing, AnimationSet.b(texture, 1, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3089g, AnimationSet.b(this.texture, 1, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3084b, AnimationSet.b(this.texture, 2, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3090h, AnimationSet.b(this.texture, 2, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3086d, AnimationSet.b(this.texture, 3, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3088f, AnimationSet.b(this.texture, 3, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3087e, AnimationSet.b(this.texture, 4, 1, 5, 140, 140, playMode, 0.35f));
-        this.facingAnimations.put(MapActor.Facing.f3083a, AnimationSet.b(this.texture, 5, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.L, AnimationSet.b(this.texture, 1, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.RU, AnimationSet.b(this.texture, 2, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.LU, AnimationSet.b(this.texture, 2, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.RD, AnimationSet.b(this.texture, 3, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.LD, AnimationSet.b(this.texture, 3, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.D, AnimationSet.b(this.texture, 4, 1, 5, 140, 140, playMode, 0.35f));
+        this.facingAnimations.put(MapActor.Facing.U, AnimationSet.b(this.texture, 5, 1, 5, 140, 140, playMode, 0.35f));
     }
 
     public final void a() {

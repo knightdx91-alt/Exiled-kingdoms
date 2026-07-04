@@ -32,105 +32,14 @@ public class MapItem extends MapSprite {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class MapItemAction {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final MapItemAction f3006a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final MapItemAction f3007b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final MapItemAction f3008c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final MapItemAction f3009d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final MapItemAction f3010e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final MapItemAction f3011f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final MapItemAction f3012g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final MapItemAction f3013h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        private static final /* synthetic */ MapItemAction[] f3014i;
-
-        static {
-            MapItemAction mapItemAction = new MapItemAction("INVISIBLE", 0);
-            f3006a = mapItemAction;
-            MapItemAction mapItemAction2 = new MapItemAction("ACTIVE", 1);
-            f3007b = mapItemAction2;
-            MapItemAction mapItemAction3 = new MapItemAction("INACTIVE", 2);
-            f3008c = mapItemAction3;
-            MapItemAction mapItemAction4 = new MapItemAction("WALKABLE", 3);
-            f3009d = mapItemAction4;
-            MapItemAction mapItemAction5 = new MapItemAction("NONWALKABLE", 4);
-            f3010e = mapItemAction5;
-            MapItemAction mapItemAction6 = new MapItemAction("BLOCKSVIEW", 5);
-            f3011f = mapItemAction6;
-            MapItemAction mapItemAction7 = new MapItemAction("UNBLOCKSVIEW", 6);
-            f3012g = mapItemAction7;
-            MapItemAction mapItemAction8 = new MapItemAction("VISIBLE", 7);
-            f3013h = mapItemAction8;
-            f3014i = new MapItemAction[]{mapItemAction, mapItemAction2, mapItemAction3, mapItemAction4, mapItemAction5, mapItemAction6, mapItemAction7, mapItemAction8};
-        }
-
-        private MapItemAction() {
-            throw null;
-        }
-
-        public static MapItemAction valueOf(String str) {
-            return (MapItemAction) Enum.valueOf(MapItemAction.class, str);
-        }
-
-        public static MapItemAction[] values() {
-            return (MapItemAction[]) f3014i.clone();
-        }
+    public enum MapItemAction {
+        INVISIBLE, ACTIVE, INACTIVE, WALKABLE, NONWALKABLE, BLOCKSVIEW, UNBLOCKSVIEW, VISIBLE;
     }
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class MapItemState {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final MapItemState f3015a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final MapItemState f3016b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final MapItemState f3017c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private static final /* synthetic */ MapItemState[] f3018d;
-
-        static {
-            MapItemState mapItemState = new MapItemState("INVISIBLE", 0);
-            f3015a = mapItemState;
-            MapItemState mapItemState2 = new MapItemState("ACTIVE", 1);
-            f3016b = mapItemState2;
-            MapItemState mapItemState3 = new MapItemState("INACTIVE", 2);
-            f3017c = mapItemState3;
-            f3018d = new MapItemState[]{mapItemState, mapItemState2, mapItemState3};
-        }
-
-        private MapItemState() {
-            throw null;
-        }
-
-        public static MapItemState valueOf(String str) {
-            return (MapItemState) Enum.valueOf(MapItemState.class, str);
-        }
-
-        public static MapItemState[] values() {
-            return (MapItemState[]) f3018d.clone();
-        }
+    public enum MapItemState {
+        INVISIBLE, ACTIVE, INACTIVE;
     }
 
     public MapItem() {
@@ -145,8 +54,8 @@ public class MapItem extends MapSprite {
                 for (int i2 = 0; i2 < GameLevelData.r().size(); i2++) {
                     MapItem mapItem = GameLevelData.r().get(i2);
                     boolean zEquals = mapItem.conditionsActivate.equals("");
-                    MapItemState mapItemState = MapItemState.f3017c;
-                    MapItemState mapItemState2 = MapItemState.f3016b;
+                    MapItemState mapItemState = MapItemState.INACTIVE;
+                    MapItemState mapItemState2 = MapItemState.ACTIVE;
                     if (!zEquals) {
                         if (new ConditionsSet(mapItem.conditionsActivate).a().booleanValue()) {
                             mapItem.state = mapItemState2;
@@ -225,10 +134,10 @@ public class MapItem extends MapSprite {
 
     public final void N(MapItemAction mapItemAction) {
         int iOrdinal = mapItemAction.ordinal();
-        MapItemState mapItemState = MapItemState.f3016b;
+        MapItemState mapItemState = MapItemState.ACTIVE;
         switch (iOrdinal) {
             case 0:
-                this.state = MapItemState.f3015a;
+                this.state = MapItemState.INVISIBLE;
                 T();
                 break;
             case 1:
@@ -241,7 +150,7 @@ public class MapItem extends MapSprite {
                 break;
             case 2:
                 GameAssets.o("trap");
-                this.state = MapItemState.f3017c;
+                this.state = MapItemState.INACTIVE;
                 T();
                 if (Q()) {
                     S();
@@ -271,11 +180,11 @@ public class MapItem extends MapSprite {
     }
 
     public final Boolean O() {
-        return Boolean.valueOf(this.state == MapItemState.f3016b);
+        return Boolean.valueOf(this.state == MapItemState.ACTIVE);
     }
 
     public final Boolean P() {
-        return Boolean.valueOf(this.state == MapItemState.f3015a);
+        return Boolean.valueOf(this.state == MapItemState.INVISIBLE);
     }
 
     public final boolean Q() {
@@ -287,8 +196,8 @@ public class MapItem extends MapSprite {
 
     public final void R() {
         MapItemState mapItemState = this.state;
-        MapItemState mapItemState2 = MapItemState.f3016b;
-        MapItemState mapItemState3 = MapItemState.f3017c;
+        MapItemState mapItemState2 = MapItemState.ACTIVE;
+        MapItemState mapItemState3 = MapItemState.INACTIVE;
         if (mapItemState == mapItemState2) {
             GameAssets.o("trap");
             this.state = mapItemState3;
@@ -312,9 +221,9 @@ public class MapItem extends MapSprite {
         MapItemState mapItemState;
         boolean z2;
         boolean z3 = this.barrier;
-        if (!z3 || this.state != MapItemState.f3016b) {
-            MapItemState mapItemState2 = MapItemState.f3017c;
-            z2 = (z3 && this.state == mapItemState2) ? true : (this.bridge && ((mapItemState = this.state) == mapItemState2 || mapItemState == MapItemState.f3015a)) ? false : this.walkable;
+        if (!z3 || this.state != MapItemState.ACTIVE) {
+            MapItemState mapItemState2 = MapItemState.INACTIVE;
+            z2 = (z3 && this.state == mapItemState2) ? true : (this.bridge && ((mapItemState = this.state) == mapItemState2 || mapItemState == MapItemState.INVISIBLE)) ? false : this.walkable;
         }
         if (z2) {
             b.P().f2429n[this.f3092x / 32][this.f3093y / 32] = 0;
@@ -351,10 +260,10 @@ public class MapItem extends MapSprite {
         this.walkable = hVar.a("walkable");
         this.blocksview = hVar.a("blocksview");
         T();
-        MapItemState mapItemState = MapItemState.f3016b;
+        MapItemState mapItemState = MapItemState.ACTIVE;
         this.state = mapItemState;
         boolean zA = hVar.a("inactive");
-        MapItemState mapItemState2 = MapItemState.f3017c;
+        MapItemState mapItemState2 = MapItemState.INACTIVE;
         if (zA) {
             if (new ConditionsSet(hVar.b("inactive").toString()).a().booleanValue()) {
                 this.state = mapItemState2;
@@ -370,7 +279,7 @@ public class MapItem extends MapSprite {
             }
         }
         boolean zA2 = hVar.a("invisible");
-        MapItemState mapItemState3 = MapItemState.f3015a;
+        MapItemState mapItemState3 = MapItemState.INVISIBLE;
         if (zA2) {
             this.state = mapItemState3;
         }

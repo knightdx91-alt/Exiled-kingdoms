@@ -160,9 +160,9 @@ public class Skills {
                     str5 = strArrSplit3[1];
                     if (str5.toLowerCase(locale).equals("a")) {
                         str5.toLowerCase(locale).equals("p");
-                        skill_type = Skill.SKILL_TYPE.f3278b;
+                        skill_type = Skill.SKILL_TYPE.SKILL_PASSIVE;
                     } else {
-                        skill_type = Skill.SKILL_TYPE.f3277a;
+                        skill_type = Skill.SKILL_TYPE.SKILL_ACTIVE;
                     }
                     Skill skill2 = new Skill(str6, str3, str2, skill_type, strArrSplit3[3], Boolean.valueOf(zContains), z3, zContains2, z2);
                     if (z2) {

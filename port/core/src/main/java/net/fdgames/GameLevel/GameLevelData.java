@@ -135,7 +135,7 @@ public class GameLevelData {
         if (arrayList != null) {
             Iterator<NPC> it = arrayList.iterator();
             while (it.hasNext()) {
-                if (it.next().d0() == MapActor.ActorState.f3074d) {
+                if (it.next().d0() == MapActor.ActorState.DEAD) {
                     it.remove();
                 }
             }

@@ -91,40 +91,12 @@ public abstract class Character extends MapActor {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class Gender {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final Gender f2992a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final Gender f2993b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private static final /* synthetic */ Gender[] f2994c;
-
-        static {
-            Gender gender = new Gender("Male", 0);
-            f2992a = gender;
-            Gender gender2 = new Gender("Female", 1);
-            f2993b = gender2;
-            f2994c = new Gender[]{gender, gender2, new Gender("None", 2)};
-        }
-
-        private Gender() {
-            throw null;
-        }
-
-        public static Gender valueOf(String str) {
-            return (Gender) Enum.valueOf(Gender.class, str);
-        }
-
-        public static Gender[] values() {
-            return (Gender[]) f2994c.clone();
-        }
+    public enum Gender {
+        Male, Female, None;
     }
 
     public Character() {
-        this.gender = Gender.f2992a;
+        this.gender = Gender.Male;
         this.speedModifier = 1.0f;
         this.size = 1.0f;
         this.drawsize = 1.0f;
@@ -284,7 +256,7 @@ public abstract class Character extends MapActor {
                             int iG6 = this.sheet.skillSet.g("lightning_bolt");
                             if (iG6 <= 0) {
                                 weaponStatsJ = null;
-                                Damage.DamageType damageType = Damage.DamageType.f3049d;
+                                Damage.DamageType damageType = Damage.DamageType.Shock;
                                 CharacterSheet characterSheet = this.sheet;
                                 iG = characterSheet.skillSet.g("lightning_bolt");
                                 if (iG <= 0) {
@@ -302,7 +274,7 @@ public abstract class Character extends MapActor {
                                     if (iC2 == 0) {
                                         iC2 = b.P().a(B(), r());
                                     }
-                                    Projectile.ProjectileType projectileType = Projectile.ProjectileType.f3031b;
+                                    Projectile.ProjectileType projectileType = Projectile.ProjectileType.BOLT;
                                     if (iC2 <= 0) {
                                         Character characterF2 = GameLevel.f(iC2);
                                         if (characterF2 != null && b.P().e0(B(), characterF2.B())) {
@@ -342,7 +314,7 @@ public abstract class Character extends MapActor {
                                     iC2 = bVarP2.c(i172, b.j(pVarU2));
                                     if (iC2 == 0) {
                                     }
-                                    Projectile.ProjectileType projectileType2 = Projectile.ProjectileType.f3031b;
+                                    Projectile.ProjectileType projectileType2 = Projectile.ProjectileType.BOLT;
                                     if (iC2 <= 0) {
                                     }
                                 }
@@ -356,7 +328,7 @@ public abstract class Character extends MapActor {
                                 } else if (iG6 == 4) {
                                     weaponStatsJ = Rules.j("lightning_bolt4");
                                 }
-                                Damage.DamageType damageType2 = Damage.DamageType.f3049d;
+                                Damage.DamageType damageType2 = Damage.DamageType.Shock;
                                 CharacterSheet characterSheet2 = this.sheet;
                                 iG = characterSheet2.skillSet.g("lightning_bolt");
                                 if (iG <= 0) {
@@ -445,7 +417,7 @@ public abstract class Character extends MapActor {
                             this.sheet.skillSet.s("earth_mastery");
                         } else {
                             boolean zEquals = this.spell_id.toLowerCase(locale).equals("fireball");
-                            Projectile.ProjectileType projectileType3 = Projectile.ProjectileType.f3032c;
+                            Projectile.ProjectileType projectileType3 = Projectile.ProjectileType.GRENADE;
                             if (zEquals) {
                                 int iG12 = this.sheet.skillSet.g("fireball");
                                 String str3 = "fireball_weak_1";
@@ -622,7 +594,7 @@ public abstract class Character extends MapActor {
         k0.a.l().e(0.6f, this.uniqueID, 120, "flash_blue");
         this.spell_id = "";
         this.spellTarget = 0;
-        q0(MapActor.ActorState.f3071a);
+        q0(MapActor.ActorState.IDLE);
         t0();
     }
 
@@ -746,7 +718,7 @@ public abstract class Character extends MapActor {
             return;
         }
         this.wasJustHitByMageBarrier = false;
-        boolean z2 = this.sheet.N().ranged && this.sheet.stats.c() != Rules.CharacterClass.f3261d;
+        boolean z2 = this.sheet.N().ranged && this.sheet.stats.c() != Rules.CharacterClass.WIZARD;
         CharacterSheet characterSheet = this.sheet;
         CharacterInventory characterInventory = characterSheet.inventory;
         int i4 = (characterInventory == null || (i3 = characterInventory.slot_mainhand) == 0) ? 0 : Rules.f(i3).attributes.arcane;
@@ -772,9 +744,9 @@ public abstract class Character extends MapActor {
         MessageRouter.a("ATTACK", this.uniqueID, i5, null, (10.0f / iH) * fQ0, null);
         W();
         if (z2) {
-            q0(MapActor.ActorState.f3081k);
+            q0(MapActor.ActorState.FIRING);
         } else {
-            q0(MapActor.ActorState.f3073c);
+            q0(MapActor.ActorState.ATTACKING);
         }
         this.stateRelativeTime = 0.0f;
     }
@@ -808,7 +780,7 @@ public abstract class Character extends MapActor {
                 spriteBatch.setColor(f2991a);
             }
             MapActor.Facing facing = this.facing;
-            if (facing == MapActor.Facing.f3089g || facing == MapActor.Facing.f3088f || facing == MapActor.Facing.f3090h) {
+            if (facing == MapActor.Facing.L || facing == MapActor.Facing.LD || facing == MapActor.Facing.LU) {
                 spriteBatch.draw(next, (next.getRegionWidth() * this.size) + H() + S0(), I() - (8 * this.size), (-next.getRegionWidth()) * this.size, next.getRegionHeight() * this.size);
             } else {
                 spriteBatch.draw(next, H() + S0(), I() - (8 * this.size), next.getRegionWidth() * this.size, next.getRegionHeight() * this.size);
@@ -820,7 +792,7 @@ public abstract class Character extends MapActor {
     }
 
     public final boolean F0() {
-        return (d0().equals(MapActor.ActorState.f3080j) || i0() || GameData.v().u() <= this.lastItemUsed + 4.0f) ? false : true;
+        return (d0().equals(MapActor.ActorState.PARALIZED) || i0() || GameData.v().u() <= this.lastItemUsed + 4.0f) ? false : true;
     }
 
     @Override // net.fdgames.GameEntities.MapSprite
@@ -838,7 +810,7 @@ public abstract class Character extends MapActor {
         String str2 = str;
         this.actionStartTime = GameLevel.b();
         W();
-        q0(MapActor.ActorState.f3075e);
+        q0(MapActor.ActorState.ACTING);
         this.stateRelativeTime = 0.0f;
         float f2 = i2;
         this.actionDuration = f2;
@@ -901,9 +873,9 @@ public abstract class Character extends MapActor {
     @Override // net.fdgames.GameEntities.MapActor, net.fdgames.GameEntities.MapSprite
     public void M(float f2) {
         int i2 = this.uniqueID;
-        MapActor.ActorState actorState = MapActor.ActorState.f3080j;
-        MapActor.ActorState actorState2 = MapActor.ActorState.f3076f;
-        MapActor.ActorState actorState3 = MapActor.ActorState.f3071a;
+        MapActor.ActorState actorState = MapActor.ActorState.PARALIZED;
+        MapActor.ActorState actorState2 = MapActor.ActorState.PUSHED;
+        MapActor.ActorState actorState3 = MapActor.ActorState.IDLE;
         if (i2 == 1 && d0() == actorState2 && !i0() && GameData.v().u() > this.pushmaxtime) {
             if (this.sheet.effects.stunned.booleanValue()) {
                 q0(actorState);
@@ -998,7 +970,7 @@ public abstract class Character extends MapActor {
                         Coords coords2 = this.destination;
                         coords2.f3287x = -1;
                         coords2.f3288y = -1;
-                        if (d0() == actorState2 || d0() == MapActor.ActorState.f3078h) {
+                        if (d0() == actorState2 || d0() == MapActor.ActorState.SKILL_CHARGE) {
                             q0(actorState3);
                         }
                     }
@@ -1245,7 +1217,7 @@ public abstract class Character extends MapActor {
         MapSprite mapSpriteI = i2 > 0 ? GameLevel.i(i2) : null;
         Item itemF = i3 > 0 ? Rules.f(i3) : null;
         Damage.DamageType damageType3 = damage.type;
-        Damage.DamageType damageType4 = Damage.DamageType.f3046a;
+        Damage.DamageType damageType4 = Damage.DamageType.Normal;
         float f12 = 1.25f;
         if (damageType3 != damageType4) {
             str = "";
@@ -1372,11 +1344,11 @@ public abstract class Character extends MapActor {
                 }
             }
         }
-        Rules.CharacterRace characterRace2 = Rules.CharacterRace.f3274i;
+        Rules.CharacterRace characterRace2 = Rules.CharacterRace.BOSS;
         if (z3 && mapSpriteI != null && (mapSpriteI instanceof Character)) {
             Character character2 = (Character) mapSpriteI;
             z4 = z3;
-            if (this.uniqueID == 1 || this.sheet.o() > 100 || character2.sheet.skillSet.bonusSet.critDamageModifier <= 150 || this.sheet.stats.f() + 1 >= character2.sheet.stats.f() || this.sheet.stats.characterRace.equals(characterRace2) || this.sheet.stats.characterRace.equals(Rules.CharacterRace.f3273h) || (iG4 = character2.sheet.skillSet.g("massive_criticals")) == 0) {
+            if (this.uniqueID == 1 || this.sheet.o() > 100 || character2.sheet.skillSet.bonusSet.critDamageModifier <= 150 || this.sheet.stats.f() + 1 >= character2.sheet.stats.f() || this.sheet.stats.characterRace.equals(characterRace2) || this.sheet.stats.characterRace.equals(Rules.CharacterRace.MINIBOSS) || (iG4 = character2.sheet.skillSet.g("massive_criticals")) == 0) {
                 characterRace = characterRace2;
             } else {
                 if (iG4 == 1) {
@@ -1504,7 +1476,7 @@ public abstract class Character extends MapActor {
                                 character.n0(f6, B());
                             }
                             if (i12 > 0) {
-                                n(character.uniqueID, new DamageData(Damage.DamageType.f3049d, i12, false));
+                                n(character.uniqueID, new DamageData(Damage.DamageType.Shock, i12, false));
                                 character.wasJustHitByMageBarrier = true;
                                 z8 = true;
                             }
@@ -1648,8 +1620,8 @@ public abstract class Character extends MapActor {
                         }
                         if (GameData.v().party.j()) {
                             int i28 = this.uniqueID;
-                            MapActor.ActorState actorState = MapActor.ActorState.f3072b;
-                            MapActor.ActorState actorState2 = MapActor.ActorState.f3071a;
+                            MapActor.ActorState actorState = MapActor.ActorState.MOVING;
+                            MapActor.ActorState actorState2 = MapActor.ActorState.IDLE;
                             if (i28 != 1 || i2 == 1) {
                                 i8 = 1;
                             } else {
@@ -1965,7 +1937,7 @@ public abstract class Character extends MapActor {
 
     public final void V0(int i2) {
         int iMin;
-        if (d0() == MapActor.ActorState.f3074d || this.destroy) {
+        if (d0() == MapActor.ActorState.DEAD || this.destroy) {
             return;
         }
         if (i2 != 1000 && (iMin = Math.min(this.sheet.stats.missingHP, i2)) > 0) {
@@ -1994,7 +1966,7 @@ public abstract class Character extends MapActor {
         this.actionStartTime = GameLevel.b();
         this.actionDuration = 0.3f;
         W();
-        q0(MapActor.ActorState.f3075e);
+        q0(MapActor.ActorState.ACTING);
         this.stateRelativeTime = 0.0f;
         int i2 = this.uniqueID;
         float fQ0 = Q0();
@@ -2009,7 +1981,7 @@ public abstract class Character extends MapActor {
                 this.sheet.j0(i2);
                 this.actionStartTime = GameLevel.b();
                 W();
-                q0(MapActor.ActorState.f3075e);
+                q0(MapActor.ActorState.ACTING);
                 this.stateRelativeTime = 0.0f;
                 this.actionDuration = f2;
                 GameAssets.o("buff2");
@@ -2031,7 +2003,7 @@ public abstract class Character extends MapActor {
         this.actionStartTime = GameLevel.b();
         this.skillOrigin = new Coords(this.f3092x, this.f3093y);
         W();
-        q0(MapActor.ActorState.f3078h);
+        q0(MapActor.ActorState.SKILL_CHARGE);
         this.stateRelativeTime = 0.0f;
         GameAssets.o("swing");
         Coords coords2 = this.destination;
@@ -2066,10 +2038,10 @@ public abstract class Character extends MapActor {
 
     @Override // net.fdgames.GameEntities.MapActor
     public final float c0() {
-        if (d0() == MapActor.ActorState.f3076f) {
+        if (d0() == MapActor.ActorState.PUSHED) {
             return 3.0f;
         }
-        if (d0() == MapActor.ActorState.f3078h) {
+        if (d0() == MapActor.ActorState.SKILL_CHARGE) {
             return 2.5f;
         }
         if (this.sheet.effects.slowed.booleanValue()) {
@@ -2097,7 +2069,7 @@ public abstract class Character extends MapActor {
         this.actionStartTime = GameLevel.b();
         this.actionDuration = 0.3f;
         W();
-        q0(MapActor.ActorState.f3075e);
+        q0(MapActor.ActorState.ACTING);
         this.stateRelativeTime = 0.0f;
         int i2 = this.uniqueID;
         float fQ0 = Q0();
@@ -2133,7 +2105,7 @@ public abstract class Character extends MapActor {
         }
         this.actionStartTime = GameLevel.b();
         W();
-        q0(MapActor.ActorState.f3077g);
+        q0(MapActor.ActorState.SKILL_WHIRLWIND);
         this.stateRelativeTime = 0.0f;
         GameAssets.o("swing");
         int i2 = this.uniqueID;
@@ -2149,7 +2121,7 @@ public abstract class Character extends MapActor {
     }
 
     public final boolean h1() {
-        return this.sheet.stats.c().equals(Rules.CharacterClass.f3260c) || this.sheet.stats.c().equals(Rules.CharacterClass.f3261d);
+        return this.sheet.stats.c().equals(Rules.CharacterClass.CLERIC) || this.sheet.stats.c().equals(Rules.CharacterClass.WIZARD);
     }
 
     protected boolean i1() {
@@ -2341,7 +2313,7 @@ public abstract class Character extends MapActor {
             int i11 = 3;
             if (i2 == this.uniqueID) {
                 boolean zEquals = str.equals("ATTACK");
-                MapActor.ActorState actorState = MapActor.ActorState.f3074d;
+                MapActor.ActorState actorState = MapActor.ActorState.DEAD;
                 if (zEquals) {
                     if (d0() == actorState || this.destroy) {
                         return;
@@ -2366,7 +2338,7 @@ public abstract class Character extends MapActor {
                         }
                         if (this.uniqueID == 1) {
                             boolean zU0 = U0();
-                            Projectile.ProjectileType projectileType = Projectile.ProjectileType.f3030a;
+                            Projectile.ProjectileType projectileType = Projectile.ProjectileType.ARROW;
                             if (zU0) {
                                 b.P().getClass();
                                 Rectangle pVarU = b.U();
@@ -2485,7 +2457,7 @@ public abstract class Character extends MapActor {
                             k0.a.l().a(new w(this.uniqueID, Skills.c("disintegrate").d(), 0.6f, Color.GREEN, 1.0f, 0.7f));
                         }
                         n(iB3, this.sheet.h());
-                        if (arrayListY.size() > 1 && this.sheet.stats.c() == Rules.CharacterClass.f3258a && (iG = this.sheet.skillSet.g("cleave")) > 0) {
+                        if (arrayListY.size() > 1 && this.sheet.stats.c() == Rules.CharacterClass.WARRIOR && (iG = this.sheet.skillSet.g("cleave")) > 0) {
                             k0.a.l().a(new w(this.uniqueID, "Cleave!", 0.6f, Color.GREEN, 1.0f, 0.7f));
                             float f5 = iG == 2 ? 0.6f : 0.5f;
                             if (iG == 3) {
@@ -2700,7 +2672,7 @@ public abstract class Character extends MapActor {
                         }
                         for (Damage damage3 : this.receivedDamage.damages) {
                             if (damage3 != null && (damageType = damage3.type) != null) {
-                                if (damageType.equals(Damage.DamageType.f3046a)) {
+                                if (damageType.equals(Damage.DamageType.Normal)) {
                                     R0(damage3, i2, this.receivedDamage.critical, i22);
                                 } else {
                                     R0(damage3, i2, false, i22);
@@ -2720,9 +2692,9 @@ public abstract class Character extends MapActor {
                                         i4 = i11;
                                         z1(next.level * i3);
                                     } else if (iOrdinal != i8) {
-                                        Damage.DamageType damageType2 = Damage.DamageType.f3052g;
+                                        Damage.DamageType damageType2 = Damage.DamageType.Spirit;
                                         if (iOrdinal != i10) {
-                                            MapActor.ActorState actorState2 = MapActor.ActorState.f3080j;
+                                            MapActor.ActorState actorState2 = MapActor.ActorState.PARALIZED;
                                             if (iOrdinal != i11) {
                                                 if (iOrdinal == i9) {
                                                     AStarPathFinder aStarPathFinder2 = GameLevel.f3094a;
@@ -2737,7 +2709,7 @@ public abstract class Character extends MapActor {
                                                             int i23 = this.uniqueID;
                                                             MessageRouter.a("UNSTUN", i23, i23, null, (float) i9, null);
                                                         }
-                                                        R0(new Damage(Damage.DamageType.f3049d, FDUtils.b(35, 75), r6), i2, r6, r6);
+                                                        R0(new Damage(Damage.DamageType.Shock, FDUtils.b(35, 75), r6), i2, r6, r6);
                                                         GameData.v().player.sheet.b0(1022);
                                                     }
                                                 }
@@ -2829,7 +2801,7 @@ public abstract class Character extends MapActor {
             if (i0() || this.sheet.o() <= 0) {
                 return;
             }
-            q0(MapActor.ActorState.f3071a);
+            q0(MapActor.ActorState.IDLE);
             Coords coords3 = this.destination;
             coords3.f3287x = -1;
             coords3.f3288y = -1;
@@ -2923,27 +2895,27 @@ public abstract class Character extends MapActor {
             return;
         }
         if (str.equals("UNRESISTCOLD")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f2996b, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Cold, 0);
             return;
         }
         if (str.equals("UNRESISTDEATH")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f2998d, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Death, 0);
             return;
         }
         if (str.equals("UNRESISTFIRE")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f2995a, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Fire, 0);
             return;
         }
         if (str.equals("UNRESISTSHOCK")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f2997c, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Shock, 0);
             return;
         }
         if (str.equals("UNRESISTSPIRIT")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f3000f, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Spirit, 0);
             return;
         }
         if (str.equals("UNRESISTTOXIC")) {
-            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.f2999e, 0);
+            this.sheet.effects.resistances.g(CharacterResistances.ResistanceType.Toxic, 0);
             return;
         }
         if (str.equals("UNRESISTGLOBAL")) {
@@ -2980,7 +2952,7 @@ public abstract class Character extends MapActor {
             return false;
         }
         R(mapActorG.B());
-        GameLevel.c(this.uniqueID, iA, r(), this.sheet.N(), this.sheet.h(), Projectile.ProjectileType.f3030a);
+        GameLevel.c(this.uniqueID, iA, r(), this.sheet.N(), this.sheet.h(), Projectile.ProjectileType.ARROW);
         return true;
     }
 
@@ -3009,7 +2981,7 @@ public abstract class Character extends MapActor {
 
     @Override // net.fdgames.GameEntities.MapActor
     protected final void w0(float f2) {
-        if (d0() != MapActor.ActorState.f3073c && d0() != MapActor.ActorState.f3081k) {
+        if (d0() != MapActor.ActorState.ATTACKING && d0() != MapActor.ActorState.FIRING) {
             super.w0(f2);
         } else {
             this.stateRelativeTime = ((f2 * this.sheet.H()) / 5.0f) + this.stateRelativeTime;
@@ -3086,13 +3058,13 @@ public abstract class Character extends MapActor {
         }
         this.sheet.effects.stunned = Boolean.TRUE;
         k0.a.l().a(new w(this.uniqueID, GameString.b("EFFECT_STUNNED", false), 0.6f, Color.GREEN, 1.0f, 0.7f));
-        q0(MapActor.ActorState.f3080j);
+        q0(MapActor.ActorState.PARALIZED);
         int i2 = this.uniqueID;
         MessageRouter.a("UNSTUN", i2, i2, null, fF0 * f2, null);
     }
 
     public Character(Rules.CharacterRace characterRace, Rules.CharacterClass characterClass, String str, String str2, float f2, float f3, int[] iArr, Gender gender, int i2, String str3, boolean z2) {
-        this.gender = Gender.f2992a;
+        this.gender = Gender.Male;
         this.speedModifier = 1.0f;
         this.size = 1.0f;
         this.drawsize = 1.0f;

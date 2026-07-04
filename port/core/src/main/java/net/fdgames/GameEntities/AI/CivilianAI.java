@@ -19,15 +19,15 @@ public class CivilianAI extends AI {
         if (npc != null) {
             int iOrdinal = nPCState.ordinal();
             if (iOrdinal == 0) {
-                this.state = AI.NPCState.f2974a;
+                this.state = AI.NPCState.IDLE;
                 npc.m(FDUtils.b(8, 16) * 1.0f, this.npc, "RANDOM_MOVE");
             } else if (iOrdinal == 2) {
-                this.state = AI.NPCState.f2976c;
+                this.state = AI.NPCState.FLEEING;
             } else {
                 if (iOrdinal != 3) {
                     return;
                 }
-                this.state = AI.NPCState.f2977d;
+                this.state = AI.NPCState.DEAD;
             }
         }
     }
@@ -48,13 +48,13 @@ public class CivilianAI extends AI {
             npc.I1();
             return;
         }
-        if (npc.d0() == MapActor.ActorState.f3072b && npc.detectedEnemyID == 0) {
+        if (npc.d0() == MapActor.ActorState.MOVING && npc.detectedEnemyID == 0) {
             GameLevel.k();
             if (Player.f3027e || b.r(npc.f3092x, npc.f3093y, GameData.v().player.f3092x, GameData.v().player.f3093y) >= 35 || GameWorld.f3189c.f(npc.r())) {
                 return;
             }
             npc.C0();
-            npc.q0(MapActor.ActorState.f3071a);
+            npc.q0(MapActor.ActorState.IDLE);
         }
     }
 }

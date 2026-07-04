@@ -19,41 +19,12 @@ public class IntroStage {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class Direction {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final Direction f3362a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        private static final /* synthetic */ Direction[] f3363b;
-
-        /* JADX INFO: Fake field, exist only in values array */
-        Direction EF0;
-
-        static {
-            Direction direction = new Direction("UP", 0);
-            Direction direction2 = new Direction("DOWN", 1);
-            Direction direction3 = new Direction("LEFT", 2);
-            Direction direction4 = new Direction("RIGHT", 3);
-            f3362a = direction4;
-            f3363b = new Direction[]{direction, direction2, direction3, direction4};
-        }
-
-        private Direction() {
-            throw null;
-        }
-
-        public static Direction valueOf(String str) {
-            return (Direction) Enum.valueOf(Direction.class, str);
-        }
-
-        public static Direction[] values() {
-            return (Direction[]) f3363b.clone();
-        }
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT;
     }
 
     public IntroStage(String str, String str2, float f2, Color color) {
-        Direction direction = Direction.f3362a;
+        Direction direction = Direction.RIGHT;
         Texture texture = new Texture(a.l("data/ui/intro/", str, ".png"));
         this.texture = texture;
         Texture.TextureFilter textureFilter = Texture.TextureFilter.Linear;

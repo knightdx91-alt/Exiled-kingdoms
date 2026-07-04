@@ -17,36 +17,8 @@ public class ConversationSentence {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class SentenceType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final SentenceType f3134a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final SentenceType f3135b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private static final /* synthetic */ SentenceType[] f3136c;
-
-        static {
-            SentenceType sentenceType = new SentenceType("Question", 0);
-            f3134a = sentenceType;
-            SentenceType sentenceType2 = new SentenceType("Answer", 1);
-            f3135b = sentenceType2;
-            f3136c = new SentenceType[]{sentenceType, sentenceType2};
-        }
-
-        private SentenceType() {
-            throw null;
-        }
-
-        public static SentenceType valueOf(String str) {
-            return (SentenceType) Enum.valueOf(SentenceType.class, str);
-        }
-
-        public static SentenceType[] values() {
-            return (SentenceType[]) f3136c.clone();
-        }
+    public enum SentenceType {
+        Question, Answer;
     }
 
     public ConversationSentence() {
@@ -88,7 +60,7 @@ public class ConversationSentence {
             this.newQuestionOwner = "";
         }
         Locale locale = Locale.ENGLISH;
-        this.type = a.y(str2, locale, "q") ? SentenceType.f3134a : a.y(str2, locale, "a") ? SentenceType.f3135b : null;
+        this.type = a.y(str2, locale, "q") ? SentenceType.Question : a.y(str2, locale, "a") ? SentenceType.Answer : null;
         this.text = str3;
         if (str4.equals("")) {
             this.next = 0;

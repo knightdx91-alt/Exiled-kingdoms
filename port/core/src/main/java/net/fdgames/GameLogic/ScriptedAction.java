@@ -55,583 +55,583 @@ public class ScriptedAction {
             int[] iArr = new int[ActionType.values().length];
             f3137a = iArr;
             try {
-                ActionType actionType = ActionType.f3138a;
+                ActionType actionType = ActionType.None;
                 iArr[9] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
                 int[] iArr2 = f3137a;
-                ActionType actionType2 = ActionType.f3138a;
+                ActionType actionType2 = ActionType.None;
                 iArr2[81] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
                 int[] iArr3 = f3137a;
-                ActionType actionType3 = ActionType.f3138a;
+                ActionType actionType3 = ActionType.None;
                 iArr3[10] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
                 int[] iArr4 = f3137a;
-                ActionType actionType4 = ActionType.f3138a;
+                ActionType actionType4 = ActionType.None;
                 iArr4[13] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
                 int[] iArr5 = f3137a;
-                ActionType actionType5 = ActionType.f3138a;
+                ActionType actionType5 = ActionType.None;
                 iArr5[14] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
                 int[] iArr6 = f3137a;
-                ActionType actionType6 = ActionType.f3138a;
+                ActionType actionType6 = ActionType.None;
                 iArr6[15] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
                 int[] iArr7 = f3137a;
-                ActionType actionType7 = ActionType.f3138a;
+                ActionType actionType7 = ActionType.None;
                 iArr7[16] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
                 int[] iArr8 = f3137a;
-                ActionType actionType8 = ActionType.f3138a;
+                ActionType actionType8 = ActionType.None;
                 iArr8[18] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
                 int[] iArr9 = f3137a;
-                ActionType actionType9 = ActionType.f3138a;
+                ActionType actionType9 = ActionType.None;
                 iArr9[17] = 9;
             } catch (NoSuchFieldError unused9) {
             }
             try {
                 int[] iArr10 = f3137a;
-                ActionType actionType10 = ActionType.f3138a;
+                ActionType actionType10 = ActionType.None;
                 iArr10[19] = 10;
             } catch (NoSuchFieldError unused10) {
             }
             try {
                 int[] iArr11 = f3137a;
-                ActionType actionType11 = ActionType.f3138a;
+                ActionType actionType11 = ActionType.None;
                 iArr11[20] = 11;
             } catch (NoSuchFieldError unused11) {
             }
             try {
                 int[] iArr12 = f3137a;
-                ActionType actionType12 = ActionType.f3138a;
+                ActionType actionType12 = ActionType.None;
                 iArr12[21] = 12;
             } catch (NoSuchFieldError unused12) {
             }
             try {
                 int[] iArr13 = f3137a;
-                ActionType actionType13 = ActionType.f3138a;
+                ActionType actionType13 = ActionType.None;
                 iArr13[8] = 13;
             } catch (NoSuchFieldError unused13) {
             }
             try {
                 int[] iArr14 = f3137a;
-                ActionType actionType14 = ActionType.f3138a;
+                ActionType actionType14 = ActionType.None;
                 iArr14[11] = 14;
             } catch (NoSuchFieldError unused14) {
             }
             try {
                 int[] iArr15 = f3137a;
-                ActionType actionType15 = ActionType.f3138a;
+                ActionType actionType15 = ActionType.None;
                 iArr15[12] = 15;
             } catch (NoSuchFieldError unused15) {
             }
             try {
                 int[] iArr16 = f3137a;
-                ActionType actionType16 = ActionType.f3138a;
+                ActionType actionType16 = ActionType.None;
                 iArr16[4] = 16;
             } catch (NoSuchFieldError unused16) {
             }
             try {
                 int[] iArr17 = f3137a;
-                ActionType actionType17 = ActionType.f3138a;
+                ActionType actionType17 = ActionType.None;
                 iArr17[7] = 17;
             } catch (NoSuchFieldError unused17) {
             }
             try {
                 int[] iArr18 = f3137a;
-                ActionType actionType18 = ActionType.f3138a;
+                ActionType actionType18 = ActionType.None;
                 iArr18[5] = 18;
             } catch (NoSuchFieldError unused18) {
             }
             try {
                 int[] iArr19 = f3137a;
-                ActionType actionType19 = ActionType.f3138a;
+                ActionType actionType19 = ActionType.None;
                 iArr19[6] = 19;
             } catch (NoSuchFieldError unused19) {
             }
             try {
                 int[] iArr20 = f3137a;
-                ActionType actionType20 = ActionType.f3138a;
+                ActionType actionType20 = ActionType.None;
                 iArr20[1] = 20;
             } catch (NoSuchFieldError unused20) {
             }
             try {
                 int[] iArr21 = f3137a;
-                ActionType actionType21 = ActionType.f3138a;
+                ActionType actionType21 = ActionType.None;
                 iArr21[3] = 21;
             } catch (NoSuchFieldError unused21) {
             }
             try {
                 int[] iArr22 = f3137a;
-                ActionType actionType22 = ActionType.f3138a;
+                ActionType actionType22 = ActionType.None;
                 iArr22[2] = 22;
             } catch (NoSuchFieldError unused22) {
             }
             try {
                 int[] iArr23 = f3137a;
-                ActionType actionType23 = ActionType.f3138a;
+                ActionType actionType23 = ActionType.None;
                 iArr23[22] = 23;
             } catch (NoSuchFieldError unused23) {
             }
             try {
                 int[] iArr24 = f3137a;
-                ActionType actionType24 = ActionType.f3138a;
+                ActionType actionType24 = ActionType.None;
                 iArr24[0] = 24;
             } catch (NoSuchFieldError unused24) {
             }
             try {
                 int[] iArr25 = f3137a;
-                ActionType actionType25 = ActionType.f3138a;
+                ActionType actionType25 = ActionType.None;
                 iArr25[23] = 25;
             } catch (NoSuchFieldError unused25) {
             }
             try {
                 int[] iArr26 = f3137a;
-                ActionType actionType26 = ActionType.f3138a;
+                ActionType actionType26 = ActionType.None;
                 iArr26[25] = 26;
             } catch (NoSuchFieldError unused26) {
             }
             try {
                 int[] iArr27 = f3137a;
-                ActionType actionType27 = ActionType.f3138a;
+                ActionType actionType27 = ActionType.None;
                 iArr27[26] = 27;
             } catch (NoSuchFieldError unused27) {
             }
             try {
                 int[] iArr28 = f3137a;
-                ActionType actionType28 = ActionType.f3138a;
+                ActionType actionType28 = ActionType.None;
                 iArr28[27] = 28;
             } catch (NoSuchFieldError unused28) {
             }
             try {
                 int[] iArr29 = f3137a;
-                ActionType actionType29 = ActionType.f3138a;
+                ActionType actionType29 = ActionType.None;
                 iArr29[29] = 29;
             } catch (NoSuchFieldError unused29) {
             }
             try {
                 int[] iArr30 = f3137a;
-                ActionType actionType30 = ActionType.f3138a;
+                ActionType actionType30 = ActionType.None;
                 iArr30[30] = 30;
             } catch (NoSuchFieldError unused30) {
             }
             try {
                 int[] iArr31 = f3137a;
-                ActionType actionType31 = ActionType.f3138a;
+                ActionType actionType31 = ActionType.None;
                 iArr31[28] = 31;
             } catch (NoSuchFieldError unused31) {
             }
             try {
                 int[] iArr32 = f3137a;
-                ActionType actionType32 = ActionType.f3138a;
+                ActionType actionType32 = ActionType.None;
                 iArr32[31] = 32;
             } catch (NoSuchFieldError unused32) {
             }
             try {
                 int[] iArr33 = f3137a;
-                ActionType actionType33 = ActionType.f3138a;
+                ActionType actionType33 = ActionType.None;
                 iArr33[41] = 33;
             } catch (NoSuchFieldError unused33) {
             }
             try {
                 int[] iArr34 = f3137a;
-                ActionType actionType34 = ActionType.f3138a;
+                ActionType actionType34 = ActionType.None;
                 iArr34[40] = 34;
             } catch (NoSuchFieldError unused34) {
             }
             try {
                 int[] iArr35 = f3137a;
-                ActionType actionType35 = ActionType.f3138a;
+                ActionType actionType35 = ActionType.None;
                 iArr35[39] = 35;
             } catch (NoSuchFieldError unused35) {
             }
             try {
                 int[] iArr36 = f3137a;
-                ActionType actionType36 = ActionType.f3138a;
+                ActionType actionType36 = ActionType.None;
                 iArr36[42] = 36;
             } catch (NoSuchFieldError unused36) {
             }
             try {
                 int[] iArr37 = f3137a;
-                ActionType actionType37 = ActionType.f3138a;
+                ActionType actionType37 = ActionType.None;
                 iArr37[46] = 37;
             } catch (NoSuchFieldError unused37) {
             }
             try {
                 int[] iArr38 = f3137a;
-                ActionType actionType38 = ActionType.f3138a;
+                ActionType actionType38 = ActionType.None;
                 iArr38[45] = 38;
             } catch (NoSuchFieldError unused38) {
             }
             try {
                 int[] iArr39 = f3137a;
-                ActionType actionType39 = ActionType.f3138a;
+                ActionType actionType39 = ActionType.None;
                 iArr39[44] = 39;
             } catch (NoSuchFieldError unused39) {
             }
             try {
                 int[] iArr40 = f3137a;
-                ActionType actionType40 = ActionType.f3138a;
+                ActionType actionType40 = ActionType.None;
                 iArr40[47] = 40;
             } catch (NoSuchFieldError unused40) {
             }
             try {
                 int[] iArr41 = f3137a;
-                ActionType actionType41 = ActionType.f3138a;
+                ActionType actionType41 = ActionType.None;
                 iArr41[48] = 41;
             } catch (NoSuchFieldError unused41) {
             }
             try {
                 int[] iArr42 = f3137a;
-                ActionType actionType42 = ActionType.f3138a;
+                ActionType actionType42 = ActionType.None;
                 iArr42[49] = 42;
             } catch (NoSuchFieldError unused42) {
             }
             try {
                 int[] iArr43 = f3137a;
-                ActionType actionType43 = ActionType.f3138a;
+                ActionType actionType43 = ActionType.None;
                 iArr43[43] = 43;
             } catch (NoSuchFieldError unused43) {
             }
             try {
                 int[] iArr44 = f3137a;
-                ActionType actionType44 = ActionType.f3138a;
+                ActionType actionType44 = ActionType.None;
                 iArr44[32] = 44;
             } catch (NoSuchFieldError unused44) {
             }
             try {
                 int[] iArr45 = f3137a;
-                ActionType actionType45 = ActionType.f3138a;
+                ActionType actionType45 = ActionType.None;
                 iArr45[51] = 45;
             } catch (NoSuchFieldError unused45) {
             }
             try {
                 int[] iArr46 = f3137a;
-                ActionType actionType46 = ActionType.f3138a;
+                ActionType actionType46 = ActionType.None;
                 iArr46[52] = 46;
             } catch (NoSuchFieldError unused46) {
             }
             try {
                 int[] iArr47 = f3137a;
-                ActionType actionType47 = ActionType.f3138a;
+                ActionType actionType47 = ActionType.None;
                 iArr47[34] = 47;
             } catch (NoSuchFieldError unused47) {
             }
             try {
                 int[] iArr48 = f3137a;
-                ActionType actionType48 = ActionType.f3138a;
+                ActionType actionType48 = ActionType.None;
                 iArr48[35] = 48;
             } catch (NoSuchFieldError unused48) {
             }
             try {
                 int[] iArr49 = f3137a;
-                ActionType actionType49 = ActionType.f3138a;
+                ActionType actionType49 = ActionType.None;
                 iArr49[36] = 49;
             } catch (NoSuchFieldError unused49) {
             }
             try {
                 int[] iArr50 = f3137a;
-                ActionType actionType50 = ActionType.f3138a;
+                ActionType actionType50 = ActionType.None;
                 iArr50[37] = 50;
             } catch (NoSuchFieldError unused50) {
             }
             try {
                 int[] iArr51 = f3137a;
-                ActionType actionType51 = ActionType.f3138a;
+                ActionType actionType51 = ActionType.None;
                 iArr51[38] = 51;
             } catch (NoSuchFieldError unused51) {
             }
             try {
                 int[] iArr52 = f3137a;
-                ActionType actionType52 = ActionType.f3138a;
+                ActionType actionType52 = ActionType.None;
                 iArr52[53] = 52;
             } catch (NoSuchFieldError unused52) {
             }
             try {
                 int[] iArr53 = f3137a;
-                ActionType actionType53 = ActionType.f3138a;
+                ActionType actionType53 = ActionType.None;
                 iArr53[54] = 53;
             } catch (NoSuchFieldError unused53) {
             }
             try {
                 int[] iArr54 = f3137a;
-                ActionType actionType54 = ActionType.f3138a;
+                ActionType actionType54 = ActionType.None;
                 iArr54[55] = 54;
             } catch (NoSuchFieldError unused54) {
             }
             try {
                 int[] iArr55 = f3137a;
-                ActionType actionType55 = ActionType.f3138a;
+                ActionType actionType55 = ActionType.None;
                 iArr55[33] = 55;
             } catch (NoSuchFieldError unused55) {
             }
             try {
                 int[] iArr56 = f3137a;
-                ActionType actionType56 = ActionType.f3138a;
+                ActionType actionType56 = ActionType.None;
                 iArr56[92] = 56;
             } catch (NoSuchFieldError unused56) {
             }
             try {
                 int[] iArr57 = f3137a;
-                ActionType actionType57 = ActionType.f3138a;
+                ActionType actionType57 = ActionType.None;
                 iArr57[56] = 57;
             } catch (NoSuchFieldError unused57) {
             }
             try {
                 int[] iArr58 = f3137a;
-                ActionType actionType58 = ActionType.f3138a;
+                ActionType actionType58 = ActionType.None;
                 iArr58[57] = 58;
             } catch (NoSuchFieldError unused58) {
             }
             try {
                 int[] iArr59 = f3137a;
-                ActionType actionType59 = ActionType.f3138a;
+                ActionType actionType59 = ActionType.None;
                 iArr59[58] = 59;
             } catch (NoSuchFieldError unused59) {
             }
             try {
                 int[] iArr60 = f3137a;
-                ActionType actionType60 = ActionType.f3138a;
+                ActionType actionType60 = ActionType.None;
                 iArr60[24] = 60;
             } catch (NoSuchFieldError unused60) {
             }
             try {
                 int[] iArr61 = f3137a;
-                ActionType actionType61 = ActionType.f3138a;
+                ActionType actionType61 = ActionType.None;
                 iArr61[60] = 61;
             } catch (NoSuchFieldError unused61) {
             }
             try {
                 int[] iArr62 = f3137a;
-                ActionType actionType62 = ActionType.f3138a;
+                ActionType actionType62 = ActionType.None;
                 iArr62[61] = 62;
             } catch (NoSuchFieldError unused62) {
             }
             try {
                 int[] iArr63 = f3137a;
-                ActionType actionType63 = ActionType.f3138a;
+                ActionType actionType63 = ActionType.None;
                 iArr63[62] = 63;
             } catch (NoSuchFieldError unused63) {
             }
             try {
                 int[] iArr64 = f3137a;
-                ActionType actionType64 = ActionType.f3138a;
+                ActionType actionType64 = ActionType.None;
                 iArr64[63] = 64;
             } catch (NoSuchFieldError unused64) {
             }
             try {
                 int[] iArr65 = f3137a;
-                ActionType actionType65 = ActionType.f3138a;
+                ActionType actionType65 = ActionType.None;
                 iArr65[67] = 65;
             } catch (NoSuchFieldError unused65) {
             }
             try {
                 int[] iArr66 = f3137a;
-                ActionType actionType66 = ActionType.f3138a;
+                ActionType actionType66 = ActionType.None;
                 iArr66[64] = 66;
             } catch (NoSuchFieldError unused66) {
             }
             try {
                 int[] iArr67 = f3137a;
-                ActionType actionType67 = ActionType.f3138a;
+                ActionType actionType67 = ActionType.None;
                 iArr67[65] = 67;
             } catch (NoSuchFieldError unused67) {
             }
             try {
                 int[] iArr68 = f3137a;
-                ActionType actionType68 = ActionType.f3138a;
+                ActionType actionType68 = ActionType.None;
                 iArr68[66] = 68;
             } catch (NoSuchFieldError unused68) {
             }
             try {
                 int[] iArr69 = f3137a;
-                ActionType actionType69 = ActionType.f3138a;
+                ActionType actionType69 = ActionType.None;
                 iArr69[68] = 69;
             } catch (NoSuchFieldError unused69) {
             }
             try {
                 int[] iArr70 = f3137a;
-                ActionType actionType70 = ActionType.f3138a;
+                ActionType actionType70 = ActionType.None;
                 iArr70[70] = 70;
             } catch (NoSuchFieldError unused70) {
             }
             try {
                 int[] iArr71 = f3137a;
-                ActionType actionType71 = ActionType.f3138a;
+                ActionType actionType71 = ActionType.None;
                 iArr71[69] = 71;
             } catch (NoSuchFieldError unused71) {
             }
             try {
                 int[] iArr72 = f3137a;
-                ActionType actionType72 = ActionType.f3138a;
+                ActionType actionType72 = ActionType.None;
                 iArr72[59] = 72;
             } catch (NoSuchFieldError unused72) {
             }
             try {
                 int[] iArr73 = f3137a;
-                ActionType actionType73 = ActionType.f3138a;
+                ActionType actionType73 = ActionType.None;
                 iArr73[50] = 73;
             } catch (NoSuchFieldError unused73) {
             }
             try {
                 int[] iArr74 = f3137a;
-                ActionType actionType74 = ActionType.f3138a;
+                ActionType actionType74 = ActionType.None;
                 iArr74[71] = 74;
             } catch (NoSuchFieldError unused74) {
             }
             try {
                 int[] iArr75 = f3137a;
-                ActionType actionType75 = ActionType.f3138a;
+                ActionType actionType75 = ActionType.None;
                 iArr75[73] = 75;
             } catch (NoSuchFieldError unused75) {
             }
             try {
                 int[] iArr76 = f3137a;
-                ActionType actionType76 = ActionType.f3138a;
+                ActionType actionType76 = ActionType.None;
                 iArr76[72] = 76;
             } catch (NoSuchFieldError unused76) {
             }
             try {
                 int[] iArr77 = f3137a;
-                ActionType actionType77 = ActionType.f3138a;
+                ActionType actionType77 = ActionType.None;
                 iArr77[74] = 77;
             } catch (NoSuchFieldError unused77) {
             }
             try {
                 int[] iArr78 = f3137a;
-                ActionType actionType78 = ActionType.f3138a;
+                ActionType actionType78 = ActionType.None;
                 iArr78[77] = 78;
             } catch (NoSuchFieldError unused78) {
             }
             try {
                 int[] iArr79 = f3137a;
-                ActionType actionType79 = ActionType.f3138a;
+                ActionType actionType79 = ActionType.None;
                 iArr79[75] = 79;
             } catch (NoSuchFieldError unused79) {
             }
             try {
                 int[] iArr80 = f3137a;
-                ActionType actionType80 = ActionType.f3138a;
+                ActionType actionType80 = ActionType.None;
                 iArr80[76] = 80;
             } catch (NoSuchFieldError unused80) {
             }
             try {
                 int[] iArr81 = f3137a;
-                ActionType actionType81 = ActionType.f3138a;
+                ActionType actionType81 = ActionType.None;
                 iArr81[78] = 81;
             } catch (NoSuchFieldError unused81) {
             }
             try {
                 int[] iArr82 = f3137a;
-                ActionType actionType82 = ActionType.f3138a;
+                ActionType actionType82 = ActionType.None;
                 iArr82[79] = 82;
             } catch (NoSuchFieldError unused82) {
             }
             try {
                 int[] iArr83 = f3137a;
-                ActionType actionType83 = ActionType.f3138a;
+                ActionType actionType83 = ActionType.None;
                 iArr83[80] = 83;
             } catch (NoSuchFieldError unused83) {
             }
             try {
                 int[] iArr84 = f3137a;
-                ActionType actionType84 = ActionType.f3138a;
+                ActionType actionType84 = ActionType.None;
                 iArr84[82] = 84;
             } catch (NoSuchFieldError unused84) {
             }
             try {
                 int[] iArr85 = f3137a;
-                ActionType actionType85 = ActionType.f3138a;
+                ActionType actionType85 = ActionType.None;
                 iArr85[83] = 85;
             } catch (NoSuchFieldError unused85) {
             }
             try {
                 int[] iArr86 = f3137a;
-                ActionType actionType86 = ActionType.f3138a;
+                ActionType actionType86 = ActionType.None;
                 iArr86[84] = 86;
             } catch (NoSuchFieldError unused86) {
             }
             try {
                 int[] iArr87 = f3137a;
-                ActionType actionType87 = ActionType.f3138a;
+                ActionType actionType87 = ActionType.None;
                 iArr87[85] = 87;
             } catch (NoSuchFieldError unused87) {
             }
             try {
                 int[] iArr88 = f3137a;
-                ActionType actionType88 = ActionType.f3138a;
+                ActionType actionType88 = ActionType.None;
                 iArr88[86] = 88;
             } catch (NoSuchFieldError unused88) {
             }
             try {
                 int[] iArr89 = f3137a;
-                ActionType actionType89 = ActionType.f3138a;
+                ActionType actionType89 = ActionType.None;
                 iArr89[87] = 89;
             } catch (NoSuchFieldError unused89) {
             }
             try {
                 int[] iArr90 = f3137a;
-                ActionType actionType90 = ActionType.f3138a;
+                ActionType actionType90 = ActionType.None;
                 iArr90[88] = 90;
             } catch (NoSuchFieldError unused90) {
             }
             try {
                 int[] iArr91 = f3137a;
-                ActionType actionType91 = ActionType.f3138a;
+                ActionType actionType91 = ActionType.None;
                 iArr91[89] = 91;
             } catch (NoSuchFieldError unused91) {
             }
             try {
                 int[] iArr92 = f3137a;
-                ActionType actionType92 = ActionType.f3138a;
+                ActionType actionType92 = ActionType.None;
                 iArr92[91] = 92;
             } catch (NoSuchFieldError unused92) {
             }
             try {
                 int[] iArr93 = f3137a;
-                ActionType actionType93 = ActionType.f3138a;
+                ActionType actionType93 = ActionType.None;
                 iArr93[90] = 93;
             } catch (NoSuchFieldError unused93) {
             }
             try {
                 int[] iArr94 = f3137a;
-                ActionType actionType94 = ActionType.f3138a;
+                ActionType actionType94 = ActionType.None;
                 iArr94[93] = 94;
             } catch (NoSuchFieldError unused94) {
             }
             try {
                 int[] iArr95 = f3137a;
-                ActionType actionType95 = ActionType.f3138a;
+                ActionType actionType95 = ActionType.None;
                 iArr95[94] = 95;
             } catch (NoSuchFieldError unused95) {
             }
             try {
                 int[] iArr96 = f3137a;
-                ActionType actionType96 = ActionType.f3138a;
+                ActionType actionType96 = ActionType.None;
                 iArr96[95] = 96;
             } catch (NoSuchFieldError unused96) {
             }
             try {
                 int[] iArr97 = f3137a;
-                ActionType actionType97 = ActionType.f3138a;
+                ActionType actionType97 = ActionType.None;
                 iArr97[96] = 97;
             } catch (NoSuchFieldError unused97) {
             }
@@ -640,213 +640,8 @@ public class ScriptedAction {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ActionType {
-        public static final ActionType R0;
-        public static final ActionType S0;
-        private static final /* synthetic */ ActionType[] T0;
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ActionType f3138a = new ActionType("None", 0);
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ActionType f3140b = new ActionType("SetVariable", 1);
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ActionType f3142c = new ActionType("IncVariable", 2);
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final ActionType f3144d = new ActionType("DecVariable", 3);
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final ActionType f3146e = new ActionType("GainItem", 4);
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final ActionType f3148f = new ActionType("LoseItem", 5);
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final ActionType f3150g = new ActionType("LoseItems", 6);
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final ActionType f3152h = new ActionType("GainItems", 7);
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        public static final ActionType f3154i = new ActionType("GainXP", 8);
-
-        /* JADX INFO: renamed from: j, reason: collision with root package name */
-        public static final ActionType f3156j = new ActionType("GainHP", 9);
-
-        /* JADX INFO: renamed from: k, reason: collision with root package name */
-        public static final ActionType f3158k = new ActionType("GainMana", 10);
-
-        /* JADX INFO: renamed from: l, reason: collision with root package name */
-        public static final ActionType f3160l = new ActionType("GainGold", 11);
-
-        /* JADX INFO: renamed from: m, reason: collision with root package name */
-        public static final ActionType f3162m = new ActionType("LoseGold", 12);
-
-        /* JADX INFO: renamed from: n, reason: collision with root package name */
-        public static final ActionType f3164n = new ActionType("GetHPFull", 13);
-
-        /* JADX INFO: renamed from: o, reason: collision with root package name */
-        public static final ActionType f3166o = new ActionType("LesserRestoration", 14);
-
-        /* JADX INFO: renamed from: p, reason: collision with root package name */
-        public static final ActionType f3168p = new ActionType("CircleRestoration", 15);
-
-        /* JADX INFO: renamed from: q, reason: collision with root package name */
-        public static final ActionType f3170q = new ActionType("LoseHP", 16);
-
-        /* JADX INFO: renamed from: r, reason: collision with root package name */
-        public static final ActionType f3172r = new ActionType("LoseHPShock", 17);
-        public static final ActionType s = new ActionType("LoseHPToxic", 18);
-
-        /* JADX INFO: renamed from: t, reason: collision with root package name */
-        public static final ActionType f3175t = new ActionType("LoseHPFire", 19);
-
-        /* JADX INFO: renamed from: u, reason: collision with root package name */
-        public static final ActionType f3176u = new ActionType("LoseHPCold", 20);
-
-        /* JADX INFO: renamed from: v, reason: collision with root package name */
-        public static final ActionType f3177v = new ActionType("LoseHPDeath", 21);
-
-        /* JADX INFO: renamed from: w, reason: collision with root package name */
-        public static final ActionType f3178w = new ActionType("Travel", 22);
-
-        /* JADX INFO: renamed from: x, reason: collision with root package name */
-        public static final ActionType f3179x = new ActionType("NPCGoTo", 23);
-
-        /* JADX INFO: renamed from: y, reason: collision with root package name */
-        public static final ActionType f3180y = new ActionType("NPCSpawn", 24);
-
-        /* JADX INFO: renamed from: z, reason: collision with root package name */
-        public static final ActionType f3181z = new ActionType("NPCDespawn", 25);
-        public static final ActionType A = new ActionType("NPCHostile", 26);
-        public static final ActionType B = new ActionType("NPCFollow", 27);
-        public static final ActionType C = new ActionType("NPCAttack", 28);
-        public static final ActionType D = new ActionType("NPCWait", 29);
-        public static final ActionType E = new ActionType("NPCDontWait", 30);
-        public static final ActionType F = new ActionType("NPCStopFollowing", 31);
-        public static final ActionType G = new ActionType("NPCMoveRandom", 32);
-        public static final ActionType H = new ActionType("Disband", 33);
-        public static final ActionType I = new ActionType("DisbandParty", 34);
-        public static final ActionType J = new ActionType("HideParty", 35);
-        public static final ActionType K = new ActionType("ShowParty", 36);
-        public static final ActionType L = new ActionType("LoseInventory", 37);
-        public static final ActionType M = new ActionType("RecoverInventory", 38);
-        public static final ActionType N = new ActionType("GainShield", 39);
-        public static final ActionType O = new ActionType("GainMight", 40);
-        public static final ActionType P = new ActionType("GainInvis", 41);
-        public static final ActionType Q = new ActionType("GainSpeed", 42);
-        public static final ActionType R = new ActionType("GainEffect", 43);
-        public static final ActionType S = new ActionType("GainResistDeath", 44);
-        public static final ActionType T = new ActionType("GainResistFire", 45);
-        public static final ActionType U = new ActionType("GainResistCold", 46);
-        public static final ActionType V = new ActionType("GainResistToxic", 47);
-        public static final ActionType W = new ActionType("GainResistShock", 48);
-        public static final ActionType X = new ActionType("GainResistSpirit", 49);
-        public static final ActionType Y = new ActionType("PoisonWeapon", 50);
-        public static final ActionType Z = new ActionType("StartConversation", 51);
-
-        /* JADX INFO: renamed from: a0, reason: collision with root package name */
-        public static final ActionType f3139a0 = new ActionType("StartItemConversation", 52);
-
-        /* JADX INFO: renamed from: b0, reason: collision with root package name */
-        public static final ActionType f3141b0 = new ActionType("Sleep", 53);
-
-        /* JADX INFO: renamed from: c0, reason: collision with root package name */
-        public static final ActionType f3143c0 = new ActionType("SaveGame", 54);
-
-        /* JADX INFO: renamed from: d0, reason: collision with root package name */
-        public static final ActionType f3145d0 = new ActionType("Particle", 55);
-
-        /* JADX INFO: renamed from: e0, reason: collision with root package name */
-        public static final ActionType f3147e0 = new ActionType("Recall", 56);
-
-        /* JADX INFO: renamed from: f0, reason: collision with root package name */
-        public static final ActionType f3149f0 = new ActionType("Teleport", 57);
-
-        /* JADX INFO: renamed from: g0, reason: collision with root package name */
-        public static final ActionType f3151g0 = new ActionType("Detect", 58);
-
-        /* JADX INFO: renamed from: h0, reason: collision with root package name */
-        public static final ActionType f3153h0 = new ActionType("NPCTryToDespawn", 59);
-
-        /* JADX INFO: renamed from: i0, reason: collision with root package name */
-        public static final ActionType f3155i0 = new ActionType("OpenShop", 60);
-
-        /* JADX INFO: renamed from: j0, reason: collision with root package name */
-        public static final ActionType f3157j0 = new ActionType("GainTrait", 61);
-
-        /* JADX INFO: renamed from: k0, reason: collision with root package name */
-        public static final ActionType f3159k0 = new ActionType("GainSkillPoint", 62);
-
-        /* JADX INFO: renamed from: l0, reason: collision with root package name */
-        public static final ActionType f3161l0 = new ActionType("ItemActivate", 63);
-
-        /* JADX INFO: renamed from: m0, reason: collision with root package name */
-        public static final ActionType f3163m0 = new ActionType("ItemDeactivate", 64);
-
-        /* JADX INFO: renamed from: n0, reason: collision with root package name */
-        public static final ActionType f3165n0 = new ActionType("ItemHide", 65);
-
-        /* JADX INFO: renamed from: o0, reason: collision with root package name */
-        public static final ActionType f3167o0 = new ActionType("ItemShow", 66);
-
-        /* JADX INFO: renamed from: p0, reason: collision with root package name */
-        public static final ActionType f3169p0 = new ActionType("ItemBlockView", 67);
-
-        /* JADX INFO: renamed from: q0, reason: collision with root package name */
-        public static final ActionType f3171q0 = new ActionType("ItemUnblockView", 68);
-
-        /* JADX INFO: renamed from: r0, reason: collision with root package name */
-        public static final ActionType f3173r0 = new ActionType("ItemWalkable", 69);
-
-        /* JADX INFO: renamed from: s0, reason: collision with root package name */
-        public static final ActionType f3174s0 = new ActionType("ItemUnwalkable", 70);
-        public static final ActionType t0 = new ActionType("PlayerRobbed", 71);
-        public static final ActionType u0 = new ActionType("StopRender", 72);
-        public static final ActionType v0 = new ActionType("StartRender", 73);
-        public static final ActionType w0 = new ActionType("OpenWorldContainer", 74);
-        public static final ActionType x0 = new ActionType("ResetPlayerSkills", 75);
-        public static final ActionType y0 = new ActionType("ResetPlayerTraits", 76);
-        public static final ActionType z0 = new ActionType("ResetCompanion", 77);
-        public static final ActionType A0 = new ActionType("TrainSkill", 78);
-        public static final ActionType B0 = new ActionType("ForgetPlayerAdvancedSkills", 79);
-        public static final ActionType C0 = new ActionType("FullRest", 80);
-        public static final ActionType D0 = new ActionType("GainRandomHP", 81);
-        public static final ActionType E0 = new ActionType("Summon", 82);
-        public static final ActionType F0 = new ActionType("TurnUndead", 83);
-        public static final ActionType G0 = new ActionType("DestroyShards", 84);
-        public static final ActionType H0 = new ActionType("HurtNPC", 85);
-        public static final ActionType I0 = new ActionType("OpenVault", 86);
-        public static final ActionType J0 = new ActionType("TolCurse", 87);
-        public static final ActionType K0 = new ActionType("EndTolCurse", 88);
-        public static final ActionType L0 = new ActionType("HalfRecovery", 89);
-        public static final ActionType M0 = new ActionType("GainBagHolding", 90);
-        public static final ActionType N0 = new ActionType("FullRecovery", 91);
-        public static final ActionType O0 = new ActionType("DisbandAll", 92);
-        public static final ActionType P0 = new ActionType("PlanarBinding", 93);
-        public static final ActionType Q0 = new ActionType("EndGame", 94);
-
-        static {
-            ActionType actionType = new ActionType("LoseArenaItems", 95);
-            R0 = actionType;
-            ActionType actionType2 = new ActionType("UpgradeCompanion", 96);
-            S0 = actionType2;
-            T0 = new ActionType[]{f3138a, f3140b, f3142c, f3144d, f3146e, f3148f, f3150g, f3152h, f3154i, f3156j, f3158k, f3160l, f3162m, f3164n, f3166o, f3168p, f3170q, f3172r, s, f3175t, f3176u, f3177v, f3178w, f3179x, f3180y, f3181z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, f3139a0, f3141b0, f3143c0, f3145d0, f3147e0, f3149f0, f3151g0, f3153h0, f3155i0, f3157j0, f3159k0, f3161l0, f3163m0, f3165n0, f3167o0, f3169p0, f3171q0, f3173r0, f3174s0, t0, u0, v0, w0, x0, y0, z0, A0, B0, C0, D0, E0, F0, G0, H0, I0, J0, K0, L0, M0, N0, O0, P0, Q0, actionType, actionType2};
-        }
-
-        private ActionType() {
-            throw null;
-        }
-
-        public static ActionType valueOf(String str) {
-            return (ActionType) Enum.valueOf(ActionType.class, str);
-        }
-
-        public static ActionType[] values() {
-            return (ActionType[]) T0.clone();
-        }
+    public enum ActionType {
+        None, SetVariable, IncVariable, DecVariable, GainItem, LoseItem, LoseItems, GainItems, GainXP, GainHP, GainMana, GainGold, LoseGold, GetHPFull, LesserRestoration, CircleRestoration, LoseHP, LoseHPShock, LoseHPToxic, LoseHPFire, LoseHPCold, LoseHPDeath, Travel, NPCGoTo, NPCSpawn, NPCDespawn, NPCHostile, NPCFollow, NPCAttack, NPCWait, NPCDontWait, NPCStopFollowing, NPCMoveRandom, Disband, DisbandParty, HideParty, ShowParty, LoseInventory, RecoverInventory, GainShield, GainMight, GainInvis, GainSpeed, GainEffect, GainResistDeath, GainResistFire, GainResistCold, GainResistToxic, GainResistShock, GainResistSpirit, PoisonWeapon, StartConversation, StartItemConversation, Sleep, SaveGame, Particle, Recall, Teleport, Detect, NPCTryToDespawn, OpenShop, GainTrait, GainSkillPoint, ItemActivate, ItemDeactivate, ItemHide, ItemShow, ItemBlockView, ItemUnblockView, ItemWalkable, ItemUnwalkable, PlayerRobbed, StopRender, StartRender, OpenWorldContainer, ResetPlayerSkills, ResetPlayerTraits, ResetCompanion, TrainSkill, ForgetPlayerAdvancedSkills, FullRest, GainRandomHP, Summon, TurnUndead, DestroyShards, HurtNPC, OpenVault, TolCurse, EndTolCurse, HalfRecovery, GainBagHolding, FullRecovery, DisbandAll, PlanarBinding, EndGame, LoseArenaItems, UpgradeCompanion;
     }
 
     public ScriptedAction() {
@@ -858,7 +653,7 @@ public class ScriptedAction {
         NPC npcF;
         String strR = FDUtils.r(this.data);
         int iOrdinal = this.type.ordinal();
-        Damage.DamageType damageType = Damage.DamageType.f3046a;
+        Damage.DamageType damageType = Damage.DamageType.Normal;
         a.EnumC0031a enumC0031a = a.EnumC0031a.f2303o;
         int i2 = 0;
         switch (iOrdinal) {
@@ -951,7 +746,7 @@ public class ScriptedAction {
                 if (GameData.v().party.j()) {
                     NPC npcF2 = GameData.v().party.f();
                     if (npcF2.i0()) {
-                        npcF2.q0(MapActor.ActorState.f3071a);
+                        npcF2.q0(MapActor.ActorState.IDLE);
                         npcF2.Q1();
                         npcF2.t0();
                         SkillActions.d(npcF2);
@@ -962,19 +757,19 @@ public class ScriptedAction {
                 z.v().s().R0(new Damage(damageType, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case 17:
-                z.v().s().R0(new Damage(Damage.DamageType.f3049d, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
+                z.v().s().R0(new Damage(Damage.DamageType.Shock, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case 18:
-                z.v().s().R0(new Damage(Damage.DamageType.f3051f, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
+                z.v().s().R0(new Damage(Damage.DamageType.Toxic, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case 19:
-                z.v().s().R0(new Damage(Damage.DamageType.f3047b, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
+                z.v().s().R0(new Damage(Damage.DamageType.Fire, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case 20:
-                z.v().s().R0(new Damage(Damage.DamageType.f3048c, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
+                z.v().s().R0(new Damage(Damage.DamageType.Cold, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case Decal.C4 /* 21 */:
-                z.v().s().R0(new Damage(Damage.DamageType.f3050e, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
+                z.v().s().R0(new Damage(Damage.DamageType.Death, Integer.parseInt(strR), false), z.v().s().q(), false, 0);
                 break;
             case Decal.U4 /* 22 */:
                 String[] strArrSplit6 = strR.split(",");
@@ -1149,22 +944,22 @@ public class ScriptedAction {
                 z.v().s().sheet.c(Integer.parseInt(strArrSplit8[1]), Integer.parseInt(strArrSplit8[2]), strArrSplit8[0]);
                 break;
             case 44:
-                z.v().s().q1(CharacterResistances.ResistanceType.f2998d, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Death, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 45:
-                z.v().s().q1(CharacterResistances.ResistanceType.f2995a, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Fire, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 46:
-                z.v().s().q1(CharacterResistances.ResistanceType.f2996b, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Cold, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 47:
-                z.v().s().q1(CharacterResistances.ResistanceType.f2999e, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Toxic, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 48:
-                z.v().s().q1(CharacterResistances.ResistanceType.f2997c, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Shock, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 49:
-                z.v().s().q1(CharacterResistances.ResistanceType.f3000f, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
+                z.v().s().q1(CharacterResistances.ResistanceType.Spirit, Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
                 break;
             case 50:
                 z.v().s().n1(Integer.parseInt(strR.split(",", -1)[0]), Integer.parseInt(r1[1]));
@@ -1198,7 +993,7 @@ public class ScriptedAction {
                 }
                 break;
             case 53:
-                GameLevel.k().q0(MapActor.ActorState.f3079i);
+                GameLevel.k().q0(MapActor.ActorState.DISABLED);
                 break;
             case 54:
                 GameLevel.k().V0(CredentialsApi.ACTIVITY_RESULT_ADD_ACCOUNT);
@@ -1287,7 +1082,7 @@ public class ScriptedAction {
             case Notifications.NOTIFICATION_TYPES_ALL /* 63 */:
                 for (int i12 = 0; i12 < GameLevelData.r().size(); i12++) {
                     if (GameLevelData.r().get(i12) != null && GameLevelData.r().get(i12).tag != null && GameLevelData.r().get(i12).tag.equals(strR)) {
-                        GameLevelData.r().get(i12).N(MapItem.MapItemAction.f3007b);
+                        GameLevelData.r().get(i12).N(MapItem.MapItemAction.ACTIVE);
                     }
                 }
                 while (i2 < GameLevelData.q().size()) {
@@ -1300,7 +1095,7 @@ public class ScriptedAction {
             case VertexAttributes.Usage.BoneWeight /* 64 */:
                 for (int i13 = 0; i13 < GameLevelData.r().size(); i13++) {
                     if (GameLevelData.r().get(i13).tag != null && GameLevelData.r().get(i13).tag.equals(strR)) {
-                        GameLevelData.r().get(i13).N(MapItem.MapItemAction.f3008c);
+                        GameLevelData.r().get(i13).N(MapItem.MapItemAction.INACTIVE);
                     }
                 }
                 while (i2 < GameLevelData.q().size()) {
@@ -1313,7 +1108,7 @@ public class ScriptedAction {
             case 65:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag != null && GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3006a);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.INVISIBLE);
                     }
                     i2++;
                 }
@@ -1321,7 +1116,7 @@ public class ScriptedAction {
             case 66:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag != null && GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3013h);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.VISIBLE);
                     }
                     i2++;
                 }
@@ -1329,7 +1124,7 @@ public class ScriptedAction {
             case 67:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3011f);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.BLOCKSVIEW);
                     }
                     i2++;
                 }
@@ -1337,7 +1132,7 @@ public class ScriptedAction {
             case 68:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3012g);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.UNBLOCKSVIEW);
                     }
                     i2++;
                 }
@@ -1345,7 +1140,7 @@ public class ScriptedAction {
             case 69:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag != null && GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3009d);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.WALKABLE);
                     }
                     i2++;
                 }
@@ -1353,7 +1148,7 @@ public class ScriptedAction {
             case 70:
                 while (i2 < GameLevelData.r().size()) {
                     if (GameLevelData.r().get(i2).tag != null && GameLevelData.r().get(i2).tag.equals(strR)) {
-                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.f3010e);
+                        GameLevelData.r().get(i2).N(MapItem.MapItemAction.NONWALKABLE);
                     }
                     i2++;
                 }

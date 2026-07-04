@@ -36,7 +36,7 @@ public class Spawn {
     public WeaponStats weaponStats;
 
     public Spawn() {
-        this.gender = Character.Gender.f2992a;
+        this.gender = Character.Gender.Male;
         this.portrait = 0;
     }
 
@@ -50,7 +50,7 @@ public class Spawn {
     }
 
     public Spawn(Spawn spawn) {
-        this.gender = Character.Gender.f2992a;
+        this.gender = Character.Gender.Male;
         this.portrait = 0;
         this.spawn_ID = spawn.spawn_ID;
         this.name = spawn.name;

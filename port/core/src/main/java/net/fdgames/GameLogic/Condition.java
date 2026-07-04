@@ -217,203 +217,8 @@ public class Condition {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ConditionType {
-        public static final ConditionType A;
-        public static final ConditionType B;
-        public static final ConditionType C;
-        public static final ConditionType D;
-        public static final ConditionType E;
-        public static final ConditionType F;
-        public static final ConditionType G;
-        public static final ConditionType H;
-        public static final ConditionType I;
-        public static final ConditionType J;
-        public static final ConditionType K;
-        public static final ConditionType L;
-        public static final ConditionType M;
-        public static final ConditionType N;
-        public static final ConditionType O;
-        public static final ConditionType P;
-        public static final ConditionType Q;
-        private static final /* synthetic */ ConditionType[] R;
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ConditionType f3109a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ConditionType f3110b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ConditionType f3111c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final ConditionType f3112d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final ConditionType f3113e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final ConditionType f3114f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final ConditionType f3115g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final ConditionType f3116h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        public static final ConditionType f3117i;
-
-        /* JADX INFO: renamed from: j, reason: collision with root package name */
-        public static final ConditionType f3118j;
-
-        /* JADX INFO: renamed from: k, reason: collision with root package name */
-        public static final ConditionType f3119k;
-
-        /* JADX INFO: renamed from: l, reason: collision with root package name */
-        public static final ConditionType f3120l;
-
-        /* JADX INFO: renamed from: m, reason: collision with root package name */
-        public static final ConditionType f3121m;
-
-        /* JADX INFO: renamed from: n, reason: collision with root package name */
-        public static final ConditionType f3122n;
-
-        /* JADX INFO: renamed from: o, reason: collision with root package name */
-        public static final ConditionType f3123o;
-
-        /* JADX INFO: renamed from: p, reason: collision with root package name */
-        public static final ConditionType f3124p;
-
-        /* JADX INFO: renamed from: q, reason: collision with root package name */
-        public static final ConditionType f3125q;
-
-        /* JADX INFO: renamed from: r, reason: collision with root package name */
-        public static final ConditionType f3126r;
-        public static final ConditionType s;
-
-        /* JADX INFO: renamed from: t, reason: collision with root package name */
-        public static final ConditionType f3127t;
-
-        /* JADX INFO: renamed from: u, reason: collision with root package name */
-        public static final ConditionType f3128u;
-
-        /* JADX INFO: renamed from: v, reason: collision with root package name */
-        public static final ConditionType f3129v;
-
-        /* JADX INFO: renamed from: w, reason: collision with root package name */
-        public static final ConditionType f3130w;
-
-        /* JADX INFO: renamed from: x, reason: collision with root package name */
-        public static final ConditionType f3131x;
-
-        /* JADX INFO: renamed from: y, reason: collision with root package name */
-        public static final ConditionType f3132y;
-
-        /* JADX INFO: renamed from: z, reason: collision with root package name */
-        public static final ConditionType f3133z;
-
-        static {
-            ConditionType conditionType = new ConditionType("None", 0);
-            f3109a = conditionType;
-            ConditionType conditionType2 = new ConditionType("PlayerHasItem", 1);
-            f3110b = conditionType2;
-            ConditionType conditionType3 = new ConditionType("PlayerHasntItem", 2);
-            f3111c = conditionType3;
-            ConditionType conditionType4 = new ConditionType("PlayerHasItems", 3);
-            f3112d = conditionType4;
-            ConditionType conditionType5 = new ConditionType("PlayerHasGold", 4);
-            f3113e = conditionType5;
-            ConditionType conditionType6 = new ConditionType("PlayerHasntGold", 5);
-            f3114f = conditionType6;
-            ConditionType conditionType7 = new ConditionType("NPCisFollower", 6);
-            f3115g = conditionType7;
-            ConditionType conditionType8 = new ConditionType("NPCisInParty", 7);
-            f3116h = conditionType8;
-            ConditionType conditionType9 = new ConditionType("NPCisntInParty", 8);
-            f3117i = conditionType9;
-            ConditionType conditionType10 = new ConditionType("IsInParty", 9);
-            f3118j = conditionType10;
-            ConditionType conditionType11 = new ConditionType("NPCinArea", 10);
-            f3119k = conditionType11;
-            ConditionType conditionType12 = new ConditionType("NPCNotinArea", 11);
-            f3120l = conditionType12;
-            ConditionType conditionType13 = new ConditionType("NPCisNotInParty", 12);
-            f3121m = conditionType13;
-            ConditionType conditionType14 = new ConditionType("NPCIsntWaiting", 13);
-            f3122n = conditionType14;
-            ConditionType conditionType15 = new ConditionType("NPCIsWaiting", 14);
-            f3123o = conditionType15;
-            ConditionType conditionType16 = new ConditionType("PlayerIsClass", 15);
-            f3124p = conditionType16;
-            ConditionType conditionType17 = new ConditionType("PlayerIsntClass", 16);
-            f3125q = conditionType17;
-            ConditionType conditionType18 = new ConditionType("PlayerIsLevel", 17);
-            f3126r = conditionType18;
-            ConditionType conditionType19 = new ConditionType("HasFollower", 18);
-            s = conditionType19;
-            ConditionType conditionType20 = new ConditionType("HasNoFollower", 19);
-            f3127t = conditionType20;
-            ConditionType conditionType21 = new ConditionType("AreaIs", 20);
-            f3128u = conditionType21;
-            ConditionType conditionType22 = new ConditionType("AreaIsnt", 21);
-            f3129v = conditionType22;
-            ConditionType conditionType23 = new ConditionType("HasCompanion", 22);
-            f3130w = conditionType23;
-            ConditionType conditionType24 = new ConditionType("HasNoCompanion", 23);
-            f3131x = conditionType24;
-            ConditionType conditionType25 = new ConditionType("PlayerIsntLevel", 24);
-            f3132y = conditionType25;
-            ConditionType conditionType26 = new ConditionType("PlayerIsWounded", 25);
-            f3133z = conditionType26;
-            ConditionType conditionType27 = new ConditionType("VariableGreater", 26);
-            A = conditionType27;
-            ConditionType conditionType28 = new ConditionType("VariableEqual", 27);
-            B = conditionType28;
-            ConditionType conditionType29 = new ConditionType("VariableLower", 28);
-            C = conditionType29;
-            ConditionType conditionType30 = new ConditionType("IsItemActive", 29);
-            D = conditionType30;
-            ConditionType conditionType31 = new ConditionType("IsItemInactive", 30);
-            E = conditionType31;
-            ConditionType conditionType32 = new ConditionType("isItemHidden", 31);
-            F = conditionType32;
-            ConditionType conditionType33 = new ConditionType("isRegistered", 32);
-            G = conditionType33;
-            ConditionType conditionType34 = new ConditionType("NPCIsDead", 33);
-            H = conditionType34;
-            ConditionType conditionType35 = new ConditionType("NPCIsntDead", 34);
-            I = conditionType35;
-            ConditionType conditionType36 = new ConditionType("PlayerHasGuild", 35);
-            J = conditionType36;
-            ConditionType conditionType37 = new ConditionType("PlayerIsMale", 36);
-            K = conditionType37;
-            ConditionType conditionType38 = new ConditionType("PlayerIsFemale", 37);
-            L = conditionType38;
-            ConditionType conditionType39 = new ConditionType("isNight", 38);
-            M = conditionType39;
-            ConditionType conditionType40 = new ConditionType("isDay", 39);
-            N = conditionType40;
-            ConditionType conditionType41 = new ConditionType("HasParty", 40);
-            O = conditionType41;
-            ConditionType conditionType42 = new ConditionType("Hostiles", 41);
-            P = conditionType42;
-            ConditionType conditionType43 = new ConditionType("FadedIn", 42);
-            Q = conditionType43;
-            R = new ConditionType[]{conditionType, conditionType2, conditionType3, conditionType4, conditionType5, conditionType6, conditionType7, conditionType8, conditionType9, conditionType10, conditionType11, conditionType12, conditionType13, conditionType14, conditionType15, conditionType16, conditionType17, conditionType18, conditionType19, conditionType20, conditionType21, conditionType22, conditionType23, conditionType24, conditionType25, conditionType26, conditionType27, conditionType28, conditionType29, conditionType30, conditionType31, conditionType32, conditionType33, conditionType34, conditionType35, conditionType36, conditionType37, conditionType38, conditionType39, conditionType40, conditionType41, conditionType42, conditionType43};
-        }
-
-        private ConditionType() {
-            throw null;
-        }
-
-        public static ConditionType valueOf(String str) {
-            return (ConditionType) Enum.valueOf(ConditionType.class, str);
-        }
-
-        public static ConditionType[] values() {
-            return (ConditionType[]) R.clone();
-        }
+    public enum ConditionType {
+        None, PlayerHasItem, PlayerHasntItem, PlayerHasItems, PlayerHasGold, PlayerHasntGold, NPCisFollower, NPCisInParty, NPCisntInParty, IsInParty, NPCinArea, NPCNotinArea, NPCisNotInParty, NPCIsntWaiting, NPCIsWaiting, PlayerIsClass, PlayerIsntClass, PlayerIsLevel, HasFollower, HasNoFollower, AreaIs, AreaIsnt, HasCompanion, HasNoCompanion, PlayerIsntLevel, PlayerIsWounded, VariableGreater, VariableEqual, VariableLower, IsItemActive, IsItemInactive, isItemHidden, isRegistered, NPCIsDead, NPCIsntDead, PlayerHasGuild, PlayerIsMale, PlayerIsFemale, isNight, isDay, HasParty, Hostiles, FadedIn;
     }
 
     public Condition() {
@@ -561,10 +366,10 @@ public class Condition {
                 return GameData.v().gameVariables.b("guild_seventh") > 0 ? Boolean.TRUE : GameData.v().gameVariables.b("guild_warriors") > 0 ? Boolean.TRUE : GameData.v().gameVariables.b("guild_golden") > 0 ? Boolean.TRUE : GameData.v().gameVariables.b("guild_loreseekers") > 0 ? Boolean.TRUE : GameData.v().gameVariables.b("guild_wizards") > 0 ? Boolean.TRUE : GameData.v().gameVariables.b("guild_three") > 0 ? Boolean.TRUE : Boolean.FALSE;
             case 36:
                 AStarPathFinder aStarPathFinder10 = GameLevel.f3094a;
-                return Boolean.valueOf(GameData.v().player.gender == Character.Gender.f2992a);
+                return Boolean.valueOf(GameData.v().player.gender == Character.Gender.Male);
             case 37:
                 AStarPathFinder aStarPathFinder11 = GameLevel.f3094a;
-                return Boolean.valueOf(GameData.v().player.gender == Character.Gender.f2993b);
+                return Boolean.valueOf(GameData.v().player.gender == Character.Gender.Female);
             case 38:
                 return Boolean.valueOf(GameData.v().night);
             case 39:
@@ -581,7 +386,7 @@ public class Condition {
                     WorldFactions worldFactions = GameWorld.f3189c;
                     int[] iArrR = GameData.v().player.r();
                     ArrayList<MapActor> arrayList = GameLevel.f3096c;
-                    if (worldFactions.g(iArrR, arrayList.get(i5).r()) && !arrayList.get(i5).d0().equals(MapActor.ActorState.f3074d)) {
+                    if (worldFactions.g(iArrR, arrayList.get(i5).r()) && !arrayList.get(i5).d0().equals(MapActor.ActorState.DEAD)) {
                         b bVarP = b.P();
                         int iQ = arrayList.get(i5).q();
                         Coords coordsB = GameData.v().player.B();
@@ -691,26 +496,26 @@ public class Condition {
     public Condition(String str, String str2) {
         Locale locale = Locale.ENGLISH;
         boolean zY = a.a.y(str, locale, "none");
-        ConditionType conditionType = ConditionType.f3109a;
+        ConditionType conditionType = ConditionType.None;
         if (!zY) {
             if (a.a.y(str, locale, "playerhasitem")) {
-                conditionType = ConditionType.f3110b;
+                conditionType = ConditionType.PlayerHasItem;
             } else if (a.a.y(str, locale, "playerhasntitem")) {
-                conditionType = ConditionType.f3111c;
+                conditionType = ConditionType.PlayerHasntItem;
             } else if (a.a.y(str, locale, "playerhasitems")) {
-                conditionType = ConditionType.f3112d;
+                conditionType = ConditionType.PlayerHasItems;
             } else if (a.a.y(str, locale, "playerhasgold")) {
-                conditionType = ConditionType.f3113e;
+                conditionType = ConditionType.PlayerHasGold;
             } else if (a.a.y(str, locale, "playerhasntgold")) {
-                conditionType = ConditionType.f3114f;
+                conditionType = ConditionType.PlayerHasntGold;
             } else if (a.a.y(str, locale, "playerisclass")) {
-                conditionType = ConditionType.f3124p;
+                conditionType = ConditionType.PlayerIsClass;
             } else if (a.a.y(str, locale, "playerisntclass")) {
-                conditionType = ConditionType.f3125q;
+                conditionType = ConditionType.PlayerIsntClass;
             } else if (a.a.y(str, locale, "playerislevel")) {
-                conditionType = ConditionType.f3126r;
+                conditionType = ConditionType.PlayerIsLevel;
             } else if (a.a.y(str, locale, "playeriswounded")) {
-                conditionType = ConditionType.f3133z;
+                conditionType = ConditionType.PlayerIsWounded;
             } else if (a.a.y(str, locale, "variablegreater")) {
                 conditionType = ConditionType.A;
             } else if (a.a.y(str, locale, "variableequal")) {
@@ -718,33 +523,33 @@ public class Condition {
             } else if (a.a.y(str, locale, "variablelower")) {
                 conditionType = ConditionType.C;
             } else if (a.a.y(str, locale, "npcisfollower")) {
-                conditionType = ConditionType.f3115g;
+                conditionType = ConditionType.NPCisFollower;
             } else if (a.a.y(str, locale, "playerisntlevel")) {
-                conditionType = ConditionType.f3132y;
+                conditionType = ConditionType.PlayerIsntLevel;
             } else if (a.a.y(str, locale, "hasfollower")) {
                 conditionType = ConditionType.s;
             } else if (a.a.y(str, locale, "hasparty")) {
                 conditionType = ConditionType.O;
             } else if (a.a.y(str, locale, "hasnofollower")) {
-                conditionType = ConditionType.f3127t;
+                conditionType = ConditionType.HasNoFollower;
             } else if (a.a.y(str, locale, "hascompanion")) {
-                conditionType = ConditionType.f3130w;
+                conditionType = ConditionType.HasCompanion;
             } else if (a.a.y(str, locale, "hasnocompanion")) {
-                conditionType = ConditionType.f3131x;
+                conditionType = ConditionType.HasNoCompanion;
             } else if (a.a.y(str, locale, "npcisinparty")) {
-                conditionType = ConditionType.f3116h;
+                conditionType = ConditionType.NPCisInParty;
             } else if (a.a.y(str, locale, "npcisntinparty")) {
-                conditionType = ConditionType.f3117i;
+                conditionType = ConditionType.NPCisntInParty;
             } else if (a.a.y(str, locale, "npcisnotinparty")) {
-                conditionType = ConditionType.f3121m;
+                conditionType = ConditionType.NPCisNotInParty;
             } else if (a.a.y(str, locale, "npciswaiting")) {
-                conditionType = ConditionType.f3123o;
+                conditionType = ConditionType.NPCIsWaiting;
             } else if (a.a.y(str, locale, "npcisntwaiting")) {
-                conditionType = ConditionType.f3122n;
+                conditionType = ConditionType.NPCIsntWaiting;
             } else if (a.a.y(str, locale, "areais")) {
-                conditionType = ConditionType.f3128u;
+                conditionType = ConditionType.AreaIs;
             } else if (a.a.y(str, locale, "areaisnt")) {
-                conditionType = ConditionType.f3129v;
+                conditionType = ConditionType.AreaIsnt;
             } else {
                 boolean zY2 = a.a.y(str, locale, "isitemactive");
                 ConditionType conditionType2 = ConditionType.D;
@@ -766,9 +571,9 @@ public class Condition {
                             } else if (a.a.y(str, locale, "npcisntdead") || a.a.y(str, locale, "npcisnotdead")) {
                                 conditionType = ConditionType.I;
                             } else if (a.a.y(str, locale, "npcinarea")) {
-                                conditionType = ConditionType.f3119k;
+                                conditionType = ConditionType.NPCinArea;
                             } else if (a.a.y(str, locale, "npcnotinarea")) {
-                                conditionType = ConditionType.f3120l;
+                                conditionType = ConditionType.NPCNotinArea;
                             } else if (a.a.y(str, locale, "playerhasguild")) {
                                 conditionType = ConditionType.J;
                             } else if (a.a.y(str, locale, "playerismale")) {
@@ -784,7 +589,7 @@ public class Condition {
                             } else if (a.a.y(str, locale, "fadedin")) {
                                 conditionType = ConditionType.Q;
                             } else if (a.a.y(str, locale, "isinparty")) {
-                                conditionType = ConditionType.f3118j;
+                                conditionType = ConditionType.IsInParty;
                             } else {
                                 r0.a.a("ERROR 4.1 ;" + GameData.v().CurrentLevel + " - " + str);
                             }

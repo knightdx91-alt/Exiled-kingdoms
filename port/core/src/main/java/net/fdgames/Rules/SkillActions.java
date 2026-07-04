@@ -50,7 +50,7 @@ public class SkillActions {
         Iterator<SecretDoor> it = GameLevelData.o().secretDoors.iterator();
         while (true) {
             boolean zHasNext = it.hasNext();
-            secretDoorState = SecretDoor.SecretDoorState.f3034a;
+            secretDoorState = SecretDoor.SecretDoorState.UNDETECTED;
             if (!zHasNext) {
                 break;
             }
@@ -187,7 +187,7 @@ public class SkillActions {
         if (i2 <= 0) {
             return null;
         }
-        DamageEffect.EffectType effectType = DamageEffect.EffectType.f3054a;
+        DamageEffect.EffectType effectType = DamageEffect.EffectType.STUN;
         if (i2 == 1) {
             return new DamageEffect(effectType, 1, 2);
         }
@@ -284,7 +284,7 @@ public class SkillActions {
                 i3 = 10;
             }
             character.W0(i3);
-            character.q1(CharacterResistances.ResistanceType.f2998d, i2, 12.0f);
+            character.q1(CharacterResistances.ResistanceType.Death, i2, 12.0f);
             character.sheet.skillSet.s("holy_shield");
         }
     }

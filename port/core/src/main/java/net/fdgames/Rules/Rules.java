@@ -61,141 +61,19 @@ public class Rules {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class CharacterClass {
+    public enum CharacterClass {
+        WARRIOR, ROGUE, CLERIC, WIZARD, MONSTER, GENERAL, NONE;
 
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final CharacterClass f3258a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final CharacterClass f3259b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final CharacterClass f3260c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final CharacterClass f3261d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final CharacterClass f3262e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final CharacterClass f3263f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final CharacterClass f3264g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        private static final /* synthetic */ CharacterClass[] f3265h;
-
-        static {
-            CharacterClass characterClass = new CharacterClass("WARRIOR", 0);
-            f3258a = characterClass;
-            CharacterClass characterClass2 = new CharacterClass("ROGUE", 1);
-            f3259b = characterClass2;
-            CharacterClass characterClass3 = new CharacterClass("CLERIC", 2);
-            f3260c = characterClass3;
-            CharacterClass characterClass4 = new CharacterClass("WIZARD", 3);
-            f3261d = characterClass4;
-            CharacterClass characterClass5 = new CharacterClass("MONSTER", 4);
-            f3262e = characterClass5;
-            CharacterClass characterClass6 = new CharacterClass("GENERAL", 5);
-            f3263f = characterClass6;
-            CharacterClass characterClass7 = new CharacterClass("NONE", 6);
-            f3264g = characterClass7;
-            f3265h = new CharacterClass[]{characterClass, characterClass2, characterClass3, characterClass4, characterClass5, characterClass6, characterClass7};
-        }
-
-        private CharacterClass() {
-            throw null;
-        }
-
-        public static String a(CharacterClass characterClass) {
+public static String a(CharacterClass characterClass) {
             int iOrdinal = characterClass.ordinal();
             return iOrdinal != 0 ? iOrdinal != 1 ? iOrdinal != 2 ? iOrdinal != 3 ? iOrdinal != 4 ? iOrdinal != 5 ? "" : GameString.b("GENERAL_CLASS", false) : GameString.b("MONSTER", false) : GameString.b("MAGE", false) : GameString.b("CLERIC", false) : GameString.b("ROGUE", false) : GameString.b("WARRIOR", false);
-        }
-
-        public static CharacterClass valueOf(String str) {
-            return (CharacterClass) Enum.valueOf(CharacterClass.class, str);
-        }
-
-        public static CharacterClass[] values() {
-            return (CharacterClass[]) f3265h.clone();
         }
     }
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class CharacterRace {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final CharacterRace f3266a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final CharacterRace f3267b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final CharacterRace f3268c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final CharacterRace f3269d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final CharacterRace f3270e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final CharacterRace f3271f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final CharacterRace f3272g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final CharacterRace f3273h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        public static final CharacterRace f3274i;
-
-        /* JADX INFO: renamed from: j, reason: collision with root package name */
-        public static final CharacterRace f3275j;
-
-        /* JADX INFO: renamed from: k, reason: collision with root package name */
-        private static final /* synthetic */ CharacterRace[] f3276k;
-
-        static {
-            CharacterRace characterRace = new CharacterRace("HUMAN", 0);
-            f3266a = characterRace;
-            CharacterRace characterRace2 = new CharacterRace("HALFLING", 1);
-            CharacterRace characterRace3 = new CharacterRace("GOBLIN", 2);
-            f3267b = characterRace3;
-            CharacterRace characterRace4 = new CharacterRace("ORC", 3);
-            f3268c = characterRace4;
-            CharacterRace characterRace5 = new CharacterRace("MINOTAUR", 4);
-            f3269d = characterRace5;
-            CharacterRace characterRace6 = new CharacterRace("MONSTER", 5);
-            f3270e = characterRace6;
-            CharacterRace characterRace7 = new CharacterRace("MONSTER_WEAK", 6);
-            f3271f = characterRace7;
-            CharacterRace characterRace8 = new CharacterRace("MONSTER_STRONG", 7);
-            f3272g = characterRace8;
-            CharacterRace characterRace9 = new CharacterRace("MINIBOSS", 8);
-            f3273h = characterRace9;
-            CharacterRace characterRace10 = new CharacterRace("BOSS", 9);
-            f3274i = characterRace10;
-            CharacterRace characterRace11 = new CharacterRace("NPC", 10);
-            f3275j = characterRace11;
-            f3276k = new CharacterRace[]{characterRace, characterRace2, characterRace3, characterRace4, characterRace5, characterRace6, characterRace7, characterRace8, characterRace9, characterRace10, characterRace11};
-        }
-
-        private CharacterRace() {
-            throw null;
-        }
-
-        public static CharacterRace valueOf(String str) {
-            return (CharacterRace) Enum.valueOf(CharacterRace.class, str);
-        }
-
-        public static CharacterRace[] values() {
-            return (CharacterRace[]) f3276k.clone();
-        }
+    public enum CharacterRace {
+        HUMAN, HALFLING, GOBLIN, ORC, MINOTAUR, MONSTER, MONSTER_WEAK, MONSTER_STRONG, MINIBOSS, BOSS, NPC;
     }
 
     static {
@@ -407,9 +285,9 @@ public class Rules {
                 Item item2 = f3247a[i11];
                 String strTrim = strArrSplit7[2].toLowerCase(Locale.ENGLISH).trim();
                 boolean zEquals = strTrim.equals("general");
-                Item.ItemType itemType3 = Item.ItemType.f3229a;
-                Item.ItemType itemType4 = Item.ItemType.f3244p;
-                Item.ItemType itemType5 = Item.ItemType.f3237i;
+                Item.ItemType itemType3 = Item.ItemType.GENERAL;
+                Item.ItemType itemType4 = Item.ItemType.SCROLL;
+                Item.ItemType itemType5 = Item.ItemType.POTION;
                 if (zEquals) {
                     itemType = itemType3;
                     item2.type = itemType;
@@ -481,34 +359,34 @@ public class Rules {
                     }
                 } else {
                     if (strTrim.equals("weapon")) {
-                        itemType3 = Item.ItemType.f3230b;
+                        itemType3 = Item.ItemType.WEAPON;
                     } else if (strTrim.equals("shield")) {
-                        itemType3 = Item.ItemType.f3231c;
+                        itemType3 = Item.ItemType.SHIELD;
                     } else if (strTrim.equals("armor_arms")) {
-                        itemType3 = Item.ItemType.f3236h;
+                        itemType3 = Item.ItemType.ARMOR_ARMS;
                     } else if (strTrim.equals("armor_chest")) {
-                        itemType3 = Item.ItemType.f3233e;
+                        itemType3 = Item.ItemType.ARMOR_CHEST;
                     } else if (strTrim.equals("armor_feet")) {
-                        itemType3 = Item.ItemType.f3234f;
+                        itemType3 = Item.ItemType.ARMOR_FEET;
                     } else if (strTrim.equals("armor_legs")) {
-                        itemType3 = Item.ItemType.f3235g;
+                        itemType3 = Item.ItemType.ARMOR_LEGS;
                     } else if (strTrim.equals("armor_head")) {
-                        itemType3 = Item.ItemType.f3232d;
+                        itemType3 = Item.ItemType.ARMOR_HEAD;
                     } else if (strTrim.equals("key")) {
-                        itemType3 = Item.ItemType.f3239k;
+                        itemType3 = Item.ItemType.KEY;
                     } else {
                         if (strTrim.equals("potion")) {
                             itemType = itemType5;
                         } else if (strTrim.equals("wand")) {
-                            itemType3 = Item.ItemType.f3238j;
+                            itemType3 = Item.ItemType.WAND;
                         } else if (strTrim.equals("ring")) {
-                            itemType3 = Item.ItemType.f3240l;
+                            itemType3 = Item.ItemType.RING;
                         } else if (strTrim.equals("belt")) {
-                            itemType3 = Item.ItemType.f3241m;
+                            itemType3 = Item.ItemType.BELT;
                         } else if (strTrim.equals("cloak")) {
-                            itemType3 = Item.ItemType.f3242n;
+                            itemType3 = Item.ItemType.CLOAK;
                         } else if (strTrim.equals("necklace")) {
-                            itemType3 = Item.ItemType.f3243o;
+                            itemType3 = Item.ItemType.NECKLACE;
                         } else if (strTrim.equals("scroll")) {
                             itemType = itemType4;
                         }
@@ -613,7 +491,7 @@ public class Rules {
                         item = f3247a[i11];
                         itemType2 = item.type;
                         if (itemType2 == itemType5 || itemType2 == itemType4) {
-                            item.OnUse.actions.add(new ScriptedAction(ScriptedAction.ActionType.f3148f, Integer.toString(f3247a[i11].item_ID)));
+                            item.OnUse.actions.add(new ScriptedAction(ScriptedAction.ActionType.LoseItem, Integer.toString(f3247a[i11].item_ID)));
                         }
                         if (!strArrSplit7[21].equals("")) {
                             f3247a[i11].manaCost = Integer.parseInt(strArrSplit7[21]);
@@ -696,7 +574,7 @@ public class Rules {
                     item = f3247a[i11];
                     itemType2 = item.type;
                     if (itemType2 == itemType5) {
-                        item.OnUse.actions.add(new ScriptedAction(ScriptedAction.ActionType.f3148f, Integer.toString(f3247a[i11].item_ID)));
+                        item.OnUse.actions.add(new ScriptedAction(ScriptedAction.ActionType.LoseItem, Integer.toString(f3247a[i11].item_ID)));
                         if (!strArrSplit7[21].equals("")) {
                         }
                         str6 = strArrSplit7[22];
@@ -759,26 +637,26 @@ public class Rules {
             Locale locale = Locale.ENGLISH;
             String strTrim2 = str17.toLowerCase(locale).trim();
             if (strTrim2.equals("human")) {
-                characterRace = CharacterRace.f3266a;
+                characterRace = CharacterRace.HUMAN;
             } else if (strTrim2.equals("goblin")) {
-                characterRace = CharacterRace.f3267b;
+                characterRace = CharacterRace.GOBLIN;
             } else if (strTrim2.equals("orc")) {
-                characterRace = CharacterRace.f3268c;
+                characterRace = CharacterRace.ORC;
             } else if (strTrim2.equals("minotaur")) {
-                characterRace = CharacterRace.f3269d;
+                characterRace = CharacterRace.MINOTAUR;
             } else if (strTrim2.equals("weak")) {
-                characterRace = CharacterRace.f3271f;
+                characterRace = CharacterRace.MONSTER_WEAK;
             } else if (strTrim2.equals("strong")) {
-                characterRace = CharacterRace.f3272g;
+                characterRace = CharacterRace.MONSTER_STRONG;
             } else if (strTrim2.equals("miniboss")) {
-                characterRace = CharacterRace.f3273h;
+                characterRace = CharacterRace.MINIBOSS;
             } else if (strTrim2.equals("npc")) {
-                characterRace = CharacterRace.f3275j;
+                characterRace = CharacterRace.NPC;
             } else if (strTrim2.equals("boss")) {
-                characterRace = CharacterRace.f3274i;
+                characterRace = CharacterRace.BOSS;
             } else {
                 strTrim2.equals("");
-                characterRace = CharacterRace.f3270e;
+                characterRace = CharacterRace.MONSTER;
             }
             spawn.race = characterRace;
             f3248b[i16].characterclass = c(strArrSplit10[2].toLowerCase(locale).trim());
@@ -798,7 +676,7 @@ public class Rules {
             f3248b[i16].AI_type = strArrSplit10[14].toLowerCase(locale).trim();
             Spawn spawn3 = f3248b[i16];
             spawn3.faction = strArrSplit10[15];
-            spawn3.gender = strArrSplit10[16].trim().toLowerCase(locale).equals("f") ? Character.Gender.f2993b : Character.Gender.f2992a;
+            spawn3.gender = strArrSplit10[16].trim().toLowerCase(locale).equals("f") ? Character.Gender.Female : Character.Gender.Male;
             f3248b[i16].portrait = Integer.parseInt(strArrSplit10[17]);
             Spawn spawn4 = f3248b[i16];
             spawn4.onDieConditions = strArrSplit10[18];
@@ -856,16 +734,16 @@ public class Rules {
 
     public static CharacterClass c(String str) {
         if (str.equals("warrior")) {
-            return CharacterClass.f3258a;
+            return CharacterClass.WARRIOR;
         }
         boolean zEquals = str.equals("wizard");
-        CharacterClass characterClass = CharacterClass.f3261d;
+        CharacterClass characterClass = CharacterClass.WIZARD;
         if (zEquals || str.equals("mage")) {
             return characterClass;
         }
         boolean zEquals2 = str.equals("priest");
-        CharacterClass characterClass2 = CharacterClass.f3260c;
-        return (zEquals2 || str.equals("cleric")) ? characterClass2 : str.equals("rogue") ? CharacterClass.f3259b : CharacterClass.f3262e;
+        CharacterClass characterClass2 = CharacterClass.CLERIC;
+        return (zEquals2 || str.equals("cleric")) ? characterClass2 : str.equals("rogue") ? CharacterClass.ROGUE : CharacterClass.MONSTER;
     }
 
     public static int d(String str) {
@@ -975,7 +853,7 @@ public class Rules {
 
     public static Boolean l(int i2) {
         Item.ItemType itemType;
-        return (i2 == 0 || !((itemType = f(i2).type) == Item.ItemType.f3236h || itemType == Item.ItemType.f3233e || itemType == Item.ItemType.f3234f || itemType == Item.ItemType.f3232d || itemType == Item.ItemType.f3235g || itemType == Item.ItemType.f3240l || itemType == Item.ItemType.f3241m || itemType == Item.ItemType.f3230b || itemType == Item.ItemType.f3231c || itemType == Item.ItemType.f3243o || itemType == Item.ItemType.f3242n)) ? Boolean.FALSE : Boolean.TRUE;
+        return (i2 == 0 || !((itemType = f(i2).type) == Item.ItemType.ARMOR_ARMS || itemType == Item.ItemType.ARMOR_CHEST || itemType == Item.ItemType.ARMOR_FEET || itemType == Item.ItemType.ARMOR_HEAD || itemType == Item.ItemType.ARMOR_LEGS || itemType == Item.ItemType.RING || itemType == Item.ItemType.BELT || itemType == Item.ItemType.WEAPON || itemType == Item.ItemType.SHIELD || itemType == Item.ItemType.NECKLACE || itemType == Item.ItemType.CLOAK)) ? Boolean.FALSE : Boolean.TRUE;
     }
 
     public static Boolean m(int i2, CharacterSheet characterSheet) {
@@ -989,11 +867,11 @@ public class Rules {
             return Boolean.TRUE;
         }
         Item itemF = f(i2);
-        if (characterSheet.stats.c() == CharacterClass.f3261d) {
+        if (characterSheet.stats.c() == CharacterClass.WIZARD) {
             Item.ItemType itemType = itemF.type;
-            Item.ItemType itemType2 = Item.ItemType.f3230b;
+            Item.ItemType itemType2 = Item.ItemType.WEAPON;
             if (itemType == itemType2 && !itemF.weaponStats.ranged) {
-                return (characterSheet.skillSet.g("vampiric_blade") <= 0 || itemF.type != itemType2 || (weaponStats2 = itemF.weaponStats) == null || weaponStats2.ranged || !weaponStats2.has_secondary_damage || weaponStats2.secondary_damageType != Damage.DamageType.f3050e) ? (characterSheet.skillSet.g("arcane_blade") <= 0 || itemF.type != itemType2 || (weaponStats = itemF.weaponStats) == null || weaponStats.twohanded || weaponStats.ranged || !weaponStats.has_secondary_damage || !((damageType = weaponStats.secondary_damageType) == Damage.DamageType.f3048c || damageType == Damage.DamageType.f3047b || damageType == Damage.DamageType.f3049d)) ? Boolean.FALSE : Boolean.TRUE : Boolean.TRUE;
+                return (characterSheet.skillSet.g("vampiric_blade") <= 0 || itemF.type != itemType2 || (weaponStats2 = itemF.weaponStats) == null || weaponStats2.ranged || !weaponStats2.has_secondary_damage || weaponStats2.secondary_damageType != Damage.DamageType.Death) ? (characterSheet.skillSet.g("arcane_blade") <= 0 || itemF.type != itemType2 || (weaponStats = itemF.weaponStats) == null || weaponStats.twohanded || weaponStats.ranged || !weaponStats.has_secondary_damage || !((damageType = weaponStats.secondary_damageType) == Damage.DamageType.Cold || damageType == Damage.DamageType.Fire || damageType == Damage.DamageType.Shock)) ? Boolean.FALSE : Boolean.TRUE : Boolean.TRUE;
             }
         }
         return Boolean.FALSE;

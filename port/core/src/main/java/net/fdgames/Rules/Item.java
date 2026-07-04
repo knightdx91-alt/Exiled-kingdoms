@@ -45,106 +45,8 @@ public class Item {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ItemType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ItemType f3229a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ItemType f3230b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ItemType f3231c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final ItemType f3232d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final ItemType f3233e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final ItemType f3234f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final ItemType f3235g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final ItemType f3236h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        public static final ItemType f3237i;
-
-        /* JADX INFO: renamed from: j, reason: collision with root package name */
-        public static final ItemType f3238j;
-
-        /* JADX INFO: renamed from: k, reason: collision with root package name */
-        public static final ItemType f3239k;
-
-        /* JADX INFO: renamed from: l, reason: collision with root package name */
-        public static final ItemType f3240l;
-
-        /* JADX INFO: renamed from: m, reason: collision with root package name */
-        public static final ItemType f3241m;
-
-        /* JADX INFO: renamed from: n, reason: collision with root package name */
-        public static final ItemType f3242n;
-
-        /* JADX INFO: renamed from: o, reason: collision with root package name */
-        public static final ItemType f3243o;
-
-        /* JADX INFO: renamed from: p, reason: collision with root package name */
-        public static final ItemType f3244p;
-
-        /* JADX INFO: renamed from: q, reason: collision with root package name */
-        private static final /* synthetic */ ItemType[] f3245q;
-
-        static {
-            ItemType itemType = new ItemType("GENERAL", 0);
-            f3229a = itemType;
-            ItemType itemType2 = new ItemType("WEAPON", 1);
-            f3230b = itemType2;
-            ItemType itemType3 = new ItemType("SHIELD", 2);
-            f3231c = itemType3;
-            ItemType itemType4 = new ItemType("ARMOR_HEAD", 3);
-            f3232d = itemType4;
-            ItemType itemType5 = new ItemType("ARMOR_CHEST", 4);
-            f3233e = itemType5;
-            ItemType itemType6 = new ItemType("ARMOR_FEET", 5);
-            f3234f = itemType6;
-            ItemType itemType7 = new ItemType("ARMOR_LEGS", 6);
-            f3235g = itemType7;
-            ItemType itemType8 = new ItemType("ARMOR_ARMS", 7);
-            f3236h = itemType8;
-            ItemType itemType9 = new ItemType("POTION", 8);
-            f3237i = itemType9;
-            ItemType itemType10 = new ItemType("WAND", 9);
-            f3238j = itemType10;
-            ItemType itemType11 = new ItemType("KEY", 10);
-            f3239k = itemType11;
-            ItemType itemType12 = new ItemType("RING", 11);
-            f3240l = itemType12;
-            ItemType itemType13 = new ItemType("BELT", 12);
-            f3241m = itemType13;
-            ItemType itemType14 = new ItemType("CLOAK", 13);
-            f3242n = itemType14;
-            ItemType itemType15 = new ItemType("NECKLACE", 14);
-            f3243o = itemType15;
-            ItemType itemType16 = new ItemType("SCROLL", 15);
-            f3244p = itemType16;
-            f3245q = new ItemType[]{itemType, itemType2, itemType3, itemType4, itemType5, itemType6, itemType7, itemType8, itemType9, itemType10, itemType11, itemType12, itemType13, itemType14, itemType15, itemType16};
-        }
-
-        private ItemType() {
-            throw null;
-        }
-
-        public static ItemType valueOf(String str) {
-            return (ItemType) Enum.valueOf(ItemType.class, str);
-        }
-
-        public static ItemType[] values() {
-            return (ItemType[]) f3245q.clone();
-        }
+    public enum ItemType {
+        GENERAL, WEAPON, SHIELD, ARMOR_HEAD, ARMOR_CHEST, ARMOR_FEET, ARMOR_LEGS, ARMOR_ARMS, POTION, WAND, KEY, RING, BELT, CLOAK, NECKLACE, SCROLL;
     }
 
     public final ItemAttributes a() {
@@ -403,7 +305,7 @@ public class Item {
             a.w("ITEM_SHIELD", false, sbT22, ":[] ");
             strN = a.n("DESC_ITEM_SHIELD", false, sbT22);
         }
-        if (this.type != ItemType.f3230b || (weaponStats = this.weaponStats) == null) {
+        if (this.type != ItemType.WEAPON || (weaponStats = this.weaponStats) == null) {
             strN4 = "";
         } else {
             if (weaponStats.twohanded && !weaponStats.ranged) {
@@ -448,7 +350,7 @@ public class Item {
 
     public final boolean g(CharacterSheet characterSheet) {
         ItemType itemType = this.type;
-        return (itemType == ItemType.f3237i || itemType == ItemType.f3244p || itemType == ItemType.f3238j) && characterSheet.c0(this.manaCost) && this.classes.c(characterSheet.stats.c()).booleanValue() && this.requisites.a(characterSheet, false);
+        return (itemType == ItemType.POTION || itemType == ItemType.SCROLL || itemType == ItemType.WAND) && characterSheet.c0(this.manaCost) && this.classes.c(characterSheet.stats.c()).booleanValue() && this.requisites.a(characterSheet, false);
     }
 
     public final void h(String str) {

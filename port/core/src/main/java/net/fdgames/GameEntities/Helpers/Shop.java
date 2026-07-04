@@ -78,7 +78,7 @@ public class Shop implements Lootable {
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable
     public final Lootable.LootableType getType() {
-        return Lootable.LootableType.f3066c;
+        return Lootable.LootableType.SHOP;
     }
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable

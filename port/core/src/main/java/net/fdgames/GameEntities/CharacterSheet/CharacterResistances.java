@@ -15,56 +15,8 @@ public class CharacterResistances {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ResistanceType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ResistanceType f2995a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ResistanceType f2996b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ResistanceType f2997c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final ResistanceType f2998d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final ResistanceType f2999e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final ResistanceType f3000f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        private static final /* synthetic */ ResistanceType[] f3001g;
-
-        static {
-            ResistanceType resistanceType = new ResistanceType("Fire", 0);
-            f2995a = resistanceType;
-            ResistanceType resistanceType2 = new ResistanceType("Cold", 1);
-            f2996b = resistanceType2;
-            ResistanceType resistanceType3 = new ResistanceType("Shock", 2);
-            f2997c = resistanceType3;
-            ResistanceType resistanceType4 = new ResistanceType("Death", 3);
-            f2998d = resistanceType4;
-            ResistanceType resistanceType5 = new ResistanceType("Toxic", 4);
-            f2999e = resistanceType5;
-            ResistanceType resistanceType6 = new ResistanceType("Spirit", 5);
-            f3000f = resistanceType6;
-            f3001g = new ResistanceType[]{resistanceType, resistanceType2, resistanceType3, resistanceType4, resistanceType5, resistanceType6};
-        }
-
-        private ResistanceType() {
-            throw null;
-        }
-
-        public static ResistanceType valueOf(String str) {
-            return (ResistanceType) Enum.valueOf(ResistanceType.class, str);
-        }
-
-        public static ResistanceType[] values() {
-            return (ResistanceType[]) f3001g.clone();
-        }
+    public enum ResistanceType {
+        Fire, Cold, Shock, Death, Toxic, Spirit;
     }
 
     public CharacterResistances() {

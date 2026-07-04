@@ -81,12 +81,12 @@ public class CharacterSheet {
         }
         int iD = SheetBonus.d(J(), 3, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 5, this.inventory, this.effects);
-        if (this.stats.c().equals(Rules.CharacterClass.f3261d)) {
+        if (this.stats.c().equals(Rules.CharacterClass.WIZARD)) {
             iF = this.stats.f() * ((iD2 / 2) + iD + 2);
         } else {
             iF = 0;
         }
-        if (this.stats.c().equals(Rules.CharacterClass.f3260c)) {
+        if (this.stats.c().equals(Rules.CharacterClass.CLERIC)) {
             iF = this.stats.f() * ((iD / 2) + iD2 + 2);
         }
         int iG = this.skillSet.g("mana_surge");
@@ -128,7 +128,7 @@ public class CharacterSheet {
     }
 
     public final int E() {
-        int iG = G(Damage.DamageType.f3052g);
+        int iG = G(Damage.DamageType.Spirit);
         if (iG == 0) {
             return 0;
         }
@@ -142,38 +142,38 @@ public class CharacterSheet {
         }
         int iA = this.effects.resistances.a(resistanceType) + this.inventory.m(resistanceType);
         int i2 = this.effects.mageArmorElementalBonus;
-        if (resistanceType == CharacterResistances.ResistanceType.f2998d) {
+        if (resistanceType == CharacterResistances.ResistanceType.Death) {
             iA = (this.skillSet.g("death_ward") * 12) + (SheetBonus.d(J(), 5, this.inventory, this.effects) * 5) + iA;
         }
-        if (resistanceType == CharacterResistances.ResistanceType.f3000f) {
+        if (resistanceType == CharacterResistances.ResistanceType.Spirit) {
             iA = (this.skillSet.g("spiritual_ward") * 10) + (SheetBonus.d(J(), 5, this.inventory, this.effects) * 2) + iA;
         }
-        if (resistanceType == CharacterResistances.ResistanceType.f2999e) {
+        if (resistanceType == CharacterResistances.ResistanceType.Toxic) {
             iA = (this.skillSet.g("poison_master") * 10) + (SheetBonus.d(J(), 1, this.inventory, this.effects) * 5) + iA + (this.skillSet.g("toxic_ward") * 12);
         }
-        if (resistanceType == CharacterResistances.ResistanceType.f2995a) {
+        if (resistanceType == CharacterResistances.ResistanceType.Fire) {
             iA = (this.skillSet.g("fire_ward") * 12) + iA + i2;
         }
-        if (resistanceType == CharacterResistances.ResistanceType.f2996b) {
+        if (resistanceType == CharacterResistances.ResistanceType.Cold) {
             iA = (this.skillSet.g("ice_ward") * 12) + iA + i2;
         }
-        return resistanceType == CharacterResistances.ResistanceType.f2997c ? (this.skillSet.g("shock_ward") * 12) + iA + i2 : iA;
+        return resistanceType == CharacterResistances.ResistanceType.Shock ? (this.skillSet.g("shock_ward") * 12) + iA + i2 : iA;
     }
 
     public final int G(Damage.DamageType damageType) {
         switch (damageType.ordinal()) {
             case 1:
-                return F(CharacterResistances.ResistanceType.f2995a);
+                return F(CharacterResistances.ResistanceType.Fire);
             case 2:
-                return F(CharacterResistances.ResistanceType.f2996b);
+                return F(CharacterResistances.ResistanceType.Cold);
             case 3:
-                return F(CharacterResistances.ResistanceType.f2997c);
+                return F(CharacterResistances.ResistanceType.Shock);
             case 4:
-                return F(CharacterResistances.ResistanceType.f2998d);
+                return F(CharacterResistances.ResistanceType.Death);
             case 5:
-                return F(CharacterResistances.ResistanceType.f2999e);
+                return F(CharacterResistances.ResistanceType.Toxic);
             case 6:
-                return F(CharacterResistances.ResistanceType.f3000f);
+                return F(CharacterResistances.ResistanceType.Spirit);
             default:
                 return 0;
         }
@@ -317,7 +317,7 @@ public class CharacterSheet {
     }
 
     public final boolean V() {
-        return this.stats.c().equals(Rules.CharacterClass.f3261d) || this.stats.c().equals(Rules.CharacterClass.f3260c);
+        return this.stats.c().equals(Rules.CharacterClass.WIZARD) || this.stats.c().equals(Rules.CharacterClass.CLERIC);
     }
 
     public final int W(int i2) {
@@ -477,7 +477,7 @@ public class CharacterSheet {
     }
 
     public final float f0() {
-        int iG0 = g0(100, F(CharacterResistances.ResistanceType.f3000f));
+        int iG0 = g0(100, F(CharacterResistances.ResistanceType.Spirit));
         int iB = FDUtils.b(1, 100);
         if (iB <= iG0) {
             return 1.0f;
@@ -598,7 +598,7 @@ public class CharacterSheet {
         if (this.effects.fury.booleanValue()) {
             damageData.damages.get(0).hp = (int) (Math.max(this.effects.furyMultiplier, 1.0f) * damageData.damages.get(0).hp);
         }
-        Damage.DamageType damageType = Damage.DamageType.f3046a;
+        Damage.DamageType damageType = Damage.DamageType.Normal;
         if (z3 && this.effects.disintegrate.booleanValue()) {
             if (damageData.damages.get(0).type == damageType) {
                 damageData.damages.get(0).hp += this.effects.disintegrateBonus;
@@ -607,15 +607,15 @@ public class CharacterSheet {
             }
         }
         boolean z5 = this.inventory.j().has_secondary_damage;
-        Damage.DamageType damageType2 = Damage.DamageType.f3047b;
+        Damage.DamageType damageType2 = Damage.DamageType.Fire;
         if (z5) {
             Damage.DamageType damageType3 = this.inventory.j().secondary_damageType;
             int i2 = this.inventory.j().secondary_Damage;
-            if (this.stats.c() != Rules.CharacterClass.f3261d || N().ranged) {
+            if (this.stats.c() != Rules.CharacterClass.WIZARD || N().ranged) {
                 f3 = i2;
             } else {
                 f3 = i2;
-                if (damageType3 == Damage.DamageType.f3050e) {
+                if (damageType3 == Damage.DamageType.Death) {
                     int iG = this.skillSet.g("vampiric_blade");
                     if (iG != 0 && iG != 1) {
                         if (iG != 2) {
@@ -625,7 +625,7 @@ public class CharacterSheet {
                         f3 *= 1.5f;
                     }
                     f3 *= f4;
-                } else if (damageType3 == Damage.DamageType.f3048c || damageType3 == damageType2 || damageType3 == Damage.DamageType.f3049d) {
+                } else if (damageType3 == Damage.DamageType.Cold || damageType3 == damageType2 || damageType3 == Damage.DamageType.Shock) {
                     int iG2 = this.skillSet.g("arcane_blade");
                     if (iG2 == 0 || iG2 == 1) {
                         f3 *= f4;
@@ -655,7 +655,7 @@ public class CharacterSheet {
             damageData.a(damageType2, 4, false);
         }
         if (this.effects.poison.booleanValue()) {
-            damageData.a(Damage.DamageType.f3051f, this.effects.poisonBonus, false);
+            damageData.a(Damage.DamageType.Toxic, this.effects.poisonBonus, false);
         }
         damageData.procs = SheetBonus.a(this, N().a());
         damageData.weapon_item_id = this.inventory.slot_mainhand;
@@ -817,7 +817,7 @@ public class CharacterSheet {
 
     public final int s() {
         int i2 = 0;
-        int i3 = this.stats.c() == Rules.CharacterClass.f3259b ? 15 : 0;
+        int i3 = this.stats.c() == Rules.CharacterClass.ROGUE ? 15 : 0;
         int iD = SheetBonus.d(J(), 4, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 3, this.inventory, this.effects);
         Iterator<Follower> it = GameData.v().party.followers.iterator();
@@ -836,17 +836,17 @@ public class CharacterSheet {
     public final int t() {
         int iD = SheetBonus.d(J(), 2, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 3, this.inventory, this.effects);
-        int i2 = this.stats.c() == Rules.CharacterClass.f3259b ? 20 : 0;
+        int i2 = this.stats.c() == Rules.CharacterClass.ROGUE ? 20 : 0;
         return this.inventory.f() + (((iD2 / 2) + iD) * 5) + (this.skillSet.g("trap_master") > 0 ? this.skillSet.g("trap_master") * 10 : 0) + i2;
     }
 
     public final int u() {
-        return this.inventory.g() + (((SheetBonus.d(J(), 4, this.inventory, this.effects) / 2) + SheetBonus.d(J(), 5, this.inventory, this.effects)) * 5) + this.skillSet.bonusSet.gossip + (this.stats.c().equals(Rules.CharacterClass.f3259b) ? 10 : 0);
+        return this.inventory.g() + (((SheetBonus.d(J(), 4, this.inventory, this.effects) / 2) + SheetBonus.d(J(), 5, this.inventory, this.effects)) * 5) + this.skillSet.bonusSet.gossip + (this.stats.c().equals(Rules.CharacterClass.ROGUE) ? 10 : 0);
     }
 
     public final int v() {
         CharacterInventory characterInventory = this.inventory;
-        if (characterInventory != null && characterInventory.q() && Rules.f(this.inventory.slot_offhand).damageBonusType == Damage.DamageType.f3046a) {
+        if (characterInventory != null && characterInventory.q() && Rules.f(this.inventory.slot_offhand).damageBonusType == Damage.DamageType.Normal) {
             return this.inventory.l();
         }
         return 0;

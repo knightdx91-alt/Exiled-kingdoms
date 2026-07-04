@@ -57,46 +57,8 @@ public class Trap extends MapSprite {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class TrapState {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final TrapState f3039a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final TrapState f3040b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final TrapState f3041c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final TrapState f3042d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        private static final /* synthetic */ TrapState[] f3043e;
-
-        static {
-            TrapState trapState = new TrapState("READY", 0);
-            f3039a = trapState;
-            TrapState trapState2 = new TrapState("PREFIRING", 1);
-            f3040b = trapState2;
-            TrapState trapState3 = new TrapState("FIRING", 2);
-            f3041c = trapState3;
-            TrapState trapState4 = new TrapState("SPENT", 3);
-            f3042d = trapState4;
-            f3043e = new TrapState[]{trapState, trapState2, trapState3, trapState4};
-        }
-
-        private TrapState() {
-            throw null;
-        }
-
-        public static TrapState valueOf(String str) {
-            return (TrapState) Enum.valueOf(TrapState.class, str);
-        }
-
-        public static TrapState[] values() {
-            return (TrapState[]) f3043e.clone();
-        }
+    public enum TrapState {
+        READY, PREFIRING, FIRING, SPENT;
     }
 
     public Trap() {
@@ -138,7 +100,7 @@ public class Trap extends MapSprite {
     }
 
     private void W() {
-        this.state = TrapState.f3042d;
+        this.state = TrapState.SPENT;
         this.stateRelativeTime = 0.0f;
         if (this.rearm > 0.0f) {
             o("REARM", q(), null, this.rearm, null);
@@ -195,8 +157,8 @@ public class Trap extends MapSprite {
             return;
         }
         TrapState trapState = this.state;
-        TrapState trapState2 = TrapState.f3039a;
-        TrapState trapState3 = TrapState.f3040b;
+        TrapState trapState2 = TrapState.READY;
+        TrapState trapState3 = TrapState.PREFIRING;
         if (trapState == trapState2) {
             b bVarP = b.P();
             int[] iArrR = r();
@@ -210,7 +172,7 @@ public class Trap extends MapSprite {
             }
             return;
         }
-        TrapState trapState4 = TrapState.f3041c;
+        TrapState trapState4 = TrapState.FIRING;
         if (trapState == trapState3) {
             float f3 = this.stateRelativeTime + f2;
             this.stateRelativeTime = f3;
@@ -272,7 +234,7 @@ public class Trap extends MapSprite {
     }
 
     public final boolean P() {
-        if (this.state != TrapState.f3039a || this.discovered || !b.P().b0(this.f3092x / 32, this.f3093y / 32) || GameData.v().u() < this.lastDetectCheck + 3.0f) {
+        if (this.state != TrapState.READY || this.discovered || !b.P().b0(this.f3092x / 32, this.f3093y / 32) || GameData.v().u() < this.lastDetectCheck + 3.0f) {
             return false;
         }
         Coords coordsB = B();
@@ -285,11 +247,11 @@ public class Trap extends MapSprite {
     }
 
     public final boolean T() {
-        return this.state == TrapState.f3039a && this.discovered && !this.faction.equals(100) && !this.destroy;
+        return this.state == TrapState.READY && this.discovered && !this.faction.equals(100) && !this.destroy;
     }
 
     public final boolean U() {
-        if (this.state != TrapState.f3039a || !this.discovered || this.owner_id == 1 || this.destroy) {
+        if (this.state != TrapState.READY || !this.discovered || this.owner_id == 1 || this.destroy) {
             return false;
         }
         Coords coordsB = B();
@@ -303,7 +265,7 @@ public class Trap extends MapSprite {
 
     public final void X(Character character) {
         this.lastDetectCheck = GameData.v().u();
-        if (this.state == TrapState.f3039a && !this.discovered && GameWorld.f3189c.g(character.r(), r())) {
+        if (this.state == TrapState.READY && !this.discovered && GameWorld.f3189c.g(character.r(), r())) {
             int iC = FDUtils.c(character.sheet.stats.f(), this.level) + character.sheet.s();
             if (FDUtils.b(1, 100) < iC) {
                 O(iC, character.getName());
@@ -314,7 +276,7 @@ public class Trap extends MapSprite {
     public final void Y(Character character) {
         String strN;
         boolean z2;
-        if (!this.beingDisarmed && this.state == TrapState.f3039a && GameWorld.f3189c.g(character.r(), r())) {
+        if (!this.beingDisarmed && this.state == TrapState.READY && GameWorld.f3189c.g(character.r(), r())) {
             this.beingDisarmed = true;
             int iN = N(character);
             String str = "[GREEN]" + character.getName() + "[] " + GameString.b("TRIES_DISARM", false) + " [RED]" + getName() + "[] [WHITE] " + iN + "%[]";
@@ -331,7 +293,7 @@ public class Trap extends MapSprite {
                 W();
                 return;
             }
-            if (this.faction == Factions.Faction.f3060a) {
+            if (this.faction == Factions.Faction.ENEMY) {
                 b.P().f2434t[this.f3092x / 32][this.f3093y / 32] = 0;
             }
             this.destroy = true;
@@ -343,7 +305,7 @@ public class Trap extends MapSprite {
     }
 
     public final void Z() {
-        if (this.faction == Factions.Faction.f3060a && this.discovered && this.state == TrapState.f3039a) {
+        if (this.faction == Factions.Faction.ENEMY && this.discovered && this.state == TrapState.READY) {
             b.P().f2434t[this.f3092x / 32][this.f3093y / 32] = 1;
         }
         b.P().f2434t[this.f3092x / 32][this.f3093y / 32] = 0;
@@ -352,10 +314,10 @@ public class Trap extends MapSprite {
     public final void a0() {
         int[] iArr = this.worldfactions;
         if (iArr == null || iArr[0] == 0) {
-            if (this.faction.equals(Factions.Faction.f3060a)) {
+            if (this.faction.equals(Factions.Faction.ENEMY)) {
                 x(Quests.SELECT_COMPLETED_UNCLAIMED);
             }
-            if (this.faction.equals(Factions.Faction.f3062c)) {
+            if (this.faction.equals(Factions.Faction.PLAYER)) {
                 x(100);
             }
         }
@@ -372,7 +334,7 @@ public class Trap extends MapSprite {
     @Override // net.fdgames.GameEntities.MapObject, net.fdgames.GameEntities.GameObject
     public final void v(String str, int i2, String str2, DamageData damageData) {
         if (str.equals("REARM")) {
-            this.state = TrapState.f3039a;
+            this.state = TrapState.READY;
             this.respawned = true;
         } else if (str.equals("DESTROY")) {
             this.destroy = true;
@@ -413,7 +375,7 @@ public class Trap extends MapSprite {
         this.effect = trapDataLineA.effect;
         this.level = i4;
         y(iArr);
-        this.state = TrapState.f3039a;
+        this.state = TrapState.READY;
         this.damageDealt = false;
         this.discovered = true;
         this.explosion_level = 0;
@@ -478,7 +440,7 @@ public class Trap extends MapSprite {
         } else {
             y(WorldFactions.i(b.P().G));
         }
-        this.state = TrapState.f3039a;
+        this.state = TrapState.READY;
         this.damageDealt = false;
         this.discovered = false;
     }

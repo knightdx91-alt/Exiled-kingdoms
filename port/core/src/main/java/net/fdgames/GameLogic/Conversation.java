@@ -109,7 +109,7 @@ public class Conversation {
     public final ConversationAnswers a(int i2) {
         ConversationAnswers conversationAnswers = new ConversationAnswers();
         for (ConversationSentence conversationSentence : this.conversationSentences) {
-            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.f3135b && conversationSentence.a().booleanValue()) {
+            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.Answer && conversationSentence.a().booleanValue()) {
                 conversationAnswers.text[conversationAnswers.length] = FDUtils.f(conversationSentence.b());
                 int[] iArr = conversationAnswers.destination;
                 int i3 = conversationAnswers.length;
@@ -131,7 +131,7 @@ public class Conversation {
 
     public final ConversationQuestion b(int i2) {
         for (ConversationSentence conversationSentence : this.conversationSentences) {
-            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.f3134a && conversationSentence.a().booleanValue()) {
+            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.Question && conversationSentence.a().booleanValue()) {
                 ConversationQuestion conversationQuestion = new ConversationQuestion();
                 conversationQuestion.text = FDUtils.f(conversationSentence.b());
                 conversationQuestion.destination = conversationSentence.next;
@@ -145,7 +145,7 @@ public class Conversation {
 
     public final boolean c(int i2) {
         for (ConversationSentence conversationSentence : this.conversationSentences) {
-            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.f3134a) {
+            if (conversationSentence.ID == i2 && conversationSentence.type == ConversationSentence.SentenceType.Question) {
                 return true;
             }
         }

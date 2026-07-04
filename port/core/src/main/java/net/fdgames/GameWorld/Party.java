@@ -50,7 +50,7 @@ public class Party {
         r();
         z.v().T();
         GPGSUpdate.c(false);
-        if (npc.gender == Character.Gender.f2993b) {
+        if (npc.gender == Character.Gender.Female) {
             z.N(GameString.b("RECRUITED_COMPANION_TITLE_FEMALE", false), GameString.b("RECRUITED_COMPANION_FEMALE", false));
         } else {
             z.N(GameString.b("RECRUITED_COMPANION_TITLE_MALE", false), GameString.b("RECRUITED_COMPANION_MALE", false));

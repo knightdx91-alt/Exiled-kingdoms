@@ -34,7 +34,7 @@ public class KeyboardConfig {
     public ControllerCommand up;
 
     public KeyboardConfig() {
-        ControllerCommand.commandType commandtype = ControllerCommand.commandType.f3368d;
+        ControllerCommand.commandType commandtype = ControllerCommand.commandType.KEY;
         this.up = new ControllerCommand(commandtype, 19);
         this.down = new ControllerCommand(commandtype, 20);
         this.left = new ControllerCommand(commandtype, 21);

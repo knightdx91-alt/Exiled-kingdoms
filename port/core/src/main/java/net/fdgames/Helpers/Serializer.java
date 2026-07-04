@@ -214,7 +214,7 @@ public class Serializer {
 
     public static void G() {
         String strO;
-        ExiledKingdoms.f3382l = GameData.GameStatus.f3185b;
+        ExiledKingdoms.f3382l = GameData.GameStatus.STOPPED;
         f3224a = new Integer[10];
         for (int i2 = 0; i2 < 10; i2++) {
             f3224a[i2] = -1;

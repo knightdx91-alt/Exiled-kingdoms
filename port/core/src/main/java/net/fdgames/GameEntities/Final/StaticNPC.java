@@ -83,9 +83,9 @@ public class StaticNPC extends MapSprite {
             this.isLeft = Boolean.TRUE;
         }
         if (str4.trim().toLowerCase(locale).contains("f")) {
-            this.gender = Character.Gender.f2993b;
+            this.gender = Character.Gender.Female;
         } else {
-            this.gender = Character.Gender.f2992a;
+            this.gender = Character.Gender.Male;
         }
         this.spawnConditions = conditionsSet;
         this.region_id = str2;

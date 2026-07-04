@@ -20,10 +20,10 @@ public abstract class MapActor extends MapSprite {
     public float speedX;
     public float speedY;
     public boolean stuck;
-    private ActorState state = ActorState.f3071a;
+    private ActorState state = ActorState.IDLE;
     private boolean movementBlocked = false;
     public float pushmaxtime = 0.0f;
-    public Facing facing = Facing.f3088f;
+    public Facing facing = Facing.LD;
     public float stateRelativeTime = 0.0f;
     protected int timesStuck = 0;
     protected Coords destination = new Coords(-1, -1);
@@ -31,152 +31,21 @@ public abstract class MapActor extends MapSprite {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ActorState {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ActorState f3071a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ActorState f3072b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ActorState f3073c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final ActorState f3074d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final ActorState f3075e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final ActorState f3076f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final ActorState f3077g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final ActorState f3078h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        public static final ActorState f3079i;
-
-        /* JADX INFO: renamed from: j, reason: collision with root package name */
-        public static final ActorState f3080j;
-
-        /* JADX INFO: renamed from: k, reason: collision with root package name */
-        public static final ActorState f3081k;
-
-        /* JADX INFO: renamed from: l, reason: collision with root package name */
-        private static final /* synthetic */ ActorState[] f3082l;
-
-        static {
-            ActorState actorState = new ActorState("IDLE", 0);
-            f3071a = actorState;
-            ActorState actorState2 = new ActorState("MOVING", 1);
-            f3072b = actorState2;
-            ActorState actorState3 = new ActorState("ATTACKING", 2);
-            f3073c = actorState3;
-            ActorState actorState4 = new ActorState("DEAD", 3);
-            f3074d = actorState4;
-            ActorState actorState5 = new ActorState("ACTING", 4);
-            f3075e = actorState5;
-            ActorState actorState6 = new ActorState("PUSHED", 5);
-            f3076f = actorState6;
-            ActorState actorState7 = new ActorState("SKILL_WHIRLWIND", 6);
-            f3077g = actorState7;
-            ActorState actorState8 = new ActorState("SKILL_CHARGE", 7);
-            f3078h = actorState8;
-            ActorState actorState9 = new ActorState("DISABLED", 8);
-            f3079i = actorState9;
-            ActorState actorState10 = new ActorState("PARALIZED", 9);
-            f3080j = actorState10;
-            ActorState actorState11 = new ActorState("FIRING", 10);
-            f3081k = actorState11;
-            f3082l = new ActorState[]{actorState, actorState2, actorState3, actorState4, actorState5, actorState6, actorState7, actorState8, actorState9, actorState10, actorState11};
-        }
-
-        private ActorState() {
-            throw null;
-        }
-
-        public static ActorState valueOf(String str) {
-            return (ActorState) Enum.valueOf(ActorState.class, str);
-        }
-
-        public static ActorState[] values() {
-            return (ActorState[]) f3082l.clone();
-        }
+    public enum ActorState {
+        IDLE, MOVING, ATTACKING, DEAD, ACTING, PUSHED, SKILL_WHIRLWIND, SKILL_CHARGE, DISABLED, PARALIZED, FIRING;
     }
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class Facing {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final Facing f3083a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final Facing f3084b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final Facing f3085c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final Facing f3086d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final Facing f3087e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final Facing f3088f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final Facing f3089g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        public static final Facing f3090h;
-
-        /* JADX INFO: renamed from: i, reason: collision with root package name */
-        private static final /* synthetic */ Facing[] f3091i;
-
-        static {
-            Facing facing = new Facing("U", 0);
-            f3083a = facing;
-            Facing facing2 = new Facing("RU", 1);
-            f3084b = facing2;
-            Facing facing3 = new Facing("R", 2);
-            f3085c = facing3;
-            Facing facing4 = new Facing("RD", 3);
-            f3086d = facing4;
-            Facing facing5 = new Facing("D", 4);
-            f3087e = facing5;
-            Facing facing6 = new Facing("LD", 5);
-            f3088f = facing6;
-            Facing facing7 = new Facing("L", 6);
-            f3089g = facing7;
-            Facing facing8 = new Facing("LU", 7);
-            f3090h = facing8;
-            f3091i = new Facing[]{facing, facing2, facing3, facing4, facing5, facing6, facing7, facing8};
-        }
-
-        private Facing() {
-            throw null;
-        }
-
-        public static Facing valueOf(String str) {
-            return (Facing) Enum.valueOf(Facing.class, str);
-        }
-
-        public static Facing[] values() {
-            return (Facing[]) f3091i.clone();
-        }
+    public enum Facing {
+        U, RU, R, RD, D, LD, L, LU;
     }
 
     private boolean P(int i2, int i3) {
         b bVarP = b.P();
         int i4 = this.uniqueID;
         ActorState actorState = this.state;
-        return bVarP.f(i2, i3, i4, (actorState == ActorState.f3076f || actorState == ActorState.f3078h) ? false : true);
+        return bVarP.f(i2, i3, i4, (actorState == ActorState.PUSHED || actorState == ActorState.SKILL_CHARGE) ? false : true);
     }
 
     private void Y() {
@@ -232,16 +101,16 @@ public abstract class MapActor extends MapSprite {
         ActorState actorState2;
         w0(f2);
         ActorState actorState3 = this.state;
-        ActorState actorState4 = ActorState.f3074d;
-        ActorState actorState5 = ActorState.f3071a;
-        ActorState actorState6 = ActorState.f3072b;
-        if (actorState3 != actorState4 && actorState3 != ActorState.f3080j) {
+        ActorState actorState4 = ActorState.DEAD;
+        ActorState actorState5 = ActorState.IDLE;
+        ActorState actorState6 = ActorState.MOVING;
+        if (actorState3 != actorState4 && actorState3 != ActorState.PARALIZED) {
             boolean z3 = this.movementBlocked;
-            ActorState actorState7 = ActorState.f3078h;
+            ActorState actorState7 = ActorState.SKILL_CHARGE;
             if (!z3 || actorState3 == actorState7) {
                 u0(this.speedX, this.speedY);
                 float f3 = this.speedX;
-                ActorState actorState8 = ActorState.f3076f;
+                ActorState actorState8 = ActorState.PUSHED;
                 if (f3 != 0.0f) {
                     float f4 = f3 * f2;
                     float f5 = this.f3092x + f4;
@@ -297,7 +166,7 @@ public abstract class MapActor extends MapSprite {
                         q0(actorState5);
                     }
                 }
-                if (z2 && this.state == ActorState.f3079i) {
+                if (z2 && this.state == ActorState.DISABLED) {
                     q0(actorState5);
                 }
                 Y();
@@ -353,7 +222,7 @@ public abstract class MapActor extends MapSprite {
     }
 
     public final void N(float f2) {
-        if (this.movementBlocked && this.state != ActorState.f3078h) {
+        if (this.movementBlocked && this.state != ActorState.SKILL_CHARGE) {
             this.speedX = 0.0f;
         } else {
             this.speedX = c0() * f2 * 125.0f;
@@ -361,7 +230,7 @@ public abstract class MapActor extends MapSprite {
     }
 
     public final void O(float f2) {
-        if (this.movementBlocked && this.state != ActorState.f3078h) {
+        if (this.movementBlocked && this.state != ActorState.SKILL_CHARGE) {
             this.speedY = 0.0f;
         } else {
             this.speedY = c0() * f2 * 125.0f;
@@ -411,7 +280,7 @@ public abstract class MapActor extends MapSprite {
     }
 
     public p S(boolean z2) {
-        if (this.state == ActorState.f3074d) {
+        if (this.state == ActorState.DEAD) {
             return null;
         }
         return T(this.f3092x, this.f3093y, z2);
@@ -432,7 +301,7 @@ public abstract class MapActor extends MapSprite {
     }
 
     protected final float V() {
-        return this.state == ActorState.f3078h ? this.stateRelativeTime * 3.0f : this.stateRelativeTime;
+        return this.state == ActorState.SKILL_CHARGE ? this.stateRelativeTime * 3.0f : this.stateRelativeTime;
     }
 
     public final void W() {
@@ -443,7 +312,7 @@ public abstract class MapActor extends MapSprite {
         if (i0()) {
             return;
         }
-        q0(ActorState.f3074d);
+        q0(ActorState.DEAD);
         this.movementBlocked = true;
     }
 
@@ -475,7 +344,7 @@ public abstract class MapActor extends MapSprite {
 
     public final boolean g0() {
         ActorState actorState = this.state;
-        return actorState == ActorState.f3075e || actorState == ActorState.f3073c || actorState == ActorState.f3081k || actorState == ActorState.f3077g || actorState == ActorState.f3078h;
+        return actorState == ActorState.ACTING || actorState == ActorState.ATTACKING || actorState == ActorState.FIRING || actorState == ActorState.SKILL_WHIRLWIND || actorState == ActorState.SKILL_CHARGE;
     }
 
     public boolean h0() {
@@ -484,12 +353,12 @@ public abstract class MapActor extends MapSprite {
 
     public final boolean i0() {
         ActorState actorState = this.state;
-        return actorState == ActorState.f3074d || actorState == ActorState.f3079i;
+        return actorState == ActorState.DEAD || actorState == ActorState.DISABLED;
     }
 
     public final boolean j0() {
         ActorState actorState = this.state;
-        return actorState == ActorState.f3076f || actorState == ActorState.f3080j;
+        return actorState == ActorState.PUSHED || actorState == ActorState.PARALIZED;
     }
 
     public boolean k0() {
@@ -536,7 +405,7 @@ public abstract class MapActor extends MapSprite {
             Coords coords2 = this.destination;
             coords2.f3287x = iO;
             coords2.f3288y = iN;
-            q0(ActorState.f3076f);
+            q0(ActorState.PUSHED);
             this.pushmaxtime = GameData.v().u() + 0.35f;
             this.movementBlocked = false;
         }
@@ -569,7 +438,7 @@ public abstract class MapActor extends MapSprite {
     }
 
     public void u0(float f2, float f3) {
-        if ((f2 == 0.0f && f3 == 0.0f) || j0() || i0() || this.state == ActorState.f3078h) {
+        if ((f2 == 0.0f && f3 == 0.0f) || j0() || i0() || this.state == ActorState.SKILL_CHARGE) {
             return;
         }
         if (f2 == 0.0f && f3 == 0.0f) {
@@ -580,25 +449,25 @@ public abstract class MapActor extends MapSprite {
         float f5 = f3 - f2;
         if (Math.abs(f4) <= 55.0f) {
             if (f5 < 0.0f) {
-                facing = Facing.f3087e;
+                facing = Facing.D;
             } else if (f5 > 0.0f) {
-                facing = Facing.f3083a;
+                facing = Facing.U;
             }
         } else if (f4 > 0.0f) {
             if (Math.abs(f5) <= 55.0f) {
-                facing = Facing.f3085c;
+                facing = Facing.R;
             } else if (f5 < 0.0f) {
-                facing = Facing.f3086d;
+                facing = Facing.RD;
             } else if (f5 > 0.0f) {
-                facing = Facing.f3084b;
+                facing = Facing.RU;
             }
         } else if (f4 < 0.0f) {
             if (Math.abs(f5) <= 55.0f) {
-                facing = Facing.f3089g;
+                facing = Facing.L;
             } else if (f5 < 0.0f) {
-                facing = Facing.f3088f;
+                facing = Facing.LD;
             } else if (f5 > 0.0f) {
-                facing = Facing.f3090h;
+                facing = Facing.LU;
             }
         }
         this.facing = facing;
@@ -608,7 +477,7 @@ public abstract class MapActor extends MapSprite {
 
     protected void w0(float f2) {
         ActorState actorState = this.state;
-        if (actorState == ActorState.f3071a || actorState == ActorState.f3076f) {
+        if (actorState == ActorState.IDLE || actorState == ActorState.PUSHED) {
             this.stateRelativeTime = 0.0f;
         } else {
             this.stateRelativeTime += f2;

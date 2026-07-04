@@ -142,7 +142,7 @@ public class ExiledKingdoms extends e {
     };
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    public static GameData.GameStatus f3382l = GameData.GameStatus.f3185b;
+    public static GameData.GameStatus f3382l = GameData.GameStatus.STOPPED;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
     public static boolean f3383m = false;
@@ -274,20 +274,20 @@ public class ExiledKingdoms extends e {
     }
 
     public static float e(ControllerCommand controllerCommand) {
-        if (controllerCommand.type == ControllerCommand.commandType.f3368d && Gdx.input.isKeyPressed(controllerCommand.id)) {
+        if (controllerCommand.type == ControllerCommand.commandType.KEY && Gdx.input.isKeyPressed(controllerCommand.id)) {
             return 1.0f;
         }
         Controller controller = f3384n;
         if (controller == null) {
             return 0.0f;
         }
-        if (controllerCommand.type == ControllerCommand.commandType.f3367c && controller.b(controllerCommand.id)) {
+        if (controllerCommand.type == ControllerCommand.commandType.BUTTON && controller.b(controllerCommand.id)) {
             return 1.0f;
         }
-        if (controllerCommand.type == ControllerCommand.commandType.f3365a && f3384n.c(controllerCommand.id) < -0.2f) {
+        if (controllerCommand.type == ControllerCommand.commandType.NEGATIVE_AXIS && f3384n.c(controllerCommand.id) < -0.2f) {
             return f3384n.c(controllerCommand.id) * (-1.0f);
         }
-        if (controllerCommand.type == ControllerCommand.commandType.f3366b && f3384n.c(controllerCommand.id) > 0.2f) {
+        if (controllerCommand.type == ControllerCommand.commandType.POSITIVE_AXIS && f3384n.c(controllerCommand.id) > 0.2f) {
             return f3384n.c(controllerCommand.id);
         }
         return 0.0f;
@@ -313,7 +313,7 @@ public class ExiledKingdoms extends e {
         if (z.z().booleanValue()) {
             return false;
         }
-        if (controllerCommand.type == ControllerCommand.commandType.f3368d && Gdx.input.isKeyJustPressed(controllerCommand.id)) {
+        if (controllerCommand.type == ControllerCommand.commandType.KEY && Gdx.input.isKeyJustPressed(controllerCommand.id)) {
             return true;
         }
         if (f3384n == null) {
@@ -321,7 +321,7 @@ public class ExiledKingdoms extends e {
         }
         try {
             int iOrdinal = controllerCommand.type.ordinal();
-            return iOrdinal != 0 ? iOrdinal != 1 ? iOrdinal != 2 ? iOrdinal == 4 && controllerCommand.type == ControllerCommand.commandType.f3369e && f3384n.a(controllerCommand.povIndex) == PovDirection.f1616b && controllerCommand.id == 1 : f3384n.b(controllerCommand.id) : f3384n.c(controllerCommand.id) > 0.2f : f3384n.c(controllerCommand.id) < -0.2f;
+            return iOrdinal != 0 ? iOrdinal != 1 ? iOrdinal != 2 ? iOrdinal == 4 && controllerCommand.type == ControllerCommand.commandType.POV && f3384n.a(controllerCommand.povIndex) == PovDirection.f1616b && controllerCommand.id == 1 : f3384n.b(controllerCommand.id) : f3384n.c(controllerCommand.id) > 0.2f : f3384n.c(controllerCommand.id) < -0.2f;
         } catch (Exception e2) {
             l.d("ExiledKingdoms.initialize() EXCEPTION:  " + e2.getMessage());
         }

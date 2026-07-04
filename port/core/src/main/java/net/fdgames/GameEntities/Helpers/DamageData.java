@@ -30,7 +30,7 @@ public class DamageData extends MessageData {
         }
         Iterator<Damage> it = arrayList.iterator();
         while (it.hasNext()) {
-            if (it.next().type.equals(Damage.DamageType.f3047b)) {
+            if (it.next().type.equals(Damage.DamageType.Fire)) {
                 return true;
             }
         }

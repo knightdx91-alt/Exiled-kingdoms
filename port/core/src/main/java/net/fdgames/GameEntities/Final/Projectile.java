@@ -37,41 +37,8 @@ public class Projectile extends MapSprite {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class ProjectileType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final ProjectileType f3030a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final ProjectileType f3031b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final ProjectileType f3032c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private static final /* synthetic */ ProjectileType[] f3033d;
-
-        static {
-            ProjectileType projectileType = new ProjectileType("ARROW", 0);
-            f3030a = projectileType;
-            ProjectileType projectileType2 = new ProjectileType("BOLT", 1);
-            f3031b = projectileType2;
-            ProjectileType projectileType3 = new ProjectileType("GRENADE", 2);
-            f3032c = projectileType3;
-            f3033d = new ProjectileType[]{projectileType, projectileType2, projectileType3};
-        }
-
-        private ProjectileType() {
-            throw null;
-        }
-
-        public static ProjectileType valueOf(String str) {
-            return (ProjectileType) Enum.valueOf(ProjectileType.class, str);
-        }
-
-        public static ProjectileType[] values() {
-            return (ProjectileType[]) f3033d.clone();
-        }
+    public enum ProjectileType {
+        ARROW, BOLT, GRENADE;
     }
 
     public Projectile() {
@@ -110,7 +77,7 @@ public class Projectile extends MapSprite {
             this.destroy = true;
         }
         int i2 = this.owner_id;
-        ProjectileType projectileType = ProjectileType.f3032c;
+        ProjectileType projectileType = ProjectileType.GRENADE;
         if (i2 == 1 && GameData.v().u() > this.creationTime + 0.45f) {
             this.destroy = true;
             if (this.type == projectileType) {
@@ -166,7 +133,7 @@ public class Projectile extends MapSprite {
             System.out.println("WARNING: null projectile owner, no damage done");
             return;
         }
-        if (this.type == ProjectileType.f3030a) {
+        if (this.type == ProjectileType.ARROW) {
             mapSpriteI.n(((Integer) arrayListL.get(0)).intValue(), this.damageData);
             this.destroy = true;
         }
@@ -174,7 +141,7 @@ public class Projectile extends MapSprite {
             AreaEffects.d(this.f3092x, this.f3093y, this.explosionID, mapSpriteI.q());
             this.destroy = true;
         }
-        if (this.type == ProjectileType.f3031b) {
+        if (this.type == ProjectileType.BOLT) {
             for (Integer num : arrayListL) {
                 int iIntValue = num.intValue();
                 ArrayList<Integer> arrayList = this.AlreadyHit;
@@ -204,10 +171,10 @@ public class Projectile extends MapSprite {
     public final void O() {
         int[] iArr = this.worldfactions;
         if (iArr == null || iArr[0] == 0) {
-            if (this.faction.equals(Factions.Faction.f3060a)) {
+            if (this.faction.equals(Factions.Faction.ENEMY)) {
                 x(Quests.SELECT_COMPLETED_UNCLAIMED);
             }
-            if (this.faction.equals(Factions.Faction.f3062c)) {
+            if (this.faction.equals(Factions.Faction.PLAYER)) {
                 x(100);
             }
         }

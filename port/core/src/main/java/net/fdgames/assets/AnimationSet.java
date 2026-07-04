@@ -88,51 +88,8 @@ public class AnimationSet {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class SpriteFacing {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final SpriteFacing f3303a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final SpriteFacing f3304b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final SpriteFacing f3305c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final SpriteFacing f3306d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final SpriteFacing f3307e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        private static final /* synthetic */ SpriteFacing[] f3308f;
-
-        static {
-            SpriteFacing spriteFacing = new SpriteFacing("U", 0);
-            f3303a = spriteFacing;
-            SpriteFacing spriteFacing2 = new SpriteFacing("RU", 1);
-            f3304b = spriteFacing2;
-            SpriteFacing spriteFacing3 = new SpriteFacing("R", 2);
-            f3305c = spriteFacing3;
-            SpriteFacing spriteFacing4 = new SpriteFacing("RD", 3);
-            f3306d = spriteFacing4;
-            SpriteFacing spriteFacing5 = new SpriteFacing("D", 4);
-            f3307e = spriteFacing5;
-            f3308f = new SpriteFacing[]{spriteFacing, spriteFacing2, spriteFacing3, spriteFacing4, spriteFacing5};
-        }
-
-        private SpriteFacing() {
-            throw null;
-        }
-
-        public static SpriteFacing valueOf(String str) {
-            return (SpriteFacing) Enum.valueOf(SpriteFacing.class, str);
-        }
-
-        public static SpriteFacing[] values() {
-            return (SpriteFacing[]) f3308f.clone();
-        }
+    public enum SpriteFacing {
+        U, RU, R, RD, D;
     }
 
     private class frameInfo {
@@ -168,23 +125,23 @@ public class AnimationSet {
             z2 = false;
         }
         this.texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Linear);
-        this.stateFacingAnimations.put(MapActor.ActorState.f3072b, c(this.texture, 1, 2, 8, Animation.PlayMode.LOOP, 0.085f, zContains));
+        this.stateFacingAnimations.put(MapActor.ActorState.MOVING, c(this.texture, 1, 2, 8, Animation.PlayMode.LOOP, 0.085f, zContains));
         EnumMap<MapActor.ActorState, EnumMap<SpriteFacing, Animation>> enumMap = this.stateFacingAnimations;
-        MapActor.ActorState actorState = MapActor.ActorState.f3071a;
+        MapActor.ActorState actorState = MapActor.ActorState.IDLE;
         Texture texture = this.texture;
         Animation.PlayMode playMode = Animation.PlayMode.NORMAL;
         enumMap.put(actorState, c(texture, 1, 1, 1, playMode, 1.0f, zContains));
-        this.stateFacingAnimations.put(MapActor.ActorState.f3076f, c(this.texture, 1, 1, 1, playMode, 1.0f, zContains));
-        this.stateFacingAnimations.put(MapActor.ActorState.f3073c, c(this.texture, 6, 1, 4, playMode, 0.35f, zContains));
-        MapActor.ActorState actorState2 = MapActor.ActorState.f3081k;
+        this.stateFacingAnimations.put(MapActor.ActorState.PUSHED, c(this.texture, 1, 1, 1, playMode, 1.0f, zContains));
+        this.stateFacingAnimations.put(MapActor.ActorState.ATTACKING, c(this.texture, 6, 1, 4, playMode, 0.35f, zContains));
+        MapActor.ActorState actorState2 = MapActor.ActorState.FIRING;
         if (z2) {
             this.stateFacingAnimations.put(actorState2, c(this.texture_ranged, 1, 1, 4, playMode, 0.35f, zContains));
         } else {
             this.stateFacingAnimations.put(actorState2, c(this.texture, 6, 1, 4, playMode, 0.35f, zContains));
         }
-        this.stateFacingAnimations.put(MapActor.ActorState.f3078h, c(this.texture, 6, 1, 4, playMode, 0.175f, zContains));
-        this.stateFacingAnimations.put(MapActor.ActorState.f3075e, c(this.texture, 6, 1, 4, Animation.PlayMode.LOOP_PINGPONG, 0.2f, zContains));
-        this.stateFacingAnimations.put(MapActor.ActorState.f3080j, c(this.texture, 1, 1, 1, playMode, 1.0f, zContains));
+        this.stateFacingAnimations.put(MapActor.ActorState.SKILL_CHARGE, c(this.texture, 6, 1, 4, playMode, 0.175f, zContains));
+        this.stateFacingAnimations.put(MapActor.ActorState.ACTING, c(this.texture, 6, 1, 4, Animation.PlayMode.LOOP_PINGPONG, 0.2f, zContains));
+        this.stateFacingAnimations.put(MapActor.ActorState.PARALIZED, c(this.texture, 1, 1, 1, playMode, 1.0f, zContains));
         Texture texture2 = this.texture;
         int i8 = zContains ? 200 : 140;
         this.animation = b(texture2, 11, 1, 4, i8, i8, playMode, 0.1f);
@@ -192,7 +149,7 @@ public class AnimationSet {
         for (SpriteFacing spriteFacing : SpriteFacing.values()) {
             enumMap2.put(spriteFacing, this.animation);
         }
-        this.stateFacingAnimations.put(MapActor.ActorState.f3074d, enumMap2);
+        this.stateFacingAnimations.put(MapActor.ActorState.DEAD, enumMap2);
         Texture texture3 = this.texture;
         Animation.PlayMode playMode2 = Animation.PlayMode.NORMAL;
         int i9 = zContains ? 200 : 140;
@@ -201,9 +158,9 @@ public class AnimationSet {
         for (SpriteFacing spriteFacing2 : SpriteFacing.values()) {
             enumMap3.put(spriteFacing2, this.animation);
         }
-        this.stateFacingAnimations.put(MapActor.ActorState.f3079i, enumMap3);
+        this.stateFacingAnimations.put(MapActor.ActorState.DISABLED, enumMap3);
         EnumMap<MapActor.ActorState, EnumMap<SpriteFacing, Animation>> enumMap4 = this.stateFacingAnimations;
-        MapActor.ActorState actorState3 = MapActor.ActorState.f3077g;
+        MapActor.ActorState actorState3 = MapActor.ActorState.SKILL_WHIRLWIND;
         Texture texture4 = this.texture;
         Animation.PlayMode playMode3 = Animation.PlayMode.NORMAL;
         EnumMap<SpriteFacing, Animation> enumMap5 = new EnumMap<>(SpriteFacing.class);
@@ -321,12 +278,12 @@ public class AnimationSet {
     public final Animation a(MapActor.ActorState actorState, MapActor.Facing facing) {
         EnumMap<SpriteFacing, Animation> enumMap = this.stateFacingAnimations.get(actorState);
         int iOrdinal = facing.ordinal();
-        SpriteFacing spriteFacing = SpriteFacing.f3305c;
-        SpriteFacing spriteFacing2 = SpriteFacing.f3306d;
-        SpriteFacing spriteFacing3 = SpriteFacing.f3304b;
-        SpriteFacing spriteFacing4 = SpriteFacing.f3307e;
+        SpriteFacing spriteFacing = SpriteFacing.R;
+        SpriteFacing spriteFacing2 = SpriteFacing.RD;
+        SpriteFacing spriteFacing3 = SpriteFacing.RU;
+        SpriteFacing spriteFacing4 = SpriteFacing.D;
         if (iOrdinal == 0) {
-            spriteFacing = SpriteFacing.f3303a;
+            spriteFacing = SpriteFacing.U;
         } else if (iOrdinal == 1) {
             spriteFacing = spriteFacing3;
         } else if (iOrdinal != 2) {

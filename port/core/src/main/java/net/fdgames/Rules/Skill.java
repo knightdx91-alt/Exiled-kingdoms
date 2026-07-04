@@ -25,36 +25,8 @@ public class Skill {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class SKILL_TYPE {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final SKILL_TYPE f3277a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final SKILL_TYPE f3278b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        private static final /* synthetic */ SKILL_TYPE[] f3279c;
-
-        static {
-            SKILL_TYPE skill_type = new SKILL_TYPE("SKILL_ACTIVE", 0);
-            f3277a = skill_type;
-            SKILL_TYPE skill_type2 = new SKILL_TYPE("SKILL_PASSIVE", 1);
-            f3278b = skill_type2;
-            f3279c = new SKILL_TYPE[]{skill_type, skill_type2};
-        }
-
-        private SKILL_TYPE() {
-            throw null;
-        }
-
-        public static SKILL_TYPE valueOf(String str) {
-            return (SKILL_TYPE) Enum.valueOf(SKILL_TYPE.class, str);
-        }
-
-        public static SKILL_TYPE[] values() {
-            return (SKILL_TYPE[]) f3279c.clone();
-        }
+    public enum SKILL_TYPE {
+        SKILL_ACTIVE, SKILL_PASSIVE;
     }
 
     public Skill(String str, String str2, String str3, SKILL_TYPE skill_type, String str4, Boolean bool, boolean z2, boolean z3, boolean z4) {

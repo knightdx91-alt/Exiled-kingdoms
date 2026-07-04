@@ -68,37 +68,37 @@ public class CharacterInventory {
             return false;
         }
         Item.ItemType itemType = itemF.type;
-        if (itemType == Item.ItemType.f3230b) {
+        if (itemType == Item.ItemType.WEAPON) {
             i3 = this.slot_mainhand;
             this.slot_mainhand = i4;
         } else {
             i3 = 0;
         }
-        if (itemType == Item.ItemType.f3232d) {
+        if (itemType == Item.ItemType.ARMOR_HEAD) {
             i3 = this.slot_head;
             this.slot_head = i4;
         }
-        if (itemType == Item.ItemType.f3233e) {
+        if (itemType == Item.ItemType.ARMOR_CHEST) {
             i3 = this.slot_body;
             this.slot_body = i4;
         }
-        if (itemType == Item.ItemType.f3236h) {
+        if (itemType == Item.ItemType.ARMOR_ARMS) {
             i3 = this.slot_hands;
             this.slot_hands = i4;
         }
-        if (itemType == Item.ItemType.f3234f) {
+        if (itemType == Item.ItemType.ARMOR_FEET) {
             i3 = this.slot_feet;
             this.slot_feet = i4;
         }
-        if (itemType == Item.ItemType.f3235g) {
+        if (itemType == Item.ItemType.ARMOR_LEGS) {
             i3 = this.slot_legs;
             this.slot_legs = i4;
         }
-        if (itemType == Item.ItemType.f3231c) {
+        if (itemType == Item.ItemType.SHIELD) {
             i3 = this.slot_offhand;
             this.slot_offhand = i4;
         }
-        if (itemType != Item.ItemType.f3240l) {
+        if (itemType != Item.ItemType.RING) {
             i5 = i3;
         } else {
             i3 = this.slot_ring;
@@ -114,15 +114,15 @@ public class CharacterInventory {
                 }
             }
         }
-        if (itemType == Item.ItemType.f3241m) {
+        if (itemType == Item.ItemType.BELT) {
             i5 = this.slot_belt;
             this.slot_belt = i4;
         }
-        if (itemType == Item.ItemType.f3242n) {
+        if (itemType == Item.ItemType.CLOAK) {
             i5 = this.slot_cloak;
             this.slot_cloak = i4;
         }
-        if (itemType == Item.ItemType.f3243o) {
+        if (itemType == Item.ItemType.NECKLACE) {
             i5 = this.slot_necklace;
             this.slot_necklace = i4;
         }

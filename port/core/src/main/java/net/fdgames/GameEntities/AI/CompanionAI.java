@@ -22,21 +22,21 @@ public class CompanionAI extends AI {
         }
         int iOrdinal = nPCState.ordinal();
         if (iOrdinal == 0) {
-            this.state = AI.NPCState.f2974a;
+            this.state = AI.NPCState.IDLE;
             return;
         }
         if (iOrdinal == 1) {
-            this.state = AI.NPCState.f2975b;
+            this.state = AI.NPCState.AGRESSIVE;
             this.targetActorID = npc.detectedEnemyID;
         } else if (iOrdinal == 2) {
-            this.state = AI.NPCState.f2976c;
+            this.state = AI.NPCState.FLEEING;
         } else if (iOrdinal == 3) {
-            this.state = AI.NPCState.f2977d;
+            this.state = AI.NPCState.DEAD;
         } else {
             if (iOrdinal != 4) {
                 return;
             }
-            this.state = AI.NPCState.f2978e;
+            this.state = AI.NPCState.ACTINGON;
         }
     }
 
@@ -90,7 +90,7 @@ public class CompanionAI extends AI {
                 }
                 this.trap = trap;
                 if (trap != null && trap.N(npc) >= 65) {
-                    a(AI.NPCState.f2978e);
+                    a(AI.NPCState.ACTINGON);
                     return;
                 }
             }
@@ -105,7 +105,7 @@ public class CompanionAI extends AI {
                 return;
             }
         }
-        AI.NPCState nPCState = AI.NPCState.f2974a;
+        AI.NPCState nPCState = AI.NPCState.IDLE;
         if (iOrdinal != 1) {
             if (iOrdinal != 4) {
                 return;
@@ -138,7 +138,7 @@ public class CompanionAI extends AI {
             a(nPCState);
             return;
         }
-        if (GameLevel.g(this.targetActorID).d0() == MapActor.ActorState.f3074d) {
+        if (GameLevel.g(this.targetActorID).d0() == MapActor.ActorState.DEAD) {
             a(nPCState);
             return;
         }

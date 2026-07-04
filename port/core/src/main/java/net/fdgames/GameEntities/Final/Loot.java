@@ -109,7 +109,7 @@ public final class Loot extends MapSprite implements Lootable {
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable
     public final Lootable.LootableType getType() {
-        return Lootable.LootableType.f3065b;
+        return Lootable.LootableType.LOOT;
     }
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable

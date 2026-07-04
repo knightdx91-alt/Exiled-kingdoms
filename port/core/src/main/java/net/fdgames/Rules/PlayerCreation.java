@@ -12,8 +12,8 @@ public class PlayerCreation {
     public int portraitIndex;
 
     public PlayerCreation(String str, int i2) {
-        Character.Gender gender = Character.Gender.f2992a;
-        Rules.CharacterClass characterClass = Rules.CharacterClass.f3258a;
+        Character.Gender gender = Character.Gender.Male;
+        Rules.CharacterClass characterClass = Rules.CharacterClass.WARRIOR;
         this.name = str;
         this.portraitIndex = i2;
         this.gender = gender;

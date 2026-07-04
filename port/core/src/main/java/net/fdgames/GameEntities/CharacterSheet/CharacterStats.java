@@ -126,12 +126,12 @@ public class CharacterStats {
             return this.cached_maxhp;
         }
         Rules.CharacterRace characterRace = this.characterRace;
-        Rules.CharacterRace characterRace2 = Rules.CharacterRace.f3266a;
-        Rules.CharacterRace characterRace3 = Rules.CharacterRace.f3274i;
-        Rules.CharacterRace characterRace4 = Rules.CharacterRace.f3273h;
-        Rules.CharacterClass characterClass = Rules.CharacterClass.f3259b;
-        Rules.CharacterClass characterClass2 = Rules.CharacterClass.f3260c;
-        Rules.CharacterClass characterClass3 = Rules.CharacterClass.f3258a;
+        Rules.CharacterRace characterRace2 = Rules.CharacterRace.HUMAN;
+        Rules.CharacterRace characterRace3 = Rules.CharacterRace.BOSS;
+        Rules.CharacterRace characterRace4 = Rules.CharacterRace.MINIBOSS;
+        Rules.CharacterClass characterClass = Rules.CharacterClass.ROGUE;
+        Rules.CharacterClass characterClass2 = Rules.CharacterClass.CLERIC;
+        Rules.CharacterClass characterClass3 = Rules.CharacterClass.WARRIOR;
         if (characterRace == characterRace2) {
             Rules.CharacterClass characterClass4 = this.characterClass;
             i2 = characterClass4 == characterClass3 ? 45 : characterClass4 == characterClass2 ? 35 : characterClass4 == characterClass ? 30 : 20;
@@ -140,17 +140,17 @@ public class CharacterStats {
         }
         int i4 = 5;
         if (characterRace != characterRace2) {
-            if (characterRace == Rules.CharacterRace.f3270e) {
+            if (characterRace == Rules.CharacterRace.MONSTER) {
                 i3 = -1;
-            } else if (characterRace != Rules.CharacterRace.f3271f) {
-                i3 = characterRace == Rules.CharacterRace.f3272g ? 2 : characterRace == characterRace4 ? 5 : characterRace == characterRace3 ? 12 : characterRace == Rules.CharacterRace.f3275j ? -2 : 0;
+            } else if (characterRace != Rules.CharacterRace.MONSTER_WEAK) {
+                i3 = characterRace == Rules.CharacterRace.MONSTER_STRONG ? 2 : characterRace == characterRace4 ? 5 : characterRace == characterRace3 ? 12 : characterRace == Rules.CharacterRace.NPC ? -2 : 0;
             }
         }
         Rules.CharacterClass characterClass5 = this.characterClass;
         if (characterClass5 == characterClass3) {
             i4 = 6;
         } else if (characterClass5 != characterClass2) {
-            i4 = characterClass5 == characterClass ? 4 : characterClass5 == Rules.CharacterClass.f3261d ? 3 : 0;
+            i4 = characterClass5 == characterClass ? 4 : characterClass5 == Rules.CharacterClass.WIZARD ? 3 : 0;
         }
         int iE = ((i3 + i4) * e()) + i2;
         if (this.characterRace == characterRace2) {
@@ -167,9 +167,9 @@ public class CharacterStats {
             return this.cached_maxmana;
         }
         int i2 = j() ? 2 : 0;
-        int i3 = this.characterRace == Rules.CharacterRace.f3266a ? 12 : 0;
+        int i3 = this.characterRace == Rules.CharacterRace.HUMAN ? 12 : 0;
         Rules.CharacterClass characterClass = this.characterClass;
-        if (characterClass != Rules.CharacterClass.f3261d && characterClass != Rules.CharacterClass.f3260c) {
+        if (characterClass != Rules.CharacterClass.WIZARD && characterClass != Rules.CharacterClass.CLERIC) {
             return 0;
         }
         int iF = f();
@@ -185,7 +185,7 @@ public class CharacterStats {
             return this.cached_monster;
         }
         Rules.CharacterRace characterRace = this.characterRace;
-        return characterRace == Rules.CharacterRace.f3270e || characterRace == Rules.CharacterRace.f3271f || characterRace == Rules.CharacterRace.f3272g || characterRace == Rules.CharacterRace.f3273h || characterRace == Rules.CharacterRace.f3274i;
+        return characterRace == Rules.CharacterRace.MONSTER || characterRace == Rules.CharacterRace.MONSTER_WEAK || characterRace == Rules.CharacterRace.MONSTER_STRONG || characterRace == Rules.CharacterRace.MINIBOSS || characterRace == Rules.CharacterRace.BOSS;
     }
 
     final void k() {

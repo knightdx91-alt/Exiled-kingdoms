@@ -61,41 +61,8 @@ public class MonsterSpawn extends MapObject {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class Daycycle {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final Daycycle f3019a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final Daycycle f3020b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final Daycycle f3021c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private static final /* synthetic */ Daycycle[] f3022d;
-
-        static {
-            Daycycle daycycle = new Daycycle("NORMAL", 0);
-            f3019a = daycycle;
-            Daycycle daycycle2 = new Daycycle("DAY", 1);
-            f3020b = daycycle2;
-            Daycycle daycycle3 = new Daycycle("NIGHT", 2);
-            f3021c = daycycle3;
-            f3022d = new Daycycle[]{daycycle, daycycle2, daycycle3};
-        }
-
-        private Daycycle() {
-            throw null;
-        }
-
-        public static Daycycle valueOf(String str) {
-            return (Daycycle) Enum.valueOf(Daycycle.class, str);
-        }
-
-        public static Daycycle[] values() {
-            return (Daycycle[]) f3022d.clone();
-        }
+    public enum Daycycle {
+        NORMAL, DAY, NIGHT;
     }
 
     public MonsterSpawn() {
@@ -140,7 +107,7 @@ public class MonsterSpawn extends MapObject {
 
     public final Daycycle J() {
         if (this.cycle == null) {
-            this.cycle = Daycycle.f3019a;
+            this.cycle = Daycycle.NORMAL;
         }
         return this.cycle;
     }
@@ -155,28 +122,28 @@ public class MonsterSpawn extends MapObject {
 
     public final void M(String str) {
         String lowerCase = str.toLowerCase(Locale.ENGLISH);
-        this.cycle = lowerCase.equals("night") ? Daycycle.f3021c : lowerCase.equals("day") ? Daycycle.f3020b : Daycycle.f3019a;
+        this.cycle = lowerCase.equals("night") ? Daycycle.NIGHT : lowerCase.equals("day") ? Daycycle.DAY : Daycycle.NORMAL;
     }
 
     public final void N(String str) {
         Locale locale = Locale.ENGLISH;
         if (str.toLowerCase(locale).equals("ru")) {
-            this.preferredFacing = MapActor.Facing.f3084b;
+            this.preferredFacing = MapActor.Facing.RU;
         }
         if (str.toLowerCase(locale).equals("rd")) {
-            this.preferredFacing = MapActor.Facing.f3086d;
+            this.preferredFacing = MapActor.Facing.RD;
         }
         if (str.toLowerCase(locale).equals("lu")) {
-            this.preferredFacing = MapActor.Facing.f3090h;
+            this.preferredFacing = MapActor.Facing.LU;
         }
         if (str.toLowerCase(locale).equals("ld")) {
-            this.preferredFacing = MapActor.Facing.f3088f;
+            this.preferredFacing = MapActor.Facing.LD;
         }
         if (str.toLowerCase(locale).equals("l")) {
-            this.preferredFacing = MapActor.Facing.f3089g;
+            this.preferredFacing = MapActor.Facing.L;
         }
         if (str.toLowerCase(locale).equals("d")) {
-            this.preferredFacing = MapActor.Facing.f3087e;
+            this.preferredFacing = MapActor.Facing.D;
         }
     }
 
@@ -198,12 +165,12 @@ public class MonsterSpawn extends MapObject {
         NPC next;
         int iJ = DynamicQuest.j(this.questLocation);
         if (this.cycle == null) {
-            this.cycle = Daycycle.f3019a;
+            this.cycle = Daycycle.NORMAL;
         }
-        if (GameData.v().night && this.cycle == Daycycle.f3020b) {
+        if (GameData.v().night && this.cycle == Daycycle.DAY) {
             return;
         }
-        if (!GameData.v().night && this.cycle == Daycycle.f3021c) {
+        if (!GameData.v().night && this.cycle == Daycycle.NIGHT) {
             return;
         }
         if (iJ > 0 && !this.markRespawn) {
@@ -391,10 +358,10 @@ public class MonsterSpawn extends MapObject {
     public final void R() {
         int[] iArr = this.worldfactions;
         if (iArr == null || iArr[0] == 0) {
-            if (this.faction.equals(Factions.Faction.f3060a)) {
+            if (this.faction.equals(Factions.Faction.ENEMY)) {
                 x(com.google.android.gms.games.quest.Quests.SELECT_COMPLETED_UNCLAIMED);
             }
-            if (this.faction.equals(Factions.Faction.f3062c)) {
+            if (this.faction.equals(Factions.Faction.PLAYER)) {
                 x(100);
             }
         }
@@ -477,7 +444,7 @@ public class MonsterSpawn extends MapObject {
         ConditionsSet conditionsSet = new ConditionsSet(eVar.f2449e);
         this.spawnConditions = conditionsSet;
         this.markRespawn = false;
-        this.preferredFacing = MapActor.Facing.f3088f;
+        this.preferredFacing = MapActor.Facing.LD;
         if (conditionsSet.a().booleanValue()) {
             m(0.1f, q(), "SPAWN");
         }

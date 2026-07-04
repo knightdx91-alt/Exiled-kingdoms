@@ -230,25 +230,8 @@ public class GameAssets {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class Tint {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private static final /* synthetic */ Tint[] f3360a = {new Tint("RED", 0), new Tint("GREEN", 1), new Tint("BLUE", 2), new Tint("BLACK", 3), new Tint("NONE", 4)};
-
-        /* JADX INFO: Fake field, exist only in values array */
-        Tint EF5;
-
-        private Tint() {
-            throw null;
-        }
-
-        public static Tint valueOf(String str) {
-            return (Tint) Enum.valueOf(Tint.class, str);
-        }
-
-        public static Tint[] values() {
-            return (Tint[]) f3360a.clone();
-        }
+    public enum Tint {
+        RED, GREEN, BLUE, BLACK, NONE;
     }
 
     static {

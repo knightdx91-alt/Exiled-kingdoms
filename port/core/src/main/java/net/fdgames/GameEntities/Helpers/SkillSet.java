@@ -209,7 +209,7 @@ public class SkillSet {
 
     public final void p() {
         for (CharacterSkill characterSkill : this.characterSkills) {
-            if (Skills.c(characterSkill.skillID).type == Skill.SKILL_TYPE.f3277a) {
+            if (Skills.c(characterSkill.skillID).type == Skill.SKILL_TYPE.SKILL_ACTIVE) {
                 characterSkill.timeToCoolDown = 0.0f;
             }
         }
@@ -252,7 +252,7 @@ public class SkillSet {
             return;
         }
         for (int i2 = 0; i2 < this.characterSkills.size(); i2++) {
-            if (this.characterSkills.get(i2).skillID != null && (skillC = Skills.c(this.characterSkills.get(i2).skillID)) != null && skillC.type == Skill.SKILL_TYPE.f3277a) {
+            if (this.characterSkills.get(i2).skillID != null && (skillC = Skills.c(this.characterSkills.get(i2).skillID)) != null && skillC.type == Skill.SKILL_TYPE.SKILL_ACTIVE) {
                 CharacterSkill characterSkill = this.characterSkills.get(i2);
                 float f3 = characterSkill.timeToCoolDown;
                 if (f3 > 0.0f) {

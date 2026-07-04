@@ -17,7 +17,7 @@ public class SheetBonus {
         ArrayList<DamageEffect> arrayList = new ArrayList<>();
         if (characterSheet.N().hasProc) {
             DamageEffect damageEffect = new DamageEffect(characterSheet.N().procEffect, characterSheet.N().procLevel, characterSheet.N().procChance);
-            if (damageEffect.type == DamageEffect.EffectType.f3058e && characterSheet.Q(1022) == 0) {
+            if (damageEffect.type == DamageEffect.EffectType.EMP && characterSheet.Q(1022) == 0) {
                 damageEffect.b();
             }
             arrayList.add(damageEffect);
@@ -28,9 +28,9 @@ public class SheetBonus {
             arrayList.add(new DamageEffect(Rules.f(characterInventory2.slot_offhand).procEffect, Rules.f(characterInventory2.slot_offhand).procLevel, Rules.f(characterInventory2.slot_offhand).procChance));
         }
         int iOrdinal = weapontype.ordinal();
-        DamageEffect.EffectType effectType = DamageEffect.EffectType.f3056c;
+        DamageEffect.EffectType effectType = DamageEffect.EffectType.CRUSADER;
         if (iOrdinal != 0) {
-            DamageEffect.EffectType effectType2 = DamageEffect.EffectType.f3054a;
+            DamageEffect.EffectType effectType2 = DamageEffect.EffectType.STUN;
             if (iOrdinal == 1) {
                 int iG2 = characterSheet.skillSet.g("crusader");
                 if (iG2 > 0) {
@@ -61,7 +61,7 @@ public class SheetBonus {
                 int iG5 = characterSheet.skillSet.g("staff_mastery");
                 if (iG5 > 0) {
                     if (iG5 > 0) {
-                        DamageEffect.EffectType effectType3 = DamageEffect.EffectType.f3055b;
+                        DamageEffect.EffectType effectType3 = DamageEffect.EffectType.SLOW;
                         if (iG5 == 1) {
                             damageEffect = new DamageEffect(effectType3, 2, 25);
                         } else if (iG5 == 2) {
@@ -88,7 +88,7 @@ public class SheetBonus {
     }
 
     public static float b(CharacterSheet characterSheet, WeaponStats.weaponType weapontype) {
-        WeaponStats.weaponType weapontype2 = WeaponStats.weaponType.f3284c;
+        WeaponStats.weaponType weapontype2 = WeaponStats.weaponType.ranged;
         if (weapontype == weapontype2 && characterSheet.effects.rapid_fire) {
             int iG = characterSheet.skillSet.g("rapid_fire");
             if (iG == 1) {
@@ -208,7 +208,7 @@ public class SheetBonus {
             } else {
                 i2 = iD / 2;
             }
-            weapontype2 = WeaponStats.weaponType.f3284c;
+            weapontype2 = WeaponStats.weaponType.ranged;
             if (!weapontype.equals(weapontype2)) {
                 int iG4 = characterSheet.skillSet.g("heavyhand");
                 if (iG4 == 1) {
@@ -260,7 +260,7 @@ public class SheetBonus {
             if (characterEffects.bloodlust.booleanValue()) {
                 i6 += characterEffects.bloodlustBonus;
             }
-            if (characterSheet.effects.might_arbenos.booleanValue() && weapontype == WeaponStats.weaponType.f3283b) {
+            if (characterSheet.effects.might_arbenos.booleanValue() && weapontype == WeaponStats.weaponType.twohanded) {
                 i6 += characterSheet.effects.mightBonus_arbenos;
             }
             return characterSheet.stats.d() + iG + i4 + i5 + i6;
@@ -269,7 +269,7 @@ public class SheetBonus {
         i3 = iD + i2;
         i4 = i3;
         iG = 0;
-        weapontype2 = WeaponStats.weaponType.f3284c;
+        weapontype2 = WeaponStats.weaponType.ranged;
         if (!weapontype.equals(weapontype2)) {
         }
         if (characterSheet.P("giant")) {

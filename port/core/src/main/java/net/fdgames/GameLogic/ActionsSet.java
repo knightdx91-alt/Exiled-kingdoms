@@ -44,45 +44,45 @@ public class ActionsSet {
             String str3 = strArrSplit[1];
             Locale locale = Locale.ENGLISH;
             if (a.y(str2, locale, "setvariable")) {
-                actionType = ScriptedAction.ActionType.f3140b;
+                actionType = ScriptedAction.ActionType.SetVariable;
             } else if (a.y(str2, locale, "incvariable")) {
-                actionType = ScriptedAction.ActionType.f3142c;
+                actionType = ScriptedAction.ActionType.IncVariable;
             } else if (a.y(str2, locale, "decvariable")) {
-                actionType = ScriptedAction.ActionType.f3144d;
+                actionType = ScriptedAction.ActionType.DecVariable;
             } else if (a.y(str2, locale, "gainitem")) {
-                actionType = ScriptedAction.ActionType.f3146e;
+                actionType = ScriptedAction.ActionType.GainItem;
             } else if (a.y(str2, locale, "gainitems")) {
-                actionType = ScriptedAction.ActionType.f3152h;
+                actionType = ScriptedAction.ActionType.GainItems;
             } else if (a.y(str2, locale, "loseitem")) {
-                actionType = ScriptedAction.ActionType.f3148f;
+                actionType = ScriptedAction.ActionType.LoseItem;
             } else if (a.y(str2, locale, "loseitems")) {
-                actionType = ScriptedAction.ActionType.f3150g;
+                actionType = ScriptedAction.ActionType.LoseItems;
             } else if (a.y(str2, locale, "gaingold")) {
-                actionType = ScriptedAction.ActionType.f3160l;
+                actionType = ScriptedAction.ActionType.GainGold;
             } else if (a.y(str2, locale, "losegold")) {
-                actionType = ScriptedAction.ActionType.f3162m;
+                actionType = ScriptedAction.ActionType.LoseGold;
             } else if (a.y(str2, locale, "gainxp")) {
-                actionType = ScriptedAction.ActionType.f3154i;
+                actionType = ScriptedAction.ActionType.GainXP;
             } else if (a.y(str2, locale, "gainhp")) {
-                actionType = ScriptedAction.ActionType.f3156j;
+                actionType = ScriptedAction.ActionType.GainHP;
             } else if (a.y(str2, locale, "gainrandomhp")) {
                 actionType = ScriptedAction.ActionType.D0;
             } else if (a.y(str2, locale, "gainmana")) {
-                actionType = ScriptedAction.ActionType.f3158k;
+                actionType = ScriptedAction.ActionType.GainMana;
             } else if (a.y(str2, locale, "gainhpfull")) {
-                actionType = ScriptedAction.ActionType.f3164n;
+                actionType = ScriptedAction.ActionType.GetHPFull;
             } else if (a.y(str2, locale, "lesserrestoration")) {
-                actionType = ScriptedAction.ActionType.f3166o;
+                actionType = ScriptedAction.ActionType.LesserRestoration;
             } else if (a.y(str2, locale, "circlerestoration")) {
-                actionType = ScriptedAction.ActionType.f3168p;
+                actionType = ScriptedAction.ActionType.CircleRestoration;
             } else if (a.y(str2, locale, "losehp")) {
-                actionType = ScriptedAction.ActionType.f3170q;
+                actionType = ScriptedAction.ActionType.LoseHP;
             } else if (a.y(str2, locale, "travel")) {
-                actionType = ScriptedAction.ActionType.f3178w;
+                actionType = ScriptedAction.ActionType.Travel;
             } else if (a.y(str2, locale, "npcgoto")) {
-                actionType = ScriptedAction.ActionType.f3179x;
+                actionType = ScriptedAction.ActionType.NPCGoTo;
             } else if (a.y(str2, locale, "npcdespawn")) {
-                actionType = ScriptedAction.ActionType.f3181z;
+                actionType = ScriptedAction.ActionType.NPCDespawn;
             } else if (a.y(str2, locale, "npchostile")) {
                 actionType = ScriptedAction.ActionType.A;
             } else if (a.y(str2, locale, "npcfollow")) {
@@ -146,7 +146,7 @@ public class ActionsSet {
             } else if (a.y(str2, locale, "teleport")) {
                 actionType = ScriptedAction.ActionType.f3149f0;
             } else if (a.y(str2, locale, "npcspawn")) {
-                actionType = ScriptedAction.ActionType.f3180y;
+                actionType = ScriptedAction.ActionType.NPCSpawn;
             } else if (a.y(str2, locale, "npctrytodespawn")) {
                 actionType = ScriptedAction.ActionType.f3153h0;
             } else if (a.y(str2, locale, "openshop")) {
@@ -184,13 +184,13 @@ public class ActionsSet {
             } else if (a.y(str2, locale, "losehptoxic")) {
                 actionType = ScriptedAction.ActionType.s;
             } else if (a.y(str2, locale, "losehpshock")) {
-                actionType = ScriptedAction.ActionType.f3172r;
+                actionType = ScriptedAction.ActionType.LoseHPShock;
             } else if (a.y(str2, locale, "losehpfire")) {
-                actionType = ScriptedAction.ActionType.f3175t;
+                actionType = ScriptedAction.ActionType.LoseHPFire;
             } else if (a.y(str2, locale, "losehpcold")) {
-                actionType = ScriptedAction.ActionType.f3176u;
+                actionType = ScriptedAction.ActionType.LoseHPCold;
             } else if (a.y(str2, locale, "losehpdeath")) {
-                actionType = ScriptedAction.ActionType.f3177v;
+                actionType = ScriptedAction.ActionType.LoseHPDeath;
             } else if (a.y(str2, locale, "openworldcontainer")) {
                 actionType = ScriptedAction.ActionType.w0;
             } else if (a.y(str2, locale, "resetplayerskills")) {
@@ -236,7 +236,7 @@ public class ActionsSet {
             } else if (a.y(str2, locale, "upgradecompanion")) {
                 actionType = ScriptedAction.ActionType.S0;
             } else {
-                actionType = ScriptedAction.ActionType.f3138a;
+                actionType = ScriptedAction.ActionType.None;
             }
             arrayList.add(new ScriptedAction(actionType, str3));
         }

@@ -114,7 +114,7 @@ public class MapContainer extends MapObject implements Lootable {
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable
     public final Lootable.LootableType getType() {
-        return Lootable.LootableType.f3064a;
+        return Lootable.LootableType.MAPCONTAINER;
     }
 
     @Override // net.fdgames.GameEntities.Helpers.Lootable

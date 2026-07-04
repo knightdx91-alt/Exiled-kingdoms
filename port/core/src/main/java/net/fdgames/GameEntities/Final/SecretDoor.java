@@ -25,41 +25,8 @@ public class SecretDoor extends MapObject {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class SecretDoorState {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final SecretDoorState f3034a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final SecretDoorState f3035b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final SecretDoorState f3036c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        private static final /* synthetic */ SecretDoorState[] f3037d;
-
-        static {
-            SecretDoorState secretDoorState = new SecretDoorState("UNDETECTED", 0);
-            f3034a = secretDoorState;
-            SecretDoorState secretDoorState2 = new SecretDoorState("DETECTED", 1);
-            f3035b = secretDoorState2;
-            SecretDoorState secretDoorState3 = new SecretDoorState("OPEN", 2);
-            f3036c = secretDoorState3;
-            f3037d = new SecretDoorState[]{secretDoorState, secretDoorState2, secretDoorState3};
-        }
-
-        private SecretDoorState() {
-            throw null;
-        }
-
-        public static SecretDoorState valueOf(String str) {
-            return (SecretDoorState) Enum.valueOf(SecretDoorState.class, str);
-        }
-
-        public static SecretDoorState[] values() {
-            return (SecretDoorState[]) f3037d.clone();
-        }
+    public enum SecretDoorState {
+        UNDETECTED, DETECTED, OPEN;
     }
 
     static {
@@ -76,11 +43,11 @@ public class SecretDoor extends MapObject {
     }
 
     public final boolean F(int i2, int i3) {
-        return this.state == SecretDoorState.f3035b && Math.abs(this.f3092x - i2) < 40 && Math.abs(this.f3093y - i3) < 40;
+        return this.state == SecretDoorState.DETECTED && Math.abs(this.f3092x - i2) < 40 && Math.abs(this.f3093y - i3) < 40;
     }
 
     public final void G(int i2, String str) {
-        this.state = SecretDoorState.f3035b;
+        this.state = SecretDoorState.DETECTED;
         GameLog gameLog = GameData.v().log;
         StringBuilder sbU = a.a.u("[GREEN]", str, "[] ");
         sbU.append(GameString.b("DETECTS", false));
@@ -99,7 +66,7 @@ public class SecretDoor extends MapObject {
     }
 
     public final boolean H() {
-        if (this.state != SecretDoorState.f3034a || GameData.v().u() < this.lastDetectCheck + 3.0f) {
+        if (this.state != SecretDoorState.UNDETECTED || GameData.v().u() < this.lastDetectCheck + 3.0f) {
             return false;
         }
         Coords coordsB = B();
@@ -112,17 +79,17 @@ public class SecretDoor extends MapObject {
     }
 
     public final boolean J() {
-        return this.state == SecretDoorState.f3036c;
+        return this.state == SecretDoorState.OPEN;
     }
 
     public final void K() {
-        this.state = SecretDoorState.f3036c;
+        this.state = SecretDoorState.OPEN;
         k0.a.l().p();
     }
 
     public final void L(Character character) {
         this.lastDetectCheck = GameData.v().u();
-        if (this.state != SecretDoorState.f3034a) {
+        if (this.state != SecretDoorState.UNDETECTED) {
             return;
         }
         int iC = FDUtils.c(character.sheet.stats.f(), this.level) + character.sheet.s();
@@ -149,15 +116,15 @@ public class SecretDoor extends MapObject {
         iMax = hVar.a("minlevel") ? Integer.parseInt(hVar.b("minlevel").toString()) : iMax;
         iF = hVar.a("maxlevel") ? Integer.parseInt(hVar.b("maxlevel").toString()) : iF;
         this.level = FDUtils.b(iMax > iF ? iF : iMax, iF);
-        this.faction = Factions.Faction.f3061b;
-        this.state = SecretDoorState.f3034a;
+        this.faction = Factions.Faction.NEUTRAL;
+        this.state = SecretDoorState.UNDETECTED;
         this.secretdoor_tag = "";
         if (hVar.a("secretdoor_tag")) {
             this.secretdoor_tag = hVar.b("secretdoor_tag").toString();
         }
         if (this.secretdoor_tag != "") {
             if (GameData.v().J(this.secretdoor_tag)) {
-                this.state = SecretDoorState.f3035b;
+                this.state = SecretDoorState.DETECTED;
                 return;
             }
             return;

@@ -121,7 +121,7 @@ public class NPC extends Character {
             this.ai = new PatrollerAI(q());
         }
         boolean zEquals = this.ai_type.equals("civilian");
-        AI.NPCState nPCState = AI.NPCState.f2974a;
+        AI.NPCState nPCState = AI.NPCState.IDLE;
         if (zEquals) {
             CivilianAI civilianAI = new CivilianAI(q());
             civilianAI.a(nPCState);
@@ -236,14 +236,14 @@ public class NPC extends Character {
         Path path2 = this.path;
         if (path2 == null || path2.e() == 0) {
             C0();
-            q0(MapActor.ActorState.f3071a);
-            this.ai.state = AI.NPCState.f2974a;
+            q0(MapActor.ActorState.IDLE);
+            this.ai.state = AI.NPCState.IDLE;
             this.detectedEnemyID = 0;
         }
     }
 
     public final void G1() {
-        if (d0() == MapActor.ActorState.f3074d) {
+        if (d0() == MapActor.ActorState.DEAD) {
             return;
         }
         this.ai_type = "patroller";
@@ -263,7 +263,7 @@ public class NPC extends Character {
         }
         this.lastPerceptioncheck = GameData.v().u();
         AI ai = this.ai;
-        if (ai == null || ai.state != AI.NPCState.f2974a) {
+        if (ai == null || ai.state != AI.NPCState.IDLE) {
             return;
         }
         GameLevel.k();
@@ -279,7 +279,7 @@ public class NPC extends Character {
         int iD = b.P().d(B(), r(), 8);
         if (iD != 1) {
             this.detectedEnemyID = iD;
-        } else if (GameData.v().player.d0() == MapActor.ActorState.f3074d || ((!this.knowsPlayer && b.s(B(), GameData.v().player.B()) > 208.0f) || b.s(B(), GameData.v().player.B()) > 272.0f)) {
+        } else if (GameData.v().player.d0() == MapActor.ActorState.DEAD || ((!this.knowsPlayer && b.s(B(), GameData.v().player.B()) > 208.0f) || b.s(B(), GameData.v().player.B()) > 272.0f)) {
             this.detectedEnemyID = 0;
         } else if ((!GameData.v().player.sheet.effects.stealth.booleanValue() || this.sheet.P("detector")) && b.P().z(B(), GameData.v().player.B())) {
             GameData.v().player.sheet.effects.stealth = Boolean.FALSE;
@@ -326,14 +326,14 @@ public class NPC extends Character {
 
     public final MonsterSpawn.Daycycle K1() {
         if (this.cycle == null) {
-            this.cycle = MonsterSpawn.Daycycle.f3019a;
+            this.cycle = MonsterSpawn.Daycycle.NORMAL;
         }
         return this.cycle;
     }
 
     @Override // net.fdgames.GameEntities.Character
     public final boolean L0(Character character) {
-        return (character.d0() == MapActor.ActorState.f3078h || character.d0() == MapActor.ActorState.f3077g || (this.ai.state != AI.NPCState.f2974a && !b.Z(character, this))) ? false : true;
+        return (character.d0() == MapActor.ActorState.SKILL_CHARGE || character.d0() == MapActor.ActorState.SKILL_WHIRLWIND || (this.ai.state != AI.NPCState.IDLE && !b.Z(character, this))) ? false : true;
     }
 
     public final int L1() {
@@ -345,12 +345,12 @@ public class NPC extends Character {
         if (this.ai == null) {
             B1();
         }
-        if (d0() == MapActor.ActorState.f3071a && this.sheet.o() == 0 && k0()) {
-            q0(MapActor.ActorState.f3074d);
+        if (d0() == MapActor.ActorState.IDLE && this.sheet.o() == 0 && k0()) {
+            q0(MapActor.ActorState.DEAD);
             o("RECOVER", q(), null, 1.0f, null);
         }
         if (i0()) {
-            this.ai.a(AI.NPCState.f2977d);
+            this.ai.a(AI.NPCState.DEAD);
             super.M(f2);
             return;
         }
@@ -370,7 +370,7 @@ public class NPC extends Character {
             return;
         }
         AI.NPCState nPCState = this.ai.state;
-        AI.NPCState nPCState2 = AI.NPCState.f2974a;
+        AI.NPCState nPCState2 = AI.NPCState.IDLE;
         if (nPCState == nPCState2 && this.stuck) {
             C0();
         }
@@ -381,8 +381,8 @@ public class NPC extends Character {
                 this.lastTick = GameLevel.b();
                 l.d("warning, AI lasttick was later thn current game time");
             }
-            if (!j0() && d0() != MapActor.ActorState.f3075e && GameLevel.b() - this.lastTick >= 0.3f) {
-                if (this.stuck && d0() == MapActor.ActorState.f3072b && !k0()) {
+            if (!j0() && d0() != MapActor.ActorState.ACTING && GameLevel.b() - this.lastTick >= 0.3f) {
+                if (this.stuck && d0() == MapActor.ActorState.MOVING && !k0()) {
                     int i2 = this.timesStuck;
                     if (i2 > 5) {
                         CharacterSheet characterSheet2 = this.sheet;
@@ -450,7 +450,7 @@ public class NPC extends Character {
     @Override // net.fdgames.GameEntities.Character
     public final float P0() {
         AI ai = this.ai;
-        if (ai == null || ai.state != AI.NPCState.f2974a) {
+        if (ai == null || ai.state != AI.NPCState.IDLE) {
             return 1.0f;
         }
         ai.getClass();
@@ -460,7 +460,7 @@ public class NPC extends Character {
     public final void P1() {
         AI ai = this.ai;
         if (ai != null && (ai instanceof PatrollerAI) && ai.b()) {
-            this.ai.a(AI.NPCState.f2974a);
+            this.ai.a(AI.NPCState.IDLE);
             this.detectedEnemyID = 0;
             this.knowsPlayer = false;
         }
@@ -555,7 +555,7 @@ public class NPC extends Character {
     @Override // net.fdgames.GameEntities.MapActor
     public final void U(int i2) {
         MapActor mapActorG;
-        if (d0() == MapActor.ActorState.f3074d || i2 == 0 || i2 == q() || this.attackStrategy == 3) {
+        if (d0() == MapActor.ActorState.DEAD || i2 == 0 || i2 == q() || this.attackStrategy == 3) {
             return;
         }
         if (this.ai == null) {
@@ -572,7 +572,7 @@ public class NPC extends Character {
         if (this.detectedEnemyID == 0) {
             this.detectedEnemyID = i2;
         }
-        this.ai.a(AI.NPCState.f2975b);
+        this.ai.a(AI.NPCState.AGRESSIVE);
         int size = GameLevel.f3096c.size();
         for (int i4 = 0; i4 < size; i4++) {
             ArrayList<MapActor> arrayList = GameLevel.f3096c;
@@ -610,13 +610,13 @@ public class NPC extends Character {
         }
         int[] iArr2 = this.worldfactions;
         if (iArr2 == null || iArr2[0] == 0) {
-            if (this.faction.equals(Factions.Faction.f3060a)) {
+            if (this.faction.equals(Factions.Faction.ENEMY)) {
                 x(Quests.SELECT_COMPLETED_UNCLAIMED);
             }
-            if (this.faction.equals(Factions.Faction.f3061b)) {
+            if (this.faction.equals(Factions.Faction.NEUTRAL)) {
                 x(105);
             }
-            if (this.faction.equals(Factions.Faction.f3062c)) {
+            if (this.faction.equals(Factions.Faction.PLAYER)) {
                 x(100);
             }
         }
@@ -649,9 +649,9 @@ public class NPC extends Character {
             GameData.v().log.a(C() + " " + GameString.b("REGENERATES", false));
         }
         boolean z3 = this.companionSpawn;
-        AI.NPCState nPCState = AI.NPCState.f2977d;
+        AI.NPCState nPCState = AI.NPCState.DEAD;
         if (z3 || z2 || zP) {
-            q0(MapActor.ActorState.f3079i);
+            q0(MapActor.ActorState.DISABLED);
             this.ai.a(nPCState);
             m(8.0f, q(), "RECOVER");
             return;
@@ -689,8 +689,8 @@ public class NPC extends Character {
             if (GameWorld.f3189c.f(r())) {
                 if (this.sheet.stats.f() > 10) {
                     int iF = this.sheet.stats.f() - 10;
-                    i6 = this.sheet.stats.characterRace.equals(Rules.CharacterRace.f3273h) ? iF * 50 : 0;
-                    if (this.sheet.stats.characterRace.equals(Rules.CharacterRace.f3274i)) {
+                    i6 = this.sheet.stats.characterRace.equals(Rules.CharacterRace.MINIBOSS) ? iF * 50 : 0;
+                    if (this.sheet.stats.characterRace.equals(Rules.CharacterRace.BOSS)) {
                         i6 += iF * 100;
                     }
                 } else {
@@ -841,7 +841,7 @@ public class NPC extends Character {
             } else {
                 CharacterSheet characterSheet = this.sheet;
                 AStarPathFinder aStarPathFinder4 = GameLevel.f3094a;
-                if (GameData.v().player.sheet.stats.c() == Rules.CharacterClass.f3261d && GameData.v().player.sheet.N() != null && !GameData.v().player.sheet.N().ranged && GameData.v().player.sheet.N().has_secondary_damage && GameData.v().player.sheet.N().secondary_damageType == Damage.DamageType.f3050e) {
+                if (GameData.v().player.sheet.stats.c() == Rules.CharacterClass.WIZARD && GameData.v().player.sheet.N() != null && !GameData.v().player.sheet.N().ranged && GameData.v().player.sheet.N().has_secondary_damage && GameData.v().player.sheet.N().secondary_damageType == Damage.DamageType.Death) {
                     int iG3 = GameData.v().player.sheet.skillSet.g("vampiric_blade");
                     if (iG3 == 1) {
                         GameData.v().player.sheet.R(5);
@@ -920,7 +920,7 @@ public class NPC extends Character {
     @Override // net.fdgames.GameEntities.MapActor
     public final boolean h0() {
         AI ai = this.ai;
-        return ai != null && ai.state == AI.NPCState.f2975b;
+        return ai != null && ai.state == AI.NPCState.AGRESSIVE;
     }
 
     @Override // net.fdgames.GameEntities.Character
@@ -962,10 +962,10 @@ public class NPC extends Character {
             B1();
         }
         boolean zI0 = i0();
-        AI.NPCState nPCState = AI.NPCState.f2974a;
+        AI.NPCState nPCState = AI.NPCState.IDLE;
         if (zI0) {
             boolean zEquals = str.equals("RECOVER");
-            MapActor.ActorState actorState = MapActor.ActorState.f3071a;
+            MapActor.ActorState actorState = MapActor.ActorState.IDLE;
             if (zEquals) {
                 AI ai = this.ai;
                 ai.getClass();
@@ -1057,7 +1057,7 @@ public class NPC extends Character {
             this.spriteIndex = new com.badlogic.gdx.utils.a<>();
         }
         this.spriteIndex.clear();
-        String str2 = this.gender == Character.Gender.f2992a ? "male" : "female";
+        String str2 = this.gender == Character.Gender.Male ? "male" : "female";
         CharacterSheet characterSheet = this.sheet;
         CharacterInventory characterInventory = characterSheet.inventory;
         int i2 = characterInventory.slot_body;
@@ -1087,7 +1087,7 @@ public class NPC extends Character {
             z2 = true;
         }
         MapActor.ActorState actorStateD0 = d0();
-        MapActor.ActorState actorState = MapActor.ActorState.f3075e;
+        MapActor.ActorState actorState = MapActor.ActorState.ACTING;
         if (actorStateD0 != actorState && !strD.equals("")) {
             int iH4 = GameAssets.h("composite/" + str2 + "_" + strD);
             if (iH4 != -1) {

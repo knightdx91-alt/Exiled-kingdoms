@@ -13,61 +13,8 @@ public class Damage {
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    public static final class DamageType {
-
-        /* JADX INFO: renamed from: a, reason: collision with root package name */
-        public static final DamageType f3046a;
-
-        /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public static final DamageType f3047b;
-
-        /* JADX INFO: renamed from: c, reason: collision with root package name */
-        public static final DamageType f3048c;
-
-        /* JADX INFO: renamed from: d, reason: collision with root package name */
-        public static final DamageType f3049d;
-
-        /* JADX INFO: renamed from: e, reason: collision with root package name */
-        public static final DamageType f3050e;
-
-        /* JADX INFO: renamed from: f, reason: collision with root package name */
-        public static final DamageType f3051f;
-
-        /* JADX INFO: renamed from: g, reason: collision with root package name */
-        public static final DamageType f3052g;
-
-        /* JADX INFO: renamed from: h, reason: collision with root package name */
-        private static final /* synthetic */ DamageType[] f3053h;
-
-        static {
-            DamageType damageType = new DamageType("Normal", 0);
-            f3046a = damageType;
-            DamageType damageType2 = new DamageType("Fire", 1);
-            f3047b = damageType2;
-            DamageType damageType3 = new DamageType("Cold", 2);
-            f3048c = damageType3;
-            DamageType damageType4 = new DamageType("Shock", 3);
-            f3049d = damageType4;
-            DamageType damageType5 = new DamageType("Death", 4);
-            f3050e = damageType5;
-            DamageType damageType6 = new DamageType("Toxic", 5);
-            f3051f = damageType6;
-            DamageType damageType7 = new DamageType("Spirit", 6);
-            f3052g = damageType7;
-            f3053h = new DamageType[]{damageType, damageType2, damageType3, damageType4, damageType5, damageType6, damageType7};
-        }
-
-        private DamageType() {
-            throw null;
-        }
-
-        public static DamageType valueOf(String str) {
-            return (DamageType) Enum.valueOf(DamageType.class, str);
-        }
-
-        public static DamageType[] values() {
-            return (DamageType[]) f3053h.clone();
-        }
+    public enum DamageType {
+        Normal, Fire, Cold, Shock, Death, Toxic, Spirit;
     }
 
     public Damage(DamageType damageType, int i2, boolean z2) {
@@ -77,7 +24,7 @@ public class Damage {
     }
 
     public static DamageType b(String str) {
-        return str.trim().equals("f") ? DamageType.f3047b : str.trim().equals("s") ? DamageType.f3049d : str.trim().equals("c") ? DamageType.f3048c : str.trim().equals("d") ? DamageType.f3050e : str.trim().equals("t") ? DamageType.f3051f : (str.trim().equals("sp") || str.trim().equals("p")) ? DamageType.f3052g : DamageType.f3046a;
+        return str.trim().equals("f") ? DamageType.Fire : str.trim().equals("s") ? DamageType.Shock : str.trim().equals("c") ? DamageType.Cold : str.trim().equals("d") ? DamageType.Death : str.trim().equals("t") ? DamageType.Toxic : (str.trim().equals("sp") || str.trim().equals("p")) ? DamageType.Spirit : DamageType.Normal;
     }
 
     public final TextureRegion a() {
@@ -119,6 +66,6 @@ public class Damage {
     }
 
     public Damage() {
-        this.type = DamageType.f3046a;
+        this.type = DamageType.Normal;
     }
 }

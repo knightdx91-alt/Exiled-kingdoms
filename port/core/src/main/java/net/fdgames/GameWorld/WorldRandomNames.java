@@ -82,7 +82,7 @@ public class WorldRandomNames {
     }
 
     private static String a(Character.Gender gender) {
-        if (gender == Character.Gender.f2992a) {
+        if (gender == Character.Gender.Male) {
             return f3202a.get(FDUtils.b(0, f3202a.size() - 1)).get();
         }
         return f3203b.get(FDUtils.b(0, f3203b.size() - 1)).get();
@@ -116,7 +116,7 @@ public class WorldRandomNames {
         StringBuilder sb = new StringBuilder();
         sb.append(a(gender));
         sb.append(" ");
-        if (gender == Character.Gender.f2992a) {
+        if (gender == Character.Gender.Male) {
             str = f3205d.get(FDUtils.b(0, f3205d.size() - 1)).get();
         } else {
             str = f3206e.get(FDUtils.b(0, f3206e.size() - 1)).get();
