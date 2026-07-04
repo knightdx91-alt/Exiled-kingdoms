@@ -1,15 +1,21 @@
-import os,re,json,collections,sys
+import os,re,collections,sys
 DEC='decompiled/sources'; REAL='gdxsrc/real'
-# obf-package-class (path) -> real FQN, for the top unmapped classes
-TARGETS={
+# (obf decompiled path) -> real FQN  for classes appearing in unmapped_gdx_calls
+PAIRS={
+ 'com/badlogic/gdx/e':'com.badlogic.gdx.Game',
+ 'com/badlogic/gdx/i':'com.badlogic.gdx.InputMultiplexer',
+ 'com/badlogic/gdx/utils/a':'com.badlogic.gdx.utils.Array',
+ 'com/badlogic/gdx/math/Matrix4':'com.badlogic.gdx.math.Matrix4',
  'r/d':'com.badlogic.gdx.assets.AssetManager',
  'u/h':'com.badlogic.gdx.maps.MapProperties',
  'a0/q':'com.badlogic.gdx.math.Vector2',
  'a0/p':'com.badlogic.gdx.math.Rectangle',
 }
-# ensure real sources extracted (Matrix4, Viewport, InputMultiplexer, etc.)
-import zipfile
 sig=re.compile(r'((?:public|protected|private|static|final|synchronized|native|\s)+)([\w\[\]<>?.,\s]+?)\s+([A-Za-z_$][\w$]*)\s*\(([^;{}]*)\)\s*(?:throws [\w., ]+)?\{')
+PRIM=set('boolean byte char short int long float double void'.split())
+def normret(t):
+    t=re.sub(r'\s','',t); base=re.sub(r'<.*>','',t).replace('[]','')
+    return base if (base in PRIM or (base[:1].isupper() and len(base)>2)) else '?'
 def argc(p):
     p=p.strip()
     if not p:return 0
@@ -22,7 +28,7 @@ def argc(p):
 def methods(txt):
     out=[]
     for m in sig.finditer(txt):
-        rr=m.group(2).strip().split(); ret=rr[-1] if rr else 'void'
+        rr=m.group(2).strip().split(); ret=normret(rr[-1] if rr else 'void')
         name=m.group(3)
         if name in ('if','for','while','switch','catch','return','new'):continue
         i=m.end()-1;d=0;j=i
@@ -42,21 +48,34 @@ def norm(b):
     return collections.Counter(t)
 def sim(a,b):
     if not a and not b:return 1.0
-    inter=sum((a&b).values());uni=sum((a|b).values());return inter/uni if uni else 0
-rows=[]
-for opath,real in TARGETS.items():
+    return sum((a&b).values())/max(1,sum((a|b).values()))
+rows=[]; stats=collections.Counter()
+for opath,real in PAIRS.items():
     of=os.path.join(DEC,opath+'.java'); rf=os.path.join(REAL,real.replace('.','/')+'.java')
     if not os.path.exists(of) or not os.path.exists(rf):
-        print("skip",opath,os.path.exists(of),os.path.exists(rf));continue
+        stats['skip']+=1; continue
     om=methods(open(of,errors='ignore').read()); rm=methods(open(rf,errors='ignore').read())
+    # index real by (ret,argc)
+    ridx=collections.defaultdict(list)
+    for rn,rr,rac,rb in rm: ridx[(rr,rac)].append((rn,rb))
     used=set()
-    for nm,ret,ac,body in om:
-        if not re.fullmatch(r'[a-z][0-9]?',nm):continue
-        nb=norm(body)
-        cands=[(sim(nb,norm(rb)),rn) for rn,rr,rac,rb in rm if rac==ac and rn not in used]
-        cands.sort(reverse=True)
-        if cands and cands[0][0]>=0.4 and (len(cands)==1 or cands[0][0]-cands[1][0]>=0.1):
-            used.add(cands[0][1]); rows.append(f"{real}\t{nm}\t{ac}\t{cands[0][1]}\t1")
-print(f"new lookup rows: {len(rows)}")
+    obf_ren=[(n,r,a,b) for n,r,a,b in om if re.fullmatch(r'[a-z][0-9]?',n)]
+    obf_by_sig=collections.defaultdict(list)
+    for n,r,a,b in obf_ren: obf_by_sig[(r,a)].append((n,b))
+    for key,oms in obf_by_sig.items():
+        reals=ridx.get(key,[])
+        if len(reals)==1 and len(oms)==1:                 # unique signature -> certain
+            rows.append(f"{real}\t{oms[0][0]}\t{key[1]}\t{reals[0][0]}\t1"); stats['unique']+=1
+        elif reals:                                       # disambiguate by body-sim
+            avail=[r for r in reals if r[0] not in used]
+            for on,ob in oms:
+                nb=norm(ob); best=sorted(((sim(nb,norm(rb)),rn) for rn,rb in avail),reverse=True)
+                if best and (len(best)==1 or best[0][0]-best[1][0]>=0.08):
+                    used.add(best[0][1]); rows.append(f"{real}\t{on}\t{key[1]}\t{best[0][1]}\t1"); stats['body']+=1
+                elif best:
+                    rows.append(f"{real}\t{on}\t{key[1]}\t{best[0][1]}\t0"); stats['guess']+=1
+print("stats:",dict(stats),"rows:",len(rows))
 open('method_lookup_more.tsv','w').write('\n'.join(rows)+'\n')
-for r in rows[:12]:print("  ",r.replace('\t',' '))
+import collections as C
+bycls=C.Counter(r.split('\t')[0].split('.')[-1] for r in rows)
+print("rows per class:",dict(bycls))
