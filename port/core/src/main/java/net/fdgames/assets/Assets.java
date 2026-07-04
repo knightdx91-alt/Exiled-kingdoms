@@ -2,7 +2,7 @@ package net.fdgames.assets;
 
 import a.a;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.p;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.i;
+import com.badlogic.gdx.utils.Disposable;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,7 +24,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public class Assets implements i {
+public class Assets implements Disposable {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public static final Assets f3309a = new Assets();

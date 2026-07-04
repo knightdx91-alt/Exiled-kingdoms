@@ -2,7 +2,7 @@ package net.fdgames.Helpers;
 
 import a.a;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.l;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Locale;

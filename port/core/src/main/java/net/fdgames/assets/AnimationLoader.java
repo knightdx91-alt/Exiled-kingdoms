@@ -1,6 +1,6 @@
 package net.fdgames.assets;
 
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import java.util.Arrays;
 import net.fdgames.Rules.Rules;
 
@@ -8,12 +8,12 @@ import net.fdgames.Rules.Rules;
 public class AnimationLoader {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    public static a<AnimationSet> f3300a;
+    public static Array<AnimationSet> f3300a;
 
     public static void a(String str) {
         for (String str2 : Arrays.asList(Rules.i(str).spriteName.split(";"))) {
             if (f3300a == null) {
-                f3300a = new a<>();
+                f3300a = new Array <>();
             }
             a.b<AnimationSet> it = f3300a.iterator();
             while (true) {

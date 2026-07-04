@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.a;
-import com.badlogic.gdx.utils.l;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -85,7 +85,7 @@ public abstract class Character extends MapActor {
     public float speedModifier;
     private int spellTarget;
     public String spell_id;
-    public a<Integer> spriteIndex;
+    public Array<Integer> spriteIndex;
     public boolean wasJustHitByMageBarrier;
     public Coords waypointDestination;
 
@@ -815,7 +815,7 @@ public abstract class Character extends MapActor {
         float f2 = i2;
         this.actionDuration = f2;
         GameAssets.o("buff2");
-        k0.a aVarL = k0.a.l();
+        k0.Array aVarL = k0.a.l();
         a.EnumC0031a enumC0031a = a.EnumC0031a.f2303o;
         aVarL.getClass();
         aVarL.b(B(), enumC0031a, f2).owner = this;
@@ -860,7 +860,7 @@ public abstract class Character extends MapActor {
 
     public final void K0(float f2) {
         this.sheet.effects.flameAura = true;
-        k0.a aVarL = k0.a.l();
+        k0.Array aVarL = k0.a.l();
         a.EnumC0031a enumC0031a = a.EnumC0031a.f2302n;
         aVarL.getClass();
         aVarL.b(B(), enumC0031a, f2).owner = this;
@@ -1525,7 +1525,7 @@ public abstract class Character extends MapActor {
                                     k0.a.l().b(B(), a.EnumC0031a.f2304p, 0.0f);
                                 }
                             }
-                            k0.a aVarL = k0.a.l();
+                            k0.Array aVarL = k0.a.l();
                             int i27 = this.uniqueID;
                             StringBuilder sbS = a.a.s(strO2);
                             sbS.append(Integer.toString(iG0));
@@ -1762,7 +1762,7 @@ public abstract class Character extends MapActor {
                         iOrdinal = damage.type.ordinal();
                         if (iOrdinal == 0) {
                         }
-                        k0.a aVarL2 = k0.a.l();
+                        k0.Array aVarL2 = k0.a.l();
                         int i272 = this.uniqueID;
                         StringBuilder sbS2 = a.a.s(strO2);
                         sbS2.append(Integer.toString(iG0));
@@ -2972,7 +2972,7 @@ public abstract class Character extends MapActor {
             characterEffects.rooted = bool;
         }
         this.sheet.effects.speed = Boolean.TRUE;
-        k0.a aVarL = k0.a.l();
+        k0.Array aVarL = k0.a.l();
         a.EnumC0031a enumC0031a = a.EnumC0031a.f2301m;
         aVarL.getClass();
         aVarL.b(B(), enumC0031a, f2).owner = this;

@@ -3,7 +3,7 @@ package net.fdgames.GameEntities;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import m0.b;
 import net.fdgames.GameWorld.GameData;
@@ -241,17 +241,17 @@ public abstract class MapActor extends MapSprite {
         AnimationSet animationSet;
         GameAssets.f3315a.clear();
         for (String str : this.animationSetName) {
-            a<TextureRegion> aVar = GameAssets.f3315a;
+            Array<TextureRegion> aVar = GameAssets.f3315a;
             int i2 = 0;
             while (true) {
-                a<AnimationSet> aVar2 = AnimationLoader.f3300a;
+                Array<AnimationSet> aVar2 = AnimationLoader.f3300a;
                 if (i2 >= aVar2.f1750b) {
                     if (Gdx.files.internal("data/sprites/" + str + ".png").exists()) {
                         AnimationSet animationSet2 = new AnimationSet(str);
                         AnimationLoader.f3300a.a(animationSet2);
                         animationSet = animationSet2;
                     } else {
-                        a<AnimationSet> aVar3 = AnimationLoader.f3300a;
+                        Array<AnimationSet> aVar3 = AnimationLoader.f3300a;
                         if (aVar3.f1750b > 0) {
                             animationSet = aVar3.get(0);
                         } else {

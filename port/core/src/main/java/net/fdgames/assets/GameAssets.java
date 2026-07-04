@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -57,7 +57,7 @@ public class GameAssets {
     public static Label.LabelStyle Z = null;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    public static a<TextureRegion> f3315a = null;
+    public static Array<TextureRegion> f3315a = null;
 
     /* JADX INFO: renamed from: a0, reason: collision with root package name */
     public static Label.LabelStyle f3316a0 = null;
@@ -264,7 +264,7 @@ public class GameAssets {
     }
 
     public static void d() {
-        f3315a = new a<>();
+        f3315a = new Array <>();
         f3354v = new SlashAnimation();
         l();
         Texture texture = new Texture("data/ui/worldmap.png");
@@ -594,7 +594,7 @@ public class GameAssets {
             texture.dispose();
             f3319c = null;
         }
-        a<AnimationSet> aVar = AnimationLoader.f3300a;
+        Array<AnimationSet> aVar = AnimationLoader.f3300a;
         if (aVar != null && aVar.f1750b > 0) {
             a.b<AnimationSet> it = aVar.iterator();
             while (it.hasNext()) {
@@ -622,7 +622,7 @@ public class GameAssets {
         if (slashAnimation != null) {
             slashAnimation.a();
         }
-        a<TextureRegion> aVar2 = f3315a;
+        Array<TextureRegion> aVar2 = f3315a;
         if (aVar2 != null) {
             a.b<TextureRegion> it3 = aVar2.iterator();
             while (it3.hasNext()) {
@@ -649,7 +649,7 @@ public class GameAssets {
     public static int h(String str) {
         int i2 = 0;
         while (true) {
-            a<AnimationSet> aVar = AnimationLoader.f3300a;
+            Array<AnimationSet> aVar = AnimationLoader.f3300a;
             if (i2 >= aVar.f1750b) {
                 if (!Gdx.files.internal("data/sprites/" + str + ".png").exists()) {
                     return -1;
@@ -665,7 +665,7 @@ public class GameAssets {
     }
 
     public static AnimationSet i(int i2) {
-        a<AnimationSet> aVar = AnimationLoader.f3300a;
+        Array<AnimationSet> aVar = AnimationLoader.f3300a;
         int i3 = aVar.f1750b;
         if (i3 > i2) {
             return aVar.get(i2);

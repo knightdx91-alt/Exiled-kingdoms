@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import java.util.EnumMap;
 import java.util.Locale;
 import net.fdgames.GameEntities.MapActor;
@@ -169,7 +169,7 @@ public class AnimationSet {
         int i10 = 0;
         while (i10 < length) {
             SpriteFacing spriteFacing3 = spriteFacingArrValues[i10];
-            a aVar = new a();
+            Array aVar = new Array ();
             int iOrdinal = spriteFacing3.ordinal();
             int i11 = 8;
             frameInfo frameinfo = iOrdinal != 0 ? iOrdinal != i7 ? iOrdinal != 2 ? iOrdinal != 3 ? iOrdinal != 4 ? new frameInfo(i7, Boolean.FALSE) : new frameInfo(9, Boolean.TRUE) : new frameInfo(10, Boolean.FALSE) : new frameInfo(9, Boolean.FALSE) : new frameInfo(8, Boolean.FALSE) : new frameInfo(7, Boolean.FALSE);
@@ -185,7 +185,7 @@ public class AnimationSet {
                 int i13 = i12;
                 SpriteFacing[] spriteFacingArr = spriteFacingArrValues;
                 Texture texture5 = texture4;
-                a aVar2 = aVar;
+                Array aVar2 = aVar;
                 Texture texture6 = texture4;
                 SpriteFacing spriteFacing4 = spriteFacing3;
                 aVar2.a(new TextureRegion(texture5, (i2 + 2) * 140, (frameinfo.row - 1) * 140, i3, 140));
@@ -253,7 +253,7 @@ public class AnimationSet {
     }
 
     public static Animation b(Texture texture, int i2, int i3, int i4, int i5, int i6, Animation.PlayMode playMode, float f2) {
-        a aVar = new a();
+        Array aVar = new Array ();
         for (int i7 = 0; i7 < i4; i7++) {
             aVar.a(new TextureRegion(texture, ((i3 - 1) + i7) * i5, (i2 - 1) * i6, i5, i6));
         }

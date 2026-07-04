@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities.AI.Pathfinding;
 
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.LinkedList;

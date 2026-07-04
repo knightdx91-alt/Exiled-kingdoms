@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.a;
+import com.badlogic.gdx.utils.Array;
 import com.google.android.gms.games.quest.Quests;
 import java.util.ArrayList;
 import java.util.Iterator;

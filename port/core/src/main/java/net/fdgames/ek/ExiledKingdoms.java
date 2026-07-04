@@ -6,9 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
-import com.badlogic.gdx.e;
-import com.badlogic.gdx.utils.a;
-import com.badlogic.gdx.utils.l;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import d0.c;
 import d0.f;
 import d0.h;
@@ -30,7 +30,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import s0.a;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public class ExiledKingdoms extends e {
+public class ExiledKingdoms extends Game {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public static boolean f3371a = false;
@@ -148,7 +148,7 @@ public class ExiledKingdoms extends e {
     public static boolean f3383m = false;
 
     /* JADX INFO: renamed from: p, reason: collision with root package name */
-    public static a f3386p = null;
+    public static Array f3386p = null;
 
     /* JADX INFO: renamed from: net.fdgames.ek.ExiledKingdoms$2, reason: invalid class name */
     static /* synthetic */ class AnonymousClass2 {
@@ -217,34 +217,34 @@ public class ExiledKingdoms extends e {
         }
         h hVar = new h();
         this.purchaseManagerConfig = hVar;
-        d0.e eVar = new d0.e();
+        d0.Game eVar = new d0.e();
         f fVar = f.f2156b;
         eVar.e(fVar);
         eVar.d("internal_test_2");
         hVar.a(eVar);
         h hVar2 = this.purchaseManagerConfig;
-        d0.e eVar2 = new d0.e();
+        d0.Game eVar2 = new d0.e();
         f fVar2 = f.f2155a;
         eVar2.e(fVar2);
         eVar2.d("ek_donation_con_0");
         hVar2.a(eVar2);
         h hVar3 = this.purchaseManagerConfig;
-        d0.e eVar3 = new d0.e();
+        d0.Game eVar3 = new d0.e();
         eVar3.e(fVar2);
         eVar3.d("ek_donation_con_1");
         hVar3.a(eVar3);
         h hVar4 = this.purchaseManagerConfig;
-        d0.e eVar4 = new d0.e();
+        d0.Game eVar4 = new d0.e();
         eVar4.e(fVar2);
         eVar4.d("ek_donation_con_2");
         hVar4.a(eVar4);
         h hVar5 = this.purchaseManagerConfig;
-        d0.e eVar5 = new d0.e();
+        d0.Game eVar5 = new d0.e();
         eVar5.e(fVar2);
         eVar5.d("ek_donation_con_3");
         hVar5.a(eVar5);
         h hVar6 = this.purchaseManagerConfig;
-        d0.e eVar6 = new d0.e();
+        d0.Game eVar6 = new d0.e();
         eVar6.e(fVar);
         eVar6.d("full_ek_license");
         hVar6.a(eVar6);
@@ -339,7 +339,7 @@ public class ExiledKingdoms extends e {
 
     public final void h() {
         l.d("ExiledKingdoms.initialize()");
-        a aVar = f3386p;
+        Array aVar = f3386p;
         if (aVar != null) {
             i iVar = this.purchaseObserver;
             h hVar = this.purchaseManagerConfig;
@@ -400,7 +400,7 @@ public class ExiledKingdoms extends e {
         } catch (Exception e5) {
             l.d("ExiledKingdoms.initialize() EXCEPTION - Controllers:  " + e5.getMessage());
         }
-        com.badlogic.gdx.files.a aVar2 = Serializer.f3225b;
+        com.badlogic.gdx.files.Array aVar2 = Serializer.f3225b;
         if (Gdx.files.local("monsterdump.txt").exists()) {
             Serializer.f3226c = true;
             Serializer.f3225b = Gdx.files.local("monsterdump.txt");

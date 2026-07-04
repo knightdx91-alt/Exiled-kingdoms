@@ -14,7 +14,8 @@ RELOCATED={  # obf_fqn -> real gdx fqn (from method map investigation)
 }
 lookup={}
 for obf,real in MAP.items():
-    if is_real_gdx(real): lookup[obf]=real
+    realf = real if '.' in real else '.'.join(obf.split('.')[:-1])+'.'+real  # rebuild FQN from preserved pkg
+    if is_real_gdx(realf): lookup[obf]=realf
 lookup.update(RELOCATED)
 
 def rewrite(text):
@@ -35,7 +36,18 @@ def rewrite(text):
             continue
         newlines.append(line)
     text='\n'.join(newlines)
+    # collision guard: if the file declares a class/enum/interface named <obf>,
+    # that single-letter token is a game type here, not the libGDX one -> don't remap it
+    for ob in [k for k in local if re.search(r'\b(?:class|interface|enum)\s+'+re.escape(k)+r'\b', text)]:
+        del local[ob]
     # body type-position replacements per mapping
+    # class/interface/enum header: rewrite extends/implements/throws supertypes
+    def fix_header(m):
+        head=m.group(0)
+        for ob,rl in local.items():
+            head=re.sub(rf'\b{re.escape(ob)}\b',rl,head)
+        return head
+    text=re.sub(r'\b(?:class|interface|enum)\s+\w+[^{;]*?(?=\{)',fix_header,text)
     for obf,real in sorted(local.items(),key=lambda x:-len(x[0])):
         o=re.escape(obf)
         text=re.sub(rf'\bnew\s+{o}\s*(?=[(<])','new '+real+' ',text)

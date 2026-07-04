@@ -1,7 +1,7 @@
 package net.fdgames.GameWorld;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.l;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import java.util.ArrayList;
 import java.util.Locale;
 import net.fdgames.Helpers.GameString;
