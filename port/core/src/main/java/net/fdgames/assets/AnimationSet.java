@@ -188,7 +188,7 @@ public class AnimationSet {
                 Array aVar2 = aVar;
                 Texture texture6 = texture4;
                 SpriteFacing spriteFacing4 = spriteFacing3;
-                aVar2.a(new TextureRegion(texture5, (i2 + 2) * 140, (frameinfo.row - 1) * 140, i3, 140));
+                aVar2.add(new TextureRegion(texture5, (i2 + 2) * 140, (frameinfo.row - 1) * 140, i3, 140));
                 if (frameinfo.flipped.booleanValue() || (i6 = frameinfo.row) < 6) {
                     i4 = 10;
                 } else {
@@ -255,7 +255,7 @@ public class AnimationSet {
     public static Animation b(Texture texture, int i2, int i3, int i4, int i5, int i6, Animation.PlayMode playMode, float f2) {
         Array aVar = new Array ();
         for (int i7 = 0; i7 < i4; i7++) {
-            aVar.a(new TextureRegion(texture, ((i3 - 1) + i7) * i5, (i2 - 1) * i6, i5, i6));
+            aVar.add(new TextureRegion(texture, ((i3 - 1) + i7) * i5, (i2 - 1) * i6, i5, i6));
         }
         return new Animation(f2, aVar, playMode);
     }

@@ -15,6 +15,7 @@ public class Remap {
   // (classFQN|obfName|argc) -> realName
   static Map<String,String> map = new HashMap<>();
   static int renamed=0, resolvedCalls=0, unresolved=0;
+  static final Set<String> KW = new HashSet<>(Arrays.asList("abstract","assert","boolean","break","byte","case","catch","char","class","const","continue","default","do","double","else","enum","extends","final","finally","float","for","goto","if","implements","import","instanceof","int","interface","long","native","new","package","private","protected","public","return","short","static","strictfp","super","switch","synchronized","this","throw","throws","transient","try","void","volatile","while"));
   static Map<String,Integer> unmapped=new TreeMap<>();
 
   public static void main(String[] a) throws Exception {
@@ -51,7 +52,7 @@ public class Remap {
             String fqn = rt.asReferenceType().getQualifiedName();
             String key = fqn+"|"+name+"|"+m.getArguments().size();
             String real = map.get(key);
-            if (real!=null && !real.equals(name) && real.matches("[A-Za-z_]\\w*")){
+            if (real!=null && !real.equals(name) && real.matches("[A-Za-z_]\\w*") && !KW.contains(real)){
               m.setName(real); renamed++;
             } else if (real==null && fqn.startsWith("com.badlogic.gdx")) {
               unmapped.merge(fqn+"#"+name+"#"+m.getArguments().size(),1,Integer::sum);

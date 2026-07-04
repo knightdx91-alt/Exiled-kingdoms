@@ -12,36 +12,36 @@ public class ClassRestriction {
 
     public ClassRestriction(String str) {
         if (str.contains("G")) {
-            this.classes.add(Rules.CharacterClass.GENERAL);
+            this.classes.add(Rules.CharacterClass.f3263f);
         }
         if (str.contains("W")) {
-            this.classes.add(Rules.CharacterClass.WARRIOR);
+            this.classes.add(Rules.CharacterClass.f3258a);
         }
         if (str.contains("R")) {
-            this.classes.add(Rules.CharacterClass.ROGUE);
+            this.classes.add(Rules.CharacterClass.f3259b);
         }
         if (str.contains("M")) {
-            this.classes.add(Rules.CharacterClass.WIZARD);
+            this.classes.add(Rules.CharacterClass.f3261d);
         }
         if (str.contains("C")) {
-            this.classes.add(Rules.CharacterClass.CLERIC);
+            this.classes.add(Rules.CharacterClass.f3260c);
         }
         if (str.contains("X")) {
-            this.classes.add(Rules.CharacterClass.NONE);
+            this.classes.add(Rules.CharacterClass.f3264g);
         }
     }
 
     public final String a() {
         String string;
         HashSet<Rules.CharacterClass> hashSet = this.classes;
-        Rules.CharacterClass characterClass = Rules.CharacterClass.WARRIOR;
+        Rules.CharacterClass characterClass = Rules.CharacterClass.f3258a;
         if (hashSet.contains(characterClass)) {
             string = "" + Rules.CharacterClass.a(characterClass);
         } else {
             string = "";
         }
         HashSet<Rules.CharacterClass> hashSet2 = this.classes;
-        Rules.CharacterClass characterClass2 = Rules.CharacterClass.ROGUE;
+        Rules.CharacterClass characterClass2 = Rules.CharacterClass.f3259b;
         if (hashSet2.contains(characterClass2)) {
             if (!string.equals("")) {
                 string = string.concat(", ");
@@ -51,7 +51,7 @@ public class ClassRestriction {
             string = sbS.toString();
         }
         HashSet<Rules.CharacterClass> hashSet3 = this.classes;
-        Rules.CharacterClass characterClass3 = Rules.CharacterClass.CLERIC;
+        Rules.CharacterClass characterClass3 = Rules.CharacterClass.f3260c;
         if (hashSet3.contains(characterClass3)) {
             if (!string.equals("")) {
                 string = string.concat(", ");
@@ -61,7 +61,7 @@ public class ClassRestriction {
             string = sbS2.toString();
         }
         HashSet<Rules.CharacterClass> hashSet4 = this.classes;
-        Rules.CharacterClass characterClass4 = Rules.CharacterClass.WIZARD;
+        Rules.CharacterClass characterClass4 = Rules.CharacterClass.f3261d;
         if (hashSet4.contains(characterClass4)) {
             if (!string.equals("")) {
                 string = string.concat(", ");
@@ -79,14 +79,14 @@ public class ClassRestriction {
             return "";
         }
         HashSet<Rules.CharacterClass> hashSet = this.classes;
-        Rules.CharacterClass characterClass = Rules.CharacterClass.WARRIOR;
+        Rules.CharacterClass characterClass = Rules.CharacterClass.f3258a;
         if (hashSet.contains(characterClass)) {
             string = "" + Rules.CharacterClass.a(characterClass);
         } else {
             string = "";
         }
         HashSet<Rules.CharacterClass> hashSet2 = this.classes;
-        Rules.CharacterClass characterClass2 = Rules.CharacterClass.ROGUE;
+        Rules.CharacterClass characterClass2 = Rules.CharacterClass.f3259b;
         if (hashSet2.contains(characterClass2)) {
             if (!string.equals("")) {
                 string = string.concat(", ");
@@ -96,7 +96,7 @@ public class ClassRestriction {
             string = sbS.toString();
         }
         HashSet<Rules.CharacterClass> hashSet3 = this.classes;
-        Rules.CharacterClass characterClass3 = Rules.CharacterClass.CLERIC;
+        Rules.CharacterClass characterClass3 = Rules.CharacterClass.f3260c;
         if (hashSet3.contains(characterClass3)) {
             if (!string.equals("")) {
                 string = string.concat(", ");
@@ -106,7 +106,7 @@ public class ClassRestriction {
             string = sbS2.toString();
         }
         HashSet<Rules.CharacterClass> hashSet4 = this.classes;
-        Rules.CharacterClass characterClass4 = Rules.CharacterClass.WIZARD;
+        Rules.CharacterClass characterClass4 = Rules.CharacterClass.f3261d;
         if (hashSet4.contains(characterClass4)) {
             if (!string.equals("")) {
                 string = string.concat(", ");

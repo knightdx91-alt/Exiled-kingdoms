@@ -297,19 +297,19 @@ public class MapEffectEntity extends MapSprite {
         this.mustaddlight = false;
         this.debug = false;
         this.caster_id = 0;
-        int i2 = (int) Float.parseFloat(hVar.b("x").toString());
-        int i3 = (int) Float.parseFloat(hVar.b("y").toString());
+        int i2 = (int) Float.parseFloat(hVar.get("x").toString());
+        int i3 = (int) Float.parseFloat(hVar.get("y").toString());
         this.f3092x = i2 - 24;
         this.f3093y = i3 + 24;
-        if (hVar.a("tag")) {
-            this.tag = hVar.b("tag").toString();
+        if (hVar.containsKey("tag")) {
+            this.tag = hVar.get("tag").toString();
         }
         this.active = true;
-        if (hVar.a("inactive")) {
+        if (hVar.containsKey("inactive")) {
             this.active = false;
         }
         this.alpha = 1.0f;
-        String string = hVar.b("id").toString();
+        String string = hVar.get("id").toString();
         this.id = string;
         MapEffect mapEffect = new MapEffect(string, this.f3092x, this.f3093y, q(), false);
         this.mapeffect = mapEffect;

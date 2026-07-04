@@ -106,21 +106,21 @@ public class SecretDoor extends MapObject {
     }
 
     public SecretDoor(MapProperties hVar) {
-        this.f3092x = ((int) Float.parseFloat(hVar.b("x").toString())) - 24;
-        this.f3093y = ((int) Float.parseFloat(hVar.b("y").toString())) + 24;
-        if (hVar.a("tag")) {
-            this.tag = hVar.b("tag").toString();
+        this.f3092x = ((int) Float.parseFloat(hVar.get("x").toString())) - 24;
+        this.f3093y = ((int) Float.parseFloat(hVar.get("y").toString())) + 24;
+        if (hVar.containsKey("tag")) {
+            this.tag = hVar.get("tag").toString();
         }
         int iMax = Math.max(GameData.v().player.sheet.stats.f() - 2, 0);
         int iF = GameData.v().player.sheet.stats.f() + 2;
-        iMax = hVar.a("minlevel") ? Integer.parseInt(hVar.b("minlevel").toString()) : iMax;
-        iF = hVar.a("maxlevel") ? Integer.parseInt(hVar.b("maxlevel").toString()) : iF;
+        iMax = hVar.containsKey("minlevel") ? Integer.parseInt(hVar.get("minlevel").toString()) : iMax;
+        iF = hVar.containsKey("maxlevel") ? Integer.parseInt(hVar.get("maxlevel").toString()) : iF;
         this.level = FDUtils.b(iMax > iF ? iF : iMax, iF);
         this.faction = Factions.Faction.NEUTRAL;
         this.state = SecretDoorState.UNDETECTED;
         this.secretdoor_tag = "";
-        if (hVar.a("secretdoor_tag")) {
-            this.secretdoor_tag = hVar.b("secretdoor_tag").toString();
+        if (hVar.containsKey("secretdoor_tag")) {
+            this.secretdoor_tag = hVar.get("secretdoor_tag").toString();
         }
         if (this.secretdoor_tag != "") {
             if (GameData.v().J(this.secretdoor_tag)) {

@@ -7,16 +7,18 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CACHE="${ROOT}/.cache"; mkdir -p "$CACHE"
 GDX_VER=1.12.1
-GDX="$CACHE/gdx-${GDX_VER}.jar"
-[ -f "$GDX" ] || curl -sSf -o "$GDX" \
-  "https://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx/${GDX_VER}/gdx-${GDX_VER}.jar"
+fetch(){ [ -f "$CACHE/$1" ] || curl -sSf -o "$CACHE/$1" "$2"; }
+fetch gdx-${GDX_VER}.jar       "https://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx/${GDX_VER}/gdx-${GDX_VER}.jar"
+fetch box2dlights-1.5.jar      "https://repo1.maven.org/maven2/com/badlogicgames/box2dlights/box2dlights/1.5/box2dlights-1.5.jar"
+fetch gdx-box2d-${GDX_VER}.jar "https://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx-box2d/${GDX_VER}/gdx-box2d-${GDX_VER}.jar"
+GDX="$CACHE/gdx-${GDX_VER}.jar:$CACHE/box2dlights-1.5.jar:$CACHE/gdx-box2d-${GDX_VER}.jar"
 
 cd "$ROOT/port"
 OUT="$(mktemp -d)"
 mapfile -t SRCS < core/compiling.txt
 echo ">> compiling ${#SRCS[@]} known-good classes against libGDX ${GDX_VER}"
 if javac -Xmaxerrs 9999 -d "$OUT" -cp "$GDX" "${SRCS[@]}"; then
-  echo ">> GREEN: ${#SRCS[@]}/$(find core/src/main/java/net -name '*.java' | wc -l) recovered classes compile."
+  echo ">> GREEN: ${#SRCS[@]}/$(find core/src/main/java -name '*.java' | wc -l) recovered classes compile."
 else
   echo ">> RED: compiling.txt is not clean."; exit 1
 fi

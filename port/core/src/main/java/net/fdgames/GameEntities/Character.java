@@ -274,7 +274,7 @@ public abstract class Character extends MapActor {
                                     if (iC2 == 0) {
                                         iC2 = b.P().a(B(), r());
                                     }
-                                    Projectile.ProjectileType projectileType = Projectile.ProjectileType.BOLT;
+                                    Projectile.ProjectileType projectileType = Projectile.ProjectileType.f3031b;
                                     if (iC2 <= 0) {
                                         Character characterF2 = GameLevel.f(iC2);
                                         if (characterF2 != null && b.P().e0(B(), characterF2.B())) {
@@ -314,7 +314,7 @@ public abstract class Character extends MapActor {
                                     iC2 = bVarP2.c(i172, b.j(pVarU2));
                                     if (iC2 == 0) {
                                     }
-                                    Projectile.ProjectileType projectileType2 = Projectile.ProjectileType.BOLT;
+                                    Projectile.ProjectileType projectileType2 = Projectile.ProjectileType.f3031b;
                                     if (iC2 <= 0) {
                                     }
                                 }
@@ -417,7 +417,7 @@ public abstract class Character extends MapActor {
                             this.sheet.skillSet.s("earth_mastery");
                         } else {
                             boolean zEquals = this.spell_id.toLowerCase(locale).equals("fireball");
-                            Projectile.ProjectileType projectileType3 = Projectile.ProjectileType.GRENADE;
+                            Projectile.ProjectileType projectileType3 = Projectile.ProjectileType.f3032c;
                             if (zEquals) {
                                 int iG12 = this.sheet.skillSet.g("fireball");
                                 String str3 = "fireball_weak_1";
@@ -673,16 +673,16 @@ public abstract class Character extends MapActor {
             return;
         }
         if (this.sheet.effects.slowed.booleanValue() || this.sheet.effects.fatigued.booleanValue() || this.sheet.effects.resistances.c()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("slowed").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("slowed").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.stunned.booleanValue()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("stunned").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("stunned").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.holy_shielded.booleanValue() || ((this.sheet.effects.shielded.booleanValue() && this.sheet.effects.shieldBonus > 0) || this.sheet.effects.mageArmor_Charges > 0)) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("shield").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("shield").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.stab.booleanValue() || this.sheet.effects.fury.booleanValue() || this.sheet.effects.might.booleanValue()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("damage").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("damage").getKeyFrame(GameLevel.b()));
         } else {
             CharacterEffects characterEffects = this.sheet.effects;
             if (!characterEffects.rapid_fire && !characterEffects.disintegrate.booleanValue() && !this.sheet.effects.duel.booleanValue()) {
@@ -692,13 +692,13 @@ public abstract class Character extends MapActor {
             }
         }
         if (this.sheet.effects.bloodlust.booleanValue()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("bloodlust").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("bloodlust").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.evasion.booleanValue()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("evasion").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("evasion").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.resistances.d()) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.j("resist").getKeyFrame(GameLevel.b()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.j("resist").getKeyFrame(GameLevel.b()));
         }
         if (this.sheet.effects.stealth.booleanValue()) {
             GameAssets.f3317b = 0.4f;
@@ -718,7 +718,7 @@ public abstract class Character extends MapActor {
             return;
         }
         this.wasJustHitByMageBarrier = false;
-        boolean z2 = this.sheet.N().ranged && this.sheet.stats.c() != Rules.CharacterClass.WIZARD;
+        boolean z2 = this.sheet.N().ranged && this.sheet.stats.c() != Rules.CharacterClass.f3261d;
         CharacterSheet characterSheet = this.sheet;
         CharacterInventory characterInventory = characterSheet.inventory;
         int i4 = (characterInventory == null || (i3 = characterInventory.slot_mainhand) == 0) ? 0 : Rules.f(i3).attributes.arcane;
@@ -1344,11 +1344,11 @@ public abstract class Character extends MapActor {
                 }
             }
         }
-        Rules.CharacterRace characterRace2 = Rules.CharacterRace.BOSS;
+        Rules.CharacterRace characterRace2 = Rules.CharacterRace.f3274i;
         if (z3 && mapSpriteI != null && (mapSpriteI instanceof Character)) {
             Character character2 = (Character) mapSpriteI;
             z4 = z3;
-            if (this.uniqueID == 1 || this.sheet.o() > 100 || character2.sheet.skillSet.bonusSet.critDamageModifier <= 150 || this.sheet.stats.f() + 1 >= character2.sheet.stats.f() || this.sheet.stats.characterRace.equals(characterRace2) || this.sheet.stats.characterRace.equals(Rules.CharacterRace.MINIBOSS) || (iG4 = character2.sheet.skillSet.g("massive_criticals")) == 0) {
+            if (this.uniqueID == 1 || this.sheet.o() > 100 || character2.sheet.skillSet.bonusSet.critDamageModifier <= 150 || this.sheet.stats.f() + 1 >= character2.sheet.stats.f() || this.sheet.stats.characterRace.equals(characterRace2) || this.sheet.stats.characterRace.equals(Rules.CharacterRace.f3273h) || (iG4 = character2.sheet.skillSet.g("massive_criticals")) == 0) {
                 characterRace = characterRace2;
             } else {
                 if (iG4 == 1) {
@@ -2121,7 +2121,7 @@ public abstract class Character extends MapActor {
     }
 
     public final boolean h1() {
-        return this.sheet.stats.c().equals(Rules.CharacterClass.CLERIC) || this.sheet.stats.c().equals(Rules.CharacterClass.WIZARD);
+        return this.sheet.stats.c().equals(Rules.CharacterClass.f3260c) || this.sheet.stats.c().equals(Rules.CharacterClass.f3261d);
     }
 
     protected boolean i1() {
@@ -2338,7 +2338,7 @@ public abstract class Character extends MapActor {
                         }
                         if (this.uniqueID == 1) {
                             boolean zU0 = U0();
-                            Projectile.ProjectileType projectileType = Projectile.ProjectileType.ARROW;
+                            Projectile.ProjectileType projectileType = Projectile.ProjectileType.f3030a;
                             if (zU0) {
                                 b.P().getClass();
                                 Rectangle pVarU = b.U();
@@ -2457,7 +2457,7 @@ public abstract class Character extends MapActor {
                             k0.a.l().a(new w(this.uniqueID, Skills.c("disintegrate").d(), 0.6f, Color.GREEN, 1.0f, 0.7f));
                         }
                         n(iB3, this.sheet.h());
-                        if (arrayListY.size() > 1 && this.sheet.stats.c() == Rules.CharacterClass.WARRIOR && (iG = this.sheet.skillSet.g("cleave")) > 0) {
+                        if (arrayListY.size() > 1 && this.sheet.stats.c() == Rules.CharacterClass.f3258a && (iG = this.sheet.skillSet.g("cleave")) > 0) {
                             k0.a.l().a(new w(this.uniqueID, "Cleave!", 0.6f, Color.GREEN, 1.0f, 0.7f));
                             float f5 = iG == 2 ? 0.6f : 0.5f;
                             if (iG == 3) {
@@ -2952,7 +2952,7 @@ public abstract class Character extends MapActor {
             return false;
         }
         R(mapActorG.B());
-        GameLevel.c(this.uniqueID, iA, r(), this.sheet.N(), this.sheet.h(), Projectile.ProjectileType.ARROW);
+        GameLevel.c(this.uniqueID, iA, r(), this.sheet.N(), this.sheet.h(), Projectile.ProjectileType.f3030a);
         return true;
     }
 

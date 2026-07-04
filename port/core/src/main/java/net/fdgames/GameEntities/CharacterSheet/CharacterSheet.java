@@ -81,12 +81,12 @@ public class CharacterSheet {
         }
         int iD = SheetBonus.d(J(), 3, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 5, this.inventory, this.effects);
-        if (this.stats.c().equals(Rules.CharacterClass.WIZARD)) {
+        if (this.stats.c().equals(Rules.CharacterClass.f3261d)) {
             iF = this.stats.f() * ((iD2 / 2) + iD + 2);
         } else {
             iF = 0;
         }
-        if (this.stats.c().equals(Rules.CharacterClass.CLERIC)) {
+        if (this.stats.c().equals(Rules.CharacterClass.f3260c)) {
             iF = this.stats.f() * ((iD / 2) + iD2 + 2);
         }
         int iG = this.skillSet.g("mana_surge");
@@ -317,7 +317,7 @@ public class CharacterSheet {
     }
 
     public final boolean V() {
-        return this.stats.c().equals(Rules.CharacterClass.WIZARD) || this.stats.c().equals(Rules.CharacterClass.CLERIC);
+        return this.stats.c().equals(Rules.CharacterClass.f3261d) || this.stats.c().equals(Rules.CharacterClass.f3260c);
     }
 
     public final int W(int i2) {
@@ -611,7 +611,7 @@ public class CharacterSheet {
         if (z5) {
             Damage.DamageType damageType3 = this.inventory.j().secondary_damageType;
             int i2 = this.inventory.j().secondary_Damage;
-            if (this.stats.c() != Rules.CharacterClass.WIZARD || N().ranged) {
+            if (this.stats.c() != Rules.CharacterClass.f3261d || N().ranged) {
                 f3 = i2;
             } else {
                 f3 = i2;
@@ -817,7 +817,7 @@ public class CharacterSheet {
 
     public final int s() {
         int i2 = 0;
-        int i3 = this.stats.c() == Rules.CharacterClass.ROGUE ? 15 : 0;
+        int i3 = this.stats.c() == Rules.CharacterClass.f3259b ? 15 : 0;
         int iD = SheetBonus.d(J(), 4, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 3, this.inventory, this.effects);
         Iterator<Follower> it = GameData.v().party.followers.iterator();
@@ -836,12 +836,12 @@ public class CharacterSheet {
     public final int t() {
         int iD = SheetBonus.d(J(), 2, this.inventory, this.effects);
         int iD2 = SheetBonus.d(J(), 3, this.inventory, this.effects);
-        int i2 = this.stats.c() == Rules.CharacterClass.ROGUE ? 20 : 0;
+        int i2 = this.stats.c() == Rules.CharacterClass.f3259b ? 20 : 0;
         return this.inventory.f() + (((iD2 / 2) + iD) * 5) + (this.skillSet.g("trap_master") > 0 ? this.skillSet.g("trap_master") * 10 : 0) + i2;
     }
 
     public final int u() {
-        return this.inventory.g() + (((SheetBonus.d(J(), 4, this.inventory, this.effects) / 2) + SheetBonus.d(J(), 5, this.inventory, this.effects)) * 5) + this.skillSet.bonusSet.gossip + (this.stats.c().equals(Rules.CharacterClass.ROGUE) ? 10 : 0);
+        return this.inventory.g() + (((SheetBonus.d(J(), 4, this.inventory, this.effects) / 2) + SheetBonus.d(J(), 5, this.inventory, this.effects)) * 5) + this.skillSet.bonusSet.gossip + (this.stats.c().equals(Rules.CharacterClass.f3259b) ? 10 : 0);
     }
 
     public final int v() {

@@ -851,11 +851,11 @@ public class Player extends Character {
             if (i2 >= aVar2.f1750b) {
                 break;
             }
-            GameAssets.f3315a.a((TextureRegion) GameAssets.i(aVar2.get(i2).intValue()).a(d0(), this.facing).getKeyFrame(V()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.i(aVar2.get(i2).intValue()).a(d0(), this.facing).getKeyFrame(V()));
             i2++;
         }
         if (this.sheet.inventory.slot_mainhand > 0 && ((d0().equals(MapActor.ActorState.ATTACKING) || d0().equals(MapActor.ActorState.SKILL_CHARGE)) && !this.sheet.N().c())) {
-            GameAssets.f3315a.a((TextureRegion) GameAssets.f3354v.b(this.facing).getKeyFrame(V()));
+            GameAssets.f3315a.add((TextureRegion) GameAssets.f3354v.b(this.facing).getKeyFrame(V()));
         }
         D0();
         return GameAssets.f3315a;
@@ -1362,14 +1362,14 @@ public class Player extends Character {
         if (str.equals("")) {
             int iH = GameAssets.h("composite/male_clothes");
             if (iH != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH));
+                this.spriteIndex.add(Integer.valueOf(iH));
                 z2 = false;
             }
             z2 = true;
         } else {
             int iH2 = GameAssets.h("composite/" + str2 + "_" + str);
             if (iH2 != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH2));
+                this.spriteIndex.add(Integer.valueOf(iH2));
                 z2 = false;
             }
             z2 = true;
@@ -1379,7 +1379,7 @@ public class Player extends Character {
         if (actorStateD0 != actorState && !strD.equals("")) {
             int iH3 = GameAssets.h("composite/" + str2 + "_" + strD);
             if (iH3 != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH3));
+                this.spriteIndex.add(Integer.valueOf(iH3));
             } else {
                 z2 = true;
             }
@@ -1387,14 +1387,14 @@ public class Player extends Character {
         if (string.equals("")) {
             int iH4 = GameAssets.h("composite/" + str2 + "_head");
             if (iH4 != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH4));
+                this.spriteIndex.add(Integer.valueOf(iH4));
             } else {
                 z2 = true;
             }
         } else {
             int iH5 = GameAssets.h("composite/" + str2 + "_" + string);
             if (iH5 != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH5));
+                this.spriteIndex.add(Integer.valueOf(iH5));
             }
         }
         if (d0() == actorState || strX.equals("")) {
@@ -1402,7 +1402,7 @@ public class Player extends Character {
         } else {
             int iH6 = GameAssets.h("composite/" + str2 + "_" + strX);
             if (iH6 != -1) {
-                this.spriteIndex.a(Integer.valueOf(iH6));
+                this.spriteIndex.add(Integer.valueOf(iH6));
                 z3 = z2;
             }
         }
@@ -1412,7 +1412,7 @@ public class Player extends Character {
     }
 
     public Player(PlayerCreation playerCreation) {
-        super(Rules.CharacterRace.HUMAN, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
+        super(Rules.CharacterRace.f3266a, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
         this.tolCurseCounter = 0;
         this.gold = 0;
         this.tempTransition = null;

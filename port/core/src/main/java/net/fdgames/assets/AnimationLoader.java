@@ -22,7 +22,7 @@ public class AnimationLoader {
                         break;
                     }
                 } else {
-                    f3300a.a(new AnimationSet(str2));
+                    f3300a.add(new AnimationSet(str2));
                     break;
                 }
             }

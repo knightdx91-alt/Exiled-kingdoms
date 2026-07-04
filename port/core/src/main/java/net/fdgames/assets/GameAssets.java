@@ -654,7 +654,7 @@ public class GameAssets {
                 if (!Gdx.files.internal("data/sprites/" + str + ".png").exists()) {
                     return -1;
                 }
-                AnimationLoader.f3300a.a(new AnimationSet(str));
+                AnimationLoader.f3300a.add(new AnimationSet(str));
                 return -1;
             }
             if (aVar.get(i2).name.equals(str)) {
@@ -674,7 +674,7 @@ public class GameAssets {
             return aVar.get(0);
         }
         AnimationSet animationSet = new AnimationSet("composite/male_clothes");
-        AnimationLoader.f3300a.a(animationSet);
+        AnimationLoader.f3300a.add(animationSet);
         return animationSet;
     }
 

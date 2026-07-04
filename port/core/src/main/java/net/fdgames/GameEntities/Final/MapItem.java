@@ -252,46 +252,46 @@ public class MapItem extends MapSprite {
     }
 
     public MapItem(MapProperties hVar) {
-        this.f3092x = ((int) Float.parseFloat(hVar.b("x").toString())) - 24;
-        this.f3093y = ((int) Float.parseFloat(hVar.b("y").toString())) + 24;
-        if (hVar.a("tag")) {
-            this.tag = hVar.b("tag").toString();
+        this.f3092x = ((int) Float.parseFloat(hVar.get("x").toString())) - 24;
+        this.f3093y = ((int) Float.parseFloat(hVar.get("y").toString())) + 24;
+        if (hVar.containsKey("tag")) {
+            this.tag = hVar.get("tag").toString();
         }
-        this.walkable = hVar.a("walkable");
-        this.blocksview = hVar.a("blocksview");
+        this.walkable = hVar.containsKey("walkable");
+        this.blocksview = hVar.containsKey("blocksview");
         T();
         MapItemState mapItemState = MapItemState.ACTIVE;
         this.state = mapItemState;
-        boolean zA = hVar.a("inactive");
+        boolean zA = hVar.containsKey("inactive");
         MapItemState mapItemState2 = MapItemState.INACTIVE;
         if (zA) {
-            if (new ConditionsSet(hVar.b("inactive").toString()).a().booleanValue()) {
+            if (new ConditionsSet(hVar.get("inactive").toString()).a().booleanValue()) {
                 this.state = mapItemState2;
             } else {
                 this.state = mapItemState;
             }
         }
-        if (hVar.a("active")) {
-            if (new ConditionsSet(hVar.b("active").toString()).a().booleanValue()) {
+        if (hVar.containsKey("active")) {
+            if (new ConditionsSet(hVar.get("active").toString()).a().booleanValue()) {
                 this.state = mapItemState;
             } else {
                 this.state = mapItemState2;
             }
         }
-        boolean zA2 = hVar.a("invisible");
+        boolean zA2 = hVar.containsKey("invisible");
         MapItemState mapItemState3 = MapItemState.INVISIBLE;
         if (zA2) {
             this.state = mapItemState3;
         }
-        if (hVar.a("active_sprite")) {
-            this.activeSprite = hVar.b("active_sprite").toString();
+        if (hVar.containsKey("active_sprite")) {
+            this.activeSprite = hVar.get("active_sprite").toString();
         }
-        if (hVar.a("inactive_sprite")) {
-            this.inactiveSprite = hVar.b("inactive_sprite").toString();
+        if (hVar.containsKey("inactive_sprite")) {
+            this.inactiveSprite = hVar.get("inactive_sprite").toString();
         }
         this.effect = false;
-        if (hVar.a("active_effect")) {
-            String string = hVar.b("active_effect").toString();
+        if (hVar.containsKey("active_effect")) {
+            String string = hVar.get("active_effect").toString();
             this.activeEffect = string;
             int i2 = 0;
             while (true) {
@@ -308,19 +308,19 @@ public class MapItem extends MapSprite {
             this.effect = true;
         }
         this.toggleItems = "";
-        if (hVar.a("toggle_items")) {
-            this.toggleItems = hVar.b("toggle_items").toString().trim();
+        if (hVar.containsKey("toggle_items")) {
+            this.toggleItems = hVar.get("toggle_items").toString().trim();
         }
         this.conditionsActivate = "";
-        if (hVar.a("conditions_activate")) {
-            this.conditionsActivate = hVar.b("conditions_activate").toString().trim();
+        if (hVar.containsKey("conditions_activate")) {
+            this.conditionsActivate = hVar.get("conditions_activate").toString().trim();
         }
         this.conditionsDeactivate = "";
-        if (hVar.a("conditions_deactivate")) {
-            this.conditionsDeactivate = hVar.b("conditions_deactivate").toString().trim();
+        if (hVar.containsKey("conditions_deactivate")) {
+            this.conditionsDeactivate = hVar.get("conditions_deactivate").toString().trim();
         }
         this.barrier = false;
-        if (hVar.a("barrier")) {
+        if (hVar.containsKey("barrier")) {
             this.barrier = true;
             this.walkable = true;
             if (this.state == mapItemState) {
@@ -328,7 +328,7 @@ public class MapItem extends MapSprite {
             }
         }
         this.bridge = false;
-        if (hVar.a("bridge")) {
+        if (hVar.containsKey("bridge")) {
             this.bridge = true;
             this.walkable = true;
             MapItemState mapItemState4 = this.state;

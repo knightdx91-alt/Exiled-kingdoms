@@ -115,10 +115,10 @@ public class Assets implements Disposable {
 
     private static Texture b(String str) {
         Assets assets = f3309a;
-        if (!assets.assetManager.q("data/ui/" + str + ".png")) {
+        if (!assets.assetManager.isLoaded("data/ui/" + str + ".png")) {
             return assets.malePortraits[0].getTexture();
         }
-        return (Texture) assets.assetManager.d("data/ui/" + str + ".png");
+        return (Texture) assets.assetManager.finishLoadingAsset("data/ui/" + str + ".png");
     }
 
     public static TextureRegion c(int i2, boolean z2) {
@@ -160,11 +160,11 @@ public class Assets implements Disposable {
 
     public static Skin g() {
         Assets assets = f3309a;
-        if (!assets.assetManager.q("data/ui/" + p())) {
-            assets.assetManager.r(Skin.class, "data/ui/" + p());
-            assets.assetManager.c();
+        if (!assets.assetManager.isLoaded("data/ui/" + p())) {
+            assets.assetManager.setLoader(Skin.class, "data/ui/" + p());
+            assets.assetManager.finishLoading();
         }
-        return (Skin) assets.assetManager.d("data/ui/" + p());
+        return (Skin) assets.assetManager.finishLoadingAsset("data/ui/" + p());
     }
 
     public static TextureAtlas.AtlasRegion h(String str) {
@@ -177,26 +177,26 @@ public class Assets implements Disposable {
 
     public static TextureRegionDrawable i() {
         Assets assets = f3309a;
-        if (!assets.assetManager.q("data/ui/tavern.png")) {
-            assets.assetManager.r(Texture.class, "data/ui/tavern.png");
+        if (!assets.assetManager.isLoaded("data/ui/tavern.png")) {
+            assets.assetManager.setLoader(Texture.class, "data/ui/tavern.png");
         }
-        assets.assetManager.c();
-        return new TextureRegionDrawable(new TextureRegion((Texture) assets.assetManager.d("data/ui/tavern.png")));
+        assets.assetManager.finishLoading();
+        return new TextureRegionDrawable(new TextureRegion((Texture) assets.assetManager.finishLoadingAsset("data/ui/tavern.png")));
     }
 
     public static TextureRegionDrawable j() {
         Assets assets = f3309a;
-        if (!assets.assetManager.q("data/ui/town_hall.png")) {
-            assets.assetManager.r(Texture.class, "data/ui/town_hall.png");
+        if (!assets.assetManager.isLoaded("data/ui/town_hall.png")) {
+            assets.assetManager.setLoader(Texture.class, "data/ui/town_hall.png");
         }
-        assets.assetManager.c();
-        return new TextureRegionDrawable(new TextureRegion((Texture) assets.assetManager.d("data/ui/town_hall.png")));
+        assets.assetManager.finishLoading();
+        return new TextureRegionDrawable(new TextureRegion((Texture) assets.assetManager.finishLoadingAsset("data/ui/town_hall.png")));
     }
 
     public static void k() {
         AssetManager dVar = f3309a.assetManager;
         if (dVar != null) {
-            dVar.c();
+            dVar.finishLoading();
         }
     }
 
@@ -236,10 +236,10 @@ public class Assets implements Disposable {
         Assets assets = f3309a;
         if (iOrdinal == 0) {
             if (assets.malePortraits[i2] != null) {
-                if (!assets.assetManager.q("data/graphics/portraits/male/" + i2 + ".png")) {
-                    assets.assetManager.r(Texture.class, "data/graphics/portraits/male/" + i2 + ".png");
-                    assets.assetManager.c();
-                    assets.malePortraits[i2] = new TextureRegion((Texture) assets.assetManager.d("data/graphics/portraits/male/" + i2 + ".png"));
+                if (!assets.assetManager.isLoaded("data/graphics/portraits/male/" + i2 + ".png")) {
+                    assets.assetManager.setLoader(Texture.class, "data/graphics/portraits/male/" + i2 + ".png");
+                    assets.assetManager.finishLoading();
+                    assets.malePortraits[i2] = new TextureRegion((Texture) assets.assetManager.finishLoadingAsset("data/graphics/portraits/male/" + i2 + ".png"));
                     Texture texture = assets.malePortraits[i2].getTexture();
                     Texture.TextureFilter textureFilter = Texture.TextureFilter.Linear;
                     texture.setFilter(textureFilter, textureFilter);
@@ -251,10 +251,10 @@ public class Assets implements Disposable {
             return assets.malePortraits[0];
         }
         if (assets.femalePortraits[i2] != null) {
-            if (!assets.assetManager.q("data/graphics/portraits/female/" + i2 + ".png")) {
-                assets.assetManager.r(Texture.class, "data/graphics/portraits/female/" + i2 + ".png");
-                assets.assetManager.c();
-                assets.femalePortraits[i2] = new TextureRegion((Texture) assets.assetManager.d("data/graphics/portraits/female/" + i2 + ".png"));
+            if (!assets.assetManager.isLoaded("data/graphics/portraits/female/" + i2 + ".png")) {
+                assets.assetManager.setLoader(Texture.class, "data/graphics/portraits/female/" + i2 + ".png");
+                assets.assetManager.finishLoading();
+                assets.femalePortraits[i2] = new TextureRegion((Texture) assets.assetManager.finishLoadingAsset("data/graphics/portraits/female/" + i2 + ".png"));
                 Texture texture2 = assets.femalePortraits[i2].getTexture();
                 Texture.TextureFilter textureFilter2 = Texture.TextureFilter.Linear;
                 texture2.setFilter(textureFilter2, textureFilter2);
@@ -280,17 +280,17 @@ public class Assets implements Disposable {
     public static Texture q(String str) {
         String strL = a.l("data/sprites/", str, ".png");
         Assets assets = f3309a;
-        if (!assets.assetManager.q(strL)) {
-            assets.assetManager.r(Texture.class, strL);
+        if (!assets.assetManager.isLoaded(strL)) {
+            assets.assetManager.setLoader(Texture.class, strL);
         }
-        assets.assetManager.c();
-        return (Texture) assets.assetManager.d(strL);
+        assets.assetManager.finishLoading();
+        return (Texture) assets.assetManager.finishLoadingAsset(strL);
     }
 
     public static void v() {
         Assets assets = f3309a;
         Texture.setAssetManager(assets.assetManager);
-        assets.assetManager.z();
+        assets.assetManager.update();
     }
 
     public static void w(float f2) {
@@ -302,16 +302,16 @@ public class Assets implements Disposable {
 
     public static void y(String str) {
         Assets assets = f3309a;
-        if (assets.assetManager.q("data/sprites/" + str + ".png")) {
+        if (assets.assetManager.isLoaded("data/sprites/" + str + ".png")) {
             try {
-                assets.assetManager.y("data/sprites/" + str + ".png");
+                assets.assetManager.unload("data/sprites/" + str + ".png");
             } catch (Exception unused) {
             }
         }
     }
 
     public static boolean z() {
-        return f3309a.assetManager.z();
+        return f3309a.assetManager.update();
     }
 
     @Override // com.badlogic.gdx.utils.i
@@ -357,38 +357,38 @@ public class Assets implements Disposable {
         String str;
         String str2;
         this.assetManager = dVar;
-        dVar.u(this);
+        dVar.setErrorListener(this);
         String str3 = "data/graphics/flags.pack";
         String str4 = "data/graphics/ui_icons.pack";
         String str5 = "data/graphics/skills.pack";
         if (ExiledKingdoms.f3378h) {
-            this.assetManager.r(TextureAtlas.class, "data/graphics/items_linear.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/skills_linear.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/ui_icons_linear.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/flags_linear.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/activables_linear.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/plants_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/items_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/skills_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/ui_icons_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/flags_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/activables_linear.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/plants_linear.pack");
         } else {
-            this.assetManager.r(TextureAtlas.class, "data/graphics/items.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/skills.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/ui_icons.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/flags.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/activables.pack");
-            this.assetManager.r(TextureAtlas.class, "data/graphics/plants.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/items.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/skills.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/ui_icons.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/flags.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/activables.pack");
+            this.assetManager.setLoader(TextureAtlas.class, "data/graphics/plants.pack");
         }
-        this.assetManager.r(TextureAtlas.class, "data/graphics/mapitems.pack");
-        this.assetManager.r(TextureAtlas.class, "data/graphics/map_thumbnails.pack");
-        this.assetManager.r(TextureAtlas.class, "data/sprites/projectiles/projectiles.pack");
-        this.assetManager.r(Skin.class, "data/ui/" + p());
-        this.assetManager.r(Texture.class, "data/ui/paperbg.png");
-        this.assetManager.c();
+        this.assetManager.setLoader(TextureAtlas.class, "data/graphics/mapitems.pack");
+        this.assetManager.setLoader(TextureAtlas.class, "data/graphics/map_thumbnails.pack");
+        this.assetManager.setLoader(TextureAtlas.class, "data/sprites/projectiles/projectiles.pack");
+        this.assetManager.setLoader(Skin.class, "data/ui/" + p());
+        this.assetManager.setLoader(Texture.class, "data/ui/paperbg.png");
+        this.assetManager.finishLoading();
         this.lastMusicName = "";
         Music cVarNewMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ui/silent.mp3"));
         this.music = cVarNewMusic;
         if (cVarNewMusic != null) {
             cVarNewMusic.stop();
         }
-        dVar.c();
+        dVar.finishLoading();
         u();
         this.staticNPCs = new ArrayList<>();
         p.b bVar = new p.b();
@@ -404,12 +404,12 @@ public class Assets implements Disposable {
             if (!it.hasNext()) {
                 break;
             }
-            this.assetManager.s(a.l("data/sprites/staticNPC/", (String) it.next(), ".png"), Texture.class, bVar);
+            this.assetManager.load(a.l("data/sprites/staticNPC/", (String) it.next(), ".png"), Texture.class, bVar);
             str3 = str;
             str4 = str2;
             it = it;
         }
-        this.assetManager.c();
+        this.assetManager.finishLoading();
         Iterator it2 = TextList.a().iterator();
         while (it2.hasNext()) {
             String str6 = (String) it2.next();
@@ -417,45 +417,45 @@ public class Assets implements Disposable {
             staticNPCRegion.name = str6;
             Iterator it3 = it2;
             String str7 = str5;
-            staticNPCRegion.region_l = new TextureRegion((Texture) this.assetManager.d("data/sprites/staticNPC/" + str6 + ".png"), 0, 0, 32, 64);
-            staticNPCRegion.region_r = new TextureRegion((Texture) this.assetManager.d("data/sprites/staticNPC/" + str6 + ".png"), 32, 0, -32, 64);
+            staticNPCRegion.region_l = new TextureRegion((Texture) this.assetManager.finishLoadingAsset("data/sprites/staticNPC/" + str6 + ".png"), 0, 0, 32, 64);
+            staticNPCRegion.region_r = new TextureRegion((Texture) this.assetManager.finishLoadingAsset("data/sprites/staticNPC/" + str6 + ".png"), 32, 0, -32, 64);
             this.staticNPCs.add(staticNPCRegion);
             it2 = it3;
             str5 = str7;
         }
         String str8 = str5;
         if (ExiledKingdoms.f3378h) {
-            this.items = (TextureAtlas) dVar.d("data/graphics/items_linear.pack");
-            this.skills = (TextureAtlas) dVar.d("data/graphics/skills_linear.pack");
-            this.ui_icons = (TextureAtlas) dVar.d("data/graphics/ui_icons_linear.pack");
-            this.flags = (TextureAtlas) dVar.d("data/graphics/flags_linear.pack");
-            this.activables = (TextureAtlas) dVar.d("data/graphics/activables_linear.pack");
-            this.plants = (TextureAtlas) dVar.d("data/graphics/plants_linear.pack");
+            this.items = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/items_linear.pack");
+            this.skills = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/skills_linear.pack");
+            this.ui_icons = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/ui_icons_linear.pack");
+            this.flags = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/flags_linear.pack");
+            this.activables = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/activables_linear.pack");
+            this.plants = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/plants_linear.pack");
         } else {
-            this.items = (TextureAtlas) dVar.d("data/graphics/items.pack");
-            this.skills = (TextureAtlas) dVar.d(str8);
-            this.ui_icons = (TextureAtlas) dVar.d(str2);
-            this.flags = (TextureAtlas) dVar.d(str);
-            this.activables = (TextureAtlas) dVar.d("data/graphics/activables.pack");
-            this.plants = (TextureAtlas) dVar.d("data/graphics/plants.pack");
+            this.items = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/items.pack");
+            this.skills = (TextureAtlas) dVar.finishLoadingAsset(str8);
+            this.ui_icons = (TextureAtlas) dVar.finishLoadingAsset(str2);
+            this.flags = (TextureAtlas) dVar.finishLoadingAsset(str);
+            this.activables = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/activables.pack");
+            this.plants = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/plants.pack");
         }
-        this.mapItems = (TextureAtlas) dVar.d("data/graphics/mapitems.pack");
-        this.projectiles = (TextureAtlas) dVar.d("data/sprites/projectiles/projectiles.pack");
-        this.mapThumbs = (TextureAtlas) dVar.d("data/graphics/map_thumbnails.pack");
-        Skin skin = (Skin) this.assetManager.d("data/ui/" + p());
+        this.mapItems = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/mapitems.pack");
+        this.projectiles = (TextureAtlas) dVar.finishLoadingAsset("data/sprites/projectiles/projectiles.pack");
+        this.mapThumbs = (TextureAtlas) dVar.finishLoadingAsset("data/graphics/map_thumbnails.pack");
+        Skin skin = (Skin) this.assetManager.finishLoadingAsset("data/ui/" + p());
         Texture next = skin.getAtlas().getTextures().iterator().next();
         Texture.TextureFilter textureFilter2 = Texture.TextureFilter.Nearest;
         next.setFilter(textureFilter2, textureFilter2);
         skin.getFont("menu-button-font").getData().setScale(Gdx.graphics.getWidth() / 1280.0f, Gdx.graphics.getHeight() / 720.0f);
         skin.getFont("menu-button-font").getData().markupEnabled = true;
-        skin.add("windowbg", new NinePatch((Texture) this.assetManager.d("data/ui/paperbg.png"), 10, 10, 20, 10));
+        skin.add("windowbg", new NinePatch((Texture) this.assetManager.finishLoadingAsset("data/ui/paperbg.png"), 10, 10, 20, 10));
         skin.add("touchBackground", new Texture("data/ui/touchpad_base.png"));
         skin.add("touchKnob", new Texture("data/ui/touchpad_knob.png"));
         Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle();
         touchpadStyle.background = skin.getDrawable("touchBackground");
         touchpadStyle.knob = skin.getDrawable("touchKnob");
         skin.add("touchpad", touchpadStyle);
-        dVar.c();
+        dVar.finishLoading();
     }
 
     public final boolean s() {
@@ -475,15 +475,15 @@ public class Assets implements Disposable {
         }
         if (Gdx.files.internal("data/music/" + str + ".mp3").exists()) {
             if (!this.lastMusicName.equals("")) {
-                this.assetManager.y("data/music/" + this.lastMusicName + ".mp3");
+                this.assetManager.unload("data/music/" + this.lastMusicName + ".mp3");
             }
-            this.assetManager.c();
-            this.assetManager.r(c.class, "data/music/" + str + ".mp3");
+            this.assetManager.finishLoading();
+            this.assetManager.setLoader(c.class, "data/music/" + str + ".mp3");
             this.lastMusicName = str;
-            this.assetManager.c();
-            while (!this.assetManager.z()) {
+            this.assetManager.finishLoading();
+            while (!this.assetManager.update()) {
             }
-            this.music = (Music) this.assetManager.d("data/music/" + str + ".mp3");
+            this.music = (Music) this.assetManager.finishLoadingAsset("data/music/" + str + ".mp3");
             PrintStream printStream = System.out;
             StringBuilder sbU = a.u("PLAYING ", str, " at ");
             sbU.append(Settings.i());
@@ -504,31 +504,31 @@ public class Assets implements Disposable {
             if (i2 > 115) {
                 break;
             }
-            if (assets.assetManager.q("data/graphics/portraits/male/" + i2 + ".png")) {
-                this.assetManager.y("data/graphics/portraits/male/" + i2 + ".png");
+            if (assets.assetManager.isLoaded("data/graphics/portraits/male/" + i2 + ".png")) {
+                this.assetManager.unload("data/graphics/portraits/male/" + i2 + ".png");
             }
             i2++;
         }
         for (int i3 = 0; i3 <= 67; i3++) {
-            if (assets.assetManager.q("data/graphics/portraits/female/" + i3 + ".png")) {
-                this.assetManager.y("data/graphics/portraits/female/" + i3 + ".png");
+            if (assets.assetManager.isLoaded("data/graphics/portraits/female/" + i3 + ".png")) {
+                this.assetManager.unload("data/graphics/portraits/female/" + i3 + ".png");
             }
         }
         for (int i4 = 0; i4 <= 5; i4++) {
-            if (assets.assetManager.q("data/ui/skill_bg" + i4 + ".png")) {
-                this.assetManager.y("data/ui/skill_bg" + i4 + ".png");
+            if (assets.assetManager.isLoaded("data/ui/skill_bg" + i4 + ".png")) {
+                this.assetManager.unload("data/ui/skill_bg" + i4 + ".png");
             }
         }
-        this.assetManager.c();
+        this.assetManager.finishLoading();
         for (int i5 = 0; i5 <= 115; i5++) {
             this.malePortraits[i5] = null;
         }
         for (int i6 = 0; i6 <= 67; i6++) {
             this.femalePortraits[i6] = null;
         }
-        this.assetManager.r(Texture.class, "data/graphics/portraits/male/0.png");
-        this.assetManager.c();
-        this.malePortraits[0] = new TextureRegion((Texture) this.assetManager.d("data/graphics/portraits/male/0.png"));
+        this.assetManager.setLoader(Texture.class, "data/graphics/portraits/male/0.png");
+        this.assetManager.finishLoading();
+        this.malePortraits[0] = new TextureRegion((Texture) this.assetManager.finishLoadingAsset("data/graphics/portraits/male/0.png"));
     }
 
     public final void x() {

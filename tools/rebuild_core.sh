@@ -1,48 +1,53 @@
 #!/usr/bin/env bash
-# Reproducibly rebuilds port/core game sources from the raw decompiled tree by
-# applying every de-obfuscation transform in order. Idempotent; avoids the
-# "orphaned reference" problem of re-running the import-driven remapper on an
-# already-rewritten tree.
+# Reproducibly rebuilds port/core from the raw decompiled tree, applying every
+# de-obfuscation transform in order. Idempotent.
 #
-# Usage: ./tools/rebuild_core.sh /path/to/decompiled/sources/net
+# Usage: ./tools/rebuild_core.sh /path/to/decompiled/sources
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="${1:?usage: rebuild_core.sh <decompiled .../sources/net>}"
-DST="$ROOT/port/core/src/main/java/net"
+SRCROOT="${1:?usage: rebuild_core.sh <decompiled .../sources>}"
+DST="$ROOT/port/core/src/main/java"
 T="$ROOT/tools"
+CACHE="$ROOT/.cache"; mkdir -p "$CACHE"
 
-echo ">> 1. reset core from raw decompiled source"
-rm -rf "$DST"; mkdir -p "$(dirname "$DST")"; cp -r "$SRC" "$DST"
+echo ">> 1. select game packages (exclude external + relocated-libGDX + gdx-pay + box2dlights)"
+rm -rf "$DST"; mkdir -p "$DST"
+EXCLUDE="com android a0 h0 r t b d0 e0 q"
+cp -r "$SRCROOT/net" "$DST/"
+for p in $(ls -d "$SRCROOT"/*/ | xargs -n1 basename); do
+  case " $EXCLUDE net " in *" $p "*) continue;; esac
+  cp -r "$SRCROOT/$p" "$DST/" 2>/dev/null || true
+done
 
-echo ">> 2. reconstruct broken enums (+ tree-wide constant rename)"
+echo ">> 2. drop platform files (import android/gms) -- replaced by stubs in port/stubs"
+grep -rlE 'import (com\.google\.android|android)\.' "$DST" --include=*.java | xargs -r rm -f
+
+echo ">> 3. reconstruct broken enums (+ tree-wide constant rename)"
 python3 "$T/fix_enums.py" "$DST" >/dev/null
 
-echo ">> 3. remap obfuscated libGDX classes (imports/body/header/return-type)"
+echo ">> 4. remap obfuscated libGDX classes (imports/body/header/return-type)"
 python3 "$T/remap_gdx.py" "$DST" "$ROOT/deobf/deobf_map_full.json" >/dev/null
 
-echo ">> 4. targeted jadx-artifact hand-fixes"
+echo ">> 5. targeted jadx-artifact hand-fixes"
 python3 - "$DST" <<'PY'
-import sys,re,os
+import sys,os
 D=sys.argv[1]
 def edit(rel,fn):
     p=os.path.join(D,rel)
-    if not os.path.exists(p): return
-    s=open(p).read(); s2=fn(s)
-    if s2!=s: open(p,'w').write(s2)
-# Character: jadx '?? r6 = 0' -> boolean (GameString.b(String,boolean) proves type)
-edit('fdgames/GameEntities/Character.java',
+    if os.path.exists(p):
+        s=open(p).read(); s2=fn(s)
+        if s2!=s: open(p,'w').write(s2)
+edit('net/fdgames/GameEntities/Character.java',
      lambda s: s.replace('?? r6 = 0;','boolean r6 = false;').replace('r6 = 0;','r6 = false;'))
-# BonusSet: drop jadx-duplicated field
 def bonus(s):
-    lines=s.split('\n'); out=[]; seen=False
-    for l in lines:
+    out=[];seen=False
+    for l in s.split('\n'):
         if 'private int critDamage = this.critDamage;' in l:
             if seen: continue
             seen=True
         out.append(l)
     return '\n'.join(out)
-edit('fdgames/Rules/BonusSet.java',bonus)
-# Skills: re-declare z3 dropped from the second parallel branch
+edit('net/fdgames/Rules/BonusSet.java',bonus)
 def skills(s):
     L=s.split('\n')
     for i,l in enumerate(L):
@@ -51,7 +56,12 @@ def skills(s):
             L.insert(i,ind+'boolean z3 = !strArrSplit3[4].toLowerCase(locale).contains("y") || strArrSplit3[4].toLowerCase(locale).contains("m");')
             break
     return '\n'.join(L)
-edit('fdgames/Rules/Skills.java',skills)
-print("   hand-fixes applied")
+edit('net/fdgames/Rules/Skills.java',skills)
 PY
-echo ">> done. core rebuilt at $DST"
+
+echo ">> 6. type-aware method-call de-obfuscation (JavaParser symbol solver)"
+GDX="$CACHE/gdx-1.12.1.jar"
+[ -f "$GDX" ] || curl -sSf -o "$GDX" "https://repo1.maven.org/maven2/com/badlogicgames/gdx/gdx/1.12.1/gdx-1.12.1.jar"
+"$T/javaparser/run.sh" "$DST" "$GDX" || echo "   (symbol-solver pass reported issues; continuing)"
+
+echo ">> done. core rebuilt at $DST ($(find "$DST" -name '*.java' | wc -l) files)"

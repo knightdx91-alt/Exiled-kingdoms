@@ -30,7 +30,7 @@ def methods(txt):
     for m in sig.finditer(txt):
         rr=m.group(2).strip().split(); ret=normret(rr[-1] if rr else 'void')
         name=m.group(3)
-        if name in ('if','for','while','switch','catch','return','new'):continue
+        if name in ('if','for','while','switch','catch','return','new','synchronized','instanceof','assert','throw','class','void','super','this','final','static','public','private','protected'):continue
         i=m.end()-1;d=0;j=i
         while j<len(txt):
             if txt[j]=='{':d+=1

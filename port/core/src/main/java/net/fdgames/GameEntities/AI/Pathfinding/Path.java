@@ -16,7 +16,7 @@ public class Path {
     }
 
     public final void b(int i2, int i3) {
-        this.steps.a(new Step(i2, i3));
+        this.steps.add(new Step(i2, i3));
     }
 
     public final void c() {
@@ -41,11 +41,11 @@ public class Path {
     }
 
     public final void g(int i2, int i3) {
-        this.steps.a(new Step(i2, i3));
+        this.steps.add(new Step(i2, i3));
     }
 
     public final void h(int i2) {
-        this.steps.o(i2);
+        this.steps.Array(i2);
     }
 
     public final void i() {
@@ -58,7 +58,7 @@ public class Path {
                 return;
             } else {
                 if (!aVar2.get(i2).a()) {
-                    aVar.a(this.steps.get(i2));
+                    aVar.add(this.steps.get(i2));
                 }
                 i2++;
             }

@@ -214,7 +214,7 @@ public class Serializer {
 
     public static void G() {
         String strO;
-        ExiledKingdoms.f3382l = GameData.GameStatus.STOPPED;
+        ExiledKingdoms.f3382l = GameData.GameStatus.f3185b;
         f3224a = new Integer[10];
         for (int i2 = 0; i2 < 10; i2++) {
             f3224a[i2] = -1;
@@ -295,7 +295,7 @@ public class Serializer {
         GameData.K(saveGameData.gamedata);
         Coords coords = new Coords(GameData.v().player.f3092x, GameData.v().player.f3093y);
         Game eVar = (Game) Gdx.app.getApplicationListener();
-        eVar.c(new l0.b(eVar, new Transition(saveGameData.gamedata.CurrentLevel, 1)));
+        eVar.setScreen(new l0.b(eVar, new Transition(saveGameData.gamedata.CurrentLevel, 1)));
         GameData.v().player.f3092x = coords.f3287x;
         GameData.v().player.f3093y = coords.f3288y;
         l.d("Serializer.LoadGame() > loading level");
