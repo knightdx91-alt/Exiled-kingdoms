@@ -20,8 +20,8 @@ import net.fdgames.GameEntities.Character;
 import net.fdgames.Helpers.TextList;
 import net.fdgames.ek.ExiledKingdoms;
 import net.fdgames.ek.Settings;
-import r.d;
-import t.c;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Assets implements i {
@@ -41,7 +41,7 @@ public class Assets implements i {
     /* JADX INFO: renamed from: e, reason: collision with root package name */
     public static Cursor f3313e;
     private TextureAtlas activables;
-    private d assetManager;
+    private AssetManager assetManager;
     private TextureRegion[] femalePortraits;
     private TextureAtlas flags;
     private TextureAtlas items;
@@ -49,7 +49,7 @@ public class Assets implements i {
     private TextureRegion[] malePortraits;
     private TextureAtlas mapItems;
     private TextureAtlas mapThumbs;
-    private c music;
+    private Music music;
     private TextureAtlas plants;
     private TextureAtlas projectiles;
     private TextureAtlas skills;
@@ -194,7 +194,7 @@ public class Assets implements i {
     }
 
     public static void k() {
-        d dVar = f3309a.assetManager;
+        AssetManager dVar = f3309a.assetManager;
         if (dVar != null) {
             dVar.c();
         }
@@ -294,7 +294,7 @@ public class Assets implements i {
     }
 
     public static void w(float f2) {
-        c cVar = f3309a.music;
+        Music cVar = f3309a.music;
         if (cVar != null) {
             cVar.setVolume(f2);
         }
@@ -317,7 +317,7 @@ public class Assets implements i {
     @Override // com.badlogic.gdx.utils.i
     public final void dispose() {
         System.out.println("assets disposing...");
-        d dVar = this.assetManager;
+        AssetManager dVar = this.assetManager;
         if (dVar != null) {
             dVar.dispose();
             this.assetManager = null;
@@ -338,7 +338,7 @@ public class Assets implements i {
         }
         this.malePortraits = null;
         this.femalePortraits = null;
-        c cVar = this.music;
+        Music cVar = this.music;
         if (cVar != null) {
             cVar.dispose();
             this.music = null;
@@ -353,7 +353,7 @@ public class Assets implements i {
         }
     }
 
-    public final void r(d dVar) {
+    public final void r(AssetManager dVar) {
         String str;
         String str2;
         this.assetManager = dVar;
@@ -383,7 +383,7 @@ public class Assets implements i {
         this.assetManager.r(Texture.class, "data/ui/paperbg.png");
         this.assetManager.c();
         this.lastMusicName = "";
-        c cVarNewMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ui/silent.mp3"));
+        Music cVarNewMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ui/silent.mp3"));
         this.music = cVarNewMusic;
         if (cVarNewMusic != null) {
             cVarNewMusic.stop();
@@ -467,7 +467,7 @@ public class Assets implements i {
             GameMusic.a(str);
             return;
         }
-        c cVar = this.music;
+        Music cVar = this.music;
         if (cVar != null) {
             cVar.stop();
             this.music.dispose();
@@ -483,7 +483,7 @@ public class Assets implements i {
             this.assetManager.c();
             while (!this.assetManager.z()) {
             }
-            this.music = (c) this.assetManager.d("data/music/" + str + ".mp3");
+            this.music = (Music) this.assetManager.d("data/music/" + str + ".mp3");
             PrintStream printStream = System.out;
             StringBuilder sbU = a.u("PLAYING ", str, " at ");
             sbU.append(Settings.i());
@@ -532,7 +532,7 @@ public class Assets implements i {
     }
 
     public final void x() {
-        c cVar = this.music;
+        Music cVar = this.music;
         if (cVar != null) {
             cVar.stop();
         }

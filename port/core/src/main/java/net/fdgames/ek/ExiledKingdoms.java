@@ -1,6 +1,6 @@
 package net.fdgames.ek;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import android.app.ActivityManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
@@ -26,7 +26,7 @@ import net.fdgames.assets.Assets;
 import net.fdgames.assets.GameAssets;
 import net.fdgames.ek.ControllerCommand;
 import net.fdgames.ek.android.MainActivity;
-import r.d;
+import com.badlogic.gdx.assets.AssetManager;
 import s0.a;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
@@ -355,7 +355,7 @@ public class ExiledKingdoms extends e {
         if (f3388r) {
             f3377g = false;
             f3385o.getClass();
-            p pVar = new p();
+            Rectangle pVar = new Rectangle ();
             pVar.getX();
             Gdx.graphics.getHeight();
             f3389t = (int) ((720.0f / Gdx.graphics.getHeight()) * pVar.getY());
@@ -378,7 +378,7 @@ public class ExiledKingdoms extends e {
         }
         l.d("ExiledKingdoms.initialize() - Loading assets....");
         try {
-            Assets.f3309a.r(new d());
+            Assets.f3309a.r(new AssetManager ());
             Assets.v();
             GameAssets.d();
         } catch (Exception e4) {

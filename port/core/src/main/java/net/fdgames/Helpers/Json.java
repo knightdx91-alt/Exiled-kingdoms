@@ -6,9 +6,9 @@ import com.badlogic.gdx.utils.s;
 import com.badlogic.gdx.utils.t;
 import com.badlogic.gdx.utils.u;
 import com.badlogic.gdx.utils.y;
-import h0.b;
-import h0.c;
-import h0.e;
+import com.badlogic.gdx.utils.reflect.Constructor;
+import com.badlogic.gdx.utils.reflect.Field;
+import com.badlogic.gdx.utils.reflect.ReflectionException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -32,7 +32,7 @@ public class Json {
     private Serializer defaultSerializer;
     private boolean enumNames;
     private boolean ignoreUnknownFields;
-    private u.b outputType;
+    private u.Constructor outputType;
     private boolean quoteLongValues;
     private final y<String, Class> tagToClass;
     private String typeName;
@@ -64,7 +64,7 @@ public class Json {
     private static class a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        c f3222a;
+        Field f3222a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         Class f3223b;
@@ -94,7 +94,7 @@ public class Json {
         y<String, a> yVar = new y<>();
         int size = arrayList.size();
         for (int i2 = 0; i2 < size; i2++) {
-            c cVar = (c) arrayList.get(i2);
+            Field cVar = (Field) arrayList.get(i2);
             if (!cVar.j() && !cVar.h() && !cVar.i()) {
                 if (cVar.f()) {
                     String strD = cVar.d();
@@ -140,11 +140,11 @@ public class Json {
             }
             Object[] objArr = new Object[yVarD.f2043a];
             this.classToDefaultValues.j(cls, objArr);
-            y.e<a> eVarN = yVarD.n();
+            y.ReflectionException<a> eVarN = yVarD.n();
             eVarN.getClass();
             int i2 = 0;
             while (eVarN.hasNext()) {
-                c cVar = eVarN.next().f3222a;
+                Field cVar = eVarN.next().f3222a;
                 int i3 = i2 + 1;
                 try {
                     objArr[i2] = cVar.a(objNewInstance);
@@ -152,7 +152,7 @@ public class Json {
                 } catch (h0 e2) {
                     e2.a(cVar + " (" + cls.getName() + ")");
                     throw e2;
-                } catch (e e3) {
+                } catch (ReflectionException e3) {
                     throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
                 } catch (RuntimeException e4) {
                     h0 h0Var = new h0(e4);
@@ -183,7 +183,7 @@ public class Json {
         }
         try {
             return h0.a.a(str);
-        } catch (e e2) {
+        } catch (ReflectionException e2) {
             throw new h0(e2);
         }
     }
@@ -207,10 +207,10 @@ public class Json {
         } catch (Exception e2) {
             e = e2;
             try {
-                b bVarC = h0.a.c(cls, new Class[0]);
+                Constructor bVarC = h0.a.c(cls, new Class[0]);
                 bVarC.c();
                 return bVarC.b(new Object[0]);
-            } catch (e unused) {
+            } catch (ReflectionException unused) {
                 if (Enum.class.isAssignableFrom(cls)) {
                     if (cls.getEnumConstants() == null) {
                         cls = cls.getSuperclass();
@@ -250,13 +250,13 @@ public class Json {
         for (t tVar2 = tVar.f1958f; tVar2 != null; tVar2 = tVar2.f1960h) {
             a aVarD = yVarD.d(tVar2.f1957e);
             if (aVarD != null) {
-                c cVar = aVarD.f3222a;
+                Field cVar = aVarD.f3222a;
                 try {
                     cVar.k(obj, readValue(cVar.e(), aVarD.f3223b, tVar2));
                 } catch (h0 e2) {
                     e2.a(cVar.d() + " (" + cls.getName() + ")");
                     throw e2;
-                } catch (e e3) {
+                } catch (ReflectionException e3) {
                     throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
                 } catch (RuntimeException e4) {
                     h0 h0Var = new h0(e4);
@@ -301,7 +301,7 @@ public class Json {
         this.ignoreUnknownFields = z2;
     }
 
-    public void setOutputType(u.b bVar) {
+    public void setOutputType(u.Constructor bVar) {
         this.outputType = bVar;
     }
 
@@ -363,11 +363,11 @@ public class Json {
         if (yVarD == null) {
             yVarD = cacheFields(cls);
         }
-        y.e eVar = new y.e(yVarD);
+        y.ReflectionException eVar = new y.e(yVarD);
         int i2 = 0;
         while (eVar.hasNext()) {
             a aVar = (a) eVar.next();
-            c cVar = aVar.f3222a;
+            Field cVar = aVar.f3222a;
             try {
                 Object objA = cVar.a(obj);
                 if (defaultValues != null) {
@@ -383,7 +383,7 @@ public class Json {
             } catch (h0 e2) {
                 e2.a(cVar + " (" + cls.getName() + ")");
                 throw e2;
-            } catch (e e3) {
+            } catch (ReflectionException e3) {
                 throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
             } catch (Exception e4) {
                 h0 h0Var = new h0(e4);
@@ -493,9 +493,9 @@ public class Json {
 
     public String prettyPrint(String str, int i2) {
         t tVarE = new s().e(str);
-        u.b bVar = this.outputType;
+        u.Constructor bVar = this.outputType;
         tVarE.getClass();
-        t.b bVar2 = new t.b();
+        t.Constructor bVar2 = new t.b();
         bVar2.f1966a = bVar;
         bVar2.f1967b = i2;
         return tVarE.w(bVar2);
@@ -509,7 +509,7 @@ public class Json {
         }
         a aVarD = yVarD.d(str);
         if (aVarD != null) {
-            c cVar = aVarD.f3222a;
+            Field cVar = aVarD.f3222a;
             t tVarK = tVar.k(str2);
             if (tVarK == null) {
                 return;
@@ -523,7 +523,7 @@ public class Json {
             } catch (h0 e2) {
                 e2.a(cVar.d() + " (" + cls2.getName() + ")");
                 throw e2;
-            } catch (e e3) {
+            } catch (ReflectionException e3) {
                 throw new h0("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
             } catch (RuntimeException e4) {
                 h0 h0Var = new h0(e4);
@@ -557,7 +557,7 @@ public class Json {
         }
         a aVarD = yVarD.d(str);
         if (aVarD != null) {
-            c cVar = aVarD.f3222a;
+            Field cVar = aVarD.f3222a;
             if (cls == null) {
                 cls = aVarD.f3223b;
             }
@@ -568,7 +568,7 @@ public class Json {
             } catch (h0 e2) {
                 e2.a(cVar + " (" + cls2.getName() + ")");
                 throw e2;
-            } catch (e e3) {
+            } catch (ReflectionException e3) {
                 throw new h0("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
             } catch (Exception e4) {
                 h0 h0Var = new h0(e4);
@@ -762,7 +762,7 @@ public class Json {
                 if (clsD == null) {
                     try {
                         clsD = h0.a.a(strO);
-                    } catch (e e2) {
+                    } catch (ReflectionException e2) {
                         throw new h0(e2);
                     }
                 }
@@ -981,11 +981,11 @@ public class Json {
         }
     }
 
-    public String prettyPrint(Object obj, t.b bVar) {
+    public String prettyPrint(Object obj, t.Constructor bVar) {
         return prettyPrint(toJson(obj), bVar);
     }
 
-    public Json(u.b bVar) {
+    public Json(u.Constructor bVar) {
         this.typeName = "class";
         this.usePrototypes = true;
         this.enumNames = true;
@@ -997,7 +997,7 @@ public class Json {
         this.outputType = bVar;
     }
 
-    public String prettyPrint(String str, t.b bVar) {
+    public String prettyPrint(String str, t.Constructor bVar) {
         return new s().e(str).w(bVar);
     }
 
@@ -1096,7 +1096,7 @@ public class Json {
                         y.a aVarB = ((y) obj).b();
                         aVarB.getClass();
                         while (aVarB.hasNext()) {
-                            y.b next = aVarB.next();
+                            y.Constructor next = aVarB.next();
                             this.writer.b(convertToString(next.f2057a));
                             writeValue(next.f2058b, cls2, (Class) null);
                         }
@@ -1108,7 +1108,7 @@ public class Json {
                             cls3 = com.badlogic.gdx.utils.b.class;
                         }
                         writeObjectStart(superclass, cls3);
-                        com.badlogic.gdx.utils.b bVar = (com.badlogic.gdx.utils.b) obj;
+                        com.badlogic.gdx.utils.Constructor bVar = (com.badlogic.gdx.utils.b) obj;
                         int i4 = bVar.f1767c;
                         while (i2 < i4) {
                             this.writer.b(convertToString(bVar.f1765a[i2]));

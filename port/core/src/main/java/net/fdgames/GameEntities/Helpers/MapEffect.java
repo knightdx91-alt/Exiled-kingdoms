@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities.Helpers;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +22,7 @@ import net.fdgames.ek.Settings;
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapEffect {
     private int animationIndex;
-    private p collisionRectangle;
+    private Rectangle collisionRectangle;
     private int damage;
     private Damage.DamageType damageType;
     private boolean drawn;
@@ -71,7 +71,7 @@ public class MapEffect {
     public final void e(int i2, int i3) {
         this.f3068x = i2;
         this.f3069y = i3;
-        p pVar = this.collisionRectangle;
+        Rectangle pVar = this.collisionRectangle;
         int i4 = this.size;
         pVar.set((i2 - (i4 / 2)) - 28, (i3 - (i4 / 2)) + 28, i4, i4);
     }
@@ -95,7 +95,7 @@ public class MapEffect {
                 return;
             }
             b bVarP = b.P();
-            p pVar = this.collisionRectangle;
+            Rectangle pVar = this.collisionRectangle;
             bVarP.getClass();
             ArrayList<Integer> arrayListJ = b.j(pVar);
             this.targets = arrayListJ;
@@ -257,7 +257,7 @@ public class MapEffect {
         int i7 = this.size;
         int i8 = i7 / 2;
         float f2 = i7;
-        this.collisionRectangle = new p(i6 - i8, this.f3069y - i8, f2, f2);
+        this.collisionRectangle = new Rectangle (i6 - i8, this.f3069y - i8, f2, f2);
         this.duration = mapEffectDataLineA.duration;
         this.effect = mapEffectDataLineA.effect;
         if (Settings.h() == 2) {

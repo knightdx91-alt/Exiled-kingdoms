@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities.Final;
 
-import a0.q;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,7 +15,7 @@ import net.fdgames.Helpers.FDUtils;
 import net.fdgames.Rules.MapEffectData;
 import net.fdgames.Rules.Rules;
 import net.fdgames.TiledMap.Objects.Coords;
-import u.h;
+import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapEffectEntity extends MapSprite {
@@ -68,7 +68,7 @@ public class MapEffectEntity extends MapSprite {
             }
         }
         float f2 = iB2;
-        q qVar = new q();
+        Vector2 qVar = new Vector2 ();
         qVar.f91a = iB;
         qVar.f92b = f2;
         qVar.c(new Coords(this.f3092x, this.f3093y).a());
@@ -241,7 +241,7 @@ public class MapEffectEntity extends MapSprite {
         if (this.debug) {
             System.out.println("mapEffectEntity setTarget: " + i2 + "," + i3);
         }
-        q qVar = new q();
+        Vector2 qVar = new Vector2 ();
         qVar.f91a = i2;
         qVar.f92b = i3;
         qVar.c(new Coords(this.f3092x, this.f3093y).a());
@@ -292,7 +292,7 @@ public class MapEffectEntity extends MapSprite {
         V();
     }
 
-    public MapEffectEntity(h hVar) {
+    public MapEffectEntity(MapProperties hVar) {
         this.addedlight = false;
         this.mustaddlight = false;
         this.debug = false;

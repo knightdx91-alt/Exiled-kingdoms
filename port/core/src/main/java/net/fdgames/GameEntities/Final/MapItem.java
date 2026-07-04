@@ -10,7 +10,7 @@ import net.fdgames.GameLogic.ConditionsSet;
 import net.fdgames.Helpers.FDUtils;
 import net.fdgames.assets.Assets;
 import net.fdgames.assets.GameAssets;
-import u.h;
+import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class MapItem extends MapSprite {
@@ -342,7 +342,7 @@ public class MapItem extends MapSprite {
     public final void v(String str, int i2, String str2, DamageData damageData) {
     }
 
-    public MapItem(h hVar) {
+    public MapItem(MapProperties hVar) {
         this.f3092x = ((int) Float.parseFloat(hVar.b("x").toString())) - 24;
         this.f3093y = ((int) Float.parseFloat(hVar.b("y").toString())) + 24;
         if (hVar.a("tag")) {

@@ -41,7 +41,7 @@ def rewrite(text):
         text=re.sub(rf'\bnew\s+{o}\s*(?=[(<])','new '+real+' ',text)
         text=re.sub(rf'\b{o}\s*(<[^;=]*?>)?\s+([A-Za-z_]\w*\s*[=;,)])',lambda m:real+(m.group(1) or '')+' '+m.group(2),text)
         text=re.sub(rf'\({o}\)',f'({real})',text)
-        text=re.sub(rf'\b{o}\.',real+'.',text)
+        if len(obf)>1: text=re.sub(rf'\b{o}\.',real+'.',text)  # skip single-letter to avoid var/pkg collisions
         text=re.sub(rf'\b{o}\[\]',real+'[]',text)
     return text
 

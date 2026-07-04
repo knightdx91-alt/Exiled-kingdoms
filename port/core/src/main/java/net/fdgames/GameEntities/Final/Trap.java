@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities.Final;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -25,7 +25,7 @@ import net.fdgames.Rules.Rules;
 import net.fdgames.Rules.TrapData;
 import net.fdgames.TiledMap.Objects.Coords;
 import net.fdgames.assets.GameAssets;
-import u.h;
+import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Trap extends MapSprite {
@@ -52,7 +52,7 @@ public class Trap extends MapSprite {
     private TrapState state;
     private float stateRelativeTime;
     private String trapType;
-    private p trappedArea;
+    private Rectangle trappedArea;
     private boolean triggered;
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
@@ -200,7 +200,7 @@ public class Trap extends MapSprite {
         if (trapState == trapState2) {
             b bVarP = b.P();
             int[] iArrR = r();
-            p pVar = this.trappedArea;
+            Rectangle pVar = this.trappedArea;
             bVarP.getClass();
             if (b.n(iArrR, pVar) > 0) {
                 this.state = trapState3;
@@ -227,7 +227,7 @@ public class Trap extends MapSprite {
                 this.triggered = true;
                 b bVarP2 = b.P();
                 int[] iArrR2 = r();
-                p pVar2 = this.trappedArea;
+                Rectangle pVar2 = this.trappedArea;
                 bVarP2.getClass();
                 int iN = b.n(iArrR2, pVar2);
                 if (iN > 0) {
@@ -388,7 +388,7 @@ public class Trap extends MapSprite {
         this.owner_id = i5;
         this.f3092x = i2;
         this.f3093y = i3;
-        this.trappedArea = new p(this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
+        this.trappedArea = new Rectangle (this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
         this.rearm = 0.0f;
         this.duration = 0.6f;
         this.trapType = "bear";
@@ -421,7 +421,7 @@ public class Trap extends MapSprite {
         Z();
     }
 
-    public Trap(h hVar) {
+    public Trap(MapProperties hVar) {
         this.discovered = false;
         this.damageDealt = false;
         this.lastDetectCheck = 0.0f;
@@ -437,7 +437,7 @@ public class Trap extends MapSprite {
             this.f3092x = coordsV.f3287x;
             this.f3093y = coordsV.f3288y;
         }
-        this.trappedArea = new p(this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
+        this.trappedArea = new Rectangle (this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
         if (hVar.a("tag")) {
             this.tag = hVar.b("tag").toString();
         }

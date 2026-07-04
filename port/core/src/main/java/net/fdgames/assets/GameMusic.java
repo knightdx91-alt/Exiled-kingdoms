@@ -3,16 +3,16 @@ package net.fdgames.assets;
 import com.badlogic.gdx.Gdx;
 import net.fdgames.ek.Settings;
 import r0.a;
-import t.c;
+import com.badlogic.gdx.audio.Music;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class GameMusic {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private static c f3361a;
+    private static Music f3361a;
 
     public static void a(String str) {
-        c cVar = f3361a;
+        Music cVar = f3361a;
         if (cVar != null) {
             cVar.stop();
             f3361a = null;
@@ -28,7 +28,7 @@ public class GameMusic {
         } catch (Exception unused2) {
             a.a("ERROR 3.3 ;" + str);
         }
-        c cVar2 = f3361a;
+        Music cVar2 = f3361a;
         if (cVar2 != null) {
             cVar2.setVolume(Settings.i());
             f3361a.setLooping(true);
@@ -37,7 +37,7 @@ public class GameMusic {
     }
 
     public static void b(float f2) {
-        c cVar = f3361a;
+        Music cVar = f3361a;
         if (cVar != null) {
             cVar.setVolume(f2);
         }

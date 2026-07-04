@@ -1,7 +1,7 @@
 package net.fdgames.GameEntities;
 
-import a0.p;
-import a0.q;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -294,7 +294,7 @@ public abstract class Character extends MapActor {
                                     this.sheet.skillSet.s("lightning_bolt");
                                     GameAssets.o("spell_major");
                                     b.P().getClass();
-                                    p pVarU = b.U();
+                                    Rectangle pVarU = b.U();
                                     b bVarP = b.P();
                                     int i17 = this.uniqueID;
                                     b.P().getClass();
@@ -335,7 +335,7 @@ public abstract class Character extends MapActor {
                                     this.sheet.skillSet.s("lightning_bolt");
                                     GameAssets.o("spell_major");
                                     b.P().getClass();
-                                    p pVarU2 = b.U();
+                                    Rectangle pVarU2 = b.U();
                                     b bVarP2 = b.P();
                                     int i172 = this.uniqueID;
                                     b.P().getClass();
@@ -461,7 +461,7 @@ public abstract class Character extends MapActor {
                                 GameAssets.o("spell_major");
                                 this.sheet.skillSet.s("fireball");
                                 b.P().getClass();
-                                p pVarU3 = b.U();
+                                Rectangle pVarU3 = b.U();
                                 b bVarP3 = b.P();
                                 int i19 = this.uniqueID;
                                 b.P().getClass();
@@ -499,7 +499,7 @@ public abstract class Character extends MapActor {
                                     GameAssets.o("spell_major");
                                     this.sheet.skillSet.s("death_cloud");
                                     b.P().getClass();
-                                    p pVarU4 = b.U();
+                                    Rectangle pVarU4 = b.U();
                                     b bVarP4 = b.P();
                                     int i21 = this.uniqueID;
                                     b.P().getClass();
@@ -541,7 +541,7 @@ public abstract class Character extends MapActor {
                                     GameAssets.o("spell_major");
                                     this.sheet.skillSet.s("death_cloud");
                                     b.P().getClass();
-                                    p pVarU42 = b.U();
+                                    Rectangle pVarU42 = b.U();
                                     b bVarP42 = b.P();
                                     int i212 = this.uniqueID;
                                     b.P().getClass();
@@ -559,7 +559,7 @@ public abstract class Character extends MapActor {
                                 this.sheet.skillSet.s("ice_storm");
                                 GameAssets.o("spell_major");
                                 b.P().getClass();
-                                p pVarU5 = b.U();
+                                Rectangle pVarU5 = b.U();
                                 b bVarP5 = b.P();
                                 int i22 = this.uniqueID;
                                 b.P().getClass();
@@ -2045,8 +2045,8 @@ public abstract class Character extends MapActor {
             double dSqrt = 180 / Math.sqrt((f3 * f3) + (r1 * r1));
             coords = new Coords(this.f3092x + ((int) (((double) (f2 * 100.0f)) * dSqrt)), this.f3093y + ((int) (((double) f3) * dSqrt)));
         }
-        q qVar = new q();
-        q qVarA = coords.a();
+        Vector2 qVar = new Vector2 ();
+        Vector2 qVarA = coords.a();
         qVar.f91a = qVarA.f91a;
         qVar.f92b = qVarA.f92b;
         qVar.c(new Coords(this.f3092x, this.f3093y).a());
@@ -2369,7 +2369,7 @@ public abstract class Character extends MapActor {
                             Projectile.ProjectileType projectileType = Projectile.ProjectileType.f3030a;
                             if (zU0) {
                                 b.P().getClass();
-                                p pVarU = b.U();
+                                Rectangle pVarU = b.U();
                                 b bVarP = b.P();
                                 int i12 = this.uniqueID;
                                 b.P().getClass();
@@ -2617,7 +2617,7 @@ public abstract class Character extends MapActor {
                 }
                 if (str.equals("WHIRLWIND")) {
                     k0.a.l().a(new w(this.uniqueID, Skills.c("whirlwind").d(), 0.6f, Color.GREEN, 1.0f, 0.7f));
-                    p pVar = new p(this.f3092x - 44.8f, this.f3093y - 44.8f, 89.6f, 89.6f);
+                    Rectangle pVar = new Rectangle (this.f3092x - 44.8f, this.f3093y - 44.8f, 89.6f, 89.6f);
                     b.P().getClass();
                     ArrayList<Integer> arrayListJ = b.j(pVar);
                     int iG5 = this.sheet.skillSet.g("whirlwind");
@@ -3033,7 +3033,7 @@ public abstract class Character extends MapActor {
         float f2 = this.f3092x - iA;
         float f3 = this.f3093y - iA;
         float f4 = iA * 2;
-        return new p(f2, f3, f4, f4);
+        return new Rectangle (f2, f3, f4, f4);
     }
 
     public final boolean y1(String str, float f2) {

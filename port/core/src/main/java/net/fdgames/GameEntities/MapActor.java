@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.a;
@@ -27,7 +27,7 @@ public abstract class MapActor extends MapSprite {
     public float stateRelativeTime = 0.0f;
     protected int timesStuck = 0;
     protected Coords destination = new Coords(-1, -1);
-    private p projectCollisionRectangle = new p();
+    private Rectangle projectCollisionRectangle = new Rectangle ();
 
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */

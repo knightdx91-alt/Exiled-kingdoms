@@ -1,6 +1,6 @@
 package net.fdgames.TiledMap.Objects;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import net.fdgames.GameEntities.MapSprite;
 import net.fdgames.GameLevel.GameLevel;
 import net.fdgames.GameLogic.ActionsSet;
@@ -30,13 +30,13 @@ public class Trigger extends MapArea {
         }
         MapSprite mapSpriteI = GameLevel.i(i2);
         if (mapSpriteI == null) {
-            return new p(0.0f, 0.0f, 0.0f, 0.0f);
+            return new Rectangle (0.0f, 0.0f, 0.0f, 0.0f);
         }
         int i3 = mapSpriteI.f3092x;
         int i4 = this.size;
         int i5 = i4 / 2;
         float f2 = i4;
-        return new p(i3 - i5, mapSpriteI.f3093y - i5, f2, f2);
+        return new Rectangle (i3 - i5, mapSpriteI.f3093y - i5, f2, f2);
     }
 
     public final boolean c() {

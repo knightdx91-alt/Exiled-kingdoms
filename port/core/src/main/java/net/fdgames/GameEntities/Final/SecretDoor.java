@@ -14,7 +14,7 @@ import net.fdgames.GameWorld.GameLog;
 import net.fdgames.Helpers.FDUtils;
 import net.fdgames.Helpers.GameString;
 import net.fdgames.TiledMap.Objects.Coords;
-import u.h;
+import com.badlogic.gdx.maps.MapProperties;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class SecretDoor extends MapObject {
@@ -138,7 +138,7 @@ public class SecretDoor extends MapObject {
         return a.a.p(sb, this.level, ")");
     }
 
-    public SecretDoor(h hVar) {
+    public SecretDoor(MapProperties hVar) {
         this.f3092x = ((int) Float.parseFloat(hVar.b("x").toString())) - 24;
         this.f3093y = ((int) Float.parseFloat(hVar.b("y").toString())) + 24;
         if (hVar.a("tag")) {

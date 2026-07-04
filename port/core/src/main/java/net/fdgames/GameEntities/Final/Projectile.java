@@ -1,7 +1,7 @@
 package net.fdgames.GameEntities.Final;
 
-import a0.p;
-import a0.q;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.a;
@@ -130,7 +130,7 @@ public class Projectile extends MapSprite {
         }
         b bVarP = b.P();
         int[] iArrR = r();
-        p pVar = new p(this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
+        Rectangle pVar = new Rectangle (this.f3092x - 12, this.f3093y - 12, 24.0f, 24.0f);
         bVarP.getClass();
         ArrayList<Integer> arrayListL = b.l(iArrR, pVar);
         if (arrayListL.size() <= 0) {
@@ -237,7 +237,7 @@ public class Projectile extends MapSprite {
         this.sprite = weaponStats.sprite;
         float f2 = i3;
         float f3 = i4;
-        q qVar = new q();
+        Vector2 qVar = new Vector2 ();
         qVar.f91a = f2;
         qVar.f92b = f3;
         qVar.c(new Coords(this.f3092x, this.f3093y).a());

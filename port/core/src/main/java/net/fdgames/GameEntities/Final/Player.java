@@ -1,6 +1,6 @@
 package net.fdgames.GameEntities.Final;
 
-import a0.p;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -301,7 +301,7 @@ public class Player extends Character {
             } else {
                 Coords coordsL = b.L(B(), 24, this.facing);
                 float f2 = 22;
-                p pVar = new p(coordsL.f3287x - 11, coordsL.f3288y - 11, f2, f2);
+                Rectangle pVar = new Rectangle (coordsL.f3287x - 11, coordsL.f3288y - 11, f2, f2);
                 b bVarP = b.P();
                 int iQ = q();
                 b.P().getClass();
@@ -310,7 +310,7 @@ public class Player extends Character {
                     b bVarP2 = b.P();
                     int iQ2 = q();
                     b bVarP3 = b.P();
-                    p pVarY0 = y0();
+                    Rectangle pVarY0 = y0();
                     bVarP3.getClass();
                     iB = bVarP2.b(iQ2, b.j(pVarY0));
                 }
@@ -322,7 +322,7 @@ public class Player extends Character {
             b bVarP4 = b.P();
             int iQ3 = q();
             b bVarP5 = b.P();
-            p pVarY02 = y0();
+            Rectangle pVarY02 = y0();
             bVarP5.getClass();
             int iB2 = bVarP4.b(iQ3, b.j(pVarY02));
             if (iB2 > 0) {
@@ -1272,7 +1272,7 @@ public class Player extends Character {
         }
         b bVarP = b.P();
         int[] iArrR = r();
-        p pVarY0 = y0();
+        Rectangle pVarY0 = y0();
         bVarP.getClass();
         if (b.l(iArrR, pVarY0).size() <= 0) {
             b.P().getClass();

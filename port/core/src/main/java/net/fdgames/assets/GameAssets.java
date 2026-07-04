@@ -24,7 +24,7 @@ import java.util.Iterator;
 import net.fdgames.Helpers.FDUtils;
 import net.fdgames.ek.ExiledKingdoms;
 import net.fdgames.ek.Settings;
-import t.d;
+import com.badlogic.gdx.audio.Sound;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class GameAssets {
@@ -767,7 +767,7 @@ public class GameAssets {
             return;
         }
         GameSound gameSound = new GameSound();
-        d dVarNewSound = Gdx.audio.newSound(Gdx.files.internal("data/sounds/" + strTrim + ".mp3"));
+        Sound dVarNewSound = Gdx.audio.newSound(Gdx.files.internal("data/sounds/" + strTrim + ".mp3"));
         gameSound.sound = dVarNewSound;
         dVarNewSound.play(0.0f);
         gameSound.id = strTrim;
