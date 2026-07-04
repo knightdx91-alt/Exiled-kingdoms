@@ -19,8 +19,12 @@ for p in $(ls -d "$SRCROOT"/*/ | xargs -n1 basename); do
   cp -r "$SRCROOT/$p" "$DST/" 2>/dev/null || true
 done
 
-echo ">> 2. drop platform files (import android/gms) -- replaced by stubs in port/stubs"
-grep -rlE 'import (com\.google\.android|android)\.' "$DST" --include=*.java | xargs -r rm -f
+echo ">> 2. drop platform files (import android/gms); keep the R8 synthetic a/a.java"
+grep -rlE 'import (com\.google\.android|android)\.' "$DST" --include=*.java \
+  | grep -v '/a/a\.java$' | xargs -r rm -f
+[ -f "$SRCROOT/a/a.java" ] && { mkdir -p "$DST/a"; cp "$SRCROOT/a/a.java" "$DST/a/a.java"; }
+echo ">> 2b. overlay correct stubs (MainActivity, zzbi, Fragment) from port/stubs"
+cp -r "$ROOT/port/stubs/." "$DST/"
 
 echo ">> 3. reconstruct broken enums (+ tree-wide constant rename)"
 python3 "$T/fix_enums.py" "$DST" >/dev/null

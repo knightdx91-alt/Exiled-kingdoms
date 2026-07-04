@@ -20,12 +20,27 @@ R8-opaque, so any stub is a guess. Recommended: include `a`, replace the single
 `zzbi.zzx(i)` call with a documented best-guess (likely identity or a small hash)
 and flag it for runtime verification. Do NOT ship it silently.
 
-## 3. Platform / GMS surface — 34 distinct android/gms classes
-Concentrated in the GPGS / IAP / activity files (already excluded). Needed only by
-the platform layer, not core gameplay. **Fix: `port/stubs/` source dir** with
-minimal stubs for the 34 classes (Quests, CredentialsApi, GoogleSignIn, Task,
-android.util.Log, …) OR refactor those calls behind `IPlatformResolver`. For a
-web build these become web/no-op implementations anyway.
+## 3. Platform / GMS surface — the corrected strategy [IN PROGRESS]
+**Done:** `port/stubs/` now holds correct stubs, overlaid by `rebuild_core.sh`:
+- `MainActivity` — the 10 platform methods the game calls (`t`/`p`/`l`/`q`/… ),
+  extracted from the real signatures, given no-op bodies (`l()` "isSignedIn" →
+  false). Satisfies all 142 type references.
+- `zzbi.zzx(int)` — the one R8-opaque billing helper, stubbed as identity and
+  loudly flagged FIXME(verify).
+- `android.support.v4.app.Fragment` — empty.
+
+**Key correction:** deleting every android/gms-importing file was too blunt — it
+removed CORE classes (`NPC`, `GameData`, `Rules`, `Settings`, `FDUtils`,
+`ExiledKingdoms`) that only have 1–4 gms imports, cascading to hundreds of
+failures. Only `MainActivity` (28 imports) is truly platform-heavy.
+
+**Next:** keep those core classes; generate **member-complete stubs** for the ~77
+transitively-referenced gms/android FQNs (Quests, CredentialsApi, GoogleSignIn,
+Task, Snapshots, android.util.Log, …). Empty stubs aren't enough — the classes
+call methods on them, so each stub needs the members the game invokes (discover
+by iterating javac "cannot find symbol … location: class X"). These are platform
+no-ops on web, so signatures matter, behavior doesn't. This unblocks the big
+core-class cascade (item 4).
 
 ## 4. Cascade from core classes (NPC, ExiledKingdoms, GameData, Settings, FDUtils)
 These fail because they import android/gms (#1–#3) or reference each other. Most
