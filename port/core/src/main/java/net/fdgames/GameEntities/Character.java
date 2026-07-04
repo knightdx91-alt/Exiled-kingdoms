@@ -2334,7 +2334,7 @@ public abstract class Character extends MapActor {
         Character characterF;
         Coords coords;
         int i8 = 1;
-        ?? r6 = 0;
+        boolean r6 = false;
         if (!i0()) {
             int i9 = 4;
             int i10 = 2;
@@ -2807,7 +2807,7 @@ public abstract class Character extends MapActor {
                                 i10 = i3;
                                 i11 = i4;
                                 i8 = 1;
-                                r6 = 0;
+                                r6 = false;
                                 i9 = 4;
                             }
                         }
