@@ -1,0 +1,31 @@
+package net.fdgames.Rules;
+
+import net.fdgames.Helpers.GameString;
+
+/* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
+public class SkillLevel {
+    public int cooldown;
+    public int cost;
+    private String description;
+    public int mana_cost;
+    public String name;
+
+    public SkillLevel(int i2, String str, String str2, String str3, String str4) {
+        this.name = str;
+        this.description = str2;
+        this.cost = i2;
+        if (str4.trim().equals("")) {
+            this.mana_cost = 0;
+        } else {
+            this.mana_cost = Integer.parseInt(str4);
+        }
+        if (str3.equals("")) {
+            return;
+        }
+        this.cooldown = Integer.parseInt(str3);
+    }
+
+    public final String a() {
+        return !this.description.equals("") ? this.description : GameString.b("UNTRAINED_SKILL", false);
+    }
+}
