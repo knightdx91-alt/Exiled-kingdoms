@@ -190,6 +190,7 @@ public class Skills {
                     str5 = strArrSplit3[1];
                     if (str5.toLowerCase(locale).equals("a")) {
                     }
+                    boolean z3 = !strArrSplit3[4].toLowerCase(locale).contains("y") || strArrSplit3[4].toLowerCase(locale).contains("m");
                     Skill skill22 = new Skill(str6, str3, str2, skill_type, strArrSplit3[3], Boolean.valueOf(zContains3), z3, zContains22, z2);
                     if (z2) {
                     }
