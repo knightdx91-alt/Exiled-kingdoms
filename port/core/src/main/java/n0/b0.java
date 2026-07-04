@@ -11,7 +11,7 @@ import net.fdgames.GameWorld.GameData;
 
 /* JADX INFO: compiled from: GameLogConsole.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public final class b0 extends Table implements GestureDetector.c {
+public final class b0 extends Table implements a.c {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     static float f2536b = Math.min(Gdx.graphics.getHeight() / 720.0f, Gdx.graphics.getWidth() / 1280.0f);
@@ -45,36 +45,36 @@ public final class b0 extends Table implements GestureDetector.c {
         super.draw(batch, f2);
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean fling(float f2, float f3, int i2) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean longPress(float f2, float f3) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean pan(float f2, float f3, float f4, float f5) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean panStop(float f2, float f3, int i2, int i3) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean pinch(a0.q qVar, a0.q qVar2, a0.q qVar3, a0.q qVar4) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final void pinchStop() {
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean tap(float f2, float f3, int i2, int i3) {
         if (i2 != 2 || f2 <= getX() || f2 >= getX() + 400.0f || f3 >= 100.0f || GameLevel.l()) {
             return false;
@@ -84,12 +84,12 @@ public final class b0 extends Table implements GestureDetector.c {
         return true;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean touchDown(float f2, float f3, int i2, int i3) {
         return false;
     }
 
-    @Override // com.badlogic.gdx.input.a.c
+    @Override // com.badlogic.gdx.input.GestureDetector.c
     public final boolean zoom(float f2, float f3) {
         return false;
     }

@@ -562,7 +562,7 @@ public final class j1 extends Window {
         this.f2738m.setText(GameString.b("CONTROLS_SIZE", false));
         l0.e.u();
         setVisible(false);
-        if (ExiledKingdoms.f3382l == GameData.GameStatus.f3184a) {
+        if (ExiledKingdoms.f3382l == GameData.GameStatus.RUNNING) {
             GameLevel.n(false);
         }
     }

@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Scaling;
 public final class a extends b {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private Scaling f2258i = Scaling.f1807b;
+    private g0 f2258i = g0.f1807b;
 
     public a(float f2, float f3, OrthographicCamera orthographicCamera) {
         m(f2, f3);

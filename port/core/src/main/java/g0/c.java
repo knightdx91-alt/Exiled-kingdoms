@@ -20,7 +20,7 @@ public final class c<T> {
             this.f2213a.get();
         } catch (InterruptedException unused) {
         } catch (ExecutionException e2) {
-            throw new GdxRuntimeException (e2.getCause());
+            throw new m(e2.getCause());
         }
     }
 

@@ -9,7 +9,7 @@ import w.b;
 
 /* JADX INFO: compiled from: BatchTiledMapRenderer.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public abstract class a implements Disposable {
+public abstract class a implements i {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     protected b f4089a;
@@ -61,11 +61,11 @@ public abstract class a implements Disposable {
         float fAbs = (Math.abs(orthographicCamera.up.f1729a) * f5) + (Math.abs(orthographicCamera.up.f1730b) * f4);
         float fAbs2 = (Math.abs(orthographicCamera.up.f1729a) * f4) + (Math.abs(orthographicCamera.up.f1730b) * f5);
         Rectangle pVar = this.f4092d;
-        com.badlogic.gdx.math.a aVar = orthographicCamera.position;
+        com.badlogic.gdx.math.Vector3 aVar = orthographicCamera.position;
         pVar.set(aVar.f1729a - (fAbs / 2.0f), aVar.f1730b - (fAbs2 / 2.0f), fAbs, fAbs2);
     }
 
-    @Override // com.badlogic.gdx.utils.i
+    @Override // com.badlogic.gdx.utils.Disposable
     public final void dispose() {
         if (this.f4093e) {
             this.f4091c.dispose();

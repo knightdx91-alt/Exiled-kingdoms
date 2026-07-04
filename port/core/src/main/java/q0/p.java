@@ -29,7 +29,7 @@ public final class p extends Table {
     private TextureRegionDrawable f3940c;
 
     /* JADX INFO: renamed from: d, reason: collision with root package name */
-    private com.badlogic.gdx.e f3941d;
+    private com.badlogic.gdx.Game f3941d;
 
     /* JADX INFO: compiled from: GPGSConnectButton.java */
     final class a extends ClickListener {
@@ -60,7 +60,7 @@ public final class p extends Table {
         }
     }
 
-    public p(com.badlogic.gdx.e eVar) {
+    public p(com.badlogic.gdx.Game eVar) {
         Image image = new Image();
         this.f3938a = image;
         this.f3939b = new TextureRegionDrawable(Assets.a("gpgs_off"));

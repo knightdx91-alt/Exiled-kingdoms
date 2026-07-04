@@ -16,11 +16,11 @@ public final class c implements f {
             this.f1429a = new Socket();
             this.f1429a.connect(new InetSocketAddress(str, i2));
         } catch (Exception e2) {
-            throw new GdxRuntimeException ("Error making a socket connection to " + str + ":" + i2, (Throwable) e2);
+            throw new m("Error making a socket connection to " + str + ":" + i2, (Throwable) e2);
         }
     }
 
-    @Override // com.badlogic.gdx.utils.i
+    @Override // com.badlogic.gdx.utils.Disposable
     public final void dispose() {
         Socket socket = this.f1429a;
         if (socket != null) {
@@ -28,7 +28,7 @@ public final class c implements f {
                 socket.close();
                 this.f1429a = null;
             } catch (Exception e2) {
-                throw new GdxRuntimeException ("Error closing socket.", (Throwable) e2);
+                throw new m("Error closing socket.", (Throwable) e2);
             }
         }
     }

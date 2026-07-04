@@ -7,14 +7,14 @@ import java.util.Iterator;
 public final class g implements Iterable<f> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private com.badlogic.gdx.utils.a<f> f4086a = new com.badlogic.gdx.utils.a<>();
+    private com.badlogic.gdx.utils.Array<f> f4086a = new com.badlogic.gdx.utils.Array<>();
 
     public final void a(f fVar) {
-        this.f4086a.a(fVar);
+        this.f4086a.add(fVar);
     }
 
     public final d b(int i2) {
-        com.badlogic.gdx.utils.a<f> aVar = this.f4086a;
+        com.badlogic.gdx.utils.Array<f> aVar = this.f4086a;
         for (int i3 = aVar.f1750b - 1; i3 >= 0; i3--) {
             d dVarB = aVar.get(i3).b(i2);
             if (dVarB != null) {

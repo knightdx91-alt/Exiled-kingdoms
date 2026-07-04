@@ -636,7 +636,7 @@ public class Player extends Character {
                         Coords coordsT = b.P().t(this.tempTransition);
                         this.f3092x = coordsT.f3287x;
                         this.f3093y = coordsT.f3288y;
-                        k0.a.l().b(B(), a.EnumC0031a.f2291c, 0.0f);
+                        k0.a.l().b(B(), a.EnumC0031a.LEVELUP, 0.0f);
                         if (GameData.v().party.j()) {
                             GameData.v().party.f().f3092x = coordsT.f3287x;
                             GameData.v().party.f().f3093y = coordsT.f3288y;
@@ -767,7 +767,7 @@ public class Player extends Character {
             return;
         }
         boolean zJ = GameData.v().party.j();
-        a.EnumC0031a enumC0031a = a.EnumC0031a.f2291c;
+        a.EnumC0031a enumC0031a = a.EnumC0031a.LEVELUP;
         if (zJ) {
             NPC npcF = GameData.v().party.f();
             int i3 = (int) (i2 * 0.8f);
@@ -839,23 +839,23 @@ public class Player extends Character {
     }
 
     @Override // net.fdgames.GameEntities.MapActor
-    public final com.badlogic.gdx.utils.a<TextureRegion> Q() {
-        com.badlogic.gdx.utils.a<Integer> aVar = this.spriteIndex;
+    public final com.badlogic.gdx.utils.Array<TextureRegion> Q() {
+        com.badlogic.gdx.utils.Array<Integer> aVar = this.spriteIndex;
         if (aVar == null || aVar.f1750b == 0) {
             v0();
         }
         GameAssets.f3315a.clear();
         int i2 = 0;
         while (true) {
-            com.badlogic.gdx.utils.a<Integer> aVar2 = this.spriteIndex;
+            com.badlogic.gdx.utils.Array<Integer> aVar2 = this.spriteIndex;
             if (i2 >= aVar2.f1750b) {
                 break;
             }
-            GameAssets.f3315a.add((TextureRegion) GameAssets.i(aVar2.get(i2).intValue()).a(d0(), this.facing).getKeyFrame(V()));
+            GameAssets.f3315a.a((TextureRegion) GameAssets.i(aVar2.get(i2).intValue()).a(d0(), this.facing).getKeyFrame(V()));
             i2++;
         }
         if (this.sheet.inventory.slot_mainhand > 0 && ((d0().equals(MapActor.ActorState.ATTACKING) || d0().equals(MapActor.ActorState.SKILL_CHARGE)) && !this.sheet.N().c())) {
-            GameAssets.f3315a.add((TextureRegion) GameAssets.f3354v.b(this.facing).getKeyFrame(V()));
+            GameAssets.f3315a.a((TextureRegion) GameAssets.f3354v.b(this.facing).getKeyFrame(V()));
         }
         D0();
         return GameAssets.f3315a;
@@ -1087,7 +1087,7 @@ public class Player extends Character {
                 Gdx.files.local(Serializer.C(i2, i3)).copyTo(Gdx.files.local(Serializer.C(i2, 0)));
             }
         } else {
-            com.badlogic.gdx.files.a aVar = Serializer.f3225b;
+            com.badlogic.gdx.files.FileHandle aVar = Serializer.f3225b;
         }
         this.areasVisited.a();
     }
@@ -1330,7 +1330,7 @@ public class Player extends Character {
         String string;
         boolean z2;
         if (this.spriteIndex == null) {
-            this.spriteIndex = new com.badlogic.gdx.utils.a<>();
+            this.spriteIndex = new com.badlogic.gdx.utils.Array<>();
         }
         this.spriteIndex.clear();
         String str2 = this.gender == Character.Gender.Male ? "male" : "female";
@@ -1362,14 +1362,14 @@ public class Player extends Character {
         if (str.equals("")) {
             int iH = GameAssets.h("composite/male_clothes");
             if (iH != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH));
+                this.spriteIndex.a(Integer.valueOf(iH));
                 z2 = false;
             }
             z2 = true;
         } else {
             int iH2 = GameAssets.h("composite/" + str2 + "_" + str);
             if (iH2 != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH2));
+                this.spriteIndex.a(Integer.valueOf(iH2));
                 z2 = false;
             }
             z2 = true;
@@ -1379,7 +1379,7 @@ public class Player extends Character {
         if (actorStateD0 != actorState && !strD.equals("")) {
             int iH3 = GameAssets.h("composite/" + str2 + "_" + strD);
             if (iH3 != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH3));
+                this.spriteIndex.a(Integer.valueOf(iH3));
             } else {
                 z2 = true;
             }
@@ -1387,14 +1387,14 @@ public class Player extends Character {
         if (string.equals("")) {
             int iH4 = GameAssets.h("composite/" + str2 + "_head");
             if (iH4 != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH4));
+                this.spriteIndex.a(Integer.valueOf(iH4));
             } else {
                 z2 = true;
             }
         } else {
             int iH5 = GameAssets.h("composite/" + str2 + "_" + string);
             if (iH5 != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH5));
+                this.spriteIndex.a(Integer.valueOf(iH5));
             }
         }
         if (d0() == actorState || strX.equals("")) {
@@ -1402,7 +1402,7 @@ public class Player extends Character {
         } else {
             int iH6 = GameAssets.h("composite/" + str2 + "_" + strX);
             if (iH6 != -1) {
-                this.spriteIndex.add(Integer.valueOf(iH6));
+                this.spriteIndex.a(Integer.valueOf(iH6));
                 z3 = z2;
             }
         }
@@ -1412,7 +1412,7 @@ public class Player extends Character {
     }
 
     public Player(PlayerCreation playerCreation) {
-        super(Rules.CharacterRace.f3266a, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
+        super(Rules.CharacterRace.HUMAN, playerCreation.charClass, playerCreation.name, "adt_human_warrior", 1.0f, 1.0f, new int[]{100, 0}, playerCreation.gender, playerCreation.portraitIndex, "", false);
         this.tolCurseCounter = 0;
         this.gold = 0;
         this.tempTransition = null;

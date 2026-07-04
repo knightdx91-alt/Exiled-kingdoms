@@ -124,7 +124,7 @@ public final class s extends Window {
         if (sVar.f3643c.X()) {
             k0.a aVarL = k0.a.l();
             AStarPathFinder aStarPathFinder = GameLevel.f3094a;
-            aVarL.b(GameData.v().player.B(), a.EnumC0031a.f2291c, 0.0f);
+            aVarL.b(GameData.v().player.B(), a.EnumC0031a.LEVELUP, 0.0f);
         }
         GameData.v().player.R1(5000);
         sVar.c();

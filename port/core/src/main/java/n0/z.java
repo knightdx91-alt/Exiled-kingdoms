@@ -102,7 +102,7 @@ public final class z {
     private f1 L;
     private Label M;
     private Image N;
-    private com.badlogic.gdx.math.a O;
+    private com.badlogic.gdx.math.Vector3 O;
     private u P;
     private j1 Q;
     private i1 R;
@@ -412,7 +412,7 @@ public final class z {
             zVar.X = new o0.t();
             zVar.Z = new a.f(stage);
             zVar.U = new g(stage);
-            zVar.O = new com.badlogic.gdx.math.a(0.0f, 0.0f, 0.0f);
+            zVar.O = new com.badlogic.gdx.math.Vector3(0.0f, 0.0f, 0.0f);
             zVar.Q = new j1(null);
             c1 c1Var = new c1();
             zVar.S = c1Var;
@@ -1241,7 +1241,7 @@ public final class z {
     /* JADX WARN: Code restructure failed: missing block: B:151:0x04d5, code lost:
     
         new n0.g0(net.fdgames.Helpers.GameString.b("HELP_SECTION_SAVE", false), r0, net.fdgames.assets.Assets.f("help_saving")).show(r4);
-        com.badlogic.gdx.utils.l.f1832b = net.fdgames.GameWorld.GameData.v().u();
+        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = net.fdgames.GameWorld.GameData.v().u();
      */
     /* JADX WARN: Code restructure failed: missing block: B:153:0x04f7, code lost:
     
@@ -1259,7 +1259,7 @@ public final class z {
     
         net.fdgames.GameWorld.GameData.v().TIP_RELOAD = false;
         new n0.h0(net.fdgames.Helpers.GameString.b("HELP_SECTION_RELOAD", false), net.fdgames.Helpers.GameString.b("HELP_RELOAD", false), net.fdgames.assets.Assets.f("help_reload")).show(r4);
-        com.badlogic.gdx.utils.l.f1832b = net.fdgames.GameWorld.GameData.v().u();
+        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = net.fdgames.GameWorld.GameData.v().u();
      */
     /* JADX WARN: Code restructure failed: missing block: B:160:0x0541, code lost:
     
@@ -1277,7 +1277,7 @@ public final class z {
     
         net.fdgames.GameWorld.GameData.v().TIP_SLEEP = false;
         new n0.i0(net.fdgames.Helpers.GameString.b("HELP_SECTION_INN", false), net.fdgames.Helpers.GameString.b("HELP_INN", false), net.fdgames.assets.Assets.f("help_sleeping")).show(r4);
-        com.badlogic.gdx.utils.l.f1832b = net.fdgames.GameWorld.GameData.v().u();
+        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = net.fdgames.GameWorld.GameData.v().u();
      */
     /* JADX WARN: Code restructure failed: missing block: B:167:0x0584, code lost:
     
@@ -1297,7 +1297,7 @@ public final class z {
         net.fdgames.GameLevel.GameLevel.n(true);
         net.fdgames.GameWorld.GameData.v().gameVariables.e(15, "ark_lothasan");
         new n0.j0(net.fdgames.Helpers.GameString.b("MSG_LETTER_ARK_TITLE", false), net.fdgames.Helpers.GameString.b("MSG_LETTER_ARK", false)).show(r4);
-        com.badlogic.gdx.utils.l.f1832b = net.fdgames.GameWorld.GameData.v().u();
+        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = net.fdgames.GameWorld.GameData.v().u();
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -1366,26 +1366,26 @@ public final class z {
             new q0("Please assign again your character's trait points", 0).show(stage);
             GameLevel.n(false);
         }
-        if (GameData.v().u() >= com.badlogic.gdx.utils.l.f1832b + 4.0f) {
+        if (GameData.v().u() >= com.badlogic.gdx.utils.GdxNativesLoader.f1832b + 4.0f) {
             if (!GameData.v().introMessageShown && GameData.v().CurrentLevel.equals("H10") && !GameData.v().player.i0()) {
                 GameData.v().introMessageShown = true;
                 GameLevel.n(true);
                 new o0(GameString.b("INITIAL_MESSAGE_TITLE", false), GameString.b("INITIAL_MESSAGE", false)).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!GameData.v().shardsMessageShown && GameData.v().shardsCompleted && !zBooleanValue && !GameData.v().player.i0()) {
                 GameData.v().shardsMessageShown = true;
                 GameLevel.n(true);
                 new r0(GameString.b("WARNING_SHARDS_TITLE", false), GameString.b("WARNING_SHARDS", false)).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!GameData.v().tolCurseMessageShown && GameData.v().tolCurse && !zBooleanValue && !GameData.v().player.i0()) {
                 GameData.v().tolCurseMessageShown = true;
                 GameLevel.n(true);
                 new s0(GameString.b("TOL_CURSE_LOG", false), GameString.b("TOL_CURSE_MSG", false)).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!Player.f3027e && ExiledKingdoms.f3378h && GameData.v().TIP_MOVEMENT) {
                 GameData.v().TIP_MOVEMENT = false;
                 new t0(GameString.b("HELP_SECTION_MOVEMENT", false), GameString.b("HELP_MOVEMENT", false), Assets.f("help_moving")).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!Player.f3027e && GameData.v().TIP_INTERACTION && GameData.v().player.f3092x < 2400) {
                 GameData.v().TIP_INTERACTION = false;
                 if (ExiledKingdoms.f3378h) {
@@ -1393,15 +1393,15 @@ public final class z {
                 } else {
                     new v0(GameString.b("HELP_SECTION_INTERACTION", false), GameString.b("HELP_INTERACTION", false), Assets.f("help_interaction")).show(stage);
                 }
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!Player.f3027e && GameData.v().TIP_DUNGEON && !m0.b.P().f2423h && !GameData.v().D() && !GameData.v().F()) {
                 GameData.v().TIP_DUNGEON = false;
                 new w0(GameString.b("HELP_SECTION_DUNGEON", false), GameString.b("HELP_DUNGEON", false), Assets.f("help_dungeon")).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (!Player.f3027e && GameData.v().TIP_ITEMS && GameData.v().y().killed == 5 && GameData.v().player.f3093y > 2000) {
                 GameData.v().TIP_ITEMS = false;
                 new x0(GameString.b("HELP_SECTION_ITEMS", false), GameString.b("HELP_ITEMS", false), Assets.f("help_items")).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             } else if (Player.f3027e || !GameData.v().TIP_RECOVERY || GameData.v().player.sheet.r() <= 0.5f) {
                 m0.b.P().getClass();
                 Coords coordsB = GameData.v().player.B();
@@ -1423,13 +1423,13 @@ public final class z {
                         } else {
                             new f0(GameString.b("HELP_SECTION_MOVING", false), GameString.b("HELP_MOVING", false), Assets.f("help_moving_attacking")).show(stage);
                         }
-                        com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
                     }
                 }
             } else {
                 GameData.v().TIP_RECOVERY = false;
                 new y0(GameString.b("HELP_SECTION_HEALING", false), GameString.b("HELP_HEALING", false), Assets.f("help_healing_recovery")).show(stage);
-                com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+                com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
             }
         }
         stage.act(Gdx.graphics.getDeltaTime());
@@ -1606,7 +1606,7 @@ public final class z {
         AStarPathFinder aStarPathFinder2 = GameLevel.f3094a;
         Player player = GameData.v().player;
         int iJ1 = player.J1(i2);
-        a.EnumC0031a enumC0031a = a.EnumC0031a.f2303o;
+        a.EnumC0031a enumC0031a = a.EnumC0031a.CASTING;
         if (iJ1 == 1) {
             int iH1 = player.H1(i2);
             Item itemF = Rules.f(GameData.v().backpack.h(iH1));
@@ -1761,7 +1761,7 @@ public final class z {
     public final void o(float f2, float f3) {
         q1 q1Var = this.f2949i;
         float x2 = q1Var.getX();
-        com.badlogic.gdx.math.a aVar = this.O;
+        com.badlogic.gdx.math.Vector3 aVar = this.O;
         q1Var.setX(((f2 - aVar.f1729a) * 0.05f) + x2);
         q1Var.setY(q1Var.getY() - ((f3 - aVar.f1730b) * 0.05f));
     }
@@ -1808,7 +1808,7 @@ public final class z {
         } else if (GameData.v().player.sheet.stats.i() >= 30000) {
             vVar2.setVisible(true);
         }
-        com.badlogic.gdx.utils.l.f1832b = GameData.v().u();
+        com.badlogic.gdx.utils.GdxNativesLoader.f1832b = GameData.v().u();
         boolean zD = GameData.v().D();
         v vVar3 = this.f2946f;
         if ((zD || GameData.v().F() || m0.b.P().f2423h || m0.b.P().f2426k) && !GameData.v().G()) {

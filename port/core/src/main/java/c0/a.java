@@ -24,10 +24,10 @@ public final class a {
     private final ThreadPoolExecutor f1418a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    final ObjectMap<l.a, HttpURLConnection> f1419b;
+    final y<l.a, HttpURLConnection> f1419b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
-    final ObjectMap<l.a, l.c> f1420c;
+    final y<l.a, l.c> f1420c;
 
     /* JADX INFO: renamed from: c0.a$a, reason: collision with other inner class name */
     /* JADX INFO: compiled from: NetJavaImpl.java */
@@ -78,9 +78,9 @@ public final class a {
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream(), "UTF8");
                     try {
                         outputStreamWriter.write(strA);
-                        StreamUtils.closeQuietly(outputStreamWriter);
+                        n0.a(outputStreamWriter);
                     } catch (Throwable th) {
-                        StreamUtils.closeQuietly(outputStreamWriter);
+                        n0.a(outputStreamWriter);
                         throw th;
                     }
                 }
@@ -108,7 +108,7 @@ public final class a {
     }
 
     /* JADX INFO: compiled from: NetJavaImpl.java */
-    static class c implements Net.b {
+    static class c implements l.b {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
         private final HttpURLConnection f1427a;
@@ -121,7 +121,7 @@ public final class a {
             }
         }
 
-        @Override // com.badlogic.gdx.l.b
+        @Override // com.badlogic.gdx.Net.b
         public final byte[] getResult() {
             InputStream errorStream;
             HttpURLConnection httpURLConnection = this.f1427a;
@@ -130,12 +130,12 @@ public final class a {
             } catch (IOException unused) {
                 errorStream = httpURLConnection.getErrorStream();
             }
-            byte[] bArr = StreamUtils.f1848a;
+            byte[] bArr = n0.f1848a;
             if (errorStream == null) {
                 return bArr;
             }
             try {
-                StreamUtils.a aVar = new StreamUtils.a(Math.max(0, httpURLConnection.getContentLength()));
+                n0.a aVar = new n0.a(Math.max(0, httpURLConnection.getContentLength()));
                 byte[] bArr2 = new byte[4096];
                 while (true) {
                     int i2 = errorStream.read(bArr2);
@@ -147,7 +147,7 @@ public final class a {
             } catch (IOException unused2) {
                 return bArr;
             } finally {
-                StreamUtils.closeQuietly(errorStream);
+                n0.a(errorStream);
             }
         }
     }
@@ -158,8 +158,8 @@ public final class a {
         ThreadFactoryC0019a threadFactoryC0019a = new ThreadFactoryC0019a();
         threadFactoryC0019a.f1421a = new AtomicInteger();
         this.f1418a = new ThreadPoolExecutor(0, i2, 60L, timeUnit, synchronousQueue, threadFactoryC0019a);
-        this.f1419b = new ObjectMap <>();
-        this.f1420c = new ObjectMap <>();
+        this.f1419b = new y<>();
+        this.f1420c = new y<>();
     }
 
     public final void a(l.a aVar) {
@@ -181,7 +181,7 @@ public final class a {
     public final void c(l.a aVar, l.c cVar) {
         URL url;
         if (aVar.d() == null) {
-            cVar.failed(new GdxRuntimeException ("can't process a HTTP request without URL set"));
+            cVar.failed(new m("can't process a HTTP request without URL set"));
             return;
         }
         try {

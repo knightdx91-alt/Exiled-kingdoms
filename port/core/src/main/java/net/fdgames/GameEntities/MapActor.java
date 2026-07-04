@@ -241,22 +241,22 @@ public abstract class MapActor extends MapSprite {
         AnimationSet animationSet;
         GameAssets.f3315a.clear();
         for (String str : this.animationSetName) {
-            Array<TextureRegion> aVar = GameAssets.f3315a;
+            a<TextureRegion> aVar = GameAssets.f3315a;
             int i2 = 0;
             while (true) {
-                Array<AnimationSet> aVar2 = AnimationLoader.f3300a;
+                a<AnimationSet> aVar2 = AnimationLoader.f3300a;
                 if (i2 >= aVar2.f1750b) {
                     if (Gdx.files.internal("data/sprites/" + str + ".png").exists()) {
                         AnimationSet animationSet2 = new AnimationSet(str);
-                        AnimationLoader.f3300a.add(animationSet2);
+                        AnimationLoader.f3300a.a(animationSet2);
                         animationSet = animationSet2;
                     } else {
-                        Array<AnimationSet> aVar3 = AnimationLoader.f3300a;
+                        a<AnimationSet> aVar3 = AnimationLoader.f3300a;
                         if (aVar3.f1750b > 0) {
                             animationSet = aVar3.get(0);
                         } else {
                             animationSet = new AnimationSet("composite/male_clothes");
-                            AnimationLoader.f3300a.add(animationSet);
+                            AnimationLoader.f3300a.a(animationSet);
                         }
                     }
                 } else {
@@ -267,7 +267,7 @@ public abstract class MapActor extends MapSprite {
                     i2++;
                 }
             }
-            aVar.add((TextureRegion) animationSet.a(this.state, this.facing).getKeyFrame(V()));
+            aVar.a((TextureRegion) animationSet.a(this.state, this.facing).getKeyFrame(V()));
         }
         return GameAssets.f3315a;
     }

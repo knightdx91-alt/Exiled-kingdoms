@@ -17,16 +17,16 @@ public final class a {
 
     /* JADX INFO: renamed from: r0.a$a, reason: collision with other inner class name */
     /* JADX INFO: compiled from: Analytics.java */
-    final class C0059a implements Net.c {
-        @Override // com.badlogic.gdx.l.c
+    final class C0059a implements l.c {
+        @Override // com.badlogic.gdx.Net.c
         public final void cancelled() {
         }
 
-        @Override // com.badlogic.gdx.l.c
+        @Override // com.badlogic.gdx.Net.c
         public final void failed(Throwable th) {
         }
 
-        @Override // com.badlogic.gdx.l.c
+        @Override // com.badlogic.gdx.Net.c
         public final void handleHttpResponse(l.b bVar) {
         }
     }

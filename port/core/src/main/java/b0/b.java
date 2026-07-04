@@ -8,18 +8,18 @@ public final class b implements Serializable {
     private static final long serialVersionUID = -620692054835390878L;
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    public final com.badlogic.gdx.math.a f1416a;
+    public final com.badlogic.gdx.math.Vector3 f1416a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final com.badlogic.gdx.math.a f1417b;
+    public final com.badlogic.gdx.math.Vector3 f1417b;
 
     static {
-        new com.badlogic.gdx.math.a();
+        new com.badlogic.gdx.math.Vector3();
     }
 
     public b() {
-        this.f1416a = new com.badlogic.gdx.math.a();
-        this.f1417b = new com.badlogic.gdx.math.a();
+        this.f1416a = new com.badlogic.gdx.math.Vector3();
+        this.f1417b = new com.badlogic.gdx.math.Vector3();
     }
 
     public final boolean equals(Object obj) {
@@ -41,10 +41,10 @@ public final class b implements Serializable {
         return "ray [" + this.f1416a + ":" + this.f1417b + "]";
     }
 
-    public b(com.badlogic.gdx.math.a aVar, com.badlogic.gdx.math.a aVar2) {
-        com.badlogic.gdx.math.a aVar3 = new com.badlogic.gdx.math.a();
+    public b(com.badlogic.gdx.math.Vector3 aVar, com.badlogic.gdx.math.Vector3 aVar2) {
+        com.badlogic.gdx.math.Vector3 aVar3 = new com.badlogic.gdx.math.Vector3();
         this.f1416a = aVar3;
-        com.badlogic.gdx.math.a aVar4 = new com.badlogic.gdx.math.a();
+        com.badlogic.gdx.math.Vector3 aVar4 = new com.badlogic.gdx.math.Vector3();
         this.f1417b = aVar4;
         aVar3.u(aVar);
         aVar4.u(aVar2);

@@ -16,11 +16,11 @@ public final class b implements d {
             this.f1428a = new ServerSocket();
             this.f1428a.bind(str != null ? new InetSocketAddress(str, i2) : new InetSocketAddress(i2));
         } catch (Exception e2) {
-            throw new GdxRuntimeException ("Cannot create a server socket at port " + i2 + ".", (Throwable) e2);
+            throw new m("Cannot create a server socket at port " + i2 + ".", (Throwable) e2);
         }
     }
 
-    @Override // com.badlogic.gdx.utils.i
+    @Override // com.badlogic.gdx.utils.Disposable
     public final void dispose() {
         ServerSocket serverSocket = this.f1428a;
         if (serverSocket != null) {
@@ -28,7 +28,7 @@ public final class b implements d {
                 serverSocket.close();
                 this.f1428a = null;
             } catch (Exception e2) {
-                throw new GdxRuntimeException ("Error closing server.", (Throwable) e2);
+                throw new m("Error closing server.", (Throwable) e2);
             }
         }
     }

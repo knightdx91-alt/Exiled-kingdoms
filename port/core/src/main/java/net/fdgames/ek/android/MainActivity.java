@@ -18,4 +18,10 @@ public class MainActivity implements IPlatformResolver {
     public final void r(int i2) {  }
     public final void s(int i2) {  }
     public final void t(String str) {  }
+    public Object getContext() { return null; } /* STUB */
+    public Object b(Object a0, Object a1) { return null; } /* STUB */
+    public Object a(Object a0) { return null; } /* STUB */
+    public Object checkSelfPermission(Object a0) { return null; } /* STUB */
+    public Object m() { return null; } /* STUB */
+    public Object h() { return null; } /* STUB */
 }

@@ -24,7 +24,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public class Assets implements Disposable {
+public class Assets implements i {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     public static final Assets f3309a = new Assets();
@@ -314,7 +314,7 @@ public class Assets implements Disposable {
         return f3309a.assetManager.update();
     }
 
-    @Override // com.badlogic.gdx.utils.i
+    @Override // com.badlogic.gdx.utils.Disposable
     public final void dispose() {
         System.out.println("assets disposing...");
         AssetManager dVar = this.assetManager;

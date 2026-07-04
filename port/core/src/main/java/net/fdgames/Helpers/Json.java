@@ -26,23 +26,23 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
 public class Json {
-    private final ObjectMap<Class, Object[]> classToDefaultValues;
-    private final ObjectMap<Class, Serializer> classToSerializer;
-    private final ObjectMap<Class, String> classToTag;
+    private final y<Class, Object[]> classToDefaultValues;
+    private final y<Class, Serializer> classToSerializer;
+    private final y<Class, String> classToTag;
     private Serializer defaultSerializer;
     private boolean enumNames;
     private boolean ignoreUnknownFields;
     private u.Constructor outputType;
     private boolean quoteLongValues;
-    private final ObjectMap<String, Class> tagToClass;
+    private final y<String, Class> tagToClass;
     private String typeName;
-    private final ObjectMap<Class, y<String, a>> typeToFields;
+    private final y<Class, y<String, a>> typeToFields;
     private boolean usePrototypes;
-    private JsonWriter writer;
+    private u writer;
 
     public static abstract class ReadOnlySerializer<T> implements Serializer<T> {
         @Override // net.fdgames.Helpers.Json.Serializer
-        public abstract T read(Json json, JsonValue tVar, Class cls);
+        public abstract T read(Json json, t tVar, Class cls);
 
         @Override // net.fdgames.Helpers.Json.Serializer
         public void write(Json json, T t2, Class cls) {
@@ -50,13 +50,13 @@ public class Json {
     }
 
     public interface Serializable {
-        void read(Json json, JsonValue tVar);
+        void read(Json json, t tVar);
 
         void write(Json json);
     }
 
     public interface Serializer<T> {
-        T read(Json json, JsonValue tVar, Class cls);
+        T read(Json json, t tVar, Class cls);
 
         void write(Json json, T t2, Class cls);
     }
@@ -74,11 +74,11 @@ public class Json {
         this.typeName = "class";
         this.usePrototypes = true;
         this.enumNames = true;
-        this.typeToFields = new ObjectMap <>();
-        this.tagToClass = new ObjectMap <>();
-        this.classToTag = new ObjectMap <>();
-        this.classToSerializer = new ObjectMap <>();
-        this.classToDefaultValues = new ObjectMap <>();
+        this.typeToFields = new y<>();
+        this.tagToClass = new y<>();
+        this.classToTag = new y<>();
+        this.classToSerializer = new y<>();
+        this.classToDefaultValues = new y<>();
         this.outputType = u.b.f1986b;
     }
 
@@ -89,9 +89,9 @@ public class Json {
     private y<String, a> cacheFields(Class cls) {
         ArrayList arrayList = new ArrayList();
         for (Class superclass = cls; superclass != Object.class; superclass = superclass.getSuperclass()) {
-            Collections.addAll(arrayList, SerializationException.a.d(superclass));
+            Collections.addAll(arrayList, h0.a.d(superclass));
         }
-        ObjectMap<String, a> yVar = new ObjectMap <>();
+        y<String, a> yVar = new y<>();
         int size = arrayList.size();
         for (int i2 = 0; i2 < size; i2++) {
             Field cVar = (Field) arrayList.get(i2);
@@ -134,7 +134,7 @@ public class Json {
         }
         try {
             Object objNewInstance = newInstance(cls);
-            ObjectMap<String, a> yVarD = this.typeToFields.d(cls);
+            y<String, a> yVarD = this.typeToFields.d(cls);
             if (yVarD == null) {
                 yVarD = cacheFields(cls);
             }
@@ -149,13 +149,13 @@ public class Json {
                 try {
                     objArr[i2] = cVar.a(objNewInstance);
                     i2 = i3;
-                } catch (SerializationException e2) {
+                } catch (h0 e2) {
                     e2.a(cVar + " (" + cls.getName() + ")");
                     throw e2;
                 } catch (ReflectionException e3) {
-                    throw new SerializationException ("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
+                    throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
                 } catch (RuntimeException e4) {
-                    SerializationException h0Var = new SerializationException (e4);
+                    h0 h0Var = new h0(e4);
                     h0Var.a(cVar + " (" + cls.getName() + ")");
                     throw h0Var;
                 }
@@ -173,7 +173,7 @@ public class Json {
     }
 
     public <T> T fromJson(Class<T> cls, Reader reader) {
-        return (T) readValue(cls, (Class) null, new JsonReader ().d(reader));
+        return (T) readValue(cls, (Class) null, new s().d(reader));
     }
 
     public Class getClass(String str) {
@@ -182,9 +182,9 @@ public class Json {
             return clsD;
         }
         try {
-            return SerializationException.a.a(str);
+            return h0.a.a(str);
         } catch (ReflectionException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -197,17 +197,17 @@ public class Json {
         return strD != null ? strD : cls.getName();
     }
 
-    public JsonWriter getWriter() {
+    public u getWriter() {
         return this.writer;
     }
 
     protected Object newInstance(Class cls) {
         try {
-            return SerializationException.a.f(cls);
+            return h0.a.f(cls);
         } catch (Exception e2) {
             e = e2;
             try {
-                Constructor bVarC = SerializationException.a.c(cls, new Class[0]);
+                Constructor bVarC = h0.a.c(cls, new Class[0]);
                 bVarC.c();
                 return bVarC.b(new Object[0]);
             } catch (ReflectionException unused) {
@@ -218,17 +218,17 @@ public class Json {
                     return cls.getEnumConstants()[0];
                 }
                 if (cls.isArray()) {
-                    throw new SerializationException ("Encountered JSON object when expected array of type: ".concat(cls.getName()), e);
+                    throw new h0("Encountered JSON object when expected array of type: ".concat(cls.getName()), e);
                 }
                 if (!cls.isMemberClass() || Modifier.isStatic(cls.getModifiers())) {
-                    throw new SerializationException ("Class cannot be created (missing no-arg constructor): ".concat(cls.getName()), e);
+                    throw new h0("Class cannot be created (missing no-arg constructor): ".concat(cls.getName()), e);
                 }
-                throw new SerializationException ("Class cannot be created (non-static member class): ".concat(cls.getName()), e);
+                throw new h0("Class cannot be created (non-static member class): ".concat(cls.getName()), e);
             } catch (SecurityException unused2) {
-                throw new SerializationException ("Error constructing instance of class: ".concat(cls.getName()), e);
+                throw new h0("Error constructing instance of class: ".concat(cls.getName()), e);
             } catch (Exception e3) {
                 e = e3;
-                throw new SerializationException ("Error constructing instance of class: ".concat(cls.getName()), e);
+                throw new h0("Error constructing instance of class: ".concat(cls.getName()), e);
             }
         }
     }
@@ -237,39 +237,39 @@ public class Json {
         return prettyPrint(obj, 0);
     }
 
-    public void readField(Object obj, String str, JsonValue tVar) {
+    public void readField(Object obj, String str, t tVar) {
         readField(obj, str, str, null, tVar);
     }
 
-    public void readFields(Object obj, JsonValue tVar) {
+    public void readFields(Object obj, t tVar) {
         Class<?> cls = obj.getClass();
-        ObjectMap<String, a> yVarD = this.typeToFields.d(cls);
+        y<String, a> yVarD = this.typeToFields.d(cls);
         if (yVarD == null) {
             yVarD = cacheFields(cls);
         }
-        for (JsonValue tVar2 = tVar.f1958f; tVar2 != null; tVar2 = tVar2.f1960h) {
+        for (t tVar2 = tVar.f1958f; tVar2 != null; tVar2 = tVar2.f1960h) {
             a aVarD = yVarD.d(tVar2.f1957e);
             if (aVarD != null) {
                 Field cVar = aVarD.f3222a;
                 try {
                     cVar.k(obj, readValue(cVar.e(), aVarD.f3223b, tVar2));
-                } catch (SerializationException e2) {
+                } catch (h0 e2) {
                     e2.a(cVar.d() + " (" + cls.getName() + ")");
                     throw e2;
                 } catch (ReflectionException e3) {
-                    throw new SerializationException ("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
+                    throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
                 } catch (RuntimeException e4) {
-                    SerializationException h0Var = new SerializationException (e4);
+                    h0 h0Var = new h0(e4);
                     h0Var.a(cVar.d() + " (" + cls.getName() + ")");
                     throw h0Var;
                 }
             } else if (!this.ignoreUnknownFields) {
-                throw new SerializationException ("Field not found: " + tVar2.f1957e + " (" + cls.getName() + ")");
+                throw new h0("Field not found: " + tVar2.f1957e + " (" + cls.getName() + ")");
             }
         }
     }
 
-    public <T> T readValue(String str, Class<T> cls, JsonValue tVar) {
+    public <T> T readValue(String str, Class<T> cls, t tVar) {
         return (T) readValue(cls, (Class) null, tVar.k(str));
     }
 
@@ -278,7 +278,7 @@ public class Json {
     }
 
     public void setElementType(Class cls, String str, Class cls2) {
-        ObjectMap<String, a> yVarD = this.typeToFields.d(cls);
+        y<String, a> yVarD = this.typeToFields.d(cls);
         if (yVarD == null) {
             yVarD = cacheFields(cls);
         }
@@ -290,7 +290,7 @@ public class Json {
         StringBuilder sbU = a.a.u("Field not found: ", str, " (");
         sbU.append(cls.getName());
         sbU.append(")");
-        throw new SerializationException (sbU.toString());
+        throw new h0(sbU.toString());
     }
 
     public void setEnumNames(boolean z2) {
@@ -323,9 +323,9 @@ public class Json {
 
     public void setWriter(Writer writer) {
         if (!(writer instanceof u)) {
-            writer = new JsonWriter (writer);
+            writer = new u(writer);
         }
-        JsonWriter uVar = (JsonWriter) writer;
+        u uVar = (u) writer;
         this.writer = uVar;
         uVar.f(this.outputType);
         this.writer.g(this.quoteLongValues);
@@ -339,7 +339,7 @@ public class Json {
         try {
             this.writer.d();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -348,7 +348,7 @@ public class Json {
             this.writer.b(str);
             this.writer.a();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -359,7 +359,7 @@ public class Json {
     public void writeFields(Object obj) {
         Class<?> cls = obj.getClass();
         Object[] defaultValues = getDefaultValues(cls);
-        ObjectMap<String, a> yVarD = this.typeToFields.d(cls);
+        y<String, a> yVarD = this.typeToFields.d(cls);
         if (yVarD == null) {
             yVarD = cacheFields(cls);
         }
@@ -380,13 +380,13 @@ public class Json {
                 }
                 this.writer.b(cVar.d());
                 writeValue(objA, cVar.e(), aVar.f3223b);
-            } catch (SerializationException e2) {
+            } catch (h0 e2) {
                 e2.a(cVar + " (" + cls.getName() + ")");
                 throw e2;
             } catch (ReflectionException e3) {
-                throw new SerializationException ("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
+                throw new h0("Error accessing field: " + cVar.d() + " (" + cls.getName() + ")", e3);
             } catch (Exception e4) {
-                SerializationException h0Var = new SerializationException (e4);
+                h0 h0Var = new h0(e4);
                 h0Var.a(cVar + " (" + cls.getName() + ")");
                 throw h0Var;
             }
@@ -397,7 +397,7 @@ public class Json {
         try {
             this.writer.d();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -406,7 +406,7 @@ public class Json {
             this.writer.b(str);
             writeObjectStart();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -419,11 +419,11 @@ public class Json {
             strD = cls.getName();
         }
         try {
-            JsonWriter uVar = this.writer;
+            u uVar = this.writer;
             uVar.b(this.typeName);
             uVar.h(strD);
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -436,24 +436,24 @@ public class Json {
                 writeValue(obj, obj.getClass(), (Class) null);
             }
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
     public <T> T fromJson(Class<T> cls, Class cls2, Reader reader) {
-        return (T) readValue(cls, cls2, new JsonReader ().d(reader));
+        return (T) readValue(cls, cls2, new s().d(reader));
     }
 
     public String prettyPrint(String str) {
         return prettyPrint(str, 0);
     }
 
-    public void readField(Object obj, String str, Class cls, JsonValue tVar) {
+    public void readField(Object obj, String str, Class cls, t tVar) {
         readField(obj, str, str, cls, tVar);
     }
 
-    public <T> T readValue(String str, Class<T> cls, T t2, JsonValue tVar) {
-        JsonValue tVarK = tVar.k(str);
+    public <T> T readValue(String str, Class<T> cls, T t2, t tVar) {
+        t tVarK = tVar.k(str);
         return tVarK == null ? t2 : (T) readValue(cls, (Class) null, tVarK);
     }
 
@@ -466,14 +466,14 @@ public class Json {
     }
 
     public <T> T fromJson(Class<T> cls, InputStream inputStream) {
-        return (T) readValue(cls, (Class) null, new JsonReader ().c(inputStream));
+        return (T) readValue(cls, (Class) null, new s().c(inputStream));
     }
 
     public String prettyPrint(Object obj, int i2) {
         return prettyPrint(toJson(obj), i2);
     }
 
-    public void readField(Object obj, String str, String str2, JsonValue tVar) {
+    public void readField(Object obj, String str, String str2, t tVar) {
         readField(obj, str, str2, null, tVar);
     }
 
@@ -488,11 +488,11 @@ public class Json {
     }
 
     public <T> T fromJson(Class<T> cls, Class cls2, InputStream inputStream) {
-        return (T) readValue(cls, cls2, new JsonReader ().c(inputStream));
+        return (T) readValue(cls, cls2, new s().c(inputStream));
     }
 
     public String prettyPrint(String str, int i2) {
-        JsonValue tVarE = new JsonReader ().e(str);
+        t tVarE = new s().e(str);
         u.Constructor bVar = this.outputType;
         tVarE.getClass();
         t.Constructor bVar2 = new t.b();
@@ -501,16 +501,16 @@ public class Json {
         return tVarE.w(bVar2);
     }
 
-    public void readField(Object obj, String str, String str2, Class cls, JsonValue tVar) {
+    public void readField(Object obj, String str, String str2, Class cls, t tVar) {
         Class<?> cls2 = obj.getClass();
-        ObjectMap<String, a> yVarD = this.typeToFields.d(cls2);
+        y<String, a> yVarD = this.typeToFields.d(cls2);
         if (yVarD == null) {
             yVarD = cacheFields(cls2);
         }
         a aVarD = yVarD.d(str);
         if (aVarD != null) {
             Field cVar = aVarD.f3222a;
-            JsonValue tVarK = tVar.k(str2);
+            t tVarK = tVar.k(str2);
             if (tVarK == null) {
                 return;
             }
@@ -520,13 +520,13 @@ public class Json {
             try {
                 cVar.k(obj, readValue(cVar.e(), cls, tVarK));
                 return;
-            } catch (SerializationException e2) {
+            } catch (h0 e2) {
                 e2.a(cVar.d() + " (" + cls2.getName() + ")");
                 throw e2;
             } catch (ReflectionException e3) {
-                throw new SerializationException ("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
+                throw new h0("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
             } catch (RuntimeException e4) {
-                SerializationException h0Var = new SerializationException (e4);
+                h0 h0Var = new h0(e4);
                 h0Var.a(cVar.d() + " (" + cls2.getName() + ")");
                 throw h0Var;
             }
@@ -534,10 +534,10 @@ public class Json {
         StringBuilder sbU = a.a.u("Field not found: ", str, " (");
         sbU.append(cls2.getName());
         sbU.append(")");
-        throw new SerializationException (sbU.toString());
+        throw new h0(sbU.toString());
     }
 
-    public <T> T readValue(String str, Class<T> cls, Class cls2, JsonValue tVar) {
+    public <T> T readValue(String str, Class<T> cls, Class cls2, t tVar) {
         return (T) readValue(cls, cls2, tVar.k(str));
     }
 
@@ -545,13 +545,13 @@ public class Json {
         try {
             this.writer.a();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
     public void writeField(Object obj, String str, String str2, Class cls) {
         Class<?> cls2 = obj.getClass();
-        ObjectMap<String, a> yVarD = this.typeToFields.d(cls2);
+        y<String, a> yVarD = this.typeToFields.d(cls2);
         if (yVarD == null) {
             yVarD = cacheFields(cls2);
         }
@@ -565,13 +565,13 @@ public class Json {
                 this.writer.b(str2);
                 writeValue(cVar.a(obj), cVar.e(), cls);
                 return;
-            } catch (SerializationException e2) {
+            } catch (h0 e2) {
                 e2.a(cVar + " (" + cls2.getName() + ")");
                 throw e2;
             } catch (ReflectionException e3) {
-                throw new SerializationException ("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
+                throw new h0("Error accessing field: " + cVar.d() + " (" + cls2.getName() + ")", e3);
             } catch (Exception e4) {
-                SerializationException h0Var = new SerializationException (e4);
+                h0 h0Var = new h0(e4);
                 h0Var.a(cVar + " (" + cls2.getName() + ")");
                 throw h0Var;
             }
@@ -579,7 +579,7 @@ public class Json {
         StringBuilder sbU = a.a.u("Field not found: ", str, " (");
         sbU.append(cls2.getName());
         sbU.append(")");
-        throw new SerializationException (sbU.toString());
+        throw new h0(sbU.toString());
     }
 
     public void writeObjectStart(String str, Class cls, Class cls2) {
@@ -587,20 +587,20 @@ public class Json {
             this.writer.b(str);
             writeObjectStart(cls, cls2);
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
-    public <T> T fromJson(Class<T> cls, com.badlogic.gdx.files.a aVar) {
+    public <T> T fromJson(Class<T> cls, com.badlogic.gdx.files.FileHandle aVar) {
         try {
-            return (T) readValue(cls, (Class) null, new JsonReader ().a(aVar));
+            return (T) readValue(cls, (Class) null, new s().a(aVar));
         } catch (Exception e2) {
-            throw new SerializationException (a.a.i(aVar, "Error reading file: "), e2);
+            throw new h0(a.a.i(aVar, "Error reading file: "), e2);
         }
     }
 
-    public <T> T readValue(String str, Class<T> cls, Class cls2, T t2, JsonValue tVar) {
-        JsonValue tVarK = tVar.k(str);
+    public <T> T readValue(String str, Class<T> cls, Class cls2, T t2, t tVar) {
+        t tVarK = tVar.k(str);
         return tVarK == null ? t2 : (T) readValue(cls, cls2, tVarK);
     }
 
@@ -609,19 +609,19 @@ public class Json {
             this.writer.b(str);
             writeValue(obj, cls, (Class) null);
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
-    public void toJson(Object obj, com.badlogic.gdx.files.a aVar) {
+    public void toJson(Object obj, com.badlogic.gdx.files.FileHandle aVar) {
         toJson(obj, obj == null ? null : obj.getClass(), (Class) null, aVar);
     }
 
-    public <T> T readValue(Class<T> cls, Class cls2, T t2, JsonValue tVar) {
+    public <T> T readValue(Class<T> cls, Class cls2, T t2, t tVar) {
         return (T) readValue(cls, cls2, tVar);
     }
 
-    public void toJson(Object obj, Class cls, com.badlogic.gdx.files.a aVar) {
+    public void toJson(Object obj, Class cls, com.badlogic.gdx.files.FileHandle aVar) {
         toJson(obj, cls, (Class) null, aVar);
     }
 
@@ -629,25 +629,25 @@ public class Json {
         try {
             this.writer.c();
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
-    public <T> T readValue(Class<T> cls, JsonValue tVar) {
+    public <T> T readValue(Class<T> cls, t tVar) {
         return (T) readValue(cls, (Class) null, tVar);
     }
 
-    public void toJson(Object obj, Class cls, Class cls2, com.badlogic.gdx.files.a aVar) {
+    public void toJson(Object obj, Class cls, Class cls2, com.badlogic.gdx.files.FileHandle aVar) {
         Writer writer = null;
         try {
             try {
                 writer = aVar.writer(false, "UTF-8");
                 toJson(obj, cls, cls2, writer);
             } catch (Exception e2) {
-                throw new SerializationException ("Error writing file: " + aVar, e2);
+                throw new h0("Error writing file: " + aVar, e2);
             }
         } finally {
-            StreamUtils.a(writer);
+            n0.a(writer);
         }
     }
 
@@ -656,7 +656,7 @@ public class Json {
             this.writer.b(str);
             writeValue(obj, cls, cls2);
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -672,20 +672,20 @@ public class Json {
     /* JADX WARN: Removed duplicated region for block: B:259:0x0367 A[RETURN] */
     /* JADX WARN: Type inference failed for: r0v45, types: [T, java.lang.Object] */
     /* JADX WARN: Type inference failed for: r0v46, types: [T, java.util.Map] */
-    /* JADX WARN: Type inference failed for: r0v47, types: [T, com.badlogic.gdx.utils.b] */
-    /* JADX WARN: Type inference failed for: r0v48, types: [T, com.badlogic.gdx.utils.y] */
+    /* JADX WARN: Type inference failed for: r0v47, types: [T, com.badlogic.gdx.utils.ArrayMap] */
+    /* JADX WARN: Type inference failed for: r0v48, types: [T, com.badlogic.gdx.utils.ObjectMap] */
     /* JADX WARN: Type inference failed for: r0v70 */
-    /* JADX WARN: Type inference failed for: r0v85, types: [com.badlogic.gdx.utils.a] */
+    /* JADX WARN: Type inference failed for: r0v85, types: [com.badlogic.gdx.utils.Array] */
     /* JADX WARN: Type inference failed for: r20v0, types: [net.fdgames.Helpers.Json] */
-    /* JADX WARN: Type inference failed for: r2v0, types: [T, com.badlogic.gdx.utils.t] */
-    /* JADX WARN: Type inference failed for: r2v1, types: [com.badlogic.gdx.utils.t, java.lang.Object] */
+    /* JADX WARN: Type inference failed for: r2v0, types: [T, com.badlogic.gdx.utils.JsonValue] */
+    /* JADX WARN: Type inference failed for: r2v1, types: [com.badlogic.gdx.utils.JsonValue, java.lang.Object] */
     /* JADX WARN: Type inference failed for: r2v29 */
     /* JADX WARN: Type inference failed for: r2v3 */
     /* JADX WARN: Type inference failed for: r2v30 */
     /* JADX WARN: Type inference failed for: r2v31 */
     /* JADX WARN: Type inference failed for: r2v32 */
-    /* JADX WARN: Type inference failed for: r2v4, types: [com.badlogic.gdx.utils.t] */
-    /* JADX WARN: Type inference failed for: r2v5, types: [com.badlogic.gdx.utils.t, java.lang.Object] */
+    /* JADX WARN: Type inference failed for: r2v4, types: [com.badlogic.gdx.utils.JsonValue] */
+    /* JADX WARN: Type inference failed for: r2v5, types: [com.badlogic.gdx.utils.JsonValue, java.lang.Object] */
     /* JADX WARN: Type inference failed for: r2v7 */
     /* JADX WARN: Type inference failed for: r3v17 */
     /* JADX WARN: Type inference failed for: r3v19 */
@@ -716,7 +716,7 @@ public class Json {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public <T> T readValue(Class<T> cls, Class cls2, JsonValue tVar) {
+    public <T> T readValue(Class<T> cls, Class cls2, t tVar) {
         Class cls3;
         Class cls4;
         Class clsD;
@@ -736,13 +736,13 @@ public class Json {
             String str = this.typeName;
             String strO = str == null ? null : r22.o(str, null);
             if (strO != null) {
-                JsonValue tVarK = r22.k(this.typeName);
+                t tVarK = r22.k(this.typeName);
                 if (tVarK == null) {
                     cls6 = Collection.class;
                 } else {
-                    JsonValue tVar4 = tVarK.f1961i;
+                    t tVar4 = tVarK.f1961i;
                     if (tVar4 == null) {
-                        JsonValue tVar5 = tVarK.f1960h;
+                        t tVar5 = tVarK.f1960h;
                         r22.f1958f = tVar5;
                         if (tVar5 != null) {
                             tVar5.f1961i = null;
@@ -751,7 +751,7 @@ public class Json {
                     } else {
                         cls6 = Collection.class;
                         tVar4.f1960h = tVarK.f1960h;
-                        JsonValue tVar6 = tVarK.f1960h;
+                        t tVar6 = tVarK.f1960h;
                         if (tVar6 != null) {
                             tVar6.f1961i = tVar4;
                         }
@@ -761,9 +761,9 @@ public class Json {
                 clsD = this.tagToClass.d(strO);
                 if (clsD == null) {
                     try {
-                        clsD = SerializationException.a.a(strO);
+                        clsD = h0.a.a(strO);
                     } catch (ReflectionException e2) {
-                        throw new SerializationException (e2);
+                        throw new h0(e2);
                     }
                 }
             } else {
@@ -792,22 +792,22 @@ public class Json {
                     return r02;
                 }
                 if (r02 instanceof y) {
-                    ?? r03 = (T) ((ObjectMap) r02);
-                    for (JsonValue tVar7 = r22.f1958f; tVar7 != null; tVar7 = tVar7.f1960h) {
+                    ?? r03 = (T) ((y) r02);
+                    for (t tVar7 = r22.f1958f; tVar7 != null; tVar7 = tVar7.f1960h) {
                         r03.j(tVar7.f1957e, readValue(cls2, null, tVar7));
                     }
                     return r03;
                 }
-                if (r02 instanceof com.badlogic.gdx.utils.b) {
-                    ?? r04 = (T) ((com.badlogic.gdx.utils.b) r02);
-                    for (JsonValue tVar8 = r22.f1958f; tVar8 != null; tVar8 = tVar8.f1960h) {
+                if (r02 instanceof com.badlogic.gdx.utils.ArrayMap) {
+                    ?? r04 = (T) ((com.badlogic.gdx.utils.ArrayMap) r02);
+                    for (t tVar8 = r22.f1958f; tVar8 != null; tVar8 = tVar8.f1960h) {
                         r04.c(tVar8.f1957e, readValue(cls2, null, tVar8));
                     }
                     return r04;
                 }
                 if (r02 instanceof Map) {
                     ?? r05 = (T) ((Map) r02);
-                    for (JsonValue tVar9 = r22.f1958f; tVar9 != null; tVar9 = tVar9.f1960h) {
+                    for (t tVar9 = r22.f1958f; tVar9 != null; tVar9 = tVar9.f1960h) {
                         r05.put(tVar9.f1957e, readValue(cls2, null, tVar9));
                     }
                     return r05;
@@ -827,18 +827,18 @@ public class Json {
         int i2 = 0;
         if (r2.q()) {
             if (clsD == null || clsD == Object.class) {
-                clsD = com.badlogic.gdx.utils.a.class;
+                clsD = com.badlogic.gdx.utils.Array.class;
             }
-            if (com.badlogic.gdx.utils.a.class.isAssignableFrom(clsD)) {
-                Object obj = clsD == com.badlogic.gdx.utils.a.class ? (T) new com.badlogic.gdx.utils.a() : (T) ((com.badlogic.gdx.utils.a) newInstance(clsD));
-                for (JsonValue tVar10 = r2.f1958f; tVar10 != null; tVar10 = tVar10.f1960h) {
-                    ((com.badlogic.gdx.utils.a) obj).a(readValue(cls3, null, tVar10));
+            if (com.badlogic.gdx.utils.Array.class.isAssignableFrom(clsD)) {
+                Object obj = clsD == com.badlogic.gdx.utils.Array.class ? (T) new com.badlogic.gdx.utils.Array() : (T) ((com.badlogic.gdx.utils.Array) newInstance(clsD));
+                for (t tVar10 = r2.f1958f; tVar10 != null; tVar10 = tVar10.f1960h) {
+                    ((com.badlogic.gdx.utils.Array) obj).a(readValue(cls3, null, tVar10));
                 }
                 return (T) obj;
             }
             if (cls4.isAssignableFrom(clsD)) {
                 T t2 = clsD.isInterface() ? (T) new ArrayList() : (T) ((Collection) newInstance(clsD));
-                for (JsonValue tVar11 = r2.f1958f; tVar11 != null; tVar11 = tVar11.f1960h) {
+                for (t tVar11 = r2.f1958f; tVar11 != null; tVar11 = tVar11.f1960h) {
                     ((Collection) t2).add(readValue(cls3, null, tVar11));
                 }
                 return t2;
@@ -849,7 +849,7 @@ public class Json {
                     cls3 = componentType;
                 }
                 T t3 = (T) Array.newInstance(componentType, r2.f1962j);
-                JsonValue tVar12 = r2.f1958f;
+                t tVar12 = r2.f1958f;
                 while (tVar12 != null) {
                     Array.set(t3, i2, readValue(cls3, null, tVar12));
                     tVar12 = tVar12.f1960h;
@@ -857,7 +857,7 @@ public class Json {
                 }
                 return t3;
             }
-            throw new SerializationException ("Unable to convert value to required type: " + r2 + " (" + clsD.getName() + ")");
+            throw new h0("Unable to convert value to required type: " + r2 + " (" + clsD.getName() + ")");
         }
         S = r2.s();
         if (S != 0) {
@@ -908,7 +908,7 @@ public class Json {
                 cls5 = Boolean.class;
                 if (clsD == cls5) {
                 }
-                tVar3 = new JsonValue (tVar2.j());
+                tVar3 = new t(tVar2.j());
             } else {
                 cls5 = Boolean.class;
             }
@@ -947,7 +947,7 @@ public class Json {
                                     if (clsD == CharSequence.class) {
                                         return r5;
                                     }
-                                    throw new SerializationException ("Unable to convert value to required type: " + tVar3 + " (" + clsD.getName() + ")");
+                                    throw new h0("Unable to convert value to required type: " + tVar3 + " (" + clsD.getName() + ")");
                                 }
                                 return (T) Character.valueOf(r5.charAt(0));
                             }
@@ -962,7 +962,7 @@ public class Json {
             return (T) Float.valueOf((String) r5);
         }
         return (T) Integer.valueOf((String) r5);
-        tVar2 = new JsonValue (r2.j());
+        tVar2 = new t(r2.j());
         r3 = S;
         if (tVar2.r()) {
         }
@@ -977,7 +977,7 @@ public class Json {
                 writeType(cls);
             }
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -989,16 +989,16 @@ public class Json {
         this.typeName = "class";
         this.usePrototypes = true;
         this.enumNames = true;
-        this.typeToFields = new ObjectMap <>();
-        this.tagToClass = new ObjectMap <>();
-        this.classToTag = new ObjectMap <>();
-        this.classToSerializer = new ObjectMap <>();
-        this.classToDefaultValues = new ObjectMap <>();
+        this.typeToFields = new y<>();
+        this.tagToClass = new y<>();
+        this.classToTag = new y<>();
+        this.classToSerializer = new y<>();
+        this.classToDefaultValues = new y<>();
         this.outputType = bVar;
     }
 
     public String prettyPrint(String str, t.Constructor bVar) {
-        return new JsonReader ().e(str).w(bVar);
+        return new s().e(str).w(bVar);
     }
 
     public void writeValue(Object obj) {
@@ -1013,11 +1013,11 @@ public class Json {
         writeValue(obj, cls, (Class) null);
     }
 
-    public <T> T fromJson(Class<T> cls, Class cls2, com.badlogic.gdx.files.a aVar) {
+    public <T> T fromJson(Class<T> cls, Class cls2, com.badlogic.gdx.files.FileHandle aVar) {
         try {
-            return (T) readValue(cls, cls2, new JsonReader ().a(aVar));
+            return (T) readValue(cls, cls2, new s().a(aVar));
         } catch (Exception e2) {
-            throw new SerializationException (a.a.i(aVar, "Error reading file: "), e2);
+            throw new h0(a.a.i(aVar, "Error reading file: "), e2);
         }
     }
 
@@ -1043,12 +1043,12 @@ public class Json {
                         return;
                     }
                     int i2 = 0;
-                    if (obj instanceof com.badlogic.gdx.utils.a) {
-                        if (cls3 != null && superclass != cls3 && superclass != com.badlogic.gdx.utils.a.class) {
-                            throw new SerializationException ("Serialization of an Array other than the known type is not supported.\nKnown type: " + cls3 + "\nActual type: " + superclass);
+                    if (obj instanceof com.badlogic.gdx.utils.Array) {
+                        if (cls3 != null && superclass != cls3 && superclass != com.badlogic.gdx.utils.Array.class) {
+                            throw new h0("Serialization of an Array other than the known type is not supported.\nKnown type: " + cls3 + "\nActual type: " + superclass);
                         }
                         writeArrayStart();
-                        com.badlogic.gdx.utils.a aVar = (com.badlogic.gdx.utils.a) obj;
+                        com.badlogic.gdx.utils.Array aVar = (com.badlogic.gdx.utils.Array) obj;
                         int i3 = aVar.f1750b;
                         while (i2 < i3) {
                             writeValue(aVar.get(i2), cls2, (Class) null);
@@ -1093,7 +1093,7 @@ public class Json {
                             cls3 = y.class;
                         }
                         writeObjectStart(superclass, cls3);
-                        y.a aVarB = ((ObjectMap) obj).b();
+                        y.a aVarB = ((y) obj).b();
                         aVarB.getClass();
                         while (aVarB.hasNext()) {
                             y.Constructor next = aVarB.next();
@@ -1103,12 +1103,12 @@ public class Json {
                         writeObjectEnd();
                         return;
                     }
-                    if (obj instanceof com.badlogic.gdx.utils.b) {
+                    if (obj instanceof com.badlogic.gdx.utils.ArrayMap) {
                         if (cls3 == null) {
-                            cls3 = com.badlogic.gdx.utils.b.class;
+                            cls3 = com.badlogic.gdx.utils.ArrayMap.class;
                         }
                         writeObjectStart(superclass, cls3);
-                        com.badlogic.gdx.utils.Constructor bVar = (com.badlogic.gdx.utils.b) obj;
+                        com.badlogic.gdx.utils.ArrayMap bVar = (com.badlogic.gdx.utils.ArrayMap) obj;
                         int i4 = bVar.f1767c;
                         while (i2 < i4) {
                             this.writer.b(convertToString(bVar.f1765a[i2]));
@@ -1156,7 +1156,7 @@ public class Json {
             }
             this.writer.h(obj);
         } catch (IOException e2) {
-            throw new SerializationException (e2);
+            throw new h0(e2);
         }
     }
 
@@ -1173,24 +1173,24 @@ public class Json {
         try {
             writeValue(obj, cls, cls2);
         } finally {
-            StreamUtils.a(this.writer);
+            n0.a(this.writer);
             this.writer = null;
         }
     }
 
     public <T> T fromJson(Class<T> cls, char[] cArr, int i2, int i3) {
-        return (T) readValue(cls, (Class) null, new JsonReader ().f(cArr, i2, i3));
+        return (T) readValue(cls, (Class) null, new s().f(cArr, i2, i3));
     }
 
     public <T> T fromJson(Class<T> cls, Class cls2, char[] cArr, int i2, int i3) {
-        return (T) readValue(cls, cls2, new JsonReader ().f(cArr, i2, i3));
+        return (T) readValue(cls, cls2, new s().f(cArr, i2, i3));
     }
 
     public <T> T fromJson(Class<T> cls, String str) {
-        return (T) readValue(cls, (Class) null, new JsonReader ().e(str));
+        return (T) readValue(cls, (Class) null, new s().e(str));
     }
 
     public <T> T fromJson(Class<T> cls, Class cls2, String str) {
-        return (T) readValue(cls, cls2, new JsonReader ().e(str));
+        return (T) readValue(cls, cls2, new s().e(str));
     }
 }

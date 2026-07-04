@@ -11,7 +11,7 @@ public class AStarPathFinder {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
     private static int[][] f2981a;
-    private com.badlogic.gdx.utils.a<a> closed = new com.badlogic.gdx.utils.a<>();
+    private com.badlogic.gdx.utils.Array<a> closed = new com.badlogic.gdx.utils.Array<>();
     private b open = new b();
     final Coords originTile = new Coords();
     final Coords targetTile = new Coords();
@@ -165,7 +165,7 @@ public class AStarPathFinder {
         int iMax = 0;
         while (iMax < this.maxSearchDistance && this.open.f() != 0 && (aVar = (a) this.open.d()) != this.nodes[i13][i14]) {
             this.open.e(aVar);
-            this.closed.a(aVar);
+            this.closed.add(aVar);
             a.b<Coords> it2 = m0.b.P().T(aVar.f2982a, aVar.f2983b).iterator();
             while (it2.hasNext()) {
                 Coords next2 = it2.next();
@@ -179,11 +179,11 @@ public class AStarPathFinder {
                     if (this.open.c(aVar2)) {
                         this.open.e(aVar2);
                     }
-                    if (this.closed.e(aVar2, false)) {
-                        this.closed.q(aVar2, false);
+                    if (this.closed.contains(aVar2, false)) {
+                        this.closed.removeValue(aVar2, false);
                     }
                 }
-                if (!this.open.c(aVar2) && !this.closed.e(aVar2, false)) {
+                if (!this.open.c(aVar2) && !this.closed.contains(aVar2, false)) {
                     aVar2.f2984c = f3;
                     aVar2.f2986e = m0.b.r(i15, i16, i13, i14);
                     iMax = Math.max(iMax, aVar2.i(aVar));

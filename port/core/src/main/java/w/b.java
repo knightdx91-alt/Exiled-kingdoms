@@ -21,7 +21,7 @@ public final class b extends u.b {
         this.f4077d = aVar;
     }
 
-    @Override // com.badlogic.gdx.utils.i
+    @Override // com.badlogic.gdx.utils.Disposable
     public final void dispose() {
         com.badlogic.gdx.utils.Array<? extends i> aVar = this.f4077d;
         if (aVar != null) {

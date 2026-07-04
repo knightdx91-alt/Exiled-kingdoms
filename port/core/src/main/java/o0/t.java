@@ -315,7 +315,7 @@ public final class t extends Window {
             i2++;
         }
         int iH = Settings.h();
-        Rules.CharacterClass characterClass = Rules.CharacterClass.f3263f;
+        Rules.CharacterClass characterClass = Rules.CharacterClass.GENERAL;
         if (iH != 2) {
             label = new Label(" " + Rules.CharacterClass.a(characterClassC) + " " + GameString.b("SKILLS", false), Assets.g(), "menuLabelStrongStyle");
         } else if (characterClassC == characterClass) {

@@ -201,7 +201,7 @@ public final class i extends Image {
                 try {
                     bitmapFont.draw(batch, Settings.g(this.f3539i), (f3529r * 26.0f) + getX(), (f3529r * 2.0f) + getY());
                 } catch (Exception e2) {
-                    com.badlogic.gdx.utils.l.d("inventoryslot draw() EXCEPTION -:  " + e2.getMessage());
+                    com.badlogic.gdx.utils.GdxNativesLoader.d("inventoryslot draw() EXCEPTION -:  " + e2.getMessage());
                     System.out.println(" inventoryslot draw() EXCEPTION -:  " + e2.getMessage());
                 }
             }

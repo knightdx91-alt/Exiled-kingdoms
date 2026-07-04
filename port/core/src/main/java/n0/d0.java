@@ -148,10 +148,10 @@ public final class d0 extends Window {
             }
             System.out.println("exit game");
             GPGSUpdate.c(false);
-            com.badlogic.gdx.e eVar = (com.badlogic.gdx.e) Gdx.app.getApplicationListener();
+            com.badlogic.gdx.Game eVar = (com.badlogic.gdx.Game) Gdx.app.getApplicationListener();
             GameData.v().getClass();
             GameData.X();
-            eVar.c(new l0.e(eVar));
+            eVar.setScreen(new l0.e(eVar));
             GameLevel.n(false);
         }
     }

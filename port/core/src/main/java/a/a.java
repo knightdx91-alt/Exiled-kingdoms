@@ -61,7 +61,7 @@ public final /* synthetic */ class a {
         return str + i2;
     }
 
-    public static String i(com.badlogic.gdx.files.a aVar, String str) {
+    public static String i(com.badlogic.gdx.files.FileHandle aVar, String str) {
         return str + aVar;
     }
 

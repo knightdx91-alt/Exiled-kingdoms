@@ -54,7 +54,7 @@ public class Serializer {
     private static Integer[] f3224a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static FileHandle f3225b;
+    public static a f3225b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     public static boolean f3226c;
@@ -214,7 +214,7 @@ public class Serializer {
 
     public static void G() {
         String strO;
-        ExiledKingdoms.f3382l = GameData.GameStatus.f3185b;
+        ExiledKingdoms.f3382l = GameData.GameStatus.STOPPED;
         f3224a = new Integer[10];
         for (int i2 = 0; i2 < 10; i2++) {
             f3224a[i2] = -1;
@@ -278,7 +278,7 @@ public class Serializer {
         if (i3 != 0) {
             Gdx.files.local(e(i2)).deleteDirectory();
         }
-        FileHandle aVarLocal = Gdx.files.local(C(i2, i3));
+        a aVarLocal = Gdx.files.local(C(i2, i3));
         SaveGameData saveGameData = (SaveGameData) json.fromJson(SaveGameData.class, h(aVarLocal.readString()));
         if (saveGameData.leveldata.D()) {
             l.d("WARNING: saved level in savegamedata is EMPTY! retrying load");
@@ -294,8 +294,8 @@ public class Serializer {
         l.d("Serializer.LoadGame() > gamedata loading(" + i2 + "," + i3 + ")");
         GameData.K(saveGameData.gamedata);
         Coords coords = new Coords(GameData.v().player.f3092x, GameData.v().player.f3093y);
-        Game eVar = (Game) Gdx.app.getApplicationListener();
-        eVar.setScreen(new l0.b(eVar, new Transition(saveGameData.gamedata.CurrentLevel, 1)));
+        e eVar = (e) Gdx.app.getApplicationListener();
+        eVar.c(new l0.b(eVar, new Transition(saveGameData.gamedata.CurrentLevel, 1)));
         GameData.v().player.f3092x = coords.f3287x;
         GameData.v().player.f3093y = coords.f3288y;
         l.d("Serializer.LoadGame() > loading level");

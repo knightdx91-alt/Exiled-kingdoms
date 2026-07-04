@@ -941,7 +941,7 @@ public final class f extends Window {
                     k0.a aVarL = k0.a.l();
                     Character character = this.f3498o;
                     aVarL.getClass();
-                    aVarL.b(character.B(), a.EnumC0031a.f2303o, 1.0f).owner = character;
+                    aVarL.b(character.B(), a.EnumC0031a.CASTING, 1.0f).owner = character;
                 }
                 X();
                 return;

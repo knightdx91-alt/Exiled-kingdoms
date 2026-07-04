@@ -57,7 +57,7 @@ public class SecretDoor extends MapObject {
         sbU.append(i2);
         sbU.append("%[]");
         gameLog.a(sbU.toString());
-        k0.a.l().b(B(), a.EnumC0031a.f2296h, 0.0f);
+        k0.a.l().b(B(), a.EnumC0031a.SECRET, 0.0f);
         String str2 = this.secretdoor_tag;
         if (str2 == null || str2 == "") {
             return;

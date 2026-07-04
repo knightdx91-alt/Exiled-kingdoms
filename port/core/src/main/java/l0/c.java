@@ -24,7 +24,7 @@ import net.fdgames.ek.ExiledKingdoms;
 
 /* JADX INFO: compiled from: IntroScreen.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public final class c implements Screen {
+public final class c implements n {
 
     /* JADX INFO: renamed from: o, reason: collision with root package name */
     private static float f2327o;
@@ -63,7 +63,7 @@ public final class c implements Screen {
     private float f2339k;
 
     /* JADX INFO: renamed from: l, reason: collision with root package name */
-    private com.badlogic.gdx.e f2340l;
+    private com.badlogic.gdx.Game f2340l;
 
     /* JADX INFO: renamed from: m, reason: collision with root package name */
     private Transition f2341m;
@@ -102,8 +102,8 @@ public final class c implements Screen {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    public c(com.badlogic.gdx.e eVar, Transition transition) {
-        com.badlogic.gdx.utils.a<TextureRegion> aVar = GameAssets.f3315a;
+    public c(com.badlogic.gdx.Game eVar, Transition transition) {
+        com.badlogic.gdx.utils.Array<TextureRegion> aVar = GameAssets.f3315a;
         Intro intro = new Intro();
         intro.stages = new ArrayList<>();
         Assets assets = Assets.f3309a;
@@ -183,8 +183,8 @@ public final class c implements Screen {
             }
             intro.stages = null;
             Transition transition = this.f2341m;
-            com.badlogic.gdx.e eVar = this.f2340l;
-            eVar.c(new b(eVar, transition));
+            com.badlogic.gdx.Game eVar = this.f2340l;
+            eVar.setScreen(new b(eVar, transition));
             return;
         }
         int i3 = this.f2329a + 1;
@@ -210,18 +210,18 @@ public final class c implements Screen {
         }
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void a() {
         this.f2329a = -1;
         this.f2336h = false;
         g();
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void b(int i2, int i3) {
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void c(float f2) {
         float f3;
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -275,7 +275,7 @@ public final class c implements Screen {
         }
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void resume() {
     }
 }

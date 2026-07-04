@@ -41,7 +41,7 @@ public final class a extends y.a {
     private Matrix4 f2387h;
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
-    private com.badlogic.gdx.math.a f2388i;
+    private com.badlogic.gdx.math.Vector3 f2388i;
 
     /* JADX INFO: renamed from: j, reason: collision with root package name */
     private Vector2 f2389j;
@@ -94,7 +94,7 @@ public final class a extends y.a {
 
     public a(w.b bVar) {
         super(bVar);
-        this.f2388i = new com.badlogic.gdx.math.a();
+        this.f2388i = new com.badlogic.gdx.math.Vector3();
         this.f2389j = new Vector2 ();
         this.f2390k = new Vector2 ();
         this.f2391l = new Vector2 ();
@@ -131,10 +131,10 @@ public final class a extends y.a {
         return E;
     }
 
-    private com.badlogic.gdx.math.a j(Vector2 qVar) {
+    private com.badlogic.gdx.math.Vector3 j(Vector2 qVar) {
         float f2 = qVar.f91a;
         float f3 = qVar.f92b;
-        com.badlogic.gdx.math.a aVar = this.f2388i;
+        com.badlogic.gdx.math.Vector3 aVar = this.f2388i;
         aVar.t(f2, f3, 0.0f);
         aVar.m(this.f2387h);
         return aVar;

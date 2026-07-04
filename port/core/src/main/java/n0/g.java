@@ -307,11 +307,11 @@ public final class g extends Window {
             return;
         }
         setVisible(false);
-        com.badlogic.gdx.e eVar = (com.badlogic.gdx.e) Gdx.app.getApplicationListener();
+        com.badlogic.gdx.Game eVar = (com.badlogic.gdx.Game) Gdx.app.getApplicationListener();
         GameData.v().getClass();
         GameData.X();
         GameConsole.d();
-        eVar.c(new l0.e(eVar));
+        eVar.setScreen(new l0.e(eVar));
     }
 
     public final void i(int i2, int i3, boolean z2) {

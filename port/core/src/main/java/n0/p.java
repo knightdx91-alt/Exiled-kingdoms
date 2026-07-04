@@ -89,11 +89,11 @@ public final class p extends Window {
             GameData.v().player.sheet.S();
             return;
         }
-        com.badlogic.gdx.e eVar = (com.badlogic.gdx.e) Gdx.app.getApplicationListener();
+        com.badlogic.gdx.Game eVar = (com.badlogic.gdx.Game) Gdx.app.getApplicationListener();
         GameData.v().getClass();
         GameData.X();
         GameConsole.d();
-        eVar.c(new l0.e(eVar));
+        eVar.setScreen(new l0.e(eVar));
     }
 
     public final void b(int i2) {

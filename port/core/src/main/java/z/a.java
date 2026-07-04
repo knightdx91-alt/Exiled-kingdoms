@@ -35,7 +35,7 @@ public final class a implements d {
     /* JADX INFO: renamed from: f, reason: collision with root package name */
     private int f4102f;
 
-    public a(IntArray oVar, com.badlogic.gdx.utils.a<b> aVar) {
+    public a(o oVar, com.badlogic.gdx.utils.Array<b> aVar) {
         this.f4100d = new b[aVar.f1750b];
         int i2 = oVar.f1850b;
         int[] iArr = new int[i2];
@@ -67,7 +67,7 @@ public final class a implements d {
         while (true) {
             int[] iArr = this.f4101e;
             if (i3 >= iArr.length) {
-                throw new GdxRuntimeException ("Could not determine current animation frame in AnimatedTiledMapTile.  This should never happen.");
+                throw new m("Could not determine current animation frame in AnimatedTiledMapTile.  This should never happen.");
             }
             int i4 = iArr[i3];
             if (i2 <= i4) {

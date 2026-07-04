@@ -29,15 +29,15 @@ public interface a {
     public static class b implements a {
 
         /* JADX INFO: renamed from: a, reason: collision with root package name */
-        private final ObjectMap<String, Texture> f4054a;
+        private final y<String, Texture> f4054a;
 
-        public b(ObjectMap<String, Texture> yVar) {
+        public b(y<String, Texture> yVar) {
             this.f4054a = yVar;
         }
 
         @Override // u.a
         public final TextureRegion a(String str) {
-            return new TextureRegion(this.f4054a.remove(str));
+            return new TextureRegion(this.f4054a.d(str));
         }
     }
 

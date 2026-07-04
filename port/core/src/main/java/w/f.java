@@ -8,7 +8,7 @@ import java.util.Iterator;
 public final class f implements Iterable<d> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private IntMap<d> f4084a = new IntMap <>();
+    private q<d> f4084a = new q<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     private u.h f4085b = new u.h();

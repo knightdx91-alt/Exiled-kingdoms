@@ -16,7 +16,7 @@ import net.fdgames.ek.Settings;
 
 /* JADX INFO: compiled from: LoadingScreen.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public final class d implements Screen {
+public final class d implements n {
 
     /* JADX INFO: renamed from: i, reason: collision with root package name */
     private static float f2343i = Gdx.graphics.getHeight() / 720.0f;
@@ -52,7 +52,7 @@ public final class d implements Screen {
         this.f2345a = exiledKingdoms;
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void a() {
         l.d("LoadingScreen.show() - Splash screen showing....");
         f2343i = Gdx.graphics.getHeight() / 720.0f;
@@ -81,11 +81,11 @@ public final class d implements Screen {
         Gdx.input.setCatchBackKey(true);
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void b(int i2, int i3) {
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void c(float f2) {
         f2343i = Gdx.graphics.getHeight() / 720.0f;
         this.f2346b.begin();
@@ -114,7 +114,7 @@ public final class d implements Screen {
         exiledKingdoms.c(new e(exiledKingdoms));
     }
 
-    @Override // com.badlogic.gdx.n
+    @Override // com.badlogic.gdx.Screen
     public final void resume() {
     }
 }

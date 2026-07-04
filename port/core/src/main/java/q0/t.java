@@ -47,7 +47,7 @@ public final class t extends Window {
     private TextButton f3961f;
 
     /* JADX INFO: renamed from: g, reason: collision with root package name */
-    private com.badlogic.gdx.e f3962g;
+    private com.badlogic.gdx.Game f3962g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
     private Stage f3963h;
@@ -294,7 +294,7 @@ public final class t extends Window {
         super.draw(batch, f2);
     }
 
-    public final void e(com.badlogic.gdx.e eVar) {
+    public final void e(com.badlogic.gdx.Game eVar) {
         this.f3956a.setText(GameString.b("LIBRARY", false));
         this.f3957b.setText(GameString.b("EXIT", false));
         this.f3962g = eVar;

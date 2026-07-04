@@ -288,7 +288,7 @@ public final class b {
         if (f2412i0 == null) {
             b bVar = new b();
             bVar.f2432q = false;
-            bVar.f2436v = new com.badlogic.gdx.utils.a<>();
+            bVar.f2436v = new com.badlogic.gdx.utils.Array<>();
             bVar.N = new Transition();
             bVar.O = new Transition();
             bVar.P = new Transition();
@@ -845,35 +845,35 @@ public final class b {
     }
 
     public final com.badlogic.gdx.utils.Array<Coords> T(int i2, int i3) {
-        com.badlogic.gdx.utils.a<Coords> aVar = this.f2436v;
+        com.badlogic.gdx.utils.Array<Coords> aVar = this.f2436v;
         aVar.clear();
         int i4 = i2 - 1;
         int i5 = i3 + 1;
         if (!y(i4, i5)) {
-            aVar.a(new Coords(i4, i5));
+            aVar.add(new Coords(i4, i5));
         }
         int i6 = i2 + 1;
         if (!y(i6, i5)) {
-            aVar.a(new Coords(i6, i5));
+            aVar.add(new Coords(i6, i5));
         }
         int i7 = i3 - 1;
         if (!y(i4, i7)) {
-            aVar.a(new Coords(i4, i7));
+            aVar.add(new Coords(i4, i7));
         }
         if (!y(i6, i7)) {
-            aVar.a(new Coords(i6, i7));
+            aVar.add(new Coords(i6, i7));
         }
         if (!y(i2, i5)) {
-            aVar.a(new Coords(i2, i5));
+            aVar.add(new Coords(i2, i5));
         }
         if (!y(i4, i3)) {
-            aVar.a(new Coords(i4, i3));
+            aVar.add(new Coords(i4, i3));
         }
         if (!y(i6, i3)) {
-            aVar.a(new Coords(i6, i3));
+            aVar.add(new Coords(i6, i3));
         }
         if (!y(i2, i7)) {
-            aVar.a(new Coords(i2, i7));
+            aVar.add(new Coords(i2, i7));
         }
         return aVar;
     }
@@ -1479,8 +1479,8 @@ public final class b {
         if (bVar != null) {
             bVar.dispose();
         }
-        h.Array aVar = new h.a();
-        w.b bVarH = new w.h(new GdxNativesLoader ()).h("data/tmx/" + str + ".tmx", aVar);
+        h.a aVar = new h.a();
+        w.b bVarH = new w.h(new l()).h("data/tmx/" + str + ".tmx", aVar);
         this.H = bVarH;
         u.MapProperties hVarB = bVarH.b();
         this.M = hVarB;

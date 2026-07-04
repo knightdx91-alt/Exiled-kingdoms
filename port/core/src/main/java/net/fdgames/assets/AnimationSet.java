@@ -169,7 +169,7 @@ public class AnimationSet {
         int i10 = 0;
         while (i10 < length) {
             SpriteFacing spriteFacing3 = spriteFacingArrValues[i10];
-            Array aVar = new Array ();
+            a aVar = new a();
             int iOrdinal = spriteFacing3.ordinal();
             int i11 = 8;
             frameInfo frameinfo = iOrdinal != 0 ? iOrdinal != i7 ? iOrdinal != 2 ? iOrdinal != 3 ? iOrdinal != 4 ? new frameInfo(i7, Boolean.FALSE) : new frameInfo(9, Boolean.TRUE) : new frameInfo(10, Boolean.FALSE) : new frameInfo(9, Boolean.FALSE) : new frameInfo(8, Boolean.FALSE) : new frameInfo(7, Boolean.FALSE);
@@ -185,10 +185,10 @@ public class AnimationSet {
                 int i13 = i12;
                 SpriteFacing[] spriteFacingArr = spriteFacingArrValues;
                 Texture texture5 = texture4;
-                Array aVar2 = aVar;
+                a aVar2 = aVar;
                 Texture texture6 = texture4;
                 SpriteFacing spriteFacing4 = spriteFacing3;
-                aVar2.add(new TextureRegion(texture5, (i2 + 2) * 140, (frameinfo.row - 1) * 140, i3, 140));
+                aVar2.a(new TextureRegion(texture5, (i2 + 2) * 140, (frameinfo.row - 1) * 140, i3, 140));
                 if (frameinfo.flipped.booleanValue() || (i6 = frameinfo.row) < 6) {
                     i4 = 10;
                 } else {
@@ -253,9 +253,9 @@ public class AnimationSet {
     }
 
     public static Animation b(Texture texture, int i2, int i3, int i4, int i5, int i6, Animation.PlayMode playMode, float f2) {
-        Array aVar = new Array ();
+        a aVar = new a();
         for (int i7 = 0; i7 < i4; i7++) {
-            aVar.add(new TextureRegion(texture, ((i3 - 1) + i7) * i5, (i2 - 1) * i6, i5, i6));
+            aVar.a(new TextureRegion(texture, ((i3 - 1) + i7) * i5, (i2 - 1) * i6, i5, i6));
         }
         return new Animation(f2, aVar, playMode);
     }

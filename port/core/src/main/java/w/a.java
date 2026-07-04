@@ -25,13 +25,13 @@ import w.h;
 
 /* JADX INFO: compiled from: BaseTmxMapLoader.java */
 /* JADX INFO: loaded from: /tmp/claude-0/-home-user-Exiled-kingdoms/9d29ecaf-a4c0-5173-a278-bc8785ca37a9/scratchpad/jadxwork/../extracted_dex/classes.dex */
-public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loaders.b<b, P> {
+public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader<b, P> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    protected XmlReader f4068a;
+    protected s0 f4068a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    protected XmlReader.a f4069b;
+    protected s0.a f4069b;
 
     /* JADX INFO: renamed from: c, reason: collision with root package name */
     protected boolean f4070c;
@@ -63,15 +63,15 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         }
     }
 
-    public a(GdxNativesLoader lVar) {
+    public a(l lVar) {
         super(lVar);
-        this.f4068a = new XmlReader ();
+        this.f4068a = new s0();
         this.f4070c = true;
     }
 
-    protected static com.badlogic.gdx.files.a a(com.badlogic.gdx.files.a aVar, String str) {
+    protected static com.badlogic.gdx.files.FileHandle a(com.badlogic.gdx.files.FileHandle aVar, String str) {
         StringTokenizer stringTokenizer = new StringTokenizer(str, "\\/");
-        com.badlogic.gdx.files.a aVarParent = aVar.parent();
+        com.badlogic.gdx.files.FileHandle aVarParent = aVar.parent();
         while (stringTokenizer.hasMoreElements()) {
             String strNextToken = stringTokenizer.nextToken();
             aVarParent = strNextToken.equals("..") ? aVarParent.parent() : aVarParent.child(strNextToken);
@@ -79,7 +79,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         return aVarParent;
     }
 
-    protected static void b(u.d dVar, XmlReader.a aVar) {
+    protected static void b(u.d dVar, s0.a aVar) {
         String strD = aVar.d("name", null);
         float f2 = Float.parseFloat(aVar.d("opacity", "1.0"));
         boolean z2 = aVar.j(1, "visible") == 1;
@@ -100,11 +100,11 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
     /* JADX WARN: Type inference failed for: r3v6, types: [java.lang.Boolean] */
     /* JADX WARN: Type inference failed for: r3v7, types: [java.lang.Float] */
     /* JADX WARN: Type inference failed for: r3v8, types: [java.lang.Integer] */
-    protected static void e(u.h hVar, XmlReader.a aVar) {
+    protected static void e(u.h hVar, s0.a aVar) {
         if (aVar.k().equals("properties")) {
-            a.b<XmlReader.a> it = aVar.h("property").iterator();
+            a.b<s0.a> it = aVar.h("property").iterator();
             while (it.hasNext()) {
-                XmlReader.a next = it.next();
+                s0.a next = it.next();
                 String strD = next.d("name", null);
                 String strD2 = next.d("value", null);
                 String strD3 = next.d("type", null);
@@ -121,7 +121,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         objValueOf = Boolean.valueOf((String) objValueOf);
                     } else {
                         if (!strD3.equals("color")) {
-                            throw new GdxRuntimeException ("Wrong type given for property " + strD + ", given : " + strD3 + ", supported : string, bool, int, float, color");
+                            throw new m("Wrong type given for property " + strD + ", given : " + strD3 + ", supported : string, bool, int, float, color");
                         }
                         objValueOf = Color.valueOf(objValueOf.substring(3) + objValueOf.substring(1, 3));
                     }
@@ -131,7 +131,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         }
     }
 
-    protected final void c(b bVar, u.e eVar, XmlReader.a aVar, com.badlogic.gdx.files.a aVar2, u.a aVar3) {
+    protected final void c(b bVar, u.e eVar, s0.a aVar, com.badlogic.gdx.files.FileHandle aVar2, u.a aVar3) {
         InputStream bufferedInputStream;
         int i2;
         u.d dVar;
@@ -141,7 +141,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             if (aVar.k().equals("group")) {
                 u.c cVar = new u.c();
                 b(cVar, aVar);
-                XmlReader.a aVarF = aVar.f("properties");
+                s0.a aVarF = aVar.f("properties");
                 if (aVarF != null) {
                     e(cVar.d(), aVarF);
                 }
@@ -160,7 +160,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         dVar.getClass();
                     }
                 } while (cVar != dVar);
-                throw new GdxRuntimeException ("Can't set self as the parent");
+                throw new m("Can't set self as the parent");
             }
             return;
         }
@@ -169,11 +169,11 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                 if (aVar.k().equals("objectgroup")) {
                     u.d dVar2 = new u.d();
                     b(dVar2, aVar);
-                    XmlReader.a aVarF2 = aVar.f("properties");
+                    s0.a aVarF2 = aVar.f("properties");
                     if (aVarF2 != null) {
                         e(dVar2.d(), aVarF2);
                     }
-                    a.b<XmlReader.a> it2 = aVar.h("object").iterator();
+                    a.b<s0.a> it2 = aVar.h("object").iterator();
                     while (it2.hasNext()) {
                         d(bVar, dVar2.b(), it2.next(), this.f4071d);
                     }
@@ -193,13 +193,13 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                 } else {
                     Float.parseFloat(aVar.d("y", "0"));
                 }
-                XmlReader.a aVarF3 = aVar.f("image");
+                s0.a aVarF3 = aVar.f("image");
                 if (aVarF3 != null) {
                     aVar3.a(a(aVar2, aVarF3.c("source")).path()).getRegionHeight();
                 }
                 u.d cVar2 = new c();
                 b(cVar2, aVar);
-                XmlReader.a aVarF4 = aVar.f("properties");
+                s0.a aVarF4 = aVar.f("properties");
                 if (aVarF4 != null) {
                     e(cVar2.d(), aVarF4);
                 }
@@ -213,10 +213,10 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             int iJ2 = aVar.j(0, "height");
             e eVar2 = new e(iJ, iJ2, ((Integer) bVar.b().c("tilewidth")).intValue(), ((Integer) bVar.b().c("tileheight")).intValue());
             b(eVar2, aVar);
-            XmlReader.a aVarF5 = aVar.f("data");
+            s0.a aVarF5 = aVar.f("data");
             String strD = aVarF5.d("encoding", null);
             if (strD == null) {
-                throw new GdxRuntimeException ("Unsupported encoding (XML) for TMX Layer Data");
+                throw new m("Unsupported encoding (XML) for TMX Layer Data");
             }
             int[] iArr = new int[iJ * iJ2];
             if (strD.equals("csv")) {
@@ -228,18 +228,18 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             } else {
                 try {
                     if (!strD.equals("base64")) {
-                        throw new GdxRuntimeException (a.a.l("Unrecognised encoding (", strD, ") for TMX Layer Data"));
+                        throw new m(a.a.l("Unrecognised encoding (", strD, ") for TMX Layer Data"));
                     }
                     try {
                         String strD2 = aVarF5.d("compression", null);
-                        byte[] bArrA = com.badlogic.gdx.utils.c.a(aVarF5.l());
+                        byte[] bArrA = com.badlogic.gdx.utils.Base64Coder.decodeLines(aVarF5.l());
                         if (strD2 == null) {
                             bufferedInputStream = new ByteArrayInputStream(bArrA);
                         } else if (strD2.equals("gzip")) {
                             bufferedInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(bArrA), bArrA.length));
                         } else {
                             if (!strD2.equals("zlib")) {
-                                throw new GdxRuntimeException ("Unrecognised compression (" + strD2 + ") for TMX Layer Data");
+                                throw new m("Unrecognised compression (" + strD2 + ") for TMX Layer Data");
                             }
                             bufferedInputStream = new BufferedInputStream(new InflaterInputStream(new ByteArrayInputStream(bArrA)));
                         }
@@ -260,7 +260,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                                     }
                                 }
                                 if (i9 != i6) {
-                                    throw new GdxRuntimeException ("Error Reading TMX Layer Data: Premature end of tile data");
+                                    throw new m("Error Reading TMX Layer Data: Premature end of tile data");
                                 }
                                 iArr[(i7 * iJ) + i8] = ((bArr[1] & 255) << 8) | (bArr[0] & 255) | ((bArr[2] & 255) << 16) | ((bArr[3] & 255) << 24);
                                 i8++;
@@ -271,12 +271,12 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                             i6 = 4;
                         }
                         i2 = i3;
-                        StreamUtils.closeQuietly(inputStream);
+                        n0.a(inputStream);
                     } catch (IOException e2) {
-                        throw new GdxRuntimeException ("Error Reading TMX Layer Data - IOException: " + e2.getMessage());
+                        throw new m("Error Reading TMX Layer Data - IOException: " + e2.getMessage());
                     }
                 } catch (Throwable th) {
-                    StreamUtils.closeQuietly(null);
+                    n0.a(null);
                     throw th;
                 }
             }
@@ -291,7 +291,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                     }
                 }
             }
-            XmlReader.a aVarF6 = aVar.f("properties");
+            s0.a aVarF6 = aVar.f("properties");
             if (aVarF6 != null) {
                 e(eVar2.d(), aVarF6);
             }
@@ -303,7 +303,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    protected final void d(b bVar, u.g gVar, XmlReader.a aVar, float f2) {
+    protected final void d(b bVar, u.g gVar, s0.a aVar, float f2) {
         u.f bVar2;
         String str;
         if (aVar.k().equals("object")) {
@@ -313,7 +313,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             float fI4 = aVar.i("height", 0.0f) * 1.0f;
             char c2 = 0;
             if (aVar.g() > 0) {
-                XmlReader.a aVarF = aVar.f("polygon");
+                s0.a aVarF = aVar.f("polygon");
                 String str2 = ",";
                 if (aVarF != null) {
                     String[] strArrSplit = aVarF.c("points").split(" ");
@@ -330,7 +330,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                     new a0.m(fArr).d(fI, fI2);
                     bVar2 = new v.a();
                 } else {
-                    XmlReader.a aVarF2 = aVar.f("polyline");
+                    s0.a aVarF2 = aVar.f("polyline");
                     if (aVarF2 != null) {
                         String[] strArrSplit3 = aVarF2.c("points").split(" ");
                         int length = strArrSplit3.length * 2;
@@ -402,7 +402,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             bVar2.a().d(Float.valueOf(fI3), "width");
             bVar2.a().d(Float.valueOf(fI4), "height");
             aVar.j(1, "visible");
-            XmlReader.a aVarF3 = aVar.f("properties");
+            s0.a aVarF3 = aVar.f("properties");
             if (aVarF3 != null) {
                 e(bVar2.a(), aVarF3);
             }
@@ -410,27 +410,27 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         }
     }
 
-    protected final b f(com.badlogic.gdx.files.a aVar, h.a aVar2, u.a aVar3) {
-        a.b<XmlReader.a> bVar;
+    protected final b f(com.badlogic.gdx.files.FileHandle aVar, h.a aVar2, u.a aVar3) {
+        a.b<s0.a> bVar;
         String str;
-        XmlReader.a aVar4;
+        s0.a aVar4;
         String str2;
         a<P> aVar5;
         String str3;
         int i2;
         int i3;
         int i4;
-        XmlReader.a aVar6;
+        s0.a aVar6;
         String str4;
-        com.badlogic.gdx.files.a aVarA;
+        com.badlogic.gdx.files.FileHandle aVarA;
         String str5;
         String str6;
-        com.badlogic.gdx.files.a aVarA2;
-        a.b<XmlReader.a> bVar2;
+        com.badlogic.gdx.files.FileHandle aVarA2;
+        a.b<s0.a> bVar2;
         z.a aVar7;
-        XmlReader.a aVar8;
+        s0.a aVar8;
         String str7;
-        com.badlogic.gdx.files.a aVarA3;
+        com.badlogic.gdx.files.FileHandle aVarA3;
         int i5;
         int iJ;
         a<P> aVar9 = this;
@@ -473,24 +473,24 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         if (strD != null && "staggered".equals(strD) && iJ3 > 1) {
             aVar9.f4071d = (iJ5 / 2) + (aVar9.f4071d / 2);
         }
-        XmlReader.a aVarF = aVar9.f4069b.f("properties");
+        s0.a aVarF = aVar9.f4069b.f("properties");
         if (aVarF != null) {
             e(aVar9.f4072e.b(), aVarF);
         }
         String str10 = "tileset";
-        a.b<XmlReader.a> it = aVar9.f4069b.h("tileset").iterator();
+        a.b<s0.a> it = aVar9.f4069b.h("tileset").iterator();
         while (it.hasNext()) {
-            XmlReader.a next = it.next();
+            s0.a next = it.next();
             if (next.k().equals(str10)) {
                 int iJ7 = next.j(1, "firstgid");
                 String strD5 = next.d("source", null);
                 if (strD5 != null) {
                     bVar = it;
-                    com.badlogic.gdx.files.a aVarA4 = a(aVar, strD5);
+                    com.badlogic.gdx.files.FileHandle aVarA4 = a(aVar, strD5);
                     str = str10;
                     try {
-                        XmlReader.a aVarA5 = aVar9.f4068a.a(aVarA4);
-                        XmlReader.a aVarF2 = aVarA5.f("image");
+                        s0.a aVarA5 = aVar9.f4068a.a(aVarA4);
+                        s0.a aVarF2 = aVarA5.f("image");
                         if (aVarF2 != null) {
                             aVar8 = aVarA5;
                             String strC = aVarF2.c("source");
@@ -513,13 +513,13 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         str4 = str7;
                         i4 = i5;
                         i2 = 0;
-                    } catch (SerializationException unused) {
-                        throw new GdxRuntimeException ("Error parsing external tileset.");
+                    } catch (h0 unused) {
+                        throw new m("Error parsing external tileset.");
                     }
                 } else {
                     bVar = it;
                     str = str10;
-                    XmlReader.a aVarF3 = next.f("image");
+                    s0.a aVarF3 = next.f("image");
                     if (aVarF3 != null) {
                         String strC2 = aVarF3.c("source");
                         i2 = 0;
@@ -548,7 +548,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                 int iJ13 = aVar6.j(i2, "spacing");
                 aVar4 = next;
                 int iJ14 = aVar6.j(i2, "margin");
-                XmlReader.a aVarF4 = aVar6.f("tileoffset");
+                s0.a aVarF4 = aVar6.f("tileoffset");
                 if (aVarF4 != null) {
                     str5 = strD5;
                     aVarF4.j(0, "x");
@@ -558,12 +558,12 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                 }
                 f fVar = new f();
                 u.h hVarA = fVar.a();
-                XmlReader.a aVarF5 = aVar6.f("properties");
+                s0.a aVarF5 = aVar6.f("properties");
                 if (aVarF5 != null) {
                     e(hVarA, aVarF5);
                 }
                 hVarA.d(Integer.valueOf(iJ7), "firstgid");
-                com.badlogic.gdx.utils.a<XmlReader.a> aVarH = aVar6.h("tile");
+                com.badlogic.gdx.utils.Array<s0.a> aVarH = aVar6.h("tile");
                 u.h hVarA2 = fVar.a();
                 if (aVarA != null) {
                     TextureRegion textureRegionA = aVar3.a(aVarA.path());
@@ -593,10 +593,10 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         regionWidth = regionWidth;
                     }
                 } else {
-                    a.b<XmlReader.a> it2 = aVarH.iterator();
+                    a.b<s0.a> it2 = aVarH.iterator();
                     while (it2.hasNext()) {
-                        XmlReader.a next2 = it2.next();
-                        XmlReader.a aVarF6 = next2.f("image");
+                        s0.a next2 = it2.next();
+                        s0.a aVarF6 = next2.f("image");
                         if (aVarF6 != null) {
                             String strC3 = aVarF6.c("source");
                             if (str5 != null) {
@@ -618,20 +618,20 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         str5 = str6;
                     }
                 }
-                com.badlogic.gdx.utils.a aVar10 = new com.badlogic.gdx.utils.a();
-                a.b<XmlReader.a> it3 = aVarH.iterator();
+                com.badlogic.gdx.utils.Array aVar10 = new com.badlogic.gdx.utils.Array();
+                a.b<s0.a> it3 = aVarH.iterator();
                 while (it3.hasNext()) {
-                    XmlReader.a next3 = it3.next();
+                    s0.a next3 = it3.next();
                     d dVarB = fVar.b(next3.j(0, "id") + iJ7);
                     if (dVarB != null) {
-                        XmlReader.a aVarF7 = next3.f("animation");
+                        s0.a aVarF7 = next3.f("animation");
                         if (aVarF7 != null) {
-                            com.badlogic.gdx.utils.a aVar11 = new com.badlogic.gdx.utils.a();
-                            IntArray oVar = new IntArray ();
-                            a.b<XmlReader.a> it4 = aVarF7.h("frame").iterator();
+                            com.badlogic.gdx.utils.Array aVar11 = new com.badlogic.gdx.utils.Array();
+                            o oVar = new o();
+                            a.b<s0.a> it4 = aVarF7.h("frame").iterator();
                             while (it4.hasNext()) {
-                                XmlReader.a next4 = it4.next();
-                                aVar11.a((z.b) fVar.b(Integer.parseInt(next4.c("tileid")) + iJ7));
+                                s0.a next4 = it4.next();
+                                aVar11.add((z.b) fVar.b(Integer.parseInt(next4.c("tileid")) + iJ7));
                                 oVar.a(Integer.parseInt(next4.c("duration")));
                                 it3 = it3;
                             }
@@ -643,7 +643,7 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                             aVar7 = null;
                         }
                         if (aVar7 != null) {
-                            aVar10.a(aVar7);
+                            aVar10.add(aVar7);
                             dVarB = aVar7;
                         }
                         String strD6 = next3.d("terrain", null);
@@ -654,13 +654,13 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
                         if (strD7 != null) {
                             dVarB.c().d(strD7, "probability");
                         }
-                        XmlReader.a aVarF8 = next3.f("properties");
+                        s0.a aVarF8 = next3.f("properties");
                         if (aVarF8 != null) {
                             e(dVarB.c(), aVarF8);
                         }
-                        XmlReader.a aVarF9 = next3.f("objectgroup");
+                        s0.a aVarF9 = next3.f("objectgroup");
                         if (aVarF9 != null) {
-                            a.b<XmlReader.a> it5 = aVarF9.h("object").iterator();
+                            a.b<s0.a> it5 = aVarF9.h("object").iterator();
                             while (it5.hasNext()) {
                                 d(this.f4072e, dVarB.a(), it5.next(), dVarB.b().getRegionHeight());
                             }
@@ -695,15 +695,15 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
         a<P> aVar13 = aVar9;
         int iG = aVar13.f4069b.g();
         for (int i11 = 0; i11 < iG; i11++) {
-            XmlReader.a aVarE = aVar13.f4069b.e(i11);
+            s0.a aVarE = aVar13.f4069b.e(i11);
             b bVar5 = aVar13.f4072e;
             c(bVar5, bVar5.a(), aVarE, aVar, aVar3);
         }
         return aVar13.f4072e;
     }
 
-    @Override // com.badlogic.gdx.assets.loaders.a
-    public final com.badlogic.gdx.utils.a getDependencies(String str, com.badlogic.gdx.files.a aVar, r.b bVar) {
+    @Override // com.badlogic.gdx.assets.loaders.AssetLoader
+    public final com.badlogic.gdx.utils.Array getDependencies(String str, com.badlogic.gdx.files.FileHandle aVar, r.b bVar) {
         C0061a c0061a = (C0061a) bVar;
         this.f4069b = this.f4068a.a(aVar);
         p.b bVar2 = new p.b();
@@ -712,10 +712,10 @@ public abstract class a<P extends C0061a> extends com.badlogic.gdx.assets.loader
             bVar2.f1597e = c0061a.f4073a;
             bVar2.f1598f = c0061a.f4074b;
         }
-        com.badlogic.gdx.utils.a aVar2 = new com.badlogic.gdx.utils.a();
-        a.b<com.badlogic.gdx.files.a> it = ((h) this).g(aVar).iterator();
+        com.badlogic.gdx.utils.Array aVar2 = new com.badlogic.gdx.utils.Array();
+        a.b<com.badlogic.gdx.files.FileHandle> it = ((h) this).g(aVar).iterator();
         while (it.hasNext()) {
-            aVar2.a(new r.a(it.next(), bVar2));
+            aVar2.add(new r.a(it.next(), bVar2));
         }
         return aVar2;
     }

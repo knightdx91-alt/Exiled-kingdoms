@@ -18,7 +18,20 @@ for obf,real in MAP.items():
     if is_real_gdx(realf): lookup[obf]=realf
 lookup.update(RELOCATED)
 
+# global fully-qualified obf->real FQN map (gdx targets only), applied in-body
+FQNMAP={}
+for _obf,_real in MAP.items():
+    _rf=_real if '.' in _real else '.'.join(_obf.split('.')[:-1])+'.'+_real
+    if _rf.startswith('com.badlogic.gdx.') and re.fullmatch(r'[a-z][0-9]?', _obf.split('.')[-1]):
+        FQNMAP[_obf]=_rf
+
+def rewrite_fqn(text):
+    for _obf,_rf in FQNMAP.items():
+        text=re.sub(r'\b'+re.escape(_obf)+r'\b', _rf, text)
+    return text
+
 def rewrite(text):
+    text=rewrite_fqn(text)
     imp_re=re.compile(r'^import\s+([\w.]+);\s*$',re.M)
     # map of simpleObf -> realSimple for this file
     local={}

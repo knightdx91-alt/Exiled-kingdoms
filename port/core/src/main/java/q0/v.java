@@ -111,7 +111,7 @@ public final class v extends Window {
         public final boolean touchDown(InputEvent inputEvent, float f2, float f3, int i2, int i3) {
             GameAssets.o("click");
             v vVar = v.this;
-            vVar.f3974a.charClass = Rules.CharacterClass.f3259b;
+            vVar.f3974a.charClass = Rules.CharacterClass.ROGUE;
             vVar.h();
             return true;
         }
@@ -131,7 +131,7 @@ public final class v extends Window {
                 return true;
             }
             GameAssets.o("click");
-            vVar.f3974a.charClass = Rules.CharacterClass.f3260c;
+            vVar.f3974a.charClass = Rules.CharacterClass.CLERIC;
             vVar.h();
             return true;
         }
@@ -151,7 +151,7 @@ public final class v extends Window {
                 return true;
             }
             GameAssets.o("click");
-            vVar.f3974a.charClass = Rules.CharacterClass.f3261d;
+            vVar.f3974a.charClass = Rules.CharacterClass.WIZARD;
             vVar.h();
             return true;
         }
@@ -502,7 +502,7 @@ public final class v extends Window {
         public final boolean touchDown(InputEvent inputEvent, float f2, float f3, int i2, int i3) {
             GameAssets.o("click");
             v vVar = v.this;
-            vVar.f3974a.charClass = Rules.CharacterClass.f3258a;
+            vVar.f3974a.charClass = Rules.CharacterClass.WARRIOR;
             vVar.h();
             return true;
         }
@@ -530,13 +530,13 @@ public final class v extends Window {
         this.f3981h = label5;
         Label label6 = new Label("", GameAssets.S);
         this.f3982i = label6;
-        q0.f fVar = new q0.f(Rules.CharacterClass.f3258a, true);
+        q0.f fVar = new q0.f(Rules.CharacterClass.WARRIOR, true);
         this.f3983j = fVar;
-        q0.f fVar2 = new q0.f(Rules.CharacterClass.f3259b, false);
+        q0.f fVar2 = new q0.f(Rules.CharacterClass.ROGUE, false);
         this.f3984k = fVar2;
-        q0.f fVar3 = new q0.f(Rules.CharacterClass.f3260c, false);
+        q0.f fVar3 = new q0.f(Rules.CharacterClass.CLERIC, false);
         this.f3985l = fVar3;
-        q0.f fVar4 = new q0.f(Rules.CharacterClass.f3261d, false);
+        q0.f fVar4 = new q0.f(Rules.CharacterClass.WIZARD, false);
         this.f3986m = fVar4;
         Label label7 = new Label("", Assets.g(), "menuLabelStrongStyle");
         this.f3987n = label7;

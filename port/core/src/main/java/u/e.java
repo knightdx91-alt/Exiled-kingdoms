@@ -7,10 +7,10 @@ import java.util.Iterator;
 public final class e implements Iterable<d> {
 
     /* JADX INFO: renamed from: a, reason: collision with root package name */
-    private com.badlogic.gdx.utils.a<d> f4063a = new com.badlogic.gdx.utils.a<>();
+    private com.badlogic.gdx.utils.Array<d> f4063a = new com.badlogic.gdx.utils.Array<>();
 
     public final void a(d dVar) {
-        this.f4063a.a(dVar);
+        this.f4063a.add(dVar);
     }
 
     public final d b(int i2) {
@@ -18,7 +18,7 @@ public final class e implements Iterable<d> {
     }
 
     public final d c(String str) {
-        com.badlogic.gdx.utils.a<d> aVar = this.f4063a;
+        com.badlogic.gdx.utils.Array<d> aVar = this.f4063a;
         int i2 = aVar.f1750b;
         for (int i3 = 0; i3 < i2; i3++) {
             d dVar = aVar.get(i3);

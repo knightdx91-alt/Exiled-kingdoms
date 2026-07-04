@@ -45,19 +45,19 @@ public final class f extends Image {
         this.f3863c = null;
         this.f3864d = z2;
         this.f3865e = characterClass;
-        if (characterClass == Rules.CharacterClass.f3258a) {
+        if (characterClass == Rules.CharacterClass.WARRIOR) {
             this.f3861a = new TextureRegionDrawable(Assets.a("class_warrior_on"));
             this.f3862b = new TextureRegionDrawable(Assets.a("class_warrior_off"));
         }
-        if (characterClass == Rules.CharacterClass.f3259b) {
+        if (characterClass == Rules.CharacterClass.ROGUE) {
             this.f3861a = new TextureRegionDrawable(Assets.a("class_rogue_on"));
             this.f3862b = new TextureRegionDrawable(Assets.a("class_rogue_off"));
         }
-        if (characterClass == Rules.CharacterClass.f3260c) {
+        if (characterClass == Rules.CharacterClass.CLERIC) {
             this.f3861a = new TextureRegionDrawable(Assets.a("class_cleric_on"));
             this.f3862b = new TextureRegionDrawable(Assets.a("class_cleric_off"));
         }
-        if (characterClass == Rules.CharacterClass.f3261d) {
+        if (characterClass == Rules.CharacterClass.WIZARD) {
             this.f3861a = new TextureRegionDrawable(Assets.a("class_mage_on"));
             this.f3862b = new TextureRegionDrawable(Assets.a("class_mage_off"));
         }
@@ -82,9 +82,9 @@ public final class f extends Image {
         if (this.f3864d) {
             setDrawable(this.f3861a);
         } else {
-            Rules.CharacterClass characterClass = Rules.CharacterClass.f3260c;
+            Rules.CharacterClass characterClass = Rules.CharacterClass.CLERIC;
             Rules.CharacterClass characterClass2 = this.f3865e;
-            if ((characterClass2 == characterClass || characterClass2 == Rules.CharacterClass.f3261d) && !ExiledKingdoms.f3371a) {
+            if ((characterClass2 == characterClass || characterClass2 == Rules.CharacterClass.WIZARD) && !ExiledKingdoms.f3371a) {
                 setDrawable(this.f3863c);
             } else {
                 setDrawable(this.f3862b);

@@ -736,7 +736,7 @@ public final class i1 extends Window {
         this.f2701m.setText(GameString.b("MUSIC_VOLUME", false));
         l0.e.u();
         setVisible(false);
-        if (ExiledKingdoms.f3382l == GameData.GameStatus.f3184a) {
+        if (ExiledKingdoms.f3382l == GameData.GameStatus.RUNNING) {
             GameLevel.n(false);
         }
     }

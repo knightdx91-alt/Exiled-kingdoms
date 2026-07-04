@@ -35,7 +35,7 @@ public abstract class b {
     private int f2265g;
 
     /* JADX INFO: renamed from: h, reason: collision with root package name */
-    private final com.badlogic.gdx.math.a f2266h = new com.badlogic.gdx.math.a();
+    private final com.badlogic.gdx.math.Vector3 f2266h = new com.badlogic.gdx.math.Vector3();
 
     public final void a() {
         HdpiUtils.glViewport(this.f2262d, this.f2263e, this.f2264f, this.f2265g);
@@ -83,7 +83,7 @@ public abstract class b {
     public final void j(Vector2 qVar) {
         float f2 = qVar.f91a;
         float f3 = qVar.f92b;
-        com.badlogic.gdx.math.a aVar = this.f2266h;
+        com.badlogic.gdx.math.Vector3 aVar = this.f2266h;
         aVar.t(f2, f3, 1.0f);
         this.f2259a.project(this.f2266h, this.f2262d, this.f2263e, this.f2264f, this.f2265g);
         float f4 = aVar.f1729a;
@@ -111,7 +111,7 @@ public abstract class b {
     public final void n(Vector2 qVar, Matrix4 matrix4) {
         float f2 = qVar.f91a;
         float f3 = qVar.f92b;
-        com.badlogic.gdx.math.a aVar = this.f2266h;
+        com.badlogic.gdx.math.Vector3 aVar = this.f2266h;
         aVar.t(f2, f3, 0.0f);
         aVar.m(matrix4);
         this.f2259a.project(this.f2266h, this.f2262d, this.f2263e, this.f2264f, this.f2265g);
@@ -124,7 +124,7 @@ public abstract class b {
     public final void o(Vector2 qVar) {
         float f2 = qVar.f91a;
         float f3 = qVar.f92b;
-        com.badlogic.gdx.math.a aVar = this.f2266h;
+        com.badlogic.gdx.math.Vector3 aVar = this.f2266h;
         aVar.t(f2, f3, 1.0f);
         this.f2259a.unproject(this.f2266h, this.f2262d, this.f2263e, this.f2264f, this.f2265g);
         float f4 = aVar.f1729a;
