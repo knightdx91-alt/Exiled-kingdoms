@@ -36,15 +36,18 @@ files, each with `owner` and `status`, so nothing is invisible. Current tally:
 
 | owner | count | meaning |
 |---|---|---|
-| EK — logic read / ported | 3 | `GameLevelRenderer`, `ADTIsometricTiledMapRenderer`, `GameMap` |
-| **EK — identified, logic NOT yet read** | **139** | name known, members still obfuscated — **this is the backlog of "what we're missing"** |
-| EK — name lost (UNDECODED) | 1 | `a/a.java` (in-app billing/store; jadx recovered no name) |
-| library (identity known) | ~137 | libGDX / box2dlights / AndroidX / Play — behaviour from public source |
-| Android-generated / synthetic | 12 | `k/*` = Android `R.*` resource ID tables, `c/a`, `e0/c` lambda — no logic to decode |
+| EK — engine/render core, logic read | 10 | `ENGINE_SPEC.md` (GameLevelRenderer, ADTIso…, GameMap, screens, …) |
+| EK — UI, purpose-catalogued | 127 | `UI_SPEC.md` (handlers read on-demand when each window is built) |
+| EK — billing (skipped) | 6 | `a/*` (Donate/Store/License + name-lost `a/a`) |
+| libGDX | 72 | engine — reimplemented as Phaser; `LIBRARY_MAP.md` |
+| box2dlights | 6 | lighting model we're matching (A1) |
+| gdx-pay / Google Billing | 15 | billing (skipped) |
+| AndroidX / platform | 44 | Android glue, N/A for web |
+| Android-generated / synthetic | 12 | `R.*` tables + one lambda — no logic |
 
-The 139 EK "identified, not read" files are the honest answer to *what we haven't
-de-obfuscated*: we know the class (e.g. `o0/l` = `JournalWindow`) but haven't reversed its
-methods. Read them on demand as each feature is built, and flip the row's status.
+**Every EK class except billing is now reversed** (10 deep in `ENGINE_SPEC.md`, 127
+purpose-catalogued in `UI_SPEC.md`). The library tier is identified and needs no reversal
+(public source) — see `LIBRARY_MAP.md`. Nothing game-relevant remains unaccounted for.
 
 Reproduce the full decompile: `bash tools/extract.sh <apk>` recovers `net.fdgames`; for the
 obfuscated tier, decompile **all** `classes*.dex` (not just `net/`) — see `CAMERA.md` for
