@@ -155,9 +155,30 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
   font-family: inherit; cursor: pointer; text-align: left; color: #e8ddc4;
   background: #241d10; border: 1px solid #6d5528; border-radius: 8px;
 }
-.cc-skill.on { background: #7a5a1e; border-color: #caa04a; color: #fff5df; }
 .cc-skill-name { font-size: 15px; }
 .cc-skill-tag { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #b7a882; }
+
+/* --- EK skin: real 9-patch window/button textures from data/ui/uiskin (border-image
+   slice = the atlas split, [top right bottom left]), so boxes/buttons match the game. --- */
+.cc-panel, .cc-btn, .cc-choice, .cc-skill, .cc-step-btn, .cc-pool { image-rendering: pixelated; }
+
+/* window frame for the creation panels */
+.cc-panel {
+  background: none; border: 18px solid transparent; border-radius: 0;
+  border-image: url(../assets/ui/skin/default-window.png) 20 3 3 4 fill stretch;
+}
+/* gold rounded buttons (down/selected state uses the pressed texture) */
+.cc-btn, .cc-choice, .cc-skill, .cc-step-btn {
+  background: none; border-radius: 0; border: 11px solid transparent;
+  border-image: url(../assets/ui/skin/default-round-brown.png) 5 5 4 5 fill stretch;
+}
+.cc-btn-primary { border-image: url(../assets/ui/skin/default-round-large-brown.png) 5 5 4 5 fill stretch; color: #fff5df; }
+.cc-btn:active, .cc-choice.on, .cc-skill.on, .cc-step-btn:active {
+  border-image: url(../assets/ui/skin/default-round-down.png) 5 5 4 5 fill stretch; color: #fff5df;
+}
+.cc-btn:disabled, .cc-step-btn:disabled { opacity: .45; }
+/* inset panels (points pill, descriptions) use the rect texture */
+.cc-pool { background: none; border: 7px solid transparent; border-image: url(../assets/ui/skin/default-rect.png) 1 fill stretch; }
 
 /* ================= Dialogue box (placeholder EK styling) ================= */
 #dlg {
