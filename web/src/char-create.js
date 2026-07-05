@@ -5,18 +5,22 @@
 // Mirrors Rules/PlayerCreation.java: name, gender, portrait, class, difficulty.
 // On "Begin" it resolves with a PlayerCreation object the engine consumes.
 
+// img = base name of the ui_icons region (assets/ui/creation/<img>_on/off.png)
 export const CLASSES = [
-  { id: 'WARRIOR', name: 'Warrior' },
-  { id: 'ROGUE',   name: 'Rogue' },
-  { id: 'CLERIC',  name: 'Cleric' },
-  { id: 'WIZARD',  name: 'Wizard' },
+  { id: 'WARRIOR', name: 'Warrior', img: 'class_warrior' },
+  { id: 'ROGUE',   name: 'Rogue',   img: 'class_rogue' },
+  { id: 'CLERIC',  name: 'Cleric',  img: 'class_cleric' },
+  { id: 'WIZARD',  name: 'Wizard',  img: 'class_mage' },
 ];
 
+// The five EK difficulties, each with its ui_icons artwork medallion. `img` is the
+// region base (assets/ui/creation/<img>.png, disabled variant <img>_disabled.png).
 export const DIFFICULTIES = [
-  { id: 0, name: 'Casual',   blurb: 'A relaxed adventure. Enemies hit softer and death is forgiving.' },
-  { id: 1, name: 'Normal',   blurb: 'The intended balance of challenge and story.' },
-  { id: 2, name: 'Hard',     blurb: 'For veterans. Enemies are tougher and more numerous.' },
-  { id: 3, name: 'Iron Man', blurb: '' },   // real description injected from class-info.json
+  { id: 4, name: 'Story',    img: 'story',   blurb: 'A gentle telling — combat is trivial so you can enjoy the story.' },
+  { id: 0, name: 'Casual',   img: 'easy',    blurb: 'A relaxed adventure. Enemies hit softer and death is forgiving.' },
+  { id: 1, name: 'Normal',   img: 'normal',  blurb: 'The intended balance of challenge and story.' },
+  { id: 2, name: 'Hard',     img: 'hard',    blurb: 'For veterans. Enemies are tougher and more numerous.' },
+  { id: 3, name: 'Iron Man', img: 'ironman', blurb: '' },   // real description injected from class-info.json
 ];
 
 const el = (tag, cls, txt) => {
@@ -87,11 +91,13 @@ export function startFlow(root) {
       pWrap.append(aL, frame, aR);
       left.appendChild(pWrap);
 
-      const gWrap = el('div', 'cc-seg');
-      for (const g of [['MALE', 'Male'], ['FEMALE', 'Female']]) {
-        const b = el('button', 'cc-seg-btn', g[1]); b.dataset.g = g[0];
-        b.onclick = () => { state.gender = g[0]; state.pIndex = 0; renderGender(); renderPortrait(); };
-        gWrap.appendChild(b);
+      const gWrap = el('div', 'cc-genders');
+      for (const g of [['MALE', 'male', 'Male'], ['FEMALE', 'female', 'Female']]) {
+        const t = el('button', 'cc-img-tile cc-gender'); t.dataset.g = g[0];
+        const im = el('img', 'cc-tile-img'); im.dataset.base = g[1]; t.appendChild(im);
+        t.appendChild(el('span', 'cc-tile-label', g[2]));
+        t.onclick = () => { state.gender = g[0]; state.pIndex = 0; renderGender(); renderPortrait(); };
+        gWrap.appendChild(t);
       }
       left.appendChild(gWrap);
 
@@ -107,11 +113,13 @@ export function startFlow(root) {
       const right = el('div', 'cc-col');
 
       right.appendChild(el('div', 'cc-heading', 'Class'));
-      const cRow = el('div', 'cc-choices');
+      const cRow = el('div', 'cc-tiles');
       for (const c of CLASSES) {
-        const b = el('button', 'cc-choice', c.name); b.dataset.c = c.id;
-        b.onclick = () => { state.charClass = c.id; renderClass(); };
-        cRow.appendChild(b);
+        const t = el('button', 'cc-img-tile'); t.dataset.c = c.id;
+        const im = el('img', 'cc-tile-img'); im.dataset.base = c.img; t.appendChild(im);
+        t.appendChild(el('span', 'cc-tile-label', c.name));
+        t.onclick = () => { state.charClass = c.id; renderClass(); };
+        cRow.appendChild(t);
       }
       right.appendChild(cRow);
 
@@ -119,11 +127,13 @@ export function startFlow(root) {
       right.appendChild(desc);
 
       right.appendChild(el('div', 'cc-heading', 'Difficulty'));
-      const dRow = el('div', 'cc-choices');
+      const dRow = el('div', 'cc-tiles cc-diffs');
       for (const d of DIFFICULTIES) {
-        const b = el('button', 'cc-choice', d.name); b.dataset.d = String(d.id);
-        b.onclick = () => { state.difficulty = d.id; renderDiff(); };
-        dRow.appendChild(b);
+        const t = el('button', 'cc-img-tile'); t.dataset.d = String(d.id);
+        const im = el('img', 'cc-tile-img cc-diff-img'); im.dataset.base = d.img; t.appendChild(im);
+        t.appendChild(el('span', 'cc-tile-label', d.name));
+        t.onclick = () => { state.difficulty = d.id; renderDiff(); };
+        dRow.appendChild(t);
       }
       right.appendChild(dRow);
       const dDesc = el('div', 'cc-subdesc');
@@ -147,13 +157,28 @@ export function startFlow(root) {
         state.pIndex = (state.pIndex + d + l.length) % l.length; renderPortrait(); }
       function renderPortrait() { const f = state.portrait;
         pImg.src = f ? `assets/portraits/${state.gender.toLowerCase()}/${f}` : ''; }
-      function renderGender() { gWrap.querySelectorAll('.cc-seg-btn').forEach(b => b.classList.toggle('on', b.dataset.g === state.gender)); }
+      // gender/difficulty images swap <base>.png / <base>_disabled.png; class uses _on/_off.
+      function renderGender() {
+        gWrap.querySelectorAll('.cc-gender').forEach(t => {
+          const on = t.dataset.g === state.gender; t.classList.toggle('on', on);
+          const im = t.querySelector('.cc-tile-img');
+          im.src = `assets/ui/creation/${im.dataset.base}${on ? '' : '_disabled'}.png`;
+        });
+      }
       function renderClass() {
-        cRow.querySelectorAll('.cc-choice').forEach(b => b.classList.toggle('on', b.dataset.c === state.charClass));
+        cRow.querySelectorAll('.cc-img-tile').forEach(t => {
+          const on = t.dataset.c === state.charClass; t.classList.toggle('on', on);
+          const im = t.querySelector('.cc-tile-img');
+          im.src = `assets/ui/creation/${im.dataset.base}_${on ? 'on' : 'off'}.png`;
+        });
         desc.textContent = info[state.charClass] || '';
       }
       function renderDiff() {
-        dRow.querySelectorAll('.cc-choice').forEach(b => b.classList.toggle('on', b.dataset.d === String(state.difficulty)));
+        dRow.querySelectorAll('.cc-img-tile').forEach(t => {
+          const on = t.dataset.d === String(state.difficulty); t.classList.toggle('on', on);
+          const im = t.querySelector('.cc-tile-img');
+          im.src = `assets/ui/creation/${im.dataset.base}${on ? '' : '_disabled'}.png`;
+        });
         dDesc.textContent = (DIFFICULTIES.find(d => d.id === state.difficulty) || {}).blurb || '';
       }
       function validate() { next.disabled = !state.name; }
