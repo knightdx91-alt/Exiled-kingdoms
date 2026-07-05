@@ -79,11 +79,14 @@ def resolve_target(tgt, key2path, byname, compiled):
 # pkg.class reference tokens: single-letter/obf packages (a, k0, m0…) and net.fdgames.*
 REF_RE = re.compile(r"\b((?:[a-z][a-z0-9]{0,2}\.)+[A-Za-z][A-Za-z0-9_]*)\b")
 
-def refs_in(text, key2path):
+def refs_in(text, key2path, src_key=None):
     """Distinct 'pkg.class' keys referenced in text that are real classes in the tree.
-    Single-letter packages (a, b, …) collide with local variable names, so a ref there
-    only counts if the class is explicitly imported."""
-    imports = {i for i in re.findall(r"\bimport\s+([\w.]+)\s*;", text) if i in key2path}
+    Resolves shorthand refs against the file's imports and its own package, so a
+    top-level obfuscated key (q0.a) isn't confused with a library's nested/sibling
+    class of the same short name (com.badlogic.gdx.utils.q0.a)."""
+    all_imports = re.findall(r"\bimport\s+([\w.]+)\s*;", text)
+    imports = {i for i in all_imports if i in key2path}
+    src_pkg = src_key.rsplit(".", 1)[0] if src_key and "." in src_key else ""
     found = defaultdict(int)
     for m in REF_RE.finditer(text):
         parts = m.group(1).split(".")
@@ -93,6 +96,15 @@ def refs_in(text, key2path):
                 pkg_last = parts[cut - 2]          # last segment of the package
                 if len(pkg_last) == 1 and key not in imports:
                     break                          # ambiguous local var, skip
+                pkg = parts[0]
+                if key not in imports and (
+                        # imported nested class of the same short name wins over top-level
+                        any(im.endswith("." + pkg) or im.endswith("." + key) for im in all_imports)
+                        # or a same-package sibling class of that short name exists — then
+                        # `n0.a` is that sibling's inner class, not the EK top-level `n0.a`
+                        or (src_pkg and (f"{src_pkg}.{key}" in key2path
+                                         or f"{src_pkg}.{pkg}" in key2path))):
+                    break
                 found[key] += 1
                 break
     for key in imports:                            # ensure imported classes always show
@@ -155,7 +167,7 @@ def main():
                 continue
             seen.add(cur)
             text = open(key2path[cur], encoding="utf-8", errors="ignore").read()
-            found = refs_in(text, key2path)
+            found = refs_in(text, key2path, cur)
             indent = "  " * (d + 1)
             for key, n in sorted(found.items(), key=lambda kv: -kv[1]):
                 if key == cur or not is_shown(key):
