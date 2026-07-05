@@ -1,11 +1,13 @@
-// Exiled Kingdoms — web rebuild (Phaser 3) — orientation prototype.
+// Exiled Kingdoms — web rebuild (Phaser 3).
 //
-// Orientation is PLAYER-CHOSEN and engine-driven, not from the browser's
-// auto-rotate. The canvas always fills the physical screen upright (so Phaser's
-// pointer input stays correct); all game content lives in a single `world`
-// container that we rotate 0/90/180/270 in-engine. Because interactive objects
-// are children of that container, Phaser hit-tests them through the rotation for
-// free — taps land correctly in every orientation.
+// Orientation defaults to AUTO — it follows the device like the original game's
+// sensor rotation, but across all four orientations (portrait, reverse-portrait,
+// landscape, reverse-landscape), not just landscape. In auto mode nothing is
+// force-rotated: the browser reflows the viewport as the phone turns and Phaser's
+// RESIZE mode refills the canvas upright, so pointer input stays correct.
+// The orient bar also offers manual LOCKS (0/90/180/270): those keep the canvas
+// axis-aligned and rotate a single `world` container in-engine instead, so Phaser
+// hit-tests interactive children through the rotation and taps still land right.
 
 import { loadMap, renderMap, sortMid, ambientColor, applyAmbient } from './map.js';
 import { loadHero, makeHero, setFacing } from './sprite.js';
@@ -52,6 +54,7 @@ class MapScene extends Phaser.Scene {
 
   create() {
     this.orient = 0;
+    this.autoOrient = true;                         // follow the device by default
     this.zoomFactor = 1;                            // 1 = fully zoomed out (base game view)
     this.world = this.add.container(0, 0);          // rotated root for all content
 
@@ -122,6 +125,20 @@ class MapScene extends Phaser.Scene {
     this._firedTriggers = new Set();
 
     this.boot();
+
+    // Restore the saved orientation choice; default to device-following 'auto'.
+    let savedOrient = null;
+    try { savedOrient = localStorage.getItem('ek_orient'); } catch (e) { /* private mode */ }
+    this.setOrient(savedOrient || 'auto');
+    // When the device physically rotates, re-fit in auto mode. Phaser's own
+    // 'resize' also fires as the canvas changes shape; this is a belt-and-braces
+    // signal for mobile browsers that report orientation before the resize.
+    const onDeviceRotate = () => { if (this.autoOrient) { this.scale.refresh(); this.relayout(); } };
+    window.addEventListener('orientationchange', onDeviceRotate);
+    if (window.matchMedia) {
+      try { window.matchMedia('(orientation: portrait)').addEventListener('change', onDeviceRotate); }
+      catch (e) { /* older Safari: no addEventListener on MQL */ }
+    }
 
     // expose a tiny test hook so the automated browser check can verify input.
     // Merge (don't overwrite) so the SW/cache fields set at module load survive.
@@ -795,12 +812,26 @@ class MapScene extends Phaser.Scene {
     this.time.delayedCall(160, () => this.token.setFillStyle(0x4c6ef5));
   }
 
-  // Screen (physical) size -> logical content size for the chosen orientation.
-  setOrient(deg) {
-    this.orient = deg;
-    this.relayout();
+  // Orientation control. 'auto' follows the device: no forced rotation — the
+  // browser reflows the viewport as the phone turns and Phaser's RESIZE mode
+  // refills the canvas upright, so all four physical orientations (portrait,
+  // reverse-portrait, landscape, reverse-landscape) just work, like the original
+  // game's sensor rotation. 0/90/180/270 lock the view to that orientation via
+  // the engine transform, independent of how the device is held.
+  setOrient(mode) {
+    if (mode === 'auto') {
+      this.autoOrient = true;
+      this.orient = 0;                              // upright fill; device decides shape
+    } else {
+      this.autoOrient = false;
+      this.orient = +mode;
+    }
+    try { localStorage.setItem('ek_orient', this.autoOrient ? 'auto' : String(this.orient)); }
+    catch (e) { /* private mode */ }
+    const sel = this.autoOrient ? 'auto' : String(this.orient);
     document.querySelectorAll('#orient-bar button').forEach(b =>
-      b.setAttribute('aria-pressed', String(+b.dataset.orient === deg)));
+      b.setAttribute('aria-pressed', String(b.dataset.orient === sel)));
+    this.relayout();
   }
 
   relayout() {
@@ -827,8 +858,10 @@ class MapScene extends Phaser.Scene {
     for (let y = 0; y <= this.LH; y += cell) this.grid.lineBetween(0, y, this.LW, y);
     this.grid.fillStyle(0x11151b, 1).fillRect(0, 0, this.LW, 0); // (keeps bounds sane)
 
-    const label = { 0: 'Portrait', 90: 'Landscape',
-                    180: 'Reverse portrait', 270: 'Reverse landscape' }[this.orient];
+    const label = this.autoOrient
+      ? (this.LW >= this.LH ? 'Auto · landscape' : 'Auto · portrait')
+      : { 0: 'Portrait', 90: 'Landscape',
+          180: 'Reverse portrait', 270: 'Reverse landscape' }[this.orient];
     this.title.setText(`Exiled Kingdoms — ${label}`).setPosition(this.LW / 2, 24);
 
     if (!this._tokenMoved) {
@@ -859,7 +892,7 @@ new Phaser.Game({
 // Wire the player-owned orientation buttons.
 document.getElementById('orient-bar').addEventListener('click', (e) => {
   const b = e.target.closest('button');
-  if (b) window.__EK && window.__EK.setOrient(+b.dataset.orient);
+  if (b) window.__EK && window.__EK.setOrient(b.dataset.orient);   // 'auto' | '0' | '90' | '180' | '270'
 });
 
 // PWA: register the service worker, then ask it to cache the FULL game for
