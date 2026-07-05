@@ -7,7 +7,7 @@
 // are children of that container, Phaser hit-tests them through the rotation for
 // free — taps land correctly in every orientation.
 
-import { loadMap, renderMap, sortMid } from './map.js';
+import { loadMap, renderMap, sortMid, ambientColor, applyAmbient } from './map.js';
 import { loadHero, makeHero } from './sprite.js';
 
 const ORIENTS = [0, 90, 180, 270];
@@ -93,10 +93,15 @@ class MapScene extends Phaser.Scene {
         return hits.includes(this.token);
       },
       map: () => ({
-        name: START_MAP, tiles: this._mapTiles || 0, light: this._mapLight,
+        name: START_MAP, tiles: this._mapTiles || 0,
         midCount: this.planes.mid.list.length,
         heroIndex: this.hero ? this.planes.mid.list.indexOf(this.hero) : -1,
       }),
+      light: () => ({
+        maxlight: this._map && this._map.maxlight, outdoor: this._map && this._map.outdoor,
+        hour: this.currentHour(), ambient: this._ambient,
+      }),
+      setHour: (h) => this.setHour(h),
       zoom: () => this.zoomFactor,
       setZoom: (f) => this.setZoom(f),
       hero: () => this.hero ? {
@@ -136,12 +141,30 @@ class MapScene extends Phaser.Scene {
     return this.zoomFactor;
   }
 
+  // Hour of day (0-23) driving outdoor day/night — the device clock, like the base
+  // game (FDUtils.j()). `_hourOverride` lets tests pin a specific hour.
+  currentHour() {
+    return this._hourOverride != null ? this._hourOverride : new Date().getHours();
+  }
+
+  setHour(h) {
+    this._hourOverride = ((h % 24) + 24) % 24;
+    if (this._map) {
+      this._ambient = ambientColor(this._map, this._hourOverride);
+      applyAmbient(this.planes, this._ambient);
+    }
+    return this._hourOverride;
+  }
+
   async loadStartMap() {
     try {
       const map = await loadMap(this, START_MAP);
-      const { tiles, width, height, light } = renderMap(this, this.planes, map);
+      this._map = map;
+      // Ambient light: maxlight (dungeons) or day/night by the device clock (outdoor).
+      const ambient = ambientColor(map, this.currentHour());
+      const { tiles, width, height } = renderMap(this, this.planes, map, ambient);
       this._mapTiles = tiles;
-      this._mapLight = light;
+      this._ambient = ambient;
       this.mapBounds = { width, height };
       this.grid.setVisible(false);                 // real content replaces the grid
 
@@ -150,6 +173,7 @@ class MapScene extends Phaser.Scene {
       await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
       this.hero = makeHero(this, this.planes.mid, 'hero', width / 2, height / 2);
       sortMid(this.planes.mid);
+      applyAmbient(this.planes, ambient);          // also tint the hero to match
 
       this.fitMap();
     } catch (e) {

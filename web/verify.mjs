@@ -38,11 +38,23 @@ await page.waitForFunction(() => window.__EK && window.__EK.logical().w > 0, { t
 await page.waitForFunction(() => window.__EK.map && window.__EK.map().tiles > 0, { timeout: 8000 });
 const mapInfo = await page.evaluate(() => window.__EK.map());
 console.log('map rendered:', mapInfo);
-// tiles present; ambient light is a valid 0-1 factor; hero is depth-sorted INTO the
-// scenery/objects plane (not forced on top) — some objects draw after it.
+// tiles present; hero is depth-sorted INTO the scenery/objects plane (not forced on
+// top) — some objects draw after it.
 const mapOk = mapInfo.tiles > 100 &&
-              mapInfo.light > 0 && mapInfo.light <= 1 &&
               mapInfo.heroIndex >= 0 && mapInfo.heroIndex < mapInfo.midCount - 1;
+
+// --- Day/night: outdoor map is brighter at noon than at 2am (recovered clock model) ---
+const light = await page.evaluate(() => {
+  const day = window.__EK.setHour(12).valueOf(); const d = window.__EK.light().ambient;
+  window.__EK.setHour(2); const n = window.__EK.light().ambient;
+  const info = window.__EK.light();
+  window.__EK.setHour(new Date().getHours());   // restore
+  return { day: d, night: n, outdoor: info.outdoor };
+});
+console.log('day/night:', light);
+const dayLum = light.day.r + light.day.g + light.day.b;
+const nightLum = light.night.r + light.night.g + light.night.b;
+const lightOk = light.outdoor && dayLum > nightLum && light.night.b > light.night.r; // night is dim & blue
 
 // --- Real character sprite: hero exists and its walk animation advances frames ---
 await page.waitForFunction(() => window.__EK.hero && window.__EK.hero(), { timeout: 8000 });
@@ -130,7 +142,7 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && heroOk && zoomOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
   ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + animated hero + pinch-zoom + 4 orientations + input, full-game cached, offline reload, saves round-trip`

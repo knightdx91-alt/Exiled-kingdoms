@@ -67,7 +67,10 @@ const prop = (name) => {
   const m = mapProps.match(new RegExp(`<property name="${name}" value="([^"]*)"`));
   return m ? m[1] : undefined;
 };
-map.maxlight = prop('maxlight') !== undefined ? +prop('maxlight') : 100;
+// maxlight absent => 0 in the base game (field f2424i), which routes lighting to the
+// day/night path for `outdoor` maps. Don't default it to full-bright.
+map.maxlight = prop('maxlight') !== undefined ? +prop('maxlight') : 0;
+map.outdoor = /<property name="outdoor"/.test(mapProps);   // enables day/night cycle
 map.music = prop('music');
 
 // Tilesets (in document order so firstgid lookup is simple).
