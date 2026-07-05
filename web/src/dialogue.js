@@ -116,6 +116,7 @@ export class Dialogue {
     this.active = true;
     this.scene._dialogue = true;
     this.box.style.display = 'block';
+    if (this.scene.setChromeHidden) this.scene.setChromeHidden(true);   // hide the tap toggle
     this._show(String(startNode));
   }
 
@@ -170,6 +171,7 @@ export class Dialogue {
     this.scene._dialogue = false;
     this._speaker = null;
     this.box.style.display = 'none';
+    if (this.scene.setChromeHidden) this.scene.setChromeHidden(false);   // restore the tap toggle
   }
 }
 

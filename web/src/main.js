@@ -336,6 +336,14 @@ class MapScene extends Phaser.Scene {
     btn.onclick = () => this.setControl(this.control === 'tap' ? 'joystick' : 'tap');
   }
 
+  // Hide the movement-control toggle whenever a box is in front of it (a dialogue, or
+  // the title/creation overlay). It's a DOM sibling of the game root, so it would
+  // otherwise paint over those boxes.
+  setChromeHidden(hidden) {
+    const btn = document.getElementById('control-toggle');
+    if (btn) btn.style.display = hidden ? 'none' : '';
+  }
+
   // Free-floating-joystick movement: convert the stick's screen-space vector into a
   // map-space direction (through the orientation transform), move the hero at
   // HERO_SPEED scaled by stick magnitude, and slide along blocked axes. Facing/anim,
@@ -559,7 +567,9 @@ class MapScene extends Phaser.Scene {
     try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     if (this._quickStarted) return;                  // a test already started the game
+    this.setChromeHidden(true);                       // hide the tap toggle behind the title UI
     const pc = await startFlow(document.getElementById('game-root'));
+    this.setChromeHidden(false);
     await this.startNewGame(pc);
   }
 
@@ -571,6 +581,7 @@ class MapScene extends Phaser.Scene {
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
     await this.goArea(startMap, startMap === TUTORIAL_MAP ? '0001' : null);
+    this.setChromeHidden(false);                      // game is playing -> show tap toggle
     try {
       await Saves.put('auto', { player: pc, area: startMap }, { name: pc.name, charClass: pc.charClass });
     } catch {}
