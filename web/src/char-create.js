@@ -270,38 +270,126 @@ export function startFlow(root) {
       refresh();
     }
 
-    // ---------- starting ability ----------
-    // One starting skill (1 skill point) from the class's tier-1 abilities (class list +
-    // GENERAL), each tier-1 costing 1. Actives show a mana cost. Optional (may bank it).
+    // ---------- starting ability — reproduction of SkillWindow (o0/t) ----------
+    // The parchment skill window: header "Available Skill Points: N   (You already used
+    // M Points)"; a left detail pane (icon, name+level, Active/Passive, description,
+    // Current level / Next level blurbs, Details) and a right skill grid grouped exactly
+    // as the game does it — "[Class] Skills" (slots 0–7), "General Skills" (8–11) and
+    // "Advanced Skills" (SPECIALIST, 12–19, locked at creation). A skill tile is
+    // skill_bg + a smallsquare frame + the skill icon (or "unknown" when empty/locked);
+    // the selected tile tints orange. Train spends the tier cost; Start game begins.
+    // Traced from o0/t.java, o0/q.java (SkillImage), Skills.b(class). Level-1 pool = 1.
+    const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI'];
     function abilityPage() {
-      const { body, actions } = pageShell('Starting Ability');
-      const list = (skills[state.charClass] || []).concat(skills.GENERAL || [])
-        .filter(s => (s.cost || 1) <= creation.skillPoints);
-      body.appendChild(el('div', 'cc-pool', `Choose a starting ability (1 skill point) — or skip and save it.`));
-      const grid = el('div', 'cc-skills'); body.appendChild(grid);
-      const desc = el('div', 'cc-subdesc'); body.appendChild(desc);
+      overlay.innerHTML = '';
+      const pool = creation.skillPoints;                 // level-1 skill points (1)
+      const trained = state.trained || (state.trained = {});   // name -> trained level
+      const used = () => Object.values(trained).reduce((s, l) => s + l, 0);  // tier-1 cost 1/level
 
-      for (const s of list) {
-        const b = el('button', 'cc-skill');
-        b.append(el('span', 'cc-skill-name', s.name),
-                 el('span', 'cc-skill-tag', s.type === 'A' ? (s.mana ? `Active · ${s.mana} mana` : 'Active') : 'Passive'));
-        b.onclick = () => {
-          state.startingSkill = state.startingSkill === s.name ? null : s.name;
-          grid.querySelectorAll('.cc-skill').forEach(x => x.classList.toggle('on', x === b && state.startingSkill));
-          desc.textContent = state.startingSkill ? s.desc : '';
-        };
-        grid.appendChild(b);
-      }
-      if (!list.length) desc.textContent = 'No selectable abilities for this class.';
+      const baseList = (skills.base && skills.base[state.charClass] || []).slice(0, 8);
+      const genList  = (skills.base && skills.base.GENERAL || []).slice(0, 4);
+      const advList  = (skills.advanced && skills.advanced[state.charClass] || []);   // locked at creation
 
-      const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = attributesPage;
-      const begin = el('button', 'cc-btn cc-btn-primary', 'Begin');
-      begin.onclick = () => { overlay.remove(); resolve({
+      const win = el('div', 'sw-window');
+      const top = el('div', 'sw-top');
+      const avail = el('div', 'sw-avail');
+      avail.append(el('span', null, 'Available Skill Points: '), el('span', 'sw-availn'));
+      const usedLbl = el('div', 'sw-used');
+      top.append(avail, usedLbl); win.appendChild(top);
+
+      const main = el('div', 'sw-main');
+      const detail = el('div', 'sw-detail');
+      const dHead = el('div', 'sw-detail-head');
+      const dIcon = el('img', 'sw-detail-icon');
+      const dNames = el('div', 'sw-detail-names');
+      const dName = el('div', 'sw-detail-name');
+      const dType = el('div', 'sw-detail-type');
+      dNames.append(dName, dType); dHead.append(dIcon, dNames);
+      const dDesc = el('div', 'sw-detail-desc');
+      const dCur = el('div', 'sw-lvl'); const dNext = el('div', 'sw-lvl');
+      const details = el('button', 'cc-btn sw-details', 'Details');
+      detail.append(dHead, dDesc, dCur, dNext, details);
+
+      const grid = el('div', 'sw-grid');
+      let selected = null;                                // { s, locked }
+      const tile = (s, locked) => {
+        const b = el('button', 'sw-tile');
+        const bg = el('img', 'sw-tile-bg'); bg.src = 'assets/ui/skillbg/skill_bg0.png';
+        const ic = el('img', 'sw-tile-icon');
+        ic.src = (!locked && s && s.icon) ? `assets/ui/skills/${s.icon}.png` : 'assets/ui/skills/unknown.png';
+        b.append(bg, ic);
+        if (locked || !s) { b.classList.add('locked'); }
+        else b.onclick = () => { selected = { s }; select(); };
+        b.dataset.name = s ? s.name : '';
+        return b;
+      };
+      const group = (label, items, count, locked) => {
+        grid.appendChild(el('div', 'sw-group-title', label));
+        const row = el('div', 'sw-row');
+        for (let i = 0; i < count; i++) row.appendChild(tile(items[i] || null, locked || !items[i]));
+        grid.appendChild(row);
+      };
+      const CLASS_LABEL = { WARRIOR: 'Warrior', ROGUE: 'Rogue', CLERIC: 'Cleric', WIZARD: 'Mage' };
+      group(` ${CLASS_LABEL[state.charClass] || ''} Skills`, baseList, 8, false);
+      group(' General Skills', genList, 4, false);
+      group(' Advanced Skills', advList, 8, true);       // specialist — all locked at creation
+
+      main.append(detail, grid); win.appendChild(main);
+
+      const actions = el('div', 'sw-actions');
+      const reset = el('button', 'cc-btn', 'Reset');
+      const train = el('button', 'cc-btn sw-train');
+      const start = el('button', 'cc-btn cc-btn-primary', 'Start game');
+      actions.append(reset, train, start); win.appendChild(actions);
+      overlay.appendChild(win);
+
+      reset.onclick = () => { for (const k in trained) delete trained[k]; selected = null; select(); };
+      train.onclick = () => {
+        if (!selected) return;
+        const s = selected.s, lvl = trained[s.name] || 0, cost = s.cost || 1;
+        if (lvl >= s.levels.length) return;
+        if (pool - used() < cost) return;                // not enough points
+        trained[s.name] = lvl + 1; select();
+      };
+      start.onclick = () => { overlay.remove(); resolve({
         name: state.name, gender: state.gender, charClass: state.charClass,
         portrait: state.portrait, difficulty: state.difficulty,
-        attributes: { ...state.attrs }, startingSkill: state.startingSkill,
+        attributes: { ...state.attrs },
+        trainedSkills: { ...trained },
+        startingSkill: Object.keys(trained)[0] || null,
       }); };
-      actions.append(back, begin);
+
+      function select() {
+        const rem = pool - used();
+        avail.querySelector('.sw-availn').textContent = rem;
+        usedLbl.textContent = `(You already used ${used()} ${used() === 1 ? 'Point' : 'Points'})`;
+        grid.querySelectorAll('.sw-tile').forEach(t =>
+          t.classList.toggle('on', !!selected && t.dataset.name === selected.s.name));
+        if (!selected) {
+          detail.style.visibility = 'hidden';
+          train.textContent = 'Train'; train.disabled = true;
+          return;
+        }
+        detail.style.visibility = 'visible';
+        const s = selected.s, lvl = trained[s.name] || 0;
+        dIcon.src = s.icon ? `assets/ui/skills/${s.icon}.png` : 'assets/ui/skills/unknown.png';
+        dName.textContent = `${s.name}${lvl ? ' ' + ROMAN[lvl] : ''}`;
+        dType.textContent = s.type === 'A' ? 'Active Skill' : 'Passive Skill';
+        dType.className = 'sw-detail-type ' + (s.type === 'A' ? 'active' : 'passive');
+        dDesc.textContent = s.desc;
+        const cur = lvl > 0 ? (s.levels[lvl - 1] || {}).desc : "You haven't trained this skill yet";
+        dCur.innerHTML = '';
+        dCur.append(el('span', 'sw-lvl-h', 'Current level:'), el('span', 'sw-lvl-t', ' ' + (cur || '')));
+        const nx = s.levels[lvl];
+        dNext.innerHTML = '';
+        if (nx) dNext.append(el('span', 'sw-lvl-h', 'Next level:'), el('span', 'sw-lvl-t', ' ' + nx.desc));
+        dNext.style.display = nx ? '' : 'none';
+        const cost = s.cost || 1, canTrain = nx && rem >= cost;
+        train.textContent = `Train (${cost} SP)`;
+        train.disabled = !canTrain;
+      }
+
+      select();
     }
 
     title();
