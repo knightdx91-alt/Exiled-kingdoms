@@ -57,7 +57,54 @@ for (const deg of [0, 90, 180, 270]) {
 
 console.log('errors:', errors.length ? errors : 'none');
 console.table(results);
-const ok = errors.length === 0 && results.every(r => r.inputHitsToken);
+const orientOk = results.every(r => r.inputHitsToken);
+
+// --- PWA: wait for the service worker to cache the full game ---
+const cached = await page.evaluate(() => new Promise((res) => {
+  const check = () => {
+    const c = window.__EK && window.__EK.cache;
+    if (c && c.complete) return res(c);
+    setTimeout(check, 100);
+  };
+  check();
+}));
+console.log('full-game cache:', cached);
+
+// --- Offline: cut the network, reload, and confirm the game still boots ---
+await ctx.setOffline(true);
+await page.reload({ waitUntil: 'domcontentloaded' });
+const offlineBooted = await page.evaluate(() =>
+  new Promise((res) => {
+    const t0 = Date.now();
+    const check = () => {
+      if (window.__EK && window.__EK.logical && window.__EK.logical().w > 0) return res(true);
+      if (Date.now() - t0 > 8000) return res(false);
+      setTimeout(check, 100);
+    };
+    check();
+  }));
+console.log('offline reload booted:', offlineBooted);
+await ctx.setOffline(false);
+
+// --- Saves: round-trip through IndexedDB (still offline-capable) ---
+const saveOk = await page.evaluate(async () => {
+  const { Saves } = await import('./src/saves.js');
+  await Saves.put('slot1', { hp: 42, area: 'newport', gold: 1200 }, { name: 'Hero' });
+  const got = await Saves.get('slot1');
+  const list = await Saves.list();
+  const blob = await Saves.export();
+  const text = await blob.text();
+  await Saves.delete('slot1');
+  const n = await Saves.import(text);              // restore from the export
+  const restored = await Saves.get('slot1');
+  return got && got.data.hp === 42 && list.length >= 1 &&
+         n === 1 && restored && restored.data.gold === 1200;
+});
+console.log('saves round-trip:', saveOk);
+
+const ok = errors.length === 0 && orientOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
-console.log(ok ? 'VERIFY: PASS — all 4 orientations render and accept input' : 'VERIFY: FAIL');
+console.log(ok
+  ? 'VERIFY: PASS — 4 orientations + input, full-game cached, offline reload, saves round-trip'
+  : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

@@ -43,8 +43,9 @@ class MapScene extends Phaser.Scene {
 
     this.world.add([this.grid, this.title, this.token, this.tokenLabel, this.hud]);
 
-    // expose a tiny test hook so the automated browser check can verify input
-    window.__EK = {
+    // expose a tiny test hook so the automated browser check can verify input.
+    // Merge (don't overwrite) so the SW/cache fields set at module load survive.
+    window.__EK = Object.assign(window.__EK || {}, {
       setOrient: (o) => this.setOrient(o),
       orient: () => this.orient,
       logical: () => ({ w: this.LW, h: this.LH }),
@@ -57,7 +58,7 @@ class MapScene extends Phaser.Scene {
           Object.assign(this.input.activePointer, { x: sx, y: sy }));
         return hits.includes(this.token);
       }
-    };
+    });
 
     this.scale.on('resize', () => this.relayout());
     this.relayout();
@@ -132,3 +133,24 @@ document.getElementById('orient-bar').addEventListener('click', (e) => {
   const b = e.target.closest('button');
   if (b) window.__EK && window.__EK.setOrient(+b.dataset.orient);
 });
+
+// PWA: register the service worker, then ask it to cache the FULL game for
+// offline play. Progress is exposed on window.__EK.cache for a UI/loading bar.
+if ('serviceWorker' in navigator) {
+  window.__EK = window.__EK || {};
+  window.__EK.cache = { done: 0, total: 0, failed: 0, complete: false };
+  navigator.serviceWorker.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === 'CACHE_PROGRESS') Object.assign(window.__EK.cache, d);
+    if (d.type === 'CACHE_DONE') Object.assign(window.__EK.cache, d, { complete: true });
+  });
+  navigator.serviceWorker.register('./sw.js').then(async () => {
+    await navigator.serviceWorker.ready;
+    // ask the browser to keep our storage (avoid eviction of the big cache + saves)
+    if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+    const post = () => navigator.serviceWorker.controller
+      && navigator.serviceWorker.controller.postMessage({ type: 'CACHE_ALL' });
+    navigator.serviceWorker.controller ? post()
+      : navigator.serviceWorker.addEventListener('controllerchange', post, { once: true });
+  }).catch(() => {});
+}
