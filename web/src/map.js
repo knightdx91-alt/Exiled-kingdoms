@@ -35,8 +35,10 @@ export function planeOf(name) {
 //   maxlight>0 (dungeons): bluish, rgb = (0.08f+0.1, 0.08f+0.1, 0.05f+0.4), f=maxlight/10
 //   outdoor (no maxlight): day/night by clock hour (0-23) — FDUtils.j()
 //   otherwise: near-bright (0.93)
-// Returned as {r,g,b} in 0..1 (used as a per-tile multiply tint). The base game applies
-// these as the ambient of a light overlay; tinting tiles is our close approximation.
+// Returned as {r,g,b} in 0..1 (used as a per-tile multiply tint).
+// APPROX (A1, see deobf/DEOBFUSCATION_STATUS.md): the base game applies these as the
+// ambient of a box2dlights RayHandler and adds dynamic PointLight sources (torches,
+// fires, player light) on top. We only do the flat ambient tint — no light sources.
 export function ambientColor(map, hour) {
   if (map.maxlight > 0) {
     const f = map.maxlight / 10;

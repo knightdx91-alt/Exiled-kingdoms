@@ -186,6 +186,8 @@ class MapScene extends Phaser.Scene {
   // the hero at the center of the viewport. `world` handles the orientation.
   fitMap() {
     if (!this.mapBounds) return;
+    // APPROX (A2, see deobf/DEOBFUSCATION_STATUS.md): base game eases the camera toward
+    // the player with a dead-zone (snaps if >320px); we hard-center every frame.
     const z = (Math.max(this.LW, this.LH) / EK_VIEWPORT_W) * this.zoomFactor;
     this.mapLayer.setScale(z);
     const hx = this.hero ? this.hero.x : this.mapBounds.width / 2;
