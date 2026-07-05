@@ -1,22 +1,22 @@
-// Title + character creation — the start of the game.
+// Title + character creation — styled with the base game's own assets (logo, splash
+// backdrop, portrait-cycling arrows, EK's gold-on-stone look) and its real class
+// descriptions (data/ui/strings/texts.txt via tools/gen-class-info.mjs).
 //
-// Mirrors the base game's PlayerCreation (Rules/PlayerCreation.java): the player
-// picks name, gender, portrait, class and difficulty, then begins in the tutorial.
-// Built as a DOM overlay (forms/scroll grids are far cleaner in DOM than in canvas);
-// on "Begin" it resolves with a PlayerCreation object the engine consumes.
+// Mirrors Rules/PlayerCreation.java: name, gender, portrait, class, difficulty.
+// On "Begin" it resolves with a PlayerCreation object the engine consumes.
 
 export const CLASSES = [
-  { id: 'WARRIOR', name: 'Warrior', blurb: 'Tough melee fighter. High HP and armor; masters weapons and shields.' },
-  { id: 'ROGUE',   name: 'Rogue',   blurb: 'Agile and deadly. Stealth, critical strikes, traps and ranged attacks.' },
-  { id: 'CLERIC',  name: 'Cleric',  blurb: 'Holy warrior. Heals, blesses, and smites the undead with divine power.' },
-  { id: 'WIZARD',  name: 'Wizard',  blurb: 'Master of the arcane. Devastating spells but fragile in a brawl.' },
+  { id: 'WARRIOR', name: 'Warrior' },
+  { id: 'ROGUE',   name: 'Rogue' },
+  { id: 'CLERIC',  name: 'Cleric' },
+  { id: 'WIZARD',  name: 'Wizard' },
 ];
 
 export const DIFFICULTIES = [
-  { id: 0, key: 'CASUAL',  name: 'Casual',  blurb: 'A relaxed adventure. Enemies hit softer; death is forgiving.' },
-  { id: 1, key: 'NORMAL',  name: 'Normal',  blurb: 'The intended balance of challenge and story.' },
-  { id: 2, key: 'HARD',    name: 'Hard',    blurb: 'For veterans. Enemies are tougher and smarter.' },
-  { id: 3, key: 'IRONMAN', name: 'Iron Man', blurb: 'Hard, plus a single save that is deleted on death. No second chances.' },
+  { id: 0, name: 'Casual',   blurb: 'A relaxed adventure. Enemies hit softer and death is forgiving.' },
+  { id: 1, name: 'Normal',   blurb: 'The intended balance of challenge and story.' },
+  { id: 2, name: 'Hard',     blurb: 'For veterans. Enemies are tougher and more numerous.' },
+  { id: 3, name: 'Iron Man', blurb: '' },   // real description injected from class-info.json
 ];
 
 const el = (tag, cls, txt) => {
@@ -30,120 +30,132 @@ const el = (tag, cls, txt) => {
 // { name, gender ('MALE'|'FEMALE'), charClass, portrait, difficulty }.
 export function startFlow(root) {
   return new Promise(async (resolve) => {
-    const portraits = await fetch('assets/portraits/index.json').then(r => r.json()).catch(() => ({ male: [], female: [] }));
+    const [portraits, info] = await Promise.all([
+      fetch('assets/portraits/index.json').then(r => r.json()).catch(() => ({ male: [], female: [] })),
+      fetch('assets/ui/class-info.json').then(r => r.json()).catch(() => ({})),
+    ]);
+    if (info.IRONMAN_DESC) DIFFICULTIES[3].blurb = info.IRONMAN_DESC.split('\n')[0];
 
     const overlay = el('div', 'cc-overlay');
     root.appendChild(overlay);
 
-    // ---- state ----
-    const state = { name: '', gender: 'MALE', charClass: 'WARRIOR', portrait: portraits.male[0] || null, difficulty: 1 };
+    const listFor = (g) => (portraits[g.toLowerCase()] || []).filter(f => f !== '0.png');
+    const state = {
+      name: '', gender: 'MALE', charClass: 'WARRIOR', difficulty: 1,
+      pIndex: 0,
+      get portrait() { const l = listFor(this.gender); return l[this.pIndex] || null; },
+    };
 
-    // ---- title screen ----
+    // ---------- title ----------
     function title() {
       overlay.innerHTML = '';
-      const box = el('div', 'cc-panel cc-title');
-      box.appendChild(el('h1', 'cc-logo', 'Exiled Kingdoms'));
-      box.appendChild(el('p', 'cc-sub', 'A web port — begin your journey'));
-      const start = el('button', 'cc-primary', 'Start New Game');
+      const box = el('div', 'cc-title');
+      const logo = el('img', 'cc-logo-img'); logo.src = 'assets/ui/logo.png'; logo.alt = 'Exiled Kingdoms';
+      box.appendChild(logo);
+      const start = el('button', 'cc-btn cc-btn-primary', 'Start New Game');
       start.onclick = create;
       box.appendChild(start);
+      const note = el('p', 'cc-note', 'A web port — recovered from the base game');
+      box.appendChild(note);
       overlay.appendChild(box);
     }
 
-    // ---- creation screen ----
+    // ---------- creation ----------
     function create() {
       overlay.innerHTML = '';
       const panel = el('div', 'cc-panel');
-      panel.appendChild(el('h2', 'cc-h', 'Create your character'));
 
-      // name
-      const nameRow = el('label', 'cc-field');
-      nameRow.appendChild(el('span', 'cc-label', 'Name'));
-      const nameIn = el('input', 'cc-input');
-      nameIn.type = 'text'; nameIn.maxLength = 18; nameIn.placeholder = 'Enter a name';
-      nameIn.value = state.name;
-      nameIn.oninput = () => { state.name = nameIn.value.trim(); validate(); };
-      nameRow.appendChild(nameIn);
-      panel.appendChild(nameRow);
+      const logo = el('img', 'cc-logo-sm'); logo.src = 'assets/ui/logo.png'; logo.alt = 'Exiled Kingdoms';
+      panel.appendChild(logo);
 
-      // gender toggle
-      const gRow = el('div', 'cc-field');
-      gRow.appendChild(el('span', 'cc-label', 'Gender'));
+      const grid = el('div', 'cc-grid');
+
+      // -- left: portrait + gender + name --
+      const left = el('div', 'cc-col');
+
+      const pWrap = el('div', 'cc-portrait-wrap');
+      const aL = el('button', 'cc-arrow'); aL.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
+      const frame = el('div', 'cc-frame');
+      const pImg = el('img', 'cc-portrait'); frame.appendChild(pImg);
+      const aR = el('button', 'cc-arrow cc-arrow-r'); aR.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
+      aL.onclick = () => cyclePortrait(-1);
+      aR.onclick = () => cyclePortrait(1);
+      pWrap.append(aL, frame, aR);
+      left.appendChild(pWrap);
+
       const gWrap = el('div', 'cc-seg');
       for (const g of [['MALE', 'Male'], ['FEMALE', 'Female']]) {
-        const b = el('button', 'cc-seg-btn', g[1]);
-        b.dataset.g = g[0];
-        b.onclick = () => { state.gender = g[0]; state.portrait = portraits[g[0].toLowerCase()][0] || null; renderGender(); renderPortraits(); };
+        const b = el('button', 'cc-seg-btn', g[1]); b.dataset.g = g[0];
+        b.onclick = () => { state.gender = g[0]; state.pIndex = 0; renderGender(); renderPortrait(); };
         gWrap.appendChild(b);
       }
-      gRow.appendChild(gWrap);
-      panel.appendChild(gRow);
+      left.appendChild(gWrap);
 
-      // class picker
-      panel.appendChild(el('span', 'cc-label', 'Class'));
-      const cWrap = el('div', 'cc-cards');
+      const nameIn = el('input', 'cc-input');
+      nameIn.type = 'text'; nameIn.maxLength = 18; nameIn.placeholder = 'Name your hero';
+      nameIn.value = state.name;
+      nameIn.oninput = () => { state.name = nameIn.value.trim(); validate(); };
+      left.appendChild(nameIn);
+
+      grid.appendChild(left);
+
+      // -- right: class + description + difficulty --
+      const right = el('div', 'cc-col');
+
+      right.appendChild(el('div', 'cc-heading', 'Class'));
+      const cRow = el('div', 'cc-choices');
       for (const c of CLASSES) {
-        const card = el('button', 'cc-card');
-        card.dataset.c = c.id;
-        card.appendChild(el('div', 'cc-card-name', c.name));
-        card.appendChild(el('div', 'cc-card-blurb', c.blurb));
-        card.onclick = () => { state.charClass = c.id; renderClass(); };
-        cWrap.appendChild(card);
+        const b = el('button', 'cc-choice', c.name); b.dataset.c = c.id;
+        b.onclick = () => { state.charClass = c.id; renderClass(); };
+        cRow.appendChild(b);
       }
-      panel.appendChild(cWrap);
+      right.appendChild(cRow);
 
-      // difficulty picker
-      panel.appendChild(el('span', 'cc-label', 'Difficulty'));
-      const dWrap = el('div', 'cc-cards');
+      const desc = el('div', 'cc-desc');
+      right.appendChild(desc);
+
+      right.appendChild(el('div', 'cc-heading', 'Difficulty'));
+      const dRow = el('div', 'cc-choices');
       for (const d of DIFFICULTIES) {
-        const card = el('button', 'cc-card');
-        card.dataset.d = String(d.id);
-        card.appendChild(el('div', 'cc-card-name', d.name));
-        card.appendChild(el('div', 'cc-card-blurb', d.blurb));
-        card.onclick = () => { state.difficulty = d.id; renderDiff(); };
-        dWrap.appendChild(card);
+        const b = el('button', 'cc-choice', d.name); b.dataset.d = String(d.id);
+        b.onclick = () => { state.difficulty = d.id; renderDiff(); };
+        dRow.appendChild(b);
       }
-      panel.appendChild(dWrap);
+      right.appendChild(dRow);
+      const dDesc = el('div', 'cc-subdesc');
+      right.appendChild(dDesc);
 
-      // portrait grid
-      panel.appendChild(el('span', 'cc-label', 'Portrait'));
-      const pGrid = el('div', 'cc-portraits');
-      panel.appendChild(pGrid);
+      grid.appendChild(right);
+      panel.appendChild(grid);
 
-      // actions
+      // -- actions --
       const actions = el('div', 'cc-actions');
-      const back = el('button', 'cc-secondary', 'Back');
-      back.onclick = title;
-      const begin = el('button', 'cc-primary', 'Begin');
-      begin.onclick = () => {
-        if (!state.name) { nameIn.focus(); return; }
-        overlay.remove();
-        resolve({ ...state });
-      };
+      const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = title;
+      const begin = el('button', 'cc-btn cc-btn-primary', 'Begin');
+      begin.onclick = () => { if (!state.name) { nameIn.focus(); return; } overlay.remove();
+        resolve({ name: state.name, gender: state.gender, charClass: state.charClass, portrait: state.portrait, difficulty: state.difficulty }); };
       actions.append(back, begin);
       panel.appendChild(actions);
 
       overlay.appendChild(panel);
 
       // renderers
+      function cyclePortrait(d) { const l = listFor(state.gender); if (!l.length) return;
+        state.pIndex = (state.pIndex + d + l.length) % l.length; renderPortrait(); }
+      function renderPortrait() { const f = state.portrait;
+        pImg.src = f ? `assets/portraits/${state.gender.toLowerCase()}/${f}` : ''; }
       function renderGender() { gWrap.querySelectorAll('.cc-seg-btn').forEach(b => b.classList.toggle('on', b.dataset.g === state.gender)); }
-      function renderClass() { cWrap.querySelectorAll('.cc-card').forEach(b => b.classList.toggle('on', b.dataset.c === state.charClass)); }
-      function renderDiff() { dWrap.querySelectorAll('.cc-card').forEach(b => b.classList.toggle('on', b.dataset.d === String(state.difficulty))); }
-      function renderPortraits() {
-        pGrid.innerHTML = '';
-        const list = portraits[state.gender.toLowerCase()] || [];
-        for (const f of list) {
-          const img = el('img', 'cc-portrait');
-          img.src = `assets/portraits/${state.gender.toLowerCase()}/${f}`;
-          img.loading = 'lazy';
-          img.onclick = () => { state.portrait = f; pGrid.querySelectorAll('.cc-portrait').forEach(i => i.classList.remove('on')); img.classList.add('on'); };
-          if (f === state.portrait) img.classList.add('on');
-          pGrid.appendChild(img);
-        }
+      function renderClass() {
+        cRow.querySelectorAll('.cc-choice').forEach(b => b.classList.toggle('on', b.dataset.c === state.charClass));
+        desc.textContent = info[state.charClass] || '';
+      }
+      function renderDiff() {
+        dRow.querySelectorAll('.cc-choice').forEach(b => b.classList.toggle('on', b.dataset.d === String(state.difficulty)));
+        dDesc.textContent = (DIFFICULTIES.find(d => d.id === state.difficulty) || {}).blurb || '';
       }
       function validate() { begin.disabled = !state.name; }
 
-      renderGender(); renderClass(); renderDiff(); renderPortraits(); validate();
+      renderPortrait(); renderGender(); renderClass(); renderDiff(); validate();
     }
 
     title();
