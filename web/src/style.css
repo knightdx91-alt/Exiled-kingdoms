@@ -61,6 +61,24 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
   background-size: cover; background-position: center;
 }
 
+/* Rotate the title/character-creation overlay to match a locked orientation
+   (set by the orient buttons via a body class). The Phaser game world is rotated
+   by the engine; this makes the plain-DOM creation UI follow the buttons too, so
+   they visibly respond during creation instead of appearing to do nothing.
+   Rotating about the centre with swapped 100vh×100vw dims fills the viewport, and
+   the browser hit-tests the overlay's buttons/inputs correctly through the rotate. */
+body.ek-cc-90 .cc-overlay {
+  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+body.ek-cc-180 .cc-overlay {
+  transform: rotate(180deg);          /* dims unchanged in reverse-portrait */
+}
+body.ek-cc-270 .cc-overlay {
+  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
 /* title screen */
 .cc-title {
   margin: auto; display: flex; flex-direction: column; align-items: center; gap: 22px;

@@ -812,25 +812,31 @@ class MapScene extends Phaser.Scene {
     this.time.delayedCall(160, () => this.token.setFillStyle(0x4c6ef5));
   }
 
-  // Orientation control. 'auto' follows the device: no forced rotation — the
-  // browser reflows the viewport as the phone turns and Phaser's RESIZE mode
-  // refills the canvas upright, so all four physical orientations (portrait,
-  // reverse-portrait, landscape, reverse-landscape) just work, like the original
-  // game's sensor rotation. 0/90/180/270 lock the view to that orientation via
-  // the engine transform, independent of how the device is held.
+  // Orientation control. 'auto' follows the device (no forced rotation — the
+  // browser reflows the viewport as the phone turns and Phaser RESIZE refills
+  // upright). 0/90/180/270 lock the view via the engine transform on `world`.
+  //
+  // The Phaser game world rotates in-engine; the DOM title/character-creation
+  // overlay is a separate fixed layer that Phaser can't rotate, so we also toggle
+  // a body class that CSS-rotates that overlay to match. Without it the buttons
+  // "do nothing" during creation (the overlay just sits there portrait) even
+  // though the game underneath is rotating. CSS rotation is safe for the overlay
+  // because it's plain DOM — the browser hit-tests its buttons through the rotate.
   setOrient(mode) {
+    this.orientChoice = mode;                        // what the player picked
     if (mode === 'auto') {
       this.autoOrient = true;
-      this.orient = 0;                              // upright fill; device decides shape
+      this.orient = 0;                               // upright fill; device decides shape
     } else {
       this.autoOrient = false;
       this.orient = +mode;
     }
-    try { localStorage.setItem('ek_orient', this.autoOrient ? 'auto' : String(this.orient)); }
-    catch (e) { /* private mode */ }
-    const sel = this.autoOrient ? 'auto' : String(this.orient);
+    // Rotate the DOM creation/title overlay to match (auto & portrait = no class).
+    document.body.classList.remove('ek-cc-90', 'ek-cc-180', 'ek-cc-270');
+    if (!this.autoOrient && mode !== '0') document.body.classList.add('ek-cc-' + mode);
+    try { localStorage.setItem('ek_orient', mode); } catch (e) { /* private mode */ }
     document.querySelectorAll('#orient-bar button').forEach(b =>
-      b.setAttribute('aria-pressed', String(b.dataset.orient === sel)));
+      b.setAttribute('aria-pressed', String(b.dataset.orient === mode)));
     this.relayout();
   }
 
