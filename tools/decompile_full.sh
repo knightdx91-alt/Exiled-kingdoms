@@ -7,11 +7,11 @@
 #
 # Requires: java, unzip, maven (jadx is resolved from Maven Central, then cached).
 # Usage: ./tools/decompile_full.sh <ExiledKingdoms.apk> [out-dir]
-#   out-dir defaults to ./decompiled_full  (gitignored — large, re-derivable)
+#   out-dir defaults to ./decompiled  (tracked in-repo; re-run only to refresh)
 set -euo pipefail
 
 APK="${1:?usage: decompile_full.sh <apk> [out-dir]}"
-OUT="${2:-$(cd "$(dirname "$0")/.." && pwd)/decompiled_full}"
+OUT="${2:-$(cd "$(dirname "$0")/.." && pwd)/decompiled}"
 WORK="$(mktemp -d)"
 JADX_VER=1.5.5
 
