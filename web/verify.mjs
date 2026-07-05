@@ -56,13 +56,11 @@ const dayLum = light.day.r + light.day.g + light.day.b;
 const nightLum = light.night.r + light.night.g + light.night.b;
 const lightOk = light.outdoor && dayLum > nightLum && light.night.b > light.night.r; // night is dim & blue
 
-// --- Real character sprite: hero exists and its walk animation advances frames ---
+// --- Real character sprite: hero exists with a valid facing animation (idles at rest) ---
 await page.waitForFunction(() => window.__EK.hero && window.__EK.hero(), { timeout: 8000 });
-const f1 = await page.evaluate(() => window.__EK.hero().frame);
-await page.waitForTimeout(300);
 const heroInfo = await page.evaluate(() => window.__EK.hero());
-console.log('hero:', heroInfo, 'startFrame:', f1);
-const heroOk = heroInfo.playing && heroInfo.anim.includes('walk') && heroInfo.frame !== f1;
+console.log('hero:', heroInfo);
+const heroOk = !!heroInfo.anim && heroInfo.anim.startsWith('hero_');
 
 // --- Pinch/wheel zoom: base view is the max zoom-out (clamped), zoom-in works ---
 const zoom = await page.evaluate(() => {
@@ -73,6 +71,20 @@ const zoom = await page.evaluate(() => {
 });
 console.log('zoom:', zoom);
 const zoomOk = zoom.clampedOut === 1 && zoom.zoomedIn > 1;
+
+// --- Movement: tap-to-move paths the hero to a new cell (collision-aware A*) ---
+const move = await page.evaluate(async () => {
+  const start = window.__EK.heroCell();
+  const goal = window.__EK.walkBy(4, 4);            // path a few cells away
+  await new Promise(r => setTimeout(r, 200));
+  const walkingAnim = window.__EK.hero().anim;      // should be a walk anim mid-move
+  const t0 = Date.now();
+  while (window.__EK.moving() && Date.now() - t0 < 6000) await new Promise(r => setTimeout(r, 100));
+  return { start, goal, end: window.__EK.heroCell(), walkingAnim, restAnim: window.__EK.hero().anim };
+});
+console.log('movement:', move);
+const moveOk = move.end && (move.end.c !== move.start.c || move.end.r !== move.start.r) &&
+               move.walkingAnim.includes('walk') && move.restAnim.includes('idle');
 
 fs.mkdirSync('shots', { recursive: true });
 const names = { 0: 'portrait', 90: 'landscape', 180: 'reverse-portrait', 270: 'reverse-landscape' };
@@ -142,9 +154,9 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && moveOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + animated hero + pinch-zoom + 4 orientations + input, full-game cached, offline reload, saves round-trip`
+  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + walking hero (tap-to-move, A* collision) + pinch-zoom + 4 orientations, full-game cached, offline reload, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

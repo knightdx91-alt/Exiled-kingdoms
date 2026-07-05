@@ -26,20 +26,32 @@ const attr = (tag, name) => {
 
 // Resolve a tileset element to { image, imagew, imageh, tilew, tileh } — following
 // an external .tsx if needed. Returns image as a basename (copied flat into assets).
-function resolveTileset(tag, restXml) {
+// Local tile ids that block movement — a tile with a "blocked" or "obstacle" property.
+// (GameMap.v(): objects-layer tiles with those props are non-walkable; see ENGINE_SPEC.)
+function blockedIds(tsXml) {
+  const ids = [];
+  const re = /<tile id="(\d+)">([\s\S]*?)<\/tile>/g;
+  let m;
+  while ((m = re.exec(tsXml)))
+    if (/name="(blocked|obstacle)"/.test(m[2])) ids.push(+m[1]);
+  return ids;
+}
+
+function resolveTileset(tag, blockXml) {
   const source = attr(tag, 'source');
-  let name, tilew, tileh, imgTag;
+  let name, tilew, tileh, imgTag, tsXml;
   if (source) {                                    // external .tsx
     const tsxPath = path.join(SRC_DIR, source);
-    const tsx = fs.readFileSync(tsxPath, 'utf8');
-    const tsTag = tsx.match(/<tileset[^>]*>/)[0];
+    tsXml = fs.readFileSync(tsxPath, 'utf8');
+    const tsTag = tsXml.match(/<tileset[^>]*>/)[0];
     name = attr(tsTag, 'name');
     tilew = +attr(tsTag, 'tilewidth'); tileh = +attr(tsTag, 'tileheight');
-    imgTag = tsx.match(/<image[^>]*>/)[0];
+    imgTag = tsXml.match(/<image[^>]*>/)[0];
   } else {                                          // inline tileset
     name = attr(tag, 'name');
     tilew = +attr(tag, 'tilewidth'); tileh = +attr(tag, 'tileheight');
-    imgTag = restXml.match(/<image[^>]*>/)[0];      // first <image> after this tileset
+    tsXml = blockXml;                               // the full <tileset>…</tileset> block
+    imgTag = blockXml.match(/<image[^>]*>/)[0];
   }
   const imgSrc = attr(imgTag, 'source');
   const imagew = +attr(imgTag, 'width'), imageh = +attr(imgTag, 'height');
@@ -48,7 +60,7 @@ function resolveTileset(tag, restXml) {
   const pngName = path.basename(imgSrc);
   fs.copyFileSync(pngFrom, path.join(OUT_DIR, pngName));
   return { name, image: pngName, imagew, imageh, tilew, tileh,
-           columns: Math.floor(imagew / tilew) };
+           columns: Math.floor(imagew / tilew), blocked: blockedIds(tsXml) };
 }
 
 const xml = fs.readFileSync(TMX, 'utf8');
@@ -80,11 +92,20 @@ let m;
 while ((m = tsRe.exec(xml))) {
   const tag = m[0];
   const firstgid = +attr(tag, 'firstgid');
-  const rest = xml.slice(m.index, m.index + 400);   // enough to catch an inline <image>
-  const ts = resolveTileset(tag, rest);
+  // for an inline (non-self-closing) tileset, pass the whole <tileset>…</tileset> block
+  const end = tag.endsWith('/>') ? m.index + tag.length
+                                 : xml.indexOf('</tileset>', m.index) + 10;
+  const block = xml.slice(m.index, end);
+  const ts = resolveTileset(tag, block);
   tilesets.push({ firstgid, ...ts });
 }
 tilesets.sort((a, b) => a.firstgid - b.firstgid);
+
+// Global gids that block movement (tileset.blocked local ids + firstgid).
+map.blockedGids = [];
+for (const ts of tilesets)
+  for (const id of ts.blocked) map.blockedGids.push(ts.firstgid + id);
+for (const ts of tilesets) delete ts.blocked;   // keep tileset entries lean
 
 // Layers: decode base64 + gzip -> Int array of global tile IDs (0 = empty).
 const GID_MASK = 0x1FFFFFFF;                          // strip Tiled flip flags

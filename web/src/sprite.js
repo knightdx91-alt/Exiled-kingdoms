@@ -36,7 +36,16 @@ export function makeHero(scene, container, key, x, y) {
   }
   const hero = scene.add.sprite(x, y, key, idx(FACING_ROW.D, 0)).setOrigin(0.5, 0.85);
   hero.facing = 'D';
-  hero.play(`${key}_walk_D`);
+  hero.play(`${key}_idle_D`);
   container.add(hero);
   return hero;
+}
+
+// Face `name` (U/RU/R/RD/D), mirrored if `flip`; play walk or idle. Left-facing
+// directions reuse the right-side rows flipped, per the base game's sheet layout.
+export function setFacing(hero, key, name, flip, moving) {
+  hero.facing = name;
+  hero.setFlipX(flip);
+  const want = `${key}_${moving ? 'walk' : 'idle'}_${name}`;
+  if (hero.anims.getName() !== want) hero.play(want, true);
 }

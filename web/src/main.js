@@ -8,7 +8,10 @@
 // free — taps land correctly in every orientation.
 
 import { loadMap, renderMap, sortMid, ambientColor, applyAmbient } from './map.js';
-import { loadHero, makeHero } from './sprite.js';
+import { loadHero, makeHero, setFacing } from './sprite.js';
+import { buildWalkable, cellToPx, pxToCell, findPath, facingFor } from './move.js';
+
+const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
 const ORIENTS = [0, 90, 180, 270];
 const START_MAP = 'H10';                            // Lannegar Valley (starting town)
@@ -104,6 +107,16 @@ class MapScene extends Phaser.Scene {
       setHour: (h) => this.setHour(h),
       zoom: () => this.zoomFactor,
       setZoom: (f) => this.setZoom(f),
+      heroCell: () => this.heroCell && { ...this.heroCell },
+      moving: () => !!this.path,
+      // test helper: path the hero to a cell offset from its current one
+      walkBy: (dc, dr) => {
+        const W = this._map.width;
+        const goal = this.nearestWalkable(this.heroCell.c + dc, this.heroCell.r + dr);
+        const p = findPath(this.walk, W, this._map.height, this.heroCell, goal);
+        if (p && p.length > 1) { this.path = p; this.pathIdx = 1; }
+        return goal;
+      },
       hero: () => this.hero ? {
         playing: this.hero.anims.isPlaying,
         anim: this.hero.anims.getName(),
@@ -120,10 +133,42 @@ class MapScene extends Phaser.Scene {
     this.input.on('wheel', (_p, _o, _dx, dy) =>
       this.setZoom(this.zoomFactor * (dy > 0 ? 0.92 : 1.08)));
 
+    // Tap-to-move: a tap (not a drag/pinch) on the map paths the hero to that cell.
+    this._downXY = null;
+    this.input.on('pointerdown', (p) => { this._downXY = { x: p.x, y: p.y }; });
+    this.input.on('pointerup', (p) => {
+      const d = this._downXY; this._downXY = null;
+      if (!d || !this.hero || !this._map) return;
+      if (Math.hypot(p.x - d.x, p.y - d.y) > 12) return;         // was a drag, ignore
+      if ([this.input.pointer1, this.input.pointer2].filter(q => q && q.isDown).length) return;
+      this.moveTo(p.x, p.y);
+    });
+
     this.relayout();
   }
 
-  update() {
+  nearestWalkable(c0, r0) {
+    const W = this._map.width, H = this._map.height;
+    for (let rad = 0; rad < Math.max(W, H); rad++)
+      for (let dc = -rad; dc <= rad; dc++)
+        for (let dr = -rad; dr <= rad; dr++) {
+          const c = c0 + dc, r = r0 + dr;
+          if (c >= 0 && r >= 0 && c < W && r < H && this.walk[r * W + c]) return { c, r };
+        }
+    return { c: c0, r: r0 };
+  }
+
+  // Path the hero from its cell to the map cell under screen point (sx,sy).
+  moveTo(sx, sy) {
+    const local = this.mapLayer.getWorldTransformMatrix().applyInverse(sx, sy);
+    const goal = pxToCell(local.x, local.y, this._map);
+    const W = this._map.width, H = this._map.height;
+    if (goal.c < 0 || goal.r < 0 || goal.c >= W || goal.r >= H) return;
+    const path = findPath(this.walk, W, H, this.heroCell, goal);
+    if (path && path.length > 1) { this.path = path; this.pathIdx = 1; }
+  }
+
+  update(_t, dtMs) {
     // Track two-finger pinch distance frame-to-frame and scale the zoom by its ratio.
     const ps = [this.input.pointer1, this.input.pointer2].filter(p => p && p.isDown);
     if (ps.length === 2) {
@@ -133,6 +178,36 @@ class MapScene extends Phaser.Scene {
     } else {
       this._pinchPrev = null;
     }
+    this.stepHero(dtMs / 1000);
+  }
+
+  // Advance the hero along its path; update facing, camera follow, and depth order.
+  stepHero(dt) {
+    const h = this.hero;
+    if (!h || !this.path) return;
+    const next = this.path[this.pathIdx];
+    const target = cellToPx(next.c, next.r, this._map);
+    const dx = target.x - h.x, dy = target.y - h.y;
+    const dist = Math.hypot(dx, dy);
+    const step = HERO_SPEED * dt;
+
+    const face = facingFor(dx, dy);
+    setFacing(h, 'hero', face.name, face.flip, true);
+
+    if (dist <= step) {                              // reached this node
+      h.setPosition(target.x, target.y);
+      this.heroCell = { c: next.c, r: next.r };
+      this.pathIdx++;
+      if (this.pathIdx >= this.path.length) {        // arrived
+        this.path = null;
+        const f = facingFor(dx, dy);
+        setFacing(h, 'hero', f.name, f.flip, false);  // idle in last direction
+      }
+    } else {
+      h.setPosition(h.x + (dx / dist) * step, h.y + (dy / dist) * step);
+    }
+    sortMid(this.planes.mid);                         // keep depth correct as he moves
+    this.fitMap();                                   // camera follows the hero
   }
 
   setZoom(f) {
@@ -168,10 +243,15 @@ class MapScene extends Phaser.Scene {
       this.mapBounds = { width, height };
       this.grid.setVisible(false);                 // real content replaces the grid
 
-      // Real animated hero, placed in the mid plane so scenery/objects in front of
-      // him occlude him and those behind are occluded (iso depth by feet Y).
+      // Collision grid (nonwalk / void / blocked-objects) for movement + pathfinding.
+      this.walk = buildWalkable(map);
+
+      // Real animated hero in the mid plane (depth-sorted with scenery/objects).
       await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
-      this.hero = makeHero(this, this.planes.mid, 'hero', width / 2, height / 2);
+      this.heroCell = this.nearestWalkable(Math.floor(map.width / 2), Math.floor(map.height / 2));
+      const hp = cellToPx(this.heroCell.c, this.heroCell.r, map);
+      this.hero = makeHero(this, this.planes.mid, 'hero', hp.x, hp.y);
+      this.path = null; this.pathIdx = 0;
       sortMid(this.planes.mid);
       applyAmbient(this.planes, ambient);          // also tint the hero to match
 

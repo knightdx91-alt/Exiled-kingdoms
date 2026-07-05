@@ -56,10 +56,15 @@ Next steps (in order):
    col 1 = idle, cols 2-9 = 8-frame walk — per the base game's `AnimationSet.java`)
    and builds Phaser walk/idle animations per facing. An animated `male_knight`
    hero renders on the map; `verify.mjs` asserts its walk cycle advances frames.
-   A simple **hero-follow camera** (`fitMap` in `main.js`) zooms to ~12 tiles and
-   centers on the hero instead of shrinking the whole map. Next: move the hero
-   with input (tap-to-move / pathfinding) and swap facings; then the composite
-   player (body+head+clothes layered from `sprites/composite/`).
+   A **hero-follow camera** (`fitMap`) uses the recovered base-game viewport
+   (533-wide, `deobf/CAMERA.md`) and supports pinch/wheel zoom (base view = max out).
+3. ~~**Move the hero**~~ ✅ DONE. `web/src/move.js`: walkable grid from the base
+   game's collision model (nonwalk layer / empty ground / `blocked`+`obstacle` object
+   tiles — `GameMap.v()`), 8-way A* pathfinding, iso cell↔pixel. **Tap-to-move** walks
+   the hero with correct facing (U/RU/R/RD/D + mirrored) and walk/idle anims; camera
+   follows; depth re-sorts each step. `verify.mjs` asserts collision-aware movement.
+   Next: **map transitions** (convert all maps + entry/exit objects), then the
+   recovered roof-fade (A3) + fog-of-war (A5), then dynamic lights (A1).
 3. **Responsive HUD** that reflows between tall/wide (the one design task
    orientation demands).
 4. **Port game systems** (movement, dialogue reader, combat) using Track A's
