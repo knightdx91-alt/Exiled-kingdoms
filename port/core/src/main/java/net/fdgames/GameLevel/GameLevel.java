@@ -1,6 +1,6 @@
 package net.fdgames.GameLevel;
 
-import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.l;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import m0.b;
@@ -140,7 +140,7 @@ public class GameLevel {
         if (i2 == 1) {
             return GameData.v().player;
         }
-        MonsterSpawn monsterSpawnI = i(i2);
+        MapObject monsterSpawnI = i(i2);
         Door door = null;
         int i3 = 0;
         if (monsterSpawnI == null) {

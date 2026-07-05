@@ -1,7 +1,7 @@
 package n;
 
 import android.view.animation.BaseInterpolator;
-import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.l;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -55,7 +55,7 @@ public final class h {
             }
         }
 
-        @Override // com.badlogic.gdx.utils.GdxNativesLoader, android.support.v4.view.m
+        @Override // com.badlogic.gdx.utils.l, android.support.v4.view.m
         public final void c() {
             if (this.f2512c) {
                 return;

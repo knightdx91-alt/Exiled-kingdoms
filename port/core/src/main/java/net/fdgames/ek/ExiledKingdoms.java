@@ -8,7 +8,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.l;
 import d0.c;
 import d0.f;
 import d0.h;

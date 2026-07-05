@@ -1,7 +1,7 @@
 package net.fdgames.Rules;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.l;
 import com.google.android.gms.games.quest.Quests;
 import java.util.ArrayList;
 import java.util.Arrays;

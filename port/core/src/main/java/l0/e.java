@@ -356,7 +356,7 @@ public final class e implements com.badlogic.gdx.Screen {
         Stage stage = new Stage();
         f2353o = stage;
         Gdx.input.setInputProcessor(stage);
-        com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen() - initializing Main Menu");
+        com.badlogic.gdx.utils.l.d("MainMenuScreen() - initializing Main Menu");
         Table table = new Table();
         f2362y = table;
         table.setFillParent(true);
@@ -660,7 +660,7 @@ public final class e implements com.badlogic.gdx.Screen {
                 ((MainActivity) ExiledKingdoms.f()).n();
             }
         } catch (NullPointerException unused) {
-            com.badlogic.gdx.utils.GdxNativesLoader.d("WARNING: MainMenuScreen.toggleGPGSConnection() NullPointerException caught when trying to connect to GPGS");
+            com.badlogic.gdx.utils.l.d("WARNING: MainMenuScreen.toggleGPGSConnection() NullPointerException caught when trying to connect to GPGS");
         }
     }
 
@@ -687,7 +687,7 @@ public final class e implements com.badlogic.gdx.Screen {
     @Override // com.badlogic.gdx.Screen
     public final void a() {
         int i2;
-        com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen.show() launched...");
+        com.badlogic.gdx.utils.l.d("MainMenuScreen.show() launched...");
         FDUtils.p();
         GameLevelData.J();
         GameData.k();
@@ -721,29 +721,29 @@ public final class e implements com.badlogic.gdx.Screen {
                 this.f2376m.setVisible(true);
             }
         }
-        com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen.show() messages verification...");
+        com.badlogic.gdx.utils.l.d("MainMenuScreen.show() messages verification...");
         if ((Settings.h() == 7 || Settings.h() == 10 || Settings.h() == 8) && Settings.e("GL_incompletelang_warning") < 1) {
             new j(GameString.b("WARNING_START_LANG_INCOMPLETE", false), 0).show(f2353o);
             Settings.A(1, "GL_incompletelang_warning");
             Settings.v();
         }
-        com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen.show() about to connect to external libraries...");
+        com.badlogic.gdx.utils.l.d("MainMenuScreen.show() about to connect to external libraries...");
         try {
             if (!ExiledKingdoms.f3388r && !ExiledKingdoms.s && !((MainActivity) ExiledKingdoms.f()).l() && Settings.d()) {
                 ((MainActivity) ExiledKingdoms.f()).n();
             }
-            com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen.show() about to connect to external libraries... (2)");
+            com.badlogic.gdx.utils.l.d("MainMenuScreen.show() about to connect to external libraries... (2)");
             if (!ExiledKingdoms.f3388r && ExiledKingdoms.s && ExiledKingdoms.f3378h && !((MainActivity) ExiledKingdoms.f()).l()) {
                 try {
                     ((MainActivity) ExiledKingdoms.f()).n();
                 } catch (Exception e2) {
-                    com.badlogic.gdx.utils.GdxNativesLoader.d("WARNING: MainMenuScreen.show() General Exception caught when trying to connect to GPGS: " + e2.getMessage());
+                    com.badlogic.gdx.utils.l.d("WARNING: MainMenuScreen.show() General Exception caught when trying to connect to GPGS: " + e2.getMessage());
                 }
             }
         } catch (NullPointerException unused) {
-            com.badlogic.gdx.utils.GdxNativesLoader.d("WARNING: MainMenuScreen.show() NullPointerException caught when trying to connect to GPGS");
+            com.badlogic.gdx.utils.l.d("WARNING: MainMenuScreen.show() NullPointerException caught when trying to connect to GPGS");
         }
-        com.badlogic.gdx.utils.GdxNativesLoader.d("MainMenuScreen.show() completed");
+        com.badlogic.gdx.utils.l.d("MainMenuScreen.show() completed");
         Gdx.input.setCatchBackKey(true);
         Assets.f3309a.t("hills");
         f2358u.setDisabled(false);
@@ -899,7 +899,7 @@ public final class e implements com.badlogic.gdx.Screen {
             }
             GameAssets.d();
         } catch (Exception e2) {
-            com.badlogic.gdx.utils.GdxNativesLoader.d("ExiledKingdoms.initialize() EXCEPTION -:  " + e2.getMessage());
+            com.badlogic.gdx.utils.l.d("ExiledKingdoms.initialize() EXCEPTION -:  " + e2.getMessage());
             Gdx.app.exit();
         }
         if (!ExiledKingdoms.f3371a && ExiledKingdoms.f3387q && ExiledKingdoms.f3386p.a() != null && ((e0.f) ExiledKingdoms.f3386p.a()).t()) {

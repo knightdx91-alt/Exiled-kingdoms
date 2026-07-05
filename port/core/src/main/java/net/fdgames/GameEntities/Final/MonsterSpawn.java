@@ -1,7 +1,7 @@
 package net.fdgames.GameEntities.Final;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.badlogic.gdx.utils.l;
 import com.google.android.gms.auth.api.credentials.CredentialsApi;
 import java.util.Iterator;
 import java.util.Locale;

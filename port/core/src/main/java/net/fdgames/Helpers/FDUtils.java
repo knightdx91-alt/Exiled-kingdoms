@@ -199,7 +199,8 @@ public class FDUtils {
     }
 
     public static String o(String str) {
-        return (String) Arrays.asList(str.trim().split(";")).get(b(0, r2.size() - 1));
+        java.util.List r2 = Arrays.asList(str.trim().split(";"));
+        return (String) r2.get(b(0, r2.size() - 1));
     }
 
     public static void p() {
