@@ -18,12 +18,17 @@ const START_MAP = 'H10';                            // Lannegar Valley (starting
 // art scale by mapping EK_VIEWPORT_W world-units across the longer logical axis
 // (the base game is landscape; 533 is its long side), independent of orientation.
 const EK_VIEWPORT_W = 533;
+// Pinch zoom: 1.0 = the base game's view (fully zoomed out — the hard max, can't go
+// past it). You can pinch IN up to ZOOM_MAX_IN. Larger factor = more zoomed in.
+const ZOOM_MIN = 1.0;
+const ZOOM_MAX_IN = 1.75;
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
 
   create() {
     this.orient = 0;
+    this.zoomFactor = 1;                            // 1 = fully zoomed out (base game view)
     this.world = this.add.container(0, 0);          // rotated root for all content
 
     // Real map content lives in its own sub-container so we can fit-scale it to the
@@ -82,6 +87,8 @@ class MapScene extends Phaser.Scene {
         return hits.includes(this.token);
       },
       map: () => ({ name: START_MAP, tiles: this._mapTiles || 0 }),
+      zoom: () => this.zoomFactor,
+      setZoom: (f) => this.setZoom(f),
       hero: () => this.hero ? {
         playing: this.hero.anims.isPlaying,
         anim: this.hero.anims.getName(),
@@ -90,7 +97,33 @@ class MapScene extends Phaser.Scene {
     });
 
     this.scale.on('resize', () => this.relayout());
+
+    // Pinch-to-zoom (two fingers) + mouse wheel (desktop). Zoom is clamped so the
+    // base game view is the furthest-out (ZOOM_MIN); you can only pinch in.
+    this.input.addPointer(1);                        // allow a 2nd concurrent pointer
+    this._pinchPrev = null;
+    this.input.on('wheel', (_p, _o, _dx, dy) =>
+      this.setZoom(this.zoomFactor * (dy > 0 ? 0.92 : 1.08)));
+
     this.relayout();
+  }
+
+  update() {
+    // Track two-finger pinch distance frame-to-frame and scale the zoom by its ratio.
+    const ps = [this.input.pointer1, this.input.pointer2].filter(p => p && p.isDown);
+    if (ps.length === 2) {
+      const d = Phaser.Math.Distance.Between(ps[0].x, ps[0].y, ps[1].x, ps[1].y);
+      if (this._pinchPrev) this.setZoom(this.zoomFactor * (d / this._pinchPrev));
+      this._pinchPrev = d;
+    } else {
+      this._pinchPrev = null;
+    }
+  }
+
+  setZoom(f) {
+    this.zoomFactor = Phaser.Math.Clamp(f, ZOOM_MIN, ZOOM_MAX_IN);
+    this.fitMap();
+    return this.zoomFactor;
   }
 
   async loadStartMap() {
@@ -116,7 +149,7 @@ class MapScene extends Phaser.Scene {
   // the hero at the center of the viewport. `world` handles the orientation.
   fitMap() {
     if (!this.mapBounds) return;
-    const z = Math.max(this.LW, this.LH) / EK_VIEWPORT_W;
+    const z = (Math.max(this.LW, this.LH) / EK_VIEWPORT_W) * this.zoomFactor;
     this.mapLayer.setScale(z);
     const hx = this.hero ? this.hero.x : this.mapBounds.width / 2;
     const hy = this.hero ? this.hero.y : this.mapBounds.height / 2;

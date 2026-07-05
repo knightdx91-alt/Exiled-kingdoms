@@ -48,6 +48,16 @@ const heroInfo = await page.evaluate(() => window.__EK.hero());
 console.log('hero:', heroInfo, 'startFrame:', f1);
 const heroOk = heroInfo.playing && heroInfo.anim.includes('walk') && heroInfo.frame !== f1;
 
+// --- Pinch/wheel zoom: base view is the max zoom-out (clamped), zoom-in works ---
+const zoom = await page.evaluate(() => {
+  const out = window.__EK.setZoom(0.5);   // try to zoom out past base -> must clamp to 1
+  const inn = window.__EK.setZoom(1.5);   // zoom in -> should take
+  window.__EK.setZoom(1);                 // reset
+  return { clampedOut: out, zoomedIn: inn };
+});
+console.log('zoom:', zoom);
+const zoomOk = zoom.clampedOut === 1 && zoom.zoomedIn > 1;
+
 fs.mkdirSync('shots', { recursive: true });
 const names = { 0: 'portrait', 90: 'landscape', 180: 'reverse-portrait', 270: 'reverse-landscape' };
 const results = [];
@@ -116,9 +126,9 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && heroOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && heroOk && zoomOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + animated hero + 4 orientations + input, full-game cached, offline reload, saves round-trip`
+  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + animated hero + pinch-zoom + 4 orientations + input, full-game cached, offline reload, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);
