@@ -38,12 +38,12 @@ files, each with `owner` and `status`, so nothing is invisible. Current tally:
 |---|---|---|
 | EK — engine/render core, logic read | 10 | `ENGINE_SPEC.md` (GameLevelRenderer, ADTIso…, GameMap, screens, …) |
 | EK — UI, purpose-catalogued | 127 | `UI_SPEC.md` (handlers read on-demand when each window is built) |
-| EK — billing (skipped) | 6 | `a/*` (Donate/Store/License + name-lost `a/a`) |
+| EK — billing (skipped) | 5 | `a/*` (Donate/Store/License) |
 | libGDX | 72 | engine — reimplemented as Phaser; `LIBRARY_MAP.md` |
 | box2dlights | 6 | lighting model we're matching (A1) |
 | gdx-pay / Google Billing | 15 | billing (skipped) |
 | AndroidX / platform | 44 | Android glue, N/A for web |
-| Android-generated / synthetic | 12 | `R.*` tables + one lambda — no logic |
+| Android-generated / synthetic | 13 | `R.*` tables, an R8 lambda, and `a/a` = an R8 outlined-helpers synthetic — no logic |
 
 **Every EK class except billing is now reversed** (10 deep in `ENGINE_SPEC.md`, 127
 purpose-catalogued in `UI_SPEC.md`). The library tier is identified and needs no reversal

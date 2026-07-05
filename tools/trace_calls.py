@@ -169,12 +169,20 @@ def main():
     # UP (callers): who references the target key anywhere in the tree
     if both or a.up:
         print("── UP — classes that reference this (callers) " + "─" * 22)
+        # Precise ref: `tgt` NOT preceded by a dot/word char (so libGDX `utils.a.a`
+        # field chains don't match the package `a.a`) and NOT followed by a word char.
+        tgt_re = re.compile(r"(?<![\w.])" + re.escape(tgt) + r"(?![\w])")
+        imp_re = re.compile(r"\bimport\s+" + re.escape(tgt) + r"\s*;")
+        single_char_pkg = len(tgt.split(".")[-2]) == 1 if "." in tgt else False
         callers = []
         for key, path in key2path.items():
             if key == tgt:
                 continue
             text = open(path, encoding="utf-8", errors="ignore").read()
-            n = text.count(tgt + ".") + len(re.findall(r"\bimport\s+" + re.escape(tgt) + r"\b", text))
+            imported = imp_re.search(text)
+            if single_char_pkg and not imported:
+                continue                            # a.x collides with locals; need import
+            n = len(tgt_re.findall(text))
             if n and is_shown(key):
                 callers.append((key, n))
         for key, n in sorted(callers, key=lambda kv: -kv[1]):
