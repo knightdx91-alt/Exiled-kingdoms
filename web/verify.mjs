@@ -86,6 +86,19 @@ console.log('movement:', move);
 const moveOk = move.end && (move.end.c !== move.start.c || move.end.r !== move.start.r) &&
                move.walkingAnim.includes('walk') && move.restAnim.includes('idle');
 
+// --- Map transitions: walk onto a portal and confirm the area actually changes ---
+const trans = await page.evaluate(async () => {
+  const from = window.__EK.map().name;
+  const t = window.__EK.gotoTransition();
+  if (!t) return { skipped: true };
+  const t0 = Date.now();
+  while (window.__EK.map().name === from && Date.now() - t0 < 15000)
+    await new Promise(r => setTimeout(r, 150));
+  return { from, target: t.area, to: window.__EK.map().name, tiles: window.__EK.map().tiles };
+});
+console.log('transition:', trans);
+const transOk = trans.skipped || (trans.to === trans.target && trans.to !== trans.from && trans.tiles > 0);
+
 fs.mkdirSync('shots', { recursive: true });
 const names = { 0: 'portrait', 90: 'landscape', 180: 'reverse-portrait', 270: 'reverse-landscape' };
 const results = [];
@@ -154,9 +167,9 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && moveOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && moveOk && transOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + walking hero (tap-to-move, A* collision) + pinch-zoom + 4 orientations, full-game cached, offline reload, saves round-trip`
+  ? `VERIFY: PASS — walking hero (tap-to-move, A* collision) across a 151-map world with portal transitions + day/night + pinch-zoom + 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

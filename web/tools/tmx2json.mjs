@@ -128,6 +128,25 @@ while ((m = lyRe.exec(xml))) {
   });
 }
 
+// Object layer: transitions (portals) + entry points. EK stores object x/y in a
+// 32px world grid, so cell = round(coord/32). A `transition` links to area_id at
+// entry_id; an `entry` (entry_id) is an arrival point. Edge exits come from map props.
+const transitions = [], entries = {};
+const objRe = /<object\b([^>]*?)(?:\/>|>([\s\S]*?)<\/object>)/g;
+while ((m = objRe.exec(xml))) {
+  const head = m[1], body = m[2] || '';
+  const type = attr(`<o ${head}>`, 'type');
+  if (type !== 'transition' && type !== 'entry') continue;
+  const c = Math.round(+attr(`<o ${head}>`, 'x') / 32);
+  const r = Math.round(+attr(`<o ${head}>`, 'y') / 32);
+  const p = (n) => { const mm = body.match(new RegExp(`name="${n}" value="([^"]*)"`)); return mm ? mm[1] : undefined; };
+  if (type === 'transition') transitions.push({ c, r, area: p('area_id'), entry: p('entry_id') });
+  else entries[p('entry_id')] = { c, r };
+}
+map.transitions = transitions;
+map.entries = entries;
+map.edgeExits = { n: prop('exit_n'), s: prop('exit_s'), e: prop('exit_e'), w: prop('exit_w') };
+
 const out = { name: outName, ...map, tilesets, layers };
 const outPath = path.join(OUT_DIR, `${outName}.json`);
 fs.writeFileSync(outPath, JSON.stringify(out));

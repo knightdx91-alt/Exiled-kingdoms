@@ -78,7 +78,7 @@ class MapScene extends Phaser.Scene {
 
     // Load + render the first real game map. Async and self-contained: if it fails
     // (e.g. assets missing) the prototype still boots with the placeholder grid.
-    this.loadStartMap();
+    this.loadArea(START_MAP, null);
 
     // expose a tiny test hook so the automated browser check can verify input.
     // Merge (don't overwrite) so the SW/cache fields set at module load survive.
@@ -96,10 +96,20 @@ class MapScene extends Phaser.Scene {
         return hits.includes(this.token);
       },
       map: () => ({
-        name: START_MAP, tiles: this._mapTiles || 0,
+        name: this._mapName, tiles: this._mapTiles || 0,
         midCount: this.planes.mid.list.length,
         heroIndex: this.hero ? this.planes.mid.list.indexOf(this.hero) : -1,
+        transitions: (this._map && this._map.transitions) || [],
       }),
+      // test helper: path the hero onto the first transition and let it fire
+      gotoTransition: () => {
+        const t = this._map && this._map.transitions && this._map.transitions[0];
+        if (!t) return null;
+        const goal = this.nearestWalkable(t.c, t.r);
+        const p = findPath(this.walk, this._map.width, this._map.height, this.heroCell, goal);
+        if (p && p.length > 1) { this.path = p; this.pathIdx = 1; }
+        return { area: t.area };
+      },
       light: () => ({
         maxlight: this._map && this._map.maxlight, outdoor: this._map && this._map.outdoor,
         hour: this.currentHour(), ambient: this._ambient,
@@ -181,10 +191,21 @@ class MapScene extends Phaser.Scene {
     this.stepHero(dtMs / 1000);
   }
 
+  // Fire the transition whose cell the hero is standing on (portal to another area).
+  // A lock set on arrival prevents the return portal (next to where you spawn) from
+  // firing immediately — you must step off it first.
+  checkTransition() {
+    if (this._loading || !this._map || !this._map.transitions) return;
+    const t = this._map.transitions.find(t =>
+      Math.abs(t.c - this.heroCell.c) <= 1 && Math.abs(t.r - this.heroCell.r) <= 1);
+    if (this._transLock) { if (!t) this._transLock = false; return; }
+    if (t && t.area) { this.path = null; this.loadArea(t.area, t.entry); }
+  }
+
   // Advance the hero along its path; update facing, camera follow, and depth order.
   stepHero(dt) {
     const h = this.hero;
-    if (!h || !this.path) return;
+    if (!h || !this.path || this._loading) return;
     const next = this.path[this.pathIdx];
     const target = cellToPx(next.c, next.r, this._map);
     const dx = target.x - h.x, dy = target.y - h.y;
@@ -198,7 +219,8 @@ class MapScene extends Phaser.Scene {
       h.setPosition(target.x, target.y);
       this.heroCell = { c: next.c, r: next.r };
       this.pathIdx++;
-      if (this.pathIdx >= this.path.length) {        // arrived
+      this.checkTransition();                        // stepped onto a portal?
+      if (this.path && this.pathIdx >= this.path.length) {  // arrived
         this.path = null;
         const f = facingFor(dx, dy);
         setFacing(h, 'hero', f.name, f.flip, false);  // idle in last direction
@@ -231,33 +253,47 @@ class MapScene extends Phaser.Scene {
     return this._hourOverride;
   }
 
-  async loadStartMap() {
+  // Load + render an area, placing the hero at entry point `entryId` (or the map
+  // centre). Reusable for the start map and every transition. The hero persists
+  // across maps; only tiles are cleared.
+  async loadArea(name, entryId) {
     try {
-      const map = await loadMap(this, START_MAP);
-      this._map = map;
-      // Ambient light: maxlight (dungeons) or day/night by the device clock (outdoor).
+      this._loading = true;
+      this.path = null; this.pathIdx = 0;
+      // clear tiles from all planes, keep the hero
+      for (const key of ['floor', 'mid', 'roof'])
+        this.planes[key].list.slice().forEach(ch => { if (ch !== this.hero) ch.destroy(); });
+
+      const map = await loadMap(this, name);
+      this._map = map; this._mapName = name;
       const ambient = ambientColor(map, this.currentHour());
       const { tiles, width, height } = renderMap(this, this.planes, map, ambient);
-      this._mapTiles = tiles;
-      this._ambient = ambient;
+      this._mapTiles = tiles; this._ambient = ambient;
       this.mapBounds = { width, height };
-      this.grid.setVisible(false);                 // real content replaces the grid
-
-      // Collision grid (nonwalk / void / blocked-objects) for movement + pathfinding.
+      this.grid.setVisible(false);
       this.walk = buildWalkable(map);
 
-      // Real animated hero in the mid plane (depth-sorted with scenery/objects).
-      await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
-      this.heroCell = this.nearestWalkable(Math.floor(map.width / 2), Math.floor(map.height / 2));
+      // Where to drop the hero: the named entry, else map centre — snapped walkable.
+      const e = (entryId != null && map.entries && map.entries[entryId])
+        || { c: Math.floor(map.width / 2), r: Math.floor(map.height / 2) };
+      this.heroCell = this.nearestWalkable(e.c, e.r);
+      this._transLock = true;                        // don't bounce off the return portal
       const hp = cellToPx(this.heroCell.c, this.heroCell.r, map);
-      this.hero = makeHero(this, this.planes.mid, 'hero', hp.x, hp.y);
-      this.path = null; this.pathIdx = 0;
-      sortMid(this.planes.mid);
-      applyAmbient(this.planes, ambient);          // also tint the hero to match
 
+      if (!this.hero) {
+        await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
+        this.hero = makeHero(this, this.planes.mid, 'hero', hp.x, hp.y);
+      } else {
+        this.planes.mid.add(this.hero);            // re-parent into the fresh mid plane
+        this.hero.setPosition(hp.x, hp.y);
+      }
+      sortMid(this.planes.mid);
+      applyAmbient(this.planes, ambient);
       this.fitMap();
-    } catch (e) {
-      console.warn('map load failed, keeping placeholder grid:', e);
+      this._loading = false;
+    } catch (err) {
+      console.warn('area load failed:', name, err);
+      this._loading = false;
     }
   }
 
