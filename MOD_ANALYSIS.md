@@ -60,6 +60,68 @@ New **unobfuscated** package `net.fdgames.ek.android.lan` (2nd dex, 7 classes, ~
 - The **content** (maps, quests, dialogue, arena) is the same `.tmx`/`.txt` data
   our tooling already handles — reusable with the creators' permission.
 
-## Not yet analyzed
-Two more mod APKs are in the owner's Drive, not yet diffed:
-`EK_SM_7.5_English_text.apk` (Sorrow Mod) and `EK_ENB_eng.apk` (ENB graphics).
+---
+
+# Sorrow Mod & ENB — diff vs the base game
+
+Both decompiled + asset-diffed against our base extraction of `Exiled Kingdoms.apk`
+(130 MB, 5,808 asset files, 185 game classes). Reproduce with
+`tools/extract_mod.sh <apk> recovered_mods/<name>`, then compare `assets/assets/data`.
+
+**Headline: neither is a code mod.** Unlike the Multiplayer mod (which adds the
+`net.fdgames.ek.android.lan` package + native UDP/TCP), **Sorrow and ENB add zero
+new game classes** (only the auto-generated `BuildConfig`) and **no new native
+libs**. Every base class shows text differences, but that is R8/jadx obfuscation
+noise (member names are reshuffled on each build), not logic changes. Both are
+**pure content / asset mods**.
+
+## Sorrow Mod (`EK_SM_7.5_English_text.apk`, 366 MB)
+A large **content expansion** — adds content everywhere, removes almost nothing
+(1 conversation file). Ships both `arm64-v8a` and `armeabi-v7a` native libs.
+
+| Category | Added | Modified |
+|---|---|---|
+| conversations | +752 | 212 |
+| graphics | +397 | 100 |
+| sprites | +363 | 7 |
+| sounds | +311 | — |
+| tmx (maps/tilesets) | +245 | 108 |
+| quests | +52 | 12 |
+| music | +31 | — |
+| world | +13 | 22 |
+| rules | — | 15 |
+| ui | +1 | 14 |
+
+**2,165 files added, 490 base files modified, 1 removed.** The added sprites match
+what the Multiplayer mod pulled in from Sorrow (that mod credits Sorrow for its
+sprite set).
+
+## ENB (`EK_ENB_eng.apk`, 397 MB)
+A **graphics/asset overhaul packaged as an English-only build**. The big "removed"
+count is entirely the **non-English language folders** (CZ/DE/FR/IT/PL/PT/RU/TR
+under `conversations/`, plus their `quests`/`rules`) being stripped — not lost
+content. Ships **only `armeabi-v7a`** (32-bit); drops the base's `arm64-v8a`.
+
+| Category | Added | Modified | Removed |
+|---|---|---|---|
+| sprites | +459 | 282 | 8 |
+| sounds | +335 | 34 | — |
+| tmx | +287 | 83 | 9 |
+| conversations | +225 | 299 | 2,696 (non-EN langs) |
+| graphics | +121 | 195 | — |
+| quests | +24 | 15 | 579 (non-EN langs) |
+| music | +22 | 22 | — |
+| world | +16 | 24 | — |
+| ui | +8 | 42 | — |
+| rules | — | 21 | 30 (non-EN langs) |
+| particle | +1 | 8 | — |
+
+**1,498 files added, 1,025 base files modified, 3,322 removed** (the removals are
+localization, not gameplay). The heavy `sprites`/`graphics`/`tmx` modification
+counts are the actual ENB visual overhaul.
+
+## Implication for the web port
+Both are **directly reusable data** for Track B (same `.tmx`/`.txt`/PNG formats our
+tooling handles) — no native code to reimplement, unlike Multiplayer. ENB's English
+-only layout is actually convenient for a first web build. **Shipping any of it
+still needs the creators' permission** (Sorrow Mod = tatanaandatun; ENB authors).
