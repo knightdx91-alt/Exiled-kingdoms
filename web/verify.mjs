@@ -34,7 +34,18 @@ page.on('pageerror', e => errors.push(String(e)));
 await page.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle' });
 await page.waitForFunction(() => window.__EK && window.__EK.logical().w > 0, { timeout: 8000 });
 
-// --- Real map: the converted H6_bank .tmx should render real tiles on screen ---
+// --- Start flow: the title/character-creation overlay should appear, then quick-start
+//     past it into the seamless world (H10) for the rest of the checks. ---
+await page.waitForFunction(() => window.__EK.titleShown && window.__EK.titleShown(), { timeout: 8000 });
+const titleOk = await page.evaluate(() => window.__EK.titleShown());
+const started = await page.evaluate(() => window.__EK.quickStart({ pc: { gender: 'FEMALE', name: 'Aria' } }));
+console.log('start flow: titleShown', titleOk, '-> quickStart', started);
+const playerOk = await page.evaluate(() => {
+  const p = window.__EK.player();
+  return !!p && p.name === 'Aria' && p.gender === 'FEMALE';
+});
+
+// --- Real map: the converted .tmx should render real tiles on screen ---
 await page.waitForFunction(() => window.__EK.map && window.__EK.map().tiles > 0, { timeout: 8000 });
 const mapInfo = await page.evaluate(() => window.__EK.map());
 console.log('map rendered:', mapInfo);
@@ -85,6 +96,24 @@ const move = await page.evaluate(async () => {
 console.log('movement:', move);
 const moveOk = move.end && (move.end.c !== move.start.c || move.end.r !== move.start.r) &&
                move.walkingAnim.includes('walk') && move.restAnim.includes('idle');
+
+// --- Free-floating joystick: switch control, push the stick, hero moves + walks ---
+const stick = await page.evaluate(async () => {
+  window.__EK.setControl('joystick');
+  const start = window.__EK.heroCell();
+  window.__EK.stick(0.9, 0.2);                        // hold the stick right-ish
+  await new Promise(r => setTimeout(r, 700));
+  const midAnim = window.__EK.hero().anim;
+  window.__EK.stick(0, 0);                            // release
+  await new Promise(r => setTimeout(r, 150));
+  const end = window.__EK.heroCell();
+  window.__EK.setControl('tap');
+  return { start, end, midAnim, mode: window.__EK.control() };
+});
+console.log('joystick:', stick);
+const stickOk = stick.start && stick.end &&
+                (stick.start.c !== stick.end.c || stick.start.r !== stick.end.r) &&
+                stick.midAnim.includes('walk');
 
 // --- Map transitions: walk onto a portal and confirm the area actually changes ---
 const trans = await page.evaluate(async () => {
@@ -163,13 +192,15 @@ const saveOk = await page.evaluate(async () => {
   const n = await Saves.import(text);              // restore from the export
   const restored = await Saves.get('slot1');
   return got && got.data.hp === 42 && list.length >= 1 &&
-         n === 1 && restored && restored.data.gold === 1200;
+         n >= 1 && restored && restored.data.gold === 1200;   // >=1: game also autosaves
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && heroOk && lightOk && zoomOk && moveOk && transOk && cached.failed === 0 && offlineBooted && saveOk;
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk);
+const ok = errors.length === 0 && titleOk && playerOk && orientOk && mapOk && heroOk && lightOk &&
+           zoomOk && moveOk && stickOk && transOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — walking hero (tap-to-move, A* collision) across a 151-map world with portal transitions + day/night + pinch-zoom + 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions + day/night + pinch-zoom + 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

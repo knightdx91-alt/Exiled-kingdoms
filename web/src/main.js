@@ -12,6 +12,9 @@ import { loadHero, makeHero, setFacing } from './sprite.js';
 import { buildWalkable, cellToPx, pxToCell, findPath, facingFor,
          findPathWorld } from './move.js';
 import { Overworld } from './world.js';
+import { startFlow } from './char-create.js';
+import { Joystick } from './joystick.js';
+import { Saves } from './saves.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
@@ -19,7 +22,8 @@ const tintOf = (c) => (Math.round(c.r * 255) << 16) |
                       (Math.round(c.g * 255) << 8) | Math.round(c.b * 255);
 
 const ORIENTS = [0, 90, 180, 270];
-const START_MAP = 'H10';                            // Lannegar Valley (starting town)
+const TUTORIAL_MAP = 'I10_tutorial';                // Adaon's road — where a new game begins
+const DEV_START_MAP = 'H10';                        // Lannegar Valley — test/quick-start entry
 // Camera recovered from the base game's GameLevelRenderer (deobfuscated k0/a.java):
 // the phone camera is an OrthographicCamera with a 533x300 world-unit viewport and
 // gameplay zoom 1.0 — i.e. 533 world-px of width fill the screen. We reproduce that
@@ -96,6 +100,15 @@ class MapScene extends Phaser.Scene {
     this._pool = { floor: [], mid: [], roof: [] };
     this._active = { floor: [], mid: [], roof: [] };
     this._lastRefreshXY = null;
+
+    // Movement control scheme: 'tap' (tap-to-move A*) or 'joystick' (free-floating).
+    this.control = 'tap';
+    this.heroKey = 'hero';
+    this.charSpriteFile = 'assets/sprites/male_knight.png';
+    const root = document.getElementById('game-root');
+    this.joystick = new Joystick(root);
+    this._wireControlToggle();
+
     this.boot();
 
     // expose a tiny test hook so the automated browser check can verify input.
@@ -151,6 +164,25 @@ class MapScene extends Phaser.Scene {
         anim: this.hero.anims.getName(),
         frame: this.hero.anims.currentFrame && this.hero.anims.currentFrame.index,
       } : null,
+      // test helper: skip the title/creation UI and start a game immediately.
+      quickStart: async (opts = {}) => {
+        this._quickStarted = true;
+        document.querySelectorAll('.cc-overlay').forEach(o => o.remove());
+        if (!this.overworld) {
+          try { const g = await (await fetch('assets/world-grid.json')).json(); this.overworld = new Overworld(this, g); } catch {}
+        }
+        const pc = Object.assign(
+          { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1 },
+          opts.pc || {});
+        await this.startNewGame(pc, opts.map || DEV_START_MAP);
+        return { name: this._mapName, mode: this.mode };
+      },
+      player: () => this.player ? { ...this.player } : null,
+      control: () => this.control,
+      setControl: (m) => this.setControl(m),
+      // test helper: drive the free-floating joystick with a screen vector (-1..1).
+      stick: (x, y) => { this.joystick.active = (x || y) ? true : false; this.joystick.vec = { x, y }; },
+      titleShown: () => !!document.querySelector('.cc-overlay'),
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -237,7 +269,74 @@ class MapScene extends Phaser.Scene {
     } else {
       this._pinchPrev = null;
     }
-    this.stepHero(dtMs / 1000);
+    if (this.control === 'joystick') this.stepJoystick(dtMs / 1000);
+    else this.stepHero(dtMs / 1000);
+  }
+
+  // Swap control scheme. Tap-to-move uses Phaser pointer input; the joystick uses its
+  // own pointer layer (which, when enabled, sits over the canvas so taps don't also
+  // fire a move). Cancels any in-progress A* path when switching to the joystick.
+  setControl(mode) {
+    this.control = (mode === 'joystick') ? 'joystick' : 'tap';
+    this.joystick.enable(this.control === 'joystick');
+    if (this.control === 'joystick') { this.path = null; }
+    const btn = document.getElementById('control-toggle');
+    if (btn) btn.textContent = this.control === 'joystick' ? '🕹 Joystick' : '👆 Tap';
+    return this.control;
+  }
+
+  _wireControlToggle() {
+    const btn = document.getElementById('control-toggle');
+    if (!btn) return;
+    btn.onclick = () => this.setControl(this.control === 'tap' ? 'joystick' : 'tap');
+  }
+
+  // Free-floating-joystick movement: convert the stick's screen-space vector into a
+  // map-space direction (through the orientation transform), move the hero at
+  // HERO_SPEED scaled by stick magnitude, and slide along blocked axes. Facing/anim,
+  // camera, transitions and streaming behave exactly as in tap-to-move.
+  stepJoystick(dt) {
+    const h = this.hero;
+    if (!h || this._loading || !this.mode) return;
+    const v = this.joystick.vec;
+    const mag = Math.hypot(v.x, v.y);
+    if (mag < 0.001) {                                // idle
+      if (this._jMoving) { setFacing(h, this.heroKey, h.facing, h.flipX, false); this._jMoving = false; }
+      return;
+    }
+    // screen direction -> map direction (strip translation, keep rotation/scale)
+    const m = this.mapLayer.getWorldTransformMatrix();
+    const a = m.applyInverse(0, 0), b = m.applyInverse(v.x, v.y);
+    let dx = b.x - a.x, dy = b.y - a.y;
+    const l = Math.hypot(dx, dy) || 1; dx /= l; dy /= l;
+    const step = HERO_SPEED * dt * Math.min(1, mag);
+
+    const cellOf = (px, py) => this.mode === 'world'
+      ? this.overworld.pxToCell(px, py) : pxToCell(px, py, this._map);
+    const free = (px, py) => { const c = cellOf(px, py); return this.isWalkable(c.c, c.r); };
+
+    let nx = h.x + dx * step, ny = h.y + dy * step;
+    if (!free(nx, ny)) {                              // slide along whichever axis is clear
+      if (free(h.x + dx * step, h.y)) ny = h.y;
+      else if (free(h.x, h.y + dy * step)) nx = h.x;
+      else { if (this._jMoving) { setFacing(h, this.heroKey, h.facing, h.flipX, false); this._jMoving = false; } return; }
+    }
+    h.setPosition(nx, ny);
+    const face = facingFor(dx, dy);
+    setFacing(h, this.heroKey, face.name, face.flip, true);
+    this._jMoving = true;
+
+    const cell = cellOf(h.x, h.y);
+    this.heroCell = cell;
+    if (this.mode === 'world') this.onWorldStep();
+    this.checkTransition();
+    if (this.mode === 'world' && this._lastRefreshXY &&
+        Math.hypot(h.x - this._lastRefreshXY.x, h.y - this._lastRefreshXY.y) > REFRESH_STEP) {
+      this.streamVisible();
+    } else {
+      sortMid(this.planes.mid);
+    }
+    this.fitMap();
   }
 
   // Fire the transition whose cell the hero is standing on (portal to another area).
@@ -264,7 +363,7 @@ class MapScene extends Phaser.Scene {
     const step = HERO_SPEED * dt;
 
     const face = facingFor(dx, dy);
-    setFacing(h, 'hero', face.name, face.flip, true);
+    setFacing(h, this.heroKey, face.name, face.flip, true);
 
     if (dist <= step) {                              // reached this node
       h.setPosition(target.x, target.y);
@@ -275,7 +374,7 @@ class MapScene extends Phaser.Scene {
       if (this.path && this.pathIdx >= this.path.length) {  // arrived
         this.path = null;
         const f = facingFor(dx, dy);
-        setFacing(h, 'hero', f.name, f.flip, false);  // idle in last direction
+        setFacing(h, this.heroKey, f.name, f.flip, false);  // idle in last direction
       }
     } else {
       h.setPosition(h.x + (dx / dist) * step, h.y + (dy / dist) * step);
@@ -313,7 +412,8 @@ class MapScene extends Phaser.Scene {
     return this._hourOverride;
   }
 
-  // Boot: fetch the seamless-overworld grid, then enter the start area.
+  // Boot: fetch the seamless-overworld grid, then run the title -> character-creation
+  // flow. The chosen character begins in the tutorial (unless a test quick-starts).
   async boot() {
     try {
       const grid = await (await fetch('assets/world-grid.json')).json();
@@ -322,7 +422,22 @@ class MapScene extends Phaser.Scene {
       console.warn('world-grid load failed; interiors only:', err);
       this.overworld = null;
     }
-    await this.goArea(START_MAP, null);
+    if (this._quickStarted) return;                  // a test already started the game
+    const pc = await startFlow(document.getElementById('game-root'));
+    await this.startNewGame(pc);
+  }
+
+  // Apply a created character and drop into the tutorial. `pc` is the PlayerCreation
+  // (name/gender/charClass/portrait/difficulty). Persisted so the run survives reload.
+  async startNewGame(pc, startMap = TUTORIAL_MAP) {
+    this.player = pc;
+    this.heroKey = `hero_${pc.gender.toLowerCase()}`;
+    this.charSpriteFile = pc.gender === 'FEMALE'
+      ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
+    await this.goArea(startMap, startMap === TUTORIAL_MAP ? '0001' : null);
+    try {
+      await Saves.put('auto', { player: pc, area: startMap }, { name: pc.name, charClass: pc.charClass });
+    } catch {}
   }
 
   // Dispatch to the right loader: outdoor [worldmap] tiles stream seamlessly (world
@@ -347,8 +462,8 @@ class MapScene extends Phaser.Scene {
 
   async placeHeroAt(px, py) {
     if (!this.hero) {
-      await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
-      this.hero = makeHero(this, this.planes.mid, 'hero', px, py);
+      await loadHero(this, this.heroKey, this.charSpriteFile);
+      this.hero = makeHero(this, this.planes.mid, this.heroKey, px, py);
     } else {
       this.planes.mid.add(this.hero);              // re-parent into the fresh mid plane
       this.hero.setPosition(px, py);
