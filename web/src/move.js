@@ -36,6 +36,52 @@ export function pxToCell(px, py, map) {
   return { c: Math.round(X / TW + Y / TH), r: Math.round(Y / TH - X / TW) };
 }
 
+// --- Seamless overworld: global cell space -----------------------------------
+// In the streamed overworld every chunk is placed with renderMap({gc0,gr0}, offX:0),
+// so a GLOBAL cell (gc,gr) projects with the same raw iso and no per-map centering.
+// These are the world.js counterparts of cellToPx/pxToCell above.
+export function gCellToPx(gc, gr, TW, TH) {
+  return { x: (gc - gr) * (TW / 2) + TW / 2, y: (gc + gr) * (TH / 2) + TH };
+}
+export function gPxToCell(px, py, TW, TH) {
+  const X = px - TW / 2, Y = py - TH;
+  return { c: Math.round(X / TW + Y / TH), r: Math.round(Y / TH - X / TW) };
+}
+
+// 8-connected A* over an arbitrary walkable(gc,gr)->bool predicate, bounded to a
+// [minC..maxC]x[minR..maxR] global-cell box (the loaded chunk window). Same
+// no-corner-cutting rule as findPath. Returns a list of global cells or null.
+export function findPathWorld(walkable, bound, start, goal) {
+  const ok = (c, r) => c >= bound.minC && c <= bound.maxC &&
+                       r >= bound.minR && r <= bound.maxR && walkable(c, r);
+  if (!ok(goal.c, goal.r)) return null;
+  const kk = (c, r) => `${c},${r}`;
+  const open = [{ c: start.c, r: start.r, g: 0, f: 0, p: null }];
+  const seen = new Map();
+  const h = (c, r) => Math.hypot(c - goal.c, r - goal.r);
+  const N = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
+  let guard = 0;
+  while (open.length && guard++ < 60000) {
+    open.sort((a, b) => a.f - b.f);
+    const cur = open.shift();
+    if (cur.c === goal.c && cur.r === goal.r) {
+      const path = []; for (let n = cur; n; n = n.p) path.unshift({ c: n.c, r: n.r });
+      return path;
+    }
+    const k = kk(cur.c, cur.r);
+    if (seen.has(k) && seen.get(k) <= cur.g) continue;
+    seen.set(k, cur.g);
+    for (const [dc, dr] of N) {
+      const nc = cur.c + dc, nr = cur.r + dr;
+      if (!ok(nc, nr)) continue;
+      if (dc && dr && (!ok(cur.c + dc, cur.r) || !ok(cur.c, cur.r + dr))) continue;
+      const g = cur.g + (dc && dr ? 1.414 : 1);
+      open.push({ c: nc, r: nr, g, f: g + h(nc, nr), p: cur });
+    }
+  }
+  return null;
+}
+
 const key = (c, r, W) => r * W + c;
 
 // 8-connected A* over the walkable grid. No corner-cutting through blocked diagonals.

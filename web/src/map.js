@@ -67,11 +67,18 @@ export function applyAmbient(planes, color) {
 
 // Draw the map into three plane containers { floor, mid, roof }, tinted by `ambient`
 // {r,g,b}. Actors live in `mid` and are depth-sorted against scenery/objects by their
-// feet Y (see sortMid). Returns { tiles, width, height }.
-export function renderMap(scene, planes, map, ambient) {
+// feet Y (see sortMid). Returns { tiles, width, height, images }.
+//
+// `opts` lets a caller place the map into a SHARED global cell space (the seamless
+// overworld — see world.js): pass { gc0, gr0 } to offset every cell by that global
+// chunk origin, and offX:0 so projection is the raw global iso (no per-map centering).
+// Default (interior maps): gc0=gr0=0 and offX centers the diamond at x>=0.
+export function renderMap(scene, planes, map, ambient, opts = {}) {
   const { width: W, height: H, tilew: TW, tileh: TH } = map;
-  const offX = (H - 1) * (TW / 2);            // shift so the leftmost cell sits at x=0
+  const gc0 = opts.gc0 || 0, gr0 = opts.gr0 || 0;
+  const offX = opts.offX != null ? opts.offX : (H - 1) * (TW / 2);
   const tint = tintOf(ambient);
+  const images = [];
 
   const tsFor = (gid) => {                     // last tileset whose firstgid <= gid
     let found = map.tilesets[0];
@@ -90,17 +97,51 @@ export function renderMap(scene, planes, map, ambient) {
         const ts = tsFor(gid);
         const local = gid - ts.firstgid;
         if (local < 0 || local >= scene.textures.get(ts.key).frameTotal - 1) continue;
-        const px = (c - r) * (TW / 2) + offX + TW / 2;   // bottom-center of the cell
-        const py = (c + r) * (TH / 2) + TH;
+        const gc = gc0 + c, gr = gr0 + r;
+        const px = (gc - gr) * (TW / 2) + offX + TW / 2; // bottom-center of the cell
+        const py = (gc + gr) * (TH / 2) + TH;
         const img = scene.add.image(px, py, ts.key, local).setOrigin(0.5, 1).setTint(tint);
         plane.add(img);
+        images.push(img);
         count++;
       }
     }
   }
   const pxW = (W + H) * (TW / 2);
   const pxH = (W + H) * (TH / 2) + TH;
-  return { tiles: count, width: pxW, height: pxH };
+  return { tiles: count, width: pxW, height: pxH, images };
+}
+
+// Build lightweight tile RECORDS (no sprites) for a chunk placed at global cell
+// origin (gc0,gr0). Used by the seamless overworld, which renders only the records
+// near the camera via a sprite pool (see main.js refreshVisible) — so world size is
+// decoupled from draw cost. Each record: { plane, px, py, key, frame }.
+export function buildTiles(scene, map, gc0, gr0) {
+  const { width: W, height: H, tilew: TW, tileh: TH } = map;
+  const tsFor = (gid) => {
+    let found = map.tilesets[0];
+    for (const ts of map.tilesets) { if (ts.firstgid <= gid) found = ts; else break; }
+    return found;
+  };
+  const out = [];
+  for (const layer of map.layers) {
+    if (!layer.visible) continue;
+    const plane = planeOf(layer.name);
+    for (let r = 0; r < H; r++)
+      for (let c = 0; c < W; c++) {
+        const gid = layer.data[r * W + c];
+        if (!gid) continue;
+        const ts = tsFor(gid);
+        const frame = gid - ts.firstgid;
+        if (frame < 0 || frame >= scene.textures.get(ts.key).frameTotal - 1) continue;
+        const gc = gc0 + c, gr = gr0 + r;
+        out.push({ plane,
+          px: (gc - gr) * (TW / 2) + TW / 2,
+          py: (gc + gr) * (TH / 2) + TH,
+          key: ts.key, frame });
+      }
+  }
+  return out;
 }
 
 // Depth-sort the mid plane (scenery/objects + actors) by feet Y so things lower on

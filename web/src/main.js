@@ -9,9 +9,14 @@
 
 import { loadMap, renderMap, sortMid, ambientColor, applyAmbient } from './map.js';
 import { loadHero, makeHero, setFacing } from './sprite.js';
-import { buildWalkable, cellToPx, pxToCell, findPath, facingFor } from './move.js';
+import { buildWalkable, cellToPx, pxToCell, findPath, facingFor,
+         findPathWorld } from './move.js';
+import { Overworld } from './world.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
+
+const tintOf = (c) => (Math.round(c.r * 255) << 16) |
+                      (Math.round(c.g * 255) << 8) | Math.round(c.b * 255);
 
 const ORIENTS = [0, 90, 180, 270];
 const START_MAP = 'H10';                            // Lannegar Valley (starting town)
@@ -25,6 +30,14 @@ const EK_VIEWPORT_W = 533;
 // past it). You can pinch IN up to ZOOM_MAX_IN. Larger factor = more zoomed in.
 const ZOOM_MIN = 1.0;
 const ZOOM_MAX_IN = 1.75;
+
+// Seamless-overworld tile culling: only tiles within the camera view (+ these px
+// margins) are drawn from a sprite pool, so draw cost is bounded by the viewport, not
+// by how many chunks are streamed in. TALL covers tiles taller than the base diamond
+// (walls/trees, anchored at their feet) poking down from above the top edge.
+const TILE_MARGIN = 96;
+const TILE_TALL = 224;
+const REFRESH_STEP = 64;              // re-cull after the hero moves this many world px
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
@@ -76,9 +89,14 @@ class MapScene extends Phaser.Scene {
 
     this.world.add([this.grid, this.mapLayer, this.title, this.token, this.tokenLabel, this.hud]);
 
-    // Load + render the first real game map. Async and self-contained: if it fails
-    // (e.g. assets missing) the prototype still boots with the placeholder grid.
-    this.loadArea(START_MAP, null);
+    // Load the seamless overworld grid, then enter the start area. Async and
+    // self-contained: if it fails the prototype still boots with the placeholder grid.
+    this.mode = null;                               // 'world' (streamed) | 'interior'
+    // Sprite pool for the culled overworld renderer (world mode only).
+    this._pool = { floor: [], mid: [], roof: [] };
+    this._active = { floor: [], mid: [], roof: [] };
+    this._lastRefreshXY = null;
+    this.boot();
 
     // expose a tiny test hook so the automated browser check can verify input.
     // Merge (don't overwrite) so the SW/cache fields set at module load survive.
@@ -96,17 +114,19 @@ class MapScene extends Phaser.Scene {
         return hits.includes(this.token);
       },
       map: () => ({
-        name: this._mapName, tiles: this._mapTiles || 0,
+        name: this._mapName, tiles: this._mapTiles || 0, mode: this.mode,
+        chunks: this.overworld ? [...this.overworld.loaded.keys()] : [],
         midCount: this.planes.mid.list.length,
         heroIndex: this.hero ? this.planes.mid.list.indexOf(this.hero) : -1,
-        transitions: (this._map && this._map.transitions) || [],
+        transitions: this.currentTransitions(),
       }),
-      // test helper: path the hero onto the first transition and let it fire
+      // test helper: path the hero onto the first transition (an arch to an interior)
+      // and let it fire.
       gotoTransition: () => {
-        const t = this._map && this._map.transitions && this._map.transitions[0];
+        const t = this.currentTransitions()[0];
         if (!t) return null;
         const goal = this.nearestWalkable(t.c, t.r);
-        const p = findPath(this.walk, this._map.width, this._map.height, this.heroCell, goal);
+        const p = this.planPath(this.heroCell, goal);
         if (p && p.length > 1) { this.path = p; this.pathIdx = 1; }
         return { area: t.area };
       },
@@ -121,9 +141,8 @@ class MapScene extends Phaser.Scene {
       moving: () => !!this.path,
       // test helper: path the hero to a cell offset from its current one
       walkBy: (dc, dr) => {
-        const W = this._map.width;
         const goal = this.nearestWalkable(this.heroCell.c + dc, this.heroCell.r + dr);
-        const p = findPath(this.walk, W, this._map.height, this.heroCell, goal);
+        const p = this.planPath(this.heroCell, goal);
         if (p && p.length > 1) { this.path = p; this.pathIdx = 1; }
         return goal;
       },
@@ -157,24 +176,54 @@ class MapScene extends Phaser.Scene {
     this.relayout();
   }
 
-  nearestWalkable(c0, r0) {
+  // Is cell (c,r) walkable? World mode: global cell via the streamer. Interior: local grid.
+  isWalkable(c, r) {
+    if (this.mode === 'world') return this.overworld.walkable(c, r);
     const W = this._map.width, H = this._map.height;
-    for (let rad = 0; rad < Math.max(W, H); rad++)
+    return c >= 0 && r >= 0 && c < W && r < H && !!this.walk[r * W + c];
+  }
+
+  nearestWalkable(c0, r0) {
+    const span = this.mode === 'world'
+      ? Math.max(this.overworld.CW, this.overworld.CH)
+      : Math.max(this._map.width, this._map.height);
+    for (let rad = 0; rad < span; rad++)
       for (let dc = -rad; dc <= rad; dc++)
         for (let dr = -rad; dr <= rad; dr++) {
           const c = c0 + dc, r = r0 + dr;
-          if (c >= 0 && r >= 0 && c < W && r < H && this.walk[r * W + c]) return { c, r };
+          if (this.isWalkable(c, r)) return { c, r };
         }
     return { c: c0, r: r0 };
+  }
+
+  // Plan a path from start->goal in the current mode's cell space.
+  planPath(start, goal) {
+    if (this.mode === 'world')
+      return findPathWorld((c, r) => this.overworld.walkable(c, r),
+                           this.overworld.bound(), start, goal);
+    return findPath(this.walk, this._map.width, this._map.height, start, goal);
+  }
+
+  // Transitions (arches/doors) reachable from where the hero stands, in the current
+  // mode's cell space. Outdoor tiles join seamlessly, so world-mode transitions are
+  // only the arches into towns/caves for the chunk the hero is in.
+  currentTransitions() {
+    if (this.mode === 'world' && this.overworld && this._curChunk)
+      return this.overworld.transitionsInGlobal(this._curChunk.col, this._curChunk.row);
+    return (this._map && this._map.transitions) || [];
   }
 
   // Path the hero from its cell to the map cell under screen point (sx,sy).
   moveTo(sx, sy) {
     const local = this.mapLayer.getWorldTransformMatrix().applyInverse(sx, sy);
-    const goal = pxToCell(local.x, local.y, this._map);
-    const W = this._map.width, H = this._map.height;
-    if (goal.c < 0 || goal.r < 0 || goal.c >= W || goal.r >= H) return;
-    const path = findPath(this.walk, W, H, this.heroCell, goal);
+    const goal = this.mode === 'world'
+      ? this.overworld.pxToCell(local.x, local.y)
+      : pxToCell(local.x, local.y, this._map);
+    if (this.mode !== 'world') {
+      const W = this._map.width, H = this._map.height;
+      if (goal.c < 0 || goal.r < 0 || goal.c >= W || goal.r >= H) return;
+    }
+    const path = this.planPath(this.heroCell, goal);
     if (path && path.length > 1) { this.path = path; this.pathIdx = 1; }
   }
 
@@ -195,11 +244,11 @@ class MapScene extends Phaser.Scene {
   // A lock set on arrival prevents the return portal (next to where you spawn) from
   // firing immediately — you must step off it first.
   checkTransition() {
-    if (this._loading || !this._map || !this._map.transitions) return;
-    const t = this._map.transitions.find(t =>
+    if (this._loading) return;
+    const t = this.currentTransitions().find(t =>
       Math.abs(t.c - this.heroCell.c) <= 1 && Math.abs(t.r - this.heroCell.r) <= 1);
     if (this._transLock) { if (!t) this._transLock = false; return; }
-    if (t && t.area) { this.path = null; this.loadArea(t.area, t.entry); }
+    if (t && t.area) { this.path = null; this.goArea(t.area, t.entry); }
   }
 
   // Advance the hero along its path; update facing, camera follow, and depth order.
@@ -207,7 +256,9 @@ class MapScene extends Phaser.Scene {
     const h = this.hero;
     if (!h || !this.path || this._loading) return;
     const next = this.path[this.pathIdx];
-    const target = cellToPx(next.c, next.r, this._map);
+    const target = this.mode === 'world'
+      ? this.overworld.cellToPx(next.c, next.r)
+      : cellToPx(next.c, next.r, this._map);
     const dx = target.x - h.x, dy = target.y - h.y;
     const dist = Math.hypot(dx, dy);
     const step = HERO_SPEED * dt;
@@ -219,7 +270,8 @@ class MapScene extends Phaser.Scene {
       h.setPosition(target.x, target.y);
       this.heroCell = { c: next.c, r: next.r };
       this.pathIdx++;
-      this.checkTransition();                        // stepped onto a portal?
+      if (this.mode === 'world') this.onWorldStep();  // stream chunks as he crosses
+      this.checkTransition();                        // stepped onto an arch/door?
       if (this.path && this.pathIdx >= this.path.length) {  // arrived
         this.path = null;
         const f = facingFor(dx, dy);
@@ -228,13 +280,21 @@ class MapScene extends Phaser.Scene {
     } else {
       h.setPosition(h.x + (dx / dist) * step, h.y + (dy / dist) * step);
     }
-    sortMid(this.planes.mid);                         // keep depth correct as he moves
+    // In world mode, re-cull the visible tiles once the hero has drifted far enough
+    // (also re-sorts mid). Otherwise just keep the mid depth order correct.
+    if (this.mode === 'world' && this._lastRefreshXY &&
+        Math.hypot(h.x - this._lastRefreshXY.x, h.y - this._lastRefreshXY.y) > REFRESH_STEP) {
+      this.refreshVisible();
+    } else {
+      sortMid(this.planes.mid);
+    }
     this.fitMap();                                   // camera follows the hero
   }
 
   setZoom(f) {
     this.zoomFactor = Phaser.Math.Clamp(f, ZOOM_MIN, ZOOM_MAX_IN);
     this.fitMap();
+    this.refreshVisible();                            // zoom changes the visible tile set
     return this.zoomFactor;
   }
 
@@ -253,16 +313,139 @@ class MapScene extends Phaser.Scene {
     return this._hourOverride;
   }
 
-  // Load + render an area, placing the hero at entry point `entryId` (or the map
-  // centre). Reusable for the start map and every transition. The hero persists
-  // across maps; only tiles are cleared.
-  async loadArea(name, entryId) {
+  // Boot: fetch the seamless-overworld grid, then enter the start area.
+  async boot() {
+    try {
+      const grid = await (await fetch('assets/world-grid.json')).json();
+      this.overworld = new Overworld(this, grid);
+    } catch (err) {
+      console.warn('world-grid load failed; interiors only:', err);
+      this.overworld = null;
+    }
+    await this.goArea(START_MAP, null);
+  }
+
+  // Dispatch to the right loader: outdoor [worldmap] tiles stream seamlessly (world
+  // mode); everything else (towns, buildings, caves) is a discrete interior reached
+  // through an arch/door.
+  goArea(name, entryId) {
+    if (this.overworld && this.overworld.has(name)) return this.enterWorld(name, entryId);
+    return this.enterInterior(name, entryId);
+  }
+
+  // Tear down whatever is currently rendered, keeping the persistent hero. Pooled
+  // overworld sprites are returned to the pool (not destroyed) so they can be reused;
+  // everything else (interior tiles) is destroyed.
+  clearScene() {
+    if (this.overworld) this.overworld.clear();
+    for (const key of ['floor', 'mid', 'roof']) {
+      for (const im of this._active[key]) { this.planes[key].remove(im); im.setVisible(false); this._pool[key].push(im); }
+      this._active[key].length = 0;
+      this.planes[key].list.slice().forEach(ch => { if (ch !== this.hero) ch.destroy(); });
+    }
+  }
+
+  async placeHeroAt(px, py) {
+    if (!this.hero) {
+      await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
+      this.hero = makeHero(this, this.planes.mid, 'hero', px, py);
+    } else {
+      this.planes.mid.add(this.hero);              // re-parent into the fresh mid plane
+      this.hero.setPosition(px, py);
+    }
+  }
+
+  // Enter the SEAMLESS overworld at chunk `name`, dropping the hero at entry `entryId`
+  // (local cell of that chunk) translated into global space, then stream the 3x3
+  // window around him. No load screen occurs again until he steps through an arch.
+  async enterWorld(name, entryId) {
     try {
       this._loading = true;
+      this.mode = 'world';
       this.path = null; this.pathIdx = 0;
-      // clear tiles from all planes, keep the hero
-      for (const key of ['floor', 'mid', 'roof'])
-        this.planes[key].list.slice().forEach(ch => { if (ch !== this.hero) ch.destroy(); });
+      this.clearScene();
+
+      const g = this.overworld.grid[name];
+      this._curChunk = { col: g.col, row: g.row };
+      await this.overworld.ensureWindow(g.col, g.row, this.currentHour());
+
+      const ch = this.overworld.loaded.get(name);
+      this._map = ch.map; this._mapName = name;
+      const e = (entryId != null && ch.map.entries && ch.map.entries[entryId])
+        || { c: Math.floor(ch.map.width / 2), r: Math.floor(ch.map.height / 2) };
+      const { gc0, gr0 } = this.overworld.originOf(g.col, g.row);
+      this.heroCell = this.nearestWalkable(e.c + gc0, e.r + gr0);
+      this._transLock = true;
+      this.mapBounds = { width: 1, height: 1 };
+      this.grid.setVisible(false);
+
+      const hp = this.overworld.cellToPx(this.heroCell.c, this.heroCell.r);
+      await this.placeHeroAt(hp.x, hp.y);
+      this._ambient = ambientColor(ch.map, this.currentHour());
+      this.fitMap();
+      this.refreshVisible();                          // draw the tiles around the hero
+      this._loading = false;
+    } catch (err) {
+      console.warn('world enter failed:', name, err);
+      this._loading = false;
+    }
+  }
+
+  // The hero moved a cell in world mode: if he crossed into a new chunk, make it the
+  // current chunk (for ambient/transitions) and re-stream the window around it.
+  onWorldStep() {
+    const { col, row } = this.overworld.chunkOfGlobal(this.heroCell.c, this.heroCell.r);
+    if (this._curChunk && col === this._curChunk.col && row === this._curChunk.row) return;
+    const name = this.overworld.nameAt(col, row);
+    if (!name) return;                               // stepped toward an off-grid edge
+    this._curChunk = { col, row };
+    const ch0 = this.overworld.loaded.get(name);
+    if (ch0) { this._map = ch0.map; this._mapName = name; }
+    this.overworld.ensureWindow(col, row, this.currentHour()).then(() => this.refreshVisible());
+  }
+
+  // Cull-render the overworld: draw only pooled tile sprites whose feet fall inside the
+  // camera view (+margins) around the hero. Bounds draw cost to the viewport regardless
+  // of how many chunks are streamed in. Also depth-sorts the visible mid tiles + hero.
+  refreshVisible() {
+    if (this.mode !== 'world' || !this.overworld || !this.hero) return;
+    const z = (Math.max(this.LW, this.LH) / EK_VIEWPORT_W) * this.zoomFactor;
+    const halfW = (this.LW / 2) / z + TILE_MARGIN;
+    const halfH = (this.LH / 2) / z + TILE_MARGIN;
+    const cx = this.hero.x, cy = this.hero.y;
+    const minX = cx - halfW, maxX = cx + halfW;
+    const minY = cy - halfH - TILE_TALL, maxY = cy + halfH;
+
+    for (const key of ['floor', 'mid', 'roof']) {      // release last frame's sprites
+      for (const im of this._active[key]) { this.planes[key].remove(im); this._pool[key].push(im); }
+      this._active[key].length = 0;
+    }
+    const tint = tintOf(this._ambient || { r: 0.93, g: 0.93, b: 0.93 });
+    let n = 0;
+    for (const ch of this.overworld.loaded.values())
+      for (const t of ch.tiles) {
+        if (t.px < minX || t.px > maxX || t.py < minY || t.py > maxY) continue;
+        let im = this._pool[t.plane].pop();
+        if (!im) im = this.add.image(0, 0, t.key, t.frame).setOrigin(0.5, 1);
+        im.setTexture(t.key, t.frame).setPosition(t.px, t.py).setTint(tint).setVisible(true);
+        this.planes[t.plane].add(im);
+        this._active[t.plane].push(im);
+        n++;
+      }
+    this._mapTiles = n;
+    sortMid(this.planes.mid);
+    this._lastRefreshXY = { x: cx, y: cy };
+  }
+
+  // Load + render a discrete INTERIOR (town/building/cave), placing the hero at entry
+  // `entryId` (or the map centre). The hero persists across maps; only tiles clear.
+  async enterInterior(name, entryId) {
+    try {
+      this._loading = true;
+      this.mode = 'interior';
+      this._curChunk = null;
+      this.path = null; this.pathIdx = 0;
+      this.clearScene();
 
       const map = await loadMap(this, name);
       this._map = map; this._mapName = name;
@@ -280,13 +463,7 @@ class MapScene extends Phaser.Scene {
       this._transLock = true;                        // don't bounce off the return portal
       const hp = cellToPx(this.heroCell.c, this.heroCell.r, map);
 
-      if (!this.hero) {
-        await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
-        this.hero = makeHero(this, this.planes.mid, 'hero', hp.x, hp.y);
-      } else {
-        this.planes.mid.add(this.hero);            // re-parent into the fresh mid plane
-        this.hero.setPosition(hp.x, hp.y);
-      }
+      await this.placeHeroAt(hp.x, hp.y);
       sortMid(this.planes.mid);
       applyAmbient(this.planes, ambient);
       this.fitMap();
@@ -357,6 +534,7 @@ class MapScene extends Phaser.Scene {
       this.tokenLabel.setPosition(this.LW / 2, this.LH / 2);
     }
     this.fitMap();
+    this.refreshVisible();                            // viewport changed -> re-cull tiles
     this.refreshHud();
   }
 
