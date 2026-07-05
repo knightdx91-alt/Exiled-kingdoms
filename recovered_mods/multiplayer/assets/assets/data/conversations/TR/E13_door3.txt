@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](это магическая дверь, она окрыта)[]	port.	4	"VariableEqual#E13_grate8,2"		
+1	Q	[BLUE](это магическая дверь, её никак не получается открыть без ключа, чтобы войти внутрь)[]	port.	2			
+2	A	Попробывать открыть с помощью подходящего ключа.	port.	3	PlayerHasItem#10633		
+2	A	Уйти от неё.	port.	0		
+3	Q	[BLUE](ключ без проблем отпирает замок, открывая магическую дверь)[]	port.	4		"SetVariable#E13_grate8,2;LoseItem#10633"		
+4	A	Вoйти.	port.	0		Travel#E13_tower4,2
+4	A	Остаться.	port.	0		

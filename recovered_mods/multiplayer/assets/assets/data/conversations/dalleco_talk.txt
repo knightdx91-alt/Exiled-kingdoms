@@ -1,0 +1,43 @@
+﻿﻿﻿﻿﻿﻿﻿﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	*yawn* Oh... another adventurer... I was just about to take a nap. But since you're here... I might have something for you. A little game of wits. If you can handle it, that is.	*bostezo* Oh... otro aventurero... Estaba a punto de echarme una siesta. Pero ya que estás aquí... Puede que tenga algo para ti. Un jueguito de ingenio. Si es que puedes con ello.	2		
+2	A	Alright, I'll play your game. Ask your questions.	De acuerdo, jugaré tu juego. Haz tus preguntas.	3		
+2	A	I don't have time for this. (Leave)	No tengo tiempo para esto. (Salir)	0		
+3	Q	Let's see... First question. What is the name of the first major city an adventurer visits in Varsilia?	Veamos... Primera pregunta. ¿Cómo se llama la primera gran ciudad que un aventurero visita en Varsilia?	4		
+4	A	Kingsbridge.	Kingsbridge.	5	PlayerHasGold#200	
+4	A	New Garand.	New Garand.	6	PlayerHasGold#200	
+4	A	Freetown.	Freetown.	6	PlayerHasGold#200	
+4	A	I'd rather not answer. (Leave)	Prefiero no responder. (Salir)	0		
+5	Q	Meh... correct. I could have figured that out too, you know. I just... didn't feel like it. Next question!	Meh... correcto. Yo también lo sabría, por supuesto. Solo... no tenía ganas. ¡Siguiente pregunta!	7	VariableSmaller#dalleco_quiz,2	SetVariable#dalleco_quiz,2
+5	Q	You already answered this one. Let's move on.	Ya respondiste esta. Sigamos.	7	VariableEquals#dalleco_quiz,2	
+6	Q	Wrong! Ha! If you can leave it for later, then leave it for later, eh? That'll cost you [RED]200 gold[] for wasting my time. *yawn*	¡Mal! Ja! Si puedes dejarlo para después, déjalo para después, ¿no? Eso te costará [RED]200 monedas[] por hacerme perder el tiempo. *bostezo*	7		LoseGold#200
+7	Q	Second question. How many character classes exist in this realm? Warriors, Rogues...	Segunda pregunta. ¿Cuántas clases de personaje existen en este reino? Guerreros, Pícaros...	8		
+8	A	Four: Warrior, Rogue, Cleric, and Mage.	Cuatro: Guerrero, Pícaro, Clérigo y Mago.	9	PlayerHasGold#300	
+8	A	Three: Warrior, Rogue, and Mage.	Tres: Guerrero, Pícaro y Mago.	10	PlayerHasGold#300	
+8	A	Five: Warrior, Rogue, Cleric, Mage, and Ranger.	Cinco: Guerrero, Pícaro, Clérigo, Mago y Patrullero.	10	PlayerHasGold#300	
+8	A	I'd rather not answer. (Leave)	Prefiero no responder. (Salir)	0		
+9	Q	Tch... right again. Don't get cocky. I knew that one before you were even born.	Tch... acertaste otra vez. No te las des de listo. Yo ya sabía eso antes de que nacieras.	11	VariableSmaller#dalleco_quiz,4	SetVariable#dalleco_quiz,4
+9	Q	Old news. Next!	Vieja noticia. ¡Siguiente!	11	VariableEquals#dalleco_quiz,4	
+10	Q	Wrong again! If you can leave it for later, then leave it for later! That'll be [RED]300 gold[]. *scratches ear lazily*	¡Otra vez mal! Si puedes dejarlo para después, ¡déjalo para después! Son [RED]300 monedas[]. *se rasca la oreja perezosamente*	11		LoseGold#300
+11	Q	Third question. What is the religion worshipped in most Varsilian temples?	Tercera pregunta. ¿Cuél es la religión que se adora en la mayoría de los templos de Varsilia?	12		
+12	A	The Three.	Los Tres.	13	PlayerHasGold#400	
+12	A	The Holy Light.	La Luz Sagrada.	14	PlayerHasGold#400	
+12	A	The Old Gods.	Los Dioses Antiguos.	14	PlayerHasGold#400	
+12	A	I'd rather not answer. (Leave)	Prefiero no responder. (Salir)	0		
+13	Q	*sigh* Yeah, yeah... The Three. Even I go to temple sometimes. When I'm not sleeping, which is rare.	*suspiro* Sí, sí... Los Tres. Hasta yo voy al templo a veces. Cuando no estoy durmiendo, que es raro.	15	VariableSmaller#dalleco_quiz,6	SetVariable#dalleco_quiz,6
+13	Q	We've been through this. Moving on.	Ya pasamos por esto. Sigamos.	15	VariableEquals#dalleco_quiz,6	
+14	Q	Nope! If you can leave it for later, then leave it for later! [RED]400 gold[], please. *yawns loudly*	¡No! Si puedes dejarlo para después, ¡déjalo para después! [RED]400 monedas[], por favor. *bosteza ruidosamente*	15		LoseGold#400
+15	Q	Fourth question. What kind of creatures infest the swamps known as the Trollfens?	Cuarta pregunta. ¿Qué tipo de criaturas infestan los pantanos conocidos como Trollfens?	16		
+16	A	Trolls, obviously.	Trolls, obviamente.	17	PlayerHasGold#500	
+16	A	Goblins.	Goblins.	18	PlayerHasGold#500	
+16	A	Undead.	No-muertos.	18	PlayerHasGold#500	
+16	A	I'd rather not answer. (Leave)	Prefiero no responder. (Salir)	0		
+17	Q	*rolls eyes* Obviously. The name kind of gives it away, doesn't it? Even for someone as lazy as me.	*pone los ojos en blanco* Obviamente. El nombre lo dice todo, ¿no? Incluso para alguien tan vago como yo.	19	VariableSmaller#dalleco_quiz,8	SetVariable#dalleco_quiz,8
+17	Q	Done that one already. Last question!	Ya hicimos esa. ¡última pregunta!	19	VariableEquals#dalleco_quiz,8	
+18	Q	Ha! Wrong! If you can leave it for later, then leave it for later! [RED]500 gold[] from your pocket to mine. *smirks*	¡Ja! ¡Mal! Si puedes dejarlo para después, ¡déjalo para después! [RED]500 monedas[] de tu bolsillo al mío. *sonríe*	19		LoseGold#500
+19	Q	Last question. What is the capital city of the Kingdom of Varsilia?	última pregunta. ¿Cuél es la capital del Reino de Varsilia?	20		
+20	A	New Garand.	New Garand.	21	PlayerHasGold#600	
+20	A	Kingsbridge.	Kingsbridge.	22	PlayerHasGold#600	
+20	A	Nivarian.	Nivarian.	22	PlayerHasGold#600	
+20	A	I'd rather not answer. (Leave)	Prefiero no responder. (Salir)	0		
+21	Q	Fine, fine... you're smarter than you look. Now leave me alone, I need my beauty sleep. *yawn* Come back when you have more gold to lose.	Bien, bien... eres más listo de lo que pareces. Ahora déjame en paz, necesito mi sueño de belleza. *bostezo* Vuelve cuando tengas más oro que perder.	0		SetVariable#dalleco_quiz,10
+22	Q	Wrong! Last chance wasted! If you can leave it for later, then leave it for later! [RED]600 gold[]! Now get lost and let me sleep. *yawn*	¡Mal! ¡última oportunidad desperdiciada! Si puedes dejarlo para después, ¡déjalo para después! [RED]600 monedas[]! Ahora vete y déjame dormir. *bostezo*	0		LoseGold#600

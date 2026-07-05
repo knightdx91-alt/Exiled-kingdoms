@@ -1,0 +1,41 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Чтож, похоже, нам всё-таки удалось вернуться в свои земли. Рад был с тобой познакомиться, без тебя мне врятли удалось бы выбраться из того места!	¿po?	50	"VariableEqual#lost_foreign_lands,80"		
+1	Q	Я тебя слушаю, друг.	port.	11	"VariableGreater#lost_foreign_lands,99;NPCisFollower#"	
+1	Q	Я тебя слушаю, друг.	port.	8	"NPCisFollower#"	
+1	Q	[BLUE](ваш знакомый опытный на вид воин-маг)[] Рад тебя снова видеть, тебе нужна моя помощь, как волшебного рыцаря?	port?	9		
+8	A	Ничего, давайте двигаться дальше.	Nada, continuemos.	0		
+8	A	Давай поговорим о чём-нибудь.	Quiero que hablemos de algo.	19		
+8	A	У меня есть для тебя боевые указания.	Quiero darte órdenes de combate.	91		
+9	A	Да, буду рад сражаться вместе с тобой!	port.	16		
+9	A	Сейчас мне не нужна твоя помощь.	port.	10		
+10	Q	Я буду в Айсмите, если тебе понадобится моя помощь.	port.	0		
+11	A	Ничего, давайте двигаться дальше.	Nada, continuemos.	0		
+11	A	Мне сейчас не нужна твоя компания. Спасибо за помощь, увидемся снова позже.	port.	12		"NPCStopFollowing#;NPCDespawn#damian"
+11	A	Давай поговорим о чём-нибудь.	Quiero que hablemos de algo.	19		
+11	A	У меня есть для тебя боевые указания.	Quiero darte órdenes de combate.	91		
+12	Q	Ты найдёшь меня в Айсмите, если тебе снова понадобится моя помощь.	port.	0		
+16	Q	Я был бы очень рада присоединиться к тебе, но у тебя уже есть кто-то в компании.	port.	0	HasCompanion#	
+16	Q	С нашей силой и магией - мы непобедимы!	port.	0		NPCFollow#
+19	Q	О чём именно?	port.	20		
+20	A	Что ты можешь сказать об этом месте?	¿Qué puedes decirme de este lugar?	40		
+20	A	Эй, а ты можешь воспользоваться своей магией?	port.	41		
+20	A	Давай, просто, продолжим.	Continuemos.	0		
+40	Q	Я, правда, плохо знаю это место.	En realidad no se mucho sobre este lugar.	0		
+41	Q	Конечто, а что именно тебе нужно?	port	42		
+42	A	Телепортируй нас.	port.	0		Teleport#
+50	A	Я тоже рад этому. И я тебе сразу не сообщил, что твои поиски начал с обнаружения тела волшебницы, у которой была запись о тебе и плаще, который она хотела вернуть тебе.	port.	51		
+51	Q	Ох, бедняжка, как жаль её, я просил её не следовать за мной, но, она постоянно не прислушивалась к моим словам. Теперь это не исправить, но мы всё ещё можем найти негодяя-волшебника, из-за которого пострадали, и покарать его.	port.	52		
+52	A	Неприменно.	port.	53		
+53	Q	 Я вернусь в Айсмист, если тебе понадобится моя помощь, я буду там.	¿po?			"GainXP#950;IncVariable#REP_thuram,6;SetVariable#lost_foreign_lands,100;NPCStopFollowing#;NPCDespawn#damian"
+91	Q	Конечно, что ты хочешь, чтоб я сделал?	Claro, ¿qué quieres que haga?	92		
+92	A	Я хочу, что бы ты подождал меня здесь.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	Я хочу, что бы ты снова следовал за мной.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	Я хочу объяснить тебе когда атаковать врага.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Неважно.	No importa.	0		
+93	Q	Хорошо, как на счёт этого?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Никогда никого не атакуй. Даже для самозащиты. Все бои я проведу самолично.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Атакуй только врагов, что атаковали тебя первыми.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Атакуй только врагов, которые находятся близко к тебе.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Атакуй всех врагов по мере видимости.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Понял.	Entendido.	0		
+96	Q	Понятно, но я не смогу стоять тут вечно. Если пропадёшь надолго, то наверное я пойду на твои поиски.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		

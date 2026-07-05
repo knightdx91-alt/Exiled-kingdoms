@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="72" height="72" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="70"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Nilorth Cave"/>
+  <property name="name_ES" value="Cueva Nilorth"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="cave_snow.tsx"/>
+ <tileset firstgid="265" source="natural_grounds.tsx"/>
+ <tileset firstgid="393" source="dungeon.tsx"/>
+ <tileset firstgid="633" source="grounds_indoor.tsx"/>
+ <tileset firstgid="793" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="72" height="72" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAL4GUQAAAQ==
+  </data>
+ </layer>
+ <layer name="water" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAL4GUQAAAQ==
+  </data>
+ </layer>
+ <layer name="ground" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJzt12EKwjAMhuHR+1+0zXoHf7jAa9wFGt4HZFM3oR9JOq9LkiRJkiRJkiRJkiRJkqRz3OO6YnyP8znfeL+e4/2c89r8fOO8m8DaMoP1ktd8joFMApntpvksrG1h7avks0p+C5kxy25y3YF62CWz7KWaZb4Cv9ENs2G/ZBasH+bDzzK/3TCfPf77hzN3lazu8T+T8pxZcqafnNssa8l1sneYWeaU99TZHi/Xnjy3az9x3fwu+499xXyY28R1ec+p6ppYO8yF/VfvYQ1mVrW2TsW1cZ5kBjzWmZM1UvNgX+X7U9Xn5Bi/c5l7G+uFs5o11k3tJ9ZFILf6H4N7Hp8DumH/cB9nvXD+8L9EnTEdnw/nSy1wjrB+uKdtZMK9rJtV1lr3pPoMyJqKl2slSZIkSZIkSZLUwwe2CzGI
+  </data>
+ </layer>
+ <layer name="ground2" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAL4GUQAAAQ==
+  </data>
+ </layer>
+ <layer name="scenery" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAL4GUQAAAQ==
+  </data>
+ </layer>
+ <layer name="objects" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJzt2c1Og0AUhmE6V+LtFP9/u9BEl9qNtdfu0oUQaRy+DNOpDOoc3ic5CW2AlK/MAYaqAgAAAAAAAKZ156rqrKu6q4233NapC29Ty3arwPe679qFf8d/tUz4vZrP0DbnhR17ipz53BvM5yXhmN7IJ2rO50/K+HqK5POx+F62mI+OnZBHWee2+XzR1IPUs8F8XhOO6TJxfFnUngsne0oznFM+KTQP7ddzl3r9mivyidN7JMZXH/nEMb7iyCdO8yCfPu0/5NMXmj/cNrX25gj95Y03b7j15g399XbrrAxkrc8X+jw/xrGBfHR86fP8GBby0fGlz/NjWMhHz592zuh9kaeG8sn5H0xNr1cpc0aprt1Xv193tevnVwXnk7M/T7G/36ZzsPv689GBx5uz3/8FPX9y94aSek2IXr9y9p8bF57jLSmz0PxGruvX0DvpkvrzlPfPFt6Zaf/J2U8t5KNy9gaL+Qy9P/1JWXznCgAAAAAAAAAAMFefB3ZhTw==
+  </data>
+ </layer>
+ <layer name="roofs" width="72" height="72">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAL4GUQAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="data" width="72" height="72">
+  <object name="stairs down" type="transition" x="2262" y="1268" width="43" height="115">
+   <properties>
+    <property name="area_id" value="D8"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="2206" y="1319">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="992" y="1088">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="conditions" value="VariableLower#odd_couple,30"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="1024" y="1088">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="conditions" value="VariableLower#odd_couple,30"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="statue conv" type="conversation" gid="5" x="1008" y="1107">
+   <properties>
+    <property name="conditions" value="variableLower#odd_couple,30"/>
+    <property name="conversation" value="D8_cave1_grate"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="551" y="1050" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="543" y="1013" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="499" y="924" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="507" y="1020" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk_healer"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="517" y="1069" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk"/>
+   </properties>
+  </object>
+  <object name="Monk" type="spawn" gid="3" x="511" y="962" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mad_monk"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="836" y="959">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="898" y="969">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="825" y="833">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="471" y="1080">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

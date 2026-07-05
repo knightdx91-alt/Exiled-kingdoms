@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](Um cristal rachado vibra atras dos carrinhos)[] O foco da mina ainda esta ativo.	[BLUE](Un cristal agrietado vibra tras los carros)[] El foco de la mina aun esta activo.	2	"VariableGreater#woven_fate,9;VariableLower#lyssara_shard_mine,1"		
+1	Q	O foco da mina ja foi estabilizado.	El foco de la mina ya fue estabilizado.	0	VariableEqual#lyssara_shard_mine,1		
+2	A	Canalizar energia arcana no foco. (Leave)	Canalizar energia arcana al foco.	0			
+2	A	Agora nao. (Leave)	Ahora no.	0			
+3	Q	[BLUE](O cristal para de vibrar e fica opaco)[] O foco foi selado.	[BLUE](El cristal deja de vibrar y se vuelve opaco)[] El foco fue sellado.	0	VariableLower#woven_fate,40	"SetVariable#lyssara_shard_mine,1;SetVariable#woven_fate,40;GainXP#300;GainGold#180"	
+3	Q	[BLUE](O cristal para de vibrar e fica opaco)[] O foco foi selado.	[BLUE](El cristal deja de vibrar y se vuelve opaco)[] El foco fue sellado.	0	VariableGreater#woven_fate,39	"SetVariable#lyssara_shard_mine,1;GainXP#300;GainGold#180"	

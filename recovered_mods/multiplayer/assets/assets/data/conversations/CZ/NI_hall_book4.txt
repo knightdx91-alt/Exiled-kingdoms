@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	This tome is titled 'The Witches of Orogg, Volume IV'	Este tomo se titula 'Las Brujas de Orogg, Volumen IV'	2			
+2	A	I have already read this.	Ya he leido este libro.	0	VariableEqual#KNOW_NI_book4,1		
+2	A	Let's read it.	Vamos a leerlo.	3			
+3	Q	Now almost a century later, the Varannari Witches seem to be more present each day. They might not have the nightmarish powers of their great-grandmothers, but the demonic blood in their veins grants them notable sorcerous abilities. And still many Varannari abandon their clans to follow them.	Ahora tras casi un siglo, las Brujas Varannari se hacen cada vez más presentes. Si bien no tienen los tremendos poderes de sus tatarabuelas, su sangre demoníaca les otorga notables habilidades mágicas. Y muchos guerreros Varannari abandonan sus clanes para seguirlas.	4			
+4	A	Ugh, I'll keep reading another time.	Buf, ya seguiré leyendo otro día.	0			
+4	A	Hmmm yeah they're a dangerous lot... [BLUE](Continue reading)[]	Hmm... Sí, la verdad es que son peligrosas [BLUE](Continuar leyendo)[]	5			
+5	Q	While some Witches have chosen to live in peace and abandon their traditions, most of them plot against the Exiled Kingdoms, against The Three, and the Faithful. They forge alliances with any enemies of the Kingdoms, be it orcs, outlaws, or Dark Druids. They'll never forget who destroyed their Sorceress Queen.  	Mientras algunas Brujas escogen abandonar sus perversas tradiciones y viven en paz. La mayoría traman contra los Reinos, contra Los Tres, y contra los Fieles. Se alían con cualquier enemigo de los Reinos, ya sean orcos, Druidas, o bandidos. Nunca olvidarán quién destruyó a su Reina Hechicera.	6			
+6	A	Alright, so that's why some Varannari I meet are so... Rude.	Ya veo. Por eso algunos Varannari son tan ... Maleducados.	0	VariableLower#KNOW_NI_book4,1	"SetVariable#KNOW_NI_book4,1;GainXP#300"	
+6	A	Interesting.	Interesante.	0	VariableEqual#KNOW_NI_book4,1		

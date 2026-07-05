@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](похоже, непонятный механизм снова перестал работать)[]	port.	0	"VariableEqual#pseudosphinx,10"		
+1	Q	[BLUE](работающий, непонятный механизм с плиткой)[]	port.	4	"VariableEqual#E13_tile,2"		
+1	Q	[BLUE](непонятный механизм с плиткой, часть которой как-будто отсутствует, поэтому он не запускается)[]	port.	2			
+2	A	Попробывать вставить недостающую часть плитки.	port.	3	PlayerHasItem#10634		
+2	A	Уйти от него.	port.	0		
+3	Q	[BLUE](плитка становится целостной и механизм начинает работать)[]	port.	4		"SetVariable#E13_tile,2;LoseItem#10634"		
+4	A	Встать на плитку.	port.	0		Travel#E13_tower3,7
+4	A	Уйти.	port.	0		

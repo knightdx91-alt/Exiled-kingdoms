@@ -1,0 +1,992 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="60" height="60" tilewidth="64" tileheight="32" nextobjectid="166">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="anguish" />
+    <property name="name" value="Cloud Fortress, high tier" />
+    <property name="name_ES" value="Torre Abandonada" />
+    <property name="sw1" value="53" />
+    <property name="sw2" value="54" />
+    <property name="sw3" value="61" />
+    <property name="sw4" value="51" />
+    <property name="sw5" value="22" />
+    <property name="sw6" value="52" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="253" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="town_objects3.tsx" firstgid="493" />
+  <tileset source="town_objexts2.tsx" firstgid="525" />
+  <tileset source="cave.tsx" firstgid="589" />
+  <tileset source="grounds indoor 2.tsx" firstgid="829" />
+  <tileset source="tomb2.tsx" firstgid="989" />
+  <tileset source="teleporter.tsx" firstgid="1029" />
+  <layer name="nonwalk" visible="0" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztz0ENADAMxLDjD6JE9xmKtapmI0gSAOh1pgMAAAAAgCdqOqBR5a9fAAAAAAAAYKcLB/0C1g==
+  </data>
+  </layer>
+  <layer name="scenery" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2rEKACAIBUCD/v+bo7WlLZXu4G2CTm8yAgD4ysw+AOCtkdR7e++Z2wwAAAAAAAAAAACN+QMDClpnxwA7
+  </data>
+  </layer>
+  <layer name="water" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztWluOwzAITLe9/427XblSJMcFzGuIU+1I+YhaZsA2BDvZtnPwe1+bP9u/N98jl/MDD7/f2f6VxBvQuWq8bzjm+dLxOvT+463VR+q9hrX+3O+/NN6GW/db++8PwDdNDWlj/RoutxYRA+UDai5GXk67jfVtuKJaDS9m3fb/zew7el6LtmWen3eeu4Eau11TsvNgHHOLtnae+/Xh8cuzljS8Hu19nimfZvN64Hf4NdYUqsaTvyvyd1ZXOe3ZvCLzd1bjo9pjPdOuQ1T+atZIZe2QkJG/GfuUzNpx4Bc0Q7ya2gTQ5oDOX8lvlPbM5tvy17M+rpy/7nzIyCEvR0C7eh92NmbxUn2Q9/LyWu0i8XL7L+/l5bXaReK1Pidn915erd107mf5yz0Xtk+O2b3Wb6/dDs/cS5CeC7P70V7yWbJDv4PhdCvtz9gv9LpI+1n+IvYLIqJ9LDB/kcjq0cZxQ+RvRs5njbnl/Kpyv4DgoHgQ+btqvOL8nbxfQM0v7LxmgXgR7+AorBIvdT5L5a+0P6r0NZtDev5K+6MzfM3i8PbdVp2VOaR+Q312sGi80vOX891ydpDpa5RD0z+X7xcIHzI5EPmbAe7bAPNZXjB/q8CNufcs78DLaFXv9ykfMlGZv9YzZ8qvDFTlr+fMuRRKPW1+r1ADM+DpYa4MUxzAml/1HLG+i9DaIPyo1OnrEMy3heKN2qyC0DuMCyLjm4kMjP0MCqvES/UzCFj8jvaLlv4z63uJaJ8bHX9L/5n1vYS1z/0Day55bg==
+  </data>
+  </layer>
+  <layer name="ground" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztmt1uwyAMhdmUbr1pu9fIRd//9dZIRaLIGB9jfpUjWWpagvmETUyKczb6Bs1Spf1/EabxWZvXys/Ja+PbilfS/+Nl17f9ZfqbjXcj7Df4/ZLprzcv2tfJi/E6kFUzRsu+ZuDlmHNtrHifwefdteWNfSO8lN1f9vO2m2D81Pw+E22lYyiZX8p3ad6E8qy7sH0N3pxvS97W8Rz7Rsar5QxjBl2vcuNAfGvmp1RUPHP5S0k7biqeUd+o0HimpOVF49lCrePZ4j5UVP5K12dKpflb4hsV+vylZDm/nG+q3kdjc6Z4Pnn5sXPtOdPUGNaWG2MJ705ch77j6xl4LTVDPFtqBV7kmaR9/tauryS5q9Go9ZVnot6LbK4fb639wmi8reK5J2/L/S9aZ0hlGc+WopjQudbUCilRbSzf16V4U9/14E21S83Lxtw/Aq8mfz0v1ffovNq+Tt4xeTkh+6xZeVfP3xzHYZL/U2ZZnzlJ60mtn9F4qXY19guz5a9WI/CG6rHfHyGea+wXKFYNr6Vq5i/Ha7kXzqnV+6sUL2e1VXO9ajF+VKvxHhxX93meE1nrHtH9kjOhXj14w7Ngh10cxhvf7/uQaBRerg4O62ELXou1iIrRVM2e4uXm1Io3VAkvx4C0XYE3l38r8VIWnuX05zlb85bmsGbOYp4W65VXTd5YyLNHkg89eLkYjVXKG/uSnnE+tb7+ARJMFUk=
+  </data>
+  </layer>
+  <layer name="ground2" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztzjERADAIBLAfWv9iMcBYCdzRREES+ENNBwAAAABY757pAQAAAAAAAAAAPA0TVAD9
+  </data>
+  </layer>
+  <layer name="objects" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztms2O0zAQgOP2jAQILojz3hB/T8aBQwEJcUDiEcJzgAQSP2/SZdtlu7ClFIldLiDBjGrTYRQ7E2eceEs+ybITu3amnhk74xSFDstxUexDWkA6G2+uadnVYf5lrDSopay5rgOfbw7pwOaS55tCm98GCqOiuAv5MfmNK1+A++9t2xT8jOyXP89M0M8RtLlottcn4+ryu4r+28BlvGaq74f4ECHvKbR5A/lbe70mv8HybbOd/9OW8jbV1zpi5pfbL5VpmsB+6fxNWELKinY+jiLnt2/7jWUFz/MJ0mdI3yB9zdR+v9t+quYXeW7zWD8Wokv7zQG3hjn7pfq8snaracOa9hvDjM0v1WEcW9OGtf1zDNx+10yeVDassf7GwPdX3Ea5Dafw0allpFAb3bc2zH08rZf4fClt989a5GBnAwMDAznhW4e6XJ8G0jGsewO7xP/qry6Zf3Mfbez9Rs11jizZu8zCxto/2rL2eUDf8Hgzcsdskq/+PIOxGMN0/iZc37L3couftgVjMU8C9bsmL+rrw2KTHlfUr6w9N40r5rrvkc7fJNC26jyU+kDteCwdc07mYyGYm0Ny/1HNGD55pywee8zapThTQb38YTbxQWTP5tj/VeMfg+ozyns9sF77fDX3ASesXYp4LI55RuSl/SO+Z5WchyEhfebnZTT+jHacIh7LdYgT0kVHrD5z+6Xtljb+Sm1bIx7LdYiyF/hPNfQ5ZL8pbNfpzNNAG984hwr63Md5qK8ftzcMzY0jVp9D9pvqPBTlWdv/2EC/I0hXRtu9YUp9Dtlviu8ZEHqGc1BR9vkIDf/ctf22QUOf+/oeKQYt/yy1377l1dg/8/NQd/6JtlxV1yczBX0+T0j1uSx2I9ZB3299vt2V+9bFXSTXOEEsS6Ivc6ZHGBOlcQJeP2dtY+IuXUN9Xt23JtK5ztmPos+7p9DPK0ivSZ9d4s5qSk+Z4ubivtLYZZH3/NL1fuJvFoS/9/Ylr2TO6uIwEri8XevzLxjvcs25nCMUh4mhT32WzC//ljQW6q+ayvtS5xFE+NajB4KypE8JL2z+rNnP/tLEP7v3JekedtjnDkj5A07hniw=
+  </data>
+  </layer>
+  <layer name="roofs" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2EEJADAMA8BC/VucgZmYgr72KIE7BfmEQKoAZre3EwA/dBhyHf0FAAAAiOKPhVz+WMhkeyGLvQUAAIA9D6MSBlw=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="teleport" type="transition" id="1" x="1655" y="635" width="42" height="42">
+      <properties>
+        <property name="area_id" value="E12_tower4" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object type="entry" id="2" x="1680" gid="245" y="740">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit" type="transition" id="3" x="217" y="60" width="43" height="43">
+      <properties>
+        <property name="area_id" value="E12_tower" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object type="entry" id="4" x="245" gid="245" y="145">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="635" gid="245" y="75">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="635" gid="245" y="205">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="7" x="635" gid="245" y="335">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="8" x="635" gid="245" y="1075">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="9" x="635" gid="245" y="1205">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="10" x="635" gid="245" y="1325">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="11" x="915" gid="245" y="315">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="915" gid="245" y="1045">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="13" x="885" gid="245" y="55">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="885" gid="245" y="185">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="15" x="885" gid="245" y="1175">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="16" x="885" gid="245" y="1305">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="17" x="95" gid="245" y="945">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="18" x="1540" gid="249" y="1760">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="19" x="1540" gid="249" y="1630">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="20" x="90" gid="249" y="1830">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10,sarcophagus_10,sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Altar" type="container" id="21" x="1790" gid="5" y="220">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="loot_table" value="sphere_m1" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="22" x="1655" gid="5" y="1050">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="chest_mage2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="23" x="1555" gid="5" y="1225">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="Table" type="container" id="24" x="1630" gid="5" y="1225">
+      <point />
+      <properties>
+        <property name="icon" value="table2" />
+        <property name="loot_table" value="table_s2" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="throne" type="container" id="25" x="670" gid="5" y="1730">
+      <point />
+      <properties>
+        <property name="icon" value="throne" />
+        <property name="items" value="2601,362" />
+        <property name="name" value="@THRONE" />
+        <property name="unique_tag" value="E12_tower3_throne" />
+      </properties>
+    </object>
+    <object name="Secret Door" type="secretdoor" id="26" x="60" gid="245" y="1440">
+      <point />
+      <properties>
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="12" />
+        <property name="secretdoor_tag" value="E12_tower3_1" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="27" x="310" gid="245" y="1010">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_ape" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="28" x="160" gid="245" y="1020">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="29" x="160" gid="245" y="1120">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="30" x="160" gid="245" y="1210">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="31" x="160" gid="245" y="1309">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="32" x="160" gid="245" y="1408">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="33" x="1105" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="34" x="1105" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="35" x="1105" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="36" x="1105" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="37" x="1105" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="38" x="1105" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="39" x="1105" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="40" x="1105" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="41" x="1105" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="42" x="655" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="43" x="525" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="44" x="405" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="45" x="375" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="46" x="375" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="47" x="375" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="48" x="115" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="49" x="115" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="50" x="115" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="51" x="1365" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="52" x="1365" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="53" x="1365" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="54" x="1365" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="55" x="1365" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="56" x="1365" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage1" type="spawn" id="57" x="1365" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="60" x="1715" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="61" x="1715" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="62" x="1670" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="63" x="1670" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="68" x="1585" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="69" x="1585" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="72" x="1555" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="73" x="1455" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="74" x="1455" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="75" x="1685" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="77" x="1585" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="79" x="1485" gid="247" y="1815">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="80" x="1485" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="83" x="1180" gid="247" y="1805">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="spawn_u" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="86" x="655" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="87" x="655" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="88" x="655" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="89" x="885" gid="247" y="1045">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="90" x="855" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="91" x="855" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="92" x="770" gid="247" y="1340">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="94" x="770" gid="247" y="1140">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="95" x="655" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="96" x="655" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="97" x="655" gid="247" y="75">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="98" x="885" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="99" x="855" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="100" x="855" gid="247" y="45">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="101" x="770" gid="247" y="60">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="103" x="770" gid="247" y="260">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_witch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="104" x="1805" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="105" x="1775" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="106" x="1540" gid="247" y="1720">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="107" x="1540" gid="247" y="1660">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="108" x="1045" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="110" x="1250" gid="247" y="1630">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="113" x="1150" gid="247" y="1690">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="115" x="1350" gid="247" y="1690">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="117" x="1440" gid="247" y="1600">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="118" x="145" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="119" x="275" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="122" x="350" gid="247" y="1250">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="124" x="320" gid="247" y="1440">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="126" x="75" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="130" x="540" gid="247" y="700">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="133" x="1060" gid="247" y="700">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="134" x="1420" gid="247" y="700">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="136" x="245" gid="247" y="500">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="140" x="1235" gid="247" y="420">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="143" x="1235" gid="247" y="990">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="144" x="1235" gid="247" y="1310">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="145" x="785" gid="247" y="870">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="146" x="785" gid="247" y="550">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight2" type="spawn" id="147" x="1090" gid="247" y="1820">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight2" type="spawn" id="148" x="990" gid="247" y="1820">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="152" x="1250" gid="247" y="1750">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="154" x="1090" gid="247" y="1720">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="boss" type="spawn" id="155" x="1045" gid="247" y="1715">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_boss" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="156" x="1700" gid="247" y="1120">
+      <point />
+      <properties>
+        <property name="spawn" value="guardian_fortress" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="regent" type="spawn" id="157" x="685" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="true_regent" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Iron Golem" type="spawn" id="158" x="1630" gid="247" y="1180">
+      <point />
+      <properties>
+        <property name="spawn" value="golem_sky" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Iron Golem" type="spawn" id="159" x="1630" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="golem_sky" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Iron Golem" type="spawn" id="160" x="115" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="golem_sky" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="161" x="90" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="vorator" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="162" x="90" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="spawn" value="ice_wolf" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="163" x="90" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="164" x="90" gid="247" y="1305">
+      <point />
+      <properties>
+        <property name="spawn" value="bear" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="165" x="90" gid="247" y="1405">
+      <point />
+      <properties>
+        <property name="spawn" value="devourer" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

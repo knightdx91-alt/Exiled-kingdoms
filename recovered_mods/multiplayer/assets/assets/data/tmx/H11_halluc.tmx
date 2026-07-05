@@ -1,0 +1,923 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="129">
+  <properties>
+    <property name="music" value="conflicted" />
+    <property name="name" value="Northwest Sagar forest" />
+    <property name="name_ES" value="Bosque de Sagar Noroeste" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="251" />
+    <property name="sw2" value="173" />
+    <property name="sw3" value="174" />
+    <property name="sw4" value="53" />
+    <property name="sw5" value="54" />
+    <property name="sw6" value="270" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="145" />
+  <tileset source="grassland_structures.tsx" firstgid="153" />
+  <tileset source="town_objects.tsx" firstgid="189" />
+  <tileset source="natural_grounds.tsx" firstgid="373" />
+  <tileset source="grounds_indoor.tsx" firstgid="501" />
+  <tileset source="town_objects3.tsx" firstgid="661" />
+  <tileset source="town_objexts2.tsx" firstgid="693" />
+  <tileset firstgid="757" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="halluc_grassland.tsx" firstgid="1045" />
+  <tileset source="halluc_water.tsx" firstgid="1173" />
+  <tileset firstgid="1237" name="trees_halluc" columns="8" tilecount="16" tileheight="256" tilewidth="128">
+    <image source="trees_halluc.png" width="1024" height="512" />
+  </tileset>
+  <tileset firstgid="1253" name="halluc_rocks" columns="3" tilecount="6" tileheight="192" tilewidth="128">
+    <image source="halluc_rocks.png" width="384" height="384" />
+  </tileset>
+  <tileset firstgid="1259" name="halluc_rocks_ground" columns="4" tilecount="24" tileheight="32" tilewidth="64">
+    <image source="halluc_rocks_ground.png" width="256" height="192" />
+  </tileset>
+  <tileset source="halluc_rocks_small.tsx" firstgid="1283" />
+  <tileset firstgid="1293" name="rose_trifles_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="rose_trifles_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1773" name="violet_trifles_dangerous" columns="16" tilecount="480" tileheight="64" tilewidth="64">
+    <image source="violet_trifles_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset source="rose_walls.tsx" firstgid="2253" />
+  <tileset firstgid="2293" name="trifles_sborka" columns="12" tilecount="432" tileheight="32" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="2725" name="rose_grounds_indoor" columns="16" tilecount="32" tileheight="32" tilewidth="64">
+    <image source="rose_grounds_indoor.png" width="1024" height="96" />
+  </tileset>
+  <layer name="nonwalk" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1Yi4rDMAzr///AfvcYx6CExJZsOY+tgnJbm0iO7Di9va7regWu1dg5NgYR73dY4+r4VBqn+9/7bsWXWVOFD6f6/4blf++ZFT/jP8OLcp7u/+d7L0Yv5sge6H2P+LPa/wzfqI4R/1V7oDeXWdMu/kd4R+Mje8Dii4xp9wUydrX/18XxI+vy9FA+i9Ma782b4b9CH+Ht9Rik76DP2fWv9B+dj/YFNAfeM0YP7W/WPkNjVPrvjbdq1uK0tJhnTP14zxHtlf5nYmvnRLWsOYjHXlzR2HqxqPxnYq7gRLiZOvHAavdiUNc/E29lLSLcUU2LY5b/vfsRP6M+ZXlH3Kz/WY7RXGbdbV9na0vRD9AaQeegqMgBg9Z/Zjxyn+Vl/LRiQWDld5b/bRyoV4r7Viy9e6jX2TOA5ZgNtmYqe0Lm/Eb21o45iOz7qhxENbP5WYnRe5PiXcjS8fRZDkR7V//vnxn/LT9HF8LF6n6j/+hctH6ZHs3ugdP9f3U+Rzgi3kV5rO8RbQRV+UN7DsJxXZp1oucPGvPO/n+4lb7N2OvRfpnR2h2ze+0s/z/zT8CutbJ7D/oF9M5uJC/Zd5QH/4j6z4590Mfo/xXmDLn/fcAh63/L9YCD0v8HPNDfSx7oYf1eNfP/xV/Hav9Hv0/+CnbwP/Ib4reg95vv6v7zS+8Bq/z/6HnP2/35jWh7wU6/FyK/va+IvQIr1pDNQc//b8gBOk6xdmUOLmPcCVD4X/X7hfW+tGrfKjUZD633RjY2Zrzl/ywoep1Xv9b/Ruh7u8cb2TteXDOgqH3U/+xeZ3ROy0F2fsQPxZ4b6Ud4Rs9m9qMI2J7QPs/o9mJg5ntz1DFXIOJ/RW0pa380Nrqmypxl/F8JVl+dA5UHkTh2yEPm7Pn89c620T3l+q363xnK3I940BxktU/0/40Ze3DUk9tnWf4K7hmYmYOeTlb7dP/fmBGrpVHl/0nw4q3MUYZ71/dLFkjM6HtNlb4X08n+v4HGzb57qvW9WLxeV5mrDDczx9PJ9nRmbLT/K/Ng1YH13tGrXUYv+tzjZsYy60a4sroI94xYZ/Ripf93PlY3GmuECx3b8lfA870qB9E1Kfpd9d6OxuLVFhNLdX9VnTfVcxhedH8r9nnGw1X+t9pM32R5Pc+y/VPlf7SGK/dftlbVub3zt1osIjWg0vbi8C6WT41Mjtm1ZbyoiMnrAb06qUDEA6uGVb2SRY8X7UtWjO0a1ch6792P6njaaE1fg3sW5wn+R7gQHcYrVt/TRfyfsW+R8dbz6NysdlYD9b/yvELnZXWr5qriQ864rA5yz4opox3hYGokCtZ/ZQ2jvTeLyvq/j8vkOOo/qmFpZ6E4h6Pc0bHtnJH/WX5EX8Wjju3Om601hN/zvwJKHWXPyvBFevMq/9Va6nND/c4x0vgW/+98yveSKrD+V+7xihwoOHb1P3JZXFaMEShzoETPZ6b/KHLA1H3Ggx17EOMPy+vdi64psv6oRvV5OPLA+65CNLcz51j9Nwu0F1SfPSxUexLVqK4/74xU6Vf0zirtngdKoOdjLxaF9myeSL6q9nzk/WQnWLWCzGE0lEB9b/2vBhOPN57hHo1tPytgnbPM2iO6aGzKC+X2YlGgYn3KfK2Ib2b9VcaiiHu1tzv7b3H0dFS6O18MVsf6XPHrD5ajoK0AkAAA
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Z207bQBQF0CDlj/qviIZe3DYgGnjvA+9VP6u25JGGYVzqceJDlLWko/CEnL2ZS8hm0+7jdrP5Nc7tdsEvoon8Y8k/lvxjyT+W/GPJP5b8Y8k/lvxjyT+W/GPJP5b8Y8k/lvzjfO7zvpN/iCH7n1n2j/38kP8qZB9H9usbMr8eJ9/v7fmnV56x5dz3810HJ1HuNf/q4MuZdTC8t924pnfv8G+olv2w13/q56Z4fernML6Xc+mhG589zdd39NzfJrKfesZu7ODZfrTY3OyToYMHHTRJd5vrxuwT66DN1LnacrfXwXxT2beeSWUH53ImR7nZvp6l94G98yBc2UF+37Ym1pHu2Wk/ei76sC7W0WV7W95H3sOHq+invBzlurjP7sD2pvWkHh4qe5Me1rMvOhjmoIdV7bP/hz1V1sPvcX9yZp9ebV8q10U6L3bF3Tb9bN0sN3V//Z/Jz/RydDTPsDf9qdxfl86h6GNqLfnc+FJaF/l3Qcfu5q2+dFHXVTopX9PUzpe5XZTn0NQamlpXlyz/HvKtro7RWW2YpztyF7TLP7O0DgAAAAAAAAAAAAAAAAAAAAAAAHA5/gK9gyotAJAAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3b604TQRQHcEj2k9+1Biil1EhMSBT0TTRqfDIewYfrQ9iGThjGOXOuc9udTU5CGnYuv//u7IWyn87O9oKquUFj+nP+XN8P9ftQPw7161A/z9udj8S+VX/JPtp9c81l+NP2zTWX4U/fV2MzJ//UGK3mY23Uoz913Jzft+yX0+5S/Cn7WPXLaTeXv8UYtOO22EfSRi1/yf7S/nP5Y2bWx2uNuWn8Jf3W8vd/v1V/rYvGU+Jv3cbwH/6afqltWO3DaUO7f05/aQ7SeUjnrvXT7p/b329rjv5YGxb20nYszwFN/6WOX4txW+Zo6Z8rj5b8oe1ieq5cx6DE3zKDnOO2si+dgeTY3HrVgz+2hfY1z4PY5yn/Gjlw/KlbzQw4xxLkXzIDqj93gzLInQPXH5pbqQwo/potlUPOTObin9o20/8lzYBz3mvWidi+0BpUIoOUf2q7iNhvTpaSDKhzTllRvKDf57RnmZFkc2Yxe1fcDLA5Ye5UE247sfaszxOJPebPzUDqws0hVz+aHKjb1fS6MH9OBqVMcvtLcqAe9xJ/SgalTGqUxD92XaWUbxpmhW21nWpmYOXvV+gPnQdLyaEF/9R6tIQcWvF/H9SSsmjR/92pODk8NGBplUEr/pIceq2Uv/u8lv9bQgZPM8gD89dkoPX3y2qr7Q1lYOV/dF4TKvR3n0P+1jm0llHq3pTjT7FPFebv378+pRmLbbkzKOnv2gnd/T5cBh8n3vNEiS1HBjX8U+XM76fX1xTOu6fWtx78c1Qr21L9W8msN3/qWtRLFkvxp46rRHZ+f5r7f2lR+4iN/dv0+n4IK+pzCiUTizbC8Uj9L4XF6UN7nF0a+lu0ExuPxfuHsD4QitLObaRq+GvbuQJ+rukfVswa8/9c2F9Sl8DPrnr2P9Yngr/2WiVda/26AD7TPAMfa3dy2Qndtf7Y8R/7DLoOQdcqynVVcq8Vrj8S/20j/qtTUbPB5qVds6T+3AxK+lPvkyg5QG1ZXTOW4n9HsB7+NhXr/3GG/twMavrH1h/KtWH4vxR1X6l/7Low/Pn3rlr/uR7/0uOee+2A+ufMd/i34b+K1PAf/i37u3LPAxKnlP9q+Iv9v07P39Ol+n9B/CmV0x/LwOKe39KfYu/730UywI4z/93c8Oe9R47dg94z/V3/PfvvvJL6XwOFvX9PPRtL/C3Wo9L+/vs0a//U9/2s/f1ad+Qfulj6c9rwM9gy/cOKrUfUdbG0/41XJd+dYv5bIFPKGMP1iPN3yZR/KgNrf2pZ+UNrl9TfFXccLfhTK2zrwdAfyiD3OVrbn1o55h7LpDX/WAbcMbm14yZSkvm5Z13JfFP9SNf/1v1vAXup/6Nwrlg/Uv+/b14qh3+YAdcMsuf4H7/rplnvKf345jF/qJbgry2tP1Sl/F0G3PvGlH2r/n4GqXsCi3Fr/LHC7Fv2DyvXO0ipP1bud3vyT+XRgv8+4hf+/+7aG2/v/v5zx/C386e+zwjP5978U1XLH3unAWVgcT5Z+IcZQP5Y1fCXvtfozZ9SLbyD5mTXiz+3avhL/27Uir+fQW/+Vn0N/3Jmra0/sfsg7L6oV3/oGl3bH8tgDv7+PVIr9/9L83c/t+ifymD4D3+tv/983Ks/lkUtf8r3W3r33yD2oX/uovzdIvR3n6X8NaX1h7K4Jtj7/iVKcnxi/tqy9HcZrIn2zr9UWftbjOkfcKg+EgCQAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2d207CQBgGS8AY8XjpwxkvvPBxfFkNiCHGNtq4qbu0BbbTykzChQfoOl+/n5aiFsV+vC/2vKMcBf2z6J9F/yz6Z9E/i/5Z9M+if5bQ/6tZDI7+WfTPon8W/bPon2NT+p6d/X6s/+Fouq/Q/zDE3Fdsy89/mEFWUu5rppBB9TOsJ7DOmnq96xb3NWPPoD5m2E4gh82eaxtzBqvGusa61rZZ08YU9q+asWVwqPuQbTC/1iPJ5DOy/e1I/B/TfYq+3TjkOTN232oGxTKg94sh3Id06X24pmaXuvgKn2/D749du0idw2x6brMvfY5vjk0qg02HNXXpUeg5zC91DhN7vOZjVF9/mqW3OTVizxF99oVdOexzja65nuZapnRsMSSxLuW8RmoOf2nbd3Nu8xg5PP+juTY0YzuPOEXMgMcMeMyAp2sGb4vvW+ycXA6jTw9Sr4vIYfTJwPd05qFrBvrPR5cM9J+Xtgz0n59dGeifRf8s+mfRP4v+WfQ/PA+z3+su+md4nH3noH8W/bP4GiiPHWCxAzx2gEX/LM4gHjvAon8W/bPon0X/LPpn0T+L5wA8doBF/8OyOCuKefA7a/pn0T+L/lk8BuKxAyz6Z3EG8dgBFjuwm+tlUSzL280y3zbsQJqLH++XGf3bgTR3pfer8nab0X+FHWDRP4sziMcOsOifxRnEYwdY9M/iDOKxAyz6Z3EG8dgBlrADy3N2LadK2IH7n/duvcyZtZwiziAW/bOsFv4N47HgMSlPNY/8Pxrd+QJP6W89AJAAAA==
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3SsQ0AIAwDwVBQMSrsXzOGBbmb4GW5CoCXnJEu6Mv2dLb9HwAAAAAAAAAAAAAAAAAAAAhYM10AAAAAAAAAAAAAAAAAAAAAAPzmAqINHmIAkAAA
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoDOw/b/G0DlIQAIAAFzWtT0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAfBvMZ/jEAkAAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from" type="entry" id="1" x="687" gid="145" y="2831" width="64" height="64">
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="dog" type="spawn" id="2" x="1499" gid="147" y="2359" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_dog" />
+        <property name="faction" value="neutral" />
+        <property name="name" value="@GREEN_DOG" />
+        <property name="portrait" value="240" />
+        <property name="spawn" value="wolf_glowing" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="cornstalk" type="spawn" id="3" x="189" gid="147" y="1019" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="H11_cornstalk" />
+        <property name="spawn" value="female_cornstalk" />
+        <property name="tag" value="cornstalk" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="littleman" type="spawn" id="4" x="2699" gid="147" y="2309" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="H11_littleman" />
+        <property name="spawn" value="male_littleman" />
+        <property name="tag" value="littleman" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="invisibleman" type="spawn" id="5" x="1659" gid="147" y="1419" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="H11_invisibleman" />
+        <property name="spawn" value="male_invisibleman" />
+        <property name="tag" value="invisibleman" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="789" gid="149" y="502" width="64" height="64">
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="green_loot_1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="6" x="820" gid="149" y="340" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="green_loot_2" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="7" x="2020" gid="149" y="190" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="green_loot_1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="8" x="2660" gid="149" y="190" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="green_loot_2" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="9" x="670" gid="149" y="2815" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="items" value="10365,10366,10386,10369" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="8" x="480" y="2720" width="30" height="210">
+      <properties>
+        <property name="actions" value="StartConversation#greenman1,H11_greenman" />
+        <property name="conditions" value="VariableLower#further_into_forest,19" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="9" x="800" y="2750" width="30" height="120">
+      <properties>
+        <property name="actions" value="StartConversation#greenman1,H11_greenman" />
+        <property name="conditions" value="VariableLower#further_into_forest,19" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="10" x="1700" y="1310" width="30" height="240">
+      <properties>
+        <property name="actions" value="StartConversation#invisibleman,H11_invisibleman" />
+        <property name="conditions" value="VariableLower#invishere,1" />
+      </properties>
+    </object>
+    <object name="bridge" type="conversation" id="11" x="1325" gid="149" y="1265" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_bridge" />
+        <property name="icon" value="statue4" />
+        <property name="name" value="@BRIDGE" />
+      </properties>
+    </object>
+    <object name="pit" type="conversation" id="12" x="2030" gid="149" y="750" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_pit" />
+        <property name="icon" value="rocks" />
+        <property name="name" value="@CLEFT" />
+      </properties>
+    </object>
+    <object name="forester" type="spawn" id="13" x="1555" gid="147" y="115">
+      <point />
+      <properties>
+        <property name="conversation" value="H11_forester2" />
+        <property name="name" value="@MUSHROOMER" />
+        <property name="portrait" value="216" />
+        <property name="spawn" value="villager_male_green" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="item" type="conversation" id="14" x="1655" gid="149" y="290">
+      <point />
+      <properties>
+        <property name="conversation" value="H11_dungeon_equipment_chest" />
+        <property name="icon" value="crate1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="15" x="1340" gid="149" y="1210">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="16" x="1340" gid="149" y="1180">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="17" x="1997" gid="145" y="651" width="64" height="64">
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="18" x="355" gid="147" y="2735" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_1" />
+        <property name="tag" value="greenman1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="19" x="365" gid="147" y="2865" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="20" x="275" gid="147" y="2775" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="21" x="935" gid="147" y="2785" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="22" x="1015" gid="147" y="2865" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="23" x="1005" gid="147" y="2705" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman" />
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="24" x="815" gid="147" y="385" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman2" />
+        <property name="spawn" value="male_green_3" />
+        <property name="tag" value="greenman2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="25" x="2065" gid="147" y="205" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman2" />
+        <property name="spawn" value="male_green_3" />
+        <property name="tag" value="greenman2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="26" x="2615" gid="147" y="215" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_greenman2" />
+        <property name="spawn" value="male_green_3" />
+        <property name="tag" value="greenman2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bighead" type="spawn" id="27" x="2825" gid="147" y="1505" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_bighead" />
+        <property name="spawn" value="male_bighead" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="backwards" type="spawn" id="28" x="2315" gid="147" y="2815" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_backwards" />
+        <property name="spawn" value="male_backwards" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="upsidedown" type="spawn" id="29" x="945" gid="147" y="1695" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_upsidedown" />
+        <property name="spawn" value="male_upsidedown" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="impenetrable" type="spawn" id="30" x="1225" gid="147" y="385" width="64" height="64">
+      <properties>
+        <property name="conversation" value="H11_bighead" />
+        <property name="spawn" value="male_impenetrable" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="31" x="215" gid="147" y="2545" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="32" x="555" gid="147" y="2475" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="33" x="435" gid="147" y="2065" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="34" x="145" gid="147" y="1775" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="35" x="505" gid="147" y="1805" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="36" x="475" gid="147" y="1555" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="37" x="605" gid="147" y="1265" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="38" x="505" gid="147" y="825" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="39" x="565" gid="147" y="665" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="40" x="975" gid="147" y="885" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="41" x="885" gid="147" y="665" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="42" x="785" gid="147" y="565" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="43" x="975" gid="147" y="565" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="44" x="1105" gid="147" y="2545" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="45" x="1435" gid="147" y="2675" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="47" x="1875" gid="147" y="2415" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="48" x="1995" gid="147" y="1995" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="49" x="1685" gid="147" y="1935" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="50" x="1185" gid="147" y="1495" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="51" x="1905" gid="147" y="1745" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="52" x="1305" gid="147" y="955" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="53" x="1815" gid="147" y="755" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="54" x="2575" gid="147" y="2605" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="55" x="2645" gid="147" y="2005" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="56" x="2545" gid="147" y="1715" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="57" x="2005" gid="147" y="1135" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="58" x="2195" gid="147" y="945" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="59" x="2775" gid="147" y="945" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="60" x="2285" gid="147" y="625" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="61" x="2135" gid="147" y="375" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="62" x="2775" gid="147" y="555" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="63" x="2645" gid="147" y="335" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="64" x="185" gid="147" y="2195" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="65" x="695" gid="147" y="2035" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="66" x="665" gid="147" y="1715" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="67" x="885" gid="147" y="1075" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="68" x="815" gid="147" y="465" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="69" x="905" gid="147" y="465" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="70" x="1105" gid="147" y="2035" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="71" x="1135" gid="147" y="2035" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="72" x="1525" gid="147" y="1585" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="73" x="1625" gid="147" y="1045" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="74" x="1045" gid="147" y="2355" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="75" x="1365" gid="147" y="655" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="76" x="2325" gid="147" y="2325" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="77" x="2325" gid="147" y="1945" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="78" x="2905" gid="147" y="1905" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="79" x="2485" gid="147" y="1555" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="80" x="2775" gid="147" y="1235" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="81" x="2515" gid="147" y="985" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="82" x="2035" gid="147" y="305" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="83" x="2185" gid="147" y="305" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="84" x="2765" gid="147" y="305" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="green" type="spawn" id="85" x="2545" gid="147" y="175" width="64" height="64">
+      <properties>
+        <property name="spawn" value="male_green_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="86" x="145" gid="149" y="2675">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="87" x="555" gid="149" y="2765">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="88" x="505" gid="149" y="2475">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="89" x="245" gid="149" y="2225">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="90" x="435" gid="149" y="2035">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="91" x="435" gid="149" y="1775">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="92" x="685" gid="149" y="1935">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="93" x="725" gid="149" y="1695">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="94" x="175" gid="149" y="1365">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="95" x="505" gid="149" y="1235">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="96" x="595" gid="149" y="915">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="97" x="785" gid="149" y="755">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="98" x="915" gid="149" y="625">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="99" x="1045" gid="149" y="2545">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="100" x="1465" gid="149" y="2675">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="101" x="1845" gid="149" y="2645">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="102" x="1905" gid="149" y="2285">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="103" x="1375" gid="149" y="2185">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="104" x="1045" gid="149" y="2125">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="105" x="1555" gid="149" y="2065">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="106" x="1175" gid="149" y="1685">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="107" x="1555" gid="149" y="1655">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="108" x="1105" gid="149" y="1325">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="109" x="1905" gid="149" y="1425">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="110" x="1175" gid="149" y="945">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="111" x="1555" gid="149" y="975">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="112" x="1395" gid="149" y="1695">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="113" x="1975" gid="149" y="1105">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="114" x="2335" gid="149" y="2805">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="115" x="2515" gid="149" y="2575">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="116" x="2805" gid="149" y="2425">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="117" x="2195" gid="149" y="2095">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="118" x="2265" gid="149" y="1945">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="119" x="2775" gid="149" y="1945">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="120" x="2325" gid="149" y="1495">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="121" x="2675" gid="149" y="1435">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="122" x="2045" gid="149" y="855">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="123" x="2295" gid="149" y="1145">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="124" x="2645" gid="149" y="1175">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="125" x="2835" gid="149" y="1005">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="126" x="2445" gid="149" y="905">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="127" x="2765" gid="149" y="695">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="128" x="2285" gid="149" y="555">
+      <point />
+      <properties>
+        <property name="id" value="blizzard_pink" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn"  x="1845" gid="147" y="2845">
+      <point />
+      <properties>
+        <property name="conversation" value="H11_Adaon" />
+        <property name="spawn" value="adaon_tutorial" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

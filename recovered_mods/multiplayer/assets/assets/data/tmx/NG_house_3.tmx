@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="40" height="32" tilewidth="64" tileheight="32" nextobjectid="35">
+  <properties>
+    <property name="maxlight" value="55" />
+    <property name="music" value="bandos" />
+    <property name="name" value="Dorm" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="indoor walls.tsx" firstgid="1405" />
+  <tileset source="town_objexts2.tsx" firstgid="1517" />
+  <tileset firstgid="1581" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1821" name="wooden_trifles" columns="16" tilecount="144" tileheight="128" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="dungeon stairs.tsx" firstgid="1965" />
+  <tileset source="grounds indoor 2.tsx" firstgid="1969" />
+  <layer name="nonwalk" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3SQQoAIAhE0e5/ZTftQ0UsRei/VQlZjK0FzCXJM5lzP4jmUp2f1T8yO+b71vQ8J7+tixxrUera3qp1idxd9f+8vlZ+E3jzBQAAAG5sHlozqgAUAAA=
+  </data>
+  </layer>
+  <layer name="water" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAADwamrOPGsAFAAA
+  </data>
+  </layer>
+  <layer name="ground" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OsQoAIAhFUeln+//FuaU5iNQeeA+4+q4Zupnj7dT7sju79Pn+58e1f33Rorqyuumjj77avgrqfbfU+wAAADpbmFANXAAUAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OIQEAAAgDsDv6NyEiFUBhtgRLAAD2ur4HAADAxQAHPmp4ABQAAA==
+  </data>
+  </layer>
+  <layer name="ground3" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UQQrAIAxE0WzE+3gob1VJPambFtpCXIiEQv7baQQhMCMCYIcz27OS3uc+eRvRYexDr/vGvsL7ZiiaamTg7hJr/qROOVr5xyPjs47+M/oPAAAAOwzQM8OpABQAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1VwQrCMAwNA7vP0YsgKOgPePADnIJe9ehNwakDRS/+js5vs2EVQ9YNp60g5kFp+5ZmWZOXAQj+DdsawNqMJVnvK/K7mp/4Yu33hrMePQVwBrPX/EXPV2MXBk8+NjaIlsrOxR7jSxmXGh6CAh7yZ3zG12S+cW97H+Xpmcjz/bWVna9rfqTyPMVQP594iO+hiyOpccT6A55q51Pd+MgH+uyqLN9UZ+/6cg302Sf1QPVUFQeWH1t/o8+L+LL8oYZWju8P+QHTRMPUf8T4DtOFzcZ1fsv4aYHO6Rq1PDZ289BdfDPtaxHm/xuIR3+jvWYL+fo/WPS7eTO+xOILxwlnYkf7W5fdH69/Xz36lbiPJd/zzfiqInGQS4FAIBAIBIJfxR2sbLncABQAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="40" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAADwamrOPGsAFAAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="175" gid="245" y="400">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="230" y="380" width="30" height="30">
+      <properties>
+        <property name="area_id" value="NG_house_2" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="3" x="250" gid="245" y="160">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="4" x="410" gid="245" y="190">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="350" gid="245" y="510">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="6" x="640" gid="245" y="480">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="outlaw_chest_10" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Johnny" type="spawn" id="7" x="845" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="conversation" value="F10_Johnny" />
+        <property name="spawn" value="johnny" />
+        <property name="tag" value="johnny" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="8" x="875" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_bitch_neutral" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="9" x="815" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="rickman" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="10" x="215" gid="247" y="345">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="11" x="465" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="12" x="405" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="13" x="245" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="14" x="295" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="15" x="365" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="16" x="475" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="17" x="595" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_ambal" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="18" x="555" gid="247" y="495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_bitch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="19" x="625" gid="247" y="495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_bitch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="20" x="555" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_bitch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="21" x="600" gid="245" y="160">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="22" x="675" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,15" />
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="23" x="655" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,14;VariableLower#time_to_pay,29" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="24" x="595" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,14;VariableLower#time_to_pay,29" />
+        <property name="spawn" value="bandit_bitch_neutral" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="25" x="685" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,14;VariableLower#time_to_pay,29" />
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="26" x="715" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,14;VariableLower#time_to_pay,29" />
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="27" x="655" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="28" x="565" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="NG_bandit_rick2" />
+        <property name="tag" value="bandit" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="29" x="745" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="30" x="625" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="31" x="685" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="32" x="725" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="33" x="145" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,25" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="tag" value="banda_lib" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="34" x="610" y="250" width="90" height="30">
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,24" />
+        <property name="actions" value="StartConversation#banda_lib,NG_adaon" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

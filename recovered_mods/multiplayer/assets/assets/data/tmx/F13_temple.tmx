@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="5">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="dark_chamber" />
+    <property name="name" value="Temple" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="bluewall.tsx" firstgid="1217" />
+  <tileset source="natural_grounds.tsx" firstgid="1281" />
+  <tileset source="icemist_large.tsx" firstgid="1409" />
+  <tileset firstgid="1449" name="trifles_sborka2" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka2.png" width="768" height="1152" />
+  </tileset>
+  <layer name="nonwalk" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMgsELXjPixvSyfyDBYLQfWYzW7hts/qe3e4ixbyDCaKDjZRSMglEwCkbBKBgF5AEAo2PmYgAQAAA=
+  </data>
+  </layer>
+  <layer name="water" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3NuQkAIBAAwUOwSLuw/8gGvETEB2Zh44mQpHfrZX0+n8/n8/n8H/1Zreaf6qatPQ0qsBj7ABAAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3PQQqAIBSE4bewu3uLMqx7SNApOkwYIS0UXeQbF/MtI/zfiBARjesyIqfB9cPb9p9vTqkdtx/A7bFvcflHAO5v7bup/x0lC7A9A9s5G/oABTv6AEp8/Rc1a8e3R9pJRP+4AZP83jIAEAAA
+  </data>
+  </layer>
+  <layer name="objects" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMAsLgDgsEE8unNjgCNLsDSH9ggWAY/xgLBKPzj9HIPZtw8B8h28UMoQ5Syf6HZJpDLfvRwStW7Gx62U8soJb9G5HY+PwLAk+Q7KTUflD6PUyEGbjcRA37O5D4j5HMIxQO1LCfUjOoYf9xFtT4p6f9xMY/Le3vIKDmEZodf5moZz+lZlDL/idkmAMqs4dl/DPTz35KzRgO9t9hQW3TIOMLUPPP45CnZXtsFAx9AABG24ZwABAAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3RsQ0AIAwDwRTsPxRS9soMiAp817n1VwG8odfZ5t72aTT9s+mfTX/40wA8Dz6HABAAAA==
+  </data>
+  </layer>
+  <layer name="roof2" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSggzssDAzHgPgUlAbhC0B8Hg8fhC+yQPRSCg5SwQxKwPEBtn+g/T/Q9r8b4f4f6elvoON/pIf/QNs/0PE/0P4fTX8Daz812jCjYBSMgsENAOdcYpcAEAAA
+  </data>
+  </layer>
+  <layer name="roof3" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWDBdxhYWC4CMTHsOALQHweiX8KTR6kl1JwkApmDGX7zwyw/cdHePgPtP8H2v6BDv+Btn+kh/+lEe7/kR7/A+3/uwNsPzXaMKNgFIyCUTAKiAMAZC5veQAQAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="520" gid="487" y="820">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit" type="transition" id="2" x="510" y="900" width="90" height="20">
+      <properties>
+        <property name="area_id" value="F13" />
+        <property name="entry_id" value="11" />
+      </properties>
+    </object>
+    <object name="god" type="spawn" id="3" x="525" gid="489" y="465">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#guest_other_worlds,99"/>
+        <property name="conversation" value="F13_god" />
+        <property name="spawn" value="god_male" />
+        <property name="tag" value="prisgod" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="4" x="320" y="740" width="450" height="30">
+      <properties>
+        <property name="conditions" value="VariableLower#guest_other_worlds,30" />
+        <property name="actions" value="StartConversation#knave,F13_knave_god" />
+      </properties>
+    </object>
+    <object name="magic seal 2" type="conversation"  x="510" gid="489" y="540">
+      <point />
+      <properties>
+        <property name="conversation" value="F13_magic_seal2" />
+        <property name="icon" value="magic_seal" />
+        <property name="name" value="@MAGIC_SEAL" />
+      </properties>
+    </object>
+    <object name="magic seal 1" type="conversation"  x="610" gid="489" y="510">
+      <point />
+      <properties>
+        <property name="conversation" value="F13_magic_seal1" />
+        <property name="icon" value="magic_seal" />
+        <property name="name" value="@MAGIC_SEAL" />
+      </properties>
+    </object>
+    <object name="magic seal 4" type="conversation"  x="580" gid="489" y="410">
+      <point />
+      <properties>
+        <property name="conversation" value="F13_magic_seal4" />
+        <property name="icon" value="magic_seal" />
+        <property name="name" value="@MAGIC_SEAL" />
+      </properties>
+    </object>
+    <object name="magic seal 3" type="conversation"  x="450" gid="489" y="480">
+      <point />
+      <properties>
+        <property name="conversation" value="F13_magic_seal3" />
+        <property name="icon" value="magic_seal" />
+        <property name="name" value="@MAGIC_SEAL" />
+      </properties>
+  </object>
+  <object name="sealmaster 1" type="spawn" gid="489" x="595" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sealmaster_1"/>
+        <property name="tag" value="sealmaster1" />
+   </properties>
+  </object>
+  <object name="sealmaster 2" type="spawn" gid="489" x="525" y="525">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sealmaster_2"/>
+        <property name="tag" value="sealmaster2" />
+   </properties>
+  </object>
+  <object name="sealmaster 3" type="spawn" gid="489" x="435" y="435">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sealmaster_3"/>
+        <property name="tag" value="sealmaster3" />
+   </properties>
+  </object>
+  <object name="sealmaster 4" type="spawn" gid="489" x="565" y="365">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sealmaster_4"/>
+        <property name="tag" value="sealmaster4" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities"/>
+        <property name="tag" value="entities" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities"/>
+        <property name="tag" value="entities" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities"/>
+        <property name="tag" value="entities" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities"/>
+        <property name="tag" value="entities" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities_2"/>
+        <property name="tag" value="entities" />
+   </properties>
+  </object>
+  <object name="entities" type="spawn" gid="489" x="525" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="dark_entities_2"/>
+        <property name="tag" value="entities" />
+   </properties>
+    </object>
+    <object name="loot" type="spawn" id="121" x="385" gid="489" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#fatal_eggs,69;VariableLower#troll_eggs,1" />
+        <property name="conversation" value="F13_loot" />
+        <property name="spawn" value="loot" />
+        <property name="tag" value="loot" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

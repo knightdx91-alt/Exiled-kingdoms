@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="83">
+ <properties>
+  <property name="exit_e" value="J12"/>
+  <property name="exit_n" value="I13"/>
+  <property name="exit_s" value="I11"/>
+  <property name="exit_w" value="H12"/>
+  <property name="music" value="virtutes"/>
+  <property name="name" value="Wyvern Mountains"/>
+  <property name="name_ES" value="Montes Wyvern"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grassland snow.tsx"/>
+ <tileset firstgid="217" name="grassland_trees_2" tilewidth="128" tileheight="256" tilecount="16">
+  <image source="grassland_trees_2.png" width="1024" height="512"/>
+ </tileset>
+ <tileset firstgid="233" source="grassland_snow_structures.tsx"/>
+ <tileset firstgid="269" name="snow water" tilewidth="64" tileheight="64" tilecount="64">
+  <image source="grassland_snow_water.png" width="1024" height="256"/>
+ </tileset>
+ <tileset firstgid="333" source="natural_grounds.tsx"/>
+ <tileset firstgid="461" source="rocks_blue.tsx"/>
+ <tileset firstgid="467" source="rocks_small_blue.tsx"/>
+ <tileset firstgid="477" source="bluewall.tsx"/>
+ <tileset firstgid="541" source="dungeon.tsx"/>
+ <tileset firstgid="781" source="grounds_indoor.tsx"/>
+ <tileset firstgid="941" source="dungeon.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1Wy47DQAjrrf//x6s9VIqqpIONDUxaS1FXmwGMeUyej8fj+eH5hE92uzzdyPLr1u/u+k+vQTbXbqhyVOvp6t/d9Ff5cdUXxU9/3r8Kd9Q/4quq91ZxdtLfOQMurGIpeLzbq/aher926P/OA+WJxFj5cvCYMrsZZPsDnfXILkT1r6iBa36yOyrKK+NnVYMqqGuQ2Q+r/0ftV1zc+iJxMnsiYo/umuP/0dgINyeUGrJ2TJ5Hm6gtsp+qaqDWEj2f3V/H38j56B5T8UP3oqIOkXMKMLyr9Ff2JxpndUYJZrbO3qtnNNsXTO0ivhk4ZjiSb6X+UU4oFL2f0R/hVlEDxsYdH5khJNaO+kd5sT5YnkiNpui/QoZj1DerG1MDx7xX6M/wdJ9f6f/+Xj2n2fl1a6Q8e8UnUoNMv6r2T2ZeMpwV5xguCv0Z7Sfo/24X8YlA3btZ+4jfjP6f7KN2K18OZPVHfHTpz85Phf6q2GzdEB4RuPrIDVWsFW9n/0f8rPx1aH+MrfDh6MFKDtMRyY/N16XVT/9+TOSEgNF9Wr4uTpk5Z2x21P4FNTfGX7aXq7VXxlBzrO5lZQ2uzjrjds/oFO0ruUTjuoHyqe79Kh6d+kfOdPXf3fs/g4r+c/hActkFaJ8x9grfWf6TkeHP7Akldtb9hbvor/DVgez8ons6A/R+2AXM3beyPTvXxXE6pn6DRHntrv8/Mjk69IhyuYP2/8j2mLIGrl7vnpWrHBQzntWqYr9MmRVkr0bzfx5+Ge3uvNvf4dB/5Z/lVI0oD/eOzWjA+JrY7xH9szU486fUDemlafq/4OhRNEbEDvEdeTcJ7vupWn93Pi64uDp16dLe6b+Cq4p3V9/vPlvVe06NXXR/R+Vedu8I1mdn3dAedewqBe6o/xkndf+q5m+C9ogf9jtluv5R2yn3RVb/Z/AdyoHNw3G+6rtBtYMYvh39z/hW1wG9f89sVucYHigq9oijDgr9r86iXCv7X4HI7kA1UtaA6Zeq/X/lg427sr06x85UpF5oTY92KCr7Ho2PaoTEZJ6o36t3qE0Vnodf9S5H7LP674hjbooeZmJ/m/6KPBU6faP+qhwVmn2T9uqcsrrt0PvK2OpcMrrtoP0Lar1UqNr5as6MjYLDLvo7wcZYzbIz9sqfUv8KMLGU96UKrG7dO56NneXp0p+1675fGR676z9F+xeXs79XNlNqoNr7O0GhvwpT9O+6O7rxiYv72757b/3078OUGejSf1LunXHQ77ao/it/1d/sK9/OOqjiI70feY+A1Sli07mLWE1XfB35ZPbc1Bpk9N8BKN/q3JA7djf9d+B7N/3Rb4TuXL5J/47HybcS3Tq66tFd/yi6dXNp8gfXfcfZAJAAAA==
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3dS07DMBSF4XYBHnjAAlhA3o9C6f7XRS2dIy6oIJjkDvg/yUpaEgbHzk2aVvHpBOQq59NpUxvUlnvr1Ea1SctOf2/rq5az1ndt5/0W/b/2Go+VkKcz7/XequUUlqsy3dU6LQf1obdzn3ofPFZDZqMyW5XrELJcv2zjY8T7uo/cd4uOi578fxTrz6Kx7Bx79cEaao2zHc+fj4s51Bv3VR8aHishL9eVOdRx15Bd27lPBq1v4b09bNuH42Ui/285/z3k57rhMd2F16syH0PWccwPYb9ZbSP/XxlCZmNorj9zGPs+P4xfapTr0xS25/rn71x7tnCeda3ZtR7PFfFc7THvGkX9BwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+H+eeCZlmpb9M/mncPYj+aco54/5GXC8lv+N/NO0/N/u7YX8U7T5Nq56bjeOV/Xc9Bv5p2j5v/JM+jQt/wtzMqTx+Kf+56hhbgwcz9efjP8cRdf+zMmWw/O97eSfwvkz/nOUMFcVjlfDXG44nuc7vJJ/iqLPXxfyT+HrT8Z/jqKxz+evHJ7vnPGfo+r+A/d/cni+eepPDl//8P1XDn/+4v5Djqp7D5x/cxTdeyD/HFX58/ufHPz+J1fV2Of+Zw5//97yfwf1ehBPAJAAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bS07DMBCA4cB9ENwE7lukDt0h2MEKcRjURaSqDXk443nY/7cqIrWH2BmPkzAMAAC06eQdALCSbDz+WCMITOJcA+XEqJ/vO6OOlIl3AADg6DDo1FmvCm1kRZ0KbHfwDiC4y7zy4dw/MFq6v/tmEsUyr/zSSi1klXPIM9M+vQMoJN4BwFWU/A+UirKG/xbcW5+6/mRvIIbIH2Ui7ae1x/Ar6TOm0fuQt54bvSu0sTavlrxDJAXfqeH4z2cNP0bXgdh00xzruiFKzhfFtiK+T+B9j8K7f9grqf2B1ng8+0J/xDuABRr7L+TBfTBfa2tu/t9pvalzyjxfJ8pef07tsVxqP8pzGy3iHUCHuNeSj1x8fvYKopJaeb/GPH8p/B411K294366VwkjnCz1olW9ptkPax/WiJ6vI8zjCDFkIFc/z+3hou+Bo8e3VYa1VrwD2OA8t8kLvjLM6Z5EryXOWrmvaDn3t4xrK+d3DnknHtZiZMb8vXVeS8Q7CCfiHUAAPdQSrSOv9SPD/g/z2NvM4/wgEu3nFNrrtSi3lwnrYRuk8HdaMu6DLOY+e4s+iHcAQayd71IzCGCnqT1UhFopw/uXrew/ZcOxrfzNPfB4b85jfrT2fuCUjPsO7XGJcA6k0rEW7cy13cM1VJsotXNdr2wZG8axPZr1a4TaPoMI15FHLSU7vhvhnG0l3gFUdhhsx0UM+1riuVcdc/aDYww1ZboP8DTkibel9fnRsK/L8RXDftG+LLkDAICe/AE+QaoeAJAAAA==
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3byw6CMBAF0PL/3+aLhQv1YzRB4laTpheZcxL2ZGjLZVpaAwAA6Os+pe+AvTpMn4tx1BsAAACAbxz1kShsfo//S6d5YK+Ff2IfYRt6rT/8Zlb3OGOfqrx/YaEXMd6af9Q+S/2pTA7KUfuMx6vuN7UHAABg5/QdoLWTeRBxVndwBi7EuTdYWIMy1J3KfHvBwlzI0AfNce52G9bnYC6MZfxTnT5cjswJJMmc23H1LIaSfajO+k9V9n+pSvYBkmRPIEUGojLfvzmyD/gPFaCaJ8nEA2YAkAAA
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aQQrDIBAFUHv/8xXStIcJBl1010XqD8x7INnKZPgjYmsAAAD84vn4/gIAAAAAAAAATLv3BAA08+AONv8AAAAAAAAAgMJe6Q0AAADAH+3pDXBy/5DzGYsc9c95j8V65m+WuZvTe1/urzXrre/XU/Mc55sMGZ8jb6hM5mfJfSqTP1TVe9/5c605b90pZ6h/njNnlt6nMvlDZfIfuNIBaSwusgCQAAA=
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="1" type="entry" gid="1" x="2685" y="407" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="2" name="stairs down" type="transition" x="2622" y="304" width="55" height="37">
+   <properties>
+    <property name="area_id" value="I12_cave"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="Event" type="spawn" gid="3" x="2813" y="2847" width="64" height="64">
+   <properties>
+    <property name="event_location" value="I12_2"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="4" name="Event" type="spawn" gid="3" x="1623" y="205" width="64" height="64">
+   <properties>
+    <property name="event_location" value="I12_1"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="5" name="entry from farmlands" type="entry" gid="1" x="2925" y="1465" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="6" name="Giant" type="spawn" gid="3" x="2695" y="1300" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#lost_good_book,0;VariableLower#lost_good_book,50"/>
+    <property name="conversation" value="I12_giant"/>
+    <property name="faction" value="player"/>
+    <property name="name" value="@GLUNK"/>
+    <property name="portrait" value="91"/>
+    <property name="spawn" value="hill_giant"/>
+    <property name="tag" value="glunk"/>
+    <property name="unique_tag" value="I12_glunk"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="7" name="Giant" type="spawn" gid="3" x="2708" y="1308" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#lost_good_book,50"/>
+    <property name="name" value="@GLUNK"/>
+    <property name="spawn" value="hill_giant"/>
+    <property name="unique_tag" value="I12_glunk"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="8" name="Giant" type="spawn" gid="3" x="2632" y="1317" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#lost_good_book,0;VariableLower#lost_good_book,50"/>
+    <property name="conversation" value="I12_giant"/>
+    <property name="faction" value="player"/>
+    <property name="name" value="@BROGG"/>
+    <property name="portrait" value="92"/>
+    <property name="spawn" value="hill_giant"/>
+    <property name="tag" value="brogg"/>
+    <property name="unique_tag" value="I12_brogg"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="9" name="Giant" type="spawn" gid="3" x="2633" y="1317" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#lost_good_book,50"/>
+    <property name="name" value="@BROGG"/>
+    <property name="spawn" value="hill_giant"/>
+    <property name="unique_tag" value="I12_brogg"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="10" name="sulidar" type="staticNPC" gid="3" x="2639" y="1278" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#lost_good_book,0;VariableLower#lost_good_book,70"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@SULIDAR"/>
+    <property name="portrait" value="28"/>
+    <property name="sprite" value="male_green_ground"/>
+    <property name="tag" value="sulidar"/>
+   </properties>
+  </object>
+  <object id="11" name="White Wolf" type="spawn" gid="3" x="1354" y="1950" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="12" name="White Wolf" type="spawn" gid="3" x="1454" y="1918" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="13" name="White Wolf" type="spawn" gid="3" x="1421" y="1763" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="14" name="White Wolf" type="spawn" gid="3" x="1203" y="1793" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="15" name="White Wolf" type="spawn" gid="3" x="1257" y="1919" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="16" name="White Wolf" type="spawn" gid="3" x="1850" y="1958" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="17" name="White Wolf" type="spawn" gid="3" x="1914" y="1842" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="18" name="White Wolf" type="spawn" gid="3" x="2147" y="1821" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="19" name="White Wolf" type="spawn" gid="3" x="2198" y="1990" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="20" name="White Wolf" type="spawn" gid="3" x="1904" y="1592" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="21" name="White Wolf" type="spawn" gid="3" x="1837" y="1483" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="22" name="White Wolf" type="spawn" gid="3" x="2466" y="1902" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="23" name="White Wolf" type="spawn" gid="3" x="1803" y="1305" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="24" name="White Wolf" type="spawn" gid="3" x="1617" y="1567" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="25" name="White Wolf" type="spawn" gid="3" x="1978" y="1243" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="26" name="White Wolf" type="spawn" gid="3" x="1710" y="1331" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="27" name="White Wolf" type="spawn" gid="3" x="1659" y="1162" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="28" name="White Wolf" type="spawn" gid="3" x="2142" y="990" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="29" name="White Wolf" type="spawn" gid="3" x="1986" y="782" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="30" name="White Wolf" type="spawn" gid="3" x="2161" y="591" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="31" name="Wyvern Whelp" type="spawn" gid="3" x="2229" y="2751" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="32" name="Wyvern Whelp" type="spawn" gid="3" x="1537" y="2835" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="33" name="Wyvern Whelp" type="spawn" gid="3" x="2288" y="2340" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="34" name="Wyvern Whelp" type="spawn" gid="3" x="1990" y="2410" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="35" name="Wyvern Whelp" type="spawn" gid="3" x="1832" y="2656" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="36" name="Wyvern Whelp" type="spawn" gid="3" x="1613" y="2367" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="37" name="White Wolf" type="spawn" gid="3" x="820" y="2708" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="38" name="White Wolf" type="spawn" gid="3" x="1065" y="2555" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="39" name="White Wolf" type="spawn" gid="3" x="1162" y="2586" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="40" name="White Wolf" type="spawn" gid="3" x="1262" y="2554" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="41" name="White Wolf" type="spawn" gid="3" x="843" y="2641" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="42" name="Elder" type="spawn" gid="3" x="2426" y="504" width="64" height="64">
+   <properties>
+    <property name="spawn" value="polar_elder"/>
+    <property name="unique_tag" value="I12_elder_1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="43" name="White Wolf" type="spawn" gid="3" x="2223" y="661" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="44" name="White Wolf" type="spawn" gid="3" x="2032" y="540" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="45" name="White Wolf" type="spawn" gid="3" x="1980" y="952" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="46" name="Wyvern Whelp" type="spawn" gid="3" x="558" y="1862" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="47" name="Wyvern Whelp" type="spawn" gid="3" x="770" y="1978" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="48" name="Wyvern" type="spawn" gid="3" x="379" y="2345" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="49" name="Wyvern Whelp" type="spawn" gid="3" x="232" y="1704" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="50" name="Wyvern Whelp" type="spawn" gid="3" x="813" y="943" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="51" name="Wyvern Whelp" type="spawn" gid="3" x="859" y="741" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="52" name="Wyvern" type="spawn" gid="3" x="370" y="2125" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="53" name="Wyvern" type="spawn" gid="3" x="253" y="1193" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="54" name="Wyvern" type="spawn" gid="3" x="516" y="1089" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="55" name="Wyvern" type="spawn" gid="3" x="864" y="447" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="56" name="Wyvern" type="spawn" gid="3" x="1180" y="743" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="57" name="Wyvern" type="spawn" gid="3" x="1111" y="310" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="58" name="Wyvern" type="spawn" gid="3" x="1396" y="541" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="59" name="conversationTrigger" type="trigger" x="2535" y="1187" width="216" height="194">
+   <properties>
+    <property name="actions" value="StartConversation#glunk,I12_giant"/>
+    <property name="conditions" value="VariableEqual#lost_good_book,30"/>
+   </properties>
+  </object>
+  <object id="60" name="Sulidar Free" type="spawn" gid="3" x="2645" y="1283" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="conversation" value="I12_sulidar"/>
+    <property name="name" value="@SULIDAR"/>
+    <property name="spawn" value="sulidar"/>
+    <property name="tag" value="free_sulidar"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="61" name="White Wolf" type="spawn" gid="3" x="2698" y="1070" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="62" name="White Wolf" type="spawn" gid="3" x="2319" y="991" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="63" name="White Wolf" type="spawn" gid="3" x="2617" y="1020" width="64" height="64">
+   <properties>
+    <property name="spawn" value="ice_wolf"/>
+   </properties>
+  </object>
+  <object id="64" name="Warrior" type="spawn" gid="3" x="2848" y="558" width="64" height="64">
+   <properties>
+    <property name="spawn" value="hobgoblin_warrior"/>
+   </properties>
+  </object>
+  <object id="65" name="Warrior" type="spawn" gid="3" x="2917" y="564" width="64" height="64">
+   <properties>
+    <property name="spawn" value="hobgoblin_warrior"/>
+   </properties>
+  </object>
+  <object id="66" name="Hobgoblins table" type="spawn" gid="3" x="2775" y="404" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="hobgoblin_ice"/>
+   </properties>
+  </object>
+  <object id="67" name="Warrior" type="spawn" gid="3" x="2840" y="482" width="64" height="64">
+   <properties>
+    <property name="spawn" value="hobgoblin_warrior"/>
+   </properties>
+  </object>
+  <object id="68" name="Warrior" type="spawn" gid="3" x="2836" y="626" width="64" height="64">
+   <properties>
+    <property name="spawn" value="hobgoblin_warrior"/>
+   </properties>
+  </object>
+  <object id="69" name="Ghost" type="spawn" gid="3" x="191" y="2809" width="64" height="64">
+   <properties>
+    <property name="spawn" value="vengeful_wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="70" name="Crate" type="container" gid="5" x="342" y="2902" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="items" value="5009,5009,5009,5026,6006,6007,1013"/>
+    <property name="name" value="@CRATE"/>
+    <property name="unique_tag" value="D9_crate_1"/>
+   </properties>
+  </object>
+  <object id="71" name="Ghost" type="spawn" gid="3" x="259" y="2869" width="64" height="64">
+   <properties>
+    <property name="spawn" value="vengeful_wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="72" name="bear trap" type="trap" gid="5" x="166" y="2692" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="16"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="73" name="bear trap" type="trap" gid="5" x="222" y="2602" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="16"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="74" name="bear trap" type="trap" gid="5" x="304" y="2639" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="16"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="75" name="bear trap" type="trap" gid="5" x="134" y="2585" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="16"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="76" name="bear trap" type="trap" gid="5" x="206" y="2533" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="16"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="77" name="Elder" type="spawn" gid="3" x="749" y="1559" width="64" height="64">
+   <properties>
+    <property name="spawn" value="polar_elder"/>
+    <property name="unique_tag" value="I12_elder_2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="78" name="Elder" type="spawn" gid="3" x="835" y="1483" width="64" height="64">
+   <properties>
+    <property name="spawn" value="polar_elder"/>
+    <property name="unique_tag" value="I12_elder_3"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="79" name="Wyvern Whelp" type="spawn" gid="3" x="2775" y="2407" width="64" height="64">
+   <properties>
+    <property name="spawn" value="wyvern_whelp"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="80" name="Merple" type="plant" gid="5" x="2916" y="2671" width="64" height="64">
+   <properties>
+    <property name="id" value="merple"/>
+   </properties>
+  </object>
+  <object id="81" name="Merple" type="plant" gid="5" x="2920" y="2309" width="64" height="64">
+   <properties>
+    <property name="id" value="merple"/>
+   </properties>
+  </object>
+  <object id="82" name="Merple" type="plant" gid="5" x="2983" y="2012" width="64" height="64">
+   <properties>
+    <property name="id" value="merple"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

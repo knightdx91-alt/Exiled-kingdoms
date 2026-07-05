@@ -1,0 +1,5 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE]в комнате что-то есть, но, перекрывающая вход, решетка выглядить очень крепкой, врятли удасться её сломать[]	po?	2			
+2	A	[BLUE]мне туда и не надо было[]	po	0			
+2	A	[BLUE]возможно, удасться её отворить найденным ключом[]	po.	3	PlayerHasItem#10304	"LoseItem#10304;ItemHide#grate1;ItemWalkable#grate1;SetVariable#opens_grate,2"	
+3	Q	Решетка открыта!	po.	0			

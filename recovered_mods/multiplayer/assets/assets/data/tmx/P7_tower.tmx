@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" nextobjectid="5">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="music" value="anguish" />
+    <property name="name" value="Magic tower" />
+    <property name="name_ES" value="Casa en New Garand" />
+    <property name="norecall" value="" />
+    <property name="sw1" value="596" />
+    <property name="sw2" value="4" />
+    <property name="sw3" value="1" />
+    <property name="sw4" value="61" />
+    <property name="sw5" value="50" />
+    <property name="sw6" value="49" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="teleporter.tsx" firstgid="493" />
+  <tileset source="grounds indoor 2.tsx" firstgid="598" />
+  <tileset source="town_objects.tsx" firstgid="758" />
+  <tileset source="town_objexts2.tsx" firstgid="838" />
+  <layer name="nonwalk" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFyOD7QDtgFIyCUTAKSASj5dYoGAWkAwDNLgHv
+  </data>
+  </layer>
+  <layer name="ground" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALKAQsBTA3zGaGYBYk/av7gMJ9Se7CZT810hG4+LrtoZT6lgB7m0zL/DkYAACfFASI=
+  </data>
+  </layer>
+  <layer name="ground2" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMNSBOxL7LeOAOYNq4CYTBNMC3EAy9xoN7Bjq5oPAdSYIHs4AAL1mCbQ=
+  </data>
+  </layer>
+  <layer name="scenery" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="objects" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALKgR0QmwFxBJRGZ9tTaL4pFrGpSGxjCs0PJyBPqfkeQDyDhuYTApSab0lA3hqIrSgwH1v8UhOAzFdnZmDQYcYub8NA2I/4ACj9qKGZn4LEpjT8CYXPYDffFohN8GAHCs0nBwAAhLQK8Q==
+  </data>
+  </layer>
+  <layer name="roofs" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="595" gid="241" y="555">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit" type="transition" id="2" x="660" y="530" width="10" height="50">
+      <properties>
+        <property name="area_id" value="P7" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="wizard" type="spawn"  x="565" gid="243" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#unsurpassed_craftsmanship,101" />
+        <property name="conversation" value="J7_6_wizard" />
+        <property name="name" value="@WIZARD" />
+        <property name="portrait" value="130" />
+        <property name="shop_items" value="5052,5003,5033,5050,458,3024,6004,6014,314,313,367,1007" />
+        <property name="spawn" value="P6_wizard" />
+    <property name="tag" value="p6_wizard"/>
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="sign" type="conversation" id="4" x="540" gid="245" y="640">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#unsurpassed_craftsmanship,101" />
+        <property name="conversation" value="vault" />
+        <property name="icon" value="sphere" />
+        <property name="name" value="@SPHERE" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem"  x="672" gid="245" y="576">
+      <point />
+      <properties>
+        <property name="inactive" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Извини, но у меня нет сил на разговоры, их едва хватает, чтобы переставлять ноги.	¿po?	9	VariableEqual#skilled_hands,60	
+1	Q	[BLUE](совершенно измученный пленник, но освобождение из заперти придаёт ему новых сил)[] Я уже и не надеялся, что когда-нибудь выберусь из клетке, при много благодарен тебе!	po.	2	"VariableGreater#skilled_hands,15;VariableLower#skilled_hands,60"	
+2	A	Ты, случайно, не изобретатель Гермес из поселения у устья Отчаяния?	po.	3		
+2	A	Рад был тебе помочь.	po	0		
+3	Q	Откуда ты знаешь моё имя? Неужели старина Блудсилвер послал кого мне на выручку?	po.	5		
+5	A	Именно он, а теперь давай выбираться отсюда, я доставлю тебе назад в поселение.	po.	0	"VariableGreater#skilled_hands,35;VariableLower#skilled_hands,60"	"NPCFollow#;SetVariable#skilled_hands,60"	
+5	A	Именно он, я доставлю тебе назад в поселение. Вот только кто тогда ты?	po.	6	VariableEqual#skilled_hands,30	
+5	A	Именно он, а теперь давай выбираться отсюда, я доставлю тебе назад в поселение.	po.	0	"VariableGreater#skilled_hands,15;VariableLower#skilled_hands,25"	"NPCFollow#;SetVariable#skilled_hands,60"	
+6,falsehermes	Q	Я просто пленник, извини, что обманул тебя, но ты же не бросишь меня здесь?	po.	7		
+7,hermes	Q	Мне кажется будет ужасным поступком оставлять кого-то в этом плохом месте.	po.	8		
+8	A	Ладно, давай выбираться отсюда.	po.	0		"NPCFollow#;SetVariable#skilled_hands,60"
+9	A	Ладно, держись, мы скоро доберёмся до твоего поселения.	po.	0		

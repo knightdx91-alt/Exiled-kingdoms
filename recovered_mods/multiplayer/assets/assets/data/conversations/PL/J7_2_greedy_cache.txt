@@ -1,0 +1,5 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE]этот сундук пуст[]	po?	0	VariableEqual#fee_for_merits,100		
+1	Q	[BLUE]похоже, в этом сундуке капитан Гриди хранил присвоенное золото, судя по сумме, он успел обмануть и погубить много героев[]	po?	2		
+2	A	[BLUE]забрать содержимое сундука[]	po	0		"GainXP#650;GainGold#26350;SetVariable#fee_for_merits,100"	
+2	A	[BLUE]оставить его в покое[]	po.	0		

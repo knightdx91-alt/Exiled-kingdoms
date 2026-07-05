@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="42" height="62" tilewidth="64" tileheight="32" nextobjectid="287">
+  <properties>
+    <property name="maxlight" value="5" />
+    <property name="music" value="gathering" />
+    <property name="name" value="Silent Peace" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grassland.tsx" firstgid="797" />
+  <tileset source="town_objects3.tsx" firstgid="925" />
+  <tileset source="artifacts.tsx" firstgid="957" />
+  <tileset source="grounds indoor 2.tsx" firstgid="961" />
+  <layer name="water" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAC+BnGpRdOwKAAA
+  </data>
+  </layer>
+  <layer name="ground" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WMQrAIBAAQQs/4f8/Gq4QCaQIeBE37oKlMJ4WlmI2qpNLp06dOnXqPMn5Np15Ue6d4owITso8Kc6I4KTMk+KMCE7KPCnOSOdclP+ozj2cq89AdrZ6XzrPcFLe55+cT/u/TOde6cxNZ246c6M4zczMzHoXW3+qHLAoAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OsQkAMAgAQXGWbJD9d7O3DijhDr7/CIA/3Zw+AAAAAKA7ra18AgAAALxXcCB7TLAoAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YOwqAMBAE0BRezL/3P5FYhIQ0tiO+B9sPzFZTCrzbpnap1iHbHJr1Kzkfy9QuRfIPVrXj5G6rpG4BAACAf9i7zekI3ib6bWfc9JJc3XZ7BucEAAAAeNxMNWSGsCgAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2Yu0oDQRSGh+yDKOILiKbQeEmj2HsJwUYRH8BG0F4LUUgUJJ1aiFbeW30xG89hd/B3nZhxs3N2F88HP5kr+XPmzGx2jFGUL+ZJp6TjROuJTkDY34H6gqDPNpSvImPOknKPtEfqQv819R9BfTK0OWCiT/uhx1xpn5fR4HFjtViW10jW54rnuBHyOAo+X4R9cjw/4Psvks9b8nEXxXnKjNdiIZI+1zLOY//SPrsDR/2EzwVJny3SfWof9Zwjv/Nu5ON547Hf097fTHH5+UB+H8HzE5Wf8TdA+dzI+pwjTXlqOpkzm9Sbgj594f8Bi6QlUsPEz3jJ57sP7HHZ0c7rXiav26RdR/uOkc3RQXAOtxzt7LEpa+VXdN3zRdc9X+pG1z1PqrLuut/zp+5oK0MsOSdXQTOOMY3UmCJy1f5/9nkHsWOKiO9GhjlF+Mzyvsw+OV/s/VkHyqFyIh3PTccYbNs3sU+8r8KcCRVr3/schL24zi/bFwL26bOHED73t6COz4b/Hs888hMJ5TPrfrf3AVLv+jaeWc/5tqMtBK54HvQpW9BT3dEWgr/c51g1Yb5UPIelKj6l1n1Y7Dladp9Viaf6zJeq+FQURVEURbF8Aro30sGwKAAA
+  </data>
+  </layer>
+  <layer name="roofs" width="42" height="62">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OoQ0AMAgAMAIv7f/sNCwSh2kvaATAzsvrwd6v6wEAAAAAAAAAADA1t2PRhrAoAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="940" gid="485" y="1465">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="exit" type="transition" id="2" x="920" y="1540" width="60" height="20">
+      <properties>
+        <property name="area_id" value="K11_cave2" />
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="19" x="255" gid="5" y="225">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="items" value="5013,6009,6014" />
+        <property name="name" value="@SHELF" />
+        <property name="unique_tag" value="K11c_chest2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="20" x="565" gid="5" y="160">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="items" value="5035,6005" />
+        <property name="name" value="@SHELF" />
+        <property name="unique_tag" value="K11c_chest3" />
+      </properties>
+    </object>
+    <object name="Table" type="container" id="21" x="430" gid="5" y="290">
+      <point />
+      <properties>
+        <property name="icon" value="table" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="Table" type="container" id="22" x="250" gid="5" y="390">
+      <point />
+      <properties>
+        <property name="icon" value="table" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="Table" type="container" id="23" x="460" gid="5" y="440">
+      <point />
+      <properties>
+        <property name="icon" value="table2" />
+        <property name="loot_table" value="table_s2" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="Table" type="container" id="24" x="665" gid="5" y="240">
+      <point />
+      <properties>
+        <property name="icon" value="table2" />
+        <property name="loot_table" value="laboratory_13" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="Sphere" type="container" id="29" x="260" gid="5" y="290">
+      <point />
+      <properties>
+        <property name="icon" value="sphere" />
+        <property name="items" value="2601,10133" />
+        <property name="name" value="@SPHERE" />
+        <property name="unique_tag" value="K11_cave2_throne" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="31" x="960" gid="249" y="1370">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="10" />
+        <property name="minlevel" value="15" />
+        <property name="unique_tag" value="K11_trap" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="32" x="960" gid="249" y="1340">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="10" />
+        <property name="minlevel" value="15" />
+        <property name="unique_tag" value="K11_trap" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="33" x="850" gid="249" y="1150">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="10" />
+        <property name="minlevel" value="15" />
+        <property name="unique_tag" value="K11_trap" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="98" x="560" gid="247" y="660">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="100" x="560" gid="247" y="850">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="102" x="560" gid="247" y="750">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="106" x="660" gid="247" y="750">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="107" x="660" gid="247" y="660">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="115" x="660" gid="247" y="850">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="evoker" type="spawn" id="146" x="490" gid="247" y="1040">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_evoker" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="evoker" type="spawn" id="147" x="720" gid="247" y="1040">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_evoker" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="evoker" type="spawn" id="158" x="500" gid="247" y="1230">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_evoker" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="evoker" type="spawn" id="159" x="720" gid="247" y="1230">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_evoker" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="champ" type="spawn" id="183" x="905" gid="247" y="1090">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_champion" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="196" x="660" gid="247" y="560">
+      <point />
+      <properties>
+        <property name="spawn" value="vengeful_wraith" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="197" x="560" gid="247" y="560">
+      <point />
+      <properties>
+        <property name="spawn" value="vengeful_wraith" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="invisible" type="spawn" id="236" x="940" gid="247" y="1270">
+      <point />
+      <properties>
+        <property name="spawn" value="invisible_thing" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="blgnost" type="spawn" id="259" x="595" gid="247" y="1040">
+      <point />
+      <properties>
+        <property name="spawn" value="black_ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="blgnost" type="spawn" id="260" x="615" gid="247" y="1240">
+      <point />
+      <properties>
+        <property name="spawn" value="black_ghost" />
+        <property name="unique_tag" value="K11_mob" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="BOSs" type="spawn" id="277" x="430" gid="247" y="180">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59" />
+        <property name="spawn" value="dead_man" />
+        <property name="wander" value="0" />
+        <property name="unique_tag" value="K11_cave2_dead_man2" />
+      </properties>
+    </object>
+    <object name="BOSs" type="spawn" id="277" x="430" gid="247" y="180">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#very_strange_thing,60" />
+        <property name="spawn" value="dead_man_2" />
+        <property name="wander" value="0" />
+        <property name="unique_tag" value="dead_man_quest" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="278" x="400" gid="247" y="370">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="280" x="290" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="281" x="400" gid="247" y="240">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="283" x="650" gid="247" y="270">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="285" x="520" gid="247" y="160">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="286" x="630" gid="247" y="150">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59;VariableLower#dead_man_dead,2" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="278" x="400" gid="247" y="370">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="280" x="290" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="281" x="400" gid="247" y="240">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="283" x="650" gid="247" y="270">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="285" x="520" gid="247" y="160">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="speechless" type="spawn" id="286" x="630" gid="247" y="150">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,59;VariableLower#dead_man_dead,3" />
+        <property name="respawn" value="7" />
+        <property name="spawn" value="skeleton_speechless" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

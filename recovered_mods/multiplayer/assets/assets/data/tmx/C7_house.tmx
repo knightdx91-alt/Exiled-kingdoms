@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="25" tilewidth="64" tileheight="32" nextobjectid="19">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="Desert.tsx" firstgid="797" />
+  <tileset source="greenground.tsx" firstgid="861" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="grassland.tsx" firstgid="1085" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXUAq8ZIRhdjBLzqAmobR497MAWpqNg+ABqx+9oWhkFIxkAAK0ShhnQBwAA
+  </data>
+  </layer>
+  <layer name="water" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJkgnYk4PGoe/cyLZR7c7hsI84g1cyj4N3mExi8THvMHyn2jYHgCAKXHuMDQBwAA
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjgDygwEI9s+ShZslS0Uw5Kpo1EsFIjd+R6u9RMPQBAOngVdvQBwAA
+  </data>
+  </layer>
+  <layer name="ground 3" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYHCAFSwD7YJRQEuwcjR+R8EooCkAABYw/zjQBwAA
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAgYOBQRaKJZHY6HxFDuLMk4OqM2JlYFBiQojbsSLYbxkR6ogxzxCqVx5ongITqvxHRlR7STGPkDpigBQOdUlIdnxjwq0Om70RzJji6UDzUlhR1REDZEiMN2LUcQP9I8dEWB0xABQupUBaloB5xAKYvYTMG8jwC6di/OJKV8kUpD8OIuKCFP+KQs0rQZMDlQ+wMoIU8/4yQjAyUASaow7EGkCszES8eUpEln/yRJo3CgYHAAAgZKqP0AcAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="330" gid="487" y="360">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="400" y="358" width="10" height="20">
+      <properties>
+        <property name="area_id" value="C7" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="Kiara" type="spawn" id="3" x="175" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,109" />
+        <property name="conversation" value="C7_Kiara" />
+        <property name="spawn" value="kiara" />
+        <property name="wander" value="0" />
+        <property name="tag" value="kiara" />
+      </properties>
+    </object>
+    <object name="Kiara" type="spawn" id="3" x="175" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,90" />
+        <property name="conversation" value="C7_Kiara" />
+        <property name="spawn" value="kiara" />
+        <property name="wander" value="0" />
+        <property name="tag" value="kiara" />
+      </properties>
+    </object>
+    <object name="Kiara" type="spawn" id="3" x="175" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,97" />
+        <property name="spawn" value="kiara2" />
+        <property name="wander" value="0" />
+        <property name="tag" value="kiara2" />
+        <property name="unique_tag" value="kiara2" />
+      </properties>
+    </object>
+    <object name="bookkeeper" type="spawn" id="4" x="205" gid="489" y="145">
+      <point />
+      <properties>
+        <property name="conversation" value="C7_bookkeeper" />
+        <property name="spawn" value="bookkeeper" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bookkeeper" />
+      </properties>
+    </object>
+    <object name="Bugs Gambino" type="spawn" id="5" x="195" gid="489" y="255">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,54" />
+        <property name="conversation" value="C7_bugs" />
+        <property name="spawn" value="bugs_gambino" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bugs_gambino" />
+        <property name="unique_tag" value="bugs_gambino" />
+      </properties>
+    </object>
+    <object name="Bugs Gambino" type="spawn" id="5" x="195" gid="489" y="255">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#time_to_pay,70" />
+        <property name="spawn" value="bugs_gambino2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bugs_gambino2" />
+        <property name="unique_tag" value="bugs_gambino2" />
+      </properties>
+    </object>
+    <object name="Mary Ann" type="spawn" id="6" x="195" gid="489" y="485">
+      <point />
+      <properties>
+        <property name="conversation" value="C7_mary_ann" />
+        <property name="spawn" value="mary_ann" />
+        <property name="wander" value="1" />
+        <property name="tag" value="mary_ann" />
+      </properties>
+    </object>
+    <object name="Leland" type="spawn" id="7" x="285" gid="489" y="545">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,74" />
+        <property name="conversation" value="C7_leland" />
+        <property name="spawn" value="leland" />
+        <property name="wander" value="1" />
+        <property name="tag" value="leland" />
+        <property name="unique_tag" value="leland" />
+      </properties>
+    </object>
+    <object name="Muqrin" type="spawn" id="8" x="285" gid="489" y="185">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,39" />
+        <property name="spawn" value="muqrin1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="muqrin" />
+        <property name="unique_tag" value="muqrin" />
+      </properties>
+    </object>
+    <object name="trader" type="spawn" id="8" x="365" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="shop_items" value="576,587,716,406,146,147,148,150,5001,5021,5007,5006,5014,5034,6003,6002" />
+        <property name="shop_modifier" value="1.04" />
+        <property name="spawn" value="riyada" />
+        <property name="wander" value="1" />
+        <property name="tag" value="riyada" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="8" x="305" gid="489" y="495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="enemy" />
+        <property name="spawn" value="bandit_ambal" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="9" x="305" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="enemy" />
+        <property name="spawn" value="bandit_ambal" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="10" x="145" gid="489" y="555">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="11" x="145" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="12" x="365" gid="489" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="13" x="365" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="14" x="165" gid="489" y="425">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="outlaw_king" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="15" x="165" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="outlaw_king" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="16" x="416" gid="487" y="384">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="17" x="90" y="120" width="290" height="480">
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,69" />
+        <property name="actions" value="StartConversation#bugs_gambino2,C7_bugs" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="18" x="305" gid="489" y="225">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,109;VariableLower#go_hate_through,1" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="18" x="305" gid="489" y="225">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_kiara,2" />
+        <property name="conversation" value="adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="275" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="335" gid="489" y="205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_female_heal" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="245" gid="489" y="565">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="345" gid="489" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="player" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="115" gid="489" y="405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="player" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_murka" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="115" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="human_archer_female" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_bandits2" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="275" gid="489" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness6" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="275" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness6" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="335" gid="489" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="335" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="335" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="C7_adept_greatness" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="145" gid="489" y="515">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="145" gid="489" y="225">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="285" gid="489" y="545">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,35" />
+        <property name="spawn" value="adept_greatness6" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

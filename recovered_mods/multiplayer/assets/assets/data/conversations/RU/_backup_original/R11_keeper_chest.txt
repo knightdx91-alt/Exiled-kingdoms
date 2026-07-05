@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE] Этот сундук пуст []	port	0	"VariableEqual#keeperloot,1"	
+1	Q	[BLUE] Этот сундук явно не пуст, но его хозяин наверняка разозлиться, если покусимся на его имущество []	port	3	"VariableEqual#dangerous_curiosity,100"		
+1	Q	[BLUE] Этот сундук явно не пуст, но его хозяин наверняка разозлиться, если покусимся на его имущество []	port	0	"VariableGreater#dangerous_curiosity,9;VariableLower#dangerous_curiosity,99"		
+1	Q	[BLUE] Этот сундук явно не пуст, но его хозяин наверняка разозлиться, если покусимся на его имущество []	port	2		
+2	A	[BLUE]Отставить сундук в покое[]	port.	0		
+2	A	[BLUE]Опустошить сундук[]	port.	0		"SetVariable#dangerous_curiosity,110;SetVariable#keeperloot,1;GainGold#400;GainItem#5031;GainItem#10146;GainItem#10147;GainItem#10148;NPCHostile#keeper_lost_kingdom;NPCHostile#ice_big_guy"	
+3	A	[BLUE]Отставить сундук в покое[]	port.	0		
+3	A	[BLUE]Опустошить сундук[]	port.	0		"SetVariable#dangerous_curiosity,120;SetVariable#keeperloot,1;GainGold#400;GainItem#5031;GainItem#10146;GainItem#10147;GainItem#10148;NPCHostile#keeper_lost_kingdom;NPCHostile#ice_big_guy"	

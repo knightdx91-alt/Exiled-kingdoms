@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](это вход в хранилище, но путь преграждает магический барьер, без помощи Сансы здесь не обойтись)[]	¿po?	2	"VariableEqual#door_zapil,1"		
+1	Q	[BLUE](это вход в хранилище, но путь преграждает магический барьер, без помощи Сансы здесь не обойтись)[]	¿po?	0		"SetVariable#door_zapil,1;NPCSpawn#sansa"	
+2	A	Санса, используй ключ, который ты нашла.	po.	3	PlayerHasItem#10404	
+2	A	Я ничего не смогу сделать.	po.	0		
+3,sansa	Q	 Без проблем, сейчас я уберу этот барьер.	¿po?	0		"ItemHide#barrier1;ItemWalkable#barrier1;LoseItem#10404"

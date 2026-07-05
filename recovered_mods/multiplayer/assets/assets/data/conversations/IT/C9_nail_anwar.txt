@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](неподалеку от руин, из которых вы выбрались, поджидает отряд легионеров во главе с претором Анваром)[] Сдавайтесь, негодяи! Бросайте оружие, или вы будете унечтожены!	¿po?	8	"VariableEqual#freedom_law_order,80"		
+1	Q	 [BLUE](неподалеку от руин, из которых вы выбрались, поджидает отряд легионеров во главе c претором Анваром)[] Сдавайтесь, негодяи! Бросайте оружие, или вы будете унечтожены!	¿po?	2	"VariableEqual#freedom_law_order,70"		
+2	A	Проклятье, похоже, нам устроили засаду!	po.	3		
+3,nail	Q	 Да неужели? Чтож выбор у нас не большой - сдохнуть здесь или сдохнуть в рабских ямах позже.	¿po?	4		"NPCStopFollowing#"		
+4,anwar2	Q	 Повторять свои требования я не собираюсь!	¿po?	5	"VariableEqual#death_makbul,2"		
+4,makbul2	Q	 Ситации поршива с какой стороны не посмотри.	¿po?	5		"VariableLower#death_makbul,2;NPCStopFollowing#"		
+5,nail	Q	 Времени обдумать, что делать, нам явно не дадут.	¿po?	6	"VariableEqual#death_said,2"		
+5,said	Q	 Я не хочу снова загибаться на каторге!	¿po?	6		"VariableLower#death_said,2;NPCStopFollowing#"		
+6,anwar2	Q	 Это последнее предупреждение!	¿po?	7	"VariableEqual#death_jude,2"		
+6,jude	Q	 Как думаете, к девушке они будут более благосклоны?	¿po?	7		"VariableLower#death_jude,2;NPCStopFollowing#"		
+7,nail	Q	 Банда, к оружию, эти ублюдки просто так нас не возьмут!	¿po?	0		"SetVariable#freedom_law_order,90;NPCHostile#anwar2;NPCHostile#anwar_team;DecVariable#REP_town_freeport,25;DecVariable#REP_mercia,15"
+8	A	Похоже, мы угодили засаду.	po.	9		
+9,nail2	Q	 Да неужели? Чтож выбор у нас не большой - сдохнуть здесь или сдохнуть в рабских ямах позже.	¿po?	10		"NPCStopFollowing#"		
+10,anwar2	Q	 Повторять свои требования я не собираюсь!	¿po?	11	"VariableEqual#death_makbul,2"		
+10,makbul2	Q	 Ситации паршива с какой стороны не посмотри.	¿po?	11		"VariableLower#death_makbul,2;NPCStopFollowing#"		
+11,nail2	Q	 Времени обдумать, что делать, нам явно не дадут.	¿po?	12	"VariableEqual#death_said,2"		
+11,said	Q	 Я не хочу снова загибаться на каторге!	¿po?	12		"VariableLower#death_said,2;NPCStopFollowing#"		
+12,anwar2	Q	 Это последнее предупреждение!	¿po?	13	"VariableEqual#death_jude,2"		
+12,jude	Q	 Как думаете, к девушке они будут более благосклоны?	¿po?	13		"VariableLower#death_jude,2;NPCStopFollowing#"		
+13,nail2	Q	 Банда, к оружию, эти ублюдки просто так нас не возьмут!	¿po?	14		
+14	A	Извините, ребята, но я не с вами.	po.	15		
+15,anwar2	Q	 Отличная работа, путешественник. А теперь не лезь на рожен, мы сами расправимся с этими ублюдками.	¿po?	16				
+16,nail2	Q	 Ах, ты, ублюдок! Грёбаная крыса!Просто так ты от нас неотделаешься!	¿po?	0		"SetVariable#freedom_law_order,90;NPCHostile#makbul2;NPCHostile#said;NPCHostile#jude;NPCHostile#nail2;DecVariable#REP_seventhhouse,30"

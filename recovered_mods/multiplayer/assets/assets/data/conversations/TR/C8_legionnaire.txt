@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	5	NPCisFollower#	
+1	Q	[BLUE](воинственная женщина в доспехах)[] Свободы тебе, путешественник. 	[BLUE]()[] port.	2		
+2	A	И тебе того же.	port?	0			
+2	A	Свободы! Неподалеку я заметил группу беглых рабов и подумал, что обязан вам об этом сообщить.	port?	3	"VariableGreater#will_or_death,5;VariableLower#will_or_death,25"		
+2	A	[BLUE](С помощью грубой силы надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить её надеть ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3	Q	И правильно сделал! Беглые рабы значит. Сообщи об этом в Фрипорте претору Анвару, он предпримет нужные меры. 	port.	0		"SetVariable#will_or_death,50"		
+4	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт её под контроль)[]	port.	0		"LoseItem#10402;SetVariable#alia_follow,3;NPCFollow#"	
+5	A	Хорошая девочка.	port.	0		
+5	A	[BLUE](Снять с неё ошейник подчинения)[]	port.	0		"SetVariable#alia_follow,1;NPCStopFollowing#"

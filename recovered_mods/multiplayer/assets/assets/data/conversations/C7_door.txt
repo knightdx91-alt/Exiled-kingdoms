@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	"Это вход в дом Киары."	port.	2	"VariableGreater#time_to_pay,101"		
+1	Q	"Это вход в дом местного босса бандитов."	port.	2	"VariableGreater#time_to_pay,36;VariableLower#time_to_pay,99"		
+1	Q	"Похоже, это вход в дом местного босса бандитов."	port.	2	"VariableEqual#time_to_pay,35"		
+1	Q	"Дверь надёжно заперта."	port.	0		
+2	A	Остаться на улице.	port.	0		
+2	A	Войти.	port.	0		"Travel#C7_house,1"

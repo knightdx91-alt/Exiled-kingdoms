@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	15	"VariableEqual#bandos_follow,3;NPCisFollower#"	
+1	Q	Чё, мужик?	port	4	NPCisFollower#	
+1	Q	Здоров браток, за небольшой подгон {LEVELx200} иду на дело с тобой.	po  {LEVELx200}  rt.	2		
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx200}"	"NPCFollow#;LoseGold#{LEVELx200}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	3		
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	Если чё, я буду здеся.	port.	0		
+4	A	Ничего, давайте двигаться дальше.	port.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	port.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	port.	6		
+5	Q	Покедова! Постой поровоз не стучите колеса...	port.	0		NPCStopFollowing#
+6	Q	Щас.	port	0		NPCMoveRandom#
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#bandos_follow,3;NPCFollow#"	
+15	A	Молодец.	port.	0		
+15	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#bandos_follow,1;NPCStopFollowing#"

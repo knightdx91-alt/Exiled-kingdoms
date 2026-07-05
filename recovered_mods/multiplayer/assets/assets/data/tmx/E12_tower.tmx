@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="60" height="60" tilewidth="64" tileheight="32" nextobjectid="172">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Cloud Fortress, lower tier" />
+    <property name="name_ES" value="Torre Abandonada" />
+    <property name="sw1" value="53" />
+    <property name="sw2" value="54" />
+    <property name="sw3" value="61" />
+    <property name="sw4" value="51" />
+    <property name="sw5" value="22" />
+    <property name="sw6" value="52" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="253" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="town_objects3.tsx" firstgid="493" />
+  <tileset source="town_objexts2.tsx" firstgid="525" />
+  <tileset source="cave.tsx" firstgid="589" />
+  <tileset source="grounds indoor 2.tsx" firstgid="829" />
+  <tileset source="tomb2.tsx" firstgid="989" />
+  <layer name="nonwalk" visible="0" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt08kNACAQAzH6b5kPogmOxK5gR9GOAQAAAAAAAAAA/5i3DzhMbza92fRm05utrbdN2756s+nN1tYLjdr+vK13e6F5ARj9EqI=
+  </data>
+  </layer>
+  <layer name="scenery" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2bEJAEAIBEEF+6/5S3g0EWSmgo0uuQgAAACAuaztAgC+bDUAAAAAAADADf5foOkBmXcADg==
+  </data>
+  </layer>
+  <layer name="water" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztmgsKwyAMQLe197/xPuhaEFc78zGmSR4IW7EmbyUjFW83O7yW2RlMYL2ON1eeeZ11XnxQvM4838t33Iv5z+1aBuuLuA8LNF5yLX3T/Y/qGhhBX2o86eczG6rvXg+QQQET7yc2sP7r+/d6gAwsZf1hBwTO3DFE/dnGm+8RV+kNufD2zMNXF2c9w0763JpXo933rGcovdL31rx6vdm+Z/+Z//KD9jJqfBs5cOcXvvJ4880QfCE9kxrfBr359Tqb8mWcN4vwpc3LAH0l36laHpS9Jq4cpGNJ7RVp8ZUifG3E0pCDN9+MN9/JhK9tvPlmNt/Yr7dN+NomfG0z2pflzAkjo32lz5z05DPaV1O9aPDVsJ8mub6l9/Hwlc9BMlb4yucgGYvqS+lVes/Mjl4f+ptQepXe/mX0+ofOjtDWh40mfB2wytfxB0LV3gw=
+  </data>
+  </layer>
+  <layer name="ground" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt1UEOgzAMBEBCeUr/2BN/7wUkWpkQO44TO7vSXhAQj4CwLL6zXho5a6ajzPFUrXWk10ti5aXWq52zdn1vXm+Fl+eVxPp97h144YXXj3ekPdci8MIb2Vt6rsb9ekR7vh7edFNqBnjrAm/7zOK1+H8k5gwt09L7/66UztAy8Mb23u1TuWp7JTOU3tvS23IGS690Lc4Mn1RWeOG9ZhPUs3e256vhHaHwwjuTl7qG2nupYz3KmQNeeOGF18pVW09eD883l/fRXODV976Ibg/HPHtr9gOOl3PO6Rp9v9L0ev9+4YUX3tjeSJnJu6ffRg+8sTO7t5f7C84bLQ0=
+  </data>
+  </layer>
+  <layer name="ground2" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztzsEJACAMBLAD95/Wf+kYp5BMkASA1912AAAAAAAAAAAAAACAujntAfCbBXn9AfU=
+  </data>
+  </layer>
+  <layer name="objects" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztWktvEzEQ9jac4QYHeg238pbgH1Eor7/QHhDX5sR/AcqPQOKWJmmbVmpaKlAlXkJgkx3xZTLetb2z7Qb2k6y19zGZ8cx8Hu/GmMXHp/NWoEWteHXeCgB8uiyCjjH40Uk/16LZiI2PJsV2izBIeXkhC7uvRYsm4V/mq4nNv6Ft+7YdKeTiJJc1VJKnjT7odAD91HoDZfQbaO8IdDoU9IutJw8bbi/qdKKgH8oYNNDegbI/Rg33766yftrzFwLkyO28+Th4rBx/2vMXAqf3DVv73bTtpR1fgTpwxHToK+unPX8h8Ol9PZu3Vzv+tOcvBKed2fXiYu7flWx6jd9LWLT8dXm7A7n6leXxPlyjnD5Sjr+z9C/pezubNkLROEa/kDp5pDx/RSCuuGdtuQ/2FY21+fQs/Uvy72bTRigah+ZbV9jrS0B5nCu0kRI//RrzF/kE+WPPwyWxezSKzZj81a7/UIbTh9b+n7b1bOsuGXPJEyu9SB1S8rfO9bcsXq4uzbaQZxB0b0z+jpk/qgL1dbKzwLwnxMx5in8OIvwRq4OTTbXO8lL882XgtWIItPfnGC8oO9TelHiOAe7PNdYP1CHl/UFKPKfys1s/vle0uUq9sR75TAo/8/WD8Ny2B3n/IfT52PWfwLVRAV9hPerr183PKB91XWWyH3n6/F6U96cPv/vLlPdj/JuSf6fMHwSyieZ+DZ5ZY9fQ/jHjg82838356jLYL/VDbJiwem2b7Qv38v4O3LOTN6zfcG7X2G+sevr8Xl5P8n0o6eWrKfG8r7akGFoXrm2y8Qt2xPj7ohDPKINkvxP0CoEvtimGXtv2xrZrsNZJ53wysc9tkuJZupfz1YY9bplpbbzFnnPjDXbswdhnL/0G96WD5HPEuCP3eY5K8Szl9liYv7dm9miMfJ4ffVw9qOBflLmrEM9z/Gz+clWX6cDP82NZPEv+lc4hUCZyo1tXH5vpOuv6T+GZZ3Ce7pFkVK1Pfc/3I/x7K5u+l71TU3115MmPFJTFcwg/O3tXwF7t/S+PZ+IfH18hP+G4aO9fhZ/RByn7qxB5qXzls7fKPr3u/a9DKl+VxXMKcI+q/X5D+n4eg7J4TsGJcv5iTlT9fq7Bz0Uy6/qewvffCOnassCliFh+9q1H2vxMcUffZiUUXdPg57rXIyle+P4bIV0j/5bFc0r9rB3PxMmutj7uzP/HIKb/0aPPcaK8YS6T6n6N9XeR8O0/szcUi/R/yRYtWhjzmY3f2/X8Q+A3IU38Bk/AoOw=
+  </data>
+  </layer>
+  <layer name="roofs" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit to E9" type="transition" id="1" x="845" y="1845" width="40" height="72">
+      <properties>
+        <property name="area_id" value="E12" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object type="entry" id="2" x="930" gid="245" y="1860">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="lever conv" type="conversation" id="3" x="1500" gid="249" y="60">
+      <point />
+      <properties>
+        <property name="conversation" value="H10_tomb_lever" />
+        <property name="icon" value="lever" />
+        <property name="name" value="@LEVER" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="4" x="1500" gid="249" y="60">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="5" x="930" gid="249" y="570">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="6" x="930" gid="249" y="600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="7" x="930" gid="249" y="630">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="8" x="930" gid="249" y="660">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="9" x="930" gid="249" y="690">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="10" x="930" gid="249" y="720">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="11" x="845" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="12" x="945" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="16" x="890" gid="247" y="1210">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="18" x="670" gid="247" y="1090">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="19" x="1120" gid="247" y="1090">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="20" x="670" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="22" x="1120" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="26" x="755" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="27" x="815" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="28" x="975" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="29" x="1045" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="30" x="755" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="33" x="1045" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="35" x="815" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="36" x="975" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="38" x="205" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="41" x="205" gid="247" y="1325">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="44" x="75" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="45" x="75" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="46" x="365" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="50" x="365" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="51" x="495" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="52" x="495" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="55" x="425" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="56" x="1295" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="59" x="1295" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="60" x="1745" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="62" x="1555" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="63" x="1675" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="64" x="1455" gid="247" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="68" x="1295" gid="247" y="1645">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="69" x="1455" gid="247" y="1645">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Knight" type="spawn" id="72" x="1745" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="74" x="145" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="75" x="145" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="76" x="145" gid="247" y="845">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="81" x="260" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="84" x="495" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="85" x="390" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="86" x="390" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="87" x="390" gid="247" y="845">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="90" x="1455" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="92" x="1645" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="93" x="1325" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="94" x="1515" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="96" x="1645" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="97" x="1645" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="101" x="1455" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="102" x="1365" gid="247" y="1045">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="cook" type="spawn" id="103" x="205" gid="247" y="655">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_cook" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="cook" type="spawn" id="105" x="365" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_cook" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="106" x="125" gid="245" y="1615">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="107" x="125" gid="245" y="1425">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="108" x="125" gid="245" y="1235">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="109" x="285" gid="245" y="1685">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="110" x="285" gid="245" y="1295">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="111" x="1295" gid="245" y="1275">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="112" x="1555" gid="245" y="1275">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="113" x="1615" gid="245" y="1275">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="114" x="1745" gid="245" y="1275">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="115" x="1615" gid="245" y="1435">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Barrel" type="container" id="116" x="295" gid="489" y="685" width="64" height="64">
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="loot_table" value="imperial_chest_15" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="117" x="1645" gid="245" y="1075">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="orc_chest_13" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="118" x="1455" gid="489" y="885" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="orc_chest_13" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="119" x="860" gid="5" y="815">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="120" x="580" gid="247" y="1630">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="122" x="580" gid="247" y="1080">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="124" x="580" gid="247" y="540">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="125" x="1220" gid="247" y="1630">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="127" x="1220" gid="247" y="1080">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="129" x="1220" gid="247" y="540">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="134" x="670" gid="247" y="450">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="135" x="1090" gid="247" y="450">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="136" x="760" gid="247" y="350">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="139" x="990" gid="247" y="350">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="140" x="760" gid="247" y="260">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="143" x="990" gid="247" y="260">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="144" x="825" gid="247" y="480">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="145" x="945" gid="247" y="480">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="151" x="1280" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="153" x="1540" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="157" x="830" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="158" x="930" gid="247" y="190">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="161" x="670" gid="247" y="90">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="162" x="1090" gid="247" y="90">
+      <point />
+      <properties>
+        <property name="spawn" value="sky_knight_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Boss" type="spawn" id="163" x="885" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawntable" value="sky_boss" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="164" x="1530" gid="247" y="60">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="spawn_u" value="blue_witch" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn" id="165" x="1630" gid="247" y="60">
+      <point />
+      <properties>
+        <property name="spawn" value="blue_sorcerer" />
+        <property name="spawn_u" value="blue_witch" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Iron Golem" type="spawn" id="166" x="890" gid="247" y="830">
+      <point />
+      <properties>
+        <property name="spawn" value="golem_iron" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Iron Golem" type="spawn" id="167" x="190" gid="247" y="220">
+      <point />
+      <properties>
+        <property name="spawn" value="golem_iron" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="exit to E9" type="transition" id="168" x="90" y="160" width="49" height="49">
+      <properties>
+        <property name="area_id" value="E12_tower2" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="169" x="175" gid="245" y="175">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to E9" type="transition" id="170" x="1555" y="0" width="55" height="35">
+      <properties>
+        <property name="area_id" value="E12_tower3" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object type="entry" id="171" x="1600" gid="245" y="75">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

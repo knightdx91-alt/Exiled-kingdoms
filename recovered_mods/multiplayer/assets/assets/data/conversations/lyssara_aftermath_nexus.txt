@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](O Nexo Fraturado pulsa em ondas regulares)[] A rota do Selo manteve residuos controlados, mas um eco da trama ainda precisa ser eliminado.	[BLUE](El Nexo Fracturado pulsa en ondas regulares)[] La ruta del Sello dejo residuos controlados, pero aun queda un eco de la trama por eliminar.	2	"VariableEqual#lyssara_aftermath,10;VariableEqual#lyssara_path,1"		
+1	Q	[BLUE](O Nexo Fraturado estala com energia violenta)[] A rota de Ruptura abriu um eco agressivo. Voce vai precisar derruba-lo para estabilizar o fluxo.	[BLUE](El Nexo Fracturado cruje con energia violenta)[] La ruta de Ruptura abrio un eco agresivo. Necesitas derribarlo para estabilizar el flujo.	3	"VariableEqual#lyssara_aftermath,20;VariableEqual#lyssara_path,2"		
+1	Q	[RED](Um Eco da Trama domina a camara)[] A luta ainda nao terminou.	[RED](Un Eco de la Trama domina la camara)[] La lucha aun no termina.	0	VariableEqual#lyssara_aftermath,11		
+1	Q	[RED](Um Eco da Ruptura domina a camara)[] A luta ainda nao terminou.	[RED](Un Eco de Ruptura domina la camara)[] La lucha aun no termina.	0	VariableEqual#lyssara_aftermath,21		
+1	Q	O Nexo esta silencioso agora. Volte para Lyssara em Kingsbridge.	El Nexo esta en silencio ahora. Regresa con Lyssara en Kingsbridge.	0	"VariableEqual#lyssara_aftermath,12;VariableEqual#lyssara_path,1"		
+1	Q	O Nexo esta silencioso agora. Volte para Lyssara em Kingsbridge.	El Nexo esta en silencio ahora. Regresa con Lyssara en Kingsbridge.	0	"VariableEqual#lyssara_aftermath,22;VariableEqual#lyssara_path,2"		
+2	A	Enfrentar o Eco da Trama. (Leave)	Enfrentar el Eco de la Trama.	0		"SetVariable#lyssara_aftermath,11;NPCSpawn#lyssara_echo_seal;Particle#lyssara_echo_seal,teleport"	
+2	A	Ainda nao. (Leave)	Aun no.	0			
+3	A	Enfrentar o Eco da Ruptura. (Leave)	Enfrentar el Eco de Ruptura.	0		"SetVariable#lyssara_aftermath,21;NPCSpawn#lyssara_echo_rupture;Particle#lyssara_echo_rupture,teleport"	
+3	A	Ainda nao. (Leave)	Aun no.	0			

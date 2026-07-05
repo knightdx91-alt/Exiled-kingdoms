@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="40" tilewidth="64" tileheight="32" nextobjectid="5">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="sw1" value="62" />
+    <property name="sw2" value="84" />
+    <property name="sw3" value="49" />
+    <property name="sw4" value="91" />
+    <property name="sw5" value="87" />
+    <property name="sw6" value="85" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="town_objexts2.tsx" firstgid="490" />
+  <tileset source="town_objects3.tsx" firstgid="554" />
+  <tileset source="icemist_large.tsx" firstgid="586" />
+  <tileset firstgid="626" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="914" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1130" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUEAO+j0DzqG3mKBgFlAJqpklqp/HBbt4oGAWjYBQMFgAA6tMLlQ==
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztk1EKACEIRBP3/mfenwQR/dAmMHBASKHHZLrWG/pMkFPLiBSDgjzrT+7xztlwKzzhSOh6lRedO/jTHDl38te9f6j5u7EfyP21d9mpVXjsxCkv8pnled60xwrP9kzXO/CQ70X/x415Qc8zijcajUZo/WmjArI=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="scenery" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztlMEOwVAQRV9bK7VobPgHVVQRRAkiYk0qIbG3F3sLf+E/bPg2d6JNqvqavImNpDe50bmTnkze9BHiP+TDe3gLr8PndVh34bEibwc/4XPhXXu6EB39/ezgt83gPWJ1U/vsq/ICWMcch0Qe1Zz5ZKpo6rwNXNK+8zqyIeP8iHeS9FzmPqop80Xi7IP0y30cC/K+Kq+V0bMZ50c8mu8Wm9EHZwybjO+F7i/dU7qvgzAbCv797cB3Q4hiYsc11DbcY/DKeO9hfOZ0j8kzRV6Q0TMNdR7N52R8zxyeC15DwuTwWhKexTg/4iX/QyOVGOcn24cF1pS5j6vxnc+RrZi8SwpvgWzJ4I1gL3Q/lkfZRJGXK1euXL/WC9byHvU=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AlPPhXjAv2tAqaAHTstAcAwLcDZH0ADA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="235" gid="241" y="765">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="2" x="225" gid="245" y="815" width="34" height="34">
+      <properties>
+        <property name="conversation" value="IM_manor_door3" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="Sansa" type="spawn" id="3" x="155" gid="243" y="145">
+      <point />
+      <properties>
+        <property name="conversation" value="sansa2" />
+        <property name="spawn" value="sansa2" />
+        <property name="tag" value="sansa" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="4" x="195" gid="241" y="235">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="120" y="250">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="10990"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="sansa_chest"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

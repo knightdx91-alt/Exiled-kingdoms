@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](проход, вдруг, перегродила толпа бандитов)[] Ё! Вот где эта гнида сныкалась, а вы не верили мне, что он может быть где-то здесь!	¿po?	7		
+7,adaon	Q	Ох же, чёрт, я в полной жопе!	¿po?	8			
+8,bandit	Q	Ты же в курсе на кого мы работаем? Так что не выпендривайся и иди с нами по хорошему, если не хочешь ещё более серьезных проблем!	po.	9		
+9,adaon	Q	Что-то у меня нет доверия к типам, с подобными рожами, как у вас!	¿po?	10			
+10	A	Именно, это вам следует свалить отсюда по хорошему.	po.	11		
+11,bandit	Q	Не лезь не в своё дело! Мы просто доставим этого хмыря к нашему боссу, а уже на месте сам босс решит, как с ним поступить!	¿po?	12			
+12	A	Я отправлюсь вместе с ним, если у вас есть возражения, лучше придержите их при себе, для своей же целостности.	po.	13		
+12	A	Он никуда с вами не пойдёт, а вам следует свалить отсюда, пока целы.	po.	16		
+13,bandit	Q	Ладно, можешь тоже с нами идти. На причале нас ждёт корабль, так мы быстрее доберёмся до нашего босса!	¿po?	14			
+14,mercenary_grisenda	Q	У нас есть куда более важное дело, а этот парень постоянно попадает в неприятности, как-нибудь выкрутся сам!	¿po?	16	"NPCIsInParty#grissenda,mercenary_grisenda;VariableGreater#bloody_harvest,9;VariableLower#bloody_harvest,99"		
+14,mercenary_grisenda	Q	Я не собираюсь лезть в ваши бандитские разборки!	¿po?	15	NPCIsInParty#grissenda,mercenary_grisenda	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+14,hirge	Q	Похоже, у него серьёзные проблемы! Но боюсь, угроза королевы ведьм куда страшнее, сначала необходимо с ней разобраться.	¿po?	16	"NPCIsInParty#hirge,hirge;VariableGreater#between_worlds,9;VariableLower#between_worlds,99"		
+14,hirge	Q	Ненавижу плавать морем, надеюсь вы справитесь сами?	¿po?	15	NPCIsInParty#hirge,hirge	"NPCStopFollowing#;NPCDespawn#hirge"	
+14,sansa	Q	Пошёл к чёрту этот прохвост! Ты, вообще-то, обещал помочь решить мою проблему!	¿po?	16	"NPCIsInParty#sansa2,sansa;VariableGreater#something_more,9;VariableLower#something_more,99"		
+14,sansa	Q	Только без меня, я не желаю плыть не пойми куда, а если кто-то против, я поджарю его молнией!	¿po?	15	NPCIsInParty#sansa2,sansa	"NPCStopFollowing#;NPCDespawn#sansa"	
+14,damian	Q	Я не собираюсь лезть в ваши бандитские разборки!	¿po?	15	NPCIsInParty#durak2,damian	"NPCStopFollowing#;NPCDespawn#damian"	
+14,peter	Q	У меня нет желания плыть неизвестно куда, к тому же, у меня волки не кормлены, не хорошо их голодными оставлять!	¿po?	15	NPCIsInParty#durak,peter	"NPCStopFollowing#;NPCDespawn#peter"	
+14,adaon	Q	Это не самая лучшая идея, друг, соглашаться с ними, надеюсь, что будет время, чтобы объяснить тебе, что к чему по-подробнее, но если всё станет очень хреново, надеюсь, ты выручишь меня!	¿po?	18		NPCFollow#
+15,adaon	Q	Это не самая лучшая идея, друг, соглашаться с ними, тем более теперь мы в меньшинстве, надеюсь, что будет время, чтобы объяснить тебе, что к чему по-подробнее, но если всё станет очень хреново, надеюсь, ты выручишь меня!	¿po?	18		NPCFollow#
+16,bandit	Q	Мне уже надоело уломывать вас, если от слов толку нет, передём к драке!	¿po?	17			
+17	A	Отлично, так бы сразу.	po.	0		"NPCHostile#bandit;NPCHostile#banda_lib;SetVariable#stretch_dead,1;SetVariable#time_to_pay,25"
+18	A	Прорвёмся, как всегда.	po.	0		"Travel#C7,1,20;SetVariable#stretch_dead,2;SetVariable#time_to_pay,32"

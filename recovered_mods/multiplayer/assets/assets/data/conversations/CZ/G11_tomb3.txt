@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Разрушенно.	¿po?	0	"VariableEqual#tomb_b3,1"		
+1	Q	[BLUE](это заколдованное надгробие)[]	¿po?	2			
+2	A	[BLUE](разрушить его)[]	po.	3		"SetVariable#tomb_b3,1;IncVariable#death_attack,1"
+2	A	Уйти.	po.	0			
+3	Q	[BLUE](вы сломали надгробие, но высвободившие чары поражают вас)[]	¿po?	0		"LoseHPDeath#45"

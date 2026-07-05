@@ -1,0 +1,599 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="32" tilewidth="64" tileheight="32" nextobjectid="60">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="dark_chamber" />
+    <property name="nominimap" value="" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="icemist_large.tsx" firstgid="1253" />
+  <tileset firstgid="1293" name="pentagram" columns="4" tilecount="16" tileheight="32" tilewidth="64">
+    <image source="pentagram.png" width="256" height="128" />
+  </tileset>
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="dungeon stairs.tsx" firstgid="1405" />
+  <tileset firstgid="1409" name="wooden_trifles" columns="16" tilecount="144" tileheight="128" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1553" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="3639" name="trifles_sborka" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="scifi.tsx" firstgid="3747" />
+  <tileset source="grounds indoor 2.tsx" firstgid="3859" />
+  <layer name="nonwalk" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3USwrAIAwFQO9/5W66lxSh9RPrDLgT+vIMLQWY5QpOdGdFlgxaWbLkXKU1/+n91Op9GtVPa2ezvsusfqLvZtT6H/fMnbWDL3rN9MdunryZ9aR+iNkBstlxJ3fMPJI+AAAAAP7jBjSUEwQAJAAA
+  </data>
+  </layer>
+  <layer name="water" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAgFcDEWH4ywAkAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VsQ2AMAxFwTAR+y9GTU+RAvMdQHcSrXGeImUMeMZW+Dr+k5qf3lsffSp7p/rsTedIzX3L/TmK89N7r+5TnZ/eWx99Knvr848+1/dQH/enkz5zXX2+Sp97dJjTBwAAANY6AbY1LZsAJAAA
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WQQ6CMBAFUKxQVxI0XkRlr2s9lPfzRrrSJjYpZiiMTjtK/tsZTZ2W/hmKAgCmzNru512lUwfHxvR/Z1772WfcR2WHf5PLL9XinOp0a5fMvW6DO5Gyrj4XoTsZZlbzeS+fOVxFsjhV88iZh3eyMfLPxxDrzYT+417KrJOTP99F4hzciLNpmXmuiayslTL07Xz09zDsqbFccFyDNRvl/nJONCc+Of/jWy1Ub3Hvb9I1c+fskFi/ksgxlSc3M6X3MdZB4V1DgutX3B7nUXPqn6SeJwAAAAAAAAAAANoeESfGyQAkAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VWwqAMAxE0e7AxftYr/RDqGAslTbNyD3QXxtGJ6YEoOZY7keFx6z7wx2rQEbX3NasvbJTzSfbjDlr2bVQzueNld3XZ5UnOq89ad2hsqNHfudWR3t2d7TRM1pdityxcl96vkOVTs3IR6lT2Yz/SOROAQAAAAAAAMDfnH1q47EAJAAA
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2XTUsCURSGB2NmqbWJaJeb2gRJ2Sd+ZEaLWuQiSiKCoBYVWe1bRG5UTPr6OfULWojLCIko9/ULOkNXPI732j1TZtJ54OVez9w5Z+adOTOjYTDMzxAG5YSyoIIYw2LMojX2/ByUF/MIsY6dOyP2zwjl0DyP1lSPSbeGLH8BCccpeZOgimkYz6B7sxYPONacehv3HdWsYZMAXWqu7bUMww+KWfo1giDT8zkvSo61Sr9YQ8n7Ar48mfXxgGKOofiDc8ygWruO0W2NoCL+Cl5VQGWHZxOEvEWzMe70Z1ayhurPhSS+5xjd1rDPo8dX+50GPTg86fPU5nOaeRNN6p0IT+xzC8M8hDwaN2n+rEhi3T61PwvQW3Fif1HQ9UeWtwznPg/jFmgNNA2KQKzLql9H8WdVEU+B9kEHdj6rcXsr/Cl5af4sSY4rJok5ofbXNegR3fMp8PxQ0rduaqieb4YiruuP6rpiRhReUfxZB703ea+oaHd/bRDzVjnz0v15I/hj32t3Rvv9oebFUPvrpsn2HUlP3BJqtMqfJDHvIuo1N8/ntGL7tuKZ0Wn+YNx+H+rgJ37nhkCToLimljXz/mZ/baJ75Ajmx+J3CT2XrkAD4M0gaMhDq9EKVN+Hw4p3VhSdI+XY7es75kJRQo1WUL1/4l+8W4Lf/H/Rqaiu6xRa81evLcMwDMMwDMMwDMMw/5cP4aEbPwAkAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QQQ0AMAzEsH4GafDGfTCurWwEUaoA+nonXTDHTQc05w8AAAAAAACw1QeS7svdACQAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="355" gid="245" y="500">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Balthasar" type="spawn" id="3" x="335" gid="247" y="345">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,24;VariableLower#very_strange_thing,39" />
+        <property name="conversation" value="H10_balthasar" />
+        <property name="spawn" value="balthasar" />
+        <property name="tag" value="balthasar" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mechguardian" type="spawn" id="4" x="185" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,24;VariableLower#very_strange_thing,34" />
+        <property name="spawn" value="mechanical_guardian" />
+        <property name="tag" value="mechguardian" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="120" y="220" width="450" height="180">
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,29" />
+        <property name="actions" value="StartConversation#balthasar,H10_balthasar" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="7" x="355" gid="245" y="660">
+      <point />
+      <properties>
+        <property name="conversation" value="H9_door_tower2" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="H9_door_tower2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="8" x="310" y="590" width="70" height="10">
+      <properties>
+        <property name="actions" value="StartItemConversation#H9_door_tower2" />
+      </properties>
+    </object>
+    <object name="golem" type="spawn" id="9" x="275" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,39;VariableLower#very_strange_thing,99" />
+        <property name="conversation" value="H9_golem" />
+        <property name="portrait" value="95" />
+        <property name="spawn" value="golem_iron_good" />
+        <property name="tag" value="golem_g" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="golem" type="spawn" id="10" x="435" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,39;VariableLower#very_strange_thing,99" />
+        <property name="conversation" value="H9_golem" />
+        <property name="portrait" value="95" />
+        <property name="spawn" value="golem_iron_good" />
+        <property name="tag" value="golem_g" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="golem" type="spawn" id="11" x="1175" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,69" />
+        <property name="spawn" value="golem_insulating" />
+        <property name="tag" value="golemb" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Balthasar" type="spawn" id="12" x="1005" gid="247" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,69" />
+        <property name="conversation" value="H10_balthasar" />
+        <property name="spawn" value="balthasar" />
+        <property name="tag" value="balthasar2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="apprentice" type="spawn" id="13" x="1145" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,69" />
+        <property name="conversation" value="G9_apprentice" />
+        <property name="spawn" value="apprentice_2" />
+        <property name="tag" value="apprentice2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="14" x="350" gid="247" y="250">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="conditions" value="VariableLower#very_strange_thing,41" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="15" x="320" y="190" width="50" height="20">
+      <properties>
+        <property name="area_id" value="H9_tower" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="16" x="1165" gid="245" y="115">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="17" x="1150" y="165" width="35" height="35">
+      <properties>
+        <property name="area_id" value="H9_tower" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object type="entry" id="18" x="335" gid="245" y="250">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object type="entry" id="19" x="1905" gid="245" y="375">
+      <point />
+      <properties>
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object type="entry" id="20" x="1265" gid="245" y="175">
+      <point />
+      <properties>
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="golem" type="spawn" id="21" x="1775" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,89" />
+        <property name="spawn" value="golem_insulating" />
+        <property name="tag" value="golemb" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="golem" type="spawn" id="22" x="2035" gid="247" y="195">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,89" />
+        <property name="spawn" value="golem_insulating" />
+        <property name="tag" value="golemb" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Balthasar" type="spawn" id="23" x="1915" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,89" />
+        <property name="conversation" value="H10_balthasar" />
+        <property name="spawn" value="balthasar" />
+        <property name="tag" value="balthasar3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="apprentice" type="spawn" id="24" x="1905" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,89" />
+        <property name="conversation" value="G9_apprentice" />
+        <property name="spawn" value="apprentice_2" />
+        <property name="tag" value="apprentice3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Balthasar" type="spawn" id="24" x="1915" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="balthasar_2" />
+        <property name="tag" value="balthasar4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="apprentice" type="spawn" id="25" x="1905" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="apprentice_3" />
+        <property name="tag" value="apprentice4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Balthasar" type="spawn" id="26" x="1915" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="balthasar_3" />
+        <property name="tag" value="balthasar5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="apprentice" type="spawn" id="27" x="1905" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="apprentice_4" />
+        <property name="tag" value="apprentice5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Zeref" type="spawn" id="28" x="1905" gid="247" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="hidden_mage2" />
+        <property name="spawn" value="zeref_1" />
+        <property name="tag" value="hidden_mage2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Zeref" type="spawn" id="29" x="1905" gid="247" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="zeref_3" />
+        <property name="tag" value="hidden_mage3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="30" x="1855" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="arcane_knight" />
+        <property name="tag" value="hidden_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="31" x="1965" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="arcane_knight" />
+        <property name="tag" value="hidden_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="32" x="1920" gid="245" y="390" width="34" height="34">
+      <properties>
+        <property name="conversation" value="H9_portal" />
+        <property name="icon" value="rune_p" />
+        <property name="name" value="@PORTAL" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="32" x="1730" y="100" width="330" height="310">
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,84" />
+        <property name="actions" value="StartConversation#hidden_mage2,hidden_mage2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="33" x="352" gid="249" y="576">
+      <point />
+      <properties>
+        <property name="inactive" value="" />
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="34" x="384" gid="249" y="576">
+      <point />
+      <properties>
+        <property name="inactive" value="" />
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="magister" type="spawn" id="35" x="335" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,67" />
+        <property name="hostile" value="" />
+        <property name="spawn" value="archmagister2" />
+        <property name="tag" value="magister" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="36" x="305" gid="247" y="455">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,67" />
+        <property name="name" value="@ADAON" />
+        <property name="spawn" value="adaon_guard_2" />
+        <property name="tag" value="falseadaon" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="37" x="120" y="220" width="450" height="250">
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,65" />
+        <property name="actions" value="StartConversation#guard,H9_falseadaon" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="38" x="1965" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,68;VariableLower#hate_through,99" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+        <property name="respawn" value="1" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="scientist" type="spawn" id="39" x="1905" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,64;VariableLower#hate_through,99" />
+        <property name="conversation" value="H9_scientist" />
+        <property name="spawn" value="adaon_scientist" />
+        <property name="tag" value="scientist" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="40" x="1730" y="100" width="330" height="310">
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,72" />
+        <property name="actions" value="StartConversation#king,H9_adaons" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="41" x="1730" y="100" width="330" height="310">
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,75" />
+        <property name="actions" value="StartConversation#magister2,H9_adaons" />
+      </properties>
+    </object>
+    <object name="adaon2" type="spawn" id="42" x="1845" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="portrait" value="353" />
+        <property name="spawn" value="adaon_tutorial" />
+        <property name="tag" value="adaon2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="prime" type="spawn" id="43" x="1905" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="adaon_prime" />
+        <property name="tag" value="prime" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="outlaw" type="spawn" id="44" x="1965" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="adaon_outlaw" />
+        <property name="tag" value="outlaw" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="45" x="1805" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="adaon_priest" />
+        <property name="tag" value="priest" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="adaon3" type="spawn" id="46" x="1865" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@ADAON" />
+        <property name="portrait" value="354" />
+        <property name="spawn" value="bandit_machete" />
+        <property name="tag" value="adaon3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="king" type="spawn" id="47" x="1935" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="adaon_king" />
+        <property name="tag" value="king" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skuf" type="spawn" id="48" x="1995" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@SKUF" />
+        <property name="portrait" value="351" />
+        <property name="spawn" value="electrician_male" />
+        <property name="tag" value="skuf" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="girl" type="spawn" id="49" x="1805" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="ada" />
+        <property name="tag" value="girl" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="adaons" type="spawn" id="50" x="1865" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@ADAON" />
+        <property name="spawn" value="shooter" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="adaons" type="spawn" id="51" x="1935" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@ADAON" />
+        <property name="spawn" value="kingly_bowman_male" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="batrax" type="spawn" id="52" x="1995" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="adaon_batrax" />
+        <property name="tag" value="batrax" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="demon" type="spawn" id="53" x="1775" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@ADAON" />
+        <property name="spawn" value="adaon_demonologist" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="slave" type="spawn" id="54" x="1845" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="faction" value="player" />
+        <property name="name" value="@ADAON_SLAVE" />
+        <property name="spawn" value="furious_male" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="legion" type="spawn" id="55" x="1905" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="name" value="@LEGION" />
+        <property name="spawn" value="mercian_legionnaire_male" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="eunuch" type="spawn" id="56" x="1965" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="faction" value="player" />
+        <property name="name" value="@EUNUCH" />
+        <property name="spawn" value="sky_knight_male_naked" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="dead" type="spawn" id="57" x="2035" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="faction" value="player" />
+        <property name="name" value="@ADAON_DEAD" />
+        <property name="spawn" value="zombie_s1" />
+        <property name="tag" value="adaons" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="magister" type="spawn" id="58" x="1905" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,71;VariableLower#hate_through,99" />
+        <property name="spawn" value="archmagister3" />
+        <property name="tag" value="magister2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="adaon" type="spawn" id="59" x="1585" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,76;VariableLower#hate_through,99" />
+        <property name="name" value="@ADAON" />
+        <property name="portrait" value="355" />
+        <property name="spawn" value="H12_janod" />
+        <property name="tag" value="keeper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

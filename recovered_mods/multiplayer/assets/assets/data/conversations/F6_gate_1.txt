@@ -1,0 +1,13 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	A shimmering blue barrier blocks this ancient magic gate. However you have already passed this barrier in the past and it opens itself to let you in.	Una barrera azul brillante bloquea esta antiquísima puerta mágica. Pero ya la franqueaste en el pasado, y la barrera azul se abre para permitirte pasar.	12	VariableGreater#F6_gate_1,0	
+1	Q	A shimmering blue barrier blocks this ancient magic gate. 	Una barrera azul brillante bloquea esta antiquísima puerta mágica.	2		
+2	A	Take your [BLUE]Purple Medallion[] and raise it in front of the barrier while you recite the Prayer you learned in the City of the Ancients.	Toma el [BLUE]Medallón Morado[] y álzalo frente a la barrera mientras recitas la Oración que aprendiste en la Ciudad de los Ancianos.	10	"PlayerHasItem#2636;VariableGreater#temple_sleepers,20"	
+2	A	Walk through the gate	Cruzar la puerta.	3		
+2	A	Stay outside.	Permanecer fuera.	0		
+3	Q	"The blue barrier is strong as an iron wall; no matter what you try, you can't go through it."	"La barrera azul es como un muro de hierro; no importa lo que intentes, no consigues cruzar."	4		
+4	A	At least I wasn't zapped this time.	Por lo menos esta vez no me he llevado una descarga.	5		
+5	Q	As if the door had just heard your remark, an energy beam burns through your flesh.	Como si la puerta hubiera oido tu comentario, un rayo de energía quema tu carne.	6		"LoseHPShock#70;LoseHPFire#70"
+6	A	Ouch! Yeah, that's more like it...	¡Ay! Eso ya me es más familiar.	0		
+10	Q	"The medallion dissolves; the barrier no longer blocks you from crossing the gate; you believe you'll be able to cross this barrier in the future."	"El medallón se disuelve; la barreraya no te impide el paso; crées que podrás cruzarla de nuevo en el futuro."	11		
+11	A	Walk through the gate	Cruzar la puerta.	0		"LoseItem#2636;SetVariable#F6_gate_1,1;Travel#F6_temple,1,0"
+12	A	Walk through the gate	Cruzar la puerta.	0		Travel#F6_temple,1,0

@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="90" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="30"/>
+  <property name="music" value="complex"/>
+  <property name="name" value="Gorx lair"/>
+  <property name="name_ES" value="Guarida Gorx"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="town_objects.tsx"/>
+ <tileset firstgid="569" source="grounds_indoor.tsx"/>
+ <tileset firstgid="729" source="grounds_effects.tsx"/>
+ <layer name="nonwalk" width="90" height="60" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QwQ0AAAQAMfsv7GsLgnaCy0UAAAAAAAAAAAAAAAAAm+R0wBM+9/C5h88AAAAAAABwWwH94a9WYFQAAA==
+  </data>
+ </layer>
+ <layer name="water" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bSwrCMBRA0UezIqeOXItaPyCKn6LLNyUBN2Ao2nPgjdvcQgcPEgEAAAwpos+zyfPMs+ymfqP/NHYdaud9bQ0AAAAAMAe3FLGzE21unRsfdG5ubPzSGQAAgC9ZdWV3QlvnVHYntLXIjbcTdT6m8vzLDL7zKZ/xoTPA7PT1HsLdP7ipa/q0BgAAAADg97wBaMM24mBUAAA=
+  </data>
+ </layer>
+ <layer name="ground" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZOw6AIBAFQKX0exQP523Uw6rB1sJCSGCm2YZi8/JCSGgagLrtbe4NyvKW5yFnCrfpOEAW7l8AAAB4N4Q4+2suIe8uNZiejDtZ/+bu8hhit3U6HZ0GqMv64e/ly1mgXrP3JAAAAAAAAAAAACRzAiY4Yz9gVAAA
+  </data>
+ </layer>
+ <layer name="objects" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="scenery" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAgFcDnO/Dh2BUAAA=
+  </data>
+ </layer>
+ <layer name="roofs" width="90" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAgFcDnO/Dh2BUAAA=
+  </data>
+ </layer>
+ <objectgroup name="data" width="90" height="60">
+  <object name="exit to H11" type="transition" x="2350" y="1871" width="69" height="49">
+   <properties>
+    <property name="area_id" value="H11"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="2380" y="1831">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="1014" y="1828">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to H11" type="transition" x="974" y="1864" width="69" height="49">
+   <properties>
+    <property name="area_id" value="H11"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2653" y="751">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2033" y="964">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2150" y="945">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2223" y="976">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1766" y="226">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1591" y="293">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1639" y="230">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1694" y="294">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="848" y="692">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="685" y="159">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="765" y="215">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="831" y="141">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="774" y="274">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="229" y="214">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1306" y="185">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="890" y="283">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin spearman" type="spawn" gid="243" x="143" y="1660">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="245" x="1364" y="980">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_3"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="245" x="151" y="886">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_3"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="245" x="2683" y="661">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_3"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1527" y="121">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="151" y="183">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H11_cave_1_2"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="185" y="1754">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="117" y="1745">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H11_cave_1_1"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="204" y="284">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="235" y="131">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2620" y="151">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1237" y="1398">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin spearman" type="spawn" gid="243" x="215" y="1697">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin spearman" type="spawn" gid="243" x="155" y="1597">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin spearman" type="spawn" gid="243" x="206" y="1610">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="701" y="1427">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="925" y="1479">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1400" y="949">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1444" y="949">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2118" y="1494">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2460" y="1536">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2703" y="1489">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2591" y="432">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2500" y="385">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2041" y="572">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2028" y="870">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin king" type="spawn" gid="243" x="1644" y="153">
+   <properties>
+    <property name="spawn" value="goblin_king"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1596" y="146">
+   <properties>
+    <property name="spawn" value="goblin_firedancer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1009" y="179">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="553" y="227">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="741" y="754">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="goblin_firedancer"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="282" y="185">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="152" y="807">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="188" y="860">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="250" y="803">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="242" y="852">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1849" y="119">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="727" y="116">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_5"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="699" y="603">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H11_cave_1_3"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2200" y="855">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_5"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1692" y="152">
+   <properties>
+    <property name="spawn" value="goblin_firedancer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2104" y="986">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="2001,2004,5016,5021,3008"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="I11_cave_chest1"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="245" x="1155" y="1321"/>
+  <object name="Light" type="light" gid="245" x="1304" y="1438"/>
+  <object name="Light" type="light" gid="245" x="1040" y="1229"/>
+  <object name="Light" type="light" gid="245" x="912" y="1157"/>
+  <object name="Light" type="light" gid="245" x="1467" y="1517"/>
+  <object name="Light" type="light" gid="245" x="770" y="1094"/>
+  <object name="Light" type="light" gid="245" x="638" y="1070"/>
+  <object name="Light" type="light" gid="245" x="498" y="1222"/>
+  <object name="Light" type="light" gid="245" x="566" y="1154"/>
+  <object name="Light" type="light" gid="245" x="357" y="1231"/>
+  <object name="Light" type="light" gid="245" x="1586" y="1434"/>
+  <object name="Light" type="light" gid="245" x="1489" y="1251"/>
+  <object name="Light" type="light" gid="245" x="1535" y="1141"/>
+  <object name="Light" type="light" gid="245" x="1679" y="1109"/>
+  <object name="Light" type="light" gid="245" x="1866" y="1074"/>
+  <object name="Light" type="light" gid="245" x="2124" y="1048"/>
+  <object name="Light" type="light" gid="245" x="2323" y="1081"/>
+  <object name="Light" type="light" gid="245" x="2446" y="998"/>
+  <object name="Light" type="light" gid="245" x="2561" y="895"/>
+  <object name="Light" type="light" gid="245" x="2686" y="774"/>
+  <object name="Light" type="light" gid="245" x="2751" y="469"/>
+  <object name="Light" type="light" gid="245" x="2726" y="362"/>
+  <object name="Light" type="light" gid="245" x="2624" y="232"/>
+  <object name="Light" type="light" gid="245" x="2417" y="127"/>
+  <object name="Light" type="light" gid="245" x="2263" y="141"/>
+  <object name="Light" type="light" gid="245" x="2111" y="85"/>
+  <object name="Light" type="light" gid="245" x="172" y="1248"/>
+  <object name="firedancer" type="spawn" gid="243" x="524" y="1372">
+   <properties>
+    <property name="spawn" value="goblin_firedancer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2749" y="158">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_5"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="2725" y="217">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="1583" y="1250">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="457" y="1242">
+   <properties>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1585" y="565">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1433" y="500">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="1223" y="457">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="2141" y="131">
+   <properties>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="1974" y="-11" width="150" height="40">
+   <properties>
+    <property name="area_id" value="I12_cauldron"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2542" y="447">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2568" y="563">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="goblin" type="spawn" gid="243" x="2741" y="963">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="725" y="679">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="790" y="748">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="886" y="752">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="243" x="773" y="639">
+   <properties>
+    <property name="quest_location" value="H11_cave_1_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Event" type="spawn" gid="243" x="1255" y="742" width="64" height="64">
+   <properties>
+    <property name="event_location" value="H11_cave_1"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawn" value="fire_drake"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="70"/>
+  <property name="music" value="fame_town"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="town_objects.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <tileset firstgid="493" source="town_objects3.tsx"/>
+ <tileset firstgid="525" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztyCEOAAAIxLD7/5cxGCQCiWiTmSXAJzVdPwAAAAAAAAAAAAAAAMCmAZ/6A+0=
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENADAIBDHYPKOnSk1aXrZ0A1wVAAAAAM/puSR+/Sbxm/v785r07tev3738+vW7l1+/fgEAAAAASHUBDmdwYA==
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1UkKwkAQheHuI7j0GBmM87DxBIIK8Sae2htYRRIQIYkNpkPp/8FDMLWoh3bHOQAAAAAAADR2kqIn+9G2+77kg5ls8C3iee37aJn51b5t6GvXP/XVu/kmuUqOknudov5eP8/189TZv6dLifftzye+SsP673wKnLfe9xI4b71vGTivfZdDLBKJ/p+nHef33VqyGmqZCGYurK91zbs39VV+nZ7fRHrOJQtJ1tN54+yfX5X7Kn30vrJ8fnkfdbPedyvJA3IYZUsAAAAAAAAAQCxPcEYUHA==
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="exit to Grasslands" type="transition" x="971" y="945" width="20" height="91">
+   <properties>
+    <property name="area_id" value="H6"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="935" y="974">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="chancellor" type="spawn" gid="247" x="642" y="874">
+   <properties>
+    <property name="conversation" value="H6_chancellor"/>
+    <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1"/>
+    <property name="spawn" value="H6_chancellor"/>
+    <property name="tag" value="bodyguard"/>
+    <property name="unique_tag" value="H6_chancellor"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="troll" type="spawn" gid="247" x="647" y="954">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1"/>
+    <property name="name" value="@MERCENARY"/>
+    <property name="spawn" value="elder_troll"/>
+    <property name="tag" value="bodyguard"/>
+    <property name="unique_tag" value="H6_b1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="686" y="806">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1"/>
+    <property name="name" value="@MERCENARY"/>
+    <property name="spawn" value="outlaw_archer_elite"/>
+    <property name="tag" value="bodyguard"/>
+    <property name="unique_tag" value="H6_b2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="787" y="807">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1"/>
+    <property name="name" value="@MERCENARY"/>
+    <property name="spawn" value="outlaw_archer_elite"/>
+    <property name="tag" value="bodyguard"/>
+    <property name="unique_tag" value="H6_b3"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="247" x="705" y="999">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1"/>
+    <property name="name" value="@MERCENARY"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="bodyguard"/>
+    <property name="unique_tag" value="H6_b4"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

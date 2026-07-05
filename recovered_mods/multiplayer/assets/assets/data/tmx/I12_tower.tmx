@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" nextobjectid="7">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="music" value="anguish" />
+    <property name="name" value="Magic tower" />
+    <property name="name_ES" value="Casa en New Garand" />
+    <property name="norecall" value="" />
+    <property name="sw1" value="596" />
+    <property name="sw2" value="4" />
+    <property name="sw3" value="1" />
+    <property name="sw4" value="61" />
+    <property name="sw5" value="50" />
+    <property name="sw6" value="49" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="teleporter.tsx" firstgid="493" />
+  <tileset source="grounds indoor 2.tsx" firstgid="598" />
+  <tileset source="town_objects.tsx" firstgid="758" />
+  <tileset source="town_objexts2.tsx" firstgid="838" />
+  <tileset source="dungeon2.tsx" firstgid="902" />
+  <tileset firstgid="1142" name="library_dangerous_sw" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous_sw.png" width="1024" height="1920" />
+  </tileset>
+  <tileset source="town_objects_sw.tsx" firstgid="1382" />
+  <tileset source="town_objects_sw2.tsx" firstgid="1462" />
+  <tileset firstgid="1526" name="trifles_sborka" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="natural_grounds.tsx" firstgid="1634" />
+  <layer name="nonwalk" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBje4DuVzaKmedjMHwXDF4zG7ygYBaNgFAweAACL4QTU
+  </data>
+  </layer>
+  <layer name="ground" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgeoI2JeDxq/sCav5Vt1PzhHL+jYBSMglEwFAAAwBg8og==
+  </data>
+  </layer>
+  <layer name="ground2" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDAQwZaOd2SZQs41oaIcxDc0eBaNgFIwCWgMAqEQA5w==
+  </data>
+  </layer>
+  <layer name="scenery" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="objects" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBge4DAzA8NtIN4OxHehbBB+CaUfAvFuID7CTJ7526D6ulkYGGawMjDMBGJpFoR8P5AvDuTvoMD8Mqh5c1khGBsg1/wHSObjApIUuP8GUN8vIP5HQP8BCtzPRcD9lIBbQPPFCJhfD4yTg2S6H2T+DDzmzwKaPZ+V/PC/haSvDJp2fiKJgcyfR4H5h4D6dhKBj5Jp/igYBaNgFNAbAADSDSle
+  </data>
+  </layer>
+  <layer name="roofs" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="" type="entry" id="1" x="375" gid="241" y="225">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Ginevra" type="spawn" id="3" x="165" gid="243" y="175">
+      <point />
+      <properties>
+        <property name="conversation" value="I12_Ginevra" />
+        <property name="spawn" value="ginevra" />
+        <property name="tag" value="ginevra" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="4" x="250" y="90" width="30" height="250">
+      <properties>
+        <property name="conditions" value="VariableLower#holiday_coming,51" />
+        <property name="actions" value="StartConversation#ginevra,I12_Ginevra" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="5" x="420" y="210" width="10" height="50">
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,51" />
+        <property name="actions" value="StartItemConversation#I12_door" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="6" x="495" gid="241" y="245" width="3" height="3">
+      <properties>
+        <property name="conversation" value="I12_door" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="I12_door" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

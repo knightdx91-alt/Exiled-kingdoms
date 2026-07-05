@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="40" tilewidth="64" tileheight="32" nextobjectid="10">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="sw1" value="62" />
+    <property name="sw2" value="84" />
+    <property name="sw3" value="49" />
+    <property name="sw4" value="91" />
+    <property name="sw5" value="87" />
+    <property name="sw6" value="85" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="town_objexts2.tsx" firstgid="490" />
+  <tileset source="town_objects3.tsx" firstgid="554" />
+  <tileset source="icemist_large.tsx" firstgid="586" />
+  <tileset firstgid="626" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="914" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1130" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUEAO+j0DzqG3mKBgFlAJqpklqp/HBbt4oGAWjYBQMFgAA6tMLlQ==
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztk1EKACEIRBP3/mfenwQR/dAmMHBASKHHZLrWG/pMkFPLiBSDgjzrT+7xztlwKzzhSOh6lRedO/jTHDl38te9f6j5u7EfyP21d9mpVXjsxCkv8pnled60xwrP9kzXO/CQ70X/x415Qc8zijcajUZo/WmjArI=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="scenery" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztlM0KglAQha/aqlpEBPUO2Y+lRUk/VES0LgwK2reP9i16i96jTT1bZ1DBrCvcwU3ggUPOGfwY7ngT4j80hg/wDt4Ez5ug7sETRd4efsGXnF/buhCO7j838dtl8J6Ruq199lV5HqxjjmMsD2vOfDJVNXXeFq5o33kDmcs4P+KdJb0Ocx+1H/OF4uyDlOY+Tjl5X5VnJfRMxvkRj+a7R2YcgzOBC4zvhe4v3VO6r8MgcwX//jrwwxAiH9txHbUJ9xm8Mt57Gp853WPyXJHnJfQKhjqP5msmfM8cXge8loTJ4VkSXolxfsSL/4eGKjLOT7aPElgz5j5uxne+QLZm8q4/eEtkKwZvBNuBB5E8zKaKvEyZMmVKW28pIR79
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AlPPhXjAv2tAqaAHTstAcAwLcDZH0ADA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="235" gid="241" y="765">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="door" type="conversation"  x="225" gid="245" y="815" width="34" height="34">
+      <properties>
+        <property name="conversation" value="IM_manor_door3" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="160" y="190" width="150" height="10">
+      <properties>
+    <property name="conditions" value="VariableLower#sansa_quest,99"/>
+        <property name="actions" value="StartConversation#sansa1,IM_knave_sansa" />
+      </properties>
+  </object>
+  <object name="Sansa" type="spawn" gid="243" x="155" y="145">
+   <properties>
+    <property name="conditions" value="VariableEqual#sansa_quest,10"/>
+        <property name="conversation" value="IM_knave_sansa" />
+    <property name="spawn" value="sansa_2"/>
+    <property name="tag" value="sansa1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Sansa" type="spawn" gid="243" x="155" y="145">
+   <properties>
+    <property name="conditions" value="VariableGreater#sansa_quest,14"/>
+        <property name="conversation" value="IM_knave_sansa" />
+    <property name="spawn" value="sansa"/>
+    <property name="tag" value="sansa"/>
+    <property name="wander" value="2"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

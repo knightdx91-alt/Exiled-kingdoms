@@ -1,0 +1,6 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](O conduto explode em fascas prateadas e depois silencia)[] O foco final aceitou sua assinatura arcana.	[BLUE](El conducto estalla en chispas plateadas y luego se calma)[] El foco final ha aceptado tu firma arcana.	2	"VariableGreater#woven_fate,9;VariableLower#lyssara_shard_tower,1"		
+1	Q	O conduto esta inativo. O ritual foi concluido.	El conducto esta inactivo. El ritual esta completo.	0	VariableEqual#lyssara_shard_tower,1		
+2	A	Completar o ritual. (Leave)	Completar el ritual.	0			
+2	A	Sair daqui. (Leave)	Salir de aqui.	0			
+3	Q	[BLUE](A camara treme enquanto as runas se alinham)[] Volte para Lyssara. O juramento pode ser selado.	[BLUE](La camara tiembla mientras las runas se alinean)[] Regresa con Lyssara. El juramento puede sellarse.	0		"SetVariable#lyssara_shard_tower,1;SetVariable#woven_fate,60;GainXP#700;GainGold#350"	

@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Вот чёрт, похоже, сегодня мне немного не повезло.	¿po?	2	"VariableEqual#last_race,98"		
+1	Q	 Рановато ещё меня хоронить.	¿po?	7	"VariableEqual#dom_death,4"		
+1	Q	 Рановато ещё меня хоронить.	¿po?	6	"VariableLower#last_race,98"		
+2	A	Ты в порядке?	po.	3		
+3	Q	 Да, всего лишь царапины, надо лишь чуток отдохнуть и буду как новенький. Не жди меня, пусть мой сын, моя семья узнают, что дело сделано.	¿po?	4		"NPCStopFollowing#"		
+4	A	Хорошо, я тебя понял.	po.	5		
+5	Q	 И не забывай - семья самое важное.	¿po?	0		"NPCDespawn#dom;NPCDespawn#dom_team;GainXP#1700;GainItem#10449;SetVariable#last_race,100"
+6	A	Понял.	po.	0		"NPCDespawn#dom;NPCSpawn#dom;SetVariable#dom_death,2"
+7	A	Понял.	po.	0		"NPCDespawn#dom;NPCSpawn#dom;SetVariable#dom_death,6"

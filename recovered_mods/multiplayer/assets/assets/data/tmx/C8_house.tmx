@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="10">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="Desert.tsx" firstgid="797" />
+  <tileset source="greenground.tsx" firstgid="861" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="grassland.tsx" firstgid="1085" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjgIHhNePgNm8wA2r6FWQWDA83APMTtfyHbAa1zaMGGK7xiAwAXyCmm0AGAAA=
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJkgnYkwHjVveJtHipnDwb/UMo8cMGoeZeYNVgAA9+S/OkAGAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW0Ap+YIPRdJsr00wLwcSDYnweh+9CBHxvpeu4xofqNmwO3WkoBuWGBTR81wtUHGl5cNPQzOcCXjHgkFvBQwa+0Djf+QRYflAIA9KyvHUAGAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAgYOBQRqIZYFYEkqjsxU5iDdPDqi2BUjvA+L9QMzIDBH/yISqhhTzQGAvDnl2JtLMk4Kq/cpEWA0xAJfdf6HmZ7KS7t8vUL3/cbiRnPCjFsAXNkmspNsJSy/oIBFoVgYQp5ARfruB9B4g/oYj/EiJXzWkfADDMKAA5cuTGR9b2BkYzrFjlyPFPC82BH8bknmk+BOXeehy5Ji3F2jeISxmkmOeElpcIJdTpMQDtQEAZNMFIkAGAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="310" gid="487" y="300">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="360" y="292" width="20" height="20">
+      <properties>
+        <property name="area_id" value="C8" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="250" y="190" width="40" height="170">
+      <properties>
+        <property name="actions" value="StartConversation#bandit1,C8_bandit" />
+        <property name="conditions" value="VariableLower#fisherman_joy1,3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="105" gid="489" y="195">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="C8_bandit" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="235" gid="489" y="365">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="305" gid="489" y="205">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="145" gid="489" y="365">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="2" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="145" gid="489" y="495">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="2" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="335" gid="489" y="395">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="F10_bandit" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bandit1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="205" gid="489" y="185">
+      <properties>
+        <property name="conditions" value="VariableLower#fisherman_joy1,4" />
+        <property name="hostile" value="VariableEqual#fisherman_joy1,3" />
+        <property name="name" value="@HOODED_MAN" />
+        <property name="spawn" value="F10_bandit" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bandit1" />
+      </properties>
+  </object>
+  <object name="Crate" type="container"  x="130" gid="487" y="160">
+   <properties>
+        <property name="conditions" value="VariableGreater#fisherman_joy1,1;VariableLower#fisherman_joy1,4" />
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container"  x="130" gid="487" y="380">
+   <properties>
+        <property name="conditions" value="VariableGreater#fisherman_joy1,1;VariableLower#fisherman_joy1,4" />
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container"  x="130" gid="487" y="530">
+   <properties>
+        <property name="conditions" value="VariableGreater#fisherman_joy1,1;VariableLower#fisherman_joy1,4" />
+    <property name="icon" value="crate1"/>
+    <property name="items" value="5026,5026,5026,5029"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="115" gid="489" y="305">
+      <properties>
+        <property name="conditions" value="VariableEqual#fisherman_joy1,5" />
+        <property name="name" value="@FISHERMAN" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="255" gid="489" y="175">
+      <properties>
+        <property name="conditions" value="VariableEqual#fisherman_joy1,5" />
+        <property name="name" value="@FISHERMAN" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="255" gid="489" y="335">
+      <properties>
+        <property name="conditions" value="VariableEqual#fisherman_joy1,5" />
+        <property name="name" value="@FISHERMAN" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

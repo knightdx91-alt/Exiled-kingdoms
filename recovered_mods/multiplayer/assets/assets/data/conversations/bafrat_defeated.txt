@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Wait... Wait! I get your point! This has been a mistake! 	Espera espera... ¡de acuerdo, me has convencido, me rindo!	2			
+2	A	Just die.	Muere.	0			
+2	A	Go away and never return to this wharf	Márchate y no vuelvas a este embarcadero.	3			
+2	A	Very well, I like dogs that learn quick their tricks. From now on, this is my wharf, and you work for me.	Muy bien. Me gustan los perros que saben aprender trucos. A partir de ahora este es mi embarcadero y tú trabajas para mí.	4	PlayerIsClass#rogue		PER#1
+3	Q	As you say! We leave, we leave!	Lo que tu digas, nos vamos, nos vamos!	0		"IncVariable#REP_varsilia,3;NPCDespawn#docks_thugs;NPCDespawn#bafrat"	
+4	Q	What... What did you just say...	Qué... Qué acabas de decir...	5			
+5	A	Are you deaf? Do I need to explain myself again? I am the boss now. Now hand over all the money you have before I change my mind.	¿Estás sordo? ¿Necesitas que te siga 'explicando'? Ahora yo soy el jefe.  Dame todo el dinero que lleves, antes de que pierda la paciencia.	6	NPCIsInParty#adaon,adaon		
+5	A	Are you deaf? Do I need to explain myself again? I am the boss now. Now hand over all the money you have before I change my mind.	¿Estás sordo? ¿Necesitas que te siga 'explicando'? Ahora yo soy el jefe.  Dame todo el dinero que lleves, antes de que pierda la paciencia.	7	NPCIsInParty#grissenda,mercenary_grisenda		
+5	A	Are you deaf? Do I need to explain myself again? I am the boss now. Now hand over all the money you have before I change my mind.	¿Estás sordo? ¿Necesitas que te siga 'explicando'? Ahora yo soy el jefe.  Dame todo el dinero que lleves, antes de que pierda la paciencia.	8	"NPCisNotInParty#adaon,adaon;NPCIsNotInParty#grissenda,mercenary_grisenda"		
+5	A	Just kidding, just run away and never return.	Estaba bromeando. Ahora corre y que no vuelva a encontrarte.	3			
+6,adaon	Q	Hell YES! Well said. You've learned a lot since that forest road, haven't you.	¡ESO ES! Bien hecho. Has aprendido mucho desde aquel camino en el bosque.	8		IncVariable#LOY_adaon,3	
+7,mercenary_grisenda	Q	I can't believe you're doing this. What are we, filthy criminals? I'm in debt with you, but this is a trial to our friendship.	No puedo creer que hagamos esto. ¿Qué somos, asquerosos criminales? Estoy en deuda contigo, pero esto pone a prueba nuestra amistad.	8		DecVariable#LOY_grissenda,3	
+8,r	Q	¡Sure, sure, whatever you say! this is now your territory, boss. Here is what we got, [BLUE]700 gold[]. Now me and my men need to take a rest, but we'll be here tomorrow.	¡De acuerdo, de acuerdo! A partir de ahora, este es tu territorio y tú eres el jefe. Aquí está lo que tenemos, [BLUE]700 monedas[]. Ahora yo y mis hombres necesitamos descansar, mañana volveremos.	0		"IncVariable#REP_seventhhouse,5;DecVariable#REP_varsilia,9;NPCDespawn#docks_thugs;NPCDespawn#bafrat;SetVariable#ng_thugs,2;GainGold#700"	

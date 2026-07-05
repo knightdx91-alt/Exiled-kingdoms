@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](средних лет мужчина саященник, взволновано осматривающийся)[] Аника? Аника, это ты там, милая?	¿po?	2			
+2,knave	Q	 Извини, братишка, но это не Аника.	¿po?	3				
+3,priestfool	Q	 О, нет! Клятые разбойники! Не подходите ко мне! Я - священник, Трое защищают меня!	¿po?	4			
+4,knave	Q	 Да-да-да, неприменно они тебя защитят, само лично сюда заявится, так мы и поверили в твои сказки.	¿po?	5		"NPCHostile#priestfool;SetVariable#death_pfool,2"
+5,hirge	Q	Я не дам в обиду этого священника! 	port.	0	NPCIsInParty#hirge,hirge	"NPCStopFollowing#;NPCHostile#hirge;DecVariable#REP_ilmara,5;DecVariable#REP_the_three,10"
+5,priestfool	Q	 Не смей богохульничать, невежа, Арбенос тебя покарает!	¿po?	0			

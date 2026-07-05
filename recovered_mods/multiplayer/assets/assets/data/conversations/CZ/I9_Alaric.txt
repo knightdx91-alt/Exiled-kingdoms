@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](лорд вампиров, наконец-то, повержен, а вы можете продолжить свой путь)[]	¿po?	4	"VariableEqual#bloody_harvest,85"		
+1	Q	 [BLUE](во дворе замка собрались храбрецы, пришедшие на зов Амоса, готовые штурмовать замок, ждущие вас. Но вдруг, двор заволок белый дым, и из него стали возникать вампиры во главе своего лорда. Ощерив клыки, злобные твари явно желают пировать вашей кровью!)[]	¿po?	3	"VariableEqual#bloody_harvest,83"		
+1	Q	 Бегите, глупцы!	¿po?	2			
+2	A	 	¿po?	0		"SetVariable#bloody_harvest,55;ItemHide#grate4;ItemWalkable#grate4"
+3	A	 	¿po?	0		"ItemActivate#grate3;SetVariable#bloody_harvest,85;NPCSpawn#alaric3;NPCSpawn#vampir_team"
+4	A	 	¿po?	0		"SetVariable#bloody_harvest,87;ItemHide#grate1;ItemWalkable#grate1"

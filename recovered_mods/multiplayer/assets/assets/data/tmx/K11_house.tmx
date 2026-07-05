@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="8">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW0Bq8ZIZjaZg40oIW/qAmGapgP9nAdBaMABgClfCG/QAYAAA==
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJkgnYkwHjVv1LyhYh4+O0bBKKAVAAAYGKyqQAYAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWDFfByoPK5kfh72Sgz+zMTZfqxAX4k9/lR6L5X7AwMb9kpMwME+NDC8CMN/E0J+DLI3DMKRgEpAABchj6bQAYAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAgYOBQRaKJXGwFTmIN08OWS0zqlwWKxY1pJhHgRoYkKKyeTC12azUNQ8bYGQm3Txa+DcAya//mCg3Dx/wZyXNPCWkdIuefmFpXZ4E80bBKCAGAADSOiaSQAYAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="250" gid="487" y="330">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="240" y="392" width="40" height="15">
+      <properties>
+        <property name="area_id" value="K11" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="90" y="120" width="50" height="50">
+      <properties>
+        <property name="actions" value="StartConversation#corpse,K11_guards" />
+        <property name="conditions" value="VariableLower#guards_podstava,1" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="4" x="125" gid="489" y="155">
+      <point />
+      <properties>
+        <property name="gender" value="m" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_green_ground" />
+        <property name="tag" value="corpse" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="5" x="205" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="female_knight_hostile" />
+        <property name="wander" value="1" />
+        <property name="tag" value="g_podstava" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="6" x="275" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="knight_hostile" />
+        <property name="wander" value="1" />
+        <property name="tag" value="g_podstava" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="7" x="255" gid="489" y="345">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="K11_guard" />
+        <property name="wander" value="1" />
+        <property name="tag" value="guard" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="8" x="15" gid="489" y="625">
+      <point />
+      <properties>
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="K11_guard" />
+        <property name="wander" value="1" />
+        <property name="tag" value="guard" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

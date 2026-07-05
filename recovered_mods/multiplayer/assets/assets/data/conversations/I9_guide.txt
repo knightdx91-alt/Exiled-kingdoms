@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Привет, мне сообщили, что ты работаешь на госпожу, могу помочь по-быстрому добраться до Нью-Гаранда.	port.	2	VariableGreater#sin_kingdom,80		
+1	Q	Привет, извини, но я не обслуживаю незнакомцев.	port.	0	VariableEqual#sin_kingdom,80		
+1	Q	Привет, мне сообщили, что ты работаешь на госпожу, могу помочь по-быстрому добраться до Нью-Гаранда.	port.	2	VariableGreater#sin_kingdom,61;VariableLower#sin_kingdom,80		
+1	Q	Привет, извини, но я не обслуживаю незнакомцев.	port.	0	VariableLower#sin_kingdom,61		
+2	A	Хорошо, идём.	port.	0		Travel#H8,7,2
+2	A	Мне не надо туда.	port.	0		

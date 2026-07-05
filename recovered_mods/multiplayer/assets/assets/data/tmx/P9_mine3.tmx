@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="44">
+  <properties>
+    <property name="maxlight" value="55" />
+    <property name="music" value="ice_demon" />
+    <property name="name" value="Last Shelter Damned" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds indoor 2.tsx" firstgid="797" />
+  <tileset source="icemist_walls.tsx" firstgid="957" />
+  <tileset source="cave_fire.tsx" firstgid="997" />
+  <tileset source="teleporter.tsx" firstgid="1237" />
+  <layer name="nonwalk" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QQQqAMAwAwfr/p/oJ8QFdBAVLmYFcckp2DAAAAAAAAABWcx5/X7A2fZo+TZ+mT9On6dP0afrMzdrc+6ezs93/e0ufpk/TBwAAAAAAAAAA+NoF7HhljQBRAAA=
+  </data>
+  </layer>
+  <layer name="water00" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QAQ0AAAjDsJvBv0VkcJJWwbIEAAAAAAAAAAAAusx1QDl/AAAAAAAAAAAAgI8Wg6cz7gBRAAA=
+  </data>
+  </layer>
+  <layer name="water0" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WwQkAQAgDQcGa7f+aOBVkpoJ9hUQAAAAAAAAA9KrcLgAAgFt8bGCKvQEAAAAAAAAAAH56BkNcNABRAAA=
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XUQqCQBAGYMkuUqFB9+iY3aaDxT5IIu6GuGUO3wfztIjrz+ziNA0AAAAAAACwhfPWG/ihS6YGp8xat+Adj8O79qjPVJJ65ZpZW2rPGeWkfJb0yifyKZPPvL3fQTk184lIPmXyKat9/0RT8185Yj5JjYyi9s9gzRmLns1a0bOZm1FLNRUtn7nvnZtRSzUW8XzVmNfHImY09Tyuez7qDAYAAAB8161tmr7dehf/q5NN0V0+AAAAUM0LVPjf+wBRAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2a627TMBTHmyYCgYBvXAY8C0gIiSdCPMG4CokBQ/CBj1xW7hujrON1YJW6aVo77ghxjnyOZlLbses4yVr/pb/atamT/HoutrtWK0qnhbTuK4iKioqKioqKioqKmiVdToWj1Ip8zFqIfIwKxSdxdFMV+ZgVmk9mYV8+XENll6Uq+JjiJvLRx9F+4nOtZEbTxqfsGJq2/EK/8BxXvrZpq8+cYz6M5Oursr+H5HM1Ny4yukv2uU5XPolmHJMXLI7xUZ5N3rccx7e5rqJ4sWWDXgTfB98IwEdm/xL8HrzkycjmnmQ+LixUftwWRk7zAfm8Af+G11bh8YnHOerig74dkM8K+Du8dg7O8y7yGePzDPwavAzueIxfB58HqeglulrqI65rV0oauw4+Nj3MhxPWZF39bxofOZ/YofmYGLmuyaaVD0p3HhdGdfB5ZIj/KvgwI5s5dR18bGMoJB/beLJlMykjFRvsX0XrgDL4qM7xPBXz6rfp//NGHSNXPq5WsblpydZFOMfpSDmjYoNrjo/gC3Adv1rj80YVo6r52Ma8C5+OZTzimuMPHH8GLuwrPK6l42uPPKNJ8stFofnYskHjmuNHS7DBx/NwPa8KzjvJNfrUH+xdunWpKx8XNmjcJ+umYk2GcaTKMVc+vlbV58Uco0nlEotsXJetg//C5z+k42uzJvDhOLpD9uWDPQn7kW6/R5Vnc4k6dprCR7YvH97L+NnS7/fI5r0hVe2pmo9OvmzyfJAN5szZRPQl1RyH5z6f6HibfaHQfHSMyuSDdXedYgLvG2MJn1/K7Y0hx1OJeP+4Jr/2Cx/bXOQ6zznWS8WeWFcRI5hX31qiLuMxTx3ivWqVxQc1TzEk3zPzWqM8W5LyUFeXm8jH1Sqp+jz3cc45rNu4ttDlFdv1959QCs2HGS0TJ8yrE1R7THyawqjM/CqaJzKnLnHCWOL+ppsv1c2oLD42awyeP2Jfx7XXSYiji23hptaiMvo772kU9c8Vqju47sL+3qOcO52o1/DTwMcUN/J6g+NmLtnr/R3KuS71uFVNnlWtMtcZppqD8ZICjywRNRl7mCqXeF6JNalon6MKheYjrx+wxrQTMRfk31FV80H+nTX/Xh0KzQfnx7gGa9NmHj4v6uWyr6fif0vqUkg+vLfcprzCWtzTxIzO98A74GNZmPsvUkg+GDsZxUyL8sqGDQv3ox6Ch+DtmhiVvQ8k70HKe6e91K7vq+rM0cye0RbF2xfwJrhPfG3ZfoZjB7lrGKVi3E16b8sz32VGPE+2zSmdmNGm4V5HxBCPw+cb9PeA/i7SLnHdIMZ9+iyPMaTXt0ush7b7/jb9yRRHHDdDxTj83ZuELA7CmAcy8Zw5bUrjjjTj+8rEyFXIaIdinO9DjhmV+obvnMfZoRjBx13iwjx47MNZMedJpWI0qZAR589A+o51wmOOUOztEls5V4bSayMpdg5loh71U3N8NlGcaxxLtseOiJEccxwrfOxWuleH+XvgWjZrQh6D3L3ja9sWcTnLYkazGDNRUVFRs6R/pl+ECABRAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3azQ3CMAwG0BzYfwf+WYhB2IB7kICWEifxe7ec+klpE9tqKQAAAABs5REdgOHcogMMah8doEOnan0OSQFkdo0OAHzl0ug56tx5zVRntvoegPXqXhfYVsYZm3OllGN0gARmqplpx2xtmUN0AADeUnf3IWPPt5R3Na/7LjoBPdJn8Cv3yqt63uE/Atb4R1072yyu15m0nuSzXvduFO5eAAAY3xMlWHzCAFEAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2bTU8UMRjHN24TL14XAbMKiqDoxZhFI4me/AAePcllh8WXgxcTTbwrHkz8LstLFJCXG+JLxIjyKfwG9glt9rH0aTvTdmeE/pNmhk53lv54+rx0hlotKSkpKSkpKSkpKSkpqQpqsYPjaVbu71FVJT5mAZ82O758XlrmDXzmIvC5zdsb3ubF8S66Ni363vL2WpzfCfv1wQR8ZiPwuZZz/PWwXx9MsdbXfaL/D9Hvw2e7Xqt95G2Vtw1x/qnucUOkWP4Z85khxuB+Hz6bGhYrgfgMReIj19crx/E+fNYEiy5vC6IvFJ+G4DLJj2cDMrrnOE7y8+Gz3gf7AYW0oRY6nyHG4P6QfIB5KD6tSHwo/0wpxPrCCr2+QJArnQ/EqGUf8o98+OxqWOj68uoGZ3ER8XjMz8d5G+ZtwJOVzAvnUbuFrk+jMWr+6CqI61sotu+J+L6K+orGeWBz0zL/yYD2FEN4XVFxsug6aznOu8qMqLl/q9vH2DSUY85nKsoH8sKnmv4QfFztB1RVPrq8BxTbfjJ07Qo/PxeRzwOPz+riOigEnxE+56vEvNuiZo3Nxle7Dv7ZJ84Do0ENJ9jv6LBw68rHRrC2ldi9geI6HH/UD9fyMv771PPSltqIxyILX5P5CvzxO8sY7JOeoX7ffFrukz1EnLolMaLsjfI31JgXqD8EnzbrrS0sYDQlcuoy7Yma476DPw5lP23L/McDMSrik/Ac94n5/ozAx6XWwCrLL/1ymCP4KF0sy8OniWrQKcHGZjeqquS7v6O5Uz7KlU9TqdlBmVhbs5EZ+cb5Lw5z9PE/o3wul4n56Pyyi/r5XHGd8D/4nMoHbXwoNhDDF9hBvpN3jYH6ycfFBmQOqbbPls82iHlILksF5xmKj2ntyWsu+U+s/Yx2Af8Dqpr9xNzPKOKD+slnh1g7srbadlhHlFz4yLpdrcMoVaW+lzbjkwNS/gdL1l+mdYbZVeWdmDULH1nTbxn27qFGv+Tgg6QfUmNZV/R1xHX4uSp81i18XPtdGGWCQReNg/NM2FbGevuLVeEj57mDbGOr3nuXg/JJOm4u+/JqLJP2tCSOC+JaVWqMon5H97mWmKdqH12lD6sjuMwJbthnV4HRJopfpvimirIf+Psvi3WUsd76WWaHbQf7o0WCY9mMbPHLtV/WprKmwPPGvjcrUGuU+QzIFr+ovAn7pSbT7/HImDWnyX1AGXPLq8vk45v/NFFt+kEc2yIedZC9qD5ZysWW+s0HP8uQdrBT8HlFA7FZ4e09WltFai6d+s2HqlXl3mEeW5J8gM0q69mQKp2duNjORAl1BuSEp07Q1/PwgZj1hB2830OxKaqyajDb/PPaD/B5FGEeoZ5n5BWsr5M6+yngqxvCdnwFtjIoGq5TymAU0n5c6i4XYR+svt9gYgTxE56V4Gcm8gh9tvevRtnhd/5kTvMbcfiaYz9VlS8jnZ9R76ljhHMLSqbYpz5vGUes1XwO4rJPHJXva+je2TDJ5INNdqSymUDfj38H0z4AxJbn6LrJT8DveSHQOje9/wPCc7HFJx2jYQ0b9T7U/zbI55fqPWwKnYNRjIrkM6b1S90P/2/DAGrq80tXxchR8ZpztRfTvVRGJtYue77yHjafEHJtxZTK28Ra97fR+UdpF+reHs43/gc2ITWiYTyGuO15xqqjqrFjbDNJSUlHS38BSV5PJwBRAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="1165" gid="245" y="600">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="1128" y="510" width="60" height="50">
+      <properties>
+        <property name="area_id" value="P9_mine2" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="3" x="1935" gid="249" y="645">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sepulchre_2" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="4" x="260" gid="245" y="1890">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="6005" />
+        <property name="name" value="@CORPSE" />
+        <property name="unique_tag" value="J8_3mine3_chest" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="350" gid="245" y="900">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="10205,10205,10205" />
+        <property name="name" value="@CORPSE" />
+        <property name="unique_tag" value="J8_3mine3_chest" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="6" x="1045" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="7" x="1045" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="8" x="1295" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="9" x="1295" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="10" x="1185" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="11" x="1455" gid="247" y="1185">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="12" x="1685" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="13" x="1685" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="14" x="1745" gid="247" y="1305">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="15" x="1745" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="16" x="1775" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dknight" type="spawn" id="17" x="1965" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="18" x="1935" gid="247" y="665">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="19" x="1845" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="20" x="2005" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="21" x="2035" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="22" x="1875" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="23" x="1655" gid="247" y="2005">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="24" x="1295" gid="247" y="2035">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="26" x="335" gid="247" y="1975">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="27" x="145" gid="247" y="1775">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="28" x="535" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="29" x="185" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="30" x="725" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="31" x="305" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="32" x="115" gid="247" y="1335">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="34" x="245" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="35" x="495" gid="247" y="845">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="firefreak" type="spawn" id="36" x="325" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="fire_freak" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Sylvia" type="spawn" id="37" x="1195" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="honorary_guardian_sylvia" />
+        <property name="unique_tag" value="honorary_guardian_sylvia" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Agarta" type="spawn" id="38" x="1875" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="priestess_agarta_earvist" />
+        <property name="unique_tag" value="priestess_agarta_earvist" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Deborg" type="spawn" id="39" x="1835" gid="247" y="1875">
+      <point />
+      <properties>
+        <property name="spawn" value="disciple_deborg" />
+        <property name="unique_tag" value="disciple_deborg" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Vernon" type="spawn" id="40" x="845" gid="247" y="1945">
+      <point />
+      <properties>
+        <property name="spawn" value="priest_warrior_vernon" />
+        <property name="unique_tag" value="priest_warrior_vernon" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Killian" type="spawn" id="41" x="545" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="hostile" value="VariableEqual#curses_dont_die,40" />
+        <property name="conversation" value="J8_3_Supreme_Priest_Killian" />
+        <property name="spawn" value="supreme_priest_killian" />
+        <property name="tag" value="supreme_priest_killian" />
+        <property name="unique_tag" value="supreme_priest_killian" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="42" x="460" y="1200" width="150" height="150">
+      <properties>
+        <property name="actions" value="StartConversation#supreme_priest_killian,J8_3_Supreme_Priest_Killian" />
+        <property name="conditions" value="VariableLower#curses_dont_die,40" />
+      </properties>
+    </object>
+    <object name="teleport" type="transition" id="43" x="2170" y="1530" width="45" height="45">
+      <properties>
+        <property name="area_id" value="P9" />
+        <property name="entry_id" value="9" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

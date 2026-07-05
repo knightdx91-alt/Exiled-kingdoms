@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](неприятной наружности типы)[] Чего здесь забыли? Валите, пока я добрый! [BLUE](бандит вынул из-за пояса кинжал и угрожающе наставил на вас)[]	¿po?	2	"VariableEqual#changing_hierarchy,25"		
+1	Q	 [BLUE](неприятной наружности типы)[] Чего здесь забыли? Валите, пока я добрый! [BLUE](бандит вынул из-за пояса кинжал и угрожающе наставил на вас)[]	¿po?	5			
+2,philosopher2	Q	 Взялся за нож - режь, взялся за дошик - ешь!	¿po?	3				
+3,bandit	Q	 Э-эээээ???	¿po?	4			
+4,philosopher2	Q	 Ладно, давайте мочить их молча!	¿po?	0		"SetVariable#ne_vduplyat,2;NPCHostile#bandit"
+5	A	Хорошо, я ухожу.	po.	0		
+5	A	Сам вали, пока я не зол!	po.	0		"NPCHostile#bandit"

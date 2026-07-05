@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	This tome is titled 'The Witches of Orogg, Volume III'	Este tomo se titula 'Las Brujas de Orogg, Volumen III'	2			
+2	A	I have already read this.	Ya he leido este libro.	0	VariableEqual#KNOW_NI_book3,1		
+2	A	Let's read it.	Vamos a leerlo.	3			
+3	Q	After our Lord Arbenos(praised be his Valor!) defeated Syllara and destroyed the Fortress of Orogg, the remaining Varannari witches fled to the south. Still powerful and dangerous, yes, but no match for the mighty knights of those days. Most fled to the Elder Forest, where the most savage yet harmless Varannari had settled.	Después de que Nuestro Señor Arbenos (Bendito sea su Coraje) derrotara a Syllara y destruyera la Fortaleza de Orogg, el resto de brujas Varannari huyeron al sur. Eran seres poderosos, pero no podían enfrentarse a los poderosos caballeros de aquellos días. La mayoría se escondieron en el Bosque Anciano, donde los Varannari pacíficos se habían asentado.	4			
+4	A	What do I care about this?	Y ¿A mí esto qué me importa?	0			
+4	A	I wonder what happened next... [BLUE](Continue reading)[]	Me pregunto qué pasó después... [BLUE](Continuar leyendo)[]	5			
+5	Q	"The Varannari Elders didn't welcome the Witches. Some were allowed to stay if they agreed to abandon their wicked ways; the rest moved further south or to the east, to secret hideouts in dark forests or desolate hills. But some young warriors decided to follow them, maybe to satiate their thirst of adventure, maybe enthralled by their demonic beauty."	Los Ancianos de los Varannari no les dieron la bienvenida. Permitieron quedarse a aquellas que prometiesen abandonar sus perversas costumbres, pero muchas se marcharon, buscando escondites en oscuros bosques o desoladas colinas. Muchos jóvenes guerreros decidieron seguirlas, quizá buscando aventuras, o quizá hechizados por su belleza demoníaca.	6			
+6	A	Indeed those witches sound dangerous.	La verdad es que esas brujas parecen peligrosas.	0	VariableLower#KNOW_NI_book3,1	"SetVariable#KNOW_NI_book3,1;GainXP#300"	
+6	A	Interesting.	Interesante.	0	VariableEqual#KNOW_NI_book3,1		

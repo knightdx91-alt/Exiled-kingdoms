@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This ancient statue represents a mighty imperial Warrior-Mage extending his hand in a greeting. A plaque bellow it reads 'Welcome to the Imperial Observatory, founded by Malan Stargazer, year 3201. Greet me to become my guest'	Esta antigua estatua representa a un poderoso Mago-guerrero imperial. Tiene la mano extendida, saludando. Hay una inscripción: 'Bienvenido al Observatorio Imperial fundado por Malan Stargazer, año 3201. Salúdame para convertirte en mi huesped'	2	VariableGreater#trial_error,70	
+1	Q	This ancient statue represents a mighty imperial Warrior-Mage extending his hand in a greeting. A plaque bellow it reads 'Welcome to the Imperial Observatory, founded by Malan Stargazer, year 3201. Greet me to become my guest'	Esta antigua estatua representa a un poderoso Mago-guerrero imperial. Tiene la mano extendida, saludando. Hay una inscripción: 'Bienvenido al Observatorio Imperial fundado por Malan Stargazer, año 3201. Salúdame para convertirte en mi huesped'	5		
+2	A	Put your palm on the statue's hand.	Poner la palma de la mano sobre la mano de piedra.	3		
+2	A	Leave the statue alone.	Dejar la estatua en paz.	0		
+3	Q	You feel dizzy and suddenly you're somwhere else!	Te mareas y de pronto ¡estás en otro lugar!	0		travel#K7_observatory,2
+5,adaon	Q	I've heard about statues like this in old ruins. I think we should put our palm against his...	He oido hablar de estatuas como esta en viejas ruinas. Creo que debemos poner nuestra mano en la suya...	6	IsInParty#adaon	
+5,R	Q	Unsure of what to do, you leave the statue alone.	No sabes qué hacer y dejas la estatua.	0		
+6	A	No, wait Adaon! We don't know if...!	¡No Adaon, espera! ¡No sabemos si...!	7		
+7	Q	You feel dizzy and suddenly you're somwhere else!	Te mareas y de pronto ¡estás en otro lugar!	0		travel#K7_observatory,2

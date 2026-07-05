@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	"As you approach the altar, you feel the might within it raising as a barrier; you are not welcome into the mysteries of The Three."	Cuando te acercas al altar, sientes que su poder alza una barrera para frenarte. No eres bienvenido a los Misterios de Los Tres.	0	VariableLower#REP_the_three,-10		
+1	Q	This is an altar consecrated to Arbenos, Thelume and Nivaria. You can feel the power contained within it. There's bowls with offerings of all kinds surrounding the altar.	Este altar está consagrado a Arbenos, Thelume y Nivaria. Puedes sentir el poder contenido en su interior. La gente ha depositado ofrendas de todo tipo alrededor del altar.	2			
+2	A	Make a small offering, deposit [BLUE]100 gold[].	Hacer una pequeña ofrenda, dejar [BLUE]100 monedas[] en el altar.	3	playerhasGold#100	"loseGold#100;GainEffect#xpbonus,7560,3"	
+2	A	Make a large offering, deposit [BLUE]500 gold[].	Hacer una gran ofrenda, dejar [BLUE]500 monedas[] en el altar.	4	playerhasGold#500	"loseGold#500;GainEffect#xpbonus,7560,5"	
+2	A	Go away from the altar.	Marcharse del altar.	0			
+2	A	Pray to The Three for guidance.	Rezar a Los Tres para que te guíen.	5			
+3	Q	Thelume's insight opens your mind, and you learn faster now. [BLUE](You gained a +3% bonus to gained XP, which will last for a week)[]	Visiones de Thelume abren tu mente, y ahora aprendes más rápido. [BLUE](Ganas un +3% a la experiencia durante una semana)[]	0			
+4	Q	Thelume's insight opens your mind, and you learn faster now. [BLUE](You gained a +5% bonus to gained XP, which will last for a week)[]	Visiones de Thelume abren tu mente, y ahora aprendes más rápido. [BLUE](Ganas un +5% a la experiencia durante una semana)[]	0			
+5	Q	You have already prayed and meditated enough for the day.	Ya has rezado y meditado bastante por hoy.	0	VariableEqual#TMP_prayed,1		
+5	Q	You empty your mind and then welcome the Grace from the Divine Three. Soon enough you feel at peace, strengthened by your faith.	Vacías tu mente para poder recibir la Gracia de los Divinos Tres. Pronto te sientes recuperado y fortalecido en tu fé.	0	PlayerIsClass#cleric	"SetVariable#TMP_prayed,1;GainMana#{LEVELx2}"	
+5	Q	You empty your mind and then welcome the Grace from the Divine Three. Shortly after you stand up, your mind at peace.	Vacías tu mente para poder recibir la Gracia de los Divinos Tres. Poco después te levantas, sintiéndote en paz.	0			

@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	5	NPCisFollower#	
+1	Q	 [BLUE](женщина в доспехах)[] Уже уходите? 	¿po?	7	"AreaIs#N6_house"		
+1	Q	[BLUE](женщина в доспехах)[] Приветствую вас, путники.	port	3	"VariableEqual#drastic_steps,25"		
+1	Q	[BLUE](женщина в доспехах)[] Приветствую тебя, путник. 	[BLUE]()[] port.	2		
+2	A	Привет.	port?	0			
+2	A	[BLUE](С помощью грубой силы надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить её надеть ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3,havis	Q	Привет. [BLUE](Хавис молча протянула ей какое-то письмо)[] 	port.	6				
+4	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт её под контроль)[]	port.	0		"LoseItem#10402;SetVariable#goodw_follow,3;NPCFollow#"	
+5	A	Хорошая девочка.	port.	0		
+5	A	[BLUE](Снять с неё ошейник подчинения)[]	port.	0		"SetVariable#goodw_follow,1;NPCStopFollowing#"
+6,goodwhip	Q	Ясно, [BLUE](заговорила женщина, закончив читать письмо)[] идёмте за мной, я проведу вас к губернатору.	port?	8				
+7	A	Да, уходим.	port.	0	VariableEqual#drastic_steps,40	"Travel#N6,1"	
+7	A	Пока что нет.	port.	0		
+8	A		port.	0		"SetVariable#drastic_steps,30;Travel#N6_house,1"		

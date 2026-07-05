@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Ублюдок получил по заслугам! Спасибо, что помог разобраться с ним и его шайкой, давай переберёмся в более спокойное место, окрестности Ланнегера подойдут, всё там обсудим!	¿po?	4	"VariableEqual#last_race,55"		
+1	Q	 Не время трепаться!	¿po?	0	"VariableEqual#last_race,52"		
+1	Q	 [BLUE](Доминик стоял рядом с разбитой повозкой перед отрядом говорезов во главе габаритного бритого мужика)[] Ты только что совершил большую ошибку.	¿po?	2			
+2,duan	Q	 Долго не мог найти тебя, но твоё корыто быстро спалилось. Ты попался!	¿po?	3				
+3,dom	Q	 Трепись меньше!	¿po?	0		"NPCHostile#duan;NPCHostile#duan_team;NPCSpawn#dom_team;SetVariable#last_race,52"
+4	A	Хорошо.	po.	0		"NPCDespawn#dom;NPCDespawn#dom_team;SetVariable#last_race,57"

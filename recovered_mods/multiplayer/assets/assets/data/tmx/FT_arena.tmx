@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="48" height="48" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="90"/>
+  <property name="music" value="something_near"/>
+  <property name="nominimap" value=""/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grassland.tsx"/>
+ <tileset firstgid="457" source="trees.tsx"/>
+ <tileset firstgid="473" source="natural_grounds.tsx"/>
+ <tileset firstgid="601" source="grounds_indoor.tsx"/>
+ <tileset firstgid="761" source="natural_grounds.tsx"/>
+ <tileset firstgid="889" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="48" height="48" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt17ENACAIRUH2X9jWFSxU8sndAjwSGqoAgC4rfNbP/hf095rQn7zDhP5k6f0AAAD0Ovkr/Z4kcKcA92wQSA56
+  </data>
+ </layer>
+ <layer name="ground" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztmOluo0AQhKP5N+BxnKxfHvDDLlamlI/aJia+WEu01AKbq7qn+pqc3t7aUbNpseP5nqZqqbobdW1pK45SMbbA3QCnNNv1dmU7svnX/S98LWyQTQ2eaVayIQML10CYaVsxzHxWx/bJdhTgbgwn/8+BjVqHjOtzNnTjf6f0dRxG7dP3f6f628+HBb5wDIzNApxNmnKnNbyysU2xDcLUAbvs6Ov5YDZ2C/ELI2OVeYa+Frey/db95NSc/2VLD6XvO6zNJcmGkfynvxmvxa5HHIvwy6/7+uy+6vn+w6gftj5L8DsfcppywfOorjPv6l7yLwf4xY8z5s+q5/M/Ff8evFnKf+YWcsjXwHlDW/g8baEIV1f9XCre46jvFf8nbBSvLgm5q3NhoA3uX60N48Broftf3Hiv2A/V98dq0z5N42NJ/Mr/znfmesYmfe7+dxsojEvx5lBV9hTcIzsuied7+o++9fwu/OwjaIP7fwAmcV68kR7TtCb8Jn7JG/ez533ZxVzJmqz3UMQH+b9U/Dv8/kjT+rWEP8QuP9KXws784zUt6ls9fllT52oV10i2XhJy32PBex5ypsxcF37P/8TezZxLWY8viedD7zvJ+Sj3RDkomg3Ea/YLXnuJf2n9inoyr6NeF7y3oG28RiE3ol5N136Ln/mDvYTj9jmB19k/M7afIeS75xmfyRi/fvTe+1kzmeeViBvOa58pGSdcq2fh95mWmIjnp77H65/z/5Hi/PUZvp3BzzrAnjTq3x6Nv0lT3u8ME/uGaOZkrxf1P4+WbDij2PQ5i/WMNePZ/JG476OeppgdHrfk3iabbLLJK0i0d8gZYckss6Y4Xj8u6aXXFM6UxMxZ4RrRLNHbWnK97yEnfMP3QfX/NTKkf+ck+uNe+Ol7zmBcl2vf2we+GWDTPcSxc7/lFv9z39XffQsvo+/Q59zDvcX/7oNI74X/FHyHs/2t7/V337KuLr6mvX3zWvxz8fQI/ztvuD/3v+f/3rByT+sV6pfvY/H8nnnuUULeeI57hf5nk03WkL9nlufm
+  </data>
+ </layer>
+ <layer name="ground2" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt10sKgCAQgOE6Ru/O0abuf6oQWohoafkY4/+gjZCOMzZk0wCIabseCY7WPr47xiV4im0UHLvuLk5bXbqAfbnq+tVa4Lyk2suffc2Z/n6K2trmnCOtk/u85OiVMdZQefGdx8zhm56aOi+hdV4q6CP0OqRS+mypfuDq8UNl5z4klyH/bTn59mfJdwHFt69PwvdhKv296vT7ai8oLl9S7tsAAAAAAADSnPAhCPY=
+  </data>
+ </layer>
+ <layer name="objects" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztmc1KAzEQx1M8+Rg+glutIvgBevCo9dCCVRAfQ6uioL148dTHNQNZdgzJbJIm06nkD8Mm2UnzYzuZZLNKVf0HzbQdrRuiyqsTbSNjM3P9Rm0jR9tpwhjw2/faxo4yXBtHe4Pax+aePfZ+JAtoGOl/7WlfEH189w6sOgf/XcIYPp1bdcz/ou3JY6/IL5b/NtKfks0/QeVnoh++lyt+UmTz4/l7SfSTyo/j55Hotwo/xA81V0O1VDT/LtFX6vOH+GnzLLVOr8JfMv9wzN+S+QfHz5vy58858ovlp+ZVrCj+UEmKfw7+kvFzrG0v0s4ix4S8tkwm7gQ52ObnUMn8w6GS8cMhal2MFRc/Xgs3kR9r0+PHlf/79nO+++vghxx9qO0ig10xs1dVVVWlCt4vp+rv+aJdT9mDc6ll+9zq95GoELYU/vbcYKq68wO7nGPfVIo/hC0HP+y9fO/0rUnmh/OVhYn9d9P2pevbg84nhf8BlXcGbp8c5xY32j56fCQ//5C9u2T+kP9QMn/I80+J0ybAcnw3hfj/IdYukOT1a9LvIpq/1PrFJfs7sMvq9/2q3PoFMFdOuQ==
+  </data>
+ </layer>
+ <layer name="roofs" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt1zsKgDAQhOFcScEUFt5BW73/OUwgrYKs7DDwf7AoFjqE8VUKlLY285irTX3YP16O13Guvl0Ts3dL8vX+dqoDBO3qAEHu+d37M6kDBNEfLff+uOd374/794N7fvf+uN+/vL+03NffPb/78zP7fxsAAAAAAAD44gbaDgr9
+  </data>
+ </layer>
+ <objectgroup name="data" width="48" height="48">
+  <object type="entry" gid="241" x="1321" y="1279">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="1057" y="431">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="419" y="560">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="464" y="1206">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object name="Arena Master" type="staticNPC" gid="243" x="1138" y="1274">
+   <properties>
+    <property name="conversation" value="FT_tribune_arena3"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TRIBUNE_GELEB"/>
+    <property name="portrait" value="76"/>
+    <property name="sprite" value="male_black_1"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="245" x="1207" y="1177">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="arena_weapons"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="245" x="1300" y="1174">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="arena_armor"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Bear" type="spawn" gid="243" x="1038" y="272">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="polar_bear"/>
+    <property name="tag" value="arena1"/>
+   </properties>
+  </object>
+  <object name="Cat" type="spawn" gid="243" x="971" y="299">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sabercat"/>
+    <property name="tag" value="arena2"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="243" x="1065" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw_chief"/>
+    <property name="tag" value="arena3"/>
+   </properties>
+  </object>
+  <object name="door" type="conversation" gid="245" x="949" y="341">
+   <properties>
+    <property name="conversation" value="FT_arena_exitcage"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="door" type="conversation" gid="245" x="123" y="506">
+   <properties>
+    <property name="conversation" value="FT_arena_exitcage"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="door" type="conversation" gid="245" x="281" y="1211">
+   <properties>
+    <property name="conversation" value="FT_arena_exit"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="items chest" type="conversation" gid="245" x="378" y="1208">
+   <properties>
+    <property name="conversation" value="FT_arena_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Cat" type="spawn" gid="243" x="1143" y="306">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sabercat"/>
+    <property name="tag" value="arena2"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1010" y="528">
+   <properties>
+    <property name="facing" value="ru"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1212" y="303">
+   <properties>
+    <property name="facing" value="lu"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1079" y="187">
+   <properties>
+    <property name="facing" value="ld"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="935" y="184">
+   <properties>
+    <property name="facing" value="ld"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1156" y="528">
+   <properties>
+    <property name="facing" value="ru"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1071" y="519">
+   <properties>
+    <property name="facing" value="ru"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="portrait" value="18"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="public1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1210" y="386">
+   <properties>
+    <property name="facing" value="lu"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="portrait" value="18"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="public1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1147" y="190">
+   <properties>
+    <property name="facing" value="ld"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="portrait" value="18"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="public1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="995" y="185">
+   <properties>
+    <property name="facing" value="ld"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="portrait" value="18"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="public1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1183" y="498">
+   <properties>
+    <property name="facing" value="ru"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1193" y="414">
+   <properties>
+    <property name="facing" value="lu"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1197" y="255">
+   <properties>
+    <property name="facing" value="lu"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="243" x="1052" y="194">
+   <properties>
+    <property name="facing" value="ld"/>
+    <property name="name" value="@SPECTATOR"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="tag" value="public"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="arena 4" type="spawn" gid="243" x="403" y="426">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@DECURION_DESERTER"/>
+    <property name="spawn" value="arena_decurion"/>
+    <property name="tag" value="arena4"/>
+   </properties>
+  </object>
+  <object name="arena 5 mino" type="spawn" gid="243" x="377" y="449">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="minotaur"/>
+    <property name="tag" value="arena5"/>
+   </properties>
+  </object>
+  <object name="arena 5 mino LORd" type="spawn" gid="243" x="513" y="423">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="minotaur_lord"/>
+    <property name="tag" value="arena5"/>
+   </properties>
+  </object>
+  <object name="arena 5 mino" type="spawn" gid="243" x="206" y="247">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="minotaur"/>
+    <property name="tag" value="arena5"/>
+   </properties>
+  </object>
+  <object name="arena 5 mino" type="spawn" gid="243" x="646" y="747">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="minotaur"/>
+    <property name="tag" value="arena5"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="154" y="276">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="arena_corpse"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="318" y="732">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="641" y="470">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="ursan"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="arena 6" type="spawn" gid="243" x="567" y="526">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="enemy"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="tag" value="arena6"/>
+   </properties>
+  </object>
+  <object name="arena 6" type="spawn" gid="243" x="294" y="466">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="arena6"/>
+   </properties>
+  </object>
+  <object name="arena 6" type="spawn" gid="243" x="427" y="768">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="arena6"/>
+   </properties>
+  </object>
+  <object name="arena 7" type="spawn" gid="243" x="421" y="361">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="hill_giant"/>
+    <property name="tag" value="arena7"/>
+   </properties>
+  </object>
+  <object name="arena 8" type="spawn" gid="243" x="487" y="479">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="troll"/>
+    <property name="tag" value="arena8"/>
+   </properties>
+  </object>
+  <object name="arena 8" type="spawn" gid="243" x="382" y="769">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="troll"/>
+    <property name="tag" value="arena8"/>
+   </properties>
+  </object>
+  <object name="arena 9" type="spawn" gid="243" x="409" y="434">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="arena_sargos"/>
+    <property name="tag" value="arena9"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Brazier" type="conversation" gid="245" x="149" y="599">
+   <properties>
+    <property name="conditions" value="VariableEqual#arena,80"/>
+    <property name="conversation" value="FT_arena_brazier"/>
+    <property name="icon" value="brazier2"/>
+    <property name="name" value="@BRAZIER"/>
+   </properties>
+  </object>
+  <object name="Brazier" type="conversation" gid="245" x="703" y="377">
+   <properties>
+    <property name="conditions" value="VariableEqual#arena,80"/>
+    <property name="conversation" value="FT_arena_brazier"/>
+    <property name="icon" value="brazier2"/>
+    <property name="name" value="@BRAZIER"/>
+   </properties>
+  </object>
+  <object name="arena 5 mino" type="spawn" gid="243" x="601" y="301">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="minotaur"/>
+    <property name="tag" value="arena5"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="40" tilewidth="64" tileheight="32" nextobjectid="10">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="sw1" value="62" />
+    <property name="sw2" value="84" />
+    <property name="sw3" value="49" />
+    <property name="sw4" value="91" />
+    <property name="sw5" value="87" />
+    <property name="sw6" value="85" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="town_objexts2.tsx" firstgid="490" />
+  <tileset source="town_objects3.tsx" firstgid="554" />
+  <tileset source="icemist_large.tsx" firstgid="586" />
+  <tileset firstgid="626" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="914" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="teleporter.tsx" firstgid="1130" />
+  <tileset firstgid="1131" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzDENAAAIA7D5N8yLBQ5IOFoBTQDgRi1fnz8AZhq/wQTU
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztk1EKACEIRBP3/mfuJ0FEP7QJhHVAMMHHVLrWe30nEAwJcmoZkWJQcM76kz4+ZzbcCk84Erpe5UV5B3+aI3knf93fDzV/L/YDub+2l51ahcdO3PIin1me5017rPDsm+l6Bx7yvuj/QM7LaDQa/U0bfeQCdA==
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgF1AIdzAPtAuJAG9CdWSyUm9M+RPxLM8AEoZoGUTj8ZxxoF4yCUTA4QesgyqejYBSMglEw0gEAXTgEHA==
+  </data>
+  </layer>
+  <layer name="scenery" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJxjYKA9sAPiECC2p9CMGCCOAGIrqJg1lB9DhtnRQKzEiF2uj4WBwZhE80IJyFPTPH0m8s2LRxOH8Slx3zQs8qSaB4qPUiziusA4sibDv4ZAPBGHnBEZ5oVDaWqFH8i/+4B4EhY5bkbyzNuLR54c85iYUMXsgHx7JvLcB8q/ZgzY8y9InNT8awrEO5gZGLjQ8rA2kK8DxOZkmCcE1LeXGVXcgBGCnUk0LxyPHDcz6eaB3KeHo7wCAXLMMwKap4/FzDYyzTPEYZ4Lmf41wGKWANAsHjLMwxUfILc5kWGeLRCbQLElkjhMzIFE80bBKBgFo2CkAQCFvhzV
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AlPPhXjAv2tAqaAHTstAcAwLcDZH0ADA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="195" gid="241" y="535">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="150" y="350" width="90" height="70">
+      <properties>
+        <property name="conditions" value="VariableLower#grateroll_fight,1" />
+        <property name="actions" value="StartConversation#sansa,IM_grateroll" />
+      </properties>
+    </object>
+    <object name="grateroll" type="spawn" id="4" x="195" gid="243" y="285">
+      <point />
+      <properties>
+        <property name="spawn" value="IM_grateroll" />
+        <property name="tag" value="grateroll" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="131" gid="245" y="131">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="blue_hag3" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="table" type="container" id="8" x="311" gid="245" y="281">
+      <point />
+      <properties>
+        <property name="icon" value="table" />
+        <property name="loot_table" value="laboratory_13" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="shelf" type="container" id="9" x="321" gid="245" y="201">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="10" x="205" gid="245" y="145" width="25" height="25">
+      <properties>
+        <property name="conversation" value="IM_portal" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Bzzzt.... Bzzzt... [BLUE](The golem raises a hand pointing at you and seems to charge up with energy. Somehow, it seems to be malfunctioning and confused)[] Preparing instantaneous removal of intruders... Bzzzzt.... Please identify yourself and state your reason to be here... Bzzzt...	Bzzzt.... Bzzzt... [BLUE](El golem te apunta con una mano y empieza a cargarse de energía. De algun modo, parece averiado y confuso)[] Preparando eliminación instantánea de intrusos... Bzzzzt.... Por favor, identifícate y explica tus motivos para estar aquí... Bzzzt...	2		NPCHostile#golem	
+2	A	Hello, I am just an adventurer. I wonder if there're any treasures around.	Hola, sólo soy un aventurero. Me pregunto si hay tesoros por aquí.	5			
+2	A	I am the golem repairman. Please detach your own head and sit down.	Soy el técnico de los golems. Por favor desenchufa tu cabeza y siéntate.	5			
+2	A	[BLUE](You remember the name on the book you found)[] I am a guest of Terezza.	[BLUE](Recuerdas el nombre del libro que encontraste)[]Soy un invitado de Terezza.	3	PlayerHasItem#2531		INT#1
+2	A	[BLUE](You remember the name of the wizardress mentioned by Barahid)[] I am a guest of Terezza.	[BLUE](Recuerdas el nombre de la maga mencionada por Barahid)[]Soy un invitado de Terezza.	3	"VariableGreater#stopping_prejudice,9;PlayerHasntItem#2531"		INT#3
+2	A	I am the pineapple man!	Soy el hombre piña!	5			
+2	A	I was just looking for the bathroom, sorry, I'll be on my way.	Sólo buscaba el retrete, lo siento. Ya me marcho.	5			
+3	Q	[BLUE](Lowers his arm, and the charged energy dissipates while he seems to think)[] Checking... Bzzzt... List of... Bzzzt... Authorized guests...	[BLUE](Baja el brazo, y la energía se disipa mientras parece pensar)[] comprobando... Bzzzt... Lista de... Bzzzt... Huéspedes autorizados...	4			
+4	Q	Identification failed. Please stay still while you are removed using manual procedure.	Identificación fallida. Por favor, espera mientras eres eliminado por procedimiento manual.	0			
+5	Q	Identification failed. Automatic removal activated! [BLUE](A bolt of energy is projected towards you, blasting you with a powerful shock)[]	Identificación errónea. Sistema de eliminación automático activado! [BLUE](Proyecta un haz de energía sobre tí, que te impacta con una gran descarga)[]	0		LoseHPShock#160	

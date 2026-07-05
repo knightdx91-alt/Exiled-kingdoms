@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](чей-то труп лежит в грязи)[]	port	0	"VariableGreater#very_strange_thing,44"		
+1	Q	[BLUE](чей-то труп лежит в грязи, возможно, это и есть курьер волшебника)[]	port	2	"VariableEqual#very_strange_thing,40"		
+1	Q	[BLUE](чей-то труп лежит в грязи)[]	port	0				
+2	A	[BLUE](вы осматриваете труп, но он был ограблен, возможно, поблизости находятся лагерь орков, которые убили курьера и забрали артефакт волшебник)[]	port?	0		"NPCSpawn#bossorc_robber;NPCSpawn#orcs_robbers;SetVariable#very_strange_thing,45"		

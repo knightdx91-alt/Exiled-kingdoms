@@ -1,0 +1,36 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Я тебя слушаю, мой друг.	port.	11	"NPCisFollower#"	
+1	Q	[BLUE](молодой на вид воин - слуитель храма)[] Рад тебя снова видеть, тебе нужна моя помощь в противостоянии силам зла?	port?	9		
+9	A	Да, буду рад сражаться вместе с тобой против нежити!	port.	16		
+9	A	Сейчас мне не нужна твоя помощь.	port.	10		
+10	Q	Я буду находится в храме, если тебе понадобится моя помощь.	port.	0		
+11	A	Ничего, давайте двигаться дальше.	Nada, continuemos.	0		
+11	A	Мне сейчас не нужна твоя компания. Спасибо за помощь, увидемся снова позже.	port.	12		"NPCStopFollowing#;NPCDespawn#peter"
+11	A	Я обнаружил такую странную руну у погибшего жреца, ты знаешь что это такое?	port.	45	PlayerHasItem#10462		
+11	A	Давай поговорим о чём-нибудь.	Quiero que hablemos de algo.	19		
+11	A	У меня есть для тебя боевые указания.	Quiero darte órdenes de combate.	91		
+12	Q	Ты найдёшь меня в храме Ригордиана, если тебе снова понадобится моя помощь.	port.	0		
+16	Q	Я был бы очень рада присоединиться к тебе, но у тебя уже есть кто-то в компании.	port.	0	HasCompanion#	
+16	Q	Мы будем сильны и никакое зло нас не победит!	port.	0		NPCFollow#
+19	Q	О чём именно?	port.	20		
+20	A	Что ты можешь сказать об этом месте?	¿Qué puedes decirme de este lugar?	40		
+20	A	Эй, а ты можешь воспользоваться своей магией?	port.	41		
+20	A	Давай, просто, продолжим.	Continuemos.	0		
+40	Q	Я, правда, плохо знаю это место.	En realidad no se mucho sobre este lugar.	0		
+41	Q	Конечто, а что именно тебе нужно?	port	42		
+42	A	Телепортируй нас.	port.	0		Teleport#
+45	Q	Это священная руна, она укрепляет дух и силу достойным богопочетателям, обладать подобной реликвией большая честь.	port	46		
+46	A	Предыдущий её обладатель мёртв и теперь, я уверен, что ты достоин быть обладателем этой реликвии.	port.	47		"LoseItem#10462"		
+47	Q	Я сомневаюсь в этом, но постараюсь доказать, что заслуживаю быть обладателем священной реликвии.	port	0		"UpgradeCompanion#durak"
+91	Q	Конечно, что ты хочешь, чтоб я сделал?	Claro, ¿qué quieres que haga?	92		
+92	A	Я хочу, что бы ты подождал меня здесь.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	Я хочу, что бы ты снова следовал за мной.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	Я хочу объяснить тебе когда атаковать врага.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Неважно.	No importa.	0		
+93	Q	Хорошо, как на счёт этого?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Никогда никого не атакуй. Даже для самозащиты. Все бои я проведу самолично.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Атакуй только врагов, что атаковали тебя первыми.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Атакуй только врагов, которые находятся близко к тебе.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Атакуй всех врагов по мере видимости.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Понял.	Entendido.	0		
+96	Q	Понятно, но я не смогу стоять тут вечно. Если пропадёшь надолго, то наверное я пойду на твои поиски.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		

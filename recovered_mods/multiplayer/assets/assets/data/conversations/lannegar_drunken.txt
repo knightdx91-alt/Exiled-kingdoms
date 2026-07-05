@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](бездвежимое тело, разящее перегаром)[] Хватит безобразничать здесь! Эй, ты, а ну угомонил этого героя!	pprt?	22	"AreaIs#E13_tower3"		
+1	Q	[BLUE]бездвежимое тело в канаве, разящее перегаром[]	pprt?	10		
+10	A	Ну его к черту!	port!	0		
+10	A	На его месте должен был быть я!	port?	12		
+10	A	Дай демона!	port?	23	"PlayerHasItems#10290,9"		
+10	A	Дай Сансе!	port!	17	"VariableGreater#something_more,99;VariableLower#sansa_daet,1"		
+10	A	Дай мне Леди ночи!	port!	20	"VariableEqual#lady_night,100;VariableLower#lady_drunken,1"		
+10	A	Дай мне Храм!	port!	21	"VariableEqual#temple_sleepers,100;VariableLower#drunken_sleepers,1;AreaIs#F6"		
+10	A	Дай Дамского угодника!	port!	24	"VariableEqual#ladies_man,100;VariableLower#drunken_ladies,1"		
+12	Q	Напьёшься, будешь!	port.	0		
+17,sansa	Q	Мне! 	port.	18	NPCIsInParty#sansa2,sansa		
+17,R	Q	Не получится!	port.	0		
+18,R	Q	На! 	port.	19		"SetVariable#sansa_quest,20;UpgradeCompanion#sansa2"		
+19	A	Окей!	port!	0		"SetVariable#sansa_daet,2"	
+20	Q	На! 	port.	0		"SetVariable#lady_night,150;SetVariable#lady_drunken,2"		
+21	Q	На! 	port.	0		"SetVariable#temple_sleepers,50;SetVariable#drunken_sleepers,2"		
+22,eraser	Q	 Ок. 	¿po?	0		"NPCHostile#eraser;SetVariable#drunken_oxyel,2"
+23	Q	На! 	port.	0		"SetVariable#fiery_dancing,59"		
+24	Q	На! 	port.	0		"SetVariable#sansa_quest,0;SetVariable#ladies_man,0;SetVariable#drunken_ladies,2"		

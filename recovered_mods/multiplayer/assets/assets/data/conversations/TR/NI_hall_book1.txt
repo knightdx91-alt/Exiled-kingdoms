@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	This tome is titled 'The Witches of Orogg, Volume I'	Este tomo se titula 'Las Brujas de Orogg, Volumen I'	2			
+2	A	I have already read this.	Ya he leido este libro.	0	VariableEqual#KNOW_NI_book1,1		
+2	A	Let's read it.	Vamos a leerlo.	3			
+3	Q	Varannari endured centuries as an enslaved race, treated by Tolassians as mere cattle. They only became free after the fall of their masters. But before their fall some Varannari fought back and escaped. Unfortunately in doing so, they embraced an evil just as dark as the one they left behind	Los Varannari fueron una raza esclavizada durante siglos, tratados por los Tolassians como simple ganado. Sólo fueron libres para vivir en los bosques tras la caida de los Tolassians. Pero algunos no esperaron, y lucharon por su libertad. Desgraciadamente al hacerlo abrazaron un mal tan oscuro como el que dejaron atrás	4			
+4	A	What do I care about this?	Y ¿A mí esto qué me importa?	0			
+4	A	This is fascinating! [BLUE](Continue reading)[]	Esto es fascinante! [BLUE](Continuar leyendo)[]	5			
+5	Q	Some Varannari uncovered a demonic power, meant to never be revealed to mortals. They became one, flesh and soul, with the unholy darkness. Their new magical abilities were enough to set them free from the Tolassian grip, and they travelled far north and west, until they reached Mount Orogg	Algunas Varannari descubrieron un poder oscuro, que nunca debieron conocer los mortales. Se unieron en cuerpo y alma a ese mal, ganando enormes poderes mágicos.  Escaparon de las garras de los Tolassians y huyeron al norte y al oeste, hasta que llegaron al Monte Orogg.	6			
+6	A	And now I know!	¡Se aprende algo cada día!	0	VariableLower#KNOW_NI_book1,1	"SetVariable#KNOW_NI_book1,1;GainXP#200"	
+6	A	Interesting.	Interesante.	0	VariableEqual#KNOW_NI_book1,1		

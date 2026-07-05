@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	15	"VariableEqual#gend_follow,3;NPCisFollower#"	
+1	Q	Готов выслушать тебя, друг мой.	port	4	NPCisFollower#	
+1	Q	Здраствуй, друг мой. Похоже, тебе требуется моя помощь, чтобы спасти королевства?За небольшое вознаграждение, {LEVELx100} я готов помочь тебе.	po  {LEVELx100}  rt.	2		
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx100}"	"NPCFollow#;LoseGold#{LEVELx100}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	3		
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#4
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	Чтож, до следующей встречи, ты наверняка передумаешь, друг мой.	port.	0		
+4	A	Ничего, давайте двигаться дальше.	port.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	port.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	port.	6		
+4	A	Эй, а ты владеешь магией?	port.	7		
+5	Q	До свидания, друг мой! Я знаю, наши дороги вновь пересекутся.	port.	0		NPCStopFollowing#
+6	Q	Конечто.	port	0		NPCMoveRandom#
+7	Q	Конечто, могу призвать на помощь нам своего небольшого помощника, но для этого мне понадобится хотя бы малое зелье маны.	port	16		
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#gend_follow,3;NPCFollow#"	
+15	A	Молодец.	port.	0		
+15	A	Эй, а ты владеешь магией?	port.	7		
+15	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#gend_follow,1;NPCStopFollowing#"
+16	A	У меня есть сильное зелье маны, действуй!	port.	0	"PlayerHasItem#5052"	"LoseItem#5052;Summon#elemental_earth,15,40"
+16	A	У меня есть зелье маны, действуй!	port.	0	"PlayerHasItem#5021"	"LoseItem#5021;Summon#elemental_earth,10,40"
+16	A	У меня есть коньяк из Дипфроста, действуй!	port.	0	"PlayerHasItem#5037"	"LoseItem#5037;Summon#elemental_earth,7,40"
+16	A	У меня есть малое зелье маны, действуй!	port.	0	"PlayerHasItem#5020"	"LoseItem#5020;Summon#elemental_earth,7,40"
+16	A	Ясно.	port.	0		

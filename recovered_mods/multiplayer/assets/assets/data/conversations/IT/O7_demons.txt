@@ -1,0 +1,126 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Очередной храбрец к нам пожаловал, други мои, чтобы мы могли заценить его билдосборку! Ну, и кем же ты будешь, боец? 	port.	2			
+2	A	Воин - я.	port?	3	"PlayerIsClass#warrior"	
+2	A	Плутом.	port?	4	"PlayerIsClass#rogue"	
+2	A	Клериком.	port?	5	"PlayerIsClass#priest"	
+2	A	Я - маг.	port?	6	"PlayerIsClass#mage"	
+3,demonboss	Q	Надеюсь, ты вкачал пещероведение, а то мы как раз собираемся заняться глубоким изучением твоей пещеры! 	port.	7	"PlayerIsMale#"		
+3,demonboss	Q	Надеюсь, ты вкачала пещероведение, а то мы как раз собираемся заняться глубоким изучением обоих твоих пещер! 	port.	7	"PlayerIsFemale#"		
+4,demonboss	Q	Надеюсь, ты какой-нибудь лучник-дрючник, тогда возни с тобой будет меньше! 	port.	7		
+5,demonboss	Q	Отлично! Значит, запускайте сюда стадо Калагру! 	port.	8		
+6,demonboss	Q	О! Может быть ты палочник? Покажешь нам, как правильно ими пользоваться, или мы найдём им лучшее применение с использованием твоей жопы! 	port.	7		
+7	A	У меня отличный билд, так что вам всем пришёл конец!	port?	10			
+7	A	Я не совсем уверен, что мой билд хорош, чтобы вас одолеть.	port?	100			
+8	A	Мне писец!	port?	9			
+9,demonboss	Q	Да, ладно, мы пошутили, будешь биться только с нами! 	port.	7		
+10,demonboss	Q	Хороший настрой для опиздюливания, мне он нравится, посмотрим на что ты способен! 	port.	11		
+11,demon2	Q	Эй, а зачем здесь нужна Санса? 	port.	12	NPCIsInParty#sansa2,sansa		
+11,demon2	Q	О, это Гризенда там с ним? 	port.	19	NPCIsInParty#grissenda,mercenary_grisenda		
+11,demon2	Q	А кто это там с ним? 	port.	24	NPCIsInParty#adaon,adaon		
+11,demon1	Q	Босс! Это очередной Хирдже-абузер! 	port.	30	NPCIsInParty#hirge,hirge		
+11,demon2	Q	А что это за хер? 	port.	35	NPCIsInParty#durak,peter		
+11,demon1	Q	Это что спутник маг-ближник? Да ты самоубивец, раз выбрал его! 	port.	40	NPCIsInParty#durak2,damian		
+11,demon2	Q	А он что припёрлся сюда один без спутника? Челендж какой-то выполняет или просто хочет быстро сдохнуть? 	port.	44			
+12,demon1	Q	Ну, так - жопа, сиськи, рот - что ещё нужно для счастья? 	port.	13		
+13,demonboss	Q	Выдать этому парню дополнительный дылдомеч! 	port.	14	"PlayerIsMale#"		
+13,demonboss	Q	Выдать этим сучкам по дылдомечу! 	port.	15	"PlayerIsFemale#"		
+14,sansa	Q	Эй! Что за намёки? Хотите сказать, что меня добавили только ради секса?! 	port.	16		"GainItem#10360"
+15,sansa	Q	Эй! Что за намёки? Хотите сказать, что меня добавили только ради секса?! 	port.	16		"GainItems#10360,2"
+16,demonboss	Q	Ну, как бы... да! 	port.	17		
+17,sansa	Q	Ну уж нет! Я сейчас покажу вам сильную женщину! 	port.	18		
+18	A	Вы пожелеете, что связались с этой женщиной и со мной!	port?	90	"PlayerIsMale#"		
+18	A	Именно, не стоит недооценивать нас!	port?	90	"PlayerIsFemale#"		
+18	A	Санса, давай-ка, лучше свалим отсюда, пока нас обоих не отымели.	port?	101			
+19,mercenary_grisenda	Q	Да! И сейчас я буду танковать и дамажить! 	port.	20			
+20,demon2	Q	Чё она так орёт, что она, вообще, собралась здесь делать? 	port.	21		
+21,demon1	Q	Наверное, сейчас покажет, как правильно надо компенсировать. 	port.	22		
+22,mercenary_grisenda	Q	Вы пожелеете от том, что так призрительно говорите о лучшем танке! 	port.	23			
+23	A	Вот именно, сейчас я вместе с Грисендой разнесу вас!	port?	90			
+23	A	Грисенда, давай не будем накалять обстановку, а мирно разойдёмся.	port?	101			
+24,demon1	Q	Адаон - плут. 	port.	25		
+25,demon2	Q	Значит, его нельзя подпускать к себе сзади. 	port.	26		
+26,demon1	Q	Присунет? 	port.	27		
+27,demonboss	Q	Мы сейчас сами ему присунем! 	port.	28		
+28,adaon	Q	Босс, может мы лучше пойдём домой? 	port.	29		
+29	A	Нет, эти уроды не с теми связались, мы их одолеем!	port?	90			
+29	A	Хорошая идея, Адаон, свалим отсюда от греха подальше.	port?	101			
+30,demonboss	Q	Ясно. Хирдже! 	port.	31		
+31,hirge	Q	А? 	port.	32		
+32,demonboss	Q	Пошла на хуй, Хирдже. 	port.	33		
+33,hirge	Q	Ладно. 	port.	34		"NPCStopFollowing#;NPCDespawn#hirge"	
+34	A	Ну и пусть, я и сам один справлюсь!	port?	90			
+34	A	Эй, какого чёрта?! Я что теперь один должен драться?! Так не честно!	port?	100			
+35,peter	Q	Эм, привет, я Питер, клерик. 	port.	36		
+36,demon2	Q	Чё? Ещё один клерик-спутник? 	port.	37		
+37,demonboss	Q	Да это же какая-та Хирдже с членом - не канон! Пошел в сраку, пидер! 	port.	38		
+38,peter	Q	Ладно. 	port.	39		"NPCStopFollowing#;NPCDespawn#peter"	
+39	A	Ну и пусть, я и сам один справлюсь!	port?	90			
+39	A	Эй, какого чёрта?! Я что теперь один должен драться?! Так не честно!	port?	100			
+40,damian	Q	Я сейчас снесу горением 60 твоих сопров! 	port.	41		
+41,demonboss	Q	А что ты тогда будешь делать с оставшимися у меня 150-ю? Заспамишь метелью? 	port.	42		
+42,damian	Q	Ты недооцениваешь мою мощь! Мощь мистического рыцаря! 	port.	43		
+43	A	Именно, вы сами навлекли на себя беды, решив познать наше могущество!	port?	90			
+43	A	Дэмиен, давай не будем их злить, а уйдём отсюда, пока мы это можем.	port?	101			
+44	A	Мне не нужна ничья помощь, я и в одиночку могу справиться с кем угодно!	port?	90			
+44	A	Пожалуй, я переоценил свои возможности, я загляну к вам попозже.	port?	100			
+90,demon2	Q	Отлично! Наконец-то, переходим от слов к делу! 	port.	91		
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10182"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10183"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10184"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10213"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10187"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10188"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Пошёл ты на хер отсюда со своми читерными пушками! 	port.	92	"PlayerHasItem#10295"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demon1	Q	Давно пора, а то я уже здесь заскучал! 	port.	92		
+92,demonboss	Q	А вот уничтожители мы у тебя заберём! 	port.	93	"PlayerHasItem#10128;PlayerHasItem#10129"	"LoseItems#10128,20;LoseItems#10129,20"	
+92,demonboss	Q	А вот уничтожитель мы у тебя заберём! 	port.	93	"PlayerHasItem#10128"	"LoseItems#10128,20"	
+92,demonboss	Q	А вот уничтожитель мы у тебя заберём! 	port.	93	"PlayerHasItem#10129"	"LoseItems#10129,20"	
+92,demon2	Q	Наверняка, ты настроен на честную драку? 	port.	93		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10134"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10135"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10153"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10154"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10155"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10156"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10157"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10158"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10159"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10160"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10161"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10162"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10163"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10164"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10190"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10191"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10192"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10100"		
+93,demonboss	Q	Читерные вещички на себя напялил? Тогда может и нам считернуть? 	port.	94	"PlayerHasItem#10101"		
+93,demon1	Q	Мы же здесь собрались, чтобы честно драться! 	port.	95		
+94,demon1	Q	Хорошая идея, уровняем наши шансы! 	port.	95		"SetVariable#demon_cheat,1"
+95,demonboss	Q	Эй, ты, огненная пизда, ты не в ту сторону воюешь! 	port.	96	"VariableEqual#demones_follows,3"		
+95,demonboss	Q	Эй, ты, огненная пизда, ты не в ту сторону воюешь! 	port.	96	"VariableEqual#demones_follow,3"		
+95,demon2	Q	Для честного боя нам посторонние здесь не нужны! 	port.	105		
+96,demonessa	Q	Пошёл в очко сатаны, облезлый козёл! С кем я хочу, с тем и вожусь! 	port.	97		
+97,demon2	Q	Сейчас мы оприходуем тебя в три ствола, посмотрим, если не порвёшься, как ты после этого запоёшь! 	port.	98		
+98,demonessa	Q	Ладно-ладно, успокойся, я поняла тебя! Извини, дружок, но целостность моей задницы для меня важнее, чем преданность тебе! 	port.	105		"SetVariable#demones_follow,1;SetVariable#demones_follows,1;NPCStopFollowing#;NPCHostile#demonessa"
+100,demonboss	Q	Ну тогда съебался в страхе! 	port.	0		"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"
+101,demonboss	Q	Ну тогда съебались в страхе! 	port.	0		"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"
+102,demonboss	Q	А теперь начнём! 	port.	0		"NPCHostile#demon1;NPCHostile#demon2;NPCHostile#demonboss;NPCHostile#hell_suki;NPCGoTo#demonboss,1;ItemActivate#fires;SetVariable#demon_rare,2"
+105,demonboss	Q	Какого хрена вот тот урод может лечиться от огня, как и мы?! 	port.	106	"VariableEqual#knights2_follows,3"		
+105,demonboss	Q	Какого хрена вот тот урод может лечиться от огня, как и мы?! 	port.	106	"VariableEqual#knights2_follow,3"		
+105,demonboss	Q	Какого хрена вот тот урод может лечиться от огня, как и мы?! 	port.	106	"VariableEqual#knights2_follows,3;VariableEqual#knights2_follow,3"		
+105,demon1	Q	А ты точно готов, или может быть ты всё-таки хочешь отсюда свалить? 	port.	112		
+106,knightsorcerer2	Q	А почему бы и нет? Я же всё-таки повелитель стихий! 	port.	107		
+107,demon1	Q	А анальным властелином не хочешь стать? Это куда круче звучит! Сейчас мы для тебя профориентацию устроим! 	port.	108		
+108,knightsorcerer2	Q	Проклятье, а я словно жопой чухал, что не стоит было сюда лезть! 	port.	112		"SetVariable#knights2_follow,1;SetVariable#knights2_follows,1;NPCStopFollowing#;NPCDespawn#knightsorcerer2;NPCSpawn#knightanal"
+109,knightsorcerer2	Q	А почему бы и нет? Я же всё-таки повелитель стихий! 	port.	110		
+110,demon1	Q	А анальным властелином не хочешь стать? Это куда круче звучит! Сейчас мы для тебя профориентацию устроим! 	port.	111		
+111,knightsorcerer2	Q	Проклятье, а я словно жопой чухал, что не стоит было сюда лезть! 	port.	112		"SetVariable#knights2_follow,1;SetVariable#knights2_follows,1;NPCStopFollowing#;NPCDespawn#knightsorcerer2;NPCSpawn#knightanal;NPCSpawn#knightanal2"
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#necro2_follow,3"		
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#unsurpas_follow,3"		
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#mercenary_follow,3"		
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#bandos_follow,3"		
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#knights_follow,3"		
+112,demonboss	Q	Хм, вижу, что опять та болотная пизда всем встречным даёт... ошейники! 	port.	113	"VariableEqual#elf_follow,3"		
+112,demon1	Q	Мы готовы к веселью! 	port.	102		
+113,demon1	Q	Значит нам тоже понадобится братская помощь! 	port.	102		"SetVariable#demon_cheat,1;NPCSpawn#kala_bro"

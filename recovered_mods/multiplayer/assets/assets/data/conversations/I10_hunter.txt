@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	10	NPCisFollower#	
+1	Q	[BLUE](Человек смотрит на идеальную шкуру волка и кланяется тебе)[] Ты лучший охотник. Забирай камень.	[BLUE]El hombre contempla sorprendido la piel de lobo perfecta, y te hace una reverencia[]. Tú, mejor cazador. Tú ganar piedra.	0	"VariableGreater#wolf_hunt,9;VariableLower#wolf_hunt,100;playerhasitem#1003"	"LoseItem#1003;GainXP#80;GainItem#2003;SetVariable#wolf_hunt,100;IncVariable#REP_varannari,3"
+1	Q	Добро пожаловать в наш лагерь, Импири. Мы, сыны клана Дазара. Мы охотиться на волков. Ты охотник? [BLUE](Этот охотник Вараннари явно не очень хорошо говорит на имперском языке)[]	Bienvenido campamento, Impiri. Nosotros hijos de clan Dazar. Nosotros cazar lobos. [BLUE](Este cazador Varannari parece hablar el idioma Imperial con dificultad)[]	2	VariableLower#wolf_hunt,9	
+1	Q	Приветствую, Импири.	Saludos, Impiri.	8		
+2	A	Я тоже охотник. Лучший охотник в мире!	Si, soy cazador. El mejor del mundo!	3		
+2	A	Я тебя не понимаю, ты тупой или что? Я конечно слышал, что вы вонючие Вараннари не очень умные.	No te entiendo. Eres idiota? Siempre he oido que los apestosos Varannari son tontos.	4		
+2	A	Импири? Мое имя не Импири.	Impiri? Mi nombre no es Impiri.	5	VariableLower#impiri,1	SetVariable#impiri,1
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		INT#5
+3	Q	[BLUE](Мужчина смеется и указывает на четыре шкуры волка, висящие позади него)[] Вы импири, много болтать. Ты доказать мне, принести идеальную шкуру, без дыр и ты лучшие. Договорились?	[BLUE](El hombre rie, y señala a las cuatro pieles de lobo colgadas detrás)[]Vosotros Impiri, siempre hablar mucho. Tú traer una piel perfecta, sin agujero, en un día. Entonces tú mejor. Hecho?	6		
+4	Q	Ты оскорблять честь Дазар? Ты умререть!	Tú insultar honor de Dazar? Tú muere!	0		"NPCHostile#varannari;DecVariable#REP_varannari,12"
+5	Q	Твой народ из-за моря, из земли под названием ""Импири"". Вы строить дома из камня и теперь вы сильный. Мы Вараннари, мы жить в лесу. Мы охотники. 	Tu gente venir de más allá del mar, de tierra llamada 'Impiri'. Vosotros construir casas de piedra, fuertes. Nosotros Varannari, vivir en bosque. Cazadores.	2		
+6	A	Конечно. Я вернусь с этой прекрасной шкурой и покажу вам, кто лучший охотник. Я думаю.	De acuerdo. Volveré con esa piel perfecta de lobo y demostraré quién es el mejor. Creo.	0		SetVariable#wolf_hunt,10
+6	A	Ладно... проехали, ты, наверное, самый лучший охотник!	Espera... Déjalo, posiblemente tú eres mejor cazador!	7		
+7	Q	Ха! Вараннари - лучшие охотники.	Ha! Varannari mejor cazador.	0		DecVariable#REP_varannari,1
+8	A	Привет.	port.	0		
+8	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		STR#5
+8	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		AGI#5
+8	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	9	PlayerHasItem#10402		INT#5
+9	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#deepshad_follow,3;NPCFollow#"	
+10	A	Молодец.	port.	0		
+10	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#deepshad_follow,1;NPCStopFollowing#"

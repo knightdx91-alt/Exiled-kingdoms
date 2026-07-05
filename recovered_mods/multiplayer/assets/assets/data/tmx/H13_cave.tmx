@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="42" height="42" tilewidth="64" tileheight="32" nextobjectid="7">
+  <properties>
+    <property name="maxlight" value="30" />
+    <property name="music" value="anguish" />
+    <property name="name" value="Snow cave" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="cave_snow.tsx" firstgid="797" />
+  <tileset source="dungeon2.tsx" firstgid="1037" />
+  <tileset firstgid="1277" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="town_objects3.tsx" firstgid="1493" />
+  <layer name="nonwalk" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAICXARltnfKQGwAA
+  </data>
+  </layer>
+  <layer name="water" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAICXARltnfKQGwAA
+  </data>
+  </layer>
+  <layer name="ground" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2XUQqDMAyGHZ7DFboqC3gFNx+2ef9L7Bwz+IcF8WHCRtORD0IVfPj6NylYVY7jOAttvZRl2G9CPQy7as89rs/Db73WrD0ng5myYyrIM8zVzxUxT2eDvZrgph1HrNYQv6DW3mCmd2TZq2yD0fMXV64BztK7FhFfdrzuOP8uQ/bsSuoOoA2HVL+Lv+mwrxx9on0vcJCsST1HtaeY0VUyJfQuKT9CliPylGxzIK7taiWVYa+cc2W65S2ZtugJmbsGd8RWT+ckwW3Ayu9Hg3eaZBvgp/NsDHky7HpDhp1RRyGiP0PGef8EfUdRIZ6xAE/r/61MMt6bwsnz/Col5Wl51h3Hcf6VFzb7jl6QGwAA
+  </data>
+  </layer>
+  <layer name="ground2" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQkAQAgAMLF/xithASv4OUTYEiwC4JbK7cHMO/IEAAAAAOCvBlYFcmqQGwAA
+  </data>
+  </layer>
+  <layer name="objects" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2V22rCQBBAx0s+T20stUGD9faaQqnWC/gprdgG/0r/wldxBmbput1u3pJZ2QMDYTaQw8zsBCAQCAQAnhoAG45+o2qb/1mz27kOMBHsuja8JLpSz8cYl9pv7hQBLIV5Ui3T6DZ3FOo5iP7mqfcfgvqfoscMI2PXvHl73hHiSShXG0PM9wS5LhwuE0GuCdf0B+Nbc9rzs7R7tUKfB8scFO1U2m9djjJr37J8a6i5vrNTG+MVY669X+ac0BysuK5fhkOX/w06O0v9y6wr7YKR43ufjrOyd5prbylyPD/wPVRUsSdSvl8qbN65JVf1TksKnHWk/NNiTzwTR02nmH8W4knYXF+EOSrM/j8KdCQyw0vKXJpsNS9pc6mjz6jUnisyTzxbnni+eeIZe+IZCAQC98YVC6WwKpAbAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="42" height="42">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAICXARltnfKQGwAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from" type="entry" id="1" x="880" gid="487" y="970">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="850" y="1060" width="40" height="20">
+      <properties>
+        <property name="area_id" value="H13" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="wizard" type="spawn" id="3" x="305" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conversation" value="H13_hermit" />
+        <property name="name" value="@HERMIT_WIZARD" />
+        <property name="portrait" value="216" />
+        <property name="spawn" value="wizard_miracle2" />
+        <property name="tag" value="mage" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="monster" type="spawn" id="4" x="855" gid="489" y="745">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="yeti_2" />
+        <property name="tag" value="monster" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="monster2" type="spawn" id="5" x="685" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="spawn" value="yeti_2" />
+        <property name="tag" value="monster2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="770" y="700" width="170" height="70">
+      <properties>
+        <property name="conditions" value="VariableLower#ladies_man,76" />
+        <property name="actions" value="StartConversation#monster2,H13_monster" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

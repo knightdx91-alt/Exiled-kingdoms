@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="48" height="48" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="40"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Unknown dungeon"/>
+  <property name="name_ES" value="Mazmorra desconocida"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="cave.tsx"/>
+ <tileset firstgid="493" source="town_objects.tsx"/>
+ <tileset firstgid="573" source="grounds_indoor.tsx"/>
+ <layer name="nonwalk" width="48" height="48" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAIBXAyQAAAE=
+  </data>
+ </layer>
+ <layer name="water" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztmEEKgDAMBPMVFfX/P5QcvMVYKXG7dAdyDUObQrpmQuSsaIFO3H9HS3TA4J/NCIv/k6P865E/lttxC8qMx985ghodhhnJYPd3svfLDPvdyB+L/LHIv5bF4r2HZf/x8z0t3nsY9p/R5+MN+WORPxb5Y5E/FvljkT+WmfxHzIK++lfe1dtfqqUyqv1b/lItlfWv9lf/+v6VWcFfWURlVsCaRczGBd9pGkI=
+  </data>
+ </layer>
+ <layer name="ground" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztmdtu20oMRQN+S3/Ptnpu7YvuEiBZ+ujKAFe5rcp2pAxyXkJgEDu2OBxeNjfHb2+fJ5O9vVXLui6r91VaWv03fedl1cu6LKvz15W//6j+m+3FsgZ5nUoyt/G0rNx1F75P5Wf5iBSuf3R9s79W+Xd5/5es/3bs2bntvf+dfb/G4/JR/990tO6TzH201vnd98OHf+/Ys3H9jes/y99TglztXMfJ9ZKra/sHt6PcaX/rz932mTwOo/89J/B/77bVro+Y6hm++97EaY/9mcUZiMUor6++yKnG98auyf169f/jh9E/H+T5wu2v/Bm1nzOOB/xP/RLbQeI9y/vGbenE/srPCQ4Qy4vYw/c62ade2V/69/bm/yA6c1+TxDjz94V8XlvgU2VRm1f/rHVbMl+93dcBtqr91N9e/59c9+zP4yN6DvlE7K8WWNHK/wp/pvYFnuV23096f52LjT+X1//I+rHD/leC77GZfB998Tk9g5q4WPSuWfKvtMDUtXxLZ/ZvubqdpdtztsBWrWdyZZZ8omYvkofUW/VJ9ndSE70FHpFXudjdiu8bOSO1Mfu6+vc+w/73ysVto55V6E0nOfdWX/w/7R88j7Y4E/kGD6K/E6fRz577+/lA/Q4WuAxmkB+XDZ+uBQwq7B7bb9JJfcNzya3BAvPI1f6A/aPoxF+11OVWvqrALYeNs5YWGEZ/o47Qf5HvHOG85Uov8e49J5oXOrHt4s+vfVNb9C3lEMQZbnp6R6y3ZJL66y2wGi6Tv9BJ/OAVKsRxsnscUz7KXEYf3CuV+GB0nbP7DV7CLNhacIfKgjMNEq+1b+jhmUV/pm6pDXr2kfzp7b4HwT2pSeoYv3EWehIYCY9d23+2mMGuFlyos6hf9JwO2A9fo5fiV7hRL5/DHToL/AM/8asKvK8Rm5mtC3kePMps28ZnAsYVksMnyelHPqHfzm5/sbF/IzGEG6YWcAd+j4/p9Y/mSOqOMxT2J9aCS/CIVPcn6IKjNBY4RK9hLtoS8A+eST2v/a9zKRw1lf3kOHaiv/d4r7F8bT93RopTcAF00ltKybMUQo9VTsgezE3P+q7iKpwAHIX/Ew9m4Dyh/euew/0V+F7an1iiAu41/n1qhhqYLGZfeEmT0H56H7jei3+YU59hRSt+x8/Mv9Q1WEme0ctSCPhLDOC14Al86JFwD9FbzFnMVtTs5D6vpc5S4Q/5SLxni3lWa+6R4Gu4J/bWds+fOBOxOsKPtwQuozXL/AEPeMYFwRdwi3qCD8MX4AXU8BF+sCXcH7QWuAYv0VnpkcA5uBtRPsRdl9YXeHxkvtoS4q15TAz0Tj2FwGuGhPWrHJicB8OZ41JhXWfBbT96J4xgKzg0W9zpwIVSca3JYrZKlf/0SrhPJ+/ZT7kP8w39dFidlfvvXHKQ78Jlh4T5fxOdOXvfk77GXS29NbfASz5TzkcPa+UMzKKZrFd3AXuEGNBvuF+FU4AbvQVPquUZbAMniYXeY4BRnJ85Y/aYn1d6dR57hR/cyepvAHBqzgOmM59wVnoF8zi6yB3tD8xYxAO8wHZ6PXMEufrK/krsGC1wnzyGm3GWyuKOh7pJIYrfxAVsfybEjzt67pDwHVxM/cnvlPzukkIm0QuPoq5enZs8JdefnVXvOOAZKQQOWIu/XtlzE2a/9/y2n4mP+I0vVX+m9hSrqIMv+ZIvCfkFQV4dUw==
+  </data>
+ </layer>
+ <layer name="ground2" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt19EKQDAUxnHtHiMvIryxPCdCjXIxi+Oc/r+SK+2z2c6RZfizzkknSNML55ceP9aat3DbulfLVSrLb0W1r0H78vwf+7vZ771L2/N58Gz9wbfj3XkcbftN+/kK3BmkAyTSnt8CC+ejtpoEAECMo87lwb/kJBcnmg/q9LXv0NaHjNIBHrjOsZW+ycp7AIBlnrMaAIDXzXZnBu8=
+  </data>
+ </layer>
+ <layer name="scenery" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAEADB1xddACRubP8EjAACAKbUdAAAAAOCM3A4A8EYD+asBWw==
+  </data>
+ </layer>
+ <layer name="objects" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztWUty1DAQVWbDDVKw4FN8sg9hCCT8FgmwJGwmGaqoHIAbECBsOQHXgC2fmwXQw1ZNT9PqlizLDlXzqrpsy3Lrud3dasnODYdHXu56edkeIY8r6IcckrHCeKVjHXn5tdbI77WmbatQJ8XUy8/2fH3SHE/c4lg61sw13IGzCP/3Xt4y+ZCo/5WXH6zttNXxThgrF5tCG9d5IvSR2iRMjfvnnT++7zcv3yP3zzt/2P/6pBEJu24R3xDE+23XxPrcNXH+um2bt+eH7XUQPLPv5SnRN+uJP+xz1XO/5uVG5B0oDtxyfNFYD3ouMD3SN6B+W8o/B2HcoP/ULWI9hueKHqrLGW0SHnq5o8h9gYvFl+OZ0Eb5w6eof+24dP4WeH6SuFjgNpD01gIfR+Ly2dBxkKC3Frh/xfyNv9cDcm8M/rl5n/PZUu4BO5n6c5HL/0h5PsfW2wk5XALmGMw7wS5hnsGchDnIqkN5Hu7Kvytgv0vs3dfJtfU9NP/h36YGYL9YDQGU8J+5+sAYV5QawuLPcwztH2omTUrjGfa7rPDfNcbX/H8I/8EYN43Y1+besf0nZR2jzVuc49D5x6pDY/4fnusr/3eF5qOoBZ5E7m2yY8AQ/JEXPkVkv+2DuNXmrsAbfSjPIfjTnKfVkDHf4etCnE8n/645a9U6Ul0owfL9ALrm+Cq09Y3A/5i18+su/LU2a72QilL785gvWcd2AfhrNU+AZv8v5HoM/hsF/PmcNQb/W4X2pxiDfwpi/K29F2193AfAH7ngmLXz6z7262vMYaX2z8H/zr9GDQ3/TfHLwD/8awr/meh+9Nwt7zvP3fL6RtoD7QP0/xflROuawFfygVReXfYdU5CztyRxTeVVI/8AOXElcQWvNwnStQa1aqW/ccXmsJitxtxHjoGPj7VWbF6Sckht/h+N+xj/IrH/ttE3pW1IwNb3vOy18kLpy/NUzbXVCiusIOMPLax7Cw==
+  </data>
+ </layer>
+ <layer name="roofs" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAEAIBLDDBt/F/tls4YNsCZYA3NGVvPq9AAAAAAAAAIA9AwfDAEo=
+  </data>
+ </layer>
+ <objectgroup name="data" width="48" height="48">
+  <object name="entry from farmlands" type="entry" gid="245" x="781" y="903">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Cell door" type="conversation" gid="249" x="762" y="810">
+   <properties>
+    <property name="conversation" value="NG_door_dungeon_cell"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="items chest" type="conversation" gid="249" x="339" y="533">
+   <properties>
+    <property name="conversation" value="ng_dungeon_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="245" x="286" y="552">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit to ng" type="transition" x="230" y="438" width="61" height="55">
+   <properties>
+    <property name="area_id" value="NG_sewers"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="amarisa" type="staticNPC" gid="247" x="638" y="917">
+   <properties>
+    <property name="conditions" value="VariableEqual#want_letter_back,40"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@AMARISA"/>
+    <property name="portrait" value="19"/>
+    <property name="sprite" value="female_white_ground"/>
+    <property name="tag" value="amarisa"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="245" x="743" y="731">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="Adaon" type="spawn" gid="247" x="661" y="256">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,70"/>
+    <property name="conversation" value="adaon"/>
+    <property name="name" value="Adaon"/>
+    <property name="spawn" value="adaon"/>
+    <property name="tag" value="adaon"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Adaon in cage" type="conversation" gid="249" x="671" y="275">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,70"/>
+    <property name="conversation" value="adaon_dungeon"/>
+    <property name="icon" value="adaon"/>
+    <property name="name" value="Adaon"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="212" y="87">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="2505,101,104,501,502,5000"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="738" y="453">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Jailer"/>
+    <property name="name_ES" value="Carcelero"/>
+    <property name="spawn">bandit_male
+</property>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Adaon in cage" type="conversation" gid="249" x="1275" y="474">
+   <properties>
+    <property name="conversation" value="ng_dungeon_notice"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="983" y="89">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5000,100,102,503,5020,370"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="939" y="105">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="portrait" value="16"/>
+    <property name="spawn" value="cultist_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="150" y="1302">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5000,5002,5004,5001,5020"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="256" y="934">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="spawn" value="cultist_leader_ng"/>
+    <property name="tag" value="leader"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="783" y="245">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="icon" value="crate1"/>
+    <property name="items" value="103"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="301" y="203">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Jailer"/>
+    <property name="name_ES" value="Carcelero"/>
+    <property name="spawn">bandit_male
+</property>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="mino" type="spawn" gid="247" x="1240" y="148">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_enraged_mino,1"/>
+    <property name="name" value="Enraged Minotaur"/>
+    <property name="name_ES" value="Minotauro furioso"/>
+    <property name="spawn" value="enraged_minotaur_ng"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="249" x="1302" y="218">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_enraged_mino,1"/>
+    <property name="icon" value="corpse3"/>
+    <property name="items" value="112,3004,3034,5020"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="75" y="974" width="323" height="102">
+   <properties>
+    <property name="actions" value="SetVariable#want_letter_back,77;StartConversation#leader,ng_dungeon_leader"/>
+    <property name="conditions" value="VariableLower#want_letter_back,77"/>
+   </properties>
+  </object>
+  <object name="amarisaTrigger" type="trigger" x="611" y="828" width="76" height="51">
+   <properties>
+    <property name="actions" value="SetVariable#where_is_amarisa,20"/>
+    <property name="conditions" value="VariableLower#where_is_amarisa,20"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1274" y="571">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="Guardian" type="spawn" gid="247" x="1018" y="692">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="522" y="1227">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="537" y="1312">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="170" y="1251">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="194" y="1354">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="313" y="654">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guardian" type="spawn" gid="247" x="1033" y="1226">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guardian" type="spawn" gid="247" x="994" y="429">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="name" value="Guardian"/>
+    <property name="spawn" value="cultist_male"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="384" y="800">
+   <properties>
+    <property name="active" value="VariableLower#want_letter_back,90"/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="352" y="800">
+   <properties>
+    <property name="active" value="VariableLower#want_letter_back,90"/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="247" x="1266" y="1261">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="spawn" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="247" x="1294" y="1381">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="spawn" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="247" x="746" y="1227">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="spawn" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="1401" y="1338">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5000,504,601,5020,383"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="247" x="1353" y="1348">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,80"/>
+    <property name="spawn" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

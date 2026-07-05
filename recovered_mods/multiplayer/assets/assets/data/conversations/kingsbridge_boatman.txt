@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The boatman talks to you without paying much attention)[] Hello there. Need anything?	[BLUE](El barquero sigue con sus tareas sin prestarte mucha atención)[] Hola, quieres algo?	2		
+2	A	No, goodbye.	No, adiós.	0		
+2	A	Yeah, I want transportation by boat.	Si, quiero que me lleves en bote.	3		
+3	Q	Okay, I think I can trust you on my boat, I've heard you're a nice fellow. I can take you upstream to Rhöneis for 100 gold.	De acuerdo, he oido hablar de ti y creo que eres de confianza como para subir a mi bote. Por 100 monedas puedo llevarte rio arriba, a Rhöneis.	4	"IsRegistered#;VariableGreater#REP_town_kingsbridge,9"	
+3	Q	Hum. Listen, I normally don't carry passengers, and I certainly don't carry people that I don't know and trust. Sorry.[BLUE](You need to rise your reputation in Kingsbridge to 'Friendly')[]	Hum. Mira, normalmente no llevo pasajeros, y desde luego no voy a llevar a nadie conmigo que no sea de confianza. Lo siento.[BLUE](Necesitas mejorar tu reputación en Kingsbridge a 'Amigable')[]	0	IsRegistered#	
+3	Q	[BLUE](You can only access this option in the full version of the game)[]	[BLUE](Sólo puedes escoger esta opción en la versión completa del juego)[]	0		
+4	A	Take me to Rhöneis, up the river, in the Kingdom of Ilmara.	Llévame rio arriba a Rhöneis, en el Reino de Ilmara.	0	playerhasGold#100	"loseGold#100;Travel#F10,2,12"
+4	A	Can't you take me south to New Garand? 	Hora de visitar la capital, New Garand!	5	playerhasGold#100	
+4	A	Hmmm I am not sure, maybe I'll be back later.	Hmmm no estoy seguro, quizá vuelva más tarde.	0		
+5	Q	[BLUE](The man shakes his head)[] it's forbidden, they're worried about smugglers and Mercian spies, you know. They get in anyways, so it's pointless. But that's how it is.	[BLUE](El hombre niega con la cabeza)[] No, está prohibido, muy controlado. Quieren frenar el contrabando y a los espias de Mercia. El caso es que con eso no les van a parar. Pero así son las cosas...	4		

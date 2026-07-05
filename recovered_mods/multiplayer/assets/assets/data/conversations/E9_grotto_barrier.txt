@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This magical barrier of energy seems to be indestructible... At the other side, you see several corpses, almost devored to the bones. That's all that remains of the Third Legion elite scouts.	Esta barrera de energía mágica parece indestructible... Al otro lado, hay varios cuerpos completamente devorados hasta los huesos. Es todo lo que queda del grupo de exploradores de élite de la Tercera Legión.	2	VariableEqual#web_terror,10	SetVariable#web_terror,20
+1	Q	This magical barrier of energy seems to be indestructible...	Esta barrera de energía mágica parece indestructible...	2		
+2	A	It is impossible to even make a dent on this thing...	Es imposible dañar esta cosa...	0		
+2	A	Put your magical keystone in contact with the barrier.	Poner la gema mágica en contacto con la barrera	3	PlayerHasItem#2518	
+3	Q	There is a flash of turquoise light, and both gem and barrier dissolve into nothingness.	Hay un destello de luz turquesa, y tanto la gema como la barrera se disuelven en la nada.	0		"SetVariable#web_terror,70;ItemHide#barrier1;ItemWalkable#barrier1;LoseItem#2518"

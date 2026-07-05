@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	15	"VariableEqual#knights_follow,3;NPCisFollower#"	
+1	Q	Я тебя слушаю, друг.	port	4	NPCisFollower#	
+1	Q	Здраствуй, путник. Я могу помочь тебе в трудных путешествиях, за небольшое вознаграждение, {LEVELx100} я готов отправится с тобой.	po  {LEVELx100}  rt.	2		
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx100}"	"NPCFollow#;LoseGold#{LEVELx100}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	3		
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#4
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	Если передумаешь, я буду здесь тебя ждать.	port.	0		
+4	A	Ничего, давайте двигаться дальше.	port.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	port.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	port.	6		
+4	A	Эй, а ты владеешь магией?	port.	7		
+5	Q	До встречи, путник, буду рад вновь тебе помочь.	port.	0		NPCStopFollowing#
+6	Q	Конечто.	port	0		NPCMoveRandom#
+7	Q	Конечто, могу телепортировать нас, куда нужно тебе.	port	0		Teleport#
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#knights_follow,3;NPCFollow#"	
+15	A	Молодец.	port.	0		
+15	A	Эй, а ты владеешь магией?	port.	7		
+15	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#knights_follow,1;NPCStopFollowing#"

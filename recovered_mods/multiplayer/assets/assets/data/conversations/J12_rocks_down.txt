@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	
+1	Q	A huge landslide has opened a way up this gorge, but climbing it won't be easy.	Un deslizamiento ha abierto un paso rocoso, pero trepar por las rocas no va a ser fácil.	2			
+2	A	This may lead to the 'Forsaken' hideout.	Esto podría llevar a la guarida de los 'Olvidados'.	3	"VariableGreater#track_forsaken,0;VariableLower#track_forsaken,20"	SetVariable#track_forsaken,20	
+2	A	Time to climb up again.	Esto podría llevar a la guarida de los 'Olvidados'.	3	VariableGreater#track_forsaken,10		
+2	A	I won't break my neck climbing this up for no reason.	No me voy a romper el cuello escalando sin motivo.	0			
+3	Q	The rocks are loose and it's easy to lose your footing.	Las rocas están sueltas y es fácil perder el equilibrio.	4			
+4	A	I'll do what I can...	Haré lo que pueda.	5			
+4	A	I can do this with my eyes closed.	Puedo hacer esto con los ojos cerrados.	6			AGI#3
+5	Q	You manage to climb, but you have had rocks fall on your head as well as hurt your knees and elbows.	Consigues trepar, pero te han caido rocas en la cabeza y te has herido en las rodillas y codos.	7		LoseHP#30	
+6	Q	You manage to climb without trouble.	Consigues trepar sin problema.	7			
+7	Q	"You are now on top of the pass; looking behind you, you suspect climbing down is going to be far harder than climbing up."	Estás en lo alto del paso. Al mirar hacia abajo piensas que bajar va a ser mucho más complicado que subir.	0		Travel#J12,3	

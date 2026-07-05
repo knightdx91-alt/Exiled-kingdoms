@@ -1,0 +1,607 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="76" height="76" tilewidth="64" tileheight="32" nextobjectid="2">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="ossuary" />
+    <property name="name" value="New Garand-Z" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="871" />
+    <property name="sw2" value="148" />
+    <property name="sw3" value="151" />
+    <property name="sw4" value="1137" />
+    <property name="sw5" value="1140" />
+    <property name="sw6" value="1138" />
+  </properties>
+  <tileset firstgid="1" name="spawns" columns="2" tilecount="8" tileheight="64" tilewidth="64">
+    <image source="spawns.png" width="128" height="256" />
+    <tile id="0">
+      <properties>
+        <property name="entry" value="1" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="entry" value="1" />
+      </properties>
+    </tile>
+    <tile id="2">
+      <properties>
+        <property name="spawn" value="orc" />
+      </properties>
+    </tile>
+    <tile id="4">
+      <properties>
+        <property name="spawn" value="goblin" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="water.tsx" firstgid="9" />
+  <tileset source="town_objects.tsx" firstgid="73" />
+  <tileset source="stoneroad1-grass.tsx" firstgid="153" />
+  <tileset source="house_village_blue_1.tsx" firstgid="171" />
+  <tileset source="house_village_blue_2.tsx" firstgid="243" />
+  <tileset source="townhall_blue.tsx" firstgid="315" />
+  <tileset firstgid="351" name="house_bricks_1" columns="10" tilecount="30" tileheight="128" tilewidth="64">
+    <image source="house_bricks_1.png" width="640" height="384" />
+  </tileset>
+  <tileset source="stoneroad1.tsx" firstgid="381" />
+  <tileset firstgid="397" name="bridge" columns="4" tilecount="8" tileheight="320" tilewidth="256">
+    <image source="bridge.png" width="1024" height="640" />
+  </tileset>
+  <tileset source="stone_bridge_small_64_128.tsx" firstgid="405" />
+  <tileset source="wall_stone_large1.tsx" firstgid="445" />
+  <tileset source="tower_blue.tsx" firstgid="454" />
+  <tileset source="ship.tsx" firstgid="460" />
+  <tileset source="manor2.tsx" firstgid="468" />
+  <tileset source="manor3.tsx" firstgid="492" />
+  <tileset source="dryground.tsx" firstgid="512" />
+  <tileset firstgid="576" name="temple" columns="8" tilecount="16" tileheight="192" tilewidth="64">
+    <image source="temple.png" width="512" height="384" />
+  </tileset>
+  <tileset source="grassland.tsx" firstgid="592" />
+  <tileset source="trees.tsx" firstgid="720" />
+  <tileset source="dungeon.tsx" firstgid="736" />
+  <tileset source="natural_grounds.tsx" firstgid="976" />
+  <tileset source="town_objexts2.tsx" firstgid="1104" />
+  <layer name="nonwalk" visible="0" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJztls2OwyAMBnvb93/jPVSrStkm4F9smJF6aSh8nhjo6wUAVflJ+OyEl4dMZyvfMb7W+BrN5ckuvp7m80STEV/+eyDCl7YeTyTvanbcib6kc3j7qkpFX5XBlwzNOW4dP/rdzPhVaOq//maFr1XeLPee9V6Lfh8RaPfY6b6ua+PrO9V8zY6r5uvbs1W+RlkyGa2Nr+cco+fevrohzRzRX53Q5j25vyy5Pfurwvk0IjKTl69KziKzePqq4iwjx90a3vftLnj72t0ZvmTg64Olvh19PeW01mbxtcrZaF1rTfiK9zW7/gqie8DqSzIuA21WL1/anPjqgeX8wNf/GiN9dQRfMmZqxNeH2Rrx9Wa2Pny9kd5n+NLXl+Grmn/L+if2l5ZT96OW7r6yz+Luvq5k+tjJlyavp6suvv6I+o/Q3ZdH7ghXnX2NsuOL/rqD/pKBLxnsRxn4kvGU0+rs7vvuvrzmwZd8Lnzlgi8Z1X1VA18y8CUHXwAAAABr+QWVSCsg
+  </data>
+  </layer>
+  <layer name="water" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   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
+  </data>
+  </layer>
+  <layer name="bridge" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJzt2rEKgzAYhVHz/ogVHfq4gkuFQlukV5NwzpLBJcOX8EMcBgAA4FfPuzcA7OZy9w7omb5I0hdJ+nr3KJ9XXvRDkr5I0hdJ+iJJXyTpiyR9kaQvqNN6OJtL+f+3Hri/SNIXSfoiSV8k9dzXt/8czq4ANRjdSVCNyXkEGmWegHqYJ4BWmScAgFak3o69IXMFPeZsnswj1g==
+  </data>
+  </layer>
+  <layer name="ground" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJzt2kFOwzAQheEp4lq0rwgk1rClh2FFJRaw4jicDUVRROumwUnqjF3/n2TVCycZjSapE9sMAIA6/KyOf0uy8Q6gMORrHE045rvA++hS1tbmrPm9O2hDas7Xg7X5urdp9+bXRaNJ73Pm8bI2Z1tL9yx7vU10YgeytrZS5mtJMfW+n3F+2XXlKzVZm6+pz6/aNP+LW1u2vnYLXSeFJl/cj/HWA61GQ/n4r41R2jzsHAV99Y5CR0FfvaPQUdBX7yh0FPTVO6pMLwnesxT01Tvqeo19v1bQV+8odOQdALCAmPls7t/JnjOLb5dZPGPM/W4LAACAejB3jPfuHQAwQAtfr+R35oa8AyiMvAMojLwDKIy8A3CiCW1j/ntuct1XoYEGHMq1hgEAQFly29sApMY8GgCuD2vEcZ5uvCMA4rGfAajbftU2xHvLMF+boMlO14q91otzzFcM7/X10sj+6uzRTmvyXB1+LBciKvYL+8EwUQ==
+  </data>
+  </layer>
+  <layer name="scenery" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJztnElv1DAUxzNDgSL2jwBtubJDQeLIgQJFqOXA0hPixo1lSkGV+ACt1At8mrKUtS1LEUe4AF2mRUC5sk8gQZbzvDzHju3EPymaqePYfv+8eOxnp1EUyMuM7QZ4xEvD5Q/X/h1VZULhmrLpdadm/nPCQc3WKLbpPnXdWyDPPbWijaJ6/2Laie+8fCLeyGe1yngte18/Sl67Oqev0/6F4UW+qpW4hWzvHJF/lcV+4bm9qqNhIG0JSJsl9FmpSSsV/3qGzL+MrwLFIpD2wYIvLQBp04Jreqi/v2hqC8QI8b1JfH9vUCuefx2kzk1R5xtt/LI/C+puJ448kPf1naU+6gBV7yTy+k/aWmKGzZrGXzHdSdpI9lTl2Ztosy/53O/gWFyVeQNl5hl/6WBA0AeqMmemWO+4LXF/ZxXKXSHpNyb8a1B/kcaoteyva9Jgk+N9WX/yOSqR9zdki4J9qX/1UukbHdcKwy/DtmwwUL6MD6gwXfB9pfuv9Y77FdnfTwFtvUD9bXI+tk5CK1fGa5MS9YrmYyQ/kb+Pax33Kyys+dhlwM4fSNsfSeY31QcVxSXAzu9IrR6WzK8wfEPa/sBzrfoMzaWqjihOhwE7Hzqvr+qAJlyOu9mO5/jKRQXdbjiqdZul9Q4e1x3VKuAWPP9qCHzIVCzZR64mWg0I8i1V7LmE/OsKldbMZvnLYoFafTUQM+7SUCY9f0/Xjum4UrNArZYZdfXDyUzImHGnoP17GOdJ/4Lm79BcYsHDZ5CMGXcI2r+bcx47npj3UCtMzHiXh/apwIqPysSMU3ZK5B0vgZ6s+CgmZrzDER22GS4fGx+F2O6IVjFdthvAoYj5bwOZv9NIK7Jgba/K/Bfab4K1fcgRrWzE+Xi2Q+255ohWNsDaPlhhrVzB9zXZQCDgP93htyBD+j6dK3uydPG6HkUzdb1l2nyfLlAOWHvoT3r+vMVg35M9ofn59A2MXr31MI6O9Xol4TPHK+5XKTL+dSxo9R+Rfx2V1Iq1/s565+Kcp30/z796cvpVun52iko/20rvi+B1XnpN3zVYeh2p59tvylo/O8PRA9qTr5O7GsrXPX6PYa2fna6x9xJBa/oYMP+HxsX/I1QkmL0BVdz3+rSCNqvyBNAq+BfM45y2jlVIKx6Qz9yU2DcW4OO7f2H3NIiQGUuQuDiuKHKtHfMOeVmey0PJcRh5HfQOuY68OtjSOra2jo5iq2Ui8w65Sl5f+QMDW5yx
+  </data>
+  </layer>
+  <layer name="objects" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJztnNtOwjAYx7fB06nRyI1REzVK4i2IeA134LV4vPBCfQISg2+hPJFr6CLM7vD1sLbb/5c0W0pbuv/ar18PEAQAAAAAjX47CO5sVwJo5dh2BYAypwp5b+Jw1ableQ5hByg8hbZrIGZAfO8qXLbKp33UoJfu9kntI3k86CtqVZ6kXip2wwWuJd/JvYP9sQp72pfUa+agXi4j2x+bCtNrSzLvkdaa2OfQdgUAcIRd2xUA1tiz/P2yvlJdUZmzZPm2g7V7pjdljpgH8+9ZfbdLpDX1ns8Mt59hoG9OyvTaIaTv8XXgIt/rlocymNZLJ0yvjmRe1t7y5q111WvfQLmUObNvepnClA5l7WiejZf9jK1P9AjPdVI+qTG9ugV2wFd86mcuAL1o1FGvFw/tvU0S/56C7j0Xn2B6VbnX5ztMry708oY6+lFVUtezHGxOMrRdCeA8Lp4H0MG5oXJd1OtCwxgAWwHqDPa0aNiaM/l6poWt0R609O3jZX2H6N4lqOPj0NHnqIqZxHpOk3HR/6qC1/i531LhvSB8hM3VS8RXtLouos34xVo89BLzGWvzHf2Pg17lWQr0sunv+OBP4Pw9DfTHbNJtfK5gvzoN0XnObf6SX9G+aMB+AV24OkbbRqRLEpf2WU2eN6kbKuNjU1HVq2n7+YleOn9j7gPML0h8q581GzWPxOkZzAeb4f8nMknbemCOsm0QbRWAejCNx55JuLqOeQDZjLhWo/DvHmQz4e1rzLWCXmJG4aZWE+hVyDSl0xh6ASK/CL5mfw==
+  </data>
+  </layer>
+  <layer name="roofs" width="76" height="76">
+    <data encoding="base64" compression="zlib">
+   eJztm8dyFDEQQGcN/0A6EA5kOAM3nDgR/oCck82XUcDVht0DOdgGnAOh4MIFmwKKVLDCq6opWd3q1kgz0sy8qq3dnVHo7una7ZbUSaJnFLjOYcrBGBhjGfv/cSJFkoxort1hjjGpfL9pKQsE5XlONeB7vx3J8UJz7TZzjAkXgliwkPo8idjql8M5tyjz3DK0bynfxw3tPzLlgdA9V8kEYqufSL/TSD8dm5H2c5prTd7wyQdmey7z7dc4osMPpO8ppq02Mdtzee93+P/P87WlDicJ/VqpNhuZ89zlNfduK8ErS1udIPZrEtvtVdoN88RJ3hnuLzHHg5ix6HPcYIOrzGewR2k/xOuevDXcX2SOlydXFN1N/rXb8+9ZyFw26L6jc39n531XiWw1zWx/CdBd51/f2dKsjNdCgpuPXWTo8o05tgCL14pG5mNvFBmxmBTzl7R/fbWQx3e8lgUoH8NiUht/0bFaMwc3XvPFQ40cUD4mYtJVgNwUf6HEX9D4GGq85osHjHlETOr7/77LYnw1XvPFfcY8lJj0C2E8zL8aFnqHHK9B+ZiISZeyyk3oH1O8BuVjIiZdZMit86+/VhLhHCjQllA+JmLSzwE+4/0BysSJSdNQ1yds2RegrWryw9a/LtR+Q+Z8hW3F9a9zFbYVBpS/n624vXT+BeXvZxrLLx03KmpHyp6SymC7z0JF7DWU0pO6p5RmoN1nPgJb2awZY1Dyd91v11wEtuKsAW5woI/6uyXPBMxGYCvOmvF6B/qoe0qznfeZCGxlIr1mvM6BPuqektw7ni6BrdJrxmsN+mxX7rc07W3zd5VPOdqWsj4qSK8ZrzH02cbc344F6vqoXDOm5L9bS2IbFXLu32mXJf+N3b+ouss14yrnv1zdTbmvjD2o+9tlBsp7JVXIf13l/oMZ94dihqO7YKBk+nPg6n5daa+eyZKxRzq2LYt/qbqbuKa0X3EmqyR28YF6Jgvbr87Lv54H+rxCOZNVBnRnsnz717OCnx+3nk6S15mskODW00mwM1m+/Otpwc+HWk8X05msomhm6RuYPV8i8hzqyj7+vfarPzCdfdDPtJVujUHU0/UhtqLUiYbiX2OIHH1MW+n2z0Q9XS8yB7dONFR6mbbS7Z+JeroexB6cPf2i/WsUmb/Hwe+VoBuZw2ZPP0S6HdkKw6ZOtCj/GkHmPejYVlDNxTFEBrVOtCpANRdHEXtgdaKYf+nqmKICkP8IohdUJ2qCU8cUItAa1mFEL8qevs6/OHVMNTUYRcdfNeXGxr+e1D5J5nHFbcXxr0dA2+jjtByJPU7jkuX/sY7TakwM1T5SEyl17sCjyvYabiy/5GfoXb1WVv4BVy+pbA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="south stairs" type="conversation" id="1" x="1953" gid="5" y="2153">
+      <point />
+      <properties>
+        <property name="conversation" value="NGZ_stairs_south" />
+        <property name="icon" value="stairs_down" />
+        <property name="name" value="@STAIRS" />
+      </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="2143" y="2293">
+   <properties>
+    <property name="conversation" value="NGZ_door_south"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="2121" y="2327">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="1948" y="2098">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="610" y="1460">
+   <properties>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="418" y="1282">
+   <properties>
+    <property name="conversation" value="NGZ_stairs_west"/>
+    <property name="icon" value="stairs_down"/>
+    <property name="name" value="@STAIRS"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="560" y="1418">
+   <properties>
+    <property name="conversation" value="NGZ_door_west"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="413" y="1227">
+   <properties>
+    <property name="entry_id" value="6"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="679" y="407">
+   <properties>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="706" y="447">
+   <properties>
+    <property name="conversation" value="NGZ_stairs_north"/>
+    <property name="icon" value="stairs_down"/>
+    <property name="name" value="@STAIRS"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="894" y="575">
+   <properties>
+    <property name="entry_id" value="7"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="862" y="576">
+   <properties>
+    <property name="conversation" value="NGZ_door_north"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2094" y="815">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1648" y="823">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="363" y="365">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1697" y="737">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="2363" y="2323">
+   <properties>
+    <property name="conversation" value="ngz_sewer"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="2315" y="2321">
+   <properties>
+    <property name="entry_id" value="9"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="2183" y="783">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="1692" y="657">
+   <properties>
+    <property name="conversation" value="NGZ_door_warriors"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="magistrate house" type="conversation" gid="5" x="1913" y="247">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="1859" y="1938">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="869" y="353">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="527" y="279">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="567" y="1209">
+   <properties>
+    <property name="conversation" value="NGZ_door_loreseekers"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="656" y="1254">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="647" y="710">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="365" y="677">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1647" y="2027">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1770" y="1403">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1864" y="867">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="Adaon" type="spawn" gid="3" x="358" y="470">
+   <properties>
+    <property name="name" value="@ADAON"/>
+    <property name="spawn" value="zombie_s1"/>
+    <property name="unique_tag" value="adaonzomb"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="Elisse" type="spawn" gid="3" x="2135" y="2028">
+   <properties>
+    <property name="name" value="@FRITHA_RHAYADER"/>
+    <property name="spawn" value="zombie_s2"/>
+    <property name="unique_tag" value="frithazomb"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1643" y="1100">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="559" y="1241">
+   <properties>
+    <property name="entry_id" value="11"/>
+   </properties>
+  </object>
+  <object name="teleport" type="entry" gid="1" x="1741" y="849">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="736" y="352">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1632" y="2248">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="Priest" type="spawn" gid="3" x="1943" y="1488">
+   <properties>
+    <property name="name" value="@BROTHER_GABRIEL"/>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="unique_tag" value="gabrizomb"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="873" y="1338">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="759" y="1491">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="Latimer" type="spawn" gid="3" x="348" y="1142">
+   <properties>
+    <property name="name" value="@LATIMER"/>
+    <property name="spawn" value="living_corpse"/>
+    <property name="unique_tag" value="latimerzomb"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="267" y="1259">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="454" y="1447">
+   <properties>
+    <property name="conversation" value="ngz_sewer2"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="511" y="1469">
+   <properties>
+    <property name="entry_id" value="20"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="1149" y="259">
+   <properties>
+    <property name="entry_id" value="21"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="1112" y="258">
+   <properties>
+    <property name="conversation" value="ngz_sewer3"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1434" y="1942">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="990" y="692">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1197" y="314">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1236" y="308">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1241" y="362">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1646" y="330">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="warrior's guild exit 33" type="entry" gid="1" x="1732" y="666">
+   <properties>
+    <property name="entry_id" value="33"/>
+   </properties>
+  </object>
+  <object name="entry from temple" type="entry" gid="1" x="1327" y="1997">
+   <properties>
+    <property name="entry_id" value="22"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="1313" y="1913">
+   <properties>
+    <property name="conversation" value="NGZ_door_temple"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1918" y="1534">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="320" y="1884">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="866" y="668">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2016" y="2078">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1626" y="1748">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1686" y="1528">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1206" y="2038">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1496" y="1658">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1526" y="1838">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1326" y="2058">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2256" y="810">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1646" y="438">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2076" y="438">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2056" y="308">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1836" y="368">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="2306" y="2318">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="456" y="1448">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1316" y="548">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="206" y="1228">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="656" y="168">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="906" y="368">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="206" y="878">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="1156" y="938">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="326" y="1828">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="326" y="1478">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="646" y="998">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="236" y="748">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="516" y="838">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="606" y="388">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1305" y="535">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5016,5052,5001,5020,5000,5000"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](вы замечаете какое-то неуловимое движение, смутный образ)[]	port?	2		
+2	A	[BLUE](приглядевшись, вы, вдруг, замечаете человека в мантии, который явно пытался замаскироваться от вас!)[]	port?	3			AWA#2
+2	A	[BLUE](приглядевшись, вы ничего более не замечаете)[]	port?	5		
+3	Q	[BLUE](незнакомец собирался смыться, но передумал, поняв, что его заметили)[]	port?	4		
+4	A	 	port?	0		"SetVariable#hidden_mage,1;NPCDespawn#hidden_mage;NPCSpawn#hidden_mage2"
+5,adaon	Q	Дружище, там какой-то козёл спрятался и подглядывает за нами! Эй, мы видим тебя, придурок!	port?	7	IsInParty#adaon		
+5	Q	[BLUE](наверное, просто показалось)[]	port?	6		
+6	A	 	port?	0		"NPCDespawn#hidden_mage"
+7	Q	[BLUE](незнакомец собирался смыться, но передумал, поняв, что его заметили)[]	port?	8		
+8	A	 	port?	0		"SetVariable#hidden_mage,1;NPCDespawn#hidden_mage;NPCSpawn#hidden_mage2"

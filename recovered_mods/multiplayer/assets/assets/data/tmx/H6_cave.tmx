@@ -1,0 +1,2233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="90" height="90" tilewidth="64" tileheight="32" nextobjectid="283">
+  <properties>
+    <property name="maxlight" value="55" />
+    <property name="music" value="bandos" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="dungeon stairs.tsx" firstgid="1405" />
+  <tileset firstgid="1409" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1649" name="wooden_trifles" columns="16" tilecount="144" tileheight="128" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="grounds indoor 2.tsx" firstgid="1793" />
+  <tileset firstgid="1953" name="desert_ground" columns="3" tilecount="18" tileheight="32" tilewidth="64">
+    <image source="desert_ground.png" width="192" height="192" />
+  </tileset>
+  <tileset source="artifacts.tsx" firstgid="1971" />
+  <tileset firstgid="1975" name="trifles_sborka" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="natural_grounds.tsx" firstgid="2083" />
+  <tileset source="grassland.tsx" firstgid="2211" />
+  <layer name="nonwalk" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3d7QqDIBgG0O7/lvszBoPBcKGW9uZ7DsT+WMPH/GqDtg0AAIDI9s/BWDKGOEb1R/38m0HP3FJbvqZcqUzL9bUlAEAsK6/PVq5bJHIGnijD2BWhjhmeBUWo493fn428YS0RxvEM9p/PEdfuPXel9l+pLneovR/kPIec55H1NVabU64Sbe6nX0vuv/1Bm9Vrzbn33OzO7iGAPEpjbe2+0XhRr/c/yTJuI685jp6DltbJ2mUM+5E45A8AAJxl/zyPnIFWxo05jnLeCwcAwJX+/QZu3QEAwJt1IQBAbtaDc5x5LwkAz/AC/YRsVJB+AAA=
+  </data>
+  </layer>
+  <layer name="water0" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OAQ0AAAgDoNu/tC3u3CABCQAAAAAAAAAAAAAA/DPXAQAAAAAAAAAAAAAAAAAAAAAAAAAoWDNs1I2QfgAA
+  </data>
+  </layer>
+  <layer name="water" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WMQrAIAwFUHOUHrdn9RLtYBcXC4oBeQ/+kil8MqQUAAAAAAAAAIB8V/YCsJB75iTuGQDIFG/ult43j60bnelPh3qep+d9Rj3qeZ0YBAAAmFM91gAAAAAAAAAAAAAAAAAAADQPyZ/Ku5B+AAA=
+  </data>
+  </layer>
+  <layer name="ground" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YS07DQBBFUTOCKZAd8JmwbvYJSFixIrtd7fq6c59UE0jSr44dIjJNpGIehEPWI/XDWRecY2LtjPl6cI6Jp/OWedSZle4BnGOCc8w1qbhXtT4WqbhXtT4WqbhXtT4WqbhXtT4WqbhXtT6RwTkm2S5VrklGsvcf1fU22R44n3siI+mh7ZjtiXP79UZy1zhLO+OMcwXnvU6tn/WeYdltJOeezjjb99zr3LMXzsc743z83uV+1u3Seoz0ua3zNN1wxrl3l9ZjLM7TdDubsyQ4xwTnmGg7zY9//Z3njWmdNaKzR8/5d0vXl/+5TDhbO//dz5fpart3P1t2q2Q8OXXt2WVk50rvzcguIztXHMtk7+LtU8n5+/E62UYezh9P1/kSDs5658/GVHRePq/Sdbrdb+n8gbOb82z3jrO78xvOOO8MzvLco3Pr8xBnnfPys7B1X3s6jza3+y2d9/5+4GzvvDY42zqvjff/3ZLOVnv3nC117HVeG+/vN6QZxTnreyRpPJy9ep2h91aq9h3NeSrUY5lKPlapuM89OFd4L+KM89HgHBOcY4JzbjTOR69NxjXNzkjOla+ft3O1yQrOMcE5JjjHBOeYeDsfPdO6e7Y3zjHJ7KY9A+fjZ2ufj7PsbO3zcZadbf162b5zcD5/NO/rI0444+wZnGOCc0xwjgnOMcE5JjjHBOeY4ByTaGdCyHZ+AARHwD+QfgAA
+  </data>
+  </layer>
+  <layer name="ground2" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2d247TMBCGS6W0SLwBEocLQII7aF9wT8DrwN3yCLBPs7BwCYraUZ1hbHd8SCbx/0lRV93E6/z5PR47Tna1AnPhejvcQDn268Pn1fawAT0vu9PPu3V4X2isp/doTFcOdK7HW8fvIZ1/berXZY7slV7u8en8oZO/B2nUihu/M9vC0tqSNp5zyPd/PLrwdvGwGX6/6+TvifvNsHxr7YxicKxerp99+2rPje//M+LNXO9L+K57CcgT58TpnZM/cy4KxZJdhvfo2rzPKMOa9y+3w63H9cPDGd7g56SNrzFNcjSLtafahHx/r6ibu+8+EHvo2sXKjrX5GnHGArX7fl6+z7vntCv3eNr/e4NjsW8erXJiOQAAAABsQP15zvgqRup4wM3jrI3hUrF6HlJuTOOV2+Pn102aT3xjpxq451FzHMr1KjnG8eXeraEZq2twrx39Dd4urbXTpc2fW2PMGJWC5EcpZiN2pOPOz/nm4vp9UuLS2PGE6mhtTlHqk33aWKv73Mm9TwZkNDph/jQPt8/LyYng7XT6HIP6ytL3HVvjnFziNsHnPxq8Z5XKl80pb/atp5Fo5b4g1+L1NNVoDug8DtBZJqWvfhPYANBy6fSxsTW3pXPLmmvkLHFzXIfYr5vrt3fd8BmJ0uTolnLszfb/NZeh7WOlvO6CeflFN3z2au5o1wvXelaB14M8HYP7xPVBblsvGSus6XzFfB1bd87rr6nfmONayzoT1CdKmufoTGjui6Z6fA46c1zdU3Uee/5gTjpLXirh5zGYk86h44jc+tXKk63o/Pn4XodPyvLpuGvl8a3GDY6l8VeJuljVOQVL14ZjVWfra5C0WNU5FaueXprOVuH9dWzT5gMAAAAAmBarud4SgLb1kNYTTv0+FgAAGBNpPD53rPWbNI/ENS713rgcnke0emZMyxDSu617jS3ovCQs65zrZ0uxg+vc182Kzi6lnj+d6jkR0pi/a9KCzqXisxVfS+tIQT2sXHdiSflGDEva13xvVeuEnu1dkp8BAAAcuHNyV4rz/DP2+zvkv9ksae5ySkK5uTTfk1IOkHnq+f8ipPOTzP+j0yKSD/8+Wq0er0860xiNdH4l6Kzxs6UxnxUw11OGUnEV8dk2LcUQyn9T82e3DAAAsMw/rKXJ/JB+AAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3b2wnCQBAF0BAQvxRtQSvwUYJ9uSBYklVYlAQVRfCZNbPiORDyk4/LMAxLMqkqAIDuzOroBBBr049OAO2tetEJAAAAAAAAAACOJtEB/sSkUusuqHM+0wdXQ53zeVZroEzb007z3H7/1wzqy+74rn/8l2Jnl/wrmjqfa23POb/haU4sr+bFK718fn5hzlCY8Yc9qZcp0aj+rDevZ/pSbwMAAAAAkNnet3GAn5KiA/BTSt6Ba84gKTpESyXXl+6l6ACQUYoOAJl45wEA/JMUHQAyStEB4I71m3cAuHUAA4HhJ5B+AAA=
+  </data>
+  </layer>
+  <layer name="objects" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1dS48VRRTuueHODD8AowseIqArDcEZHyhe43OpISMxxBhGd5poXBgJiLwWDAyKMCaudOEvEDVIRGKIohKM0SjxTxid6BaxT26fzJnvnqo63dWvudwvqfTtrkdXf33q1KlTVX2TZIQ2YkcaTqTh3TQcT8PJ7Hg8u07HrY3Vrv2Q/DF3zOV7WZhLdA5fT8OrIox4duNBY7op5dorhjQj9HGga0unySryTG2D2gS1j0eiajV8eN5x/Z5uPzBeUNIgz3vE721x1Ro6aPzdrcj4LiWdT29sT8N80pdvlG2S+7ksfi5Lk+c8Nn8Tbc3K89NKOo3njZ3l144mg7I9k4bDabiYhtNwlNDiKd9WkR/LwfzafZpoa5qcajw/paRDnqmsLcAzPRs+F9/za8cxCcTH5sf6cPtg2Sdbaz4LZcm+1r9pPFvtjc0pz3cIrunZ8Lli7ZJY+9FVn6PZc3c7ffm4pVOe7D+rXLPy/Fqy3H7enYZNIM9T3cG6Urq8ekOmn1Hy5dE7Gs9H4Jldsl8UVtnQ9AvCJacu+Sna7mci82N9diaD/cpUV09bFC67DqHJPUJ7F4vjbv1cFLH5tfpsAX3nSlsUD6fhXkOw8ExpxqGuPyk8zyRxoDb4+/jyayiPPmjyvNmRv27bxCL3xPNEWt+rGQe/jvf50PTGGUcZqyaXfl8YH4xfyO7zLcStT++7AWTykpJfa1+avqO830/Uz7Mm9w9AGvbfkW00K87ldbyGcU+k4clAujkl8HXOr6WZ8+TnfNJvQM/YK05ZaRhm/1yb/AYjnusB8vxQYutTXXqnTaiLZ/b/s05jn78ch6J9lbdudA/Suc8ly/XjqWRpzKvpaOlHYn17CsqIHXPWxbO04/4c6x8nYByK8py3bpR/UrGnro/17UNXeZTvkDh/H+IpL78L2XfOJoP+O/TpYZqqfXvE8+LY4HULzyyn/IzUDjTfP42/1znGB3gvzPdVGi5k5/K3q24SZGtLexvPLXUoC6QTNFmz8GwdfxNfawvwHJJnAsnJh478d6b3u6vjPrfUoSwQV8jzbZ2+/55tTpxblDyjX0bGM4ivCbgHy+a04n9i7Ep0eV4U4xIpA+vgHuTrkv4uPGdsLNFf54JLbzD2K9foHfjWF2Cd5diHbQ9ps/Qc5VD5UoZD8rw2x5iccXun7/Oog+ei2OO47qvzVkMahkU/k8zz2P6GR15cIJ4318Aztf01HjnQ5Jll0eVPK4tnix+KyvtZ8W8QrP3gphp4dnHFXFKbx3GG1M9nDPpZomyeyQdHPqzfFK7b1A9q+vkM3BftCrQ3Pu7q8Rp2GdIwQnrj8nj/vf3okOe29YN/Zzz/lR6PpcdbOzaeXT7tnud+eeTZ0g/Se1vIfv/h4NuHuvpBC1cunosgD88uu05C2hto11lQVz9oQVM8ozwfcqRhoF3Xpn7QgqZ4tth1JM/HHPnb1A9aEMsz+3oINMYhHw753diHw+NN9uuwj8Q37iadfHXC79+w9IM30jK+a2DeCtfsnEr0eSLJU8jfZZ1rJzwq5vmx70C/lfShyjrPJoPzVTiPNZss99X1ctSxDBAntNbkX2PfTbbVNWXOU4Lawy85bIEdDp9HVfM6Ta3D+6eAfRSymRc88dbyYtdz5LlXFeD2SO0IfXNaH61d254stUM5DzIvyryW4/1xeZT/RFamdU9CHtC4t1dBuRqoPdIYEGWObEutj+Zr6E8+n7b3hW417Ts0R8nvlt8NzqfQb9nHVDWPwvOAvP+H7vNy9rtMXj7q9u2xbcZ9GlaE5ij5GQ7D8bSnTLIH74usF4L6on1ZeAfiyBezt8R7SU7OCr4/TX9/6eGf4j4X8TLvbkhb1lq+xwrmc8HnZ/bV8UCy9H5kwHclIf3S54DXzzw8Y5zMi75ulzxruD6ZJP9N6nFl8yzlGX3KtKdCyvO0eD7N/4zXp4Ef+cw+XkOQeXdCHPJcdL6iTnlGWYnhmd6XRd9TH6utSXQhNCYt2sfUJc9kZ6DeiJVnkj3mcIOHQ5c/WENoDclK0M+ueb4iIHkmnn+Y6J+zrzLUBzLOQV/IIHuJ7DKSk+lEXyNSBFXLs1zzQLJStn5mnqWv0qKrXWmsdl1eNGlvxOpnKk/jOQYrUT+/DXFoP5chz5cznm9MDOYlHSJtNrSbNYT0c5v0hjYfcTYwTj6Y6PYzvisJi76X+sGiT0L2c1v6QarHFcWP84Xg+UhJ9yoqW4jzgv+QPLdJb1xT1jmQLGnrsiSkP0nzHxGkXwf980XWmaOfKMRzW8Ypvn1tPZHO1f7Y1nXZu5Y1G3kQ0gt55HlsdZJ0VutxZfNsRdH25+PZunfRtwZkpYxTrKiC5zJg0c9y3hvX1GhrbCh9Uzzjejrrnp9exfUK8Uz1vj8Nj+cMz1RX5SDkmKAN6xoIsXtk2og28hy756uNkM/E86G8z0xbPzGfLF9LUcXepWGUZ1dfyPtM5LcK5Nz3N4799FXUaRh41r5ZRdDG0+vBx3xxxLMZrv1qljHXmorWXg6jfnaNK6xjgZE8x8Eyhrni0BtyHYtcTxj6ph9/YxPXInH/PIzf3ZQ84x5UPr/k4Jny8twV+5qPCX+cb6+mD0Xlmt8f7+Vnu4nXwTb5/ogr1/oNuc5De3ZcFyBB681wPTDuxX0R8vA579tFW1NrOydFWvn+6Pt1b2RHRpN6yep71OpIPmltHzlD+95mlQjpwCZ5lvKM81kheZZ7IHCei6B9b7NKYPt6E85Xsjz7UPe3gYZVnkkf4v5mOZZ02ZLsO3TpZ6s/Eed0qupfy0CMPNM74m/W8f5ZngvzfT+uLD5QfkPy3KTdGCPPoTmVnuOenA/lkeXYlQ+B70v2u2Odwd+8zqIJuY6R51jE7q1D+bX2u03wLOUZ12+E5LmMe0vE8hzSG03KM7W9o4Z0bfQjod4K6f28eqlMvOSJO5i0W5618lzfK9pbQvkxsK4P6FVw7yp49mFY/YFyDyP/F9QcHOW+NC1e/r9ByB7ztc2m5blKSHtif+SREOIJ9fNbcD6sPLMtQ37Ag9m1fXBkG8cXz3ZPiKebVW/EfN9NQ4gn0lPzIsj9sk37n6sEy7NrXTsD/WoIqzyTX4v/H4T9zqta4n+uEhZ55rGD63uiEhae8f9B8uRfqbDKcwhWeaZ+cMqzj2BYea5bP9M3CD9ReGZf7bDyzPLMNkNS4Mi2itXe+CDjWe5ZZF/tsPIs7dk67OeiftqVjiJr/m9GnkYYoQ78D3KoTwCQfgAA
+  </data>
+  </layer>
+  <layer name="roofs" width="90" height="90">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMQEAAAgDoH32L2M+Y7gDEpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA12vgcAALQ5bYSK9JB+AAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="165" gid="245" y="110">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="90" y="90" width="15" height="60">
+      <properties>
+        <property name="area_id" value="H6" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="ataman" type="spawn" id="3" x="2415" gid="247" y="2195">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#changing_hierarchy,24"/>
+        <property name="spawn" value="bandit_ataman" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="4" x="2375" gid="245" y="2115">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="rock_golem" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="2435" gid="245" y="2115">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="bandit_chest_bo" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="2365" gid="245" y="2625">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="dungeon_chest_9,dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="7" x="1955" gid="245" y="1285">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_sport_chest,bandit_sport_chest" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="8" x="2015" gid="245" y="1285">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_sport_chest,bandit_sport_chest" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="9" x="325" gid="245" y="865">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="orc_chest_13,bandit_chest_6" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="10" x="845" gid="245" y="245">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="bandit_chest_6,orc_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="11" x="1055" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="1055" gid="245" y="355">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="13" x="1505" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="1445" gid="245" y="355">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="15" x="1565" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="16" x="1635" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="17" x="1895" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="18" x="2015" gid="245" y="355">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="19" x="1565" gid="245" y="665">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="20" x="1565" gid="245" y="735">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="21" x="1565" gid="245" y="1085">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="22" x="1665" gid="245" y="1025">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="23" x="1285" gid="245" y="675">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="bandit_chest_6,dungeon_chest_ar1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="24" x="1925" gid="245" y="835">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="bandit_chest_4,bandit_chest_or" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="25" x="995" gid="245" y="1475">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="10114,10114,10114,10114,10114" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="26" x="995" gid="245" y="1515">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5026,5026,5026,5026,5026" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="27" x="135" gid="245" y="1605">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="orc_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="28" x="2365" gid="245" y="325">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="items" value="10109,10107,10111,10111,10111,10111" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="29" x="1155" gid="245" y="2235">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="dungeon_chest_9,dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="30" x="1565" gid="245" y="2655">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="items" value="10108,10108,10106,10106,10106,10106,10110" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="31" x="925" gid="245" y="1985">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="bandit_chest_3,bandit_chest_tu,bandit_chest_tu" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="32" x="675" gid="245" y="2405">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_5,dungeon_chest_5" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="33" x="544" gid="245" y="1664">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_1" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="34" x="544" gid="245" y="1472">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="35" x="736" gid="245" y="1472">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_1" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="36" x="192" gid="245" y="1600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_2" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="37" x="192" gid="245" y="1536">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="38" x="192" gid="245" y="1472">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="39" x="192" gid="245" y="1408">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="40" x="192" gid="245" y="1344">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_2" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="41" x="736" gid="245" y="2048">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_3" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="42" x="736" gid="245" y="2336">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_3" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="43" x="736" gid="245" y="2272">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_3" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="44" x="736" gid="245" y="2208">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_3" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="45" x="736" gid="245" y="2144">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_3" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="46" x="864" gid="245" y="2048">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_4" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="47" x="864" gid="245" y="2400">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="48" x="864" gid="245" y="2336">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="49" x="864" gid="245" y="2272">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="50" x="864" gid="245" y="2208">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="51" x="864" gid="245" y="2144">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="52" x="1856" gid="245" y="2624">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_5" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="53" x="1440" gid="245" y="2720">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="54" x="1440" gid="245" y="2656">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="55" x="1440" gid="245" y="2592">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="56" x="1952" gid="245" y="2720">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="57" x="1952" gid="245" y="2656">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="58" x="1952" gid="245" y="2592">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="59" x="1504" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="60" x="1568" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="61" x="1632" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="62" x="1696" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="63" x="1760" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="64" x="1824" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="65" x="1888" gid="245" y="2752">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="66" x="1504" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="67" x="1568" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="68" x="1632" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="69" x="1760" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="70" x="1824" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="71" x="1888" gid="245" y="2560">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="beast" type="spawn" id="72" x="145" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat" />
+      </properties>
+    </object>
+    <object name="beast" type="spawn" id="73" x="145" gid="247" y="1385">
+      <point />
+      <properties>
+        <property name="spawn" value="coyote" />
+      </properties>
+    </object>
+    <object name="beast" type="spawn" id="74" x="145" gid="247" y="1325">
+      <point />
+      <properties>
+        <property name="spawn" value="spider" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="75" x="655" gid="247" y="2315">
+      <point />
+      <properties>
+        <property name="spawn" value="villager_female_purple" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="76" x="655" gid="247" y="2255">
+      <point />
+      <properties>
+        <property name="spawn" value="mercenary" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="77" x="655" gid="247" y="2125">
+      <point />
+      <properties>
+        <property name="spawn" value="villager_female_white" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="78" x="905" gid="247" y="2385">
+      <point />
+      <properties>
+        <property name="spawn" value="varannari_female" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="79" x="905" gid="247" y="2315">
+      <point />
+      <properties>
+        <property name="spawn" value="villager_male_purple" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="80" x="905" gid="247" y="2185">
+      <point />
+      <properties>
+        <property name="spawn" value="conjurer_14" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="81" x="905" gid="247" y="2125">
+      <point />
+      <properties>
+        <property name="spawn" value="villager_male_green" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="82" x="1395" gid="247" y="2575">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="83" x="1395" gid="247" y="2635">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="84" x="1395" gid="247" y="2695">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="85" x="1965" gid="247" y="2575">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="86" x="1965" gid="247" y="2635">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="87" x="1965" gid="247" y="2695">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="88" x="1485" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="89" x="1555" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="90" x="1625" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="91" x="1685" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="92" x="1745" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="93" x="1805" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="94" x="1865" gid="247" y="2765">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="95" x="1485" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="96" x="1555" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="97" x="1625" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="98" x="1745" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="99" x="1805" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="100" x="1865" gid="247" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="101" x="575" gid="247" y="1545">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="102" x="575" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="103" x="575" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="104" x="575" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="105" x="575" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="106" x="575" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="107" x="575" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_good" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="108" x="675" gid="247" y="1545">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="109" x="675" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="110" x="675" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="111" x="675" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="112" x="675" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_2" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="113" x="675" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch_3" />
+      </properties>
+    </object>
+    <object name="prison" type="spawn" id="114" x="675" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="respawn" value="7" />
+        <property name="spawn" value="bandit_bitch" />
+      </properties>
+    </object>
+    <object name="pimp" type="spawn" id="115" x="1685" gid="247" y="2635">
+      <point />
+      <properties>
+        <property name="spawn" value="pimp" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="pimp" type="spawn" id="116" x="2525" gid="247" y="2315">
+      <point />
+      <properties>
+        <property name="spawn" value="pimp" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ambal" type="spawn" id="117" x="1145" gid="247" y="2195">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ambal" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="murka" type="spawn" id="118" x="1665" gid="247" y="2145">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_murka" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="coach2" type="spawn" id="119" x="2355" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_coach2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="120" x="1645" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="121" x="905" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="122" x="905" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="123" x="975" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="124" x="1425" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="125" x="1105" gid="247" y="1195">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="126" x="1585" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bouncer" type="spawn" id="127" x="1585" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bouncer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="128" x="2115" gid="247" y="1355">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="129" x="2115" gid="247" y="1645">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="130" x="2255" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="131" x="2175" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="132" x="2045" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="133" x="1965" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="134" x="2255" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="135" x="2175" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="136" x="2045" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="137" x="1965" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="138" x="2255" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="139" x="2175" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="140" x="2045" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="141" x="1965" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="142" x="2255" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="143" x="2175" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="144" x="2045" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="145" x="1965" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="146" x="2015" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="147" x="2125" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="148" x="2085" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sport" type="spawn" id="149" x="2215" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_sport" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="usain" type="spawn" id="150" x="1905" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_usain" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="coach" type="spawn" id="151" x="2065" gid="247" y="1735">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_coach" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="shanson" type="spawn" id="152" x="1225" gid="247" y="1125">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@SHANSON" />
+        <property name="spawn" value="bandit_toady" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="153" x="1295" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_toady" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="154" x="1155" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="155" x="1195" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="156" x="1265" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="157" x="1315" gid="247" y="1105">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="158" x="1135" gid="247" y="655">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="159" x="1135" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="musician" type="spawn" id="160" x="1235" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="name" value="@MUSICIAN" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="cook" type="spawn" id="161" x="1875" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@COOK" />
+        <property name="spawn" value="bandit_toady" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="cook" type="spawn" id="162" x="1875" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@COOK" />
+        <property name="spawn" value="bandit_toady" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="163" x="565" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="164" x="655" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="165" x="565" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="166" x="565" gid="247" y="185">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="167" x="565" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="168" x="725" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="169" x="755" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="170" x="815" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="171" x="725" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="172" x="335" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="173" x="335" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="174" x="435" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="175" x="335" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="176" x="425" gid="247" y="875">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="177" x="375" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="178" x="275" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="179" x="275" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="180" x="275" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="181" x="205" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="182" x="355" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="183" x="465" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="184" x="465" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="185" x="535" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="186" x="575" gid="247" y="415">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="187" x="625" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="188" x="555" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="189" x="625" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="190" x="845" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="191" x="1115" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="192" x="1325" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="193" x="1555" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="194" x="1805" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="195" x="2035" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="196" x="865" gid="247" y="845">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="197" x="865" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="usain" type="spawn" id="198" x="2225" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_usain" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="199" x="1715" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="200" x="1935" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="201" x="2125" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="202" x="1135" gid="247" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="203" x="1425" gid="247" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="204" x="1585" gid="247" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="205" x="1905" gid="247" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="206" x="1045" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="207" x="1675" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="208" x="2005" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="209" x="1365" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="210" x="1045" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="211" x="1485" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="212" x="1555" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="213" x="1875" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="214" x="1615" gid="247" y="265">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="215" x="1265" gid="247" y="235">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="216" x="1775" gid="247" y="235">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="217" x="1585" gid="247" y="655">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="218" x="1585" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="219" x="1585" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="220" x="1585" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="221" x="1685" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="222" x="1775" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="223" x="1685" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="224" x="2095" gid="247" y="695">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="225" x="2065" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="226" x="2195" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="227" x="2035" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="228" x="2165" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="229" x="2095" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="230" x="2325" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="231" x="2325" gid="247" y="905">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="232" x="1595" gid="247" y="2155">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="233" x="1765" gid="247" y="2155">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="234" x="1685" gid="247" y="2075">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="235" x="1685" gid="247" y="2245">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="236" x="1425" gid="247" y="2165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="237" x="1685" gid="247" y="2405">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="238" x="1685" gid="247" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="239" x="1935" gid="247" y="2165">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="240" x="1685" gid="247" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="241" x="2195" gid="247" y="2285">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="242" x="1155" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="varannari_warrior_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="243" x="875" gid="247" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="244" x="755" gid="247" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="245" x="785" gid="247" y="2065">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="246" x="785" gid="247" y="2385">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="247" x="495" gid="247" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="248" x="335" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="249" x="465" gid="247" y="1805">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="250" x="465" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="251" x="465" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="252" x="785" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="253" x="495" gid="247" y="1195">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="254" x="755" gid="247" y="1195">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="255" x="695" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="256" x="145" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="beasts" />
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="257" x="1075" gid="247" y="1515">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="258" x="1075" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="259" x="1075" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="spawn_r" value="bandit_ranged" />
+        <property name="spawn_u" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="260" x="1135" gid="247" y="1325">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="261" x="1555" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="262" x="1425" gid="247" y="1325">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="263" x="1235" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="264" x="1355" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="265" x="1325" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="266" x="1205" gid="247" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="267" x="1455" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="268" x="2325" gid="247" y="2675">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="269" x="2325" gid="247" y="2615">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="270" x="2325" gid="247" y="2735">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="271" x="2385" gid="247" y="2675">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="272" x="2485" gid="247" y="2675">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bi" type="spawn" id="273" x="2415" gid="247" y="2735">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_bitch_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="274" x="2165" gid="247" y="2155">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="275" x="2325" gid="247" y="2255">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="brigadier" type="spawn" id="276" x="2475" gid="247" y="2255">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_brigadier" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="277" x="2415" gid="247" y="2455">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="278" x="2415" gid="247" y="2355">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="279" x="2295" gid="247" y="2135">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="280" x="2385" gid="247" y="2535">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="281" x="2305" gid="247" y="2455">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="282" x="2475" gid="247" y="2535">
+      <point />
+      <properties>
+        <property name="faction" value="bandits" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="ataman" type="spawn"  x="2415" gid="247" y="2195">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#changing_hierarchy,25"/>
+        <property name="spawn" value="H6_bandit_ataman" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="ataman" type="spawn"  x="2415" gid="247" y="2195">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableGreater#changing_hierarchy,26"/>
+        <property name="spawn" value="bandit_ataman" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

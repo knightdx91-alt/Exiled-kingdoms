@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Привет, Грейтролл, у меня есть к тебе очень важный разговор! 	¿po?	2			
+2,grateroll	Q	 Вам лучше самим свалить отсюда, пока вас не вышвырнула стража!	¿po?	3	"VariableEqual#something_more,70"		
+2,grateroll	Q	 Какого хера?! Я думал тебе уже бросили за решетку!	¿po?	5	"VariableEqual#something_more,25"		
+3,sansa	Q	 Не раньше, чем ты ответишь на мои вопросы.	¿po?	4		
+4,grateroll	Q	 Тогда я выпровожу вас самостоятельно!	¿po?	0		"NPCHostile#grateroll;SetVariable#grateroll_fight,2"
+5,sansa	Q	 За решеткой очень скоро окажишься ты сам!	¿po?	6		
+6,grateroll	Q	 Если стража не смогла совладать с вами, тогда это сделаю я!	¿po?	0		"NPCHostile#grateroll;SetVariable#grateroll_fight,2"

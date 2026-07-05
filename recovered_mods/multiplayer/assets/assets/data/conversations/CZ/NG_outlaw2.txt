@@ -1,0 +1,6 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](стоящий на причале мужчина в мантии направляет в вашу сторону свой посох)[] Не с места, бросай на доски амулет и отходи в сторону, а иначе я сожгу тебе чарами дотла! 	[BLUE]()[] port.	2			
+2	A	Опять амулет? Я ничего не знаю об этом амулете, потому что его у меня нет.	port?	3			
+2	A	Неужели? А ты сможешь хотя бы дымочек выпустить из своей палки?	port?	4			
+3	Q	Извини, конечно, но я должен просто так тебе поверить? Мирным способом или нет, но ты расскажешь мне, где находится амулет!	port?	0		"SetVariable#smoke_without_fire,35;NPCHostile#mage_outlaw;NPCSpawn#mage_team;NPCSpawn#perci"
+4	Q	Хочешь проверить на своей шкуре на что способен мой посох? Чтож, давай я это тебе устрою!	port?	0		"SetVariable#smoke_without_fire,35;NPCHostile#mage_outlaw;NPCSpawn#mage_team;NPCSpawn#perci"

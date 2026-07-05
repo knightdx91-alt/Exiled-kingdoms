@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Вот чёрт, похоже, сегодня мне немного не повезло.	¿po?	3	"VariableEqual#last_race,98"		
+1	Q	 Не время трепаться!	¿po?	0	"VariableGreater#last_race,89"		
+1	Q	 Отлично, брат, вся семья в сборе! Теперь осталось лишь прикончить всех ублюдков и вернуть моего сына.	¿po?	2		"NPCFollow#"
+2	A	Мы сделаем это.	po.	0		"SetVariable#last_race,90"
+3	A	Ты в порядке?	po.	4		
+4	Q	 Да, всего лишь царапины, надо лишь чуток отдохнуть и буду как новенький. Не жди меня, пусть мой сын, моя семья узнают, что дело сделано.	¿po?	5		"NPCStopFollowing#"		
+5	A	Хорошо, я тебя понял.	po.	6		
+6	Q	 И не забывай - семья самое важное.	¿po?	0		"NPCDespawn#dom;NPCDespawn#dom_team;GainXP#1700;GainItem#10449;SetVariable#last_race,100"

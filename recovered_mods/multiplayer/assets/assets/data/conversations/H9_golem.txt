@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](молчаливые  стражи, которых волшебник использует для своей охраны)[]	port	2				
+2	A	Ясно.	port?	0				
+2	A	Мне нужно попасть на верхий этаж башни.	port?	3	"VariableGreater#very_strange_thing,41;VariableLower#golem_say,1"		
+3	Q	Проходите.	port!	0		"ItemHide#grate1;ItemWalkable#grate1;SetVariable#golem_say,2"		

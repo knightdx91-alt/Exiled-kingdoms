@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="32" nextobjectid="8">
+  <properties>
+    <property name="faction_guard" value="neutral" />
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Rented Room" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="indoor walls.tsx" firstgid="1281" />
+  <tileset firstgid="1393" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1681" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1897" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3RQREAMAgDQepfak3wxwDpdFfBEar41T3bBRnssO/lH8z2pFuSWgCATA1CsNOKEA4AAA==
+  </data>
+  </layer>
+  <layer name="water" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="ground" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLlAnhE7Hih7ycGj9g4ee6lp31Cwd6DCedRe+to7CkbBKBgFo2AUjILhDQDqAfUREA4AAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QsQkAIBRDwV85uKhz21sHEbwb4BFSBZxmy/ZGuJeyLu/qj/4AAPCrDS9/HjMQDgAA
+  </data>
+  </layer>
+  <layer name="objects" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAX0BhysDAysQMwIxLxQNoxPiA3CzEhsTlbi7WVDUlsDxIbshPW8ZYTQYkyoNBsJ9jIB1bIzIeylBJBiL0itKBH2LiQiHIi1FxQn7GjhTAkgxb/UBKT4l5MK/m1lJ81edLX0DGdQepZASlcz0dIPDxtt7CXHv7o40jYp9nIhlTcCaGURqZh9gNLzKBgFo2AUjIJRMApwAwDfWOp9EA4AAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="635" gid="245" y="195">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="2" x="65" gid="245" y="265">
+      <point />
+      <properties>
+        <property name="conversation" value="H8_door_arena" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="item" type="conversation" id="3" x="160" gid="245" y="225">
+      <point />
+      <properties>
+        <property name="conversation" value="H8_dungeon_equipment_chest" />
+        <property name="icon" value="chest_big1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Dustin" type="spawn" id="4" x="275" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="dustin_2" />
+        <property name="tag" value="dustin" />
+        <property name="unique_tag" value="dustin_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="5" x="222" gid="249" y="288">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="chest" type="container" id="6" x="610" gid="245" y="160">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="arena_weapons" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="chest" type="container" id="7" x="680" gid="245" y="160">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="arena_armor" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Привет, если тебе необходимо попасть в поселение Одинокий светочь, могу помочь. 	port.	2		
+2	A	Спасибо, я пока побуду здесь.	No, adiós.	0		
+2	A	Сколько будет стоить переправа?	¿port?	3			
+3	Q	Доставлю тебя за [BLUE]50 монет[]. 	port.	4		
+4	A	Хорошо, в путь.	port.	0	"playerhasGold#50"	"loseGold#50;Travel#O10,2,4"
+4	A	Нет, я пока побуду здесь.	port.	0		

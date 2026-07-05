@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](расковано ведущая себя девушка, не скромно одетая)[] Эй, милашка, не хочешь развлеться со мной?	¿po?	2	"isNight#"		
+1	Q	 [BLUE](расковано ведущая себя девушка, не скромно одетая)[] Привет, я работаю только ночью!	¿po?	0	"isDay#"		
+2	A	Конечто!	po.	3		
+2	A	Нет, спасибо.	po.	0		
+3	Q	 100 золотых и я вся твоя на ночь!	¿po?	4				
+4	A	Договорились, вот мои деньги.	po.	5	"playerhasGold#100"	"loseGold#100"
+4	A	Нет, я передумал.	po.	0		
+5	Q	 О, отлично, идём скорее в сьёмную комнату!	¿po?	0		"SetVariable#harlot,1;NPCDespawn#girl1;HideParty#;LoseInventory#;Travel#NG_rented_house,7;FullRest#"

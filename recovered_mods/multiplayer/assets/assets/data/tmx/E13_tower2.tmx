@@ -1,0 +1,698 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="80">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="uneternal_sleep" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw6" value="309" />
+    <property name="sw5" value="251" />
+    <property name="sw2" value="1062" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="dungeon2.tsx" firstgid="253" />
+  <tileset source="dungeon stairs_sw.tsx" firstgid="493" />
+  <tileset source="gate_sw.tsx" firstgid="497" />
+  <tileset firstgid="501" name="trifles_sborka" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="cave_snow.tsx" firstgid="609" />
+  <tileset source="town_objects_sw.tsx" firstgid="849" />
+  <tileset source="town_objects_sw2.tsx" firstgid="929" />
+  <tileset firstgid="993" name="library_dangerous_sw" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous_sw.png" width="1024" height="1920" />
+  </tileset>
+  <tileset source="grounds_indoor.tsx" firstgid="1233" />
+  <tileset source="grounds indoor 2.tsx" firstgid="1393" />
+  <layer name="nonwalk" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Y0Q7CIAyFYd7/lXvjxW6UMMZqgdL+X7JoTDT0wCqsFMCG7B5ARW7e7yLFxziQjxTWXw/Z9JFNH/lc3uQQLbOnejQ9JlJGo/lEqhnzsFb6yMaP1lx4mx/teLzVMUuWOr2Klr9VPfL1KtVn2Wn3CL3vkK1/2rNE/cyYPeavE/YxWhZ1RMlilhX57JqDWevHup7T86l7cpR8VpPGdQrLMf/zG9H+D633vaeurztZzgWW82XZ9yN5ui9aZ5Fsstatoemz0bJd0Z9PySza3uSt1bWO5O0p/5VjGe1LnvIBAAAAAAAAAAAAAAAA4NsHjpcHyABRAAA=
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QwQ0AIAwDsX7YfwY2ZQVeNBW2lAFyVdzYa9b00UcfffTJnD766KPPL426v+qjjz45e637rz766JMzffTRRx99MqePPvroo0/m9NFHH330yZw++uijjz6Z0yerDwAAAAAAAAAAMM8BtOauIABRAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YyQ7CIBCA4UZ9DT37/olL3870QEIIUGgHYYb/u9alwCzAsgB6fa+93wAz+CiIs3fhO74ajkVbPracC81i8X6/yP6H1bmPzV04Vg31RMK/64G2+uNs8VFav1POfn9Ws+QiAOT4tfDo/mzrQ3t92D2n9iLkx10YH+Eex+oZYlaSe1jJ2PDr2fMm97sjqZ2v1Od71/SaMyD1o17NPVDvWGjp7Ni0nddHzJXcXkGDVK16ZHJM6x2Xo3GdrBkxl6Xsjc09l8oj1w9zOWvRTHmsvebWODvWo3FhbY5nyg8p0n1pjdxnrp3Xhbhob+vFsX4cqzEl6zHKmmk7M/ZmeZ87upq5t9b7AQAAAAAAAAAAAAAAALT3A6Uw28QAUQAA
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aUQqDMBAFwEhObKleW49QpD+liGBoXeLOnCDEzeMFUwr83rOWMtfoVUC7bPO7DNEriJftmwNk9NjJ+lH+H5rqu9tDj7Z+NwXOby/90hnnLszysc9M3OtEWdmLe2vt+mfzZPzqHJH94wy5yT+4Y1/HXgO00YGACLKHHsz+Caa1ejMGAAAAAAAAAAAEeQFnzivFAFEAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1aS28URxD27M4f4CEQcHIgGFgb4pWSgJNLwNeAAAf7EkAiFx5HBAcSCxNCgIDtf0Psmw38khwgCiLKPQnp0nZpPhdVPRMe0ytUn9Ta3emZ7q6vq6qranZkxNEEU8XIyPHQDsZ2JrZ+/D0FfdRmxO8mfXi9H8eka3Oi8Xx90XA9XxTt8vN1mG93x+6feA/rmUyMSX0Hyur3znJj/6GW+SH5RwM/ewyO3oYf69mTcH0hfL8a2u0i/czj7uAzBz8psH2xDZ4VdtKPfWwLM/D9hDG2dZ3wTc162uaH5f/MmJev3xT9y0XF7ViwgdGyum81tMXCtiPWn2vKJ/PzpKs/O2z6kwL5rr2Blz3CR6zEMdHXzoFuWXvRZD05+ZkO31+K+T9V1rPeHewv8yOx0t049k/h94+h3RY6oemPxs8aPJfLvs4b+5raT+r7WOGnybOp9fSjn5N6189wvtf5w6nI27hyvlny7yir/u8NP2JhGO1rf03885Fx/qdkedUd9F8On/OCo0vwm22RP2m/1hKc5uBH0w3sJ/4ohkQe93UqW2D9/yq0oyL2Rduo66/z3YTPW7YxzB94radEfCPlONtQlg8Bs0HGh0LObcF/bC3fT27xLvBXi+sifh6F9ivFddHut0T/msqTNLC+zYGuyRhbfvZFHMnfF4y5D4frX7bMzw/GfKfhuiUnckD2hnHOfPTRN8DfUp51AeKh8XIjP7SecSNmWCqGK36eFvt6C+QiOXudwfk0EfsYd+H7tzXy0HO4DzSWzGUQOfj5rUGMQrHygnIf6cJs7PtZ6T9dIw89Nyn0lOtQXPs5A2dC2/FhXXzMSPmiFAc0hlU7IZAe4jxavLqeMb/Q/PMriNV+j7JNxliPcEnoyQT0ITaXVXw5GseRsRbbJ45FeGzodA77kuc7g/h5FuR5DrEg6z3GQTTGFSHPpsDN9rKyF66xch2V60gHhf6cq5E/R35qxbKo6zIWXFLONubLOrsJWh6P9wxb/kVrWxZzPu8ObEPzOU8VvSffPQpnMteDxmCMO4kzAP2X5n9y1jfQ/0hM1qybwHVErQ5EnM3G5+4b55uch/VH2wdCDv3501gL7mvq/LLqZASW915CfzBG4niTctnr8fp18Httn+8puWV8uG7IaOkPgTnGmJFsDe1NrsFaE8XVbetPKnY59pb6M27kuL8Ebh4AP0eKjXVcy5Z3ZOCH5P5D6MW/on5M0OqefEbhe4wx4KlXVs+dKuxzUp5zVk5yIBM/FlLxM9oHv6NG2VOxEeFFuPZ3vP5PV8/hNeQ+vziuk/UfXLO0Dyt+3tnR43MNMkeV74wIxGMO/bHyZWtPydfeFfwQZN6BfXWYFvzsLSt7xdgqV/zM/gT9BMpWl4M+S5xtTeoDeBZMFVUegv8ryfH/DdKL+WLwTpixS6kfpnyC5U/3/w/7kjHiKug15cuL8Vou/7yizNskPrwT36Miep3qPyH03HdK7sp52NZoP5IfbT0rOflR9hZ9AukBvSfGPIFl1LjjmoZ8B2TZMo6RsuVhjg+JH5knkJ+W//maUeSm83xTtFuyk4swDuVwuA7aFyvnGYb8nbBUNK8fpv6DpvlnzXZQV48Zc/UyxIcnE/MhJ6gX54vXY99egp8Lkh9FN5CTVEwwDPVVRtP3X9OJ+5qcX7LWRHu2y8h3c/DzWn31Dd8PakjVbwnkk7Yp55cE54Rt80O58ydGS/U1ve9Nxkg90+a7U4fD4XA4HA6Hw+FwOBwOh8PhcDgcDofD4XA4HA6HY1jxH93t67MAUQAA
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoLN/VzPYwK9zgwQkAPBf1/UAAAAAAAAAAAAAAAAAAAAAAACAzQBm7WdjAFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="715" gid="245" y="1230">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="770" y="1210" width="40" height="40">
+      <properties>
+        <property name="area_id" value="E13_tower1" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object type="entry" id="3" x="880" gid="245" y="70">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="4" x="860" y="130" width="40" height="40">
+      <properties>
+        <property name="area_id" value="E13_tower1" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object type="entry" id="5" x="290" gid="245" y="210">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="6" x="220" y="170" width="15" height="60">
+      <properties>
+        <property name="area_id" value="E13_tower3" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="7" x="1420" gid="245" y="370">
+      <point />
+      <properties>
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="8" x="1500" gid="245" y="410" width="34" height="34">
+      <properties>
+        <property name="conversation" value="E13_door2" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="9" x="1376" gid="245" y="800">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate7,1" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_7" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="10" x="480" gid="245" y="165">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate5,1" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_5" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="11" x="480" gid="245" y="160" width="34" height="34">
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate5,1" />
+        <property name="conversation" value="E13t_door5" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="11" x="320" gid="245" y="576">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate4,1" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_4" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="12" x="320" gid="245" y="576" width="34" height="34">
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate4,1" />
+        <property name="conversation" value="E13t_door4" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="12" x="1184" gid="245" y="480">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate7,1" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_7" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="13" x="1216" gid="245" y="480">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate7,1" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_7" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="130" gid="245" y="510">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="items" value="10629" />
+        <property name="name" value="@CHEST" />
+        <property name="unique_tag" value="E13t2_chest" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="15" x="1290" y="760" width="136" height="54">
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate7,1" />
+        <property name="actions" value="StartConversation#goblin,E13_goblin_orc" />
+      </properties>
+    </object>
+    <object name="yeti" type="spawn" id="16" x="1345" gid="247" y="745">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#E13_grate7,1" />
+        <property name="spawn" value="E13_yeti" />
+        <property name="wander" value="1" />
+        <property name="tag" value="E13yeti1" />
+      </properties>
+    </object>
+    <object name="yeti" type="spawn" id="17" x="1345" gid="247" y="865">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#E13_grate7,2" />
+        <property name="hostile" value="" />
+        <property name="spawn" value="E13_yeti" />
+        <property name="wander" value="2" />
+        <property name="tag" value="E13yeti2" />
+        <property name="unique_tag" value="E13yeti2" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="18" x="680" gid="245" y="1190">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_3" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="20" x="130" gid="245" y="1050">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="blue_hag2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="21" x="130" gid="245" y="990">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="blue_hag2" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="22" x="90" gid="245" y="1210">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="23" x="220" gid="245" y="1020">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="barrel" type="container" id="24" x="670" gid="245" y="800">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5037,5037,5037,5037" />
+        <property name="name" value="@BARREL" />
+        <property name="unique_tag" value="E13t2_chest1" />
+      </properties>
+    </object>
+    <object name="barrel" type="container" id="25" x="610" gid="245" y="230">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5037,5037,5037,5037" />
+        <property name="name" value="@BARREL" />
+        <property name="unique_tag" value="E13t2_chest2" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="26" x="890" gid="245" y="1210">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="27" x="1340" gid="245" y="1050">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="chest_mage2" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="28" x="900" gid="245" y="1090">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="items" value="3019,5033" />
+        <property name="name" value="@CHEST" />
+        <property name="unique_tag" value="E13t2_chest3" />
+      </properties>
+    </object>
+    <object name="barrel" type="container" id="29" x="1370" gid="245" y="990">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5026,5026" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="30" x="1090" gid="245" y="1120">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="dungeon_chest_4" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="31" x="930" gid="245" y="900">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="dungeon_chest_4" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="32" x="730" gid="245" y="190">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="outlaw_chest_10" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="33" x="420" gid="245" y="190">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="fire_dungeon_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="34" x="130" gid="245" y="90">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Altar" type="container" id="34" x="1150" gid="245" y="130">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="items" value="459,6013,6012" />
+        <property name="name" value="@Altar" />
+        <property name="unique_tag" value="E13t2_chest4" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="35" x="600" gid="245" y="570">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_5" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="36" x="800" gid="245" y="1080">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="37" x="1020" gid="245" y="510">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="skelet1" type="spawn" id="38" x="1295" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_1" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet1" type="spawn" id="39" x="945" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_1" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet1" type="spawn" id="40" x="465" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_1" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="41" x="215" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="42" x="115" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="43" x="145" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="44" x="175" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="45" x="215" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="46" x="215" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="47" x="435" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="48" x="785" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="49" x="525" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="50" x="915" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="51" x="975" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="52" x="1005" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="53" x="1005" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="54" x="1145" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="55" x="215" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="56" x="375" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="57" x="725" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="58" x="1015" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="59" x="405" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="skelet2" type="spawn" id="60" x="1135" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="frozen_bones_3" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="61" x="465" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="62" x="375" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="63" x="1015" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="64" x="1015" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="65" x="765" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="66" x="625" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="67" x="885" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="68" x="1075" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="spawn" value="stiffened_corpse" />
+        <property name="unique_tag" value="E13t_npc2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="69" x="145" gid="247" y="535">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="70" x="515" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="71" x="695" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="72" x="1365" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="73" x="665" gid="247" y="215">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost1" type="spawn" id="74" x="1105" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="75" x="145" gid="247" y="645">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="76" x="265" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="77" x="915" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="78" x="1425" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="79" x="1325" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="white_ghost_2" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	15	"VariableEqual#demones_follow,3;NPCisFollower#"	
+1	Q	Чего тебе угодно?	port	4	"NPCisFollower#"	"SetVariable#demones_follows,3"
+1	Q	Пора этому миру немного взбодриться! За небольшое вознаграждение {LEVELx500} я помогу тебе обратить всех врагов в пепел.	po  {LEVELx500}  rt.	2		
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx500}"	"NPCFollow#;SetVariable#demones_follows,3;LoseGold#{LEVELx500}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	3		
+2	A	[BLUE](С помощью грубой силы надеть на неё ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Незаметно и быстро надеть на неё ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#7
+2	A	[BLUE](Хитростью заставить её надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#7
+3	Q	Другого шанса может и не предвстать.	port.	0		
+4	A	Ничего, давайте двигаться дальше.	port.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	port.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	port.	6		
+4	A	Эй, а ты владеешь магией?	port.	7		
+5	Q	Не скучай, может ещё увидимся, возможно, даже в аду.	port.	0		"NPCStopFollowing#;SetVariable#demones_follows,1"
+6	Q	Конечто.	port	0		NPCMoveRandom#
+7	Q	Конечто, хочешь чего-нибудь попроще или что-то особенное, но для первого мне необходимо хотя бы малое зелье, а для второго сильное зелье маны, или использовать телепорт?	port.	8		
+8	A	У меня есть малое зелье маны, давай попроще.	port.	9	"PlayerHasItem#5020"	"LoseItem#5020"
+8	A	У меня есть коньяк из Дипфроста, давай попроще.	port.	9	"PlayerHasItem#5037"	"LoseItem#5037"
+8	A	У меня есть зелье маны, давай попроще.	port.	10	"PlayerHasItem#5021"	
+8	A	У меня есть сильное зелье маны, давай особенное.	port.	11	"PlayerHasItem#5052"	
+8	A	Телепортируй нас.	port.	12		
+8	A	Ничего не надо.	port.	0		
+9	Q	Призываю адскую орду!	port	0		Summon#imp_fire,6,60;Summon#imp_fire,6,60;Summon#imp_fire,6,60;Summon#imp_fire,6,60;Summon#imp_fire,6,60
+10	Q	Призываю адскую орду!	port	0		LoseItem#5021;Summon#imp_fire,9,60;Summon#imp_fire,9,60;Summon#imp_fire,9,60;Summon#imp_fire,9,60;Summon#imp_fire,9,60
+11	Q	Сейчас позову своего папочку нам на помощь!	port	0		LoseItem#5052;Summon#D11_greater_demon,22,200
+12	Q	Телепортироваю, куда пожелаешь.	port	0		"Teleport#"
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт её под контроль)[]	port.	0		"LoseItem#10402;SetVariable#demones_follow,3;NPCFollow#"	
+15	A	Хорошая девочка.	port.	0		
+15	A	Эй, а ты владеешь магией?	port.	7		
+15	A	[BLUE](Снять с неё ошейник подчинения)[]	port.	0		"SetVariable#demones_follow,1;NPCStopFollowing#"

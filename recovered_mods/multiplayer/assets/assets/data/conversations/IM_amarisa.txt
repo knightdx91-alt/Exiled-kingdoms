@@ -1,0 +1,27 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Hear and obey.	port	10	NPCisFollower#	
+1	Q	[BLUE](Amarisa recognizes you and smiles)[] I am glad to see you here in Icemist, brother. Isn't it the most impressive town in the world?	[BLUE](Amarisa sonríe cuando te ve)[]Me alegro mucho de verte aquí en Icemist, hermano. Es la ciudad más impresionante, ¿verdad?	2	PlayerIsMale#		
+1	Q	[BLUE](Amarisa recognizes you and smiles)[] I am glad to see you here in Icemist, sister. Isn't it the most impressive town in the world?	[BLUE](Amarisa sonríe cuando te ve)[]Me alegro mucho de verte aquí en Icemist, hermana. Es la ciudad más impresionante, ¿verdad?	2			
+2	A	Hello sister. What are you doing here?	Hola hermana. ¿Qué haces quí?	3			
+2	A	Hello sister, do you happen to know where we can find a wizard named Janod?	port?	49	"VariableEqual#hate_through,10"		
+2	A	Hello sister. I need your help.	port.	11	"VariableEqual#between_worlds,20"		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	9	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	9	PlayerHasItem#10402		AGI#6
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	9	PlayerHasItem#10402		INT#7
+3	Q	I am a Traveller, in charge of handling the teleporters in town. Sometimes they need magical recharges, or rituals need to be re-cast. It is a tedious work but someone has to do it.	Soy una Viajera, a cargo de los teletransportadores de la ciudad. A veces necesitan recargas, o los rituales deben ser hechos de nuevo. Es un trabajo tedioso pero alguien tiene que hacerlo.	4			
+4	A	Hey, maybe we can join forces and go explore around!	Hey, quizá podríamos unir nuestras fuerzas y explorar un poco.	5			
+4	A	I won't interrupt you then. Goodbye sister.	Eentonces no te interrumpo. Adiós hermana.	0			
+5	Q	Sure, but it must happen after my shift ends. I can't abandon my post.	Claro, pero tendrá que ser cuando termine mi turno. No puedo abandonar mi puesto.	6			
+6	A	Great! And when is that?	Genial! Y ¿Cuándo es eso?	7			
+7	Q	Well, considering all my absences... At least ten years. Sorry!	Bueno, considerando mis ausencias recientes... Por lo menos diez años. ¡Lo siento!	8			
+8	A	Awww... Goodbye sister, I have things to do in town.	Awww.... Adiós hermana, tengo cosas que hacer en la ciudad.	0			
+9	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#amarisa_follow,3;NPCFollow#"	
+10	A	Good girl.	port.	0		
+10	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#amarisa_follow,1;NPCStopFollowing#"
+11	Q	Of course, I will be glad to help.	port	44		
+44	A	Do you know anything about the Lady of the Night?	po.	45		
+45	Q	 About the statue in Icemist? Not really... Although I know a magister who was interested in this thing and constantly studied it.	¿po?	46		
+46	A	Perhaps I can learn something useful from him. Where can I find him?	po.	47		
+47	Q	 I'll send him a magical message, and if he agrees to meet you, he'll be waiting for you at this statue.	¿po?	48		
+48	A	 Good.	¿po?	0		"SetVariable#between_worlds,25"
+49	Q	 Hmm, I think I teleported someone with that name once, and he definitely wasn't from Icemist.	¿po?	0		

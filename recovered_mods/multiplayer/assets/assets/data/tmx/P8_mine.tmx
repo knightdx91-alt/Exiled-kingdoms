@@ -1,0 +1,781 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="44">
+  <properties>
+    <property name="maxlight" value="35" />
+    <property name="music" value="dark_chamber" />
+    <property name="name" value="Damn Mine" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="cave.tsx" firstgid="1405" />
+  <tileset firstgid="1645" name="wooden_trifles" columns="16" tilecount="144" tileheight="128" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="icemist_large.tsx" firstgid="1789" />
+  <tileset source="artifacts.tsx" firstgid="1829" />
+  <layer name="nonwalk" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMQEAAAwCIPtX3rMYHkICEgAAAAAAANhw7QAAAAAAAAAAAAAAAADAsAeYsgc0AFEAAA==
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OAQ0AAAgDoNs/qiWM4aaQgAQAAAAAAAAAAAAAAAB+69oeAAAAAAAAANw3SkQH+gBRAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2b227bMAyGe+PnDrAUSbuLrBcDupMdI0v2nIswE2AZUhKpYxb/ANHEiSX6M0VRcvr0ZNPz8M9W8Vr5+NU7n83Vt08N/bsHPs62yP5U9LcGH+jD0hfEj+MyIka1VJqPa/s43DKKjYHLwMdQLZXkA21Py72H1/PV9spxclniqHYMleJD48XZgcTS3tDvtkAcYQac37XsQN5r+VA2ufk4+9LQfi5/LXmoFp8Wtidmnc9K8UmVJUddKvGpWQtJsubwC8MipRbi+PTAKHWOw5xOCXycJEYtlasGSI0fpxx8pDZCJsVpLj50vFnE+b1TjjF6/uxhMg7h+1CqhrRIuo5dYp6PNU4aPqnx4ZPPby2fYwd8cs4rIb/vIX4wmzkzI6vv1rZy8aHz0Yxew1pUw+g50s8Dc8x6L0rzmQgjvJehGWvwXSsfTQzV4EPjxRdLmvHZM59ca1JuzzDWeuPTcs8jxr4zx35kYtMqfnLaGxNfOH5SVTI/g6S1Ot3b8O0Z1uKj4ZGLD8cphgnXT00+2jra116sgJGGjZM0B5bgQ9edNflYFTsn9ja+WvLhas174BO615Za3xc3IzmWwufSAZ/YfK5tMwcfJysjTho+vxP4xAr49KIS8aN9/k777p1PyrMbmPenhDzVOx8qzZjaL/lW8zsOLv/kmhdSVYKPs+Pwscb2XVssH8kHbp2Ty4BPTM6JaY9ysazNcvDx+RH7/TlwzuT5LHRuCp+vV3sfPu55+Pi03qNJMcflNPjHmFQDpcTPGLi/uW23WGo7nOh8uRH4bITztYJrySlNm5YxhgV8Sqk1HycrG6dH4OO08gkL84mt7x6Rz8tiMXoUPjh2WvCpNben2rly/sF75K4uPjE+aetbWl9r63OfxcZNLj6YkbaepXU7NWg7R+2sGVO5+VBWsffyTTg+DbdtauvzF8HuRZhPCdV6FlJKKx+/HoWPdVz/73xwznM1hVSvW/Jzjr3dHvhMZG7grkvDB9c5VknP22rvpzse8GwAc6Ly8fk13NYplI8mtkLPJGsycjUJrINm9Jr6YBlfPj5SbKU8ty0lYHREfCijXHzOzGdYsXxqjzMcR9p9YR8fn/n8kLjA/84cGzCifr4OcWuib+iacZ638IG+OUafBdsy8V5Tr4r4oXxAGj5O3O9JgAf3W7exISNYq0pryxJ8aP87Ei+c7Qd5fikt33pe4hM6X9s/5TMRPpAz8TxTuxaI4TMW8gn698UPGPA5N4ijUD4q3b8UP5RPK4X2zlr3X8OHexLltWpVa/0F3UgOaABRAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZMQrCMBSA4VAwPYTWOzTx/pPnEUovUEGhhRrMlorftyRDhse/ZHghAAAAAAAAwP/J3esc+rZzHNlFm6KzNuF+aj0BAK3Ncb2n578w+Bs+mjadskZF47vNVaPwiN/fAAAAAAAAwC+xU65jp7x306SafXtZ0gYA4HAW1x39DQBRAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoPtZxf4JDWAANwcJSAAAAAAAAAC2rusBAAAAAAAAAAAAAAAA8MkAdWJkHgBRAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="1965" gid="245" y="1525">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="1930" y="1610" width="45" height="10">
+      <properties>
+        <property name="area_id" value="P8" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="3" x="495" gid="245" y="75">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="4" x="460" y="1" width="45" height="10">
+      <properties>
+        <property name="area_id" value="P9_mine" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="4" x="1790" gid="249" y="130">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Barrel" type="container" id="5" x="1630" gid="249" y="890" width="64" height="64">
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5001,5020,5010" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Barrel" type="container" id="6" x="1180" gid="249" y="610" width="64" height="64">
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5021,5001,3005" />
+        <property name="name" value="@BARREL" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="7" x="1440" gid="249" y="260">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="8" x="1500" gid="249" y="1410">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="items" value="5032,5016,5005" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="9" x="450" gid="249" y="1850">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="10" x="960" gid="249" y="1090">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="laboratory_13" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="11" x="160" gid="249" y="1820">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="rock_golem" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="960" gid="249" y="1920">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="table_s2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="13" x="1280" gid="249" y="1950">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="undaunted" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="160" gid="249" y="990">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="items" value="5013,6014,6008" />
+        <property name="name" value="@CHEST" />
+        <property name="unique_tag" value="P8m_chest" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="15" x="160" gid="249" y="570">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_s2" />
+        <property name="name" value="@CHEST" />
+        <property name="unique_tag" value="P8m_chest" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="16" x="512" gid="249" y="224">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="active" value="VariableLower#simple_choice,99" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="idinaxuy2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="16" x="512" gid="249" y="192">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#curses_dont_die,99" />
+        <property name="active" value="VariableLower#curses_dont_die,99" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="idinaxuy2" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="17" x="670" gid="249" y="830">
+      <point />
+      <properties>
+        <property name="active" value="VariableLower#simple_choice,49" />
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="conditions" value="VariableLower#simple_choice,49" />
+        <property name="tag" value="barrier1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="18" x="670" gid="249" y="800">
+      <point />
+      <properties>
+        <property name="active" value="VariableLower#simple_choice,49" />
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="conditions" value="VariableLower#simple_choice,49" />
+        <property name="tag" value="barrier1" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="19" x="1355" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="statue_2" />
+        <property name="unique_tag" value="P8m_chest" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="20" x="565" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="statue_2" />
+        <property name="unique_tag" value="P8m_chest" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="21" x="1455" gid="247" y="2035">
+      <point />
+      <properties>
+        <property name="spawn" value="statue_2" />
+        <property name="unique_tag" value="P8m_chest" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="22" x="315" gid="247" y="875">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="statue_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="23" x="315" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="statue_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="24" x="335" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="statue_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="statue" type="spawn" id="25" x="335" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="statue_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="26" x="1785" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="27" x="1425" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie_s1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="28" x="1105" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="29" x="1135" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="30" x="1525" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="31" x="115" gid="247" y="1835">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie_giant" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="32" x="595" gid="247" y="1965">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie_s2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="33" x="1035" gid="247" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="34" x="1395" gid="247" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="35" x="1775" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie_s1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="36" x="1905" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="37" x="1775" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="38" x="1645" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="39" x="405" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="40" x="855" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="41" x="1165" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="42" x="1295" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="43" x="1295" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="44" x="785" gid="247" y="535">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="45" x="985" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="46" x="1295" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="47" x="1655" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="48" x="1975" gid="247" y="575">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="49" x="405" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="50" x="795" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="51" x="1425" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="52" x="785" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="53" x="975" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="54" x="1845" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="55" x="2095" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="56" x="1585" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="57" x="305" gid="247" y="1595">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="58" x="755" gid="247" y="1595">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="59" x="975" gid="247" y="1595">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="60" x="1265" gid="247" y="1595">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="61" x="625" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="62" x="435" gid="247" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="63" x="785" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="64" x="1555" gid="247" y="1965">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="65" x="1655" gid="247" y="2165">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="66" x="1365" gid="247" y="2025">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="67" x="505" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="68" x="755" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="69" x="1005" gid="247" y="2065">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="honorary_guard" type="staticNPC" id="70" x="1905" gid="247" y="945" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="gender" value="m" />
+        <property name="name" value="@HONORARY_GUARDIAN" />
+        <property name="portrait" value="186" />
+        <property name="sprite" value="male_green_ground" />
+        <property name="tag" value="hguard" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="71" x="1675" gid="247" y="875" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="gender" value="m" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_green_ground" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="72" x="1745" gid="247" y="725" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="gender" value="m" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_green_ground" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="73" x="1935" gid="247" y="695" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="gender" value="m" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_green_ground" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="74" x="1235" gid="247" y="725" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="gender" value="m" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_green_ground" />
+      </properties>
+    </object>
+    <object name="Peter" type="spawn" id="75" x="1105" gid="247" y="645">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="conversation" value="P8_peter" />
+        <property name="spawn" value="peter_2" />
+        <property name="tag" value="peter2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Morgen" type="spawn" id="76" x="355" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="hostile" value="VariableGreater#simple_choice,59" />
+        <property name="facing" value="rd" />
+        <property name="spawn" value="morgen" />
+        <property name="tag" value="morgen" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Rosalia" type="spawn" id="77" x="355" gid="247" y="745">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="hostile" value="VariableGreater#simple_choice,59" />
+        <property name="facing" value="rd" />
+        <property name="spawn" value="rosalia_braveear_1" />
+        <property name="tag" value="rosalia" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="78" x="515" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="79" x="255" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="zombie_s1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="80" x="255" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,99" />
+        <property name="spawn" value="zombie_s2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="37" x="515" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="37" x="405" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="desert_mummy" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="38" x="1820" y="860" width="170" height="140">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,19" />
+        <property name="actions" value="StartConversation#hguard,P8_hguardian" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="39" x="1150" y="740" width="20" height="170">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,29" />
+        <property name="actions" value="StartConversation#peter2,P8_peter" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="40" x="250" y="510" width="260" height="560">
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,59" />
+        <property name="actions" value="StartConversation#peter2,P8_morgen" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn" id="41" x="205" gid="247" y="545">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#simple_choice,99" />
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="42" x="864" gid="249" y="800">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,39" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="idinaxuy" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="43" x="864" gid="249" y="832">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#simple_choice,39" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="idinaxuy" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

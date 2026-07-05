@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="30" height="40" tilewidth="64" tileheight="32" nextobjectid="10">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <tileset source="icemist_large.tsx" firstgid="2185" />
+  <layer name="nonwalk" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3NMQ0AAAgDQfAvFRMogIWN3K2ftBEAAABsKm/98jttbw3gmwa6jIc6wBIAAA==
+  </data>
+  </layer>
+  <layer name="water" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3NwQkAMAgAMd1/6c5QsQg2B/dOxJ9lcS6Xy+VyO91bvzsu94U7aXO5XEna2QH3X9XNwBIAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3SMQrAIAxGYcnkUkSvUu9cvaWILdQL/Bl83yJkeQYSAqB12Xqr6dvZoenhdtoz/brfH3rc5wotanvT8zbVd13snLsGAAAAcK4Bu7+Mj8ASAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQkAAAgEsHvYP5PRLCEIsiVYAvBL1/UAAACATQNztcpTwBIAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJnADoj7gbgbiHuBuA/K7kfidyLJd0Hl7Cm0NxKJzciEKgfjb4LypZDkjSm0N5BMfZTaGw7E7EyY4vF49HAyUW5vLBp/Bg516OKU2msKxBvJ0EepvZGEldDE3nAkNr44RZcfSeEsPoTTMyh+ObDkXxDAF9+U2mtIpj5axu80GtprC8QmQGxJpHobqHoHCu2FAVMkNnq8UjPfooNwwkpoYi8x5UcHDewltvygtr2w9AXCaUhsEzRxByrbCwKgthaoHZUExK5A/BEqbs0AaVuBxKnRtkIHyGVINpocMp/aYY3c1oLZ8xGNTwt7kf2bgSaHzB8ueRjkXz4O+tsLysM72PGr2cxOG3vPAc09A8TcaP7mAfJPA8XX0cBe5LIDH3agsr2jYBSMglGADwAAO4BQNcASAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="30" height="40">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="330" gid="487" y="840">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="300" y="760" width="60" height="30">
+      <properties>
+        <property name="area_id" value="J10" />
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="160" y="160" width="290" height="320">
+      <properties>
+        <property name="actions" value="StartConversation#artist,J10_artist2" />
+        <property name="conditions" value="VariableLower#artist_talk2,1" />
+      </properties>
+    </object>
+    <object name="incubus" type="spawn" id="5" x="305" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="incubus" />
+        <property name="wander" value="0" />
+        <property name="tag" value="incubus" />
+      </properties>
+    </object>
+    <object name="succubus" type="spawn" id="5" x="305" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="succubus_2" />
+        <property name="wander" value="0" />
+        <property name="tag" value="succubus" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="90" y="90" width="410" height="410">
+      <properties>
+        <property name="conditions" value="VariableLower#incubus_talk,1" />
+        <property name="actions" value="StartConversation#incubus,J10_incubus" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="160" y="510" width="280" height="170">
+      <properties>
+        <property name="conditions" value="VariableLower#incubus_talk,1" />
+        <property name="actions" value="StartConversation#incubus,J10_incubus" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="90" y="90" width="410" height="410">
+      <properties>
+        <property name="conditions" value="VariableLower#most_famous,64" />
+        <property name="actions" value="StartConversation#succubus,J10_succubus" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="160" y="510" width="280" height="170">
+      <properties>
+        <property name="conditions" value="VariableLower#most_famous,64" />
+        <property name="actions" value="StartConversation#succubus,J10_succubus" />
+      </properties>
+    </object>
+    <object name="artist1" type="spawn"  x="245" gid="489" y="205">
+      <properties>
+        <property name="spawn" value="artist_3" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="375" gid="489" y="245">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="405" gid="489" y="365">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="305" gid="489" y="405">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="215" gid="489" y="305">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="205" gid="489" y="525">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="artist" type="spawn"  x="405" gid="489" y="525">
+      <properties>
+        <property name="spawn" value="artist_4" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="205" gid="489" y="755">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="465" gid="489" y="755">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="335" gid="489" y="945">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="215" gid="489" y="115">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="405" gid="489" y="115">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="115" gid="489" y="495">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="495" gid="489" y="495">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+    <object name="bodyguard" type="spawn"  x="305" gid="489" y="655">
+      <properties>
+        <property name="spawn" value="bodyguard_artist" />
+        <property name="wander" value="0" />
+        <property name="tag" value="artist_team" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

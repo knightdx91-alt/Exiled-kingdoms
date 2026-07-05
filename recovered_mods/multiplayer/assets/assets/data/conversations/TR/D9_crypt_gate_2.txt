@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The crimson steel gate is open now. On one side, there is a small plaque with an inscription.	Esta impresionante puerta mágica está abierta. Hay una inscripción a un lado.	2	VariableEqual#D9_crypt_unlock2,1	
+1	Q	"This crimson steel gate is obviously protected by ancient magic; trying to force it open without the right key would be fruitless, and probably very dangerous. On one side, there is a small plaque with an inscription."	Esta impresionante puerta mágica de acero rojo ha sido sellada. Intentar abrirla sin la llave posiblemente sea inútil, y además peligroso. Hay una inscripción a un lado.	2		
+2	A	Read the inscription.	Leer la inscripción.	3		
+2	A	Try to force it open.	Intentar forzar la puerta.	4	VariableLower#D9_crypt_unlock2,1	
+2	A	Unlock it using your Ruby Key.	Abrirla usando tu Llave Rubí.	5	"VariableLower#D9_crypt_unlock2,1;PlayerHasItem#2527"	"SetVariable#D9_crypt_unlock2,1;LoseItem#2527"
+2	A	Walk through the gate.	Cruzar la puerta.	0	VariableEqual#D9_crypt_unlock2,1	Travel#D9_crypt,12
+2	A	Ignore the door.	Ignorar la puerta.	0		
+3	Q	It says 'Brimard, second King of Mercia. His poems and songs were famous and regarded as the best, except by a few traitors that were rightfully punished . Died in 4 AE as his boat sank in the Nekhar '.	Dice: 'Brimard, segundo Rey de Mercia. Sus poemas y canciones eran alabados por todos, con excepción de unos pocos traidores que tuvieron su merecido. Falleció en 4 DE tras hundirse su bote en el Nekhar.'	0		
+4	Q	Of course it doesn't budge at all. The whole corridor is suddenly bright with magical light as you are struck by lightning. You knew this would happen, didn't you?	No consigues ni siquiera moverla. Todo el pasillo se enciende iluminado por una brillante luz mágica, cuando un relámpago cae sobre tí. Sabías que ocurriría esto, ¿verdad?	0		LoseHPShock#100
+5	Q	The crimson steel gate is open now. On one side, there is a small plaque with an inscription.	Esta impresionante puerta mágica está abierta. Hay una inscripción a un lado.	2		

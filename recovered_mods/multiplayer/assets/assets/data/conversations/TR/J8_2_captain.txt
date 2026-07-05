@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	13	NPCisFollower#	
+1	Q	 Приветствую, путешественик, на побережье высодились небесные рыцары, здесь небезопасно! 	¿po?	2			
+2	A	Я понял, буду иметь ввиду.	po.	0		"NPCGoTo#attack_sky,1"
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	12	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	12	PlayerHasItem#10402		INT#5
+12	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#captainj8_follow,3;NPCFollow#"	
+13	A	Молодец.	port.	0		
+13	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#captainj8_follow,1;NPCStopFollowing#"

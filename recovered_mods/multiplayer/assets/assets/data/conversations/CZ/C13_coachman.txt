@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](крестьянин у телеги приветсвует вас)[] Здоров будь! Если не хочешь тащится пешком, могу довести тебя на своей колымаге.	port.	2		
+2	A	Куда ты сможешь меня отвести?	port.	3		
+2	A	Спасибо, но я пока побуду здесь.	port.	0		
+3	Q	Я могу довести тебя в одно из поселений Илмары за небольшую плату за пару часов.	port [BLUE]30 monedas[].	4		
+4	A	Хорошо, вези меня в [BLUE]Фйогас[]! Вот моё золото.	port.	5	PlayerHasGold#80	
+4	A	Хорошо, вези меня в [BLUE]Рёнайс[]! Вот моё золото.	port.	19	PlayerHasGold#100	
+4	A	Хорошо, вези меня в [BLUE]Нивариан[]! Вот моё золото.	port.	30	PlayerHasGold#100	
+4	A	Может, в другой раз.	Quizá en otro momento.	0		
+5	Q	Давай запрыгивай...	De acuerdo, di cuándo estás preparado...	6		
+6	A	Поехали!	Estoy preparado.	0		"loseGold#80;Travel#D11,7,4"
+19	Q	Давай запрыгивай...	De acuerdo, di cuándo estás preparado...	20	IsRegistered#	
+20	A	Поехали!	Estoy preparado.	0		"loseGold#100;Travel#F10,7,6"
+30	Q	Давай запрыгивай...	De acuerdo, di cuándo estás preparado...	31	IsRegistered#	
+31	A	Поехали!	Estoy preparado.	0		"loseGold#100;Travel#F11,7,6"

@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" nextobjectid="4">
+  <properties>
+    <property name="house" value="" />
+    <property name="maxlight" value="50" />
+    <property name="name" value="House" />
+    <property name="name_ES" value="Casa en New Garand" />
+    <property name="sw1" value="596" />
+    <property name="sw2" value="4" />
+    <property name="sw3" value="1" />
+    <property name="sw4" value="61" />
+    <property name="sw5" value="50" />
+    <property name="sw6" value="49" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="gate_blue.tsx" firstgid="329" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="teleporter.tsx" firstgid="493" />
+  <tileset source="artifacts.tsx" firstgid="494" />
+  <tileset source="town_objects3.tsx" firstgid="498" />
+  <tileset source="town_objexts2.tsx" firstgid="530" />
+  <tileset source="dungeon stairs.tsx" firstgid="594" />
+  <tileset source="grounds indoor 2.tsx" firstgid="598" />
+  <tileset source="water.tsx" firstgid="758" />
+  <layer name="nonwalk" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFyOD7QDtgFIyCUTAKsIDRsmkUjALqAgDoMgHv
+  </data>
+  </layer>
+  <layer name="ground" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJy9lEsKwCAMRCP2An4OYKH3P2MrVEjFfGjSDszCzXsDQgD+Tbpa7+bpXR34RXBwCahUsuCw8gePcgRlqRTBYeUnwWHlV8HBRfu/nMPKT4LDyh87KYfHfs5h5WPeyuGxn3NY+fgWrBxW/nxvZocHn3N48SmHhs05Nqba7RJ/jwAHqje/M7uj3f2C35DDm9/i0+HNf/O/VE59BQzz
+  </data>
+  </layer>
+  <layer name="ground2" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBSA+0A7YBQw3GJiYLgOxbeZqG/+NSQzbwwy80OIUH8XqOYmFN+hgfupCQCiDQrg
+  </data>
+  </layer>
+  <layer name="scenery" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="objects" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYKAvsAPiGCRsBsUgtj0VzI8G4klAvA+I9RghYt+ANA8QGxPhthQC7giF0nuxyBEy35QIdaE4xPWh7ge50QwHtiLS/DYcciB9iXj0IqvDBQyBuBSJPwNKK0LdbwvEJjiwJRHmw/wfwYBIN0kMxKUfQyLMh8WRNtC9OowIcU4i0g8x5sPi14ARgpEBNcw3xSEuTiX3g8z/zogpLkol88MZIPkXG6CG+cFofF2gu40YEfmLUvM9gLgSzXxDKpqPD1DD/Ggc4lxUTD9T0MTUmBgYbIC0Ax59sHyfBKVx5XWQOiMgDoGqBdEReNQjuwsZ4PJDOA5xcwLmG6LxcZmPnj5hwJmG5k+movnYwmcGEeaj1wsOeNRZALELGg4gYD4uAABnAirx
+  </data>
+  </layer>
+  <layer name="roofs" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="655" gid="241" y="585">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="stairs down" type="transition" id="2" x="640" y="650" width="30" height="30">
+      <properties>
+        <property name="area_id" value="O7_sewers" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object type="entry" id="3" x="240" gid="241" y="110">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Secret Door" type="secretdoor"  x="380" gid="245" y="190">
+      <properties>
+    <property name="conditions" value="VariableLower#invasion_lady,1;VariableLower#family_matters,9"/>
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="12" />
+        <property name="secretdoor_tag" value="O7_house_1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container"  x="350" gid="245" y="220">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#invasion_lady,1;VariableLower#family_matters,9"/>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="elf_chest_3" />
+        <property name="name" value="@CHEST" />
+      </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="350" y="95">
+   <properties>
+    <property name="conditions" value="VariableLower#invasion_lady,1;VariableLower#family_matters,9"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="10146"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="350" y="290">
+   <properties>
+    <property name="conditions" value="VariableLower#invasion_lady,1;VariableLower#family_matters,9"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="table_s1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+    </object>
+    <object name="lady" type="spawn"  x="175" gid="243" y="115">
+      <properties>
+        <property name="conditions" value="VariableLower#family_matters,9" />
+    <property name="conversation" value="lady_thanks"/>
+    <property name="name" value="@LADY_NEGLIGEE"/>
+        <property name="portrait" value="88" />
+        <property name="spawn" value="bandit_bitch_good_2" />
+        <property name="tag" value="bandit_bitch_good" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn"  x="215" gid="243" y="495">
+      <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+        <property name="spawn" value="human_sergeant_male" />
+        <property name="tag" value="lady_help" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn"  x="235" gid="243" y="465">
+      <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+        <property name="spawn" value="human_soldier" />
+        <property name="tag" value="lady_help" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn"  x="205" gid="243" y="435">
+      <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+        <property name="spawn" value="human_soldier" />
+        <property name="tag" value="lady_help" />
+        <property name="wander" value="2" />
+      </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="300" y="145" width="35" height="60">
+   <properties>
+    <property name="actions" value="StartConversation#bandit_bitch_good,lady_unawares"/>
+    <property name="conditions" value="VariableLower#invasion_lady,1"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="270" y="260" width="50" height="20">
+   <properties>
+    <property name="actions" value="StartConversation#human_sergeant_male,guards_squabbles"/>
+    <property name="conditions" value="VariableEqual#invasion_lady,2"/>
+   </properties>
+    </object>
+    <object name="lady" type="staticNPC"  x="255" gid="243" y="340">
+      <properties>
+        <property name="conditions" value="VariableGreater#family_matters,9" />
+    <property name="conversation" value="lady_problems"/>
+        <property name="facing" value="l" />
+        <property name="faction" value="#civilian#" />
+        <property name="gender" value="f" />
+        <property name="name" value="@LADY_IRONSTONE" />
+        <property name="portrait" value="88" />
+        <property name="sprite" value="female_noble_red" />
+      </properties>
+  </object>
+  <object name="handmaiden" type="spawn" gid="243" x="190" y="540">
+   <properties>
+        <property name="conditions" value="VariableGreater#family_matters,9" />
+    <property name="conversation" value="handmaiden_talk2"/>
+        <property name="name" value="@HANDMAIDEN" />
+        <property name="portrait" value="89" />
+    <property name="spawn" value="villager_female_red"/>
+    <property name="wander" value="2"/>
+   </properties>
+    </object>
+    <object type="entry"  x="180" gid="241" y="500">
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

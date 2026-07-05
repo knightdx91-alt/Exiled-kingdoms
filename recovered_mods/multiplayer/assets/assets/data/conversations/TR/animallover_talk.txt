@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Привет, прохожий! Если тебе вдруг интересно, мои питомцы готовы составить тебе компанию, защищая тебе в любом нелегком пути, я готов отпустить их с тобой, но за небольшую оплату. Выбирай, если тебе нужен защитник.	po    rt.	2		
+2	A	Да мне интересно.	port.	3	hasNoFollower#	
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	0		
+3	Q	Тогда выбирай, кого хочешь взять с собой, дракон за {LEVELx30}, кот за {LEVELx20}, волк за {LEVELx10}.	po    rt.	4		
+4	A	Хочу дракончика.	port.	5	"PlayerHasGold#{LEVELx30}"	
+4	A	Хочу кота.	port.	10	"PlayerHasGold#{LEVELx20}"	
+4	A	Хочу волка.	port.	15	"PlayerHasGold#{LEVELx10}"	
+4	A	Я передумал.	port.	0		
+5	Q	Что скажешь, дракоша?	port.	6		
+6,minidrake	Q	Рыыв-рыыы.	port.	7		
+7,animallover	Q	Ну и отлично.	port.	8		
+8,minidrake	Q	Рыыы.	port.	9		
+9	A	Это прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx30}"	"NPCFollow#;LoseGold#{LEVELx30}"
+10	Q	Что скажешь, котик?	port.	11		
+11,minisabercat	Q	Мяу-мяу.	port.	12		
+12,animallover	Q	Ну и отлично.	port.	13		
+13,minisabercat	Q	Мяу.	port.	14		
+14	A	Это прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx20}"	"NPCFollow#;LoseGold#{LEVELx20}"
+15	Q	Что скажешь, волчок?	port.	16		
+16,domewolf	Q	Тяв-тяв.	port.	17		
+17,animallover	Q	Ну и отлично.	port.	18		
+18,domewolf	Q	Тяв.	port.	19		
+19	A	Это прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx10}"	"NPCFollow#;LoseGold#{LEVELx10}"

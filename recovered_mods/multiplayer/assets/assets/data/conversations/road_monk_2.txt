@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Brothers speak of your wisdom in riddles. I have a challenge for your wits, but will you be ready?	Mis hermanos hablan de tu sabiduría con los acertijos. Tengo un desafío para tí, pero ¿estarás preparado?	2	VariableLower#TMP_talk_monks_2,1	"SetVariable#TMP_talk_monks_2,1;SetVariable#TMP_riddle,0"	
+1	Q	Greetings, wise one.	Saludos, hombre sabio.	0			
+2	A	Yes. 	Sí.	4			
+2	A	No.	No.	3			
+2	A	Now wait a minute...	Espera un momento...	3			
+3	Q	You are not enlightened. We shall teach you wisdom, then!	No estás iluminado. ¡Nosotros te enseñaremos sabiduría!	0		NPCHostile#monks2	
+4	Q	Answer three riddles, and after the last one you will know if your answers were right. First, what has head and tail, cold as steel, and rules over men?	contesta tres acertijos, y al final sabrás si los acertaste. Primero, qué tiene cara y dientes, frío como el acero, y gobierna a los hombres?	5			
+5	A	A snake.	Una serpiente	6			
+5	A	A dragon.	Un dragón.	6			
+5	A	A monk's mother.	La madre de un monje.	6			
+5	A	A coin.	Una moneda.	6		IncVariable#TMP_riddle,1	
+6	Q	I see. Now tell me this. Kharem is four times as old as his son now. But in 20 years time, he will be twice his son's age. How old is Kharem?	Ya veo. Ahora responde a esto: Kharem tiene cuatro veces la edad de su hijo. Pero dentro de 20 años, tendrá el doble que su hijo. Cuántos años tiene Kharem?	7			
+7	A	Obviously 40.	Claramente 40.	8		IncVariable#TMP_riddle,1	INT#2
+7	A	Kharem is 32 years old.	Kharem tiene 32 años.	8			
+7	A	I think it's 48 years.	Creo que son 48 años.	8			
+7	A	That's simply not possible, he doesn't exist. Nice trick.	Eso no es posible, así que no existe. Buen truco.	8			
+7	A	Maybe 40?	¿A lo mejor son 40?	8		IncVariable#TMP_riddle,1	
+8	Q	That's your answer then. Finally: how many seaports has Mercia?	Esa será tu respuesta entonces. Finalmente: ¿Cuántos puertos de mar hay en Mercia?	9			
+9	A	Just one.	Sólo uno.	10			
+9	A	Two.	Dos.	10		IncVariable#TMP_riddle,1	
+9	A	Three.	Tres.	10			
+9	A	None.	Ninguno.	10			
+10	Q	Your wisdom is lacking. We will teach you, and make you more learned.	Tu sabiduría es insuficiente. Pero ahora aprenderás de nosotros.	0	VariableLower#TMP_riddle,3	NPCHostile#monks2	
+10	Q	Your answers are correct! Yet we might return to test you once again. Accept this for now. [BLUE](All the monks bow down to you)[]	Tus respuestas son correctas... Pero quizá regresemos con un reto aun mayor. Acepta de momento esta ofrenda. [BLUE](Los monjes se inclinan ante tí)[]	0		"SetVariable#monk_road,2;GainXP#1000;GainItem#5023;GainItem#6002;GainItem#6002;GainItem#6002;GainItem#6002"	

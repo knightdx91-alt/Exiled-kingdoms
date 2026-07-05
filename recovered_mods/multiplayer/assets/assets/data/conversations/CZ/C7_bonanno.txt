@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Как только разберёшься с паршивым капитаном, сразу же вернёмся в город.	¿po?	5	"VariableGreater#time_to_pay,44;VariableLower#time_to_pay,51"		
+1	Q	 Босс сказала, что кого-то пришлёт, чтобы разобраться с тем паршивым капитаном, видимо, что вас.	¿po?	2	"VariableEqual#time_to_pay,43"		
+1	Q	 Отстань, я занят!	¿po?	0		
+2	A	Да, приступим к делу?	port?	3		
+3	Q	Ага, сейчас возмём лодку и переплавимся к этому козлу. 	port.	4		
+4	A	Ясно.	port.	0		"SetVariable#time_to_pay,45;Travel#C7_house2,1,2"
+5	A	Дело сделано, он мёртв.	port.	6	"VariableEqual#time_to_pay,50"		
+5	A	Ясно.	port.	0		
+6	Q	Тогда возвращаемся в город. 	port.	7		
+7	A	Ясно.	port.	0		"SetVariable#time_to_pay,52;Travel#C7,1,2"

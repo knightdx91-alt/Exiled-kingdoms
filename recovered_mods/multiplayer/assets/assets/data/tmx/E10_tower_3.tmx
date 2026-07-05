@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="80" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="60"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Tower of Tremadan - Arcane Vault"/>
+  <property name="name_ES" value="Torre de Tremadan - Camara Arcana"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="trees.tsx"/>
+ <tileset firstgid="25" source="town_objects.tsx"/>
+ <tileset firstgid="105" source="grounds_indoor.tsx"/>
+ <tileset firstgid="265" source="dungeon.tsx"/>
+ <tileset firstgid="505" name="scifi" tilewidth="64" tileheight="128">
+  <image source="scifi.png" width="1024" height="896"/>
+ </tileset>
+ <tileset firstgid="617" source="grounds indoor 2.tsx"/>
+ <layer name="nonwalk" width="80" height="80" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="water" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XQQqDQAwF0DL3384RvGcpLtqGJBZ3Je+BoKOrTzITHw8AAAAAAAAAAID/cqzz4p69zot3Le31fb8/1nayHtcmihlkGe2Qbfx+coZV3WXPWZbx/URZRsfK6y32c+z9iRl2+1xXh1W+01TnQsyzqreY6TSxV7szpMo2rk+S9Wc3s1Q5Ts7vTt1VdTgtvy6v7r7LcJJs/+vmwWqmmdq/L1dnSJVptVdOc7WfVbNMNW9Pk+XySy1m307M76onqxm7mgenqeqp+4frZh561ZwjPwAAAAAAAAAAAODKEz1C3fUAZAAA
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMREAMAgEsD/8FP/ysMBWhkRBEgAAAAAAAAAAAAAAADZeJV2/FwAAAAAAAAAAAAAAAFwzUjN4jwBkAAA=
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aS0vDQBSG4TS0WkEXxWrr/Y7utEhbN15B///f0YV4BlJ6GMdxxqnEOO8Dh7RJFsnXk8kktCgAAFi811bdR9BsnbIo3sgQf8BS1YuzWi7rPqJmscdCxsY45JeG/OLpMY784nVVfh3r/tHl/gEAqBnPNmmYG6UhrzTkl4b84th58Z42Dv2WhvzSkF88PT+21/EuZ/Ho0TS+/MzzHj3r58vPbNslPy9ffjnOFXdKd8+Ya7FdzZ83ZNmXWjX7qTLb3zPMLMSKZHMude3IdqDWXZbzwpy5Ti8CM7my9hvL90nmeX41zh1LLidWNiNHVluZ57cWcf5Dta/JbTvD7PrWOev+O/smj2GGeWnrjvPfVOtOA/Kb9V2u/Wczmd4E5pB7/7m0JJMpufyYeffsuq4Rrqfye5bPL57/feGzHv33q/Yk332pA6lDqaMq71tZ3kndSz1IPUo98VsA+Ce4/6axn5cBAAAAAAAAAAAAAAAAAM33AW4EpSYAZAAA
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="80">
+  <object name="exit to E10_tower" type="transition" x="2517" y="1539" width="65" height="134">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="14"/>
+   </properties>
+  </object>
+  <object name="entry from tower" type="entry" gid="1" x="2445" y="1603">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Arcane Sentinel" type="spawn" gid="3" x="2050" y="1136">
+   <properties>
+    <property name="spawn" value="skeleton_warlord"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Arcane Sentinel" type="spawn" gid="3" x="1931" y="1226">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Arcane Sentinel" type="spawn" gid="3" x="2154" y="1283">
+   <properties>
+    <property name="spawn" value="minotaur_oracle"/>
+   </properties>
+  </object>
+  <object name="Arcane Conduit" type="conversation" gid="5" x="1888" y="2112">
+   <properties>
+    <property name="conditions" value="VariableGreater#woven_fate,9;VariableLower#lyssara_shard_tower,1"/>
+    <property name="conversation" value="lyssara_anchor_tower"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="Arcane Conduit"/>
+   </properties>
+  </object>
+  <object name="Fractured Nexus" type="conversation" gid="5" x="1984" y="1872">
+   <properties>
+    <property name="conditions" value="VariableGreater#lyssara_legacy,19;VariableLower#lyssara_legacy,100"/>
+    <property name="conversation" value="lyssara_rift_nexus"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="Fractured Nexus"/>
+   </properties>
+  </object>
+  <object name="Aftermath Nexus" type="conversation" gid="5" x="2096" y="1872">
+   <properties>
+    <property name="conditions" value="VariableGreater#lyssara_aftermath,9;VariableLower#lyssara_aftermath,100"/>
+    <property name="conversation" value="lyssara_aftermath_nexus"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="Aftermath Nexus"/>
+   </properties>
+  </object>
+  <object name="Rift Warden" type="spawn" gid="3" x="1990" y="1648">
+   <properties>
+    <property name="conditions" value="VariableEqual#lyssara_legacy,40;VariableEqual#lyssara_path,1"/>
+    <property name="spawn" value="lyssara_warden_seal"/>
+    <property name="tag" value="lyssara_ch2_boss"/>
+    <property name="unique_tag" value="lyssara_ch2_boss_seal"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Rift Warden" type="spawn" gid="3" x="1990" y="1648">
+   <properties>
+    <property name="conditions" value="VariableEqual#lyssara_legacy,50;VariableEqual#lyssara_path,2"/>
+    <property name="spawn" value="lyssara_warden_rupture"/>
+    <property name="tag" value="lyssara_ch2_boss"/>
+    <property name="unique_tag" value="lyssara_ch2_boss_rupture"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Aftermath Echo" type="spawn" gid="3" x="2112" y="1648">
+   <properties>
+    <property name="conditions" value="VariableEqual#lyssara_aftermath,11;VariableEqual#lyssara_path,1"/>
+    <property name="spawn" value="lyssara_echo_seal"/>
+    <property name="tag" value="lyssara_after_trial"/>
+    <property name="unique_tag" value="lyssara_after_trial_seal"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Aftermath Echo" type="spawn" gid="3" x="2112" y="1648">
+   <properties>
+    <property name="conditions" value="VariableEqual#lyssara_aftermath,21;VariableEqual#lyssara_path,2"/>
+    <property name="spawn" value="lyssara_echo_rupture"/>
+    <property name="tag" value="lyssara_after_trial"/>
+    <property name="unique_tag" value="lyssara_after_trial_rupture"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1796" y="2035">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_17,dungeon_chest_17"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="E10_tower_3_chest"/>
+   </properties>
+  </object>
+ 
+     <object id="1" name="Lyssara" type="spawn" x="1856" y="2080" width="32" height="32">
+      <properties>
+       <property name="conversation" value="lyssara_companion"/>
+       <property name="name" value="Lyssara"/>
+       <property name="portrait" value="68"/>
+       <property name="spawn" value="lyssara_companion"/>
+       <property name="tag" value="lyssara_companion"/>
+       <property name="unique_tag" value="lyssara_companion"/>
+       <property name="wander" value="1"/>
+           <property name="sprite" value="female_white"/>
+         <property name="gender" value="f"/>
+     <property name="faction" value="#civilian#"/>
+    </properties>
+     </object></objectgroup>
+</map>

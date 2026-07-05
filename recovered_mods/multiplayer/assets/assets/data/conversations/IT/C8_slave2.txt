@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Ты привёл нас прямо в лапы этих тварей, негодяй!	¿po?	2		
+2	A	Мне очень жаль.	po.	3		
+3,slave1	Q	 Они вернуть нас обратно в клетки!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 Я не хочу снова быть в кандалах!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 Для них мы просто животные!	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Или убьют, если не подченимся!	¿po?	10		"NPCStopFollowing#"		
+10	Q	 Лучше смерть, чем неволя!	¿po?	0		"SetVariable#will_or_death,100;NPCHostile#slave1;NPCHostile#slave2;NPCHostile#slave3;NPCHostile#slave4"

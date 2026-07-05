@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](Runas frias pulsam sob a lama)[] Este deve ser um dos focos de Lyssara.	[BLUE](Runas frias laten bajo el barro)[] Este debe ser uno de los focos de Lyssara.	2	"VariableGreater#woven_fate,9;VariableLower#lyssara_shard_river,1"		
+1	Q	O foco do rio ja esta estavel.	El foco del rio ya esta estable.	0	VariableEqual#lyssara_shard_river,1		
+2	A	Estabilizar o foco. (Leave)	Estabilizar el foco.	0			
+2	A	Deixar para depois. (Leave)	Dejarlo por ahora.	0			
+3	Q	[BLUE](A agua se acalma e o brilho some)[] A ressonancia ficou segura.	[BLUE](El agua se calma y el brillo desaparece)[] La resonancia quedo estable.	0	VariableLower#woven_fate,40	"SetVariable#lyssara_shard_river,1;SetVariable#woven_fate,40;GainXP#250;GainGold#120"	
+3	Q	[BLUE](A agua se acalma e o brilho some)[] A ressonancia ficou segura.	[BLUE](El agua se calma y el brillo desaparece)[] La resonancia quedo estable.	0	VariableGreater#woven_fate,39	"SetVariable#lyssara_shard_river,1;GainXP#250;GainGold#120"	

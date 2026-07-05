@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This lever is stuck, part of the Acid Elementals have been banished and shouldn't return again.	Esta palanca está atascada, parte de los Elementales de Ácido han sido desterrados y no regresarán.	0	IsItemActive#lever_golems	
+1	Q	This lever has a plaque besides it. It reads: 'Emergency System, use it to banish all Acid Elementals from the complex. Never use without authorization'	Junto a esta palanca hay una placa. Dice: 'Sistema de emergencia, úsese para desterrar a todos los Elementales de Ácido del complejo. No usar sin autorización'	2		
+2	A	That sure sounds useful [BLUE](Push the lever)[]	Eso suena bastante útil [BLUE](Empujarla palanca)[]	3		
+2	A	I prefer not to touch this.	Mejor no tocarla.	0		
+3	Q	A disembodied female voice echoes in the room. 'Thanks for using a Golems&Elementals Service. Banishing in progress...'	Una voz incorpórea de mujer resuena en la habitación. 'Gracias por usar un servicio de Golems & Elementales. Destierro en proceso...'	4		"NPCDespawn#golems_banish;NPCSpawn#security_guard;ItemActivate#lever_golems"
+4	A	Awesome, and I thought this wouldn't work...!	Genial, ¡y yo que pensaba que esto no iba a funcionar!	5		
+5	Q	Banishing progress... 30%...  40%...  50%... 60%...	Progreso del destierro 30%... 40%... 50%... 60%...	6		
+6	A	Come on, die quietly, my corrosive green friends...	Vamos... Morid en silencio, mis corrosivos amigos verdes...	7		
+7	Q	ALERT! Intruder detected. If you believe this message to be in error, please fill in a report. For your safety, an iron golem has been summoned.	¡ALERTA! Intruso detectado. Operación abortada. Si crée que este mensaje es un error, por favor rellene un informe. Para su seguridad, le enviamos un Golem de Hierro.	0		

@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Greetings and welcome to the Hall of the Travellers. We are the wizards born with the innate capability to build and handle magical portals. For a fee of [BLUE]150 gold[] we can teleport you to any of the Enclaves across the Kingdoms.	Saludos y bienvenido a las Estancias de los Viajeros. Somos los especialistas en crear y emplear portales mágicos. Por el precio de [BLUE]150 monedas[] podemos trasladarte a cualquiera de los Enclaves en los Reinos.	2		
+2	A	Travellers? I would like to ask about a Traveller mage called Amarisa.	¿Viajeros? Me gustaría preguntar por una maga Viajera, llamada Amarisa.	50	"VariableGreater#where_is_amarisa,0;VariableLower#where_is_amarisa,100"	
+2	A	Will I be able to return here just as easily?	¿Podré regresar aquí con la misma facilidad?	10		
+2	A	I would like to use your teleportation circle.	Me gustaría usar vuestro círculo de teleportación.	3		
+3	Q	Sure, we can teleport you to one of our enclaves through the Kingdoms [BLUE](he points to a map)[]. The fee is [BLUE]150 gold[].	Claro, podemos teleportarte a cualquiera de nuestros Enclaves en los Reinos. [BLUE](Te señala un mapa)[]. 	60		
+4	A	The Inori Enclave, near [BLUE]New Garand[].	El Enclave de Inori, junto a [BLUE]New Garand[].	35		
+4	A	The Sagar Enclave, near [BLUE]Lannegar[].	El Enclave de Sagar, cerca de [BLUE]Lannegar[].	5		
+4	A	The Iron Enclave, near [BLUE]Freetown[].	El Enclave de Hierro, junto a [BLUE]Freetown[].	19		
+4	A	The Great Plains Enclave, near [BLUE]Nivarian[].	El Enclave de las Grandes Llanuras, cerca de [BLUE]Nivarian[].	30		
+5	Q	Certainly. Say when you're ready...	De acuerdo, di cuándo estás preparado...	6		
+6	A	I am ready!	Estoy preparado.	0		"loseGold#150;Particle#;Travel#I10_tower,2;Particle#teleport"
+10	Q	If you are a member of our Wizard's Guild, then yes. You can freely teleport back to Icemist from any Enclave. But not otherwise.	Si eres miembro del Gremio de Magos podrás teleportarte a Icemist libremente desde cualquier enclave. Pero sólo en ese caso.	11		
+11	A	Thanks, I'll stay here a little longer.	Gracias, me quedaré por aquí un poco más.	0		
+11	A	Alright. I am interested in being teleported.	Entiendo. Estoy interesado en ser teleportado.	3		
+19	Q	Certainly. Say when you're ready...	De acuerdo, di cuándo estás preparado...	20		
+20	A	I am ready!	Estoy preparado.	0		"loseGold#150;Particle#teleport;Travel#D9_tower,2;Particle#teleport"
+30	Q	Certainly. Say when you're ready...	De acuerdo, di cuándo estás preparado...	31		
+31	A	I am ready!	Estoy preparado.	0		"loseGold#150;Particle#teleport;Travel#E11_tower,2;Particle#teleport"
+35	Q	Certainly. Say when you're ready...	De acuerdo, di cuándo estás preparado...	36		
+36	A	I am ready!	Estoy preparado.	0		"loseGold#150;Particle#teleport;Travel#G8_tower,2;Particle#teleport"
+50	Q	Amarisa! I haven't seen her in ages. Didn't see receive that wondrous magical letter about an inheritance? She's probably rich now, and has forgotten about her companion Travellers.	¡Amarisa! No la he visto en mucho tiempo. ¿No había recibido una carta mágica que hablaba de una herencia? Seguramente ahora es rica, y se ha olvidado de sus compañeros Viajeros.	0		
+60	A	I think I'll stay in Icemist for now.	Creo que de momento me quedo en Icemist.	0		
+60	A	Fine, here is the 150 gold. I want to be teleported.	De acuerdo, aquí tienes los 150. Quiero ser teleportado.	61	PlayerHasGold#150	
+61	Q	Excellent. What will be your destination?	Excelente. ¿Cuál será tu destino?	4		

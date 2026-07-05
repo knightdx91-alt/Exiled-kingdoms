@@ -1,0 +1,1365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="15">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="dark_chamber" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="cave_fire.tsx" firstgid="733" />
+  <tileset source="icemist_walls.tsx" firstgid="1213" />
+  <tileset source="icemist_large.tsx" firstgid="1253" />
+  <tileset firstgid="1293" name="pentagram" columns="4" tilecount="16" tileheight="32" tilewidth="64">
+    <image source="pentagram.png" width="256" height="128" />
+  </tileset>
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OAQ0AAAgDoNs/qiWM4aaQgAQAAAAAAAAAAAAAAAB+69oeAAAAAAAAANw3SkQH+gBRAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2a6bKiMBCFEXTe/wmmZvszy6/7PiqKC9bcV1CHHnO0DU1ASILO9Kk6xSJFko9OZ7k3SVQ+tUnr/pCNXavn0E5gA6uSZJbdeBCr/An57FPZMWMcfHY9+DTFn69+anM5VV5WLiMzAp9HtWn4vmdP3xnvIyYL45I5FqMhfJLsPuao33JWuw4uhXtgT0zmldPqvYV5dsmOMRgN4SP1Sc5I6nun9D73bQRGG8OF3kFc1iyOCiuWQssHH/s7gtHOtG0tnJfs+t2Y85lkl99WjNfaHIvAuciVW/vaZz2JLzgV5rhisbQw/LaBYoi3K8vqbT11ZHK0rn1qa1hg7rFm5WwtFw33yQfjvnzguTke2L2JwM5l33yWpu2IHTjL6hxsdmhLXz5noX2ldX1oOIfzNCwfxA/yVFP8dDEXZy0Z5SzYOcabNKuz4s+NET/IQxMzzvN2r3qUCw5Jdjs/szLa2rlvOOeeCu/xzQd1l+Inyepx0VVXPoIwN8lNjPC5it1feL+aC7+F5rM27Ziy74w6rnrGDsnFhwQmhTnaMQUmUj5aCM+F4ENj/DG9ccIckTOiY595Bb3j1MKH2k5zst9WHwIT3MtYPuIcbXa++ZBmbJwqLEZLw6fP3LZr/OTs6Mo19n3eH3k8hRAY8VwEPkVAPjx3vztyCvoQ6rZx9MdQmlnzHXs9+6ja+KDMkuUgaVyS+pCdw/kzMYS1Rx8uEMb2LmXtTfyAEfqL3aeksU3qjzG098CnLX5QDsYx9BlpHMc9PMPHLcwnzxEZxeRzZIyaxm1+XaZ1jtLaI+RcyQcf1/gOzYQ5sJ1z+LU0j5Ry1Cvw6RI/JM6oaRxvctPvoRWTD0mKoyEOrdh8SD4YxZKP8f1RPv+TlI9b2O+x99D0/w8uwloJf0MiNumA/aR/TcSB1gnYY8s1hu5EY9HZzBH3JpbAJ9cY+ivsCdD6YaV8RBGjxNo7UT73wtwN+6Sqe9nrpJD6mPpzLMVcA/hi86Z8niZ+SMrHrVjra+XjFrXrZ+VvzL+Uz1XUrq9WOz8rn6temc8pMp+3F+PzSPz0bccrx89R+TQqZvz8qPyF+fuT8+kzNxzCx5e5KJc1WfkonzaH4PMpvVj5tPOZdtwbC9W+Z+fTNX7G5qB8npMP/rfLlqvcsd21nkP5uDQ2A+WjfJTP+Hx8CUy6emwGykf5KJ84dY8h5eOW8nFL+bilfPxK+ahU3fQHGcrBhgBRAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3a3RKBQBjG8UbiKEm+meGU07oRxkW6CfdmmnnNEBuR2o//72THMqZ9duvdwvMAAAAAQG8Hv+0jAAAAvzpSzwHAeCeu5QAAAAAAAE7bBq/7h4p+eF4k2YxfZLRxPLeBjD+Rdu54HvdCyWIk7UzatcMZRZ3H17FkMZV2Je3O4Yxy6V1OE8li6XgmubOif1GSzaijfs8FewvXTfLHOU0dXy+6u3Tr+Z5BYZ7DivNe9fMwWyzzXawnQ9aBNsr2jYGFdbAuXbJ5ksl57ZPNW+yZzKN6Ftg0XY6jTU1k8Om++d/nctlYMw2uI9EX/6HsK8ak6jdZ1Xx6igxU/TnTnv9lheO93SOkLY7Dtpps23jwuTFz3xgba1ZdymoWHtn4uwOAelwB6s6sewBRAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XsQ0AIAgEQMNGOrGjWriAHYp3CT3Nk6c1AAAAAAAAAAAAAAAAXtUjewP405A9APiWHnDOvwI1ZGbZHbnbjD3cr1qW9DEAgLctEAhMxwBRAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1ayW4TQRAd7JibAQcCYU1wlpsRlwQSEIIPQSwSR6IEgTixHEDiB0D8CzgkJCyS2Q4gkPgI4AtgSu4ilUrvy0xG8ZNaHndP93S/qXpV3XaWDRATh+tZticvw3k5JT6hHKmXPbPyMZJzcDovi3l5yPjYP+AnawpuFiVcbBd+4B3OkwK2PStsPrWNj+bj7xNlUjzrgfi05WdEzBnnj3PHdRwMXMOcov/tvL4dYXxbtMRzJgRfhyyfO2O470TgGoCfW5r+Rdn5jKPdIJrk/jFij+Okvi1sidrZsLCzeVZm2ffjhvng2Kl9renJT4vcv5dcNxPP93zB8aTlyc+cgp9RZkOh4HxQgGam4OcwsXG047b4TjWW+wFto/bfFm2oN1T/oZxl32V1/Ptkfeu8ZTiRwMfAZu5Lxrxt+RyVbsZ8l6r4JQO+W5WWzTvOyxR7fFEWP7GRSkPPROaH5/axMCLREYyrXDsAOg2UQXX/3pLsB/MLnaZRtEqyzZj82GoAcGOb0/Kxx+pb44ZLbHBFTH7wHZts2+eZppwmhfZBLhJTf1Qayfny2ceYcmLgZykBRzHtxyXP9M39Ve8zVfyKyQ9g1FILXO3WtOdMlf/E5gdgY0e+e2tVP9kzY8T4FPwA+H4F547xxzV+2ew5Y+8jATH1WQd8/77vw/bMInae1K4Xc8bfCuTH9szCRofOecwBeaJ5+ylJ8UUs+zHZO/B4ryCfuJw/52peruflWuAzO/X+eL782J6Z2sZPV+BZtqn4oiO4Tu1fgBQcpT7z7Ag7TK3PiFgcuf4G4ouO8NEi7AdBcwzT2afqe2peEJ2C4vtOBdoPxll6vj74/8HWvIaeU6baA1QJury4PbAh4/nFTrehY2LveUPBw0C3+xypcpoBP33IzjAghzs64Oc/uFantJ3eUJYti7JCrtfF52tSR69lfT4MpZsnBY/1Kfnpatb03LFeN1ZM8FhWFj9ljqXDMaZBKfl5VUF+APQ/him1ma/pp+Ma6f1F8lPUfvWNYk3PPMYqkh/U6NR582pF/Sv0PNsWVdRngOn35lhYI2u649H/LrnezvZD87y3LJd7S/I9nsdV3X5s+YG5/d3Vv55pbNTTawDc05Xw88RvmlvmUBRc9dllbvReVfzyQVH8wHnYcUd+YJ0na1k2nZeJ2ka9rE5mP75Q5T/o7+vEx2Pt02jMtdXnruBnSsIPr6Pr4Pmza35I8ZX0VeUNFxvh74T2T+1fMX2iJ+zk25B+XN9n9iRj2/ID7253zXwf3iu7DoWtrvnyg/1c+KFxXRbLfyjOamgOwOvh871kDV9Y3xXW5xPp8y6/fmpYpyuw33cHfoqMqS6Y1sw7pv2Y9qcx/SMmPhfkX5yfnsQnqA9x/8L7QNd6wi/Ad6bqm/0F29cN7csW7an0GfdC4FMHFP8fAN3DPJnjQkNev2leEg2/1ojYTp51hc1nOS+PsnD70WlOiN4A/y/yz5eK9lVDe9eiHSGLX13JfT7Q8RNyHqqb16whb3Ntp9dLeduthrzNBV8t7CfkPMu01wptp+v+yPIOWj45rIHmL1T3MDfB3GJF6B5yeMmgNar5y/xjQYyl8q8Foi+m9tjQ+ctBpoVHamH7bZW+3jToL7av2fSPDHhnfxTxSIZ3FnN4rKjnuRKPg3x9oe0xAGP+duAnBHwvQgv4rk4zTO2uumKLmOdTJmzXvYgORc65qvyo9Gcs18JxooeQY+j2NTbPqhp4/IJz8l+Cr8lav1Co/PGiRbyvIj8mzeMaGbLGKvLjChc+i4gvA5SHfyehgEYAUQAA
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="2215" gid="245" y="370">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="2290" y="330" width="15" height="90">
+      <properties>
+        <property name="area_id" value="M7" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="3" x="1915" gid="133" y="635" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="4" x="1915" gid="133" y="635" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="5" x="1815" gid="133" y="605" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="6" x="1815" gid="133" y="605" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="7" x="1755" gid="133" y="545" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="8" x="1755" gid="133" y="545" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="9" x="1945" gid="133" y="545" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="10" x="1945" gid="133" y="545" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="11" x="1845" gid="133" y="505" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="12" x="1845" gid="133" y="505" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="13" x="1785" gid="133" y="445" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="14" x="1785" gid="133" y="445" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="695" gid="133" y="885" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="695" gid="133" y="885" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="565" gid="133" y="825" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="565" gid="133" y="825" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="825" gid="133" y="795" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="825" gid="133" y="795" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1055" gid="133" y="795" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1055" gid="133" y="795" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="635" gid="133" y="725" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="635" gid="133" y="725" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="895" gid="133" y="695" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="895" gid="133" y="695" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="475" gid="133" y="665" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="475" gid="133" y="665" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="605" gid="133" y="635" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="605" gid="133" y="635" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="985" gid="133" y="635" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="985" gid="133" y="635" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="725" gid="133" y="605" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="725" gid="133" y="605" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="255" gid="133" y="1085" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="255" gid="133" y="1085" width="64" height="64">
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1885" gid="133" y="405" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1885" gid="133" y="405" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1755" gid="133" y="345" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1755" gid="133" y="345" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1945" gid="133" y="315" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1945" gid="133" y="315" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1815" gid="133" y="285" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1815" gid="133" y="285" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1685" gid="133" y="255" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1685" gid="133" y="255" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1785" gid="133" y="185" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1785" gid="133" y="185" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="2085" gid="133" y="385" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="2085" gid="133" y="385" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="2175" gid="133" y="415" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="2175" gid="133" y="415" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1175" gid="133" y="255" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1175" gid="133" y="255" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1305" gid="133" y="285" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1305" gid="133" y="285" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1435" gid="133" y="255" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1435" gid="133" y="255" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1565" gid="133" y="285" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1565" gid="133" y="285" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="985" gid="133" y="185" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="985" gid="133" y="185" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="955" gid="133" y="315" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="955" gid="133" y="315" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="1015" gid="133" y="475" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="1015" gid="133" y="475" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="925" gid="133" y="575" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="925" gid="133" y="575" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="885" gid="133" y="405" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="885" gid="133" y="405" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="505" gid="133" y="215" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="505" gid="133" y="215" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="535" gid="133" y="345" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="535" gid="133" y="345" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="475" gid="133" y="445" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="475" gid="133" y="445" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="415" gid="133" y="515" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="415" gid="133" y="515" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="505" gid="133" y="565" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="505" gid="133" y="565" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="635" gid="133" y="505" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="635" gid="133" y="505" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="725" gid="133" y="445" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="725" gid="133" y="445" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="795" gid="133" y="535" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="795" gid="133" y="535" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="285" gid="133" y="475" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="285" gid="133" y="475" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="155" gid="133" y="505" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="155" gid="133" y="505" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="155" gid="133" y="705" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="155" gid="133" y="705" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="155" gid="133" y="865" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="155" gid="133" y="865" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="285" gid="133" y="1565" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="285" gid="133" y="1565" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="285" gid="133" y="1375" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="285" gid="133" y="1375" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="265" gid="133" y="1185" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="265" gid="133" y="1185" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="315" gid="133" y="1055" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="315" gid="133" y="1055" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light"  x="195" gid="133" y="1025" width="64" height="64" />
+    <object name="flames" type="mapeffect"  x="195" gid="133" y="1025" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+  </object>
+  <object name="bowman" type="spawn" gid="247" x="1235" y="1425">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="kingly_bowman_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="slayer" type="spawn" gid="247" x="1235" y="1385">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="slayer_dragons_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="247" x="1295" y="1455">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="knight"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="247" x="1495" y="1455">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="female_knight"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wizard2" type="spawn" gid="247" x="1425" y="1635">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="mighty_wizard2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="golem" type="spawn" gid="247" x="1495" y="1615">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="golem_iron_good"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="icelem" type="spawn" gid="247" x="1355" y="1575">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="ice_elemental_good"/>
+    <property name="wander" value="3"/>
+   </properties>
+    </object>
+    <object name="archer2" type="spawn"  x="1265" gid="247" y="1515">
+      <properties>
+        <property name="respawn" value="25" />
+        <property name="spawn" value="mist_hunter" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="archer2" type="spawn"  x="1525" gid="247" y="1515">
+      <properties>
+        <property name="respawn" value="25" />
+        <property name="spawn" value="mist_hunter" />
+        <property name="wander" value="3" />
+      </properties>
+  </object>
+  <object name="doctor" type="spawn" gid="247" x="1235" y="1515">
+   <properties>
+    <property name="respawn" value="23"/>
+    <property name="spawn" value="magician_doctor"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="hunter" type="spawn" gid="247" x="1555" y="1515">
+   <properties>
+    <property name="respawn" value="26"/>
+    <property name="spawn" value="hunter_evilspirits"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="fanatic" type="spawn" gid="247" x="1185" y="1385">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="ardent_fanatic"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="cat" type="spawn" gid="247" x="1235" y="1485">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="mini_sabercat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="undaunt" type="spawn" gid="247" x="1585" y="1485">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="undaunted_male_good"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="banishing" type="spawn" gid="247" x="1395" y="1555">
+   <properties>
+    <property name="respawn" value="50"/>
+    <property name="spawn" value="banishing_devil"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="robin" type="spawn" gid="247" x="1175" y="1425">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="robin_good"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="machete" type="spawn" gid="247" x="1615" y="1455">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="bandit_machete"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="defender" type="spawn" gid="247" x="1215" y="1565">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="defender_sunlight"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="necroman" type="spawn" gid="247" x="1645" y="1585">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="necromancer_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1645" y="1555">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="tame_zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="guardian" type="spawn" gid="247" x="1095" y="1225">
+   <properties>
+    <property name="respawn" value="55"/>
+    <property name="spawn" value="ancient_guardian"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guardian" type="spawn" gid="247" x="1095" y="1685">
+   <properties>
+    <property name="respawn" value="55"/>
+    <property name="spawn" value="ancient_guardian"/>
+    <property name="wander" value="0"/>
+   </properties>
+    </object>
+    <object name="drake" type="spawn"  x="1585" gid="247" y="1365">
+      <properties>
+        <property name="respawn" value="25" />
+        <property name="spawn" value="mini_drake" />
+        <property name="wander" value="3" />
+      </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1715" y="335">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1775" y="335">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1845" y="335">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1905" y="335">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1975" y="335">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="465" y="495">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="525" y="495">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="595" y="495">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="655" y="495">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="725" y="495">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="785" y="495">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="855" y="495">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="915" y="495">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="975" y="495">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="625" y="2065">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="625" y="1965">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="625" y="1865">
+   <properties>
+    <property name="respawn" value="17"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1395" y="1435">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="1345" y="1475">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_sergeant_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="1445" y="1475">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_sergeant_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="soldier" type="spawn" gid="247" x="1395" y="1515">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="human_soldier_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1775" y="245">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1835" y="245">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1905" y="245">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="405" y="465">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="525" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="585" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="655" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="715" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="785" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="845" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="915" y="435">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1055" y="465">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="565" y="1995">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="565" y="2125">
+   <properties>
+    <property name="respawn" value="25"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="1845" y="175">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="1745" y="175">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="595" y="375">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="855" y="375">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="435" y="435">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="1025" y="435">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="sergeant" type="spawn" gid="247" x="505" y="1935">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="human_sergeant_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="slayer" type="spawn" gid="247" x="1565" y="1325">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="slayer_dragons_male"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="bowman" type="spawn" gid="247" x="1565" y="1425">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="kingly_bowman_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="bowman" type="spawn" gid="247" x="915" y="345">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="kingly_bowman_female"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="247" x="465" y="375">
+   <properties>
+    <property name="respawn" value="35"/>
+    <property name="spawn" value="wizard_miracle2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="247" x="975" y="375">
+   <properties>
+    <property name="respawn" value="35"/>
+    <property name="spawn" value="wizard_miracle2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="247" x="505" y="1845">
+   <properties>
+    <property name="respawn" value="35"/>
+    <property name="spawn" value="wizard_miracle2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="247" x="1265" y="1585">
+   <properties>
+    <property name="respawn" value="35"/>
+    <property name="spawn" value="wizard_miracle2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="247" x="1525" y="1585">
+   <properties>
+    <property name="respawn" value="35"/>
+    <property name="spawn" value="wizard_miracle3"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="247" x="685" y="375">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="human_captain_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="247" x="755" y="375">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="247" x="465" y="2095">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="247" x="1295" y="1525">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="human_captain_female"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="247" x="1495" y="1525">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="succubgreat" type="spawn" gid="247" x="1865" y="1685">
+   <properties>
+    <property name="respawn" value="95"/>
+    <property name="spawn" value="greater_succubus"/>
+   </properties>
+  </object>
+  <object name="EVIL" type="spawn" gid="247" x="1395" y="1365">
+   <properties>
+    <property name="respawn" value="95"/>
+    <property name="spawn" value="embodiment_evil"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="505" y="815">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="succubus"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="595" y="815">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="succubus"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="855" y="815">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="succubus"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="975" y="815">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="succubus"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="675" y="815">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="demonic_captain"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="775" y="815">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="demonic_captain"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="975" y="1905">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="1075" y="2035">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="1235" y="1905">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="1325" y="2035">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="1485" y="1905">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="succub" type="spawn" gid="247" x="1585" y="2035">
+   <properties>
+    <property name="spawn" value="succubus"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="685" y="1525">
+   <properties>
+    <property name="spawn" value="demonic_captain"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="845" y="1525">
+   <properties>
+    <property name="spawn" value="demonic_captain"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="655" y="1685">
+   <properties>
+    <property name="spawn" value="demonic_captain"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="demoncap" type="spawn" gid="247" x="915" y="1685">
+   <properties>
+    <property name="spawn" value="demonic_captain"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1745" y="465">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1845" y="465">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1945" y="465">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1935" y="755">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1935" y="735">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1935" y="705">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1935" y="685">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1275" y="785">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1245" y="785">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1215" y="785">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1185" y="785">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="1155" y="785">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="imp_fire_priest"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="465" y="695">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="595" y="695">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="725" y="695">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="855" y="695">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="975" y="695">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="1745" y="565">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="imp2" type="spawn" gid="247" x="1945" y="565">
+   <properties>
+    <property name="respawn" value="12"/>
+    <property name="spawn" value="imp_greater"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="405" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="525" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="655" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="785" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="915" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="1045" y="625">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon" type="spawn" gid="247" x="1845" y="565">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="demon_fire"/>
+   </properties>
+  </object>
+  <object name="demon2" type="spawn" gid="247" x="525" y="755">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="IM_demon"/>
+   </properties>
+  </object>
+  <object name="demon2" type="spawn" gid="247" x="655" y="755">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="IM_demon"/>
+   </properties>
+  </object>
+  <object name="demon2" type="spawn" gid="247" x="785" y="755">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="IM_demon"/>
+   </properties>
+  </object>
+  <object name="demon2" type="spawn" gid="247" x="915" y="755">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="IM_demon"/>
+   </properties>
+  </object>
+  <object name="demon2" type="spawn" gid="247" x="1935" y="655">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="IM_demon"/>
+   </properties>
+  </object>
+  <object name="elem1" type="spawn" gid="247" x="725" y="2225">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="fire_elemental_1"/>
+   </properties>
+  </object>
+  <object name="elem1" type="spawn" gid="247" x="725" y="2125">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="fire_elemental_1"/>
+   </properties>
+  </object>
+  <object name="elem1" type="spawn" gid="247" x="725" y="2025">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="fire_elemental_1"/>
+   </properties>
+  </object>
+  <object name="elem1" type="spawn" gid="247" x="725" y="1935">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="fire_elemental_1"/>
+   </properties>
+  </object>
+  <object name="elem1" type="spawn" gid="247" x="725" y="1845">
+   <properties>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="fire_elemental_1"/>
+   </properties>
+  </object>
+  <object name="elem2" type="spawn" gid="247" x="785" y="2195">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="fire_elemental_2"/>
+   </properties>
+  </object>
+  <object name="elem2" type="spawn" gid="247" x="785" y="2095">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="fire_elemental_2"/>
+   </properties>
+  </object>
+  <object name="elem2" type="spawn" gid="247" x="785" y="1965">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="fire_elemental_2"/>
+   </properties>
+  </object>
+  <object name="elem2" type="spawn" gid="247" x="785" y="1865">
+   <properties>
+    <property name="respawn" value="20"/>
+    <property name="spawn" value="fire_elemental_2"/>
+   </properties>
+  </object>
+  <object name="elem3" type="spawn" gid="247" x="845" y="2165">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="fire_elemental_3"/>
+   </properties>
+  </object>
+  <object name="elem3" type="spawn" gid="247" x="845" y="1905">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="fire_elemental_3"/>
+   </properties>
+  </object>
+  <object name="elem3" type="spawn" gid="247" x="815" y="2035">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="fire_elemental_3"/>
+   </properties>
+  </object>
+  <object name="elemepic" type="spawn" gid="247" x="885" y="2035">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="fire_elemental_epic"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="280" y="2010">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="orc_chest_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="249" x="440" y="90" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="249" x="670" y="1530" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_4"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1820" y="1850">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="loot_table" value="shelf_s1"/>
+    <property name="name" value="@SHELF"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="945" y="1845">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1205" y="1845">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1465" y="1845">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="945" y="2005">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1205" y="2005">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1465" y="2005">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

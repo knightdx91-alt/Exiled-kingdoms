@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](обычный на вид стол, но в одном из углов вы замечаете углубление в виде монеты)[]  	port.	2		
+2	A	Положить монету Алариона.	¿port?	6	"VariableEqual#good_alarion,1;VariableEqual#royal_will,68;PlayerHasItem#10847"	
+2	A	Положить монету Алариона.	¿port?	5	"VariableLower#good_alarion,1;VariableEqual#royal_will,68;PlayerHasItem#10847"	
+2	A	Положить монету Алариона.	¿port?	4	"VariableEqual#royal_will,42;PlayerHasItem#10847"	
+2	A	Положить обычную монету.	¿port?	3	"playerhasGold#1"	
+2	A	Ничего не делать.	¿port?	0			
+3	Q	[BLUE](ничего не происходит)[] 	port.	0		
+4	Q	[BLUE](какое-то время ничего не происходит, как, вдруг, стол озаряет яркий свет, и в комнате появляется Аларион)[] 	port.	0		"NPCSpawn#alarion"
+5	Q	[BLUE](какое-то время ничего не происходит, как, вдруг, стол озаряет яркий свет, и в комнате появляется Аларион и Хавис)[] 	port.	0		"NPCSpawn#alarion;NPCSpawn#havis"
+6	Q	[BLUE](какое-то время ничего не происходит, как, вдруг, стол озаряет яркий свет, и в комнате появляется Аларион, Хавис и незнакомый вам мужчина)[] 	port.	0		"NPCSpawn#alarion;NPCSpawn#havis;NPCSpawn#soldat"

@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Неужели мы добрались?	¿po?	2			
+2	A	Как и обещал, мы на месте.	po.	3		
+3,slave1	Q	 Поверить не могу, но теперь мы сможем вернуться домой!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 И всё благодаря тебе, наш спаситель!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 Благословят тебя Северные боги!	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Мы никогда не забудем твою доброту!	¿po?	7		"NPCStopFollowing#"		
+7	Q	 Удачи тебе во всём, до встречи в наших родных краях!	¿po?	0		"SetVariable#will_or_death,120;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4;IncVariable#REP_north_kingdom,10"

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="24" height="28" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="20"/>
+  <property name="music" value="townhall"/>
+  <property name="name" value="New Garand's Temple"/>
+  <property name="name_ES" value="Templo de New Garand"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grassland.tsx"/>
+ <tileset firstgid="217" source="trees.tsx"/>
+ <tileset firstgid="233" source="natural_grounds.tsx"/>
+ <tileset firstgid="361" source="dungeon.tsx"/>
+ <tileset firstgid="601" source="grounds_indoor.tsx"/>
+ <tileset firstgid="761" name="bluewall" tilewidth="64" tileheight="128">
+  <image source="brickwalls2.png" width="512" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="825" source="town_objexts2.tsx"/>
+ <layer name="ground" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgeoIeJgaGTiTIaHwCpWUuhHQPtfkrtGHU//dxPCaC1HZ1UCG98oIvG7qdGehlI93fR2P3dQ9z9Qz38e4Z4/qW1+2mdf0fDn7D51HI/APypqtU=
+  </data>
+ </layer>
+ <layer name="ground2" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAOBnCoAAAQ==
+  </data>
+ </layer>
+ <layer name="objects" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzdVbsKAjEQ3LsrtPQPrBQUvULRxgdoLT7Qn1cbQQsb4VpR1F3d4HpgEs2luYFhLzNxGJaAAPlANwSImSvklOecJ+l15oTnXGh0pxl+z18K7xQADIVXDT/Ph+ClKY9Avi5/Jrxxyqukfkf5SpOebf/R92tPHDF/zySob12+9AaGfJuMNGYaz4Qesm/I13m20GV00GsISrTFO4w1bFl2pB7lCODK9284i3guRO9J/r+g/Atyw+8D8LvEk0D6xWGflJ8En9oOzzehpf1f8039XPuvDf22GfRfRC9KKM21Pxjys9i/z/60f11+FvvXwff+wTE/D/v32T8x9Hd5/zXP/Wue90//Q3dD/7Nl/wdNs0qT
+  </data>
+ </layer>
+ <layer name="roofs" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFfwl2mgXUAe+EXA3YTkBxqMun9gwaj7BxaMun9gwVBxPwBZFRDA
+  </data>
+ </layer>
+ <objectgroup name="data" width="24" height="28">
+  <object name="entry from farmlands" type="entry" gid="1" x="349" y="838">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="295" y="861" width="82" height="36">
+   <properties>
+    <property name="area_id" value="NG"/>
+    <property name="entry_id" value="22"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="288" y="352">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="conditions" value="VariableLower#guild_three,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="priest" type="staticNPC" gid="3" x="349" y="435">
+   <properties>
+    <property name="conditions" value="VariableLower#three_versus_eleven,100"/>
+    <property name="conversation" value="NG_temple_andrys"/>
+    <property name="name" value="@ANDRYS_STORME"/>
+    <property name="portrait" value="56"/>
+    <property name="sprite" value="male_grey_2"/>
+   </properties>
+  </object>
+  <object name="priest" type="staticNPC" gid="3" x="354" y="430">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="conversation" value="NG_priest"/>
+    <property name="faction" value="the_three"/>
+    <property name="name" value="@BROTHER_GABRIEL"/>
+    <property name="portrait" value="15"/>
+    <property name="sprite" value="male_grey_1"/>
+   </properties>
+  </object>
+  <object name="Hirge" type="spawn" gid="3" x="259" y="637">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="conversation" value="hirge"/>
+    <property name="spawn" value="hirge"/>
+    <property name="tag" value="hirge"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="5" x="308" y="127"/>
+  <object name="bishop" type="staticNPC" gid="3" x="237" y="473">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="conversation" value="NG_temple_bishop"/>
+    <property name="facing" value="r"/>
+    <property name="faction" value="the_three"/>
+    <property name="name" value="@BISHOP_ARANDIR"/>
+    <property name="portrait" value="20"/>
+    <property name="sprite" value="male_brown_12"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="398" y="632">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="330" y="749">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="531" y="194">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="spawn" value="villager_female_white"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="alchemist" type="staticNPC" gid="3" x="250" y="118">
+   <properties>
+    <property name="faction" value="the_three"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@ALCHEMIST_VLAZA"/>
+    <property name="portrait" value="15"/>
+    <property name="shop_items" value="5020,5010,142,144"/>
+    <property name="sprite" value="female_red_1"/>
+   </properties>
+  </object>
+  <object name="MArie" type="staticNPC" gid="3" x="382" y="124">
+   <properties>
+    <property name="conversation" value="NG_temple_marie"/>
+    <property name="faction" value="the_three"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@SISTER_MARIE"/>
+    <property name="portrait" value="13"/>
+    <property name="sprite" value="female_white_2"/>
+   </properties>
+  </object>
+  <object name="altar" type="conversation" gid="5" x="339" y="413">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="conversation" value="altar_the_three"/>
+    <property name="icon" value="altar"/>
+    <property name="name" value="@ALTAR_THREE"/>
+   </properties>
+  </object>
+  <object name="priest" type="staticNPC" gid="3" x="235" y="405">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,100"/>
+    <property name="conversation" value="NG_temple_mada"/>
+    <property name="facing" value="r"/>
+    <property name="faction" value="the_three"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@SISTER_MADA"/>
+    <property name="portrait" value="25"/>
+    <property name="sprite" value="female_white_2"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="137" y="221">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="90" y="90" width="29" height="31">
+   <properties>
+    <property name="area_id" value="NI_hall"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

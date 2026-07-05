@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	"Дверь ведущая наружу из башни волшебницы."	port.	4	AreaIs#I12_tower	
+1	Q	"Дверь в башню волшебницы открыта."	port.	2	"VariableGreater#holiday_coming,51"		
+1	Q	"Дверь башни вся покрыта толстым слоем льда, но когда вы прикасаетесь к нему, он мгновенно исчезает, а дверь приоткрывается."	port.	3	"VariableGreater#holiday_coming,49"		
+1	Q	"Дверь башни вся покрыта толстым слоем льда, открыть её невозможно."	port.	0		
+2	A	Остаться на улице.	port.	0		
+2	A	Войти.	port.	0		"Travel#I12_tower,1"
+3	A	Войти.	port.	0		"NPCSpawn#oberon;SetVariable#oberon_coming,1;Travel#I12_tower,1"
+4	A	Остаться в башне.	port.	0		
+4	A	Выйти.	port.	0		"Travel#I12,5"

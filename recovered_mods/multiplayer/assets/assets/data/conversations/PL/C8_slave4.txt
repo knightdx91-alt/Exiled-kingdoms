@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Не могу поверить, ты доставил нас домой! 	¿po?	2			
+2	A	Решил избавить вас опасности дорог.	po.	3		
+3,slave1	Q	 Мы не могли и надеяться, на такую благосклоность к нам!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 Мы навестим наших родных и друзей, чтоб они хоть чем-то возблагодарили тебя!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 [BLUE](один из спасённых рабов уходит, и вскоре возвращается с группой людей, которые тоже начинают вас благодарить)[]	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Прими эти дары в благодарность за спасение наших жизней!	¿po?	7		"NPCStopFollowing#"		
+7	Q	 Удачи тебе во всём, будь как дома в наших родных краях!	¿po?	0		"SetVariable#will_or_death,140;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4;IncVariable#REP_north_kingdom,10;GainItems#1004,4;GainItem#2004;GainItem#2014;GainItem#10294"

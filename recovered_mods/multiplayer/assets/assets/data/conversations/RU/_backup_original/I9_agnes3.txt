@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1,agnes	Q	 Теперь уж точно этот кусок дерьма не встанет!	¿po?	2			
+2,agnes	Q	 Одной подачки судьбы ему было предостаточно.	¿po?	3	"VariableEqual#death_fighter_l,2"		
+2,fighter1	Q	 Собаке - собачья смерть!	¿po?	3		"VariableLower#death_fighter_l,2;NPCStopFollowing#"		
+3,agnes	Q	 Наша работа здесь завершена.	¿po?	4	"VariableEqual#death_fighter_m,2"		
+3,fighter2	Q	 Наша работа здесь завершена.	¿po?	4		"VariableLower#death_fighter_m,2;NPCStopFollowing#"		
+4,agnes	Q	 Можешь возвращаться к госпаже, мой друг, я же пока проверю здесь - не затаилась ли где какая-нибудь крыса.	¿po?	5		"NPCStopFollowing#"		
+5	A	Ясно.	po.	0		"SetVariable#agnes_stop,4"

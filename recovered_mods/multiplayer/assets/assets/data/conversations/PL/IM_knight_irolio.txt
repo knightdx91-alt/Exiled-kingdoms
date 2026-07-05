@@ -1,0 +1,30 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Слушаюсь и повинуюсь.	port	15	NPCisFollower#	
+1	Q	[BLUE](Рыцарь в блестящих белых доспехах кивает)[] Приветствую. Я Сэр Иролио, глава Мистических Рыцарей и Элементалист.	[BLUE](El caballero con armadura brillante te saluda)[] Soy Sir Irolio, Líder de los Caballeros Arcanos y Elementalista.	2			
+2	A	Привет, вы случайно не знаете, где мы можем найти волшебника по имени Дженод?	port?	24	"VariableEqual#hate_through,10"		
+2	A	Кто такие Мистические Рыцари?	¿Qué son los Caballeros Arcanos?	3			
+2	A	Вы предлагаете обучение?	¿Ofreces entrenamiento?	10			
+2	A	На севере я наткнулся на тело волшебницы, при которой имелся дневник, в нём она писала, что пыталась найти какого-то рыцаря, предупредить об опасности и передать ему этот плащ, возможно вы знаете хозяина этого плаща?	¿port?	20	VariableEqual#lost_foreign_lands,10;PlayerHasItem#10460		
+2	A	Неважно, до свидания.	Disculpa, me voy.	0			
+2	A	[BLUE](С помощью грубой силы надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на него ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить его надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	"Мы - маги, которые решили усилить наши боевые возможности; не всё можно победить одними заклинаниями, а иногда сочетание стали с колдовством может быть больше, чем сумма частей..."	"Somos magos que escogemos mejorar nuestra habilidad de combate; no todo se puede vencer con hechizos, y juntar acero con magia es más que la suma de sus partes."	4			
+4	A	Логично. Вы предлагаете обучение?	Tiene sentido. ¿Ofreces entrenamiento?	10			
+4	A	Хорошо, если вы так говорите...	Si tú lo dices...	0			
+10	Q	"Мы, Мистические Рыцари, не делимся своими знаниями с кем попало. Однако, если ты выполнишь для нас задание, мы рассмотрим это. Я постоянно получаю письма от Сэра Сорома из Соллиги; он просит подкрепления для разведки или по какому-то другому банальному поводу. Если ты поможешь ему, вернись ко мне и мы посмотрим насчёт обучения."	"Los Caballeros Arcanos no comparten su sabiduría con el primero que pasa. Pero si haces una misión para nosotros, lo podemos considerar. Recibo muchas cartas de Sir Sorom en Solliga pidiendo refuerzos para una misión de exploración o algo parecido; si le ayudas y queda satisfecho, vuelve y veremos qué podemos enseñarte."	0	VariableLower#track_forsaken,100		
+10	Q	Сэр Сором, похоже, остался доволен твоими услугами, так что мы можем предоставить обучение за определённую плату. Ты заинтересован?	Sir Sorom está satisfecho con tu ayuda, así que podemos entrenarte, a cambio de oro. ¿Te interesa?	11			
+11	A	Чему вы можете меня научить?	¿Qué puedes enseñarme?	12			
+11	A	Может быть, в другой раз, спасибо.	Quizá en otro momento, gracias.	0			
+12	Q	Если ты Маг, я могу научить тебя [BLUE]Волшебному Клинку[], чтобы ты мог использовать зачарованное стихиями оружие с большой эффективностью. Я также могу научить тебя [BLUE]Горению[], которое сожжёт или ослабит твоих врагов.	Si eres un mago te puedo enseñar [BLUE]Arma Arcana[] para que puedas usar armas encantadas con los elementos. También puedo enseñarte [BLUE]Combustión[], que quema y debilita a tus enemigos.	13			
+13	A	Расскажите мне больше о Волшебном Клинке	Dime más acerca de Arma Arcana.	0		TrainSkill#arcane_blade	
+13	A	Расскажите мне больше о Горении.	Dime más acerca de Combustión.	0		TrainSkill#combustion	
+13	A	Может быть, в другой раз.	Quizá en otro momento.	0			
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт его под контроль)[]	port.	0		"LoseItem#10402;SetVariable#irolio_follow,3;NPCFollow#"	
+15	A	Молодец.	port.	0		
+15	A	[BLUE](Снять с него ошейник подчинения)[]	port.	0		"SetVariable#irolio_follow,1;NPCStopFollowing#"
+20	Q	Хм, этот плащ выглядит знакомым мне, кажется он принадлежит сэру Дэмиену, которого, как раз таки, я отправил на важное поручение пару дней назад, с тех пор от него нет никаких вестей.	port.	21			
+21	A	Возможно, с ним случилось что-то не хорошее.	port.	22			
+22	Q	Боюсь, что это так. Поэтому, не могли бы вы исполнить мою просьбу и отыскать этого рыцаря. В той местности, где вы наткнулись на тело волшебницы, или в соседней местности, может быть вам удастся найти какие-нибудь следы его пребывания.	port.	23			
+23	A	Я постараюсь отыскать его.	port.	0		"SetVariable#lost_foreign_lands,20"
+24	Q	Дженод? Я не знаю никого с подобным именем.	port.	0			

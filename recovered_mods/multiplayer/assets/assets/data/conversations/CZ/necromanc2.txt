@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	15	"VariableEqual#necro2_follow,3;NPCisFollower#"	
+1	Q	Я тебя слушаю, друг.	port	4	NPCisFollower#	
+1	Q	Эй, друг, не хочешь переправить всех живых в мир иной? За небольшое вознаграждение {LEVELx500} я готова тебе в этом помочь.	po  {LEVELx500}  rt.	2		
+2	A	Извини, но нас уже слишком много в группе.	port.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx500}"	"NPCFollow#;LoseGold#{LEVELx500}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	port.	3		
+2	A	[BLUE](С помощью грубой силы надеть на неё ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Незаметно и быстро надеть на неё ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		AGI#7
+2	A	[BLUE](Хитростью заставить её надеть ошейник подчинения)[]	¿po?	14	PlayerHasItem#10402		INT#7
+3	Q	Ладно, в одиночку ты всё равно не изнечтожишь мир, ещё увидимся.	port.	0		
+4	A	Ничего, давайте двигаться дальше.	port.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	port.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	port.	6		
+4	A	Эй, а ты владеешь магией?	port.	7		
+5	Q	Пока не все наши враги издохли, я рада буду вновь с тобой работать.	port.	0		NPCStopFollowing#
+6	Q	Конечто.	port	0		NPCMoveRandom#
+7	Q	Конечто, тёмные силы многому меня обучили, хочешь узреть более простые творения или что-то особенное, но для первого мне необходимо хотя бы малое зелье, а для второго сильное зелье маны, или использовать телепорт?	port.	8		
+8	A	У меня есть малое зелье маны, давай попроще.	port.	9	"PlayerHasItem#5020"	"LoseItem#5020"
+8	A	У меня есть коньяк из Дипфроста, давай попроще.	port.	9	"PlayerHasItem#5037"	"LoseItem#5037"
+8	A	У меня есть зелье маны, давай попроще.	port.	10	"PlayerHasItem#5021"	
+8	A	У меня есть сильное зелье маны, давай особенное.	port.	11	"PlayerHasItem#5052"	
+8	A	Телепортируй нас.	port.	12		
+8	A	Ничего не надо.	port.	0		
+9	Q	Восстань армия нежити!	port	0		Summon#skeleton_archer,6,40;Summon#skeleton_archer,6,40;Summon#alive_carrion,8,40;Summon#death_knight,8,40;Summon#death_knight,8,40
+10	Q	Восстань армия нежити!	port	0		LoseItem#5021;Summon#skeleton_archer,9,40;Summon#skeleton_archer,9,40;Summon#alive_carrion,14,40;Summon#death_knight,12,40;Summon#death_knight,12,40
+11	Q	Явись чёрный проклятый мертвец!	port	0		LoseItem#5052;Summon#lich,20,120
+12	Q	Телепортироваю, куда пожелаешь.	port	0		Teleport#
+14	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт её под контроль)[]	port.	0		"LoseItem#10402;SetVariable#necro2_follow,3;NPCFollow#"	
+15	A	Хорошая девочка.	port.	0		
+15	A	Эй, а ты владеешь магией?	port.	7		
+15	A	[BLUE](Снять с неё ошейник подчинения)[]	port.	0		"SetVariable#necro2_follow,1;NPCStopFollowing#"

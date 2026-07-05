@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Умри, негодяй! 	port.	0	"VariableEqual#will_or_death,100"	
+1	Q	 Мы все погибли в этой чужой стране!	¿po?	2	"VariableGreater#will_or_death,25;VariableLower#will_or_death,45"	
+2	A	Мне очень жаль.	po.	3		
+3,slave1	Q	 Не вернёмся мы в родные края!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 Не видать нам больше никогда нашего дома!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 Но хотя бы умрём мы не кандалах!	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Наши Северные боги встретят нас!	¿po?	10		"NPCStopFollowing#"		
+10	Q	 Мы идём!	¿po?	0		"SetVariable#will_or_death,100;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4"

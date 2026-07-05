@@ -1,0 +1,975 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="32" nextobjectid="133">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Tower of Fangs, lower tier" />
+    <property name="name_ES" value="Torre Abandonada" />
+    <property name="sw1" value="53" />
+    <property name="sw2" value="54" />
+    <property name="sw3" value="61" />
+    <property name="sw4" value="51" />
+    <property name="sw5" value="22" />
+    <property name="sw6" value="52" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="253" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="town_objects3.tsx" firstgid="493" />
+  <tileset source="town_objexts2.tsx" firstgid="525" />
+  <layer name="nonwalk" visible="0" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJztw7ENAAAIA6D+/7KLax9wMZCQAAAAAAAAAADwzVQAAAAAAAAAAAAAAAAAAAAAbi1KxgLy
+  </data>
+  </layer>
+  <layer name="water" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJzt0EEJADEQwMBqOTj/Fks15LEtzCgIWQsAAAAAAAAAAOBu33TA486/fzriYf41/jX+Nf41/jX+Nf41/jX+Nf41/jX+Nf41/jX+df4BAAAAAAAAAAAAzNuqjQS4
+  </data>
+  </layer>
+  <layer name="ground" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJzt2U1OwzAQQOEJ5ApdVdAs2CA4Y5QzcGKI2ohpfm1Pncb2+6QRyQLUPNlNG0SANLwGTj06/6nmz3PzMjP0c3fkfu3f73TV9ecw3cLxcL63I/frKv95tiP1S2H9jdHP5kj339L69Y1cpnWcFN//Yq0/Pa79Slt/9Avv57p3XaW6f33Varh/+Ftbj/TbRj+bmP1KeP+L2W+OXnM50a1iaulnQj8b+tnQz4Z+NvSzoZ8N/Wxy6Bf6jMuHzzPC1OzZr5H7Vl+38+GZ2dsDrmdvof36cV1HW2tOP3dMjaXf3P/rh9HoF79fv3dT7BcqpN9FHX/KdP2d93v5T7fWrqT9G4p+NuNejaz3q4V+ms/6G9p8y/1nvTpgcrHV70PN6TZL6+8k7pOLmP1qoZ82t2fPMt2bOfXZMu51keV+3H+n+PxiQz+bkH6NOtbf5fj+dn2WZ1l/71LW+vN5jsz+fbyl1nBDPxv62dDPptR+Lvdb379TEku/rc8xJbR0aWCZ3NHPhn42/TX2lzmMzzXTj34AAAAAAAAAAAAA/v0CIBkh+w==
+  </data>
+  </layer>
+  <layer name="ground2" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJzt2lEKwjAMANB2t1BQul1lO6sX9AIyto85FYYoWdl7Pw39CqFpKDQl4EhKTmnIU3xuprVf7PU5Jq/a3BbxWDt126ZVp58b8vuYz8qG+05Pv+oqqMlee2Cd16mJyaN2xbwlyHU+dxfnDwAAAAAAAODJXv9qAMARmMMAAAD/5d0FwLfu0QkAAAAAAAAA4R6DzQcA
+  </data>
+  </layer>
+  <layer name="scenery" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA1wBkAAAB
+  </data>
+  </layer>
+  <layer name="objects" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJztm81u1DAQx3e5IziBqNgKqQKJAxVduoUWKAtsYa+VilpQty/BBaFeuJUjUpF6RwJeAN6LN8CjemAYZhw7aZN1Mj9plGxiJ+t/xh8ZO72eYeTBprMDZ2ve+P4BO/bGbzfJPtg+2d8h+0/qK0otQLnXiI2cPe//n+7Q2bI/PnTbq37/xJ8fkbRHzt4p97tX9Q/PGVDuH85++t8zZ88U/e4Ix5FX7Pc3JV2KfvTZUp/fYceo39ft36/Z75GQZtI/1e/yBf06kO9z4D5fe6d+maKf9F+Qi8qzrNu/HztbJbZNzk3IfwT9rgT8b+rse8T9qug3Ue5/VPL65wH856cBnTReRqZLKd/Mb5cVv5fa6ab1mynHDwvyheoa9jFQ3rOqv4DUTjetH9TfJaX/QB2+CPlWCq676H3oobMhsT2y/5EZ/Bf0sWuBtpfStH7aMy/yP/BbrX0CFiPLT5km5IV7v+3Nj35cC02/FV+2beU8UkY/bFNj80IfPy/6cah+N4XyxNbfR71/+/uQjVheBJ6t1sc1rR8fzxQZjnE3nB0L14N2C9vNSWL/gT6N+kn9Ladp/VIp6iM5KeUDn76bWO9z008b72iklI+/Gy04LW8wA05Imtz0A//7JBzXxryp/lcE7+dy1I9yIqb620+nlE9qi9fJeakvGidcfx6gZURCfey44v3o88rN10JAP7zl7EXvfGNIbdWPtlXnWS7Trxpt1a+ucu3WdJ+6qatc5n953KduTL9qmH7x4FgPwfgLADESjDHTefPUuUWM68DcJJ+nxHHm0J/LbU4e3+t/+a30zrYgvP+e5dxH2evOA7RsoZg9B30KfAZ8Z99vwa+2WNqieDa9b276Qdli53MAjKuC7ks+H6wBGbI1IBSMi8U8n9z043XrNinj+0A+Gs+77/I8CGjT5vqbGuPn8xnAav/UNDb0U39Av81Nv7JgneTraFLaUImu6AcxhlsJ7aYWi6WkrmnImZh4vAbMV3I/HZSIaeeMNiaR5sevR/jpgKwJwXHRnt/SNYFtgfsfzueWWZsAgH6XfN6qbWgOaO0f6BczN84ZlNQ9V6D/lcbdVfwPKFoT0hak/iOmj6VQP+1a/wH6fUhIL2nL10x2afwC9RfaPx6bsfFzHFL91dZ5rLPfksZde3/j64FCgK/Grr3qin7U/1YKtGlz/KUsobjNOCItXyOS65qhpmjD3FGTmH7VaOvajbroqv9Bu8+/NyozZ9tV/aDc/Hvg2PKj9jiHjv0v/Q44t/nzVKT3Dskn+f6Q5OVzJjmvuU9F0m8qHJOISdd2/XaFY7HfC8eka7t+0rtYypyxFvNa7kj8T6q/sWWWYg78+8W26ye9y44r5M39mxnDMAzDMAzDMAzDMAzDMAzDMAwjb34D6R+Ldg==
+  </data>
+  </layer>
+  <layer name="roofs" width="80" height="80">
+    <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6Bbzf6hjOGckIAE+K5rewAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHcNg14ARA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit to Grasslands" type="transition" id="1" x="2035" y="1170" width="10" height="65">
+      <properties>
+        <property name="area_id" value="D10" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="2" x="1985" gid="245" y="1210">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="3" x="1790" gid="249" y="1340">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="4" x="1790" gid="249" y="1120">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="5" x="1340" gid="249" y="1240">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="6" x="1340" gid="249" y="1210">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="7" x="1630" gid="249" y="540">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="8" x="1790" gid="249" y="540">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="9" x="1530" gid="249" y="320">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="10" x="1120" gid="249" y="440">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="11" x="1120" gid="249" y="290">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="15" />
+        <property name="minlevel" value="15" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="1560" gid="245" y="1810">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="13" x="1150" gid="245" y="1325">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="290" gid="249" y="160">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="15" x="800" gid="245" y="290">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever1" />
+        <property name="toggle_items" value="grate_ape" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="16" x="578" gid="245" y="254">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate_ape" />
+      </properties>
+    </object>
+    <object name="Secret Door" type="secretdoor" id="17" x="380" gid="245" y="190">
+      <point />
+      <properties>
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="12" />
+        <property name="secretdoor_tag" value="D10_tower_1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="18" x="1725" gid="245" y="185">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="19" x="1745" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="20" x="1775" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="21" x="1775" gid="247" y="1045">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="22" x="1745" gid="247" y="1015">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="23" x="1660" gid="247" y="1600">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="24" x="1690" gid="247" y="800">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="25" x="1690" gid="247" y="730">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="26" x="1690" gid="247" y="640">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="27" x="785" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="28" x="685" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="orcs" type="spawn" id="29" x="685" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="orc" />
+        <property name="spawn_u" value="orc_she" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="30" x="1775" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="31" x="1715" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="32" x="1715" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="33" x="1715" gid="247" y="1145">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="34" x="1265" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="35" x="1265" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="36" x="1645" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="37" x="1685" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="38" x="1715" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="39" x="1745" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_archer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="40" x="1715" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="41" x="1715" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="42" x="1265" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="43" x="1265" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="44" x="1515" gid="247" y="400">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="45" x="1515" gid="247" y="370">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="46" x="1515" gid="247" y="340">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="47" x="1045" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="48" x="1045" gid="247" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="49" x="1045" gid="247" y="345">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Shooter" type="spawn" id="50" x="1045" gid="247" y="315">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="51" x="1615" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="52" x="1615" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="53" x="1615" gid="247" y="1175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="54" x="1615" gid="247" y="1045">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="55" x="1775" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="56" x="1645" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="57" x="1525" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="58" x="1525" gid="247" y="1035">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="59" x="1310" gid="247" y="1440">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="60" x="1310" gid="247" y="1370">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="61" x="1310" gid="247" y="1000">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="62" x="1310" gid="247" y="1060">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="63" x="1280" gid="247" y="1760">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="64" x="1340" gid="247" y="1760">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="65" x="1400" gid="247" y="1760">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="66" x="1215" gid="247" y="350">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="67" x="1275" gid="247" y="350">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="68" x="1345" gid="247" y="350">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="69" x="1515" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="70" x="1875" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="71" x="1645" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="72" x="1745" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="73" x="1645" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="74" x="1745" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="75" x="1555" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="76" x="1875" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="77" x="1515" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="78" x="1875" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="79" x="1105" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="80" x="1105" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="81" x="975" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="82" x="975" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="83" x="975" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="84" x="975" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_she_warr" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="85" x="860" gid="247" y="830">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Warrior" type="spawn" id="86" x="860" gid="247" y="730">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_warrior" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="87" x="1525" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="88" x="1525" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="89" x="1525" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="90" x="1235" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="91" x="1235" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="92" x="1235" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="93" x="1135" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="94" x="1135" gid="247" y="1165">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="95" x="1760" gid="247" y="1730">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="96" x="1560" gid="247" y="1730">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="97" x="1775" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="98" x="1585" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="99" x="1165" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="100" x="1165" gid="247" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="101" x="695" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="102" x="785" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="103" x="845" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="104" x="845" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="105" x="845" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="106" x="785" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="107" x="915" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="108" x="1035" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="109" x="915" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="110" x="915" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Elite" type="spawn" id="111" x="815" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="112" x="1135" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="113" x="1075" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="114" x="1075" gid="247" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="115" x="1645" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="116" x="1745" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="117" x="595" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="118" x="785" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="119" x="685" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Trooper" type="spawn" id="120" x="685" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_trooper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Cook" type="spawn" id="121" x="625" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_cook" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Cook" type="spawn" id="122" x="595" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="orc_cook" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="123" x="410" gid="247" y="380">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="124" x="410" gid="247" y="280">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="125" x="410" gid="247" y="180">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="126" x="480" gid="247" y="130">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="127" x="480" gid="247" y="230">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object name="Troll" type="spawn" id="128" x="480" gid="247" y="330">
+      <point />
+      <properties>
+        <property name="spawn" value="troll" />
+      </properties>
+    </object>
+    <object type="entry" id="129" x="1105" gid="245" y="1750">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to E9" type="transition" id="130" x="1070" y="1790" width="70" height="88">
+      <properties>
+        <property name="area_id" value="D10_tower1" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object type="entry" id="131" x="720" gid="245" y="945">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to E9" type="transition" id="132" x="670" y="830" width="70" height="80">
+      <properties>
+        <property name="area_id" value="D10_tower2" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

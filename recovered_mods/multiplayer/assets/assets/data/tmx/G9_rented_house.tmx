@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="32" nextobjectid="14">
+  <properties>
+    <property name="faction_guard" value="neutral" />
+    <property name="maxlight" value="50" />
+    <property name="name" value="Rented Room" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="indoor walls.tsx" firstgid="1281" />
+  <tileset firstgid="1393" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1681" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1897" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAUDBV4zQjAyfxTQHtA6nAcqHtHT0ygYBaNgFIyCUTAKRsEoGAWEAAB+xbLrEA4AAA==
+  </data>
+  </layer>
+  <layer name="water" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="ground" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAnhE/HrV31N5Re6nrBlq5Z6TZS4q7RsEoGAWjYBSMglEwCggBACPcBwkQDgAA
+  </data>
+  </layer>
+  <layer name="ground2" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="objects" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJmAg5WBgRULZoTSnKy0sZcNaG4LkN4HxGXsDAw17Ag5A3aIPC0AE9TcvXjcRQsAM/cr08DYiw04stE2nGex45anpX8XAO2dg8NuWtnLhZR3eKE0CMDEBHDkM2rmL1L8Rs1wGCh7uXCEKTIGARDNTqN4HwWjYBSMglEwCkbB8AEAW2p8wBAOAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="445" gid="245" y="355">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="440" y="390" width="40" height="10">
+      <properties>
+        <property name="area_id" value="G9" />
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="4" x="190" y="250" width="90" height="20">
+      <properties>
+        <property name="conditions" value="VariableLower#bandits_bullying,1" />
+        <property name="actions" value="StartConversation#layla,G9_bandit" />
+      </properties>
+    </object>
+    <object name="Layla" type="spawn" id="5" x="215" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="conversation" value="G9_layla" />
+        <property name="cycle" value="night" />
+        <property name="spawn" value="layla" />
+        <property name="wander" value="0" />
+        <property name="tag" value="layla" />
+      </properties>
+    </object>
+    <object name="bandit2" type="spawn" id="6" x="245" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="G9_bandit" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="7" x="175" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="8" x="195" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="9" x="225" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="10" x="275" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bandit2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="11" x="115" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_rick" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bandit2" />
+      </properties>
+    </object>
+    <object name="bandit0" type="spawn" id="12" x="205" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit0" type="spawn" id="13" x="305" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

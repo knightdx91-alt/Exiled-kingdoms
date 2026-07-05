@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This magnificent statue of an Imperial Knight seems to be guarding the chasm behind it. In his shield there are three magical rubies, all you need to do is touch them in order to activate the bridge.	Esta magnífica estatua de un Caballero Imperial parece estar vigilando el abismo que se abre a su espalda. En su escudo hay tres rubíes mágicos, tan sólo necesitas tocarlos para activar el puente.	9	"IsItemInactive#bridge;VariableGreater#sewer_horrors,50"	
+1	Q	This magnificent statue of an Imperial Knight seems to be guarding the chasm behind it. 	Esta magnífica estatua de un Caballero Imperial parece estar vigilando el abismo que se abre a su espalda.	0	VariableGreater#sewer_horrors,50	
+1	Q	This magnificent statue of an Imperial Knight seems to be guarding the chasm behind it.	Esta magnífica estatua de un Caballero Imperial parece estar vigilando el abismo que se abre a su espalda.	0	VariableLower#sewer_horrors,50	
+1	Q	This magnificent statue of an Imperial Knight seems to be guarding the chasm behind it. Breno nods, pointing at three empty sockets in the stone shield. 'There's where you must put the three magical rubies'.	Esta magnífica estatua de un Caballero Imperial parece estar vigilando el abismo que se abre a su espalda. Breno asiente y te señala tres huevos vacíos en el escudo de piedra. 'Ahí debes colocar los rubíes mágicos'.	2	VariableEqual#sewer_horrors,50	
+2	A	Put the magical rubies in the sockets.	Poner los rubíes mágicos en las cuencas.	3	PlayerHasItems#2536,3	
+2	A	I will return later...	Volveré más tarde...	0		
+3	Q	Breno removes his steel gauntlet and touches the stone shield with his bare hand while recites an incantation.	Breno se quita el guantelete de acero y toca el escudo con su mano desnuda mientras recita un encantamiento.	10		"LoseItems#2536,3;SetVariable#sewer_horrors,60"
+9	A	Touch it.	Tocarlo.	10		
+10	Q	The gems shine and an ancient mechanism rumbles.	Las gemas brillan y sientes el temblor de un antiguo mecanismo.	0		"ItemActivate#bridge;ItemWalkable#bridge"

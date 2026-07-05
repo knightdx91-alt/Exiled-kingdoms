@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="70" height="60" tilewidth="64" tileheight="32" nextobjectid="33">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="vulcan" />
+    <property name="name" value="Damn Barge" />
+    <property name="name_ES" value="Un pequeño islote" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="255" />
+    <property name="sw2" value="240" />
+    <property name="sw4" value="244" />
+    <property name="sw5" value="256" />
+    <property name="sw6" value="252" />
+    <property name="sw3" value="3410" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="145" />
+  <tileset source="town_objects.tsx" firstgid="1935" />
+  <tileset source="town_objexts2.tsx" firstgid="2015" />
+  <tileset source="water.tsx" firstgid="2143" />
+  <tileset source="natural_grounds.tsx" firstgid="4662" />
+  <tileset firstgid="6252" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="6540" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="6756" />
+  <tileset firstgid="6868" name="grassland_water" columns="16" tilecount="128" tileheight="32" tilewidth="64">
+    <image source="grassland_water.png" width="1024" height="256" />
+  </tileset>
+  <tileset source="trees.tsx" firstgid="6996" />
+  <tileset source="dungeon.tsx" firstgid="7012" />
+  <layer name="nonwalk" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YwQqEIBQFUJn/37fqX2cRbSxnEizzeRaHQpDevQVF6yelFQAAAAACWNLmbP3KWlSlXu6+Zu/cT/RSu3+kXmpmHSFXi15qzpnPfv/z4789nptjH7nec/Xso9RN79meyFyzxzsrduYW84/ewVv61+N5PzP3kmf3Hi/3NGsvv7JG+vZrOXeUTu7q2T8LOeUHAAAAAADe4AuYcqdqoEEAAA==
+  </data>
+  </layer>
+  <layer name="water0" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3DMQ0AAAwDoJ5zXttVMAeQ0Euqqqqqqqqqqqqqqqqqqqqq6nuaoL6GoEEAAA==
+  </data>
+  </layer>
+  <layer name="water" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aSw6CMBRA0a4DN+DA/a/Ff5eh6MQSwFTA4EQl6TlJR0zaGz4DXggAAPA9tyqEQ7fu1b93swxNk3PWImozatKL3b1zKbTPfubcsdA2dTrzaebc23R9vfrNfpbi3XOUK+1980mTXvS9AgAAAAAAACjSzb/ikfx/e6nzKVOGszzatKZmnJrZnU1hsztDUzNOurT6Nse0dmlddXmqsx6avNIDAIAleQDklLxvoEEAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZwQqCQBRAUZet2/YtSfRz/XZEyGSFBE7jm+c58LYid0ZHcBggltth6zsAAGhjPD6HYmqiTfHeRJ9Cm+90+bTUJGKb8dTX6KJL1i5XXZrMUmdd9tVl7TOXtctFl/T7Ze0aZ+3S8hzWpf8ukabXLjXeRUvX2HOXjN91Nd5FUbvUPJczPUe/rvm/zqmo+yXSuaxL/C6RRxdddOmnC8BWzsH+p0fwaDINxWsXbeZ0AQAAyOcOhFo7q6BBAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2a7U3DMBCG/aORBUxQqVMxAiAkEGICoMAkbFCgLXQb2IHCbxLJUc31HJ/TJLbL+0iR0iaN7uPN3bmyUgAAAAAAAIAYnJbH4SS2FemhTUwu4pqRDAcOjWhoR11a56MyHnOt1HE0a9KhMNo4N59trfxX3VR+X5nzF735/ro8jiaoNzX7qI/bcdj9D577C+t6avFaGm2vLY2/6e37VsaHV+Yaxz2JCfV7Tp7zLXxuLO48Of5y2L9sGS8XdZ589uwzU+K7NMZ98imw4d2RM65+SPMbWqtSZd0yh9J6lCJtbPfVyccO9OCqZX0jrYG78BPoWxfxHIqRsbWP3jBD3/nDjTAOQ2i6K1z1iPYnrufk5CedHxYBNVWa91By7mMcLj1wa4sKmpMKW3dFBH3VPjSt72g/rv2TvA90DQTkpLxepDPGUDN606yS0zqBe99ysr8L7D4zC9D6lNTMD89vff9dxeQ58B3nekhfPEWK267zd12bqnmDe1ZT36LrwhxmFntuGHotl9NMDAAAAACQMmdqs28He+K2OVHYn8KR2t4LAAAAAAAAAJDyCzypg2SgQQAA
+  </data>
+  </layer>
+  <layer name="scenery" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMQ0AAAgDsNkkwb8ONHDtaRU0AQAAAIC/bQcAAAAAAABKph0AAAAAAKDiAAi0ieKgQQAA
+  </data>
+  </layer>
+  <layer name="objects" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ay04CMRiFa0wswhOMEi8LYwK+gAYRUB9BDWqiCxdeE12pj+POuCJeFupK40YfQePeJxB32mY6oQ4dmBlmWhjOl/xJp3QuPZz+bWEIAQAAAAAAAIDuYnXU9BOAXgFe8Y+j1WmKkDMW5ymzz6OTNYVPVrrYOwcjhOwqYkcqH7LYJOFi23W/LcWxV5sN17XWO+6tf/ZYnyezhNTFd/dECXmmdnmM1Y9n7TY1i5Brq/n8KVFXp426BUW7Tvlk169Gf1lPeJ8nst6fX1C7zV0MfW3HHIsHSW/duvhpw3XpWJuA+XTWdaxblyvavo2jy20AbdIRe8y0Xy5pcxvZKzWpLOeS+ZjHmk5dTqR5h+OUj6X6fR9jTQe6/fKlWEfw+pzQ40b4oObDD0XWZjEm35geR63qveC5pGzZ4yrDosBiOAH55YXaEZS81PecZetTYkFj8IwJXV6ZJm/0f/13iHV60Yp+HnLQqcuRxz4gilxb6OFxxO81o9Dgw2tMGdzr6tbFzWBMfU9J/smH8JJpXeKG56BcH+vi3ldX2PEQiyWRm5cDapMUXdwUhB7OnBVkffOj+XeGqrhnVLRat5SsxhyVEr7JBNAmqX5Ji/VeWfgl6DyeVF04FTGOCsIvQUiyLg5h9pa6dbkPkV8GfK5xpiNY8/6K5zPtl7pCp0ef2qnO9Uurc98NzEet/ufguP+vMBkAAAAAsOnm9zC6BdX7K/0M3vsCAAAAAAAA9DJ/JrNu76BBAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="70" height="60">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BgQAAAADDoPlT3+AEVQEAAAAAAAAAAAAAAAAAAADwDCojjoOgQQAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="565" gid="145" y="1135">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="2" x="530" gid="149" y="1170">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="3" x="484" y="1124" width="23" height="23">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="14" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="4" x="505" gid="147" y="985">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor1" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="5" x="465" gid="147" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor4" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="6" x="565" gid="147" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor10" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="7" x="825" gid="147" y="1075">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor7" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="8" x="855" gid="147" y="725">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor6" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="9" x="1045" gid="147" y="625">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor2" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="10" x="1175" gid="147" y="975">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor8" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="11" x="1365" gid="147" y="1235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor5" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="12" x="1555" gid="147" y="1105">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor9" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn" id="13" x="1615" gid="147" y="725">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_sailor3" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="dead_barge_team" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="captain" type="spawn" id="14" x="1295" gid="147" y="755">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,8" />
+        <property name="hostile" value="VariableGreater#barge_attack,3" />
+        <property name="conversation" value="G11_captain" />
+        <property name="portrait" value="168" />
+        <property name="spawn" value="captain_barge" />
+        <property name="tag" value="captain_barge" />
+    <property name="unique_tag" value="captain_barge"/>
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="deception" type="spawn" id="15" x="1335" gid="147" y="495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="name" value="@GIRL" />
+        <property name="portrait" value="125" />
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+        <property name="tag" value="deception_t" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="deception" type="spawn" id="16" x="1235" gid="147" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="name" value="@GIRL" />
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+        <property name="tag" value="deception" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="deception" type="spawn" id="17" x="1395" gid="147" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="name" value="@GIRL" />
+        <property name="spawn" value="bandit_bitch_neutral" />
+        <property name="tag" value="deception" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="deception" type="spawn" id="18" x="1235" gid="147" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="name" value="@GIRL" />
+        <property name="spawn" value="bandit_bitch_neutral_3" />
+        <property name="tag" value="deception" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="deception" type="spawn" id="19" x="1335" gid="147" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="name" value="@GIRL" />
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+        <property name="tag" value="deception" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shifter" type="spawn" id="20" x="1335" gid="147" y="495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="swamp_shifter" />
+        <property name="tag" value="shifter" />
+      </properties>
+    </object>
+    <object name="shifter" type="spawn" id="21" x="1235" gid="147" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="swamp_shifter" />
+        <property name="tag" value="shifter" />
+      </properties>
+    </object>
+    <object name="shifter" type="spawn" id="22" x="1395" gid="147" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="swamp_shifter" />
+        <property name="tag" value="shifter" />
+      </properties>
+    </object>
+    <object name="shifter" type="spawn" id="23" x="1235" gid="147" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="swamp_shifter" />
+        <property name="tag" value="shifter" />
+      </properties>
+    </object>
+    <object name="shifter" type="spawn" id="24" x="1335" gid="147" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="swamp_shifter" />
+        <property name="tag" value="shifter" />
+      </properties>
+    </object>
+    <object name="Waterdevil" type="spawn" id="25" x="1295" gid="147" y="525">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="water_devil" />
+        <property name="tag" value="water_devil" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="26" x="640" gid="149" y="1410">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="27" x="640" gid="149" y="1380">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="28" x="640" gid="149" y="1350">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="29" x="640" gid="149" y="1320">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="29" x="640" gid="149" y="1290">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="lever conv" type="conversation" id="30" x="595" gid="149" y="1235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#barge_attack,7" />
+        <property name="conversation" value="H10_tomb_lever" />
+        <property name="icon" value="lever" />
+        <property name="name" value="@LEVER" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="31" x="595" gid="149" y="1235">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever" />
+      </properties>
+    </object>
+    <object name="drowned" type="spawn" id="32" x="645" gid="147" y="1505">
+      <point />
+      <properties>
+        <property name="conversation" value="G11_drowned" />
+        <property name="spawn" value="drowned_woman" />
+        <property name="tag" value="drowned" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sailor" type="spawn"  x="815" gid="147" y="85">
+      <point />
+      <properties>
+        <property name="portrait" value="262" />
+        <property name="spawn" value="dead_sailor" />
+        <property name="tag" value="sailor_t" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="1160" y="610" width="270" height="270">
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,1" />
+        <property name="actions" value="StartConversation#captain_barge,G11_captain" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="1220" y="360" width="150" height="110">
+      <properties>
+        <property name="conditions" value="VariableLower#barge_attack,3" />
+        <property name="actions" value="StartConversation#deception_t,G11_shifter" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="1070" y="520" width="10" height="220">
+      <properties>
+        <property name="conditions" value="VariableEqual#barge_attack,4" />
+        <property name="actions" value="StartConversation#sailor_t,G11_water_devil" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="1060" y="740" width="655" height="10">
+      <properties>
+        <property name="conditions" value="VariableEqual#barge_attack,4" />
+        <property name="actions" value="StartConversation#sailor_t,G11_water_devil" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="900" y="540" width="10" height="695">
+      <properties>
+        <property name="conditions" value="VariableEqual#barge_attack,6" />
+        <property name="actions" value="StartConversation#sailor_t,G11_water_devil2" />
+      </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1266" y="365">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1236" y="435">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1336" y="435">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1206" y="525">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1326" y="525">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1496" y="525">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1686" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1516" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1426" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1326" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1226" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1106" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="976" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="846" y="595">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1686" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1516" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1426" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1326" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1226" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1106" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1016" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="846" y="695">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1686" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1556" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1426" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1296" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1166" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="916" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="756" y="825">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1686" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1556" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1426" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1296" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1166" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="916" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="756" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="596" y="955">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1686" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1556" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1426" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="1166" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="916" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="756" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="596" y="1105">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+  </object>
+  <object name="larva" type="spawn" gid="147" x="436" y="1005">
+   <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+    <property name="spawn" value="larva_1"/>
+    <property name="spawn_u" value="larva_2"/>
+        <property name="tag" value="larva" />
+   </properties>
+    </object>
+    <object name="Crate" type="container"  x="700" gid="149" y="680">
+      <point />
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="items" value="5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026,5026" />
+        <property name="name" value="@BARREL" />
+    <property name="unique_tag" value="G11_arena4c"/>
+      </properties>
+    </object>
+  </objectgroup>
+</map>

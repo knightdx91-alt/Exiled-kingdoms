@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды светится)[]	¿po?	0	"VariableEqual#H6stone,5"		
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды)[]	¿po?	8	"VariableEqual#H6stone,4"		
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды)[]	¿po?	6	"VariableEqual#H6stone,3"		
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды)[]	¿po?	10	"VariableEqual#H6stone,2;VariableEqual#necessary,2"		
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды)[]	¿po?	4	"VariableEqual#H6stone,2"		
+1	Q	 [BLUE](каменный монолит с изображением обезьяньей морды)[]	¿po?	2	"VariableEqual#H6stone,1"		
+2	A	Ударить по нему.	po.	3		
+2	A	Ничего не делать.	po.	0		
+3	Q	 [BLUE](изображение обезьяньей морды начало светиться)[]	¿po?	0		"SetVariable#H6stone,2;SetVariable#necessary,1"
+4	A	Ударить по нему.	po.	5		
+4	A	Ничего не делать.	po.	0		
+5	Q	 [BLUE](изображение обезьяньей морды начало светиться)[]	¿po?	0		"SetVariable#H6stone,3;SetVariable#necessary,1"
+6	A	Ударить по нему.	po.	7		
+6	A	Ничего не делать.	po.	0		
+7	Q	 [BLUE](изображение обезьяньей морды начало светиться)[]	¿po?	0		"SetVariable#H6stone,4;SetVariable#necessary,1"
+8	A	Ударить по нему.	po.	9		
+8	A	Ничего не делать.	po.	0		
+9	Q	 [BLUE](изображение обезьяньей морды потухло)[]	¿po?	0		"SetVariable#H6stone,1;SetVariable#necessary,1"
+10	A	Ударить по нему.	po.	11		
+10	A	Ничего не делать.	po.	0		
+11	Q	 [BLUE](изображение обезьяньей морды начало светиться)[]	¿po?	0		"SetVariable#H6stone,3;SetVariable#necessary,3"

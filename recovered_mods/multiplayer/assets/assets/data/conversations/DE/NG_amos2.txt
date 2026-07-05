@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Приветствую тебя, друг, в этом святом месте!	¿po?	2	"VariableEqual#eirenda_castle,1"		
+1	Q	 Настало время расплаты для нежити, укрывшейся в этом замке!	¿po?	0	"VariableGreater#bloody_harvest,80"		
+1	Q	 Кара настигнет зло, рано или поздно!	¿po?	0	"VariableGreater#bloody_harvest,53;VariableLower#bloody_harvest,63"		
+1	Q	 Это место явно проклято, стены его пропитаны злом!	¿po?	0	"VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,53"		
+1	Q	 Мы должны спасти выживших жителей деревни!	¿po?	0	"VariableEqual#bloody_harvest,30"		
+1	Q	 Те люди в деревне, наверняка, нуждаются в нашей помощи!	¿po?	0	"VariableGreater#bloody_harvest,21;VariableLower#bloody_harvest,29"		
+1	Q	 Брат Габриэль должно быть находится в храме.	¿po?	0	"VariableEqual#three_versus_eleven,100;VariableEqual#bloody_harvest,20"		
+1	Q	 Брат Габриэль должно быть находится в своём святилище прямо на улице.	¿po?	0	"VariableEqual#bloody_harvest,20"		
+1	Q	 [BLUE](молодой священник)[] Зло в городе!	¿po?	0			
+2	A	Мне нужно лечение.	port.	3		
+2	A	Мне пора в путь.	port.	0		
+3	Q	Я могу исцелить тебя в обмен на небольшое пожертвование нашему храму. 	Puedo curarte, a cambio de una pequeña contribución a esta Capilla. 	4		
+4	A	Вот небольшое пожертвование. Пожалуйста, исцели меня. [BLUE](Заплатить 25 золотых монет, вылечить 25 ОЗ)[]	Aquí tienes un pequeño donativo. Por favor cúrame. [BLUE](Pagar 25 monedas, curar 25hp)[]	5	PlayerHasGold#25	"GainHP#25;LoseGold#25"
+4	A	Тогда я хочу сделать большое пожертвование. Пожалуйста, исцели меня. [BLUE](Заплатить 60 золотых монет, вылечить 80 ОЗ)[]	Voy a hacer una buena donación. Por favor cúrame. [BLUE](Pagar 60 monedas, curar 80hp)[]	5	PlayerHasGold#60	"GainHP#80;LoseGold#60"
+4	A	Не сейчас, спасибо. Я лучше пойду.	Ahora no, gracias. Mejor me marcho.	0		
+5	Q	Силой Арбеноса, Телюма и Ниварии, да будут исцелены твои раны!	¡Por el poder de Arbenos, Thelume y Nivaria, que tus heridas se cierren!	0		

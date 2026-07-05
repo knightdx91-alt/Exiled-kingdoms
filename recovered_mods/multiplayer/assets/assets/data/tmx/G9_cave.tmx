@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="72" height="72" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="faction_trap" value="bandits"/>
+  <property name="maxlight" value="60"/>
+  <property name="music" value="anguish"/>
+  <property name="name" value="Bandit Hideout"/>
+  <property name="name_ES" value="Guarida de bandidos"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="town_objects.tsx"/>
+ <tileset firstgid="569" source="grounds_indoor.tsx"/>
+ <layer name="nonwalk" width="72" height="72" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQoAIAADsf7/w11dBQfdFEmge7kEgBO9feBhncaq0WhHHwAAAAAAAAAAAAAAAAAAAAAA+N8AGvE1YABRAAA=
+  </data>
+ </layer>
+ <layer name="water" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UTQqDQAwG0Nz/OEWspYvSRSn9OVQVJziIuy5G8D0IcXAzfCQTAQAAAAAAAAAApNNYfdX76nxteK+9+JR6l3pV9Ywlq6xbm2s2l5lkRplZ9m/5Xmd2tBnrxhpK76rzI+Z8Mqect3Oba+7OJeac7rG9g5N6D+t37Egyp2me6j2MWHZz/ZYdUeaUuxix7OKw8Q8AAAAAAAAAAAD+8QO7IZLhAFEAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UuwqAMAwF0ParBAfHfqSvbxUnp1IRaX2cM2UIJFxIQviGofUCD5eCjADO6irP2390X3nm26TWCwAAAAAAAAAAAAAAAJet8ainmO/7s0UuRbOMskbZcAM3BgAAAEAtG1Pj+cAAUQAA
+  </data>
+ </layer>
+ <layer name="scenery" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1b204UQRDt9Q989IJ+g4gX8Ba8gddENHgBSVTgB9ToKwI+q5jwAX6C4r/pk3OyU6Epqu/dO73rnqQyOzM90zNnq6qrq3qUqg/TjZxnMuM4XxuuNLLCZJ3tzxivtuOM4fiM5fzthP5K4GUjO5p8F9osRd7bxM+W4/yFyP5KAPx8dbTJzc+243xt/LiQmx9gy3L+f+HnciM3HW2k88PGz30l+21JeBtcS+PWvUbuNPJA7ftg/ZhpnPPBtNB/Dj8Pfk4dsbe5m3B/uhbj0i3tOPbX2THFzoe8H97jT0+pE827nGzfx6b3Ep8rQru1Ro47+HkY8Jw5rz0b0JbsYEJ7Fxs/fFz63ZOvQbtjzT1PWzjCNVORYvPRLsTwo8PFj449Cz/Al575XrH+GfDx0ZuNfBKOk9+DvFB9W8AW/mlRHbQLyU5D+DFdg3Z/e30xIYUfwIcjCSl+D8jFT0o/vojh6Fxinzn4AZZbmdeO3dCOX4t6usN4FNAW/V9q5KKnSNz7jF96fLHS9mmCzmkOneHw1Yc5ZX9OCan+OfSaEjEsH8ugI9KYF8oNEMPPjnD8ujLHvrOe944Ft6+c/wH82zITG8+I+yR+fDFs/ITCZF+wbXAr+TjdPw/CvmrkZ1D+56nqx3ALqh/XTarDMVyX/MAeuU7QmGmCzk9IbM+BsfOZR7sa8hgh77wW0NYEcDPrbNVHbfy4nifVvkK4ie0jN0L0JzU+DJ2r184Pxdim+OdqYF+jxg/OIS9kiiNjdChkDloDP7rP5c8DfvYK5DV0jvT5H8b4xXaLHE7MPCI3bD4X3H2zXBvLz5tGXis55tGREkPkgo0fV+4nhp/Hjaw28sGjLfgZdC2Z+1xdv8GP7nNNc9ifjc396oXzg5gZ+uLDDQAfp9d0oG+l+SKfK9VsUDNZYm1tsPGD91lgYrMlE1Dvh43jf/qh+pyVRIjPlXICvvmBLcu5GOxqv0uu4SjlcyVsu5tUhxI+tyuUGN/Az4Tge6jumpMf5Aek/GhMLQfgNbhS/NgwCP1JqZnqKMEP5X1MUjJmRWzhiglDUDJ+fM72S+oN4mXwspr5vqPCD9W1Piv3mGar83OMCj9Ul9hstznGfVcuOBWD5Af+OHe8WDr30ZV95YIPP7S+fLIV1EmQN8BcxxV/r7H9kvyErs1479HGxQ/PdevrtzF/4HMUW64UKB33pKxFga+hWNMnDrHVAXbZPnHUdVw4qHV0QMg6GQAcdc1PqP7Q2o2YmJX3hfHS5vvAf9f8hOpPSmwT+l90zQ9yqk+UvMbShBR+Qu2rS36IG+j4RnvMFiOTXaXEfhgv552t9kH8HDWsYY6tZfkA/yVsH/Eh4ue3vYPyoVDOIoQj9MnjHY6S/EB3wM+GcP5dwZyOb9zl0h+gFD94RnADHfLxP7nnnOjflZfr2j/T/+jrn23xP773pDlCrnpPl/pDIH/A5+7cvgDoGnwif3dwQ3GxXkPz5Yh/K0XXYa7SdfwDwBdtsmMSPwTYJc0vMbdEfg1zs4/tedr6zuV5DAa9ofgzpZaVC1LcZuNH8ucSfPnh/ddQ39cRyo8vfGuqNa2PlUC1gSltG8MPt1GAavUL2pbsclLJ9e3a+JHA19DqyJlPkzAM/ACmWNcnn5+CYeEH0G2P7C9kDhWDYeJHAnHma2dzyv97MEiu79a6hj5HMOlWzDdhowweKwy7reTGmB87ao+Fu0ZN39LViFdsf8zPQYz9jx1j+7Kj9rl418htX/8AHf70RABRAAA=
+  </data>
+ </layer>
+ <layer name="roofs" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+ </layer>
+ <objectgroup name="data" width="72" height="72">
+  <object name="exit to G9" type="transition" x="1703" y="2247" width="69" height="49">
+   <properties>
+    <property name="area_id" value="G9"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="1743" y="2197">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="2156" y="1838">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1993" y="1904">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1714" y="1873">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1303" y="1793">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1174" y="1439">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1227" y="1340">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="544" y="192">
+   <properties>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="prisoner" type="spawn" gid="243" x="1544" y="102">
+   <properties>
+    <property name="conditions" value="VariableEqual#find_constanze,10"/>
+    <property name="conversation" value="cave_constanze"/>
+    <property name="name" value="Constanze"/>
+    <property name="portrait" value="9"/>
+    <property name="spawn" value="villager_female_red"/>
+    <property name="tag" value="prisoner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2169" y="1369">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1536" y="992">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="512" y="128">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_4,bandit_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="182" y="318">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="480" y="896">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="530" y="890">
+   <properties>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="585" y="835">
+   <properties>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="194" y="364">
+   <properties>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="container" gid="245" x="1293" y="91">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="bandit_chest_4"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="120" y="1049">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="G9_cave_1"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="170" y="1061">
+   <properties>
+    <property name="quest_location" value="G9_cave_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="Fungus" type="plant" gid="245" x="1120" y="992">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object name="Fungus" type="plant" gid="245" x="1152" y="992">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object name="elite bandit" type="spawn" gid="243" x="2151" y="450">
+   <properties>
+    <property name="quest_location" value="G9_cave_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="bandit_female_elite"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2100" y="245">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_4,bandit_chest_4"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="G9_cave_2"/>
+   </properties>
+  </object>
+  <object name="Fungus" type="plant" gid="245" x="1184" y="1024">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="2154" y="1466">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1954" y="1487">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="2108" y="1553">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1490" y="1270">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="1467" y="1121">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="1551" y="1118">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="1347" y="1052">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="243" x="1510" y="1122">
+   <properties>
+    <property name="spawn" value="bandit_male"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1206" y="714">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1325" y="717">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1386" y="552">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1329" y="314">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1506" y="371">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1581" y="289">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="1102" y="247">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="909" y="253">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="631" y="166">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="599" y="285">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="563" y="559">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="214" y="504">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandit2" type="spawn" gid="243" x="2124" y="351">
+   <properties>
+    <property name="quest_location" value="G9_cave_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandit2" type="spawn" gid="243" x="2074" y="388">
+   <properties>
+    <property name="quest_location" value="G9_cave_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandit2" type="spawn" gid="243" x="226" y="1013">
+   <properties>
+    <property name="quest_location" value="G9_cave_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="bandits"/>
+   </properties>
+  </object>
+  <object name="bandit2" type="spawn" gid="243" x="253" y="905">
+   <properties>
+    <property name="quest_location" value="G9_cave_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="637" y="243">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="617" y="589">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="282" y="515">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="208" y="1045">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1805" y="395">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="beartrap" type="trap" gid="245" x="1246" y="1470">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="beartrap" type="trap" gid="245" x="1504" y="1216">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="192" y="1184">
+   <properties>
+    <property name="maxlevel" value="9"/>
+    <property name="secretdoor_tag" value="G9_cave_1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="55" y="1589">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="58" y="1651">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="51" y="1714">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="bandit_chest_6,bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="119" y="1505">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="203" y="1556">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="120" y="1625">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="142" y="1586">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="150" y="1562">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="199" y="1600">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="183" y="1651">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="beartrap" type="trap" gid="245" x="191" y="1445">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="bandit_ranged" type="spawn" gid="243" x="222" y="1708">
+   <properties>
+    <property name="spawn" value="bandit_ranged"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="88" y="1541">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="207" y="1641">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="114" y="1668">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="97" y="1437">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandits" type="spawn" gid="243" x="54" y="1484">
+   <properties>
+    <property name="spawntable" value="bandits"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wolves" type="mapitem" gid="245" x="1248" y="1696">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="wolves"/>
+   </properties>
+  </object>
+  <object name="wolves" type="mapitem" gid="245" x="1248" y="1664">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="wolves"/>
+   </properties>
+  </object>
+  <object name="wolf" type="spawn" gid="243" x="1130" y="1678">
+   <properties>
+    <property name="spawn" value="dire_wolf"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="container" gid="245" x="1119" y="1626">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="bandit_chest_4,bandit_chest_6"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="wolf" type="spawn" gid="243" x="1127" y="1633">
+   <properties>
+    <property name="spawn" value="dire_wolf"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="1312" y="1855">
+   <properties>
+    <property name="conversation" value="G9_cave_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1312" y="1856">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="beartrap" type="trap" gid="245" x="1707" y="1891">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

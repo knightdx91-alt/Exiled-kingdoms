@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="18">
+  <properties>
+    <property name="maxlight" value="45" />
+    <property name="music" value="menuet" />
+    <property name="name" value="The Seventh House" />
+    <property name="name_ES" value="La Séptima Casa" />
+    <property name="sw1" value="543" />
+    <property name="sw2" value="545" />
+    <property name="sw3" value="577" />
+    <property name="sw4" value="578" />
+    <property name="sw5" value="555" />
+    <property name="sw6" value="665" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="town_objects.tsx" firstgid="9" />
+  <tileset source="grounds_indoor.tsx" firstgid="89" />
+  <tileset source="town_objexts2.tsx" firstgid="249" />
+  <tileset source="indoor walls.tsx" firstgid="313" />
+  <tileset source="dungeon.tsx" firstgid="425" />
+  <tileset source="dungeon stairs.tsx" firstgid="665" />
+  <tileset source="town_objects3.tsx" firstgid="669" />
+  <layer name="nonwalk" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJzt0KENAEAMA7Gy7r9x+fPXEVsKjpIZgNY+oVP/r7/trvcDAH8dwGoARw==
+  </data>
+  </layer>
+  <layer name="ground" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztzrEJAEAIBEF7t3ErePhAxWAGLt6LgHvyc/q7PX19fX393v7rDwBMKA52Xy8=
+  </data>
+  </layer>
+  <layer name="ground2" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+  </layer>
+  <layer name="scenery" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AhDf+muPlJeFoFTQC2ru8BAABwbQAh/ABD
+  </data>
+  </layer>
+  <layer name="objects" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztlcEKwjAMhrO+gefe9Cg+gG5rs72lJ8EnNYWU1TC1jMwJ5oefNqHNR7qOAphMvydsAHrymcdWxNlDsw4/cN2W3BV5GYeV+cjOkrEWH4s66Vxr616U+JJXy9fqv6M6JwdwJSM5ct2e7MkR5mMt/tI6mud/o7536Z9yU/6b/d+ZW/Jr9m3BR16jdf7p/h037j9pdM/8AO/nmnw/k/cf5pr3/0DjHqZvm4Qv1ue8Vv+jeN/yuybfQTmPSnyTyWQy/ZceDssY3g==
+  </data>
+  </layer>
+  <layer name="roofs" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="220" gid="1" y="590">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to NG" type="transition" id="2" x="210" y="622" width="41" height="12">
+      <properties>
+        <property name="area_id" value="P7" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="innkeeper" type="staticNPC" id="3" x="156" gid="3" y="445">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_innkeeper" />
+        <property name="facing" value="r" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@INNKEEPER" />
+        <property name="portrait" value="178" />
+        <property name="shop_items" value="5026,5029,5037,10114" />
+        <property name="shop_modifier" value="1" />
+        <property name="sprite" value="hooded" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="4" x="205" gid="1" y="465">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="5" x="145" gid="1" y="345">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="visitor" type="spawn" id="6" x="335" gid="3" y="595">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor4" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="91" />
+        <property name="cycle" value="day" />
+        <property name="spawn" value="villager_female_white" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor" type="spawn" id="7" x="405" gid="3" y="525">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor5" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="179" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor" type="spawn" id="8" x="495" gid="3" y="525">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor3" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="180" />
+        <property name="spawn" value="villager_male_red" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="soldier" type="spawn" id="9" x="275" gid="3" y="375">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="facing" value="rd" />
+        <property name="spawn" value="human_soldier_unarmed" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="soldier" type="spawn" id="10" x="335" gid="3" y="375">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="facing" value="l" />
+        <property name="spawn" value="human_soldier_unarmed" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor" type="spawn" id="11" x="465" gid="3" y="375">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor2" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="174" />
+        <property name="spawn" value="villager_male_green" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor" type="spawn" id="12" x="335" gid="3" y="305">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor1" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="121" />
+        <property name="cycle" value="day" />
+        <property name="spawn" value="villager_male_red" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor2" type="spawn" id="13" x="335" gid="3" y="245">
+      <point />
+      <properties>
+        <property name="name" value="@VISITOR" />
+        <property name="spawn" value="magician_doctor" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="visitor0" type="spawn" id="14" x="465" gid="3" y="245">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor0" />
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="123" />
+        <property name="cycle" value="night" />
+        <property name="spawn" value="villager_male_black" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="handmaiden" type="spawn" id="15" x="275" gid="3" y="465">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_handmaiden" />
+        <property name="name" value="@HANDMAIDEN" />
+        <property name="portrait" value="92" />
+        <property name="spawn" value="villager_female_purple" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="16" x="235" gid="3" y="325">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_harlot1" />
+        <property name="cycle" value="night" />
+        <property name="portrait" value="93" />
+        <property name="spawn" value="bandit_bitch_good" />
+        <property name="tag" value="harlot1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bitch" type="spawn" id="17" x="235" gid="3" y="295">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_harlot2" />
+        <property name="faction" value="#neutral#" />
+        <property name="cycle" value="night" />
+        <property name="portrait" value="94" />
+        <property name="spawn" value="bandit_bitch" />
+        <property name="tag" value="harlot2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="visitor6" type="spawn" id="18" x="305" gid="3" y="535">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_6_visitor6" />
+    <property name="conditions" value="VariableLower#problems_visitor,1"/>
+        <property name="name" value="@VISITOR" />
+        <property name="portrait" value="211" />
+        <property name="cycle" value="night" />
+        <property name="spawn" value="villager_male_black" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

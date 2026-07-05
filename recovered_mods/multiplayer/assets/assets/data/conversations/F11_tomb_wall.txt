@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	There is something odd about this wall. Probably it was very well camouflaged years ago, but erosion shows how it's been made of different stones and manipulated often.	Hay algo raro acerca de este muro. Posiblemente estaba muy bien camuflado, pero el desgaste muestra que está hecho de un material distinto, y que ha sido manipulado a menudo.	2			
+2	A	Adaon, check this wall for me!	¡Adaon, ven a este muro!	3	NPCIsInParty#adaon,adaon		
+2	A	Is that block sticking out slightly...? [BLUE](Press it)[]	Hay un ladrillo que sobresale ligeramente [BLUE](Presionarlo)[]	7			AWA#2
+2	A	Damnit... I have no time to examine walls now.	Maldición, no tengo tiempo de mirar paredes ahora.	0			
+3,adaon	Q	[BLUE](Coughs heavily)[] Really, are you going to ground me facing the wall now? Wait.. Look, that loose brick is suspicious!	[BLUE](Tose fuertemente)[] En serio, ¿me vas a castigar ahora de cara a la pared? Espera... Ese ladrillo que sobresale, es sospechoso.	5			
+5	A	Good job! [BLUE](Press it)[]	¡Buen trabajo! [BLUE](Presionarlo)[]	7			
+7,R	Q	When you press it, gas stops hissing into the room, and the iron grates slowly withdraw.	Cuando lo presionas, el gas deja de inundar la sala, y las rejas de hierro se retiran.	0		"ItemHide#grate2;ItemWalkable#grate2;ItemDeactivate#gas_trap"	

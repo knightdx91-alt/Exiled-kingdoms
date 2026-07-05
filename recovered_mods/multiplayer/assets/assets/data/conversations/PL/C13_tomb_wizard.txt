@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](тресущийся от страха маг)[] Не знаю зачем вы сюда залезли, но я могу помочь убраться отсюда, за не большую плату.	port.	2		
+2	A	Куда вы сможете меня переместить?	port.	3		
+2	A	Спасибо, но я пока побуду здесь.	port.	0		
+3	Q	Я могу телепортировать тебя в один из крупных городов королевства за [BLUE]30 золотых[].	port [BLUE]30 monedas[].	4		
+4	A	Хорошо, телепортируй меня в [BLUE]Нью-Гаранд[]! Вот моё золото.	port.	5	PlayerHasGold#30	
+4	A	Хорошо, телепортируй меня в [BLUE]Фритаун[]! Вот моё золото.	port.	19	PlayerHasGold#30	
+4	A	Хорошо, телепортируй меня в [BLUE]Нивариан[]! Вот моё золото.	port.	30	PlayerHasGold#30	
+4	A	Может, в другой раз.	Quizá en otro momento.	0		
+5	Q	Давай быстрее...	De acuerdo, di cuándo estás preparado...	6		
+6	A	Отправляй меня!	Estoy preparado.	0		"loseGold#30;Particle#;Travel#NG,999;Particle#teleport"
+19	Q	Давай быстрее...	De acuerdo, di cuándo estás preparado...	20	IsRegistered#	
+20	A	Отправляй меня!	Estoy preparado.	0		"loseGold#30;Particle#teleport;Travel#FT,999;Particle#teleport"
+30	Q	Давай быстрее...	De acuerdo, di cuándo estás preparado...	31	IsRegistered#	
+31	A	Отправляй меня!	Estoy preparado.	0		"loseGold#30;Particle#teleport;Travel#NI,999;Particle#teleport"

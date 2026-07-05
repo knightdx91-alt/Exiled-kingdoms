@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="24" height="24" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="70"/>
+  <property name="name" value="New Garand House"/>
+  <property name="name_ES" value="Casa en New Garand"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="gate_blue.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <tileset firstgid="493" source="teleporter.tsx"/>
+ <tileset firstgid="494" source="artifacts.tsx"/>
+ <tileset firstgid="498" source="town_objects3.tsx"/>
+ <tileset firstgid="530" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="ground" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAPqGUkDjcwkm9+AwFMDfPxuZta5uNyNzXNx+buUfPpZz4t45eW6ZOW+YuW5QMhtyPjwej+oR4+o2AUDEYAAK4VV50=
+  </data>
+ </layer>
+ <layer name="ground2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="scenery" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="objects" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAPsANiMyCOgNIwDBKPQcL2ZJpvCsRSTBA2jAaBaCDeDcR7oHxjCszHBqLR+NQ2P5zG5htSyXxQPBoBsSsQuwGxNQMkftHFyI3fUCCuJEIdue4HhbMYI+3MB7lfj8bmGwHN1ydgByXhY4jHfJjfyDUflA4NcJitCxTXooL5+IAmjc2HgcFqvi0QmyBhSyQ5GyRxBzLNRwdWSGxrKpk5CkYBqQAAZtcTPg==
+  </data>
+ </layer>
+ <layer name="roofs" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="24" height="24">
+  <object type="entry" gid="241" x="252" y="482">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="215" y="520" width="72" height="47">
+   <properties>
+    <property name="area_id" value="NG"/>
+    <property name="entry_id" value="77"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="245" x="327" y="85"/>
+  <object name="Chest" type="conversation" gid="245" x="97" y="76">
+   <properties>
+    <property name="conversation" value="NG_house_chest_1"/>
+    <property name="icon" value="chest_gold"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="conversation" gid="245" x="194" y="75">
+   <properties>
+    <property name="conversation" value="NG_house_chest_2"/>
+    <property name="icon" value="chest_gold"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Adaon" type="spawn" gid="243" x="152" y="259">
+   <properties>
+    <property name="conditions" value="VariableGreater#want_letter_back,70;VariableEqual#adaon_free,1"/>
+    <property name="conversation" value="adaon"/>
+    <property name="name" value="Adaon"/>
+    <property name="spawn" value="adaon"/>
+    <property name="tag" value="adaon"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Hirge" type="spawn" gid="243" x="198" y="338">
+   <properties>
+    <property name="conditions" value="VariableGreater#restoring_faith,99"/>
+    <property name="conversation" value="hirge"/>
+    <property name="spawn" value="hirge"/>
+    <property name="tag" value="hirge"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Grisenda" type="spawn" gid="243" x="287" y="249">
+   <properties>
+    <property name="conditions" value="VariableGreater#warrior_honor,100"/>
+    <property name="conversation" value="mercenary_grisenda"/>
+    <property name="name" value="Grissenda"/>
+    <property name="portrait" value="14"/>
+    <property name="spawn" value="grissenda"/>
+    <property name="tag" value="mercenary_grisenda"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,13 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](O prisma responde ao selo de Lyssara)[] A rota do Selo exige estabilidade absoluta. Quando ativar, o Guardiao da Fenda despertara.	[BLUE](El prisma responde al sello de Lyssara)[] La ruta del Sello exige estabilidad absoluta. Cuando actives, el Guardian de la Grieta despertara.	2	"VariableGreater#lyssara_legacy,19;VariableLower#lyssara_legacy,40;VariableEqual#lyssara_path,1"		
+1	Q	[BLUE](O prisma pulsa com energia agressiva)[] A rota de Ruptura vai forcar o nucleo. O Guardiao vai surgir mais forte.	[BLUE](El prisma pulsa con energia agresiva)[] La ruta de Ruptura forzara el nucleo. El Guardian aparecera mas fuerte.	3	"VariableGreater#lyssara_legacy,29;VariableLower#lyssara_legacy,50;VariableEqual#lyssara_path,2"		
+1	Q	[RED](A arena vibra e o Guardiao da Fenda esta ativo)[] Nao ha retorno ate a batalha acabar.	[RED](La camara vibra y el Guardian de la Grieta esta activo)[] No hay retorno hasta que termine la batalla.	0	"VariableEqual#lyssara_legacy,40;NPCinArea#lyssara_warden_seal"		
+1	Q	[RED](A arena vibra e o Guardiao da Fenda esta ativo)[] Nao ha retorno ate a batalha acabar.	[RED](La camara vibra y el Guardian de la Grieta esta activo)[] No hay retorno hasta que termine la batalla.	0	"VariableEqual#lyssara_legacy,50;NPCinArea#lyssara_warden_rupture"		
+1	Q	[BLUE](O nucleo esta exposto e quase inerte)[] Voce pode recuperar o Coracao Fraturado agora.	[BLUE](El nucleo esta expuesto y casi inerte)[] Puedes recuperar el Corazon Fracturado ahora.	4	"VariableGreater#lyssara_legacy,59;VariableLower#lyssara_legacy,90"		
+1	Q	O prisma esta silencioso. Lyssara deve decidir o desfecho em Kingsbridge.	El prisma esta en silencio. Lyssara debe decidir el desenlace en Kingsbridge.	0	VariableGreater#lyssara_legacy,89		
+2	A	Ativar ritual do Selo Prudente. (Leave)	Activar ritual del Sello Prudente.	0		"SetVariable#lyssara_legacy,40;NPCSpawn#lyssara_warden_seal;Particle#lyssara_warden_seal,teleport"	
+2	A	Ainda nao. (Leave)	Aun no.	0			
+3	A	Ativar ritual da Ressonancia de Ruptura. (Leave)	Activar ritual de la Resonancia de Ruptura.	0		"SetVariable#lyssara_legacy,50;NPCSpawn#lyssara_warden_rupture;Particle#lyssara_warden_rupture,teleport"	
+3	A	Ainda nao. (Leave)	Aun no.	0			
+4	A	Recuperar o Coracao Fraturado. (Leave)	Recuperar el Corazon Fracturado.	0		"SetVariable#lyssara_legacy,90;GainItem#10054;GainXP#1200;GainGold#700"	
+4	A	Deixar para depois. (Leave)	Dejarlo por ahora.	0			

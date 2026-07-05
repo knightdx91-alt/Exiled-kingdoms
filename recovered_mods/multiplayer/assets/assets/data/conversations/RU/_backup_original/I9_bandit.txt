@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Чё?	¿po?	5	"VariableEqual#l9bandit,1"		
+1	Q	 [BLUE](похоже, это единственный из головорезов босса, которому удалось выжить)[]	¿po?	2		"NPCHostile#dominatrix2;NPCHostile#dom_team2"
+2	A	Эй, ты цел?	po.	3		
+3	Q	 Ага.	¿po?	4		"NPCFollow#"		
+4	A	Тогда пошли делать свою работу.	po.	0		"SetVariable#l9bandit,1"
+5	A	Ни чё.	po.	0		
+5	A	Возвращайся к боссу.	po.	6		"NPCDespawn#l9_bandit"
+6	Q	 Ага.	¿po?	0		"NPCStopFollowing#"		

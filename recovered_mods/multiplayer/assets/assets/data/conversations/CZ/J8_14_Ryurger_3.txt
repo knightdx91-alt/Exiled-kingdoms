@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1,ryurger	Q	 Чудовище поверженно! Теперь нужно вернуться в город и сообщить всем эту добрую новость!	¿po?	2		"NPCStopFollowing#"		
+2,ryurger	Q	 Не забудем заслугу почётного стража Гловера, он никогда не страшился даже самых опасных задач.	¿po?	3	"VariableEqual#death_glover,2"		
+2,glover	Q	 Рад был биться с тобой против этого чудовища.	¿po?	3		"VariableLower#death_glover,2;NPCStopFollowing#"		
+3,ryurger	Q	 Будем всегда помнить послушника Каштана - без сомнений храбрейший боец королевтва.	¿po?	4	"VariableEqual#death_auburn,2"		
+3,auburn	Q	 Хорошо что нам удалось одолеть этого монстра.	¿po?	4		"VariableLower#death_auburn,2;NPCStopFollowing#"		
+4,ryurger	Q	 Священница Анабель сильнейший воин королевства, нам будет всем её не хватать.	¿po?	5	"VariableEqual#death_anabel,2"		
+4,anabel	Q	 Чтож ты вправду оказался хорошим бойцом. Возможно, мне понадобится такой напарник, как ты, для выполнения сложных поручений.	¿po?	5		"VariableLower#death_anabel,2;NPCStopFollowing#"		
+5,ryurger	Q	 Ты оказал неоценимую помощь, герой, первосвященник без сомнений вознаградит тебя.	¿po?	0		"NPCDespawn#ryurger;NPCDespawn#glover;NPCDespawn#anabel;NPCDespawn#auburn;SetVariable#scripture_mission,90"		

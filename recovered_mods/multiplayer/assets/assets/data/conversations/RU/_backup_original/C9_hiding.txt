@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](ничем неипримечательная комната, похоже, в которой банда Наила ночует, осмотревшись, вы приметили стопки пустых ящиков в углу, отодвинув их, вы обнаружили тайник в полу, в котором находился большой мешок, наполненый драгоценностями)[]	¿po?	2			
+2	A	[BLUE](вернуть всё на место и уйти)[]	po.	0		Travel#C9,7
+2	A	[BLUE](взять себе мешок с драгоценностями)[]	po.	3		"GainItem#10406;SetVariable#freedom_law_order,87;NPCSpawn#nail;NPCSpawn#nail_band"
+3,mercenary_grisenda	Q	Всё правильно, мы воруем у воров и отдадим украденное бедным, да?	port.	0	NPCIsInParty#grissenda,mercenary_grisenda		
+3,adaon	Q	Конечно, я всё понимаю, сам не святой человек, но воровать у Доми Семи явно плохая затея, так что давай без меня! 	port.	0	"NPCIsInParty#adaon,adaon"	"NPCStopFollowing#;NPCDespawn#adaon"
+3	Q	[BLUE](теперь надо как-то покинуть город, не попавшись страже)[]	¿po?	0			

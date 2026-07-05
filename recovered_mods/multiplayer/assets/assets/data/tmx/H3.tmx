@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="96" height="96" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="exit_e" value="I3"/>
+  <property name="exit_n" value="H4"/>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="ashen"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" source="spawns.tsx"/>
+ <tileset firstgid="137" source="town_objects.tsx"/>
+ <tileset firstgid="217" source="mountain_ground.tsx"/>
+ <tileset firstgid="233" source="rocks_gray.tsx"/>
+ <tileset firstgid="243" source="rocks_gray_small.tsx"/>
+ <tileset firstgid="255" source="mountain-transitions.tsx"/>
+ <tileset firstgid="273" source="water.tsx"/>
+ <tileset firstgid="337" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="497" source="natural_grounds.tsx"/>
+ <tileset firstgid="625" source="trees.tsx"/>
+ <tileset firstgid="641" source="ruins.tsx"/>
+ <tileset firstgid="705" source="grounds_indoor.tsx"/>
+ <tileset firstgid="865" source="grassland_structures.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1ViYrsMAzr389vP5blwVDaxDp8THcEZY4msiw7zus4jpf5OcPN/33i3k/0f6KmLO/duTo4M3RVe3z1+w6OmGf+9/+Z/uj2kfWdAeuHyh/h6fY12/u7HHdrVf4oR7e30/x38UdidPuq+I/6uOJU6/EX/T8C73e5uvYo2j/l2eWwg9MbhTvCP/WJ5BLNO7qO0fBU/yP5O1DVA2jOXT4jHrz/ZqH2c5RT9aG619H8jsX6FRT/EU4kd5bH5f0OTl7Wf4c+J0+l/64cnXoYbS6eKs8VbQhPhTZ1f5f/7ngObec97vNY7X9VLHdvRPWz+7J9yeDOyDcCpp7V9XLzob2b1UcsUO5J/jtynVIHBp3+V2jtrkPGeVD3T/Se1blbi/BV+Y+iy3tH7dSauvxnofbsJN+r/Weheq5yVdRHyT+yXoEznyzvsntS8Z+JEY3t7iU2VkSHUoPs/kfzy8iD7ZsVbzSuonW3T9Ue1RKF0/crbjau4xzexWI0IdoRZPqvxM30X+Wc6D+yL8v7rBogfAyiHBO8YGMqcaNcLCr7J9v7nQ/uel59ZzDRf1R3dN/r7XO1T+1rBBEdVf3H6mY5psPZs1k9P70GU/Kt8n5CDSp69ryG5VI0TKvBZH1RDYrfap4ZsSfVYhe3O7dO/1e96EKX/9E8uv139RGSX2X+jL5sHd01ULS469AV3713Bcf6rBpke+6Ii+yNxopiWg2ie1y5OfaxcaJ71RpU9CCbH7OHzZH1Eq07mtMdVucBQZaXzB61l1WwvIqmjP6/q9v5+yTvVUzw//xejf9J/v9A0aXMn3NsxKcoz3TvVSB5utawuv56Ddhz4j6fKqbVkb0Hzv/v+Bz3FIupZ4m579A5pOSe6X91HdDZ4rgLGO6VLhYZ/iu5RDVGONHYKL9z7rv9f+eNxkY1IusR3rs9WXPCzfnO0a3RcSe47gw0vovTgew53ek/orOa646TndVTa5DpmZOL9WC15vz/BP9d58CF7nlQXQOFw41KH16n7101n4QpMznb//8xp4H133Weq7yvAKPX4b/i4ZP8ZxDJPbMG1TNoGqL5Zp6FSN3dmFLXrH5FarB63+XT6/SZGQc964wnSE0d8T4F7Kx1+hGdUSovM2Oz0X3XoXeEyo2ccTTWTgOisQrM3aNwI+fb4UVEw6f4fwTe77gz7zhWA6pxN1fZPnPPhsr5o2pAexB5UC4XJvh/p2O3DuVja9Dhf3SvExEdT/LfNRddYGZQ5Jw8zf8JszA6Hx016PD/LqZ6ZlhNKlckFqLJAed5vJoTbk0M10rL9P5n9nXoccVDdGXE7/Y/mzsSL6opI7bD/08/A1cxqnphFS/6ZMXNxDT/UTi0Vff9KnZE2zQ8yf+rmNP9/wGjrWq2ITqOY1+DqWA1dnq/0nD3/ot6fP3/4otf/ANHo3MgAJAAAA==
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2dQW7bMBBFXR0hiy666CKLHqH3kUyJ0v0vUBvgA74Jt0Uc2Ubr9wBCFkUpzp/hDKkAmcNBPsI6HA7H1ubWzp/rqS2nVtr52trSxtR2Lcdvw7N/m3+P+YrO576x9U3Rlta/tePUnR/V/8NMTfMtfHlsfVPMCfTFDsyBpbVJ/W8Cvy8RU2rTs4QNlujbusa1Vf1vYo74vob+fEbjpdlqaf1j9GNHuY0l/LzGnDhGP/bA34lZYxzldlJ/4gwxvzR9yQNj6M+1Rf13YQw9MyeQl/F/4g5rJvXfl9I03cL3c72U8d/1/31gXbmG1sSgebjcH8zqvzvTcLm/WiPmkKePYQO5H8Qb9mkwxdyQ5+H6X0RERERERERERERERERERERERERERERERERERERERERERERERERERERE/md+fnn2N3htfpz0/64Nnsb5f0CfbfBNGzwFapFog+ewRR2fd2PRw8laYmUwHzyarElIzQZj0eOYm/9nDavRefAw1og9WUeyOA8eArkX7anXNhuLHkLW8Uwb1Khb5brofvQ1ObN26jHikfngPuD/HLNGFXOCenrGov3ZojZh1kpF/6ybOmmD3UHrNY70bcPl/MA+79pgN67VDKY2Hr5PPdU57KMN9mEKX6d24Tpc1upE96z7vJmTdyHrZ/c1so+he1+3mX5t8DnQsobfT3HO3oB3E6yHqPe8aoNPQdyndnDuu7AH9VMZx/6A8ayL3k7ta2tvV87/dHzVXFJDy/T/fCdNbpi7cXPYhc+sWTOfU4N4jDHYlWuvms8z95bIxbkfzhzQr1U50jJH5P3YhHE8v8b1V4xj/foff+cdUO6Fa+ib+4EtfDl9m/vTbvl85hi2f8X3HJl3x9Az3z1QLzvnSu//Y2iLrrTME3lfDd2x5av97aEMl7Eef0SLKfp4N11CV2yScwVbMgf6HE/+rt29vH8iFn0mn/f3ZH/f3v7y/P45vzvv27Xn922M+IHOaJh65Nooc0XWOC9xX4mxucfIevR93GLuYAvuz8+ZM8bu2cylOly+yy3tPL9r+gFznrVC7fyLeZxrwvx9frd34pyf38fw87Vf9wK3xQCQAAA=
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bW07DMBBA0bQSoiC2WmCTsK1SPoIsk6Rx/JjXPVJ+EELG4/GMnXaa4Mmn9ADw5yo9AKjzIT2ARljbfpTUjNr64mX9W0KuotZ74e+z5gC0Rv+AKK5TvzpaWs8lWRorYvG8Nunhx6O/gRQN+T56DOSbfyPeiWrInT089yvoi7UDwCKJ+sxnseDVqF4gz1sL57XaMdJnAX5YuRvQhN7JJuIGtHGTHkBDFvcFT/Nvkab5934mez79/5mm+deudn283uf/lD0vCzEBrODcCwAAgBpLd0gW75VwzNv9PPyUPcAazp/ltO+nj+7ZWo6/Zv1ckr0p3a8u7FnFn486EofzSo04H6gf2nMC8MLC5zt78/6uEQC0oOZgRu2FZfNZlbsveMJ6jsNiDbY45iX0wnKY+/F4HzPG2v54Xnknlr5ziZIXUu+Z1mKAbS3jlcYgynrvoSYm5IG8pRik+eClz05py/c8BtLji3j2Zy+SRwzkzTGIuAdosZUHHutxKy3rJnuRvDQGv+cM6b4oIvJAHjGQdyQG332GElZJDL4K/m5NTxWtH2Mvkpd/p6b08Rw/C98d2ptDrf+XaHvVlqUYlM733vk8cpcS4ayzNw8ezV/NXZWF/aKnOQb5Wo6w/jSpqedWHs99B7DHD4dQR8sAkAAA
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aQQqEMBAEQP//XdeDrooE9AGK2sJUXXISmiGYQKfrAAAAAEj5pwMU90sHKKpPByjMngeoY734XbufjncGAQCAE+Z0gMKGdAAAANjpkzPa3I8+ua3es7xDh5+zpAMUZvY5UzrAxz05Hx08kOL/k+XsBQAAAAAAAAAAAAAAAAAAAAAAAPi+DXoqpWcAkAAA
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3cywrCMBAF0P7/n2q1Prai2EADBReu2luYc6DowsWQhDQzSRwGAAAAAIBjuqQDAFhM6QAAZs90AAAAAHAAj3QAxd3SAUDQPR1AcfZqtvVJBwAA/JB/ZZ3TARTW2t7438d7fl7L93F+TsFYKmpt33Kx1g/rMX/NhANAmPdwlvU/lRn/Wfa/stzPyFL/AQCAOtQ/qart/cp/qUz9jYrG5dP+C5VZ/2e5/5jR933df8/y38U5ct88508y+tg3/1OZ+s/+es1B2+eN/3/Chqx/ctrYd/9xf9PyyL8yWs2hz/v6IMv8n9HXnto/R+0/p9ed9cH+1jmX92+W8w8Z6g7HoAZHZc7/ZKm/5X0B/RsL6ACQAAA=
+  </data>
+ </layer>
+ <objectgroup name="data" width="96" height="96">
+  <object name="Light" type="light" gid="133" x="2483" y="1627"/>
+  <object name="Light" type="light" gid="133" x="2550" y="1633"/>
+  <object name="Light" type="light" gid="133" x="2553" y="1692"/>
+  <object name="Light" type="light" gid="133" x="2630" y="1651"/>
+  <object name="Light" type="light" gid="133" x="2641" y="1722"/>
+  <object name="Light" type="light" gid="133" x="2712" y="1666"/>
+  <object name="Light" type="light" gid="133" x="2712" y="1740"/>
+  <object name="Light" type="light" gid="133" x="2773" y="1820"/>
+  <object name="Light" type="light" gid="133" x="2792" y="1752"/>
+  <object name="Light" type="light" gid="133" x="2845" y="1857"/>
+  <object name="Light" type="light" gid="133" x="2920" y="1870"/>
+  <object name="Light" type="light" gid="133" x="2877" y="1767"/>
+  <object name="Light" type="light" gid="133" x="2945" y="1739"/>
+  <object name="Light" type="light" gid="133" x="2966" y="1814"/>
+  <object name="Light" type="light" gid="133" x="3044" y="1863"/>
+  <object name="Light" type="light" gid="133" x="3040" y="1752"/>
+  <object name="Light" type="light" gid="133" x="2192" y="1247"/>
+  <object name="Light" type="light" gid="133" x="2254" y="1236"/>
+  <object name="Light" type="light" gid="133" x="2259" y="1185"/>
+  <object name="Light" type="light" gid="133" x="2357" y="912"/>
+  <object name="Light" type="light" gid="133" x="2417" y="883"/>
+  <object name="Light" type="light" gid="133" x="2478" y="910"/>
+  <object name="flames" type="mapeffect" gid="133" x="759" y="337">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1071" y="257">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1086" y="478">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="785" y="827">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="429" y="311">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="525" y="1347">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="915" y="1173">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="564" y="924">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="974" y="706">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1380" y="1048">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1261" y="1167">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="248" y="1120">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1476" y="508">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1483" y="225">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="626" y="262">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="241" y="707">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1029" y="1755">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1557" y="1623">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1496" y="1880">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="345" y="1811">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="263" y="2209">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="574" y="2170">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1773" y="2279">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1482" y="2470">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1028" y="2088">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="677" y="1651">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1428" y="2748">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2049" y="2735">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2182" y="2650">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2198" y="2330">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2833" y="2759">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2629" y="2015">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2230" y="1914">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1767" y="1273">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2048" y="1380">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2057" y="979">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2407" y="1057">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2398" y="1462">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2324" y="452">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2216" y="636">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1932" y="240">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1756" y="544">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1157" y="1239">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1552" y="1192">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1412" y="928">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2109" y="1783">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2239" y="1361">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2374" y="1286">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1466" y="2182">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="876" y="2172">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="558" y="1702">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="868" y="1744">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1773" y="2063">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="388" y="2384">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="140" y="1936">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1092" y="1608">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1804" y="1160">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2073" y="1523">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2349" y="1375">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2130" y="1346">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1941" y="1347">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2209" y="2499">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2516" y="2400">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2479" y="2789">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1128" y="1976">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="564" y="2068">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="351" y="1957">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1369" y="2535">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="714" y="2262">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="1288" y="2260">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2659" y="2093">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2807" y="2217">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2809" y="2423">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object type="entry" gid="129" x="2912" y="1515">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="129" x="954" y="2740">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit to G10" type="transition" x="829" y="2705" width="52" height="64">
+   <properties>
+    <property name="area_id" value="H3_cave"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to G10" type="transition" x="2910" y="1420" width="56" height="47">
+   <properties>
+    <property name="area_id" value="H3_cave"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="843" y="2478">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="979" y="2471">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="930" y="2044">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="412" y="2253">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="1678" y="2119">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2339" y="2813">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2793" y="2546">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2456" y="1845">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="1485" y="1677">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="631" y="863">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="797" y="769">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="1306" y="1089">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="1775" y="420">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="1566" y="546">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2745" y="743">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2852" y="1193">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="133" x="2481" y="2963">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ashen_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="133" x="2391" y="1717">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ashen_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="133" x="2871" y="857">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ashen_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="131" x="2786" y="886">
+   <properties>
+    <property name="spawn" value="minotaur_ashen"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="133" x="2929" y="2963">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ashen_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2746" y="1248">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2659" y="1399">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2905" y="1173">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="133" x="2724" y="1450">
+   <properties>
+    <property name="id" value="glowing_ashes"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

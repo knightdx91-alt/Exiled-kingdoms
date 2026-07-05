@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Этот херов алхимик куда-то смылся, надо его найти!	¿po?	5	"VariableEqual#size_matters,82"		
+1	Q	 Проклятие, здесь нет нигде Винса!	¿po?	2			
+2	A	Может он где-нибудь прячется?	po.	3		
+3	Q	 Мы, вроде бы всё осмотрели, скорей всего его здесь и не было! Предлогаю, не торчать здесь напрасно, а вернуться в город и ещё раз распросить того типа!	¿po?	4			
+4	A	Ладно, давай так и сделаем.	po.	0		"SetVariable#size_matters,82"
+5	A	Найдём.	po.	0		"NPCSpawn#vince;NPCDespawn#winalways;SetVariable#johnny_talk2,3"

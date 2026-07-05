@@ -1,0 +1,550 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="32" nextobjectid="4">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="complex" />
+    <property name="name" value="Bandit Warehouse" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="564" />
+    <property name="sw2" value="563" />
+    <property name="sw3" value="772" />
+    <property name="sw4" value="561" />
+    <property name="sw5" value="736" />
+    <property name="sw6" value="745" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="grassland.tsx" firstgid="1085" />
+  <tileset firstgid="1213" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1501" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1717" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WUQqAMAwE0Xr/o3oJKVKQICJIpbPMg/5nE0rSmla2b+cjGxlGDmKehDl0CRm6lHms5NpPYm+JNb+RkKvuALKEDMpH+2+1Vuo+qrfurDn80RPqDO7Mrp/2354kZEm6OSRJkiRJkiRJ3xw9aoiNECcAAA==
+  </data>
+  </layer>
+  <layer name="water" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoHvYP5XBbKGbgwQkAAAAAAAAAAB7uq4HAHw1TtFDOhAnAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1Z2Y6jMBDEgV8I4cWb///AXA9DdlvpUiqWAbfNxGGVklocE0xX33ia5v/EqPLH1dYkH6L/0T2kJpcxEOuz4CByyVhjDYR6HA225GfPei3HLmGNnwSx+HVNHp36Az6ZyxnW90zn1+D6HTw8PbNXLiK7f+cH9+CFe2Hsjqrz1Lo5PFrNT3n/LiNHveqNuBqDv92bh/TqL/kN/DYF4SBrpsQW2+ZMfHJqTooNPdkrdT2OsTAOO1oP/mVfIzasXPCOOVhqIrh05EfmAw7it6uec34gZ1sjl0uzHNNsv6VasATOCfgm5MF+SkWKP8TGA+U/7Nw6Oy+v63AMMQ9wgN0sPOZyd0qXWO+wcGF/iOzpHmxkgby/z8irmG5h3Ut9rqW8yJlPYvYsmbV2zu5bgdecb42xxDF9oLhnTlZwH8qZ1byRA97JMyLnWWxOWppJUVvgj6Ggp1ngg/oQqxexeOP4Zbk0z/rT0RrWmlPC5Rzw6HTOCXngGcwmqL1jcMT93j05/fa3DWoMZl3U9bn8YL9gDbnuNVd5bj6Qfd7BBe9PyfNYPnr3zI1Rnx/UpzkzeSlSevsUuIexPWrwgA45gF/hh5K1SpHbOwDEXOk6pcDcVoIu47twbaAX3Juyufy2qlZ2oO6gPw8Z9fKmgtorNqm5z4dvdPgHvW5Jp1sg4FITPIuLLtfGrhNs8UlAv59CbI7EnPJJe8hztsW82wez5F3v144tBudJTHhe3NF3DfbCPgXii717nStRq8O+g55Yaw98DrBr7gz2KeD90S2D9522jFPzqEe1e3QJTiqoo+iJW+IDDoirXvdJMbNsBeAAf/DMVTrnvxPwx4XORaSXyHErsQW9B/fqG9TgU0XdLMAMD93xPxj2z1bg3WtMsV+2xCME8/riiy++WBt/AZuiMDgQJwAA
+  </data>
+  </layer>
+  <layer name="ground2" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YzQ2AIAyGYXQbz7r/LF69OoHxpkhCkJL+5H0GMPSjNI0pAWi1zdon6LcL1iD5LXythXxH9GCEvvailnV+56UesKpW2+GolhH+3KVkZqX78dRfufvsVmaXZo5WMugVpY4nqZqsZ9PyFj3PHG0S2VnvJQAxMXve+IcCxMFuq4PcgZiWSfsE8vI92NNefCbmLQDAvwsNsOPiECcAAA==
+  </data>
+  </layer>
+  <layer name="ground 3" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YiQnAIAwAQNEu1P2XcRQXKIVCRU3uBgiGfGApAJzmamfE5NldV79gvp4gR/aQYZ6yiHiHsvTnlzwj1hmAd3Y/EJX9BvH40+RP7gQArDUAq6N32hAnAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1Z/24SQRC+Q8EnEW0FSxWLHsYY/5BSLVr/soS3MGoM9QGMtmqKpi/VtPomxr817qQz6cd0l9sFjzu0XzLZu709dr6dHzu3RNG/h04cRc+M9Lm9HuetUTjqRuc7Ri5VoiiunPQlOXBZ5TVEueGpwypzKDGHMvOg6ydz5rFl5tsvn8hnI7tlfx22eNzFytlnV1J+g+y4bKRqpMfXG9zK/XLAmpIuX5jDRyPDQB4VCwdConTSfrbtOUfaeqAuZAPBYSAP8qELDi6IRK3/Os/RMu1VI0+5Fbkbh/GgdRlG4+LLo8Hz12BeQUvp44JLz8vcn5Yz6rwuFKcvwB475dO18/VNQgN0bpv2Jl83mWeNOcuYFt+vOOboQv8a69MHm1J7n+36nPX/Vrb/VhLIRdZwkj1lTJq/4Lq4cM/xfM/wOVacQrhseugoYxK1xq45dNzg/QPLO584Zw2BxwG3vvHS9eCx5HiGecA354ptf5fG+weGw5HFx3xzho/PNBx5yYY0X2h6+J6gNSEWER3OGTK/b13SVLw0tzRfaCpfs/Hy5UAgvz+Ae8kxGwGcBBjjvr4g74lP/GJfawfYoQq2QFDMjYxcC9ClzrE/jW0FtyG3h9jhK8fVd44tyefHXK8Jjzpz7rOdHiodO7wf/FBxS7bt8Ts+uVP2Z18OBMpRVGP2WXeyAdVrA8gX4mM2m2EddsvIz9LZ/EM44jlC/CwE4suYr3cd+6qgHZBnXqtxWX7bEBfyyYFD/7bKKSsQjzjGVqe9Mfc73Ec1E+3Vaxlzca2xzRdk/Id4PKcgv1fm+qV6d8i5I+vvNJ3H03KGjsdJ63HIuWSUYZxo+NaDk94lYHygf4bkolkwCw+bTXz3s7+N7Rl4ECR3EPLiQMDvuR7vf6E5xuc7IGt0LXOH5n5cC6nVdA2QNbA+R1/HGsN2joLQe4wgL/uE7i343ixnKFkgRCc6p+xbYsr3DGWecMUw1cTr0JfEp2deWGfO+9zVhSVY2yrHi9S8PsjTtxCuGBbI3l2DfQSf5bWfaOD5rtS6KFpPjK2icCB0C+jr02ATdC+Kr4fikco9RcqjvqCzhMdG9lW/1B6Lwkf8yXaWMIrCzoiKhiHovsg8EKH/VeSFtPOed/Fi5C/83+AtXOPZ8CLsJz7/My2CPQS2Gv59XKzaaRoUsXY6xzn+d/wBT2DmtxAnAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="50" height="50">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMREAMAgEsF8QWVVYRgXXgURBErihK3n1ewEAAAAAAAAAAGwZ9mdyqRAnAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="535" gid="245" y="1295">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="470" y="1260" width="20" height="60">
+      <properties>
+        <property name="area_id" value="G10" />
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="3" x="1395" gid="247" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom_2" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="4" x="540" y="1130" width="60" height="30">
+      <properties>
+        <property name="actions" value="StartConversation#bandit1,H9_bandit3" />
+        <property name="conditions" value="VariableLower#banditattack,1;VariableLower#sin_kingdom,91" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="5" x="205" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_heal" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="6" x="815" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_heal" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="7" x="215" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_heal" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="8" x="1265" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_heal" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="9" x="175" gid="247" y="535">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_archer" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="10" x="915" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_archer" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="11" x="785" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_archer" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="12" x="145" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_archer" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="13" x="1295" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_archer" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="14" x="495" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="15" x="245" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="16" x="375" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="17" x="215" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="18" x="815" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="19" x="785" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="20" x="975" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="21" x="715" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="22" x="625" gid="247" y="395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="23" x="465" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="24" x="785" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="25" x="1185" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="26" x="1185" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_dom" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="27" x="685" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="28" x="655" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="5" x="205" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="6" x="815" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="7" x="215" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="8" x="1265" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="9" x="175" gid="247" y="535">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="10" x="915" gid="247" y="685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="11" x="785" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="12" x="145" gid="247" y="145">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="13" x="1295" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_ranged" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="14" x="495" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="15" x="245" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="16" x="375" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="17" x="215" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="18" x="815" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="19" x="785" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="20" x="975" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="21" x="715" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="22" x="625" gid="247" y="395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="23" x="465" gid="247" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="24" x="785" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="25" x="1185" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="26" x="1185" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_male" />
+        <property name="tag" value="bad_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="27" x="685" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="28" x="655" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="bandit_female_elite" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="3" x="1395" gid="247" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="G10_bandit_male" />
+        <property name="tag" value="G10_robber" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="3" x="1135" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="spawn" value="rickman" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

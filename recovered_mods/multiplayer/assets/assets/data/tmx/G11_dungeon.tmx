@@ -1,0 +1,788 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="23">
+  <properties>
+    <property name="maxlight" value="55" />
+    <property name="music" value="redletter" />
+    <property name="name" value="Temple of Knowledge" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <layer name="nonwalk" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aQQ0AAAjEsMO/VEzwRAOhTeZiCQAAAAAAAADfdG0AAAAAAAAAAMAtvh8AAACuGoKivKsAUQAA
+  </data>
+  </layer>
+  <layer name="water-1" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3TUQqAIBBAwbr/pfsJolgXEUnRGdgfQcsHHgcwg/Meyr59NHuLWmj2qOlTWuv5D9mMNEufWemT0ye3c5+a7+7ep2aifTVrvcz8viL65PTJ/d1npJZ77danZaJzKNMnp09u5T497rZ6nx4DAAAAAAAAAAAAAAAAAIxxATzY7uAAUQAA
+  </data>
+  </layer>
+  <layer name="water 1" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VMREAIAwDwA7YAP8y0cBCA/evIJchqQISrNGd4D06O6czAG6afgcglo0GyGWjAQAAAAAAAAAAAAAAAICfbZrRjacAUQAA
+  </data>
+  </layer>
+  <layer name="water 0" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3cTQ7CIBBAYS6D3tVT6yxIiNoByv/wvoRNF1DfYrppdQ7ACvzsG1icd7+NRjZ7ZayZrvqMbPb8rIeyZirp869Ri26yx6qNWvSpbdRij15a9an5ffQpv4dVnN5Hm3lh7p3cR+Q0ip3WpxR9dKP7hH12MaPPTKn5c3dmx9d37iPuNIpZ71OLPjr66Kz3KZ0/OTM7XLPQR7Ro9M1Snx7oo6OPjj46S31q57P2XPOJM3bRs1HqjF30apRzBgAAAAAAAAAAAAAAAAAAAAB7Uv/3cvq7xPI+Oo2uWfnmo5eaPm8Kt1pdAFEAAA==
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3cWwrCMBBA0flwI8b978KFaZBgoDqZ5tG87oFCyUcaLib+aEWA9lzvBQzOybERzb6cHBtd3ez+vh7K1ZPWJ9VM/ozlrGHURmf7/PpclTYKc4zYqFafkkY15miFPrrd+2j7Oezpnft41kYS3e/Ux7M0Cnbsc8bVfeJ5ZtCjT5irh9Teyj2ztfHZ5DaS6H7lPl5Oo2CHPiXoo1u9z9m9ZTmz47HZ+3i1GsVW6uPVaBRbrU9t9NHRR7dSn9Kzx/K9Zj23RtWyUeoZs2jVyPIMAAAAAABG87z1XgEAAAAAAAAAAAAAzE97lwk+v0dPve9l51ar/OejFfqklfR5AU63gW0AUQAA
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2bzU4UQRDHl3WJQeNBTyAJcNFFSVARUcFvEBIfxKfiMC/p3ensVFKU1fXR3dMzu+4/qbDM9PZ0/ba6qmYWJpO11srXVLH/XVY+DXNsGbQhmEWe+OGYea4lKdeP1Hm1a2l8GmYsd31Qo1wv1Y9U4Xn2mXnpcarSfOiaUvwItoNe3zrm4ebdZuYfKn7oNT1+xOyWjNsh5+Hz985ridWc/IOvH1uTVdY14+OxuPCwoHNRLSOfXWHsnjKXd3951Dcfmj+1ub08SrLgJPFpIj5YZfUjxlAzmrM8a2uM42rweTqR/dhQxtJ8UiJ+tBwk5aRSfPD7LGNKmFUl+MR88MjD52BSjw+nBpllvdyxPvhY3l+LkWdNsXV659rLXIs3f1vVZKxpmeIH+gGp506d2/o5jIEPV89z4mcsfLad74ldl8bLUPmH0xjiR8tDsfutGpL4lIhPy3VLzgtqnOMt65TOxfpf7v5zDMrNQZbPxxL7Y9kHVLX49L0P+tLQfKT7Tcv6Vlmcv7iHCeLuyaVn66vEMeZzjZheBll8Cj+h39P6Y1wD6b5dJW2Q1ym5axXihxP1J2dPSXlqWeX1x8pzVQT5xjN+lfzXlBI/Oc/Xlk25+2sVlVN71nxs762lL9O7lqu+azP0QTUUeJzNJpOTzi5a+53JKNbHcc9AY/2xNn+N+AE2z1v7c29hR+3r95mMPD6OdX89ahnMCRvK6Ot0YV5WKXwOJuPjg5kctr+ftvaiOz7P2HOwt7CuEzhT1eyTKZ+37e837fo/IkZgc2XPBd+tVmLfDsXn21RmdIH2HLaQw467WDvuWN6QvB+OAaNU1b4P3UIMXs0W+fpaYXRC9t05k8Mg3t7M/n1vOG5lUMJKMYL4uJrydY2zWH6Xzs0NfOCZl/W7Y6mXKiFgdIT2xxuFTY49FBhZfKe9lfTdckltIk70s6f1TbJDw7gYo1iOsRqNudLaZPwK/n4Q6hu1kOst4zQ+KfupRm2jjKBfvOry9zvB98DyU2s/DCxL8qlZ+zlfQn3D9ZrLvTjOvk8XjKQ85pHma00+DyJ156XgK7CB+nfZ/czlY/UXn++TD8fGYtDfQI9wJsSZJ3ZozpXGUT67aQiieqzExzMDu7nCJWVfWeNnP9nzu3oy4y0WO5BzS/VEHqXsr1x5fIG8AvXo1BhHJfngflAa11c+DtqZ8b1PqFuXXb79ie7Nchh5NET8xMTxwb3PZ6UuWXtsj+j9gzSubz5BMUZQl647PrT3gxx11Z17LcTYfeUeFUuLnyH6QxDec/j5BFe78flfwjMSDyNvr6z9z1RfwjHF3bvS+h4YnRvqvMYoxuGA/C79H2YNSX1RjJH27MiSi6ivKc+DasjLp1QtS70nrf03QEPzyfk7xVraYhhx4upfqVrPidb/ofgEUUYxWRmV0BjqV6pqshnDHksRfM/Wh8buu0VrPrLWfGSt+ejqi08J/QUJDX4yAFEAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aW46CMBSAYR7chuN1C764RHfhZUa3JyswVZqQ5rSUkXIK/b+kLw2B+qv1EqoKGMZ6IQ9U1arpILVZthr9LD5jq9TtpHPZdx+3kWHaLIUWq4yajcH2aT9u26arjzRnm+Xa7a/n8UP3iZlP5ZDgnO029nk3ptLnkfj8bhu3kVU7x0vniJ3P1dkz77ZpN7Jy6FN3H6Juzq+fIZTYR9qHfegTVmKfvef3lzR2HX1qz3zJ6BM29/eX0WcPcpXc59mMkBL69NmjY/ZsY059UqBPmNRnE/FbL1ff7NESqc/Q1xjTmH36/o+XA14/Yd98hsV+rvmuAT1H7QVMQNd3XAAAAABluGsvAAAKcNNeQEK++/MwDanvZQWQp4v2Ambiqr0AAAAQZYr3go0p5j+L3+SrAAAAAP5n1wwAyNELSPc/TgBRAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QQQ0AIAwEwUv9a0REgwBE8ICkMwo2mwAAAAAAt3YlXa8r/rb8AQAAAAAAAAAAAAAAAACA0Q5ftEpNAFEAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1bS2/UMBD28l8KpeJR6LbQbYG98Lhyqji2AoTghECU7i9oqSqu/A164fHXuJBRM+p0OjOOHdtJtvtJVrLOxom/nbe9zi2wwAJXHY+r9r1q30g7qY/Y77v/mHz3pP4M50/yvHIW8Hlge9ly3Ffk/Au7tlY/l3LeV85wHu/r42l9nCQaVwLwc0/oi8WPFvf6gPP4kHjcnaodKNdS85MTqEdt+OFz1frwd35TtV3Sv+/6y89OfXzXYgy05Wh/ffYLuOD611f9gt/5J+vbrtpmwBiSrVk3vo/6dcj6+ghJD+Bdd4R+a4xD1gcyhTZ+y5379yN35qseVW1M2jTgeSUh6cGa0h8yhiY/p647WYnRQ0k34P0t/eDP2hWu+/z7UIBy/tZdlPWQ+EfSUZ/9GRLAVuy5+Bh2KPzE+jnUBe29x56GuQLY3z13nqMducu+H6/3NZ+QgPY19ne1ZEWzQ0PSMfTlse9s+TotTkgVD+aMDRFoP2Lf2cq1NO6GJD8++9P0fgk8Pv/U8lldoK38SP4LocUJQ+GH5gG0Tog1syZ+xuJHQ1/54faM68Yp+9xkHjyXok27Ng156Q4h5e8Uff2dc+Dftct9NHf6KNxzlfiR4LMdWEs/duf1iZP6iHHxkGLhUPjqPFjrQLs1I9dm5DsUyCcF1n2GBp/94bViCVD/QtkC/6flG0PUVYxvZ8p1aa3Bhxw5RVfQ/C/Wg6bOjo8laPI2RH4k8HpQqPzMQ85ugecbVvwHDdc6tuvP885PaL2D14+GHjP7EJqvor+aF/nwIbTe0bY+MgTQ/SZ0XQ9zeiu2uwrygzJgxUEa2tZnQ3B75NxK1a5X7Vl9fmfUbky6hoDrCCfu4rqCb73Lmnsp+Xle8bApcDFpyVFM/YrDmnsJ+wNy88LgYKMFRyj/GJ/44hgKzEu75mepwdwntd6F6lzT9a3YNc8S+vU0UDZAnu43vIfHM1OFZytOngrjYh0DbBnkI7jH07e3IQY3I3RnInAEc0c7jDb4aX2N+28cI1ZvtbWtHPw00S8JE+bvJPvuw43IZ2t5Vg5+xtU7bgvvuZ/hWRwWP6hD0v5wrbZG91TjPSjTbWqIGke5YfGDskDXfTCGpHr6mZxP2PfovW1teBccSXYMEVob8yGFjwOOlqv2sCBPGkcgP9reA22Pq7X3NWUMsFpYliQ9s/auaHG5b+9zSowLypHEj29vRkg/IEcMGRMbxUDix6rfa9f4nk+qb6n5gZx1vUN+OLAWAPGyteZHa/xUnlLy48tZU+JB9Zy7DZ7FYz9tvjTny8VPKb1qyg0A+KExoTZfmrNSPZxGvN8KyRFoi8kVYhCSXzT9303qmuJB9Y6z0dnxa+H4MAc/qWtCy6PLrVTsk4OfEjWhLv26Bh77dclPqfjZyr84fP6L/i/8tcv/327g6BZpufhqwhHWLfj6GNbh6P8qtX3tudc4csqUjyMpr+L7XX17qUqskYXWqkNg2SL02X+N+6W9Ub+q9rs+L8FPTrtt8YO+6w/rp/895fEjxzzz02Sd0VdPK8GPZYO2Wtpzix/fPilpbxTIVmn9AkgcbQl5VIg9l+4PBXBo1Q+n7YYPAvf92txWG8TkKbgB/7/h7L0Ofd8HjetsVA+XE3ADaFrL7/M+oaU6/41dE7QwL/wcLPhRsVTXURb86MjFTwr8BxAGsAMAUQAA
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="1945" gid="245" y="925">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="1910" y="860" width="60" height="15">
+      <properties>
+        <property name="area_id" value="G11_cave" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="3" x="1525" gid="245" y="275">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="4" x="1390" y="200" width="10" height="50">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="5" x="1345" gid="245" y="225">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="6" x="1480" y="240" width="10" height="55">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="7" x="795" gid="245" y="455">
+      <point />
+      <properties>
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="8" x="660" y="360" width="10" height="70">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="9" x="615" gid="245" y="395">
+      <point />
+      <properties>
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="10" x="740" y="410" width="10" height="75">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="11" x="465" gid="245" y="255">
+      <point />
+      <properties>
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="12" x="340" y="170" width="10" height="70">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="13" x="295" gid="245" y="195">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="14" x="420" y="220" width="10" height="75">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="15" x="365" gid="245" y="625">
+      <point />
+      <properties>
+        <property name="entry_id" value="8" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="16" x="270" y="490" width="70" height="10">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="8" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="17" x="295" gid="245" y="455">
+      <point />
+      <properties>
+        <property name="entry_id" value="9" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="18" x="320" y="580" width="75" height="10">
+      <properties>
+        <property name="area_id" value="G11_dungeon" />
+        <property name="entry_id" value="9" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="19" x="960" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="20" x="930" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="21" x="900" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="22" x="870" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="sphere" type="conversation" id="25" x="1030" gid="485" y="800" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#immersed_darkness,89" />
+        <property name="conversation" value="G11_sphere" />
+        <property name="icon" value="sphere" />
+        <property name="name" value="@SPHERE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="26" x="1720" gid="485" y="1470">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="loot_table" value="outlaw" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="27" x="1630" gid="485" y="250">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="loot_table" value="orc_10" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="28" x="640" gid="485" y="1860">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="10412" />
+        <property name="name" value="@CORPSE" />
+        <property name="unique_tag" value="G11_dungeon_chest2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="29" x="2235" gid="485" y="250">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="loot_table" value="consumables_16" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="30" x="1600" gid="485" y="1980">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="31" x="1980" gid="485" y="1980">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="consumables_16" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="altar" type="conversation" id="32" x="420" gid="485" y="1440" width="64" height="64">
+      <properties>
+        <property name="conversation" value="G11_altar" />
+        <property name="icon" value="altar" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="sarcophagus" type="conversation" id="33" x="1980" gid="485" y="2080" width="64" height="64">
+      <properties>
+        <property name="conversation" value="G11_sarcophagus" />
+        <property name="icon" value="sarcophagus" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="throne" type="conversation" id="34" x="1980" gid="485" y="160" width="64" height="64">
+      <properties>
+        <property name="conversation" value="G11_throne" />
+        <property name="icon" value="throne" />
+        <property name="name" value="@THRONE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="35" x="1410" gid="485" y="1250">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="loot_table" value="fire_dungeon_7" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="skel" type="spawn" id="36" x="1265" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skel" type="spawn" id="37" x="1265" gid="489" y="725">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skel" type="spawn" id="38" x="1235" gid="489" y="885">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skel" type="spawn" id="39" x="1585" gid="489" y="915">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_archer" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skel" type="spawn" id="40" x="1745" gid="489" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_warrior" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skel2" type="spawn" id="41" x="975" gid="489" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="skeleton_giant" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="42" x="1935" gid="489" y="1945">
+      <point />
+      <properties>
+        <property name="spawn" value="desert_mummy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="43" x="1615" gid="489" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="desert_mummy" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="44" x="1905" gid="489" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="desert_mummy" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="45" x="1525" gid="489" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="desert_mummy" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="46" x="1715" gid="489" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="desert_mummy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mummy2" type="spawn" id="47" x="1645" gid="489" y="1995">
+      <point />
+      <properties>
+        <property name="spawn" value="ancient_mummy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mummy2" type="spawn" id="48" x="1995" gid="489" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="ancient_mummy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mummy3" type="spawn" id="49" x="1935" gid="489" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="50" x="1485" gid="489" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="spawn_u" value="wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="51" x="1325" gid="489" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="spawn_u" value="wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="52" x="1615" gid="489" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="spawn_u" value="wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="53" x="1615" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="ghost" />
+        <property name="spawn_u" value="wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="54" x="1805" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="55" x="1805" gid="489" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="56" x="2035" gid="489" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="vengeful_wraith" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="57" x="2005" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="58" x="2225" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="death_knight" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost2" type="spawn" id="59" x="2005" gid="489" y="145">
+      <point />
+      <properties>
+        <property name="spawn" value="black_ghost" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="60" x="245" gid="489" y="1295">
+      <point />
+      <properties>
+        <property name="respawn" value="80" />
+        <property name="spawn" value="imp_fire" />
+        <property name="spawn_u" value="imp_fire_priest" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="61" x="435" gid="489" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="62" x="405" gid="489" y="1775">
+      <point />
+      <properties>
+        <property name="respawn" value="80" />
+        <property name="spawn" value="imp_fire" />
+        <property name="spawn_u" value="imp_fire_priest" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="63" x="635" gid="489" y="1585">
+      <point />
+      <properties>
+        <property name="respawn" value="50" />
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="64" x="655" gid="489" y="1805">
+      <point />
+      <properties>
+        <property name="respawn" value="50" />
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="65" x="915" gid="489" y="1645">
+      <point />
+      <properties>
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="66" x="945" gid="489" y="1905">
+      <point />
+      <properties>
+        <property name="respawn" value="50" />
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="67" x="1235" gid="489" y="1555">
+      <point />
+      <properties>
+        <property name="respawn" value="80" />
+        <property name="spawn" value="imp_fire" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="68" x="595" gid="489" y="2035">
+      <point />
+      <properties>
+        <property name="respawn" value="80" />
+        <property name="spawn" value="imp_fire" />
+        <property name="spawn_u" value="imp_fire_priest" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="imp" type="spawn" id="69" x="1205" gid="489" y="2035">
+      <point />
+      <properties>
+        <property name="respawn" value="80" />
+        <property name="spawn" value="imp_fire" />
+        <property name="spawn_u" value="imp_fire_priest" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="demon" type="spawn" id="70" x="755" gid="489" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="demon_fire" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="demon" type="spawn" id="71" x="785" gid="489" y="1745">
+      <point />
+      <properties>
+        <property name="respawn" value="90" />
+        <property name="spawn" value="demon_fire" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="demon" type="spawn" id="72" x="565" gid="489" y="1815">
+      <point />
+      <properties>
+        <property name="spawn" value="demon_fire" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="demon" type="spawn" id="73" x="1165" gid="489" y="1805">
+      <point />
+      <properties>
+        <property name="spawn" value="demon_fire" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn" id="74" x="365" gid="489" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="IM_demon" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="keeper" type="spawn" id="75" x="195" gid="489" y="195">
+      <point />
+      <properties>
+        <property name="conversation" value="G11_keeper" />
+        <property name="spawn" value="guardian_temple" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="76" x="245" gid="149" y="815">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="77" x="215" gid="149" y="625">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="78" x="625" gid="149" y="215">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="79" x="175" gid="149" y="465">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="80" x="465" gid="149" y="175">
+      <point />
+      <properties>
+        <property name="id" value="portal_circle" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="81" x="25" gid="145" y="695" width="5" height="5">
+      <properties>
+        <property name="conversation" value="G11_portal" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="G11_portal" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="82" x="195" y="770" width="25" height="25">
+      <properties>
+        <property name="conditions" value="VariableEqual#immersed_darkness,100" />
+        <property name="actions" value="StartItemConversation#G11_portal" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="83" x="275" gid="245" y="805">
+      <point />
+      <properties>
+        <property name="entry_id" value="10" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="84" x="25" gid="145" y="695" width="5" height="5">
+      <properties>
+        <property name="conversation" value="G11_portal3" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="G11_portal3" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="85" x="130" y="420" width="25" height="25">
+      <properties>
+        <property name="conditions" value="VariableEqual#immersed_darkness,100" />
+        <property name="actions" value="StartItemConversation#G11_portal3" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="86" x="215" gid="245" y="455">
+      <point />
+      <properties>
+        <property name="entry_id" value="13" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="87" x="25" gid="145" y="695" width="5" height="5">
+      <properties>
+        <property name="conversation" value="G11_portal2" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="G11_portal2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="88" x="160" y="580" width="25" height="25">
+      <properties>
+        <property name="conditions" value="VariableEqual#immersed_darkness,100" />
+        <property name="actions" value="StartItemConversation#G11_portal2" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="89" x="255" gid="245" y="615">
+      <point />
+      <properties>
+        <property name="entry_id" value="12" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="90" x="465" gid="145" y="25" width="5" height="5">
+      <properties>
+        <property name="conversation" value="G11_portal1" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="G11_portal1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="91" x="420" y="132" width="25" height="25">
+      <properties>
+        <property name="conditions" value="VariableEqual#immersed_darkness,100" />
+        <property name="actions" value="StartItemConversation#G11_portal1" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="92" x="465" gid="245" y="205">
+      <point />
+      <properties>
+        <property name="entry_id" value="11" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="93" x="465" gid="145" y="25" width="5" height="5">
+      <properties>
+        <property name="conversation" value="G11_portal4" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="G11_portal4" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="94" x="580" y="163" width="25" height="25">
+      <properties>
+        <property name="conditions" value="VariableEqual#immersed_darkness,100" />
+        <property name="actions" value="StartItemConversation#G11_portal4" />
+      </properties>
+    </object>
+    <object name="exit from" type="entry" id="95" x="625" gid="245" y="245">
+      <point />
+      <properties>
+        <property name="entry_id" value="14" />
+      </properties>
+    </object>
+    <object name="bed" type="conversation" id="98" x="640" gid="145" y="610">
+      <point />
+      <properties>
+        <property name="conversation" value="G11_bed" />
+        <property name="icon" value="brazier2" />
+        <property name="name" value="@BED" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="19" x="960" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#immersed_darkness,89" />
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="visible" value="" />
+        <property name="walkable" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="20" x="930" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#immersed_darkness,89" />
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="visible" value="" />
+        <property name="walkable" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="21" x="900" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#immersed_darkness,89" />
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="visible" value="" />
+        <property name="walkable" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="22" x="870" gid="249" y="740">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#immersed_darkness,89" />
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="visible" value="" />
+        <property name="walkable" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

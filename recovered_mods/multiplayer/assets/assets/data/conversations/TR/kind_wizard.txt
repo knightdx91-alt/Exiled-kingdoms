@@ -1,0 +1,60 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Здраствуй, друг! Совершенно безвозмездно я могу помочь тебе облегчить жизнь в королевствах! Чего ты желаешь?	¿po?	2			
+2	A	Мне всё время не хватает монет! Дай мне побольше золота!	po.	3		
+2	A	Меня постоянно сильно избивают! Дай мне побольше аптечек!	po.	4		
+2	A	У меня слишком медленно прокачивается уровень! Дай мне побольше опыта!	po.	5		
+2	A	ещё.	po.	10		
+10	Q	Ещё?	po.	6		
+6	A	Мана слишком быстро тратится! Дай мне побольше зелий!	po.	7		
+6	A	Мне нужно много навыков! Дай мне побольше книжек!	po.	8		
+6	A	Я устал огребать от каждого моба! Дай мне мощное оружие!	po.	9		
+6	A	ещё.	po.	11		
+11	Q	Ещё?	po.	12		
+12	A	Я будто бы голый бегаю! Дай мне хорошую броню!	po.	13		
+12	A	Я без понятий, где искать и покупать лучшие зелья! Дай мне побольше всяких зелий!	po.	35		
+12	A	Я запарился тратить свитки на невидимые двери и телепорты! Дай мне побольше всяких свитков!	po.	36		
+12	A	ещё.	po.	37		
+3	Q	 Сколько тебе нужно золота?	¿po?	14			
+4	Q	 Получай желаемое!	¿po?	0		"GainItems#5023,50;GainItems#5070,50;GainItems#5016,50;GainItems#5036,50"	
+5	Q	 Сколько тебе нужно опыта?	¿po?	27			
+7	Q	 Получай желаемое!	¿po?	0		"GainItems#5052,50;GainItems#5023,50"	
+8	Q	 Получай желаемое!	¿po?	0		"GainItems#5035,30;GainItems#5013,60"	
+9	Q	 Для кого именно тебе нужно оружие?	¿po?	18			
+13	Q	 Для кого именно тебе нужна броня?	¿po?	22			
+14	A	1000.	po.	15		
+14	A	10000.	po.	16		
+14	A	100000.	po.	17		
+15	Q	 Получай желаемое!	¿po?	0		GainGold#1000	
+16	Q	 Получай желаемое!	¿po?	0		GainGold#10000	
+17	Q	 Получай желаемое!	¿po?	0		GainGold#100000	
+18	A	Для воина и плута.	po.	19		
+18	A	Для воина и клерика.	po.	20		
+18	A	Для мага.	po.	21		
+19	Q	 Получай желаемое!	¿po?	0		"GainItem#10184;GainItem#10138;GainItem#10213;GainItem#10126"	
+20	Q	 Получай желаемое!	¿po?	0		"GainItem#10182;GainItem#10139;GainItem#10126"	
+21	Q	 Получай желаемое!	¿po?	0		"GainItem#10183;GainItem#10185;GainItem#10187;GainItem#10188;GainItem#10189;GainItem#10186"	
+22	A	Для воина и клерика.	po.	23		
+22	A	Для воина и плута.	po.	24		
+22	A	Для мага.	po.	25		
+22	A	Для всех.	po.	26		
+23	Q	 Получай желаемое!	¿po?	0		"GainItem#10134;GainItem#10154;GainItem#10155;GainItem#10156;GainItem#10135;GainItem#10157;GainItem#10100;GainItem#10164"	
+24	Q	 Получай желаемое!	¿po?	0		"GainItem#10153;GainItem#10162"	
+25	Q	 Получай желаемое!	¿po?	0		"GainItem#10160;GainItem#10101;GainItem#10161"	
+26	Q	 Получай желаемое!	¿po?	0		"GainItem#10159;GainItem#10158;GainItem#10190;GainItem#10163;GainItem#10191;GainItem#10192;GainItem#10210;GainItem#10211;GainItem#10212"	
+27	A	100.	po.	28		
+27	A	1000.	po.	29		
+27	A	10000.	po.	30		
+27	A	100000.	po.	31		
+28	Q	 Получай желаемое!	¿po?	0		GainXP#100	
+29	Q	 Получай желаемое!	¿po?	0		GainXP#1000	
+30	Q	 Получай желаемое!	¿po?	0		GainXP#10000	
+31	Q	 Получай желаемое!	¿po?	0		GainXP#100000	
+32	Q	 Без проблем!	¿po?	0		"LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000"	
+33	Q	 Без проблем!	¿po?	34			
+34	A	Ладно...	po.	0		"SetVariable#want_letter_back,100;SetVariable#key_to_past,100;SetVariable#shards_fate,100;SetVariable#where_is_amarisa,100;SetVariable#ark_lothasan,71;SetVariable#know_mqtruth,1;SetVariable#know_lifeextension,1;GainItem#2622;GainItem#2630;Travel#I3_ark2,10"
+35	Q	 Получай желаемое!	¿po?	0		"GainItems#5030,50;GainItems#5031,50;GainItems#5032,50;GainItems#5033,50;GainItems#5034,50;GainItems#5050,50;GainItems#5025,50;GainItems#5053,50;GainItems#5003,50;GainItems#5005,50;GainItems#5006,50;GainItems#5017,50;GainItems#5024,50"	
+36	Q	 Получай желаемое!	¿po?	0		"GainItems#6002,50;GainItems#6011,50;GainItems#6005,50;GainItems#6008,50;GainItems#6012,50;GainItems#6013,50;GainItems#6009,50"	
+37	Q	Ещё?	po.	38		
+38	A	Я хочу резко заспидранить эту игру, помоги мне с этим!	po.	33		
+38	A	Я уже устал играть в эту игру, сделай с этим что-нибудь!	po.	32		
+38	A	всё.	po.	0		

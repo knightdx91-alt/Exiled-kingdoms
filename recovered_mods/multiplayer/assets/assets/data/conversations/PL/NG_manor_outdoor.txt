@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](вы без проблем выходите наружу)[] Давайте поспешим, пока никого здесь нет, Доминик ждёт нас на той улице!	¿po?	2	"VariableEqual#arne_death,1"		
+1	Q	 [BLUE](вы выходите наружу, где вас ждёт отряд стражников)[] Чёрт, похоже, тот ублюдок успел поднять тревогу!	¿po?	3			
+2	A	Хорошая идея.	po.	0		"SetVariable#varsilian_job,97;NPCSpawn#dom"
+3,katasakh	Q	 Прорываемся, Доминик ждёт нас на той улице, он увезёт от них!	¿po?	4		
+4	A	Прорываемся!	po.	0		"SetVariable#varsilian_job,97;NPCSpawn#dom;NPCSpawn#guard_go"

@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Возвращайся к госпаже.	¿po?	0	"VariableEqual#agnes_stop,4"		
+1	Q	 Отложим разговоры на потом, сейчас время рвать задницы сранных ублюдков!	¿po?	0	"VariableEqual#agnesattack,1"		
+1	Q	 Все в сборе? Отлично! Настала пора покончить с ничтожествами, недовавшими нам спокойной жизни! Я отымею каждого педика притаившегося в этой норе, пока все они не сдохнут! Пусть эти скоты получат то, что заслужили! Никакой пощады!	¿po?	2		
+2,fighter1	Q	 Смерть дырявым!	¿po?	3		"NPCFollow#"
+3,fighter2	Q	 Отмудазвонились, уроды!	¿po?	4		"NPCFollow#"
+4,agnes	Q	 Не отставай от нас, наш новый друг!	¿po?	0		"NPCFollow#;NPCHostile#boss1;SetVariable#agnesattack,1"

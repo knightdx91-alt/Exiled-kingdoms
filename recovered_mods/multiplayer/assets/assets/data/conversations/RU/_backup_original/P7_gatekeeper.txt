@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](богато одетый мужчина)[] Не затягивайте с отправкой моего послания.	port	2	"VariableGreater#one_way_road,9;VariableLower#one_way_road,99"		
+1	Q	[BLUE](богато одетый мужчина)[] Приветствую тебя.	port	0			
+2	A	Я доставил ваше послание Алариону, он передал, что согласен, но со своими условиями.	port.	3	"VariableEqual#one_way_road,50"		
+2	A	Постараюсь.	port.	0		
+3	Q	О, это хорошо. Конечно же, он захочет сделать всё по своему, в этом я не сомневался. Спасибо, что выполнил моё поручение, вот твоя награда, как я обещал.	port	4		
+4	A	Рад был помочь.	port.	0		"GainGold#2300;GainXP#670;IncVariable#REP_sorrowland,2;SetVariable#one_way_road,100"

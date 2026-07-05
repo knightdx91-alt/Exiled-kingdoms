@@ -1,0 +1,15 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	
+1	Q	The fountain is no longer flowing blood.	De la fuente ya no brota sangre.	0	"VariableEqual#blood1,1;VariableEqual#blood2,1;VariableEqual#blood3,1"		
+1	Q	A beautifully carved marble fountain, flowing thick blood. The mere sight of it is revolting, but the smell is much worse. Casually arranged around the fountain are bloodstained cups and bowls.	Una fuente de mármol bellamente labrada, de la que fluye sangre espesa. Sólo verla ya es repugnante, pero el olor mucho más. Alrededor de ella hay copas y cuencos manchados de sangre.	2			
+2	A	Ugh, I can't wait to get out of this place.	Ugh, no veo la hora de irme de este lugar.	0			
+2	A	Fill a cup with blood.	Llenar una copa con sangre.	3			
+2	A	Wash your hands and face in the fountain.	Lavar tu cara y tus manos en la fuente.	10			
+2	A	Probably pouring clean water on this would make it unclean to vampires.	Posiblemente verter agua limpia aquí la hará impura para vampiros.	7			INT#3
+3	Q	You could almost pretend it is a mere cup of wine. But you know it's blood and, very likely, human. 	Podría hasta parecer que es una copa de vino, pero sabes que es sangre, y muy posiblemente, humana.	4			
+4	A	I can't believe I'm going to do this.[BLUE](Gulp it down)[]	No puedo creer que vaya a ahacer esto [BLUE](Tragársela)[]	5			
+4	A	... No way.	... Ni de broma.	0			
+5	Q	"A few seconds later you're doubled over and vomiting. Certainly this has been something you wish to forget; you feel dizzy and weak from the horrid experience."	"Unos segundos después estás agachado vomitando. Ciertamente esto es algo que querrás olvidar; te encuentras mareado y débil por la horrible experiencia."	6		"SetVariable#blood1,1;LoseHP#80"	
+6	Q	"The fountain stops flowing blood, and somehow part of the feeling of dread that weighted heavily upon you has been lifted. Something has changed; these fountains were more than mere nourishment, they were part of an ancient and powerful ritual whose power has now vanished forever."	"La fuente deja de fluir sangre, y de alguna manera parte de la sensación opresiva que se sentía en este lugar, se ha levantado. Algo ha cambiado; estas fuentes son algo más que alimento, son parte de un antiguo y poderoso ritual cuyo poder se ha desvanecido para siempre."	0	"VariableEqual#blood1,1;VariableEqual#blood2,1;VariableEqual#blood3,1"		
+6	Q	You walk away from the fountain.	Te alejas de la fuente.	0			
+7	Q	You pour some of the water from your canteen. It doesn't produce any visible changes, but you know it'll make it repulsive for vampires.	Viertes algo de agua de tu cantimplora. No produce ningún cambio visible, pero sabes que seguramente ahora es repulsiva para los vampiros.	6		SetVariable#blood1,1	
+10	Q	You're not sure why you're performing such insane acts, but you bathe your face in thick blood. 	No estás seguro de por qué cometes estas locuras, pero sumerges tu cara en la espesa sangre.	0			

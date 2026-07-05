@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="48" height="48" tilewidth="64" tileheight="32" nextobjectid="7">
+  <properties>
+    <property name="maxlight" value="35" />
+    <property name="music" value="dark_chamber" />
+    <property name="name" value="Unknown dungeon" />
+    <property name="name_ES" value="Mazmorra desconocida" />
+    <property name="sw1" value="929" />
+    <property name="sw2" value="934" />
+    <property name="sw3" value="933" />
+    <property name="sw4" value="948" />
+    <property name="sw5" value="930" />
+    <property name="sw6" value="938" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="cave.tsx" firstgid="253" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="dungeon2.tsx" firstgid="733" />
+  <tileset source="teleporter.tsx" firstgid="973" />
+  <tileset source="grounds indoor 2.tsx" firstgid="974" />
+  <tileset source="town_objexts2.tsx" firstgid="1134" />
+  <layer name="nonwalk" visible="0" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAIBXAyQAAAE=
+  </data>
+  </layer>
+  <layer name="water" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJzt2MsKgDAMRFGh366i/rRk4co29UGcDM4Bd4JXW6HtMIj4poIueMf6F+J3YOj35ghLf6tR/fHUj3U0zpXLsPSbtZyv7BjmiIe933j/LzP2sVE/lvqx1B9rbKx7WNY/9n23ypqHZf2TfX70qB9L/Vjqx1I/lvqxMvbfOTPI2n+16e69X4js/2Ks2PtN6zneXmvutGX5V7y9lrffytL/lPrjMZ9FHFjPIv5mB+NfV1E=
+  </data>
+  </layer>
+  <layer name="ground" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJztmeuOmzAQhSO3v9snJeQFINwscXvoEul88pSyIV1sopV2JAsSEvt4PJczw+VynkzucqmWMS7Da9xd3Pkf812XUS8jX0an+0qfj87/wF4uozf3seQmjNkyCs1dap1KezkipeYfNN+seyu/f/47XpVO2L2us9ZrdC5H9f+Yo5VObtLRes4j+BvN32j+q7lmEWy10xyZ5sVWY+Fvhf+xzqRzGHS9RtC/l93Xmo8z/WUwHsF/c2EPnMVg7kcNbKoRDnBN0uuo79HDoOe9sG6NGPhb47+cbW/OezafG+HsDP5K+yQOcJa5dD4kxt8b7IXGpPXxhUn+x/PaxKfK+OaoZ632dtNIiT+TvmatRTwi52BPpfY46hwyPeO7Uv+pNYhnRWL8e4LuwYy9Dxo8J2fgE7kLuWsPP9L/iIcbGYXzLjxXF2Kr9WdsZTb2lOv+nfg74xPehXiEXRUGd2t035g9vhP/q5JrD/izla+Av5cdbXGmj/A/G59Z/67YUQgD9pFv6HQtxKBSc5yNfzD2in/Wxi+nHfxwy/4/7Ccm/rt0jn9m0ruXTTQ7+OEbuf5/Nv7J+J93gT/DZYod/JwfvOJs/JUL/HyQDc2yod7EUPhOZQacqTfndTZ+v8pBcE98Ej8ejT9UusJ3LI89Gz98jVyKXuFG3jyHO3TCCleGV6/rwzPwd0bX2HDm/q4tt4R8Ows/3GEPf2wh7sDv0fHoQo9iS+iHsIdyI9amwj9qbWrfxoU4RD1F7bcl8G14Jv58lv5tzQdOOLCXz65j+Ro/PSMbp2ZdX6kdjwg5Fn1jJ9QyfsMWrNi4WstHiKPw/5T41zmH/hXx/b4RS6xQqzX6PT6DD6TGT71OXMdmbO9nnYustEbv2D31L36dEj+8kjOgb0U8gQ99JPQhvAt9wtyFvOZPwI/NEHeoZ+Fzz/pv6Bruib/ULvCnlPjhMtZnqT/gAc94PzGLuIU/Ufu+0vs5IvQPWhfyJ71K1l/HcitwDnrtlg/R68K/UuDnvK0dcwa2px5DUtmP7aGhe2IpnC2GpMpf5JpSNtSYs4cTxJAU+MmVcJ/OfJ5cyM8I9Q29zn6117PxP6QQTnhz7kJeo1dLbi1MvOSZ5XxH8H+2FuAMyDfehf4r79vwBXhSbf4Dd92zs1dqlq0+7h5+erL2HQCcmv0Q06lP2Cu5gr7iO/BXBsdg4j41L9zMG8z0ePCbGPJZ/J0LNUDtQq+c3AoXy813vKfkvcs78RPjM2Prz/aKPXUu8Ix34qf2e+Xd/s3onnd8qfJzylr/W77lK8sf6ACDAg==
+  </data>
+  </layer>
+  <layer name="ground2" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJzt2FEKgzAQBFBJv9VYehO9sKVUL9M7tVKFtX9xtbMb54GIoGQSTVwtCrKsDegE6WTmDpwf3X6qKW8VvmPYfLbaWf5cNPM9GA5uZ5krt3nfBd2cL8W11z88OzGs2/E237aOtbd+0vn0F3QCHe/5NazUfVZyaHCtJiKinC3vuVJ8Sz5xcZJF8Z7+rTu81SEPdIANpjEexTG6btqrfXQ/iIjOqk84N3KtVvNU8+3NW51o3Sujf7B3dAAiY97WtQyt
+  </data>
+  </layer>
+  <layer name="scenery" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJzt1rEJACAQA8Av3L9zUDdwBB9RfOSuD6QKiYCzenvdAOAeGwesjM1clX2p0gMAgP/5ngBAhs8AkDMBoTQEiA==
+  </data>
+  </layer>
+  <layer name="objects" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJztmclOwzAQhlNy4A0qOLCI7VHgRXgLCvQpuCEoSxfgQFFvNL21SBWvxGKTWB0m4y22k1bKL43SpPH4q2N7ZtIoKk9PcRTdMZtkR27PsX//0CagP9e+pqz9dyO1n0Z67cYjf4ezZp+ba+mxFS2Orn11Mn6uLwn/BbMzZJeG/j+YrwRda2c+zom+bNUh2mOfrfwt5DVT/6q+bFUG/zs7jiXfrwL/3lpqlHpobcP1PsvW+Rycz+P8fsDbDJkdA3/wd7ny7zD2XWb7kt8AlcT/1xdc68LPOvJDPQOf/DYS9wv/7Wix1mUaBeQfMD+3CntEfY9iPS/WCXEN8vfQ/OrG5vw64edDseiEx4DyG0q4H4rlVMOSVMiP55dsvuHf1QffVcFvu+9jHtieYu0uGf/Ukt+3RFwS4yLizMwwD7Udf9/i47eJ4k4TnOueh4ofP5sQEnmETC781yXxbytyCB0/3mPg/VSNhM11PXP+LQU/zuN0/Zc9f3gfB5r8zSb2lr1+TeoYk7gF7zf17UNF6zBZu2Xi57nAyxLyq/aFIYhjqthVJT/c81Q5pGzu4LoQ14iidgyV61B5ISXTuQ9rjrfsGDJ2Cf5P1Ac+L8IvRPHr6gVTuY4/jkum/L6UaHIeIdX4D8F5FfxHjvxQVfAfrji/iWT8uncvsF6W5Rku4vx8Lyi6/9goRAxzHX8b1fx5DQznpeCn8iVxbabxU2YOR73vxu+8hah3s5Rg2ysv5Hm/QrJ8i2I1rclCjb+NX4oV7qEqhcpB//hRDJOtCeq6z/9CiwiPfz+WxyWT/7LKFmfaAON/b1lrVc3Px/qB2WtmYwUP9VxkdXGtWrXC6BeGUfhK
+  </data>
+  </layer>
+  <layer name="roofs" width="48" height="48">
+    <data encoding="base64" compression="zlib">
+   eJztzgEJAEAIBLDDBt/F/tls4YNsCZYA3NGVvPq9AAAAAAAAAIA9AwfDAEo=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry from farmlands" type="entry" id="1" x="286" gid="245" y="552">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to ng" type="transition" id="2" x="230" y="438" width="61" height="55">
+      <properties>
+        <property name="area_id" value="NGZ_sewers" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="3" x="212" gid="249" y="87">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="orc_chest_13" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="4" x="983" gid="249" y="89">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="150" gid="249" y="1302">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="teleport" type="transition" id="6" x="1275" y="1275" width="30" height="30">
+      <properties>
+        <property name="area_id" value="H8" />
+        <property name="entry_id" value="6" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="313" gid="247" y="654">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="195" gid="247" y="1055">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="365" gid="247" y="1035">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="175" gid="247" y="1285">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="545" gid="247" y="1285">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="595" gid="247" y="655">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="725" gid="247" y="305">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="285" gid="247" y="195">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="965" gid="247" y="645">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1025" gid="247" y="765">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1045" gid="247" y="505">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1245" gid="247" y="585">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="995" gid="247" y="995">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1215" gid="247" y="1375">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1215" gid="247" y="1215">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1375" gid="247" y="1375">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon1" type="spawn"  x="1375" gid="247" y="1215">
+      <properties>
+        <property name="spawn" value="plague_demon" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1285" gid="247" y="1345">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1285" gid="247" y="1245">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1115" gid="247" y="1245">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="995" gid="247" y="1185">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="995" gid="247" y="895">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="925" gid="247" y="895">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="205" gid="247" y="895">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="705" gid="247" y="705">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="725" gid="247" y="515">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="225" gid="247" y="155">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="805" gid="247" y="285">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="995" gid="247" y="265">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="995" gid="247" y="415">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="345" gid="247" y="1265">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1245" gid="247" y="515">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1245" gid="247" y="665">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="demon2" type="spawn"  x="1125" gid="247" y="645">
+      <properties>
+        <property name="spawn" value="plague_demon_2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn"  x="655" gid="247" y="235">
+      <properties>
+        <property name="spawn" value="zombie" />
+    <property name="unique_tag" value="Z_dungeon_zombie"/>
+      </properties>
+    </object>
+    <object name="zombie" type="spawn"  x="525" gid="247" y="265">
+      <properties>
+        <property name="spawn" value="zombie" />
+    <property name="unique_tag" value="Z_dungeon_zombie"/>
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn"  x="775" gid="247" y="955">
+      <properties>
+        <property name="spawn" value="alive_carrion" />
+    <property name="unique_tag" value="Z_dungeon_alive_carrion"/>
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie2" type="spawn"  x="305" gid="247" y="85">
+      <properties>
+        <property name="spawn" value="zombie_s2" />
+    <property name="unique_tag" value="Z_dungeon_zombie_s2"/>
+      </properties>
+    </object>
+    <object name="glowing" type="spawn"  x="1205" gid="247" y="115">
+      <properties>
+        <property name="spawn" value="zombie_glowing" />
+    <property name="unique_tag" value="Z_dungeon_zombie_glowing"/>
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="glowing" type="spawn"  x="1295" gid="247" y="115">
+      <properties>
+        <property name="spawn" value="zombie_glowing" />
+    <property name="unique_tag" value="Z_dungeon_zombie_glowing"/>
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="glowing" type="spawn"  x="1245" gid="247" y="175">
+      <properties>
+        <property name="spawn" value="zombie_glowing" />
+    <property name="unique_tag" value="zombie_glowing"/>
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

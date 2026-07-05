@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Разрушенно.	¿po?	0	"VariableEqual#death_attack,10"		
+1	Q	Разрушенно.	¿po?	0	"VariableEqual#death_attack,7"		
+1	Q	Разрушенно.	¿po?	0	"VariableEqual#death_attack,8"		
+1	Q	Разрушенно.	¿po?	0	"VariableEqual#tomb_b5,1"		
+1	Q	[BLUE](это заколдованное надгробие, его защитные чары исчезли)[]	¿po?	3	"VariableEqual#death_attack,6"		
+1	Q	[BLUE](это заколдованное надгробие, его окружают непроницаемые чары)[]	¿po?	2			
+2	A	Уйти.	po.	0			
+3	A	[BLUE](разрушить его)[]	po.	4		"SetVariable#tomb_b5,1"
+3	A	Уйти.	po.	0			
+4	Q	[BLUE](вы сломали надгробие, но высвободившие чары поражают вас)[]	¿po?	5		"LoseHPDeath#75"
+5,knight2	Q	Чтож, значит ты хочешь познать смерть, так узри её воочии!	¿po?	0		"NPCDespawn#knight2;NPCSpawn#death;SetVariable#death_attack,7"

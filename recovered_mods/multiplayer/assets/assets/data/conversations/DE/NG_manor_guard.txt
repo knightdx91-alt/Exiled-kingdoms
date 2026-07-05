@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	4	NPCisFollower#	
+1	Q	Greetings, master, everything is calm in the manor.	port	2		
+2	A	Hello.	port.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	3	PlayerHasItem#10402		STR#4
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	3	PlayerHasItem#10402		AGI#4
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	3	PlayerHasItem#10402		INT#4
+3	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;NPCFollow#"	
+4	A	Good fellow.	port.	0		
+4	A	[BLUE](Take off he collar of submission)[]	port.	0		"NPCStopFollowing#"

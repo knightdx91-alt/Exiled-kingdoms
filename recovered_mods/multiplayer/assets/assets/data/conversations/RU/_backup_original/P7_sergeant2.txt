@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Слушаюсь и повинуюсь.	port	5	NPCisFollower#	
+1	Q	[BLUE](женщина в доспехах)[] Приветствую тебя, путник. 	[BLUE]()[] port.	2		
+2	A	Привет.	port?	0			
+2	A	Привет, вы случайно, не видели принцессу Эвелину Лайтвинд?	port?	3	"VariableEqual#trouble_again,10"		
+2	A	[BLUE](С помощью грубой силы надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Незаметно и быстро надеть на неё ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](Хитростью заставить её надеть ошейник подчинения)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3	Q	Я видела как принцесса околачивалась здесь на площади, у алхимика, вроде бы, что-то покупала, после чего отправилась в пригород. 	port.	0		"SetVariable#trouble_again,15"		
+4	Q	[BLUE](Как только ошейник защёлкивается на шее, магия берёт её под контроль)[]	port.	0		"LoseItem#10402;SetVariable#alia_follow,3;NPCFollow#"	
+5	A	Хорошая девочка.	port.	0		
+5	A	[BLUE](Снять с неё ошейник подчинения)[]	port.	0		"SetVariable#alia_follow,1;NPCStopFollowing#"

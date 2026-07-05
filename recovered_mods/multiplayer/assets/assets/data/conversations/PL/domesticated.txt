@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Тяв, тяв, тяв-тяв?	Que pasa, jefe?	4	NPCisFollower#	
+1	Q	Тяв, тяв. Тяв-тяв-тяв. Тяв-тяв, {LEVELx20} тяв-тяв.	Hola, amigo. Soy un aventurero en busca de empleo. Por un pequeño precio, digamos  {LEVELx20}  monedas, puedo unirme a ti y compartir tus aventuras.	2		
+2	A	Извини, но нас уже слишком много в группе.	Lo siento, pero ya somos demasiados en el grupo.	0	hasFollower#	
+2	A	Это было бы прекрасно! Следуй за мной. Добро пожаловать в команду.	Sería genial! Sígueme. Bienvenida al equipo.	0	"hasNoFollower#;PlayerHasGold#{LEVELx20}"	"NPCFollow#;LoseGold#{LEVELx20}"
+2	A	Не сейчас, спасибо. Возможно в будущем.	Ahora no, gracias. Quizá en el futuro.	3		
+3	Q	Ау-у-у. Тяв-тяв-тяв.	Pues vaya. Bueno, a mí no me culpes si unos goblins te rellenan de hierro.	0		
+4	A	Ничего, давайте двигаться дальше.	Nada, continuemos.	0		
+4	A	Мне больше не нужны твои услуги. Спасибо за помощь и до свидания.	Ya no necesito tus servicios, puedes volver a Kingsbridge.	5		
+4	A	Пожалуйста, подвинься немного, ты стоишь на пути.	Por favor, muévete un poco, me bloqueas el paso.	6		
+5	Q	Ау-уууу! Тяв-тяв-тяв.	Ahora que me lo estaba pasando bien! Lo que tu digas, espero que volvamos a vernos.	0		NPCStopFollowing#
+6	Q	Тяв.	Por supuesto	0		NPCMoveRandom#

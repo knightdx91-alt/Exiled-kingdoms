@@ -1,0 +1,84 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Так у какого из этих четырёх боссов самый низкий уровень?	port	44	"VariableEqual#pseudosphinx,8"		
+1	Q	В какой же из этих локаций находится квестовый предмет "меч Зимний Вой"?	port	39	"VariableEqual#pseudosphinx,7"		
+1	Q	Ну, сколько же необходимо иметь очков харизмы, чтобы образ Тремадана рассказал правду?	port	33	"VariableEqual#pseudosphinx,6"		
+1	Q	Итак, находясь на локации Древний лес, на какую локацию нельзя попасть?	port	28	"VariableEqual#pseudosphinx,5"		
+1	Q	И с каким же квестом связан персонаж под именем Лизерпикс?	port	23	"VariableEqual#pseudosphinx,4"		
+1	Q	Так какой из этих персонажей не из Кингсбриджа?	port	18	"VariableEqual#pseudosphinx,3"		
+1	Q	Ну, так какого персонажа ты встречаешь первым в самом начале своего пути?	port	13	"VariableEqual#pseudosphinx,2"		
+1	Q	[BLUE](весьма странная тварь на вид с человеческим лицом)[] Ха-ха-ха!	port?	0	"VariableEqual#pseudosphinx,1"		
+1	Q	[BLUE](весьма странная тварь на вид с человеческим лицом, внимательно вас рассматривала)[] Чтож, раз ты сумел добраться сюда, значит ты яростно чего желаешь получить. Что же это могло быть?	port?	2		
+2	A	Я ищу венец драконьего владыки.	port?	10		
+2	A	Я хотел бы сразиться с сильнейшим боссом!	port?	5		
+2	A	Я случайно здесь оказался.	port?	3		
+2	A	А, собственно, кто ты?	port?	7		
+3	Q	Ну, тогда я могу без проблем помочь тебе выбраться из этого места!	port	4			
+4	A	Постой, на самом деле я...	port!	0		Travel#H10,1
+5	Q	 Отлично! Давай подберём, подходящего для этой цели, персонажа!	¿po?	6		
+6	A	Ладно?	port?	0		"SetVariable#pseudosphinx,1;NPCSpawn#E13boss"		
+7	Q	Я - всеведущая и всезнающая, зрею сквозь пространства и подпространства, я знаю все тайны мироздания, мне открыты все события, вся история, как прошлых лет, так и будущее, я могу заглянуть в недры далекого космоса, мне знакомы лица всех живущих, уже ушедших и тех, кто придёт после!.. А кратко ты можешь звать меня Сфинксом, ясно?	port	8			
+8	A	Ясно.	port?	9		
+9	Q	Ну, так чего ты хотел?	port	2			
+10	Q	Хорошо, я знаю, где ты сможешь найти эту вещь, но забрать её без ключа у тебя не получится. Ключ же я отдам тебе, если ты правильно ответишь на мои вопросы, а если ответ будет неверным, то тебя ждут последствия, какие именно - скоро сам узнаешь, если ошибешься. Ты готов?	port	11			
+11	A	Да, я готов!	port?	12		
+11	A	Нет.	port?	0		
+12	Q	Итак, начнём! Какого персонажа ты встречаешь первым в самом начале своего пути?	port	13			
+13	A	Крысу!	port?	14		"NPCSpawn#E13rats"		
+13	A	Волка.	port?	15		"NPCSpawn#E13wolfs"		
+13	A	Адаона.	port?	16		"NPCSpawn#E13adaon"		
+13	A	Гоблина.	port?	17		
+14	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+15	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+16	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+17	Q	Хорошо, следующий вопрос! Какой из этих персонажей не из Кингсбриджа?	port	18				
+18	A	Маргери.	port?	19		"NPCSpawn#E13marger"		
+18	A	Лодочник Оррус.	port?	20		"NPCSpawn#E13lodoch"		
+18	A	Сестра Джента.	port?	21		
+18	A	Дженод.	port?	22		"NPCSpawn#E13janod"		
+19	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+20	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+21	Q	Не плохо, следующий вопрос!  С каким квестом связан персонаж под именем Лизерпикс?	port	23				
+22	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+23	A	Семя доверия.	port?	24		"NPCSpawn#E13goblin"		
+23	A	Безопасная ставка.	port?	25		"NPCSpawn#E13mino"		
+23	A	Идеальный план.	port?	26		"NPCSpawn#E13orc"		
+23	A	Безопасный проезд.	port?	27		
+24	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+25	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+26	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+27	Q	Верно, следующий вопрос! Находясь на локации Древний лес, на какую локацию нельзя попасть?	port	28				
+28	A	Вараннский лес.	port?	29		"NPCSpawn#E13chewolf"		
+28	A	Долина Некар.	port?	30		
+28	A	Лес Фйогас.	port?	31		"NPCSpawn#E13goltigr"		
+28	A	Лес Ковена ведьм.	port?	32		"NPCSpawn#E13vedm"		
+29	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+30	Q	Отлично, следующий вопрос! Сколько необходимо иметь очков харизмы, чтобы образ Тремадана рассказал правду?	port	33				
+31	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+32	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+33	A	Правду? Что за правда? О чём мне он должен рассказать?	port?	34	"VariableLower#know_mqtruth,1;VariableLower#pseubolt,1"	"SetVariable#pseubolt,2"	
+33	A	6.	port?	35		
+33	A	5.	port?	36		"NPCSpawn#E13trem5"		
+33	A	4.	port?	37		"NPCSpawn#E13trem4"		
+33	A	3.	port?	38		"NPCSpawn#E13trem3"		
+34	Q	Сейчас это неважно, позже сам узнаешь у него! А может и нет... Отвечай на вопрос!	port	33				
+35	Q	Правильно! И далее, вопрос: в какой из этих локаций находится квестовый предмет "меч Зимний Вой"?	port	39			
+36	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+37	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+38	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+39	A	Пещера Бладпау.	port?	40		"NPCSpawn#E13ursa"		
+39	A	Глубокий Провал.	port?	41		
+39	A	Пещера Роната.	port?	42		"NPCSpawn#E13varann"		
+39	A	Пламенные Ямы.	port?	43		"NPCSpawn#E13imps"		
+40	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+41	Q	Именно так! Ну и напоследок, у какого из этих четырёх боссов самый низкий уровень? (подумай хорошенько, ведь ты понимаешь, что произойдёт в случаи неверного ответа?)	port	44			
+42	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+43	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+44	A	Король Корна.	port?	45		
+44	A	Калагру.	port?	46		"NPCSpawn#E13kalagru"		
+44	A	Повелитель пустоты.	port?	47		"NPCSpawn#E13void"		
+44	A	Мать подземья.	port?	48		"NPCSpawn#E13under"		
+45	Q	Отлично!  И ещё один вопросик, какого цвета у Магистра... Хотя не стоит этого тебе знать! Вот, обещенный ключ, с помощью которого ты попадешь в место, где хранится нужная тебе вещь.	port	49				
+46	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+47	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+48	Q	Неверный ответ!	port	0		"SetVariable#pseudosphinx,1"		
+49	A	Хорошо, спасибо.	port?	0		"SetVariable#pseudosphinx,10;GainItem#10635;Travel#E13_tower3,4"		
