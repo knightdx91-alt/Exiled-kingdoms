@@ -4,34 +4,57 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
 #game-root { position: fixed; inset: 0; }
 #game-root canvas { display: block; }
 
-/* The orientation control stays fixed to the physical screen, always upright,
-   so the player can always reach it regardless of the chosen game orientation. */
-#orient-bar {
-  position: fixed; top: env(safe-area-inset-top, 8px); right: 8px;
-  display: flex; gap: 6px; z-index: 40;
-  background: rgba(18,20,24,.72); padding: 6px; border-radius: 10px;
+/* All DOM game overlays (HUD, dialogue, joystick, character creation) live inside
+   #overlay-root. It's a pointer-events-transparent layer over the canvas; when an
+   orientation is locked we CSS-rotate it as a UNIT so the HUD and controls rotate
+   together with the (engine-rotated) game. Because it carries a transform, its
+   position:fixed children re-base to it and rotate along. The canvas itself stays
+   axis-aligned in #game-root so Phaser's pointer input keeps working. */
+#overlay-root { position: fixed; inset: 0; pointer-events: none; }
+body.ek-rot-90 #overlay-root {
+  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+body.ek-rot-180 #overlay-root { transform: rotate(180deg); }
+body.ek-rot-270 #overlay-root {
+  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+/* ---- Settings (gear) — orientation + movement controls, fixed & upright ---- */
+#settings-btn {
+  position: fixed; top: env(safe-area-inset-top, 8px); right: 8px; z-index: 60;
+  width: 42px; height: 42px; font-size: 20px; line-height: 1;
+  border: 1px solid #2b2f36; border-radius: 10px;
+  background: rgba(18,20,24,.82); color: #d7dbe0; cursor: pointer;
   backdrop-filter: blur(4px);
 }
-#orient-bar button {
-  min-width: 40px; height: 36px; font-size: 15px;
-  border: 1px solid #2b2f36; border-radius: 7px;
-  background: #171a1f; color: #d7dbe0; cursor: pointer;
-  font-family: system-ui, sans-serif;
+#settings-panel {
+  position: fixed; top: calc(env(safe-area-inset-top, 8px) + 50px); right: 8px; z-index: 61;
+  width: min(280px, 82vw); padding: 12px 14px 14px;
+  background: rgba(16,18,22,.94); border: 1px solid #2b2f36; border-radius: 12px;
+  color: #d7dbe0; font-family: system-ui, sans-serif; backdrop-filter: blur(6px);
+  box-shadow: 0 10px 40px rgba(0,0,0,.5);
 }
-#orient-bar button[aria-pressed="true"] { background: #3b5bdb; border-color: #4c6ef5; color: #fff; }
-
-/* ---- Movement control toggle ---- */
-#control-toggle {
-  position: fixed; bottom: calc(env(safe-area-inset-bottom, 8px) + 8px); right: 8px;
-  z-index: 30; height: 40px; padding: 0 14px;
-  border: 1px solid #2b2f36; border-radius: 20px;
-  background: rgba(18,20,24,.82); color: #d7dbe0; cursor: pointer;
-  font-family: system-ui, sans-serif; font-size: 14px; backdrop-filter: blur(4px);
+#settings-panel[hidden] { display: none; }
+.set-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #f3ecd8; }
+.set-group { margin-bottom: 12px; }
+.set-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #8a93a0; margin-bottom: 6px; }
+.set-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.set-row button {
+  min-width: 42px; height: 36px; padding: 0 10px; font-size: 14px;
+  border: 1px solid #2b2f36; border-radius: 7px;
+  background: #171a1f; color: #d7dbe0; cursor: pointer; font-family: inherit;
+}
+.set-row button[aria-pressed="true"] { background: #3b5bdb; border-color: #4c6ef5; color: #fff; }
+.set-close {
+  width: 100%; height: 38px; margin-top: 4px; font-size: 14px; cursor: pointer;
+  border: 1px solid #2b2f36; border-radius: 8px; background: #241d10; color: #e8ddc4; font-family: inherit;
 }
 
 /* ---- Free-floating joystick ---- */
 #stick-layer {
-  position: fixed; inset: 0; z-index: 20; touch-action: none;
+  position: fixed; inset: 0; z-index: 20; touch-action: none; pointer-events: auto;
 }
 /* Reskinned to the base game's own touchpad art (touchpad_base/knob). */
 .stick-base {
@@ -59,24 +82,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
     linear-gradient(rgba(9,8,5,.9), rgba(9,8,5,.96)),
     url(../assets/ui/bg_intro.png);
   background-size: cover; background-position: center;
-}
-
-/* Rotate the title/character-creation overlay to match a locked orientation
-   (set by the orient buttons via a body class). The Phaser game world is rotated
-   by the engine; this makes the plain-DOM creation UI follow the buttons too, so
-   they visibly respond during creation instead of appearing to do nothing.
-   Rotating about the centre with swapped 100vh×100vw dims fills the viewport, and
-   the browser hit-tests the overlay's buttons/inputs correctly through the rotate. */
-body.ek-cc-90 .cc-overlay {
-  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-body.ek-cc-180 .cc-overlay {
-  transform: rotate(180deg);          /* dims unchanged in reverse-portrait */
-}
-body.ek-cc-270 .cc-overlay {
-  inset: auto; top: 50%; left: 50%; width: 100vh; height: 100vw;
-  transform: translate(-50%, -50%) rotate(-90deg);
+  pointer-events: auto;   /* re-enable inside the pointer-events:none #overlay-root */
 }
 
 /* title screen */
@@ -296,6 +302,7 @@ body.ek-cc-270 .cc-overlay {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
   padding: 12px; padding-bottom: calc(env(safe-area-inset-bottom, 12px) + 12px);
   color: #ece3cf; font-family: "Georgia", "Times New Roman", serif;
+  pointer-events: auto;   /* re-enable inside the pointer-events:none #overlay-root */
 }
 .dlg-inner {
   max-width: 820px; margin: 0 auto; display: flex; gap: 12px;

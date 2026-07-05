@@ -112,9 +112,9 @@ class MapScene extends Phaser.Scene {
     this.control = 'tap';
     this.heroKey = 'hero';
     this.charSpriteFile = 'assets/sprites/male_knight.png';
-    const root = document.getElementById('game-root');
+    const root = document.getElementById('overlay-root');
     this.joystick = new Joystick(root);
-    this._wireControlToggle();
+    this._wireSettings();
 
     // Entities + dialogue + shared world state (variables/party) for NPCs and quests.
     this.entities = [];                              // { sprite, npc, cell, group }
@@ -359,24 +359,36 @@ class MapScene extends Phaser.Scene {
     this.control = (mode === 'joystick') ? 'joystick' : 'tap';
     this.joystick.enable(this.control === 'joystick');
     if (this.control === 'joystick') { this.path = null; }
-    const btn = document.getElementById('control-toggle');
-    if (btn) btn.textContent = this.control === 'joystick' ? '🕹 Joystick' : '👆 Tap';
+    try { localStorage.setItem('ek_control', this.control); } catch (e) { /* private mode */ }
+    document.querySelectorAll('#control-bar button').forEach(b =>
+      b.setAttribute('aria-pressed', String(b.dataset.control === this.control)));
     return this.control;
   }
 
-  _wireControlToggle() {
-    const btn = document.getElementById('control-toggle');
-    if (!btn) return;
-    btn.onclick = () => this.setControl(this.control === 'tap' ? 'joystick' : 'tap');
+  // Wire the Settings panel: the gear opens/closes it; inside are the orientation
+  // and movement controls. Kept out of the way until the player wants them.
+  _wireSettings() {
+    const panel = document.getElementById('settings-panel');
+    const gear = document.getElementById('settings-btn');
+    if (gear && panel) {
+      gear.onclick = () => { panel.hidden = !panel.hidden; };
+      const close = document.getElementById('settings-close');
+      if (close) close.onclick = () => { panel.hidden = true; };
+    }
+    const cbar = document.getElementById('control-bar');
+    if (cbar) cbar.addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (b) this.setControl(b.dataset.control);
+    });
+    // Restore the saved movement scheme (default tap) and reflect it on the buttons.
+    let savedControl = null;
+    try { savedControl = localStorage.getItem('ek_control'); } catch (e) { /* private mode */ }
+    this.setControl(savedControl || 'tap');
   }
 
-  // Hide the movement-control toggle whenever a box is in front of it (a dialogue, or
-  // the title/creation overlay). It's a DOM sibling of the game root, so it would
-  // otherwise paint over those boxes.
-  setChromeHidden(hidden) {
-    const btn = document.getElementById('control-toggle');
-    if (btn) btn.style.display = hidden ? 'none' : '';
-  }
+  // The Settings gear stays reachable; nothing else to hide now that the movement
+  // toggle moved into the panel. (Kept as a no-op-safe hook for the boot flow.)
+  setChromeHidden() { /* controls now live in the Settings panel */ }
 
   // Free-floating-joystick movement: convert the stick's screen-space vector into a
   // map-space direction (through the orientation transform), move the hero at
@@ -603,7 +615,7 @@ class MapScene extends Phaser.Scene {
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game
     this.setChromeHidden(true);                       // hide the tap toggle behind the title UI
-    const pc = await startFlow(document.getElementById('game-root'));
+    const pc = await startFlow(document.getElementById('overlay-root'));
     this.setChromeHidden(false);
     await this.startNewGame(pc);
   }
@@ -831,9 +843,10 @@ class MapScene extends Phaser.Scene {
       this.autoOrient = false;
       this.orient = +mode;
     }
-    // Rotate the DOM creation/title overlay to match (auto & portrait = no class).
-    document.body.classList.remove('ek-cc-90', 'ek-cc-180', 'ek-cc-270');
-    if (!this.autoOrient && mode !== '0') document.body.classList.add('ek-cc-' + mode);
+    // Rotate the whole DOM overlay layer (#overlay-root: HUD, dialogue, joystick,
+    // creation) to match the engine rotation (auto & portrait = no class).
+    document.body.classList.remove('ek-rot-90', 'ek-rot-180', 'ek-rot-270');
+    if (!this.autoOrient && mode !== '0') document.body.classList.add('ek-rot-' + mode);
     try { localStorage.setItem('ek_orient', mode); } catch (e) { /* private mode */ }
     document.querySelectorAll('#orient-bar button').forEach(b =>
       b.setAttribute('aria-pressed', String(b.dataset.orient === mode)));
