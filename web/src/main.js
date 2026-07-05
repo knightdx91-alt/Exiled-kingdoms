@@ -17,6 +17,8 @@ import { Joystick } from './joystick.js';
 import { Saves } from './saves.js';
 import { Dialogue } from './dialogue.js';
 import { spriteName, loadNpcSheet, makeNpc, bestiaryOf, npcPortrait } from './entity.js';
+import { PlayerModel } from './player.js';
+import { HUD } from './hud.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
@@ -116,6 +118,7 @@ class MapScene extends Phaser.Scene {
     this.bestiary = {};
     this.gameState = { vars: {}, followers: new Set() };
     this.dialogue = new Dialogue(this, root);
+    this.gameHud = new HUD(root);
     this._firedTriggers = new Set();
 
     this.boot();
@@ -186,6 +189,9 @@ class MapScene extends Phaser.Scene {
         if (!this._spriteSet) {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
+        if (!this._creation) {
+          try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
+        }
         const pc = Object.assign(
           { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1,
             attributes: { STR: 0, END: 0, AGI: 0, INT: 0, AWA: 0, PER: 0 }, startingSkill: null },
@@ -209,6 +215,15 @@ class MapScene extends Phaser.Scene {
       dlgChoose: (i) => { const bs = [...this.dialogue.$choices.children]; if (bs[i]) bs[i].click(); return this.dialogue.active; },
       followers: () => [...this.gameState.followers],
       setVar: (k, v) => { this.gameState.vars[k] = v; },
+      // player model + HUD introspection for tests
+      stats: () => { const m = this.playerModel; return m ? {
+        class: m.charClass, level: m.level(), hp: Math.ceil(m.hp), maxhp: m.maxHP(),
+        mana: Math.ceil(m.mana), maxmana: m.maxMana(), xp: m.xp, gold: m.gold,
+        caster: m.isCaster(), attrs: { ...m.attributes } } : null; },
+      hudShown: () => this.gameHud && this.gameHud.el.style.display !== 'none',
+      gainXP: (n) => { this.playerModel && this.playerModel.gainXP(n); return this.playerModel && this.playerModel.level(); },
+      hurt: (n) => { this.playerModel && this.playerModel.damage(n); return this.playerModel && Math.ceil(this.playerModel.hp); },
+      openChar: () => { this.gameHud.togglePanel('char'); return !!this.gameHud.panel.innerHTML; },
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -305,6 +320,7 @@ class MapScene extends Phaser.Scene {
   }
 
   update(_t, dtMs) {
+    if (this.playerModel) this.gameHud.update();         // cheap; only writes DOM on change
     // Track two-finger pinch distance frame-to-frame and scale the zoom by its ratio.
     const ps = [this.input.pointer1, this.input.pointer2].filter(p => p && p.isDown);
     if (ps.length === 2) {
@@ -567,6 +583,7 @@ class MapScene extends Phaser.Scene {
     }
     try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
+    try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game
     this.setChromeHidden(true);                       // hide the tap toggle behind the title UI
     const pc = await startFlow(document.getElementById('game-root'));
@@ -578,13 +595,17 @@ class MapScene extends Phaser.Scene {
   // (name/gender/charClass/portrait/difficulty). Persisted so the run survives reload.
   async startNewGame(pc, startMap = TUTORIAL_MAP) {
     this.player = pc;
+    this.playerModel = new PlayerModel(pc, this._creation || {});
     this.heroKey = `hero_${pc.gender.toLowerCase()}`;
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
     await this.goArea(startMap, startMap === TUTORIAL_MAP ? '0001' : null);
     this.setChromeHidden(false);                      // game is playing -> show tap toggle
+    this.gameHud.setModel(this.playerModel);
+    this.gameHud.show();
     try {
-      await Saves.put('auto', { player: pc, area: startMap }, { name: pc.name, charClass: pc.charClass });
+      await Saves.put('auto', { player: this.playerModel.toJSON(), area: startMap },
+                      { name: pc.name, charClass: pc.charClass });
     } catch {}
   }
 

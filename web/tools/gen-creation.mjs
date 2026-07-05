@@ -34,6 +34,12 @@ const data = {
     WIZARD:  { hp: 20, hpPerLevel: 3, mana: 12, manaPerLevel: 2, dmgMul: 0.0 },
   },
   startLevel: 1,
+  startGold: 18,                                       // Player.C1(): this.gold = 18
+  maxLevel: 25,
+  // Rules.f3252f — cumulative XP to reach each level (index = level)
+  xpTable: [0, 0, 300, 1000, 3000, 6000, 11000, 18000, 27000, 38000, 50000, 64000,
+            80000, 100000, 125000, 160000, 200000, 250000, 310000, 380000, 460000,
+            560000, 700000, 1000000, 1500000, 2400000],
 };
 
 // functions can't serialize — bake the level-1 pools that creation needs

@@ -300,3 +300,55 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
 }
 .dlg-choice:hover { background: #33280f; border-color: #caa04a; }
 .dlg-continue { align-self: flex-end; min-width: 120px; text-align: center; color: #fff5df; background: linear-gradient(#8a6522,#6d4e18); border-color: #caa04a; }
+
+/* ================= In-game HUD (placeholder EK theme) ================= */
+#hud { position: fixed; inset: 0; z-index: 35; pointer-events: none;
+  font-family: "Georgia", "Times New Roman", serif; color: #ece3cf; }
+#hud button, #hud .hud-panel { pointer-events: auto; }
+
+.hud-top {
+  position: absolute; top: env(safe-area-inset-top, 8px); left: 8px;
+  display: flex; align-items: center; gap: 8px;
+  max-width: min(520px, calc(100vw - 120px));
+  background: linear-gradient(rgba(18,14,8,.82), rgba(10,8,4,.86));
+  border: 1px solid #6d5528; border-radius: 10px; padding: 6px 8px; backdrop-filter: blur(3px);
+}
+.hud-portrait { width: 46px; height: 46px; flex: none; object-fit: cover;
+  border-radius: 7px; border: 2px solid #8a6d33; background: #14110b; }
+.hud-bars { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 3px; }
+.hud-name-row { display: flex; justify-content: space-between; font-size: 12px; }
+.hud-name { font-weight: 700; color: #f3ecd8; }
+.hud-lvl { color: #caa04a; font-weight: 700; }
+.hud-bar { position: relative; height: 14px; border-radius: 7px; overflow: hidden;
+  background: #241d10; border: 1px solid #4a3c1e; }
+.hud-fill { position: absolute; inset: 0; width: 0; transition: width .18s ease; }
+.hud-hp .hud-fill { background: linear-gradient(#c0392b, #922b21); }
+.hud-mp .hud-fill { background: linear-gradient(#2e77c9, #21618c); }
+.hud-xp { height: 9px; }
+.hud-xp .hud-fill { background: linear-gradient(#caa04a, #a07d2a); }
+.hud-bt { position: absolute; inset: 0; text-align: center; font-size: 10px; line-height: 14px;
+  color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,.7); }
+.hud-xp .hud-bt { line-height: 9px; font-size: 8px; }
+.hud-gold { display: flex; align-items: center; gap: 3px; font-size: 13px; color: #f0d98a; white-space: nowrap; }
+.hud-coin { color: #e8c34a; }
+
+.hud-btns { position: absolute; left: 8px; bottom: calc(env(safe-area-inset-bottom, 8px) + 8px);
+  display: flex; gap: 8px; }
+.hud-btn { width: 46px; height: 46px; font-size: 20px; cursor: pointer;
+  background: rgba(18,14,8,.85); color: #ece3cf; border: 1px solid #6d5528; border-radius: 10px; }
+.hud-btn:hover { border-color: #caa04a; }
+
+.hud-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 32px)); max-height: 80vh; overflow-y: auto;
+  background: rgba(16,12,6,.97); border: 2px solid #8a6d33; border-radius: 14px; padding: 16px;
+  display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
+.hud-panel-h { font-size: 17px; color: #f3ecd8; font-weight: 700; border-bottom: 1px solid #4a3c1e; padding-bottom: 6px; }
+.hud-panel-sub { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #caa04a; margin-top: 4px; }
+.hud-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.hud-stat { display: flex; justify-content: space-between; font-size: 14px;
+  background: rgba(10,8,4,.5); border: 1px solid #3a2f18; border-radius: 7px; padding: 6px 10px; }
+.hud-stat b { color: #f0d98a; }
+.hud-skills { font-size: 13px; color: #cdbf9d; }
+.hud-dim { font-size: 13px; color: #9c8f6f; font-style: italic; }
+.hud-close { align-self: flex-end; height: 40px; min-width: 110px; cursor: pointer; font-family: inherit;
+  font-size: 15px; color: #fff5df; background: linear-gradient(#8a6522,#6d4e18); border: 1px solid #caa04a; border-radius: 9px; }

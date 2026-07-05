@@ -45,6 +45,22 @@ const playerOk = await page.evaluate(() => {
   return !!p && p.name === 'Aria' && p.gender === 'FEMALE';
 });
 
+// --- Player model + HUD: derived stats from the recovered formulas, live HUD ---
+const hud = await page.evaluate(() => {
+  const s0 = window.__EK.stats();
+  const shown = window.__EK.hudShown();
+  const hpAfter = window.__EK.hurt(10);            // take 10 damage -> HP drops
+  const s1 = window.__EK.stats();
+  const charPanel = window.__EK.openChar();
+  window.__EK.openChar();                            // toggle it back closed
+  return { s0, shown, hpAfter, s1, charPanel };
+});
+console.log('player/HUD:', hud);
+// female default in verify = WARRIOR: 45 HP/+6 at level 1 => 51 maxhp, gold 18, no mana
+const hudOk = hud.shown && hud.s0 && hud.s0.level === 1 && hud.s0.gold === 18 &&
+              hud.s0.maxhp === (45 + 6 * 1) && hud.s0.caster === false &&
+              hud.hpAfter === hud.s0.hp - 10 && hud.charPanel === true;
+
 // --- Real map: the converted .tmx should render real tiles on screen ---
 await page.waitForFunction(() => window.__EK.map && window.__EK.map().tiles > 0, { timeout: 8000 });
 const mapInfo = await page.evaluate(() => window.__EK.map());
@@ -219,11 +235,11 @@ const dlgOk = dlg.entTotal > 0 && dlg.who === 'adaon' && !!dlg.firstText &&
               dlg.firstChoices && dlg.firstChoices.length >= 1 &&
               dlg.followers.includes('adaon_tutorial');   // NPCFollow# action ran
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk);
-const ok = errors.length === 0 && titleOk && playerOk && orientOk && mapOk && heroOk && lightOk &&
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk);
+const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
            zoomOk && moveOk && stickOk && transOk && dlgOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + a working dialogue reader (conditions/actions/party), day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);
