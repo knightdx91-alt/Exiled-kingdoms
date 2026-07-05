@@ -824,33 +824,68 @@ class MapScene extends Phaser.Scene {
     this.time.delayedCall(160, () => this.token.setFillStyle(0x4c6ef5));
   }
 
-  // Orientation control. 'auto' follows the device (no forced rotation — the
-  // browser reflows the viewport as the phone turns and Phaser RESIZE refills
-  // upright). 0/90/180/270 lock the view via the engine transform on `world`.
-  //
-  // The Phaser game world rotates in-engine; the DOM title/character-creation
-  // overlay is a separate fixed layer that Phaser can't rotate, so we also toggle
-  // a body class that CSS-rotates that overlay to match. Without it the buttons
-  // "do nothing" during creation (the overlay just sits there portrait) even
-  // though the game underneath is rotating. CSS rotation is safe for the overlay
-  // because it's plain DOM — the browser hit-tests its buttons through the rotate.
+  // Orientation control.
+  //   'auto'        — follow the device (no forced rotation; the browser reflows
+  //                   the viewport and Phaser RESIZE refills upright).
+  //   0/90/180/270  — LOCK. We turn the WHOLE PHONE to that orientation via the
+  //                   Screen Orientation API, so the browser gives a real viewport
+  //                   of that shape and EVERYTHING (game, HUD, Settings, creation)
+  //                   renders upright and fills the screen with correct input.
+  //                   Where that API isn't available/permitted we fall back to
+  //                   rotating the game in-engine + the DOM overlay via CSS.
   setOrient(mode) {
     this.orientChoice = mode;                        // what the player picked
     if (mode === 'auto') {
       this.autoOrient = true;
-      this.orient = 0;                               // upright fill; device decides shape
+      this._applyEngineRotation(0);                  // upright; device decides shape
+      this._unlockOrientation();
     } else {
       this.autoOrient = false;
-      this.orient = +mode;
+      // Optimistic engine/CSS fallback so something happens instantly even if the
+      // real device lock is unsupported. If the lock succeeds we undo it (the phone
+      // is now physically that orientation, so no in-engine rotation is needed).
+      this._applyEngineRotation(+mode);
+      this._lockOrientation(mode, () => this._applyEngineRotation(0));
     }
-    // Rotate the whole DOM overlay layer (#overlay-root: HUD, dialogue, joystick,
-    // creation) to match the engine rotation (auto & portrait = no class).
-    document.body.classList.remove('ek-rot-90', 'ek-rot-180', 'ek-rot-270');
-    if (!this.autoOrient && mode !== '0') document.body.classList.add('ek-rot-' + mode);
     try { localStorage.setItem('ek_orient', mode); } catch (e) { /* private mode */ }
     document.querySelectorAll('#orient-bar button').forEach(b =>
       b.setAttribute('aria-pressed', String(b.dataset.orient === mode)));
+  }
+
+  // In-engine rotation of the game world + the DOM overlay layer (#overlay-root).
+  // deg 0 = upright. Used for 'auto' and as the fallback when the device can't be
+  // physically rotated.
+  _applyEngineRotation(deg) {
+    this.orient = deg;
+    document.body.classList.remove('ek-rot-90', 'ek-rot-180', 'ek-rot-270');
+    if (deg) document.body.classList.add('ek-rot-' + deg);
     this.relayout();
+  }
+
+  // Turn the physical device to `deg`. On success, onLocked() runs (we drop the
+  // engine rotation). Android Chrome tabs need fullscreen for the lock; an installed
+  // PWA (standalone) doesn't — so request fullscreen only when not standalone.
+  _lockOrientation(deg, onLocked) {
+    const type = { '0': 'portrait-primary', '90': 'landscape-primary',
+                   '180': 'portrait-secondary', '270': 'landscape-secondary' }[String(deg)];
+    const so = (typeof screen !== 'undefined') && screen.orientation;
+    if (!so || !so.lock || !type) return;            // unsupported -> keep engine fallback
+    const lock = () => so.lock(type).then(() => { this._deviceLocked = true; onLocked(); })
+                                    .catch(() => { /* not permitted -> engine fallback stays */ });
+    const standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                       || window.navigator.standalone;
+    const el = document.documentElement;
+    if (standalone || document.fullscreenElement || !el.requestFullscreen) {
+      lock();
+    } else {
+      el.requestFullscreen().then(lock).catch(lock);
+    }
+  }
+
+  _unlockOrientation() {
+    const so = (typeof screen !== 'undefined') && screen.orientation;
+    if (so && so.unlock) { try { so.unlock(); } catch (e) { /* ignore */ } }
+    this._deviceLocked = false;
   }
 
   relayout() {
