@@ -1,0 +1,41 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Well, it looks like we've managed to get back to our lands after all. It was nice to meet you, I wouldn't have been able to get out of that place without you!	¿po?	50	"VariableEqual#lost_foreign_lands,80"		
+1	Q	I'm listening to you, friend.	port.	11	"VariableGreater#lost_foreign_lands,99;NPCisFollower#"	
+1	Q	I'm listening to you, friend.	port.	8	"NPCisFollower#"	
+1	Q	[BLUE](your friend is an experienced-looking warrior magician)[] Glad to see you again, do you need my help as a magic knight?	port?	9		
+8	A	Nothing, let's move on.	Nada, continuemos.	0		
+8	A	Let's talk about something.	Quiero que hablemos de algo.	19		
+8	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91		
+9	A	Yes, I will be glad to fight against enemies with you!	port.	16		
+9	A	I don't need your help right now.	port.	10		
+10	Q	I'll be in Icemist if you need my help.	port.	0		
+11	A	Nothing, let's move on.	Nada, continuemos.	0		
+11	A	I don't need your company right now. Thanks for the help, see you again later.	port.	12		"NPCStopFollowing#;NPCDespawn#damian"
+11	A	Let's talk about something.	Quiero que hablemos de algo.	19		
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91		
+12	Q	You'll find me in Icemist if you need my help again.	port.	0		
+16	Q	I would be very happy to join you, but you already have someone in the company.	port.	0	HasCompanion#	
+16	Q	With our power and magic, we are invincible!	port.	0		NPCFollow#
+19	Q	About what exactly?	port.	20		
+20	A	What can you tell me of this place?	¿Qué puedes decirme de este lugar?	40		
+20	A	Hey, can you use your magic?	port.	41		
+20	A	Let's just go on.	Continuemos.	0		
+40	Q	I really don't know much about this place.	En realidad no se mucho sobre este lugar.	0		
+41	Q	Of course, but what exactly do you want?	port	42		
+42	A	Teleport us.	port.	0		Teleport#
+50	A	I'm glad about it too. And I didn't tell you right away that I started your search by finding the body of a sorceress who had a record of you and the cloak she wanted to return to you.	port.	51		
+51	Q	Oh, poor thing, I feel sorry for her, I asked her not to follow me, but she constantly did not listen to my words. It can't be fixed now, but we can still find the rogue wizard we suffered for and punish him.	port.	52		
+52	A	Definitely.	port.	53		
+53	Q	 I'll go back to Icemist, if you need my help, I'll be there.	¿po?			"GainXP#950;IncVariable#REP_thuram,6;SetVariable#lost_foreign_lands,100;NPCStopFollowing#;NPCDespawn#damian"
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92		
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Nevermind.	No importa.	0		
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Understood.	Entendido.	0		
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		

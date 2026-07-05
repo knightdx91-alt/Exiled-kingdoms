@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a young guy waves at you)[] Greetings, traveler! If you're tired from your journey and wish to rest, you are most welcome to my elder brother's tavern!	port	4	"VariableEqual#bro_talk_mlyat,2"		
+1	Q	[BLUE](a young guy waves at you)[] Greetings, traveler! If you're tired from your journey and wish to rest, you are most welcome to my elder brother's tavern!	port	2			
+2	A	Okay, I'll definitely visit your tavern.	port.	0		"SetVariable#bro_talk_mlyat,2"
+2	A	Where is the entrance to this tavern?	port.	3		
+2	A	Hello, have you seen Princess Evelina Lightwind?	port?	5	"VariableEqual#trouble_again,10;VariableLower#tbro,1"		
+3	Q	[BLUE](The young guy raised an eyebrow in surprise and pointed.)[] So there it, behind my back, even the signs on the building are!	port	0		"SetVariable#bro_talk_mlyat,2"
+4	A	Sure.	port?	0			
+4	A	Hello, have you seen Princess Evelina Lightwind?	port?	5	"VariableEqual#trouble_again,10;VariableLower#tbro,1"		
+5	Q	No, I haven't seen her lately, but I'm always happy to see her, she has a great butt, and overall she's absolutely gorgeous! 	port.	0		"SetVariable#tbro,2"		

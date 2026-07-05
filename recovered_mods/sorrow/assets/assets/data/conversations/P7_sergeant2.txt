@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	5	NPCisFollower#	
+1	Q	[BLUE](a woman in armor)[] Greetings, traveler. 	[BLUE]()[] port.	2		
+2	A	Hello.	port?	0			
+2	A	Hello, have you seen Princess Evelina Lightwind?	port?	3	"VariableEqual#trouble_again,10"		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3	Q	I saw the princess hanging around the square, buying something from the alchemist, and then she went to the suburbs. 	port.	0		"SetVariable#trouble_again,15"		
+4	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#alia_follow,3;NPCFollow#"	
+5	A	Good girl.	port.	0		
+5	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#alia_follow,1;NPCStopFollowing#"

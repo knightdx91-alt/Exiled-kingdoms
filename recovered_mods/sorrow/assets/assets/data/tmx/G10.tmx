@@ -1,0 +1,748 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="59">
+  <properties>
+    <property name="exit_e" value="H10" />
+    <property name="exit_n" value="G11" />
+    <property name="exit_w" value="F10" />
+    <property name="faction_guard" value="varsilia" />
+    <property name="music" value="decline" />
+    <property name="name" value="Northern Bluemist" />
+    <property name="name_ES" value="Rio Bluemist norte" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="144" />
+    <property name="sw2" value="145" />
+    <property name="sw3" value="147" />
+    <property name="sw4" value="148" />
+    <property name="sw5" value="53" />
+    <property name="sw6" value="54" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset firstgid="129" name="grassland_structures" columns="18" tilecount="36" tileheight="256" tilewidth="64">
+    <image source="grassland_structures.png" width="1152" height="512" />
+    <tile id="8">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="9">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="10">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="11">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="12">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="13">
+      <properties>
+        <property name="" value="" />
+      </properties>
+    </tile>
+    <tile id="14">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset firstgid="165" name="spawns" columns="2" tilecount="8" tileheight="64" tilewidth="64">
+    <image source="spawns.png" width="128" height="256" />
+  </tileset>
+  <tileset source="trees.tsx" firstgid="173" />
+  <tileset source="water.tsx" firstgid="189" />
+  <tileset source="rocks.tsx" firstgid="253" />
+  <tileset source="dryground.tsx" firstgid="259" />
+  <tileset source="town_objects.tsx" firstgid="323" />
+  <tileset source="natural_grounds.tsx" firstgid="403" />
+  <tileset source="rocks_small.tsx" firstgid="531" />
+  <tileset source="castlewall.tsx" firstgid="541" />
+  <layer name="nonwalk" visible="0" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt3FFygzAMRdHsfyvdZIcPpoyLiWxJlmTumclHQwLywxhD0nw+Oj+Ty57ec/fIKENtbUZWuWXP/hRZX5uPZV5V8j9E1eiZT7X8I/eB13qr5H+IqJP+/2d1rd7bq5b/warm3hxw5ZywYv4Hy7lf7+8VquZ/0tSfpc2V8z99qz/z9WamWmaNtCFbe7P1hxm71F+1DZVrP1VvA/XHy3qOlapW7ze7taeaiscAAGAfd58fw1eG+9tvJc2W/WBvJk/yj0X+schfz+KzUPbDPE1+zItskH8szXcByNzG7PyT/O2M5kn+9sg/VuXvxOyC/GORPwAAAAAAAAAAAAAAAAAA4P9TYs3mz36Lxe8+6Gj77jV/9sE48o9F/rWRfyzyj0X+sXb/bYEKv/HlUU9k+zJm/MSj3sj2V8j8yjv/FXms2l6VrFbkETHO9M4hku336vQ4L3nmEj22321fUs/Ta6z3gdd9vSznVOv829dY3tfQyDpnPHiN29d1W6xHI1Ped7LOGy3yz9bfV9Ae77PXmbPv203b5pn8Jc/NvGZXT31upv/eLZO8/40kx7x03jS67O1jzaE9T47kL81Pc1zsTpJbb0waya+3nrcbHTc0YwXzm/9G8t8xM8m5yWu70nF75/7au+5o7wNIHyPbATlEI/9Y5B+L/GP9AveXPK4=
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztnNlOG0EQRUvzMHi3//9jEmff97wGHAIhBBTlIR+Queq6cmMQi7CrrfY9UmkmIKDnVnVVdU87ZkIIIYQQQgghhBBCCCGEEEIIIWpg0JQewW4z7vR/XnoQO8xJZ59NPijFd7eHpQeyoxyZ9C/JcWc/TPqXAvH/01QDSoH4hw9GjXxQAuQexD/0hx+eFB7ProH+E/pPOv0PTXUgGmiOHDRrUh+k+I8FmsMH/Sb5QfrHgtyDvD9ptA4owZHbTPoXAf0PavBQ/U8RoD3yf6v8XwTEPHyw16RrCf2/XWEHBcZRAvQ9qMFtof7zVWcP3B5nxq/Vvh6fet4ZFsg/0P6TpXdwGAdiAfcTv2JOYi68DhxTNIj7oT9rZP/zzJL2vSbZyK+tX3N/wAe1zoM2e1b0Qu9ts8+KWk/tW/+7Pfc/euCxaz7yr3FubHpcpZh6/A9ci+GG90GZc0aZ5sw102vuMQdq9AH1n/jcpx824QNqj54Levb8746z3DPz8TAnTf3Kvqi2/njseo+zujfzXLSOZ4VmyDfoZd5ZiudJFtf9zOd9/17PxzB1m1SuP2Nu4Db0vejrnvXPLX43tUfM57rn/U0e91etA3L70tmLezzrNjLydRdzQM/nAs+lsBdfvcL+2MV+fbV3hzHXs6ehDV1z5rybtK8x9gH1Z+wzF91Gj383fH+QxTZ1Zr5jrWcdXv1Z5v1+xbkHsPb2XaM9N+SfD509dZtn97S/V3wtt6+WdGOeYZ85apa+Yc5n/WFNHvg99cdYass9YOi1lmswroPxvG/u+bvf2kU/wOjnNovvfpaT6P82i/tatQet5x/GGnrDdT/vS7s8J25jGMd8zWPZNqbN8h0AbNOxBl/M7WKemmfX/L5m3UnP4x8+WEfOEXdjz+NfZxDLwDq4rvWuuBt8/6izP2VAr8naK/3jge7oOeEH5f94oD/PQEv/eHj+WWevygDdWYOV/+Ph5+9Uf8twaMv+U59/iQe6o/7CB/wcWM3nbbYN5B3mIO4778K+17bA85+HpvPPJTh2Q/wj/6gHjeVkxaR/LIh7rsGQg6R/LNAe+Qf6aw0QD2Mf2td4vmnbyfVX7x8P836+BpYP4sDnrPY7++X355bOecsHMUD7M0u6H/sVftA8iAHnoU5tmX8W/m+dh4gBZwQ/WtKbawHqjzy0C59BLA3PpMEPOPcH/ReWagJyEvyAc+Xyw2bheVn4AXtx0J+9EWpEjZ+/2kYwH+AD6M+6fOAmH8QAH6A2oyZgLiD+F36v/jQG1mbUg3O3haU1m/aJYmAugua/bVkP9K44DuYi+AA1gH2qfBAH5wHqwL6bakEsnAf8fBDf26sniiNfq526wRfaL4qF+Yh7Ffl+hfwQQz4XUA8WbspHsbAucJ3MvQrtGcXBfMT/zx5GPygfxfDIkubQ/tyvyEvKRzHk/enCUk0+M73LiQRzAPumiHvWAtxrrRxD3pdivwjaI/7hC82BGJiHUAP4PlPnKmKBD3iunXlIZ7wu8x8v2983
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt3LEOgjAUQFE6+AXqRJyUybjx/99mCWmiCIkY4AVzTvIGGqbbpFtbVQAAwB4c0/t3m7/vafxfllf6d92veW55anuwmfql+3DdHmzjnDtfJlo/7MGqyvnTpM+1Q+qH9YydP2WtO39a/QEAAAAAAAAAAAAAAACAP3FK/b3iuTN1D5l5hu9KfKvRfxH6x9I/lv6x9I+lfyz9Y+kfq7xhM3eG73ABAAAAAAAAAAAAAAAA8LsnBGYI9Q==
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt1TsKgEAMBcC9vv8Tu7p2FoKNGnVn4EEIKV6XlPi6ZTfngx3PmKMLAHC5fH7Czbb/mpM/CwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwF1N0gcqN0QUqN0QXqFBT0pZ0JX1wFwAAAAAA3mMF2zkLxA==
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztncly1DAQQDXzD1zgTHFirWKpgiTwESmWggMhQCXsSS5wY+fO8icsGfJrM4NVWIzSSHJLaq2jV6WyZyxbcqvVakm2zFh+/E6dgUKYR0jjoN8+jpBWaYSUf0l1YJYo3WkX7gVOYz/w9alIVQYUvFD8N+m31PJ/RHy9q+PFfuwymEZOr7GAy36TqXVXxQ+La0PbP1HGUseNzbVO/0924WwXToyH42Phbeu034p69bUL31gcv0dgkn0MhuzfqU7mK11Y62V/cexvh+D5MeUt4yP7LbJc6OFyP9eFVaD3qx5lQGHTsTbJRGq992UF2S7zY1PwOwcmYFsKwh86PT7sG2GAdmaHJEd1c0ay/QLeFh8f/20LOKF1es/hHGifnzpc46XDORTnykAdl9uCNakO5GJXbBHjP9wO3U+ZkYY1r1JnADBj6etBKeM5oUldDrYcDEcpDlMZNN+n0cib7dQZiIitPdKNQVD0FZaF3O57mfQ9Npj5rib/Bbq68RN5vtyv5VDOo7Ry0jNh6jHNA3bYx089r0VFTjZ8qO+raptt+8tN99MSSt9M46W/AqWJZddwjMsjpk7mVN9z5pllfFWbUbutobw/n3FPOPamm5OssTxS3xO0u2382h2KufRa/FIbdHUgpixKew5ChWvdpbZBIeZSYB5T201KbH26Lc2+wLbecL0ZKrOa5J0jmH5E7DKgeM5PR+h7xdrzfYu4NbHN/MvAdHwZZWpLs6m0uNgrXgZbzK8NbviTS11YHy32a++LbWv2VTR9z4MY9eR6hDQwpB73bzQajUajocdnvPchWS4aDRxU7+aVwK2A1w4px1reT7mZOgNLTkj9L5mNPtwFYUPawuBC0/+01Kz/PmsG6vRep/tN/2koxd+v/Tk4aP9V+zBOLrS5ZTw1238fVPo95Ae5ULL9r8EGyvr/RHHcZt3EIWzePc5hbnk9Qhoq/a9xrQ0XYsi/2X89UP6Yee9Plmlw/edjWaZ3yHz5HvDaIbHR//dd+NCFj124MxqIrOGBRdz27EFcSpE35fre60g9fueZDlz3MqQtMlFqu/82dQYUyPMj2P5wDvLfYf/P7dwwxH/dhTcE6cp1oJa5JQimfF3u/bZjeytj0/bK1NAHhaTQv1RrrPsQ+tsrMfFdDxOjM7p+gO7/5455qYFS/M3QuKyXR42vPcSuyRUbjM3l7yzFaA/gdwh8kX2NXN7d8W3jRF0Q4zUh33+tHar1nynrBtQPinlE031Szi1AYN6nYJsK17GKzX5rMy8i7tX0blqM5w1iypzbKNP4jc1YBdU7ffw68ti5jW/lW0dSrDOvaxcwYxWyrmDaTZMsU6+xn6JPKdpmX78VYzuGkOWPHcu1SVPWFSHrmeJYLLjsKX2i5l/h4bLfYzT9NcqxUK6HlP6/Sq/nhmMx4XYnRF/tyJixY5pvmcWsI7I9myr+ywHh+1CPW1xyPI/rJrfnl7twhS472bPLaOqD0LMv0n9YnZftga8vK/S8lHFyIXdVX8CmTMT9fnbMh6t9yM2uuAJ1dRdsh+A6fKEL5x3S9tHVGdgvRe91CJ3H2I452B51+K60+H60wMY3Se3HhIC3xxi7M2f+uuYqvxnYLhu+9Xyo72m6dun2JRQYuVDP3dRofzC46KCtrRCynSv+y9XuxMiXSxo+eirPh6TW9xHB81O+DMmAH5d9mtQyo+Sfz9GXg9zXE/c5ko4dGm8aLeLK55qAMlzmtu8PjgIjWw==
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entrance to G10_cave" type="transition" id="1" x="358" y="251" width="60" height="24">
+      <properties>
+        <property name="area_id" value="G10_cave" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="2" x="417" gid="165" y="327">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="3" x="2144" gid="167" y="1496">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="4" x="791" gid="167" y="2267">
+      <point />
+      <properties>
+        <property name="conversation" value="village_male" />
+        <property name="name" value="Colonist" />
+        <property name="name_ES" value="Colono" />
+        <property name="spawn" value="villager_male_red" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="5" x="739" gid="167" y="2010">
+      <point />
+      <properties>
+        <property name="conversation" value="village_female" />
+        <property name="name" value="Colonist" />
+        <property name="name_ES" value="Colono" />
+        <property name="spawn" value="villager_female_white" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="6" x="718" gid="167" y="1846">
+      <point />
+      <properties>
+        <property name="conversation" value="village_male" />
+        <property name="name" value="Colonist" />
+        <property name="name_ES" value="Colono" />
+        <property name="spawn" value="villager_male_blue" />
+      </properties>
+    </object>
+    <object name="Guard" type="spawn" id="7" x="421" gid="167" y="1388">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="Colonist" />
+        <property name="name_ES" value="Colono" />
+        <property name="spawn" value="human_soldier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Sheryl" type="staticNPC" id="8" x="626" gid="167" y="2158">
+      <point />
+      <properties>
+        <property name="conversation" value="G10_sheryl" />
+        <property name="facing" value="r" />
+        <property name="gender" value="f" />
+        <property name="name" value="@SHERYL" />
+        <property name="portrait" value="13" />
+        <property name="sprite" value="female_purple" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="9" x="1524" gid="167" y="1373">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_1" />
+        <property name="quest_spawn" value="1" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="10" x="1428" gid="169" y="1301">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="mine_barrel1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="11" x="1598" gid="167" y="1295">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_1" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="12" x="2028" gid="167" y="2676">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_2" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="13" x="1919" gid="167" y="2658">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_2" />
+        <property name="quest_spawn" value="1" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="14" x="1876" gid="169" y="2578">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="mine_barrel1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object type="entry" id="15" x="566" gid="165" y="2507">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to Grasslands" type="transition" id="16" x="535" y="2519" width="42" height="46">
+      <properties>
+        <property name="area_id" value="G10_tomb" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Grisenda" type="spawn" id="17" x="590" gid="167" y="2379">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#warrior_honor,100" />
+        <property name="conversation" value="mercenary_grisenda" />
+        <property name="name" value="@GRISENDA" />
+        <property name="portrait" value="14" />
+        <property name="spawn" value="grissenda" />
+        <property name="tag" value="mercenary_grisenda" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="18" x="369" y="1614" width="550" height="719">
+      <properties>
+        <property name="actions" value="SetVariable#seed_of_trust,20;StartConversation#rodney,lannegar_rodney" />
+        <property name="conditions" value="NPCisInParty#rodney,rodney;VariableEqual#seed_of_trust,10" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="19" x="2235" gid="167" y="1741">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="20" x="2499" gid="167" y="2029">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="21" x="2708" gid="167" y="2028">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="22" x="2809" gid="167" y="1743">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="23" x="2452" gid="167" y="1380">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="24" x="2225" gid="167" y="1031">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="25" x="2533" gid="167" y="1015">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="26" x="2640" gid="167" y="952">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="27" x="2178" gid="167" y="710">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="28" x="2190" gid="167" y="482">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="29" x="2589" gid="167" y="459">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="30" x="2088" gid="167" y="200">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="31" x="2201" gid="167" y="175">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="32" x="1797" gid="167" y="711">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="33" x="2474" gid="167" y="2314">
+      <point />
+      <properties>
+        <property name="spawntable" value="goblins" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="34" x="1595" gid="167" y="1393">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_1" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="35" x="1551" gid="167" y="1445">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_1" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="36" x="1462" gid="167" y="1466">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_1" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="37" x="1985" gid="167" y="2567">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_2" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="38" x="2061" gid="167" y="2639">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_2" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="39" x="2072" gid="167" y="2556">
+      <point />
+      <properties>
+        <property name="quest_location" value="G10_2" />
+        <property name="quest_spawn" value="2" />
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="nest1 conv" type="conversation" id="40" x="1120" gid="169" y="1056">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="conversation" value="G10_nest" />
+        <property name="icon" value="eggsac" />
+        <property name="name" value="@NEST" />
+      </properties>
+    </object>
+    <object name="nest" type="mapitem" id="41" x="1120" gid="169" y="1056">
+      <point />
+      <properties>
+        <property name="active" value="VariableLower#ant_hunt,30" />
+        <property name="active_sprite" value="eggsac" />
+        <property name="inactive_sprite" value="eggsac_dead" />
+        <property name="tag" value="nest" />
+      </properties>
+    </object>
+    <object name="nest spawn 2" type="spawn" id="42" x="1148" gid="167" y="1024">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="respawn" value="90" />
+        <property name="spawn" value="mirmek_hatchling" />
+        <property name="tag" value="nest_spawn" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="nest spawn 2" type="spawn" id="43" x="1122" gid="167" y="1098">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="respawn" value="90" />
+        <property name="spawn" value="mirmek_hatchling" />
+        <property name="tag" value="nest_spawn" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="nest spawn 2" type="spawn" id="44" x="1082" gid="167" y="1013">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="respawn" value="90" />
+        <property name="spawn" value="mirmek_hatchling" />
+        <property name="tag" value="nest_spawn" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="45" x="759" gid="167" y="1005">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="spawn" value="mirmek_hatchling" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="46" x="296" gid="167" y="849">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="spawn" value="mirmek_hatchling" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="47" x="606" gid="167" y="767">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="spawn" value="mirmek_hatchling" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="48" x="738" gid="167" y="538">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="spawn" value="mirmek_hatchling" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="49" x="812" gid="167" y="276">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#ant_hunt,30" />
+        <property name="spawn" value="mirmek_hatchling" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="50" x="1091" gid="167" y="417">
+      <point />
+      <properties>
+        <property name="spawn" value="mirmek" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="51" x="365" gid="167" y="357">
+      <point />
+      <properties>
+        <property name="spawn" value="mirmek" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Mirmek" type="spawn" id="52" x="547" gid="167" y="321">
+      <point />
+      <properties>
+        <property name="spawn" value="mirmek" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Nisor" type="spawn" id="53" x="778" gid="167" y="1788">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#nisor_follow,2" />
+        <property name="conversation" value="G10_nisor" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@NISOR" />
+        <property name="portrait" value="118" />
+        <property name="spawn" value="nisor" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Guard" type="spawn" id="54" x="1090" gid="167" y="1762">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="Colonist" />
+        <property name="name_ES" value="Colono" />
+        <property name="spawn" value="human_soldier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Event" type="spawn" id="55" x="858" gid="167" y="1238" width="64" height="64">
+      <properties>
+        <property name="event_location" value="G10_1" />
+        <property name="event_spawn" value="1" />
+        <property name="spawntable" value="beasts" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="56" x="1407" gid="165" y="2757">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="mine" type="conversation" id="57" x="1380" gid="169" y="2750">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="conversation" value="G10_hideout_door" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="58" x="1395" gid="167" y="2705">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,25" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="mine" type="conversation" id="57" x="1380" gid="169" y="2750">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="conversation" value="G10_hideout_door" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="58" x="1395" gid="167" y="2705">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,92" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="Arcane knight" type="spawn" id="59" x="2645" gid="167" y="295">
+      <point />
+      <properties>
+        <property name="conversation" value="G10_arcane_knight" />
+        <property name="spawn" value="G10_arcane_knight" />
+        <property name="wander" value="1" />
+        <property name="tag" value="arcane_knight" />
+      </properties>
+    </object>
+    <object name="boss goblin" type="spawn"  x="2525" gid="167" y="225">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,15" />
+        <property name="spawn" value="goblin_leader" />
+        <property name="wander" value="1" />
+        <property name="tag" value="gob_boss" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2545" gid="167" y="305">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2545" gid="167" y="335">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2645" gid="167" y="405">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2675" gid="167" y="405">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2735" gid="167" y="335">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2605" gid="167" y="165">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2735" gid="167" y="395">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,19" />
+    <property name="respawn" value="10"/>
+        <property name="spawntable" value="goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="2460" y="90" width="390" height="380">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,14" />
+        <property name="actions" value="StartConversation#arcane_knight,G10_arcane_knight" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2545" gid="167" y="305">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2545" gid="167" y="335">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2645" gid="167" y="405">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2675" gid="167" y="405">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2605" gid="167" y="165">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2735" gid="167" y="395">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="boss goblin" type="spawn"  x="2525" gid="167" y="225">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="hostile" value="VariableEqual#green_king,50" />
+        <property name="spawn" value="goblin_shaman" />
+        <property name="wander" value="1" />
+        <property name="tag" value="goblin_sh" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="2370" y="1" width="580" height="570">
+      <properties>
+        <property name="conditions" value="VariableLower#green_king,49" />
+        <property name="actions" value="StartConversation#goblin_sh,G10_goblin_shaman" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2685" gid="167" y="475">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2495" gid="167" y="305">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2545" gid="167" y="405">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn"  x="2475" gid="167" y="235">
+      <properties>
+        <property name="conditions" value="VariableEqual#green_king,50" />
+        <property name="spawntable" value="goblins" />
+        <property name="tag" value="g10goblins" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

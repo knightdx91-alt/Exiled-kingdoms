@@ -1,0 +1,60 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hello, friend! Absolutely free of charge, I can help you make life easier in the realms! What do you want?	¿po?	2			
+2	A	I don't have enough coins all the time! Give me more gold!	po.	3		
+2	A	I get beaten up a lot all the time! Give me more med kits!	po.	4		
+2	A	My level is pumping too slowly! Give me more experience!	po.	5		
+2	A	else.	po.	10		
+10	Q	Else?	po.	6		
+6	A	Mana is being spent too fast! Give me more potions!	po.	7		
+6	A	I need a lot of skills! Give me more books!	po.	8		
+6	A	I'm tired of being humiliated by every mobs! Give me a powerful weapon!	po.	9		
+6	A	else.	po.	11		
+11	Q	Else?	po.	12		
+12	A	It's like I'm running naked! Give me a good armor!	po.	13		
+12	A	I have no idea where to find and buy the best potions! Give me potions!	po.	35		
+12	A	I'm tired of wasting scrolls on invisible doors and teleports! Give me more scrolls of all kinds!	po.	36		
+12	A	else.	po.	37		
+3	Q	 How much gold do you need?	¿po?	14			
+4	Q	 Get what you want!	¿po?	0		"GainItems#5023,50;GainItems#5070,50;GainItems#5016,50"	
+5	Q	 How much experience do you need?	¿po?	27			
+7	Q	 Get what you want!	¿po?	0		"GainItems#5052,50;GainItems#5023,50"	
+8	Q	 Get what you want!	¿po?	0		"GainItems#5035,30;GainItems#5013,60"	
+9	Q	 Who exactly do you need a weapon for?	¿po?	18			
+13	Q	 Who exactly do you need a armor for?	¿po?	22			
+14	A	1000.	po.	15		
+14	A	10000.	po.	16		
+14	A	100000.	po.	17		
+15	Q	 Get what you want!	¿po?	0		GainGold#1000	
+16	Q	 Get what you want!	¿po?	0		GainGold#10000	
+17	Q	 Get what you want!	¿po?	0		GainGold#100000	
+18	A	For a warrior and a rogue.	po.	19		
+18	A	For a warrior and a cleric.	po.	20		
+18	A	For a magician.	po.	21		
+19	Q	 Get what you want!	¿po?	0		"GainItem#10184;GainItem#10138;GainItem#10213;GainItem#10126"	
+20	Q	 Get what you want!	¿po?	0		"GainItem#10182;GainItem#10139;GainItem#10126"	
+21	Q	 Get what you want!	¿po?	0		"GainItem#10183;GainItem#10185;GainItem#10187;GainItem#10188;GainItem#10189;GainItem#10186"	
+22	A	For a warrior and a cleric.	po.	23		
+22	A	For a warrior and a rogue.	po.	24		
+22	A	For a magician.	po.	25		
+22	A	For everyone.	po.	26		
+23	Q	 Get what you want!	¿po?	0		"GainItem#10134;GainItem#10154;GainItem#10155;GainItem#10156;GainItem#10135;GainItem#10157;GainItem#10100;GainItem#10164"	
+24	Q	 Get what you want!	¿po?	0		"GainItem#10153;GainItem#10162"	
+25	Q	 Get what you want!	¿po?	0		"GainItem#10160;GainItem#10101;GainItem#10161"	
+26	Q	 Get what you want!	¿po?	0		"GainItem#10159;GainItem#10158;GainItem#10190;GainItem#10163;GainItem#10191;GainItem#10192;GainItem#10210;GainItem#10211;GainItem#10212"	
+27	A	100.	po.	28		
+27	A	1000.	po.	29		
+27	A	10000.	po.	30		
+27	A	100000.	po.	31		
+28	Q	 Get what you want!	¿po?	0		GainXP#100	
+29	Q	 Get what you want!	¿po?	0		GainXP#1000	
+30	Q	 Get what you want!	¿po?	0		GainXP#10000	
+31	Q	 Get what you want!	¿po?	0		GainXP#100000	
+32	Q	 Without problems!	¿po?	0		"LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000;LoseHP#5000"	
+33	Q	 Without problems!	¿po?	34			
+34	A	Okey...	po.	0		"SetVariable#want_letter_back,100;SetVariable#key_to_past,100;SetVariable#shards_fate,100;SetVariable#where_is_amarisa,100;SetVariable#ark_lothasan,71;SetVariable#know_mqtruth,1;SetVariable#know_lifeextension,1;GainItem#2622;GainItem#2630;Travel#I3_ark2,10"
+35	Q	 Get what you want!	¿po?	0		"GainItems#5030,50;GainItems#5031,50;GainItems#5032,50;GainItems#5033,50;GainItems#5034,50;GainItems#5050,50;GainItems#5025,50;GainItems#5053,50;GainItems#5003,50;GainItems#5005,50;GainItems#5006,50;GainItems#5017,50;GainItems#5024,50"	
+36	Q	 Get what you want!	¿po?	0		"GainItems#6002,50;GainItems#6011,50;GainItems#6005,50;GainItems#6008,50;GainItems#6012,50;GainItems#6013,50;GainItems#6009,50"	
+37	Q	Else?	po.	38		
+38	A	I want to abruptly speedrun this game, help me with this!	po.	33		
+38	A	I'm already tired of playing this game, do something about it!	po.	32		
+38	A	all.	po.	0		

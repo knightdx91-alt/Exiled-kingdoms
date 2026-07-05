@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I hope we find this spotted swamp thing, right?	¿po?	0	"VariableGreater#problem_sirius,1"		
+1	Q	 [BLUE](this kid is equipped as a hunter)[] Hello, friend, I'm Sirius Molten, it's a cool city here, it's a pity there's not enough work.	¿po?	2			
+2	A	Hello, what are you doing here?	po.	3		
+2	A	Hello, have you seen princess Evelina Lightwind?	port?	10	"VariableEqual#trouble_again,10;VariableLower#siriusm,1"		
+3	Q	 I am engaged in hunting to order, I am hired to get the skin of some rare animal, for a stuffed head or a whole carcass, well, you understand, right? But lately, orders are not at all thick, it's sad, in short.	¿po?	4		
+4	A	Maybe you're still getting along with this.	po.	0		
+4	A	If you're a hunter, then I just need a hunter for work.	po.	6	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_sirius,1"		
+6	Q	 I wouldn't mind, but I haven't completed the last order yet, if you help me, then I'm ready to work for you.	¿po?	7		
+7	A	And what kind of animal do you need to get?	po.	8		
+7	A	Sorry, but do it yourself.	po.	0		
+8	Q	 They ordered me a skin of a spotted swamp thing. As I have heard from local hunters, these animals are found somewhere in the eastern part of the Painful Fens that are far to the north.	¿po?	9		
+9	A	Okay, then let's not waste time, let's hit the road.	po.	0		"NPCFollow#;SetVariable#problem_sirius,2"
+10	Q	Of course I saw her, it's hard not to notice such a beautiful girl! She was walking around the square near alchemist for a while, and then she left. 	port.	0		"SetVariable#siriusm,2"		

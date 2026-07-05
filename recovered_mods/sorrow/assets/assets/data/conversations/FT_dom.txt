@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 In a street fight, the street always wins! Now that bastard won't give us any more trouble.	¿po?	3	"VariableEqual#last_race,80"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableEqual#last_race,77"		
+1	Q	 Did you think I was going to fight you? Well, you were right!	¿po?	2		
+2,philosopher	Q	 Fuck you, asshole!	¿po?	0		"NPCHostile#philosopher;SetVariable#last_race,77"
+3	A	I was glad to help you.	po.	4		
+4,dom	Q	 Let's go back to New Garand, where we can celebrate this victory.	¿po?	5			
+5	A	Fine.	po.	0		"NPCDespawn#dom;NPCDespawn#dom_team;SetVariable#last_race,82"

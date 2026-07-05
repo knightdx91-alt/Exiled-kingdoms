@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="6">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="icemist_large.tsx" firstgid="1253" />
+  <tileset firstgid="1293" name="pentagram" columns="4" tilecount="16" tileheight="32" tilewidth="64">
+    <image source="pentagram.png" width="256" height="128" />
+  </tileset>
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="indoor walls.tsx" firstgid="1405" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBognQk3HjVv1DxSzCPHTGq7bxSMguEAAGf3e3NABgAA
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYPACVlbqmcVCRbOYqWjWKBgFQxUAAIv4F2RABgAA
+  </data>
+  </layer>
+  <layer name="ground3" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBqghZWBoREJ1yKxW1lJN68JqGcfiIby1ZkYGDSYEHLkmLcXia/ChCpHjnmtOOTqyDQvDYu+Elby3ZeKRV8xBea14JEjxzxqApB5hUBchMVccuxqQ0vPyLiZym4fBaOAVgAAVB08FEAGAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="255" gid="245" y="280">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="296" y="292" width="20" height="20">
+      <properties>
+        <property name="area_id" value="F9" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="Gwen" type="spawn" id="3" x="155" gid="247" y="185">
+      <point />
+      <properties>
+        <property name="conversation" value="F9_Gwen" />
+        <property name="name" value="@GWEN" />
+        <property name="portrait" value="186" />
+        <property name="shop_items" value="10801,10802,10803,10804,10805,10806" />
+        <property name="spawn" value="necromancer_female" />
+        <property name="tag" value="gwen" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="4" x="205" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#f9ghost,1;VariableLower#bloody_harvest,69" />
+        <property name="conversation" value="F9_ghost" />
+        <property name="faction" value="neutral" />
+        <property name="name" value="@GHOST" />
+        <property name="portrait" value="306" />
+        <property name="spawn" value="ghost" />
+        <property name="tag" value="storm" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Anita" type="spawn" id="5" x="245" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,66;VariableLower#bloody_harvest,69" />
+        <property name="spawn" value="anita" />
+        <property name="tag" value="anita" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

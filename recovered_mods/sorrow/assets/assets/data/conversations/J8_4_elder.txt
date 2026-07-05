@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the elder of this village are clearly not happy to see you)[] Hey, whoever you are, uninvited guests are not welcome in our settlement, so go on your way, do not bother us!	¿po?	3	VariableEqual#forced_effort,30		
+1	Q	 [BLUE](the elder of this village are clearly not happy to see you)[] Hey, whoever you are, uninvited guests are not welcome in our settlement, so go on your way, do not bother us!	¿po?	2				
+2	A	Okay, I'm leaving.	po.	0		"Travel#R11,2"
+3,anabel	Q	 I am the priest Anabel from the temple in Rigordion, I am here on an important mission of the high priest, and therefore you will have to worry about us.	¿po?	4	VariableEqual#forced_effort,30		
+4,elder	Q	 And what do the clergy need from us?	¿po?	5				
+5,anabel	Q	There are rumors that werewolves have settled somewhere near the Lake of Tears, which do not give life to ordinary villagers, and if this is true, then the monsters must be punished.	po.	6		
+6,elder	Q	 This is terrible news, the servants of the Northern gods are always merciless to creatures even slightly different from humans, do not allow anyone to escape. But this time it will be different - we will be no less ruthless!	¿po?	7				
+7	Q	 [BLUE](suddenly, the elder, like all the villagers, began to turn into shaggy monsters!)[]	¿po?	8		"NPCDespawn#elder;NPCDespawn#villager_out;NPCSpawn#werewolf_elder;NPCSpawn#werewolf_there"	
+8,werewolf_elder	Q	 Don't let them leave our settlement alive!!!	¿po?	0		SetVariable#forced_effort,40		

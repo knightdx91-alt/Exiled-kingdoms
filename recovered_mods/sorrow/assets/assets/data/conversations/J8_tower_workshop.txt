@@ -1,0 +1,54 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	To get started in the workshop, you need to find instructions for each individual item.	po.	5	VariableGreater#abandoned_workshop,10		
+1	Q	To get started in the workshop, you need to find instructions for each individual item.	po.	4	VariableEqual#abandoned_workshop,10		
+1	Q	Tables and shelves are filled with various incomprehensible things, books and scrolls, it looks like this is a magic workshop. Everything looks relatively intact, you can try to create something if you figure out how this workshop works.	po.	2			
+2	A	You spend a couple of hours on books and scrolls, learning the basics of working in the workshop. Delving into the creation process, you find that there are no scrolls with detailed instructions for each individual item. 	pi.	3			INT#3
+2	A	You are trying to understand the books and scrolls, but what is described in them is too complicated for your mind. 	pi.	0			
+3	Q	Perhaps you can find these manuals somewhere in the tower.	po.	0		"SetVariable#abandoned_workshop,10"		
+4	A	I found one of the manuals and can already start creating items.	po.	0	PlayerHasItem#10306	"LoseItem#10306;IncVariable#abandoned_workshop,1"	
+4	A	Move away from the workshop.	po.	0			
+5	A	I found one of the manuals and can already start creating items.	po.	0	PlayerHasItem#10306	"LoseItem#10306;IncVariable#abandoned_workshop,1"	
+5	A	Get started in the workshop.	po.	6			
+5	A	Move away from the workshop.	po.	0			
+6	Q	First you need to study the necessary manual and check the availability of the necessary ingredients.	po.	7			
+7	A	The manual on the creation of the sword combines the charms of the opposite elements, it requires the following ingredients: one large ruby and sapphire, 4 living ice and 4 fire salts.	po.	10	VariableGreater#abandoned_workshop,10		
+7	A	The manual is about creating a speed potion, the effect of which lasts twice as long, it requires the following ingredients: a speed potion, 2 luminescent fungus, one red orchid.	po.	11	VariableGreater#abandoned_workshop,11		
+7	A	The manual is about creating a belt that will greatly enhance your charisma, it requires the following ingredients: a gold ingot, a bear pelt and two small sapphires.	po.	12	VariableGreater#abandoned_workshop,12		
+7	A	more.	po.	28	VariableGreater#abandoned_workshop,13		
+8	A	A manual about creating a bow that strikes enemies with decay and cold, it requires the following ingredients: oak bow, 4 deadweed, 2 living ice and one small sapphire.	po.	13	VariableGreater#abandoned_workshop,13		
+8	A	The manual is about creating a magic sphere that protects from several elements at once, it requires the following ingredients: one pearl and three living ice, fire salts and sparkling powder.	po.	14	VariableGreater#abandoned_workshop,14		
+8	A	The manual is about creating a crushing axe that a rogue can use with his second hand, he needs the following ingredients: deer antlers, two rubies and a wolf pelt.	po.	15	VariableGreater#abandoned_workshop,15		
+8	A	more.	po.	29	VariableGreater#abandoned_workshop,16		
+9	A	The manual is about the creation of a powerful weapon of clerics, it requires the following ingredients: bluesteel hammer, two diamonds and sparkling powder.	po.	16	VariableGreater#abandoned_workshop,16		
+9	A	The manual is about creating a shield with excellent shock protection, it requires the following ingredients: 4 sparkling powder, one diamond and two small sapphires.	po.	17	VariableGreater#abandoned_workshop,17		
+9	A	A manual about creating a magic staff with monstrous power, it requires the following ingredients: a gold ingot, two demon skulls, three large emeralds and three diamonds.	po.	18	VariableGreater#abandoned_workshop,18		
+9	A	all.	po.	0	VariableGreater#abandoned_workshop,18		
+10	Q	The workshop is ready to start working.	po.	19			
+11	Q	The workshop is ready to start working.	po.	20			
+12	Q	The workshop is ready to start working.	po.	21			
+13	Q	The workshop is ready to start working.	po.	22			
+14	Q	The workshop is ready to start working.	po.	23			
+15	Q	The workshop is ready to start working.	po.	24			
+16	Q	The workshop is ready to start working.	po.	25			
+17	Q	The workshop is ready to start working.	po.	26			
+18	Q	The workshop is ready to start working.	po.	27			
+19	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#2013;PlayerHasItem#2014;PlayerHasItems#1005,4;PlayerHasItems#1006,4"	"LoseItem#2013;LoseItem#2014;LoseItems#1005,4;LoseItems#1006,4;GainItem#10296;Travel#J8_tower,8,4"	
+19	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+20	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#5007;PlayerHasItem#2101;PlayerHasItems#2102,2"	"LoseItem#5007;LoseItem#2101;LoseItems#2102,2;GainItem#10307;Travel#J8_tower,8,2"	
+20	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+21	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#1021;PlayerHasItem#1014;PlayerHasItems#2003,2"	"LoseItem#1021;LoseItem#1014;LoseItems#2003,2;GainItem#10301;Travel#J8_tower,8,4"	
+21	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+22	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#603;PlayerHasItem#2003;PlayerHasItems#2103,4;PlayerHasItems#1006,2"	"LoseItem#603;LoseItem#2003;LoseItems#2103,4;LoseItems#1006,2;GainItem#10302;Travel#J8_tower,8,4"	
+22	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+23	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#2015;PlayerHasItems#1007,3;PlayerHasItems#1005,3;PlayerHasItems#1006,3"	"LoseItem#2015;LoseItems#1007,3;LoseItems#1005,3;LoseItems#1006,3;GainItem#10300;Travel#J8_tower,8,2"	
+23	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+24	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#10309;PlayerHasItem#1003;PlayerHasItems#2013,2"	"LoseItem#10309;LoseItem#1003;LoseItems#2013,2;GainItem#10298;Travel#J8_tower,8,2"	
+24	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+25	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#536;PlayerHasItem#1007;PlayerHasItems#2004,2"	"LoseItem#536;LoseItem#1007;LoseItems#2004,2;GainItem#10299;Travel#J8_tower,8,4"	
+25	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+26	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#2004;PlayerHasItems#2003,2;PlayerHasItems#1007,4"	"LoseItem#2004;LoseItems#2003,2;LoseItems#1007,4;GainItem#10297;Travel#J8_tower,8,2"	
+26	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+27	A	You have all the necessary ingredients, and you proceed to create the item following the instructions. After a couple of hours, you hold in your hands the result of your labors. 	pi.	0	"PlayerHasItem#1021;PlayerHasItems#1013,2;PlayerHasItems#2004,3;PlayerHasItems#2012,3"	"LoseItem#1021;LoseItems#1013,2;LoseItems#2004,3;LoseItems#2012,3;GainItem#10295;Travel#J8_tower,8,6"	
+27	A	You don't have enough ingredients to create the selected item. 	pi.	0			
+28	Q	You move on to other manuals.	po.	8			
+29	Q	You move on to other manuals.	po.	9			

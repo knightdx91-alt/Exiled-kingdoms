@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](nearby, behind the trees, you heard some noise, someone's loud voices)[]	¿po?	2			
+2	A	[BLUE](Carefully approach closer to find out what's going on there)[]	po.	3		
+2	A	[BLUE](To pass by without paying attention)[]	po.	0		
+3,bandit1	Q	 [BLUE](an unkempt-looking thug rudely accosting a girl)[] Well, did the bitch come running? Now give me the money!	¿po?	4				
+4,girl1	Q	 [BLUE](a girl dressed quite provocatively)[] Get off me, Johnny! What the fuck kind of money do you want?!	¿po?	5			
+5,bandit1	Q	 What kind of money? The ones you stole from goofy Bill. You were the one who was seen with him the night he left the tavern!	¿po?	6			
+6,girl1	Q	 Maybe I left with him, but never know where and how this idiot could have lost his money!	¿po?	7			
+7,bandit1	Q	 Well, yes, but lately such "never know" very often happens with the participation of your girlfriends! Or are you saying that Hugh and Tommy also lost money themselves the other day?	¿po?	9		
+9,girl1	Q	 Is it okay what your buddy Tommy did to my friend last week? The poor thing still can't get out of bed! And she's not the only one, girls often complain that your freaks often allow themselves more than what is allowed.	¿po?	10				
+10,bandit1	Q	 Maybe one of the guys got drunk and overdid it, but don't say that it happens all the time!	¿po?	11			
+11,girl1	Q	 And why not? You don't let us work properly, and you don't pay a damn thing for service, so you also mutilate girls!	¿po?	12			
+12,bandit1	Q	 All right, stop talking my teeth, give me the stolen money!	¿po?	13			
+13,girl1	Q	 Money? Don't you want to get this, asshole! [BLUE](and the girl pulls out a knife that she somehow managed to hide in her scanty outfit)[]	¿po?	14		
+14,bandit1	Q	 Well, you asked for it, bitch! [BLUE](the bandit had a small club with metal knobs on him)[]	¿po?	16				
+16	A	 [BLUE](Step in and help the bandit)[]	¿po?	0		"NPCHostile#girl1;SetVariable#sin_kingdom,10"
+16	A	 [BLUE](Step in and help the girl)[]	¿po?	0		"NPCHostile#bandit1;SetVariable#sin_kingdom,50"
+16	A	 Hey, take it easy! I understand that you have serious disagreements, but this is not a reason to take up arms and cause bloodshed! Let's try to come to an amicable agreement after all.	¿po?	17			PER#4
+17,bandit1	Q	 There will be no peaceful solution until this whore gives back the stolen money!	¿po?	18			
+18,girl1	Q	 I told you, you idiot, that I didn't take any other people's money!	¿po?	19			
+19,bandit1	Q	 You're starting this nonsense all over again about not being involved?!	¿po?	20			
+20	A	 All right! If I give you the coins for her, will you calm down and leave the girl alone?	¿po?	21			
+21,bandit1	Q	 Of course, buddy, I don't care who gets the stolen money back, two thousand and everything will be fine, I'll forget about this slut!	¿po?	22			
+22	A	Good. Here's the money.	port.	0	"playerhasGold#2000"	"NPCDespawn#bandit1;loseGold#2000;SetVariable#sin_kingdom,52"
+22	A	I don't have that kind of money.	port.	23		"NPCHostile#bandit1;SetVariable#sin_kingdom,50"
+23,bandit1	Q	 Well, then excuse me, I'll take the money from that bitch, or she'll die!	¿po?	0			
+24,bandit1	Q	 It's a pleasure doing business with you!	¿po?	0			

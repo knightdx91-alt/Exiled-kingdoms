@@ -1,0 +1,5 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you've dealt with the undead, and no one is stopping you from taking the body of the slain Adaon)[] 	[BLUE]()[] port.	2			
+2,adaon	Q	Oh, this doppelganger really looks a lot like me! How creepy it looks!	port?	3			
+3,guard	Q	That's right, it's creepy to see this. Let's get him before something else shows up here, and let's go.	port?	5			
+5	A	Okay.	port?	0		"NPCDespawn#corpse;SetVariable#hate_through,57"

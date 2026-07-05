@@ -1,0 +1,34 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a strong-looking old man with a stern face smiled when he saw you)[] Greetings, hero, glad to see you.	port	28	"VariableEqual#dangerous_curiosity,100"		
+1	Q	[BLUE](a strong-looking old man with a stern face smiled when he saw you and boy)[] Oh, you're okay, kid, I'm so glad!	port	18	"VariableEqual#dangerous_curiosity,20"		
+1	Q	[BLUE](a strong-looking old man with a stern face smiled when he saw you)[] Greetings, hero, I hope you will find the boy.	port	17	"VariableEqual#dangerous_curiosity,10"		
+1	Q	[BLUE](a strong-looking old man with a stern face smiled when he saw you)[] Greetings, traveler, I'm glad you were able to get, I hope those ice guards didn't cause any problems? They are very ancient, the magic in them has weakened, which makes them difficult to control, so they can sometimes attack indiscriminately. You're probably wondering what an old man is doing here on an island in the middle of a lake?	port	2		
+2	A	Yes, tell me who you are and why you are alone in these wild lands?	port.	3		
+2	A	No, freak, I'll just finish you off, just like your ice henchmen!	port.	16		
+3	Q	I am a descendant of an ancient people who lived in this area in a kingdom that is now lost. Now I am the last guardian of this piece of the kingdom, which is these ruins.	port	4		
+4	A	What happened to your kingdom?	port.	5		
+5	Q	This happened many centuries ago, and not much information has been preserved to this day. My teacher told me about a terrible force that tore out of the ground, it destroyed everything in its path, knowing no obstacles. And when everything calmed down, white glowing people appeared, weapons were powerless against them, they devastated the surviving part of the kingdom, the few survivors were able to escape to neighboring lands.	port	6		
+6	A	And what kind of power was it, and who were these glowing people?	port.	7		
+7	Q	I don't know anything about their origin, the catastrophe destroyed knowledge about those ancient years, the little that I have told has been passed down from the survivors from generation to generation. Perhaps all this was created by evil magic, and we who live now only have to guess what it really was like back then.	port	8		
+8	Q	Brave survivors learned to fight these creatures; they became the brotherhood of the lost kingdom, protecting the lands untouched by the disaster. But over the years, the brotherhood declined, and the emergence of a new nightmare finally finished it off. Fortunately, there are now very few glowing people left; they still dwell somewhere in the ruins of my kingdom, and rarely do they venture beyond its borders.	port	9		
+9	A	If these creatures are no longer a threat to the neighboring lands, why don't you move to the city?	port.	10		
+10	Q	I don't like such crowded places, and I'm too old to try to settle in a new place. Anyway, the Lost Kingdom is my home, where I want to spend the rest of my days. Well, I hope I didn't bore you with my stories. You must be a hero, since you are not afraid to wander in these places, could you help me with one request?	port	11		
+11	A	What needs to be done?	port.	12		
+12	Q	From time to time, a boy from the city drops by to listen to my stories about ancient times, but recently he stopped showing up. I went to the Rigordion to find out if anything had happened to him, and as it turned out, he really had disappeared somewhere!	port	13		
+13	Q	I managed to find out from one of the hunters that the boy had been seen on the other side of the eastern river, which means I'm afraid he went to the ruins of the ancient city I told him about. I was going to go there myself to look for him, but I'm not as strong as I was when I was young, so I'm asking you for a favor.	port	14		
+14	A	Okay, I'll try to find him.	port.	15		
+15	Q	I will be grateful to you, saving a young soul is a noble deed, it will surely be rewarded. Good luck to you, and here, take these things, they will help you if you have to face glowing people.	port	0		"GainItems#10151,3;SetVariable#dangerous_curiosity,10"		
+16	Q	As you wish.	port	0		"NPCHostile#keeper_lost_kingdom;NPCHostile#ice_big_guy;SetVariable#dangerous_curiosity,110"
+17	A	I will try.	port.	0		
+18,boy	Q	I'm sorry, grandpa, that I didn't believe you and wanted to check everything myself! I will never doubt your words again!	port	19		"NPCStopFollowing#"		
+19,keeper_lost_kingdom	Q	Save your apologies for your family! And I understand that young people tend to be overly curious, but sometimes it needs to be kept in check!	port	20		
+20,boy	Q	Fine...	port	21		
+21,keeper_lost_kingdom	Q	Thank you, hero, for bringing him back intact! Take this ring of my people as a reward, and this fur coat, our places are cold, you'll need it. I will take the boy to the city and inform everyone about your feat, people should know a hero like you!	port	22		
+22	A	I was glad to help.	port.	23		
+23,boy	Q	I want to thank too, auntie! I found this thing in those ruins and I want to give it to you!	port	24	"PlayerIsFemale#"		
+23,boy	Q	I want to thank too, uncle! I found this thing in those ruins and I want to give it to you!	port	24	"PlayerIsMale#"		
+24	A	Thank you for the gift.	port.	25		
+25,keeper_lost_kingdom	Q	By the way, I was a blacksmith in my youth, and I still have some weapons. I have no use for them now, but you, as a hero, might find them useful. Contact me if you want to buy anything.	port	26		
+26	A	Okay, I'll know.	port.	0		"NPCDespawn#boy;GainItem#11053;GainItem#10145;GainItem#10146;GainXP#900;IncVariable#REP_north_kingdom,8;SetVariable#dangerous_curiosity,100"		
+28	A	Greetings.	port.	0		
+28	A	Greetings, you said that you have weapons for sale, I wonder what you have.	port.	0		OpenShop#

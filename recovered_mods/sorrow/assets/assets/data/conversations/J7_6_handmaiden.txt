@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the maid is clearly busy with customers)[]	¿po?	2			
+2	A	Hello!	po.	3		
+2	A	Do you know anything about the wizard who comes here?	po.	5	"VariableEqual#family_matters,50"		
+2	A	Hello, have you heard anything about zombies looking like priests?	po.	9	"VariableGreater#last_honors,9;VariableLower#last_honors,19;VariableLower#talkz_handmaiden,1"		
+2	A	[BLUE](ignore)[]	po.	0		
+3	Q	 Hi, if you want to make an order, contact the owner.	¿po?	4		
+4	A	Okay.	po.	0		
+5	Q	 There are different types here, there is also a magician, from time to time he looks in here, although more often he is seen in another place, if you want details, then for [BLUE]30 gold[], I'm ready to tell.	¿po?	6		
+6	A	Okay, here are the coins, tell me.	po.	7	PlayerHasGold#30	
+6	A	Sorry, but no.	po.	0		
+7	Q	 In short, trader Greek is doing business at the southeastern pier, there are rumors that he is engaged in smuggling and this magician is in a share with him. Since he often turns around there, go there if you want to find him.	¿po?	8		
+8	A	Thank you for information.	po.	0		"SetVariable#family_matters,60;loseGold#30"	
+9	Q	Zombies? Ugh, what an abomination!	po.	0		"SetVariable#talkz_handmaiden,2"	

@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	We did what was necessary to save many lives, sacrificing my teacher's life, he would never have deviated from his plan!	port?	8	VariableEqual#very_strange_thing,80		
+1	Q	We need to stop his madness!	port?	0	VariableEqual#very_strange_thing,75		
+1	Q	I'm busy, go talk to my teacher.	port?	0	VariableGreater#very_strange_thing,49		
+1	Q	It was a good fight! Go talk to my teacher.	port?	0	VariableEqual#very_strange_thing,35		
+1	Q	Beat this bastard!	port?	0	VariableEqual#very_strange_thing,30		
+1	Q	Let's not delay in vain, the teacher is waiting for us!	port	0	NPCisFollower#	
+1	Q	([BLUE]a young guy dressed in a magical outfit[]) Hello again, have you prepared for the meeting with my teacher?	port?	6	VariableEqual#very_strange_thing,20		
+1	Q	([BLUE]a young guy dressed in a magical outfit[]) Hi, I'm glad to see you in our city, but I don't have time to talk right now.	port?	2		
+2	A	I am looking for the wizard Balthazar, he informed me that I will be able to meet him or his apprentice in this city.	port?	3	VariableEqual#very_strange_thing,15		
+2	A	I get you.	port?	0		
+3	Q	Oh, so you're the hero my teacher found, he informed me that you were coming! Great! The teacher went to the old tower, which is located in the south of the Blumist River, and warned me that if you come, we should go to him, so let's go!	port	4	PlayerIsLevel#15		
+3	Q	Oh, so you're the hero my teacher found, he informed me that you were coming! But you look pretty weak, and you're clearly not worthy of serving my teacher! Gain strength and experience, dress up in more decent gear, and then come back [BLUE](you need to be at least level 15)[]	port	0		"SetVariable#very_strange_thing,20"		
+4	A	Okay, let's go to your teacher.	port!	5		"SetVariable#very_strange_thing,25"		
+5	Q	 Let's not delay.	¿po?	0		"NPCFollow#"
+6	A	Yes, I'm ready!	port?	7		
+6	A	Not yet.	port?	0		
+7	Q	Great! The teacher went to the old tower, which is located in the south of the Blumist River, and warned me that if you come, we should go to him, so let's go!	port	4	PlayerIsLevel#15		
+7	Q	You still look pretty weak, and you're not worthy of serving my master! Gain strength and experience, then come back [BLUE](you need to be at least level 15)[]	port	0				
+8	A	What are we going to do now?	port?	9		
+8	A	I was able to collect it from his body.	port?	11	PlayerHasItem#10642		
+9	Q	The teacher's threats about alleged horrific intrusions may be quite real. I will figure out how his machine works to close the gaps, but so that it is done safely for all the inhabitants of our world. Thank you for helping my teacher, goodbye!	port	10			
+10	A	Bye.	port!	0		"LoseItem#10642;GainXP#2700;GainItems#10638,3;SetVariable#very_strange_thing,110;Travel#H9_tower,5"		
+11	Q	A substrate? It can't be! So he was an outsider?! Why then was he so indifferent to the fate of other outsiders, if he was ready to destroy them all in order to save our world, which was alien to him??	port	12						
+12	A	Most likely, our world has become his home, for all the years that he has lived here. So what are we going to do now?	port?	9		

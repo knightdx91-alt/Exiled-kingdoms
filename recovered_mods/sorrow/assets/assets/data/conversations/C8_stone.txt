@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](these are ancient ruins in which flames are raging, despite the lack of any fuel)[] 	[BLUE]()[] port.	0	"VariableEqual#demon_tut,2"		
+1	Q	[BLUE](these are ancient ruins in which flames are raging, despite the lack of any fuel)[] 	[BLUE]()[] port.	2		
+2	A	This is clearly the same altar that the ghost was talking about.	port?	3			
+3	Q	[BLUE](for a while nothing happens, when suddenly, the flame begins to flare up more, a column of fire rises in the center of the ruins, from which a demonic creature appears)[]	port?	4	"PlayerHasItem#10287"		
+3	Q	[BLUE](no matter how long you stand here, nothing happens, perhaps you should have brought a magic crystal with you)[]	port?	0			
+4	A	[BLUE](immediately the demon notices you, you will not be able to escape)[] 	[BLUE]()[] port.	0		"NPCSpawn#femipet;SetVariable#demon_tut,2"		

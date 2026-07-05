@@ -1,0 +1,40 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	It looks like we've done something very bad, or maybe it'll blow over, what do you think?	¿po?	26	"VariableEqual#guest_other_worlds,100"		
+1	Q	We have the last artifact, and it means that we will finally get our wealth!	¿po?	0	"VariableEqual#ladies_man,100"		
+1	Q	It's a shame that it ended like this, but we did everything we could, we take the tiara and get out of here!	¿po?	0	"VariableEqual#ladies_man,85"		
+1	Q	Let's go talk to my lady.	¿po?	0	"VariableEqual#ladies_man,83"		
+1	Q	Buddy, have you found out anything about this moon curse?	¿po?	23	"VariableEqual#ladies_man,80"		
+1	Q	Hi, buddy, how did it go?	¿po?	20	"VariableEqual#ladies_man,65"		
+1	Q	Buddy, did you manage to find that poet and get his poems?	¿po?	17	"VariableEqual#ladies_man,50"		
+1	Q	Buddy, how's the snow flower search going?	¿po?	14	"VariableEqual#ladies_man,35"		
+1	Q	Buddy, you showed up on time! I'm glad to see you again!	¿po?	2			
+2	A	Why did these guards detain you?	po.	3			
+3	Q	Well, I'm looking after a local rich lady here, and her requests are sometimes very specific, just when I was trying to please her desire, these freaks caught me.	¿po?	4			
+4	A	Does this lady seem to be quite beautiful, since you're taking such a risk, or is it all about her great wealth?	port?	5			
+5	Q	Well, she's not particularly beautiful, and she's not as young as I'd like. And there are women in the city who are much richer than her.	¿po?	6			
+6	A	Then what's the matter?	port?	7			
+7	Q	She has the thing we need to destroy the last seal! Something like a tiara, but she always wears it, and it's not so easy to get it, so I decided to get closer to this lady. But this process took longer than I expected.	¿po?	8			
+8	A	We could do this like the last ones, if you can't do it with her.	port?	9			
+9	Q	Yes, this is an easier way, but since I started it all, I will achieve my goal and win this lady! But I can't do without your help, because of the guards I couldn't fulfill her request, then you can help me.	¿po?	10			
+10	A	What should done?	port?	11			
+11	Q	In short, my lady collects all sorts of rare flowers, and then she found out about some snow flowers that grow only in the mountains of Thir, somewhere far to the north on the coast. And I decided to give them to her, there was a rumor that a local herbalist had these flowers, but it turned out not to be so, besides the guards caught me.	¿po?	12			
+12	A	Okay, then I'll go find them.	port?	13			
+13	Q	Thanks, buddy! I would definitely go with you, but my lady wants me to be with her all the time. Good luck, we'll meet here when you get back!	¿po?	0		"SetVariable#ladies_man,20;NPCDespawn#knave"		
+14	A	I managed to get them.	port?	15	PlayerHasItem#10430		
+14	A	I don't have them with me yet.	port?	0			
+15	Q	Incredible, thanks, buddy! That's just not enough flowers alone, my lady wants to hear new poems by a famous poet named Leoric, but the problem is that this poet left the city in search of inspiration. According to rumors, he was last seen in the oasis of Sydarun.	¿po?	16			
+16	A	Okay, I'll find this poet and get his poems.	port?	0		"LoseItem#10430;SetVariable#ladies_man,40;NPCDespawn#knave"		
+17	A	I managed to get them.	port?	18	PlayerHasItem#10434		
+17	A	Not yet.	port?	0			
+18	Q	Great job, buddy! Only my lady does not calm down in any way, at the queen's court she has a young rival Papewidow, and she wants to eliminate her. I have arranged with one of my acquaintances in the city, you will meet him at night, he will secretly take you to the dwelling of this young lady, where you will eliminate her.	¿po?	19			
+19	A	Okay, I'll do it.	port?	0		"LoseItem#10434;SetVariable#ladies_man,55;NPCDespawn#knave"		
+20	A	Tell your lady that she can longer worry about her rival.	port?	21			
+21	Q	That's good, buddy! But there is one more thing, my lady told me in secret that she suffers from a lunar curse imposed on her, which somehow manifests itself once a month, and I promised to remove this curse from her. Help me, my friend, we need to find out from familiar wizards about this curse and ways to deal with it.	¿po?	22			
+22	A	Okay, I'll try to find out something.	port?	0		"SetVariable#ladies_man,70;NPCDespawn#knave"		
+23	A	Yes, I managed to find out a way to remove this curse from your lady.	port?	24	"PlayerHasItem#10431;PlayerHasItem#10432"		
+23	A	Not yet.	port?	0			
+24	Q	Great! Let's go talk to her, but you're going to pretend to be a great wizard, okay?	¿po?	25				
+25	A	Okay, let's go.	port?	0		"HideParty#;SetVariable#ladies_man,83;NPCDespawn#knave;Travel#FT_house2,1"		
+26	A	To be honest, I have no idea what will happen next.	port?	27			
+27	Q	Maybe this bastard will calm down and return to his world to his home? It would be great if it turns out that way. Although it's a shame that this greedy guy didn't even give us a coin for the work we did! Okay, I'm going back to Freetown for now, I hope everything will be fine.	¿po?	28		"NPCStopFollowing#"		
+28	A	And me too.	port?	0		"SetVariable#knaveFT,4;NPCDespawn#knave"

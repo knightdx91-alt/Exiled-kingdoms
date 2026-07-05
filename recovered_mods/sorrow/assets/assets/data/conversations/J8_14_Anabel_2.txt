@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Well, it looks like we have overcome all these creatures here, it remains to inspect the houses, for sure, there are puppies hiding there, they also need to be destroyed.	¿po?	2				
+2	A	Puppies? You mean kids? Do you want to kill the children too?	po.	3		
+3	Q	 Call them whatever you want, but what do you think they will become when they grow up? The same bloodthirsty monsters. And what do you think is better - to kill them now or when they grow up and can hunt and kill ordinary people?	¿po?	4				
+4	A	Okay, I get you, let's finish what we came here for.	po.	5		
+4	A	I'm sorry, but I'm not going to help you do this.	po.	6		
+5	Q	 Then we will not drag out time, this is a forced measure to save lives in the future. Don't feel sorry for them, they're not human!	¿po?	0		"SetVariable#forced_effort,50;Travel#R11,2,2"
+6	Q	 Okay, I understand you. I had one friend, a priest, who was as sentimental as you, until, one day, a werewolf puppy, whom my friend wanted to save, chewed out his throat. Therefore, I do not know mercy in the attitude of such inhumans, whom we have killed here. This is a forced measure - either they, or the lives of ordinary people!	¿po?	7				
+7	A	I've already made my decision.	po.	8		
+8	Q	 Then go back to the city, I'll finish here myself. When I return, I will inform the high priest so that he will reward you for helping me in this assignment.	¿po?	0		"NPCStopFollowing;NPCDespawn#anabel;SetVariable#forced_effort,50;Travel#R11,2"

@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Oh, they're brutes! [BLUE](the girl spoke, breathing heavily, when you had defeated the minotaurs)[] Before I could sit down and relax, these bull-men jumped out of the bushes! I think I not only wet myself from fear!	port	7	"VariableEqual#strangers_foreign_lands,45"		
+1	Q	Oh, hey, wait, wait a little! [BLUE](the girl shifted from one foot to the other)[]	port	2	"VariableEqual#strangers_foreign_lands,40"		
+2	A	What happened? Are you tired, do you want to rest?	port.	3		
+3	Q	No! Yes. I mean, I need to pee, so I'll just go behind the house for a quick one, okay?	port	4		
+4	A	Em, sure, but don't go too far, the place is dangerous.	port.	5		
+5	Q	[BLUE](As soon as the girl turned the corner, she came running back, screaming)[] There are bull men there! [BLUE](a group of minotaurs came out of the house after the girl, clearly ready to fight)[]	port	6		
+6	A	It seems that they don't know not to distract girls from important matters, and they clearly haven't been taught proper manners.	port.	0		"SetVariable#strangers_foreign_lands,45;NPCSpawn#minopee"
+7	A	Em, well, the main thing is that you're not hurt. Did you, uh, do your thing? Can we continue on our way?	port	8		
+8	Q	Yeah, let's move on. And, oh, I hope you won't tell anyone about how I screwed myself up here?	port	9		
+9	A	What? No, of course not! Why would I tell anyone about something like that?!	port	10		
+10	Q	Well, it would probably be a funny joke about how the young royal mage literally shit herself from fear.	port	11		
+11	A	I promise I won't tell anyone about this incident.	port.	12		
+12	Q	Thanks.	port	0		"SetVariable#strangers_foreign_lands,50;SetVariable#eve_kex,1;NPCDespawn#minopee"

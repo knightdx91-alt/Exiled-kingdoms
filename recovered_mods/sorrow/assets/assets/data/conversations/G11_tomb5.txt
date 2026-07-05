@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Ruined.	¿po?	0	"VariableEqual#death_attack,10"		
+1	Q	Ruined.	¿po?	0	"VariableEqual#death_attack,7"		
+1	Q	Ruined.	¿po?	0	"VariableEqual#death_attack,8"		
+1	Q	Ruined.	¿po?	0	"VariableEqual#tomb_b5,1"		
+1	Q	[BLUE](it is an enchanted tombstone, its protective charms have disappeared)[]	¿po?	3	"VariableEqual#death_attack,6"		
+1	Q	[BLUE](it is an enchanted tombstone, surrounded by impenetrable enchantments)[]	¿po?	2			
+2	A	Exit.	po.	0			
+3	A	[BLUE](destroy it)[]	po.	4		"SetVariable#tomb_b5,1"
+3	A	Exit.	po.	0			
+4	Q	[BLUE](you have broken the tombstone, but the released enchantments amaze you)[]	¿po?	5		"LoseHPDeath#75"
+5,knight2	Q	Well, you want to know death, so see her firsthand!	¿po?	0		"NPCDespawn#knight2;NPCSpawn#death;SetVariable#death_attack,7"

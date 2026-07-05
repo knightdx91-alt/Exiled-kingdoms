@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Brothers, you are free now! Thanks for helping me deal with these bastards, friend, let's get out of here before the guards from Sydarun come to the noise, meet me near Kingsbridge, we'll discuss everything there!	¿po?	4	"VariableEqual#last_race,40"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableEqual#last_race,37"		
+1	Q	 [BLUE](Dominick stood in front of a crowd of slaves and thugs guarding them)[] These bastards put you in chains and think they can control you, but they can't! Freedom is only yours and no one else's!	¿po?	2			
+2,bandit1	Q	 Get out of here, asshole, in a good way, before we bury you in the sand or make you another of our slaves!	¿po?	3				
+3,dom	Q	 Do you want to put me in chains? Try it, because nothing in this world can hold me back! Brothers, for freedom, beat the bastards, I'm with you!	¿po?	0		"NPCHostile#bandit1;NPCHostile#bandit_team;SetVariable#last_race,37"
+4	A	Fine.	po.	0		"NPCDespawn#dom;SetVariable#last_race,42"

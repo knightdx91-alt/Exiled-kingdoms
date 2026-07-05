@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="32" nextobjectid="7">
+  <properties>
+    <property name="faction_guard" value="neutral" />
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="The kidnappers' lair" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="indoor walls.tsx" firstgid="1281" />
+  <tileset firstgid="1393" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1681" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1897" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3RAQ0AAAgCQe0f1RLOEA6mfwn4EQHcV6leoDHdDu0OG7apGlUff/gUAIAPGmth2DcQDgAA
+  </data>
+  </layer>
+  <layer name="water" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="ground" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAnpF4PFD2UtMN5NpLqd1DIZxH7R21d9TewWXvKBgFo2AUjIJRMAroBwDQ9w6TEA4AAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAUDBVrZGBjuMtHPvntMEDySQBvbQLtg4MGmERAGTXT248lBEqZ76OiOZhx2fRphZcooGAWjYBSMglEw3AAAgsOA2BAOAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2UTQrCMBCFp9EmKvi3dSeiS+8o9QTiQlRwI15C20uJLtUZOsUhqSAyO/NBGPJo5+WlaQD+k1YKkHqjyzXx9Haq52uxV2ZDbWwAZjgmptRGWHuKa7De++RT+U6FrzbkcTWhVofM6xTy3oVvYUvtmQBsxHMPnBvF70sZGpyBoNoXuSqNxlDRlzIUWJc8X0GZd+5wTXzeLO7HyX7e/1+gXrmnNWv6H52uL3ncvjyz2nmJnPd0LbStez9Huua5ol5nrBeeF8L3gL57F+oaUK+FmOesZei3c6GuRUf8M9V9PKjRNO6KSCQSiUT+nRdvA8BNEA4AAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="475" gid="245" y="145">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="510" y="130" width="25" height="25">
+      <properties>
+        <property name="area_id" value="G9" />
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="bi1" type="spawn" id="3" x="115" gid="247" y="115">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,70"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="bi1" type="spawn" id="4" x="115" gid="247" y="145">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,70"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good_2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="bi1" type="spawn" id="5" x="145" gid="247" y="115">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,70"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good_3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="100" y="100" width="70" height="70">
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,70"/>
+        <property name="actions" value="StartConversation#christine,I9_christine2" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="275" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="335" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="115" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_rick_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="275" gid="247" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="145" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_ranged" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="375" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="305" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="405" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn"  x="175" gid="247" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="bandit_male_elite" />
+        <property name="wander" value="1" />
+      </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="130" y="440">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container"  x="160" gid="245" y="290">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="outlaw_chest_10"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Barrel" type="container"  x="410" gid="245" y="210">
+   <properties>
+    <property name="icon" value="barrel1"/>
+    <property name="loot_table" value="bandit_chest_4"/>
+    <property name="name" value="@BARREL"/>
+   </properties>
+    </object>
+    <object name="bi1" type="spawn" id="3" x="115" gid="247" y="115">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,85"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="bi1" type="spawn" id="4" x="115" gid="247" y="145">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,85"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good_2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="bi1" type="spawn" id="5" x="145" gid="247" y="115">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,85"/>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_bitch_good_3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="bitch_team" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="100" y="100" width="70" height="70">
+      <properties>
+    <property name="conditions" value="VariableEqual#sin_kingdom,85"/>
+        <property name="actions" value="StartConversation#christine,I9_christine3" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

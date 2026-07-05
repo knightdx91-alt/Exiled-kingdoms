@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="50">
+  <properties>
+    <property name="exit_e" value="D13" />
+    <property name="faction_civilian" value="town_lamis" />
+    <property name="faction_guard" value="town_lamis" />
+    <property name="music" value="decline" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="977" />
+    <property name="sw2" value="978" />
+    <property name="sw3" value="135" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset firstgid="129" name="spawns" columns="2" tilecount="8" tileheight="64" tilewidth="64">
+    <image source="spawns.png" width="128" height="256" />
+    <tile id="0">
+      <properties>
+        <property name="entry" value="1" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="entry" value="1" />
+      </properties>
+    </tile>
+    <tile id="2">
+      <properties>
+        <property name="spawn" value="orc" />
+      </properties>
+    </tile>
+    <tile id="4">
+      <properties>
+        <property name="spawn" value="goblin" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="trees.tsx" firstgid="137" />
+  <tileset source="natural_grounds.tsx" firstgid="153" />
+  <tileset firstgid="281" name="water_grass" columns="4" tilecount="28" tileheight="48" tilewidth="64">
+    <image source="grass_water.png" width="256" height="336" />
+  </tileset>
+  <tileset source="dungeon.tsx" firstgid="309" />
+  <tileset source="rocks_blue.tsx" firstgid="549" />
+  <tileset source="rocks_small_blue.tsx" firstgid="555" />
+  <tileset source="town_objects.tsx" firstgid="565" />
+  <tileset source="tower_blue.tsx" firstgid="645" />
+  <tileset source="dryground.tsx" firstgid="651" />
+  <tileset source="water.tsx" firstgid="715" />
+  <tileset source="grassland_structures.tsx" firstgid="779" />
+  <tileset source="grounds_indoor.tsx" firstgid="815" />
+  <tileset source="large_objects.tsx" firstgid="975" />
+  <layer name="nonwalk" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztmttOxDAMBfn7/W2EAIGqZuPEl+O2M1IkHprEHifehfLxAQAAALDO62c8iQ45vw6jer6KY9yq+EdxeEYnZnGOYrfk4c01w/2V/CvjznLfsQYzVP7/7109sul6Bt71vrv573QXz+JR+s92k73Hah4j92drrXiLuEtnOXmp9m+twWiu97x2uxvZ90zlyBNXZQ2i67myp+WZChfKGij9Z96B3ZhW974iHf3vxlBF5F4r8Sv9v4uhmtfh56g+uzvP6997BqrJ8r+6VoT/nXmV/s/2OPr3rOupQcQ92JkXUWcrWX01um/s1qCb/1kclTWIWCNiWPddiXP23Cy347O7WPfznuEo77M9rTHtrO05p7P9VuKZPfNubrb/rLWtRNRjtK61BrO53f3P8lHhvXeRfir8dyMiF48br/O7+t/pj/jfIyonRc+5g/8vVHnh/4/O/i3zro4n9938d891lm9lHa0OInqAt6946t2Vql78tL5uJcN/di3vRKT/qrvUEU9v7DiehNr103wfUbunDt9YPWS5frr/XywecK2HvtIH/PcB/+dUecC7HmqgB/9a+AzQg3s9sxpQn3xwDABwfejl/eG7vwb+DloL7wB6gH8tOO8B/rVwB/RQAz3UQA/+9eBfDzXoAf4B4uA+6eDzRAv+teBfC/518PuEFvxrwb8W/OvBvw7Ovxb8a8F/PqP3l7xTq4H/qdOCfz3414J/PfjXg38t+NeCfz341zLy/wkZBC5m
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   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
+  </data>
+  </layer>
+  <layer name="bridges" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztmmtu48oVhE3OKihydQHuj/xKMqsIID+Ea/mxrqwoJtwFlT5VUxrb0njsPgBB8dXsPo+q6qaurpo1a9bs89iq+909+N42+39qMfhtNnSvMWhx+D02+30svlcsvrqNZawa71B8ML4jB8c3PjeVd45WByvrF/s2Wr9He27CudHu/QymcU7o62Bj82sDxuc5OtiYJ4z1V8fr/vT3jKGfU3eIVxPuH9CX1PalzfNpZWNZdfv+881zysfheeqxO5avtXF7G3wP/cf8Z75P3X6cmD+M76X8PqKvQzjn4/dxeLxY48SwCceMUc3/qZ0UX69T5omPKZ3zupjs+rksYYSf876wnlkHrAH6hpv71NtI5vng/ePv1D45wN/LcbFd1vJH2tzuc391tX7ZNmW77w99U+OAhD/MqQnPrNAef9dybegO45Ww3t9JfGJ98pkUO3LdR9XC3OZN/+r/v1+2hxKHx7LdlngQt8kF5MAB/advE96znVqu0M8Jg5gn1AEp5sx7aiyOQfe81e/z83cvvv3Pj6urv368+n37sj0Vv8/Xbsrez+vZ23L+ocTPa4Y1kWqFecb7ki35idqG3JWwkjVS06nkdH//r9aCx+3ni9//Vfx/W3L/puT+tvj0sZx7Kr7elJjcl+Prsq3hf+pq94nXdBp3DWOHLtfLEt8mzl+qEWqohP/MgVPj4Hki+3fx/03x89Z8/FRye2sxmPuhutD2UK45BnifE2cy7+mrZEv6n1qGPMzria+pian5ks7i+8nvCSfn/ZzXsyn/hS9r87V+35Rr4oqHEhPVQeJc4n3iZGK39/lY/tS4d+oO8zwde00QqxLHrbBxDMRBb3/q9mMz79cF++X/6+JL5fZ12d8avogTNrbdGBY994d9qOUJOY3+W8Ifz1PWzqo79CExiNfdzwPuJ26xdplnNf5jXzbF/z+L/x/N1+Lfte3FA8KoteHO1jDqts+1WMPQGjfU8p+4sQrPJ0xLWumYz6iPmT/UtCme5BqP4RyDn4b/wv1NyWVh0G3x/5Nx86b4/97qRFvSNAk3U51S//zXtuRb4hY5h1prxPs4L6H2JF6m9qnDUw0mzp59+Y8X3//zx07riFNvbHsq/t4aLumaYiZeuCvtcHzETfeVH2tbwp9U/ymnk59Zb4n72Zb3zd9P7va2tv1h/Wus8uXaMF97YYow38fm/dYzqhPHrHWf8Zm+Yo75uZr/yR0p/6llkial/1O71M6ryv0J+x6LL4dwj85f97tr25K31yU2yueksee96sW10GO/O09eoi5LeOvna0ZOS1id8sVrjNy8VCusU8aMukfP35ofPAc1X1I/7gyvtyXf5Uvx8TXioBgqRmuLg+bC234/h5grtbrWWJaMOOG+dd9w7MSNpOOTBuU1Yv4Qzml9QHOmh36n7zeGEe5/1vGT8cFgMdV6nftaWlSx0HPevwH9n/BOz9clS7lMvKA/atjPOmScWMO1fGd7PpdSHBwr5P/7Epc0x2BdP/S7cas+NCcTN6strV8kbkx5RF8uGTGEeEHNQqxa4X7v35Je4vuS9tV55eFDv9OOrhmfyzZ1+2trST/5OdWV5l++VrexGNyXdyZd7FjBGOvcMf+nuYTrPHJ84khimOfHUg3wXMox6UbNa+/7fb0jHfnc77SM5k7EIffXs7WxKbEVFq2t3XW/38eaHmL/T/H/bN5e4mLqcc4FyLv+fMpx73eqP+cyHQsTNC+Vj4TTT8APrX0yp9SW5gfX/U776FuBz910zNphTVGzeN4ds+RX8jpjRIzhb+deckPKSY8L88hx69H8JWzwGKg+hEnX/X5/hC/35ZrWHJ76/TmAdJV0K7ExYb7ni/8+xf/EGvcv9YTHgnwxhWNiUo03yNup5uU3Ycyj+U06RccPdux5dN3vtKawTfwrvXpXnuGzqcaTXvexnup/+tJ9UsNq1kniqBHXqBkYj5qOmPfCamGQ8pUx2PQ7naRz/7t63TQvFs5I66sO9Lw4ghqa+FrbdM8xI06k+LrvmMvkIr9O/FjhuRonk4/Upue/47c0onDp2XDKv335/f7tS9+/9A1m6nYYNKHPY3eYJ4nrT81/8gkxI/Eo3zeFNujDEfs0z0jYyvs8Bq5dtGap+vAYiQu0Brq168Ih11biFGqClKuOTWnMpxhxhDzAuFJXkl9rWEgMpcaqxcvH6Px7Zz7UmrJrJPlTepIaU7Hg9wHVhfeP+mFYuOZjOcWS35M/vCZ4b9LHXjteH0O4n2Mhrvl1aX33p695CtN9XefJ/Cp/P/b7a3Ra03ANRo3sOUZ9nnLsFHMfJQ2U3kVdwPpknz125ATqVPJ56odjjv5zwrV8aZmtbVrnUQ1Jh4ozmEvEUuoD1il16CmW4uhx57vID8xPxoCYxDpJmEXNm67Jp/5NS/5UDITl2mttQbUy90H/eaiN1a853zk+uK88337Varok1RnxMWG6951jqsWO+M93SZ/4/0eSrnddNHb7fpfGT/hC7Ex5T/+QD9/qf5n8lrSK447nAOcE6XzSOjxHTBrxfh+rr9P4vFf7uS1pmfk316ndzz7OAf3hdXIVOU2/P8LG7tA37BP9knw1dYc553XC+mINURMk/aT1SnEBY0+fEdf8XSketT4yNmrrI62mVYgxSd/4fZwzJN5d0lDDwrtT/1ijjJnjHfmeXFCrRcZUx+c0Yh/HzJxj7pLD/HmPYU1vUSMl3hjQHrUzY0l/Ui8TO6kJqOMuaYmjU+4wzxkz4gJzLuEseSphJeNFbUGtlWqLuUJO9rG8h38/yrwvrPmEy8zdVE+eo/6b9UTuZ36MXc6LpGdYX/7eAc/7uc9myc9Je6bffDb5l20xp1lHzAvqLdafP0tt4Dmha5/Zkn84tjGMjRyXcpLxSvxB7k++ZhtJM9c45LP7X0YcHcN4Oc6ExR7DmrbxLWFO4leeZx0S05y7/iSj9mB+Jx6nv6hRE5+meBPz3e/kX3Iu68XP/6nGnCduUE8yp8kvKY5+z5LeT1xFPkgc8Sf7X+b86JjjuT92h7iQ5iRLmpScQA5K/j1WR1/B/zLiT9KRXi/E4xXu9VohZ/iW7lmqEerkr2bEZfo/8SDnHY5n1FxDdxhL5nbiesZYv7+qJTwhpozYqKmIK+kZ6i7yRtJOXg9f3ZZw23OfHL6C37j+wLiRV6htOffT8Xcx5h81I+e7NV2TNDDn64lHWC+67ztZmheRdzmXqs0danWwpD2ZA9/N/7IUg4T1zH/OOdI8gXjm6xG8/qesP5zDmKvUTMzf2rwh3eNtcC2Ic4nvbtQ9K/iMcSF31/idOjPNFb5z/rsdwxRqImqYIfiX8eRcQeeavRr1T4oDudpr4hjmpHtb/u9bWnNIGjPldlrbqK33+b3N9o3z5rSmRg7lPGsFH/tznGs0OzSuk9GXrukTTyScIb41/F+2lPPU7mltrTa3qM2Fm9WN2J3iwH3SstRHHpdmy0YdRD3JNVH3s+c9cafl/+nGdXuu0VGXJk5IfNH0z+lGjOf8i+v9tTkZY9DsdEvrClxP9jogRqW10Wa/ZjXepbbktxl+f/nu65/vMc4JErak9Tre1/DnbcY5bJpf8XtXba7Q7G3G72SO8cQjfpP0GDV7u62Q21zH9pyfcKxYNXuf8TsN8zutSfh3sGbvt6RH01pE4udm77eltecV6oA10uxjjLnNuQHnYI1/P974/ctz3WPhsWn2sZb4uDZXaP4/j3me0/+cJzQ7j/G7I+dkzf/nNa6VpvXSxr/ntfStvuH/5Syt9/B/Lc3Oa1yf5rpos/Ma/+/gmqjhz2WM/9/1b8XNLmPE/vb/n8ta+p9KW/+8rPkcrOH/5Y3/UWz4c1nj/6mb/rys8XvwHI//Ay+689I=
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt3EsOgjAQANCGOxoT4043em2/x1CXiigCZbC8l7BhU2jKTDsUUgIAIhyqlI7341RFXwnEuRr/NdsR27oE9P9m/CbD7RrOnzP3f2l93XQ/kffZp+39YFcBz8bKI2PmK2hDXAXgHXWHWEPUHeT47nLXHeaqqc5DXmvjGQCgs2/vsz7V+63JgBKIZUBpe6iAfIacN/wae8QqANqyzoU8+s7HzOegG3mNqes6Rl/zgjwB8+X5/y++mQWA8vgOjKkyNstj/QfkJMYA0JY6N5CD2MLc2NMWQ6wBonl3A3XyM8A8PeL/skpp4T/QYVb6HgAAAADC3QARPRnc
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt3cEJACEQBMFFgzGjA1Ew/yyUC8JFqIL5dwYTAQAAAADAq1rJLoD7Vs0uAAAAAHjLzA4AAAAAAAAAAAAAAAAAAAAAAAAAAOD3lYhx1v3OAAAAAECqDTwSAfg=
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJztnUty00AQhu2w5J07GCe+RNhQ7LInsM0SDsE+IZvgXIRbsIEToSm7i3ZXz2hm1KMZSf9X5UqwZEvu19/zwFmtAAAAANACT+z3V8+q3QboeAn7rz6c1bnu8872L7rHXjlGeXEz6h0deFfJHqn8NHyvc+EHyotPhtfIYXP0xdbAJ48Zr3nqPyWL6+7zvO5s/KZ7vD0+rrrn3p/9zwsHxT/3dcznGBobPntfGvqjdZyPasd/jJ0vAueEjrXO97ND/FvWuSE4X3B/9Plmx45fNuiH84jep3b8O5webyLtR9odOj/2vUrB677kavzbCaL1Qlosu/N2Abv25Yq8To5WTxGt9/Wh2ZDs9nW9Wv1enx67V85zbBJqWClKj3u5Zgzp4bYR9cRxuw4fJ2TuyPclP5Ueg/Bxb4wOpMBjOkW7U3Oe15vHSPtLfHYO5cVQ/aD+PqQDjo/H/kfmdS65eeD8yftIrc7Hxj9H9qY7j4bQc/JYrkak2LN2/+N8psWoswWvJbdK/U/hR/5Lk7lOyB/r+Z+Q3vL8CNUtLf+/GeXog/g3+Z7ubcy+yNmqdvwvGRr/En8NdDolfrRc0fqTkr1K7XEzxf+fBtYJNDvPbR5Ojgss6j+v6xb1k+r/kLm13LhO6adz5s3kepiLf6uxmnY/feNfPob1xXpOPx4zN/fAjqf4K2VMz+Hz/oSL/6FrlLn342MbsF2ML6Qfx+w9OdIufBxMNUPzidW16Rq547K7nuNafRqq2ymv6ftcn7vHl9XpOPiGPU8/HRZ1O8XOoev5Yry0Fvv0RquruWsmsf1+qXVRy/GNtBf3D/lQjreGkmuXqc53+2qQnKsZug5J7yf1plQctkCpdc/Sa8KtrNfWhPetMnZz+x1Nd6Qv957f58DY67ZkW1++TGWfWC68tvK6a62ZMXDt9q0zT1FDU3N0jPme+/5TTpCfgfwwZ23uo29slgKvMzX2c7WSV6Xrvxb3KTU+V29b75dC6wAapBUl9DG0x2gp5MwdW8311N47F6KW3mh9Ykyc+vyoaXztdbChWGpIzJ6srdDMmPjXtFWzeyt6OCZ9+9JSci8mNy4ifLwUfPFGuuz6h6F7HCnOp15nWoD8JWNYy52Ufn5u8zm5WOh83zi69Z58CoT8xO2/5HmCsVhiz9IyvK+Bbw6gDiyLue1dBCAV6jPR2wOgg76gPOhBAQBg+qCWAxBH3//5xrgMzA0e53vxUwPjLxugy22B2j4dyFeoRXbAltMG/rMjdb+P1A7sF8oHtps26GttsKjn8AUAB6Ar9UBvWh/Mb9QDtq8PahBYIvj+jTLAntOA4h/9f3l+GX3vPQBzgXp/zMWBpRH7N1SAHZhraIc5f/9q60Bv64BxcZvAL2BJyPoP/QVLQvu7u/8ANLaDIQ==
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="zlib">
+   eJzt0EERACAMA8EOdgAF+PfFHwF0CrsKkosAAAAAgJp6y17wN/1zTf1TVe2/iu4+jUd+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw3wbhngEk
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="HAG" type="spawn" id="1" x="2815" gid="131" y="2556" width="64" height="64">
+      <properties>
+        <property name="spawn" value="witch_greater" />
+      </properties>
+    </object>
+    <object name="HAG" type="spawn" id="2" x="2707" gid="131" y="2467" width="64" height="64">
+      <properties>
+        <property name="spawn" value="witch_greater" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="3" x="2873" gid="131" y="2356">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="4" x="2644" gid="131" y="2278">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="5" x="2518" gid="131" y="2218">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="2838" gid="133" y="2649">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_17" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="7" x="2352" gid="133" y="208">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_17" />
+        <property name="name" value="@CHEST" />
+        <property name="quest_location" value="D11_abbey_3" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="8" x="2787" gid="131" y="659">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#between_worlds,79"/>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="8" x="2787" gid="131" y="659">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,81"/>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="9" x="2727" gid="131" y="273">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="HAG" type="spawn" id="10" x="2387" gid="131" y="283" width="64" height="64">
+      <properties>
+        <property name="spawn" value="witch_greater" />
+      </properties>
+    </object>
+    <object name="Cat" type="spawn" id="11" x="2485" gid="131" y="280">
+      <point />
+      <properties>
+        <property name="spawn" value="sabercat_corrupted" />
+      </properties>
+    </object>
+    <object name="Captain" type="spawn" id="12" x="508" gid="131" y="468">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#redmoon_follow,2"/>
+        <property name="conversation" value="C13_redmoon" />
+        <property name="spawn" value="C13_redmoon" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="13" x="1983" gid="131" y="1529">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="14" x="2703" gid="131" y="1517">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="15" x="2520" gid="131" y="1712">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="16" x="1395" gid="131" y="1333">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="17" x="1425" gid="131" y="707">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="18" x="2149" gid="131" y="543">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_raging" />
+        <property name="unique_tag" value="C13_raging" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="19" x="2433" gid="131" y="719">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#between_worlds,49"/>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="20" x="2346" gid="131" y="1042">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#between_worlds,49"/>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="20" x="2346" gid="131" y="1042">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,99"/>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="21" x="1903" gid="131" y="1005">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableLower#between_worlds,49"/>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="22" x="1979" gid="129" y="557">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to D12" type="transition" id="23" x="1846" y="500" width="50" height="57">
+      <properties>
+        <property name="area_id" value="C13_pits" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="shadow 1" type="spawn" id="24" x="1063" gid="131" y="1085">
+      <point />
+      <properties>
+        <property name="spawn" value="shadow_hound" />
+        <property name="spawn_u" value="shadow_lesser" />
+      </properties>
+    </object>
+    <object name="trader" type="staticNPC" id="25" x="403" gid="131" y="321">
+      <point />
+      <properties>
+        <property name="gender" value="m" />
+        <property name="name" value="@TRADER_GARNER" />
+        <property name="portrait" value="155" />
+        <property name="shop_items" value="5010,5012,5005,5007,441,442,700,704,3005,6011" />
+        <property name="sprite" value="male_black_1" />
+      </properties>
+    </object>
+    <object name="Inn" type="restpoint" id="26" x="254" gid="133" y="578">
+      <point />
+      <properties>
+        <property name="id" value="C13_inn" />
+        <property name="name" value="C13_INN" />
+        <property name="sleep_cost" value="10" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="27" x="196" gid="131" y="704">
+      <point />
+      <properties>
+        <property name="spawntable" value="rhoneis" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="28" x="291" gid="131" y="404">
+      <point />
+      <properties>
+        <property name="spawntable" value="rhoneis" />
+      </properties>
+    </object>
+    <object name="ranger" type="spawn" id="29" x="313" gid="131" y="681" width="64" height="64">
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="town_lamis" />
+        <property name="spawn" value="varannari_male" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="30" x="376" gid="129" y="539">
+      <point />
+      <properties>
+        <property name="entry_id" value="999" />
+      </properties>
+    </object>
+    <object name="vagabond" type="spawn" id="31" x="605" gid="131" y="405">
+      <point />
+      <properties>
+        <property name="conversation" value="C13_vagabond" />
+        <property name="spawn" value="vagabond_male" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="coachman" type="staticNPC" id="32" x="610" gid="131" y="731">
+      <point />
+      <properties>
+        <property name="conversation" value="C13_coachman" />
+        <property name="facing" value="r" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@COACHMAN" />
+        <property name="portrait" value="80" />
+        <property name="sprite" value="male_peasant2" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="33" x="670" gid="129" y="700">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="horse" type="spawn" id="49" x="625" gid="131" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="horse" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Boatman" type="staticNPC" id="50" x="85" gid="131" y="655">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableGreater#freedom_law_order,89"/>
+        <property name="conversation" value="C13_boatman" />
+        <property name="facing" value="r" />
+        <property name="name" value="@BOATMAN_ZEID" />
+        <property name="portrait" value="156" />
+        <property name="sprite" value="male_brown_12" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="51" x="140" gid="129" y="650">
+      <point />
+      <properties>
+        <property name="entry_id" value="8" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="1570" gid="133" y="1630" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="1020" gid="133" y="1400" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="1070" gid="133" y="300" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="2720" gid="133" y="240" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="270" gid="133" y="1010" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+    </object>
+    <object name="seaweed" type="plant"  x="2510" gid="133" y="2380" width="64" height="64">
+      <properties>
+        <property name="id" value="seaweed" />
+      </properties>
+  </object>
+  <object name="Dominick" type="spawn" gid="131" x="425" y="685">
+   <properties>
+    <property name="conditions" value="VariableEqual#last_race,30"/>
+        <property name="conversation" value="C13_dom" />
+    <property name="spawn" value="dominick"/>
+    <property name="tag" value="dom"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Ducktail" type="spawn" gid="131" x="345" y="595">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,19;VariableLower#size_matters,34"/>
+        <property name="conversation" value="C13_ducktail" />
+        <property name="name" value="@DUCK_TAIL" />
+    <property name="spawn" value="varannari_leader"/>
+    <property name="tag" value="ducktail"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furry" type="spawn" gid="131" x="2795" y="1205">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,24;VariableLower#size_matters,30"/>
+        <property name="cycle" value="night" />
+    <property name="spawn" value="furry_1"/>
+    <property name="unique_tag" value="C13_flurry1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furry" type="spawn" gid="131" x="2865" y="1205">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,24;VariableLower#size_matters,30"/>
+        <property name="cycle" value="night" />
+    <property name="spawn" value="furry_2"/>
+    <property name="unique_tag" value="C13_flurry2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furry" type="spawn" gid="131" x="2795" y="1135">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,24;VariableLower#size_matters,30"/>
+        <property name="cycle" value="night" />
+    <property name="spawn" value="furry_2"/>
+    <property name="unique_tag" value="C13_flurry3"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furry" type="spawn" gid="131" x="2865" y="1135">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,24;VariableLower#size_matters,30"/>
+        <property name="cycle" value="night" />
+    <property name="spawn" value="furry_1"/>
+    <property name="unique_tag" value="C13_flurry4"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furry" type="spawn" gid="131" x="2825" y="1105">
+   <properties>
+    <property name="conditions" value="VariableGreater#size_matters,24;VariableLower#size_matters,30"/>
+        <property name="cycle" value="night" />
+    <property name="spawn" value="furry_3"/>
+    <property name="unique_tag" value="C13_flurry5"/>
+    <property name="wander" value="1"/>
+   </properties>
+    </object>
+    <object name="entry" type="entry"  x="2805" gid="129" y="685">
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="2750" y="640" width="96" height="96">
+      <properties>
+        <property name="conditions" value="VariableEqual#between_worlds,80" />
+        <property name="actions" value="StartConversation#orion,D13_Orion" />
+      </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="2385" y="855">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="2485" y="685">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="2325" y="595">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="2065" y="535">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="2005" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="1975" y="625">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="1935" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+  </object>
+  <object name="corpse" type="spawn" gid="131" x="1905" y="655">
+   <properties>
+    <property name="conditions" value="VariableGreater#between_worlds,49;VariableLower#between_worlds,69"/>
+    <property name="spawn" value="male_var_warrior_corpse"/>
+    <property name="spawn_u" value="female_var_warrior_corpse"/>
+    <property name="spawn_r" value="female_var_corpse"/>
+        <property name="wander" value="0" />
+   </properties>
+    </object>
+    <object name="Adaon" type="spawn"  x="275" gid="131" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,40" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+    <property name="respawn" value="1"/>
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="435" gid="131" y="435">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="435" gid="131" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="295" gid="131" y="325">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="305" gid="131" y="485">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="175" gid="131" y="665">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="275" gid="131" y="755">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness3" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="465" gid="131" y="725">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="C13_adept_greatness" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="220" y="575" width="140" height="70">
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,40" />
+        <property name="actions" value="StartConversation#adaon,adaon" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn"  x="435" gid="131" y="555">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+        <property name="conversation" value="H8_falseadaon" />
+        <property name="name" value="@VARSILIAN_KNIGHT" />
+    <property name="portrait" value="344"/>
+        <property name="spawn" value="adaon_guard" />
+        <property name="tag" value="falseadaon" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="235" gid="131" y="745">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness7" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="355" gid="131" y="425">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,42" />
+        <property name="spawn" value="adept_greatness7" />
+        <property name="wander" value="1" />
+        <property name="tag" value="adept1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

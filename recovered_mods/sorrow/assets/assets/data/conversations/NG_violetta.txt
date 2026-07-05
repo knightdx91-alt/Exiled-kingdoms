@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] Beat this impudent freak!	¿po?	0	"VariableEqual#unstoppable_stalker,70"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] Beat this impudent freak!	¿po?	0	"VariableEqual#unstoppable_stalker,52"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] Beat this impudent freak!	¿po?	0	"VariableEqual#unstoppable_stalker,32"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] There's too much trouble with this show-off, but it's no use.	¿po?	0	"VariableGreater#unstoppable_stalker,19"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] There are more and more problems with our troupe.	¿po?	0	"VariableEqual#most_famous,85"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] Not relaxing, we will have to cope with these sectarians not easily.	¿po?	0	"VariableEqual#most_famous,60"		
+1	Q	[BLUE](a girl with a bright appearance and an unusual hair color)[] Did everything go well? Well, our second target is in this city. Here, the troupe of sectarians has its own rehearsal base, located in the basement. Their guards are more numerous and there are much more of them in the troupe than in the previous one, so I called help for us.	¿po?	13	"VariableEqual#most_famous,57"		
+1	Q	[BLUE](a girl with a bright appearance and an unusual hair color)[] I'll finish this championship and take care of Mika's troupe.	¿po?	0	"VariableEqual#most_famous,50"		
+1	Q	 [BLUE](a girl with a bright appearance and an unusual hair color)[] Oh, wow, Alice! Finally got out of the lady's shelter. What are the fates here? Are you going to participate in our championship?	¿po?	2			
+2	A	What kind of championship?	po.	3		
+3,violetta	Q	 Hey, who is this bumpkin and what is he doing here?	¿po?	4	"PlayerIsMale#"		
+3,violetta	Q	 Look at how pretty she is! I hope you don't have a girlfriend and you're free?	¿po?	5	"PlayerIsFemale#"		
+4,alice	Q	Leave him alone, Vi, he's with me, you can trust him, since he works for the mistress. Actually, what's going on here? 	po.	6		
+5,alice	Q	 Leave her alone, Vi, you don't need to pester all my friends with your lustfulness! Actually, what's going on here?	¿po?	6		
+6,violetta	Q	 We have organized a championship here, in which we want to determine the strongest woman of all the kingdoms. To do this, we want to arrange duels, both with wooden weapons, and in hand-to-hand combat and wrestling. Worthy participants have gathered here, but there is one catch, by the way, here she is.	¿po?	7			
+7,charlotte	Q	 [BLUE](a rather large man with long hair in a leather outfit)[] Greetings to the newly arrived guests! I'm Charlotte, glad to meet you! An excellent championship has been organized here, which I hope to win, proving that I am the strongest woman in all kingdoms!	¿po?	8			
+8	A	Uh, you don't really look like a woman, Charlotte.	po.	9			
+9,charlotte	Q	 What? What do you mean?	¿po?	10			
+10,alice	Q	That you're a fucking man, not a woman! You're a woman, like I'm a minotaur! 	po.	11		
+11,charlotte	Q	 Outrageous! Maybe my appearance confuses and misleads you, but I feel like a woman, I identify myself as a woman, I am a woman!	¿po?	12			
+12,violetta	Q	 Okay, okay, calm down, Charlotte. Now all the participants will gather, and we will start our tournament. Oh, by the way, your first opponent has finally arrived! Get acquainted, this is a Mighty Rock.	¿po?	0		"SetVariable#talk_violetta,2;NPCSpawn#mightyrock"
+13,mightyrock	Q	 Hello everyone, I'm glad to see you again! I am ready to help you beat the next villains!	¿po?	14			
+14,alice	Q	Great! This time I will get fewer punches, because now there is someone else to receive them for me! 	po.	15		
+15,violetta	Q	 Well, let's not delay, let's quickly deal with these sectarians and leave the city before the noise rises.	¿po?	16		"NPCFollow#"
+16,mightyrock	Q	 Show me where these sectarians are?!	¿po?	17		"NPCFollow#"
+17	A	We're going to find their basement.	po.	0		"SetVariable#most_famous,60"

@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Thank you for your help, now I have to watch my husband more carefully so that he does not involve us in new problems!	¿po?	0	"VariableEqual#family_matters,110"		
+1	Q	 Thank you for stopping by, is there any progress in solving our problem??	¿po?	12	"VariableEqual#family_matters,95"		
+1	Q	 Go away!	¿po?	0	"VariableEqual#family_matters,100"		
+1	Q	 Don't waste your time, go after the wizard!	¿po?	0	"VariableGreater#family_matters,40"		
+1	Q	 You're just in time! My husband recently returned from his trip, very angry and annoyed, it seems his joint business with the wizard failed. And one of my servants noticed the crook himself in the tavern "Cheerful Passerby", he just informed me about it, if you hurry, you can find this scoundrel there!	¿po?	0	"VariableEqual#family_matters,40;VariableGreater#troubles_from_knowledge,90"	"SetVariable#family_matters,50"	
+1	Q	 I'm glad to see you again, but my servants haven't noticed our crook wizard in town yet, so come back later.	¿po?	0	"VariableEqual#family_matters,40"		
+1	Q	 I hope you have already made a decision regarding my proposal?	¿po?	8	"VariableEqual#family_matters,30"		
+1	Q	 I'm glad to see my hero again! But we don't have much time, if you stay in my chambers for a long time, bad rumors will go around and there will be a lot of problems for both me and you, so let's get down to business.	¿po?	2		
+2	A	Okay, I'm listening to you.	po.	3		
+3	Q	 It's about my husband, despite the fact that he gives me little time, I still love him, but lately he has often become involved in risky adventures, and if this continues, I am afraid that our family will be bankrupted!	¿po?	4		
+4	A	How can I help you?	po.	5		
+5	Q	 Well, recently my husband met some wizard who dragged him into a new lost enterprise, they have already managed to spend a large amount of our family fortune to no avail! In general, I believe that this wizard is an ordinary fraudster, but my husband does not want to listen to me, so we will have to get rid of this leech in a more radical way.	¿po?	6		
+6	A	Do you want me to kill this wizard?	po.	7		
+7	Q	 To begin with, you can just try to intimidate him so that he fell behind of our family, but if it doesn't work out, then you still have to kill him. After getting rid of this crook, I will pay more attention to who my husband meets. I understand it's not easy, but I'm ready to reward you adequately.	¿po?	8		
+8	A	Well, I'll try to help you.	po.	9		
+8	A	I need time to think about your offer.	po.	10		
+8	A	I'm sorry, but this is a risky business, and I'm not ready to get involved in it.	po.	11		
+9	Q	 Great, I knew you wouldn't leave me in the lurch! Regarding our goal, my husband recently left somewhere on his own business, and the wizard also disappeared from the city, but when this crook returns, I will report it, and you will be able to deal with him. My maid will escort you back to the city, if you need to see me again, she will be waiting at the same place.	¿po?	0		"SetVariable#family_matters,40"
+10	Q	 Yes, I understand that decisions are not made hastily in such matters.	¿po?	0		"SetVariable#family_matters,30"
+11	Q	 Very wish, I was counting on your help, and now leave.	¿po?	0		"SetVariable#family_matters,100"
+12	A	You don't have to worry about the wizard anymore, he won't show up again.	po.	13		
+13	Q	 This is great news! Finally, there is one less problem. And as for the reward for my hero, I offer you a choice - an amount of 5 thousand coins or a family blade of ancestors on the line of my grandmother.	¿po?	14			
+14	A	I choose coins.	po.	15		
+14	A	I choose sword.	po.	16		
+15	Q	 Accept this award and my gratitude!	¿po?	0		"GainXP#800;GainGold#5000;IncVariable#REP_sorrowland,3;SetVariable#family_matters,110"	
+16	Q	 Accept this award and my gratitude!	¿po?	0		"GainXP#800;GainItem#10175;IncVariable#REP_sorrowland,3;SetVariable#family_matters,110"	

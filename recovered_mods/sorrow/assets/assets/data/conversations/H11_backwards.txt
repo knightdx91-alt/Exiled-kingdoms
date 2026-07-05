@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](some man who walks backwards for some reason)[] Hello!	¿po?	0	"VariableEqual#backwards,3"		
+1	Q	[BLUE](some man who walks backwards for some reason)[] Hello!	¿po?	10	"VariableEqual#backwards,2"		
+1	Q	[BLUE](some man who walks backwards for some reason)[] Hello!	¿po?	2			
+2	A	Hey, why are you walking backwards?	po.	3		
+3	Q	And how should?	¿po?	4				
+4	A	As everyone walks - in a normal way, but not like you.	po.	5		
+5	Q	I seem to be walking normally, what's wrong?	¿po?	6				
+6	A	You walk backwards, but you have to do the opposite, as everyone should!	po.	7		
+7	Q	And what's the difference - backwards or not backwards?	¿po?	8		
+8	A	Okay, walk as you like...	po.	0		"SetVariable#backwards,2"
+8	A	Okay, walk as you like, I was actually looking for friends of Bridge here.	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		
+9	Q	Of Bridge? No, I don't know any of them, and I have no idea where to look for them!	¿po?	0		"SetVariable#backwards,3"
+10	A	Hello.	po.	0		
+10	A	I'm looking for friends of Bridge here, can you tell me where they might be?	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		

@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a richly dressed man)[] See you in Istril.	port	0	"VariableEqual#one_way_road,10"		
+1	Q	[BLUE](richly dressed man)[] Welcome to our kingdom. Overseas guests rarely visit us, although the times of reign of horrors are long gone, and we, having risen from the ruins, are recreating the former greatness of the empire. On the road south, you can reach Istril - the capital of the kingdom, guarded by our most illustrious and eternal king, Kalion the First, who is now one hundred and forty years old.	port	2		
+2	A	One hundred and forty years?! Incredible! How is this possible?	port.	3		
+3	Q	Our king is a pure-blooded member of the oldest imperial family, known for their longevity, and it is not surprising that His Grace, having lived through several generations, remains as strong in mind and body as he was in his youth. I recommend visiting the capital of our kingdom or other settlements if you are looking for work or planning to buy or sell anything.	port	4		
+4	A	Okay, I'll definitely do that.	port.	5		
+5	Q	But I must warn you, although our brave warriors protect the kingdom's peace, it is not safe to venture far from the cities. Additionally, the suburb of Istril are under siege by creatures previously unseen in our lands, the eastern regions are dangerous due to a Dark Curse, and the northern part of the kingdom is ruled by the hostile Sky Knights.	port	6		
+6	A	What kind of creatures are these?	port.	7		
+6	A	The Dark Curse, what is it?	port.	8		
+6	A	Who are the Sky Knights?	port.	9		
+6	A	I'll take that into account. What else useful information can I learn from you?	port.	10		
+7	Q	From the surviving imperial chronicles, we know that these creatures are called orcs and minotaurs. However, we do not know how they entered our kingdom, as the scouts have not discovered any sea crossings. Perhaps the captain in the suburbs of Istril could use some assistance in solving this problem.	port	6		
+8	Q	Our magicians studied this phenomenon, but they were unable to find out anything concrete; it is some kind of mystical force located somewhere in the depths of ancient mines, which can take control of both dead and living people, it is unknown where and when it appeared.	port	6		
+9	Q	We know little about them, the few pieces of information gleaned from captured knights. They are a religious brotherhood with a belief in a single god, arrived from somewhere overseas, led by a regent—we have no idea what he is like—sent by their god, with the mission of conquering new lands for his glory.	port	6		
+10	Q	The Northern Kingdom is located far to the north, and the journey there is dangerous, but if you are willing to take the risk, you can visit the capital of this kingdom, Rigordion.	port	11		
+11	A	Thank you for the information.	port.	12		
+12	Q	And if you decide to stay with us, could you do me a small favor, and at the same time get a little familiar with our kingdom. I need to deliver a message to the head of the settlement in the Royal Forest, which is located to the east of Istril.	port	13		
+13	A	Okay, I'll deliver your message.	port.	14		
+14	Q	Thank you, you can find me in Istril to deliver the settlement leader's response and receive your reward.	port	15		
+15	A	Okay, I'll deliver your message.	port.	0		"GainItem#10831;SetVariable#one_way_road,10"

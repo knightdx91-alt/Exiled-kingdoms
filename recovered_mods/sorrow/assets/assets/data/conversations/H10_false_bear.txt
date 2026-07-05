@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	No, not really! Don't hit me anymore! I'm a simple man, and this is just a costume!	port	4			
+4	A	What? A suit? Come on, explain what's going on here while you're safe!	port!	5				
+5	Q	 Okay, okay! I am an ordinary robber, I hunt on the road at night in this costume! I've scared and robbed travelers, but I haven't killed anyone, I swear! There have never been any real man-eating bears here!	¿po?	6				
+6	A	Okay, so what am I supposed to do with you now, you fucking outlaw?	port?	7		
+7	Q	Hey, let me go! Take your head off the costume like a trophy, it's made of real bear skin, and I'll get a good word for you from the right people!	port	8			
+8	A	Okay, get lost and don't come back here anymore!	port?	9		
+8	A	No, I'll punish you for your crimes!	port?	0		"SetVariable#midnight_bear,30;NPCHostile#false_bear"
+9	Q	You did the right thing, I will not forget your good deed! [BLUE](with these words, the robber disappeared into the night forest)[]	port	0		"NPCDespawn#false_bear;IncVariable#REP_seventhhouse,2;GainItem#10618;SetVariable#midnight_bear,40"		

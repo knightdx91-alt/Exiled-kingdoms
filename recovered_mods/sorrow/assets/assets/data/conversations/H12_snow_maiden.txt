@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](you have defeated all the ice women, who are just a wet spot in the literal sense, it seems that there are no other dangers for the villagers anymore)[]	¿po?	0	VariableEqual#holiday_coming,71	"NPCSpawn#boy;NPCDespawn#snow1;NPCDespawn#snow2;NPCDespawn#snow_maiden;SetVariable#holiday_coming,72"	
+1	Q	 [BLUE](group of strange, half-naked girls suddenly appear out of a blizzard, their skin a bluish hue, as if they were made of ice)[] Wow! Took a ride with the breeze! Look at how many happy faces there are! Our master sent us here, he knows that you behaved badly, so you need to be punished!	¿po?	2			
+2,snow2	Q	 Why do they constantly behave badly? I don't like constantly flying somewhere and punishing all these scoundrels!	¿po?	3			
+3,snow1	Q	 This is their essence of existence, they cannot live in peace with nature and with themselves!	¿po?	4			
+4,boy	Q	 Oh, no, they're evil aunts!	¿po?	5			
+5,snow1	Q	 Hey, you're an aunt, punk! Be more respectful with us, we are not some matryona from the market, we are the spirits of nature!	¿po?	6			
+6,snow2	Q	 When they call me that, I feel like an old woman! What kind of bastards are all these kids!	¿po?	7			
+7	A	I think you should be punished for the intrusion and your behavior!	port.	8		
+8,snow1	Q	 It's up to our master to decide who to punish and who not, you're no match for him!	¿po?	9			
+9	A	I'll deal with you and your master, whoever he is, and I won't let you ruin the holiday!	port.	10		
+10,snow2	Q	 He speaks disrespectfully of our master! The master will punish us if we continue to let the rabble talk about him like that!	¿po?	11			
+11,snow1	Q	 Well, then we'll have to shut their dirty mouths!	¿po?	12			
+12	A	 Well, try it!	¿po?	0		"NPCDespawn#boy;NPCHostile#snow1;NPCHostile#snow2;NPCHostile#snow_maiden;SetVariable#holiday_coming,67"

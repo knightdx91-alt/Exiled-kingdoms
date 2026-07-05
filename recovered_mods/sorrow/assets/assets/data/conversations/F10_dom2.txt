@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 It looks like we were able to beat everyone! I'm going to hide in Lamis until the dust settles here. Thanks for the help, I owe you, I'll meet you there!	¿po?	11	"VariableEqual#last_race,25"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableEqual#last_race,20"		
+1	Q	 [BLUE](an angry, screaming crowd of people, ready to get into physical violence, in the center of it are two main instigators)[] And am I supposed to believe that those bastards acted wilfully and not on your behalf?!	¿po?	2			
+2,tran	Q	 So I have to believe that two robberies happened at the same time on the same day, and my father was robbed not by your gang, but by someone else, since you were actually in another place?!	¿po?	3				
+3,dom	Q	 Do you have any proof, or is this just your empty chatter?!	¿po?	4			
+4,tran	Q	 Do you want proof? I'll find a bunch of witnesses who saw your cart roll away from the scene of the robbery!	¿po?	5		
+5,dom	Q	 Yes? I'm wondering how much you pay such witnesses!	¿po?	6			
+6,tran	Q	 Are you lying to me and accusing me of lying?!	¿po?	7		
+7,dom	Q	 Am I lying?! After all your attempts to meddle in my affairs and useless explanations that you had nothing to do with it, now you're saying that I'm lying?!.	¿po?	8				
+8,vince	Q	 Dom, guards here!	¿po?	9		
+9,tran	Q	 Damn bastard, did you lure me here to turn me over to the guards?!	¿po?	10		
+10,dom	Q	 I've never sold anyone!!!	¿po?	0		"NPCHostile#tran;NPCHostile#tran_team;NPCSpawn#guard_team;SetVariable#last_race,20"
+11	A	Fine.	po.	0		"NPCDespawn#dom;NPCDespawn#vince;NPCDespawn#dom_team;NPCDespawn#tran_team;NPCDespawn#guard_team;SetVariable#last_race,30"

@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it looks like an ordinary table, but in one corner you notice a coin-shaped indentation)[]  	port.	2		
+2	A	Put down Alarion's coin.	¿port?	6	"VariableEqual#good_alarion,1;VariableEqual#royal_will,68;PlayerHasItem#10847"	
+2	A	Put down Alarion's coin.	¿port?	5	"VariableLower#good_alarion,1;VariableEqual#royal_will,68;PlayerHasItem#10847"	
+2	A	Put down Alarion's coin.	¿port?	4	"VariableEqual#royal_will,42;PlayerHasItem#10847"	
+2	A	Put a regular coin.	¿port?	3	"playerhasGold#1"	
+2	A	Do nothing.	¿port?	0			
+3	Q	[BLUE](nothing happens)[] 	port.	0		
+4	Q	[BLUE](nothing happens for a while, but suddenly a bright light illuminates the table, and Alarion appears in the room)[] 	port.	0		"NPCSpawn#alarion"
+5	Q	[BLUE](nothing happens for a while, but then a bright light illuminates the table, and Alarion and Havis appear in the room)[] 	port.	0		"NPCSpawn#alarion;NPCSpawn#havis"
+6	Q	[BLUE](nothing happens for a while, but suddenly a bright light illuminates the table, and Alarion, Havis, and a man you don't know appear in the room)[] 	port.	0		"NPCSpawn#alarion;NPCSpawn#havis;NPCSpawn#soldat"

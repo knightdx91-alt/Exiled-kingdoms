@@ -1,0 +1,48 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Are we going to Mount Orogg or not?! 	port.	4	"VariableEqual#between_worlds,46"		
+1	Q	 As long Three protect us, we are invincible!	¿po?	0		
+4,hirge	Q	Okay, go with them to the mountain, my friend and I will follow you a little later. 	port.	5		
+5,orion	Q	I got it for you, Hirge. 	port.	6		
+6,mercenary_grisenda	Q	We have problems with the undead too! Let's deal with ours first, and then yours!	¿po?	40	"NPCIsInParty#grissenda,mercenary_grisenda;VariableGreater#bloody_harvest,9;VariableLower#bloody_harvest,99"		
+6,mercenary_grisenda	Q	I would love to fight with you against these evil spirits, but you need an assistant who is more experienced in such matters.	¿po?	7	NPCIsInParty#grissenda,mercenary_grisenda	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+6,adaon	Q	Boss, while you're messing around here, bad people will cut off my balls! So let's finish my case at Liberty!	¿po?	40	"NPCIsInParty#adaon,adaon;VariableGreater#time_to_pay,9;VariableLower#time_to_pay,99"		
+6,adaon	Q	Boss, I understand everything - heroism for the sake of saving the world, but I'm not a saint to fight such dark creatures!	¿po?	7	NPCIsInParty#adaon,adaon	"NPCStopFollowing#;NPCDespawn#adaon"	
+6,sansa	Q	Calm down, lady, you don't have to be bossy here! And you actually promised to help solve my problem!	¿po?	40	"NPCIsInParty#sansa2,sansa;VariableGreater#something_more,9;VariableLower#something_more,99"		
+6,sansa	Q	Another salvation of the world? I didn't expect such adventures, maybe you can do without me?	¿po?	7	NPCIsInParty#sansa2,sansa	"NPCStopFollowing#;NPCDespawn#sansa"	
+6,damian	Q	All this mess with the witch queen is the work of the Ilmarans, let them deal with her, I'm going back to Icemist.	¿po?	7	NPCIsInParty#durak2,damian	"NPCStopFollowing#;NPCDespawn#damian"	
+6,peter	Q	I would be glad to help, but my gods are too far from these lands, they are unlikely to help us here.	¿po?	7	NPCIsInParty#durak,peter	"NPCStopFollowing#;NPCDespawn#peter"	
+6,hirge	Q	Well, I'm sure you and I have enough strength, my friend, to overcome this evil. Still, something's bothering you, my friend. You can trust me, no matter what you do, I won't judge you and I'll try to understand. 	port.	8			
+7,hirge	Q	Well, I'm sure you and I have enough strength, my friend, to overcome this evil. Still, something's bothering you, my friend. You can trust me, no matter what you do, I won't judge you and I'll try to understand. 	port.	8		
+8	A	Actually... I was the one who freed this witch queen from the statue... But it was as if someone was controlling me, making the decision instead of me.	port?	9			
+9,hirge	Q	Ah, so that's what's bothering you. But you shouldn't blame yourself so much, for you yourself have witnessed how evil spirits poison the minds of righteous people, and their queen is clearly more cunning. In any case, she would have found a way to free herself someday, and it so happened that it fell to us to defeat her. 	port.	10		
+10	A	Okay, thanks for the support, Hirge.	port?	11			
+11,hirge	Q	Is that all, or is there something else you wanted to share with me? 	port.	12		
+12	A	[BLUE](you remember varannari girl Sylvia, whom you met at your house, but decide not to mention her.)[] No, I've told you everything that's been bothering me.	port?	13			
+13,hirge	Q	Then, let's go to Mount Orogg, they are already waiting for us there. 	port.	14		NPCFollow#
+14	A	Okay.	port?	0		"NPCDespawn#orion;NPCDespawn#orion_team;SetVariable#between_worlds,50"
+15,hirge	Q	We will help you defeat them all. 	port.	27		"SetVariable#between_worlds,55"
+16,hirge	Q	It is necessary to check and clean the entire mine, for sure, some of the Varannari are hiding somewhere in the depths, if we ignore them, they will create a lot of problems for us. My friend and I will take care of them. 	port.	17		
+17,orion	Q	Okay, I'll help you, the depths of the mine are deadly, besides, if there are many enemies left there, they will obviously try to ambush you. 	port.	18		
+18,vevea	Q	I also wish to join you and help you in this difficult task. 	port.	19		NPCFollow#
+19,torian	Q	Me too. 	port.	20		NPCFollow#
+20,orion	Q	If that's what you want, I won't try to dissuade you. The remaining warriors will gain a foothold at the entrance to the mine, it is unlikely that the Varannari outside have any forces left to try to retake the mine, but we must be prepared for anything. 	port.	21		NPCFollow#
+21,hirge	Q	If everyone is ready, let's go. 	port.	22		
+22	A	Good.	port?	0		"NPCDespawn#orion_team;SetVariable#between_worlds,60"
+23,hirge	Q	Obviously, that witch's evil magic moved us here, but this place looks unfamiliar to me. 	port.	24		
+24,torian	Q	The witch we defeated is here too, and it looks like she's still alive. 	port.	25		NPCFollow#
+25,orion	Q	Let's finish off this villainess! 	port.	26		NPCFollow#
+26	A	No! Maybe she knows where we are and can help us get out of here.	port?	0		"SetVariable#between_worlds,70"
+27,druid2	Q	Your efforts are in vain, our queen has returned, all who oppose her will die! 	port.	28		
+28	A	We'll see who exactly will die.	port?	0		"NPCDespawn#orion2;NPCDespawn#druid2;NPCSpawn#orion;NPCSpawn#torian;NPCSpawn#vevea;NPCSpawn#orion_team;NPCSpawn#druid;NPCSpawn#corpse_champ"
+29,sylvia2	Q	As I promised, I helped you get here. 	port.	30		
+30,hirge	Q	But this does not change my decision, you will come with me to Navarian, where you will be imprisoned, and our Queen Simeri will decide what to do with you. 	port.	31		
+31,sylvia2	Q	You know, that's not the best way to thank me. But in any case, I don't have the strength to resist. 	port.	32		
+32,orion	Q	Brother Torian and I will return to the forbidden mines to check on our warriors! 	port.	33		
+33,hirge	Q	Okay, you need to set up good security there, in case of a repeat Varannari attack, take care of it. I will go to Navarian, inform of our victory, if you need more people, I will send you reinforcements. 	port.	34		
+34,orion	Q	Don't worry, I'll try to negotiate with the Warrior Guild to help us. May Arbenos bless you and punish your enemies! 	port.	35		"NPCStopFollowing#"
+35,torian	Q	Good luck to you. 	port.	36		"NPCStopFollowing#"
+36,hirge	Q	May the Three bless you too. Well, now you, witch, don't you dare run away. Come on, my friend, and um... do you have anything that this witch could cover her nakedness with, we are going to the holy city after all, it is not proper for her to appear there in such a state. 	port.	37		
+37	A	I don't have anything suitable. Sylvia, maybe you could use your charms to create some clothes?	port?	38		
+38,sylvia2	Q	Sorry, but I don't have the strength for magic right now, but I promise that when we get to your city, I'll try to cover myself so as not to embarrass the residents. 	port.	39		
+39	A	Okay.	port?	0		"NPCDespawn#orion;NPCDespawn#torian;SetVariable#between_worlds,85"
+40	A	Okay.	port?	0		"SetVariable#between_worlds,46"

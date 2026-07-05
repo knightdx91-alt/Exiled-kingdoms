@@ -1,0 +1,19 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](belligerent woman in armor)[] Freedom, traveler. 	[BLUE]()[] port.	11	"VariableGreater#orcish_adversity,99"	
+1	Q	[BLUE](belligerent woman in armor)[] Freedom, traveler. 	[BLUE]()[] port.	11	"VariableGreater#orcish_adversity,14;VariableLower#orcish_adversity,99"	
+1	Q	[BLUE](belligerent woman in armor)[] Freedom, traveler. If you've changed your mind, then I was glad if you helped us catch the orc scouts. 	[BLUE]()[] port.	8	"VariableEqual#orcish_adversity,10"		
+1	Q	[BLUE](belligerent woman in armor)[] Freedom, traveler. Welcome to our city, we welcome all civilizational people, here is a safe place, but I advised you not to leave the walls of the city after nightfall. 	[BLUE]()[] port.	2		
+2	A	Why? What are the dangers lurking in the surroundings?	port?	3			
+3	Q	Firstly, there is a swamp to the south of the city, where you can easily drown without talking about the animals that can devour you, secondly, bandits are hunting in the east near the Zamora mountains, and thirdly, these are orcs, far to the south there is a kind of their country, and sometimes their troops wander here. But we don't let them take liberties here and try to destroy them quickly. 	port.	4		
+4	A	It looks like you have a lot of worries here.	port?	5			
+5	Q	That's not the word, while some cattle are somewhere in the north idling in rebellion, we have a shortage of people here, a reflection of the increased orc raids, and we also have to catch rogue deserters, sometimes even think that it's worth giving weapons to slaves. 	port.	6		
+6	A	Maybe I can help with something?	port?	7			
+7	Q	Oh, that would be great! I received a message from a scout that a group of five orcs infiltrated our territory. Most likely they have already scattered across the swamp or gone to the mountains, I would be glad if you could help us find and destroy them. 	port.	8		
+8	A	Of course, I will be glad to help.	port?	9			
+8	A	No, I'm not interested in that.	port?	0		"SetVariable#orcish_adversity,10"
+9	Q	Great, when you've dealt with the orcs, report this to Sergeant Killet at the southern outpost, he may need your help too, if not, come back here for the reward. 	port.	10		
+10	A	Clearly.	port?	0		"NPCSpawn#scout1;NPCSpawn#scout2;NPCSpawn#scout3;NPCSpawn#scout4;NPCSpawn#scout5;SetVariable#orcish_adversity,15"
+11	A	I eliminated the infiltrators and helped Sergeant Killet repel the Orc attack on the outpost.	port?	12	"VariableEqual#orcish_adversity,35"		
+11	A	Same to you.	port?	0			
+12	Q	An orc attack? It's not good, they haven't bothered us much lately, they're probably planning major troubles for us again. Well, thank you for your help, traveler, get your reward if you stay in our city, I will be glad if you provide support again, in case of new orc troubles. 	port.	13		
+13	A	I was glad to help.	port?	0		"SetVariable#orcish_adversity,100;GainItem#10769;GainItem#10770;GainGold#500;GainXP#1200;IncVariable#REP_town_liberty,10;IncVariable#REP_mercia,3"		

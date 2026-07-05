@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a very large and powerfully built varannari woman under three meters tall in scanty attire)[] I became a champion without a fight, but at least I managed to fight someone here.!	¿po?	0	"VariableEqual#most_famous,50"		
+1	Q	 [BLUE](this is a very large and powerfully built varannari woman under three meters tall in scanty attire, the muscles on her arm are comparable in thickness to the waist of Alice or Violetta, a powerful press, like steel armor, could repel sword blows, in her palms she held a club, which is the trunk of an adult tree)[] Greetings, impiri, I am a Mighty Rock!	¿po?	2			
+2	A	Hello, Mighty Rock.	po.	3		
+3,mightyrock	Q	 I heard that there is a tournament among the strongest women here, but I was told that there is no one in my weight category here, but it seems that someone has been found after all! Where is she?! Where is my opponent?!	¿po?	4			
+4,charlotte	Q	[BLUE](cautiously squinting at the varannari woman)[] You know, I think it's not so important for me to prove that I'm the strongest woman, I've already proved everything to everyone and everything I wanted. Anyway, I have to go now. 	po.	6		
+5,violetta	Q	 Well, good luck to you, Charlotte, in all the achievements that you still have in mind.	¿po?	6		
+6,mightyrock	Q	 So I didn't understand where my opponent was? Who am I going to fight?	¿po?	7			
+7,violetta	Q	 Your opponent got scared, and it's unlikely that there will be someone here who will dare to fight with you, so it's fair to declare you the champion and the strongest woman of all the kingdoms!	¿po?	8			
+8,mightyrock	Q	 Great! This should be celebrated! How about bare-handed bear hunting?	¿po?	9			
+9,violetta	Q	 It's a great idea, although there may be problems finding people willing to participate in such entertainment. My assistant will now begin preparations for the award ceremony of the champion. Why are you here, Alice?	¿po?	10			
+10,alice	Q	Mika is putting together a musical troupe, and I volunteered to help her with this, we need musicians and someone who can organize our performances, and you, Vi, are a great option for this role. 	po.	11		
+11,violetta	Q	 It's not a great pleasure to put up with Mika's company again. On the other hand, the championship I organized turned out to be, to put it mildly, a failure, so I don't mind doing something new. But who will be responsible for the costumes and the tools? I still have a set of recorders, but this will not be enough for a good performance of the songs. Yes, and the presence of a repertoire.	¿po?	12			
+12,alice	Q	 Don't worry about that, my friend and I will figure it out, and Mika is not sitting around. So do you agree or not?	¿po?	13		
+13,violetta	Q	 Well, I think that...	¿po?	14			
+14,hoodlum	Q	 Hey, you fools, shut down your circus! Boxing and wrestling are men's sports, women have no place in it!	¿po?	15			
+15,alice	Q	 Who are they?	¿po?	16		
+16,violetta	Q	 Our haters are misogynists. They wanted to disrupt the preparation of my championship, but they didn't succeed, now they came right here to spoil everything for us. Will you help me kick them out?	¿po?	17			
+17,mightyrock	Q	 With pleasure! After all, no one will mind if I break a couple of limbs to one of them?!	¿po?	18			
+18,alice	Q	Well, these freaks are lying, will they say something against you. 	po.	19		
+19,hoodlum	Q	 Women's place is by the hearth and babysitting children, not doing who knows what!	¿po?	20			
+20,violetta	Q	 You better get out of here while you're still in one piece!	¿po?	21			
+21,hoodlum	Q	 Hit the woman in the face!	¿po?	0		"SetVariable#most_famous,47;NPCDespawn#charlotte;NPCSpawn#team_hoodlum"

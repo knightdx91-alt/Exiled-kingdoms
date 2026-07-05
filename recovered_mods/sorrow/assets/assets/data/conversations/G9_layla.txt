@@ -1,0 +1,31 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] It looks like we won't be able to come to an amicable agreement with him!	¿po?	0	"VariableEqual#most_famous,70"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] It looks like we won't be able to come to an amicable agreement with him!	¿po?	0	"VariableEqual#most_famous,52"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] It looks like we won't be able to come to an amicable agreement with him!	¿po?	0	"VariableEqual#most_famous,32"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] It's a good thing that this jerk is only bothering Mika, now she's less focused on coming up with all sorts of nonsense!	¿po?	0	"VariableGreater#unstoppable_stalker,19"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] I hate this wilderness, here full of insects, and my skin doesn't tolerate bites well!	¿po?	0	"VariableGreater#most_famous,84"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] Hopefully, having achieved success with our troupe, I will be able to do my workshop again!	¿po?	0	"VariableGreater#most_famous,54"		
+1	Q	[BLUE](a short girl with blond hair immodestly dressed)[] Well, how are you doing with the House of Seven?	¿po?	15	"VariableGreater#most_famous,34"		
+1	Q	 [BLUE](a short girl with blond hair immodestly dressed)[] Alice! Hi! You're the last person I'd expect to see here from my friends! How are you? Are you on business or just passing through?	¿po?	2			
+2,alice	Q	 Hi, Laila, I'm more or less fine. How are you doing here? I heard that you've set up your own workshop in the city, and Mika and I could use your help.	¿po?	3			
+3,layla	Q	Wow, has Mika thought of something again and already dragged you into it? I would have been happy to help, but my workshop turned out to be not a profitable business, and taxes still had to be paid, plus rent of land, purchase of materials, salaries for employees. I had to fire everyone and sell everything, besides, I borrowed a large sum from local businessmen who turned out to be bandits, and now I have to do my old job to repay the debt. 	po.	4		
+4,alice	Q	 You could contact the lady, I'm sure she would help you deal with this problem.	¿po?	5		
+5,layla	Q	 She's already helped me get out of similar shit. And I don't want her to find out that I messed up, and all her work went to down the pipe, somehow I'll figure it out myself.	¿po?	6			
+6,alice	Q	 Or we'll help you, and you can help us. What kind of bandits are bothering you? I'm sure my friend will deal with them without any problems.	¿po?	7			
+7,layla	Q	 But they are connected with the House of Seven, with serious people.	¿po?	8			
+8	A	What difference does it make to whom they are connected if no one sees and knows what will happen to them.	po.	9		
+8	A	I have contacts in the House of Seven, I'm sure I can come to an agreement about solving your problem.	po.	12	VariableGreater#smugglers_night,99		
+9,alice	Q	No freaks, no problem! A simple and effective solution, Laila. 	po.	10		
+10,layla	Q	 Okay, even though I don't like it, it's better than trading yourself. I'll arrange a meeting with this gang in a rented house at night, where you will finish them off, after which we will quickly get out of here to the shelter of the mistress.	¿po?	11			
+11	A	Agreed.	po.	0		"SetVariable#most_famous,30;NPCDespawn#layla"
+12,layla	Q	 Thank you, I hope you will succeed.	¿po?	13			
+13,alice	Q	 Then I'll stay here with Laila for now while you solve the problem with the House of Seven.	¿po?	14		"NPCStopFollowing#"		
+14	A	Agreed.	po.	0		"SetVariable#most_famous,35"
+15	A	I managed to come to an agreement with them, now you don't owe the bandits.	po.	16	"VariableEqual#most_famous,40"		
+15	A	Not yet.	po.	0		
+16,layla	Q	Oh, thank you for helping me deal with this problem, but how can I repay you? 	po.	17		
+17,alice	Q	 Mika is putting together a musical troupe, and she hoped that you would take part in it, and at the same time help with the instruments.	¿po?	18		
+18,layla	Q	Unfortunately, I had to sell everything, but I still have a hurdy-gurdy, and I will be glad to join your troupe as a musician! I'm going to run to my cabin, pick up my tools and some things, and meet me at the mistress's shelter! 	po.	19		
+19,alice	Q	 Okay, see you later, and we'll go on our way, visit Violetta in New Garand.	¿po?	20		"NPCFollow#"
+20,layla	Q	Violetta? I heard that she is organizing some kind of championship, I will send a message to one of my friends so that she will take you there. 	po.	21		
+21	A	Thanks for the help, Laila, see you later.	po.	0		"NPCDespawn#layla;SetVariable#most_famous,45"

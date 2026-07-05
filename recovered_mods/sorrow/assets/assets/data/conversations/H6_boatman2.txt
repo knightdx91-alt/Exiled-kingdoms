@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a dark-skinned sailor at a boat)[] Come back when you're done with your cases.	¿po?	7	AreaIs#H5	
+1	Q	 [BLUE](a dark-skinned sailor at a boat)[] Hi. I made myself a new boat. Hehe, I hope no one thinks that I stole it.	¿po?	2	"VariableEqual#changing_hierarchy,40"		
+1	Q	 [BLUE](a dark-skinned sailor at a boat)[] Hi. I made myself a new boat. Hehe, I hope no one thinks that I stole it.	¿po?	0			
+2	A	Hello, I'm from ThreeBag, are you by any chance one of his people who were supposed to transfer my friends to the pirate island?	po.	3		
+3,boatman1	Q	 That's right, I'm the one, your friends warned me that you and their other comrades would come here. I transported them to that island, waited for them for a long time, but they never returned, I had to return without them.	¿po?	4				
+4,boss1	Q	 Damn, maybe something happened to them!	¿po?	5		"NPCFollow#"		
+5,boatman1	Q	 Then get in the boat, let's go there.	¿po?	6				
+6	A	Okay, let's go.	po.	0		"SetVariable#changing_hierarchy,45;Travel#H5,3,6"
+7	A	Of course.	po.	0		
+7	A	We're going back.	po.	0	VariableEqual#changing_hierarchy,50	"Travel#H6,5,6"	

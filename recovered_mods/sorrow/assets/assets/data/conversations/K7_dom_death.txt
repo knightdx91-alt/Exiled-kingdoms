@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Damn, it looks like you won, but don't hope that we can get out alive, I'll take you with me, I have a gift for you!	¿po?	11	"VariableEqual#last_race,97"		
+1	Q	 I came for you, Durant, now there's no one here to stop me from kicking your ass.	¿po?	7	"VariableEqual#last_race,95"		
+1	Q	 We defeated the witch, now no one stands between us and Durant, let's go finish this bastard.	¿po?	6	"VariableEqual#last_race,92"		
+1	Q	 Did you get enough, or should I add more, brother?	¿po?	2		
+2,brother	Q	 You'll have to try harder to beat me, because I won't leave you alone until I prove that I'm better than you in everything or I'll die trying.	¿po?	3				
+3,dom	Q	 Do you seriously think that your childhood grudges are more important than your family? Don't you care that you're going against the family with the bastard who kidnapped my son?	¿po?	4				
+4,brother	Q	 What? I didn't know! Durant didn't say anything about it... I'll fix it, brother! I will find your son and bring him home!	¿po?	5		"ItemHide#grate1;ItemWalkable#grate1"
+5,dom	Q	 Go ahead, Jack, I believe you won't let me down. And my new brother and I will find that bastard Durant!	¿po?	0		"NPCDespawn#brother;SetVariable#last_race,92"
+6	A	Let's do it.	po.	0		"ItemHide#grate2;ItemWalkable#grate2;SetVariable#last_race,95"
+7,durant	Q	 Ha! So let's find out who is stronger - you or me!	¿po?	8				
+8,dom	Q	 There's nothing to figure out, you're weak because you're alone, and I'm strong because I have a family.	¿po?	9				
+9,durant	Q	 Well, this is a fixable case, but let's do without unnecessary chatter, as you like, and start a fight already.	¿po?	10				
+10,dom	Q	 It won't last long.	¿po?	0		"NPCHostile#durant;SetVariable#last_race,97"
+11,dom	Q	 Watch out!!!	¿po?	0		"NPCSpawn#K7_rat_mine;SetVariable#last_race,98"

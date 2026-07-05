@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Finally, all the seals have been destroyed, and nothing is holding me back anymore! I'm free!	¿po?	5	"VariableEqual#guest_other_worlds,44"		
+1	Q	I am impressed, three seals have already been destroyed, one remains, and I will be free.	¿po?	2	"VariableEqual#guest_other_worlds,43"		
+1	Q	Two seals are destroyed, half the way is passed.	¿po?	2	"VariableEqual#guest_other_worlds,42"		
+1	Q	One of the seals has been destroyed, so the beginning has been made.	¿po?	2	"VariableEqual#guest_other_worlds,41"		
+1	Q	Don't waste your time, mortal, I am eternal, you are not.	¿po?	2	"VariableEqual#fatal_eggs,60"		
+1	Q	Don't waste your time, mortal, I am eternal, you are not.	¿po?	0			
+2	A	I brought the ancient troll eggs you were talking about.	po.	3	"PlayerHasItem#10400;VariableLower#fatal_eggs,69"		
+2	A	What should I do with this thing?	po.	7	PlayerHasItem#10401		
+2	A	What should I do with this thing?	po.	7	PlayerHasItem#10405		
+2	A	What should I do with this thing?	po.	7	PlayerHasItem#10413		
+2	A	What should I do with this thing?	po.	8	PlayerHasItem#10429		
+2	A	Fine.	po.	0			
+3	Q	Idiots! These are not the right eggs! I did not mean the testicles that grow in a troll, but the eggs of an unknown creature endowed with magical power by someone, which the ancient troll keeps where in his abode.	¿po?	4			
+4	A	We'll go back to the troll and get the right eggs.	po.	0		"SetVariable#fatal_eggs,70;LoseItem#10400;NPCSpawn#loot"
+5,knave	Q	We don't want to spoil this moment of your freedom, but we spent a lot of time and effort to break all these seals, and you promised us treasures as a reward.	¿po?	6			
+6,prisgod	Q	Well, mortals, I understand your impatience - your life is too short for long waits! And my gift for you will be a quick death - here and now, and you will not have to witness how I will unleash all my destructive anger on this world that dared to encroach on my will! And you will not be destined to slowly and painfully burn down along with your world, which will turn to dust! Goodbye!	¿po?	0		"SetVariable#guest_other_worlds,100;GainXP#6600;SetVariable#something_coming,10;NPCDespawn#prisgod;NPCSpawn#entities"
+7	Q	The destruction spell is ready. Go and use this artifact on one of the seals to activate it.	¿po?	0			
+8	Q	The destruction spell is ready. Go and use this artifact on the last seal to activate it.	¿po?	0			

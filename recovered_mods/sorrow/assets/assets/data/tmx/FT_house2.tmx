@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="26" height="26" tilewidth="64" tileheight="32" nextobjectid="8">
+  <properties>
+    <property name="maxlight" value="60" />
+    <property name="name" value="Lady Rusthatchet's House" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <layer name="nonwalk" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAA4GcZ1LptkAoAAA==
+  </data>
+  </layer>
+  <layer name="water" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAA4GcZ1LptkAoAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWUAhYseAETBBcwIcRG7SHeHmSxUXtG7Rm1hzh7YfbQEtDLnlEwCkbByAIAZKrSL5AKAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGFnAcKAdMApGwSgYBaNgFIyCUTAKUAAAig0/FpAKAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGFngIxLbmEpm2gFxDBBPgNIgbIUkDxOzp9AeUyR2FRSDwEc0MUr9FQ3EhUSoo9SeZCR2AhZ5mNhQ9A8t7Rn1D3nAEImdgEUeJkYN/yCDVhzqKLXHFohNkLAlkpwNkrgDhfagA+RyiFpl6CgYBaNgFAAAZ0kw85AKAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="26" height="26">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAA4GcZ1LptkAoAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from" type="entry" id="1" x="280" gid="487" y="410">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="lady1" type="spawn" id="2" x="245" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conversation" value="FT_knave_lady" />
+        <property name="name" value="@RUSTHATCHET" />
+        <property name="portrait" value="31" />
+        <property name="spawn" value="villager_female_white" />
+        <property name="tag" value="lady" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="lady2" type="spawn" id="3" x="245" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="lady_rusthatchet_2" />
+        <property name="tag" value="lady2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="lady3" type="spawn" id="4" x="245" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="lady_rusthatchet_3" />
+        <property name="tag" value="lady3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="5" x="190" y="160" width="150" height="100">
+      <properties>
+        <property name="conditions" value="VariableLower#ladies_man,84" />
+        <property name="actions" value="StartConversation#lady,FT_knave_lady" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="6" x="285" gid="487" y="475" width="34" height="34">
+      <properties>
+        <property name="conversation" value="FT_manor_door2" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="knave" type="spawn" id="7" x="255" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conversation" value="FT_knave" />
+        <property name="portrait" value="245" />
+        <property name="spawn" value="knave_male" />
+        <property name="wander" value="1" />
+        <property name="tag" value="knave" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

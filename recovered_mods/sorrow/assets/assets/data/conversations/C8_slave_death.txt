@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Die, scoundrel! 	port.	0	"VariableEqual#will_or_death,100"	
+1	Q	 We all died in this foreign country!	¿po?	2	"VariableGreater#will_or_death,25;VariableLower#will_or_death,45"	
+2	A	I am very sorry.	po.	3		
+3,slave1	Q	 We will not return to our native lands!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 We will never see our home again!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 But at least we will die, not in shackles!	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Our Northern gods will meet us!	¿po?	10		"NPCStopFollowing#"		
+10	Q	 We are going!	¿po?	0		"SetVariable#will_or_death,100;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4"

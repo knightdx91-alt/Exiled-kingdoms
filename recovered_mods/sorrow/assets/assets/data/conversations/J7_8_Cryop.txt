@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Poor Criop, you shouldn't have gone hunting alone)[]	po.	0	"VariableGreater#check_honesty,25"		
+1	Q	 [BLUE](these human remains torn apart by animals no more than a couple of days, perhaps they belong to the Cryop? It's probably worth exploring the area around, maybe there is a bow somewhere nearby, which Scarlett mentioned)[]	¿po?	2	"VariableEqual#check_honesty,20"		
+2	A	We have to try, if this is really Cryop's body, then the return of the onion will at least slightly mitigate this loss of Scarlett.	po.	3			AWA#2
+2	A	It's a waste of time.	po.	0		
+3	Q	 [BLUE](you spent a couple of hours exploring the area and you managed to find a well-quality bow lying in the bushes with a mark of Scarlett's name, now you need to go back and inform huntress of passersby news)[]	¿po?	0		"Travel#P8,1,4;GainItem#10279;SetVariable#check_honesty,30"	

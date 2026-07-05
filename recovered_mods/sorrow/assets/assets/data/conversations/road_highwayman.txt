@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Welcome, dear traveller, to our humble tax office. Please provide us with a swift payment of [BLUE]{LEVELx50} gold coins[], and all will be alright.	Bienvenido, viajero, a nuestra humilde oficina de impuestos. Por favor, deposita un pago de [BLUE]{LEVELx50} monedas[], y no habrá problemas.	2	VariableLower#TMP_talk_highwaymen,1	SetVariable#TMP_talk_highwaymen,1
+1	Q	You again? better go on with your business, before we decide to kindly request anything else from you...	¿Tú de nuevo? Mejor márchate antes de que decidamos pedirte amablemente alguna otra cosa...	0		
+2	A	Sure, here's the money. Please don't hurt me.	Claro, aquí está el dinero, no me hagáis daño por favor.	3	PlayerHasGold#{LEVELx50}	
+2	A	I don't have that much money!	¡No tengo tanto dinero!	4		
+2	A	I am afraid your office is about to be closed for good.	Me temo que vuestra oficina está a punto de cerrar permanentemente.	4		
+3	Q	Thank you for your cooperation, and please come again!	Gracias por tu cooperación, y por favor, vuelve a visitarnos otro día.	0		LoseGold#{LEVELx50}
+4	Q	Ah, a shame. Violence is always regrettable. Now you'll lose the money... And everything else, including your life.	Ah, que lástima. La violencia siempre es lamentable. Ahora perderás el dinero... Y todo lo demás, incluyendo tu vida.	0		"NPCHostile#highwayman;NPCHostile#highwayman_boss"

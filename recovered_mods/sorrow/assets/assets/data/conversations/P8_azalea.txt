@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I see my little sister has messed up again, and now again I have to fix her failures.	¿po?	2	"VariableLower#talk_azalea,2"		
+1	Q	 I realized we can't handle you if we act alone. Well, then, see you again...	¿po?	0		"NPCDespawn#azalea2"
+2	A	Who are you?	po.	3		
+3	Q	 What a curious prying into other people's business you are! You've met my sister, crossed paths with my stupid brother, and most likely met our rotting grandfather. But I'm not going to crucify myself in front of you, you're a dead man anyway.	¿po?	4	"VariableGreater#black_memories,99;VariableGreater#curses_dont_die,99"		
+3	Q	 What a curious prying into other people's business you are! You've already met my sister, crossed paths with my stupid brother. But I'm not going to crucify myself in front of you, you're a dead man anyway.	¿po?	4	"VariableGreater#black_memories,99"		
+3	Q	 Don't worry about my identity, everything will pass quickly, so you shouldn't fill your head with unnecessary information in the last moments of your life.	¿po?	4		
+4	A	Your sister was a worthless witch, and I don't think there will be any problems with you.	po.	0		"NPCDespawn#azalea;NPCSpawn#azalea2;NPCSpawn#team_azalea;SetVariable#talk_azalea,2"

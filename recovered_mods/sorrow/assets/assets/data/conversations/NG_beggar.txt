@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you notice a blind beggar, the same crook, an acquaintance of Adaon, whom you have already met)[] Please take pity on a poor blind man! I am hungry and desperate...	¿po?	2	"VariableEqual#time_to_pay,10"		
+1	Q	[BLUE](you notice a blind beggar, the same crook, an acquaintance of Adaon, whom you have already met)[] Please take pity on a poor blind man! I am hungry and desperate... Oh you again! Please leave, or other locals won't approach!	¿po?	0		
+2	A	Hey, I need to talk to you.	po.	3		
+3	Q	Oh, I didn't do anything, I'm just poor, blind...	¿po?	4			
+4	A	I don't care what you're doing here, I'm looking for Adaon, do you know where he might be?	po.	5		
+5	Q	Is he in trouble? If so, he could be anywhere, although... There is one good place in the city where you can hide for a while, not far from the temple.	¿po?	6			
+6	A	Okay, thanks, I'll check this place out.	po.	0		"SetVariable#time_to_pay,15"

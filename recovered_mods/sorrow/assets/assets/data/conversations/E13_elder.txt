@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Our people are grateful to you for your help.	¿po?	0	"VariableGreater#ladies_man,34"		
+1	Q	I see you came back from the cave alive and well, so you managed to kill the creature that lived in it?	¿po?	9	"VariableEqual#ladies_man,30"		
+1	Q	The entrance to the cave with the monster is right in the north.	¿po?	0	"VariableEqual#ladies_man,25"		
+1	Q	[BLUE](there was a group of men in fur clothes standing behind you)[] These are the sacred flowers of our people, no stranger is allowed to touch them!	¿po?	2			
+2	A	And who are you?	po.	3			
+2	A	Yes? Then try to stop me from doing it!	po.	0		"GainItem#10430;NPCHostile#highlander;NPCHostile#highlander2;SetVariable#ladies_man,35;SetVariable#talk_highlander,5"		
+3	Q	We are an ancient people who lived on the plains and shores of lakes and rivers far before you came to these lands. But our eternal enmity with the greenskins led to our almost complete destruction. The survivors had to go to the mountains and adapt to the new conditions. Now we are highlanders and only a few hundred remnants of our people are left scattered in these mountains.	¿po?	4			
+4	A	I'm sorry to hear that, but I need these flowers for a very important matter.	po.	5			
+5	Q	Well, if this is really such an important matter, we could give them to you if you help our people.	¿po?	6			
+6	A	What should I do?	po.	7			
+6	A	I think I'll take these flowers anyway, and without your approval.	po.	0		"GainItem#10430;NPCHostile#highlander;NPCHostile#highlander2;SetVariable#ladies_man,35;SetVariable#talk_highlander,5"		
+7	Q	Not far from our village, some kind of creature settled in caves, it began to breed and its offspring began to attack people. Our strongest warriors tried to kill this monster, but none of them returned, we hope that a mighty hero like you will be able to defeat this creature.	¿po?	8			
+8	A	Well, let's go to your village, show me where this monster is.	po.	0		"SetVariable#ladies_man,25;Travel#E13,2,2;NPCDespawn#highlander;SetVariable#talk_highlander,5"		
+9	A	Yes, the monster is dead.	po.	10			
+10	Q	This is good news, receive the sacred flowers of our people as gifts for your feat and this knife personally from me.	¿po?	11			
+11	A	I was glad to help you.	po.	0		"GainItem#10430;GainItem#10433;SetVariable#ladies_man,35"

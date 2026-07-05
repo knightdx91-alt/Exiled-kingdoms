@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](someone's corpse is lying in the mud)[]	port	0	"VariableGreater#very_strange_thing,44"		
+1	Q	[BLUE](someone's corpse is lying in the mud, perhaps this is the wizard's courier)[]	port	2	"VariableEqual#very_strange_thing,40"		
+1	Q	[BLUE](someone's corpse is lying in the mud)[]	port	0				
+2	A	[BLUE](you are examining the corpse, but it has been robbed, and there may be an orc camp nearby that killed the courier and took the wizard artifact)[]	port?	0		"NPCSpawn#bossorc_robber;NPCSpawn#orcs_robbers;SetVariable#very_strange_thing,45"		

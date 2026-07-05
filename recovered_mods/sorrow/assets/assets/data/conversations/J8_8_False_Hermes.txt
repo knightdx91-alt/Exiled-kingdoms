@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I'm sorry again that I deceived you. I'll probably stay here, or maybe move to safer places.	¿po?	0	VariableGreater#skilled_hands,60	
+1	Q	[BLUE](this prisoner obviously spent a lot of time locked up, but despite this he behaves quite cheerfully)[] Thank you for freeing me from the cage!	po.	0	"VariableEqual#skilled_hands,60"	
+1	Q	 I'm sorry again that I deceived you. I'll probably stay here, or maybe move to safer places.	¿po?	0	VariableEqual#skilled_hands,50	
+1	Q	 Yes, friend?	¿po?	9	VariableEqual#skilled_hands,30	
+1	Q	[BLUE](this prisoner obviously spent a lot of time locked up, but despite this he behaves quite cheerfully)[] Thank you for freeing me from the cage!	po.	2	"VariableEqual#skilled_hands,20"	
+2	A	Are you, by any chance, the inventor Hermes from the settlement at the mouth of Despair?	po.	3		
+2	A	I was glad to help you.	po	0		
+3	Q	Yes, it's me! I hope you'll get me to a safe place?	po.	5		
+5	A	Sure, now let's get out of here.	po.	0		"NPCFollow#;SetVariable#skilled_hands,30"
+9	A	Nothing, let's move on.	po.	0		

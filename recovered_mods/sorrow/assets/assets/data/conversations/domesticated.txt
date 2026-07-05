@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Yap, yap, yap-yap?	Que pasa, jefe?	4	NPCisFollower#	
+1	Q	Yap, yap. Yap-yap-yap. Yap-yap, {LEVELx20} yap-yap.	Hola, amigo. Soy un aventurero en busca de empleo. Por un pequeño precio, digamos  {LEVELx20}  monedas, puedo unirme a ti y compartir tus aventuras.	2		
+2	A	Sorry, but there are already too many of us in the group.	Lo siento, pero ya somos demasiados en el grupo.	0	hasFollower#	
+2	A	That would be great! Follow me. Welcome to the team.	Sería genial! Sígueme. Bienvenida al equipo.	0	"hasNoFollower#;PlayerHasGold#{LEVELx20}"	"NPCFollow#;LoseGold#{LEVELx20}"
+2	A	Not now, thank you. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	3		
+3	Q	Au-uuu. Yap-yap-yap.	Pues vaya. Bueno, a mí no me culpes si unos goblins te rellenan de hierro.	0		
+4	A	Nothing, let's move on.	Nada, continuemos.	0		
+4	A	I don't need your services anymore. Thank you for your help and goodbye.	Ya no necesito tus servicios, puedes volver a Kingsbridge.	5		
+4	A	Please move a little, you're standing in the way.	Por favor, muévete un poco, me bloqueas el paso.	6		
+5	Q	Auuuuuuu! Yap-yap-yap.	Ahora que me lo estaba pasando bien! Lo que tu digas, espero que volvamos a vernos.	0		NPCStopFollowing#
+6	Q	Yap.	Por supuesto	0		NPCMoveRandom#

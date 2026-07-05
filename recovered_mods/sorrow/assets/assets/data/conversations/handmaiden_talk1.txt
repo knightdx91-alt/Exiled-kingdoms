@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Oh, according to the description, you look like the hero Lady Ironstone told me about.	¿po?	2	"VariableGreater#family_matters,0;VariableLower#family_matters,20"		
+1	Q	 Shall I escort you to Lady Ironstone?	¿po?	4	"VariableGreater#family_matters,10;VariableLower#family_matters,100"		
+1	Q	 Leave me alone, I'm busy!	¿po?	0			
+2	A	Lady Ironstone?	po.	3		
+3	Q	 The lady whose bedroom you accidentally got into, saving her from a malefactor, and you also agreed to help her with one personal matter. I hope you haven't changed your mind, the lady is ready to meet you, and I can take her to her, but only you.	¿po?	4		SetVariable#family_matters,20		
+4	A	Of course, let's go to Lady Ironstone!	po.	0		"HideParty#;Travel#O7_house,2,1"
+4	A	Not now, I don't have any free time.	po.	5		
+5	Q	 Okay, if you're free, you can find me here.	¿po?	0		

@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1,ryurger	Q	 The monster is defeated! Now we need to go back to the city and tell everyone this good news!	¿po?	2		"NPCStopFollowing#"		
+2,ryurger	Q	 Let's not forget the merit of the honorary guard Glover, he was never afraid of even the most dangerous tasks.	¿po?	3	"VariableEqual#death_glover,2"		
+2,glover	Q	 I was glad to fight with you against this monster.	¿po?	3		"VariableLower#death_glover,2;NPCStopFollowing#"		
+3,ryurger	Q	 We will always remember the novice Auburn - without a doubt the bravest fighter of the royal.	¿po?	4	"VariableEqual#death_auburn,2"		
+3,auburn	Q	 It's good that we managed to defeat this monster.	¿po?	4		"VariableLower#death_auburn,2;NPCStopFollowing#"		
+4,ryurger	Q	 The priest Anabel is the strongest warrior of the kingdom, we will all miss her.	¿po?	5	"VariableEqual#death_anabel,2"		
+4,anabel	Q	 Well, you really turned out to be a good fighter. I may need a partner like you to run complicated errands.	¿po?	5		"VariableLower#death_anabel,2;NPCStopFollowing#"		
+5,ryurger	Q	 You have provided invaluable help, hero, the high priest will no doubt reward you.	¿po?	0		"NPCDespawn#ryurger;NPCDespawn#glover;NPCDespawn#anabel;NPCDespawn#auburn;SetVariable#scripture_mission,90"		

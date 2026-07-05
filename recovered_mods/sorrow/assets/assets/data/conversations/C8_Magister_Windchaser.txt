@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the wizard at the stone pillar performs some magical manipulations)[] I have no idea who you are and why you came here, but if you wanted to stop me, you were too late, the ritual is over! Thirty years of demonology research, and here, at last, is the living result of my labors! Come, you infernal creature, I command you! [BLUE](in the center of the ruins, a huge flame flares up, and a huge demon appears from it)[] 	 port.	2		"NPCSpawn#demon"
+2	A	What the hell are you doing, this thing will ruin everyone!	port?	3			
+3,windchaser	Q	No! This creature is in my power, and with the help of an army consisting like him, I can become the ruler of any kingdom! 	 port.	4			
+4,perci	Q	You're crazy! Can you imagine what kind of destruction you will bring by releasing such monsters into the wild?! 	 port.	5			
+5,windchaser	Q	And this is not so! They will be under my complete control, doing only what I tell them to do! [BLUE](in full confidence, the wizard comes closer to the demon, when suddenly the infernal creature abruptly reaches out and grabs him)[] What the hell?! Let me go! I command you! [BLUE](but the demon, not paying attention to the words, tears the screaming wizard in half, and then switches attention to you)[] 	 port.	6			
+6,perci	Q	I knew shit happens in life, but I never expected it to be so big and with horns!!	port?	0		"SetVariable#smoke_without_fire,90;NPCDespawn#windchaser"

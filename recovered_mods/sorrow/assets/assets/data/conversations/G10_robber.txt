@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the last surviving bandit begs for mercy)[] Enough, guys! I didn't sign up to die here for that tiny amount of money, of which I only got a small part!	¿po?	2			
+2,boss1	Q	 I wonder who hired you for this kind of job?	¿po?	3		
+3,bandit1	Q	Boss, are you here?!	port.	4		"NPCStopFollowing#"		
+4,boss1	Q	 Yes, I decided to join you and help if serious difficulties arose here. Well, who is your employer? Speak up if you want to live.	¿po?	5		
+5,G10_robber	Q	I have no idea who he is, but I followed him to find him, in case he didn't pay the remainder of the promised amount for our work!	port.	6		
+6,boss1	Q	 Okay, let's go to our hut, we'll discuss what we'll do next, Johnny, while you stay here.	¿po?	7		
+7	A	Let's go.	po.	0		"SetVariable#sin_kingdom,45;SetVariable#robber_out,1;Travel#F10_house,7"

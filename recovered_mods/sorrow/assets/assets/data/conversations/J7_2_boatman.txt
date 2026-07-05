@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hi, if you suddenly need to get to the settlement at the Mouth of Despair, I can take you there. 	port.	2		
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	How much will your service cost?	¿port?	3			
+3	Q	Only [BLUE]45 gold[]. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#45"	"loseGold#45;Travel#O9,2,4"
+4	A	No, I'll stay here for now.	port.	0		

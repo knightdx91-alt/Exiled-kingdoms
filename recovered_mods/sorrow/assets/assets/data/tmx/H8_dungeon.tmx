@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="9">
+  <properties>
+    <property name="maxlight" value="35" />
+    <property name="name" value="Basement" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXUBK8ZIRiZDeOTax45crjcRI5+YgE1/IvNzMEEkN2D7jZK3Yot7YyCUTCYAQDw/s01QAYAAA==
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGNlAnhE/pqZZA2UeMeYMpHnU9u9INW8UjAJ6AwD6w6hzQAYAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW0AD5smGLmWMToAbqAuB+P/Ft2CM3DQbrZr6B6udD0+pLg109EqrvHRLyZMOAHdccXqF5eqDv5yPArPvCSnTx9n4DuugvE3Eju+UyGP0fBKBgIAAC3RCAsQAYAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLnAm5GBIQiIo6A0MoaJGTESb14gUO0+NgaGQ2wIMRtWBgYfVgRfm0TzDrDhlmdnIs08KzR+EiumGlLMQwfyQPcoAHEKif41gWJLLHLJaG4kNfwIAVLMiwSq/caE4P9nQpUHhSel7vOH+jcRSKeSaJ4BUK0GEOvgwfoUxO8oGAXoAACk/ajWQAYAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="140" gid="487" y="240">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="60" y="220" width="10" height="30">
+      <properties>
+        <property name="area_id" value="H8" />
+        <property name="entry_id" value="8" />
+      </properties>
+    </object>
+    <object name="hugh" type="spawn" id="3" x="275" gid="489" y="215">
+      <point />
+      <properties>
+        <property name="conversation" value="H8_knave_leader" />
+        <property name="name" value="@HUGH" />
+        <property name="portrait" value="254" />
+        <property name="spawn" value="villager_male_black" />
+        <property name="tag" value="leader" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Katasakh" type="spawn" id="4" x="175" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#varsilian_job,41" />
+        <property name="conversation" value="FT_knave_katasakh" />
+        <property name="spawn" value="katasakh" />
+        <property name="tag" value="katasakh" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Sansa" type="spawn" id="5" x="245" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#varsilian_job,56" />
+        <property name="conversation" value="IM_knave_sansa" />
+        <property name="spawn" value="sansa" />
+        <property name="tag" value="sansa" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Moris" type="spawn" id="6" x="335" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#varsilian_job,65" />
+        <property name="conversation" value="H6_knave_moris" />
+        <property name="name" value="@MAURICE" />
+        <property name="portrait" value="256" />
+        <property name="spawn" value="wizard_miracle2" />
+        <property name="tag" value="moris" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Dominick" type="spawn" id="7" x="365" gid="489" y="205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#varsilian_job,80" />
+        <property name="conversation" value="F10_knave_dom" />
+        <property name="spawn" value="dominick" />
+        <property name="tag" value="dom" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Anika" type="spawn" id="8" x="215" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#varsilian_job,80" />
+        <property name="conversation" value="NI_knave_anika" />
+        <property name="name" value="@ANIKA" />
+        <property name="portrait" value="150" />
+        <property name="spawn" value="villager_female_red" />
+        <property name="tag" value="anika" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="9" x="180" gid="487" y="350">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="60" height="60" tilewidth="64" tileheight="32" nextobjectid="8">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="music" value="fame_town" />
+    <property name="sw1" value="243" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="253" />
+  <tileset source="grounds_indoor.tsx" firstgid="333" />
+  <tileset source="town_objects3.tsx" firstgid="493" />
+  <tileset source="town_objexts2.tsx" firstgid="525" />
+  <layer name="nonwalk" visible="0" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztyCEOAAAIxLD7/5cxGCQCiWiTmSXAJzVdPwAAAAAAAAAAAAAAAMCmAZ/6A+0=
+  </data>
+  </layer>
+  <layer name="water" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+  </layer>
+  <layer name="ground" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztz7ENADAIBDHYPKOnSk1aXrZ0A1wVAAAAAM/puSR+/Sbxm/v785r07tev3738+vW7l1+/fgEAAAAASHUBDmdwYA==
+  </data>
+  </layer>
+  <layer name="ground2" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7D5t4sBzhkg4WkVNAEAAAAAAAAAqPkOAAAAAAAAJxb2JgD0
+  </data>
+  </layer>
+  <layer name="scenery" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+  </layer>
+  <layer name="objects" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt1UkKwkAQheHuI7j0GBmM87DxBIIK8Sae2htYRRIQIYkNpkPp/8FDMLWoh3bHOQAAAAAAADR2kqIn+9G2+77kg5ls8C3iee37aJn51b5t6GvXP/XVu/kmuUqOknudov5eP8/189TZv6dLifftzye+SsP673wKnLfe9xI4b71vGTivfZdDLBKJ/p+nHef33VqyGmqZCGYurK91zbs39VV+nZ7fRHrOJQtJ1tN54+yfX5X7Kn30vrJ8fnkfdbPedyvJA3IYZUsAAAAAAAAAQCxPcEYUHA==
+  </data>
+  </layer>
+  <layer name="roofs" width="60" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit to Grasslands" type="transition" id="1" x="971" y="945" width="20" height="91">
+      <properties>
+        <property name="area_id" value="H6" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object type="entry" id="2" x="935" gid="245" y="974">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="chancellor" type="spawn" id="3" x="642" gid="247" y="874">
+      <point />
+      <properties>
+        <property name="conversation" value="H6_chancellor" />
+        <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1" />
+        <property name="spawn" value="H6_chancellor" />
+        <property name="tag" value="bodyguard" />
+        <property name="unique_tag" value="H6_chancellor" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="troll" type="spawn" id="4" x="647" gid="247" y="954">
+      <point />
+      <properties>
+        <property name="faction" value="player" />
+        <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1" />
+        <property name="name" value="@MERCENARY" />
+        <property name="spawn" value="elder_troll" />
+        <property name="tag" value="bodyguard" />
+        <property name="unique_tag" value="H6_b1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="5" x="686" gid="247" y="806">
+      <point />
+      <properties>
+        <property name="faction" value="player" />
+        <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1" />
+        <property name="name" value="@MERCENARY" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="tag" value="bodyguard" />
+        <property name="unique_tag" value="H6_b2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="archer" type="spawn" id="6" x="787" gid="247" y="807">
+      <point />
+      <properties>
+        <property name="faction" value="player" />
+        <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1" />
+        <property name="name" value="@MERCENARY" />
+        <property name="spawn" value="outlaw_archer_elite" />
+        <property name="tag" value="bodyguard" />
+        <property name="unique_tag" value="H6_b3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="7" x="705" gid="247" y="999">
+      <point />
+      <properties>
+        <property name="faction" value="player" />
+        <property name="hostile" value="VariableEqual#H6_chancellor_hostile,1" />
+        <property name="name" value="@MERCENARY" />
+        <property name="spawn" value="knight_hostile" />
+        <property name="tag" value="bodyguard" />
+        <property name="unique_tag" value="H6_b4" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object type="entry" id="8" x="885" gid="245" y="1024">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="stairs" type="conversation"  x="885" gid="245" y="1075">
+      <point />
+      <properties>
+    <property name="conditions" value="VariableEqual#last_race,65"/>
+        <property name="conversation" value="H6_basement" />
+        <property name="icon" value="stairs_down" />
+        <property name="name" value="@STAIRS" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

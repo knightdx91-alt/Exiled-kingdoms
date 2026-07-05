@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Did you really come to me empty-handed?	¿po?	12	"VariableEqual#troubles_from_knowledge,120;VariableEqual#family_matters,90"		
+1	Q	 ([BLUE]the body of a mortally wounded magician suddenly began to change abominably[]) No, you won't be able to beat me this time!	¿po?	14	"VariableEqual#troubles_from_knowledge,100;VariableEqual#family_matters,85"		
+1	Q	 ([BLUE]the body of a mortally wounded magician suddenly began to change abominably[]) No, you won't be able to beat me this time!	¿po?	14	"VariableEqual#troubles_from_knowledge,110;VariableEqual#family_matters,85"		
+1	Q	 ([BLUE]the wounded magician decided to surrender[]) It looks like I underestimated you, and now I'm ready to accept your offer to get behind the Ironstones if you spare me.	¿po?	11	"VariableEqual#troubles_from_knowledge,120;VariableEqual#family_matters,85"		
+1	Q	 What a meeting, unexpected to see me again? Well, it's not that easy to kill me!	¿po?	9	VariableEqual#troubles_from_knowledge,100		
+1	Q	 What a meeting, unexpected to see me again? Well, it's not that easy to kill me!	¿po?	9	VariableEqual#troubles_from_knowledge,110		
+1	Q	 What a meeting, unexpected to see you again! It looks like you didn't follow my advice - to be careful in dealing with strangers? Well, you asked for serious trouble yourself.	¿po?	2	VariableEqual#troubles_from_knowledge,120		
+2	A	So now you're stealing from the Ironstone family?	po.	3		
+3	Q	 Ha, so this slut Ironstone hired you? And what exactly did she assign you with? Maybe kill me?	¿po?	4		
+4	A	We can come to an amicable agreement.	po.	5		
+4	A	Everything has a price, name your own, and you'll get that amount if you get behind Ironstone.	po.	6			PER#7
+4	A	You guessed right, and that's what I'm going to do right now.	po.	7		
+5	Q	 I'm sorry, but this time we won't be able to disperse peacefully.	¿po?	0		"NPCSpawn#albeno_eknight;NPCHostile#J7_6_wizard;SetVariable#family_matters,85"	
+6	Q	 You're right here, especially since it's becoming increasingly difficult to deal with Ironstone, so I'm ready to break off all contacts with him for the sum of [BLUE]30 thousand gold[].	¿po?	8		
+7	Q	 Well, try it!	¿po?	0		"NPCSpawn#albeno_eknight;NPCHostile#J7_6_wizard;SetVariable#family_matters,85"	
+8	A	All right, you'll get the money.	po.	0		SetVariable#family_matters,90	
+8	A	Instead of giving you such a sum, I'd rather kill you.	po.	7		
+9	A	Damn it, how could you survive?	po.	10		
+10	Q	 My dark magic arts shouldn't bother you! You won't be able to ruin my plans this time. I'm sure that whore Ironstone sent you to kill me? Only today you will die, not me!	¿po?	0		"NPCHostile#J7_6_wizard;SetVariable#family_matters,85"	
+11	A	All right, get lost and don't get in my way again.	po.	0		"NPCDespawn#J7_6_wizard;SetVariable#family_matters,95"
+11	A	No, I'll probably solve this problem by killing you.	po.	0		SetVariable#family_matters,95	
+12	A	Instead of giving you such a sum, I'd rather kill you.	po.	7		
+12	A	Here is the amount we agreed on.	po.	13	PlayerHasGold#30000	
+12	A	I don't have the amount you need yet.	po.	0		
+13	Q	 Well, it's a pleasure doing business with you.	¿po?	0		"NPCDespawn#J7_6_wizard;SetVariable#family_matters,95;loseGold#30000"	
+14	A	Abomination!	po.	0		"NPCDespawn#J7_6_wizard;NPCSpawn#J7_6_demon"

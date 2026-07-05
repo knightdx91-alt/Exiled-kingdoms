@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Have you already taken the sword stored under the showcase.	po.	0	VariableEqual#showcase,2		
+1	Q	There is an extraordinary sword under the showcase, but it is locked.	po.	2			
+2	A	Try to break the glass with something heavy. 	pi.	3			
+2	A	Perhaps the lock will be able to open with the patterned key that you found.	po.	4	PlayerHasItem#10305	"LoseItem#10305"	
+2	A	Leave without attention. 	pi.	0			
+3	Q	No matter how hard you hit the glass, there is not a single crack left on it, it looks like it is magically protected!	po.	0			
+4	Q	The lock is opened, and you take away the sword stored under the showcase.	po.	0		"GainItem#10303;SetVariable#showcase,2"		

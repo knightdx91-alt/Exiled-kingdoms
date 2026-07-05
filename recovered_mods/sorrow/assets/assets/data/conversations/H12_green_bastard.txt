@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](green creature seemed to burst, turning into a sickeningly smelly cloud, now no one prevents you from picking up the stolen fir tree and gifts)[]	¿po?	0	VariableEqual#holiday_coming,62	"NPCDespawn#green_bastard;SetVariable#holiday_coming,65"	
+1	Q	 [BLUE](a hefty creature covered with green fur from top to toe was swaying in some kind of smelly, green slime, and when you appeared, he jumped to his feet)[] Hey, what's going on?! Who showed up there? I was just about to take a bath! Don't look at me, pervert, I'm naked! How did you get in here?	¿po?	2	"PlayerIsMale#"		
+1	Q	 [BLUE](a hefty creature covered with green fur from top to toe was swaying in some kind of smelly, green slime, and when you appeared, he jumped to his feet)[] Hey, what's going on?! Who showed up there? I was just about to take a bath! Don't look at me, pervert, I'm naked! How did you get in here?	¿po?	2	"PlayerIsFemale#"		
+2	A	It doesn't matter, you robbed a little boy, and I've come to return what you took!	port.	3		
+3	Q	 Oh! Ah! What a tragedy! A poor and unhappy orphan has been robbed! These are the villains! And hey, why is it that if someone is being robbed, everyone immediately thinks of me!?	¿po?	4			
+4	A	Actually, you were the one who was seen at the crime scene!	port.	5		
+5	Q	 Seen? Oh, how! So I'm losing my touch! Um, maybe it was some other green, hairy, healthy dude!? There are all sorts of shady types out there these days!	¿po?	6			
+6	A	Stop fooling around and denying it, I see some of the stolen stuff over there! [BLUE](you pointed out a large pile of all sorts of things, among which you noticed a fir tree decorated by Jeanne and Kai)[]	port.	7		
+7	Q	 What-ooo?! It can't be, it was all planted on me! Think about it, why do I need all this junk?	¿po?	8			
+8	A	I have no idea, probably because you are the spirit of envy and you take everything you like!	port.	9		
+9	Q	 Ha! All these little things are corruptible, time will devour them, and they will disappear without a trace, what is the point of owning emptiness? But it's another matter to take away children's admiration, to take away this innocent, incorruptible delight in the joys of the little things of life, trample on all these amazing and wonderful feelings, and leave behind only despondency and despair! I enjoy devouring someone else's happiness!	¿po?	10			
+10	A	It's the end of your misdeeds, I won't let you ruin Kai's holiday!	port.	11		
+11	Q	 If I don't have a holiday, no one will have a holiday!	¿po?	12			
+12	A	You could have just asked, and I'm sure Kai wasn't against your participation in the holiday!	port.	13		
+13	Q	 Oh, that's so sweet! You are so good-natured, ready to accept even a bastard like me. But don't expect me to get any kinder now! I'm used to taking whatever I want, I don't need anyone's handouts!	¿po?	14			
+14	A	I understand that I won't be able to reach an agreement with you; I'll have to deal with the problem the old-fashioned way!	port.	15		
+15	Q	 I don't welcome physical violence, but for you, I'll make an exception!	¿po?	0		"NPCHostile#green_bastard;SetVariable#holiday_coming,62"

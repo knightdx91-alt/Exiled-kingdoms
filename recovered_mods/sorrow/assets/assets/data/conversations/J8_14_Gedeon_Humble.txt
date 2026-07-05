@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] Priest Ryurger told us about your help in the repose of the zombies of our former brothers. Accept this gift as a reward!	¿po?	6	"VariableEqual#last_honors,70"		
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] Senior disciple Peter told me about your help in destroying evil in the Coal Quarry. Accept this gift as a reward!	¿po?	5	"VariableEqual#simple_choice,100"		
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] The priest Anabel told about the help you provided in the destruction of the werewolf settlement, wanderer. Accept this gift as a reward!	¿po?	4	"VariableGreater#scripture_mission,90;VariableEqual#forced_effort,50"		
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] Welcome to the temple of the Northern Gods, traveler, this sanctuary was founded by my ancestors, any traveler with good intentions can find refuge here!	¿po?	2	"VariableGreater#scripture_mission,90"		
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] Priest Ryurger told about your participation in the sacred mission, wanderer, and about the contribution of its successful execution. Accept this gift as a reward!	¿po?	3	"VariableEqual#scripture_mission,90"		
+1	Q	 [BLUE](an elderly and slightly arrogant-looking priest in rich decoration)[] Welcome to the temple of the Northern Gods, traveler, this sanctuary was founded by my ancestors, any traveler with good intentions can find refuge here!	¿po?	2		
+2	A	Thank you, glad to be here.	po.	0		
+3	A	Thank you, I was glad to help.	po.	0		"GainXP#800;GainItem#161;GainItem#10513;GainItem#10205;IncVariable#REP_north_kingdom,10;SetVariable#scripture_mission,100"
+4	A	Thank you, I was glad to help.	po.	0		"GainXP#600;GainItem#10282;GainItem#10283;IncVariable#REP_north_kingdom,4;SetVariable#forced_effort,100"
+5	A	Thank you, I was glad to help.	po.	0		"GainXP#300;GainItem#10453;IncVariable#REP_north_kingdom,5;SetVariable#simple_choice,110"
+6	A	Thank you, I was glad to help.	po.	0		"GainXP#600;GainItem#10463;IncVariable#REP_north_kingdom,4;SetVariable#last_honors,100"

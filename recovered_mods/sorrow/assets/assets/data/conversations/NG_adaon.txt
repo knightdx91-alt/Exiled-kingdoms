@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the passage was suddenly blocked by a crowd of bandits)[] Yo! That's where that bastard was hiding, and you didn't believe me that he could be somewhere here!	¿po?	7		
+7,adaon	Q	Oh, damn, I'm fucked!	¿po?	8			
+8,bandit	Q	You know who we work for, right? So don't show off and come with us in a good way if you don't want even more serious problems!	po.	9		
+9,adaon	Q	I don't have any confidence in people with faces like yours!	¿po?	10			
+10	A	That's right, you should get the hell out of here.	po.	11		
+11,bandit	Q	Mind your own case! We'll just take this guy to our boss, and on the spot, the boss himself will decide what to do with him!	¿po?	12			
+12	A	I'll go with him, if you have any objections, you'd better keep them to yourself, for your own unharmed.	po.	13		
+12	A	He's not going anywhere with you, and you should get out of here while you're unharmed.	po.	16		
+13,bandit	Q	Okay, you can come with us too. There's a ship waiting for us at the dock, so we can get to our boss faster!	¿po?	14			
+14,mercenary_grisenda	Q	We have something much more important to do, and this guy is always getting into trouble, somehow he'll get out on his own!	¿po?	16	"NPCIsInParty#grissenda,mercenary_grisenda;VariableGreater#bloody_harvest,9;VariableLower#bloody_harvest,99"		
+14,mercenary_grisenda	Q	I'm not going to get into your gang wars!	¿po?	15	NPCIsInParty#grissenda,mercenary_grisenda	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+14,hirge	Q	It looks like he's in serious trouble! But I'm afraid the threat of the witch queen is much scarier, and we need to deal with it first.	¿po?	16	"NPCIsInParty#hirge,hirge;VariableGreater#between_worlds,9;VariableLower#between_worlds,99"		
+14,hirge	Q	I hate swimming by the sea, I hope you can handle it on your own?	¿po?	15	NPCIsInParty#hirge,hirge	"NPCStopFollowing#;NPCDespawn#hirge"	
+14,sansa	Q	To hell with that scoundrel! Actually, you promised to help solve my problem!	¿po?	16	"NPCIsInParty#sansa2,sansa;VariableGreater#something_more,9;VariableLower#something_more,99"		
+14,sansa	Q	But without me, I don't want to go anywhere, and if anyone is against it, I'll roast them with lightning!	¿po?	15	NPCIsInParty#sansa2,sansa	"NPCStopFollowing#;NPCDespawn#sansa"	
+14,damian	Q	I'm not going to get into your gang wars!	¿po?	15	NPCIsInParty#durak2,damian	"NPCStopFollowing#;NPCDespawn#damian"	
+14,peter	Q	I have no desire to sail to no one knows where, besides, my wolves are not fed, it's not good to leave them hungry!	¿po?	15	NPCIsInParty#durak,peter	"NPCStopFollowing#;NPCDespawn#peter"	
+14,adaon	Q	It's not the best idea, friend, to agree with them, I hope that there will be time to explain to you what's what in more detail, but if things get really bad, I hope you will help me out!	¿po?	18		NPCFollow#
+15,adaon	Q	It's not the best idea, friend, to agree with them, I hope that there will be time to explain to you what's what in more detail, but if things get really bad, I hope you will help me out!	¿po?	18		NPCFollow#
+16,bandit	Q	I'm already tired of trying to persuade you, if words don't do any good, let's start a fight!	¿po?	17			
+17	A	Great, that right away.	po.	0		"NPCHostile#bandit;NPCHostile#banda_lib;SetVariable#stretch_dead,1;SetVariable#time_to_pay,25"
+18	A	Break through, as always.	po.	0		"Travel#C7,1,20;SetVariable#stretch_dead,2;SetVariable#time_to_pay,32"

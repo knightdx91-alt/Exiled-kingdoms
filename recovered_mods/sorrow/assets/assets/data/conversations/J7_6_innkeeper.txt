@@ -1,0 +1,49 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hello, friend! You seem to be new in town? Can I pour you something stronger, or will you buy something to take with you? Or do you need a room for the night?	¿po?	2			
+2	A	Of course, pour!	po.	3		
+2	A	I want to take a look at your range of alcohol.	po.	0		OpenShop#
+2	A	I need a room for the night.	po.	23		
+2	A	[BLUE](show the coin that Alarion gave you)[]	po.	33	"PlayerHasItem#10847;VariableEqual#royal_will,68"		
+2	A	[BLUE](show the coin that Alarion gave you)[]	po.	33	"PlayerHasItem#10847;VariableEqual#royal_will,42"		
+2	A	Did you happen to have a wizard here by any chance?	po.	27	"VariableEqual#family_matters,50"		
+2	A	Did a hunter by the name of Cryop by any chance look in on you, or maybe you've heard something about him?	po.	30	"VariableEqual#check_honesty,10"		
+2	A	By any chance, have you heard anything about zombies looking like priests?	po.	32	"VariableGreater#last_honors,9;VariableLower#last_honors,19;VariableLower#talkz_innkeeper,1"		
+2	A	Thank, I don't need anything.	po.	0		
+3	Q	 Personally, I prepared the best in the city, the strongest moonshine, for [BLUE]2 coins[] portion.	¿po?	4		
+4	A	Pour!	po.	5	PlayerHasGold#2	
+4	A	Perhaps I will refuse.	po.	0		
+5	Q	 Please!	¿po?	6		
+6	A	[BLUE](drink)[]Excellent moonshine!	po.	7		loseGold#2
+7	Q	 Repeat?	¿po?	8		
+8	A	Pour!	po.	9	PlayerHasGold#2	
+8	A	Perhaps I will refuse.	po.	0		
+9	Q	 Please!	¿po?	10		
+10	A	[BLUE](drink)[] Went well!	po.	11		loseGold#2
+11	Q	 More?	¿po?	12		
+12	A	Pour!	po.	13	PlayerHasGold#2	
+12	A	Perhaps I will refuse.	po.	0		
+13	Q	 Here you go!	¿po?	14		
+14	A	[BLUE](drink)[] Went well!	po.	15		loseGold#2
+15	Q	 Maybe you have enough?	¿po?	16		
+16	A	No, one more!	po.	17	PlayerHasGold#2	
+16	A	That's enough.	po.	0		
+17	Q	 Well, as you know!	¿po?	18		
+18	A	[BLUE](drink)[] Went well!	po.	19		loseGold#2
+19	Q	 Have you had enough now?	¿po?	20		
+20	A	Another small one!	po.	21	PlayerHasGold#2	
+20	A	Enough.	po.	0		
+21	Q	 I hope you don't fall in here...	¿po?	22		
+22	A	[BLUE](drink)[]Something is not good me...	po.	0		"loseGold#2;Travel#P7_tavern,1,9;Sleep#"
+23	Q	 The room for half a day is yours for [BLUE]50 gold[].	¿po?	24		
+24	A	Okay, here are the coins.	po.	25	PlayerHasGold#30	
+24	A	Thanks, I changed my mind.	po.	0		
+25	Q	 Here's the key with the number, go up to the top and look for the right door.	¿po?	26		
+26	A	Thank!	po.	0		"loseGold#30;FullRest#;Travel#P7_tavern,2"
+27	Q	 A wizard? Yes, some magician has been looking in here from time to time lately. By the way, he was here quite recently.	¿po?	28		
+28	A	Do you happen to know where he can be found?	po.	29		
+29	Q	 I have no idea, but try to ask visitors, they may have heard something.	¿po?	0		
+30	Q	 Hmm, Cryop? A couple of days ago I heard local hunters talking about having crossed paths with some village hunter in the woods near the quarry, and his name was mentioned - toli Crip or Cryop. Maybe this is the hunter you're looking for, or maybe not, but it's been a few days since that moment, I don't think these stories will be of any use.	¿po?	31		
+31	A	Thanks anyway for sharing the information.	po.	0		"SetVariable#check_honesty,20"
+32	Q	Hmm, zombies? Yes, there was a soldier here once who was talking about zombies dressed up as priests. He seems to be working at the northern checkpoint in the Coal Quarry, if you want to find him and find out the details.	po.	0		"SetVariable#talkz_innkeeper,2;SetVariable#last_honors,20"
+33	Q	 [BLUE](The innkeeper took the coin, examined it carefully, and returned it to you, calling for the maid)[] Take our guest to our best room. [BLUE](the maid shook her head. Following her, you went up to the second floor, entered the indicated room, and the maid closed the door behind you)[]	¿po?	34		
+34	A		po.	0		"Travel#P7_house,1"

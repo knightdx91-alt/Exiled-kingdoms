@@ -1,0 +1,36 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	I'm listening to you, friend.	port.	11	"NPCisFollower#"	
+1	Q	[BLUE](a young-looking warrior servant of the temple)[] Glad to see you again, do you need my help in resisting the forces of evil?	port?	9		
+9	A	Yes, I will be glad to fight with you against the undead!	port.	16		
+9	A	I don't need your help right now.	port.	10		
+10	Q	I will be at the temple if you need my help.	port.	0		
+11	A	Nothing, let's move on.	Nada, continuemos.	0		
+11	A	I don't need your company right now. Thanks for the help, see you again later.	port.	12		"NPCStopFollowing#;NPCDespawn#peter"
+11	A	I found such a strange rune on the dead priest, do you know what it is?	port.	45	PlayerHasItem#10462		
+11	A	Let's talk about something.	Quiero que hablemos de algo.	19		
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91		
+12	Q	You will find me at the temple of Rigordian if you need my help again.	port.	0		
+16	Q	I would be very happy to join you, but you already have someone in the company.	port.	0	HasCompanion#	
+16	Q	We will be strong and no evil will defeat us!	port.	0		NPCFollow#
+19	Q	About what exactly?	port.	20		
+20	A	What can you tell me of this place?	¿Qué puedes decirme de este lugar?	40		
+20	A	Hey, can you use your magic?	port.	41		
+20	A	Let's just go on.	Continuemos.	0		
+40	Q	I really don't know much about this place.	En realidad no se mucho sobre este lugar.	0		
+41	Q	Of course, but what exactly do you want?	port	42		
+42	A	Teleport us.	port.	0		Teleport#
+45	Q	This is a sacred rune, it strengthens the spirit and strength of worthy worshippers, it is a great honor to possess such a relic.	port	46		
+46	A	The previous owner is dead and now, I am sure that you deserve to be the owner of this relic.	port.	47		"LoseItem#10462"		
+47	Q	I doubt it, but I will try to prove that I deserve to be the owner of a sacred relic.	port	0		"UpgradeCompanion#durak"
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92		
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Nevermind.	No importa.	0		
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Understood.	Entendido.	0		
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		

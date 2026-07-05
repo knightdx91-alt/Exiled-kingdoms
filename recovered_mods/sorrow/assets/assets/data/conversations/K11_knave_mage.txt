@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a young-looking wizard)[] Good luck coping with your and Neville problem.	¿po?	0	"VariableEqual#magehelpnot,1"		
+1	Q	 [BLUE](a young-looking wizard)[] Oh, hello, you're without Neville, I hope he's okay?	¿po?	27	"VariableEqual#ladies_man,70"		
+1	Q	 [BLUE](a young-looking wizard)[] Good luck with Mundrick.	¿po?	0	"VariableGreater#immersed_darkness,9"		
+1	Q	 [BLUE](a young-looking wizard)[] Look, both are alive, but how is the ancient troll doing there?	¿po?	19	"VariableGreater#fatal_eggs,99;VariableGreater#varsilian_job,99"		
+1	Q	 [BLUE](a young-looking wizard)[] When I'm in Icemist, I'll try to find out something about the facts you need.	¿po?	0	"VariableGreater#fatal_eggs,19"		
+1	Q	 [BLUE](a young-looking wizard looking at you suspiciously)[] Look who it is - Neville, and I thought that you had been exiled to the mines with varannari for a long time, or even became vulture food, dangling in a noose, or rotting on a "Farm", or drowned in Navar, or maybe you became an object of dissection for students in Icemist, and you're back here alive and well.	¿po?	3			
+3,knave	Q	 You're burying me a little early, my luck still hasn't completely deserted me, but I'm glad to see you too, Elizar. I came to you on business, don't you still have access to the Icemist bookshelves?	¿po?	4				
+4,mage	Q	 Well, yes, but I'm done with the old cases, so don't be angry, now I'm not your companion.	¿po?	5			
+5,knave	Q	 Actually, I just need some information - nothing more, I have the opportunity to get a lot more than during all our old tricks in Icemist.	¿po?	6			
+6,mage	Q	 Well, in that case, I can help, but I won't call you to my house, I'm sorry.	¿po?	7		
+7,knave	Q	 And thanks for that. In short, I need information about an ancient troll who has eggs with powerful magical powers, and where he lives.	¿po?	8				
+8,mage	Q	 An ancient troll? There are a lot of rumors about him, and it seems that some researchers from Ismit wrote treatises about him, but as I remember, there was nothing sensible in them. As for where he lives, it's obvious that somewhere in the trollfens.	¿po?	9			
+9,knave	Q	 Really? I would like to get more detailed information!	¿po?	10			
+10,mage	Q	 I'm sorry, I doubt that there were wizards who would wander through the swamps, making maps, in search of an unknown creature, risking being devoured by ordinary trolls. But since this troll is very old, the smell in his hole will be so strong that you have never smelled something like this in your life. Well, if you decide to climb there, it would not be bad to have a good weapon with you, enchanted fire.	¿po?	11			
+11,knave	Q	 And also, maybe you know something about the two powerful magical artifacts that we were able to get without much trouble, while angering no one very much.	¿po?	14		
+14,mage	Q	 Uh, nothing comes to mind right away, but if I'm in Icemist again, I'll try to find out something.	¿po?	15				
+15,knave	Q	 Thank you, at least you helped a little, Elizar. And we could use a good weapon. You know, my bati has enchanted knives, they can paralyze and burn with fire at the same time, he castrates boars with them, we could borrow at least one of the knives from him.	¿po?	16				
+16	A	And where does your father live?	po.	17		
+17,knave	Q	 He's from Whitetower, although he obviously won't be happy to see me, but it doesn't matter, the main thing is to get our treasure.	¿po?	18			
+18	A	Then let's go to Whitetower.	po.	0		"SetVariable#fatal_eggs,20"
+19,knave	Q	 Without their testicles. Hello, Elizar, well, did you manage to dig up anything about the artifacts we need?	¿po?	20			
+20,mage	Q	 Well, there's something you might be interested in. There is old information that several hundred years ago, behind the Crimson Hills in the mountains of Thir, there was a certain temple of knowledge founded by colonists-wizards from Andoria. They were engaged in the search and storage of various ancient secrets and artifacts.	¿po?	21				
+21,knave	Q	 It is strange that no one knows about some temple in those mountains and the sorcerers living there.	¿po?	22			
+22,mage	Q	 The thing is that there was some kind of monstrous cataclysm, as a result of which the temple was completely submerged underground, and not a trace of it remained. And in Thuram, it is not customary to share information with anyone about the activities of wizards who have ever lived.	¿po?	23				
+23,knave	Q	 So, how is this information useful to us?	¿po?	24			
+24,mage	Q	 Actually, I'm getting to the point. In recent years, there have been rumors that some hefty unknown creatures have appeared in those places that can gnaw through passages deep underground, and you can use these passages to get to this temple. Many adventurers from Turam tried to do this, but no one returned, except for one case.	¿po?	25				
+25,knave	Q	 So one lucky guy got lucky, so maybe someone else will be lucky.	¿po?	26			
+26,mage	Q	 Here is what is known about this case. There is an old magister Mundrick, he is already retired and living quietly in retirement. It was to him that the adventurer who visited the temple came and even brought from there some kind of thing that seemed to be necessary to get into the lower tiers of the temple. So if you need more details, go to Mundrick, his house is in Whitetower, maybe even buy that thing from him from the temple, he's a harmful old man, of course, but I think you can find an approach to him.	¿po?	0		"SetVariable#immersed_darkness,10"
+27	A	Yes, but he needs help, he's courting a rich lady, and he found out that she has a moon curse on her. He promised to take it off, can you know what kind of curse it is?	po.	28		
+28	Q	 The moon curse? Hmm, to be honest, this is the first time I've heard of such a thing. I'll try to find out something when I get to Icemist, but I can't guarantee anything.	¿po?	29			
+29	A	Okay, thanks, maybe someone else can help me with this question.	po.	0		"SetVariable#magehelpnot,1"

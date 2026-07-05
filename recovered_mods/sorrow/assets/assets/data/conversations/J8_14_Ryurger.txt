@@ -1,0 +1,40 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a militant-looking priest)[] I am glad to see you, hero, in our temple, you have provided invaluable assistance in fulfilling the sacred mission!	¿po?	25	"VariableGreater#scripture_mission,99;VariableGreater#simple_choice,99;VariableGreater#last_honors,9"		
+1	Q	 [BLUE](a militant-looking priest)[] Рад тебя видеть, герой, в нашем храме, ты I am glad to see you, hero, in our temple, you have provided invaluable assistance in fulfilling the sacred mission! And I would like to offer you another decent job that will be on your shoulder.	¿po?	17	"VariableGreater#scripture_mission,99;VariableGreater#simple_choice,99;VariableLower#last_honors,9"		
+1	Q	 [BLUE](a militant-looking priest)[] I am glad to see you, hero, in our temple, you have provided invaluable assistance in fulfilling the sacred mission!	¿po?	25	"VariableGreater#scripture_mission,90"		
+1	Q	 [BLUE](a militant-looking priest)[] Have you been able to find out anything about the demonic bear's lair?	¿po?	15	"VariableGreater#scripture_mission,45;VariableLower#scripture_mission,65"		
+1	Q	 [BLUE](a militant-looking priest)[] Have you managed to eliminate the threat in the south?	¿po?	12	"VariableGreater#scripture_mission,25;VariableLower#scripture_mission,45"		
+1	Q	 [BLUE](a militant-looking priest)[] Well, how are you doing, where are your trophies?	¿po?	7	"VariableEqual#scripture_mission,20"		
+1	Q	 [BLUE](a militant-looking priest)[] Hello, wanderer, I'm still assembling a team for a sacred mission.	¿po?	4	"VariableEqual#scripture_mission,10"		
+1	Q	 [BLUE](a militant-looking priest)[] In the fury of battle, you will hear the voices of our Gods!	¿po?	2		
+2	A	Hello, perhaps there is a job for a hero in your temple?	po.	3		
+2	A	Okay, I have to go.	po.	0		
+3	Q	 A job? Yes, there is something, although I would not call it work, rather it is a sacred mission. A terrible demonic bear has appeared in our forests, exterminating all living beings indiscriminately. Now even the most experienced hunters are afraid to go deep into the thicket, and I'm afraid soon this creature will start coming out of the forest and attacking settlements. Therefore, the high priest decided to assemble a team of the strongest warriors to put the monster to rest, and I volunteered to lead this mission.	¿po?	4		
+4	A	I am ready to join your team to save people from this terrible threat.	po.	5		
+4	A	Clearly, I don't seem to be powerful enough for such a mission.	po.	0		SetVariable#scripture_mission,10		
+5	Q	 Your zeal is commendable, but I must first make sure how good you are as a hunter - get trophies from six polar bears and ten snow wolves so that I can be convinced of this.	¿po?	6		
+6	A	Okay, I'll prove that I'm a great hunter.	po.	0		SetVariable#scripture_mission,20		
+7	A	So, I defeated bears and wolves and brought trophies.	po.	8	"PlayerHasItems#10784,6;PlayerHasItems#1004,10"	
+7	A	I'm still busy with this.	po.	0		
+8	Q	 Well, it's worthy. You will complete one more assignment to check what an experienced warrior you are, and I will take you to the team to fulfill a sacred mission.	¿po?	9		
+9	A	What should I do?	po.	10		
+10	Q	 Villagers at the southern wall of the city report that some kind of creature, seemingly similar to a mixture of a polar bear and a human, has wandered into the southern edges of the Gelid Coast. This creature attacks the traveling people, fortunately, so far without fatalities, but sooner or later someone will die, so it is necessary to exterminate this creature.	¿po?	11		
+11	A	All right, I'll find and kill this creature.	po.	0		SetVariable#scripture_mission,30		
+12	A	Yes, I found and killed the creature that terrorized the villagers.	po.	13	"VariableEqual#scripture_mission,40"		
+12	A	Not yet.	po.	0		
+13	Q	 So, you have proved that you are worthy, both as a hunter and as a warrior, to go on a sacred mission! While I gather the rest of our team, it would be nice to find out where the demon bear's lair might be. In the Dream Valley by the river there is a camp of royal huntsmen, try to ask them, you may be able to find out something sensible from them.	¿po?	14		
+14	A	Well, I'll try to find out something from them.	po.	0		SetVariable#scripture_mission,50		
+15	A	Hughinge suggests that the demon bear's lair may be located near the eastern mountains in the Dream Valley.	po.	16	"VariableEqual#scripture_mission,60"		
+15	A	Not yet.	po.	0		
+16	Q	 Great! So we'll start looking from there. You can prepare for the mission while I and the team will be waiting for you at the eastern outpost of the Dream Valley.	¿po?	0		"NPCDespawn#priest_warrior_ryurger;SetVariable#scripture_mission,70"		
+17	A	Okay, what should I do?	po.	18		
+18	Q	 Perhaps you already know about this, not so long ago, one warrior priest, and his associates went south to fulfill a sacred mission, but unfortunately, everything ended in fatal failure for them.	¿po?	19		
+19	A	Yes, I managed to save one of these unfortunate.	po.	20		
+20	Q	 A good deed! But here's the thing, recently there were rumors that zombie squads that are former priests roam in those places. Such blasphemy is unacceptable! Whoever desecrated the bodies of our fallen brothers, the main thing is that they must be laid to rest once and for all, thereby will give them the last honors.	¿po?	21		
+21	A	Do you want me to find and destroy these zombies?	po.	22		
+22	Q	 Roughly speaking, that's exactly it. Ask the local people there, someone has seen and knows something. I'll arrange with the high priest to reward you when you've done this job.	¿po?	23		
+23	A	Okay, I'll handle it.	po.	24		
+24	Q	 Then, good luck to you!	¿po?	0		"SetVariable#last_honors,10"		
+25	A	I found and laid to rest the zombies who were priests, here is the armor of one of the priests.	po.	26	PlayerHasItem#10461		
+25	A	And I'm glad to see you.	po.	0		
+26	Q	 You have done a very important thing, I will inform the high priest about it so that he will reward you with dignity!	¿po?	0		"LoseItem#10461;SetVariable#last_honors,70;IncVariable#REP_north_kingdom,2"		

@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Greetings, wanderer, glad to see you in good health!	¿po?	9	VariableEqual#forced_effort,100		
+1	Q	 We are returning to the city, we need to inform the high priest about the successfully completed assignment, he will generously reward you for your help!	¿po?	0	VariableEqual#forced_effort,50		
+1	Q	 This is not the time to talk, we need to get rid of all these monsters!	¿po?	0	VariableEqual#forced_effort,40		
+1	Q	 We need to find a settlement with werewolves, it is located somewhere near the Lake of Tears.	¿po?	0	VariableEqual#forced_effort,30		
+1	Q	 Greetings to you, wanderer, our mission can be very dangerous, prepare yourself better.	¿po?	7	"VariableGreater#forced_effort,5;VariableLower#forced_effort,25"		
+1	Q	 Greetings to you, wanderer. I need a partner to do a dangerous job, and you did well in the battle with the demon bear, so I consider you a suitable candidate. Are you ready to serve for the good of our kingdom?	¿po?	2				
+2	A	Hello, of course I don't mind helping you. And what kind of work is this?	po.	3		
+2	A	I'm sorry, but I don't have time.	po.	0		
+3	Q	 Rumors have been circulating for several weeks that a werewolf community settled in one village near the Lake of Tears, and people began to disappear in the area. The High Priest is concerned about what is happening, so he gave an assignment to find out if these rumors are true, those places have always been dangerous, people were constantly dying, but now the number of missing has increased. If werewolves-settlers are really involved in this, then it is necessary to punish these monsters.	¿po?	4				
+4	A	Okay, so we need to find this suspicious settlement. When are we going on the road?	po.	5		
+5	Q	 First we need to prepare, if we have to deal with werewolves, then we can't do without silver weapons. While I collect the equipment, take my silver sword from armorer Hilt and get a suitable weapon for yourself.	¿po?	6				
+6	A	Okay, I'll do it.	po.	0		SetVariable#forced_effort,10		
+7	A	I brought your sword.	po.	8	PlayerHasItem#10281	
+7	A	I will definitely do so.	po.	0		
+8	Q	 Then, if you're ready, let's hit the road.	¿po?	0		"LoseItem#10281;NPCFollow#;SetVariable#forced_effort,30"		
+9	A	I'm glad to see you too.	po.	0		

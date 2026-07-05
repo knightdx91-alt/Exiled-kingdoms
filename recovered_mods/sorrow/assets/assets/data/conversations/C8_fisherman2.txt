@@ -1,0 +1,15 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0	"VariableEqual#fisherman_joy2,5"		
+1	Q	We'll get back to work as soon as you deal with those who threatened us and return our gear. 	port.	11	"VariableGreater#fisherman_joy2,1;VariableLower#fisherman_joy2,5"		
+1	Q	[BLUE](looks like these are the fishermen you were looking for)[] 	[BLUE]()[] port.	2	"VariableGreater#time_to_pay,39"		
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0		
+2	A	Hey guys, how's the catch?	port?	3			
+3	Q	As usual, the place is occupied here, if you're going fishing too, then look for another one. 	port.	4		
+4	A	I'm interested in something else. I'm from Kiara, it looks like you decided to dump your boss by defecting to her competitors?	port?	7			
+7	Q	We didn't defect! Some bastards from the city took all our fishing gear for the open sea and threatened to kill us if we complained to anyone. 	port.	8		
+8	A	If I deal with these bastards and return your gear, will you go back to work?	port?	9			
+9	Q	Yes, of course, have to earn a living somehow, and your boss pays well. 	port.	10		
+10	A	Okay, I'll find them in the city and come back.	port?	0		"SetVariable#fisherman_joy2,2"
+11	A	I've solved your problem, those bastards will never bother you again, and here are your gear.	port?	12	"PlayerHasItem#10771;VariableEqual#fisherman_joy2,4"		
+11	A	Clearly.	port?	0			
+12	Q	Great, tell the boss that we'll be delivering a new batch of fish in a few days! 	port.	0		"LoseItem#10771;SetVariable#fisherman_joy2,5;IncVariable#REP_town_liberty,2;IncVariable#REP_seventhhouse,1;IncVariable#time_to_pay,1"

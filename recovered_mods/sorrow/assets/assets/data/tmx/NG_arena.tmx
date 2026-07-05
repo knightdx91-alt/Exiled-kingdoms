@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="32" nextobjectid="50">
+  <properties>
+    <property name="faction_guard" value="varsilia" />
+    <property name="maxlight" value="55" />
+    <property name="music" value="townhall" />
+    <property name="sw1" value="150" />
+    <property name="sw2" value="142" />
+    <property name="sw3" value="137" />
+    <property name="sw4" value="513" />
+    <property name="sw5" value="214" />
+    <property name="sw6" value="211" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="town_objects.tsx" firstgid="9" />
+  <tileset source="dungeon.tsx" firstgid="89" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="town_objexts2.tsx" firstgid="489" />
+  <tileset source="grounds indoor 2.tsx" firstgid="553" />
+  <tileset source="dungeon stairs.tsx" firstgid="713" />
+  <tileset firstgid="717" name="trifles_sborka" columns="12" tilecount="108" tileheight="128" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="825" name="wooden_trifles" columns="16" tilecount="144" tileheight="128" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <layer name="nonwalk" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJzt0UENAAAIA7H98O+YDyZY2mQCLksAAAAAAAAAAJK5NWjoaPhj0tEB/LFW2wA5
+  </data>
+  </layer>
+  <layer name="water" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+  </layer>
+  <layer name="ground" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJzt10EKgDAMBdHqSb2HHkfv6V6qNG2U5DsD2XXhI1ixFIrYNvkODhw4cODoc+wNgwPHqGOZNRwq+8CBw8Oh8h3M7liNz309j8PfYZ2IDstOaudw4PiDo+cdj+YY2REOH8dxMzXH01kcOHDgeNuhcu/iwPFFLY4M4YiViiPyP5OljHcTEWl2Aoctmg4=
+  </data>
+  </layer>
+  <layer name="ground2" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJzt2E0KgCAQhmHx/hfpvyt1k4gWSag5mTbI+4C7GfBbOY4xAFJN1pg+48z27wSnLvMeAzk+1WqO0T4fl8YcqXd601MaOWQ9pZFD1lMaOWQ9pbWY45AyG7q05FgT3u/YWZTkCNmU3w8AAFym29wU2635dnaa93Ch2U9SWxs54rW1tZLD9/8I/SkktQAAAACwAxQSWrY=
+  </data>
+  </layer>
+  <layer name="scenery" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJzt1TENAEAIwECCf5O8knfACCG5U9CtEQAw6+V2AQBXlYcAAAAAAADQ+ILYAcg=
+  </data>
+  </layer>
+  <layer name="objects" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJztmc1KBDEMx+vsm/gkC+6jCSJ6UXAVPChePYh4ckC879WP1ZMKCh59BFOcaiY27XZnNOnQH4SdTpuSP5l+rjEFjUzB3sFewd6aX/xM62Jt9/83/G9Oe+5vq+f+FuUCPa9U6UaR0nFGyl00WDTkA7OMBou0jioQ2yI4f+nvysaBtXxE/HA99tWQDxzPPdhNwOaMn5QON+/SeG4jfq5eiw4uH7npoOMjVx1DyUcZH34/LePD8WDa86wh5TvUhwYd3Hqesg5if2kdfSH9XVHGjVnWwCaN0TqKpnyMTTvWWBkjPe9aYmOCA/tpykcXio5u2PsSeg9Sm5+7EHongq02v+9RpO5LYvmYRcqU8l11I3TvE4Jrq20dXBbpfPjO43PGJ9RWWodvn87t3UNtpdfz3HUMJR9D0eHmK3r+o2c+TKitdD446B44tifWoCPnddDpSPl/INRWSsd5z/1J6dgD2w7Yjscn1P7g70NOwp5L7Nli11Nn378YubNGCptgq573zzAOHsGeKrlvKIVj5n09+vq9HOWhg+MK4t8AO8lEx8wz515D7Otgh2BHmeiIzWMa56ZCodDmEygAtzI=
+  </data>
+  </layer>
+  <layer name="roofs" width="50" height="50">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="375" gid="1" y="1375">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="290" y="1350" width="30" height="60">
+      <properties>
+        <property name="area_id" value="NG" />
+        <property name="entry_id" value="17" />
+      </properties>
+    </object>
+    <object name="Violetta" type="spawn" id="3" x="435" gid="247" y="555">
+      <point />
+      <properties>
+        <property name="conversation" value="NG_violetta" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="violetta" />
+        <property name="wander" value="1" />
+        <property name="tag" value="violetta" />
+      </properties>
+    </object>
+    <object name="Charlotte" type="spawn" id="4" x="405" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="name" value="@CHARLOTTE" />
+        <property name="portrait" value="248" />
+        <property name="spawn" value="undaunted_male_good" />
+        <property name="wander" value="1" />
+        <property name="tag" value="charlotte" />
+      </properties>
+    </object>
+    <object name="Mighty Rock" type="spawn" id="5" x="465" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="NG_mightyrock" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="mighty_rock" />
+        <property name="wander" value="1" />
+        <property name="tag" value="mightyrock" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="360" y="540" width="180" height="100">
+      <properties>
+        <property name="conditions" value="VariableLower#talk_violetta,1" />
+        <property name="actions" value="StartConversation#violetta,NG_violetta" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="7" x="130" y="440" width="550" height="350">
+      <properties>
+        <property name="conditions" value="VariableLower#most_famous,46" />
+        <property name="actions" value="StartConversation#mightyrock,NG_mightyrock" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="8" x="195" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="ardent_fanatic" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="9" x="655" gid="247" y="585">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="slave_female_d" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="10" x="165" gid="247" y="195">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="villager_female_blue" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="11" x="615" gid="247" y="195">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="villager_female_red" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="12" x="405" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="female_nightblade" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="13" x="365" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="villager_female_blue" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="14" x="435" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="villager_female_red" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="15" x="365" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="adventurer_1" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="16" x="435" gid="247" y="1075">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="slave_female_d" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="17" x="205" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="villager_female_purple" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="18" x="595" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="slave_var_female_d" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="19" x="175" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="adventurer_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="20" x="625" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="adventurer_3" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="21" x="405" gid="247" y="845">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="female_knight" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="fight" type="spawn" id="22" x="225" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="ardent_fanatic" />
+      </properties>
+    </object>
+    <object name="fight" type="spawn" id="23" x="225" gid="247" y="1065">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="orc_she_leader" />
+      </properties>
+    </object>
+    <object name="fight" type="spawn" id="24" x="565" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="10" />
+        <property name="spawn" value="slave_female_d" />
+      </properties>
+    </object>
+    <object name="fight" type="spawn" id="25" x="575" gid="247" y="1065">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="female_nightblade" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="26" x="145" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="27" x="15" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="28" x="245" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="29" x="345" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="30" x="465" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="31" x="565" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="32" x="665" gid="247" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="33" x="215" gid="247" y="615">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="34" x="595" gid="247" y="615">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="35" x="335" gid="247" y="905">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="36" x="465" gid="247" y="905">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="37" x="405" gid="247" y="975">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="38" x="565" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum2" type="spawn" id="39" x="245" gid="247" y="815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_2" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="40" x="345" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="41" x="455" gid="247" y="1205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="hoodlum" type="spawn" id="42" x="405" gid="247" y="1355">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="hoodlum_1" />
+        <property name="wander" value="1" />
+        <property name="tag" value="team_hoodlum" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="43" x="405" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="magician_doctor" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="44" x="665" gid="247" y="515">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="varannari_druid" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="45" x="125" gid="247" y="645">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="adventurer_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="46" x="575" gid="247" y="915">
+      <point />
+      <properties>
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="varannari_female" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="townsman" type="spawn" id="47" x="365" gid="247" y="945">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@TOWNSMAN" />
+        <property name="spawn" value="slave_var_female_d" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="48" x="375" gid="247" y="1285">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="human_soldier_female" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="49" x="465" gid="247" y="1395">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@GUARD" />
+        <property name="spawn" value="human_soldier_female" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

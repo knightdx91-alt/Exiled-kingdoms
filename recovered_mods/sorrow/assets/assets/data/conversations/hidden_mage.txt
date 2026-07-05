@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	([BLUE]you notice some subtle movement, a vague image[])	port?	2		
+2	A	([BLUE]as you look closer, you suddenly notice a man in a robe who was clearly trying to disguise himself from you![])	port?	3			AWA#2
+2	A	([BLUE]when you look closely, you don't notice anything else, it probably just seemed[])	port?	5		
+3	Q	([BLUE]stranger was about to leave, but changed his mind when he realized that he had been noticed[])	port?	4		
+4	A	 	port?	0		"SetVariable#hidden_mage,1;NPCDespawn#hidden_mage;NPCSpawn#hidden_mage2"
+5,adaon	Q	Buddy, there's some dumbass hiding and peeping at us! Hey, we see you, asshole!	port?	7	IsInParty#adaon		
+5	Q	[BLUE](probably just seemed way)[]	port?	6		
+6	A	 	port?	0		"NPCDespawn#hidden_mage"
+7	Q	[BLUE](stranger was about to leave, but changed his mind when he realized that he had been noticed)[]	port?	8		
+8	A	 	port?	0		"SetVariable#hidden_mage,1;NPCDespawn#hidden_mage;NPCSpawn#hidden_mage2"

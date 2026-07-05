@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 This fucking alchemist has disappeared somewhere, we need to find him!	¿po?	5	"VariableEqual#size_matters,82"		
+1	Q	 Damn it, Vince is nowhere here!	¿po?	2			
+2	A	Possible, is he hiding somewhere?	po.	3		
+3	Q	 We seem to have looked at everything, most likely he was not here! I suggest that you don't stay here in vain, but go back to the city and ask that guy again!	¿po?	4			
+4	A	Okay, let's do that.	po.	0		"SetVariable#size_matters,82"
+5	A	We'll find him.	po.	0		"NPCSpawn#vince;NPCDespawn#winalways;SetVariable#johnny_talk2,3"

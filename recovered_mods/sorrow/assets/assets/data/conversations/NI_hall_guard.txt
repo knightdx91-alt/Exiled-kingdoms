@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Hear and obey.	port	14	NPCisFollower#	
+1	Q	Greetings, faithful one.	Saludos, creyente.	12	VariableEqual#access_hallwisdom,1		
+1	Q	Greetings, traveller. I am afraid the Hall of Wisdom is not open to the public.	Saludos, viajero. Me temo que las Estancias de la Sabiduría no están abiertas al público.	2			
+2	A	Tell me more about this place.	Dime más acerca de este lugar.	10			
+2	A	I have all the Wisdom I need! Goodbye.	¡Tengo toda la sabiduría que necesito! Adiós.	0			
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	13	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	13	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	13	PlayerHasItem#10402		INT#5
+3	Q	Our records show that you're a notable adventurer which has helped both the Kingdom and the Church of The Three. You are welcome!	Según nuestros registros eres un aventurero notable, que ha ayudado tanto al Reino como a la Iglesia de Los Tres. ¡Eres bienvenido!	0	"VariableGreater#REP_ilmara,19;VariableGreater#REP_the_three,19"	"SetVariable#access_hallwisdom,1;ItemHide#grate1;ItemWalkable#grate1"	
+3	Q	Sorry but this is not the place for nosey adventurers. [BLUE](You need at least a reputation of 20 with Ilmara and with The Three to enter this location)[]	Lo siento pero este no es lugar para aventureros cotillas. [BLUE](Necesitas al menos una reputación de 20 con Ilmara y con Los Tres para entrar)[]	0			
+10	Q	I will explain with pleasure, traveller. Shortly after the city was raised from the waters, we built this Library to honor Our Lord Thelume. It is the largest library in Ilmara, but also a place of meditation and prayer. And when crimes are commited against the Faith, the main hall serves as court of justice.	Te lo explicaré, viajero. Poco después de que la ciudad se alzara sobre las aguas, construimos esta biblioteca para honrar a Nuestro Señor Thelume. Es la mayor biblioteca de Ilmara, y un lugar de meditación y oración. Y cuando se cometen crímenes contra la Fe, es aquí donde se juzgan.	11			
+11	A	I would like to go in.	Me gustaría entrar.	3			
+11	A	Nothing I'm interested in at the moment.	Nada que me interese en este momento.	0			
+12	A	Hello.	port.	0		
+12	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	13	PlayerHasItem#10402		STR#5
+12	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	13	PlayerHasItem#10402		AGI#5
+12	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	13	PlayerHasItem#10402		INT#5
+13	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;NPCFollow#"	
+14	A	Good fellow.	port.	0		
+14	A	[BLUE](Take off he collar of submission)[]	port.	0		"NPCStopFollowing#"

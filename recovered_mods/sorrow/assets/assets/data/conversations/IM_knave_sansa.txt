@@ -1,0 +1,77 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a young-looking sorceress, but this time she has almost no clothes on)[] My hero is a savior, I see you still dared to come to me to collect your reward. I've been thinking about you and the gift you deserve for saving me, and I realized that the best reward for you would be me.	¿po?	35	"VariableEqual#sansa_quest,10"		
+1	Q	 [BLUE](a young-looking sorceress)[] Now it seems to me that leaving the city to wander through the wild lands was not the best idea.	¿po?	0	"VariableEqual#ladies_man,77"		
+1	Q	 [BLUE](a young-looking sorceress)[] Of course, I am not the most powerful sorceress, but any snow creature that gets in our way will not be well.	¿po?	0	"VariableGreater#ladies_man,74;VariableLower#ladies_man,76"		
+1	Q	 [BLUE](молодая на вид волшебница)[] Oh, hi, I was surprised to meet you again so soon.	¿po?	47	"VariableGreater#varsilian_job,99;VariableEqual#between_worlds,20"		
+1	Q	 [BLUE](a young-looking sorceress)[] Oh, hi, I was surprised to meet you again so soon, I see you're without your buddy.	¿po?	19	"VariableEqual#ladies_man,70"		
+1	Q	 [BLUE](a young-looking sorceress)[] Let's not get distracted by talking.	¿po?	0	"VariableGreater#varsilian_job,89"		
+1	Q	 [BLUE](a young-looking sorceress)[] Don't worry, guys, whatever that little bitch says, I know my business. Hmm, I think I've seen similar magical protection somewhere before.	¿po?	12	"VariableEqual#varsilian_job,87"		
+1	Q	 [BLUE](a young-looking sorceress)[] I don't really know you, so let's leave it that way.	¿po?	0	"VariableGreater#varsilian_job,56"		
+1	Q	 [BLUE](a young-looking sorceress looks sadly at the corpse of a monster)[] Don't stay here in vain, go back to Hugh.	¿po?	0	"VariableEqual#varsilian_job,50"		
+1	Q	 [BLUE](a young-looking sorceress)[] You need to deal with this freak.	¿po?	0	"VariableEqual#varsilian_job,45"		
+1	Q	 [BLUE](a young-looking sorceress gave you an unfriendly look)[] I have no idea who you are, but you better get away from me quickly, before I decide to turn you into slugs.	¿po?	3			
+3,knave	Q	 We're from Hugh.	¿po?	4				
+4,sansa	Q	 Really? Hmm, although I think I've seen one of you before. And what did Hugh want from me?	¿po?	5			
+5,knave	Q	 He needs a burglar magician for a lucrative cases, and you are his best candidate.	¿po?	6			
+6,sansa	Q	 I did not know that he was still in cases, but if so, I am ready to help him for part of my share, but first I need to solve one of my problems, which may well interfere with our work.	¿po?	7		
+7,knave	Q	 Oh, so we can help you so you don't waste time. What should be done?	¿po?	8				
+8,sansa	Q	 I need to deal with my ex, who is constantly following me, but there is a small nuance in this...	¿po?	9			
+9,knave	Q	 Yes, no problem, my friend and I will easily deal with your boyfriend!	¿po?	10			
+10,sansa	Q	 Okay, this freak has just snuck into my apartment again, I hope you won't let me down. By the way, you can call me Sansa.	¿po?	11		"NPCFollow#"		
+11	A	Don't worry, Sansa, we can handle it.	po.	0		"SetVariable#varsilian_job,45"
+12,katasakh	Q	 If you've seen this before, then it won't be difficult for you to remove this barrier?	¿po?	13		
+13,sansa	Q	 Well, I wouldn't be so categorical, this protection was created by someone of the archmage level, which I am not, and it will take me a lot of time to remove it, and then I'm not sure I can.	¿po?	14		
+14,knave	Q	 Damn, are you serious? We only brought you on the team so that you could crack the magic protection, but you can't do that either!	¿po?	15		
+15,sansa	Q	 Shut up! You're not much use in this case either, you don't need to break the locks, since we have the keys!	¿po?	16		
+16,katasakh	Q	 You can keep yelling at each other, but it doesn't do any good! We need to do something or get out of here.	¿po?	17		
+17,sansa	Q	 I can feel the magic key somewhere on the second floor, probably the Whitetoad' son has it. Let's go get this key, we'll use it to remove the protection.	¿po?	18		"NPCFollow#"		
+18	A	Fine.	po.	0		"SetVariable#varsilian_job,90"
+19	A	He's having some problems, and maybe you can help.	po.	20		
+20	Q	 I'm not surprised, this scoundrel constantly gets into all sorts of trouble, but I may be able to help if it's not a difficult matter for me.	¿po?	21		
+21	A	Do you know anything about the moon curse and how to remove it?	po.	22		
+22	Q	 Yes, I've heard something about it, even during my studies, but I can't remember anything particularly. Although there was one guy at that time who was very fond of this topic, and it seems like he is a great expert in this matter now.	¿po?	23		
+23	A	Maybe he could help us. Where can I find him?	po.	24		
+24	Q	 But there is one problem here, he moved to live in Deepfrost a year ago, and now you should not go there. For your own good, I recommend it.	¿po?	25		
+25	A	And there are other options, who could help?	po.	26		
+26	Q	 Well, there's someone else, a wizard, who wrote works on this topic, but they didn't impress anyone in the city. He also left here and, as a hermit, settled in some cave somewhere in White Plains.	¿po?	27		
+27	A	Thanks, I'll go there and try to find him.	po.	28		
+28	Q	 If you want, I can help you find him, I don't have anything to do here right now anyway.	¿po?	29		
+29	A	And I thought that after the Hugh case, you earned enough money to find something to entertain yourself with.	po.	30		
+30	Q	 It so happened that I've already spent everything on some of my research, and I'm kind of tired of being in the city and I don't mind taking a little walk.	¿po?	31		
+31	A	Well, I will be glad that you will join the company!	po.	33		
+31	A	Thanks for the offer, but I can handle it myself.	po.	32		
+32	Q	 Well, suit yourself then.	¿po?	0		"SetVariable#ladies_man,75;NPCDespawn#sansa"
+33	Q	 Then we will not linger here, let's hit the road.	¿po?	34		"NPCFollow#"		
+34	A	Let's go.	po.	0		"SetVariable#ladies_man,75;SetVariable#sansa_quest,2"
+35	A	Wait, how can we do without... We're both girls!	po.	55	"PlayerIsFemale#"		
+35	A	Oh, I'm sorry, but I'm, uh, not into girls, so to speak.	po.	54	"PlayerIsFemale#"		
+35	A	I humbly and submissively accept this reward.	po.	39		
+35	A	Uh, it seems to me that just sex is not the best option for rewarding a hero.	po.	36		
+36	Q	 What?! Are you serious about this?! I've been preparing everything here for you, dressing up, choosing the sexiest lingerie, and you don't like everything?!	¿po?	37		
+37	A	Thanks for trying so hard, but I'm not interested.	po.	38		
+38	Q	 You better get out of here, you freak, before I fry you! Goat!	¿po?	0		"NPCHostile#sansa1;SetVariable#sansa_quest,110"
+39	Q	 So don't stand there, but come to me.	¿po?	40		
+40	A	[BLUE](after getting rid of the extra clothes, you began to prove to the young sorceress that you are a hero not only in battle, but also in bed, when you finished, the girl barely moved)[]	po.	41		
+41	Q	 [BLUE](the sorceress began to put herself in order)[] It was unforgettable. Now I understand why no enemy can defeat you.	¿po?	42			
+42	A	You were beautiful, I've never felt so good.	po.	43		
+43	Q	 So, my hero, I realized that all this adventure is not mine, but another thing is that in the company of you, nothing will threaten me, and I will be able to provide my magical support for you. Well, how do you like my offer?	¿po?	44		
+44	A	I am happy to travel with you!	po.	45		
+44	A	I am happy to travel with you, but I don't need your help right now.	po.	46		
+45	Q	 Then I'll change my clothes now and let's hit the road.	¿po?	0		"NPCDespawn#sansa1;SetVariable#sansa_quest,20;ShowParty#;Travel#IM_manor6,2"
+46	Q	 Okay, you know where to find me if you need me.	¿po?	0		"NPCDespawn#sansa1;SetVariable#sansa_quest,20;ShowParty#;Travel#IM_manor6,2"
+47	A	I'm having some problems, and maybe you can help.	po.	48		
+48	Q	 Well, I might be able to help if it's not a difficult matter for me.	¿po?	49		
+49	A	Maybe you know something about the Lady of the Night?	po.	50		
+50	Q	 About the statues? Not really... Although I know one master, I studied with him for a while, he was fascinated by this thing, constantly studying it.	¿po?	51		
+51	A	Maybe I can learn something useful from him. Where can I find him?	po.	52		
+52	Q	 I will send him a magical message, if he agrees to a meeting, from the memory of old friendship, he will be waiting for you at the statue.	¿po?	53		
+53	A	 Okay.	¿po?	0		"SetVariable#between_worlds,25;NPCDespawn#sansa"
+54	Q	 Oh, oh, I understand, I'm sorry that I suddenly attacked you... But I still wouldn't mind going on adventures in your company, I'll be able to provide my magical support for you, and maybe in the process, we'll get to know each other better.	¿po?	61		
+55	Q	 It's not a problem for sorceresses, especially for someone as resourceful as me! [BLUE](the girl took out a thing imitating a man's penis from a drawer, with the help of her hands, she brought it into working readiness, as if it were real)[] My special toy! But that's a small thing, compared to what usually do here in Icemist!	¿po?	56		
+56	A	Perhaps one day it will be interesting for me to learn more about this from your mouth, but for now I will trust you, you are clearly experienced in such matters.	po.	57		
+57	Q	 Trust me, it will be unforgettable, after today you will no longer be interested in men! [BLUE](you helped each other get rid of extra clothes, after which Sansa demonstrated to you a lot of her skills, including using her toys and your body, which you could not even imagine, and it is unlikely that you would admit to anyone about participating in such a thing)[]	¿po?	58		
+58	Q	 [BLUE](when you finished, you began to put yourself in order.)[] It looks like we'll have to call the staff to make up the whole bed after us and make a new one! I'm sure you enjoyed it, and we need to repeat it so that you gain more experience.	¿po?	59			
+59	A	It was very unusual and unnatural, but I'll probably get used to it.	po.	60		
+60	Q	 Of course, more practice, and together we will rise to the highest level of enjoyment. By the way, for example, all these adventures of yours are clearly not mine, but it's another matter when I'm with you, nothing threatens me, because you will protect me, and I will be able to provide my magical support for you. I'm sure we'll be a great team!	¿po?	61		
+61	A	I am happy to travel with you!	po.	45		
+61	A	I'm happy to travel with you, but right now I don't need anyone's help.	po.	46		

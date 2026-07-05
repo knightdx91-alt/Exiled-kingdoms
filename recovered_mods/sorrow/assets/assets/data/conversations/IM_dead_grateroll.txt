@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I hope that bastard is still alive? 	¿po?	9	"VariableEqual#something_more,80"		
+1	Q	 [BLUE](despite the damage received, the wizard manages to get to the teleporter and use it)[] 	¿po?	4	"VariableEqual#something_more,70"		
+1	Q	 I hope that bastard is still alive? 	¿po?	6	"VariableEqual#something_more,35"		
+1	Q	 [BLUE](despite the damage received, the wizard manages to get to the teleporter and use it)[] 	¿po?	2	"VariableEqual#something_more,25"		
+2,sansa	Q	 Damn it, that bastard managed to escape!	¿po?	3		
+3	A	Let's not linger, let's catch up with him!	port?	0		"NPCDespawn#grateroll;SetVariable#something_more,30"
+4,sansa	Q	 Damn it, that bastard managed to escape!	¿po?	5		
+5	A	Let's not linger, let's catch up with him!	port?	0		"NPCDespawn#grateroll;SetVariable#something_more,75"
+6	A	It seems to be breathing so far.	port?	7		
+7	Q	 Great! We'll take him to the magister, have them patch him up and be able to interrogate him. I'm teleporting us all to New Garand..	¿po?	8		
+8	A	Okay, that's what we'll do.	port?	0		"Travel#NG,999;SetVariable#something_more,40"
+9	A	It seems to be breathing so far.	port?	10		
+10,sansa	Q	 Great, so he'll be able to answer my questions! Well, did the bastard want to ruin my reputation and turn me in as a criminal, but it didn't work out? How could I hurt you so much if you decided to start all this? If I hear something sensible from you, then I will try to help you not to die here.	¿po?	11		
+11,grateroll2	Q	 It's not that simple, I'm not alone, and you're one of our many goals...	¿po?	12		
+12,sansa	Q	 What? Are you saying that there is some kind of conspiracy in the Guild?	¿po?	13		
+13,grateroll2	Q	 Can call it that.	¿po?	14		
+14,sansa	Q	 Okay, I have a familiar magister who is close enough to the queen, I will send him a message to meet him in New Garand and give him this freak, let him deal with him and his conspiracy.	¿po?	15		
+15	A	Okay, that's what we'll do.	port?	0		"Travel#NG,999;SetVariable#something_more,85"

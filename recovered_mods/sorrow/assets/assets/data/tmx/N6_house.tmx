@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="25" tilewidth="64" tileheight="32" nextobjectid="25">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLngNePgNo+aAN1tID4MU8tMSgG9w28wx9cooD8Y7OmZ0vw6CoY/AABjMngn0AcAAA==
+  </data>
+  </layer>
+  <layer name="water" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBognYk4PGreqHmj5o2aR6qZtDSPCY/51PbvKBjZAABugxbX0AcAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <layer name="ground 3" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBrADognQHEPFgyTsyfSvFAkdhMONggYk2BeMCuqWBkWdaSYhwzkmRgYFKCYHPOS0fmsCEwN9+ECpJgXzopfzX9G8tzHiBZmMP5mduLNMyRSHbHmgdJzJwMi/boCsRsQRyCJdTEQn56jqew+apsXDKWZmHCraSPBPGLdZ02CeVvZiVRMBAgH4vNEmGdDpHmg9HcSaN52qJlVDKg0DBAbfrZAbEIEdiDSvFEwOAAAuE42+tAHAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="25">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="300" gid="487" y="490">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="governor" type="spawn" id="2" x="205" gid="489" y="145">
+      <point />
+      <properties>
+        <property name="conversation" value="N6_governor" />
+        <property name="spawn" value="governor_Sol_Laqueul" />
+        <property name="wander" value="0" />
+        <property name="tag" value="governor" />
+      </properties>
+    </object>
+    <object name="chief" type="spawn" id="3" x="175" gid="489" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="chief_Sol_Laqueul" />
+        <property name="wander" value="0" />
+        <property name="tag" value="chirf1" />
+      </properties>
+    </object>
+    <object name="Bernadette" type="spawn" id="4" x="175" gid="489" y="205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="bernadette" />
+        <property name="wander" value="0" />
+        <property name="tag" value="bernadette" />
+      </properties>
+    </object>
+    <object name="chirf" type="spawn" id="5" x="305" gid="489" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="chief_Sol_Laqueul" />
+        <property name="wander" value="0" />
+        <property name="tag" value="chirf2" />
+      </properties>
+    </object>
+    <object name="captain" type="spawn" id="6" x="385" gid="489" y="515">
+      <point />
+      <properties>
+        <property name="conversation" value="N6_captain" />
+        <property name="name" value="@CAPTAIN_GOODWHIP" />
+        <property name="portrait" value="200" />
+        <property name="spawn" value="human_captain_female" />
+        <property name="wander" value="0" />
+        <property name="tag" value="goodwhip" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="15" x="295" gid="489" y="395">
+      <point />
+      <properties>
+        <property name="name" value="@GUARDIAN" />
+        <property name="spawn" value="human_soldier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="17" x="90" y="140" width="290" height="110">
+      <properties>
+        <property name="conditions" value="VariableLower#drastic_steps,31" />
+        <property name="actions" value="StartConversation#governor,N6_governor" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="18" x="90" y="90" width="290" height="500">
+      <properties>
+        <property name="actions" value="StartConversation#bernadette,N6_governor" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="19" x="90" y="450" width="290" height="140">
+      <properties>
+        <property name="actions" value="StartConversation#chirf2,N6_chief" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="20" x="90" y="90" width="290" height="500">
+      <properties>
+        <property name="conditions" value="VariableEqual#drastic_steps,32" />
+        <property name="actions" value="StartConversation#governor,N6_governor" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="24" x="195" gid="489" y="395">
+      <point />
+      <properties>
+        <property name="name" value="@GUARDIAN" />
+        <property name="spawn" value="human_soldier" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

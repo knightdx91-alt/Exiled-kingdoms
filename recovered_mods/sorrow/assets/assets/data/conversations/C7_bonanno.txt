@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 As soon as you've dealt with the lousy captain, we'll be right back in town.	¿po?	5	"VariableGreater#time_to_pay,44;VariableLower#time_to_pay,51"		
+1	Q	 The boss said that she would send someone to deal with that lousy captain, apparently, that you.	¿po?	2	"VariableEqual#time_to_pay,43"		
+1	Q	 Leave me alone, I'm busy!	¿po?	0		
+2	A	Yes, shall we get down to business?	port?	3		
+3	Q	Yeah, now let's take a boat and cross to this goat. 	port.	4		
+4	A	Clearly.	port.	0		"SetVariable#time_to_pay,45;Travel#C7_house2,1,2"
+5	A	It's done, he's dead.	port.	6	"VariableEqual#time_to_pay,50"		
+5	A	Clearly.	port.	0		
+6	Q	Then let's go back to the city. 	port.	7		
+7	A	Clearly.	port.	0		"SetVariable#time_to_pay,52;Travel#C7,1,2"

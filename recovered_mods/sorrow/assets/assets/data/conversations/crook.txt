@@ -1,0 +1,41 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](beggar noticed Sansa from afar and immediately started running away)[]	port.	0	"VariableEqual#sansa_evil_crook,3;NPCIsInParty#sansa2,sansa"	"NPCDespawn#crook"	
+1	Q	[BLUE](in the road, you notice a beggar, a dirty, ragged man. As soon as he sees you, he runs up to you and begs for money, standing so close that his stench chokes you and brings tears to your eyes)[] Oh, kind man, have mercy on the poor and unfortunate sufferer, and give me a couple of coins so that I don't starve to death! [BLUE](he talked nonstop, gesturing wildly and constantly brushing against your clothes and equipment, which made you even more uncomfortable)[]	port?	2		
+2,adaon	Q	 [BLUE](suddenly, Adaon pushed the beggar away from you)[] Hey, boss, while you were opening your mouth, this crook was going through your pockets!	¿po?	5	NPCIsInParty#adaon,adaon		
+2,sansa	Q	You again! I warned you, you dirty and smelly beggar, now you've pissed me off! [BLUE](it looks like she's serious)[]	port.	0	"VariableEqual#sansa_evil_crook,2;NPCIsInParty#sansa2,sansa"	"NPCHostile#crook;SetVariable#sansa_evil_crook,3"	
+2,sansa	Q	Don't you want to die right here and now? Get out, you dirty and smelly beggar, before I roast you! [BLUE](to make her words sound convincing, she launched a lightning bolt into the ground next to his feet, almost setting him and your clothes on fire)[]	port.	11	"VariableLower#sansa_evil_crook,1;NPCIsInParty#sansa2,sansa"		
+2,crook	Q	 [BLUE](he clearly wasn't going to let you go until he got what he wanted, and he kept begging)[]	¿po?	3				
+3	A	[BLUE](despite this beggar's attempts to divert your attention with his appearance and chatter, you notice his mischievous hands discreetly trying to steal something from your possessions)[] Get your hands off me before I break them!	port?	4			AWA#2
+3	A	[BLUE](push him)[] Leave me alone and beg for alms from others!	port?	7		
+3	A	Okay, here are 50 coins for you.	port.	8	"playerhasGold#50"	"loseGold#50"
+3	A	Okay, here are 100 coins for you.	port.	8	"playerhasGold#100"	"loseGold#100"
+4	Q	 [BLUE](realizing that he had been caught, the vagabond immediately jumped away from you)[] I didn't mean anything! I was just asking for a handout, but if you're too stingy, I'll find someone kinder and more generous! [BLUE](and he ran away, looking back as he went)[]	¿po?	9				
+5,crook	Q	 [realizing that he had been caught, the vagabond immediately jumped away from you)[] I didn't mean anything! I was just asking for a handout, but if you're too stingy, I'll find someone kinder and more generous! [BLUE](and he ran away, looking back as he went)[]	¿po?	6				
+6,adaon	Q	 Yeah, come on, run faster before we decide to catch up and break your legs and arms!	¿po?	9				
+7	Q	 Three or Eleven will punish you for treating the poor and needy this way! [BLUE](vagabond rushed away, quickly disappearing behind the nearby bushes)[]	¿po?	10		"NPCDespawn#crook"		
+8	Q	 I am very grateful to you, stranger, and may the gods bless you, whatever they may be! [BLUE](vagabond rushed away, quickly disappearing behind the nearby bushes)[]	¿po?	10		"NPCDespawn#crook"		
+9	A		port?	0		"NPCDespawn#crook"		
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#100000"	"loseGold#100000"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4503"	"LoseItem#4503"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4002"	"LoseItem#4002"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3030"	"LoseItem#3030"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4020"	"LoseItem#4020"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4008"	"LoseItem#4008"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4500"	"LoseItem#4500"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3028"	"LoseItem#3028"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3025"	"LoseItem#3025"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#50000"	"loseGold#50000"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4502"	"LoseItem#4502"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4015"	"LoseItem#4015"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#339"	"LoseItem#339"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3029"	"LoseItem#3029"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3033"	"LoseItem#3033"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#3018"	"LoseItem#3018"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that one of the items was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"PlayerHasItem#4013"	"LoseItem#4013"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#25000"	"loseGold#25000"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#10000"	"loseGold#10000"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#1000"	"loseGold#1000"
+10	Q	 [BLUE](when he left, you looked at your belongings and found that some of your money was missing. It seems that the vagabond stole it from you!)[]	¿po?	0	"playerhasGold#100"	"loseGold#100"
+10	Q	 [BLUE](when he left, you looked at your belongings and, fortunately, everything was in place)[]	¿po?	0		
+11,crook	Q	 [BLUE](vagabond immediately jumped away from you and, screaming in fear, ran away without looking back)[]	¿po?	12				
+12,sansa	Q	 And don't come across me again, next time I won't be so kind!	¿po?	0		"SetVariable#sansa_evil_crook,2;NPCDespawn#crook"		

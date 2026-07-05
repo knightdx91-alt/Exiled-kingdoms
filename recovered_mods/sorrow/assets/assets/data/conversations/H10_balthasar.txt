@@ -1,0 +1,65 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	It's a pity that this happened, but I warned him that I would stop at nothing to achieve the goal of my life! However, it's sad that you had to participate in such a thing. Well, then it's time to reward you and say goodbye, and I'll finish what I started!	port?	48	VariableEqual#very_strange_thing,77		
+1	Q	I'll deal with him myself!	port?	0	VariableEqual#very_strange_thing,72		
+1	Q	This is my pride! It took me an incredible effort to assemble this device, and now, thanks to the substrates you collected and the artifact you returned to me, it will work! [BLUE](after the magician's incomprehensible manipulations, the strange metal arch began to glow and hum)[] Yes! Finally, after countless years, my wonderful plan is being implemented and the great goal of saving our world will be fulfilled!	port?	32	VariableGreater#very_strange_thing,69		
+1	Q	Come back when you've collected the amount of substrates I need.	port?	28	VariableGreater#very_strange_thing,59		
+1	Q	Oh, this is our hero, how are you doing with the search for the artifact?	port?	20	VariableGreater#very_strange_thing,39		
+1	Q	This outsider turned out to be very dangerous, it's scary to imagine what others like him are capable of! [BLUE] (the wizard began to examine the body of the defeated enemy, using his staff and some spells)[] Yeah, so my theory is confirmed!	port?	7	VariableEqual#very_strange_thing,35		
+1	Q	These outsiders can be very dangerous!	port?	0	VariableEqual#very_strange_thing,30		
+1	Q	[BLUE](a good-natured-looking elderly wizard, clearly worried about something[]) You're on time! How glad I am to see you! This is one of the outsiders I was talking about, and he's hostile, unwilling to make contact! Help me figure it out!	port?	5	VariableEqual#very_strange_thing,25		
+1	Q	([BLUE]a good-natured-looking elderly wizard, fussily looking around)[] Greetings, traveler! Have you changed your mind and decided to help me?	port?	2	VariableEqual#very_strange_thing,10		
+1	Q	[BLUE](a good-natured-looking elderly wizard, fussily looking around)[] Greetings, valiant traveler! My name is Balthazar the Omniscient. Will you pay some attention to me? Very strange things began to happen in our lands, out of nowhere, suddenly, all sorts of strangers began to appear, previously unseen by anyone. I'm trying to figure out what's going on, but I can't do without the help of a brave and powerful hero.	port?	2		
+2	A	No, thanks, I'm not going to get into any strange adventures!	port?	0		"SetVariable#very_strange_thing,10"
+2	A	I'll be glad to help! What is required of me?	port?	3		
+3	Q	I'm going to need all the help I can get! So far, I do not know the reason for the strangeness and who is behind it, but I have some clues. I need to check something, I'll meet you later at Kingsbridge, if I'm not there, then look for my apprentice!	port	4		
+4	A	Okay, we have a deal!	port?	0		"SetVariable#very_strange_thing,15;NPCDespawn#balthasar"
+5,apprentice	Q	 I'm coming to your rescue, Teacher!	¿po?	6		"NPCStopFollowing#"		
+6	A	Okay, I'll deal with him!	port!	0		"NPCHostile#mechguardian;SetVariable#very_strange_thing,30"		
+7,apprentice	Q	 Really?! So we can convince the stubborn magisters at Icemist that we're right!	¿po?	8				
+8,balthasar	Q	 I doubt very much that they will listen to me, even if I bring them the most reliable evidence! No, we'll have to deal with it ourselves! But first, I'll bring our hero up to speed.	¿po?	9				
+9	A	Okay, I'm listening to you.	port?	10		
+10	Q	It all started a few years ago, when my friend, a wizard inventor, detected a large release of someone's magic. No one in Icemist betrayed this meaning, except for me, but I didn't manage to do anything really on my own. But after a while, the body of one outsider was delivered to me. Even though I couldn't find out anything significant at the time, I continued to search and explore these outsiders all these years, simultaneously obtaining information about the release of magic and who could be behind it, based on all the knowledge my theory was built.	port	11		
+11	A	And what is this theory?	port?	12		
+12	Q	It's just a suspicion that there is a group of wizards who secretly tried to open something like a passage to other worlds. It doesn't matter for what purpose they tried to do this and how successfully, the main thing is that the integrity of space was violated, and various outsiders began to enter our world from the gaps that arose. It was just a theory, but in the bodies of the outsiders I studied, I found traces of foreign energy, a kind of substrate, distinguishable from ours. But I couldn't get it, because all the creatures that fell into my hands were weak, but this outsider is on a completely different level!	port	13		
+13	A	What's the use to you?	port?	14		
+14	Q	Well, the opportunity to explore something new and unexplored is one of the main aspirations of any magician! But I see a much more important mission, as long as the gaps to other worlds are open, outsiders will continue to penetrate us, and it's only a matter of time before something unimaginable and terrible appears that wants to destroy our home! Therefore, it is very important to patch up these gaps, and the outsider substrate I discovered will help in this. I have an idea, but I'll need a magical artifact to implement it. But there is a problem, the person who was supposed to deliver it to me was caught by the orcs, so I need to save my courier or better my artifact.	port	15		
+15	A	I need to know where to start the search, where, approximately, did the attack on your courier take place?	port?	16		
+16	Q	It was in this area that he was attacked on the way from Lanneger, perhaps if he was killed, then you can find my artifact on his corpse.	port	17		
+17	A	Okay, I'll return your artifact.	port!	18				
+18	Q	Great, my apprentice and I will set up our laboratory at the top of this tower for now.	port	19		
+19	A	Clearly.	port!	0		"NPCDespawn#balthasar;NPCDespawn#apprentice;NPCSpawn#golem_g;SetVariable#very_strange_thing,40"		
+20	A	I managed to find your artifact.	port!	22	PlayerHasItem#10620		
+20	A	I don't have it with me.	port!	21				
+21	Q	It is sad.	port	0		
+22,balthasar2	Q	Great! This is the last missing piece for my magic construct, which I have been collecting over the years! [BLUE](the wizard shoved the artifact into an obscure structure, and immediately it lit up with a lot of lights and a magic window lit up)[] Yes, it works!	port	23		"LoseItem#10620"				
+23,apprentice2	Q	 Unbelievable! You did it, teacher!	¿po?	24				
+24,balthasar2	Q	Well, thanks to my device and the extracted substrate from the outsider, we will be able to find other powerful outsiders and get even more substrate from them so that it is enough to close the gap in space! So, hero, you have a difficult task ahead of you - to defeat all these powerful creatures, are you ready for this?	port	25		
+25	A	Yes, but where should I look for these creatures?	port!	26				
+26	Q	My device will help you with this. [BLUE] (the wizard began to perform some manipulations with the magic window and a map of Varranar appeared on it with a scattering of luminous dots)[] Here they are! The outsiders we need are displayed on the map. Thir Ridges, Northwest Sagar Forest, North Sagar Forest, Nekhar Valley, East Inori, Steel Coast, Solligan Stripe. Now I'm going to teach you a simple spell that extracts the substrate from outsiders, and you can get down to our difficult matter, and I'm sure these things will help you with that.	port	27		
+27	A	Good.	port!	0		"GainItems#5030,2;GainItems#5031,2;GainItems#5050,2;GainItems#5033,2;GainItems#5021,3;GainItems#5001,3;GainItem#5003;GainItem#5005;SetVariable#very_strange_thing,60"		
+28	A	I have collected lot the substrate.	port!	30	PlayerHasItems#10637,7		
+28	A	I have collected the substrate.	port!	29	PlayerHasItem#10637		
+28	A	Clearly.	port	0				
+29	Q	It's not enough! We need more substrate!	port	0		
+30	Q	Hmm, I think that should be enough... Let's not waste time. Let's go!	port	31		
+31	A	Clearly.	port	0		"LoseItems#10637,7;LoseItems#10637,10;NPCDespawn#balthasar2;NPCDespawn#apprentice2;SetVariable#very_strange_thing,70;Travel#H9_tower,4"		
+32	A	And how does this thing work?	port	33				
+33	Q	 Hmm, this is a difficult-to-explain process, it took me many years to figure it out and understand everything. The basis was the usual teleportation used in Icemist, but it was greatly improved by the knowledge that I received throughout my life.	¿po?	34				
+34	A	Teleportation? I thought this thing was supposed to close the gaps in space.	port	35				
+35,balthasar3	Q	 This is exactly what she will do, thanks to the main teleporter, the gaps will be revealed as transition points, and thanks to the otherworldly energy they will be patched up, simultaneously returning all the most dangerous and powerful outsiders to their worlds.	¿po?	36				
+36,apprentice3	Q	 Teacher, then maybe we should test your machina first. Our new friend would help us deliver some kind of test subject for this, which we would find with the help of your machina, which is located on the floor below?	¿po?	37				
+37,balthasar3	Q	 No, I'm not going to wait any longer, and so many years of my life have been spent on all this! Besides, I do not know how long my artifact will still work. Let's get to work immediately!	¿po?	38				
+38,apprentice3	Q	 But, teacher, such deportation of outsiders can be dangerous for their lives! It's not worth the risk until we check exactly how everything works!	¿po?	39				
+39,balthasar3	Q	 I don't care about these outsiders! The main thing is that they will all get out of my world, and it doesn't matter what state they will be in after that!	¿po?	40				
+40,apprentice3	Q	 I will not allow you, teacher, to risk the lives of many beings just like that, it is not their fault that they ended up in an alien world!	¿po?	41				
+41,balthasar3	Q	 Really?! And how can you stop me?	¿po?	42				
+42	A	[BLUE](another device caught your attention, which had a large magic light flashing, neither the mage nor his apprentice noticed it)[] And what is this thing, and what does it do?	port	43				
+42	A	[BLUE](while the mage and his apprentice are arguing, ignoring you, activate the artifact that Zeref gave you)[]	port	49	PlayerHasItem#10647		
+43,balthasar3	Q	 What?.. It can't be! It's a detector that detects the presence of outsiders... [BLUE](the wizard's gaze slid around the room, stopped at his apprentice)[] So that's why you care so much about these outsiders, you're one of them!	¿po?	44				
+44,apprentice3	Q	 Me?! No, and what difference does it make whether I'm an outsider or not, all lives matter, I will stop you from putting innocent lives at mortal risk, no matter what it costs me!	¿po?	45				
+45,balthasar3	Q	 Try it, but I won't let anyone get in my way, and I won't spare anyone, not even you, to achieve my goal!	¿po?	46				
+46	A	[BLUE](side with mage Balthazar)[]	port	0		"SetVariable#very_strange_thing,72;NPCDespawn#apprentice3;NPCSpawn#apprentice4"		
+46	A	[BLUE](side with the magician's apprentice)[]	port	0		"SetVariable#very_strange_thing,75;NPCDespawn#balthasar3;NPCSpawn#balthasar4;NPCHostile#golemb;NPCHostile#golem_g"		
+48	A	Good.	port!	0		"GainXP#2700;GainGold#3450;GainItem#10640;SetVariable#very_strange_thing,100;SetVariable#minus_outsider,2;Travel#H9_tower,5"		
+49	Q	 Wait... What's happening?!	¿po?	50				
+50	A	 	port?	0		"SetVariable#very_strange_thing,82;LoseItem#10647;NPCSpawn#hidden_mage2;NPCSpawn#hidden_team;NPCDespawn#balthasar3;NPCDespawn#apprentice3;NPCSpawn#balthasar5;NPCSpawn#apprentice5"

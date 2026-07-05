@@ -1,0 +1,111 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Get these assholes out!	port.	0	"VariableEqual#changing_hierarchy,65"		
+1	Q	 If you're ready, then let's go deal with that bastard.	¿po?	82	"VariableEqual#changing_hierarchy,55"		
+1	Q	You're just in time, a group of my guys have already gone to the scene of the showdown, I've been waiting for you and my old friend. [BLUE](he pointed to an unkempt-looking man with a scar on his face and an eye patch.)[]	port.	78	"VariableEqual#changing_hierarchy,50"		
+1	Q	Is back? Did you find out anything?	port.	75	"VariableEqual#changing_hierarchy,35"		
+1	Q	 [BLUE](the largest of the men who broke into the house spoke calmly)[] Just look, we came hunting for small fish, and there are bigger fish waiting for us here. Great, two vorators with one arrow!	¿po?	52	"VariableEqual#changing_hierarchy,10"		
+1	Q	Hello, my friend, I'm glad to see you in our lair, but we're not having the best of times here right now.	port.	43	"VariableGreater#last_race,99;VariableGreater#size_matters,99;VariableLower#changing_hierarchy,9"		
+1	Q	Thanks again, my friend, for agreeing to help, even though Vince solved his own problem. And this is my thanks for your help.	port.	32	"VariableEqual#size_matters,90"		
+1	Q	Take down beefs!	port.	0	"VariableEqual#size_matters,87"		
+1	Q	Are back? And Vince is here too. Have you been informed that a solution to your problem has been found?	port.	26	"VariableEqual#size_matters,85"		
+1	Q	Well, is there any progress?	port.	23	"VariableEqual#size_matters,72"		
+1	Q	Hello, my friend, make yourself at home.	port.	0	"VariableGreater#size_matters,9"		
+1	Q	Hello, my friend, make yourself at home. Once again, I want to thank you for your help, and I have one delicate matter, I will be glad if you help me again.	port.	18	"VariableEqual#sin_kingdom,120"		
+1	Q	Hello, my friend, make yourself at home. Once again, I want to thank you for your help, and I have one delicate matter, I will be glad if you help me again.	port.	18	"VariableEqual#sin_kingdom,110"		
+1	Q	We'll do it, then we'll talk.	port.	0	"VariableEqual#sin_kingdom,96"		
+1	Q	Let's not waste time, we rush inside, kill everyone who gets in our way, kill the baron without further ado, and quickly get out before the guards arrive.	port.	40	"VariableEqual#sin_kingdom,95"		
+1	Q	Give the message to your mistress, we'll go visit the baron soon.	port.	0	"VariableEqual#sin_kingdom,93"		
+1	Q	Our prisoner told me where to look for the hired man, and I sent my guys there, but this guy turned out to be just an intermediary. Vince was able to crack him easily and found out that the main employer was a certain Baron Enterprice.	port.	37	"VariableEqual#robber_out,1"		
+1	Q	 Greetings, my friend, I am Rickman. Johnny told me that you helped him out, and Vince praised you for negotiating well, and mistress Philippa trusts you, so I can trust you. My warehouse, which was attacked, is very important to recapture as soon as possible, since, among other things, the goods of the House of Seven are stored there, and we obviously do not need problems with them..	¿po?	33	"VariableEqual#sin_kingdom,91"		
+1	Q	 Everyone seems to have been dealt with.	¿po?	0	"VariableEqual#sin_kingdom,90"		
+1	Q	 Get these assholes out!	¿po?	0	"VariableEqual#sin_kingdom,89"		
+1	Q	[BLUE](with his last breath, the boss of the bandits crawled back to his throne, his hand felt something lying under the throne, and the man immediately jumped to his feet full of strength again, tore off his clothes, exposing his powerful body, wet with sweat and blood, in his hand he clutched the hilt of a huge, terrifying-looking sword)[]	port.	17	VariableEqual#sin_kingdom,75	"NPCSpawn#boss2"	
+1	Q	Thank you, my friend, the problem with the evil ladies has been solved, it's a pity that in this way, I tried to settle everything in peace. We will take the company of their boss into our own hands so that it does not go to waste. And here is my thanks for your help.	port.	16	"VariableEqual#sin_kingdom,40"		
+1	Q	Don't waste your time, go help my guys.	port.	0	"VariableEqual#sin_kingdom,35"		
+1	Q	Is the job done? Fine. The boss of these girls will not calm down so easily, which means it's time to specifically resolve this issue with her.	port.	14	"VariableEqual#sin_kingdom,30"		
+1	Q	Don't waste your time, go protect the hiding place.	port.	0	"VariableEqual#sin_kingdom,25"		
+1	Q	Have you returned yet? So, how was the meeting? I think it's not as good as I would like?	port.	8	"VariableEqual#sin_kingdom,20"		
+1	Q	Don't waste your time, go to a meeting.	port.	0	"VariableEqual#sin_kingdom,15"		
+1	Q	 [BLUE](an inconspicuous house, both outside and inside, you found yourself surrounded by unpleasant-looking men, one of them, with a hooded face, kept away from the others and spoke to you)[] Greetings to you, friend, in our lair. I'm Rickman, and I'm in charge here.	¿po?	2	"VariableEqual#sin_kingdom,12"		
+2	A	Nice to meet.	po.	3		
+3,boss1	Q	 Johnny told me that you helped him out, and you're ready to work for us. Well, smart and determined people will be useful to us, since the problem with harmful ladies has been brewing for a long time. It is clear that both sides of this conflict are to blame for what has come to this, so it's time to do something about it.	¿po?	4				
+4,bandit1	Q	 There is a very simple and effective way, we have already tested it on one of the sluts!	¿po?	5			
+5,boss1	Q	 This will not end well, not for them, not for us. While there is still a chance, it is necessary to solve this problem peacefully. And I've already been able to negotiate with them about negotiations, Vince and his guys have already gone to the meeting, and you, Johnny, along with our new friend, will follow them to insure our people if something goes wrong.	¿po?	6			
+6,bandit1	Q	 Okay, boss. Where are we going?	¿po?	7		"NPCFollow#"		
+7,boss1	Q	 Go to New Garand farmlands, where we agreed to hold a meeting.	¿po?	0		"SetVariable#sin_kingdom,15"
+8,bandit1	Q	Boss, these freaks weren't going to communicate, they immediately attacked us, somehow we showed up! We had to kill them all!	port.	9		
+9,boss1	Q	Clearly. It seems that this news about what happened reached their boss pretty quickly. The damn ladies attacked our main hiding place, no other way than one of our cretins drunkenly talked about her whereabouts to some of their girls. And now they've decided it's time to hit us like that.	port.	10		
+10,bandit1	Q	Boss, we'll handle this situation!	port.	11		
+11,boss1	Q	This should be done as soon as possible, in this hiding place, among other things, the goods of the House of Seven are stored, and we clearly do not need problems with them, so get poisoned.	port.	12		
+12	A	Where is this warehouse located?	po.	13		
+13	Q	Not far from the settlers in northern Bluemist river.	port.	0		"SetVariable#sin_kingdom,25"
+14	A	What are you going to do?	po.	15		
+15	Q	Some of my guys managed to bribe one of the street ladies, and she gave away the location of their boss's hideout. I sent a squad of my best thugs to deal with her, go to mountain Storm, help my guys.	port.	0		"SetVariable#sin_kingdom,35"
+16	A	I was glad to help.	po.	0		"GainXP#1200;GainGold#777;GainItems#10108,10;SetVariable#sin_kingdom,110;SetVariable#most_famous,130;SetVariable#unstoppable_stalker,130"
+17,boss2	Q	So, are you ready to fight Rickman the Magnificent!?	port.	0		"NPCDespawn#boss1;SetVariable#evil_rick,1"
+18	A	What's the deal?	po.	19		
+19	Q	 It concerns recent events, after you and Johnny recaptured our hiding place, you returned, and Johnny stayed where he was. He never showed up, and when I personally went to check on our hiding place, I found that some of our stuff was missing, like Johnny himself, no one has seen him since.	¿po?	20				
+20	A	And you think Johnny robbed you?	po.	21		
+21	Q	 It's quite possible, but we need to look into it carefully, so I'm talking to you, the rest of the gang doesn't need to know yet that one of them is a rat. Vince is the most trusted person to me, I informed him about what happened, he will help you in this matter.	¿po?	22				
+22	A	Clearly.	po.	0		"NPCSpawn#vince;SetVariable#size_matters,10"
+23,johnny	Q	Yes, we managed to negotiate with the sorcerers, they will help Vince grow a dick!	port.	24		
+24,boss1	Q	Okay, except Vince never came back from Friguld. Maybe something happened to him, go there and check it out. The alchemist he went to can tell you something.	port.	25		
+25,johnny	Q	Understood.	port.	0		"SetVariable#size_matters,75"
+26,vince	Q	 Yes, boss. But Jumbo and I settled everything and refused to argue, so now it doesn't matter, everyone will leave their own way, and our gang will not be affected in any way.	¿po?	27		"NPCStopFollowing#"		
+27,boss1	Q	It's a good thing that everything turned out that way, otherwise I had to get into your argument myself. Well, thanks, friend, that...	port.	28		
+28,mino	Q	[BLUE](suddenly, a loud noise rang through the house, and a gang of minotaurs broke in at the head of a particularly healthy one)[] Hello, I'm a Bull's Dick! And there is no such giant dick as mine in the world yet! But according to rumors, there is a worthy rival here! I will say one thing, the size also matters at the anus, so that the loser can withstand my dick!	port.	29			
+29,boss1	Q	We don't really tolerate faggots here, especially if they're yelling everywhere about their preferences. So get out before they make beef sausage out of you.	port.	30		
+30,mino	Q	And you are a brave fellow! Bull's Dick likes such brave men! Are you ready to fight me one time at a time?!	port.	31			
+31,boss1	Q	Asked for it, fuck these bulls!	port.	0		"NPCSpawn#mino_team;SetVariable#size_matters,87"
+32	A	I was glad to help.	po.	0		"GainXP#1500;GainGold#777;GainItems#10115,5;SetVariable#size_matters,100"
+33,bandit1	Q	Boss, we'll handle this situation!	port.	34		
+34,boss1	Q	 Okay, go there together, finish off all the freaks, but if possible, leave someone alive to find out who is behind all this.	¿po?	35		
+35	A	Where is this warehouse located?	po.	36		
+36	Q	Not far from the settlers in northern Bluemist river.	port.	0		"NPCDespawn#boss1;NPCDespawn#banda_b;SetVariable#sin_kingdom,92"
+37	A	Baron?	po.	38		
+38,boss1	Q	 Exactly. Obviously, he is also behind the attacks on me and mistress Philippa. I don't care what title this guy has, I'm going to raid his mansion at night and ask him for his business, I'll do without a crowd of assistants so as not to attract unnecessary attention. Inform your mistress about this, she will probably want to deal with this baron too. If anything, I'll see you in New Garand at night. Если что, увидемся в Нью-Гаранде ночью.	¿po?	39		
+39	A	Okay, I'll give her your message.	po.	0		"SetVariable#sin_kingdom,93"
+40,agnes	Q	 Great plan, this freak will get for his misdeeds!	¿po?	41		"NPCFollow#"		
+41,boss2	Q	 Let's get to work.	¿po?	42		"NPCFollow#"		
+42	A	Let's go.	po.	0		"SetVariable#sin_kingdom,96;Travel#NG_manor4,3"
+43	A	What happened?	po.	44		
+44,boss1	Q	 One of my deputies, named Bubba, decided to move up and take my place. I would have dealt with him easily, but this bastard has become quite reputable, he has quite a lot of allies in the gang. Anyway, he got out of here and lay low, but at the same time he keeps luring my guys to his side and recruiting people from the outside. And the catch here is that he needs my contacts, who, while I'm in charge here, don't want to deal with anyone else.	¿po?	45		
+45,boss1	Q	 So in the end, one of us will have to die, because as long as we both breathe, there will be no unity in the gang. I found one particular person - he's a pro at finding those who can hide well, but I think your help will be useful if, of course, you have free time.	¿po?	46		
+46	A	Yes, of course, I will help you in any way I can.	po.	47		
+47,boss1	Q	 Well, that's great. By the way, meet our pro who will help us find Bubba.	¿po?	48		
+48,philosopher	Q	 Let's do without foreplay. I'm the best at what I do. I do it as it should be done, but I don't do it as it shouldn't be done. I'm even hard than hard-boiled eggs. While you're thinking and scratching your ass, I'm already acting...	¿po?	49		
+49,boss1	Q	 Okay, that's great, but what's our plan of action?	¿po?	50		
+50,philosopher	Q	 This Bubba is gathering people to throw you off the throne, and obviously he doesn't need any punks, he's recruiting specific guys, and there aren't many places where you can find such candidates...	¿po?	51		
+51,duan_team	Q	 [BLUE](he did not have time to finish, as there was a crash from above, and a group of large men in armor entered the hut through the ceiling, which was collapsing in several places, and one of them began to shout loudly)[] Don't move! Muzzles on the floor! The Varsilies specialguard is working!	¿po?	0		"SetVariable#changing_hierarchy,10;NPCSpawn#duan;NPCSpawn#helper;NPCSpawn#duan_team;ItemActivate#grate1"
+52,philosopher	Q	 Don't worry, big head, I'm actually working for your king now, too. Did you not know this, or are you not supposed to know this because of the baseness of your position?	¿po?	53		
+53,duan	Q	 Nonsense. Hey, Hicks, check if this freak is really in our database?	¿po?	54		
+54,helper	Q	 [BLUE](one of the soldiers, a woman in appearance, took out a magic sphere from her belt and began to look into it carefully)[] That's right, boss, he was hired to serve the king.	¿po?	55		
+55,boss1	Q	 Damn it, we're surrounded on all sides!	¿po?	56		
+56,philosopher	Q	 Relax, I'm not interested in you or your gang. I need your deputy Bubba, he has information about the man I'm looking for. I'll help you find your deputy, find out the information you need, and then do whatever you want with him, I don't care about your fights. So let's get back to what we discussed...	¿po?	57		
+57,duan	Q	 Not so fast, buddy. Maybe you've managed to ingratiate yourself with the king, but I don't trust you, and I'll keep a close eye on you, just the smallest violation of the law, and you'll immediately go to jail. Do you understand me?	¿po?	58		
+58,philosopher	Q	 Calm down, big guy, it's like we're in the same boat right now, or don't you think so? It's all for the good of the kingdom, so let's do our own thing and not get in each other's way.	¿po?	59		
+59,duan	Q	 And that's where we have a problem. That boss Rickman's gang decided to show their willfulness and strength, didn't they, mercian? Or should I call you centurion Maximian?	¿po?	60		
+60,boss1	Q	 How did you find out where I come from and my former name?!	¿po?	61		
+61,duan	Q	 Oh, I know all about you, Maximian. About how you and your legion participated in campaigns against the Orcs on the west coast. And in hunting varannari in Jabal. And how you fell in love with a slave and decided to marry her, and not just a slave, but a varannari slave, for which you were disgracefully expelled from the legion when this truth was revealed. And how did you get into the suicide squad for your crimes, and your escape, after which you turned into robbers.	¿po?	62		
+62,duan	Q	 I keep an eye on the bastards in all the kingdoms who may pose a threat to the security of Varsilia and study them carefully. And now you've become one of my main targets. Previously, your gang sat peacefully and didn't really attract my attention, but now your thugs are wreaking havoc in the cities and on the roads of Varsilia in broad daylight. Have to answer for it.	¿po?	63		
+63,boss1	Q	 I'm not involved, it's my deputy who's being self-willed and his people, if I deal with him, I'll take the whole gang back under my control and keep order, if you arrest me, the riots will only intensify.	¿po?	64		
+64,duan	Q	 Riots are not good. I think I might leave you alone for a while if you curry favor with the kingdom.	¿po?	65		
+65,boss1	Q	 I am ready to cooperate with you, it will benefit both you and me.	¿po?	66		
+66,philosopher	Q	 Okay, if we have an agreement, then let's decide what we're going to do. As I was saying, before I was interrupted by these blockheads, your deputy is gathering people, and there aren't many places where he can find decent ones...	¿po?	67		
+67,duan	Q	 My guards and I will search and turn upside down all such burrows that we know about.	¿po?	68		
+68,philosopher	Q	 And I'll go to the lairs unknown to you and find out everything without making too much noise, unlike you, which can scare off our target.	¿po?	69		
+69,boss1	Q	 Bubba is not that easy, Vince and my friend will go with you to back you up.	¿po?	70		
+70,vince2	Q	 Okay, boss.	¿po?	71		"NPCFollow#"		
+71,philosopher	Q	 Okay, I hope they don't get in my way. Our first stop is in Northern Inori, not far from New Garand. They don't let just anyone in there, but that's not my case.	¿po?	72		
+72,boss1	Q	 Great, then let's get down to case.	¿po?	73		
+73,philosopher2	Q	 Exactly.	¿po?	74		"NPCFollow#"
+74	A	Then let's go.	po.	0		"ItemHide#grate1;ItemWalkable#grate1;NPCDespawn#duan;NPCDespawn#duan_team;NPCDespawn#helper;NPCDespawn#philosopher;SetVariable#changing_hierarchy,20"
+75	A	Yes, we learned from the bandit ThreeBag that Bubba's lair is located on one of the pirate islands. Vince and Filosofov went there to investigate. There are people waiting in Friguld who will take us to this island.	po.	76		
+76,boss1	Q	 Okay, I'll get ready for the trip, I'll meet you at the Friguld.	¿po?	77		
+77	A	Clearly.	po.	0		"NPCDespawn#boss1;SetVariable#changing_hierarchy,40"
+78,master	Q	 Don't strain yourself too much, Rickman, we don't need a lot of people, just me and a couple of smart guys to help. I've been in hundreds of battles, so suckers like this Bubba are in my teeth. We'll deal with him and all the faggots quickly and without any problems, no matter how many he brings with him.	¿po?	79		
+79,boss1	Q	 I'm glad you haven't changed, despite the years. But Bubba is mine - I will personally deal with him.	¿po?	80		
+80,master	Q	 Whatever you say, boss. It will be nice to fight side by side with you again, just like in the old days in Mercia.	¿po?	81		
+81,boss1	Q	 I try not to remember those days. Okay, if we're ready, then let's go.	¿po?	82		
+82	A	We're going.	po.	0		"NPCDespawn#boss1;NPCDespawn#master;SetVariable#changing_hierarchy,60;Travel#E10_house,1"
+82	A	I'm not ready yet.	po.	0		"SetVariable#changing_hierarchy,55"

@@ -1,0 +1,28 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a puny-looking guy, at the sight of you and Sansa, suddenly rushed to run, you were going to catch up with him, but Percy had bypassed him in advance, and now came out in front of him and knocked him down)[] Are you going far, freak?	¿po?	2	"VariableEqual#something_more,55"		
+1	Q	 [BLUE](a puny-looking guy, at the sight of you and Sansa, suddenly rushed to run, you were going to catch up with him, but Sansa knocked him down with a spell and immobilized him)[] Are you going far, freak?	¿po?	2	"VariableEqual#something_more,10"		
+2	A	Why did you run away?	po.	3		
+3,broker	Q	 And why catch up?	¿po?	4				
+4,sansa	Q	 So you were the one who was sent to collect the payment from me?	¿po?	5			
+5,broker	Q	 Yes, I was told that you would come alone.	¿po?	6			
+6,sansa	Q	 Well, I'm not stupid enough to go to a meeting with someone unknown alone, and even more so to take a bunch of coins with me.	¿po?	7		
+7,broker	Q	 I'm just a mercenary, I was paid only part of the work if I come here for a meeting, and I'll get the rest when I pick up and bring what agreed in the message.	¿po?	14	"VariableEqual#something_more,55"		
+7,broker	Q	 I'm just a mercenary, I was paid only part of the work if I come here for a meeting, and I'll get the rest when I pick up and bring what agreed in the message.	¿po?	8	"VariableEqual#something_more,10"		
+8,sansa	Q	 Great, so you know where and to whom you need to return after the meeting, I hope you will share this information with me?	¿po?	9		
+9,broker	Q	 And if I refuse, what will you do to me?	¿po?	10				
+10	A	I will hurt you very much, I will break you completely, despite your pleas, until you tell me what Sansa wants to know.	po.	11			STR#4
+10	A	She will slowly roast you with her lightning bolts and won't stop until she finds out what she wants, or until you die.	po.	11			INT#3
+10	A	I'll twist all the joints of your limbs, you won't even have time to come to your senses, you'll become a cripple, or you'll tell Sansa what she wants to know.	po.	11			AGI#3
+10	A	Nothing, just figure it out - you can take the whole amount for yourself, and not hope to get only a part of it, and there will be no questions for you, we will deal with your employer if you tell us where he is.	po.	11			PER#3
+11,broker	Q	 Okay, I get you. We agreed to meet at his house in Solliga after I pick up what was discussed in the message.	¿po?	12				
+12,sansa	Q	 That's good, but you decided to be stubborn. You can go, but I'll leave a magic mark on you, in case you deceived us, I'll be able to find you without any problems with her help.	¿po?	13		
+13	A	Now we know where to look for your blackmailer, we will not waste time, we will go to see him.	po.	0		"NPCDespawn#broker;SetVariable#something_more,15"
+14,perci2	Q	Seriously? Did someone pay you some money to take away and give him a large sum, but got else some money for it? Are there really such trusting people in the world, or the same honest people? Or maybe it's easier and you're on the same team as the one who sent you here?	port?	15		"NPCStopFollowing#"		
+15,sansa	Q	 Whether this is true or not, the main thing is that he knows where and to whom he needs to return after the meeting. I hope you will share this information with me?	¿po?	16		
+16,broker	Q	 And if I refuse, what will you do to me?	¿po?	17				
+17,perci2	Q	The lady should not bother herself. I can see that you are not a local, judging by your appearance - an islander, and the local captain, as I know him, does not like such rabble like you very much, and if I take you to him and inform him that you tried to rob me or even kill me - which one of us do you think he'll believe?	port?	18				
+18,broker	Q	 Okay, I get you. We agreed to meet at his house in Solliga after I pick up what was discussed in the message.	¿po?	19				
+19,sansa	Q	 That's good, but you decided to be stubborn. You can go, but I'll leave a magic mark on you, in case you deceived us, I'll be able to find you without any problems with her help.	¿po?	20		
+20	A	Now we know where to look for your blackmailer, we will not waste time, we will go to see him.	po.	21		
+21,perci2	Q	I suggest that first I go there alone and explore everything, after that you will come yourself.	port?	22		"NPCStopFollowing#"		
+22	A	It's a good idea, so let's do it.	po.	0		"NPCDespawn#broker;NPCDespawn#perci2;SetVariable#something_more,60"

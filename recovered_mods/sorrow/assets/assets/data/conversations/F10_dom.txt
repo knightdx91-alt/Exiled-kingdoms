@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](there was a broken wagon lying by the road, next to which stood Dominick, the coachman you know, and another man, someone's motionless body lay at their feet)[] Those bastards killed Jes, I'm not just going to leave it like that!	¿po?	2			
+2,vince	Q	 Right! They will pay for what they have done.	¿po?	3				
+3	A	What happened here?	po.	4		
+4,dom	Q	 Hello, it's good to see you again!	¿po?	5			
+5	A	And I'm glad to see you too. So what happened here and is there anything I can do to help?	po.	6		
+6,dom	Q	 We were returning from a successful case when we were attacked by yellow-skinned bastards to take our prey. The fact that they took ours is not as important as the fact that they killed my close friend - part of my family! The retribution that I will bring down on them will be inevitable and cruel!	¿po?	7		
+7,vince	Q	 I agree! Poor Jes - he was the best at forging wheels and hooves! His killers will not go unpunished!	¿po?	8			
+8	A	Do you know who exactly attacked you, and how to find them?	po.	9		
+9,dom	Q	 Yes, these are members of the islander group, they have recently settled here. Freaks have tried to put sticks in my wheels before, but they have not gone that far yet, now they will be severely punished for all the atrocities committed!	¿po?	10				
+10,vince	Q	 That's right, they asked for it themselves - the time of reckoning has come.	¿po?	11		
+11	A	And where will you look for them?	po.	12		
+12,dom	Q	 They will find me on their own, I will accuse their boss of cowardice and challenge him in the race, and he will have to accept the challenge in order not to be considered a coward in front of his subordinates. I will arrange a night gathering on these plains, away from the eyes of the city guards, gather my whole family to deal with the villains, join if you want to help.	¿po?	13				
+13	A	I will be glad to help you avenge the murder of a friend.	po.	14		
+13	A	I'm not going to get into other people's fights.	po.	16		
+13	A	Fuck the family!	po.	18		
+14,dom	Q	 I will be glad of your help, I will meet you on the spot.	¿po?	15		
+15	A	Agreed.	po.	0		"NPCDespawn#dom;NPCDespawn#vince;SetVariable#last_race,10"
+16,dom	Q	 I know you're not part of the family, so you don't have to do anything, but I was glad to see you anyway.	¿po?	17		
+17	A	Me too.	po.	0		"NPCDespawn#dom;NPCDespawn#vince;SetVariable#last_race,110"
+17	A	Fuck the family!	po.	18		
+18,dom	Q	 !!!!!!	¿po?	0		"NPCDespawn#dom;NPCDespawn#vince;NPCSpawn#dom2;SetVariable#last_race,120"

@@ -1,0 +1,25 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	15	NPCisFollower#	
+1	Q	[BLUE](village woman in leather armor, who didn't look like a warrior)[] Oh, I see you've managed to find him! What a joy for Trima! 	port. port.	8	"VariableEqual#saving_escape,40"		
+1	Q	[BLUE](village woman in leather armor, who didn't look like a warrior)[] Greetings, traveler! 	port. port.	12	"VariableGreater#saving_escape,9"		
+1	Q	[BLUE](village woman in leather armor, who didn't look like a warrior)[] Greetings, traveler. I am the head of the guards of this settlement. You must be a hero to come to this wilderness? 	port. port.	2			
+2	A	Right, do you need any help?	port?	3		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	14	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	No. Although... There is one delicate matter. One of the guards' husbands took a mistress, and this fool found her here in the village. And as you can see, our settlement is very small, and the truth about his adventures was revealed very quickly. Anyway, he got scared and ran into the woods from the anger of the two women.	port?	4			
+4	Q	The hunters tried to find him and bring him back, but they failed, they had to return, the places here are wild, every person counts. So I hope this fool is still alive, and maybe you'll be lucky enough to find him. And yes, most likely, he will try to deceive you, since it is unlikely that he will want to return because of fear of his wife, but she will not kill him, except that she will beat him up a little, we already have no people in the village.	port?	5			
+5	A	Okay, I'll try to find your fugitive and bring him here.	port?	6		
+6	Q	Thank you. He may be somewhere in the northern surrounding forests, or he may have reached the Kalion Ridge. The area is teeming with animals, be careful.	port?	7			
+7	A	Clearly.	port?	0		"SetVariable#saving_escape,10"		
+8,fugitive2	Q	[BLUE](another woman in leather armor almost dragged the fugitive with her to one of the distant buildings)[]	port?	9		"NPCStopFollowing#"		
+9,vanda	Q	I would like to express gratitude on behalf of all the residents of our village, and this award is personally from me!	port?	10			
+10	A	I was glad to help.	port?	11		"NPCDespawn#r6_guard;NPCDespawn#vanda;NPCDespawn#fugitive2;NPCSpawn#r6_guard2;NPCSpawn#vanda2;NPCSpawn#trima;GainXP#1300;GainItem#11039;SetVariable#saving_escape,100"		
+11,vanda	Q	[BLUE](guard went back to her business, and it was as if you heard some kind of scream from a distant building, although it is possible that you imagined it)[]	port?	0			
+12	A	Hello.	port?	0		
+12	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	14	PlayerHasItem#10402		STR#3
+12	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	14	PlayerHasItem#10402		AGI#4
+12	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	14	PlayerHasItem#10402		INT#4
+14	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#vanda_follow,3;NPCFollow#"	
+15	A	Good girl.	port.	0		
+15	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#vanda_follow,1;NPCStopFollowing#"

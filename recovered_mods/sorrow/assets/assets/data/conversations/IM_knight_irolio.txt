@@ -1,0 +1,30 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Hear and obey.	port	15	NPCisFollower#	
+1	Q	[BLUE](The knight in shiny white plate nods)[] Greetings. I am Sir Irolio, head of the Arcane Knights and Elementalist.	[BLUE](El caballero con armadura brillante te saluda)[] Soy Sir Irolio, Líder de los Caballeros Arcanos y Elementalista.	2			
+2	A	Hello, do you happen to know where we can find a wizard named Jenod?	port?	24	"VariableEqual#hate_through,10"		
+2	A	Who are the Arcane Knights?	¿Qué son los Caballeros Arcanos?	3			
+2	A	Do you offer training?	¿Ofreces entrenamiento?	10			
+2	A	In the north, I came across the body of a sorceress who had a diary, in which she wrote that she was trying to find some knight, warn of danger and give him this cloak, perhaps you know the owner of this cloak?	¿port?	20	VariableEqual#lost_foreign_lands,10;PlayerHasItem#10460		
+2	A	Nevermind, goodbye.	Disculpa, me voy.	0			
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	"We are mages that choose to enhance our combat capabilities; not everything can be defeated by spells alone, and sometimes combining steel with sorcery can be more than the sum of its parts..."	"Somos magos que escogemos mejorar nuestra habilidad de combate; no todo se puede vencer con hechizos, y juntar acero con magia es más que la suma de sus partes."	4			
+4	A	Makes sense. Do you offer training?	Tiene sentido. ¿Ofreces entrenamiento?	10			
+4	A	Alright, if you say so...	Si tú lo dices...	0			
+10	Q	"We Arcane Knights don't share our knowledge with just anyone. However, if you perform a task for us we will consider it. I keep receiving these letters from Sir Sorom, in Solliga; he requests reinforcements for a scouting mission or some other banal issue. If you help him, return to me and we'll see about that training."	"Los Caballeros Arcanos no comparten su sabiduría con el primero que pasa. Pero si haces una misión para nosotros, lo podemos considerar. Recibo muchas cartas de Sir Sorom en Solliga pidiendo refuerzos para una misión de exploración o algo parecido; si le ayudas y queda satisfecho, vuelve y veremos qué podemos enseñarte."	0	VariableLower#track_forsaken,100		
+10	Q	Sir Sorom seemed satisfied with your services, so we can provide training, for a fee. Interested?	Sir Sorom está satisfecho con tu ayuda, así que podemos entrenarte, a cambio de oro. ¿Te interesa?	11			
+11	A	What can you teach me?	¿Qué puedes enseñarme?	12			
+11	A	Maybe another time, thanks.	Quizá en otro momento, gracias.	0			
+12	Q	If you are a Mage, I can teach you [BLUE]Arcane Blade[] so you can use elemental-enchanted weapons with great efficiency. I can also teach you [BLUE]Combustion[] which will burn or weaken your enemies.	Si eres un mago te puedo enseñar [BLUE]Arma Arcana[] para que puedas usar armas encantadas con los elementos. También puedo enseñarte [BLUE]Combustión[], que quema y debilita a tus enemigos.	13			
+13	A	Tell me more about Arcane Blade	Dime más acerca de Arma Arcana.	0		TrainSkill#arcane_blade	
+13	A	Tell me more about Combustion.	Dime más acerca de Combustión.	0		TrainSkill#combustion	
+13	A	Maybe another time.	Quizá en otro momento.	0			
+14	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#irolio_follow,3;NPCFollow#"	
+15	A	Good fellow.	port.	0		
+15	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#irolio_follow,1;NPCStopFollowing#"
+20	Q	Hmm, this cloak looks familiar to me, it seems to belong to Sir Damien, who I sent on an important errand a couple of days ago, since then there has been no news from him.	port.	21			
+21	A	Maybe something bad happened to him.	port.	22			
+22	Q	I'm afraid that's the case. Therefore, could you please comply with my request and find this knight. In the area where you came across the body of the sorceress, or in the neighboring area, maybe you will be able to find some traces of his presence.	port.	23			
+23	A	I'll try to find him.	port.	0		"SetVariable#lost_foreign_lands,20"
+24	Q	Jenod? I do not know anyone with name.	port.	0			

@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You made the right decision, I will pack my things and leave forever!	Has tomado la decisión correcta, prepararé mis cosas y me marcharé para siempre!	0	VariableEqual#dont_shoot_messenger,100	
+1	Q	You! You here? I... I mean... Wait, don't be angry! I can explain this...	Tu! Aquí?! Quiero... Quiero decir... Espera, no te enfades! Puedo explicarlo...	11	VariableEqual#dont_shoot_messenger,30	
+1	Q	Remember, find Horton, in New Garand's Farmlands, and deliver him the letter.	Recuerda, encuentra a Horton, en las granjas de New Garand, y entrégale la carta.	0	VariableEqual#dont_shoot_messenger,20	
+1	Q	Have you changed your mind? 	Has cambiado de opinión?	7	VariableEqual#dont_shoot_messenger,10	
+1	Q	Hello, traveller. I am looking for someone that is on its way south, to New Garand. Are you maybe headed that way? 	Hola viajero. Estoy buscando a alguien de camino al sur, hacia New Garand. Vas tú en esa dirección?	2		
+2	A	Leave me alone, I don't know you.	Déjame en paz, no te conozco.	0		
+2	A	Maybe. Who asks?	Puede. Quién pregunta?	3		
+2	A	Well, yes, I was planning to visit the capital soon	Bueno, si. Planeaba viajar a la capital pronto.	3		
+3	Q	I am just a courier, but for personal reasons I can't travel south to the New Garand farmlands to deliver this letter. I was thinking that maybe you could deliver it yourself	Sólo soy un mensajero, pero por razones personales no puedo viajar a las granjas de New Garand para entregar esta carta. Estaba pensando que quizá puedieras hacerlo tú.	4		
+4	A	Wow, you are a terrible courier, ain't you? you trust your letters to strangers...	Pues vaya un mensajero eres, no? Le confías tus cartas a extraños...	5		
+4	A	Why would I do such a thing? What's in it for me?	Para qué iba a hacer eso? Qué gano yo?	6		
+4	A	Sounds interesting...	Suena interesante...	6		
+5	Q	This is a special case, you know. Something came up, and I can't make the delivery. And you look trustworthy. Plus I trust you will deliver it safely, because the recipient will pay you 100 gold coins if you do it. 	es un caso especial, sabes? He tenido una emergencia y no puedo partir. Y tú pareces de confianza. Además confio en que harás la entrega, porque el destinatario pagará 100gp a quien le entregue la carta.	7		
+6	Q	Of course there will be a compensation,  the recipient will pay you 100 gold coins when you deliver the message. A fine sum for an easy job!	Por supuesto habrá una compensación, el destinatario pagará 100gp a quien le entregue el mensaje. Un buen dinero por unt rabajo fácil!	7		
+7	A	Sorry, I am no postman, do your own job and leave me alone	Lo siento, no soy el cartero. Haz tu trabajo y déjame en paz.	0		SetVariable#dont_shoot_messenger,10
+7	A	Very well, I will deliver that letter in New Garand Farmlands. Who is the recipient?	Muy bien, entregaré esa carta en las granjas de New Garand. Quién es el destinatario?	10		
+7	A	No, unless you are willing to pay me something right now to cover the travel expenses	No, a no ser que me pagues algo ahora mismo para cubrir los gastos del viaje.	8		
+8	Q	grrr... Very well, here you have, 50 gold, plus the 100 you will get when you deliver!	grrr... Muy bien, aquí tienes 50gp, y recinirás otras 100 cuando hagas la entrega!	9		"GainGold#50;SetVariable#dont_shoot_messenger,20"
+9	A	Thanks. Who is the recipient of this letter?	Gracias. Quién es el destinatario de la carta?	10		
+10	Q	You have to deliver it to Horton. He can be found near the coast right before reaching New Garand.	Tienes que entregársela a Horton. Suele estar cerca de la costa, poco antes de llegar a New Garand.	0		SetVariable#dont_shoot_messenger,20
+11	A	No one tricks me and lives. Now die!	Nadie me engaña y vive para contarlo. Muere!	0		"NPCHostile#postman;SetVariable#dont_shoot_messenger,50"
+11	A	You are just a bandit scoundrel, give me just one reason why I should let you live	Eres una sabandija y un ladrón. Dame una sola razón por la que debiera dejarte vivir.	12		
+12	Q	Listen, I can make it up for you. I have a magical item on me, but it's hidden, you would never find it without my help. Spare me and I will give it to you.	Escucha, te puedo compensar. Llevo encima un objeto mágico, pero está oculto y nunca lo encontrarías sin mi ayuda. Déjame ir y te lo daré.	13		
+13	A	Bah, you won't fool me again. Die, scum.	Bah, no me volverás a engañar. Muere, escoria.	0		"NPCHostile#postman;SetVariable#dont_shoot_messenger,50;DecVariable#REP_town_kingsbridge,3"
+13	A	Interesting. Very well, hand it over. Don't try any tricks on me or else...	Interesante. Muy bien, dámelo pero no intentes nada raro...	14		
+14	Q	You made the right choice! Here, take it. And no hard feelings, okay? If we ever meet I'll buy you a drink	Bien hecho, toma. Y sin rencores, eh? Si nos volvemos a ver, te pagaré una cerveza.	0		"SetVariable#dont_shoot_messenger,100;GainXP#280;GainItem#3001;NPCDespawn#postman;IncVariable#REP_seventhhouse,3"

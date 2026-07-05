@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](your old buddy is smiling broadly when he sees you)[] 	[BLUE]()[] port.	2			
+2	A	Oh, Adaon! What are you doing here?	port?	3			
+3	Q	So it is... I'm waiting for you! 	port.	4		
+4	A	Yes? And why are you waiting for me?	port?	5			
+5	Q	Well, so that I can go on the road with you, wait until you fall asleep and rob you... Oh, we've been through this before! Anyway, I'm here to help you get out of here! 	port.	6		
+6	A	Well, I could use any help.	port?	7			
+7	Q	Great! But I don't want to go myself, you'll carry me, okay? 	port.	8		
+8	A	What? I'm not going to carry you around! Go to hell!	port?	9		"NPCDespawn#adaon"		
+8	A	Yes, of course, why not! I'll carry you!	port?	10		"SetVariable#adaon_yes,1;NPCDespawn#adaon;GainItem#10766"		
+9	Q	Okay, then I'm go. 	port.	0		
+10	Q	Cool, let's go then! 	port.	0		

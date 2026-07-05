@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a motionless body in a ditch, reeking of fumes)[] Stop messing around here! Hey, you've calmed this hero down!	pprt?	22	"AreaIs#E13_tower3"		
+1	Q	[BLUE]a motionless body in a ditch, reeking of fumes[]	port.	10		
+10	A	Well, to hell with him!	port!	0		
+10	A	I should have been in his place!	port.	12		
+10	A	Give it to Sansa!	port!	17	"VariableGreater#something_more,99;VariableLower#sansa_daet,1"		
+10	A	Give me a demon!	port?	23	"PlayerHasItems#10290,9"		
+10	A	Give me the Lady of the night!	port!	20	"VariableEqual#lady_night,100;VariableLower#lady_drunken,1"		
+10	A	Give me a Temple!	port!	21	"VariableEqual#temple_sleepers,100;VariableLower#drunken_sleepers,1;AreaIs#F6"		
+12	Q	Get drunk - will be!	port.	0		
+17,sansa	Q	Me! 	port.	18	NPCIsInParty#sansa2,sansa		
+17,R	Q	No way!	port.	0		
+18,R	Q	Here! 	port.	19		"UpgradeCompanion#sansa2"		
+19	A	OK!	port!	0		"SetVariable#sansa_daet,2"	
+20	Q	Here! 	port.	0		"SetVariable#lady_night,150;SetVariable#lady_drunken,2"		
+21	Q	Here! 	port.	0		"SetVariable#temple_sleepers,50;SetVariable#drunken_sleepers,2"		
+22,eraser	Q	 Ok. 	¿po?	0		"NPCHostile#eraser;SetVariable#drunken_oxyel,2"
+23	Q	Here! 	port.	0		"SetVariable#fiery_dancing,59"		

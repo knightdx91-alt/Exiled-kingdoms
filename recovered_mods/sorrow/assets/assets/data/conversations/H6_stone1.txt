@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](The stone monolith with the image of the sun is glowing)[]	¿po?	0	"VariableEqual#H6stone,5"		
+1	Q	 [BLUE](stone monolith with the image of the sun)[]	¿po?	8	"VariableEqual#H6stone,4"		
+1	Q	 [BLUE](stone monolith with the image of the sun)[]	¿po?	6	"VariableEqual#H6stone,3"		
+1	Q	 [BLUE](stone monolith with the image of the sun)[]	¿po?	4	"VariableEqual#H6stone,2"		
+1	Q	 [BLUE](stone monolith with the image of the sun)[]	¿po?	2	"VariableEqual#H6stone,1"		
+2	A	Hit it.	po.	3		
+2	A	Do nothing.	po.	0		
+3	Q	 [BLUE](The image of the sun began to glow)[]	¿po?	0		"SetVariable#H6stone,2;SetVariable#necessary,2"
+4	A	Hit it.	po.	5		
+4	A	Do nothing.	po.	0		
+5	Q	 [BLUE](The image of the sun began to glow)[]	¿po?	0		"SetVariable#H6stone,3;SetVariable#necessary,1"
+6	A	Hit it.	po.	7		
+6	A	Do nothing.	po.	0		
+7	Q	 [BLUE](The image of the sun began to glow)[]	¿po?	0		"SetVariable#H6stone,4;SetVariable#necessary,1"
+8	A	Hit it.	po.	9		
+8	A	Do nothing.	po.	0		
+9	Q	 [BLUE](The image of the sun went out)[]	¿po?	0		"SetVariable#H6stone,1;SetVariable#necessary,1"

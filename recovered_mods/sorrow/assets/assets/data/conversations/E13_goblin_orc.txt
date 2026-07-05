@@ -1,0 +1,49 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The goblin I know is very old and doesn't like to be disturbed for nothing, so he's hiding somewhere here in a secret place.	port?	38	VariableEqual#dragons_service,50		
+1	Q	Great! We have the dragon crown! Shenron said that he would be waiting for us in the Great Plains, near some bridge, and we would meet at the place!	port?	28	VariableEqual#dragons_service,40		
+1	Q	I feel like there's a secret room here somewhere!	port?	27	"VariableEqual#E13_grate7,2"		
+1	Q	[BLUE](the road is blocked by a grate, behind which a large, shaggy creature was pacing)[] That's bad luck, another grate that can't be unlocked so easily, and that's where we clearly need to get to! But even if we open it somehow, there's some kind of wild creature guarding the passage, we'll need to deal with it somehow, it won't just let us through!	port?	22	VariableEqual#dragons_service,27		
+1	Q	Yeah, the stairs! We can use it to get inside the tower!	port?	26	VariableEqual#dragons_service,25		
+1	Q	[BLUE](you hadn't even managed to move ten steps when the gap in the rock behind you, through which you had entered the cave, was filled with stones)[] They walled up, demons!	port?	17	VariableEqual#dragons_service,20		
+1	Q	[BLUE](a huge orc with a stupid appearance)[] Hey! How long are you going to hang around there?! You yourself said that it would only take a few moments!	port?	2		
+2,goblin	Q	 [BLUE](a small and nasty goblin with a roguish appearance)[] Shut up and don't bother me, can't you see that I'm working?! This door was not as simple as it seemed at first glance!	¿po?	3				
+3,orc	Q	 Come on! It doesn't look particularly durable! A couple of blows from my cudgel will be enough for her!	¿po?	4				
+4,goblin	Q	 No! Don't touch it! We don't need additional protection to be activated from such a crude hacking attempt! And I'm sure the creator of this door created some kind of trick for a similar case!	¿po?	5				
+5,orc	Q	 What are we supposed to do then?! Hang around here until we freeze to death while you finally figure out how to get inside?!	¿po?	6				
+6	A	Maybe I can help you get inside?	port?	7		
+6	A	Damn greenskins, conspiring to do their shameful deeds together, harming people?!	port?	10		
+7,orc	Q	 Eh?! Where else did you come from?! Mind your own business and fuck off while you're safe!	¿po?	8				
+8,goblin	Q	 Hey, calm down! Thank you, of course, for your help, but we'll manage somehow on our own! But actually, who are you and what are you doing here, in a forgotten place?	¿po?	9				
+9	A	I was sent here to the tower by the dragon Shenron, I have to meet with his assistants.	port?	12		
+10,goblin	Q	 Calm down, hero! We are not up to anything bad and we are not doing bad things! It's just an old, abandoned tower that we want to get into, there's nothing criminal about it!	¿po?	11				
+11	A	I have to meet Dragon Shenron's assistants at this tower, where are they, what did you do to them!?	port?	12		
+12,goblin	Q	 Seriously, do you know Shenron? Well, he sent us to this tower too, so it turns out that you're supposed to meet us. Although I was surprised that he would send a human to help us, but we could use any help. My name is Gizmo, and this big guy...	¿po?	13				
+13,orc	Q	 Hey, I'll introduce myself! My name is Gromak the Wrecker!	¿po?	14				
+14	A	Nice to meet you. So, how can we get inside the tower?	port?	15		
+15,goblin	Q	 Through this door - no way, too powerful spells hold it, you need a password that no one knows. But behind the tower in the rocks I noticed some kind of gap leading to caves, perhaps through them we can get inside the tower, I have no other options.	¿po?	16				
+16	A	Okay, let's try to get through these caves, lead me to their entrance.	port?	0		"NPCDespawn#goblin;NPCDespawn#orc;SetVariable#dragons_service,20;Travel#E13_cave2,1"		
+17,goblin	Q	 Well, obviously we can't get back out this way. Let's hope we find another way out here or we can open that tower door from the inside!	¿po?	18				
+18,orc	Q	 That doesn't sound very good!	¿po?	19				
+19,goblin	Q	 Well, I'm sorry, but no one forced you here, you asked to come with me!	¿po?	20		"NPCFollow#"
+20,orc	Q	 When a dragon is thinking about whether to roast my ass or not, you don't really think about the correctness of your decision!	¿po?	21		"NPCFollow#"
+21	A	Enough arguing, let's go already.	port?	0		"SetVariable#dragons_service,25"		
+22,orc	Q	 Come on! Look how cute she is, she's not dangerous at all!	¿po?	23		
+23,goblin	Q	 Don't get in there, idiot, she'll eat you up!	¿po?	24				
+24,orc	Q	 Come on, nonsense, look, she's tame-AAAAAA! AAAAAAAAAAA!	¿po?	25		
+25,goblin	Q	 Dumb moron! We need to help him out!	¿po?	0		"ItemHide#grate_7;ItemWalkable#grate_7;SetVariable#E13_grate7,2;NPCDespawn#E13yeti1;NPCSpawn#E13yeti2"		
+26	A	Let's see if it works out.	port?	0		"SetVariable#dragons_service,27;Travel#E13_tower1,1"		
+27	A	Okay, let's try to find it.	port?	0		"SetVariable#E13_grate7,3"		
+28	A	This thing doesn't look impressive, as befits an ancient and powerful artifact. How can we know that this is indeed the Dragon Crown that Shenron needs?	port?	32			AWA#2
+28	A	Okay, that's settled.	port?	29		
+29,sansa	Q	Hey, wait a minute! I don't feel any special magic in this jewel, and I've studied many different ancient artifacts over the years, so I know what I'm talking about. It's probably a fake! 	port.	39	NPCIsInParty#sansa2,sansa		
+29,orc	Q	 Hey, I thought we were going to give this thing to the dragon ourselves!	¿po?	30		"NPCStopFollowing#"		
+30,goblin	Q	 Shut up! Our new friend will be able to deliver the package to the dragon more safely!	¿po?	31		"NPCStopFollowing#"		
+31	A	Good.	port?	0		"NPCDespawn#goblin;NPCDespawn#orc;SetVariable#dragons_service,45"		
+32,goblin	Q	 Hmm, you're right, I've seen a lot of different treasures in my life, and this thing looks pretty lousy in comparison. Although to make sure of the authenticity, it is worth contacting one of my friends. He's a very ancient goblin, he likes to study all these dragon legends, for sure, he'll figure it out better than us.	¿po?	33				
+33	A	And where to find this goblin?	port?	34		
+34,goblin	Q	 There is a cave in the Wyvern Mountains where he lives.	¿po?	35				
+35,orc	Q	 Eh? It's full of your kin, and they won't be happy to see you!	¿po?	36		
+36,goblin	Q	 Well, they were offended at me just because I was selling their supplies to the giants. But choosing between the displeasure of the goblins or the dragon, I still prefer a showdown with my relatives.	¿po?	37				
+37	A	Okay, let's get there.	port?	0		"SetVariable#dragons_service,50"		
+38	A	Clearly.	port?	0		"SetVariable#dragons_service,55"		
+39,goblin	Q	 Hmm, your girl's right! I've seen a lot of treasures in my life, and this thing looks pretty bad compared to them. Although to make sure of the authenticity, it is worth contacting one of my friends. He's a very ancient goblin, he likes to study all these dragon legends, for sure, he'll figure it out better than us.	¿po?	33				

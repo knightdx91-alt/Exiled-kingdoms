@@ -1,0 +1,37 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](middle-aged, frowning man in armor)[] Greetings, hero, I am glad to see you. Thanks to your efforts, the surroundings of Istril have become safer for its inhabitants.	port	24	"VariableGreater#strangers_foreign_lands,99"		
+1	Q	[BLUE](middle-aged, frowning man in armor)[] I hope you'll be lucky enough to find the missing sorceress and solve the problem with the strangers.	port	0	"VariableGreater#strangers_foreign_lands,9"		
+1	Q	[BLUE](middle-aged, frowning man in armor)[] Hello, here's the brave man our spies reported.	port	3	"VariableEqual#fee_for_merits,100"		
+1	Q	[BLUE](middle-aged, frowning man in armor)[] Hello, I'm the head of the city guard. If you have any problems, please contact my assistants or me, and most importantly, don't become a problem for us.	port	2		
+2	A	Clearly.	port.	0		
+3,governor	Q	[BLUE](a serious-looking, well-dressed man, clearly a local official)[] Greetings, I am the governor of this city. So you are the hero who killed the orc general, which allowed our warriors to defeat the enemy. It is strange that neither you nor Captain Greedy sent anyone to award you for this feat!	port	4		
+4	A	In fact, there was a very unpleasant incident between me and Captain Greedy. [BLUE](and you tell them everything that happened in the sewers of Istril, and what the late captain told you)[]	port.	5		
+5,guardmaster	Q	[BLUE](man in armor frowned even more)[] I'm sending my men to the suburbs to investigate all of Captain Greefy's dirty, shameful, and illegal activities.	port	6		
+6,governor	Q	And obviously, we'll have to find someone new to fill his position. But right now, it doesn't matter, let's right the wrong, here's your reward for the feat, hero! [BLUE](he handed you a heavy bag of coins)[]	port	7		
+7,guardmaster	Q	And accept this weapon from me personally, as compensation for having to deal with Captain Greedy's nefarious deeds. [BLUE](the man unclipped a dagger sheath from his belt and handed it to you)[]	port	8		
+8,governor	Q	And by the way, since you've already helped our city, would you mind doing one more favor?	port	9		
+9	A	What exactly needs to be done?	port.	10		
+10,governor	Q	You've probably noticed that the city's sewers are filled with undead, have to use protective spells to keep them from escaping. And the reason for this disaster is connected with one wizard. He used to serve at the royal court, but then he became involved in black magic, and other wizards exposed him and banished him from the city. However, this villain took refuge in the sewers and began committing evil deeds in retaliation.	port	11		
+11	A	So I have to find this sorcerer in the sewers and eliminate him?	port.	12		
+12,governor	Q	Yes, although it's not that simple, Istril was built on the site of ancient ruins, and some of their remnants, still intact, are located under the sewers, and it's likely that the villain is hiding somewhere within them. Additionally, the villain is spreading malicious rumors about our kind king, and he will undoubtedly try to convince you of his lies. Don't fall for his deceitful schemes!	port	13		
+13,guardmaster	Q	[BLUE](man in armor hesitated, wanting to add something to the official's words, but decided to remain silent)[]	port	14		
+14,governor	Q	So you agree to take on this job, the reward will be more generous than the one you received?	port	15		
+15	A	Yes, I agree to this job.	port.	16		"SetVariable#true_lie,15"
+15	A	No, this job is too dangerous.	port.	17		"SetVariable#true_lie,10"
+16,governor	Q	Glad to hear it. This mage has a special spell book, and he won't part with it unless he's dead. Bring the book as proof of his death.	port	18		
+17,governor	Q	If you change your mind, you can meet me here before I find someone else for the job.	port	18		
+18,guardmaster	Q	I also have a task for you, if you're willing to accept it. Although our warriors have managed to defeat the orc army, there are still many orcs and minotaurs in the area, and people continue to disappear. Our scouts believe that the source of these creatures is in the western part of the kingdom, in area the Istrilian Tract, and it may be possible for you to discover how they entered our lands and how we can eliminate their presence forever.	port	19		
+19	A	I'll try to find out something.	port.	20		
+20,guardmaster	Q	There's also a royal mage who went missing in the area, and our scouts haven't been able to find her. Maybe you'll be lucky enough to find her, if she's still alive.	port	21		
+21	A	I will definitely find this sorceress.	port.	22		
+22,guardmaster	Q	I will be very grateful if you can solve the problem with the strangers and bring the sorceress back, and the Royal Magical Council will reward you for saving their colleague.	port	23		
+23	A	Clearly.	port.	0		"GainItem#10829;GainGold#4500;IncVariable#REP_sorrowland,8;SetVariable#strangers_foreign_lands,10"
+24	A	Hello, I'd like to see Princess Evelina Lightwind. I've found the staff that the orcs took from her.	port.	25	"PlayerHasItem#10842;VariableLower#trouble_again,9"		
+24	A	Hello, do you happen to know where I can find Master Kaledor?	port.	29	"VariableEqual#royal_will,64"		
+24	A	Hello.	port.	0		
+25,guardmaster	Q	Unfortunately, this is not possible right now. The gate guards have reported that the princess has left the royal castle and is currently somewhere in the city or the suburbs, but they do not know exactly where. I hope that this is the case, and that she does not come up with any more foolish ideas to travel away from the city. I will probably have to assign people to watch over her and prevent her from doing anything foolish.	port	26		
+26	A	Okay, maybe I can find her myself, or ask around.	port.	27		
+27,guardmaster	Q	I would appreciate it if you could make sure that the princess is safe and report back to me.	port	28		
+28	A	Good, agreed.	port.	0		"SetVariable#trouble_again,10"
+29,guardmaster	Q	He was here recently, I spoke with him, and he said he was going outside the city to see some farmers near the eastern wall to negotiate some plants. Perhaps you can find him there.	port	30		
+30	A	Thank you for the information.	port.	0		"NPCDespawn#mage2;NPCSpawn#mage2;SetVariable#royal_will,66"

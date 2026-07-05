@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hello, if you need to get to settlement the Lonely Light settlement, I can help. 	port.	2		
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	How much will the crossing cost?	¿port?	3			
+3	Q	I'll deliver you for [BLUE]50 gold[]. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#50"	"loseGold#50;Travel#O10,2,4"
+4	A	No, I'll stay here for now.	port.	0		

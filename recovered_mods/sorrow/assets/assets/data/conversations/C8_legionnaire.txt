@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	5	NPCisFollower#	
+1	Q	[BLUE](a militant woman in armor)[] Freedom to you, traveler. 	[BLUE]()[] port.	2		
+2	A	And the same to you.	port?	0			
+2	A	Freedom! I noticed a group of runaway slaves nearby and thought I should tell you about it.	port?	3	"VariableGreater#will_or_death,5;VariableLower#will_or_death,25"		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3	Q	And you did the right thing! Runaway slaves, then. Report this to Praetor Anwar in Freeport, he will take the necessary measures. 	port.	0		"SetVariable#will_or_death,50"		
+4	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#alia_follow,3;NPCFollow#"	
+5	A	Good girl.	port.	0		
+5	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#alia_follow,1;NPCStopFollowing#"

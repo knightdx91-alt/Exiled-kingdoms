@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](This towering man is horribly deformed. His eyes gleam with madness through the scarred, swollen flesh. But his rippling muscles and old scars clearly tell you he's a war veteran)[] You... No, I will not... Yes, yes I will...	[BLUE](Este hombre enorme está gravemente deformado. Sus ojos tienen el brillo de la locura, a través de su grotesca e hinchada carne. Pero sus músculos y cicatrices revelan que se trata de un veterano de guerra)[] Tú... No, no lo haré... Sí... Lo haré...	2		
+2	A	Get out of my way, disgusting tramp.	Aparta de mi camino, repugnante vagabundo.	3		
+2	A	Are you Decurion Sargos, from the Mercian Third Legion? I've been looking for you.	¿Eres el Decurión Sargos, de la Tercera Legión? Te he estado buscando.	4	VariableGreater#web_terror,9	
+2	A	What are you saying? I don't understand.	¿Qué dices? No te entiendo.	3		
+3	Q	The man seems to ignore your words and stays there, talking to himself.	El hombre parece ignorar tus palabras, y sigue ahí, hablando solo.	0		
+4	Q	[BLUE](for a moment, his eyes focus, his madness vanishing. But then his face sombers and he seems to grow even larger, his body tensing like that of a mountain lion)[] The horror inside! It is so deep inside!	[BLUE](por un momento sus ojos se centran, y la locura desaparece. Pero entonces su rostro se crispa, y el hombre parece crecer aun más, y todos sus músculos se tensan)[] ¡Está dentro! ¡El mal más profundo, muy dentro!	5		
+5	A	Calm down. I only want some answers, that's all. 	Tranquilo, solamente quiero algunas respuestas, eso es todo.	6		
+5	A	You will do as I say, or you will suffer greatly.	Harás lo que te digo, o sufrirás las consecuencias.	6		
+5	A	Okay... I see this is a touchy subject, nevermind.	Vale... Veo que es un tema desagradable. Olvídalo.	6		
+6	Q	The grotto... My men, all of them looking at me. All of them. And you want to know... You want to go there? But there is a barrier. You can't pass.	La gruta... Mis hombres, todos ellos mirándome. ¡Todos! Pero no puedes pasar... Hay una barrera. No puedes.	7		
+7	A	I need to go through that barrier. Help me do it!	Necesito cruzar esa barrera. ¡Ayudame a hacerlo!	8		
+7	A	I don't trust crazies. Goodbye.	No confio en tarados. Adiós.	0		
+8	Q	I... I know how to open the barrier. I could get out. I have the key. But I will never tell. Never. Secrets must be secrets!	Sé cómo abrir la barrera... Pude escapar... Tengo una llave ¡pero nunca lo diré!¡jamás! Los secretos son secretos.	9		
+9	A	You will tell me your secret and give me that key now.	Me vas a decir tu secreto y me vas a entregar esa llave ahora mismo.	10		
+9	A	You can either tell me your secret, or join me and open the barrier for me. Your choice.	Puedes decirme tu secreto, o bien unirte a mí y abrir esa barrera. Es tu decisión.	12		
+9	A	Listen to me, come back to your senses! You were once a proud soldier. Let's go there together and put an end to the evil lurking in that place.	Escúahame, ¡vuelve a la cordura! Una vez fuiste un valiente soldado. Únete a mí, y juntos derrotaremos el mal que se esconde en ese lugar.	12		
+10	Q	Never! I will not! But I will open the barrier for you if you want.	¡Nunca! ¡No lo haré! Pero abriré la barrera para tí si quieres.	11		
+11	A	I don't travel with madmen. I don't trust you. Last chance. Give me that key, or die.	Yo no viajo con locos. No me fio de tí. Última oportunidad, dame la llave o muere.	14		
+11	A	Very well. That's good enough. Will you join me then?	Muy bien, eso me basta. ¿Te unirás a mi entonces?	12		
+12	Q	I travel alone. But never alone. It is with me. Deep inside. I will meet you in the grotto, and I will open the barrier, then finally everything will be alright. Fifty. Fifty.	Viajo solo. Pero nunca solo. Está conmigo, muy dentro. Abriré esa barrera para tí, y entonces todo se arreglará. Cincuenta. Cincuenta.	13		
+13	A	What? Sorry but you sound too crazy. I can't rely on you. Give me that key you have. Now.	¿Qué? Lo siento pero estás como una cabra, no puedo fiarme de tí. Dame esa llave ahora mismo.	14		
+13	A	Very well, we'll meet at the grotto, don't fail me.	Muy bien, nos reuniremos en la gruta. No me falles.	0		"SetVariable#web_terror,30;NPCDespawn#madman_sargos"
+14	Q	No! It must be fifty! Fifty! [BLUE](The gleam of madness in his eyes intensifies as he leaps upon you like a beast. He attacks you with unnatural might and speed)[]	¡No! ¡Tienen que ser cincuenta! ¡cincuenta! [BLUE](sus ojos brillan enloquecidos al saltar sobre tí. Te ataca con una fuerza y velocidad sobrehumanas)[]	0		"SetVariable#web_terror,25;NPCHostile#madman_sargos"

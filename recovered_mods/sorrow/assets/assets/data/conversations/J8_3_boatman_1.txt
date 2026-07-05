@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](an unfriendly and nervous-looking man)[] What do you need? If you want to cross to the other shore, prepare the money and jump into the boat, if not, then get away from me, the places here are restless, I don't need anyone looming nearby!  	port.	2		
+2	A	Calm down, I won't bother you.	No, adiós.	0		
+2	A	How much will the ferry cost?	¿port?	3			
+3	Q	I take [BLUE]50 gold[], but if you continue to waste my time, the price will double. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#50"	"loseGold#50;Travel#P9,5,2"
+4	A	No, I've changed my mind.	port.	0		

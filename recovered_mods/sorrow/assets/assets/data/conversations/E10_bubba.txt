@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](Bubba collapsed to the ground, but this time he did not get up, the remaining opponents, left without their leader, rushed to flee)[]	¿po?	2	"VariableEqual#bubba_dead,1"		
+1	Q	 [BLUE](Bubba fell to his knees, the handle of his hammer was broken, and the hammer itself flew to the side. Tossing aside the useless hilt, he took out a terrifying-looking dagger)[] No, I'm not just going to give up, the fight is just beginning!	¿po?	0		"setVariable#bubba_dead,1;NPCDespawn#bubba;NPCSpawn#bubba2"
+2,master	Q	 Here are some more garbage faggots who have sucked, let everyone know that Rickman is our real boss!	¿po?	3		
+3,boss2	Q	 Well, Bubba tried, but he didn't take it out, he didn't earn enough authority for decent guys to follow him. Thank you, friends, for your help. [BLUE](he examined Bubba's body, picked up his terrifying-looking dagger, and handed it to you)[] I am sure that now you will be an excellent owner of this terrible weapon.	¿po?	4		
+4	A	Thanks, I'll need it.	po.	5		
+5,philosopher	Q	 [BLUE](It is unclear where Philosopher came from)[] I was in as much of a hurry as I could, but it looks like I was too late. Bubba is dead, well, I'll have to find the information I need from someone else.	¿po?	6		
+6	A	Yes, and what happened on the island, Vince died, and you disappeared somewhere?	po.	5		
+6,philosopher	Q	 Died? I'm sorry. We were ambushed by pirates, I distracted the attention of all the attackers, and I told Vince to run to the boatman... It looks like he didn't succeed. Well, when I managed to get rid of my enemys, being left without transport, I decided to swim back to Friguld, such swims are not a problem for me, I'm still a former athlete.	¿po?	7		
+7,boss2	Q	 Well, anyway, thank you for helping. About Bubba, I'm sorry, but I had to kill him.	¿po?	8		
+8,philosopher	Q	 I'll contact that secret guard and tell him that you've solved your gang problems so that he can get away from you. Anyway, come on, maybe we'll meet again. [BLUE](after these words, he disappeared as quickly as he appeared)[]	¿po?	9		
+9,boss2	Q	 Thank you, friend, for helping me resolve this unpleasant situation. And this is my gratitude for your help, we will always be glad to see you in our lair.	¿po?	10		
+10	A	I was glad to help.	po.	0		"ItemHide#grate1;ItemWalkable#grate1;NPCDespawn#bubba_team2;NPCDespawn#master;NPCDespawn#boss2;NPCDespawn#rick_team;GainXP#1300;GainGold#777;GainItem#10892;SetVariable#changing_hierarchy,100;NPCDespawn#philosopher"

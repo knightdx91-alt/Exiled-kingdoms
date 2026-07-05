@@ -1,0 +1,54 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the table is littered with all sorts of temples, but attention is drawn to a notebook in a worn binding)[]	port.	2			
+2	A	Read something from the beginning.	port!	3				
+2	A	Read something from the middle.	port!	8				
+2	A	Read something from the end.	port!	21				
+2	A	I'm not interested in that.	port!	0				
+3	Q	[BLUE]("...this tower, no doubt, was built by the hands of unknown sorcerers, has long been abandoned, and will be a great shelter for me! It would be nice to put it in order, renovate and refine it, it's a pity I don't have enough help with me. We can try to involve local savages in this case, but they are unlikely to be interested in my coins, we need to come up with something...")[]	port.	4			
+4	A	Read something else.	port!	5				
+4	A	I'm not interested in that.	port!	0				
+5	Q	[BLUE]("...protection is ready! Now, not a single lizard-like creature will be able to get anywhere near my tower. It remains to resolve the issue with these mountain savages, they do not want to serve me, but they cannot get along peacefully with them...")[]	port.	6			
+6	A	Read something else.	port!	7				
+6	A	I'm not interested in that.	port!	0				
+7	Q	[BLUE]("...gloomy, ancient castle in the depths of these mountains, what kind of unknown, but powerful creature dwells in it? I still don't dare cross his threshold. Well, let some secrets remain unsolved...")[]	port.	2			
+8	Q	[BLUE]("...vile creatures that seemed to come out of nowhere, devouring rocks, gnawed through part of the foundation of my tower, they are clearly of magical origin, were they created specifically to enter here and steal my treasures?! We need to improve the protection of the main storage and increase the number of guards, hire the best hunters to capture and study these creatures. Whoever is behind this trick, I will punish him for his insolence and brazen encroachment on my property!..")[]	port.	9			
+9	A	Read something else.	port!	10				
+9	A	I'm not interested in that.	port!	0				
+10	Q	[BLUE]("...long days of travel led us to the beginning of an endless green swamp, there was no other choice, we had to wade through the swamps, the poisonous fumes drove us crazy, but we did not retreat, it was too late to return anyway. Fortunately, we managed without losses and found a way out of the lost place, the majestic peaks of the snowy mountains appeared before our eyes...")[]	port.	11			
+11	A	Read more.	port!	12				
+11	A	I'm not interested in that.	port!	0				
+12	Q	[BLUE]("...snowy trails in seemingly impassable mountains. We suffered from cold and hunger, climbing and descending the slopes, terrible icy winds burned with frost, tried to throw us off the cliffs into the abyss, days and nights merged into one. The hurricane was getting fiercer, it seemed like the end, but we saw salvation, a new path...")[]	port.	13			
+13	A	Read more.	port!	14				
+13	A	I'm not interested in that.	port!	0				
+14	Q	[BLUE]("...now the road led us through the mountains, dark winding tunnels of caves, leading into the unknown. As we descended into the belly of the earth, it became hotter and brighter, the corridors ended, turning into fiery halls, streams of running lava, it was difficult to find a safe path among them, the flesh dried up, the hot air burned the larynx and burned the lungs. It seemed that we would turn to dust here, but the empty halls were replaced by new tunnels, the air became cooler and fresher...")[]	port.	15			
+15	A	Read more.	port!	16				
+15	A	I'm not interested in that.	port!	0				
+16	Q	[BLUE]("...caves led us to the other side of the forbidding mountains, ahead of us stretched fields to the horizon, wrapped in a dark fog, and we had to make our way through it. But it wasn't just smoke, the cursed earth exuded rot and decay-the smell of death, and there was nothing to be seen in it. We walked blindly, trying not to lose sight of each other, it seemed like there would be no end to it, but gradually the fog of death was dissipating, the walls were visible ahead...")[]	port.	17			
+17	A	Read more.	port!	18				
+17	A	I'm not interested in that.	port!	0				
+18	Q	[BLUE]("...mysterious maze of strange walls, ablaze with unknown energy, it seemed like one careless touch to her, she could kill. But we were walking, looking for the right way to our goal, in the depths of this creation there is a magical portal leading to the desired reward...")[]	port.	19			
+19	A	Read more.	port!	20				
+19	A	I'm not interested in that.	port!	0				
+20	Q	[BLUE]("...portal led us to the treasure trove, but a mysterious, formidable creature blocked our way, and only the right answer will make us miss it..." "Who came up with these stupid puzzles that I can't figure out myself?! Wouldn't it be easier to make a regular password to access my storage?!...")[]	port.	28			
+21	Q	[BLUE]("...did I tell those idiots about snow removal on the roof or not? What are they afraid of, I don't understand? And where did I leave the spare key, I don't remember, maybe in a secret room?..")[]	port.	22			
+22	A	Read something else.	port!	23				
+22	A	I'm not interested in that.	port!	0				
+23	Q	[BLUE]("...password to the entrance in tower has been changed again... I need to write it down here so that I don't forget it until I remember it well...")[]	port.	24			
+24	A	After searching on the table, you find a note with the password to enter the tower.	port!	23	"VariableGreater#dragons_service,39;VariableLower#parol_open,1"	"SetVariable#parol_open,1"	
+24	A	After searching on the table, you find a note with the password to enter the tower.	port!	23	VariableLower#dragons_service,29	"SetVariable#dragons_service,30;SetVariable#parol_open,1"	
+24	A	Read something else.	port!	25				
+24	A	I'm not interested in that.	port!	0				
+25	Q	[BLUE]("...some clumsy lost the keys to the lower tier of the tower in the prisoners' section, and they couldn't be found. Idiots! Surely one of the prisoners has the keys now! I'll lock down the entire tier until those cretins return the keys! By the way, need to keep the keys to the grates on the lower tier handy, they were lying on the table somewhere here...")[]	port.	26			
+26	A	After examining the table, you find the mentioned key.	port!	25	VariableLower#E13table1,1	"SetVariable#E13table1,2;GainItem#10631"	
+26	A	Read something else.	port!	27				
+26	A	I'm not interested in that.	port!	0				
+27	Q	[BLUE]("...зло не дремлет. Мне нужна новая, более могущественная защита моей башни...")[]	port.	30			
+28	A	Read something else.	port!	29				
+28	A	I'm not interested in that.	port!	0				
+29	Q	[BLUE]("...damn puzzle mechanism has broken down again, and the spare parts from it are on the lower tier in the ruined section that I ordered to be closed, so what should I do now?!.")[]	port.	2			
+30	A	Read more.	port!	31				
+30	A	I'm not interested in that.	port!	0				
+31	Q	[BLUE]("...they say, they whisper, that I'm crazy, but I'm not! Fools! I know the evil is outside, it's surrounding the tower, preparing to strike! I have to be ready for this...")[]	port.	32			
+32	A	Read more.	port!	33				
+32	A	I'm not interested in that.	port!	0				
+33	Q	[BLUE]("...lock all entrances, all exits! Any slightest gap! No one will come out or enter! Evil will not be able to enter my tower!..")[]	port.	2			

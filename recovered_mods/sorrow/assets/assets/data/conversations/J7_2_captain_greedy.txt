@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Great job! The Orcs are in turmoil, their army is crumbling, we just have to finish off their remnants! There's just one problem...	po.	8	VariableEqual#fee_for_merits,30		
+1	Q	Don't delay your task, otherwise I will find someone more efficient to replace you!	po.	0	VariableEqual#fee_for_merits,20		
+1	Q	Well, have you changed your mind, are you taking up work?	po?	5	VariableEqual#fee_for_merits,10		
+1	Q	[BLUE]a formidable fatty in heavy armor standing guard at the castle gate[]	po?	2		
+2	A	Hello!	po?	3		
+2	A	Is there a job for a hero in your city?	po!	4		
+2	A	Bye!	po!	0		
+3	Q	The castle is under siege, the gates are closed, get out here!	po	0		
+4	Q	Undoubtedly, we would need a hero from the outside! All our forces are spent on keeping the enemies from breaking into the city, and there are not enough people for other tasks. Just scouts found their military commander in the Orc camp, if we managed to kill him, we could defeat their headless army, although it will not be easy to get to him, but I guarantee a large reward that the castle will send if you complete this task.	po	5		
+5	A	Okay, I'll try to eliminate this Orc warlord.	po!	6		
+5	A	It's too dangerous a job, I think I'll refuse.	po!	7		
+6	Q	Fine, then I'll send my assistant to the castle to bring your reward here when you complete the task.	po.	0		"NPCSpawn#orc_general_2;SetVariable#fee_for_merits,20"	
+7	Q	Then get out here, don't waste my time!	po.	0		SetVariable#fee_for_merits,10		
+8	A	What problem?	po!	9		
+9	Q	The messenger who was supposed to bring your reward from the castle escaped, he was spotted at the entrance to the sewers. Unfortunately, all my people are busy with orcs right now, and I have no one to let go in pursuit of the scoundrel. You can try to catch him yourself, and in the meantime I'll go to the castle and try to get compensation for you if you fail to catch the thief.	po	0		"NPCDespawn#major_male2;SetVariable#fee_for_merits,40"	

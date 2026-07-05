@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="10">
+ <properties>
+  <property name="faction_guard" value="varsilia"/>
+  <property name="maxlight" value="100"/>
+  <property name="music" value="thuram"/>
+ </properties>
+ <tileset firstgid="1" name="dungeon stairs" tilewidth="128" tileheight="128" tilecount="4">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" source="dungeon2.tsx"/>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="grounds_indoor.tsx"/>
+ <tileset firstgid="413" source="town_objects3.tsx"/>
+ <tileset firstgid="445" source="ruins.tsx"/>
+ <tileset firstgid="509" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="669" source="scifi.tsx"/>
+ <tileset firstgid="781" source="natural_grounds.tsx"/>
+ <layer name="nonwalk" width="32" height="32" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="water" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OoREAIAwEwTBoWklL9N8FOgr7YsXqu15VDRDm7ElfH5LdgAcA+HkgAxkaABAAAA==
+  </data>
+ </layer>
+ <layer name="ground2" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="scenery" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQ0AIAwEsUyP2ApGg4IB6D6FLV1/VfBnpAdoa912egKemR4AAGjqAGhowYoAEAAA
+  </data>
+ </layer>
+ <layer name="roofs" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="1" name="entry from farmlands" type="entry" gid="245" x="553" y="510" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object id="2" name="entry from farmlands" type="entry" gid="245" x="633" y="116" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="Bed" type="bed" gid="249" x="613" y="277" width="64" height="64"/>
+  <object id="4" name="conv" type="conversation" gid="249" x="729" y="433" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_library"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="5" name="orc" type="spawn" gid="247" x="179" y="795" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="6" name="orc" type="spawn" gid="247" x="105" y="79" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="7" name="Mezimer" type="staticNPC" gid="247" x="853" y="205" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_warriors_darema"/>
+    <property name="faction" value="wizardsguild"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@MEZIMER"/>
+    <property name="portrait" value="9"/>
+    <property name="sprite" value="male_green_1"/>
+   </properties>
+  </object>
+  <object id="8" name="captain" type="spawn" gid="247" x="675" y="587" width="64" height="64">
+   <properties>
+    <property name="conversation" value="lannegar_guard"/>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@CAPTAIN_WHITEWATER"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="9" name="Chest" type="container" gid="249" x="377" y="149" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="313,314,341,2636,2637,768,769,770,771,772,773,375,376,774,775,5039"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

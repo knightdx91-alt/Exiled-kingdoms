@@ -1,0 +1,9 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a fussy tramp with a staff, joyfully welcomes you)[] Hi, hero, I need your help! I found out about the secret place of the villains, if we suddenly attack when they gather there all together, then we will destroy them all at once and save the kingdom! 	[BLUE]()[] port.	2		
+2	A	No, I'm sorry, but I'm not suicidal to climb into who knows where.	port.	0		
+2	A	Great plan, I'm ready to help!	port?	3		
+3	Q	Great, we'll leave immediately! 	port.	4	PlayerIsLevel#22	AreaIs#C13	
+3	Q	Great, but I need a stronger assistant than you![BLUE](you need to be at least level 22)[] 	port.	5			
+4	A	I'm ready!	port.	0	"AreaIs#C13;playerhasGold#0"	"loseGold#0;Particle#;Travel#C13_tomb,3;Particle#teleport"
+4	A	No, let's do it another time.	port.	0		
+5	A	I'll be back!	port.	0		

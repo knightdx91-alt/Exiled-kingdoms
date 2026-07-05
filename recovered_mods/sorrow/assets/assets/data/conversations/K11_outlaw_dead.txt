@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the wizard, it seems, is not going to give up)[] Damn, I should have brought more experienced people with me, not these suckers... 	[BLUE]()[] port.	2			
+2	A	If you tell me about magister Windchaser, maybe you'll stay alive.	port?	3			
+3,outlaw	Q	Fuck you, I'm going to die soon anyway, do what you want with me, you won't be able to get anything out of me, I won't betray magister Windchaser. 	[BLUE]()[] port.	4			
+4,perci	Q	And you don't have to worry, we already know where the magister went, we only climbed here to put his attention to sleep. 	[BLUE]()[] port.	5			
+5,outlaw	Q	What? But how could you have found out about the fire altar, the magister did not tell anyone except... 	[BLUE]()[] port.	6			
+6,perci	Q	A fiery altar, you say? Well, thank you for sharing your knowledge with us after all. 	[BLUE]()[] port.	7			
+7,outlaw	Q	So you tricked me, you asshole?! Bastard, I'm on my last legs, I'm going to kill you anyway! [BLUE] (the wounded wizard rushes at you, and you to finish him off)[] 	[BLUE]()[] port.	8			
+8,perci	Q	Well, at least we found out where the magister will go, but we have no idea where this fiery altar can be located. 	[BLUE]()[] port.	9			
+9	A	In fact, not so long ago I came across one fiery altar, perhaps it is the one we need?	port?	10			
+10,perci	Q	Then let's check it out, we'll be lucky and we'll catch magister Windchaser. On the road!	port?	0		"SetVariable#smoke_without_fire,85;NPCDespawn#outlaw_team"

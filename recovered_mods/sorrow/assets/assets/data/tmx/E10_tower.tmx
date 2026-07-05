@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Tower of Tremadan"/>
+  <property name="name_ES" value="Torre de Tremadan"/>
+  <property name="nominimap" value=""/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="cave.tsx"/>
+ <tileset firstgid="493" source="town_objects.tsx"/>
+ <tileset firstgid="573" source="gate_blue.tsx"/>
+ <tileset firstgid="577" source="grounds_indoor.tsx"/>
+ <tileset firstgid="737" source="teleporter.tsx"/>
+ <tileset firstgid="738" source="artifacts.tsx"/>
+ <tileset firstgid="742" source="town_objects3.tsx"/>
+ <tileset firstgid="774" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2CEOADAIBEH+/2VMTV1NJeFmEgxuExRVwCR953cPAAAAAOyU9hPsepuT+tkl7Xb1AgAAAAAAwFwH3wEMwA==
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztz8ENg0AMRUFqCQrFg0iNyA2EPeDFsmYkX7/8loV/9rcfmCx6z7efmEhvb3p709ub3t709tal9xi80KE3/AYPAAAAAAAA6O9TdCtL/PgtuJVFb42tLHprbGXRW2Mri94aW1n01tjK0qV3Hbxw9+OTW5m2wZu99bQLLzMr0A==
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmAEKwyAQBEN/LPYrbfrcEqgg1qbmWOHW2wEJBGJvIjXrbVtM0m1srMLhcv8zvPpaak/V/d5g8L1Se32/925YfEdrb59p3w2T70jt8uXw/VWnfL+fY9yvem5X96tI36NIeYM1T1pqj+YrhBBCCCGEB6JlWeZzpQXmvoEF1r6QFda+n5VR31Wc5RvLN9J+Fel7FClvRMqTQgghhBgDmREY8kbJgI/masmAZa58cvXg+wJl/FQ5eT0vIM9wDOfB4/efnfO41TeD5poFssfG0K9Lnz1K67vu+u7A/SqD5poFsueEnGsW5f+L6Dn11tVb/wqdJ8/W10ueRPq2Y3fmK9blDQPLIaI=
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2DENACAMAMEGR/hXgwcEIICpSwvJnYKfPwLgPbs7AAAAAACggBcK/5ndAQAAAJDkQQFAnTW6CwBuB11/A/E=
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztzzERADAIADGujhCAf1u10IGDoYmC/wgAAAAAAACgS24HDPvtt852AQAAAAAAALy7qe0Aog==
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztms1Kw0AQx9P2JuIb6EVfwK+itmoPHhQURPGrF8+KePds9Rn6LnpRUNCDDyHUKopfZwVnyC4u66aZpF13084P/mQ73Qzzp8m2mW4Q9CZ32vgFdA16BD2I8YWDumzRUMZN0EAhHJ+BzkXcV79zoCqoCNoWx6oY43EMNK+dg34/xPg2Iq+vficNsVouCE5y4fEYNK693zCco+Oz309DXHqtpfR71X5pVtgizGnltw46MMjXz3eRMEf3i2vUUcw5Ufe1S0qgGS1W117j9azPw8+3L2+zMnfIdes09xtDv/0xfm+sVpWOMmg6xTz0OwR+hzXP78pYvX9N66ErdghzTOvVoMGviq9+212fo/B1fTb93tDR/V4S5OP6jMyCJhTJ+7SsxCpOKvsf5PdOyWkVDMMwDMMwTBqwN4r9T9kXlZJxU280y0Q9q6hx/Vkly7DfELVX1k1+KfSaX1MPlckGo4Q51B5qFkjTK8wyaXqFWabX/Oq9UZMqropjGIZhGMYZ2FtSe03Ye1rTYpTfTTLXpqJ2ctkCn2nuI/Yx7IsjtUbM9SZyyT2YT/lwj1DSXLZYj4jvgQ7FmFoj5nqN2efj2i/lGY5a40bwd79X2ly2oPRWkvjtVC5bNGOuv90gmd/vmHyue1eU3kqS9erL832Jnbx/Kf0r170rSo1J/D57vj5Lv/q6qr6m1ojXykih9Rxf/LaCWiNl72Y3+e1kLlvgf7LFGFG/Q9R+3RRoSXlvWcQp+++zygpoQWjVcS29yA9K52VY
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="exit to Grasslands" type="transition" x="939" y="969" width="47" height="78">
+   <properties>
+    <property name="area_id" value="E10"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="893" y="1001">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="691" y="822" width="66" height="57">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="Trix" type="spawn" gid="247" x="706" y="1070">
+   <properties>
+    <property name="conditions" value="VariableLower#key_to_past,40"/>
+    <property name="conversation" value="E10_tower_trix"/>
+    <property name="spawn" value="trix"/>
+    <property name="tag" value="trix"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="720" y="908" width="104" height="250">
+   <properties>
+    <property name="actions" value="SetVariable#key_to_past,25;StartConversation#trix,E10_tower_trix"/>
+    <property name="conditions" value="VariableLower#key_to_past,25"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="249" x="662" y="973">
+   <properties>
+    <property name="conversation" value="E10_magic_gate"/>
+    <property name="icon" value="magic_gate"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="1687" y="155">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="794" y="913">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="1582" y="87" width="66" height="57">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="1518" y="234" width="66" height="57">
+   <properties>
+    <property name="area_id" value="E10_cave_fire"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="1705" y="423" width="66" height="57">
+   <properties>
+    <property name="area_id" value="E10_cave_ice"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="1623" y="277">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="723" y="995">
+   <properties>
+    <property name="entry_id" value="6"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="184" y="1518">
+   <properties>
+    <property name="entry_id" value="7"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="220" y="1456" width="41" height="54">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="303" y="254">
+   <properties>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="131" y="172">
+   <properties>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="361" y="240" width="31" height="58">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="6"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="158" y="207" width="32" height="232">
+   <properties>
+    <property name="actions" value="SetVariable#key_to_past,60;StartConversation#tremadan,E10_tremadan"/>
+    <property name="conditions" value="VariableLower#key_to_past,60"/>
+   </properties>
+  </object>
+  <object name="Wizard" type="staticNPC" gid="247" x="138" y="289">
+   <properties>
+    <property name="conditions" value="VariableLower#key_to_past,100"/>
+    <property name="conversation" value="E10_tremadan"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TREMADAN_IMAGE"/>
+    <property name="portrait" value="38"/>
+    <property name="sprite" value="tremadan"/>
+    <property name="tag" value="tremadan"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="249" x="294" y="80"/>
+  <object name="stairs down" type="transition" x="89" y="68" width="52" height="48">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="7"/>
+   </properties>
+  </object>
+  <object name="Trix" type="spawn" gid="247" x="172" y="1644">
+   <properties>
+    <property name="conditions" value="VariableGreater#key_to_past,39"/>
+    <property name="conversation" value="E10_tower_trix_inner"/>
+    <property name="spawn" value="trix"/>
+    <property name="tag" value="trix2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="143" y="1673" width="41" height="54">
+   <properties>
+    <property name="area_id" value="G8_tower"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="249" x="77" y="1487">
+   <properties>
+    <property name="conditions" value="VariableGreater#shards_fate,0"/>
+    <property name="conversation" value="E10_tower_mirror"/>
+    <property name="icon" value="mirror"/>
+    <property name="name" value="@MIRROR"/>
+   </properties>
+  </object>
+  <object name="Wizard" type="staticNPC" gid="247" x="107" y="1499">
+   <properties>
+    <property name="conditions" value="VariableLower#shards_fate,10"/>
+    <property name="conversation" value="E10_tremadan_2"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TREMADAN_IMAGE"/>
+    <property name="portrait" value="38"/>
+    <property name="sprite" value="tremadan"/>
+    <property name="tag" value="tremadan2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="conversation" gid="249" x="213" y="86">
+   <properties>
+    <property name="conversation" value="E10_tower_chest"/>
+    <property name="icon" value="chest_gold"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Wizard" type="staticNPC" gid="247" x="83" y="1543">
+   <properties>
+    <property name="conditions" value="VariableGreater#shards_fate,13;VariableLower#shards_fate,100"/>
+    <property name="conversation" value="E10_tremadan_3"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TREMADAN_IMAGE"/>
+    <property name="portrait" value="38"/>
+    <property name="sprite" value="tremadan"/>
+    <property name="tag" value="tremadan3"/>
+   </properties>
+  </object>
+  <object name="Wizard" type="staticNPC" gid="247" x="136" y="294">
+   <properties>
+    <property name="conditions" value="VariableGreater#ark_lothasan,10;VariableLower#ark_lothasan,20"/>
+    <property name="conversation" value="E10_tremadan_4"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TREMADAN_IMAGE"/>
+    <property name="portrait" value="38"/>
+    <property name="sprite" value="tremadan"/>
+    <property name="tag" value="tremadan4"/>
+   </properties>
+  </object>
+  <object name="Chest" type="conversation" gid="249" x="757" y="1491">
+   <properties>
+    <property name="conversation" value="E10_tower_chest2"/>
+    <property name="icon" value="chest_gold"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="249" x="50" y="1621">
+   <properties>
+    <property name="conversation" value="E10_lab_gate"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="91" y="1630">
+   <properties>
+    <property name="entry_id" value="13"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="926" y="1616" width="28" height="53">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="13"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="875" y="1633">
+   <properties>
+    <property name="entry_id" value="9"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="804" y="1833" width="26" height="27">
+   <properties>
+    <property name="area_id" value="FT"/>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="1745" y="376">
+   <properties>
+    <property name="entry_id" value="10"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="249" x="708" y="1765">
+   <properties>
+    <property name="conversation" value="vault"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="@SPHERE"/>
+   </properties>
+  </object>
+  <object name="table" type="conversation" gid="249" x="696" y="1640">
+   <properties>
+    <property name="conversation" value="E10_lab_table"/>
+    <property name="icon" value="table2"/>
+    <property name="name" value="@TABLE"/>
+   </properties>
+  </object>
+  <object name="HIRGE Trigger" type="trigger" x="159" y="138" width="59" height="35">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_dreams"/>
+    <property name="conditions" value="NPCIsInParty#hirge,hirge;VariableEqual#three_versus_eleven,100;VariableLower#ancient_seal,10;VariableLower#TMP_hirge_dream,1;PlayerIsLevel#13"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="206" y="267">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

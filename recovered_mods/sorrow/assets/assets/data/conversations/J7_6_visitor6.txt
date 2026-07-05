@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hello, I'm going to Rigordion soon, thanks to your generosity.	¿po?	0	"VariableEqual#problems_visitor,2"		
+1	Q	 [BLUE](this man is sober enough to talk to him)[]	¿po?	2			
+2	A	Hello!	po.	3		
+2	A	Do you know anything about the wizard who comes here?	po.	4	"VariableEqual#family_matters,50"		
+2	A	Are you really a hunter? I'm just looking for hunters to hire them for work.	po.	6	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_visitor,1"		
+2	A	[BLUE](ignore)[]	po.	0		
+3	Q	 Hello, sad times have come for hunters, the undead have divorced in the forests, and now there is no game.	¿po?	5		
+4	Q	 No, I try to stay away from such muddy guys.	¿po?	5		
+5	A	Yes, it's really not fun.	po.	0		
+6	Q	 Then you're lucky - I'm a first-class hunter, but it's hard to get normal game in our.	¿po?	7		
+7	A	I need hunters in Rigordion.	po.	8		
+8	Q	 The Northern Kingdom? Well, maybe I really should change the situation. I'm ready to work for you, but do you have [BLUE]500 gold[] for my journey?	¿po?	9		
+9	A	Yes, of course.	po.	10	PlayerHasGold#500	
+9	A	Sorry, but no.	po.	0		
+10	Q	 Then I'll go pack my things, so as not to waste time in vain.	¿po?	11		
+11	A	Sign the contract first, when you arrive in Rigordion, find me or Agnius Northson.	po.	12			
+12	Q	 Okay, I got it.	¿po?	0		"IncVariable#lucrative_undertaking,1;GainItem#10260;LoseGold#500;SetVariable#contract_visitor,1;SetVariable#problems_visitor,2"	

@@ -1,0 +1,19 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	9	NPCisFollower#	
+1	Q	Greetings, townsman, I am the head of the New Garand guard! If you have any problems, please contact me. 	[BLUE]()[] port.	3	VariableEqual#NG_house,1		
+1	Q	Greetings, wanderer, I am the chief of the New Garand guard! It looks like you're new to our city, I hope you're not worth the trouble? 	[BLUE]()[] port.	2		
+2	A	I am a law-abiding citizen.	port?	0			
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	8	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	8	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	8	PlayerHasItem#10402		INT#5
+3	A	A thief broke into my house!	port?	4	"VariableEqual#smoke_without_fire,15"		
+3	A	Thank you, I will keep in mind.	port?	0			
+3	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	8	PlayerHasItem#10402		STR#5
+3	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	8	PlayerHasItem#10402		AGI#5
+3	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	8	PlayerHasItem#10402		INT#5
+4	Q	Damn it! Urgent measures must be taken to detain this scoundrel! What did he steal from you?	port?	6			
+6	A	Fortunately, I managed to apprehend the thief on my own, but he died in the process. Although I managed to find out that he was acting on someone's tip.	port?	7			
+7	Q	Hmm, we'll have to strengthen patrols so that this doesn't happen again. I'll send people to remove the thief's body from your house and try to identify him, although I doubt it will help find the spotter.	port?	0		"SetVariable#smoke_without_fire,20"		
+8	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#brawley_follow,3;NPCFollow#"	
+9	A	Good fellow.	port.	0		
+9	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#brawley_follow,1;NPCStopFollowing#"

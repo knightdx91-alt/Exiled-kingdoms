@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a huge head without a body with a stupid expression on its face)[] Hi! I'm the head. Big head.	¿po?	0	"VariableEqual#bighead,3"		
+1	Q	[BLUE](a huge head without a body with a stupid expression on its face)[] Hi! I'm the head. Big head.	¿po?	10	"VariableEqual#bighead,2"		
+1	Q	[BLUE](a huge head without a body with a stupid expression on its face)[] Hi! I'm the head. Big head.	¿po?	2			
+2	A	Hi, why are you so big, and where is your body?	po.	3		
+3	Q	Hm... Let me think about it... Hmm, and really, why is this so? Interesting... I have to think about it. Hm...	¿po?	4				
+4	A	If you have such a big head, then your brain is huge, which means you are very smart?	po.	5		
+5	Q	Hm... Well, that's how it is! You're right, I'm smart... Yeah, very smart...	¿po?	6				
+6	A	If you're so smart, maybe you can explain to me where I got to, what kind of place is this?	po.	7		
+7	Q	Hmm... I need to think about it... This is not an easy question. This is place... Hmm, I'll keep thinking now...	¿po?	8		
+8	A	Okay, think as much as you want...	po.	0		"SetVariable#bighead,2"
+8	A	Okay, think as much as you want, I was actually looking for friends of Bridge here.	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		
+9	Q	Hmm, Bridge? I need to think about it... Hmm, who could it be and where. It's definitely not me... Now still have to think about it. Hmm...	¿po?	0		"SetVariable#bighead,3"
+10	A	Hello.	po.	0		
+10	A	I'm looking for friends of Bridge here, can you tell me where they might be?	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		

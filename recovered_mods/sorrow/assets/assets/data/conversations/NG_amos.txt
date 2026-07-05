@@ -1,0 +1,45 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Today, all the undead in this castle will get their fill!	¿po?	0	"VariableGreater#bloody_harvest,82"		
+1	Q	 Can't do anything without the ancient seal, do you have it?	¿po?	25	"VariableEqual#bloody_harvest,81"		
+1	Q	 I told you there is no place for amateurs here! We are servants the Three, us can handle it ourselves!	¿po?	22	"VariableEqual#bloody_harvest,80"		
+1	Q	 Are you all right? We didn't even have time to understand anything, as something took you to the castle, we fought our way here!	¿po?	14	"VariableEqual#bloody_harvest,37"		
+1	Q	 It's very sad... All the villagers are dead and have been turned into servants of the darkspawn! The villains must answer for their terrible deeds!	¿po?	9	"VariableEqual#bloody_harvest,25"		
+1	Q	 [BLUE](man in the raincoat stopped in the middle of the road, examining the site of the massacre)[] Oh, just look, the servants of the Blood Lords managed to frolic here, but you were able to defeat them! How unexpected! Except now I have to clean up after them.	¿po?	6	"VariableEqual#bloody_harvest,12"		
+1	Q	 [BLUE](it looks like the vampire leader has been defeated, as the survivors decide to escape, and the young priest who helped you looks around)[] Three keep us safe! What terrible creatures of darkness they are! So the rumors were true!..	¿po?	2			
+2	A	What are you talking about? What kind of rumors?	po.	3		
+3	Q	 Recently, rumors began to circulate that people began to disappear in the vicinity, and about unknown creatures wandering in the night. I came from Ilmara to investigate what was happening, and it turned out to be true! These creatures of darkness are real and, moreover, they have become emboldened and have begun to carry out their attacks right in the city!	¿po?	4			
+4	A	In fact, I've dealt with these creatures before, and I can help you.	po.	5		
+5	Q	 Great! I am brother Amos, I will be glad of any help, we must protect the common people, this is a threat... [BLUE] (he pauses, and you notice a figure wrapped in a cloak emerging from a dark alley)[]	¿po?	0		"SetVariable#bloody_harvest,12;NPCSpawn#necromancer;NPCDespawn#vamp_team;NPCDespawn#NGcorp"
+6,amos	Q	 Your speech sounds unkind, stranger. Who are you and what are you doing here?	¿po?	7			
+7,necromancer	Q	 You don't have to worry about who I am, saint, you can save your worries for your afterlife. [BLUE] (suddenly, the stranger threw his hands up and sang something in a language unknown to you)[] Rise up by the will of the Blood Lords! Give them bloody gifts!	¿po?	8			
+8,necromancer	Q	 [BLUE](with these words, the motionless bodies of the townspeople lying on the pavement began to move. The dead rose up, an animal growl escaped from their throats, which did not bode well for you)[]	¿po?	0		"SetVariable#bloody_harvest,15;NPCHostile#necromancer;NPCSpawn#anita;NPCSpawn#zomb_corp;NPCDespawn#vamp_corp"
+9,mercenary_grisenda	Q	Undoubtedly, sooner or later they will be punished, and I will be one of the many who will defeat this evil!	¿po?	10			
+10	A	We need to get back to New Garand and report what happened here... [BLUE](from somewhere on top of the mountain, you thought you heard someone shouting)[]	po.	11		
+11,amos	Q	 It seems that not all the inhabitants are dead, someone was taken to the castle!	¿po?	12			
+12,mercenary_grisenda	Q	We have to go there and try to save them!	¿po?	13			
+13	A	Okay, let's try to do this.	po.	0		"SetVariable#bloody_harvest,30"
+14	A	I was attacked by a vampire, but I was able to defeat her.	po.	15		
+15,amos	Q	 That's good, but what are you doing here?!	¿po?	16			
+16,anita	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Are you serious about this? You told me that there's a castle full of undead here that I've never met before, and as a hunter of such creatures, I was curious to check it out.	¿po?	17			
+17	A	Have you found the abducted villagers?	po.	18		
+18,mercenary_grisenda	Q	No, we haven't gone inside the castle yet.	¿po?	19			
+19	A	Then let's check out what's going on there.	po.	20		
+20,anita	Q	 I'll go with you, I'll help you not to die if there are a lot of undead there!	¿po?	21		"NPCFollow#"
+21	A	Well, we can use your help.	po.	0		"SetVariable#bloody_harvest,40"
+22,anita2	Q	 Are you completely fucked up, brother?! If we leave the fate of our world in your hands alone, it will soon turn into a paradise of Tol! Where do you go without a sword capable of destroying vampires and a seal to lock them in their lair, otherwise they will endlessly climb and attack us!	¿po?	23			
+23	A	We're already here!	po.	24		
+24,anita2	Q	 Great! Do you have the ancient seal with you?	¿po?	25			
+25	A	Yes, I have it.	po.	27	"PlayerHasItem#10807"		
+25	A	Uh, no, I forgot it somewhere.	po.	26		
+26,anita2	Q	 So why the fuck did you come here without a seal?! We can't do anything without it!	¿po?	0		"SetVariable#bloody_harvest,81"
+27,anita2	Q	 Good. This is Magister Kaspar, it is he who activates the ancient seal, give it to him so that the magister can study this seal.	¿po?	28			
+28,mage	Q	 Nice to meet you. May I take a look at this ancient artifact?	¿po?	29			
+29	A	Of course.	po.	30		
+30,anita2	Q	 [BLUE](in a whisper, while the wizard examines the seal)[] Take better care of him so that he doesn't get hurt, if he gets killed, I'm unlikely to find another fool who decides to climb into the undead lair to activate this thing.	¿po?	31			
+31	A	Okay, let's try to save him.	po.	32		
+32,mage	Q	 There doesn't seem to be anything complicated, the main thing is to find a suitable place. Isn't there a dungeon in the castle? Somewhere in its center, we will activate the seal so that its aura covers the entire mountain.	¿po?	33			
+33	A	Yes, there is a suitable place, let's try to get there.	po.	34		
+34,mage	Q	 Get me there safely, and I'll do what's necessary.	¿po?	35		"NPCFollow#"
+35,anita2	Q	 Of course, don't worry, everything will be fine, I promise you.	¿po?	36		"NPCFollow#"
+36,amos	Q	 Have we discussed everything? Come on, our allies are already waiting for us in the castle!	¿po?	37		"NPCFollow#"
+37	A	Great, the support obviously won't be superfluous.	po.	0		"LoseItem#10807;SetVariable#bloody_harvest,83"

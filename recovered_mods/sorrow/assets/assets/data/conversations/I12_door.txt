@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	"The door leading out of the sorceress' tower."	port.	4	AreaIs#I12_tower	
+1	Q	"The door to the sorceress's tower is open."	port.	2	"VariableGreater#holiday_coming,51"		
+1	Q	"The door of the tower is covered with a thick layer of ice, but when you touch it, it instantly disappears, and the door opens slightly."	port.	3	"VariableGreater#holiday_coming,49"		
+1	Q	"The door of the tower is covered with a thick layer of ice, it is impossible to open it."	port.	0		
+2	A	Stay.	port.	0		
+2	A	Enter.	port.	0		"Travel#I12_tower,1"
+3	A	Enter.	port.	0		"NPCSpawn#oberon;SetVariable#oberon_coming,1;Travel#I12_tower,1"
+4	A	Stay.	port.	0		
+4	A	Entry.	port.	0		"Travel#I12,5"

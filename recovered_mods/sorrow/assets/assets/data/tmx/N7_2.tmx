@@ -1,0 +1,879 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="82" height="82" tilewidth="64" tileheight="32" nextobjectid="110">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="awkward_meeting" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="grounds indoor 2.tsx" firstgid="1405" />
+  <tileset source="dungeon3.tsx" firstgid="1565" />
+  <tileset firstgid="1805" name="teleporter_black" columns="1" tilecount="1" tileheight="96" tilewidth="192">
+    <image source="teleporter_black.png" width="192" height="96" />
+  </tileset>
+  <tileset firstgid="1806" name="dungeon3_2" columns="16" tilecount="96" tileheight="128" tilewidth="64">
+    <image source="dungeon3_2.png" width="1024" height="768" />
+  </tileset>
+  <layer name="nonwalk" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aSw6AIAwFQO5/ZTYuTUxUFnxKmbmA9WlLEy0F4qqrCwBILPKMjVzb0+ha64RrAMAOnIcQnz49g+cMAADz2cP78M2lj1pk2UNLjjL+531sJyMAyGP3c333+gEA4CT2d9iHfgUAuNmNACAn/4t+k00fcmQ1s24MmQIRnDyLTr53yOStl/U45KCXgdEuhlaH1hBpAAA=
+  </data>
+  </layer>
+  <layer name="water0" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3bwRGCMBBAUU7235balCdncgBNYIFk814FyWdRJgPLAvk9H3evIJcjPV2LGCN3fA28dvIyl0BGIz8vAABwj7dnyFDOGwAA+MUZLgAc5/80ho4AAAAA9ZylxFjrmLntWXubreNZtppp2UbHGN9ea++gatnGTMYoZ7KcSx3bmckYZS8zuZ95PJ+WMdzzMfT6r/UbME3rzNC15+8H7+w54rXccuVeep6nCFnmood99LCGDHSMoWO97L/zMzDvAAAA+30AUZt3BxBpAAA=
+  </data>
+  </layer>
+  <layer name="water" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2cWU4DMQyG4WXuf6kpajkKl0ARRIqMndiJtwzzSX1gaLP8dWxn69vbjSWPI/dnV+rw5nnE6Mmpt/z/uZGWhVU9Z+DUV3XMZJsfx8+LIvv3j7UtSt8XUe/5+zyzjhS9NlvqDO2yavi5oYYcrHxWKbO1y/L3VTVssdCzHQvP5H5Rm4yxa2eyx9UR5zHOHbyQ2mSGNleqP34ddP7g2RapTUa3uZJpPMG2cOzzI8H3X8ikYwHqyGmbpo6tn5O82rbD5xmwnCNjsQH6Ocmrpfe/SCz0bDWDdc2UtQvaPkizvEz+8Ry049aRx4Pwz+fx15dr1adRHlxXGsUjqgytuFT79ULqxvyYVn0a5cA1EW48gmWs9hFbK7SOd5o6rpZj+Z1ak82nrbYlat06i45a/Y9ac82io6T/vflWIaI/3jpSa2uSdozmWxF460itrUl1pN4bNafC2gTHjXV9veezdUhZ6Wfr26lcVXustHphfk3je5v9Tmb7CX27h4+BfcTqXK0/InZ6n2XojWvrOryxbIeXf5wpyysWWJcdrWPBKhZYYOk3VudFM+tUPax1tLT31XmhdJ0qiii/kQ3ufiKFVV93O6Mo2U+kPm/R193O163qYKnjLrZYwc58SOJbRh2jzy607Y+Ib5p7gNGxmWOf1EtjPm2xBxhNzz4tcrMd/SIHz37tlutI8NRxt1xHgkTHr/f5eqxssTfP8PTBXvZoZYuZ9tG8dLTKQ6ln2c7GahChYyHj2s8qVvfivOrKgoVN3jrqlVnA/CA2V7sCnj4SPo+ei2tirSN2l+OKaOnYG8Pc5zujaY9wfLZ6XdkmrdcoRvaY5T7iKtrzQknsrVpCHTXvXHiifceNa1+9OLTrmnLEOi7Mf6CemmcyPNGyy5k+t2Mcnj+MXi+aReO3PuAdMKkdZYjno/uV7ft6fdQY660NrdhpBFQMxs6sfw76aBGDJGPTQkcsH8CePcCzE9FtdGcelqcdgyT7DL01jxmwfKA+w87b1/dJ8wgsD7GI5RLbpHJNLtCHwf5Q+9wFzv0satxgd3MikdSP7bEVer/nM7IVzvfN+W2Z6HMCEh2pPbbRZ7T7Z32GHzKK41T+Qe3tFqRtlfZvJpfzOG+B5UZwTBZGd71m8/QZO+HUBf2y53mLkS5Wd+Rm7wJSORTHL1+RlbuAWA71n7SDzM47Vv3zFVm1y/9qg5DoHO8q3DrqcOs4ppfzW/3e2FXpzbF33ReKQms+eZNz3+cbCl1M7xBpAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3US24DIRAEUK9y/2N5kUNlkygWYqC7qf4AVRIb20MXb5BfLwad76//5fns52/bJX22aqzn0j47Muw9u9IrI9JzaZ5ZWZoZFSPp6unn8S4yIumT7bOT8+mGXp7tnr0Z2eet7pndv+KiIx3b/pW67GZZqRMdcV0srtm9qzmOukU5opNtqDnb6r63OM7OiHREdMt2oiOui9YRcfYTHXtdRqngqEn0O13tdaujNRUckXeIjvldMgwrOaLvBR39rE5yfOqu6UFHjKOHsYcjekakY4al9/7WmXS801Haw2vv3udR74qOfo6eZ41y9Ox/oiP67iENI43pWGft4hjlYJ3r1bO6Gx3pWNkR7VrFMds0u4tHsu+m5Vx0PNMx2689V8V3toMfHfd0REeyLx3lPlUco9+Xp+PTrOyz7+Q4mpV99qqWM8ene3rKomN9x5nlSaYejtI7eYphhGP7PR3XLCV3decV5fj5/WmO6GgdT7H0yGjO7LPd76q3o2QmHTGO6P1v89TOzTbKNEW4Zpxf2zXC0WJS0fEv74lRhGemY28/yWdtKjiO5nlb9vaS9Gszc5w9j4717Ba7p7mrnaW/9YzE4f27rGazuejOqDnITtr7aJnr0Xml22oi3y1ir4qG0YlwPD3oM99k9xk6ruXm/zFk6IgJHTGhIyZ0xIZ+mNCRYeb5AeEMcYkQaQAA
+  </data>
+  </layer>
+  <layer name="ground2" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3b2xGDIBAFUP/yldbyTv+tZFKADkHA3XBOAY4PWO6qLAsA/LfnKeexR7gkP/+WbhPci3vya3x0PP+exya+vbU8+9wayb063toz2DsPjsgUckyd7Pl1rxkyXw31mSO9jb+p6L3mtfXsrUPxXT2jKiVjW11kFjIf9FUyx2Qu6OP7nlqmA1qK1IPvyQ8js4ecw8sYgGbUVEaa/f8VjtPqnzPvAygRqcejvV/qSelYsD62kSHX1vayGa4N1kRcF0fOKd+U6ClKhjDGySbjP2091q4sGVONIYueexe36lZpHrAnl2yeG72UvcJ8zd5v12a5KH1kZBHfZc0gS38SScuxam0FAACyOutnAFL4ACFncO8QaQAA
+  </data>
+  </layer>
+  <layer name="ground3" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3SsQnAMAxFQaWxJ/L+q4RAUngJRzukcBB3oP4jXgQAAAAAAAAAANS1WsTou1fUcOYv77Z7RQ2HJj+Z2eGV9+gRAAAAAAAAAAAAAAAAAAAA4FdeWhKXxBBpAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1cWarUQBRtFPrtwtlfPxQ34Eoc1+hqRBEcwPFH+w2iJh8Fl8Odaq5014HwaF5SqZzcuW5lt5s4RZzvd7tf+96zsHH3rPcMdPxYOPy2AR5zECsr6/k/4eCup+f9OQEeY2VlPf9yOb6T4zdzPZ7HnXNMsHhEefXyXkKXt2JXV4TnvSfY2PX/Fwk6qvHotQ1hjAcD2n98hsDLQ4VHTY85Tji+Xy7jvzrzjRnG/QPvcCTZxGe4MuTL0s8D8EHHvTDkTAOOa82zJcI7pvPhngl9bYpMHJRnT7GdPWIntM/nhJNL0CG0f/Q8TsZifTuOLdlYy6dwY5XWc87moW8IvKAdkvRSimVieKRjX+3lOIizhchTrD1KAWdLatzzIPDrgfYODsyckWu8PshnDd9zn/hDywa2hjUHjz+jvGr2txS2ymOsP6v9XDh+jj6WgsZTsI9Br71y5uUxtY4zgvwh0OegvtA4AuevxR+15bF0HvB5GeMDjHOz0HtO+S3FHyVB71PKFn9axvhYaM6W3bFy+lb6Ru8zoo57fE5MDFQSUt10RB4tv5cbI+VAqpvWsJW1QefMzbdm/CG9I81PBnA+pCcOxnxrwiPr0jleH7Ly/Y4ctbnvYZM8+ps7r7dw7T/4XVque+QPnlgndV5BDr/CtdchfiwZG7UGF9uX1geUw4A3Be+Btb/W/pDWnLx5VSwkHksC/WGPGEOqzWFdN3U+LXik0Dj1rDOmQss/aV031Wavdu/aYgvfL3+/RI5xK3PNlMttrLp9zr2sfLWUvWwtmy1jn9w8S8MNkCfKI/rr0uDWN3uC8pjrF1cd3y/8/a0U42CdAO1Rz14VyqMnT+wJq7+qZ91F0vuRakHeGvdIcw6oPaeYPNFbmxiBR64Hj4vNStmflDzR2yfTs/7HxUdc7wC1AV6Zup3gu7leNdpXEbjy9q7m4HHE/DWdyK2ppUDrA6F5TO/YR+v7Qb0Ywe7gutIofdFYSxs1nuDm0Hs+KetdUr9X7boAAnms3afHAXscufWu2H6v3P7H2PnT9871E7bQ7YNxvxJrmSky4s3jsDdlVHj1WnvmFBlpuU+kBaQ1Ydrrxeltbl3AWosO0GpWI+2jkfIuqk+cTOTKSc5adKu+shTg3h7OR9bIHVPWjFr1laVA6+XieoU5m5giW959YVvZ32nt78npy9BqxNyakbQnZIQ85k5kvcBaa5T8EuqoxYG1Ftc6TiwNrQbk6UGm12j6ntv7P5LP5mDtQ4l5/pj/eXmksu6Jn3rB2ofi9Q/hXE7f8TrNNlj2cmS9t+TIu28YuUEbQXN9yTZw9chReUNouURML3fpfS9byRU1pKzfleZnhP1TGp44YiOpfiR9T2CFpx5k1TpH9CE1oNlLro4p7VPm6p0j9iXUQqk9GVJNpOY68EiweLLqX1r8FLOnfmuwvjUQIy9SHHQK8HxrYGv7nHpi/dbAozM7Hz8lGaN4FlkfGj2m64WnA37zauK08HyRwRdTDosjpmdtYmJiohZi1/OOCa9n3DkxcRSQdHnq+MTEcWDq8sTERG38B+3jbmIQaQAA
+  </data>
+  </layer>
+  <layer name="roofs" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XSwrCMAAFwLhpvf8Fq4LfegY1gRa7iEHaYinOQMg2PF5+IQAAAAAAS7pUIRyrpVexfueY4UmOwJ9xh8zj2zsk5b3rhtzHawbZPTM56nVZ38P7IKN9Ji9vo7Imk02uj5TlctzUv1/H2qX9GmJuhzi3XaZX980kfTdvcX44D0dLOabhfJwm7fFtrYcAU/gnzsM/8U2n5qFTAAAAAAAAAAAAAAAAAAB88gKPuCW3EGkAAA==
+  </data>
+  </layer>
+  <layer name="roofs1" width="82" height="82">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XQQqDMBQFwKyiF+o9ev+NWmgr1CuIRrCbgqWoVNQZCNl+Hi8JCQEAAADgPK7Z1hMAsFcXb8hf1TGEMq173HqSfSvG/KqJHPX6u3cPmzG/Th9nKT5ya+U4yzPllqcze0v7K06fa343dDNzDy42dPOhjwBwGP6JrE2nAAAAAAAAAAAAAAAAAAAAzqcH7hjxQxBpAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="1205" gid="245" y="1075">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="Altar" type="container" id="2" x="220" gid="245" y="440">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="loot_table" value="shelf_s1" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="mboss" type="spawn" id="3" x="145" gid="247" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="awakened_nightmare" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mboss" type="spawn" id="4" x="2125" gid="247" y="2285">
+      <point />
+      <properties>
+        <property name="spawn" value="grotesque_thoughts" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mboss" type="spawn" id="5" x="2455" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="spawn" value="smoldering_darkness" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mboss" type="spawn" id="6" x="255" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="personification_malice" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="boss" type="spawn" id="7" x="1475" gid="247" y="2405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="demonic_consciousness" />
+        <property name="tag" value="N7boss" />
+      </properties>
+    </object>
+    <object name="Altar" type="container" id="8" x="960" gid="245" y="2040">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="loot_table" value="chest_s2" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="Altar" type="container" id="9" x="700" gid="245" y="220">
+      <point />
+      <properties>
+        <property name="icon" value="altar" />
+        <property name="loot_table" value="sphere_s1" />
+        <property name="name" value="@Altar" />
+      </properties>
+    </object>
+    <object name="sarcophagus" type="container" id="10" x="1500" gid="245" y="250">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="outlaw,rock_golem" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="11" x="700" gid="245" y="1570">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="777,5007,5015" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="220" gid="245" y="920">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="loot_table" value="outlaw_chest_10" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="13" x="1120" gid="245" y="1920">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="5025,5027" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="14" x="1150" gid="245" y="830">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="5020,5001,5025" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="15" x="1760" gid="245" y="570">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="128,142,10844" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="16" x="1890" gid="245" y="1180">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="17" x="1950" gid="245" y="1790">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="6012,6014,5021" />
+        <property name="name" value="@CORPSE" />
+      </properties>
+    </object>
+    <object name="sarcophagus" type="container" id="18" x="570" gid="245" y="2170">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="items" value="393,3026" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="sarcophagus" type="container" id="19" x="640" gid="245" y="2110">
+      <point />
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="chest_mage2,blue_hag2" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="20" x="570" gid="245" y="1530">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="sepulchre_1,sepulchre_1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="21" x="1950" gid="245" y="220">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="items" value="325,185,10845" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="22" x="245" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="23" x="725" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="24" x="655" gid="247" y="525">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="25" x="475" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="26" x="565" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="27" x="115" gid="247" y="485">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="28" x="855" gid="247" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="29" x="595" gid="247" y="2155">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="30" x="1075" gid="247" y="335">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="31" x="1425" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="32" x="1815" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="33" x="1555" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="34" x="1885" gid="247" y="1135">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="35" x="1655" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="36" x="1165" gid="247" y="1365">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="37" x="1845" gid="247" y="1655">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="38" x="1495" gid="247" y="2285">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image1" type="spawn" id="39" x="2065" gid="247" y="1295">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="40" x="115" gid="247" y="275">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="41" x="995" gid="247" y="55">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="42" x="885" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="43" x="345" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="44" x="245" gid="247" y="1065">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="45" x="565" gid="247" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="46" x="885" gid="247" y="2195">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="47" x="1305" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="48" x="1595" gid="247" y="185">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="49" x="1785" gid="247" y="775">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="50" x="1555" gid="247" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="51" x="1045" gid="247" y="1465">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="52" x="1395" gid="247" y="1995">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="53" x="2035" gid="247" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="54" x="2035" gid="247" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="55" x="2195" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image2" type="spawn" id="56" x="1845" gid="247" y="955">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="57" x="475" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="58" x="735" gid="247" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="59" x="275" gid="247" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="60" x="85" gid="247" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="61" x="625" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="62" x="795" gid="247" y="1265">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="63" x="545" gid="247" y="1655">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="64" x="185" gid="247" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="65" x="565" gid="247" y="2075">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="66" x="1845" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="67" x="1625" gid="247" y="435">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="68" x="1105" gid="247" y="1715">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="69" x="1395" gid="247" y="1645">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="70" x="1775" gid="247" y="1775">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="71" x="2095" gid="247" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="72" x="2095" gid="247" y="725">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="73" x="955" gid="247" y="1655">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image3" type="spawn" id="74" x="1075" gid="247" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="75" x="565" gid="247" y="345">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="76" x="115" gid="247" y="625">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="77" x="665" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="78" x="245" gid="247" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="79" x="825" gid="247" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="80" x="695" gid="247" y="2165">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="81" x="395" gid="247" y="1355">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="82" x="1295" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="83" x="1875" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="84" x="815" gid="247" y="1675">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="85" x="1325" gid="247" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="86" x="1525" gid="247" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="87" x="1205" gid="247" y="1805">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="88" x="1145" gid="247" y="2095">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="89" x="1775" gid="247" y="2065">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="90" x="2155" gid="247" y="1965">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="91" x="2035" gid="247" y="1005">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image4" type="spawn" id="92" x="2195" gid="247" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="93" x="1965" gid="247" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="94" x="1965" gid="247" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="95" x="1425" gid="247" y="1805">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="96" x="1785" gid="247" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="97" x="205" gid="247" y="465">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="98" x="685" gid="247" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="image5" type="spawn" id="99" x="955" gid="247" y="2065">
+      <point />
+      <properties>
+        <property name="spawn" value="dark_image_5" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="stone" type="conversation" id="100" x="1410" gid="249" y="2430">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#N7_obelisk1,1" />
+        <property name="conversation" value="N7_obelisk1" />
+        <property name="icon" value="monolith" />
+        <property name="name" value="@MONOLITH" />
+      </properties>
+    </object>
+    <object name="stone" type="conversation" id="101" x="1600" gid="249" y="2430">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#N7_obelisk2,1" />
+        <property name="conversation" value="N7_obelisk2" />
+        <property name="icon" value="monolith" />
+        <property name="name" value="@MONOLITH" />
+      </properties>
+    </object>
+    <object name="stone" type="conversation" id="102" x="1500" gid="249" y="2520">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#N7_obelisk3,1" />
+        <property name="conversation" value="N7_obelisk3" />
+        <property name="icon" value="monolith" />
+        <property name="name" value="@MONOLITH" />
+      </properties>
+    </object>
+    <object name="stone" type="conversation" id="103" x="1500" gid="249" y="2330">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#N7_obelisk4,1" />
+        <property name="conversation" value="N7_obelisk4" />
+        <property name="icon" value="monolith" />
+        <property name="name" value="@MONOLITH" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="104" x="1410" y="2280" width="160" height="60">
+      <properties>
+        <property name="conditions" value="VariableLower#trouble_again,54" />
+        <property name="actions" value="StartConversation#evelina,N7_portal" />
+      </properties>
+    </object>
+    <object name="portal" type="conversation" id="105" x="1525" gid="249" y="2605" width="4" height="4">
+      <properties>
+        <property name="conversation" value="N7_portal" />
+        <property name="icon" value="blue_energy" />
+        <property name="name" value="@PORTAL" />
+        <property name="tag" value="N7_portal" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="106" x="1440" y="2368" width="60" height="60">
+      <properties>
+        <property name="conditions" value="VariableEqual#trouble_again,65" />
+        <property name="actions" value="StartItemConversation#N7_portal" />
+      </properties>
+    </object>
+    <object name="Evelina" type="spawn" id="107" x="1255" gid="147" y="1155">
+      <point />
+      <properties>
+        <property name="conversation" value="P7_Evelina" />
+        <property name="spawn" value="evelina_lightwind_3" />
+        <property name="tag" value="evelina" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="108" x="1344" y="2208" width="290" height="350">
+      <properties>
+        <property name="conditions" value="VariableEqual#trouble_again,59" />
+        <property name="actions" value="StartItemConversation#N7_portal" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="109" x="1150" y="1020" width="100" height="20">
+      <properties>
+        <property name="conditions" value="VariableLower#trouble_again,51" />
+        <property name="actions" value="StartConversation#evelina,N7_Evelina" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="110" x="1150" y="1020" width="20" height="100">
+      <properties>
+        <property name="conditions" value="VariableLower#trouble_again,51" />
+        <property name="actions" value="StartConversation#evelina,N7_Evelina" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="111" x="1150" y="1100" width="100" height="20">
+      <properties>
+        <property name="conditions" value="VariableLower#trouble_again,51" />
+        <property name="actions" value="StartConversation#evelina,N7_Evelina" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="112" x="1230" y="1020" width="20" height="100">
+      <properties>
+        <property name="conditions" value="VariableLower#trouble_again,51" />
+        <property name="actions" value="StartConversation#evelina,N7_Evelina" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

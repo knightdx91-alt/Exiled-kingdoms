@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](wounded bandit throws down his weapon and begins to beg)[] Don't kill me, I'll tell you where I agreed to meet with the employer to transfer the reward after completing the case, so that you can deal with him.	¿po?	6	"VariableEqual#family_matters,70"		
+1	Q	 [BLUE](a suspicious type blocks your way, and a group of bandits appeared from the gateway)[] Yeah, I guess you're the hero who pokes his nose into other people's business? Well, you're out of luck today, because we were paid to delivered our employer from an annoying misunderstanding.	¿po?	4	"VariableEqual#family_matters,60"		
+1	Q	 [BLUE](a suspicious type who seems to be waiting for someone)[]	¿po?	2			
+2	A	Hello!	po.	3		
+2	A	[BLUE](ignore)[]	po.	0		
+3	Q	 Get off me.	¿po?	0		
+4	A	Can we agree?	po.	5		
+5	Q	 I'm sorry, but we've already been paid, and we can take your stuff from the corpse.	¿po?	0		"NPCSpawn#banda;NPCHostile#bossbandit;SetVariable#family_matters,70"	
+6	A	Okay, tell me.	po.	7		
+7	Q	 There is one place here outside the city at the southeastern corner of the wall - some ruins, near them I agreed to meet with the freak who sent me on this case. I told you everything, we agreed, can I get out?	¿po?	8		
+8	A	Go away.	po.	0		"NPCDespawn#J7_6_bandit;NPCDespawn#banda;NPCSpawn#J7_6_wizard;SetVariable#family_matters,80"
+8	A	No, you're going to die now.	po.	0		"NPCSpawn#J7_6_wizard;SetVariable#family_matters,80"

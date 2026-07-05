@@ -1,0 +1,31 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hurray! I'm finally free! [BLUE](a joyful, naked girl came to hug you, you carefully hugged her back, trying not to molest her naughty parts)[] Thank you! Now shall we return to the city?	port	18	"VariableEqual#strangers_foreign_lands,35"		
+1	Q	You won't leave me here alone, will you? [BLUE](a naked girl locked in a cage looked at you pleadingly)[]	port	0	"VariableGreater#strangers_foreign_lands,19;VariableLower#strangers_foreign_lands,34"		
+1	Q	[BLUE](In the cage, you notice a beautiful, young woman, who was wearing virtually nothing, sitting in the far corner with her head bowed. Noticing you, she immediately perked up, abruptly jumped to her feet, ran to the bars, while the meager rags from the remnants of clothes flew off her body)[] Oh, I didn't even hope that anyone would find me and save me!                                                                                                                   	port	2		
+2	A	Em, yes, I've come to save you. [BLUE](you tried not to stare at the naked body of the girl in front of you, who was clearly overjoyed to be found and was bouncing slightly on the spot, causing her large breasts to sway)[] Are you by any chance the missing royal mage?	port.	3		
+3	Q	Yes! I am Evelina Lightwind, a junior member of the magical council. I had hoped to find a way to solve the problem of the strangers here, but I had overestimated my strength and abilities a bit.	port	4		
+4	A	I'm glad to meet you, Evelina. Why do you look like that? Did those orcs do anything bad to you?	port.	5		
+5	Q	Oh, um... [BLUE](the girl froze, looking down at her body, but she wasn't embarrassed when she realized that she was naked in front of you. She looked back at you)[] What do you mean by bad? Sexual assault?	port	6		
+6	A	Yes, I can't imagine what you've been through here.	port.	7		
+7	Q	Oh, don't worry! We're of no interest to orcs in that regard! I managed to study them a bit before I came here. They're a completely different species, distinct from us not only in appearance but also mentally. We humans aren't sexually attractive to orcs, like, for example, a somewhat crude comparison; dogs aren't attractive to humans in the same way. Although, of course, there may be exceptions, but they should be rare.	port	8		
+8	A	Okay, that's interesting, but why do you look like that?	port	9		
+9	Q	Well, I'd been wandering around these parts for a couple of days, avoiding danger with my magic, so I was all dusty and dirty, so I decided to take a dip in the Royal Lake. While I was doing so, the orcs caught me. I had no time to react. They took my staff, all my equipment, and clothes, and probably dumped them somewhere in the forest, and they dragged me here and locked me up.	port	10		
+10	A	Why do they need you?	port	11		
+11	Q	Their leader needs a mage. Have you seen the thing behind you? It's a portal...	port.	12		
+12	A	So that's how all these orcs and minotaurs got into these lands!	port	13		
+13	Q	Yes, that's right! However, this portal is one-way, so you can use it to get here, but you can't get back, which is why the orc leader was looking for a mage to solve the portal problem. But I'm not an expert in teleportation magic, and I'm not very familiar with magical equipment and artifacts, so I don't know how long I could fool them before I was finally rescued.	port.	14		
+14	A	Well, let's free you first, and then we'll decide what to do with this portal.	port	15		
+15	Q	Yes, I can't wait to get out of here! [BLUE](the girl started jumping even more excitedly, causing her large breasts to jiggle more violently)[] Have you killed all the orcs? The key to the cage must be in the hands of their leader, who is probably hiding in the cave.	port.	16		
+16	A	Okay, I'll find him and set you free.	port.	17		"SetVariable#strangers_foreign_lands,20"
+17	Q	I'll be looking forward!	port.	0		
+18	A	Sure, but first let's find you some clothes, and we still need to figure out this portal.	port	19		
+19	Q	Oh, it would be much better to find my staff and magical equipment. And the portal is simple. Do you see those large flasks attached to the arch? They contain mana, and if they are broken, the portal will stop working. [BLUE](the girl didn't seem to care about her lack of clothes)[] Although it is a pity that we couldn't solve the orc problem without violence and murder.	port	20		
+20	A	Just break these round things? Is the liquid inside them dangerous? It'll spill out when I break them.	port	21		
+21	Q	It's not dangerous, it's just regular mana. We mages use it, and we're fine.	port	22		
+22	A	Okay, whatever you say. [BLUE](Taking the girl's advice, you decide to break the mana flask with your weapon. The glass it was made of was strong, but you still had enough strength to break it, and the liquid spilled out. Just to be on the safe side, you stepped back and then broke the second flask in the same way)[]	port	23		
+23	Q	That's it, the portal will dim and then disappear, and no one will be able to come through it again.	port	24		
+24	A	Do you know what this portal is? Where did it come from?	port	25		
+25	Q	Nope. [BLUE](Evelina responded, fending off a mosquito away from her stomach and chest)[] Probably preserved since the imperial times. Although I managed to study it a little, and it looks like it was inoperative for many years, but someone recently, why did they activate it? Ow! [BLUE](the girl scratched one of her bare buttocks, where the mosquito managed to bite her)[]                                                               	port	26		
+26	A	Claerly, we need to report this to the guardmaster, let him sort it out. And you still need to find some clothes. [BLUE](After searching the orc camp, you found an old cloak, which you gave to Evelina)[]	port	27		
+27	Q	[BLUE](The girl grimaced at the sight of the cloak, but she put it on anyway)[] It would be useful in such a wild area.	port	28		"NPCFollow#"
+28	A	Okay, let's go back to the city.	port	0		"SetVariable#strangers_foreign_lands,40"

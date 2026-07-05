@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a young and fragile-looking girl, but equipped as an experienced huntsman)[] Hello, traveler, the other day I'm sailing on a ship to Rigordion.	¿po?	0	"VariableEqual#contract_scarlett,1"		
+1	Q	 [BLUE](a young and fragile-looking girl, but equipped as an experienced huntsman)[] Hello, traveler, good luck to you.	¿po?	12	"VariableGreater#check_honesty,90"		
+1	Q	 [BLUE](a young and fragile-looking girl, but equipped as an experienced huntsman)[] Hello, traveler, did you manage to find out anything about my partner Cryop?	¿po?	6	"VariableGreater#check_honesty,5;VariableLower#check_honesty,90"		
+1	Q	 [BLUE](a young and fragile-looking girl, but equipped as an experienced huntsman)[] Hi, traveler, I'm Scarlett, a local hunter. Today is a great day to go hunting, it's a pity that I no longer have a reliable partner, it's dangerous to be alone in our forests.	¿po?	2			
+2	A	Hi! Where did your partner go?	po.	3		
+2	A	Hi, have you met any zombies in your forests who look like priests?	po.	18	"VariableEqual#last_honors,10;VariableLower#talkz_scarlett,1"		
+3	Q	 Well, my boyfriend... that is, my partner, or rather, probably already my ex-boyfriend... In short, more than a week ago he disappeared somewhere, taking with him my best bow and part of my savings without asking, since then I have not heard anything about him. Now I wonder if he died in our forests while hunting, or did he kill my things to someone in Istril and have fun with local girls? Such things.	¿po?	4		
+4	A	Yes, you're out of luck, maybe when I'm in Istril, I'll find out something.	po.	5		
+5	Q	 I will be grateful! By the way, my ex... my partner's name is Cryop.	¿po?	0		SetVariable#check_honesty,10		
+6	A	Nothing so far.	po.	0		
+6	A	So far, nothing, I wanted to ask if there are any zombies in your forests that look like priests?	po.	18	"VariableEqual#last_honors,10;VariableLower#talkz_scarlett,1"		
+6	A	Are you a hunter? I'm just looking for hunters to hire them for work.	po.	7	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_scarlett,1"		
+6	A	It looks like Cryop died hunting animals in the woods near the quarry, I found this bow there by the corpse.	po.	10	PlayerHasItem#10279	
+7	Q	 I'll be glad to work for you, but only if you find a Cryop or my personal bow, which he took with him. Agreed?	¿po?	8		
+8	A	Okay, I'll do my best.	po.	0		
+10	Q	 What a horror! How could this have happened to him?.. Well, thank you for helping me find out the truth and returning my bow, accept this hunting knife as a reward.	¿po?	11		"GainXP#200;LoseItem#10279;GainItem#10280;IncVariable#REP_sorrowland,2"				
+11	A	Happy to help.	po.	0		"SetVariable#check_honesty,100"
+12	A	I'm looking for hunters to hire them for work, is that interesting to you?	po.	13	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_scarlett,1"		
+12	A	I wanted to ask you, did you encounter zombies in your forests that look like priests?	po.	18	"VariableEqual#last_honors,10;VariableLower#talkz_scarlett,1"		
+12	A	And the same to you.	po.	0		
+13	Q	 Of course, why not, maybe I'll find a new partner there with whom I can hunt?	¿po?	14		
+14	A	Anything is possible, but I need hunters in Rigordion.	po.	15		
+15	Q	 The Northern Kingdom? Yes, no problem, just need to dress warmly.	¿po?	16		
+16	A	Then sign the contract, when you arrive in Rigordion, find me or Agnius Northson.	po.	17			
+17	Q	 Clearly.	¿po?	0		"IncVariable#lucrative_undertaking,1;GainItem#10260;SetVariable#contract_scarlett,1;SetVariable#problems_scarlett,2"	
+18	Q	 I've heard that there are zombies roaming far away in the northeast, but there aren't any in our neighborhood.	¿po?	0		"SetVariable#talkz_scarlett,2"	

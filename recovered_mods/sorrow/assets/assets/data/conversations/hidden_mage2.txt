@@ -1,0 +1,62 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Well, it looks like we're done here. He won't be able to cause us any more problems. And now about the reward for you, hero.	port?	40	VariableEqual#very_strange_thing,87		
+1	Q	This is not the time to talk!	port?	0	VariableEqual#very_strange_thing,85		
+1	Q	([BLUE]mage and his assistants appeared in the room[]) Oh, great! My idea worked wonderfully! Balthazar, it's been a while, I see you're all busy, how well you've arranged everything here!	port?	32	VariableEqual#very_strange_thing,82		
+1	Q	([BLUE]the stranger was clearly surprised to be discovered[]) What?! How did you notice me?	port?	2		
+2	A	It doesn't matter. You'd better tell me quickly why you were following me while you were safe.	port?	3		
+3	Q	Oh, well, I'd have to start this conversation with you one day anyway, although it would have been better if it had happened under different circumstances... One of my spies informed me of your location, which is why I ended up here.	port?	4		
+4	A	So why were you spying on me?	port?	5		
+5	Q	Well, actually, my target is Balthazar, but since a connection between the two of you has recently been discovered, I decided to follow you and then make contact. But first, I personally wanted to evaluate your capabilities and strengths, because you didn't just end up in such a very dangerous place.	port?	6		
+6	A	Okay, who are you anyway?	port?	7		
+7	Q	I am a representative of a secret group of magicians, you can call me by the name of Zeref, but you don't need to know the details, what is more important is Balthazar and what he is planning to do. I've been following him for a long time, the poor guy went a little crazy in his old age, and now he sees all this nonsense about unknown horrors threatening to destroy the world. But the problem is that he hasn't completely lost his mind, and he has all his great magical experience and powers with him, so he poses a serious danger to many people.	port?	8		
+8	A	And what is this danger?	port?	9		
+9	Q	He is trying to assemble some kind of device to detect an imaginary threat, and launch it without thinking about the consequences. For example, he recently stole a dangerous artifact from us for this purpose and continues to collect other equally dangerous things, not to mention his experiments on dead and even living, intelligent beings. As you know, before it's too late, he needs to be stopped for the common good.	port?	10		
+10	A	Maybe you're right.	port?	11		
+11	Q	Well, of course it's true, he's a brilliant madman and a powerful magician capable of destroying an entire kingdom. And so it turns out that while Magister is mindlessly hunting some kids, I'm doing a really useful thing, trying to deal with Balthazar's madness, not to let his infernal device start!	port?	12		
+12	A	Magister? So you work for him? Are you an forsaken?!	port?	13	"VariableEqual#TMP_tremadan_magister,1"		
+12	A	Why do you need me?	port?	17		
+13	Q	What? How do you know anything about Magister and forsaken? Wait a minute... Are you really the Archmage's child he's looking for?	port?	14		
+14	A	Exactly! Get ready to die, villain!	port?	15		
+15	Q	Wait a minute! This is your personal fight with Magister, I have nothing to do with it! I mind my own business and don't meddle in his, I have enough of all these problems with Balthazar.	port?	16		
+16	A	I don't care, death to the forsaken!	port?	0		"SetVariable#hidden_mage,99;NPCHostile#hidden_mage2;NPCSpawn#hidden_team"		
+16	A	Okay, I hope that's the case. Why do you need me?	port?	17		
+17	Q	Balthazar obviously trusts you, since he invited you to his tower and gives you some assignments. That's what we're going to use, and thanks to you, I'll be able to get into the tower and stop the madman from activating his machine. You will not be left without a reward, I am a rich man, I will not deprive you of gold.	port?	18		
+18	A	I could use some coins.	port?	28		"SetVariable#hidden_mage,2"		
+18	A	I don't need coins.	port?	19		
+19	Q	Okay, then I can provide you with a great magic item.	port?	20		
+20	A	I'm going to need a magic item very much.	port?	28		"SetVariable#hidden_mage,3"		
+20	A	I don't need anything magical.	port?	21		
+21	Q	Okay, I have various excellent weapons, not for a mage, I think something will suit you.	port?	22		
+22	A	I'm going to need a weapon.	port?	28		"SetVariable#hidden_mage,4"		
+22	A	I don't need a weapon either.	port?	23		
+23	Q	Would you like some nice, wonderful armor?	port?	24		
+24	A	I could use a new suit of armor.	port?	28		"SetVariable#hidden_mage,5"		
+24	A	No, I have my own.	port?	25		
+25	Q	Hmm, you know, then I can help you get a proper place to live in Icemist, how do you like this offer?	port?	26		
+26	A	My house in Icemist? Of course, I agree!	port?	29		"SetVariable#hidden_mage,6"		
+26	A	I don't need a house in Icemist.	port?	27		
+27	Q	I've had enough! I'm sure I can handle this without your help!	port?	0		"SetVariable#hidden_mage,99;NPCDespawn#hidden_mage2"		
+28	Q	Then it's settled, you'll get your reward after you help me. So, Balthazar protected his tower with a magical field, blocking access to strangers, even with the help of teleportation. But I have one artifact that creates a gap in any defense for a couple of moments, long enough for me to teleport to it. And when you come back and Balthazar decides to show you his device, then you activate my artifact, but not before, this thing is disposable and it's not so easy to find more like it. Everything is clear?	port?	30		
+29	Q	Well, that's settled, as soon as I find a suitable option for you, I'll meet you at Icemist. And now about our matter. Balthazar protected his tower with a magical field, blocking access to strangers, even with the help of teleportation. But I have one artifact that creates a gap in any defense for a couple of moments, long enough for me to teleport to it. And when you come back and Balthazar decides to show you his device, then you activate my artifact, but not before, this thing is disposable and it's not so easy to find more like it. Everything is clear?	port?	30		
+30	A	Yes, sure.	port?	31		"GainItem#10647;NPCDespawn#hidden_mage2"		
+31	Q	Then see you later, I'll see you at Balthazar Tower!	port?	0		
+32,balthasar5	Q	 You?! How did you get in here, bastard?!	¿po?	33				
+33,hidden_mage2	Q	 A mutual friend helped me do this.	¿po?	34				
+34,balthasar5	Q	 What?! Oh, you damn traitor!	¿po?	35				
+35,hidden_mage2	Q	 No need to shout in vain, I just offered a high price for the service. I see you've finished creating your device! Great! Well, we don't need you anymore, but if you behave calmly and mind your own business, I'm ready to let you go in peace.	¿po?	36				
+36,balthasar5	Q	 Go to Tol! I'm not just going to give up my life's work to the likes of you slobbers!	¿po?	37				
+37,apprentice5	Q	 Teacher, I'm with you!	¿po?	38				
+38,hidden_mage2	Q	 Well, I didn't believe that I would be able to come to an agreement with you. Let's calm them down quickly before they have time to destroy anything here.	¿po?	39				
+39	A	Okey.	port?	0		"SetVariable#very_strange_thing,85;NPCHostile#balthasar5;NPCHostile#apprentice5;NPCHostile#golemb;NPCHostile#golem_g"		
+40	A	Yes?	port?	41		
+41	Q	I'll meet you in Icemist later when I find a house for you there.	port?	42	VariableEqual#hidden_mage,6		
+41	Q	Here's your reward - a wonderful armor, as I promised.	port?	42	VariableEqual#hidden_mage,5	"GainItem#232"	
+41	Q	Here is your reward - an excellent and deadly weapon, as I promised.	port?	42	VariableEqual#hidden_mage,4	"GainItem#10643"	
+41	Q	Here's your reward - a magic cloak, as I promised.	port?	42	VariableEqual#hidden_mage,3	"GainItem#10641"	
+41	Q	Here are your coins, as I promised.	port?	42	VariableEqual#hidden_mage,2	"GainGold#15000"	
+42	A	Good. And what do we do with this dangerous magician's device? Shall we destroy it?	port?	43		
+43	Q	Hmm, probably not. Such a shederval device, it should be well studied and put to use!	port?	44		
+44	A	But you said yourself that this is a very dangerous device that can destroy the whole kingdom. Maybe you shouldn't try to figure out how it works, but it's better to get rid of it right away!	port?	45		
+44	A	Okay, it's none of my matter anymore.	port!	0		"GainXP#2800;SetVariable#very_strange_thing,120;Travel#H9_tower,5"		
+45	Q	To be honest, you've already tired me out, hero, trying to meddle in other people's business that you don't know anything about. I don't know what exactly Magister needs you for, but I don't care, I'll get rid of you so that you don't interfere with us in the future!	port?	46		
+46	A	Well, try it, you pathetic forsaken!	port?	0		"SetVariable#very_strange_thing,90;NPCDespawn#hidden_mage2;NPCHostile#hidden_team;NPCSpawn#hidden_mage3"		

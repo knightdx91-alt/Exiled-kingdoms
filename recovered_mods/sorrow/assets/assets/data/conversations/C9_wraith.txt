@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](suddenly the ghost stops attacking you and begins to moan desperately)[] My brother has already taken everything from me, but now and after death I have no peace?! 	[BLUE]()[] port.	2		
+2	A	What? I don't understand what you're talking about?	port?	3			
+2	A	I have no idea what you're talking about, I just wanted to know something about this crystal.	port?	4	"PlayerHasItem#10287"		
+3	Q	[BLUE](the ghost disappears without deigning to answer you)[] 	port.	0		"NPCDespawn#wraith"		
+4	Q	Crystal? Yes, I recognize this devilish thing. Ha, it looks like luck turned against my brother, this thing belonged to him, and he would never willingly part with this thing! 	port.	5				
+5	A	Do you know what this crystal is for or how to use it?	port?	6		
+6	Q	If you want to learn more about this thing, find a fiery altar at the Foothills Zamor, but I would advise you to be careful - throw this thing away and forget. [BLUE] (with these words, the ghost disappeared)[] 	port.	0		"SetVariable#fiery_dancing,30;NPCDespawn#wraith"		

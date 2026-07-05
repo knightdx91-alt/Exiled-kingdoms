@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hi, Greytroll, I have a very important conversation with you! 	¿po?	2			
+2,grateroll	Q	 You better get out of here yourself before the guards kick you out!	¿po?	3	"VariableEqual#something_more,70"		
+2,grateroll	Q	 What the fuck?! I thought you'd already been thrown in jail!	¿po?	5	"VariableEqual#something_more,25"		
+3,sansa	Q	 Not before you answer my questions.	¿po?	4		
+4,grateroll	Q	 Then I'll escort you out on my own!	¿po?	0		"NPCHostile#grateroll;SetVariable#grateroll_fight,2"
+5,sansa	Q	 You'll be behind bars very soon!	¿po?	6		
+6,grateroll	Q	 If the guards couldn't handle you, then I'll do it!	¿po?	0		"NPCHostile#grateroll;SetVariable#grateroll_fight,2"

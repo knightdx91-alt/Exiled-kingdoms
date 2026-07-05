@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a militant-looking priest)[] The demonic bear will not be able to escape from us!	¿po?	0	"VariableGreater#scripture_mission,79"		
+1	Q	 [BLUE](a militant-looking priest)[] Aha, here is the last member of our team to fulfill the sacred mission! Are you ready to hit the road to meet deadly danger?	¿po?	2		
+2	A	Yes, of course.	po.	3		
+3,ryurger	Q	 Then first get to know those who will fight shoulder to shoulder with you against the monster. This is the honorary guardian Glover, he recently received his title, and does not yet understand that it gives privileges to be constantly at the temple, while the rest are forced to go somewhere on errands.	¿po?	4		
+4,glover	Q	 It's not in my nature to just stand on duty for hours without doing anything. I will be glad to fight with you against a terrible monster, wanderer.	¿po?	5		"NPCFollow#"
+5,ryurger	Q	 The next one is novice Auburn. Although a fighter with a blade from him is not so good, but it is difficult to find a more accurate archer in the whole kingdom.	¿po?	6		
+6,auburn	Q	 I will try to be useful, I hope together, wanderer, we will definitely win.	¿po?	7		"NPCFollow#"
+7,ryurger	Q	 Well, the priest Anabel, the most skilled and fierce warrior I've ever met. I admit even I sometimes get scared sparring with her in training.	¿po?	8		
+8,anabel	Q	 I hope you are really such a good fighter, as Ryurger said about you, and you will be of use in this mission, wanderer.	¿po?	9		"NPCFollow#"
+9,ryurger	Q	 The best warriors I've ever managed to assemble.	¿po?	10		"NPCFollow#ryurger"		
+10	A	Glad to meet you all.	po.	11		
+11	Q	 Well, now it's time for us to go finish off the demonic bear.	¿po?	0		"SetVariable#scripture_mission,80"		

@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	What does yours want from mine?.	port	4	NPCisFollower#	
+1	Q	Mine go with yours! Kill them all together! Come on my {LEVELx20} from yours.	po  {LEVELx20}  rt.	2		
+2	A	Sorry, but there are already too many of us in the group.	port.	0	hasFollower#	
+2	A	That would be great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx20}"	"NPCFollow#;LoseGold#{LEVELx20}"
+2	A	Not now, thank you. Maybe in the future.	port.	3		
+3	Q	Yours bad! Yours think more!	port.	0		
+4	A	Nothing, let's move on.	port.	0		
+4	A	I don't need your services anymore. Thank you for your help and goodbye.	port.	5		
+4	A	Please move a little, you're standing in the way.	port.	6		
+4	A	Hey, can you do something?	port.	7		
+5	Q	Yours cheat mine! Mine beat yours!	port.	0		NPCStopFollowing#
+6	Q	Oh? Mine is not understand yours!	port	0		
+7	Q	My rage is your rage!	port	0		"losehp#35;GainMight#10,20"

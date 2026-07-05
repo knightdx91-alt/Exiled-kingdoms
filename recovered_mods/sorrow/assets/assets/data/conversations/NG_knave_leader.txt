@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a middle-aged man selling trinkets)[] Oh, wow, who came to the capital - Neville himself, what kind of wind brought you here?	¿po?	3			
+3,knave	Q	 Yes, I'm passing through here on business and I want to visit someone without warning. How are you, Hugh, what are you doing?	¿po?	4				
+4,leader	Q	 As you can see, everything is the same for me, I work quietly, I earn my coin. And who did you decide to visit?	¿po?	5			
+5,knave	Q	 Yes, I wanted to visit the Whitetoad, they are rich people, I think they will be glad to me.	¿po?	6			
+6,leader	Q	 Hmm, an interesting choice, I'm also planning come visit and I was thinking of gathering a group of friends for this occasion, I only haven't decided exactly to whom yet.	¿po?	7		
+7,knave	Q	 Oh, we could unite and think together how to approach our hospitable hosts more correctly.	¿po?	8				
+8,leader	Q	 It might not be a bad idea, but this is not the time or place to talk about it. [BLUE] (and in a quieter voice, starting to pack his goods)[] Do you remember that basement in farmlands? We'll discuss everything there, away from other people's ears and eyes.	¿po?	9			
+9,knave	Q	 Got it, Hugh!	¿po?	10			
+10	A	And this guy is going to help us get the artifact?	po.	11		
+11,knave	Q	 Clearly, I wouldn't turn to just anyone. Hugh is the best robbery mastermind in all of Varsilia. So don't make him wait for us, let's go!	¿po?	12			
+12	A	Then let's go.	po.	0		"SetVariable#varsilian_job,15;NPCDespawn#leader"

@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the peasant at the cart greets you)[] Be healthy! If you don't want to trudge on foot, I can bring you in my rattletrap.	port.	2		
+2	A	Where can you take me?	port.	3		
+2	A	Thanks, but I'll stay here for now.	port.	0		
+3	Q	I can take you to one of the settlements of Ilmara for a small fee for a couple of hours.	port [BLUE]30 monedas[].	4		
+4	A	Okay, take me to [BLUE]Fögas[]! Here's my gold.	port.	5	PlayerHasGold#80	
+4	A	Okay, take me to [BLUE]Rhoneis[]! Here's my gold.	port.	19	PlayerHasGold#100	
+4	A	Okay, take me to [BLUE]Nivarian[]! Here's my gold.	port.	30	PlayerHasGold#100	
+4	A	Maybe another time.	Quizá en otro momento.	0		
+5	Q	Come on, hop on...	De acuerdo, di cuándo estás preparado...	6		
+6	A	Go!	Estoy preparado.	0		"loseGold#80;Travel#D11,7,4"
+19	Q	Come on, hop on...	De acuerdo, di cuándo estás preparado...	20	IsRegistered#	
+20	A	Go!	Estoy preparado.	0		"loseGold#100;Travel#F10,7,6"
+30	Q	Come on, hop on...	De acuerdo, di cuándo estás preparado...	31	IsRegistered#	
+31	A	Go!	Estoy preparado.	0		"loseGold#100;Travel#F11,7,6"

@@ -1,0 +1,23 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Don't bother me unnecessarily! 	port.	9	"VariableGreater#fiery_dancing,49;VariableLower#fiery_dancing,99"		
+1	Q	I see that you're worth something. So, if you want to use my crystal, it will need to be charged. To do this, you will need nine fiery cores extracted from lavaman. Of course, they will have to be killed first, because they will not give their hearts to you voluntarily! 	port.	7	"VariableEqual#fiery_dancing,45"		
+1	Q	Come on, fight! 	port.	0	"VariableEqual#fiery_dancing,40"		
+1	Q	Aha, you're finally back, worm! You haven't been here for a long time, and I was already beginning to think that you were scared. Wait a minute, though... You're the wrong slug. Who are you, and where did you get my crystal from?! 	[BLUE]()[] port.	2		
+2	A	I took it from the previous owner and I want to know what it is for and how it can be used.	port?	3			
+3	Q	So that loser didn't meet my expectations. Well, if you want to master my crystal, first me need to check if you are a weakling! Ready for my challenge? 	port.	4				
+4	A	Yes, I'm ready!	port?	6		
+4	A	No, I'll be back later.	port?	5		
+5	Q	Then get lost, you sucker! [BLUE](and the demon disappeared into the flames)[] 	port.	0		"NPCDespawn#femipet;SetVariable#demon_tut,1"		
+6	Q	Try not to die right away! [BLUE](you are covered by a wave of flame, burning and blinding you, when it disappears, you find yourself surrounded by hellish creatures!)[] 	port.	0		"SetVariable#fiery_dancing,40;LoseHPFire#100;NPCSpawn#demon_team"		
+7	A	Where can I find these lavamans?	port?	8		
+8	Q	Anywhere, that's your problem. And be careful, don't stumble upon the creator of these creatures, he will obviously be unhappy if you start destroying his creations. 	port.	0		"SetVariable#fiery_dancing,50;NPCDespawn#femipet;SetVariable#demon_tut,1"		
+9	A	I won't bother you.	port?	0		"NPCDespawn#femipet;SetVariable#demon_tut,1"		
+9	A	I brought the right amount of fire cores.	port?	11	"VariableEqual#fiery_dancing,65;PlayerHasItems#10290,9"		
+9	A	I brought the right amount of fire cores.	port?	10	"VariableEqual#fiery_dancing,60;PlayerHasItems#10290,9"		
+9	A	I brought the right amount of fire cores.	port?	10	"VariableEqual#fiery_dancing,59;PlayerHasItems#10290,9"		
+10	Q	Commendable perseverance. Give them here and my crystal. [BLUE](Having taken them from you, the demonic being did some manipulations, after which he returned the crystal to you, which now pulsed with energy)[] That's it, use it for your pleasure. And remember, you can still serve me. 	port.	0		"LoseItem#10287;LoseItems#10290,20;GainItem#10288;SetVariable#fiery_dancing,100;GainXP#1000;NPCDespawn#femipet"		
+11	Q	Commendable perseverance. Give them here and... [BLUE](suddenly, the demon bared his teeth, his body tensed)[] And it's you, old rascal! Did you think you could sneak up on me? I smelled your stink from afar, but I was waiting for you to do something stupid, naive fool! 	port.	12		"NPCSpawn#gruselig"		
+12,gruselig	Q	No, you're a idiot, I got close enough for my aura to extinguish your fire portal, now you won't be able to escape through it. 	port.	13				
+13,femipet	Q	I wasn't going to run, dullard, obviously not from such an insignificant worm. And I'm glad that you got out of your hole, and did not rot in it completely, because now I will be able to deal with you myself! 	port.	14				
+14,gruselig	Q	And I was waiting for the hour when you would stop sending your trash to me, and you would try to fight me! 	port.	15				
+15,femipet	Q	Stop talking, it's time for you to die! 	port.	0		"NPCHostile#femipet;SetVariable#fiery_dancing,70"		

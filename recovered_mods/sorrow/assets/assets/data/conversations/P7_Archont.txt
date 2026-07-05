@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Oh, uninvited guests! You don't seem to understand where you are and the severe punishment that awaits you for such audacity! 	¿po?	6	"VariableEqual#royal_will,75"		
+1	Q	 Oh, it doesn't look like the wound is serious, and you're fine since you're already visiting the tavern. 	¿po?	3	"VariableEqual#royal_will,70"		
+1	Q	 It's time to deal with these rebellious idiots. 	¿po?	0	"VariableEqual#royal_will,62"		
+1	Q	 We need to be discreet so we don't attract the attention of the sentries, and we need to get to those rebellious idiots. 	¿po?	0	"VariableEqual#royal_will,60"		
+1	Q	 The places we're going to are dangerous, so be careful and ready to fight. 	¿po?	0	"VariableEqual#royal_will,50"		
+1	Q	 This is not the time to talk! 	¿po?	0	"VariableEqual#royal_will,47"		
+1	Q	 You're just in time, these bastards are coming in boats, their ship is anchored at the mouth of the river. You shouldn't trust them too much, so be ready for a fight. But no matter how it goes, we need to get that pirate ship. Although we'll need the dead pirates to leave the corpses as evidence of their attack on the governor's son and his friends. 	¿po?	2			
+2	A	Clearly.	po.	0		"NPCSpawn#pirat;NPCSpawn#pirats"
+3	A	Yes, fortunately, the pirate's weapon that wounded me was not poisoned.	po.	4		
+4	Q	 Well, that's great. Our mission was a success, but we couldn't kill all the rebels. However, we captured the governor's son, and the pirate ship we took helped us divert attention. By the way, I was looking for you. Princess Bernadette wanted to meet with you to discuss a new case. 	¿po?	5			
+5	A	Okay, then let's go to her.	po.	0		"SetVariable#royal_will,82;NPCDespawn#arhont;HideParty#;Travel#P7_dungeon4,1"
+6,alarion	Q	We know exactly where we are, and you're standing in our way, bastard.	port.	7			
+7,arhont	Q	 You won't be able to free the prisoner, my guys and I will take care of it. 	¿po?	8			
+8	A	Well, try it.	po.	0		"NPCHostile#arhont;NPCHostile#arhont_team;SetVariable#royal_will,77"

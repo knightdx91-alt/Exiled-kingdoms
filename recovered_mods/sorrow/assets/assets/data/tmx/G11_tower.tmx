@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Abandoned Tower"/>
+  <property name="name_ES" value="Torre Abandonada"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="town_objects.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <tileset firstgid="493" source="town_objects3.tsx"/>
+ <tileset firstgid="525" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztyCEOAAAIxLD7/5cxGCQCiWiTmSXAJzVdPwAAAAAAAAAAAAAAAMCmAZ/6A+0=
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmFlyg0AMRMUd7Nh4OUC2I7JcII5/UkluG7qYrpFVGJuvIKOuUg0MfPBoSTMgEgqFQqGl6bMQ+Sj6kcePLPCdU+D45IC37Z6xKfqx6qJWx7f0aXjPDnibxFslTvLXdzz7KTGenPFWireZwPtRXOayB95K8bWG+ZbYp05qnLuq4jKnG8V9S9pXL/nMHtUo1nrEX13nNs4Tet1/ic9Hzlb5PKRK3TMUc+elv9a3a8+smay/Hnghnc/apyFZXoxlN78XP7yWoR5Zj67xevLX9ugp+Wzr1gOv5Rxbf3mf9tQbb1Vc1u6UfEagdr3x1sX0fGaU4mc9ope6T/F8SGP7jVtr2RxEvlV3vOlim+aepI9jFwfJ59f2GTbmKuTirot1ik0at2k8psA9eCfeeekd+MBE3qMK+oxrula98pIZffZVcg7TY8yX6RzzqNFfp/ULFvhKjw/p/F16VhyXkt8LPAbTV+L6Nr7OnRfP/yQ5j1/U3CHN8TreB7z3/L0AFvQhsGgfWctbye+COaDZvgzn3HmRz+B5k967fRrhM7ifJb8L1nA7kMu/hneuzPBN1yb4WNPsYys1Yv6e74W58oINXHq9WUnO8Y3kfOZ9rfHUEy+95Z4C/nLfoWv4IJfrEdl+nPUr+Gt7MefIy1zHnP0O9Pb/ivtEXb/MX6697FM7yfXr9XuBHLonbSV/P+g99SPsn8nDXN2p83WaY77zn5xnXq4xXHvoJdjova5p79+/UzX0f8NTv5qqof9Xntajqbq2twjex1DwLot3Sf1qSevRkvYbnveToVAoFAqFQqHQmP4AqvgHjQ==
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2EEOwiAQhWE4SIF6A68gXtREPadOMpOu1IWxRN7/JQ3beR06oaQEAAAAAACAVy6jCxjkPrqAH+s5pXMeXcW+rr7Gnr6NKgSAPLX5Gxah3Co9tvNE96yrSGYV7UM/j/uUAXxFZRaHLpT39Car0nuANjt7qZy/6jNn8byz32cVz1bzdtZWmGvR19n7a//E0duDr2XivKZ5T+Ox73j2u4E1b3NrEZjVtpeb562TZwUAAADw/x5Y0Q0W
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2FEKgCAUBMC6SKU3sfsfqgSjDhAU7AyIvy5P/dhpAgAAAIAsy/z1CQAAAADetY6+Yzv3EtJ97CE5L1tA3npmbCNnCbjL/d321fvKhPmW+f6rakDefcy2PnKnaGF5AQAA/u4AyqgDXA==
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmd1OAjEQhQv3Jl7pG3gHCir+Rb3w91JUFEj0RdD4FCa8i76WXjsnaUMp291ZEmC2zpeckC7NpseZTqdojKIoivLfOCM9kob283y1y1k4LdJabTLeXdlK+CBGHdKTp77hxaoVjKvgt0sak7ZsnL5I34a39udgXAW/PdJvbfY5Z+1VjO+A9EN+dwPPqfrtRZ6n6jfcg47Y2lHfXF0bWvXtZ8dK8rkUxsgR84v544J3Hsy/nIVzSjrKeB7z+8J458X8y1kKyFHk5BXpmnRi4jk5YLxPut990nZ9Mm7W4/HFed2qR760VMFvSJ7fvYzz2iclv7F67pOS3xTqVRm/sfPLR/3Kwd0H/bPI9Uzooe7NdN9U9XzuRp7jfNqkOtzwzh7EPCsXQiT7jd0XskDskQ9tM9ufuJxoW3HyfhWgX0L/EN4HY+TFt+nlglS/2I9F/YMP/H4y5kn1y+kffG6Z86T6Rbx2CvphnxvmPKl+UZ+bJfxm3R2zOJ5nMUugbBy4fqWCfN4oUa8emPOk/l3K1ivM5+x3qfsX5++I9MGcz+mvgFS/bv1vBfOaten5RUj16/p/+G3n7OOG/Q795KvJ7ydxt5Dq160LfrEvGwV7k+tDql/8HntIumTozlQ/n8uC+jzy5AhrXip+Y/dl4Nc89VtN8vav+q0+yOf1yDmdot88Hyn6RT7HzqN3b5yKX+59KhW/nP//glT8dpiS+nuOoiiKoiiKUo4/JVZHIQ==
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="exit to Grasslands" type="transition" x="939" y="969" width="47" height="78">
+   <properties>
+    <property name="area_id" value="G11"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="888" y="995">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="golem" type="spawn" gid="247" x="810" y="594">
+   <properties>
+    <property name="alwaysReward" value=""/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="unique_tag" value="g11_guardian_1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="396" y="852">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="403" y="888">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="417" y="975">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="340" y="939">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="388" y="1043">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="334" y="1084">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="419" y="1108">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="418" y="1148">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="410" y="816">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="800" y="1280">
+   <properties>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="832" y="1280">
+   <properties>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="800" y="1504">
+   <properties>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="249" x="832" y="1504">
+   <properties>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="golem" type="spawn" gid="247" x="829" y="570">
+   <properties>
+    <property name="alwaysReward" value=""/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="unique_tag" value="g11_guardian_2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="golem" type="spawn" gid="247" x="783" y="564">
+   <properties>
+    <property name="alwaysReward" value=""/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="unique_tag" value="g11_guardian_3"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="249" x="736" y="1216">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever1"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="249" x="729" y="1204">
+   <properties>
+    <property name="conversation" value="G11_tower_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="book" type="conversation" gid="249" x="690" y="882">
+   <properties>
+    <property name="conversation" value="G11_tower_book"/>
+    <property name="icon" value="book"/>
+    <property name="name" value="@BOOK"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1344">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1312">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1376">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1408">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="704" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1440">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="736" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="768" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="800" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="832" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="249" x="864" y="1472">
+   <properties>
+    <property name="active" value=""/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="249" x="790" y="1384">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="3009"/>
+    <property name="name" value="A corpse"/>
+    <property name="unique_tag" value="G11_tower_corpse"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="681" y="1425">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5021,2012,5016"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="G11_tower_chest1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="789" y="243">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="3019,2012,1013,1012,2012,2013,6008,388"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="G11_tower_chest2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="347" y="310">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="719,721,1005,1005,1005,1005,1006,1006,1007"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="G11_tower_chest3"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="793" y="326">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="831" y="354">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="249" x="832" y="448">
+   <properties>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="10"/>
+    <property name="secretdoor_tag" value="G11_tower_1"/>
+   </properties>
+  </object>
+  <object name="golem" type="spawn" gid="247" x="398" y="573">
+   <properties>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="317" y="360">
+   <properties>
+    <property name="icon" value="table"/>
+    <property name="items" value="2603,6008"/>
+    <property name="name" value="@TABLE"/>
+    <property name="unique_tag" value="G11_tower_table"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="384" y="368">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="12"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="849" y="252">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="789" y="277">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="imp" type="spawn" gid="247" x="844" y="295">
+   <properties>
+    <property name="spawn" value="imp_shock"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

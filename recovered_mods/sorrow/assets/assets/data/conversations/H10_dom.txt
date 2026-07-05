@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 And here's my brother, as I told you, the job is done.	¿po?	21	"VariableEqual#last_race,67"		
+1	Q	 Hello, I'm glad to see you, at least here, I hope it will be calm, and we can talk peacefully, and I will finally thank you for all the help you have given me.	¿po?	2			
+2	A	I was glad to help you.	po.	3		
+3,dom	Q	 And I'm very glad that I met such a good friend, you know, I think you could...	¿po?	4			
+4,duan	Q	 Hey, it wasn't hard to find you again.	¿po?	5			
+5,dom	Q	 Well, I wasn't hiding. I thought you were dead, but it doesn't matter, because I can beat you up a second time!	¿po?	6		
+6,duan	Q	 Calm down, I didn't come to fight you.	¿po?	7			
+7,dom	Q	 Then why did you come, guard?	¿po?	8				
+8,duan	Q	 There's a job for you, you do it, and you'll be cleared of all charges and the prosecution will stop. You'll be clean before the law again. Well, what's your answer?	¿po?	9			
+9,dom	Q	 It sounds tempting. Except I don't work for the guards.	¿po?	10				
+10,duan	Q	 And don't turn your nose up right away, you'll also beg me to get involved in this case when you find out what the point is.	¿po?	11			
+11,dom	Q	 Well, try to surprise me.	¿po?	12				
+12,duan	Q	 A group of desperate daredevils have stolen a particularly powerful artifact - the "Eye of Tol 2.0", with which you can find anyone anywhere on the mainland and keep an eye on him. We were able to identify all the kidnappers, including your girlfriend Tsiya, who was presumed dead.	¿po?	13			
+13,dom	Q	 I need information, everything you have.	¿po?	14				
+14,duan	Q	 My spies managed to trace this gang, they settled in Friguld, where the governor took them under his wing. I don't have any authority there, because the locals don't recognize our laws, which is why I need someone who acts outside the law, like you.	¿po?	15			
+15,dom	Q	 All right, I'll find Tsiya, and at the same time I'll return your artifact, guard.	¿po?	16				
+16,duan	Q	 Agreed, we'll meet here when you've done your job.	¿po?	17			
+17,dom	Q	 Well, this is my personal case, but I'd be glad if you'd join me, brother.	¿po?	18				
+18	A	I will be glad to help you.	po.	19		
+19,dom	Q	 Great, brother. In the meantime, I'll go alone to the Friguld to scout the situation, we'll meet there.	¿po?	20				
+20	A	Clearly.	po.	0		"NPCDespawn#dom;NPCDespawn#duan;SetVariable#last_race,60"
+21	A	Here is your artifact that you asked us to return.	po.	22	"PlayerHasItem#10443"		
+21	A	Right.	po.	0		
+22,duan	Q	 Well, all charges against you and your friends will be dropped. You did a great job for me...	¿po?	23			
+23,vince	Q	 Dominick! Some bastard set fire to your house and sent a message that he killed Han, and all your other friends are next!	¿po?	24				
+24,dom	Q	 He'll regret it! We'll find the bastard before he does anything again, and punish him for this atrocity.	¿po?	25				
+25,duan	Q	 I will try to investigate what happened and find out who is behind it.	¿po?	26			
+26,dom	Q	 I'll be glad if you can find out at least some information about this bastard.	¿po?	27		
+27,duan	Q	 See you in New Garand.	¿po?	28			
+28,dom	Q	 See you. Brother, you will also clearly become the target of this unknown bastard, but together we can find him and defeat him! Meet me in New Garand.	¿po?	29		
+29	A	Fine.	po.	0		"LoseItem#10443;NPCDespawn#dom;NPCDespawn#duan;NPCDespawn#vince;SetVariable#last_race,70"

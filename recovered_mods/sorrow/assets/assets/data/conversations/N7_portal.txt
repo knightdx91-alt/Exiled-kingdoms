@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the portal is activated and no one is stopping you from using it)[]	port	2	VariableEqual#trouble_again,65		
+1	Q	[BLUE](all the obelisks lit up, and so did the portal itself, a flash of bright light that momentarily blinded you, and you found yourself facing a large, dark creature, apparently one that you would have to defeat in order to use the portal)[]	port	0	VariableEqual#trouble_again,59	"SetVariable#trouble_again,60;NPCSpawn#N7boss"	
+1	Q	It looks like a teleport, but it's not working, maybe if we activate it, we can leave this place! These obelisks seem to be connected to the portal somehow, we can use them to make the teleport work.	port	0		"SetVariable#trouble_again,55"
+2,evelina	Q	Great! We've succeeded! Now we can leave this illusory world.	port	3		NPCStopFollowing#
+3	A	Use the portal.	port	0		"ShowParty#;Travel#N7,1"
+3	A	Do nothing.	port	0		

@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a sullen-looking elderly man stood at the gate of the house)[] Don't expect any handouts from me.	¿po?	0	"VariableEqual#fatal_eggs,50"		
+1	Q	[BLUE](a sullen-looking elderly man)[]Don't expect handouts from me, the job will be done, then we'll talk.	¿po?	17	"VariableGreater#fatal_eggs,29"		
+1	Q	[BLUE](a sullen-looking elderly man stood at the gate of the house, it was clear from his face that he was not happy with the guests)[]	¿po?	3	"VariableEqual#fatal_eggs,20"		
+3,knave	Q	Oh, hello, Dad, it's been a long time!	¿po?	4				
+4,father	Q	And I would be glad not to see you for even longer.	¿po?	5			
+5,knave	Q	Come on, what are you starting to grumble again, I actually came to you with a case.	¿po?	6			
+6,father	Q	Yes, of course, as always with case, and I was afraid that you just decided to visit your father, find out how his health is or if he needs any help, but everything is as usual with your son. Come on, dump out what you're here for, while I still have the patience to see your face.	¿po?	7			
+7,knave	Q	Well, I wanted to borrow one of your knives, which you use to castrate boars.	¿po?	9			
+9,father	Q	Really? I remember the last time you came to borrow something, you never returned it back, moreover, something else disappeared from my house after your last visit.	¿po?	10			
+10,knave	Q	I'll pay you back, I promise! We will do one good thing with my new friend, earn a lot of coins and reimburse all your losses that you suffered because of me!	¿po?	11			
+11,father	Q	Well. I don't know why you messed with my lousy bastard, but you look like an honest man, so you'll do one job for me, and I'll give you this knife, whatever you need it for.	¿po?	12			
+12	A	Okay, what kind of work needs to be done?	po.	13		
+13,father	Q	My neighbor got a huge bear last year, and all this time he boasts about the head of this beast, which greatly annoys me. But recently there was a rumor that there was another similar bear or even a bigger one in the local forests. So, if you get the head of this beast...	¿po?	14			
+14,knave	Q	Seriously, Dad, do you think we're some kind of skilled hunters?	¿po?	15			
+15,father	Q	Shut up, I'm not talking to you right now! For the head of this bear, I will give you my knife for good, it will be a fair deal.	¿po?	16			
+16	A	Okay, we'll do it.	po.	0		"NPCSpawn#h12_bear;SetVariable#fatal_eggs,30"
+17	A	Okay, we'll do it.	po.	0		
+17	A	I brought the head of a huge bear.	po.	18	PlayerHasItem#10399		
+18	Q	Oh, damn it! How huge! I can imagine the size of this beast. Well, the job is done, here is my reward, as agreed.	¿po?	0		"SetVariable#fatal_eggs,50;LoseItem#10399;GainItem#10398;IncVariable#REP_town_whitetower,5"

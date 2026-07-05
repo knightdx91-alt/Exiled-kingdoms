@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](not far from the ruins from which you got out, a detachment of legionnaires, led by Praetor Anwar, is waiting for you)[] Give up, you scoundrels! Drop your weapons, or you will be undone!	¿po?	8	"VariableEqual#freedom_law_order,80"		
+1	Q	 [BLUE](not far from the ruins from which you got out, a detachment of legionnaires, led by Praetor Anwar, is waiting for you)[] Give up, you scoundrels! Drop your weapons, or you will be undone!	¿po?	2	"VariableEqual#freedom_law_order,70"		
+2	A	Damn, it looks like we've been ambushed!	po.	3		
+3,nail	Q	 Really? Well, we don't have a big choice - to die here or to die in the slave pits later.	¿po?	4		"NPCStopFollowing#"		
+4,anwar2	Q	 I'm not going to repeat my requirements!	¿po?	5	"VariableEqual#death_makbul,2"		
+4,makbul2	Q	 The situation is lousy no matter how you look at it.	¿po?	5		"VariableLower#death_makbul,2;NPCStopFollowing#"		
+5,nail	Q	 They obviously won't give us time to think about what to do.	¿po?	6	"VariableEqual#death_said,2"		
+5,said	Q	 I don't want to die in hard labor again!	¿po?	6		"VariableLower#death_said,2;NPCStopFollowing#"		
+6,anwar2	Q	 This is the last warning!	¿po?	7	"VariableEqual#death_jude,2"		
+6,jude	Q	 Do you think they will be more favorable of the girl??	¿po?	7		"VariableLower#death_jude,2;NPCStopFollowing#"		
+7,nail	Q	 Gang, to arms, these bastards just won't take us!	¿po?	0		"SetVariable#freedom_law_order,90;NPCHostile#anwar2;NPCHostile#anwar_team;DecVariable#REP_town_freeport,25;DecVariable#REP_mercia,15"
+8	A	It looks like we've been ambushed.	po.	9		
+9,nail2	Q	 Really? Well, we don't have a big choice - to die here or to die in the slave pits later.	¿po?	10		"NPCStopFollowing#"		
+10,anwar2	Q	 I'm not going to repeat my requirements!	¿po?	11	"VariableEqual#death_makbul,2"		
+10,makbul2	Q	 The situation is lousy no matter how you look at it.	¿po?	11		"VariableLower#death_makbul,2;NPCStopFollowing#"		
+11,nail2	Q	 They obviously won't give us time to think about what to do.	¿po?	12	"VariableEqual#death_said,2"		
+11,said	Q	 I don't want to die in hard labor again!	¿po?	12		"VariableLower#death_said,2;NPCStopFollowing#"		
+12,anwar2	Q	 This is the last warning!	¿po?	13	"VariableEqual#death_jude,2"		
+12,jude	Q	 Do you think they will be more favorable of the girl??	¿po?	13		"VariableLower#death_jude,2;NPCStopFollowing#"		
+13,nail2	Q	 Gang, to arms, these bastards just won't take us!	¿po?	14		
+14	A	Sorry, guys, but I'm not with you.	po.	15		
+15,anwar2	Q	 Great job, traveler. Now don't get into trouble, we'll deal with these bastards ourselves.	¿po?	16				
+16,nail2	Q	 Oh, you bastard! Fucking rat! Just like that, you can't get rid of us!	¿po?	0		"SetVariable#freedom_law_order,90;NPCHostile#makbul2;NPCHostile#said;NPCHostile#jude;NPCHostile#nail2;DecVariable#REP_seventhhouse,30"

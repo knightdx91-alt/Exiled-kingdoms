@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This lever is stuck, and I wouldn't want to pollute the river again anyways. Think of the planet.	Esta palanca está atascada, y por otro lado no querría volver a contaminar el rio. Piensa en el planeta.	0	VariableGreater#poisoned_river,50	
+1	Q	An old lever, set to the left. It seems to control some heavy machinery which makes the ground tremble.	Una vieja palanca, movida hacia la izquierda. Parece que controla algún tipo de maquinaria que hace temblar el suelo bajo tus pies.	2		
+2	A	Um... I have no idea why I should even touch this. It could explode or worse. No thanks.	Um... No tengo ni idea de por qué querría tocar esto. Podría explotar o algo peor... No, gracias.	0		
+2	A	I think this might stop the acid spill into the Wyverntail river. [BLUE](Activate the lever)[]	Creo que esto puede parar el vertido de ácido al rio Wyverntail. [BLUE](empujar la palanca)[]	3	VariableEqual#poisoned_river,50	
+3	Q	As soon as you push it, the toxic fumes stop pouring down into the waters! Probably in a few weeks all traces of poisoning will go away.	Tan pronto como lo haces, el gas tóxico deja de verterse en las aguas. En pocas semanas, no quedará ni rastro del veneno.	0		"SetVariable#poisoned_river,90;ItemDeactivate#river_gas;ItemActivate#lever_river;GainXP#2600"

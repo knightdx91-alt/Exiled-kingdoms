@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](Finally, he seemed to have returned to normal)[] Thank you for the activation. Some of my data was lost, but according to my analysis, it's been at least 100 years since the previous launch.	¿po?	6	"VariableEqual#r11_oracle,2"		
+1	Q	 [BLUE](some kind of strange machine, unlike the others you met earlier, this one looked more or less intact, and most likely did not work due to the lack of necessary energy)[]	¿po?	2		
+2	A	Try to somehow attach an Ancient Battery into the machine.	po.	3	PlayerHasItem#1022		
+2	A	Try to connect a Large Battery to this machine.	po.	4	PlayerHasItem#1023	LoseItem#1023	
+2	A	Not much I can do here.	po.	0		
+3	Q	 [BLUE](The socket is too large, maybe you need a larger battery)[]	¿po?	0		
+4	Q	 [BLUE](as soon as you plug in the battery, the car starts emitting green light, gradually it condensed, turning into either a ghost or an illusion. After taking shape, his body flickered strangely, and he began to say something incomprehensible without opening his mouth)[] Memory corruption... memory corruption... using backup storage... database corruption... scanning of the remaining data... compilation... launch...	¿po?	0		"NPCSpawn#oracle;SetVariable#r11_oracle,2"		
+6	A	Hello, who are you?	po.	7		
+7	Q	 I am a copy Oracle System in control of ship. Poor-quality redundancy and damage to my current equipment have led to a decrease in performance potential and usefulness. The critical condition of the equipment may lead to my final deactivation.	¿po?	8		
+8	A	Can you tell me what this place is and how you got here? What happened in these lands, and who are these glowing people?	po.	9		
+9	Q	 Most likely, I'm not allowed to share information with outsiders, but if such directives existed, they were erased when my memory was corrupted, and there's nothing stopping me from responding to you. But the database was also damaged, some of the information was lost, and I won't be able to provide all the details you're interested in.	¿po?	10		
+10	Q	 About 800 years ago, the descendants of the colonists organized laboratories for research and development here. Their main goal was to recreate the ship, but their venture was doomed, although they still retained the knowledge and skills of their ancestors, but the lack of necessary resources from the world from which they came made their task impossible.	¿po?	11		
+11	Q	 They searched for the wreckage of the ship, and even organized expeditions to the main wreck site on another continent, taking everything they needed, including me. I have the necessary information about the structure of all the ship's components, so I have become very useful, despite my limitations, unlike the original system.	¿po?	12		
+12	Q	 Their primary task was to create the ship's reactor, which was being developed in a separate laboratory far to the east of here. And it was that place that became the epicenter of the disaster that destroyed the nearest cities and changed this area.	¿po?	13		
+13	A	And who are these glowing people?	po.	14		
+14	Q	 They are a product of combining the knowledge of the colonists and the mysterious power of this world, called magic. These creatures were supposed to deal with the consequences of the disaster, but for some unknown reason they got out of control, finally burying all hopes of realizing the idea of the colonists' ancestors. Those who survived fled to other lands, and I suspect that their descendants have already caused a new catastrophe.	¿po?	15		
+15	A	What are you going to do now?	po.	16		
+15	A	I managed to talk to your original version from the ark.	po.	19	"VariableGreater#ark_lothasan,49"		
+15	A	By the way, can I find anything useful here?	po.	20			
+16	Q	 I'm switching to power-saving mode, perhaps the available battery supply will last until the moment when my equipment finally fails and I cease to exist.	¿po?	17		
+17	A	Aren't you afraid of, uh... dying?	po.	18		
+18	Q	 No, emotions were not programmed into me, this is the natural outcome of the existence of any living or inanimate structure.	¿po?	15		
+19	Q	 Obviously, since his memory wasn't damaged, he told you a lot of useful things.	¿po?	15		
+20	Q	 Hardly. After the disaster, the descendants of the colonists took away most of the equipment and inventory. But I'll give you a key card, maybe you'll find something suitable for you.	¿po?	21		
+21	A	Thank you for sharing all this information.	port.	22		"NPCDespawn#oracle;GainItem#11054"		
+22	Q	 [BLUE](illusory creature gradually began to fade and soon disappeared, only flashing lights signaled that this strange machine was still working)[]	¿po?	0		

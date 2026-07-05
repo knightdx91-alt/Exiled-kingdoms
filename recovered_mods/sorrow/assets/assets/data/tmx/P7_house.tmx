@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="8">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="name" value="house" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAUjFbxmHGgXjFwwFMJ+KLhxFAwsAACbLbQkQAYAAA==
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWDEaQz4cej5o2aN5LNGwWDAwAARjStpEAGAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYPCAT0yo/M9M2NXRG7hjEUN3K6XmUQqQw+rjIAm3UTC8AQAQ+LCeQAYAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWDEShwMDDI4sCKHKSbJwfUw87EwLAbyN4DxN+AbBdWhBw55ikx4ZYjxzw5HOZJkWmeLBbz9jGQ7z4VLObtJdM8XOArE/n+JUcOn55z7AwMnGh6W8g0TwlPepanYviNAvoCANGliCFABgAA
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="110" gid="487" y="370">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="table" type="conversation" id="2" x="130" gid="491" y="285" width="34" height="34">
+      <properties>
+        <property name="conversation" value="P7_table" />
+        <property name="icon" value="table" />
+        <property name="name" value="@TABLE" />
+        <property name="tag" value="P7_table" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="90" y="190" width="190" height="250">
+      <properties>
+        <property name="actions" value="StartConversation#alarion,R8_Alarion" />
+      </properties>
+    </object>
+    <object name="Alarion" type="spawn" id="4" x="145" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="alarion" />
+        <property name="tag" value="alarion" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Havis" type="spawn" id="5" x="175" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="havis" />
+        <property name="tag" value="havis" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="soldat" type="spawn" id="6" x="145" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="human_soldier" />
+        <property name="tag" value="soldat" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="7" x="105" gid="491" y="375" width="34" height="34">
+      <properties>
+        <property name="conversation" value="P7_door" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="P7_door" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

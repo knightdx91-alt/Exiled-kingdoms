@@ -1,0 +1,69 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	His adepts can lurk anywhere, be careful.	port	0	"VariableGreater#hate_through,54;NPCisFollower#"	
+1	Q	Be careful and good luck to.	port	50	"VariableEqual#hate_through,50"	
+1	Q	[BLUE](left outnumbered, the evil wizards decided to run, one of them finally launched a lightning bolt at the guard who came with you, but he somehow managed to evade it, while dropping his helmet. Adaon and Jenod went to help the villagers, but you decided to check if the guard was okay. Seeing your approach, he hurriedly picked up his helmet and put it on, but you managed to see his face - it also turned out to be Adaon!)[] 	[BLUE]()[] port.	27	"VariableEqual#hate_through,45"	"NPCStopFollowing#"	
+1	Q	Are you sure we'll find the wizard here?	port	26	"VariableEqual#hate_through,12;AreaIs#K11"	
+1	Q	Are you sure we'll find the wizard here?	port	26	"VariableEqual#hate_through,10;AreaIs#IM"	
+1	Q	We will definitely find and bring to justice the murderer of Adaon.	port	0	NPCisFollower#	
+1	Q	[BLUE](not far from the walls of the city, you notice a group of guards, coming a little closer, you notice someone's body on the ground, near which they are crowding)[] 	[BLUE]()[] port.	2			
+2	A	Hey, what's up? Was he attacked by someone? Is he alive?	port?	3			
+3	Q	Unfortunately, he's dead. Go away, don't stop us from dealing with this incident! 	port.	4		
+4	A	Okay, I won't bother you.	port?	5			
+5,falseadaon	Q	[BLUE](before you left, you looked at the dead man and immediately recognized his face, it was Adaon!)[] 	[BLUE]()[] port.	6			
+6	A	Oh, how come, what happened to him?!	port?	7			
+7,guard	Q	[BLUE](one of the helmeted guards was immediately interested upon hearing your words)[] Were you familiar with this victim? 	port.	8		
+8	A	Yes, although not for that long. He was recently planning to go to Liberty on his own business. Who could have done this to him?	port?	9			
+9,guard	Q	Well, since you talked to him, perhaps he told you about his detractors? Had someone threatened him recently? Or was he involved in any skirmishes or quarrels? 	port.	48		
+48	A	Well, I think he had plenty of enemies, although he always managed to get out somehow. As for the quarrels, he recently had an altercation with a wizard in Kingsbridge.	port?	49			
+49,guard	Q	A wizard? But this is interesting! On the body of the murdered man, we found obvious traces of the use of magic, which clearly caused his death. Can you tell us more about this wizard and what happened between them?                                 	port.	10		
+10	A	His name is Janod, he came because of some research, I do not know the exact details of their conflict, in general, Adaon offended this wizard, and he was very angry with him, but I managed to solve the problem that arose, and they peacefully dispersed. Did Janod harbor a grudge and decide to deal with his abuser?	port?	11			
+11,guard	Q	It's possible, as I've heard, that wizards are very arrogant and vindictive, and if their pride is hurt, they will definitely take revenge sooner or later. So this Janod can be found in Kingsbridge? 	port.	12		
+12	A	No, he's probably already back on Turam.	port?	13			
+13,guard2	Q	[BLUE](another guard spoke up)[] Well, we have no authority on Turam's territory, even if this Janod is a murderer, we won't be able to do anything with him as long as he's outside Varsilia. 	port.	14		
+14,guard	Q	Maybe so, but there's nothing stopping me from conducting an informal investigation. 	port.	15		
+15	A	I am ready to help you, I want to find and punish the murderer of Adaon! 	port.	16		
+16,guard	Q	I will be glad of your help. 	port.	17		
+17,guard2	Q	Do as you like, Hermont, but while you are in Turam, don't expect any help, and if you do something wrong there, you can say goodbye to your place among the guards. 	port.	18		
+18,guard	Q	I'm not going to do anything stupid and will act carefully, if this magician is guilty, then he will answer for his crime according to the laws of Varsilia. 	port.	19		
+19,guard2	Q	Okay, we'll have to figure out what to do with this poor guy's body, I hope the next priest and the hard workers won't be afraid and agree to go to the cemetery. 	port.	20		
+20,guard	Q	Hmm, so this wizard has returned to Turam, and where exactly is he from? From Icemist? 	port.	21		
+21	A	Yes, he seems to be from Icemist. 	port.	22		
+21	A	No, he said he was from Whitetower. 	port.	23		
+21	A	No, I think he said he was from Solliga. 	port.	24		
+22,guard	Q	Well, Icemist is big, it'll take a long time to find this mage, and first we need to get there somehow, although I don't think that will be difficult; leaving Icemist will be more difficult. Let's not waste time. 	port.	25		"SetVariable#hate_through,10;NPCFollow#"
+23,guard	Q	This makes our task easier, the settlement is small, we can quickly find this magician, and in case of trouble, we can easily escape from there. Let's not waste any time. 	port.	25		"SetVariable#hate_through,15;NPCFollow#"
+24,guard	Q	This makes our task easier, the settlement is small, we can quickly find this magician, and in case of trouble, we can easily escape from there. Let's not waste any time. 	port.	25		"SetVariable#hate_through,12;NPCFollow#"
+25	A	Okay, then let's go.	port?	0		
+26	A	Yes, of course.	port?	0		
+26	A	I think he was talking about Whitetower after all.	port?	0		"SetVariable#hate_through,15"
+26	A	I think he was talking about the Icemist after all.	port?	0	"AreaIs#K11"	"SetVariable#hate_through,10"	
+26	A	I think he was talking about Solliga after all.	port?	0	"AreaIs#IM"	"SetVariable#hate_through,12"	
+27	A	Are you Adaon too?! And then who is he [BLUE] (you pointed to Adaon walking with Janod)[] and the one who was killed at New Garand?	port?	28		
+28,falseadaon	Q	Oh, he was Adaon too, or rather he is not Adaon, and I am also Adaon, but also not that one, and your Adaon here. Oh, how could I explain all this... Well, in short, there are many similar realities, they do not overlap in any way, but there is still one loophole, something like a mistake, thanks to which things or people can move. 	port.	29		
+29,falseadaon	Q	And it all started with one mighty man from one of the realities. For some reason, he hated Adaon terribly, to such an extent that he was able to discover that loophole between the worlds and learned how to use it, he decided to kill the Adaons in all realities. Fortunately, Adaon turned out to be in one of the realities, who also solved the mystery of moving between worlds, and found out about the existence of this killer. 	port.	30		
+30,falseadaon	Q	He began to assemble a team of Adaons to confront the killer, but did not have time. The villain found him and almost completely destroyed his team, while the survivors are stuck in your world, where the killer sent his adepts after us. 	port.	31		
+31	A	It sounds very strange... But wait! If you knew who the real killers were, why did you set up this false investigation?	port?	32		
+32,falseadaon	Q	I'm sorry for the deception, but I had to somehow distract the attention of the adepts from my ally, he is very important for defeating that killer. But I didn't expect that they would find me so easily and decide to attack me if I was in crowded settlements. I'm sorry that all this happened. 	port.	33		
+33,falseadaon	Q	But I think you understand how terrible this villain and his servants are. Your companions and Adaon from your reality should not know the truth, for the sake of their safety, and it's better for him to hide somewhere, for example, in the same Liberty, until everything is over. 	port.	34		
+34	A	What are you going to do?	port?	35		
+35,falseadaon	Q	My ally has a plan to defeat our killer. By any chance, is there a wizard named Balthasar in your world? 	port.	36		
+36	A	Yes, there is one, I dealt with him, helped him with some kind of device.	port?	37		
+37,falseadaon	Q	Great! This makes our task easier. There's still some strong necromancer left to find in your world. 	port.	38		
+38	A	I know a necromancer.	port?	39		
+39,falseadaon	Q	Well, then we can arrange our plan much faster than I expected! For now, I will change my armor damaged by the spell and send a message to my ally, and you and your companions will go to Liberty, where we will meet and discuss further actions. 	port.	40		"NPCStopFollowing#"		
+40	A	Okay, agreed.	port?	41		
+41,adaon	Q	We helped them as much as we could!	¿po?	42			
+42,janod	Q	I think the local priest will be able to help all the wounded.	¿po?	43			
+43,adaon	Q	Where to next, boss? And where is this guard going?	¿po?	44			
+44	A	He's got a lead on the killers, and we'll go back to Liberty for now, where we'll meet with him.	port?	45		
+45,mercenary_grisenda	Q	This is a strange case, can you do without me?	¿po?	46	NPCIsInParty#grissenda,mercenary_grisenda	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+45,hirge	Q	It looks like he's in serious trouble! But I'm afraid the threat of the witch queen is much scarier, and we need to deal with it first.	¿po?	0	"NPCIsInParty#hirge,hirge;VariableGreater#between_worlds,9;VariableLower#between_worlds,99"	"SetVariable#hate_through,47"	
+45,hirge	Q	I don't think it's my problem, I'll stay here to help the wounded.	¿po?	46	NPCIsInParty#hirge,hirge	"NPCStopFollowing#"	
+45,sansa	Q	To hell with that scoundrel! Actually, you promised to help solve my problem!	¿po?	0	"NPCIsInParty#sansa2,sansa;VariableGreater#something_more,9;VariableLower#something_more,99"	"SetVariable#hate_through,47"	
+45,sansa	Q	I've had enough of these crazy wizards, figure it out for yourself.	¿po?	46	NPCIsInParty#sansa2,sansa	"NPCStopFollowing#;NPCDespawn#sansa"	
+45,damian	Q	It's none of my case, go on without me.	¿po?	46	NPCIsInParty#durak2,damian	"NPCStopFollowing#;NPCDespawn#damian"	
+45,peter	Q	I don't think it's my problem, I'll stay here to help the wounded.	¿po?	46	NPCIsInParty#durak,peter	"NPCStopFollowing#"	
+45,adaon	Q	Then let's go!	¿po?	47		NPCFollow#
+46,adaon	Q	Then let's go!	¿po?	47		NPCFollow#
+47	A	Okey, agreed.	port?	0		"NPCDespawn#adept1;NPCDespawn#guard;NPCDespawn#falseadaon;SetVariable#hate_through,50"	
+50	A	Same to you.	port?	0		"NPCDespawn#falseadaon"	

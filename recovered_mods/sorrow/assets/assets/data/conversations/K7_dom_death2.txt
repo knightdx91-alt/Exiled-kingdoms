@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Damn it, it looks like I was a little unlucky today.	¿po?	2	"VariableEqual#last_race,98"		
+1	Q	 It's too early to bury me yet.	¿po?	7	"VariableEqual#dom_death,4"		
+1	Q	 It's too early to bury me yet.	¿po?	6	"VariableLower#last_race,98"		
+2	A	Are you okay?	po.	3		
+3	Q	 Yes, it's just scratches, I just need to rest a little and I'll be as good as new. Don't wait for me, let my son, my family know that the job is done.	¿po?	4		"NPCStopFollowing#"		
+4	A	Okay, I get you.	po.	5		
+5	Q	 And don't forget - family is the most important thing.	¿po?	0		"NPCDespawn#dom;NPCDespawn#dom_team;GainXP#1700;GainItem#10449;SetVariable#last_race,100"
+6	A	Understood.	po.	0		"NPCDespawn#dom;NPCSpawn#dom;SetVariable#dom_death,2"
+7	A	Understood.	po.	0		"NPCDespawn#dom;NPCSpawn#dom;SetVariable#dom_death,6"

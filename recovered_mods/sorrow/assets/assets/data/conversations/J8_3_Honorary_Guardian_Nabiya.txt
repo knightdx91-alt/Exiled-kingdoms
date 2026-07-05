@@ -1,0 +1,36 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	13	NPCisFollower#	
+1	Q	 Once again I want to thank you for your help! We are going to attract more righteous people to study the curse of the burial ground in order to defeat this evil once and for all.	¿po?	14	"VariableEqual#curses_dont_die,100"		
+1	Q	 I feel that you have come with very bad news, no matter how terrible they were, I am ready to listen to them.	¿po?	10	PlayerHasItem#10207		
+1	Q	 I really hope and believe that you will be able to return Killian and his comrades to us!	¿po?	14	"VariableEqual#curses_dont_die,30"		
+1	Q	 We still hope that Killian and his comrades will return, but there is still no one to go to the burial ground to find out about their fate.	¿po?	6	"VariableEqual#curses_dont_die,20"		
+1	Q	 [BLUE](in appearance, this warrior girl spends not the first day in battles with the undead)[] If you have nothing to do, you can help us destroy these creatures, but if not, then do not loiter around here and do not interfere with us!	¿po?	2		
+2	A	I am happy to help you, although it seems that this undead is not getting smaller, no matter how hard you try!	po.	3		
+2	A	Actually, I wanted to ask you - have you by any chance met any zombies here that look like priests?	po.	15	"VariableEqual#last_honors,10;VariableLower#talkz_nabia,1"		
+2	A	Okay, I won't stop you from fighting.	po.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	12	PlayerHasItem#10402		INT#5
+3	Q	 Yes, that's the problem, no matter how much we kill these creatures, there are only more of them, and one of the high priests believes that it's all about the curse that lives in the burial ground that is not far from us.	¿po?	4		
+4	A	And have you tried to do something about it?	po.	5		
+5	Q	 We tried, but... The High Priest Kallian gathered a group of brave men and tried to penetrate deep into the burial ground, but several days had passed and there had been no news from any of them. There are few experienced fighters left here who could go to the burial ground and learn about the fate of Kallian and his people.	¿po?	6		
+6	A	I could help these poor people.	po.	7		
+6	A	Actually, I wanted to ask you - have you by any chance met any zombies here that look like priests?	po.	15	"VariableEqual#last_honors,10;VariableLower#talkz_nabia,1"		
+6	A	I'm not too strong to climb there either.	po.	8		
+6	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		STR#6
+6	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+6	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	12	PlayerHasItem#10402		INT#5
+7	Q	 You will do a very good deed if you can bring back at least one of the brave men who went to fight evil in the burial ground. But, I hope that this is not the case, if there is nothing to help them, try to return the mighty relic that Killian took with him, with its help we will again try to overcome the evil that lives in the depths of the burial ground.	¿po?	9		
+8	Q	 I understand that the evil of this burial ground is excessively powerful for many.	¿po?	0		SetVariable#curses_dont_die,20	
+9	A	I will try to do my best.	po.	0		SetVariable#curses_dont_die,30	
+10	A	Unfortunately, the curse took all of Kallian's comrades, he himself lasted longer than others, but it overcame him as well. I took this tiara with me. Is she the relic you were talking about?	po.	11			
+11	Q	 Yes, it is. Although the relic has returned to us, but this is a weak consolation, compared with the loss of all the brave and righteous people in this cursed burial ground. Thank you for the hard work that you had to experience helping us, accept this ring from me as a reward.	¿po?	0		"SetVariable#curses_dont_die,100;LoseItem#10207;GainXP#900;GainItem#10208;IncVariable#REP_north_kingdom,5"				
+12	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#nabiya_follow,3;NPCFollow#"	
+13	A	Good girl.	port.	0		
+13	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#nabiya_follow,1;NPCStopFollowing#"
+14	A	Actually, I wanted to ask you - have you by any chance met any zombies here that look like priests?	po.	15	"VariableEqual#last_honors,10;VariableLower#talkz_nabia,1"		
+14	A	Get away.	po.	0		
+14	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		STR#6
+14	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+14	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	12	PlayerHasItem#10402		INT#5
+15	Q	 If I had witnessed such an outrage against my brothers, I would have personally laid to rest their mortal remains!	¿po?	0		"SetVariable#talkz_nabia,2"				

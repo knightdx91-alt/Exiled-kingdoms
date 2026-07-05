@@ -1,0 +1,1316 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="11">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Bandit Refuge" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset firstgid="1085" name="grassland_cave" columns="16" tilecount="128" tileheight="128" tilewidth="64">
+    <image source="grassland_cave.png" width="1024" height="1024" />
+  </tileset>
+  <layer name="nonwalk" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3bsQ0AMAgDQbL/qCwRZQFEgRSKuwms7x3BlDy/F+ymT+310QgAAAAAAAAAAAAAAABgH9+vmj4AAAAAAHRdXpwh2gBRAAA=
+  </data>
+  </layer>
+  <layer name="water-1" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3DsQkAQAgEsCuc9Edw/8LeCV5IIAkAAAAAAAAA13QlbwUAAAAAAAAAAAAAAICfDXhAUqgAUQAA
+  </data>
+  </layer>
+  <layer name="water0" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QQQkAAAgEwUtj/4i+BQMozMAW2AQAAAAAAADgllpi8ggAAAAAAAAAAAAAAIBvGvn5NQEAUQAA
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YTU7DMBCA0SxyE84FUvitQEVAOSIHg4FGxG09blkAkt+Tsm8+jSdphgEAAAAAAAD4TWeVi2/6tB1qdDF+Xbfjn/60f+9Ro6YrfVJmqC0a3WuUMkdtdlFOn5wzNgxPjfuPRpcdd1qN7Uah51mKRq9H3HvP+ygaXTc69dxndmiWNtt2d/p8mhYdNp10eTvhHucZ6qXNT8QM2Td15/pU3Xx0WetTNdk9qejz0vH7cibO1vO2i/O1b/nuo09pOTv2zz6zk9Mnp0/dcvcEz/fStNPCfi7t9nG+Sj1+8znWvHvm74QP2hT8H835FpbTJ6dPTp+cPrmVZxcAcKJ3UMGMWQBRAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2afU/jMAyHmwnpxqF7+feEyvf/gicQewEias0Yx02a2slWP9JP09pNah7sNKEbBmctwhSHx/3IuB8Z9yNj5eduQXrA/XzyKuQ0cz7mqVLiNfvJTQ236mcf3M/W/KzRS7fs50coy8+wLT+UURg/dSCdq7mH9ewnsoafmnvbNfv5zfTcn+n1V2aPznHNfrga4Y7V4H6W0cIFh/uReZ7ygnI/zR0P4XIesmeOadCLn/NHQvia6GCHAsd3zLmd0ia/Nz/4nvM34YdztxU/kPh+j7xQF9p+gpATihXgB3tq2V+cl38feRy++qn9v1Mu5+F7De0ZN9B7D4wfq2uNUEcn5tiaUD+4v7jgWoIc172kWcDFcfjuZ21HY7g4gkh+qCvwY11D1A19r8GI6ifns8fhksPQ3hFes2pdS66fCHZ0QLHyBI7AE13Xa1xHiR/gwMSKVP1o7X2W+Il1RP1Y1RDusV79RDhHFuB5qGc/EerIilT9aFDjJ2LtBkMd9UhLPxHr/Vkpa/sZC2sZ7ve9olE/JY7Aj+VatQSt/sqtC7ymt6JkD6jtJzXuIxPLdTwXjhZ+ODeWNZTyw+0rUqn9W6bGLbmxqiHq5Q3FwpFUFykvZ/SqjeTHAqln5urn1v3MzSlzfizg5h4LPzljbu0m0pOfnM+0WkNbPn/KHfPW/fyfUrIubLXHsPKDxyj5mZubNR2l1oRS1rgWOr5aP1p9tsRPbV1xYyv1Q5/lbcVPzneomx79LE2qN3L9cG40187X4EeqHW2s+4s+r67xY8HI/HZEe/7hHOW4abUebAF1RP1s1QsGO8J+3M0F9yMj+XE+gT5z0rgfGfcj43OxDLjp9fcqrQE37sdxHMdxeN4BgMAnCABRAAA=
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQ0AAAgEoLOf/fOYwLebgwQkAAAAAAAAAAAAAAAAAABsuq4HAAAAAADwwwAX4pIPAFEAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WQQ7CIBAFUEy4Rm2tXsGt979Ob9C4qVYIuhKU95JZsZn8MAMhwHcstRto3LV2A4275+MOtWmK++JhzOQxyGgjn/eOcV+U903vu+h1pp7nqXTWk9I8mTU+dYrpfp7dm01uv+Te/F5dYvp/PssHAAAAAAAAAAAAfsLtULsDAAAAAAD4DytSEzTlAFEAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2aW08VMRDHdz8MKHg7iIBcvMQEYxQQkMSAbxrEZxO54yMB1Pgm54t4+Xh23DYMZXrZ7U67YH9Jc87Zy9ntf2em09kWRaZtRlPfQMfJ+tjJ+tjJ+tCMyU9ufR6K9kW0FdG+yU+qqX0noj1ivicfYukz0uCcmDY9UhbFc9GWRVuQn9Bm5X54bsto+7A8blC0NbntbhlwfWLbR8N3RUx9lkTfvmr9O63Z3xsB+rxucE5sfVz0iWPW0bYQfbruX6uob688+qmOwfq8DNDnjfw8Eu23aH+IY36K9ku0vvzNpc+ejBuDMoZALHkW0DfFVbGfz2Wl0QdDf0zbbZyIc64F6DPm2H9IbOP0r+tl1Rbl54xH31Ycx4T417sG58SMPwOWvq179ntK+uog0Vyo8WvL71L/SBWfbbwnjrP544H05T3H/y/5Xf4cKe3HZwzTmdZ8FjcXuj67xDH6tpj6zAeOX8eB8fmBaPeINin3zxD7Hje/XG2GymoMcqHH6D76HhKfTahxP3X9wCd/dhFiPyaU36XWh4rPGzXHNA59umY/1PjkA8xlr7J/DbWQH7ZpP1ArOy6qOtjboqqvfC+qesuwrKdAXnWb4ZlQ4PHLpYMJDv+ycVhWOWkMjUz209d+6/6HtYx1rzrjWr0Ovj9t+V7mifoYjs9U7YciZA7fNm0+L5/440NsHwM+Wa7Z1v30tPmAms9PE/OFReI4xTiy8Zi+tiuvtSk+d8ozzbh8XtmTS3/Q9b4hp44dj7bEtbbLi/bEcR9qPPPJaZTt6ToBsf3N5Gttx0Vf+8FQNaRUY5pOF/ShfA3gyKsp9FxEcRpYW6AAfTYa/C/la6nHfBhj7nREH4XytQmGe6sLVwy0zd9dLDXwTw44bKcNlD5txh6fdyw6qX3bxCqD/fSIfNRFV8ZPHS7/sr2HMhHLx2+VZ+tb1tB3al1Ll/SJZUPUGhiAijEc8QcAfVzv0ihixCHoM1XnmCLsaqw8v0+tgwipy4D9Tnqeu6nNw2LYEOhzZNCoDlMGn3RRx7f0eVjo+gkfbO+gqXenVF3kpmxNchKsD+XnmG1iP7eP2d6RcT6bF9IvfdcobRHHxcgTQZ9j7RpqjSLnHBTsxmctpGl+GmuOk8J+6sRkE7Hyn56MHTiHVXGH6/nMEv9rshMTseeAuJbPfe2m7w3w+B57jjEfQZ+R8mzdqB7zXEB83tHO4dIIzykWZP43p+Vda+X5NffDDfMbfM2QmEPVoPtM+Q81ZumosWUfbQu5F5Xn1M1DqXEdk7oW1bY+bcOhz5OG/4nnZGqthZqD4Xkafm+ufs8x9IMrP/Rd1wrsuw+JzrTMSUaZbNJU09CBWIH1mSgvrmGl1rXq2/X8KoRYcwqKfWI71idkLhgaf7hzVkzP8txtLeTemtSZgYmIuqSGmsvY6MJ7thSAr7nWZf9gyv0uA7ZYpMampvW2q0CKmsFlBNc5/ldfsjGQ9bGS7cdOth87WZ9MJpPJZOz8BZ6jogQAUQAA
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="400" gid="487" y="180">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="390" y="130" width="25" height="10">
+      <properties>
+        <property name="area_id" value="K7" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="3" x="738" gid="487" y="1694">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#last_race,91" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="4" x="1570" gid="487" y="1600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="5" x="1600" gid="487" y="1600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="6" x="1630" gid="487" y="1600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="7" x="1660" gid="487" y="1600">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="lever conv" type="conversation" id="8" x="1615" gid="487" y="1295">
+      <point />
+      <properties>
+        <property name="conversation" value="H10_tomb_lever" />
+        <property name="icon" value="lever" />
+        <property name="name" value="@LEVER" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem" id="9" x="1615" gid="487" y="1295">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="10" x="1442" gid="487" y="724">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#last_race,94" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate2" />
+      </properties>
+  </object>
+  <object name="Dominick" type="spawn" gid="489" x="875" y="1025">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="conversation" value="K7_dom" />
+    <property name="spawn" value="dominick4"/>
+    <property name="tag" value="dom"/>
+    <property name="wander" value="0"/>
+   </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="350" y="270" width="110" height="50">
+      <properties>
+        <property name="conditions" value="VariableLower#last_race,86" />
+        <property name="actions" value="StartConversation#dom,K7_dom_guard" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="740" y="940" width="110" height="60">
+      <properties>
+        <property name="conditions" value="VariableLower#last_race,89" />
+        <property name="actions" value="StartConversation#dom,K7_dom" />
+      </properties>
+  </object>
+  <object name="Vince" type="spawn" gid="489" x="335" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="vince"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Black brother" type="spawn" gid="489" x="335" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="black_brother"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Sister" type="spawn" gid="489" x="335" y="365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="sister_dominick"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Wonder" type="spawn" gid="489" x="245" y="715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="wonder_sister"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Han" type="spawn" gid="489" x="305" y="685">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="han"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Tsiya" type="spawn" gid="489" x="365" y="715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="tsiya"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Duan" type="spawn" gid="489" x="565" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="duan_2"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Philosopher" type="spawn" gid="489" x="565" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="chief_philosopher_2"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="535" y="465">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="535" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard_archer"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="535" y="535">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="faction" value="#guard#" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="NG_bandit2"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="driver" type="spawn" gid="489" x="365" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="driver"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="365" y="465">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="435" y="715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="375" y="655">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard_archer"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="secret guard" type="spawn" gid="489" x="365" y="525">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="secret_guard_archer"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="275" y="655">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="faction" value="#guard#" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="NG_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="335" y="335">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="F10_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="driver" type="spawn" gid="489" x="535" y="565">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="driver"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="245" y="815">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="305" y="815">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="405" y="815">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="245" y="365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="245" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="245" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="655" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="655" y="465">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="655" y="525">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="215" y="855">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="275" y="855">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="365" y="855">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="215" y="335">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="215" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="215" y="465">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="685" y="365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="685" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="685" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="335" y="945">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="335" y="975">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="335" y="1005">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="115" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="145" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="785" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="815" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_melee_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="845" y="495">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="rogue_archer_8"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="655" y="845">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="695" y="815">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="655" y="885">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="725" y="815">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="855" y="1295">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="565" y="1265">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="655" y="1395">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="535" y="1365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight2" type="spawn" gid="489" x="565" y="1425">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="595" y="1615">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="489" x="625" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Brother" type="spawn" gid="489" x="435" y="1685">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="younger_brother"/>
+    <property name="tag" value="brother"/>
+    <property name="unique_tag" value="K7_brother"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="755" y="1615">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="755" y="1735">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="755" y="1675">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="945" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bandit" type="spawn" gid="489" x="1135" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+        <property name="hostile" value="" />
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1455" y="1905">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1455" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1495" y="1585">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1515" y="1455">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1555" y="1325">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1815" y="1685">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1805" y="1485">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1805" y="1265">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1845" y="1105">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_bandit"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1555" y="1845">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1685" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1685" y="1555">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1715" y="1425">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1715" y="1305">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1905" y="1585">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1875" y="1365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1655" y="885">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="wizard" type="spawn" gid="489" x="1775" y="855">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="K7_wizard"/>
+    <property name="tag" value="dom_team"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Wicked witch" type="spawn" gid="489" x="1805" y="945">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="wicked_witch"/>
+    <property name="tag" value="dom_team"/>
+    <property name="unique_tag" value="K7_witch"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Durant" type="spawn" gid="489" x="1415" y="335">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,84;VariableLower#last_race,99"/>
+    <property name="spawn" value="durant"/>
+    <property name="tag" value="durant"/>
+    <property name="unique_tag" value="K7_durant"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1265" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1335" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1395" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1455" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1525" y="275">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1265" y="305">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1335" y="305">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1395" y="305">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1455" y="305">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1525" y="305">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1265" y="375">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1335" y="375">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1395" y="375">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1455" y="375">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1525" y="375">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1265" y="405">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1335" y="405">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1395" y="405">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1455" y="435">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1525" y="405">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1265" y="505">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1335" y="505">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1395" y="505">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1455" y="505">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+  </object>
+  <object name="ratmine" type="spawn" gid="489" x="1525" y="505">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="rat_mine"/>
+    <property name="tag" value="K7_rat_mine"/>
+   </properties>
+    </object>
+    <object name="Chest" type="container"  x="1340" gid="487" y="350">
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+    </object>
+    <object name="Chest" type="container"  x="1510" gid="487" y="350">
+      <properties>
+        <property name="icon" value="sarcophagus" />
+        <property name="loot_table" value="sarcophagus_10" />
+        <property name="name" value="@SARCOPHAGUS" />
+      </properties>
+  </object>
+  <object name="Crate" type="container"  x="510" gid="487" y="1340">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="487" x="1630" y="770">
+   <properties>
+    <property name="conditions" value="VariableLower#last_race,99"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5030,5030,5030,5016"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="K7d_chest"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="487" x="1630" y="770">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="1360" y="300" width="90" height="90">
+      <properties>
+        <property name="conditions" value="VariableLower#last_race,96" />
+        <property name="actions" value="StartConversation#dom,K7_dom_death" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="380" y="190" width="1600" height="1680">
+      <properties>
+        <property name="conditions" value="VariableGreater#dom_death,1;VariableLower#dom_death,3;VariableLower#last_race,98" />
+        <property name="actions" value="StartConversation#dom,K7_dom_death3" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="380" y="190" width="1600" height="1680">
+      <properties>
+        <property name="conditions" value="VariableGreater#dom_death,5;VariableLower#dom_death,7;VariableLower#last_race,98" />
+        <property name="actions" value="StartConversation#dom,K7_dom_death4" />
+      </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="655" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="405" y="535">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="275" y="655">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="855" y="1135">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="535" y="1365">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="555" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1425" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1495" y="1555">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1835" y="1455">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1845" y="1075">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1265" y="405">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan" type="spawn" gid="489" x="1545" y="435">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="595" y="625">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="465" y="755">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="435" y="1715">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="775" y="1645">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1455" y="1905">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1555" y="1395">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1685" y="1555">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1715" y="1335">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1935" y="1645">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan2" type="spawn" gid="489" x="1715" y="845">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_shaman"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="ursan3" type="spawn" gid="489" x="1415" y="275">
+   <properties>
+    <property name="conditions" value="VariableGreater#last_race,99"/>
+    <property name="spawn" value="ursan_high_shaman"/>
+    <property name="wander" value="3"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a richly dressed man)[] Do not delay sending my message.	port	2	"VariableGreater#one_way_road,9;VariableLower#one_way_road,99"		
+1	Q	[BLUE](a richly dressed man)[] Greetings to you.	port	0			
+2	A	I delivered your message to Alarion, and he said he would agree, but on his own terms.	port.	3	"VariableEqual#one_way_road,50"		
+2	A	I will try.	port.	0		
+3	Q	Oh, that's good. Of course, he'll want to do things his own way, I had no doubt about that. Thank you for carrying out my work, and here's your reward, as I promised.	port	4		
+4	A	I was glad to help.	port.	0		"GainGold#2300;GainXP#670;IncVariable#REP_sorrowland,2;SetVariable#one_way_road,100"

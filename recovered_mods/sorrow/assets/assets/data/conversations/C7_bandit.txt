@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a group of unpleasant-looking men, next to them at the wall of the house you notice a bunch of fishing gear, but these types don't really look like fishermen)[] 	[BLUE]()[] port.	2	"VariableEqual#fisherman_joy2,2"		
+1	Q	Get out of here, you have nothing to do here! 	port.	0		
+2	A	I see you have a lot of gear, are you fishermen or have you taken it away from someone?	port?	3			
+3	Q	Maybe took it away, what do you care?! Get out before someone takes something from you! 	port.	4		
+4	A	You will have to return these gear to the owners.	port?	5			
+5	Q	But we don't want to, and what are you going to do to us?! 	port.	6		
+6	A	I'll take them from you myself.	port?	0		"NPCHostile#bandit2;SetVariable#fisherman_joy2,3"

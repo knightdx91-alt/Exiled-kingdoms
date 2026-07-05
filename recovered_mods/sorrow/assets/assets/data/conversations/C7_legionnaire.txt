@@ -1,0 +1,13 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Thank you for your help, a hero like you would be useful to us here. 	port.	0	"VariableGreater#orcish_adversity,34"		
+1	Q	Phew, that was a tough fight! It's been a long time since the orcs attacked us in such numbers. The infiltrators, this is an attack, they are clearly plotting something, probing the ground! Report the incident to the praetor in the city. 	port.	8	"VariableEqual#orcish_adversity,30"		
+1	Q	Beat these creatures! 	port.	0	"VariableEqual#orcish_adversity,25"		
+1	Q	[BLUE](belligerent man in armor)[] Freedom, traveler. This is an unfortunate place for walking, it is very dangerous here. 	[BLUE]()[] port.	2		
+2	A	Praetor Nazira sent me here to deal with the orc scouts.	port?	3	"VariableEqual#orcish_adversity,20"		
+2	A	I get you.	port?	0			
+3	Q	My scouts have already informed me about your actions, great job! These infiltrators obviously didn't just sneak in here, it's a pity that couldn't find out exactly what for. 	port.	4		
+4	A	I was glad to help.	port?	5			
+5,killet	Q	It's relatively quiet here so far, so most of my subordinates are busy catching deserters in the mountains. You can return to praetor and report on the success of the mission... 	port.	6		
+6,scout	Q	Sergeant! We have a problem, orc squad...	port?	7			
+7,killet	Q	To arms! 	port.	0		"NPCSpawn#orc_team;SetVariable#orcish_adversity,25"
+8	A	Good.	port?	0		"SetVariable#orcish_adversity,35"

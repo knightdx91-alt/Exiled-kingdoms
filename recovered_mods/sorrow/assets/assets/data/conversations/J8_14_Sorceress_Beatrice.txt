@@ -1,0 +1,193 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a gloomy-looking sorceress, but ready to communicate)[] Hello, traveler, if you have the right weapon and the right ingredients, I'm ready to enchant him, or make an amulet from death!	¿po?	6	"VariableEqual#charm_beatrice,1"		
+1	Q	 [BLUE](a gloomy-looking sorceress, but ready to communicate)[] Hello, traveler, I practice dark types of magical art, I can enchant weapons, but I try not to deal with strangers for my own good! [BLUE](10 reputation needed in the Northern Kingdom)[]	¿po?	0	VariableLower#REP_north_kingdom,10	
+1	Q	 [BLUE](a gloomy-looking sorceress, but ready to communicate)[] Hello, traveler, I practice dark types of magical art, if it doesn't scare you, I can enchant weapons, or make an amulet from death for a reasonable fee!	¿po?	2		
+2	A	What weapons can you enchant?	po.	3		
+2	A	Thanks, but I have to go.	po.	0		
+3	Q	 Any weapon without other enchantments that you have. But at the same time I will need the ingredients - six grave flowers for dark charms or thirteen human skulls and one demonic to create an amulet.	¿po?	4		
+4	A	How much will the enchantment and amulet cost?	po.	5		
+5	Q	 Enchantment of daggers and swords will cost [BLUE](from 200 to 300 gold)[], hammers and axes [BLUE] (250 gold each)[], and something heavier [BLUE] (more than 350 gold)[]. Creating an amulet will cost [BLUE] (650 gold)[]. If you have something suitable and the right ingredients with you, I'm ready to get to work right now.	¿po?	6		"SetVariable#charm_beatrice,1"
+6	A	I have some deadweed with me.	po.	7	"PlayerHasItems#2103,6"	
+6	A	Make me an amulet.	po.	8	"PlayerHasGold#650;PlayerHasItems#1010,13;PlayerHasItem#1013"	
+6	A	You can enchant this adamantite shortsword?	po.	15	PlayerHasItem#552	
+6	A	You can enchant this adamantite sword?	po.	16	PlayerHasItem#553	
+6	A	You can enchant this adamantite greatsword?	po.	17	PlayerHasItem#554	
+6	A	You can enchant this terrifying maul?	po.	77	PlayerHasItem#541	
+6	A	You can enchant this terrifying sword?	po.	55	PlayerHasItem#10360	
+6	A	Can you enchant this short terrifying sword?	po.	116	PlayerHasItem#10892	
+6	A	Can you enchant this thing? [BLUE](show her dildo)[]	po.	80	"VariableLower#dyldo_beatrice,1;PlayerHasItem#10106"	
+6	A	Can you enchant this two-handed sword Widowmaker?	po.	89	PlayerHasItem#10175	
+6	A	Can you enchant this two-handed sword Dragon Slayer?	po.	90	PlayerHasItem#10200	
+6	A	Can you enchant this maul Rock Breaker?	po.	91	PlayerHasItem#10444	
+6	A	Can you enchant this axe Thinker's Argument?	po.	92	PlayerHasItem#10446	
+6	A	Can you enchant this two-handed sword Bloodsucker?	po.	93	PlayerHasItem#10613	
+6	A	Can you enchant this maul Killing power?	po.	94	PlayerHasItem#10772	
+6	A	Can you enchant this long sword Sacrifice?	po.	95	PlayerHasItem#10776	
+6	A	Can you enchant this two-handed sword Soulcatcher?	po.	96	PlayerHasItem#10855	
+6	A	Can you enchant this dagger Wolfish Ferocity?	po.	97	PlayerHasItem#10856	
+6	A	How many ingredients do I need to enchant and how much will it cost? And what is necessary to create an amulet?	po.	13	"VariableEqual#charm_beatrice,1"		
+6	A	No, thanks.	po.	0		
+7	Q	 Okay, what kind of weapon do you have for enchantment, I hope it was made of good steel, otherwise I won't be able to work with a rusty junk?	¿po?	10		
+8	Q	 It will take a couple of hours!	¿po?	0		"LoseGold#650;LoseItems#1010,13;LoseItem#1013;GainItem#10250;Travel#P12,4,4"				
+10	A	Enchant this dagger.	po.	31	"PlayerHasItem#521;PlayerHasGold#200"	
+10	A	Enchant this short sword.	po.	32	"PlayerHasItem#522;PlayerHasGold#250"	
+10	A	Enchant this sword.	po.	33	"PlayerHasItem#523;PlayerHasGold#300"	
+10	A	Enchant this mace.	po.	34	"PlayerHasItem#525;PlayerHasGold#250"	
+10	A	Enchant this hammer.	po.	35	"PlayerHasItem#526;PlayerHasGold#250"	
+10	A	Enchant this axe.	po.	36	"PlayerHasItem#528;PlayerHasGold#250"	
+10	A	Enchant this great sword.	po.	37	"PlayerHasItem#524;PlayerHasGold#350"	
+10	A	Enchant this maul.	po.	38	"PlayerHasItem#527;PlayerHasGold#400"	
+10	A	Enchant this great axe.	po.	39	"PlayerHasItem#529;PlayerHasGold#350"	
+10	A	Enchant this bluesteel dagger.	po.	41	"PlayerHasItem#531;PlayerHasGold#200"	
+10	A	Enchant this bluesteel short sword.	po.	42	"PlayerHasItem#532;PlayerHasGold#250"	
+10	A	Enchant this bluesteel sword.	po.	43	"PlayerHasItem#533;PlayerHasGold#300"	
+10	A	Enchant this bluesteel mace.	po.	44	"PlayerHasItem#535;PlayerHasGold#250"	
+10	A	Enchant this bluesteel hammer.	po.	45	"PlayerHasItem#536;PlayerHasGold#250"	
+10	A	Enchant this bluesteel axe.	po.	46	"PlayerHasItem#538;PlayerHasGold#250"	
+10	A	Enchant this bluesteel great sword.	po.	47	"PlayerHasItem#534;PlayerHasGold#350"	
+10	A	Enchant this bluesteel maul.	po.	48	"PlayerHasItem#537;PlayerHasGold#400"	
+10	A	Enchant this bluesteel great axe.	po.	49	"PlayerHasItem#539;PlayerHasGold#350"	
+10	A	Enchant this silver dagger.	po.	50	"PlayerHasItem#701;PlayerHasGold#200"	
+10	A	Enchant this silver short sword.	po.	51	"PlayerHasItem#702;PlayerHasGold#250"	
+10	A	Enchant this silver sword.	po.	52	"PlayerHasItem#703;PlayerHasGold#300"	
+10	A	Enchant this silver great sword.	po.	53	"PlayerHasItem#704;PlayerHasGold#350"	
+10	A	Enchant this silver mace.	po.	54	"PlayerHasItem#705;PlayerHasGold#250"	
+10	A	Enchant this thief's blade.	po.	58	"PlayerHasItem#203;PlayerHasGold#250"	
+10	A	Enchant this falchion.	po.	59	"PlayerHasItem#598;PlayerHasGold#300"	
+10	A	Enchant this dagger.	po.	60	"PlayerHasItem#204;PlayerHasGold#200"	
+10	A	Enchant this dagger.	po.	61	"PlayerHasItem#578;PlayerHasGold#200"	
+10	A	Enchant this sacrificial dagger.	po.	62	"PlayerHasItem#600;PlayerHasGold#200"	
+10	A	Enchant this sting.	po.	63	"PlayerHasItem#612;PlayerHasGold#200"	
+10	A	Enchant this fang.	po.	64	"PlayerHasItem#613;PlayerHasGold#200"	
+10	A	Enchant this Orcslicer.	po.	65	"PlayerHasItem#589;PlayerHasGold#300"	
+10	A	Enchant this Righteousness.	po.	66	"PlayerHasItem#594;PlayerHasGold#300"	
+10	A	Enchant this hammer.	po.	67	"PlayerHasItem#540;PlayerHasGold#250"	
+10	A	Enchant this Beastgrinder.	po.	68	"PlayerHasItem#579;PlayerHasGold#250"	
+10	A	Enchant this bone mace.	po.	69	"PlayerHasItem#617;PlayerHasGold#250"	
+10	A	Enchant this mystic bone mace.	po.	70	"PlayerHasItem#618;PlayerHasGold#250"	
+10	A	Enchant this scimitar.	po.	71	"PlayerHasItem#599;PlayerHasGold#350"	
+10	A	Enchant this bone maul.	po.	72	"PlayerHasItem#616;PlayerHasGold#400"	
+10	A	Enchant this Maul of Terror.	po.	73	"PlayerHasItem#742;PlayerHasGold#400"	
+10	A	Enchant this minotaur axe.	po.	74	"PlayerHasItem#608;PlayerHasGold#350"	
+10	A	Enchant this executioner's axe.	po.	75	"PlayerHasItem#714;PlayerHasGold#350"	
+10	A	Enchant this Axe of the Depths.	po.	76	"PlayerHasItem#740;PlayerHasGold#350"	
+10	A	Enchant this thing. [BLUE](show her dildo)[]	po.	85	"VariableEqual#dyldo_beatrice,2;PlayerHasItem#10106;PlayerHasGold#200"	
+10	A	Enchant this bit.	po.	86	"PlayerHasItem#10123;PlayerHasGold#400"	
+10	A	Enchant this hunting knife.	po.	87	"PlayerHasItem#10280;PlayerHasGold#200"	
+10	A	Enchant this orc axe.	po.	88	"PlayerHasItem#10833;PlayerHasGold#350"	
+10	A	Next time.	po.	0		
+13	Q	 I will need six grave flowers for dark charms. Enchantment of daggers and swords will cost [BLUE](from 200 to 300 gold)[], hammers and axes [BLUE] (250 gold each)[], and something heavier [BLUE] (more than 350 gold)[]. To create an amulet, I will need thirteen human skulls and one demonic one and will cost [BLUE](650 coins)[].	¿po?	0		
+15	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](400 gold)[].	¿po?	18						
+16	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](550 gold)[].	¿po?	19						
+17	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	20						
+18	A	I have the necessary ingredients with me.	po.	21	"PlayerHasGold#400;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+18	A	No, thanks.	po.	0		
+19	A	I have the necessary ingredients with me.	po.	22	"PlayerHasGold#550;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+19	A	No, thanks.	po.	0		
+20	A	I have the necessary ingredients with me.	po.	23	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+20	A	No, thanks.	po.	0		
+21	Q	 This sword will be even more deadly than it already was!	¿po?	0		"LoseGold#400;LoseItems#1010,7;LoseItem#1013;LoseItem#552;GainItem#10520"				
+22	Q	 This sword will be even more deadly than it already was!	¿po?	0		"LoseGold#550;LoseItems#1010,7;LoseItem#1013;LoseItem#553;GainItem#10521"				
+23	Q	 This sword will be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#554;GainItem#10522"				
+31	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#521;GainItem#10251"				
+32	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#522;GainItem#10252"				
+33	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#523;GainItem#10253"				
+34	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#525;GainItem#10255"				
+35	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#526;GainItem#10256"				
+36	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#528;GainItem#10258"				
+37	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#524;GainItem#10254"				
+38	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2103,6;LoseItem#527;GainItem#10257"				
+39	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#529;GainItem#10259"				
+41	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#531;GainItem#10501"				
+42	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#532;GainItem#10502"				
+43	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#533;GainItem#10503"				
+44	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#535;GainItem#10505"				
+45	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#536;GainItem#10506"				
+46	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#538;GainItem#10508"				
+47	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#534;GainItem#10504"				
+48	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2103,6;LoseItem#537;GainItem#10507"				
+49	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#539;GainItem#10509"				
+50	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#701;GainItem#10601"				
+51	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#702;GainItem#10602"				
+52	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#703;GainItem#10603"				
+53	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#704;GainItem#10604"				
+54	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#705;GainItem#10605"				
+55	Q	 Wow, what an interesting sword! It looks like... no matter. To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	56						
+56	A	I have the necessary ingredients with me.	po.	57	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+56	A	No, thanks.	po.	0		
+57	Q	 This sword will be even more powerful than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10360;GainItem#10652"				
+58	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#203;GainItem#10656"				
+59	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#598;GainItem#10661"				
+60	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#204;GainItem#10666"				
+61	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#578;GainItem#10671"				
+62	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#600;GainItem#10676"				
+63	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#612;GainItem#10681"				
+64	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#613;GainItem#10686"				
+65	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#589;GainItem#10691"				
+66	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2103,6;LoseItem#594;GainItem#10696"				
+67	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#540;GainItem#10701"				
+68	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#579;GainItem#10706"				
+69	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#617;GainItem#10711"				
+70	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2103,6;LoseItem#618;GainItem#10716"				
+71	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#599;GainItem#10721"				
+72	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2103,6;LoseItem#616;GainItem#10726"				
+73	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2103,6;LoseItem#742;GainItem#10731"				
+74	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#608;GainItem#10741"				
+75	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#714;GainItem#10746"				
+76	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#740;GainItem#10751"				
+77	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	78						
+78	A	I have the necessary ingredients with me.	po.	79	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+78	A	No, thanks.	po.	0		
+79	Q	 This maul will be even more powerful than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#541;GainItem#10736"				
+80	Q	 Wow, how big it is! Are you by any chance compensating them for anything?	¿po?	81	"PlayerIsMale#"		
+80	Q	 Hey, sis, you better find yourself a man instead of this thing!	¿po?	83	"PlayerIsFemale#"		
+81	A	Nothing like that! I have a big size!.. And anyway, it has nothing to do with it, I just need to enchant this thing.	po.	82		
+82	Q	 Well, whatever you say, I'm not going to verify your statement. So, as usual, I'll need the ingredients- six grave flowers for dark charms.	¿po?	1		"SetVariable#dyldo_beatrice,2"
+83	A	I don't need this thing for what you're thinking! I need it for a completely different purpose, and I want to enchant this thing.	po.	84		
+84	Q	 Oh, come on, don't make excuses, we all like to have fun when we're single! But if you really need to enchant this thing, then, as usual, I'll need the ingredients - six grave flowers for dark charms.	¿po?	1		"SetVariable#dyldo_beatrice,2"
+85	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#10106;GainItem#10891"				
+86	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2103,6;LoseItem#10123;GainItem#10904"				
+87	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2103,6;LoseItem#10280;GainItem#10919"				
+88	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2103,6;LoseItem#10833;GainItem#10949"				
+89	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	98						
+90	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	99						
+91	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	100						
+92	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](550 gold)[].	¿po?	101						
+93	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, 14 human skulls and two demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](2100 gold)[].	¿po?	102						
+94	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	103						
+95	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, 14 human skulls and two demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](1600 gold)[].	¿po?	104						
+96	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, 20 human skulls and three demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](4900 gold)[].	¿po?	105						
+97	Q	 What an unusual weapon! To cast the enchantment effectively, I will need other ingredients, or more precisely, 20 human skulls and three demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](3900 gold)[].	¿po?	106						
+98	A	I have the necessary ingredients with me.	po.	107	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+98	A	No, thanks.	po.	0		
+99	A	I have the necessary ingredients with me.	po.	108	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+99	A	No, thanks.	po.	0		
+100	A	I have the necessary ingredients with me.	po.	109	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+100	A	No, thanks.	po.	0		
+101	A	I have the necessary ingredients with me.	po.	110	"PlayerHasGold#550;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+101	A	No, thanks.	po.	0		
+102	A	I have the necessary ingredients with me.	po.	111	"PlayerHasGold#2100;PlayerHasItems#1010,14;PlayerHasItems#1013,2"	
+102	A	No, thanks.	po.	0		
+103	A	I have the necessary ingredients with me.	po.	112	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+103	A	No, thanks.	po.	0		
+104	A	I have the necessary ingredients with me.	po.	113	"PlayerHasGold#1600;PlayerHasItems#1010,14;PlayerHasItems#1013,2"	
+104	A	No, thanks.	po.	0		
+105	A	I have the necessary ingredients with me.	po.	114	"PlayerHasGold#4900;PlayerHasItems#1010,20;PlayerHasItems#1013,3"	
+105	A	No, thanks.	po.	0		
+106	A	I have the necessary ingredients with me.	po.	115	"PlayerHasGold#3900;PlayerHasItems#1010,20;PlayerHasItems#1013,3"	
+106	A	No, thanks.	po.	0		
+107	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10175;GainItem#10909"				
+108	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10200;GainItem#10914"				
+109	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10444;GainItem#10924"				
+110	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#550;LoseItems#1010,7;LoseItem#1013;LoseItem#10446;GainItem#10929"				
+111	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#2100;LoseItems#1010,14;LoseItems#1013,2;LoseItem#10613;GainItem#10934"				
+112	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10772;GainItem#10939"				
+113	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#1600;LoseItems#1010,14;LoseItems#1013,2;LoseItem#10776;GainItem#10944"				
+114	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#4900;LoseItems#1010,20;LoseItems#1013,3;LoseItem#10855;GainItem#10954"				
+115	Q	 This sword weapon be even more deadly than it already was!	¿po?	0		"LoseGold#3900;LoseItems#1010,20;LoseItems#1013,3;LoseItem#10856;GainItem#10959"				
+116	Q	 Wow, this size is just right for me! Oh, Tol in my... What am I talking about?! Uh-uh, what did you want there?	¿po?	117						
+117	A	I wanted to enchant this short terrifying sword.	po.	118		
+118	Q	 To cast the enchantment effectively, I will need other ingredients, or more precisely, seven human skulls and one demonic. And because of the difficulty of the work, it will be more expensive - [BLUE](700 gold)[].	¿po?	119						
+119	A	I have the necessary ingredients with me.	po.	120	"PlayerHasGold#700;PlayerHasItems#1010,7;PlayerHasItem#1013"	
+119	A	No, thanks.	po.	0		
+120	Q	 This sword will be even more deadly than it already was!	¿po?	0		"LoseGold#700;LoseItems#1010,7;LoseItem#1013;LoseItem#10892;GainItem#10899"				

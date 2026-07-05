@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hello there, are you headed to New Garand? You look like an adventurer.	Hola, te diriges a New Garand? Pareces un aventurero.	2	VariableLower#elisse_talked,1	SetVariable#elisse_talked,1
+1	Q	Hello again.	Hola de nuevo.	4		
+2	A	Do I have a sign that says 'adventurer' written on my back or something? And why do you ask?	¿Acaso llevo un letrero que dice 'aventurero' colgando de la espalda? Y, ¿por qué lo preguntas?	3		
+2	A	Sorry, I can't waste time, I am in a hurry.	Lo siento, no puedo hablar, tengo prisa.	0		
+3	Q	Because we farmers are in a terrible danger here. The King's knights protect us from the bandits, but there's... Something else. I need help.	Porque los granjeros corremos un gran peligro. Los Caballeros Reales nos protegen de los bandidos, pero hay algo más. Necesito ayuda.	4		
+4	A	Tell me what is the problem you farmers have, maybe I can help you.	Cuéntame qué problema tenéis los granjeros, quizá pueda ayudar.	9		
+4	A	I am sorry, but I am in a hurry. I have an inheritance waiting for me and...	Lo siento pero tengo prisa. Tengo que cobrar una herencia que...	5	VariableLower#want_letter_back,22	
+5	Q	Now that's odd. Three days ago I met a guy that was going to the City to get a big inheritance. He had a fancy letter from a lawyer.	Pues que casualidad...Hace tres días hablé con un tipo que iba a la ciudad a cobrar una importante herencia, según decía una carta que llevaba.	6		SetVariable#want_letter_back,22
+6	A	Yeah... Coincidence. That was my letter. You have any clue on where he can be now, or how I can find Magistrate Odo Steinz?	Si claro... Que casualidad. Esa carta es mía. ¿Crées que puedo encontrarle, a él, o al magistrado Odo Steinz?	7		
+7	Q	New Garand is a very large town. Ask around for some directions or you'll never find that Magistrate house. Unfortunately, I don't know the city well, myself. 	New Garand es una ciudad muy grande, allí viven miles de personas. Pregunta, y quizá tengas suerte. Lo siento, pero yo no conozco bien la ciudad.	10		
+9	Q	It started weeks ago. Strange screams are heard in the dead of the night. Something dark is coming from the ancient graveyard on the hills... And a farmer called Doug disappeared. Everyone is getting nervous. Maybe you could investigate and help us.	Desde hace unas semanas, de noche, se escuchan gritos y luces a lo lejos... Algo ocurre en el antiguo cementerio que hay pasadas las colinas. Y hace pocos días desapareció un granjero llamado Doug. Quizá puedas investigarlo, y ayudarnos.	10		
+10	A	Thanks, goodbye.	Gracias, adiós.	0		
+10	A	Let me ask you something else...	Deja que te pregunte otra cosa...	11		
+11	Q	Yes?	Si?	4		

@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a kind-looking sailor)[] Hello, my friend! Tired of this rundown village? I can help you move to a more comfortable place!  	port.	2		
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	Where can you take me?	¿port?	3			
+3	Q	We will get to Freeport for [BLUE]190 coins [] in half a day or longer, as the sea will allow. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#190"	"loseGold#190;Travel#C9,1,12"
+4	A	No, I'm not interested.	port.	0		

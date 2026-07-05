@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 We've been spotted! We'll have to fight our way through! 	¿po?	0	"VariableEqual#royal_will,60"	"SetVariable#royal_will,62;NPCSpawn#guard_myaso;NPCDespawn#lookout"	
+1	Q	 It looks like they're playing it safe, leaving their observers. Let's bypass them so we don't raise an alarm prematurely, as the rebels are on the other side of these cliffs. 	¿po?	22	"VariableEqual#portal_archont,1"		
+1	Q	 We're at the location, my observer has reported that our targets have already arrived on the island, and we won't be able to approach them undetected by sea. However, I've already visited the island when it was deserted, and I left behind a teleportation stone that will allow us to reach the island without being noticed. 	¿po?	21	"VariableEqual#royal_will,50"		
+1	Q	 Well, we couldn't come to an agreement with them, but dead pirates will be even better; they won't be able to spill the beans, unlike living ones, if they were caught. So, everyone's safe? 	¿po?	16	"VariableEqual#royal_will,47"		
+1	Q	 [BLUE](a couple of boats came ashore, and a dozen thugs got out of them, and the leader of the gang spoke)[] Hehe! Hey, Archont, just like I promised, we're here. 	¿po?	3			
+3,arhont	Q	 You weren't in a hurry. 	¿po?	4			
+4,pirat	Q	 We're free birds, not your lackeys. When we want to come, we do, and when we don't, we don't. 	¿po?	5			
+5,arhont	Q	 Are all your people here? 	¿po?	6			
+6,pirat	Q	 A couple of guys stayed on the ship, you said it was a piece of cake, so I didn't bother to recruit an extra crowd. 	¿po?	7			
+7,arhont	Q	 Well, yes, fewer people means more rewards for everyone. 	¿po?	8			
+8,pirat	Q	 That's right. Speaking of the price, since you mentioned the jackpot, my rates have changed. The places we're going to are dangerous, and there are more patrol ships than ever. You'll have to pay extra for the risks. 	¿po?	9			
+9,arhont	Q	 Really? How much do you charge for your work now? 	¿po?	10			
+10,pirat	Q	 Twice as much as last time. 	¿po?	11			
+11,arhont	Q	 Aren't you being a little cheeky? For that kind of money, I could hire two or three gangs like yours, each with its own boat. 	¿po?	12			
+12,pirat	Q	 You're the boss, but there's no one here but my team, and you seem to be in a hurry to get to job. Good luck finding another crew. 	¿po?	13			
+13,arhont	Q	 I don't think you understand me. I'm not going to bargain with you. Thanks to my leniency, you're swimming in this part of the sea, and you're not being hunted by patrol ships. 	¿po?	14			
+14,pirat	Q	 Oh, well, to be honest, you've always been a difficult person to deal with, and I initially wanted to refuse your offer. Besides, we're planning to move to a different area, so we won't need to work for you anymore. So, my guys and I will bid you and your gang a final farewell, and your property will serve as our compensation. 	¿po?	15			
+15,arhont	Q	 You're not the first person who's tried to scam me, and they've all paid the price for their stupidity, just like you are now. 	¿po?	0		"NPCHostile#pirat;NPCHostile#pirats;SetVariable#royal_will,47"
+16	A	Yes, I'm fine.	po.	17		"SetVariable#good_alarion,2"
+16	A	[BLUE](lie)[] I hurt, but it didn't seem serious.	po.	18	"VariableEqual#good_alarion,1"		
+17,arhont	Q	 Good. [BLUE](the man began to give orders)[] Kirk, you and your men take the boats to capture the pirate ship, then return for these corpses, some of them in the sea, and leave the rest for a ruse. Round the Dead Harbor and the Fire Hills, dock nearby, and wait for my signal. I will go to the Desolate Cape with the hero, we will cross to the island at the ruined lighthouse. Let's not waste time. 	¿po?	0		"NPCFollow#;NPCDespawn#arhont_team;NPCDespawn#pirats;SetVariable#royal_will,50"
+18,arhont	Q	 [BLUE](man frowned at you)[] The pirate blades may have been poisoned, they often do that, I advise you to immediately return to the city and contact the alchemist. Most importantly, you helped deal with these brutes, and we will somehow deal with the governor's son and his suckers. I will inform Princess Bernadette about the incident, she will find you and tell you about the further work. 	¿po?	19			
+19	A	Well, good luck to you then.	po.	20		
+20,arhont	Q	 [BLUE](the man began to give orders)[] Kirk, you and your men take the boats to capture the pirate ship, then return for these corpses, some of them in the sea, and leave the rest for a ruse. Round the Dead Harbor and the Fire Hills, dock nearby, and wait for my signal. I'll take the others to the Desolate Cape, where we'll cross to the island. Let's not waste time. 	¿po?	0		"NPCDespawn#arhont;NPCDespawn#arhont_team;NPCDespawn#pirats;SetVariable#royal_will,57"
+21	A	That's thoughtful. Let's use your teleport then.	po.	0		"SetVariable#portal_archont,1;Travel#M6,2"
+22	A	Хорошо.	po.	0		"SetVariable#royal_will,60"

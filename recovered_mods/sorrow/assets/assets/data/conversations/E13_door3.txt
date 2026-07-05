@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it's a magical door, it's open)[]	port.	4	"VariableEqual#E13_grate8,2"		
+1	Q	[BLUE](it's a magical door, and there's no way to open it to get inside)[]	port.	2			
+2	A	Try to open it with a suitable key.	port.	3	PlayerHasItem#10633		
+2	A	Get away.	port.	0		
+3	Q	[BLUE](the key unlocks the lock without any problems, opening the magic door)[]	port.	4		"SetVariable#E13_grate8,2;LoseItem#10633"		
+4	A	Enter.	port.	0		Travel#E13_tower4,2
+4	A	Stay.	port.	0		

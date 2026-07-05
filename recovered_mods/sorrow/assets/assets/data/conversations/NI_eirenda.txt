@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Welcome to Castle Mae'Ran, make yourself at home!	¿po?	0	"VariableEqual#eirenda_castle,1"	
+1	Q	 I'm sorry, but I need to rest...	¿po?	12	"VariableEqual#bloody_harvest,67;VariableLower#ring_storm,1"	
+1	Q	 I'm sorry, but I need to rest...	¿po?	0	VariableGreater#bloody_harvest,61	
+1	Q	 Grisenda, how glad I am to see you, my sister!	¿po?	2			
+2,mercenary_grisenda	Q	I'm very glad to see you too, Eirenda! How did you get settled here?	¿po?	3			
+3,eirenda	Q	 Well, the brothers provided me with a modest room, but I'm satisfied with that, the road here was difficult in my position, but there are a lot more sympathetic people here who are ready to help me clear Castle Storm of evil. Grisenda, so these rumors that Dobros is alive turned out to be true?	¿po?	4			
+4,mercenary_grisenda	Q	Yes, but don't worry, we've definitely finished this scoundrel off this time!	¿po?	5			
+5,eirenda	Q	 I hope that this is the case, and I will finally get rid of this burden. It's strange, I've lived with this monster for so long, and it was a normal life for me...	¿po?	6			
+6,mercenary_grisenda	Q	Uh, Eirenda, did you want to share some important information that will help us get rid of the evil that lives on Mount Storm?	¿po?	7			
+7,eirenda	Q	 Yes! In the last months of my stay at Castle Storm, I came across the notes of the founder of the castle, Holland Storm. He formed an alliance with vampires, but later, he regretted it and was looking for a way to defeat these creatures, and as I understand it, he succeeded! But because of his fear of vampires, he hid all the information about it, maybe in the castle, or maybe not, I never managed to find anything.	¿po?	8			
+8,mercenary_grisenda	Q	Well, it might be impossible, but my friend and I will go back to Castle Storm and try to find these Holland Storm records!	¿po?	9			
+9,eirenda	Q	 Be careful! I don't want you to go back to that terrible place, but I understand that there may be no other way to defeat these dark creatures.	¿po?	10			
+10,amos	Q	 Well, then I'll join you too, to help in this difficult task!	¿po?	11			
+11	A	 Good.	¿po?	0		"SetVariable#bloody_harvest,62"
+12,mercenary_grisenda	Q	Eirenda, this is very important, do you have any ancient Storm family items?	¿po?	13			
+13,eirenda	Q	 Yes, there is, this ring has been passed down from generation to generation, Dobros gave it to me during the engagement.	¿po?	14			
+14,mercenary_grisenda	Q	Can we have it?	¿po?	15			
+15,eirenda	Q	 Of course, take it, I've wanted to get rid of the ring for a long time, it's like a memory of bad days.	¿po?	16			
+16	A	 Thanks.	¿po?	0		"SetVariable#ring_storm,2;GainItem#10794"

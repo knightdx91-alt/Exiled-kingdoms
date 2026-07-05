@@ -1,0 +1,78 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you woke up in an unknown place near a strange building surrounded by walls and moats. The sky or ceiling above you was pitch-black, and the only person with you was the princess, who was naked again for some reason, but she had her staff)[]	port	65	"VariableEqual#trouble_again,50"		
+1	Q	Magister Kaledor! [BLUE](the girl exclaimed, noticing a man running in)[]	port	64	"VariableEqual#kaledor_tut,1"		
+1	Q	[BLUE](naked girl stopped writhing in her bonds and looked at you expectantly, trying to speak despite the fact that her mouth was gagged)[]	port	4	"VariableEqual#trouble_again,30"		
+1	Q	[BLUE](naked girl was writhing in her bonds, clearly wanting you to free her, but first you had to deal with all the possessed ones)[]	port	0	"VariableEqual#trouble_again,25"		
+1	Q	[BLUE](when you reach the center of the settlement, you find Evelina, who is once again naked, but this time the beautiful young woman is not in a cage. Instead, she is tied to a pole that is supported by stakes driven into the ground, with her arms and legs tied together, and she is hanging limply, face down, with her large breasts hanging over a pile of broken branches and chopped wood)[]	port	2			
+2	Q	[BLUE](several possessed people were crowding around the girl, one of them was standing a little further away by the brazier, holding a burning branch, but all of them were distracted from their occupation at your arrival, began to roar angrily at you. Evelina raised her head, having heard the noise, noticed you, her eyes opened wide, but she did not make a sound, as her mouth was stuffed with some kind of cloth, but began to twitch and wriggle in her bonds)[]	port	3			
+3	A	Get away from her, sick bastards!	port.	0		"NPCHostile#cook;SetVariable#trouble_again,25"
+4	A	[BLUE](free girl)[]	port.	5		
+5	Q	[BLUE](you remove the gag from Evelina's mouth, then untie the ropes on her legs and arms one by one, holding her body so that she doesn't fall painfully from the pole she was tied to. The girl lowered herself onto the branches that were piled beneath her, and you decided to help her get up, but she protested)[] Oh, wait a minute! My whole body is stiff from hanging on that stick! It'll be fine in a minute, and I'll get up on my own!	port	6		
+6	A	What happened to you here?	port.	7		
+7	Q	[BLUE](girl rolled over onto her back, lay down more comfortably on her couch, and looked at you) [] Well, I overestimated my strength and abilities again, but you came to the rescue just in time, these crazy people wanted to roast and eat me, it's good that they just tied me to this spit, and didn't use it... for its intended purpose.	port	8		
+8	A	Hmm, how did they manage to capture you, and why did you go to this place in the first place?	port	9		
+9	Q	Well, um, the deputy head of the magic council proposed a way to restore sanity to the insane residents of the surrounding area and decided to personally test it on them, many members of the council supported his idea, and I volunteered to help. [BLUE](the girl lifted one of her legs to stretch it)[] My goal was to find a small group of crazed people.	port	10		
+10	Q	But it so happened that I immediately came across a whole crowd of psychos, and I wasn't stealthy or fast enough to get away. So they caught me, took my equipment, and tore off all my clothes. [BLUE](the girl changed the position of her legs)[] I must admit, I was prepared for the worst, but it only ended with me being groped, although the fact that they then decided to roast me over a fire is an even more terrible outcome.	port	11			
+11	A	Fortunately, everything worked out.	port	30		
+11	A	You know, it seems to me that you're disappointed with how things turned out, rather than how you expected them to.	port	12	"hasNoFollower#;HasNoCompanion#;VariableEqual#eve_kex,1"		PER#5
+12	Q	Hmm, maybe so. [BLUE](the girl lowered her leg and looked at you intently)[] It was scary, but also arousing, when these wild men tore and ripped my clothes off, groping my body in all places. [BLUE](Evelina's hand slipped down between her thighs)[] And here I am, naked and defenseless, surrounded by a crowd of angry savages who want me...	port.	13		"SetVariable#eve_kex,2"
+13	Q	Oh, I got a little carried away, sorry. By the way, you saved me again, and I still haven't thanked you in any way. [BLUE](the girl, as if by accident, spread her legs, her palm lay on her crotch, smiled playfully at you)[] And now I feel very guilty, and I must make amends. It is not fitting for a princess to remain indebted to her savior.	port.	14		
+14	A	You don't have to worry about it. I'm not saving you for my own benefit, but simply doing a good deed.	port	15		
+15	Q	Oh, I understand that you're a hero and you have no self-interest, but good deeds should still be rewarded, and I want to do it personally. [BLUE](Evelina removed her hand from her crotch)[] I'll be at your mercy, and you can do whatever you want with my body until you get bored.	port.	16		
+16	Q	[BLUE](naked, seductive body of an aroused Evelina in a lewd pose and her alluring smile aroused your desire. The girl did not object to your actions, but rather responded with all her passion, igniting your ardor even more)[]	port.	17		
+17	Q	[BLUE](Evelina turned out to be very demanding, and you were endurance enough to fully satisfy her, although it seemed that she would never be satisfied, but your efforts clearly exceeded all the girl's expectations)[]	port.	18			END#4
+17	Q	[BLUE](Evelina was very demanding, but your endurance wasn't enough to fully satisfy her, and you ended faster than she would have liked, disappointing the girl who clearly expected more from you)[]	port.	18		
+18	Q	[BLUE](after catching your breath, you began to tidy up your clothes and equipment, Evelina had no clothes on and continued to lie on her couch, staring at you)[] I hope you were satisfied with your reward, because I wouldn't mind thanking you again someday.	port.	19		
+19	A	You're amazing, Evelina! But will I or you have any problems, since you're a princess?	port	20		
+20	Q	[BLUE](the girl laughed)[] I'm a princess, and I can do whatever I want, although I don't abuse this privilege. I have enough talents to get what I want.	port.	21		
+21	A	I have no doubt about it.	port	22		
+22	Q	Of course! [BLUE](the girl chuckled)[] But don't underestimate me, my looks aren't my only asset. What do you think about me helping you get a job in the royal guard, so we could see each other all the time?	port.	23		
+23	A	It's a great idea, but I'm not used to staying in one place all the time.	port	24		
+24	Q	Well, I don't mind traveling with you from time to time. Okay, we'll discuss it later, in a more pleasant and safe environment.	port.	25	"PlayerHasItem#10842"		
+24	Q	Well, I don't mind traveling with you from time to time. Okay, we'll discuss it later, in a more pleasant and safe environment.	port.	26		
+25	A	Okay. By the way, I found your staff, and I wanted to give it back to you, but you weren't in the castle, so I went looking for you, and that's how I ended up here.	port	32			
+26	A	Okay. Well, now it would be a good idea to find some clothes for you again.	port	36		
+29	A	I'll always be happy to help if you ever get into trouble again. Well, now it would be a good idea to find some clothes for you again.	port	36		
+30	Q	Yes, you came to my rescue in time, thank you for saving me once again, I hope this doesn't become a habit.	port.	31	"PlayerHasItem#10842"		
+30	Q	Yes, you came to my rescue in time, thank you for saving me once again, I hope this doesn't become a habit.	port.	29		
+31	A	You came to my rescue in time, thank you for saving me once again. Well, now it would be a good idea to find some clothes for you again. By the way, I found your staff, and I wanted to give it back to you, but you weren't in the castle, so I went looking for you, and that's how I ended up here.	port	32			
+32	Q	Oh, thank you for returning my staff! Although I was given a new one by the magical council, it was taken from me by those crazy people. Let's find this staff, and you can keep my old one. Use it to your heart's content!	port.	33	"PlayerIsClass#mage"	
+32	Q	Oh, thank you for returning my staff! Although I was given a new one by the magical council, it was taken from me by those crazy people.	port.	34		"LoseItem#10842"
+33	A	Thank you, now shall we return to the city, or shall we carry out your mission?	port	37		"SetVariable#staff_eve,2"
+34	A	Good, now shall we return to the city, or shall we carry out your mission?	port	37		"SetVariable#staff_eve,1"
+35	A	Good, now shall we return to the city, or shall we carry out your mission?	port	37		"SetVariable#staff_eve,2"
+36	Q	First, let's find my new staff, which I was given by the Magical Council. It would be awkward to ask them for another one!	port.	35		
+37,evelina	Q	Um, I guess I should continue to carry out my assignment, you'll help me, right?	port	38		
+38	A	[BLUE](you were about to reply, but you were distracted by an elderly man in a robe who came running out from behind the house, out of breath.)[]	port	0		"NPCSpawn#mage;SetVariable#kaledor_tut,1"
+39,evelina	Q	Sorry to bother, magister, but I thought I could handle the first part of our plan on my own.	port	40		
+40,mage	Q	Don't apologize... Oh, princess, what happened here?! [BLUE] (after catching his breath, the wizard finally noticed that the girl was completely naked)[]	port	41		
+41,evelina	Q	These crazies tried to fry and eat me, but fortunately, this hero came to my rescue again.	port	42		
+42,mage	Q	What a nightmare! I'm very glad that everything ended well and that you're unharmed. After such an incident, it might be a good idea to return to the city and prepare better for our plan.	port	43		
+43,evelina	Q	Don't worry, I'm fine. Let's continue with our mission, and my hero will help us.	port	44		
+44	A	By the way, what case do you have here?	port	45		
+45,mage	Q	It is connected with a respected member of the magical council, magister Dagget, who spent many years studying the terrible Curse that had settled in the eastern mines. After his last expedition, he suffered a misfortune, and the Curse infected his mind. The most powerful mages tried to heal him, but they were unsuccessful.	port	46		
+46,mage	Q	Under the influence of the Curse, the wizard managed to escape from Istril to these parts, where he cast a monstrous spell that drove all the inhabitants of the surrounding area mad, but fortunately it did not affect the suburb. The spell of the cursed wizard is still active, albeit not with the same intensity, and all weak minds are affected by it. Fortunately, we have found a way to reverse the effects of the spell.	port	47		
+47,mage	Q	The source of this spell's generation is the cursed mage himself, and we have created a specially enchanted totem that will suppress it, thereby protecting people and possibly restoring sanity to those who have already been affected. However, there is a downside to this approach, as the totem's effectiveness depends on its integrity, and it can be easily destroyed, allowing the spell to take effect again.	port	48		
+48,evelina	Q	So, how can we protect the totem?	port	49		
+49,mage	Q	Without a doubt. It takes a lot of time and effort to create a new totem, so we need to figure out how to protect the one we already have.	port	50		
+50	A	If the source of the spell is the cursed mage, wouldn't it be easier to kill him and get rid of the hassle? As far as I understand, it's impossible to remove the Curse, and he could cause more problems.	port	52		
+52,mage	Q	Hmm, that's a radical way of solving the problem, but you're right. Even if we manage to remove the spell using the totem, the cursed mage might create another one, and we'll have to find a way to defend ourselves again.	port	53		
+53,evelina	Q	I had hoped that we could accomplish our task without unnecessary violence, and that we would be able to restore magister Daggett's sanity. I know him to be a good man, and he deserves a better fate.	port	54		
+54,mage	Q	Of course, but if we have no other choice, we'll have to kill him, and he probably wouldn't want to spend the rest of his days as a dangerous madman.	port	55		
+55	A	Then let's get to work. Where exactly should we look for this mad wizard?	port	56		
+56,mage	Q	According to the latest reports, he has settled in an old lighthouse in the northwest of Dragon's Nest.	port	57		
+57	A	Okay, let's go there. Although, first, we need to find some clothes for Evelina and her staff. [BLUE](First, you explored the area around the village and found a beautiful staff that clearly belonged to Evelina. Then, you examined the houses and discovered someone's cloak. You found these finds to the girl, who finally rose from her couch)[]	port	63	"VariableEqual#staff_eve,2"		
+57	A	Okay, let's go there. Although, first, we need to find some clothes for Evelina. [BLUE](After exploring the village's houses, you found someone's cloak, which you gave to a girl who had deigned to rise from her couch)[]	port	58	"VariableEqual#staff_eve,1"		
+58,evelina2	Q	[BLUE](the girl put the cloak)[] Thank you, you're helping me out again, maybe you should move to the castle and become my personal dresser?	port	59		"NPCFollow#"
+59	A	I'm sure you have servants who are much better suited for this role.	port	60		
+60,mage	Q	We are now ready to continue our mission, but I must warn you that magister Dagget is a powerful wizard, and although he is mad, he has not lost his skills or strength..	port	61		"NPCFollow#"
+61	A	Okay, I'll keep that in mind.	port	0		"NPCDespawn#evelina;NPCSpawn#mad;SetVariable#trouble_again,40"
+63,evelina2	Q	Oh, thank you for returning my new staff! [BLUE](the girl took the staff and put the cloak)[] You're helping me out again, maybe you should move to the castle and become my personal dresser?	port	59		"NPCFollow#"
+64,mage	Q	[BLUE](after stopping, the man began to speak while trying to catch his breath)[] Princess, I came as fast as I could! Are you all right? We agreed to meet in the suburbs, why did you leave alone? As soon as I heard that you were heading to the Dragon's Nest, I immediately followed you.	port	39		
+65	A	Damn, what happened? Where are we?	port	66		
+66,evelina	Q	[BLUE](the girl looked around)[] Oh, no! It looks like we've entered an illusory world! These are particularly powerful enchantments that allow multiple minds to be merged into a single one, and I've heard that certain magisters use them for crucial negotiations. Magister Dagget is one of them.	port	67		
+67	A	Is there any way we can get out of here?	port	68		
+68,evelina	Q	Yes, although in order to leave the illusory world you need to be as magically strong as the one who created it, but usually during creation a condition is introduced, after fulfilling which, anyone who ends up in the illusory world can leave it.	port	69		
+69	A	Good, so we'll have to explore this place to figure out how to get out. Um, Evelina, why are you naked again?	port	70		
+70,evelina	Q	A? [BLUE](the girl looked at her body)[] I've heard that those who enter an illusory world imagine how they will look there, or how the creator wants them to look.	port	71		"NPCFollow#"
+71	A	Okay, it doesn't look like you're going to freeze in this place, or get bothered by insects, so let's find a way out.	port	0		"SetVariable#trouble_again,52"

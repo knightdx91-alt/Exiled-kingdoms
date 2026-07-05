@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I can't believe you brought us home! 	¿po?	2			
+2	A	I decided to save you the danger of the roads.	po.	3		
+3,slave1	Q	 We could not hope for such favor to us!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 We will visit our relatives and friends so that they will thank you in some way!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 [BLUE](one of the rescued slaves leaves, and soon returns with a group of people who also begin to thank you)[]	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Accept these gifts in gratitude for saving our lives!	¿po?	7		"NPCStopFollowing#"		
+7	Q	 Good luck with everything, be at home in our native lands!	¿po?	0		"SetVariable#will_or_death,140;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4;IncVariable#REP_north_kingdom,10;GainItems#1004,4;GainItem#2004;GainItem#2014;GainItem#10294"

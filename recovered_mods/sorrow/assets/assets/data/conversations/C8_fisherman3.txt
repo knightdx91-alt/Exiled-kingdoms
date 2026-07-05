@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0	"VariableEqual#fisherman_joy3,5"		
+1	Q	We'll get back to work as soon as you get rid of those bastards from Freeport. 	port.	11	"VariableGreater#fisherman_joy3,1;VariableLower#fisherman_joy3,5"		
+1	Q	[BLUE](looks like these are the fishermen you were looking for)[] 	[BLUE]()[] port.	2	"VariableGreater#time_to_pay,39"		
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0		
+2	A	Hey, girls, how's the catch?	port?	3			
+3	Q	Enough to keep us from starving. What do you need? 	port.	4		
+4	A	I'm from Kiara, it looks like you decided to dump your boss by defecting to her competitors?	port?	5			
+5	Q	No way. Some bastards came to visit us, threatened us, almost let us go around in circles, took one of my friends with them. Since then, we haven't stuck our necks out and haven't complained to anyone, afraid that they'll come back and take someone else. 	port.	6		
+6	A	If I deal with these bastards and try to get your friend back, will you go back to work?	port?	7			
+7	Q	Of course, if we are protected from the lawlessness that has happened. 	port.	8		
+8	A	Okay, what do you know about these bastards, where can I find them in Liberty?	port?	9		
+9	Q	No, as I understand it, they are from Freeport, somewhere there outside the city they have their own pier. 	port.	10		
+10	A	Clearly.	port?	0		"SetVariable#fisherman_joy3,2"
+11	A	I've solved your problem, those bastards will never bother you again.	port?	12	"VariableEqual#fisherman_joy3,4"		
+11	A	Clearly.	port?	0			
+12	Q	Great, tell the boss that we'll be delivering a new batch of fish in a few days! 	port.	0		"SetVariable#fisherman_joy3,5;IncVariable#REP_town_liberty,2;IncVariable#REP_seventhhouse,1;IncVariable#time_to_pay,1"

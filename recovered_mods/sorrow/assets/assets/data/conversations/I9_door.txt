@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 So we got out.	¿po?	18	"VariableEqual#bloody_harvest,98"		
+1	Q	 [BLUE](it looked like Anita and the magician were already there, and brother Amos was with them)[]	¿po?	3	"VariableEqual#bloody_harvest,80"		
+1	Q	 [BLUE](on the way to the castle gate, you are knocked down by something, like a strong wind, and carried away somewhere up!)[]	¿po?	2		
+2	A	!!?	po.	0		"HideParty#;Travel#I9_castle2,1;SetVariable#bloody_harvest,32;Sleep#"
+3	A		po.	0		"NPCSpawn#mage;NPCSpawn#amos;NPCSpawn#anita2;SetVariable#anismage_tut,2"
+4,amos	Q	 I will make sure that the church of the three provides a priest for the castle to ensure the safety of the seal, although I am willing to stay in the castle and take care of it myself if the new owners do not object to my presence!	¿po?	5			
+5,mercenary_grisenda	Q	My sister and her unborn child are now the owners of the castle, and they will welcome anyone who helped to get rid of the evil that has settled here.	¿po?	6			
+6,mage	Q	 I'm happy for all of you, but since I helped you, does that mean our deal is valid, and I'm taking a couple of corpses of these monsters with me?	¿po?	7			
+7,amos	Q	 Why do you need the bodies of these wicked creatures?	¿po?	8			
+8,mage	Q	 This is very interesting research material! The creatures I see are different from all the undead we have come across before, perhaps thanks to the study of this unknown variety, we will be able to find a more effective means of prolonging life!	¿po?	9			
+9,anita2	Q	 Of course, take it away, this is your Thuram,s fun, although you always have it that way - you want the best, but it turns out as always, and you have to drain everything into the sewer.	¿po?	10			
+10,amos	Q	 I hope they understand what they are doing and are responsible for it!	¿po?	11			
+11,anita2	Q	 Well, of course! Thuramian are very famous in this regard, they are the most responsible! Ask the residents of Deepfrost about this.	¿po?	12			
+12,mage	Q	 Let's not talk about... this.	¿po?	13		"NPCStopFollowing#"		
+13,mercenary_grisenda	Q	Thank you all for your help in clearing this castle of evil, and under my sister's guidance, this place will become one of the safest in Varsilia.	¿po?	14			
+14,amos	Q	 I am always happy to try, and I am ready to continue fighting against any evil forces!	¿po?	15		"NPCStopFollowing#"		
+15,anita2	Q	 Good luck to you, I'll continue my journey, there are still plenty of similar places in our area that need to be cleansed of the undead.	¿po?	16		"NPCStopFollowing#"		
+16,mercenary_grisenda	Q	I will go in Navarian, my friend, and tell my sister the good news. See you later.	¿po?	17		"NPCStopFollowing#"		
+17	A	See you soon. [BLUE](your companions disperse, are you also about to leave, look back at the castle and notice as if white smoke is flying away from one of the walls, or did you just imagine it?)[]	po.	0		"IncVariable#REP_varsilia,12;IncVariable#REP_the_three,6;GainXP#5500;GainItem#5035;SetVariable#bloody_harvest,100;NPCDespawn#mercenary_grisenda;NPCDespawn#amos;NPCDespawn#anita2;NPCDespawn#mage"
+18,anita2	Q	 Obviously, we've finished our work here, and I hope the new owners of the castle won't take it into their heads to flirt with these blood-sucking creatures and help them get out.	¿po?	4			

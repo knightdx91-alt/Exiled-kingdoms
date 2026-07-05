@@ -1,0 +1,34 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	22	NPCisFollower#	
+1	Q	 [BLUE](an elderly-looking, stern hunter, clearly full of energy, despite his years)[] Hello, traveler, the north is not a place for weaklings! I am the senior royal huntsman Hughinge, if you want to hunt in our forests, then prepare well, I do not want to send my subordinates once again to collect someone's remains around the area.	¿po?	2			
+2	A	Thanks for the advice, I will be very careful if I find myself in your woods!	po.	0		
+2	A	Agnius Northson and I are looking for hunters to hire them for work, perhaps you will be interested in this.	po.	3	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_hughinge,1"		
+2	A	Do you know anything about a bear demon that appeared in the woods?	po.	8	"VariableEqual#scripture_mission,50"		
+2	A	Do you know anything about a bear demon that appeared in the woods?	po.	11	"VariableEqual#lost_prince,30"		
+2	A	Do you know how to get to the snowy plateau, which is located deep in the forests?	po.	17	"VariableEqual#lost_prince,35"		
+2	A	I've brought the merples you need.	po.	15	PlayerHasItems#2104,6	
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	21	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	21	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	21	PlayerHasItem#10402		INT#5
+3	Q	 Agnius Northson? I remember him when he was very young, running in the summer with the kids on this river. As for the job, I'm on the queen's account, but why not work on the side for me or one of my subordinates? We'll agree if you get five good steel axes for my team.	¿po?	4		
+4	A	I have five steel axes with me.	po.	5	PlayerHasItems#528,5	
+4	A	All right, I'll get you these axes.	po.	0		
+5	Q	 Great, personally, I or one of my subordinates will look into the city when you need the services of a hunter.	¿po?	6		
+6	A	All right, sign another contract for Agnius.	po.	7			
+7	Q	 Give me this piece of paper.	¿po?	0		"IncVariable#lucrative_undertaking,1;GainItem#10260;LoseItems#528,5;SetVariable#contract_hughinge,1"	
+8	Q	 Of course I am familiar with this monster. Every fierce season with the first severe frosts, he comes to our forests, and there is no salvation for anyone if the monster went hunting. In my younger years, I and three other hunters encountered this bear, it was so huge that it bit poor Rody in half and swallowed half of his body whole. Although we ran two dozen steps away, the monster caught up with us in one leap and killed another of my comrades. Out of desperation, Lognal and I jumped into an icy river, so we escaped, it turned out that for some reason this monster is afraid of water.	¿po?	9		
+9	A	Priest Ryurger reported that the demon bear has returned, and he wants to find and destroy this monster. Perhaps you know where this creature's lair might be?	po.	10		
+10	Q	 I also heard that the monster had returned, although I hoped it was an ordinary cannibal bear. Well, maybe good warriors will be able to cope with it. And it's worth looking for a monster somewhere near the eastern mountains, although I'm sure he will find those who will go after him.	¿po?	0		SetVariable#scripture_mission,60		
+11	Q	 Yes, of course I know, but I can't spread the information of the royal huntsmen for nothing.	¿po?	12		
+12	A	And how can I get this information?	po.	13		
+13	Q	 We are running out of hiking potions and there are few ingredients left, bring me 6 snow flowers, and I will tell you how to get to the plateau.	¿po?	14		
+14	A	Ok, I'll bring them to you.	po.	0		SetVariable#lost_prince,40		
+15	Q	 Great, without any idea why you need to climb there, this snowy plateau will have to go around for a very long time to find a suitable place to climb, but there is a small hill with an entrance to the cave, and you can get there through these caves. But you have to be careful, the caves are full of dangers.	¿po?	16		
+16	A	Thank for this information.	po.	0		"LoseItems#2104,6;SetVariable#lost_prince,50"		
+17	Q	 Yes, of course I know, but I can't spread the information of the royal huntsmen for nothing.	¿po?	18		
+18,wintercalm	Q	 Hey, don't be impudent, you old stump! I help you out when your subordinates get into trouble in the city, so now you help me.	¿po?	19		
+19,hughinge	Q	 Okay, okay, if you really need it so much, you will have to go around this snowy plateau for a very long time to find a suitable place to climb, but there is a small hill with the entrance to the cave, you can get there through these caves. But be careful, the caves are full of dangers.	¿po?	20		
+20	A	Thank for this information.	po.	0		SetVariable#lost_prince,55		
+21	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#hughinge_follow,3;NPCFollow#"	
+22	A	Good fellow.	port.	0		
+22	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#hughinge_follow,1;NPCStopFollowing#"

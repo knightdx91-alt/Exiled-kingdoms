@@ -1,0 +1,84 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	So which of these four bosses has the lowest level?	port	44	"VariableEqual#pseudosphinx,8"		
+1	Q	In which of these locations is the quest item "sword Winter Wail" located?	port	39	"VariableEqual#pseudosphinx,7"		
+1	Q	Well, how many personally points do you need to have in order for Tremadan's Image to tell the truth?	port	33	"VariableEqual#pseudosphinx,6"		
+1	Q	So, being in Elder Forest location, which location cannot be accessed?	port	28	"VariableEqual#pseudosphinx,5"		
+1	Q	And what kind of quest is associated with a character named Liserpix?	port	23	"VariableEqual#pseudosphinx,4"		
+1	Q	So which of these characters is not from Kingsbridge?	port	18	"VariableEqual#pseudosphinx,3"		
+1	Q	So which character do you meet first at the very beginning of your journey?	port	13	"VariableEqual#pseudosphinx,2"		
+1	Q	[BLUE](very strange looking creature with a human face)[] Ha ha ha!	port?	0	"VariableEqual#pseudosphinx,1"		
+1	Q	[BLUE](very strange looking creature with a human face, was looking at you carefully)[] Well, if you've managed to get here, then you're desperate to get something. What could it be?	port?	2		
+2	A	I'm looking for the crown of the dragon lord.	port?	10		
+2	A	I would like to fight the strongest boss!	port?	5		
+2	A	I just happened to be here.	port?	3		
+2	A	And, actually, who are you?	port?	7		
+3	Q	Well, then I can easily help you get out of this place!	port	4			
+4	A	Wait, actually I wanted to...	port!	0		Travel#H10,1
+5	Q	 Great! Let's find a suitable character for this purpose!	¿po?	6		
+6	A	Okey?	port?	0		"SetVariable#pseudosphinx,1;NPCSpawn#E13boss"		
+7	Q	I am omniscient and all-knowing, I mature through spaces and subspaces, I know all the secrets of the universe, all events, the whole history of both past years and the future are open to me, I can look into the depths of the distant cosmos, I know the faces of all the living, those who have already passed away and those who will come after!.. You can call me Sphinx for short, okay?	port	8			
+8	A	Okey.	port?	9		
+9	Q	Well, what did you want?	port	2			
+10	Q	Okay, I know where you can find this thing, but you won't be able to pick it up without a key. I'll give you the key if you answer my questions correctly, and if the answer is wrong, then you'll have consequences, which ones you'll find out soon enough if you make a mistake. Are you ready?	port	11			
+11	A	Yes, I'm ready!	port?	12		
+11	A	Not.	port?	0		
+12	Q	So let's get started! Which character do you meet first at the very beginning of your journey?	port	13			
+13	A	Rat!	port?	14		"NPCSpawn#E13rats"		
+13	A	Wolf.	port?	15		"NPCSpawn#E13wolfs"		
+13	A	Adaon.	port?	16		"NPCSpawn#E13adaon"		
+13	A	Goblin.	port?	17		
+14	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+15	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+16	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+17	Q	Good, next question! Which of these characters is not from Kingsbridge?	port	18				
+18	A	Margerithe.	port?	19		"NPCSpawn#E13marger"		
+18	A	Boatman Orrus.	port?	20		"NPCSpawn#E13lodoch"		
+18	A	Sister Genta.	port?	21		
+18	A	Janod.	port?	22		"NPCSpawn#E13janod"		
+19	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+20	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+21	Q	Not bad, next question! What quest is associated with a character named Liserpix?	port	23				
+22	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+23	A	Seed of trust.	port?	24		"NPCSpawn#E13goblin"		
+23	A	Safe bet.	port?	25		"NPCSpawn#E13mino"		
+23	A	Best plan.	port?	26		"NPCSpawn#E13orc"		
+23	A	Safe Passage.	port?	27		
+24	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+25	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+26	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+27	Q	Right, next question! When you are in the Elder Forest location, what location can you not get to?	port	28				
+28	A	Varann Woodland.	port?	29		"NPCSpawn#E13chewolf"		
+28	A	Nekhar Valley.	port?	30		
+28	A	Fögas Forest.	port?	31		"NPCSpawn#E13goltigr"		
+28	A	Backwoods Coven.	port?	32		"NPCSpawn#E13vedm"		
+29	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+30	Q	Great, next question! How many personally points do you need to have for Tremadan's Image to tell the truth?	port	33				
+31	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+32	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+33	A	The truth? What is the truth? What should he tell me about?	port?	34	"VariableLower#know_mqtruth,1;VariableLower#pseubolt,1"	"SetVariable#pseubolt,2"	
+33	A	6.	port?	35		
+33	A	5.	port?	36		"NPCSpawn#E13trem5"		
+33	A	4.	port?	37		"NPCSpawn#E13trem4"		
+33	A	3.	port?	38		"NPCSpawn#E13trem3"		
+34	Q	It doesn't matter now, you'll find out from him later! Or maybe not... Answer the question!	port	33				
+35	Q	Right! And further, question: in which of these locations is the quest item "sword Winter Wail" located?	port	39			
+36	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+37	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+38	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+39	A	Bloodpaw Cave.	port?	40		"NPCSpawn#E13ursa"		
+39	A	Deep Cauldron.	port?	41		
+39	A	Rhonata Cave.	port?	42		"NPCSpawn#E13varann"		
+39	A	Flame Pits.	port?	43		"NPCSpawn#E13imps"		
+40	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+41	Q	That's right! And finally, which of these four bosses has the lowest level? (think carefully, you do understand what happens if the answer is incorrect, right?)	port	44			
+42	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+43	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+44	A	King of Korne.	port?	45		
+44	A	Kalagru.	port?	46		"NPCSpawn#E13kalagru"		
+44	A	Void Lord.	port?	47		"NPCSpawn#E13void"		
+44	A	Undermother.	port?	48		"NPCSpawn#E13under"		
+45	Q	Great! And one more question, what color is the Magister's?.. Although you shouldn't know that! Here is the promised key, with which you will get to the place where the thing you need is stored.	port	49				
+46	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+47	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+48	Q	Wrong answer!	port	0		"SetVariable#pseudosphinx,1"		
+49	A	Good, thank.	port?	0		"SetVariable#pseudosphinx,10;GainItem#10635;Travel#E13_tower3,4"		

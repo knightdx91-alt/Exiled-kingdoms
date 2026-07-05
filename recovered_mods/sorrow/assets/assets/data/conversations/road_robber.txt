@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You! Don't do any funny moves and hand over your gold. Pay us [BLUE]{LEVELx50} gold coins[], or die.	Suelta el dinero y no hagas movimientos raros. Páganos [BLUE]{LEVELx50} monedas de oro[], o muere.	2	VariableLower#TMP_talk_robber,1	SetVariable#TMP_talk_robber,1
+1	Q	Go away or we teach you a lesson...	Vete o te daremos una lección...	0		
+2	A	Sure, here's the money. Just please don't hurt me.	De acuerdo, aquí está el dinero. Por favor, no me hagáis daño.	3	PlayerHasGold#{LEVELx50}	
+2	A	I don't have that much money!	¡No tengo tanto dinero!	4		
+2	A	You have made a terrible mistake. You are trying to rob the wrong guy, and will realize it too late.	Habéis cometido un grave error. Estáis intentando robar a la persona equivocada, y os daréis cuenta muy pronto.	4		
+3	Q	Very well. Now run and don't look back!	Muy bien. Ahora corre, y ¡no mires atrás!	0		LoseGold#{LEVELx50}
+4	Q	You don't want to pay? Very well. Time to die.	¿No quieres pagar? Muy bien. Hora de morir.	0		"NPCHostile#robber;NPCHostile#robber_boss"

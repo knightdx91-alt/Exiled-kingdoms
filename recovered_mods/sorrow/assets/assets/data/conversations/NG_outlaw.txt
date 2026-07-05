@@ -1,0 +1,6 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](suddenly, a couple of thugs are blocking your way and footsteps are heard from behind, it looks like you are surrounded! Their leader is clearly coming out of the shadows)[] Hey, you, do you have two options - give us the amulet voluntarily, or will we take it from your corpse?! 	[BLUE]()[] port.	2			
+2	A	What? I have no idea what kind of amulet you need, I have nothing.	port?	3			
+2	A	And what about the third option - I will calmly go on, and you will remain alive and well?	port?	4			
+3	Q	As I understand it, you choose the second option? Cut it, men!	port?	0		"SetVariable#smoke_without_fire,25;NPCHostile#outlaw;NPCSpawn#outlaw_team"
+4	Q	I eat such arrogant people for breakfast every day. Cut it, men!	port?	0		"SetVariable#smoke_without_fire,25;NPCHostile#outlaw;NPCSpawn#outlaw_team"

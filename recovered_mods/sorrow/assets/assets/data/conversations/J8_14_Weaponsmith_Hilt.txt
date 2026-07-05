@@ -1,0 +1,51 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the master blacksmith is obviously glad to see you)[] I heard rumors that the guards found several corpses at the southern wall, it seems that now I have no problems with unpleasant connections?	¿po?	28	VariableEqual#lucrative_undertaking,50		
+1	Q	 [BLUE](the master blacksmith is obviously glad to see you)[] Hello, traveler, if you have a suitable weapon for reforging, I'm ready to get to work right now!	¿po?	6	"VariableEqual#forge_hilt,1"		
+1	Q	 [BLUE](the master blacksmith is obviously glad to see you)[] Hello, traveler, if you need a great weapon, then you are lucky to look into my forge!	¿po?	2		
+2	A	What kind of weapon can you offer me?	po.	3		
+2	A	I've come about Agnius case.	po.	22	VariableEqual#lucrative_undertaking,30		
+2	A	The priest Anabel asked me to take her silver sword.	po.	30	VariableEqual#forced_effort,10		
+2	A	Thanks, but I have to go.	po.	0		
+3	Q	 Lately, I rarely forge new blades due to problems with ore delivery, but I can reforge any steel weapon without enchantments that you provide me with. For a reasonable fee, you will get a better weapon than it was originally!	¿po?	4		
+4	A	How much will it cost to reforge?	po.	5		
+5	Q	 Reforging daggers and swords will cost [BLUE] (from 100 to 250 gold)[], hammers and axes [BLUE] (200 gold each)[], and something heavier [BLUE] (more than 300 gold)[]. If you have something suitable with you, I'm ready to get to work right now.	¿po?	6		"SetVariable#forge_hilt,1"
+6	A	I have such a blade for reforging.	po.	7	PlayerHasGold#250	
+6	A	I have such a weapon for reforging.	po.	8	PlayerHasGold#200	
+6	A	I have such a heavy weapon for reforging.	po.	9	PlayerHasGold#350	
+6	A	The priest Anabel asked me to take her silver sword.	po.	30	VariableEqual#forced_effort,10		
+6	A	I've come about Agnius case.	po.	22	VariableEqual#lucrative_undertaking,30		
+6	A	No, thanks.	po.	0		
+7	Q	 Let's see what you brought me.	¿po?	10		
+8	Q	 Let's see what you brought me.	¿po?	11		
+9	Q	 Let's see what you brought me.	¿po?	12		
+10	A	Reforge this dagger.	po.	13	PlayerHasItem#521	
+10	A	Reforge this short sword.	po.	14	PlayerHasItem#522	
+10	A	Reforge this sword.	po.	15	PlayerHasItem#523	
+10	A	В следующей раз.	po.	0		
+11	A	Reforge this mace.	po.	16	PlayerHasItem#525	
+11	A	Reforge this hammer.	po.	17	PlayerHasItem#526	
+11	A	Reforge this axe.	po.	18	PlayerHasItem#528	
+11	A	В следующей раз.	po.	0		
+12	A	Reforge this great sword.	po.	19	PlayerHasItem#524	
+12	A	Reforge this maul.	po.	20	PlayerHasItem#527	
+12	A	Reforge this great axe.	po.	21	PlayerHasItem#529	
+12	A	Next time.	po.	0		
+13	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#100;LoseItem#521;GainItem#10214;Travel#P12,1,3"				
+14	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#200;LoseItem#522;GainItem#10215;Travel#P12,1,5"				
+15	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#250;LoseItem#523;GainItem#10216;Travel#P12,1,6"				
+16	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#200;LoseItem#525;GainItem#10218;Travel#P12,1,5"				
+17	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#200;LoseItem#526;GainItem#10219;Travel#P12,1,5"				
+18	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#200;LoseItem#528;GainItem#10221;Travel#P12,1,5"				
+19	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#300;LoseItem#524;GainItem#10217;Travel#P12,1,7"				
+20	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#350;LoseItem#527;GainItem#10220;Travel#P12,1,7"				
+21	Q	 A couple of hours and everything will be ready!	¿po?	0		"LoseGold#300;LoseItem#529;GainItem#10222;Travel#P12,1,7"				
+22	Q	 As I already told him, I specialize in weapons, not armor, and I don't have any iron. But I'm ready to give him the iron junk I don't need for free if you do one job for me.	¿po?	23		
+23	A	And what is this job?	po.	24		
+24	Q	 The work is not very pleasant, and once again we will not mention it not with each other, and even more so with outsiders. More than a month ago I made an agreement with some guys about the supply of iron ore. But these guys were not very good, because of them I had some problems with our queen.	¿po?	25		
+25	A	What exactly should I do?	po.	26		
+26	Q	 It's simple, I'll arrange a meeting with them at night outside the city walls somewhere in the south, and you'll get rid of them, and nothing will connect me with them anymore. Agree?	¿po?	27		
+27	A	Okay, I'll do it.	po.	0		SetVariable#lucrative_undertaking,40		
+28	A	It's done, is our agreement fulfilled?	po.	29		SetVariable#lucrative_undertaking,60		
+29	Q	 I have already ordered to fill the cart with the necessary Agnius, I hope he will be satisfied.	¿po?	0		
+30	Q	 Yes, of course, a silver sword. I did my best with this blade, but it's impossible to make a great weapon out of such metal, so tell her.	¿po?	31				
+31	A	Okay, I'll say.	po.	0		"GainItem#10281;SetVariable#forced_effort,20"		

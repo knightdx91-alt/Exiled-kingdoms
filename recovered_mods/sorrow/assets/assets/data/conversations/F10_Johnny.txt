@@ -1,0 +1,40 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Well, first we were looking for dick growth for Vince, and now Vince himself needs to be found!	¿po?	0	"VariableGreater#size_matters,74"		
+1	Q	 Back to the boss.	¿po?	0	"VariableEqual#johnny_talk2,1"		
+1	Q	 Did you manage to negotiate with the sorcerers?	¿po?	31	"VariableEqual#size_matters,72"		
+1	Q	We need to fulfill Gigi's requirements.	port.	0	"VariableGreater#size_matters,36"		
+1	Q	We need to find the right person in the Icemist.	port.	0	"VariableGreater#size_matters,34"		
+1	Q	I hope we will be able to come to an agreement with Varannari.	port.	0	"VariableGreater#size_matters,19"		
+1	Q	 Hey, Vince, what the hell, didn't we have an agreement? And what the hell else is he doing here?!	¿po?	2	"VariableEqual#size_matters,15;PlayerIsMale#"		
+1	Q	 Hey, Vince, what the hell, didn't we have an agreement? And what the hell else is she doing here?!	¿po?	2	"VariableEqual#size_matters,15;PlayerIsFemale#"		
+2	A	Rickman sent us to get you.	po.	3		
+3,johnny	Q	 The boss? But why, I don't understand something? You told me, Vince, that the boss wouldn't need me for a couple of days.	¿po?	4		
+4,vince	Q	 Circumstances have changed. Don't worry, I'll explain everything to you now.	¿po?	5				
+5,boss1	Q	 Don't bother, I'll explain our situation to him myself.	¿po?	6				
+6,johnny	Q	 What's the problem boss?	¿po?	7		
+7,boss1	Q	 The problem is that our hiding place was robbed, and you were the last one on the spot. Are you getting the gist of it now?	¿po?	8				
+8,johnny	Q	 I'm not guilty boss! Yes, I was there, you sent me there to deal with bitches. When everything calmed down, I stayed to check if everything was in place after the raid of the damned bitches, but Vince came and said that I was free for a couple of days, so I left for the city without unnecessary conversation!	¿po?	9		
+9,boss1	Q	 You speak well. What do you say to that, Vince?	¿po?	10				
+10,vince	Q	 That's the way it is, boss. Actually, I was ratting, but I didn't want to frame Johnny, I wanted to make it look like we were robbed by these sluts, but I didn't have time to prepare everything for your arrival.	¿po?	11				
+11,johnny	Q	 Well, holy shit, and I almost turned out to be guilty!	¿po?	12		
+12,boss1	Q	 И зачем же ты вздумал стать крысой, Винс?	¿po?	13				
+13,vince	Q	 I argued with my bo... friend from another gang, his name is Jumbo, which one of us has a bigger penis, I told him that I have the largest among our gang to intimidate him, but I'm afraid I might lose this argument, Jumbo is known for his large penis size. That's why I needed a bunch of coins to find a penis enlargement remedy to win for sure.	¿po?	14				
+14,johnny	Q	 What the fuck?! Are you fucking burning up, Vince?! What the fuck are penis measurements?!	¿po?	15		
+15,boss1	Q	 Well, this is a serious matter, especially after your statement, it already concerns the dignity of our entire gang. We will help you solve this problem, but you have to return everything you took from the stash, with interest.	¿po?	16				
+16,vince	Q	 I understand, boss.	¿po?	17				
+17,boss1	Q	 Well, did you manage to find out at least some valid way to solve your problem?	¿po?	18				
+18,vince	Q	 I was able to find out something, firstly, the wild magic of the Varannari, it's not for nothing that they are bigger than us in size, and their penises are clearly larger than ours...	¿po?	19				
+19,johnny	Q	 But greenskins are not so easy to meet, and climbing into their forests is suicide, and I doubt that they will share their secrets, no matter how hard we try to ingratiate ourselves into their trust!	¿po?	20		
+20,boss1	Q	 I heard that in Ilmara, far to the north, there is a settlement where Varannari get along with the locals, maybe these greenskins will be more cooperative.	¿po?	21				
+21,vince	Q	 Secondly, I got information about two warring factions of wizards engaged in experimental magic, one of which practices enlarging various parts of the body.	¿po?	22				
+22,johnny	Q	 It will be even more difficult to negotiate with sorcerers, they are even more secretive than varannari!	¿po?	23		
+23,boss1	Q	 I have a friend of a man in the Iceman, maybe he will find out something about these wizards.	¿po?	24				
+24,vince	Q	 And there are rumors about an overseas alchemist who settled in Friguld, among his potions, it seems like there is something I need.	¿po?	25				
+25,boss1	Q	 Okay, I'll hire a boat in town so that you, Vince, can get to Friguld and find out everything. And you, Johnny, together with our friend, will go to that Ilmara,s settlement where the Varannari live, try to find out about wild magic.	¿po?	26				
+26,vince	Q	 Got it, boss.	¿po?	27		"NPCStopFollowing#"		
+27,johnny	Q	 Are you serious, boss? Why do we have to do this nonsense at all because of some damn thing?! Who needs this Vince with his dick and a stupid argument about who has more?!	¿po?	28		
+28,boss1	Q	 This case concerns all of us, not just Vince. He gave his word that he would win, since he has the biggest dick among our gang, if he retreats or loses, it will be a disgrace to all gang members and our reputation will fall extremely low. Did you get the point?	¿po?	29				
+29,johnny	Q	 Yes, yes, I get it, although I still think it's some kind of child's play! I will do everything possible required of me!	¿po?	30		"NPCFollow#"
+30,boss1	Q	 That's great, let's get to work.	¿po?	0		"NPCDespawn#vince;SetVariable#size_matters,20"
+31	A	Yes, they are ready to help Vince.	po.	32		
+32	Q	 Great, so we're going back to the boss.!	¿po?	0		"SetVariable#johnny_talk2,1"

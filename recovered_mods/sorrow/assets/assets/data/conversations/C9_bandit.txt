@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](A group of unpleasant-looking people relaxing on the pier)[] 	[BLUE]()[] port.	2	"VariableEqual#fisherman_joy3,2"		
+1	Q	Get out of here, you have nothing to do here! 	port.	0		
+2	A	Hey, I'm looking for a missing fisherwoman who was at the foot of Zamor, maybe you know something?	port?	3			
+3	Q	We don't know shit, and anyway, why would you think you should look for her here? 	port.	4		
+4	A	I was told that this is where I would be able to find her and those who kidnapped her.	port?	5			
+5	Q	It's too late, that bitch is no longer here, she's feeding the fish, and you'll join her if you decide to blab too much. 	port.	6		
+6	A	What about the fact that you're now going to follow her to feed the fish?	port?	0		"NPCHostile#bandit3;SetVariable#fisherman_joy3,3"

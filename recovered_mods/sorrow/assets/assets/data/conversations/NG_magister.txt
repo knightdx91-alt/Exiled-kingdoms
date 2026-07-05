@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a respectable-looking elderly wizard)[] Greetings, Sansa. Your message was a bit confusing, you mentioned a conspiracy and this wizard who doesn't look good.	¿po?	18	"VariableEqual#something_more,85"		
+1	Q	 [BLUE](a respectable-looking elderly wizard)[] Greetings to you again, Sansa. I see you didn't come back alone, but with Grateroll. He doesn't look well.	¿po?	13	"VariableEqual#something_more,40"		
+1	Q	 [BLUE](a respectable-looking elderly wizard)[] Greetings, Sansa. I have received information, it's like I'm talking to a criminal right now.	¿po?	2			
+2,sansa	Q	 I was framed, magister! First they tried to blackmail me, and then they accused me of a murder that I didn't commit!	¿po?	3			
+3,magister	Q	 Well, we've known each other for a long time, and I see no reason not to trust your words, besides, you're not the first Guild member loyal to the queen to be attacked, which doesn't seem accidental to me.	¿po?	4			
+4,sansa	Q	 What do you mean?	¿po?	5		
+5,magister	Q	 I suspect there is a conspiracy in the Guild, someone is eliminating wizards more loyal to the queen in different ways, and suspicious personalities are taking their place. So far, all this does not look obvious, but if I could get at least some evidence.	¿po?	6			
+6,sansa	Q	 Well, if I help you get them, will you help me and my friend get rid of the false accusations?	¿po?	7		
+7,magister	Q	 Undoubtedly. I have a suspected wizard named Grateroll, if you manage to get the information I need out of him, I will help restore your reputation, if you succeed, you can find me here again.	¿po?	8			
+8,sansa	Q	 Well, we agree to help you with this.	¿po?	9		
+9,magister	Q	 I'm glad to hear that. [BLUE] (after that, the wizard left without saying goodbye)[]	¿po?	10				
+10	A	So, do you know where to look for this Grateroll?	po.	11			
+11,sansa	Q	 Yes, he lives in Icemite, I'll teleport us right to his doorstep so that we don't get caught by the guards.	¿po?	12				
+12	A	Okay, I'm ready.	po.	0		"NPCDespawn#magister;SetVariable#something_more,25;Travel#IM_manor5,1"
+13,sansa	Q	 We tried to talk to him peacefully, but he attacked us and then escaped through a teleporter in his house. We followed him and found ourselves in some kind of dungeon, where he attacked us again, but this time with a group of his accomplices magicians. I'm sure their lair hides a lot of interesting things, it's worth a good investigation, and this guy needs to be interrogated.	¿po?	14				
+14,magister	Q	 Well, I'll send my men to inspect this dungeon, and I'll take him with me for questioning. Thanks to you, my investigation has moved forward, I appreciate your help and will immediately do everything necessary to clear you of false accusations. You have proved that you are a worthy member of the Guild of Wizards, so I will save you from passing the classification verification checks and contribute to improving your status in it.	¿po?	15			
+15,sansa	Q	 I am very grateful to you!	¿po?	16		
+16,magister	Q	 Without a doubt, I will need help exposing the conspiracy again, and I hope for your support.	¿po?	17			
+17,sansa	Q	 You can rely on me, I will be glad to help you again.	¿po?	0		"NPCDespawn#magister;SetVariable#something_more,100;GainXP#3500;IncVariable#REP_thuram,50;IncVariable#REP_town_solliga,40;IncVariable#REP_wizardsguild,50;UpgradeCompanion#sansa2"
+18,sansa	Q	 This guy tried to frame me! We wanted to talk to him peacefully, but he attacked us and then escaped through a teleporter in his house. We followed him and found ourselves in some kind of dungeon, where he attacked us again, but this time with a group of his accomplices magicians. We managed to find out from him about the conspiracy in the Guild of Magicians in which he participates! I'm sure he'll tell you a lot more interesting things if you interrogate him biasively.	¿po?	19				
+19,magister	Q	 Well, I myself have long suspected the existence of a conspiracy in the Guild, someone eliminates wizards more loyal to the queen in various ways, and suspicious personalities take their place, but now I have concrete evidence! I will send my men to inspect this dungeon, and I will take this scoundrel with me for interrogation. Thanks to you, my investigation has moved forward, I appreciate your help, you have proved that you are a worthy member of the Guild of Wizards, so I will save you from passing classification verification checks and contribute to improving your status in it.	¿po?	20			
+20,sansa	Q	 I am very grateful to you!	¿po?	21		
+21,magister	Q	 Without a doubt, I will need help exposing the conspiracy again, and I hope for your support.	¿po?	22			
+22,sansa	Q	 You can rely on me, I will be glad to help you again.	¿po?	0		"NPCDespawn#magister;SetVariable#something_more,100;GainXP#3100;IncVariable#REP_thuram,10;IncVariable#REP_wizardsguild,10;UpgradeCompanion#sansa2"

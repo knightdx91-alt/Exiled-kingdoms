@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](uninhibited girl, not modestly dressed)[] Hey, cutie, do you want to have fun with me?	¿po?	2	"isNight#"		
+1	Q	 [BLUE](uninhibited girl, not modestly dressed)[] Hi, I only work at night!	¿po?	0	"isDay#"		
+2	A	Of course!	po.	3		
+2	A	No, thanks.	po.	0		
+3	Q	 100 gold and I'm all yours for the night!	¿po?	4				
+4	A	Договорились, вот мои деньги.	po.	5	"playerhasGold#100"	"loseGold#100"
+4	A	No, I've changed my mind.	po.	0		
+5	Q	 Oh, great, let's go to the rented room soon!	¿po?	0		"SetVariable#harlot,2;NPCDespawn#girl1;HideParty#;Travel#NG_rented_house,7,9"

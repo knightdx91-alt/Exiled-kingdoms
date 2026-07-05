@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 The way back is blocked, and it looks like we won't be able to leave this fortress until we deal with its owner.	¿po?	16	"VariableEqual#lost_foreign_lands,50"		
+1	Q	 I have no idea what this thing was or who created it, but I can feel my magical powers returning to me as soon as we destroyed it.	¿po?	13	"VariableEqual#lost_foreign_lands,40"		
+1	Q	 [BLUE](an experienced-looking warrior in enchanted armor, looking at you with curiosity and caution)[] I'm glad to finally meet someone here who's not going to jump on me right away to kill me! Only a brave hero can voluntarily come to such a place! The mystical knight Damien is at your service!	¿po?	2		
+2	A	Are you Sir Damien? I was just looking for you at Sir Irolio's request.	po.	3		
+3	Q	 Well, you found me. But now we both have a problem - how do we get out of this place to return home.	¿po?	4				
+4	A	I am sure that together we can find the right way.	po.	5		
+5	Q	 Indeed, it is very dangerous to wander here alone. But I managed to scout the surrounding area, and noticed a magical fortress in the southwest, perhaps there we can find a way to leave this place. I didn't try to go there alone, because something is blocking my magical powers, and the source of this is in the cemetery northwest of here.	¿po?	6			
+6	A	 Okay, so let's go to this cemetery first and release your magical powers.	¿po?	7		
+7	Q	 In addition, you can explore the dungeons under this cemetery or the ancient tower in the northeast, for sure, we will find good equipment and supplies there that will help us enter the fortress and survive in it while we look for a way out.	¿po?	8				
+8	A	Okay, that's a good idea. And how and why did you end up here?	po.	9		
+9	Q	 I was hunting an evil sorcerer on behalf of the crown of Turam, I managed to find him and corner him, but the scoundrel lured me into a magical vortex that brought me here.	¿po?	10			
+10	A	 Well, I also ended up here because of some sorcerer.	¿po?	11		
+11	Q	 Hmm, maybe it's the same person. When we get out of here, we can find this scoundrel together.	¿po?	12		"NPCFollow#"		
+12	A	 That's what we'll do, but for now we need to find a way out of this place.	¿po?	0		"SetVariable#lost_foreign_lands,40"
+13	A	 So it's time to go find a way out of that place.	¿po?	14		"ItemHide#barrier1;ItemWalkable#barrier1"
+14	Q	 That's right, now I can fight at full strength! But don't forget about the dungeons under this cemetery and the ancient tower in the northeast, so we can find something useful.	¿po?	15		"UpgradeCompanion#durak2"
+15	A	 Well, we'll look there too, if it's not too dangerous for us.	¿po?	0		"SetVariable#lost_foreign_lands,50"
+16	A	 If he's the last obstacle to our escape from this place, let's finish him off.	¿po?	0		"SetVariable#lost_foreign_lands,60"

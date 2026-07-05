@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hello, cutie, do you need my potions or are you going to sell me something?	¿po?	6	"VariableEqual#harridan,1"		
+1	Q	 Come on, cutie, I'm not biting! I'm Gunnild the potioneer. Are you interested in potions?	¿po?	2			
+2	A	It depends on which potions.	po.	3		
+3	Q	 Oh, good potions, quality potions. Potions to poison your enemies and potions to avoid being poisoned by anyone yourself.	¿po?	4				
+4	A	Well, let's see what you have.	po.	5		
+5	Q	Oh, you'll have plenty to look at, some potions are weaker, and some are stronger, more taxic, so be careful with them. And yes, if you find any poisonous ingredients, bring them to me, I'll be happy to buy them.	¿po?	0		"SetVariable#harridan,1"
+6	A	I need potions.	po.	0		OpenShop#
+6	A	I have a poison sac with me.	po.	7	playerhasitem#1008	"loseitem#1008;gainGold#40"
+6	A	Not.	po.	0		
+7	Q	 Okay, I'm paying you 40 coins for this, is there anything else you need?	¿po?	6			

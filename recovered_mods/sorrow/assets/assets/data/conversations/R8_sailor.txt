@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE]naughty looking young girl[] Hello, my friend! How far away is the sea from here and how much the soul longs for it. Do you want to leave this boring wilderness and go closer to the sea shores to the city of Istril? 	port.	2		"SetVariable#sailor_tut,1"
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	How much will the crossing cost?	¿port?	3			
+3	Q	I'll deliver you for [BLUE]50 gold[]. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#40"	"loseGold#40;Travel#P7,5,3"
+4	A	No, I'll stay here for now.	port.	0		

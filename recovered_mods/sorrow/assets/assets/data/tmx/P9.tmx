@@ -1,0 +1,890 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="131">
+  <properties>
+    <property name="exit_e" value="R9" />
+    <property name="exit_n" value="P10" />
+    <property name="exit_s" value="P8" />
+    <property name="exit_w" value="O9" />
+    <property name="faction_guard" value="sorrowland" />
+    <property name="music" value="relent" />
+    <property name="name" value="Sighted Hills" />
+    <property name="name_ES" value="Un pequeño islote" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="255" />
+    <property name="sw2" value="240" />
+    <property name="sw3" value="239" />
+    <property name="sw4" value="244" />
+    <property name="sw5" value="256" />
+    <property name="sw6" value="252" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset source="trees.tsx" firstgid="129" />
+  <tileset source="spawns.tsx" firstgid="145" />
+  <tileset source="water.tsx" firstgid="233" />
+  <tileset firstgid="297" name="rocks_small" columns="5" tilecount="10" tileheight="64" tilewidth="64">
+    <image source="rocks_small.png" width="320" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="2">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="3">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="4">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="5">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="6">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="7">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="8">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="9">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="natural_grounds.tsx" firstgid="313" />
+  <tileset source="grassland_structures.tsx" firstgid="697" />
+  <tileset firstgid="1062" name="rocks" columns="3" tilecount="6" tileheight="192" tilewidth="128">
+    <image source="rocks.png" width="384" height="384" />
+  </tileset>
+  <tileset source="tower_blue.tsx" firstgid="1610" />
+  <tileset firstgid="1616" name="tents" columns="6" tilecount="12" tileheight="144" tilewidth="64">
+    <image source="tents.png" width="384" height="288" />
+  </tileset>
+  <tileset source="wall_stone_large1.tsx" firstgid="1628" />
+  <tileset source="stoneroad1-grass.tsx" firstgid="1653" />
+  <tileset source="rocks_ground.tsx" firstgid="1671" />
+  <tileset source="town_objects.tsx" firstgid="1935" />
+  <tileset source="town_objexts2.tsx" firstgid="2015" />
+  <tileset source="farmhouse.tsx" firstgid="2079" />
+  <tileset source="dryground.tsx" firstgid="2127" />
+  <tileset firstgid="2191" name="grassland_water" columns="16" tilecount="128" tileheight="32" tilewidth="64">
+    <image source="grassland_water.png" width="1024" height="256" />
+  </tileset>
+  <tileset source="greenground.tsx" firstgid="3087" />
+  <tileset firstgid="3151" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="3367" name="ruins_pale" columns="8" tilecount="320" tileheight="32" tilewidth="128">
+    <image source="ruins_pale.png" width="1024" height="1280" />
+  </tileset>
+  <tileset firstgid="3687" name="rocks" columns="6" tilecount="384" tileheight="64" tilewidth="64">
+    <image source="rocks.png" width="384" height="384" />
+  </tileset>
+  <tileset firstgid="4071" name="grassland_water" columns="16" tilecount="128" tileheight="32" tilewidth="64">
+    <image source="grassland_water.png" width="1024" height="256" />
+  </tileset>
+  <layer name="nonwalk" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ca27EIAyEe/8L5LrV/qgaRZC18WsM80mrbqtgzJiHIUl/fs7jun0k13ravITXSuvtyqx9T300OmhiqrWtYdXuDjHXjJeVcp51RpWx2kbuBzv4pp1TPOxk8DZ3dmqHN1ntk65d3v6M7CHHNHLdteQPI3sZVKwxEba89V/xyTOvWMWzz0k0f/6eqb8VhHh5k6E9Yr9/guhTN6hZDejrhnZd6ACaz1p/0Pwn/+wem8gzMPIdq65oZ9HdQNqrn6L5nao2n6j1iC5nSIQgsOP+qTue+19CCCE94fyeC9qzUWQMNSenwfswNVBHXPhsRQzUERvGh+zKyjP6HA9xUNs6rPdnGDvSAebxtXR7d2o3qLUN1OcOT4H618L5u5aZ/oxBHVH6o8YUza/M/o9wLiR9Jh51Xsh8Rz4T7fv4VfGpqDejPon+Ff8zYYTHey1Iff9Dlv4e7Y6IfXU8OvX/uz8ngag/32WqASH+3bgm31fsnKA7YhvftEf0V0vE3J6Rp+wyJjLW1lW7M59Q8gEPKtriuRZQ/zxme5TOIOsv2Xsg+q2h2/yTYY/ooP61UP9aTtEfda1D9Mkb9Bxpd67bz+gzYGkdJ2n/3HNWn1Wcov2HrH0P+/2YjDNIja2TtP/w1l4PLbRxPKn/S9pq1WKlfIZfCEjnY4t9y/0Bie177taNaP3/ykfHwFpPFZqcxFpPRFnq71uPtm7JPQRkMnPyVRvftM3U3hrr2T0+9Bjcy1cxOyfQ5AmzMtK4esWgoqwFyfib/V1yvqAZVx59OCofisKjj3+zuRKDbD0q6o2qb2VMza6riMMOdX2LgdZOZh7iYSN6rtX4MVoTPO154rUGSXKSTDz0f9pbWZs0tj3LZY/jUf2j75H1WO2sfFAZ5aQkD4Q58GTe9mskB8agHs98lKwzWg9IHpH6/wJqdHeFAJAAAA==
+  </data>
+  </layer>
+  <layer name="water0" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YMQrDMBBFQef+J3WRIuDGkEBQ4RO4eIadKVx/pPVK2m0DAAAAnuJTBxhurwMM964DAAAAt7jTt471edUpZrMHPbOdzpprnnWIga558i9NMZee01rn7rcOMZz7f0sPaulBPe+vnj7Ucg631H9L/besf8v6d9Yczgyu4+xt6T0t9d9S/y3r3zID7fkHWv6Bnj3oeQcDAAAAAAAAAAAAAAAAAAAAADDFHwHhz9YAkAAA
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2cz27UMBDGvbceaGmviENPPC8ckEDiITjAQ1GWstuWf4UCGW0+ZWTZSZx1PE7z/aRpw5JmnW/GM95kNs6RL42dbjr7aj2glfHJddr/a7ZvrQe0MnT8M/bLo+Of+peH8W/Lnfxo9f/bbN4Yj2eN0Af2aB/cN5vXjV219lj9sXeH87xpt63PU/tA22OcE98ae2jsoo032Ubc6XN9c1J2XI/ZBzre5Tz/uIP+vt277lxfF9bftWPbKjumNsg5f887vEnIOH65Tt8r9e+Q4Vw/nBzMEn9OpPhA1rc1rGtlHDGth3wg+HmpNPpz2ueRf4McW4P+Mv5U/TFX9LyxqtWp+kP7p5V8rsMcnuIDf06gVpfyAXLnGP1R46B9Tdf0hnIQSJkbUkeuA7+PrXl7163/RUvR/by1WB3et/uebTqrad3UNwdiHDNPrl1a3UDsYm3gr0G1D0K+97Vfkg/mRPsCdqUMr8U0D+kPA/q1JfhAr63n1j/GkNY59T+rpA774HOYBTn0hw+G9K+pDgv6usLdiP13MxjmoGxLDEzVf4mxL59pS1/b6cO/Dz/VD0vRX7C4thNjbv1rqr9gTfrX4oOaco6mhP41+EDHfE1rglL6wwdW16Rrq7ugpP7wgRU15X2Qqn8Os4L62+ovOehdZT5Yk/5CbXVgbfoLr6i/KTXVgTXqz/i3hfFvC+PfliXH//nC9f/YaP+2Iv2lv2fo3spYG3sNwpKaco8g8b8m/WvKPQLj3xbGvy1LiP++vlfd2z+G2vTPGf+/3aGvQnoqcugvvbzor5P7Brrv7tmm65FMub829fpbig4p5Ip/fU9PfBrrBdoljA3HCb3fi8Br6Pcb8sOUOSDH132a8H+oBzfl94PLq73W7Zg+LPT0xt7z0nt/5/mhzwehObAfGI8cV+eKyx49LjLlE8Qr+rTGaC/InJqiPfINco6f21x7LMlxzzddH5kcG/21sTH5vG/0f9n6AL6+iZwjrC9X+H29uWMa/ZJD2mNf/b0lvwfLn4f4bonuo/a1h8Z9uiI+/fhH3gj1heM7DvJ3fX39fblCx2mozzBmKTENXbft9jayj94XvY2+HqG8HTs3aD8GPQdQC6Dbk01nWufQeI6J0xRkvLt2zBfKj7l6Y2LPmBhzTi5Re6B9MKeh/ufor4QfcvckxZ6x4s9D/b0IxJOM6cfE942tqVE7Yv4Rf+8G9kGMSv3ZHTHGEox9xgr8nysG9LzWmt0G/t/3e+gYc+SGuUE9HaP/XAzN6zF+xz41x7mPr72V/msldE+H+pdD193TI9doJB0d/9S+PHy2ny18tp8tjH9bGP+28LmK9vjPVaQPysM8ZAv1t0XnIOpvA3yAOrx9ajueNfJTfqh7gqQ8OhcRG+ADYseYZ04RQgghhBBCCCGEEEIIIYQQQgghhBBCCCE18h8vuSPkAJAAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2cTWsVMRSGR5BrF6W6cOFOXYhUBOtK3Uj/gta9imL9bkXED0Sq4KJQsL2KeP1PLvVXiCiIayfcOxhzk0ySOSfJZN4Hgui9nZy+Jzk5J8lYVYCLuz17LnWfG+RW8LOe2oAMeZjaANALji1W1XGpLS+av3u7Qz85x5XLjt/r8vvrENqfV/S+0OIDau4TP69tzaEeByH2r83+PGrQ2dcHKdb2EjDpLzg7+4xL23uaf6OeCzKh4/4OqRX/46J/FyhzkFj5TMy5fLLW+JxBZwr9Vb4coH9mn9D5VueD1frvKxHX4FBKWXeED85ITWh/M0K/ujWACh/7b7FZUR4p61rf+XaJxQoAqupK4M/dILVieOSoH/W+BAA5sdb+lSCQd+XJA8tnv6JZAUxw7knlRow6VIDzuvyxxSUwTyn7UznCeVYBwuHKVRuGnv/8PEj7vLZ1V/38N233AGQFchzQB5BbDo/N1AYAAAYF8iE7rnenVdQzS8R2AEAO5PyuCgAUoH4GwB31HKDEOxBfHd4P+UF8/gL8WN0Xtz/Uv+3keCe4JDj2Brrk+KX4+2LEWNKX+20m31L5XGguNxCfb5Y85/vA3pFdSG0AA66xRreuxIhTR6qp7k0bGrnsr4W+Q2fjWu3Q65rWRlvtlYtmMjnadNWg9aMF856XbT2goq2OKqXOsukPuuHynmeI/i57wb77xZNRVe0q7fPI8yESOcYaHanH/+Fqqv2eRusxgR+ooc63Yut/uq7hTkl1nEl7mXHCuaBbZ9ScpQvr9c9vaNpmh+f6xJ53jrqOCWOToMs4Vses61iNcQZhGmsrBHsX25Lmqj9ixqlQ/WMT+8y2a5xypS/6p2AcYT5Afze45gOF/tz/B3Yu9SmHD3z0D73vqqOvd3Co6wjEnzCo5oKas7vm6pPIeVqOcOZITS35fjTfj1xnxsrTcuUD0++u1pKNH3Y1NT6lD/r2LgSH/i77KCox5sHSId7nh0BZI0wM49vHFk4f/Mn8/qEuTvv4xnX/yseGoSHPB3kcu+hCoX/TF5jHVjuExHwbog/1XL1vaysXqh+otW/6GHIccsGUT1LBlRt35enoX3uRqY0UmPR3edeCm1ejadsq2AfNOux6xyfGXSAdW4XqL7CtASn0fqKx523B+svrsKvenPFJ6P9c0ftNwfoLQnMhUY9sE2vzbBb3hQ9ej6bavyxcf4GPD5rx/6n+/kcGH/SV5Y73Pmz1nynmwAf0NHNB1VysD7o1Aj7gQ54T8jm76gexFuxA/+rxEt+zbXvp0D8u6p3APeiflB3onxzoDwAAAIDSObE/tQUA5MVfingNmgCQAAA=
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aOU4cQRQGYLAQSwDHYBUJ2wUwq82SQQYnIAEJYhJIHRL6DhyB5QBwAUghY4kdANKoAdNIM/Wqp78vmWTU8/S/qprq7uroAACA6lvvj66ATT1Ibq2Q+bYeJLch83BbegAAQGb6oguosT+98o902htdAQDU04k9UCjZAwAAAAAAVdLtfAcAtNxtT3QFQO7+WicoGOt6/eyMrSOl1Rbdn16bX19aKZn9TKJnCMNdaX4nB79LZjrt+U3T/SqZ6VTi7Acbxv9Qm86F5ZKZTgaO+9E2zX6pZKYTAdm/7X1G2jR7+J+xmo/7RfucMAuyDzMv+zBzsg/zU/ZhZmUPwDc53wDpjNboXTDVcue/INxzJj3YjS6A2rnKZOx/5vJHdAVpPBb6kMvZq4ua5P/mq3uz1H05r0H+9yUyLfOdVjirQP7NOOv6VMj3IZP1pyp2Bpp/zZtCDxrXJs+Q0st9r5SDvRbMg4+4b37vMFH2jYprFEQ7DpgHvDgqZH+gF2H2ZU+NfXQefNy7QABoK/8AUOE1IgCQAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YO24CMRRAUdIgmrALwq8g3fBJAkkJBJZBxQpSsXMkSiQkS7HnAXPOAqyn+8ZTuNUC/mPwGj0B73ZQu/5V86kd1G5y1XxlB7WrNA+3tAMAAICHsm0/5tnPYFOwT8mzn8G6YJ+SZwNQ1t4/PMxO+zC/2gMAAAAAAAAAQOP9dKInaK7vxPYjO8puldh0qH12y8SmA+2z+0ps2tc+u8/Epm/ah+lpTwN9+O7DLLQPM9c+zEz7MFPtw1TaAwAAAAAAAAUdutETQLzjHdyD8Uv0BDH+7qA9RDu5BwAAAHAxvPFGNsr0dnYGkjqEIQCQAAA=
+  </data>
+  </layer>
+  <layer name="roofs2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQREAAAgDoCUwseGXwvMDCUgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAne8BAAAAAHCthr2lRACQAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="2545" gid="145" y="1455">
+      <point />
+      <properties>
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="2" x="2605" gid="145" y="535">
+      <point />
+      <properties>
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="6" x="2255" gid="147" y="2805">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="7" x="2045" gid="147" y="2485">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="8" x="2035" gid="147" y="2125">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="9" x="1815" gid="147" y="2285">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="11" x="1465" gid="147" y="2385">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="12" x="1305" gid="147" y="2355">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="13" x="1135" gid="147" y="2485">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="14" x="1105" gid="147" y="2285">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="15" x="855" gid="147" y="2445">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="16" x="885" gid="147" y="2225">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="17" x="725" gid="147" y="2155">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="18" x="565" gid="147" y="2065">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="19" x="1785" gid="147" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="20" x="1935" gid="147" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="21" x="1755" gid="147" y="1775">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="23" x="2135" gid="147" y="2035">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="24" x="2165" gid="147" y="1815">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="26" x="2385" gid="147" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="27" x="2575" gid="147" y="1905">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="28" x="2605" gid="147" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="29" x="2735" gid="147" y="1775">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="30" x="2835" gid="147" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="32" x="595" gid="147" y="2735">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="33" x="785" gid="147" y="2670">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="34" x="305" gid="147" y="2325">
+      <point />
+      <properties>
+        <property name="respawn" value="10" />
+        <property name="spawn" value="zombie" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="36" x="405" gid="147" y="2035">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="37" x="405" gid="147" y="2315">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="38" x="465" gid="147" y="2605">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="39" x="565" gid="147" y="2225">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="40" x="785" gid="147" y="2545">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="42" x="975" gid="147" y="2285">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="43" x="975" gid="147" y="2475">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="44" x="1205" gid="147" y="2385">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="45" x="1205" gid="147" y="2735">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy" type="spawn" id="46" x="1305" gid="147" y="2545">
+      <point />
+      <properties>
+        <property name="respawn" value="15" />
+        <property name="spawn" value="desert_mummy" />
+      </properties>
+    </object>
+    <object name="mummy2" type="spawn" id="51" x="1395" gid="147" y="2455">
+      <point />
+      <properties>
+        <property name="respawn" value="30" />
+        <property name="spawn" value="mummy2" />
+      </properties>
+    </object>
+    <object name="carrion" type="spawn" id="53" x="375" gid="147" y="2165">
+      <point />
+      <properties>
+        <property name="respawn" value="35" />
+        <property name="spawn" value="alive_carrion" />
+      </properties>
+    </object>
+    <object name="carrion" type="spawn" id="54" x="785" gid="147" y="2285">
+      <point />
+      <properties>
+        <property name="respawn" value="35" />
+        <property name="spawn" value="alive_carrion" />
+      </properties>
+    </object>
+    <object name="zombgiant" type="spawn" id="58" x="625" gid="147" y="2645">
+      <point />
+      <properties>
+        <property name="respawn" value="40" />
+        <property name="spawn" value="zombie_giant" />
+      </properties>
+    </object>
+    <object name="zombgiant" type="spawn" id="59" x="1135" gid="147" y="2575">
+      <point />
+      <properties>
+        <property name="respawn" value="40" />
+        <property name="spawn" value="zombie_giant" />
+      </properties>
+    </object>
+    <object name="zombgiant" type="spawn" id="60" x="2005" gid="147" y="1975">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie_giant" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Road spawn" type="spawn"  x="2675" gid="147" y="2385">
+      <properties>
+        <property name="spawnChance" value="100" />
+        <property name="spawntable" value="beast_roads" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="cat" type="spawn" id="64" x="985" gid="147" y="2065">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="17" />
+        <property name="spawn" value="mini_sabercat" />
+      </properties>
+    </object>
+    <object name="cat" type="spawn" id="65" x="505" gid="147" y="1875">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="17" />
+        <property name="spawn" value="mini_sabercat" />
+      </properties>
+    </object>
+    <object name="fanatic" type="spawn" id="67" x="1235" gid="147" y="2125">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="ardent_fanatic" />
+      </properties>
+    </object>
+    <object name="fanatic" type="spawn" id="68" x="915" gid="147" y="2035">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="ardent_fanatic" />
+      </properties>
+    </object>
+    <object name="fanatic" type="spawn" id="69" x="595" gid="147" y="1905">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="ardent_fanatic" />
+      </properties>
+    </object>
+    <object name="priestess" type="spawn" id="71" x="1395" gid="147" y="2165">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="female_priestess" />
+      </properties>
+    </object>
+    <object name="priestess" type="spawn" id="72" x="1075" gid="147" y="2095">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="female_priestess" />
+      </properties>
+    </object>
+    <object name="priestess" type="spawn" id="73" x="755" gid="147" y="2005">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="female_priestess" />
+      </properties>
+    </object>
+    <object name="priestess" type="spawn" id="74" x="435" gid="147" y="1875">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="20" />
+        <property name="spawn" value="female_priestess" />
+      </properties>
+    </object>
+    <object name="hunter" type="spawn" id="76" x="1295" gid="147" y="2065">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="25" />
+        <property name="spawn" value="hunter_evilspirits" />
+      </properties>
+    </object>
+    <object name="hunter" type="spawn" id="78" x="535" gid="147" y="1845">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="25" />
+        <property name="spawn" value="hunter_evilspirits" />
+      </properties>
+    </object>
+    <object name="hunter" type="spawn" id="80" x="855" gid="147" y="1815">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="25" />
+        <property name="spawn" value="hunter_evilspirits" />
+      </properties>
+    </object>
+    <object name="hunter2" type="spawn" id="83" x="1105" gid="147" y="2035">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="mist_hunter" />
+      </properties>
+    </object>
+    <object name="hunter2" type="spawn" id="84" x="725" gid="147" y="1935">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="mist_hunter" />
+      </properties>
+    </object>
+    <object name="hunter2" type="spawn" id="85" x="345" gid="147" y="1815">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="mist_hunter" />
+      </properties>
+    </object>
+    <object name="banishing" type="spawn" id="87" x="825" gid="147" y="2005">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="40" />
+        <property name="spawn" value="banishing_devil" />
+      </properties>
+    </object>
+    <object name="defender" type="spawn" id="88" x="1205" gid="147" y="2005">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="40" />
+        <property name="spawn" value="defender_sunlight" />
+      </properties>
+    </object>
+    <object name="defender" type="spawn" id="89" x="625" gid="147" y="1805">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_female" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="40" />
+        <property name="spawn" value="defender_sunlight" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="90" x="2605" gid="149" y="2455" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_5" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="91" x="2645" gid="149" y="2645">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Corpse" type="container" id="92" x="2775" gid="149" y="1375">
+      <point />
+      <properties>
+        <property name="gold" value="777" />
+        <property name="icon" value="corpse3" />
+        <property name="name" value="@CORPSE" />
+        <property name="unique_tag" value="J8_3_corpse" />
+      </properties>
+    </object>
+    <object name="mine" type="conversation" id="93" x="350" gid="149" y="2160">
+      <point />
+      <properties>
+        <property name="conversation" value="J8_3_mine" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="96" x="2560" gid="133" y="350" width="64" height="64" />
+    <object name="flames" type="mapeffect" id="97" x="2623" gid="133" y="351" width="64" height="64">
+      <properties>
+        <property name="id" value="small_flames" />
+      </properties>
+    </object>
+    <object name="Boatman" type="staticNPC" id="98" x="2540" gid="147" y="1385">
+      <point />
+      <properties>
+        <property name="conversation" value="J8_3_boatman_1" />
+        <property name="facing" value="l" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@BOATMAN_GERASIM" />
+        <property name="portrait" value="170" />
+        <property name="sprite" value="male_brown_1" />
+      </properties>
+    </object>
+    <object name="Boatman" type="staticNPC" id="99" x="2600" gid="147" y="580">
+      <point />
+      <properties>
+        <property name="conversation" value="J8_3_boatman_2" />
+        <property name="facing" value="r" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@BOATMAN_GERASIM" />
+        <property name="portrait" value="170" />
+        <property name="sprite" value="male_brown_1" />
+      </properties>
+    </object>
+    <object name="ursan" type="spawn" id="102" x="175" gid="147" y="365">
+      <point />
+      <properties>
+        <property name="spawn" value="ursan" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ursan" type="spawn" id="103" x="435" gid="147" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="ursan" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ursan" type="spawn" id="104" x="625" gid="147" y="885">
+      <point />
+      <properties>
+        <property name="spawn" value="ursan" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ursan" type="spawn" id="105" x="625" gid="147" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="ursan" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="shaman" type="spawn" id="107" x="405" gid="147" y="205">
+      <point />
+      <properties>
+        <property name="spawn" value="ursan_shaman" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="108" x="1475" y="290" width="27" height="27">
+      <properties>
+        <property name="area_id" value="P9_tomb" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="109" x="1440" gid="145" y="305">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn" id="108" x="1485" gid="147" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="adept_death_female" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn" id="109" x="1885" gid="147" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="adept_death_male" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept2" type="spawn" id="111" x="1655" gid="147" y="245">
+      <point />
+      <properties>
+        <property name="spawn" value="archer_death_female" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept2" type="spawn" id="112" x="1655" gid="147" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="archer_death_male" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="113" x="1235" gid="147" y="115">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="living_corpse" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="114" x="1805" gid="147" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="zombie" />
+        <property name="spawn_u" value="living_corpse" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="116" x="595" gid="147" y="145">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wraith" type="spawn" id="117" x="815" gid="147" y="215">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="wraith" />
+        <property name="spawn_u" value="vengeful_wraith" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="120" x="1515" gid="147" y="155">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="ghost" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="122" x="1365" gid="147" y="215">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="ghost" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="123" x="2005" gid="147" y="305">
+      <point />
+      <properties>
+        <property name="cycle" value="night" />
+        <property name="spawn" value="ghost" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="124" x="610" y="2500" width="27" height="27">
+      <properties>
+        <property name="area_id" value="P9_mine" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="125" x="625" gid="145" y="2440">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Nabiya" type="spawn" id="126" x="1005" gid="147" y="1935">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#curses_dont_die,5;VariableLower#nabiya_follow,2" />
+        <property name="conversation" value="J8_3_Honorary_Guardian_Nabiya" />
+        <property name="faction" value="#guard#" />
+        <property name="respawn" value="40" />
+        <property name="spawn" value="honorary_guardian_nabiya" />
+      </properties>
+    </object>
+    <object name="entry" type="entry" id="127" x="1075" gid="145" y="2640">
+      <point />
+      <properties>
+        <property name="entry_id" value="9" />
+      </properties>
+    </object>
+    <object name="wolf" type="spawn" id="128" x="2945" gid="147" y="425">
+      <point />
+      <properties>
+        <property name="spawntable" value="beasts" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="wolf" type="spawn" id="129" x="2755" gid="147" y="95">
+      <point />
+      <properties>
+        <property name="spawntable" value="beasts" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="savage" type="spawn" id="130" x="345" gid="147" y="1075">
+      <point />
+      <properties>
+        <property name="conversation" value="J8_3_Savage" />
+        <property name="conditions" value="VariableLower#problem_savage,1" />
+        <property name="spawn" value="savage_female" />
+        <property name="tag" value="savage_female" />
+        <property name="wander" value="4" />
+      </properties>
+  </object>
+  <object  name="wreck" type="conversation" gid="149" x="720" y="270" width="14" height="14">
+   <properties>
+        <property name="conditions" value="VariableGreater#unsurpassed_craftsmanship,19;VariableLower#unsurpassed_craftsmanship,99" />
+    <property name="conversation" value="P9_wreck_map"/>
+    <property name="icon" value="wall"/>
+    <property name="name" value="@RUINS"/>
+    <property name="tag" value="P9_wreck_map"/>
+   </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="570" y="120" width="270" height="270">
+      <properties>
+        <property name="conditions" value="VariableGreater#unsurpassed_craftsmanship,19;VariableLower#P9_wreck,1" />
+        <property name="actions" value="StartItemConversation#P9_wreck_map" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger"  x="570" y="120" width="270" height="270">
+      <properties>
+        <property name="conditions" value="VariableEqual#unsurpassed_craftsmanship,40" />
+        <property name="actions" value="StartItemConversation#P9_wreck_map" />
+      </properties>
+    </object>
+    <object name="entry" type="entry"  x="795" gid="145" y="375">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

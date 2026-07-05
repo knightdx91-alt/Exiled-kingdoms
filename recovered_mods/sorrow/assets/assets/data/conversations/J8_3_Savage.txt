@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a half-naked savage in appearance, but still inclined to communicate)[] Hello, traveler, welcome to my home - protected forests!	¿po?	2			
+2	A	Hello! What happened to you? Don't you have the means to purchase housing and clothing? Why are you homeless in the woods?	po.	3		
+2	A	Hello! Have you by any chance met any zombies here that look like priests?	po.	9	"VariableEqual#last_honors,10;VariableLower#talkz_savage,1"		
+3	Q	 I am one with the wild nature - it gives me everything I need, any tree can be my home, for food I can easily overcome any animal or find edible plants, and my body is so hardened that it does not need extra rags!	¿po?	4		
+4	A	If you live in the forest, then you are a great hunter? And I just need hunters to hire them for work.	po.	7	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,83;VariableLower#contract_savage,1"		
+4	A	Okay, then I won't bother you.	po.	0		
+7	Q	 I don't need gold, but if you can beat me in battle, I'm ready to serve you.	¿po?	8		
+8	A	Okay, you suggested it yourself.	po.	0		"NPCHostile#savage_female"
+8	A	No, I'm not going to fight you.	po.	0		
+9	Q	 If there were zombies here, they would obviously be eaten by bearmen or wolves.	¿po?	0		"SetVariable#talkz_savage,1"		

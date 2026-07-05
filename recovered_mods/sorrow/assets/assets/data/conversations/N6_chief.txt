@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hey, be careful with him, we need him alive. Princess Bernadette won't be pleased if we deliver the governor's son's corpse. 	¿po?	21	"VariableGreater#royal_will,59;VariableLower#royal_will,63"		
+1	Q	 [BLUE](your path was blocked by a second, young man who was in the office and left when you arrived there)[] Hello, Havis, it's great to see you, you haven't changed at all. 	¿po?	2			
+2,havis	Q	 Hey Dariel, I noticed you got promoted and you look just like some kind of nobleman. 	¿po?	3			
+3,chirf2	Q	 Oh, that, [BLUE](man looked at his outfit)[] to be honest, I wanted to keep sailing like a regular captain, rather than staying on land, but my mother thinks it's better for my future. 	¿po?	4			
+4,havis	Q	 She's clearly a wise woman, since she decides everything for you. 	¿po?	5			
+5,chirf2	Q	 [BLUE](man grimaced, wanting to object, but instead asked)[] How did it go with my uncle, did he agree? 	¿po?	6			
+6,havis	Q	 Everything didn't go as you described in your message. 	¿po?	7			
+7,chirf2	Q	 What? Did he get cold feet? 	¿po?	8			
+8,havis	Q	 Bernadette was here, so it was obvious that he would be afraid and cancel everything when he saw her. 	¿po?	9			
+9,chirf2	Q	 Damn it, it's as if she sensed you'd arrive today. Okay, maybe Uncle will change his mind; he needs time to think it over and make a final decision. But either way, I and many of the ship captains support Alarion's idea; he can count on us. 	¿po?	10			
+10,havis	Q	 Okay, I'll pass on your message, Dariel. But since Bernadette has been here, I suggest you don't talk about your plans with just anyone. 	¿po?	11			
+11,chirf2	Q	 Okay, I get it, see you later, Havis, good luck to you. 	¿po?	12			
+12,havis	Q	 [BLUE](man left, and Havis spoke to you)[] We need to get back and tell Alarion the bad news. But I have a bad feeling, Bernadette knew we would be here, and she might know about Alarion's other plans. I'll go to the Royal Forest alone, and you should go to Isstral and find Lukan, warning him about the potential danger. If you're not lucky, try to find a man named magister Kaledor, as Lukan went to meet him. You'll tell magister that it's from Alarion, and I'll find a message for him to believe you. Will find out if he managed to meet with Lukan and how it went. 	¿po?	13			
+13	A	Okay, actually, I know magister Kaledor, and I helped him with a case.	po.	14		
+14,havis	Q	 Oh, then we won't need any extra proof if he trusts you. But I hope Lukan is okay, and you can find him and return to the Royal Forest together. Ask if you want to know anything, and let's get started. 	¿po?	15			
+15	A	And who is this Bernadette, the woman who came to see the governor?	po.	16		
+16,havis	Q	 Bernadette is the youngest daughter of our king, and she's in charge of the secret service, which doesn't exist officially, so they can get away with all sorts of cruelty without being held accountable. 	¿po?	17			
+17,havis	Q	 In recent years, many nasty rumors have been circulating about Bernadette - that it was not the illness that was to blame for her older sister's death, but she, and that she organized the murder of the exiled treasurer and his family, personally killing one of the sons of this nobleman in front of him, and that she staged bloody purges in the command staff of the royal army after the unsuccessful repulse of the first invasion of the sky knights. 	¿po?	18			
+18,havis	Q	 In general, there's a lot of stuff, I don't really believe most of this gossip, but I know her, Bernadette is willing to do terrible things for the sake of the king and the kingdom. Therefore, I advise you not to get involved with her and try to avoid meeting her. 	¿po?	19			
+19	A	Thanks for the advice, I'll keep it in mind.	po.	20		
+20,havis	Q	Then good luck, and I'll see you in the Royal Forest.	po.	0		"NPCStopFollowing#;NPCDespawn#chirf2;NPCDespawn#havis;SetVariable#drastic_steps,40"
+21	A	Okay, he's fine, how are we going to get out of here? The same way?	po.	22		
+22	Q	 No, first I'll signal my men who captured the pirate ship, and then we'll use the teleport that Princess Bernadette gave me to transport us directly to the royal castle. 	¿po?	23		"NPCStopFollowing#"
+23	A	Clearly.	po.	0		"SetVariable#royal_will,63;HideParty#;Travel#P7_dungeon4,1"

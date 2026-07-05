@@ -1,0 +1,38 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	We seem to have solved the problem? 	port.	0	"VariableEqual#freedom_law_order,40"		
+1	Q	We seem to have solved the problem? 	port.	0	"VariableEqual#freedom_law_order,18"		
+1	Q	Well, you didn't come empty-handed, did you? 	port.	12	"VariableEqual#freedom_law_order,35"		
+1	Q	Well, you didn't come empty-handed, did you? 	port.	23	"VariableEqual#freedom_law_order,17"		
+1	Q	 [BLUE](this man is not inclined to talk)[]	¿po?	2			
+2	A	Hello.	port?	3			
+2	A	Hello, I'm here on business from Makbul.	port?	4	"VariableEqual#freedom_law_order,30"		
+2	A	Hello, I'm here on business from Makbul.	port?	15	"VariableEqual#freedom_law_order,15"		
+3	Q	Yeah, hello-hello and bye. 	port.	0		
+4	Q	What? But we agreed with him! He gives me one more week, and in return he gets five percent more when I sell his goods. 	port.	5				
+5	A	And now he wants you to return the goods to him now.	po.	6		
+6	Q	That's not how things are done! I have already started to establish contacts with customers and they will not like that they will be thrown if I remain without the goods! Therefore, I can't give the goods now, explain this situation to Makbul. 	port.	7				
+7	A	Maybe compensation will calm you down? Will 500 coins be enough for you?	port?	8			
+7	A	[BLUE](scare)[] I'm not going to explain anything to him, give him the goods or you'll be sorry if you continue to be stubborn.	port?	9			STR#4
+7	A	Do you understand what kind of people Makbul is connected with? And what will be the consequences if you anger them?	port?	10			PER#4
+8	Q	Five hundred? Are you serious? I need at least five thousand to cover my existing expenses while I was arranging the necessary contacts. There will be the right amount - there will be a goods. 	port.	11		
+9	Q	Okay, okay, calm down, I understand you. Here is Makbula's product, here is everything that I took from him, let him no longer boil and no send his goons to me. And I should complain where I should, about the fact that there are too many thugs in the city, and there is no quiet life from them. 	port.	0		"GainItem#10286;SetVariable#freedom_law_order,40;DecVariable#REP_town_freeport,1"		
+10	Q	And you're right, I can somehow negotiate with my customers, but the people behind the Maqbool will not give me a descent. Hold his goods, it's a shame that everything happened that way, but he clearly knows better how it will be better. 	port.	0		"GainItem#10286;SetVariable#freedom_law_order,40"		
+11	A	Okay, I'll bring you the money. 	port.	0		SetVariable#freedom_law_order,35		
+12	A	I don't have the right amount yet.	port?	13			
+12	A	Yes, here's the money.	port?	14	PlayerHasGold#5000	
+13	Q	Then there will be no goods yet. 	port.	0		
+14	Q	Well, great, here Makbul's goods, it was nice doing business with you. 	port.	0		"loseGold#5000;GainItem#10286;SetVariable#freedom_law_order,40"		
+15	Q	What? But we agreed with him! He gives me one more week, and in return he gets five percent more when I sell his goods. 	port.	16				
+16	A	And now he wants you to return the goods to him now.	po.	17		
+17	Q	That's not how things are done! I have already started to establish contacts with customers and they will not like that they will be thrown if I remain without the goods! Therefore, I can't give the goods now, explain this situation to Makbul. 	port.	18				
+18	A	Maybe compensation will calm you down? Will 500 coins be enough for you?	port?	19			
+18	A	[BLUE](scare)[] I'm not going to explain anything to him, give him the goods or you'll be sorry if you continue to be stubborn.	port?	20			STR#4
+18	A	Do you understand what kind of people Makbul is connected with? And what will be the consequences if you anger them?	port?	21			PER#4
+19	Q	Five hundred? Are you serious? I need at least five thousand to cover my existing expenses while I was arranging the necessary contacts. There will be the right amount - there will be a goods. 	port.	22		
+20	Q	Okay, okay, calm down, I understand you. Here is Makbula's product, here is everything that I took from him, let him no longer boil and no send his goons to me. And I should complain where I should, about the fact that there are too many thugs in the city, and there is no quiet life from them. 	port.	0		"GainItem#10286;SetVariable#freedom_law_order,18;DecVariable#REP_town_freeport,1"		
+21	Q	And you're right, I can somehow negotiate with my customers, but the people behind the Maqbool will not give me a descent. Hold his goods, it's a shame that everything happened that way, but he clearly knows better how it will be better. 	port.	0		"GainItem#10286;SetVariable#freedom_law_order,18"		
+22	A	Okay, I'll bring you the money. 	port.	0		SetVariable#freedom_law_order,17		
+23	A	I don't have the right amount yet.	port?	24			
+23	A	Yes, here's the money.	port?	25	PlayerHasGold#5000	
+24	Q	Then there will be no goods yet. 	port.	0		
+25	Q	Well, great, here Makbul's goods, it was nice doing business with you. 	port.	0		"loseGold#5000;GainItem#10286;SetVariable#freedom_law_order,18"		

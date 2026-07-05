@@ -1,0 +1,6 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a man in a robe standing on the dock points his staff in your direction)[] Don't move, throw the amulet on the boards and step aside, otherwise I'll burn you to ashes with my charms! 	[BLUE]()[] port.	2			
+2	A	The amulet again? I don't know anything about this amulet because I don't have it.	port?	3			
+2	A	Really? Can you at least let a little smoke out of your stick?	port?	4			
+3	Q	I'm sorry, of course, but am I just supposed to believe you? Peacefully or not, will you tell me where the amulet is!	port?	0		"SetVariable#smoke_without_fire,35;NPCHostile#mage_outlaw;NPCSpawn#mage_team;NPCSpawn#perci"
+4	Q	Do you want to test on your own skin what my staff is capable of? Well, let me arrange it for you!	port?	0		"SetVariable#smoke_without_fire,35;NPCHostile#mage_outlaw;NPCSpawn#mage_team;NPCSpawn#perci"

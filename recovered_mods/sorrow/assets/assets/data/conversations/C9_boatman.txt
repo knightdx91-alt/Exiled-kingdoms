@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a kind-looking sailor)[] Hello, my friend! There are not so many places from here where you can move by sea, but still I am ready to help!  	port.	2		
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	Where can you take me?	¿port?	3			
+3	Q	Lamis for [BLUE]190 coins[] we will get there in half a day or longer, as the sea will allow. 	port.	4		
+4	A	Okay, I'm going to Lamis.	port.	0	"playerhasGold#190"	"loseGold#190;Travel#C13,8,12"
+4	A	Okay, I'm going to Liberty.	port.	0	"playerhasGold#90"	"loseGold#90;Travel#C7,2,3"
+4	A	No, I'm not interested.	port.	0		

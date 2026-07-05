@@ -1,0 +1,57 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Welcome to my shelter, our friend, behave yourself here, otherwise I will have to punish you.	¿po?	0	"VariableEqual#sin_kingdom,120"		
+1	Q	 Welcome to my shelter, our friend, behave yourself here, otherwise I will have to punish you.	¿po?	0	"VariableEqual#sin_kingdom,100"		
+1	Q	 It's good to see you, my friend. Accept this award for the loyalty and hard work that you have done for us.	¿po?	38	"VariableEqual#sin_kingdom,98"		
+1	Q	 I see you're back, my friend. Did you find out anything interesting?	¿po?	33	"VariableGreater#sin_kingdom,91;VariableLower#sin_kingdom,94"		
+1	Q	 And what is this supposed to mean? You don't show up on time for your appointment, but some bastards show up who want to kill me!	¿po?	28	"VariableEqual#sin_kingdom,90"		
+1	Q	 Death would be the easiest outcome for those bastards for trying to attack me!	¿po?	0	"VariableEqual#sin_kingdom,89"		
+1	Q	 So the girls are safe and sound? Okay, but this idiot is late for an appointment.	¿po?	26	"VariableEqual#sin_kingdom,87"		
+1	Q	 Are you still here? My suggestions about the cage and the whip are still valid, have you changed your mind by any chance?	¿po?	8	"VariableEqual#sin_kingdom,85"		
+1	Q	 Are you back? And not alone? Well, how did the negotiations go?	¿po?	18	"VariableEqual#sin_kingdom,82"		
+1	Q	 Are you still here? Go to a meeting with Christine, or have you decided to change your mind about the choice I offered you?	¿po?	8	"VariableEqual#sin_kingdom,80"		
+1	Q	 So the bastards got what they deserved, and those who managed to survive will know better than to anger us. Well, you, our new friend, accept this award for the loyalty and hard work that you have done for us.	¿po?	13	"VariableEqual#sin_kingdom,77"		
+1	Q	 Are you still here? Does it seem like the dreams of being my bed servant are not leaving your head?	¿po?	8	"VariableEqual#sin_kingdom,75"		
+1	Q	 So the girls are safe and sound? Well, now can start for these bastards in a serious way.	¿po?	11	"VariableEqual#sin_kingdom,72"		
+1	Q	 Are you still here? My suggestions about the cage and the whip are still valid, have you changed your mind by any chance?	¿po?	8	"VariableEqual#sin_kingdom,70"		
+1	Q	 Are you back? Great. It looks like the gangster boss has already received our message and decided to reply to us, but to do it in a sneaky way. My elite girls who serve the aristocracy were abducted from their homes in New Garand, and it's not hard to guess who is behind this. But all this was done hastily and thoughtlessly, so my street girls managed to follow the kidnappers all the way to their hideout. So, your task, my heroic friend, is to free the captives.	¿po?	9	"VariableEqual#sin_kingdom,65"		
+1	Q	 Are you still here? Go to a meeting with Christine, or have you decided to change your mind about the choice I offered you?	¿po?	8	"VariableEqual#sin_kingdom,60"		
+1	Q	 Our confrontation with the bandits has been going on for a long time. We gave them the opportunity to solve all the worlds, but they did not want it, so it was time for more decisive and harsh measures. Moreover, now we have an ally who is ready to help with joy.	¿po?	2	"VariableEqual#sin_kingdom,55"		
+2	A	And what will need to be done?	po.	3		
+2	A	If you decide that I can be useful and help you solve your problems, then maybe I can come to a peaceful agreement with these bandits?	po.	14			PER#4
+3,dominatrix2	Q	 This idiot who is their boss wanted to negotiate with us. Well, we'll leave a message for him, which will immediately make our intentions clear to him. Agnes, you and your squad will meet the parliamentarians and, without further ado, make an example of how we are going to deal with all these scoundrels.	¿po?	4				
+4,agnes	Q	 Each of these faggots will get what they deserve!	¿po?	5			
+5,dominatrix2	Q	 Well, you, Christine and our new friend, will help them if there are a lot more bandits at the meeting than reported.	¿po?	6		"NPCDespawn#agnes"
+6,christine	Q	 Where will this meeting take place, my mistress?	¿po?	7		"NPCFollow#"		
+7,dominatrix2	Q	 On New Garand farmlands, this place was chosen for the meeting.	¿po?	0		"SetVariable#sin_kingdom,60"
+8	A	Not.	po.	0		
+9	A	Where is the kidnappers' lair?	po.	10		
+10	Q	 Not far from Kingsbridge, Christine will go with you to help you cope with this task.	¿po?	0		"SetVariable#sin_kingdom,70"
+11	A	What are you going to do?	po.	12		
+12	Q	My girls brought one of the freaks here, I talked to him, and before he lost the opportunity to be anyone's dad, he told me where their boss's lair was. It's located at Rhöneis, I've already sent Agnes and her squad there, so go and help her.	port.	0		"SetVariable#sin_kingdom,75"
+13	A	I was glad to help.	po.	0		"GainXP#1000;GainGold#999;GainItem#10364;SetVariable#sin_kingdom,100;SetVariable#size_matters,130;SetVariable#changing_hierarchy,130;NPCSpawn#agnes_f"
+14,dominatrix2	Q	 Hmm, maybe you're right, and it's worth giving them one last chance, maybe you can come to an agreement with them, then we can do without unnecessary sacrifices, both on our side and on theirs. And it was this idiot who is their boss who wanted to negotiate with us. Well, you, our new friend, will be the main parliamentarian at this meeting, Agnes will provide security in case the bandits try to set up some kind of setup, and Christine will escort you safely to the meeting place.	¿po?	15				
+15,agnes	Q	 If any of these faggots decide to do something unkind at a meeting, then they will all pay with their health or lives!	¿po?	16			
+16,christine	Q	 Where will this meeting take place, my mistress?	¿po?	17		"NPCFollow#"		
+17,dominatrix2	Q	 On New Garand farmlands, this place was chosen for the meeting.	¿po?	0		"NPCDespawn#agnes;SetVariable#sin_kingdom,80"
+18	A	Great, we've arranged a personal meeting with the gang boss, but he wants to see you in New Garand.	po.	19		
+19,dominatrix2	Q	 Hmm, and I have some bad news. My elite girls who serve the aristocracy were abducted from their homes in New Garand, and I suspect who exactly is behind this.	¿po?	20				
+20,bandit1	Q	 We have nothing to do with it here! Actually, our boss was attacked, and it was clearly done by your hands!	¿po?	21			
+21,dominatrix2	Q	 You should not make false statements about me, otherwise you will pay harshly if this happens again! I don't need your boss's death at all, not yet. Moreover, I still don't know where your main lair is. My street girls managed to follow the kidnappers all the way to their hideout. So, your task, my heroic friend, is to free the captives.	¿po?	22				
+22	A	Where is the kidnappers' lair?	po.	23		
+23,dominatrix2	Q	 Not far from Kingsbridge, Christine will go with you to help you cope with this task, well, you're going to help them, since you're not involved in this kidnapping.	¿po?	24		
+24,bandit1	Q	 No problem, I really love girls, I won't let anyone hurt them!	¿po?	25			
+25,dominatrix2	Q	 I'll get ready for now and head to New Garand to meet with your boss. I'll meet you there when you're done with your assignment.	¿po?	0		"SetVariable#sin_kingdom,85"
+26	A	Maybe something happened on the way?	po.	27		
+27,dominatrix2	Q	 Anyway, I'm not going to be stuck here all day! [BLUE](suddenly, you notice a group of suspicious characters on both sides of the bridge)[] Damn, it's an ambush!	¿po?	0		"NPCSpawn#banda_b;NPCSpawn#boss1;SetVariable#sin_kingdom,89"
+28,boss1	Q	 But I came, albeit late, and actually helped you deal with those bastards. My man was detained by unknown types, so I was late in receiving the message about the meeting you had arranged, I hurried as best I could, but I have enough of my own problems - first some bastards tried to kill me too, and then someone attacked and seized our main stash, and instead of returning it under control, I came here!	¿po?	29		
+29,dominatrix2	Q	 I am innocent of your problems, as you have noticed, I went to meet you, agreeing first to negotiate, and then to meet with you personally, and in return they are trying to kill me here!	¿po?	30		
+30,boss1	Q	 Okay, let's figure out what's going on here, I'll go to my hiding place and try to take one of the attackers alive and interrogate them about who hired them.	¿po?	31		
+31,dominatrix2	Q	 I'm waiting to hear from you!	¿po?	32		
+32,boss1	Q	 Great, so we have a deal for now.	¿po?	0		"NPCDespawn#dominatrix2;NPCDespawn#telo;SetVariable#sin_kingdom,91"
+33	A	Yes, we managed to capture one of the attackers, and with his help we found an employer who said that Baron Enterprise was behind all this.	po.	34	"VariableEqual#sin_kingdom,93"		
+33	A	Not yet.	po.	0		
+34,dominatrix2	Q	 Baron Enterprise means. Hmm, that might make sense considering the rumors about his connections to the House of Seven. And what is this Rickman going to do?	¿po?	35				
+35	A	He's going to attack the baron's mansion at night to deal with him.	po.	36		
+36,dominatrix2	Q	 Well, this is not a very reasonable solution, but if successful, we will get rid of further problems that this lousy baron could arrange for us. And it's obvious that idiot Rickman can't do it without our help. Go to New Garand with Agnes, help him, and I'll join you later.	¿po?	37				
+37	A	Clearly.	po.	0		"SetVariable#sin_kingdom,95;NPCDespawn#dominatrix2"
+38	A	I was glad to help.	po.	0		"GainXP#1800;GainGold#999;GainItem#10648;SetVariable#sin_kingdom,120"

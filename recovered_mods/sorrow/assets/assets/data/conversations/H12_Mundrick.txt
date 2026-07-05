@@ -1,0 +1,146 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](An elderly wizard looking at you with interest)[] Undoubtedly, there are many more secrets hidden in these lands, and such young and inquisitive people like you will be able to find them!	¿po?	0	"VariableEqual#mundhelpnot,1"		
+1	Q	 [BLUE](An elderly wizard looking at you with interest)[] Oh, young adventurers, you're back! Well, how lucky were you to find the Temple of Knowledge, or did you fail like many before you?	¿po?	82	"VariableEqual#ladies_man,70"		
+1	Q	 [BLUE](An elderly wizard looking at you with interest)[] I have already told you everything I know about the Temple of Knowledg.	¿po?	0	"VariableGreater#immersed_darkness,79"		
+1	Q	 [BLUE](An elderly wizard looking at you with interest)[] Well, how are things going with my request?	¿po?	13	"VariableGreater#immersed_darkness,11"		
+1	Q	 [BLUE](An elderly wizard looking at you with interest)[] Guys, you must have made a mistake, I haven't been teaching or conducting extracurricular lectures for a long time, although you don't really look like students either.	¿po?	2			
+2	A	Are you magister Mundrick? We wanted to learn from you about the Temple of Knowledge and about the only one who visited it.	po.	3		
+3,mage	Q	 Ha, so you're are another braves adventurer! Well, if you're interested, why don't I tell you, especially since I don't know much about this mysterious place myself, so it won't take much time...	¿po?	4				
+4,knave	Q	 It would be much more interesting for us to find out how to get there, that lucky guy obviously left information about it.	¿po?	5			
+5,mage	Q	 In fact, no, the adventurer was so glad that he was able to get out of there alive, did not bother to leave even the slightest notes about his journey, only told me that he explored caves in the Crimson Hills and in one of them found a entrance to the diggers' passages, along which he reached the Temple of Knowledge.	¿po?	6			
+6	A	And what do you know about this brave man himself? Perhaps we would have found him and personally learned from him about his journey.	po.	7		
+7,mage	Q	 To be honest, little is known, a young mediocre wizard who decided to search because he is weak in magic, although he skillfully created a luminous web, thanks to which he clearly managed to get to the Temple and return. I have no idea where he might be right now.	¿po?	8		
+8	A	And what is the thing that he was able to bring from there?	po.	9		
+9,mage	Q	 It seems to be an ordinary faceted stone, not particularly precious, but according to the adventurer's assurances, it is something like a key, without any idea why he decided this, but an experienced cave scientist knows better. And you seem to be serious about finding your way to the Temple of Knowledge? To get there, you obviously need to have a trained talent for cave science. By the way, I can help you, I will give you this stone, maybe it really is so needed there, for free, but if you follow a couple of my small requests.	¿po?	10			
+10	A	Okay, what should I do?	po.	11		
+11,mage	Q	 There is one fool here at him herbs don't grow, I want to get it into his head that everything is growing as before, he's just looking in the wrong place, for this I need merples, about five pieces.	¿po?	12				
+12	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,12"
+13	A	Here the large battery you asked for.	po.	74	"VariableEqual#immersed_darkness,72;PlayerHasItem#1023"		
+13	A	Here the ancient batteries you asked for.	po.	72	"VariableEqual#immersed_darkness,70;PlayerHasItems#1022,5"		
+13	A	Here is your sphere that you asked for.	po.	70	"VariableEqual#immersed_darkness,69;PlayerHasItem#10423"		
+13	A	Here the purple medallion you asked for.	po.	68	"VariableEqual#immersed_darkness,66;PlayerHasItem#2636"		
+13	A	Here the dragon heart you asked for.	po.	66	"VariableEqual#immersed_darkness,65;PlayerHasItem#10422"		
+13	A	Here the totem you asked for.	po.	64	"VariableEqual#immersed_darkness,62;PlayerHasItem#442"		
+13	A	Here the totem you asked for.	po.	64	"VariableEqual#immersed_darkness,62;PlayerHasItem#441"		
+13	A	Here the totem you asked for.	po.	64	"VariableEqual#immersed_darkness,62;PlayerHasItem#440"		
+13	A	Here the worg skull you asked for.	po.	62	"VariableEqual#immersed_darkness,60;PlayerHasItem#1025"		
+13	A	Here ursan's head you asked for.	po.	60	"VariableEqual#immersed_darkness,59;PlayerHasItem#10421"		
+13	A	Here the druid's amulet you asked for..	po.	58	"VariableEqual#immersed_darkness,57;PlayerHasItem#10420"		
+13	A	Here the troll skins you asked for.	po.	56	"VariableEqual#immersed_darkness,54;PlayerHasItems#1011,3"		
+13	A	Here the ape meat you asked for.	po.	54	"VariableEqual#immersed_darkness,53;PlayerHasItem#10419"		
+13	A	Here the manticore sting you asked for.	po.	52	"VariableEqual#immersed_darkness,51;PlayerHasItem#10418"		
+13	A	Here the snake fangs you asked for.	po.	50	"VariableEqual#immersed_darkness,48;PlayerHasItems#1019,3;PlayerHasItems#1020,3"		
+13	A	Here the leopard skins you asked for.	po.	48	"VariableEqual#immersed_darkness,46;PlayerHasItems#10417,2"		
+13	A	Here the chitin carapace you asked for.	po.	46	"VariableEqual#immersed_darkness,44;PlayerHasItems#1015,3"		
+13	A	Here the minotaur horn you asked for.	po.	44	"VariableEqual#immersed_darkness,42;PlayerHasItem#1001"		
+13	A	Here the sabercat eyes you asked for.	po.	42	"VariableEqual#immersed_darkness,40;PlayerHasItems#1016,3"		
+13	A	Here the fiery salts, living ice and sparkling powder in the amount you asked for.	po.	40	"VariableEqual#immersed_darkness,38;PlayerHasItems#1005,3;PlayerHasItems#1006,3;PlayerHasItems#1007,3"		
+13	A	Here the fire drake scales that you asked for.	po.	38	"VariableEqual#immersed_darkness,36;PlayerHasItems#1012,5"		
+13	A	Here the deadweed you asked for.	po.	36	"VariableEqual#immersed_darkness,34;PlayerHasItems#2103,5"		
+13	A	Here the deer antlers you asked for.	po.	34	"VariableEqual#immersed_darkness,32;PlayerHasItem#10309"		
+13	A	Here the golden apple you asked for.	po.	32	"VariableEqual#immersed_darkness,30;PlayerHasItems#5022,2"		
+13	A	Here the brown skins you asked for.	po.	30	"VariableEqual#immersed_darkness,28;PlayerHasItems#1014,2"		
+13	A	Here the seaweed you asked for.	po.	28	"VariableEqual#immersed_darkness,26;PlayerHasItems#10359,6"		
+13	A	Here the fox tails you asked for.	po.	26	"VariableEqual#immersed_darkness,24;PlayerHasItems#10308,4"		
+13	A	Here the giant mead you asked for.	po.	24	"VariableEqual#immersed_darkness,22;PlayerHasItem#5029"		
+13	A	Here the yeti paw you asked for.	po.	22	"VariableEqual#immersed_darkness,21;PlayerHasItem#10416"		
+13	A	Here the wyvern tail you asked for.	po.	20	"VariableEqual#immersed_darkness,19;PlayerHasItem#10415"		
+13	A	Here the spotty pelt you asked for.	po.	18	"VariableEqual#immersed_darkness,17;PlayerHasItem#10414"		
+13	A	Here the pelt you asked for.	po.	16	"VariableEqual#immersed_darkness,14;PlayerHasItems#1004,6"		
+13	A	Here the merples you asked for.	po.	14	"VariableEqual#immersed_darkness,12;PlayerHasItems#2104,5"		
+13	A	In the process of execution.	po.	0	"VariableGreater#immersed_darkness,9"		
+14	Q	 Thank you. I'm going to make a new carpet for myself, could you bring me 6 white wolf pelts?	¿po?	15		"LoseItems#2104,5"
+15	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,14"
+16	Q	 Thank you. There are rumors about a strange spotted polar bear that roams the vicinity of Icemist, could you find it and bring its pelt?	¿po?	17		"LoseItems#1004,6"
+17	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,16"
+18	Q	 Thank you. There are wyverns in the wyvern mountains, as you know, and I've been wanting to get at least one tail of these creatures for a long time, could you bring it?	¿po?	19		"LoseItem#10414"
+19	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,18"
+20	Q	 Thank you. Strange creatures live in the white plains - yeti, I would like to compare them with ordinary polar bears, could you bring, for example, a paw of yeti?	¿po?	21		"LoseItem#10415"
+21	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,20"
+22	Q	 Thank you. They say there are some giants roaming far away in the mountains of vyvern, and they have giant meads, I'm going to surprise our brewer, so could you bring at least one such bottle?	¿po?	23		"LoseItem#10416"
+23	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,22"
+23	A	It's easier for me to kill you instead of the giants and take your stone!	po.	80		
+24	Q	 Thank you. I bought a new raincoat here and would like to decorate it with fox tails, they are found somewhere in the southern forests, could you bring four of these tails?	¿po?	25		"LoseItem#5029"
+25	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,24"
+25	A	I'm going to strangle you with this cloak and take your stone!	po.	80		
+26	Q	 Thank you. I'm developing a new recipe for our brewer, and I need blue seaweed, they grow on warmer shores of the sea, could you bring six of these seaweed?	¿po?	27		"LoseItems#10308,4"
+27	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,26"
+27	A	Now I'm going to drown you in a barrel of beer and take your stone!	po.	80		
+28	Q	 Thank you. There are a lot of polar bears here, and the brown ones live only in the south, could you bring at least two of their pelts to my dwelling for a change?	¿po?	29		"LoseItems#10359,6"
+29	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,28"
+29	A	I'm going to pelt you and take your stone!	po.	80		
+30	Q	 Thank you. I have discovered tales of golden apples that grow in the north of Nivar, is it true or not, could you check it out and bring at least two of these apples?	¿po?	31		"LoseItems#1014,2"
+31	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,30"
+31	A	These will be the last tales you read in your life, because I'm going to kill you now and take your stone!	po.	80		
+32	Q	 Thank you. There are no deer in our forests, but Sagar is full of them, could you bring one pair of deer horns?	¿po?	33		"LoseItems#5022,2"
+33	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,32"
+33	A	One deer will also appear in your forests, only dead, I mean you, after which I will take your stone!	po.	80		
+34	Q	 Thank you. I'm developing a new potion to protect against the undead, could you bring about five deadweed?	¿po?	35		"LoseItem#10309"
+35	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,34"
+35	A	Will you become the undead material yourself now, or will you give me your stone!	po.	80		
+36	Q	 Thank you. I'm coming up with a way to improve the armor of our knights, and I've heard that fire drake live in the mountains, perhaps their armor will be useful for this venture, could you bring five of scales of these creatures?	¿po?	37		"LoseItems#2103,5"
+37	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,36"
+37	A	No knights will help you, because I'm going to kill you right now and take your stone!	po.	80		
+38	Q	 Thank you. I'm doing some experiments in my lab, and I need reagents, could you bring fire salts, living ice and sparkling powder each in the amount of three?	¿po?	39		"LoseItems#1012,5"
+39	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,38"
+39	A	I'm also going to conduct experiments on turning an old man from a living state into a dead one if he doesn't give me his stone!	po.	80		
+40	Q	 Thank you. Somewhere in the west in Ilmara there are exotic beasts - sabercat with unique eyesight, could you bring three of their eyes?	¿po?	41		"LoseItems#1005,3;LoseItems#1006,3;LoseItems#1007,3"
+41	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,40"
+41	A	But you won't need your eyesight anymore, because the dead don't need it, neither will your stone, which I'll take away!	po.	80		
+42	Q	 Thank you. Far to the west, perhaps there are interesting creatures - minotaur in Mercia, could you bring at least one minotaur horn for my collection?	¿po?	43		"LoseItems#1016,3"
+43	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,42"
+43	A	You're going to become a specimen yourself, but already in my collection of freaks who infuriated me and therefore ended badly, or you're going to give me your stone!	po.	80		
+44	Q	 Thank you. I keep thinking about ways to improve the armor of our knights, and I have heard rumors about underground creatures with strong chitin carapaces living in abandoned mines, could you bring three similar carapaces?	¿po?	45		"LoseItem#1001"
+45	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,44"
+45	A	You will now go to the mine yourself, where no one will find you, and I will take your stone!	po.	80		
+46	Q	 Thank you. I've heard that there are big snow cats in mountains Thir, could you bring at least two of their pelts to my place for a change?	¿po?	47		"LoseItems#1015,3"
+47	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,46"
+47	A	I will now decorate your dwelling with a pelt and it will be the pelt taken from you, after which I will take your stone!	po.	80		
+48	Q	 Thank you. I'm developing a perfect antidote, but I don't have snake venom, they live far to the south, could you bring three of mamba and three of coral snake fangs each?	¿po?	49		"LoseItems#10417,2"
+49	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,48"
+49	A	I also came up with a cure for arrogant old men - a hammer on the skull, do you want to try it on yourself or give me your stone?!	po.	80		
+50	Q	 Thank you. I was told about creatures called manticores living in the Inori desert, their venom is very deadly, could you bring the sting of this creature for research?	¿po?	51		"LoseItems#1019,3;LoseItems#1020,3"
+51	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,50"
+51	A	The knife in your guts will be no less deadly right now, do you want to check it out or will you give me your stone?!	po.	80		
+52	Q	 Thank you. I was going to arrange a dinner for my colleagues and cook some exotic dish, for it I need the meat of great apes living far to the south, could you bring such meat?	¿po?	53		"LoseItem#10418"
+53	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,52"
+53	A	I'm going to cook something too, but for your funeral, or will you give me your stone?!	po.	80		
+54	Q	 Thank you. You probably know about trolls? I'm designing a protective suit for the workers in the Icemist sewers, and the skin of these creatures would be useful to me, could you bring at least three of these skins?	¿po?	55		"LoseItem#10419"
+55	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,54"
+55	A	You will go to the nearest sewer yourself now, but you will not need a protective suit, since you will be dead or give me your stone!	po.	80		
+56	Q	 Thank you. I have heard that somewhere near the Zamohr mountains, a druid has appeared who has an amulet, with which he can control wild animals, it would be interesting to study this magic, so could you find this druid and bring his amulet?	¿po?	57		"LoseItems#1011,3"
+57	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,56"
+57	A	I can control you now, too, but with a sword and severing limbs, or will you give me your stone!	po.	80		
+58	Q	 Thank you. There were stories about ursan -  bear-like creatures living on the Korn, and I have heads of all kinds of bears on my wall, besides this, could you bring the head of this creature?	¿po?	59		"LoseItem#10420"
+59	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,58"
+59	A	Today there will be another head on the wall, and it will be your own head, and I will take your stone!	po.	80		
+60	Q	 Thank you. I have heard rumors that huge black wolves have appeared in the ancient forests far to the west, Varannari call them worgs, could you bring the skull of one of these creatures for my collection?	¿po?	61		"LoseItem#10421"
+61	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,60"
+61	A	It's easier for me to find simple wolves closer, feed you to them and take your stone!	po.	80		
+62	Q	 Thank you. A visiting merchant told about the distant village Lamis, where he saw wonderful totems made by Varannari, possessing magic, it would be interesting to study them, could you bring at least one such totem?	¿po?	63		"LoseItem#1025"
+63	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,62"
+63	A	Unlike the road to Lamis, your road to the grave will be much shorter, and you won't need your stone, I'll take it away!	po.	80		
+64	Q	 Thank you. As you know, the most powerful potions can only be made from the ingredients of powerful creatures, for example, the heart of a dragon, could you bring one such heart?	¿po?	65		"LoseItem#440;LoseItem#441;LoseItem#442"
+65	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,64"
+65	A	Are you crazy?! It would be much easier for me to feed you to the dragon and take your stone!	po.	80		
+66	Q	 Thank you. There were rumors in the underground market about some purple medallions from a mysterious underground city, perhaps it is magical, it would be interesting to study such a thing, could you bring such a medallion?	¿po?	67		"LoseItem#10422"
+67	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,66"
+67	A	Or maybe I should also find Tol himself for you? Or the way to the realm of the dead? I will quickly arrange this for you with the help of a sword and take your stone!	po.	80		
+68	Q	 Thank you. A wizard I know from Ismit borrowed a magic sphere from me and disappeared with it somewhere in the sewers of Ismit, could you return my sphere?	¿po?	69		"LoseItem#2636"
+69	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,68"
+69	A	It is quite possible that you yourself will disappear into some sewer, and I will take your stone!	po.	80		
+70	Q	 Thank you. I got into my hands very ancient information about a certain ark of Lothasan, which should be located at ash cape, it is there that you can find mysterious things called an ancient battery, an interesting object for study, could you bring five similar pieces?	¿po?	71		"LoseItem#10423"
+71	A	All right, I'll get them for you.	po.	0		"SetVariable#immersed_darkness,70"
+71	A	Maybe I should go straight to Andoria to bring back unknown crap for you, or is it easier to kill you and take your stone?!	po.	80		
+72	Q	 Thank you. These are incredible things, quite possibly there should be similar things, but larger, could you bring at least one such big thing?	¿po?	73		"LoseItems#1022,5"
+73	A	All right, I'll get it for you.	po.	0		"SetVariable#immersed_darkness,72"
+73	A	Are you suggesting that I go to that place a second time because of your unexpected wishes?! Yes, I'm to kill you now and take your stone!	po.	80		
+74	Q	 Thank you. You have been very helpful to the old man by fulfilling all my requests, so hold the stone from the Temple of Knowledge, as I promised you.	¿po?	75		"LoseItem#1023"
+75	A	Thank you, I was glad to help.	po.	0		"GainItem#10408;GainXP#1050;SetVariable#immersed_darkness,80"
+80	Q	 Okay, okay, calm down, don't get excited! Maybe I went too far, demanding too much from you! Here, take the stone from the Temple of Knowledge, as we agreed. I won't bother you anymore.	¿po?	81		
+81	A	Well, it would be like that right away!	po.	0		"GainItem#10408;SetVariable#immersed_darkness,80;DecVariable#REP_town_whitetower,1"
+82	A	We managed to get into the temple, but unfortunately, over the years, nothing has been preserved there, only all the undead divorced.	po.	83		
+83	Q	 What a pity! It's a shame that such a storehouse of wisdom was lost so stupidly.	¿po?	84		
+84	A	Perhaps you could help us by telling us about the moon curse, if you know anything about it.	po.	85		
+85	Q	 The moon curse?! Ha, it's just a dense superstition! And I have never dealt with such frivolous topics during my teaching.	¿po?	86		
+86	A	Thanks for that too.	po.	0		"SetVariable#mundhelpnot,1"

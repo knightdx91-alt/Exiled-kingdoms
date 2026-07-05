@@ -1,0 +1,20 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the road is blocked by a formidable legionnaire)[] Stop! This tiara, I've seen it somewhere before. It looks like the one worn by lady Merinsolt! 	[BLUE]()[] port.	8	PlayerHasItem#10407		
+1	Q	[BLUE](the road is blocked by a formidable legionnaire)[] Stop! I see you have some kind of big bag! Make him available for inspection immediately! 	[BLUE]()[] port.	5	PlayerHasItem#10406		
+1	Q	[BLUE](the road is blocked by a formidable legionnaire)[] Stop! Unknown malefactors robbed lady Merinsolt, the wife of the governor of Freeport, and by his order, no one will be able to get into the city, as well as leave it, until the villains are caught! 	[BLUE]()[] port.	2		
+2	A	Okay, I get you.	port.	0		
+2	A	Perhaps I can help you find these thieves?	port?	3	"VariableLower#freedom_law_order,10"		
+3	Q	Your zeal is commendable, but in such a serious matter I cannot rely on strangers. [BLUE](For this task, you need a reputation of 15 at Mercia)[] 	port.	4	VariableLower#REP_mercia,15	
+3	Q	Some rumors about you have reached our city, and I think you will be useful in this matter. Find Praetor Anwar, he will tell you the details about this crime! 	port.	0		SetVariable#freedom_law_order,10		
+4	A	Okay, I won't bother you.	po.	0		
+5	A	[BLUE](you tell the legionnaire that there is overseas manure in the bag and explain all its best qualities in detail for a long time)[]	po.	7			PER#7
+5	A	[BLUE](you tried to get away, but immediately the bag of jewelry was torn from your hands)[]	po.	6						
+6	Q	[BLUE](one glance into the bag was enough for the legionnaire to understand everything)[] Wow! One of the thieves has fallen into our hands! Soldiers, detain him! 	[BLUE]()[] port.	11		"SetVariable#freedom_law_order,145;DecVariable#REP_town_freeport,50;DecVariable#REP_mercia,25"		
+7	Q	[BLUE](soon the legionnaire can't stand it)[] Good-good! Go already, otherwise, in my opinion, there is already something smelling here! 	[BLUE]()[] port.	0		
+8	A	[BLUE](you tell the legionnaire exactly where and from whom you purchased the tiara, then you begin to describe for a long time and tediously all its differences from the tiara of lady Merinsolt)[]	po.	10			PER#7
+8	A	[BLUE](you try to justify yourself, but to no avail)[]	po.	9						
+9	Q	Wow! One of the thieves has fallen into our hands! Soldiers, detain him! 	[BLUE]()[] port.	11		"SetVariable#freedom_law_order,145;DecVariable#REP_town_freeport,50;DecVariable#REP_mercia,25"		
+10	Q	[BLUE](soon the legionnaire gets tired of your chatter)[] Okay, maybe I made a mistake, you can go! 	[BLUE]()[] port.	0		
+11	A	[BLUE](soldiers attack you, but you manage to escape, run to the entrance to the sewer and jump down there)[]	port.	12			AGI#2
+11	A	[BLUE](soldiers are attacking you, you are trying to escape, but the soldiers are not going to take you alive!)[]	port.	0		"LoseHP#50;LoseHP#50;LoseHP#50;LoseHP#100;LoseHP#100;LoseHP#150;LoseHP#150;LoseHP#200;LoseHP#200;LoseHP#500;LoseHP#500;LoseHP#1000;LoseHP#1500;LoseHP#5000;LoseHP#5000;LoseHP#5000"	
+12	Q	[BLUE](it seems that you should not return to the city anymore)[] 	[BLUE]()[] port.	0		"NPCSpawn#jude2;Travel#C9_sewer,2"

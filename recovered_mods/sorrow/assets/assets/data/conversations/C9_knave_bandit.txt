@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](in the alley you heard some noise, someone's loud voices)[]	¿po?	2			
+2	A	[BLUE](Carefully approach closer to find out what's going on there)[]	po.	3		
+3,bandit1	Q	 [BLUE](a group of unpleasant-looking types, pestering a flimsy kid with a furtive appearance)[] Got, little rat?! Now you have nowhere to go! Give me the coins or we'll fuck you in a crowd, you'll become a local harbor slut!	¿po?	4				
+4,knave	Q	 Hey, what are you guys doing?! What kind of coins? I'm an ordinary, penniless tramp, I don't even have a broken copper in my pocket!	¿po?	5			
+5,bandit2	Q	 What kind of bucket are you grinding for us?! You didn't understand about the coins, so I'm going to tell you what's what right now! Do you remember about the debt to Umrak? He's been giving you a break for a couple of weeks, giving you the opportunity to postpone payments, but his patience has run out, he wants his money back, all at once!	¿po?	6			
+6,knave	Q	 That's how you should have started! Let me go to Umrak now and discuss this unpleasant situation with him.!	¿po?	7			
+7,bandit2	Q	 But here you did not guess, he did not give up on seeing your face again and hearing your whining, he wants to get his money back, so we are here and will not leave until you give everything owed to Umrak to the last coin.	¿po?	9		
+9,knave	Q	 Okay, I get you! Then let me go to my place and come back here with the money, okay?	¿po?	10				
+10,bandit1	Q	 What kind of suckers do you take us for?! I let you go so that you can leave for good?! We will solve everything here on the spot!	¿po?	11			
+11,bandit3	Q	 Anyway, Umrak doesn't really care about this money, he wants to make an example of intimidation so that everyone who deals with him doesn't think to deceive him, and it so happened that his choice fell on you!	¿po?	12			
+12,knave	Q	 What are you talking about! What is example of intimidation?! I really have money, I paid him back even with interest on top!	¿po?	13			
+13,bandit1	Q	 Stop whining already! You've missed your chance to settle everything clearly with Umrak, now it's going to be bad.	¿po?	14		
+14,bandit3	Q	 All right, stop talking, it's time to finish with him. Let's take the little bastard to a secluded place so that his screams don't attract anyone..	¿po?	16				
+16	A	 [BLUE](step in and help the guy)[]	¿po?	0		"NPCHostile#bandit1;NPCHostile#bandit2;NPCHostile#bandit3;SetVariable#guest_other_worlds,10"
+16	A	 [BLUE](to pass by without paying attention)[]	¿po?	0		"NPCDespawn#bandit1;NPCDespawn#bandit2;NPCDespawn#bandit3;NPCDespawn#knave;SetVariable#guest_other_worlds,110"

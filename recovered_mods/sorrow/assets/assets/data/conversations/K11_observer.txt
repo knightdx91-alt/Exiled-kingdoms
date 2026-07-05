@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](you manage to detain a suspicious man)[] Who are you?! What do you want from me?! Fuck off!	¿po?	2			
+2	A	We want to ask you questions, if we get answers from you, we will let you go, if not, it will be worse for you.	po.	3		
+3,perci	Q	 I noticed that you were watching one of the houses whose owner we wanted to visit, and it seems that you were expecting my two friends to come, in order to inform the guards about it, wasn't it? But you clearly sensed that something went wrong and decided to run away. It's a strange pastime, but it's another thing if you get paid for it. And I'm just wondering, the name of the person who hired you.	¿po?	4				
+4,observer	Q	 And why would you think that I would reveal his name to you?	¿po?	5			
+5,perci	Q	 Well, you can keep quiet, no one forbids you to do this, just like me, no one forbids me to take you to the city, where I have a friend, the head of the guard, he will willingly believe me, that it was you who killed the owner of the house that you were watching, there will even be witnesses who saw you near this place. And I will also help you to receive the most severe punishment according to the law of Thuram.	¿po?	6			
+6,observer	Q	 Hey, I'm not in the case! I didn't touch that guy, I was paid to just follow up on the arrival of this witch and inform the guards about it!	¿po?	7		
+7,perci	Q	 Well, if you don't want to become a lifelong sewer cleaner at Icemist, tell me who paid you.	¿po?	8			
+8,observer	Q	 This dick came to me through a stranger man, but I managed to get him to talk, it's some kind of wizard, toli Drateroll, toli Gratepoll is his name.	¿po?	9		
+9,sansa	Q	 Grateroll?	¿po?	10				
+10,observer	Q	 That's right, Grateroll! This guy paid me and promised to add more on top when I'm done with his job.	¿po?	11		
+11,perci	Q	I suspect that they would have killed you, since he didn't need unnecessary tails. But it doesn't matter. What do you think, friends?	port?	12		
+12,sansa	Q	 This Grateroll is a member of the Guild, but not so long ago. I haven't had any contact with him yet, why would he try to frame me?	¿po?	13				
+13,perci	Q	 I propose to arrange a night visit to him and find out why he arranged it. I take it he lives in Icemist?	¿po?	14		
+14,sansa	Q	 Yes, but I don't think it's a good idea to break into a house without good reason.	¿po?	15				
+15,perci	Q	 Waiting for him to give you another trick is also stupid.	¿po?	16		"NPCStopFollowing#"		
+16	A	I agree, let's not argue, this wizard will not stop here after a failure if we don't do it ourselves.	po.	17		
+17,sansa	Q	 Okay, let's do it.	¿po?	18				
+18,perci	Q	 Then let me go alone again first and explore everything, and then you will pull up.	¿po?	0		"NPCDespawn#perci;NPCDespawn#observer;SetVariable#something_more,70"

@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](slightly sullen-looking priest is glad to see you)[] Welcome to the temple of the Northern Gods, traveler, in our sanctuary any warrior can receive the blessing of our gods for a donation!	¿po?	6	VariableEqual#mastaf,1		
+1	Q	 [BLUE](slightly sullen-looking priest is glad to see you)[] Welcome to the temple of the Northern Gods, traveler, in our sanctuary any warrior can receive the blessing of our gods, if well known in the kingdom! [BLUE](10 reputation needed in the Northern Kingdom)[]	¿po?	0	VariableLower#REP_north_kingdom,10	
+1	Q	 [BLUE](slightly sullen-looking priest is glad to see you)[] Welcome to the temple of the Northern gods, traveler, in our sanctuary any warrior can receive the blessing of our gods patronizing all warriors!	¿po?	2		
+2	A	Can I get a blessing?	po.	3		
+2	A	Thanks, but I have to go.	po.	0		
+3	Q	 Of course, but it will be necessary to make a donation to the temple.	¿po?	4		
+4	A	What kind of donation should be made?	po.	5		
+5	Q	 You will have to donation five small diamonds, and you will receive the blessing of our Gods.	¿po?	6		"SetVariable#mastaf,1"
+6	A	I have small diamonds with me.	po.	7	PlayerHasItems#2004,5	
+6	A	No, thanks.	po.	0		
+7	Q	 You have already received the blessing of our Gods.	¿po?	0	VariableEqual#TMP_prayed,1		
+7	Q	 Well, giving these riches as a gift to the Northern Gods, let them give you a piece of their power!	¿po?	8		"LoseItems#2004,5;SetVariable#TMP_prayed,1;GainEffect#xpbonus,2160,10"	
+8	A	[BLUE](+10% bonus to the XP received within 2 days)[]	po.	0			

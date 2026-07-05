@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	I thought I was lost... but maybe you came here to set me free? Please open my cell using the lever.	Pensaba que estaba acabado pero... ¿vienes a salvarme?. Por favor, abre la celda activando la palanca.	2	VariableEqual#prisoners_dilemma,10	
+1	Q	What are you waiting for? Set me free already.	¿A que esperas? Libérame.	11		
+2	A	Who are you?	¿Quién eres?	3		
+3	Q	My name is Zenmo, I am a trader from Freetown.	Mi nombre es Zenmo, soy un comerciante de Freetown.	4		
+4	A	Oh, your wife sent me to rescue you, then!	¡Ah, entonces tu mujer me envía a rescatarte!	10		
+10,human_werewolf	Q	Don't listen to him, I am the real Zenmo. He's not even human, he's a flesh-eating monster!	No le escuches, yo soy el verdadero Zenmo. Él ni siquiera es humano, es un monstruo carnívoro.	20	IsItemInactive#lever2	SetVariable#prisoners_dilemma,20
+10	Q	Then hurry up and set me free.	Pues date prisa y suéltame.	11		
+11	A	I will be back soon	Volveré pronto.	0		
+11	A	Hmmm... let me ask you something.	Hmmm... Quiero hacerte una pregunta.	12		
+12	Q	Very well, but please, hurry!	Muy bien, pero por favor, date prisa.	13		
+13	A	What is the name of the Freetown armorer?	¿Cómo se llama el vendedor de armaduras de Freetown?	14		
+14	Q	She's the Armorer Dorma, of course.	Es la herrero Dorma, por supuesto.	0		
+20,R	Q	He is the monster here, don't listen to any of his lies...	Él es el monstruo, no escuches sus mentiras...	11		

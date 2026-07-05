@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Damn it, it looks like I was a little unlucky today.	¿po?	3	"VariableEqual#last_race,98"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableGreater#last_race,89"		
+1	Q	 Great, brother, the whole family is here! Now all that's left is to finish off all the bastards and get my son back.	¿po?	2		"NPCFollow#"
+2	A	We'll do it.	po.	0		"SetVariable#last_race,90"
+3	A	Are you okay?	po.	4		
+4	Q	 Yes, it's just scratches, I just need to rest a little and I'll be as good as new. Don't wait for me, let my son, my family know that the job is done.	¿po?	5		"NPCStopFollowing#"		
+5	A	Okay, I get you.	po.	6		
+6	Q	 And don't forget - family is the most important thing.	¿po?	0		"NPCDespawn#dom;NPCDespawn#dom_team;GainXP#1700;GainItem#10449;SetVariable#last_race,100"

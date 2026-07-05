@@ -1,0 +1,741 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="80" height="60" tilewidth="64" tileheight="32" nextobjectid="40">
+  <properties>
+    <property name="faction_guard" value="enemy" />
+    <property name="maxlight" value="60" />
+    <property name="music" value="medieval_rondo" />
+    <property name="name" value="Club Villains" />
+    <property name="name_ES" value="Cueva Merdxan" />
+    <property name="sw1" value="176" />
+    <property name="sw2" value="159" />
+    <property name="sw3" value="158" />
+    <property name="sw4" value="155" />
+    <property name="sw5" value="143" />
+    <property name="sw6" value="179" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="town_objects.tsx" firstgid="9" />
+  <tileset source="dungeon.tsx" firstgid="393" />
+  <tileset source="trees.tsx" firstgid="633" />
+  <tileset source="town_objexts2.tsx" firstgid="649" />
+  <tileset source="artifacts.tsx" firstgid="713" />
+  <tileset source="grounds_effects.tsx" firstgid="717" />
+  <layer name="nonwalk" visible="0" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt1cEJACEMAEF/13/HV8QKopkBn0Lch1kLAOAd34YzWX2/fmfv306/Rr9Gv2ZHv8n7+/b5T9Ov0a/x/zX2b6Nfo1+jX6NfM31/AgAAAAAAAAAAAAC85AeOXgKM
+  </data>
+  </layer>
+  <layer name="water2" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2MEJADAIBEEhtdh/i3bgJ4IJzFRw7PMiAABgRp7tBf/TEAAAAKDnP7mnIQAAAAAAAAAAAADwggKE8gCh
+  </data>
+  </layer>
+  <layer name="water" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt1jEOgzAQRUFy/5MkiHDF4CJNihQs4mMzI21t6yGxniYAADjG65G+Qd9av0XD3b79NNxHvxr9akbol96BI/Tr+f5p+tUk+z23c+fipCX7tbPXbd7FOcO/75fstxzQ8Czp83+N8H5J0q9Gv/ruvHu/pvrvv3u/pof9CQAAAAAAAAAAAABX9wH3fWUQ
+  </data>
+  </layer>
+  <layer name="ground" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2e1OwyAYhmHIjmUHYzwyjXV+TT0F9Z9HaIk2QwbshYcWSp87ebNkzT5yjbVdt98pta88a662Hf3oV3vWXG07+tGv5Wm92j69+71ppR4y5n2cK/qpg043NHaD/n1+1LD1JH4phpPd5PepMb87LZ+W/SSGtl1JvxtnQve17hczdO3o5/fzGfrs5vDzfWdj23LmcZz7v3kSfCY5fmZurfHZDZ41kjOukXRb7msNluWhEz/feru0jX79rr9XfdpHmDkG/Eq09P7vRZ/2688z+Ll2MUPTx3j7BUxPx9+QXcjQxPMXmZ3PsJTf2n9/SO1cwxJ+sbVYy8zu0ntOtbMNTVv3u95hz791v8kw9/gpfY2e/VoZ+tFvjpFGP/rR73+17ehHv9ojrUW/NUU/LPph0S9cqevvrVwXXLrQ/z8p159Dj99C9MOiHxb9sOiHRT8s+mHx/A8rtH5ia0z6mC2U4vdNv7O4/rC4/8Pi8ReLflj0w6IfFv2w6IdFPyye/zHGlu4HYarr2w==
+  </data>
+  </layer>
+  <layer name="ground2" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt0qERACAMBEGGBqEvKBqPQL3JsFvAiU9aAwAAAAAAAAAAAAAAAABeVs/2ZjZXwg5tmL4FfxihTuqPK0ltBwAAALcDzHoDJQ==
+  </data>
+  </layer>
+  <layer name="scenery" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt2EEBABAQAEEKaUJQSopx58wk2Pe2BgAAZLF7dAEAAAAA1R0PCgAAAAAAIIUZHQCfWdEBDxvRAQAAAJR1Aes1AiE=
+  </data>
+  </layer>
+  <layer name="objects" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztm91KwzAUgDufxNdQ8Af0pZ06EHR6p7eCoOB2oe8gmGICh5Bi2nNWW8/3wWFbWpL220nTrFnTAAAAAAAAQMt60TSrEG8hljFexPtUfr/46yOdJheVXi5n7m9/bzf1vv5Df7tyVaI2/9axH69i/059vuvzsrC9tq058VR5TtcG517blhVfI7T3WNnGh8Gx1LY1J2r7lEX+jdV/p3j9uwv7XSlj7P4rYfydJin/ur6fVI6/MrJf3mSObsW2B/z9Sj5GkHP9wJ+OfCzGXz/ysRh//SD/dOBPB/50PONPBfmnA386uH/RQf7pwJ8O/OnAXzdpnUH+rLGNjSj7FJHWHmwK6xHSM0ov6xIsnv+U8JKj+dzCCi/+ZP4dx5AMLfPiT94bn4U4z7YPLfPiT+bfaQzJ0DKP/izx4u8dfyrIPx3bcJ6HxnW29Xnx146/B+H1xKi+o+anPi/+ttGfJZ78cf3Twfirg/zTwfxXB/NfHcx/dfD7n44+40eftepe/Fn8/6AUrIsGgC6+ARpToEk=
+  </data>
+  </layer>
+  <layer name="roof2" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJzt0EENAAAIxLCTiH81GIA3IWkVLEsAAAAAAAAAAAAAAAAAgE1dBzznHwAAAACTBhK0AKE=
+  </data>
+  </layer>
+  <layer name="roofs" width="80" height="60">
+    <data encoding="base64" compression="zlib">
+   eJztzlEJACAQBTCxjaD9SxjKAvr9ONkSrDUAAAAAAAAAAAAAAAAA4GWkAx9Y6UBxu6cHtc10AAAAALg69OwBUQ==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit" type="entry" id="1" x="1455" gid="1" y="1485">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="Wizard" type="staticNPC" id="2" x="2280" gid="1" y="460">
+      <point />
+      <properties>
+        <property name="conversation" value="C13_tomb_wizard" />
+        <property name="facing" value="l" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@WIZARD" />
+        <property name="portrait" value="78" />
+        <property name="sprite" value="wizard_green" />
+      </properties>
+    </object>
+    <object name="kalagru" type="spawn" id="3" x="1205" gid="3" y="1495">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="j12_kalagru2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="magister" type="spawn" id="4" x="1205" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="magister" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="calenda" type="spawn" id="5" x="1235" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="forsaken_calenda_victim2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="redwizard" type="spawn" id="6" x="1365" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="red_wizard_lord2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="xidar" type="spawn" id="7" x="1395" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="xidar2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="azeran" type="spawn" id="8" x="1525" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="F6_azeran2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="ataman" type="spawn" id="9" x="1555" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_ataman" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="saruman" type="spawn" id="10" x="1685" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="saruman" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="gendalf" type="spawn" id="11" x="1715" gid="3" y="1745">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bad_gendalf" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="valeran" type="spawn" id="12" x="1205" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="valeran" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="13" x="1235" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="vampire_lord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="minotaur" type="spawn" id="14" x="1365" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="minotaur_underking2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="orc" type="spawn" id="15" x="1395" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="orc_general" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="troll" type="spawn" id="16" x="1525" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="king_gurguth" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="ursan" type="spawn" id="17" x="1555" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="korne_king" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="berserk2" type="spawn" id="18" x="1685" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="berserk_female" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="berserk1" type="spawn" id="19" x="1715" gid="3" y="1615">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="berserk_male" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="varannari" type="spawn" id="20" x="1205" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="C11_hunting_moon" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="yeti" type="spawn" id="21" x="1235" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="yeti_ancient" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="giant" type="spawn" id="22" x="1365" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="D13_giant_chief" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="kurg" type="spawn" id="23" x="1395" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="kurg_king" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="nightwalker" type="spawn" id="24" x="1525" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="nightwalker_lord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="undermother" type="spawn" id="25" x="1555" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="undermother" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="succubus" type="spawn" id="26" x="1685" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="greater_succubus" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="mermaid" type="spawn" id="27" x="1715" gid="3" y="1365">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="male_mermaid" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="zuzsare" type="spawn" id="28" x="1205" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="zuzsare_hostile" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="guardian" type="spawn" id="29" x="1235" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="guardian_fortress" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="necromancer" type="spawn" id="30" x="1365" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="necromancer_female2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="machete" type="spawn" id="31" x="1395" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="bandit_machete2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="perfect" type="spawn" id="32" x="1525" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="hostile" value="" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="mister_perfect" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="deadman" type="spawn" id="33" x="1555" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="dead_man" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dragonqueen" type="spawn" id="34" x="1685" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="dragon_queen" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="elflord" type="spawn" id="35" x="1715" gid="3" y="1235">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="elf_lord_witch" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="regent" type="spawn" id="36" x="1715" gid="3" y="1495">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="true_regent" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="prophet" type="spawn" id="37" x="1145" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="ursan_prophet" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="vorator" type="spawn" id="38" x="1275" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="vorator_grozza" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="demonwolf" type="spawn" id="39" x="1425" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="C12_demonic_wolf2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="manticore" type="spawn" id="40" x="1585" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="manticore_great" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="calling" type="spawn" id="41" x="1775" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="calling_storm" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="carrion" type="spawn" id="42" x="1145" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="carrion_lord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="horseradish" type="spawn" id="43" x="1275" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="horseradish" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="voidlord" type="spawn" id="44" x="1335" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="void_lord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="metalist" type="spawn" id="45" x="1425" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="metalist_female" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="preacher" type="spawn" id="46" x="1485" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="hostile" value="" />
+        <property name="spawn" value="kung_foo_preacher" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="rexadon" type="spawn" id="47" x="1585" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="rexadon_champion" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="amazon" type="spawn" id="48" x="1655" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="furious_amazon" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="dragon" type="spawn" id="49" x="1775" gid="3" y="1305">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="dragon_q3" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="shooter" type="spawn" id="50" x="1455" gid="3" y="1185">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="magnificent_shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="darklord" type="spawn" id="51" x="1305" gid="3" y="1205">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="elf_dark_lord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="shining" type="spawn" id="52" x="1615" gid="3" y="1205">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="hostile" value="" />
+        <property name="spawn" value="shining_knight_male" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="53" x="1455" gid="3" y="485">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="chief" type="spawn" id="54" x="535" gid="3" y="500">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="chief_villainy" />
+        <property name="wander" value="3" />
+        <property name="tag" value="chief" />
+      </properties>
+    </object>
+    <object name="vagabond" type="spawn" id="55" x="1435" gid="3" y="1495">
+      <point />
+      <properties>
+        <property name="spawn" value="vagabond_male" />
+      </properties>
+    </object>
+    <object name="throne" type="container" id="9" x="510" gid="5" y="510" width="64" height="64">
+      <properties>
+        <property name="icon" value="throne" />
+        <property name="items" value="10128,10129" />
+        <property name="name" value="@THRONE" />
+        <property name="unique_tag" value="C13_tomb_throne" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="10" x="1145" gid="3" y="1265">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="skeleton_enormous" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="elementlord" type="spawn" id="11" x="1775" gid="3" y="1265">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="j12_elemental_lord_ice" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="werewolf" type="spawn" id="12" x="1145" gid="3" y="1645">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="D8_werewolf" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="skyknight" type="spawn" id="13" x="1775" gid="3" y="1645">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="sky_knight_boss" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="destroyer" type="spawn" id="14" x="1485" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="destroyer" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="goblin" type="spawn" id="15" x="1335" gid="3" y="1686">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="hobgoblin_warlord" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="oldone" type="spawn" id="16" x="1655" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="old_one_purple" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="17" x="275" gid="3" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="18" x="450" y="450" width="96" height="96">
+      <properties>
+        <property name="actions" value="StartConversation#chief,C13_chief" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="20" x="1455" gid="3" y="485">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="21" x="275" gid="3" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="22" x="715" gid="3" y="715">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="23" x="715" gid="3" y="415">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="24" x="1205" gid="3" y="505">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="25" x="715" gid="3" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="26" x="715" gid="3" y="575">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="31" x="1700" gid="5" y="510" width="64" height="64">
+      <properties>
+        <property name="id" value="splash" />
+        <property name="inactive" value="" />
+        <property name="tag" value="cold" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="32" x="1790" gid="5" y="480" width="64" height="64">
+      <properties>
+        <property name="id" value="splash" />
+        <property name="inactive" value="" />
+        <property name="tag" value="cold" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="33" x="1940" gid="5" y="530" width="64" height="64">
+      <properties>
+        <property name="id" value="splash" />
+        <property name="inactive" value="" />
+        <property name="tag" value="cold" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="34" x="2040" gid="5" y="510" width="64" height="64">
+      <properties>
+        <property name="id" value="splash" />
+        <property name="inactive" value="" />
+        <property name="tag" value="cold" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="35" x="1780" gid="3" y="520">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="36" x="2010" gid="3" y="520">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="headshotter" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="rex" type="spawn" id="37" x="495" gid="3" y="405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="speedy_rex" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="rex" type="spawn" id="38" x="495" gid="3" y="565">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="speedy_rex" />
+        <property name="tag" value="chief_chop" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="headshotter" type="spawn" id="39" x="1540" gid="3" y="410">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="energo_machine_gunner_male" />
+        <property name="tag" value="machine_gunner" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I told Lexus about you, go talk to him.	¿po?	0	"VariableEqual#size_matters,55"		
+1	Q	 Hello, I'm Serunus. So you're the loser who's going to play the main role in Astutus' kind of cunning plan?	¿po?	2	"VariableEqual#size_matters,52"		
+1	Q	 I'm not in the mood to talk to strangers right now.	¿po?	0	"VariableGreater#size_matters,44"		
+2	A	Yes, I agreed that if I helped him, he would help me.	po.	3		
+3	Q	 I've known Astutus for quite a long time, and, to be honest, I didn't advise you to really hope that he would really help you. His knowledge of magic is superficial, and he could only do something more or less meaningful with the help of other wizards. But that's your business, since you've already agreed with him, although it would be worth looking for help from someone more capable.	¿po?	4			
+4	A	Okay, let's get down to business.	po.	5		
+4	A	Yes? And you seem to know who to turn to?	po.	9			PER#4
+5	Q	 Good. I'll take you to the Lexus camp, where you'll tell him something about the unbearable life under the wing of Astutus, you'll leak the location of the laboratory where the trap is actually prepared. I'm going to tell you exactly where it is, in case you have to take Lexus and his people there yourself. [BLUE](in a quick way, the wizard explains to you how to get to the place where the trap is prepared)[]	¿po?	6			
+6	A	Understood.	po.	7		
+7	Q	 Then we will not linger, let's go on the road.	¿po?	8			
+8	A	Fine.	po.	0		"SetVariable#size_matters,55;Travel#K11_house2,1"
+9	Q	 Without a doubt. I've been spying on Lexus and his group for a long time, and I can say that even though Lexus is as ignorant and incompetent as Astutus, but his guys are more capable and talented, unlike Astutus's sycophants and sad sacks.	¿po?	10		"SetVariable#serunus_talk,1"
+10	A	 And do you think that Lexus will definitely help me? And obviously not for nothing?	¿po?	11			
+11	Q	Maybe, but they are unlikely to demand anything more serious in return than Astutus wants. Anyway, we'll be there, you decide what to do. And according to Astutus' plan, I have to take you to the Lexus camp, where you will tell him something about the unbearable life under Astutus' wing, you will hide the location of the laboratory where the trap is actually prepared. I'm going to tell you exactly where it is, in case you have to take Lexus and his people there yourself [BLUE] (in a quick way, the wizard explains to you how to get to the place where the trap is prepared)[].	po.	13		
+13	A	Understood.	po.	14		
+14	Q	 Then we will not linger, let's go on the road.	¿po?	15			
+15	A	Fine.	po.	0		"SetVariable#size_matters,55;Travel#K11_house2,1"

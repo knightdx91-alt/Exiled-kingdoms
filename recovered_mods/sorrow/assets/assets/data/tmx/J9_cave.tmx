@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="76" height="76" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="something_near"/>
+  <property name="name" value="Askatir Mine"/>
+  <property name="name_ES" value="Mina Askatir"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="grassland.tsx"/>
+ <tileset firstgid="617" source="trees.tsx"/>
+ <tileset firstgid="633" source="dungeon stairs.tsx"/>
+ <tileset firstgid="637" source="dryground.tsx"/>
+ <tileset firstgid="701" source="town_objects.tsx"/>
+ <tileset firstgid="781" name="town_objexts2" tilewidth="64" tileheight="64">
+  <image source="town_objects2.png" width="512" height="512"/>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="light" value="brazier_lamp"/>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="845" source="grounds_indoor.tsx"/>
+ <tileset firstgid="1005" source="natural_grounds.tsx"/>
+ <layer name="nonwalk" width="76" height="76" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4Mv4eorpAWgAA
+  </data>
+ </layer>
+ <layer name="ground" width="76" height="76">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2c227jRhKGB6i32XeRRFmidRzHySwW2AsdLSavnsuYmPpQv3t4Jo3JxRTQMEVRTfbfda6iv3z5RZ9NuX35svaRvY/5+1i9jyc/d38ff9rPfsp/D4HT1gK76/tYOG6393EagdnBvo8S/43fpzye+fFqor0o597JnOXno48p9xs+WgtW5d+lY5Y7nquO9937b2f+dyvPvZF1bBxHzo1d08bvWcrDs6+hPLf3NUyF2TZZ28znXzofMHLHsu2+M8dh5wPevTrmFz938nkfvi/ZyDUdXBY2Pu/OdQv7k0+E1873gj0BK2Txyde6FN5rujc4gTfPP/Pjlf8eeV/5d3vHeSit5VlXjtXNj+HjKQjdjuxvnacXIp+ZX5P5AE/kls9PgtPR9wCduPPP5Xxvfv3esTr68ZA1oXdz51X2YuPPenBePk2EVyFrmttH/X/1MRP84EeeEf33LAPZBvezzz2z0IVnC/0/l3v3IZ4B3MHq7vPP/HmQ/6mosNCPS1nDs9wz97/wEPy/FhmD18As82d/8jVdfN6Fn7v7OtDV7FsXQuZz51fmOfvccws9crB6O1zy5M3H1ed5+N+Ln6/Sqyu5D3oGnlpY2ErkEAyX8lltxEIwx46ANTqfa1eO3d7Cnu4s9MSTrHluoTf2vp5M5l75WlnPXvaoitizh+B+d+zg02vNbxcW/lHuz7ryc/DWs59btvABcn6Rdb75XrAP6EPFmHuB016uP/j1+CwXC7v97GvDjtz9N7o3VXR2zO8WvPbwuR7CY1U0s9AlmYWswfdPctyFnmSvwQf8kWf2YCnz7+S+8Dn4oZ/QHVfZE/iE51cfeVvzzGACn10dq5M/48NHFSlPZRbyhuzBd31o5vMxB/7vUuZTf2Pjz8n+bv0vdhp7uJBj5oKPwWtnsaas5rnB6GShc9Fl4Hiu+S08fbWwg+wzPNCXCgsdVt77aCGHVbq9sNB92ONcri8/l3L5YqHzlxa+PH4MevhgEU9U0d1iEOOUx2+OA7agilR/95G7LpjNfOCLIF91128tZJl9Vvv7Isfg8ZB9xi7i29XxF7jAT/A755DXKmJNFwu9OxUVFvLF/E2+Q+EYzC30PDp/6Xjh48Bb8KXmWPDv6+gmMvXwuZkD37oKL2x/bqEjp+IvxYB8Bfa27Xp8HPTg0XF5tfCPiefhN3wXYscmulvoK3C++dpvjtc9mWNrkVNYWNjJ8vzUuS9844PV+0Tp9Rp7Ere9CC57H2B0sLAtbXS20On4EheRT/xWCJuAX4otI4+0/gTMxhJ47TrwTxudnYfU18KHwMe4J3jht2PLsS/EOVPmj6agrcsjMfxYUh1Rjv80XEuco7rrYh9zL8wzBDP8kNWIOVJaWej7sXmaZwu8Di7XuwbMsFOZ40QuAd8Q2VwnI6WjX7fze67lbxojNGH2l/040utXzl+HmmfpQ/gc+B0nwa0Os13CUycLvsDnJp/I+lP89LxeT6ycyfzYua54/ZVcexC8diPxwl978/0mt4hNqsIMXiI3St4F/3kjvK/8AjbgVF6Pn0xMrLmKu4WNq7NdbXiR73qx5riwK5X7+puMPyxyvayvCmPyXhdfDzWiXM5rDgc7AIb41OiDuUXOS3Nj1IVymVv1Whte+Kbqr44hngF+erGPtZh9xfz40uBxlc/sIfxUJYN8R07g7AObW+J+k3m1roJ9wdf7uwYz5Ye1r4t4cQyxv/Atdld5rIqIc7W2Qu5F9X1KiuPZIpYm75kJXgeL+hF1rp195M82vHgm/K+x8og9pH5ZzksdAD1UR4WFPsb+N9lEJXLzyO3Z749/TPx6t5BJ9obYO++IF/E2dm0MoUuJ2ZFH9qLNX4HPNHbtYrNnsv6zhf6fyTG4LSzygtRy5j3Wrf7qVPJILQw5f1j4sJ9BqpPUl8AeZH7+ZqH3te7Zh5Cb9QR4UStAF764TJBnm6pumRI1BWwp8ofdQI+d7cfcal86y7rKe42JGcALf+pVZLOLPA4l/AXyRuSc4aurRT6K+Io6Wl86+brIT43pJQAvdDR+CliNjR+aCH03t4+5UI0VeBb81iH9OW+OF/e4jOCzvTwX/gR6q64eupLvFiP5eyXYkOfQPChyuZPjvnQSebxbxA5D+q5yC/8GO6I6LY23tF6lNZyfnb+p8/PLUdqM/76Pr/Y9fin35+H4d+khUiIHq/oLn/NkP/p39DLhC1Cr2v1kzJrwojdi5ny2sKiLkYPv+uwaY+cW/ioxcGp/8d2xoRprj+3JGkNNeFH/evj65hZ9E8hHV9kkznj2tb/6XOqXKdF/RR6BHlbOfaZ9aKI2eUQGyeOTP17KGt46YEbcc3S8XpxPyQmk+gtszha5BGLAtppXSuQ4tha+2FD+bMILe3hzfuD5qU3Df3M595DfqX4mP4LO17gB265E/YnYRPvnyBV2Ifw77g+v9tElXfFSvwv+yiz6kO4WeoXaD70k9KQQf1FbIo7T+LGqj1NjEu1logesi39Evkd7bIinkY++mBUNeM0dlxKn/1nk+r7WHNedKwkbt3e8sI91+UJiYmrg5L/wObvgRZ8N9oJYWmPIoXxWRdQFVd8v5d7UWckbELdSW2WUhJ7Cb3218Our9NFC5sVfJR+KT9JGyMPJPsaQ3PNsoVenwGxuUZuhj4J6681CJ98teqjqiLoQ/jp1c2xmun6+Q36xLZrDayN4FP8Oe45uxT5TNx+LGfoH/UU/En0Q9BzC3010dLzQIWn+K9X3ynf4Lvh/xMdtVFjEghrrXyxkXfuzxtbMy3l/t+/66JtFTR/MyBV1yX0oLsRD+KnUA9Pryb+gs+ET4r0uRA9SbtF7QS8SMgp2Y3tZ1E+i55T7YKO6xvHoib1F3pbaR5V/T74gs7C1movpQ4XFezTE2djIucxP3mIoLS3yE9qD9bDIWXal3MI3Qx7xu8AtXSM5Kd7fYK1DeID+G+wS+Qpsrcb3Qwn+whaid1cDnhm/gb5s8hNa965ao9bPzsJzQ6iQebCN2s/f1e7WEfyFfu+ja1Mij0NvInkibGDbcxZy/6p4oCvBZ9Qftd7YpR+9icgXkosghhtC+BM8K3Vz8vdV9dqUqBFpXW4IYTfxWfQ91CF5Qmgu8kjf4VDCBlJTAy/inq7xYJE8z8L6v0tIXYg8HnXgMbYRu/sqzzWGsIHU/Mp5edekrV6bEjI1k7VS4++CmcYevN82hrCtmYUfPkU/E7aNvgzyh+Sk+xD988pnrL8NM7DV2sdQQq7BDLzonx5K9Avj42s8NNQuFRa5i4tFz3IbZtgsjU+HEL4kPVLEefjm6GXkhxgF3m6SB2wg+QniIbAaY+/YX/xzsPvTquv5yCBx6JDeEOwU90Wnvvrc9K/cLd5Zwy/KZNS9f84+aP6e3pw6/UWspHa0au7Cws5pDop3gIkNsO/43cgkcoycshb8WuqUz/Id7yEg06rvuf5i0cPIfLz/R16JumjV2uFT7CMY8l1Kms/Qd3CaZK2weKeJ3JnyADxFXEo/pubufk8+p/m8r8l5Pf4mPEQso7EpOkB79Kt8PnwG/DD8urp6R0lr4YOb3LPNDhb2Yw5Tx/+TtaZYfLPoHwBfajzkDC4yiOO1vkBsmslvkd+NHPO+eEqad8e/V7+zypZovxG5qrt1q90W8szsMXlpdCd+GDaWWFLzmMRJxJ3sF3kSfpdZ9HuqL8xvbxa5JXxG/OOqXg2wwUa+OAbaj5+S1izpdVN+bLNrRYKT7hWYYE8138R3xJfwmL5zu5Rr8B/Q58xJLIP+1fw4eqbOL4C3iK3Ri5yvWjsY6zu4OkffHquN3HuKnraSyAlgl4gT4FX6qZBv+rTBtI7gzdyiPsfzV+VzSlpbvJOF/8a7nZua37QRscUUPbl9CBujecOmGBCZhodfZN3IWxWhJ9Fhyt9DesaotRwb7vmZVK6HOkxTDKi90bnIBLq7yb8HG3iNGGEIUSu+jZhjKMEbyGlT7ogcCvqI/AQ+aZN87AUjvb4vURfGV56qpxFdldpU7ABE7LWx8DWaiNiFfDS2Ufsyq9690Xq+1sn70jq599sEeDEnNVnkDV8B+4odwE/rWicqLPxVYkntcaBHLI3FtecefJXXsLXUMsGd+dJaHvs0lugVZg3oJmq3+ItgxHebjniBWdmH1+SD/2Yh7+Woi0vqehGarv9mw2U6Jf5nCXUZZJCYvoxlbxZ99Pin1Lr7Ev4LuUP8E303hZwstpVch/Lc1p9nL7/X3p9j8nlonSkleiDUr8X/QkdRp+G9HuLZoVTImpC3NwsfEH21k+vQ17xLyXsPe//t0eJ/HFL7J26f8v0IMMHeUSPVnmx4jbrnFPfWOrT2IhI/ghfrh/dZPzzIWMtc2F4+T+lHFCJf1LKJNdHtnCM/MeW9uc9RMEB2sAOaeyQe5X1dfQ9V85oH+e3URA4Jm8ggv6bv/f6i76R1TfKMxI7YxV/0i/4N9A9U0+ySQFoAAA==
+  </data>
+ </layer>
+ <layer name="ground2" width="76" height="76">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3buwrCMBiA0dC4itXFy6qvqPZl1VexoQFBtNhBm+I58EPH8BFChiYEAAAA+G/bOPYKpmf3otlSx7fq+Oizjt1s9ALgi5p2jmMvYkLOoWvGZ1KrU55SzPPd6lDgHasJ9tcQJbXaF7ifnqXzy3k/TElnFwAAAAAAAAAA/NJsAv9ElSK1WuT3H7VuvVKrW9V9p7cyK716xbbPNfe6VOOuBQAAAACYjjs8bbqAQFoAAA==
+  </data>
+ </layer>
+ <layer name="scenery" width="76" height="76">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OQQ0AMAgEsJurCcN/kLAnZGkVNAEAAAAAAOClzvQAAAAAAADY6E4HAAAAAAAAAAAAgG81Bv1tqEBaAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="76" height="76">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <objectgroup name="data" width="76" height="76">
+  <object name="statue conv" type="conversation" gid="245" x="817" y="777">
+   <properties>
+    <property name="conditions" value="VariableLower#abyss_gazed,36"/>
+    <property name="conversation" value="J9_cave_grate"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="832" y="768">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#abyss_gazed,36"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="mine sign" type="conversation" gid="245" x="2173" y="1211">
+   <properties>
+    <property name="conversation" value="J9_cave_notice"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="2324" y="1292">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="2396" y="1239" width="43" height="115">
+   <properties>
+    <property name="area_id" value="J9"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="2145" y="1883">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="2133" y="1811">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="2222" y="1871">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1807" y="457">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1885" y="494">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1962" y="482">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="2212" y="1913">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="2003" y="457">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1939" y="528">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1959" y="1289">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1983" y="1247">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1939" y="1336">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1940" y="1879">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1945" y="903">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="2249" y="252">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="2273" y="210">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="2229" y="299">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1135" y="280">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1299" y="294">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1255" y="383">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1361" y="407">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1471" y="198">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="658" y="212">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="720" y="325">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="634" y="254">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="614" y="301">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="536" y="225">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1779" y="1208">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="708" y="813">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1271" y="1372">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1120" y="1445">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1247" y="1414">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1092" y="1362">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="575" y="1243">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="179" y="462">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="199" y="1849">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="219" y="1776">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="760" y="1736">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="877" y="1758">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1514" y="1921">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1135" y="1927">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1846" y="2261">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1887" y="2320">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="1843" y="2197">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="540" y="1910">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="584" y="2033">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="543" y="1974">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="243" x="621" y="1960">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="338" y="2214">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="853" y="2253">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="1078" y="2290">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="220" y="1407">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="209" y="1505">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="225" y="1287">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="218" y="1046">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="229" y="920">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="255" y="443">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="532" y="1420">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="600" y="1403">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="194" y="582">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="243" x="545" y="799">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2197" y="117">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1817" y="2194">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1202" y="1267">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="563" y="1845">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="510" y="1117">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9,dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="89" y="1047">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9,dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="90" y="473">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9,dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="117" y="341">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table">J9_mine_chest_key
+</property>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="245" x="1683" y="1202">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Spider" type="spawn" gid="243" x="569" y="582">
+   <properties>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Duremas" type="spawn" gid="243" x="1262" y="828">
+   <properties>
+    <property name="spawn" value="J9_duremas"/>
+    <property name="tag" value="duremas"/>
+    <property name="unique_tag" value="J9_duremas"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1009" y="735" width="122" height="225">
+   <properties>
+    <property name="actions" value="StartConversation#duremas,J9_duremas"/>
+    <property name="conditions" value="VariableLower#abyss_gazed,40"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="832" y="800">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#abyss_gazed,36"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="1600" y="864">
+   <properties>
+    <property name="maxlevel" value="15"/>
+    <property name="minlevel" value="11"/>
+    <property name="secretdoor_tag" value="J9_cave_1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1625" y="727">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="2605,6005,5025,5021"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="J9_duremas_chest"/>
+   </properties>
+  </object>
+  <object name="attack" type="waypoint" gid="241" x="941" y="799">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="2239" y="1155" width="30" height="261">
+   <properties>
+    <property name="actions" value="LoseItem#2526"/>
+    <property name="conditions" value="VariableGreater#abyss_gazed,35;PlayerHasItem#2526"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="roofs" width="76" height="76">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4Mv4eorpAWgAA
+  </data>
+ </layer>
+</map>

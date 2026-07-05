@@ -1,0 +1,26 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	I'm listening to you, my friend.	port	16	NPCisFollower#	
+1	Q	[BLUE](a young half-naked girl with deathly pale skin was sitting on a rock near the shore)[] So you're back. It's good to see you again, my friend.	port.	14	"VariableEqual#barge_attack,10"		
+1	Q	[BLUE](a young half-naked girl with deathly pale skin was sitting on a rock near the shore, looking at you with interest)[] It's been a while since I've seen new faces on this barge, I'm glad to meet you. But I advise you not to stay here for long and be very careful.	port.	2		
+2	A	I hope you're not one of those creatures masquerading as humans?	port.	3		
+3	Q	You mean those nasty shifters? No, of course, I'm an ordinary person... well, to some extent ordinary.	port.	4		
+4	A	Then who are you and what are you doing in this damn place?	port.	5		
+5	Q	I've been here so long that I've already forgotten who I was and how I got to this place. All I can remember is that I was the daughter of a rich gentleman who owned this barge, and about a deal he made with some powerful being, the result of which was a curse that fell on everything my father owned. It's because of the curse that I'm chained to this place.	port.	6		
+6	A	I killed a huge monster that lived here, maybe the curse is broken.	port.	7		
+7	Q	I am glad to hear such news, you are undoubtedly a great hero to win this victory! But even if the curse is gone, I still have nowhere to go.	port.	8		
+8	A	Yes, it's sad, but I'll be back to visit you again.	port.	12	hasFollower#	
+8	A	You could come with me, help me on my adventures.	port.	9	"hasNoFollower#"	"NPCFollow#"
+9	Q	Hmm, why not? In fact, it's clearly better than sitting here in place for another hundred years. Let's hit the road, my new friend!	port.	11		
+11	A	I'm glad to be your friend.	port.	0		"SetVariable#barge_attack,10"
+12	Q	I'll be waiting for you, my new friend!	port.	13		
+13	A	I'm glad to be your friend.	port.	0		"SetVariable#barge_attack,10"
+14	A	I'm glad to see you too.	port.	0	hasFollower#	
+14	A	In order not to sit here alone, you could come with me, help me in my adventures.	port.	15	"hasNoFollower#"	"NPCFollow#"
+15	Q	It's a good idea, it's better than sitting here in place for another hundred years. Let's hit the road, my new friend!	port.	0		
+16	A	Nothing, let's move on.	port.	0		
+16	A	I don't need your company right now. Thanks for the help, I'll see you again later.	port.	17		
+16	A	Please move a little, you're standing in the way.	port.	18		
+16	A	Hey, do you have magic?	port.	19		
+17	Q	Well, you know where to look for me if you want to see me again, my friend.	port.	0		"NPCStopFollowing#;NPCDespawn#drowned"
+18	Q	Of course.	port	0		NPCMoveRandom#
+19	Q	Of course, I can teleport us wherever you want.	port	0		Teleport#

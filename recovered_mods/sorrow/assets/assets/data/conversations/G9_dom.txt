@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Well, it looks like we were able to defeat all these freaks!	¿po?	6	"VariableEqual#last_race,47"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableEqual#last_race,45"		
+1	Q	 Hello, it's good to see you, I want to thank you for your help, we finished off the bastards, now my beloved and my friend can rest in peace.	¿po?	2			
+2	A	I was glad to help you.	po.	3		
+3	Q	 I appreciate your help and I have to thank you for it... There's something wrong here...	¿po?	4			
+4	A	What happened?	po.	5		
+5	Q	 Watch out!!!	¿po?	0		"NPCSpawn#hidden_team;SetVariable#last_race,45"
+6	A	Do you know who they are?	po.	7		
+7	Q	 Yes, they are secret guards, they are hunting me, I was surprised that they would be able to find me so quickly and easily, their most important hunter has been threatening to catch and hang me for a long time.	¿po?	8			
+8	A	And what are you going to do about it?	po.	9		
+9	Q	 To end this once and for all. I will lure this freak and his pack to the bridge at Storm Mountain, where I and my family will finish them off. Do you agree to help me again?	¿po?	10			
+10	A	Of course, I will be glad.	po.	11		
+11	Q	 I had no doubt about it, my friend!	¿po?	0		"NPCDespawn#dom;SetVariable#last_race,50"

@@ -1,0 +1,13 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you defeated all the attackers, but suddenly, another hidden opponent popped out from under the water, a spell burst out of his staff, rushing straight at Adaon, who was standing with his back to him, but Jenod reacted quickly, he pushed Adaon aside to reflect the attack with his magic. Flashed, and he collapsed to the floor, Adaon finished off the evil sorcerer, preventing him from attacking again, crouched down next to the lying Jenod)[] 	[BLUE]()[] port.	2			
+2,adaon	Q	Hey, gramps, are you okay? You saved my life.	port?	3			
+3,janod	Q	[BLUE](wizard spoke softly)[] Maybe you're really a good guy... 	port.	4		"NPCStopFollowing#"		
+4,guard	Q	[BLUE](Adaon guard, came running to you from the shore)[] Have you been attacked again? I was in as much of a hurry as I could! Is he alive? [BLUE](he glanced at Jenod)[] Let's get him inside, I hope Kiara has someone who can help him.	port?	5			
+5	A	How did it go with you?	port?	6		
+6,guard	Q	It's fine, we can start implementing our plan. Where is your necromancer?	port?	7			
+7	A	In Deadwood, near Kingsbridge.	port?	8		
+8,guard	Q	Obviously, first we'll have to pick up the body of Adaon's doppelganger, I found out that he hasn't been buried yet, and then we'll go to her.	port?	9			
+9,adaon	Q	What? Why do you need the corpse of my doppelganger?	port?	10			
+10,guard	Q	He has very important information, thanks to which we will be able to defeat these killers, unfortunately, he is dead, but with the help of the necromancer, we will still be able to get this information from him. Let's not waste any time, we're heading to the cemetery next to New Garand. Adaon, you'd better stay here with Jenod for your own safety.	port?	11			
+11,adaon	Q	Well, no way! I'm still a hero, I don't want anyone else to get hurt because of me! I'm coming with you.	port?	12			
+12,guard	Q	Well, whatever you want. Come on. 	port.	0		"NPCDespawn#adept1;NPCDespawn#janod;SetVariable#hate_through,55;NPCFollow#"

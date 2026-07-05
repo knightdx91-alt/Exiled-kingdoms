@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](these are ancient ruins in which flames are raging, despite the lack of any fuel)[] 	[BLUE]()[] port.	7	"VariableEqual#smoke_without_fire,110"		
+1	Q	[BLUE](at one of the pillars you notice the papers that remained from the late magister Windchaser. Considering what happened to him, it's not worth studying these papers, it's better to destroy them)[] 	[BLUE]()[] port.	5	"VariableEqual#smoke_without_fire,100"		
+5	A	(you collect the papers and throw them into the fire, which immediately greedily eats them)	port?	0		"SetVariable#smoke_without_fire,120"		
+5	A	(you sort the papers, studying them for several hours, you find the shortcomings of the magister, because of which his ritual did not go according to plan)	port?	6			
+5	A	(leave these papers unattended)	port?	0			
+6	Q	[BLUE](The altar can now create a demon summoning spell once a day)[]	port?	0		"SetVariable#smoke_without_fire,110"		
+7	A	(prepare everything necessary for the ritual)	port?	8			
+7	A	(escape from the ruins)	port?	0			
+8	Q	[BLUE](have you already spent your energy on performing the ritual today)[]	port?	0	VariableEqual#TMP_prayed,1		
+8	Q	[BLUE](you perform a modified ritual of the deceased magister and receive a summoning spell)[]	port?	0		"SetVariable#TMP_prayed,1;GainItem#10292"	

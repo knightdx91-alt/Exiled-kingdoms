@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Here you are, Lexus! Did unexpected, scoundrel?!	¿po?	5	"VariableEqual#size_matters,60"		
+1	Q	 Here you are, Lexus! Did unexpected, scoundrel?!	¿po?	2	"VariableEqual#size_matters,57"		
+2,lexus	Q	In fact, I assumed that you would try to do something stupid. I'm glad you showed up here personally, I'll have the opportunity to finish you off with my own hands, unless, of course, you get scared at the last moment and run away!	po.	3		"NPCStopFollowing#"		
+3,astutus	Q	 I'll stay here until the end to see you give up the ghost!	¿po?	4			
+4,lexus	Q	Let's not pull the cat by the tail.	po.	0		"SetVariable#size_matters,62;NPCHostile#lexus;NPCHostile#lexus_team;NPCSpawn#ambush_team"
+5,lexus	Q	Don't get your hopes up, idiot, I immediately guessed that you would do something stupid here, so I prepared myself. And it's good that you showed up here personally, I'll have the opportunity to finish you off with my own hands, unless, of course, you get scared at the last moment and try to escape, but I blocked your escape routes!	po.	6		"NPCStopFollowing#"		
+6,astutus	Q	 Bastard, someone betrayed me! It doesn't matter now, I'll deal with you first, and then I'll deal with the traitors!	¿po?	7			
+7,lexus	Q	Let's not pull the cat by the tail.	po.	0		"SetVariable#size_matters,65;NPCSpawn#ambush_team;NPCSpawn#astutus2;NPCDespawn#astutus"

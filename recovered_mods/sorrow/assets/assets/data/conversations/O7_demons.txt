@@ -1,0 +1,126 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Another brave soul has come to us, my friends, so we can check out his build! So, what will you be, fighter? 	port.	2			
+2	A	I am a warrior.	port?	3	"PlayerIsClass#warrior"	
+2	A	Rogue.	port?	4	"PlayerIsClass#rogue"	
+2	A	Cleric.	port?	5	"PlayerIsClass#priest"	
+2	A	I am a wizard.	port?	6	"PlayerIsClass#mage"	
+3,demonboss	Q	I hope you've taken dungeoneering, because we're about to do a deep dive into your cave! 	port.	7	"PlayerIsMale#"		
+3,demonboss	Q	I hope you've taken dungeoneering, because we're about to do a deep dive into both of your caves! 	port.	7	"PlayerIsFemale#"		
+4,demonboss	Q	I hope you're some kind of archer-wanker, then there will be less hassle with you! 	port.	7		
+5,demonboss	Q	Great! Then let the Kalagru herd in here! 	port.	8		
+6,demonboss	Q	О! Maybe you're a wandman? Show us how to use them properly, or we'll find a better use for them with your ass! 	port.	7		
+7	A	I have a great build, so you're done!	port?	10			
+7	A	I'm not entirely sure my build is strong enough to take you down.	port?	100			
+8	A	I'm fucked!	port?	9			
+9,demonboss	Q	Oh, come on, we're just joking. You'll only fight us! 	port.	7		
+10,demonboss	Q	That's a good attitude for a fight, I like it, let's see what you're capable of! 	port.	11		
+11,demon2	Q	Hey, why do we need Sansa here? 	port.	12	NPCIsInParty#sansa2,sansa		
+11,demon2	Q	Oh, is Grissenda with him? 	port.	19	NPCIsInParty#grissenda,mercenary_grisenda		
+11,demon2	Q	And who is that with him? 	port.	24	NPCIsInParty#adaon,adaon		
+11,demon1	Q	Boss! This is another Hirge-abuser! 	port.	30	NPCIsInParty#hirge,hirge		
+11,demon2	Q	What the fuck is this? 	port.	35	NPCIsInParty#durak,peter		
+11,demon1	Q	Is that a wizard-melee satellite? You are a suicide if you chose him! 	port.	40	NPCIsInParty#durak2,damian		
+11,demon2	Q	And what's he doing here alone without a companion? Is he taking on a challenge or just trying to die quickly? 	port.	44			
+12,demon1	Q	Well, so - ass, tits, mouth - what else do you need to be happy? 	port.	13		
+13,demonboss	Q	Give this guy an extra dildo-sword! 	port.	14	"PlayerIsMale#"		
+13,demonboss	Q	Give these bitches dildo-sword each! 	port.	15	"PlayerIsFemale#"		
+14,sansa	Q	Hey! What are you hinting at? Are you saying that I was only added for sex?! 	port.	16		"GainItem#10360"
+15,sansa	Q	Hey! What are you hinting at? Are you saying that I was only added for sex?! 	port.	16		"GainItems#10360,2"
+16,demonboss	Q	Well, sort of... yeah! 	port.	17		
+17,sansa	Q	Oh, no! I'm going to show you a strong woman! 	port.	18		
+18	A	You'll regret getting involved with this woman and with me!	port?	90	"PlayerIsMale#"		
+18	A	That's right, don't underestimate us!	port?	90	"PlayerIsFemale#"		
+18	A	Sansa, let's get out of here before we're both fucked.	port?	101			
+19,mercenary_grisenda	Q	Yes! And now I'm going to tank and deal damage! 	port.	20			
+20,demon2	Q	Why is she yelling like that, and what is she going to do? 	port.	21		
+21,demon1	Q	She's probably going to show you how to compensate properly. 	port.	22		
+22,mercenary_grisenda	Q	You'll regret talking so disparagingly about the best tank! 	port.	23			
+23	A	That's right, I'm going to destroy you with Grissenda!	port?	90			
+23	A	Grissenda, let's not escalate the situation and just go our separate peacefully.	port?	101			
+24,demon1	Q	Adaon is a rogue. 	port.	25		
+25,demon2	Q	This means you can't let him get close to you from behind. 	port.	26		
+26,demon1	Q	Poke? 	port.	27		
+27,demonboss	Q	We're going to poke him now! 	port.	28		
+28,adaon	Q	Boss, maybe we should go home? 	port.	29		
+29	A	No, these freaks have messed with the wrong people, and we'll defeat them!	port?	90			
+29	A	Good idea, Adaon, let's get out of here and be on the safe side.	port?	101			
+30,demonboss	Q	Clearly. Hirge! 	port.	31		
+31,hirge	Q	A? 	port.	32		
+32,demonboss	Q	Fuck you, Hirge. 	port.	33		
+33,hirge	Q	Okey. 	port.	34		"NPCStopFollowing#;NPCDespawn#hirge"	
+34	A	So what, I can handle on my own!	port?	90			
+34	A	Hey, what the hell?! Am I supposed to fight alone now?! That's not fair!	port?	100			
+35,peter	Q	Em, hello, I'm Peter, a cleric. 	port.	36		
+36,demon2	Q	What? Another companion cleric? 	port.	37		
+37,demonboss	Q	It's some kind of Hirge with a penis - it's not a canon! Fuck you, faggot! 	port.	38		
+38,peter	Q	Okay. 	port.	39		"NPCStopFollowing#;NPCDespawn#peter"	
+39	A	So what, I can handle on my own!	port?	90			
+39	A	Hey, what the hell?! Am I supposed to fight alone now?! That's not fair!	port?	100			
+40,damian	Q	I'm going to use combustion to destroy 60 of your resistances! 	port.	41		
+41,demonboss	Q	What will you do with the remaining 150? Spam the blizzard? 	port.	42		
+42,damian	Q	You underestimate my power! The power of a arcane knight! 	port.	43		
+43	A	Indeed, you brought your own troubles upon yourselves by seeking to know our power!	port?	90			
+43	A	Damien, let's not make them angry, let's get out of here while we can.	port?	101			
+44	A	I don't need anyone's help; I can handle anyone on my own!	port?	90			
+44	A	I think I overestimated my abilities, so I'll come back later.	port?	100			
+90,demon2	Q	Great! Finally, we're moving from words to action! 	port.	91		
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10182"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10183"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10184"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10213"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10187"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10188"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demonboss	Q	Get the fuck out of here with your cheating guns! 	port.	92	"PlayerHasItem#10295"	"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"	
+91,demon1	Q	It's about time, because I'm getting bored here! 	port.	92		
+92,demonboss	Q	But we're taking the exterminators from you! 	port.	93	"PlayerHasItem#10128;PlayerHasItem#10129"	"LoseItems#10128,20;LoseItems#10129,20"	
+92,demonboss	Q	But we're taking the exterminator from you! 	port.	93	"PlayerHasItem#10128"	"LoseItems#10128,20"	
+92,demonboss	Q	But we're taking the exterminator from you! 	port.	93	"PlayerHasItem#10129"	"LoseItems#10129,20"	
+92,demon2	Q	You're probably ready for a fair fight! 	port.	93		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10134"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10135"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10153"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10154"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10155"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10156"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10157"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10158"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10159"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10160"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10161"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10162"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10163"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10164"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10190"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10191"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10192"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10100"		
+93,demonboss	Q	You're wearing cheating clothes? Then maybe we can cheat too? 	port.	94	"PlayerHasItem#10101"		
+93,demon1	Q	We're here to fight fair! 	port.	95		
+94,demon1	Q	Good idea, we're leveling up our chances! 	port.	95		"SetVariable#demon_cheat,1"
+95,demonboss	Q	Hey, you fiery cunt, you're fighting in the wrong direction! 	port.	96	"VariableEqual#demones_follows,3"		
+95,demonboss	Q	Hey, you fiery cunt, you're fighting in the wrong direction! 	port.	96	"VariableEqual#demones_follow,3"		
+95,demon2	Q	We don't need any outsiders for a fair fight! 	port.	105		
+96,demonessa	Q	Fuck satan's asshole, you mangy goat! I do what I want with whomever I want! 	port.	97		
+97,demon2	Q	We're going to fuck you with three guns, and if you don't break, we'll see how you sing after that! 	port.	98		
+98,demonessa	Q	Okay, okay, calm down, I get it! Sorry, buddy, but the integrity of my ass is more important to me than my loyalty to you! 	port.	105		"SetVariable#demones_follow,1;SetVariable#demones_follows,1;NPCStopFollowing#;NPCHostile#demonessa"
+100,demonboss	Q	Well then, fuck off in fear! 	port.	0		"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"
+101,demonboss	Q	Well then, fuck off in fear! 	port.	0		"Travel#O7_dungeon,2;ItemActivate#grate4;SetVariable#demon_rare,4"
+102,demonboss	Q	Now let's get started! 	port.	0		"NPCHostile#demon1;NPCHostile#demon2;NPCHostile#demonboss;NPCHostile#hell_suki;NPCGoTo#demonboss,1;ItemActivate#fires;SetVariable#demon_rare,2"
+105,demonboss	Q	Why the hell can that freak heal himself with fire, just like us?! 	port.	106	"VariableEqual#knights2_follows,3"		
+105,demonboss	Q	Why the hell can that freak heal himself with fire, just like us?! 	port.	106	"VariableEqual#knights2_follow,3"		
+105,demonboss	Q	Why the hell can that freak heal himself with fire, just like us?! 	port.	106	"VariableEqual#knights2_follows,3;VariableEqual#knights2_follow,3"		
+105,demon1	Q	Are you really ready, or do you want to get out of here? 	port.	112		
+106,knightsorcerer2	Q	Why not? I am the lord of elements after all! 	port.	107		
+107,demon1	Q	Do you want to become an anal lord? It sounds much cooler! We'll arrange a career guidance for you! 	port.	108		
+108,knightsorcerer2	Q	Damn, I was like, I knew with my ass that I shouldn't have come here! 	port.	112		"SetVariable#knights2_follow,1;SetVariable#knights2_follows,1;NPCStopFollowing#;NPCDespawn#knightsorcerer2;NPCSpawn#knightanal"
+109,knightsorcerer2	Q	Why not? I am the lord of elements after all! 	port.	110		
+110,demon1	Q	Do you want to become an anal lord? It sounds much cooler! We'll arrange a career guidance for you! 	port.	111		
+111,knightsorcerer2	Q	Damn, I was like, I knew with my ass that I shouldn't have come here! 	port.	112		"SetVariable#knights2_follow,1;SetVariable#knights2_follows,1;NPCStopFollowing#;NPCDespawn#knightsorcerer2;NPCSpawn#knightanal;NPCSpawn#knightanal2"
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#necro2_follow,3"		
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#unsurpas_follow,3"		
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#mercenary_follow,3"		
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#bandos_follow,3"		
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#knights_follow,3"		
+112,demonboss	Q	Hmm, I see that swamp cunt is giving collars to everyone she meets again! 	port.	113	"VariableEqual#elf_follow,3"		
+112,demon1	Q	We're ready for some fun! 	port.	102		
+113,demon1	Q	So we'll need fraternal help too! 	port.	102		"SetVariable#demon_cheat,1;NPCSpawn#kala_bro"

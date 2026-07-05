@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hello, if you want to move to a warmer place, I can help. 	port.	2		
+2	A	Thanks, I'll stay here for now.	No, adiós.	0		
+2	A	Where can you take me?	¿port?	3			
+3	Q	The seas in these parts are dangerous for small boats like mine, so only to the settlement  Lonely Light for [BLUE]100 gold[]. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#100"	"loseGold#100;Travel#O10,2,8"
+4	A	No, I'll stay here for now.	port.	0		

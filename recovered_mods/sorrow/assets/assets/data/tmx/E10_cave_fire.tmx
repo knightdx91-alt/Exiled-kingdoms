@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="The Flame Pits"/>
+  <property name="name_ES" value="El Foso de Llamas"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="town_objects.tsx"/>
+ <tileset firstgid="333" source="cave_fire.tsx"/>
+ <tileset firstgid="573" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="733" source="grounds_indoor.tsx"/>
+ <layer name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENACAMA8GE/Qsa9k3JABQRyp30vR0BAAAAAPCvnd0LAAAAep11m2DaXwAAAACAFwVazgQc
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztml9ym0gQxtXyU66VzVNSgAQSCMQVsutNQm6yZ8rbVh62ah9ymUC5fzWtMcjYHglM6avqQvwZe77pnp7unlmtbrjhhhsui1RWq0zlu0zdm8tgJw+SmWvZSrxAznBEDirbVvYL47xTPrXqs7PlRH/vxNl2uhDOqXKB81H5dteolaqVTSt5K8VM+OZqd1vVRa664Vmh0qefVDnlyhFbLvWev5Pr8zlgY3xLoddK+7nXflcDnJmfB9VvomMWG+6RPk90/KbGRvVQqO3F2i/6nOs9c9MHc5jvsedMx6vUZxu9nxqsHxvVRan8an1WqzAXfaTaLtaxSY1N7LUN45fOgG+jeim0X/hV+srzdMAeM+V3VE47Mz922gZ/lc+Abwc441MzvU+1j/ixPp/TGH8VmXaMT63ta5mPj+7QaH/Ra2z6mYvzw33Ye36K+XrUNvVMfNU5FKb/rClDMUNh7Bielbbv83FzBPZbmevQOtwhNrpkDrwl7MXFGsQklepwCEdxMcpbQ6ncDoYvMoTK2PVUeGmcXnhcC3MdQj0h372uCZ3/+He9Wv2/fn77g8e5fIIvfrwvLnkNorvV6lMrH84IMUK3xvzTcv3Ryq/1Q5+SEXOsktM4mvXonO6KEd+8BEnL54+7Bx590r3DrhJxz3+sT3VwPNOv0vA8GN7nuLBmh9bvGL7kals5fWdrD+RsHfpyH1+/yBAO4uLKkIhH8O36+E3/t31H7EcuUIrLDXzO5LLlEzxBpXMo9HoUjeC7FVdXse8+t/d/6zyLxcWP+Cee1XKa5x3kcU0O3efi5slO24bMhcbol/rZF4/vV9X7UVz8Rx5E/zN5XIfLvHdw5Dn+ojL2wrep9zv1ntv3iMWY+ZuZ+Wff3Rs7Rrp+RwP87G84+nrOTTtqHuRH1PGof2yMrcCdeU/M7ecWm5H+6qs89lff5HQsQgCukTj/vDG6joy9F+LWSTs+5Mrklc+1Z9Zf31/9pc93gbhaztTCyHmp9Vgbx9dHcuozt6r/uofvGH+FrSUe3z/FxX0hQT1zq/YZMj+C73/rB/mpwr3Vr2/P+ObQ+bf1dWPWrueg4/uxlfdnhJqj76/IzUOOPz4LG56iDok/9dff+wv0CT9OfDJFrm9rv5YvMUTomA++0UT6JX7uru/unLC2h+4TtkTePAUa1bHlu1OdX4Ivsr+A/TwH1p5ZN0KvRx3wWSFjmTmD/ZSp9XtNEFN1c3gJe9xjQN3srdTaXwty6XN7EksCsU7cE/svEawB5H9zQCQu3w5dT6RG9NT+yzXBnnsiLk8PVXOy9kwtdGoQc1Cfo18hfKqthR3MmBbiznckqv9r+TPiAs5eEGd2cv/KPnA+oBRXy4En8TU5y/5KnDPDkRyCM0PkOLYeyVgwRnxHzch+R42b2ixxJucdyCsy8zcvzbkxY0zdEN5b0z/6xBjQZmtiCsaJPTpqcUdzZa8DftQcqBWc29sJyZl5TC3Nn8vUVuFNLsm5LcYBnVObjMXtY2Db2AF2xf4adbtroDFc0c1r6xPYjl2HGTvqatQxqT1fc51uxPnqoXNWL4Fdj4g9sOdCnK9k/+atoxF3noucmHOl+Glqz0uJOznLRo2dOV3Iqc0vCcxnfDQxCGfxlojG+GT8+Vxi6xuuj99VvHXx
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt0qENACAUQ0EYBAj7L4lF4TC/d67yJW0NAAAAAAD4YfX3rmqGdN52UHPKj0dIJwAAAAAAAFDbAXj3AMA=
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1qERACAMBMHQPAWkBRqlgeCYCNiV5959BAAAAHDbGnWfh/6yHzcDAL3S3wAAAAAAAACA0gbRJgJG
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmllu2zAQhsUDFOgleoO+NV0uknP0qW6cpTUKRE3TpkuAGM2BYiex4/OUgw7hyZirNBIZ2T8wkGxKIj8O1wGraqeddtqpW52oqjpEm2r7pHKXSF7AOEI7ZXz1wJiB9Zu2Zw6mWzUcZsPq041Onw2EeRxRfvDvDT73sQBe0/emaIfERiRtZPFPDC9ojswl+Hjs6Xtc56y8V9hW52rNNPf0Y0jL7eMPifnT8k70/RlyzMg19v0cim2TRry8UF+0j6a+37euWvK2fT+HzhLKYPNvikrgNf0wRry8Ke9+1899LoAXZCs3zEm/tF1o+4Pzks0/IWbgPC6I1WiC5QJz9Us+J9F3OXOpnDb5+uWRI43WUUltN0a+ecrFS+so17h03zDfJrzjjLzQtu5wzXOLlvq+SzHtWZL3jbbaY2+r9bpnRfK9w/sY9ib+7Yp3X9sLz/deVfbx5h7XtzOsi5lnv9JkvOqq/+5HPONqj6aNw3Wh3PNLSf23DS/VAtv7uYeXrje+4H8l8qaua4HZtsf/qx4/M1Kb8QDz+7RD3vee9N8qHFfqWjWrN3rP62pK/jO/qUL+/fmE1jUxCvFeJvCaNS61A2LH5GpLN2kpe8pUheYjWLv/COQPY9VXwTVu6r4/RRLjM/C6xtkmurZ8y9Z2Yo0qxLtXhcdnaV5ev5L7o9faXnrsXRWOw0nz8vwkvx2jvtvztvHy/ErjXQ7Mv6E5SZqX5+fah3SpELO0D3L7GERjjtyk42k8RpmDN4cMc70lvDnjdjlE13bb4GO+lh26j/k4XQKvObdhYjGScyVf65TAy31QK7nzcCW2Z+B9bimHxBkazlurzTgVjWP1sQ7z7RfbMsfGgh/U/2sf55RC+2PqE1sc0RZfNPf8DKVLS+Rd9sCcei6nKxlmUJf9PCam14eWWIaV8H7NJh8zxC55TNYVo+X/HTQo90MPvCAXc9u2lXJuRyrPWE3UZgxdYq8IY8RKrdtsSE99/2jaziKCQzL2n1OTLWI1Co2LQ2Klso3lQ2VN1T9YVgaV
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="stairs down" type="transition" x="1871" y="884" width="43" height="115">
+   <properties>
+    <property name="area_id" value="E10_tower"/>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="1829" y="939">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="479" y="916">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="480" y="992">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Boss" type="spawn" gid="247" x="189" y="881">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="zeghast"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="478" y="1160">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="528" y="1214">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="623" y="1144">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="979" y="685">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="877" y="406">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1318" y="896">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1416" y="428">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="798" y="1582">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1478" y="1621">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1578" y="1711">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1671" y="1641">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="978" y="595">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="782" y="410">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="982" y="369">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="1369" y="949">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="1278" y="269">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="1386" y="286">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="733" y="1503">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Imp" type="spawn" gid="247" x="713" y="1598">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="imp_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="1296" y="212">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="754" y="339">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="692" y="1524">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="154" y="758">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="150" y="982">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="fire_dungeon_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="1354" y="478">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="243" y="825"/>
+  <object name="Light" type="light" gid="249" x="235" y="949"/>
+  <object name="Light" type="light" gid="249" x="502" y="1071"/>
+  <object name="hound" type="spawn" gid="247" x="214" y="868">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="212" y="906">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="hound" type="spawn" gid="247" x="617" y="943">
+   <properties>
+    <property name="conditions" value="VariableLower#item_fire_crystal,1"/>
+    <property name="spawn" value="hellhound"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="488" y="805"/>
+  <object name="Light" type="light" gid="249" x="632" y="906"/>
+  <object name="flames" type="mapeffect" gid="249" x="1664" y="928">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1696" y="928">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1696" y="960">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1664" y="960"/>
+  <object name="flames" type="mapeffect" gid="249" x="1376" y="864">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1408" y="896">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1408" y="864">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1376" y="896"/>
+  <object name="flames" type="mapeffect" gid="249" x="1440" y="352">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1472" y="384">
+   <properties>
+    <property name="id" value="flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1472" y="352">
+   <properties>
+    <property name="id" value="medium_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1440" y="384"/>
+  <object name="flames" type="mapeffect" gid="249" x="1408" y="384">
+   <properties>
+    <property name="id" value="medium_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1376" y="1216">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1408" y="1248">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1408" y="1216">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1376" y="1248"/>
+  <object name="flames" type="mapeffect" gid="249" x="1600" y="1664">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1632" y="1696">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1632" y="1664">
+   <properties>
+    <property name="id" value="flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1633" y="1679"/>
+  <object name="flames" type="mapeffect" gid="249" x="1664" y="1696">
+   <properties>
+    <property name="id" value="flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="1696" y="1696">
+   <properties>
+    <property name="id" value="flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="1664" y="1728"/>
+  <object name="flames" type="mapeffect" gid="249" x="800" y="1664">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="768" y="1696"/>
+  <object name="flames" type="mapeffect" gid="249" x="768" y="1664">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="800" y="1696">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="768" y="896">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="736" y="928"/>
+  <object name="flames" type="mapeffect" gid="249" x="736" y="896">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="768" y="928">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="992" y="704">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="960" y="736"/>
+  <object name="flames" type="mapeffect" gid="249" x="960" y="704">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="992" y="736">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="864" y="480">
+   <properties>
+    <property name="id" value="flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="832" y="448">
+   <properties>
+    <property name="id" value="small_flames"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="249" x="832" y="480"/>
+  <object name="flames" type="mapeffect" gid="249" x="864" y="448">
+   <properties>
+    <property name="id" value="medium_flames"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="249" x="800" y="480">
+   <properties>
+    <property name="id" value="medium_flames"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

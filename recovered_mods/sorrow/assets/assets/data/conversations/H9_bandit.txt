@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Stop talking, we need to recapture our hiding place!	¿po?	0	"VariableEqual#sin_kingdom,92"		
+1	Q	I don't like it, but I'm willing to put up with it for the sake of the common cause!	¿po?	0	"VariableGreater#sin_kingdom,81"		
+1	Q	Don't hang around here for nothing, the boss is waiting for news!	¿po?	0	"VariableEqual#sin_kingdom,30"		
+1	Q	Stop talking, we need to recapture our hiding place!	¿po?	0	"VariableEqual#sin_kingdom,25"		
+1	Q	We need to tell the boss about what happened as soon as possible!	¿po?	0	"VariableEqual#sin_kingdom,20"		
+1	Q	Don't stand there, they're fucking with our guys!	¿po?	0	"VariableEqual#sin_kingdom,17"		
+1	Q	Let's not talk too much, we need to get to Vince as soon as possible.	¿po?	0	"VariableEqual#sin_kingdom,15"		
+1	Q	Go talk to the boss.	¿po?	0	"VariableEqual#sin_kingdom,12"		
+1	Q	Got what deserved, bitch! Thanks for the help, buddy, without you, this crazy woman would have made unnecessary holes in me!	¿po?	2	"VariableEqual#sin_kingdom,10"		
+1	Q	Go where you're going, mind your own case!	¿po?	0				
+2	A	You're welcome, I was glad to help you stay whole.	po.	3		
+3	Q	Although it's a shame that now it won't be possible to return Bill's money. But he is not the only victim because of these thieves, having dealt with this bitch, the problem cannot be fixed, this issue must be seriously addressed! I need to talk to my boss about this, and I'm sure we can use a solver like you! We will not remain in debt if you help us out!	¿po?	4				
+4	A	Fine, I'm ready to help you..	po.	5		
+5	Q	Then come with me.	¿po?	6			
+6	A	Let's go.	po.	0		"SetVariable#sin_kingdom,12;NPCDespawn#bandit1;Travel#F10_house,7"

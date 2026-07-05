@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a middle-aged man priest, looking around excitedly)[] Anika? Anika, is that you there, honey?	¿po?	2			
+2,knave	Q	 Sorry, bro, but it's not Anika.	¿po?	3				
+3,priestfool	Q	 Oh no! Damn robbers! Don't come near me! I am a priest, Three protect me!	¿po?	4			
+4,knave	Q	 Yes, yes, yes, they will protect you, they will come here personally. That's how we believed in your fairy tales.	¿po?	5		"NPCHostile#priestfool;SetVariable#death_pfool,2"
+5,hirge	Q	I will not let this priest be offended! 	port.	0	NPCIsInParty#hirge,hirge	"NPCStopFollowing#;NPCHostile#hirge;DecVariable#REP_ilmara,5;DecVariable#REP_the_three,10"
+5,priestfool	Q	 Don't you dare blaspheme, you ignoramus, Arbenos will punish you!	¿po?	0			

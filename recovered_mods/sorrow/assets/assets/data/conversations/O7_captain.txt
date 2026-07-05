@@ -1,0 +1,14 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	5	NPCisFollower#	
+1	Q	[BLUE](woman in armor)[] Greetings, hero.	port	2	"VariableGreater#strangers_foreign_lands,99"		
+1	Q	[BLUE](woman in armor)[] Greetings, traveler. 	[BLUE]()[] port.	2		
+2	A	Hello.	port?	0			
+2	A	Hello, have you seen princess Evelina Lightwind? Did she leave the city through these gates?	port?	3	"VariableGreater#trouble_again,9;VariableLower#trouble_again,19"		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3	Q	Yes, the princess was here, she went towards the Dragon's Nest on the southern road on some case of her own. I wanted to assign her an escort, the places are still not safe, even though the strangers are no more, thanks to your efforts, the area is teeming with possessed, but she refused, I did not insist, the princess is a wizard, she can stand up for herself. 	port.	6				
+4	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#alia_follow,3;NPCFollow#"	
+5	A	Good girl.	port.	0		
+5	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#alia_follow,1;NPCStopFollowing#"
+6	A	Well, yes, of course she can. Thank you for the information, I'll make sure she's okay.	port?	0		"SetVariable#trouble_again,20"		

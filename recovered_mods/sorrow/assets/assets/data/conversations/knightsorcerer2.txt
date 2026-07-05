@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	15	"VariableEqual#knights2_follow,3;NPCisFollower#"	
+1	Q	I'm listening to you, friend.	port	4	"NPCisFollower#"	"SetVariable#knights2_follows,3"
+1	Q	Hello, traveler. I can help you on difficult journeys, for a small reward, {LEVELx450} I'm ready to go with you.	po  {LEVELx450}  rt.	2		
+2	A	Sorry, but there are already too many of us in the group.	port.	0	hasFollower#	
+2	A	That would be great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx450}"	"NPCFollow#;SetVariable#knights2_follows,3;LoseGold#{LEVELx450}"
+2	A	Not now, thank you. Maybe in the future.	port.	3		
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		AGI#7
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	14	PlayerHasItem#10402		INT#7
+3	Q	If you change your mind, I'll be here waiting for you.	port.	0		
+4	A	Nothing, let's move on.	port.	0		
+4	A	I don't need your services anymore. Thank you for your help and goodbye.	port.	5		
+4	A	Please move a little, you're standing in the way.	port.	6		
+4	A	Hey, can you do magic?	port.	7		
+5	Q	See you later, traveler, I will be glad to help you again.	port.	0		NPCStopFollowing#;SetVariable#knights2_follows,1
+6	Q	Of course.	port	0		NPCMoveRandom#
+7	Q	Of course, teleport wherever you want.	port	0		Teleport#
+14	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#knights2_follow,3;NPCFollow#"	
+15	A	Good fellow.	port.	0		
+15	A	Hey, can you do magic?	port.	7		
+15	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#knights2_follow,1;NPCStopFollowing#"

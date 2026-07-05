@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](this magician doesn't seem to care about what's going on around him)[] Hello, stranger, you probably don't feel comfortable here with us, so I can teleport to one more peaceful village, where maybe you can find some work. 	[BLUE]()[] port.	2		
+2	A	No, I'll stay here for now.	port.	0		
+2	A	Okay, but how much will teleportation cost?	port?	3		
+3	Q	Only [BLUE](95 gold)[]! So what? 	port.	4		
+4	A	I ready!	port.	0	"playerhasGold#95"	"loseGold#95;Particle#;Travel#O9,999;Particle#teleport"
+4	A	No, I've changed my mind.	port.	0		

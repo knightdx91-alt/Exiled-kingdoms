@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	5	NPCisFollower#	
+1	Q	 [BLUE](woman in armor)[] Are you leaving already? 	¿po?	7	"AreaIs#N6_house"		
+1	Q	[BLUE](a woman in armor)[] Greetings, travelers.	port	3	"VariableEqual#drastic_steps,25"		
+1	Q	[BLUE](a woman in armor)[] Greetings, travelers. 	[BLUE]()[] port.	2		
+2	A	Hello.	port?	0			
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	4	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	4	PlayerHasItem#10402		INT#5
+3,havis	Q	Hello. [BLUE](Havis silently handed her a letter)[] 	port.	6				
+4	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#goodw_follow,3;NPCFollow#"	
+5	A	Good girl.	port.	0		
+5	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#goodw_follow,1;NPCStopFollowing#"
+6,goodwhip	Q	Clearly, [BLUE](woman spoke after finishing reading the letter)[] follow me, and I'll take you to the governor..	port?	8				
+7	A	Yes, we're leaving.	port.	0	VariableEqual#drastic_steps,40	"Travel#N6,1"	
+7	A	Not yet.	port.	0		
+8	A		port.	0		"SetVariable#drastic_steps,30;Travel#N6_house,1"		

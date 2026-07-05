@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hey bro, I have a new business coming up soon and I'm going to need some help, just keep that in mind.	¿po?	0	"VariableGreater#freedom_law_order,99;VariableLower#freedom_law_order,111"		
+1	Q	 Now is not the time to talk, we need to get out of the city before dawn.	¿po?	0	"VariableGreater#freedom_law_order,69"		
+1	Q	 [BLUE](this guy with an even more unpleasant appearance than Makbul)[] So Makbul recommended you to me? I hope he wasn't mistaken about you.	¿po?	12	"VariableEqual#freedom_law_order,60"		
+1	Q	 [BLUE](this guy with an even more unpleasant appearance than Makbul)[] So Makbul recommended you to me? I hope he wasn't mistaken about you.	¿po?	26	"VariableEqual#freedom_law_order,55"		
+1	Q	 [BLUE](this guy with an even more unpleasant appearance than Makbul)[] So Makbul recommended you to me? I hope he wasn't mistaken about you.	¿po?	2	"VariableEqual#freedom_law_order,50"		
+2	A	He was lucky to meet me, and as for your idea, I think it is doomed to failure. You made a big noise in the city, and the Mercians are constantly on guard, even if you manage to get into the sewers without any problems, where is the guarantee that this is not their setup, and you are not waiting for an ambush there or outside?	po.	22	VariableEqual#freedom_law_order,50	"PER#7"	
+2	A	I will try to be useful.	po.	3		
+3,nail	Q	 Try your best, not only your reputation, but also Makbul will depend on your actions.	¿po?	4		
+4,makbul2	Q	 Boss, this is a proven and proven person, I was personally convinced of this.	¿po?	5		"NPCFollow#"
+5,nail	Q	 I'll take your word for it, a brainy guy will be useful to me, otherwise you've already taken one brainless thug into the team, we don't need the second one.	¿po?	6		
+6,said	Q	 Boss, you're not talking about me by any chance, are you?	¿po?	7		"NPCFollow#"
+7,nail	Q	 And you're still not that slow-witted, man. Let's not waste time. Jude, have you been monitoring the area at the entrance to the sewer, how is the situation there?	¿po?	8		
+8,jude	Q	 The shift shift of the guards is about to begin, you can move out.	¿po?	9		"NPCFollow#"
+9,nail	Q	 Excellent. So, hero, if you help me get out of the city without any problems, you will get a small share of our loot and my favor, which will give you the opportunity to work with me again.	¿po?	10		"NPCFollow#nail"		
+10	A	I will do everything depending on me.	po.	11		
+11	Q	 And now it's time to move out.	¿po?	0		"NPCDespawn#anwar;NPCSpawn#anwar2;NPCSpawn#anwar_team;SetVariable#freedom_law_order,70"		
+12	A	I will try to be useful.	po.	13		
+13,nail2	Q	 Try your best, not only your reputation, but also Makbul will depend on your actions.	¿po?	14		
+14,makbul2	Q	 Boss, this is a proven and proven person, I was personally convinced of this.	¿po?	15		"NPCFollow#"
+15,nail2	Q	 I'll take your word for it, a brainy guy will be useful to me, otherwise you've already taken one brainless thug into the team, we don't need the second one.	¿po?	16		
+16,said	Q	 Boss, you're not talking about me by any chance, are you?	¿po?	17		"NPCFollow#"
+17,nail2	Q	 And you're still not that slow-witted, man. Let's not waste time. Jude, have you been monitoring the area at the entrance to the sewer, how is the situation there?	¿po?	18		
+18,jude	Q	 The shift shift of the guards is about to begin, you can move out.	¿po?	19		"NPCFollow#"
+19,nail2	Q	 Excellent. So, hero, if you help me get out of the city without any problems, you will get a small share of our loot and my favor, which will give you the opportunity to work with me again.	¿po?	20		"NPCFollow#nail2"		
+20	A	I will do everything depending on me.	po.	21		
+21	Q	 And now it's time to move out.	¿po?	0		"NPCSpawn#anwar2;NPCSpawn#anwar_team;SetVariable#freedom_law_order,80"		
+22	Q	So what do you think we should give them our loot? 	port.	23				
+23	A	That's right, you will not be able to leave the city, the Mercians will not calm down until they catch the thieves, so they will begin to apply tougher measures, but if they get back what they stole, then they will loosen their grip a little, and you will be able to slip away.	po.	24		
+24	Q	Hmm, as much as I don't like your explanations, but you're right, and the booty wasn't so fat to risk your skin. [BLUE](he tells you the address where they hid the stolen items)[] Now it is necessary that this information somehow reached some chief of the Mercians. 	port.	25				
+25	A	I'll take care of it myself.	po.	0		"SetVariable#freedom_law_order,85;NPCDespawn#nail;NPCDespawn#makbul2;NPCDespawn#said;NPCDespawn#jude"		
+26	A	I will try to be useful.	po.	3		

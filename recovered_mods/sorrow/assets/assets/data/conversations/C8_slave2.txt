@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 You brought us right into the clutches of these creatures, scoundrel!	¿po?	2		
+2	A	I am very sorry.	po.	3		
+3,slave1	Q	 They bring us back to the cages!	¿po?	4		"NPCStopFollowing#"		
+4,slave2	Q	 I don't want to be in shackles again!	¿po?	5		"NPCStopFollowing#"		
+5,slave3	Q	 To them we are just animals!	¿po?	6		"NPCStopFollowing#"		
+6,slave4	Q	 Or they will kill us if we don't obey!	¿po?	10		"NPCStopFollowing#"		
+10	Q	 Better death than captivity!	¿po?	0		"SetVariable#will_or_death,100;NPCHostile#slave1;NPCHostile#slave2;NPCHostile#slave3;NPCHostile#slave4"

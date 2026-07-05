@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it's a sturdy metal grille, and there's no way to open it without the right key)[]	port.	2			
+2	A	Try to open it with a suitable key.	port.	3	PlayerHasItem#10629		
+2	A	Get away.	port.	0		
+3	Q	[BLUE](the key unlocks the lock without any problems, opening the grate)[]	port.	0		"ItemHide#grate_3;ItemWalkable#grate_3;SetVariable#E13_grate3,2;LoseItem#10629"		

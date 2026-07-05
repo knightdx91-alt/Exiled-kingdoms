@@ -1,0 +1,33 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] The idea of increasing my boobs was successful, maybe I should increase my ass in volume?	¿po?	0	"VariableGreater#size_matters,51"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] Go give the dragon's heart to Magister Astutus so that he will accept you.	¿po?	0	"VariableEqual#size_matters,50"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] Go give the coins to Magister Astutus so that he will accept you.	¿po?	0	"VariableEqual#size_matters,47"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] Go talk to Magister Astutus.	¿po?	0	"VariableEqual#size_matters,45"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] So, how are you doing with the dragons?	¿po?	19	"VariableGreater#size_matters,39;VariableLower#size_matters,43"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] Well, what have you decided, to pay the sorcerers or get a dragon heart?	¿po?	15	"VariableEqual#size_matters,37"		
+1	Q	 [BLUE](a young girl is a sorceress who stands out especially for the large size of her breasts)[] Oh, Johnny! It's been a while, and I thought you'd been stabbed and left to rot in a ditch. What is the fate of being here?	¿po?	2			
+2,johnny	Q	Hello, Gigi, I'm on behalf of the boss. We need to find one of the warring factions of sorcerers engaged in some kind of special magic with which it seems possible to grow all sorts of things.	po.	3		
+3,gigi	Q	 Oh, how interesting! I know who this is about! They helped me enlarge my boobs, you noticed, right?!?	¿po?	4			
+4,johnny	Q	Well, they definitely got bigger, as I remember from the last meeting... So, what about these sorcerers?	po.	5		
+5,gigi	Q	 They are not particularly trusting, they constantly suspect each other of all sorts of tricks, the introduction of spies and sabotage, so it is very difficult to get close to them, especially if you are unknown to them.	¿po?	6			
+6,johnny	Q	But you somehow managed to enlarge your boobs with their help.	po.	7		
+7,gigi	Q	 I'm a girl, so I have some concessions in return for providing certain services to the leader of the group. But you don't want to do this with him to get his favor.	¿po?	8			
+8,johnny	Q	I get it, but maybe there's another way to ingratiate yourself with them?	po.	9		
+9,gigi	Q	 So your companion is a girl, and the sorcerers of both groups are mostly virgins, who obviously only really communicated with girls once in their lives, so she won't have any problems with them.	¿po?	10	"PlayerIsFemale#"		
+9,gigi	Q	 Well, you can make a monetary contribution, in the amount of [BLUE]50 thousand coins[], these sorcerers are actually poor, so there will be no questions if you pay their leader a bunch of coins. Or bring him an expensive trophy, it seems like he was looking for where to get a dragon heart.	¿po?	15	"PlayerIsMale#"		
+10	A	 Is it really that simple?	¿po?	11			
+11	Q	Well, you will need a return favor for their help, but I'm sure you can negotiate.	po.	12		
+12	A	 Okay, I'll try to talk to these wizards.	¿po?	13			
+13	Q	Well, one group has settled in Solliga, they are led by a certain magician Lexus Defender. The second group was once also in Solliga, but after the feud between them began, they moved here to Icemist, their main one calls himself Magister Astutus. I am dealing only with the Astutus group, as he excludes people from his trust list for connections with another group.	po.	14		
+14	A	 All right, take me to this Astutus.	¿po?	0		"SetVariable#size_matters,45;NPCDespawn#gigi;HideParty#;Travel#IM_manor7,1"
+15	A	 I have the necessary amount.	po.	16	"playerhasGold#50000"	
+15	A	 I already have a dragon heart.	po.	20	"PlayerHasItem#10614"		
+15	A	 Okay, I'll get a dragon heart.	¿po?	18			
+15	A	 I'll think about it.	¿po?	0		"SetVariable#size_matters,37"
+16	Q	Great, one group has settled in Solliga, they are led by a certain magician Lexus Defender. The second group was once also in Solliga, but after the feud between them began, they moved here to Icemist, their main one calls himself Magister Astutus. I am dealing only with the Astutus group, as he excludes people from his trust list for connections with another group.	po.	17		
+17	A	 All right, take me to this Astutus.	¿po?	0		"SetVariable#size_matters,47;NPCDespawn#gigi;HideParty#;Travel#IM_manor7,1"
+18	Q	Well, when you come back, you can find me here.	po.	0		"SetVariable#size_matters,40"
+19	A	 I was able to get a dragon heart.	po.	20	"PlayerHasItem#10614"		
+19	A	 Not yet.	¿po?	0			
+20	Q	Good, one group has settled in Solliga, they are led by a certain magician Lexus Defender. The second group was once also in Solliga, but after the feud between them began, they moved here to Icemist, their main one calls himself Magister Astutus. I am dealing only with the Astutus group, as he excludes people from his trust list for connections with another group.	po.	21		
+21	A	 All right, take me to this Astutus.	¿po?	0		"SetVariable#size_matters,50;NPCDespawn#gigi;HideParty#;Travel#IM_manor7,1"

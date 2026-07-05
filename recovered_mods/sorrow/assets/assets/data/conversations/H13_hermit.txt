@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](An untidy-looking, elderly wizard)[] Good luck getting rid of the moon curse!	port.	0	"VariableGreater#ladies_man,79"		
+1	Q	[BLUE](An untidy-looking, elderly wizard)[] Oh, how glad I am to see you! Thank you for getting rid of this monster, the fire scared it away, but I wouldn't have had enough fuel for a long time!	port.	2			
+2	A	I was glad to help, I was looking for a wizard who knows about the moon curse and how to remove it.	po.	3		
+3,hermit	Q	 Oh, how great, I've been studying this phenomenon for many years, but did Icemist suddenly have an interest in it? It always seemed to me that something like this was considered secondary and not worthy of attention.	¿po?	4		
+4	A	Actually, I'm not from Icemist, I need this knowledge to remove the curse from a particular person.	po.	5		
+5,hermit	Q	 Oh, practice! That's great! Over the years of studying the lunar curse, I have only once managed to test the developed method of removing it. And you will be the second to check it out!	¿po?	6		
+6	A	Was the first test successful?	po.	7		
+7,hermit	Q	 Yes, quite, it's actually a simple ritual. So, you will need this potion, and the formula of the spell, only I don't remember which one of them is working, but one of them will definitely work!	¿po?	8		
+8	A	Thank you for sharing your developments, I hope, thanks to them, I will be able to rid a person of the curse, it's time for us to go.	po.	9		
+9,sansa	Q	 I also have to thank you for saving me from the monster, I didn't have time to react, he jumped out at me so quickly! It seemed to me that his claws had already dug into my flesh! Once again, I am convinced that such adventures are not my occupation!	¿po?	10	"VariableEqual#sansa_quest,2"		
+9,hermit	Q	 Good luck to you in this matter!	¿po?	21		
+10	A	I'm very glad that you weren't hurt and everything went well.	po.	11		
+10	A	No thanks needed, I did what anyone in my place should have done if someone was in trouble.	po.	15			PER#5
+11	Q	 Well, as a token of appreciation, take these scrolls, they will undoubtedly be useful to you on your travels.	¿po?	12		
+12	A	Can I help you get back to Icemist?	po.	13		
+13	Q	 Thanks, but I'll use the teleport. Maybe I'll see you again.	¿po?	14		"NPCStopFollowing#"
+14	A	See you soon.	po.	0		"GainItem#10431;GainItem#10432;GainItems#6011,4;SetVariable#ladies_man,80;SetVariable#sansa_quest,15;NPCDespawn#sansa"
+15	Q	 I doubt there are many people like you who selflessly rush into danger for the sake of someone they don't even know. Such heroes should be adequately encouraged.	¿po?	16		
+16	A	I don't need a reward, as I said before, I had to do it.	po.	17		
+17	Q	 Still, I have to thank my savior somehow. If you find yourself in Icemist again, come and see me, I'll figure something out, just come alone.	¿po?	18		
+18	A	As you wish. Can I help you get back to Icemist?	po.	19		
+19	Q	 Thanks, but I'll use the teleport. До встречи.	¿po?	20		"NPCStopFollowing#"
+20	A	See you soon, Sansa.	po.	0		"GainItem#10431;GainItem#10432;SetVariable#ladies_man,80;SetVariable#sansa_quest,10;NPCDespawn#sansa"
+21	A	Thank.	po.	0		"GainItem#10431;GainItem#10432;SetVariable#ladies_man,80"

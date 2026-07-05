@@ -1,0 +1,512 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="32" nextobjectid="15">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Sewer" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="Desert.tsx" firstgid="797" />
+  <tileset source="greenground.tsx" firstgid="861" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="grassland.tsx" firstgid="1085" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <tileset source="cave_fire.tsx" firstgid="1217" />
+  <tileset source="icemist_walls.tsx" firstgid="1457" />
+  <tileset firstgid="1497" name="trifles_sborka" columns="12" tilecount="432" tileheight="32" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1929" name="trifles_sborka2" columns="12" tilecount="432" tileheight="32" tilewidth="64">
+    <image source="trifles_sborka2.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="2361" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <layer name="nonwalk" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZQQqAIBBAUbv/UbtEq0iExGEgG3gPXLj9KKK2BsDMeTzjnrOub0ecduxmDQLAPs7hHP1y9AMAAP6uv7f4j4obm+kXY83l6Ucl9nyOdu+0+Y7WAAAAAFCPdz0AAAAAAAAAAKCqC40YPfwAZAAA
+  </data>
+  </layer>
+  <layer name="water 0" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YQQrCMBBAUfG03v8ELnWhVftT2tj3YHYSph8CwctlG7frY0b87mz0a/Rr9Gv0a/Rr9Gv0a/Rr9Gv0a/RrnruMmLPRr3F/G/0a/Rr9Gv0a/Rr9Gv0e1nzf6PfzzO9q/Zo1+665v2fo9+3OW3/jTC31a454x/Qbv9NR6de8229pd/0+06/Rr9Gv0a/Rr9Gvqe/C0TObvXv9U78tzlw6V7/PZ87Y5Bf6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+jWv/sPcc2azdy/99DvSzGbvXrP324omjX6Nfo1+jX6Nfo1+jX4AAACMdgcXOpp9AGQAAA==
+  </data>
+  </layer>
+  <layer name="water" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YQWqEMABAUQu9/0Gm1+jBup1NM2W+sWreg6wUxG+MmG2b47HzeavRr9Gv0a/Rr9Gv0a/Rr9Gv0a/Rr9Gvee7yNRjbG+etwLxqvL+Nfo1+jX6Nfo1+jX6Nfo3/j8a8avRrZve7+/PR73ejdf6o9f7K/c5Av+YO/Ub3YP17Tb9Gv0a/Rr9Gv0a/ZrRHtQ2O7THu4A5z4D/N6LfSM9GvOarf9+eEC52A+dfo1+jX6Nfo1+jX6Nfo1+jX6Nfo1+h3Pvo1q/abtS+/2p4+AO9b9Ru8F/0a/Rr9mpn9Pv4wrk6/5oh+o+NXp9956dfo16zw/QAAYJ4f6aA+tQBkAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3b7W6CMBiGYYgewL50xumyH57/me2n+8qyrQ0QgQEWniKt3FfyRsMMW+8VicmWJP4tPb9ubob2W3bMnNCvqmtdTeujXxX9NPTTNK1n33K8rafP18XGZf/Rr13XunYtx18Xp5l7vybsPw39NPTT9OmHqr73X1T17cf1W0U/Df009NPQT0M/Df009NP07Vd3GPWnC1/M/dIzcwljXb+XcG39hs5Q9Iu/X5u29zX6uaGfJoZ+dVO0c3mP6/oa/einoJ+Gfppr6DflPZh+GvpputZwGOH72b9B8o1+mik/h4x5jbZ9r0tct/Q7j36akPsp56Kfdq6591PPRT/tXK791vnxn3yeey527v3s/5181KZPw7n3ezGzMgtcmHky855kz7+T5o7FPi3MvZ+1z3sdk9PjxhxbptWGv2Y+zbzlz+3Qr5ltusr3Y/naXqdZw515fEyn+8xbFmI/yzb8SrL9ts33qN2TaZpdwxv6OSmu72LK6Oem3LCMfpoQ+jWJ5fNbqOrrHDrKeV2Euv9iQT8N/TT084d2mhD7+b4H+77/ltGPfvSrop8mpn5WWnucWgz9tubFdw3zNPSX4FEM/W7Ni4+L/3NPPych94sB/TT006xMp5t8HmrPAQAAgC5/WpqougBkAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3bXU/CMBiGYWI81aB4KoL6xzF+/UxZjMlSuq3t876ba+8r2QFxKeS20q3gZmPv6dr2vNbQT0M/Df009NPQTxN2eRzoRL+40n5D57VmrMv2Ku28ljH/NPTThF1ez48PkeMl8bxDY11ZVzX004T9jufH+8jxnHjevrHfB+uHhn4a+mnop5nq8ncPR7845p+G+w8N1895+ntSHfppSu8/8Mt7XVC7f9u8jGJj7/OxdaHf7zb4Wy/R2vuDMv/C99YO/TT006y933Fi7y78Gf0uja2xyvp7k7C+0G/c3UTDmvt11yee138PkfHXyHP+5T73Gln0uy+8lq6xX/+eJGdfquQIx1d92g6XpIY5sCT6aVL3qHKO2L7K0Lhr57HGxuZ0rZ+J0E9Ta7/TTM9Ta7+5eKy/Q/12BnvW/82c/by8+Q09qYZ+S6Kfhn6aGvq9+w09ybrfdmBf1KPfh/2Q2WqYf0uin4Z+trh/01js0cf25XPGBdbka+kXAKAq1p/B5XyuB/4nSUU/zdz9lvjuiyfmn4Z+Gvpp6AcAAAAA8PADesYCuABkAAA=
+  </data>
+  </layer>
+  <layer name="scenery" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OMQ0AMAgAMIJ/fxOCATxwDI5WQSMAAAAAAAAAAAAAAAAA7qrcHgAA8MvbDgAAAAAAAAAAAAw1eAMDxABkAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2bS08UQRDHe5egQowHT+pFo4kPEhVQEFZQLnrwpieN8aJfhYsx8eLFr+HjojFRFsT4NiYiV40Jj4MJBAgeBLvYabe26Z7unkfv9mz9ksrM9vTsTP+3aqofs4xlz+uM67Ubsi6TlvVM9dsF0q+RT9x+cptGNh9tRflnVJ/0awTaubebsbUuxma6amWLfLtRrteZlOpjSD/GVrhev7v0dUg/PQvcZmO0A6DNEOcQy++kY+9ZY+xPa+rh7yoSpn5GqaPWZqi3zmP6QHl7nfWyel9FUfX7jnxwVdIA2vzD8Xv3aXQsmn4fuU1JBrEq4k/EZ1b94aLpp0L2tXFuEw7nP4w5pnpeFg2VVlD2yPeNBApo9UBRRpgR45Fv3GZYfSxC+tmhyxOu+ZdoJM7/4vJFu7GsKQe/pPxhRhenrv2//YZxSFHRxSnNJ9uBxx4A9HfnmX4+gGgE/Ew3dtWxs01jVQXo90ehx1/SyArq56UjZP0ucLuEPg9yux5twS56uAfIv6r4DYGb0XZJKhfP5zMe7iHJOANydpXVx8xVZOIYnq8S5ap5/zT9pAHDcR/6JemnQJsX0fz1Mt/f3V3bx78HnvuH6xzmnw9yO8TtSLn+XUm5YTjuQ78kQJtBr1WkoVgLdZ23Cd3/kjDHbU+3eh0P9NuheJ7qdEqjX1+0VV0PaFX9RJvXFPqJ55x4Npqec2n0G+V2FtkwOjbCbSzFd9vyNsE5cW3eil+FP+D8gbXNcpyI49mX75meV6r13zj9dHrAOaqYz3Lepln6ufb/QIsNh3NAIzhn2fDeQ1r60L4v/ZKMP1T+t2LIvz7mw5qhn2t/A9aGVf1gk+G4jnt3KQkwjrsWGYznLnPrjyzvMZwuftOucXzNOVYxW37XpD5MyPMHAtBvF+mXmFsxx/LWL+T5F0FfzDEf+oUK5A2RJ0T+GIzKK1Gd8yzfHNLM+P3Atr9Lh83E//5yh6Y8Ik8fVMXveI7Xw6R9N1A3/+JbPxUm31CZ61g6rX53NOVXpc/N0C9J21zHGGn1w3n3F4qhUPVzzUV5xa9v/VT9lyRtc81FcI2+EmM93K5wO8qtv2R/PqwfbSjqV9A+/J8gJP9zeWerwts+UNpeZquhaf5eEJJ+WTAY+eIppOPJqKwHlev0G5Y+hxK/c2jf5p0ayPFDMb5WQVqdQPWEvnI/WfSfW6H/kkS/Wcf6cI1ersNxyYYkrcDnhg3POYy8LjLmeF8uZKmfK7prgKYjDnlExue6W5b6Zdl/7lX4InAO+alu/TxU/fLoP8u+eAztq+Zdlsrh6ufaf7G9Bn5Gnkb66fJvK6ybJ9FvwcM1MHKe8JEvbNH9T7oaYzZr4ZvIf3TXsP2PIfRf7nK7x+12tH+f+XnvrwjA829TkadbIX5DoBXyb8jo1j1IPztw/hBjXl/vXRUNMedHvpcM0i8dpF86xFiE9EvGaLQda+ZNBMbLTsaec3vK7UVnrWwKlT3m9qqzuffYyjyz0OYR6aflSaTNF4VGooz002OjDemnR47fNwqtSD89FL/poPhNx0TUR4mzKulHEARBEESB+QfNEzSBAGQAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="80" height="80">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="500" gid="245" y="510">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="435" y="465" width="30" height="60">
+      <properties>
+        <property name="area_id" value="C9" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="3" x="2000" gid="245" y="820">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="4" x="1975" y="755" width="60" height="30">
+      <properties>
+        <property name="area_id" value="C9" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="lever conv" type="conversation"  x="1110" gid="249" y="1750">
+      <point />
+      <properties>
+        <property name="conversation" value="H10_tomb_lever" />
+        <property name="icon" value="lever" />
+        <property name="name" value="@LEVER" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem"  x="1110" gid="249" y="1750">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever" />
+      </properties>
+    </object>
+    <object name="lever conv" type="conversation"  x="850" gid="249" y="1150">
+      <point />
+      <properties>
+        <property name="conversation" value="H10_tomb_lever" />
+        <property name="icon" value="lever" />
+        <property name="name" value="@LEVER" />
+      </properties>
+    </object>
+    <object name="lever" type="mapitem"  x="850" gid="249" y="1150">
+      <point />
+      <properties>
+        <property name="active_sprite" value="lever_on" />
+        <property name="inactive" value="" />
+        <property name="inactive_sprite" value="lever_off" />
+        <property name="tag" value="lever" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="8" x="900" gid="249" y="450">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="bridge" type="mapitem" id="9" x="900" gid="249" y="415">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grid_ground_brown" />
+        <property name="invisible" value="" />
+        <property name="tag" value="bridge" />
+      </properties>
+    </object>
+    <object name="Secret Door" type="secretdoor" id="10" x="2050" gid="245" y="1760">
+      <point />
+      <properties>
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="12" />
+        <property name="secretdoor_tag" value="C9_sewer_1" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="11" x="1120" gid="245" y="990">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_5" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="12" x="2040" gid="245" y="1150">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_4" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="13" x="1350" gid="245" y="1780">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="14" x="1990" gid="245" y="1830">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_9" />
+        <property name="name" value="@CRATE" />
+      </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="495" y="845">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="695" y="695">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="695" y="1075">
+   <properties>
+
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="595" y="1295">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="915" y="1265">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1145" y="1365">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1015" y="245">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="805" y="595">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1015" y="535">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="975" y="1175">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1205" y="1175">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1395" y="1175">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1465" y="1075">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1285" y="1515">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1285" y="1715">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1395" y="1785">
+   <properties>
+    <property name="respawn" value="40"/>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="695" y="465">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="655" y="275">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="855" y="335">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="975" y="655">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="595" y="1005">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="785" y="1295">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="rat" type="spawn" gid="247" x="1325" y="1325">
+   <properties>
+    <property name="spawn" value="rat"/>
+    <property name="spawn_u" value="giant_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+   </object>
+  <object name="rat2" type="spawn" gid="247" x="965" y="975">
+   <properties>
+    <property name="spawn" value="enraged_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+   </object>
+  <object name="rat2" type="spawn" gid="247" x="1115" y="855">
+   <properties>
+    <property name="spawn" value="enraged_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+   </object>
+  <object name="rat2" type="spawn" gid="247" x="1405" y="915">
+   <properties>
+    <property name="spawn" value="enraged_rat"/>
+    <property name="wander" value="3"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="375" y="225">
+   <properties>
+    <property name="conditions" value="VariableGreater#freedom_law_order,65;VariableLower#freedom_law_order,90"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="wander" value="2"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="545" y="165">
+   <properties>
+    <property name="conditions" value="VariableGreater#freedom_law_order,65;VariableLower#freedom_law_order,90"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="wander" value="2"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="1075" y="1665">
+   <properties>
+    <property name="conditions" value="VariableGreater#freedom_law_order,65;VariableLower#freedom_law_order,90"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="wander" value="0"/>
+   </properties>
+   </object>
+  <object name="skel2" type="spawn" gid="247" x="2025" y="1835">
+   <properties>
+    <property name="spawn" value="skeleton_dragoon"/>
+    <property name="wander" value="2"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="1575" y="1515">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="1755" y="1635">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="1845" y="1575">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="2105" y="995">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="2035" y="1205">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="zombie" type="spawn" gid="247" x="2165" y="1185">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+   </object>
+  <object name="skel" type="spawn" gid="247" x="2035" y="1635">
+   <properties>
+    <property name="spawn" value="skeleton_champion"/>
+    <property name="wander" value="3"/>
+   </properties>
+   </object>
+  <object name="skel" type="spawn" gid="247" x="2015" y="1345">
+   <properties>
+    <property name="spawn" value="skeleton_champion"/>
+    <property name="wander" value="2"/>
+   </properties>
+   </object>
+  <object name="skelarch" type="spawn" gid="247" x="2185" y="1425">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="wander" value="2"/>
+   </properties>
+   </object>
+  <object name="mage" type="spawn" gid="247" x="2065" y="2255">
+   <properties>
+        <property name="conditions" value="VariableLower#fiery_dancing,10" />
+    <property name="spawn" value="magician_fire"/>
+        <property name="tag" value="fmage" />
+    <property name="wander" value="0"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="575" y="465">
+   <properties>
+    <property name="conditions" value="VariableEqual#freedom_law_order,145"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="unique_tag" value="chase_leg"/>
+    <property name="wander" value="0"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="585" y="585">
+   <properties>
+    <property name="conditions" value="VariableEqual#freedom_law_order,145"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="unique_tag" value="chase_leg"/>
+    <property name="wander" value="0"/>
+   </properties>
+ </object>
+  <object name="soldat" type="spawn" gid="247" x="505" y="635">
+   <properties>
+    <property name="conditions" value="VariableEqual#freedom_law_order,145"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="spawn_u" value="female_knight_hostile"/>
+    <property name="unique_tag" value="chase_leg"/>
+    <property name="wander" value="0"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

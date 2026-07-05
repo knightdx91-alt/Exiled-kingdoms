@@ -1,0 +1,30 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a noble middle-aged woman)[] Are you back, dear? Oh, and I see you didn't come alone.	port.	3			
+3,knave	Q	 I present to you - the lady Rusthatchet.	¿po?	4		
+4	A	I am glad to meet you.	po.	5		
+5,knave	Q	 Darling, you shared a secret with me, and as I promised you, I found this great wizard who had already managed to cope with the moon curse before!	¿po?	6		
+6,lady	Q	 How unexpected! You have fulfilled all my whims, but I could not even imagine that you would be able to cope with my special problem!	¿po?	7		
+7,knave	Q	 Did you really doubt me, my love?	¿po?	8		
+8,lady	Q	 No, it's not like that! Don't take offense at my words! It's just that I tried to find a way to get rid of the curse myself, but nothing worked, and now you break into my life and fulfill all my desires, even those that I thought were impossible! How lucky I am to meet you!	¿po?	9		
+9,knave	Q	 I'm incredibly lucky to meet you! Before you, my existence was empty, but you changed everything, made me feel alive again, try to do something not only for myself, but for someone who has become so close and dear to my soul!	¿po?	10		
+10	A	I'm sorry to interrupt, but I'm still here, maybe first we'll do a ritual to get rid of the curse, after which you can chat as much as you want.	po.	11		
+11,lady	Q	 Undoubtedly, the wizard is right, let's not postpone what he's here for!	¿po?	12		
+12,knave	Q	 Then let's start. [BLUE](you do everything that is written in the instructions of the hermit wizard, but at the very end there is a problem, the last formula of the spell has four options and it is not indicated which of them is correct)[]	¿po?	13		
+13	A	[BLUE](use the first option)[]	po.	15		
+13	A	[BLUE](use the second option)[]	po.	17			
+13	A	[BLUE](use the third option)[]	po.	20		
+13	A	[BLUE](use the fourth option)[]	po.	26		
+15,lady	Q	 Uh, I don't feel any changes.	¿po?	16		
+16,knave	Q	 Perhaps we need to repeat everything. [BLUE](you do everything that is written in the instructions of the hermit wizard, but at the very end there is a problem, the last formula of the spell has four options and it is not indicated which of them is correct)[]	¿po?	13		
+17,lady	Q	 I feel kind of... like... [BLUE](the woman's face began to distort, become covered with hair, and her limbs lengthened)[] No! Why is the transformation happening right now?! It's not a full moon night!	¿po?	18		
+18,knave	Q	 Damn it! And I expected that by her curse she meant something no more serious than menstruation!	¿po?	19		"NPCFollow#"		
+19	A	[BLUE](it looks like the transformation has ended, and the woman has turned into a wild and furious beast that is going to tear you apart!)[]	po.	0		"LoseItem#10431;LoseItem#10432;NPCDespawn#lady;NPCSpawn#lady2;SetVariable#ladies_man,85"
+20,lady	Q	 I feel... so weak... Did it work? Oh, look at my hand! The scars-they're gone! I got them along with the curse, they've been on me all my life and now they're gone! So my curse went with them!	¿po?	21		
+21	A	That's right, the curse is gone.	po.	22		
+22,lady	Q	 Without any doubt, you really are a great wizard! Here, take my tiara as a reward for getting rid of the curse, it is an ancient ancestral thing, but I am not sorry to part with it, you have defeated evil, which I did not hope that someone would cope with!	¿po?	23		
+23	A	It is an honor for me to receive such an award!	po.	24		
+24,lady	Q	 I'm so tired... Dear, I'm going to my chambers, I'll see you again later when I'm rested!	¿po?	25		
+25,knave	Q	 I understand you, my love!	¿po?	0		"LoseItem#10431;LoseItem#10432;NPCDespawn#lady;GainItem#10429;SetVariable#ladies_man,100;GainXP#1200;NPCFollow#"
+26,lady	Q	 I feel... rather queer... [BLUE](the woman's face and body began to swell and darken)[] Oh no! What is happening to me?! What have you done?!!	¿po?	27		
+27,knave	Q	 Damn it! And I couldn't even imagine something like this!	¿po?	28		"NPCFollow#"		
+28	A	[BLUE](It looks like the transformation has ended, and the woman has turned into a huge uncontrollable monster that is going to devour you!)[]	po.	0		"LoseItem#10431;LoseItem#10432;NPCDespawn#lady;NPCSpawn#lady3;SetVariable#ladies_man,85"

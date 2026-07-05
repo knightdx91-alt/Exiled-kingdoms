@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 You have already taken everything you need.	¿po?	0	"VariableEqual#varsilian_job,95"		
+1,knave	Q	 [BLUE](starts rummaging through the chests)[] Great! Take the most valuable things and fill the bags, we'll take as much as we can carry!	¿po?	2	"VariableEqual#varsilian_job,93"		
+2,katasakh	Q	 I will try harder than all of you!	¿po?	3		
+3,knave	Q	 Hey, witch, you weren't much use, so at least you can help us carry out more things!	¿po?	4		
+4,sansa	Q	 [BLUE](also studying the contents of the chests)[] Do not tear off your mouth in vain, otherwise I will turn you into a mule, you will just be useful in such a state to carry away these riches. Wow, but this thing is very ancient and there is a strong magic in it!	¿po?	5				
+5	A	It's the reason we're here, we don't need the rest.	po.	6		
+6,sansa	Q	 Hmm, take it, but be careful with it, such old relics are often cursed.	¿po?	7		
+7,katasakh	Q	 [BLUE](finishes filling the bags)[] I'm done, it's time to get out of here!	¿po?	8		
+8,knave	Q	 That's right, Katasakh.	¿po?	0		"GainItem#10405;SetVariable#varsilian_job,95"

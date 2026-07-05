@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a bald man with an athletic build)[] And don't forget that family is the most important thing.	¿po?	0	"VariableEqual#end_job,2"		
+1	Q	 [BLUE](a bald man with an athletic build)[] It's time to go?	¿po?	16	"VariableEqual#varsilian_job,97"		
+1	Q	 [BLUE](a bald man with an athletic build)[] Money will come and go. We know that. But the most important thing in life will always be the people in this room, right here, right now.	¿po?	0	"VariableGreater#varsilian_job,80"		
+1	Q	 [BLUE](a bald man with an athletic build)[] Jacket! I can't believe you're back!	¿po?	13	"VariableEqual#varsilian_job,75"		
+1	Q	 [BLUE](a bald man with an athletic build)[] Life is simple - you make a choice and you don't regret it.	¿po?	0	"VariableEqual#varsilian_job,70"		
+1	Q	 [BLUE](a bald man with an athletic build)[] You don't know me, but I'll fix it soon.	¿po?	3			
+3,knave	Q	 Uh-uh... We're looking for an experienced charioteer named Dominic...	¿po?	4				
+4,dom	Q	 Do you need a real driver? So you've come to the right place, but I don't know you.	¿po?	5			
+5,knave	Q	 We came from Hugh.	¿po?	6			
+6,dom	Q	 Hmm, Hugh is like a brother to me, and family is the most important thing. How can I help you?	¿po?	7		
+7,knave	Q	 Hugh is planning something, and he needs you.	¿po?	8				
+8,dom	Q	 No question, I'm ready to help you, but one bastard stole one of my best mares. Of course, it doesn't matter who pulls the cart, the most important thing is who holds the reins. But Jacket, my mare, she has become like a part of my family.	¿po?	9			
+9	A	We'll help you get your horse back. Do you know who this thief might be, and where should we look for him?	po.	11		
+11,dom	Q	 This is Thomas, my old rival. He was last seen in Kingbridge. He's a little sick in the head, but be careful with him, if you make him angry, he'll easily loosen your head!	¿po?	12			
+12	A	Clearly.	po.	0		"SetVariable#varsilian_job,70"
+13,horse	Q	 Eeeeeeeee! Fffrrr!	¿po?	14		"NPCStopFollowing#"		
+14,dom	Q	 Thank you, friends, I am in your debt! I'll get harnessed up immediately and leave for New Garand, if you want, I can give you a ride.	¿po?	15		
+15	A	That would be great!	po.	0		"SetVariable#varsilian_job,80;NPCDespawn#horse;NPCDespawn#dom;Travel#NG,1,3"
+15	A	We'll get there on our own.	po.	0		"SetVariable#varsilian_job,80;NPCDespawn#horse;NPCDespawn#dom"
+16	A	Exactly!	po.	0		"SetVariable#end_job,1;NPCDespawn#guard_go;NPCDespawn#dom;Travel#H10,9,2"

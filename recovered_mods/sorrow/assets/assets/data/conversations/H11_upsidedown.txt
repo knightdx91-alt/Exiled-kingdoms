@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](some man who is strangely walking through the air upside down)[] Hello!	¿po?	0	"VariableEqual#upsidedown,3"		
+1	Q	[BLUE](some man who is strangely walking through the air upside down)[] Hello!	¿po?	10	"VariableEqual#upsidedown,2"		
+1	Q	[BLUE](some man who is strangely walking through the air upside down)[] Hello!	¿po?	2			
+2	A	What the hell?! How do you manage to walk through the air, and even upside down?!	po.	3		
+3	Q	What?! Yes, it's a piece of cake, but that's why you can walk on the ground, I don't understand?!	¿po?	4				
+4	A	I walk on the ground all the time, there's nothing complicated about it, but how do you manage to walk in the air?	po.	5		
+5	Q	As usual, but can you explain to me how it is possible to walk on the ground?	¿po?	6				
+6	A	Everyone walks on the ground, you are the first one who can walk on air, whom I saw!	po.	7		
+7	Q	This can't be happening! This is the first time I've seen anyone walking on earth, no one else does that except you!	¿po?	8		
+8	A	Okay, think what you want...	po.	0		"SetVariable#upsidedown,2"
+8	A	Okay, think what you want, I was actually looking for friends of Bridge here.	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		
+9	Q	Of Bridge? I have no idea, I'm certainly not one of them!	¿po?	0		"SetVariable#upsidedown,3"
+10	A	Hello.	po.	0		
+10	A	I'm looking for friends of Bridge here, can you tell me where they might be?	po.	9	"VariableGreater#further_into_forest,39;VariableLower#further_into_forest,43"		

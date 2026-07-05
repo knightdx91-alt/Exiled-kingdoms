@@ -1,0 +1,18 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	That's it, stop hitting me, I give up! 	port.	4	"VariableEqual#time_to_pay,60"		
+1	Q	[BLUE](group of suspicious people stood over the motionless body of a man in a robe)[] ...that's done, and now let's get out of here before anyone... 	[BLUE]()[] port.	2		
+2,adaon	Q	Hey, what's going on here? You killed the sorcerer you were supposed to negotiate with, so that means you are rats after all!	¿po?	3			
+3,muqrin	Q	Damn, these are the rookies who work for the boss! Get them out, otherwise they'll tell the boss, and we'll be in trouble! 	port.	0		"NPCHostile#muqrin;NPCHostile#muqrin_team;SetVariable#time_to_pay,60"
+4,adaon	Q	It depends on whether you answer our questions [BLUE](raised his fist threateningly)[] or not!	¿po?	5			
+5,muqrin	Q	Okay, okay, I'll talk!	¿po?	6			
+6	A	Okay, Kiara suspects you of betrayal, and it's confirmed here, but she believes that there are other people who betrayed her, who are clearly working together.	po.	7		
+7,adaon	Q	Speak quickly before I change my mind and decide to beat you to death!	¿po?	8			
+8,muqrin	Q	Calm down, I'll tell you everything! I'm not really involved, Bugs made it up, he talked me into breaking the deal with the magician, since he's already negotiating with someone else from the Icemist!	¿po?	9			
+9	A	Bugs, is that that big Kiara bodyguard?	po.	10		
+10,muqrin	Q	That's him! He also persuaded Captain Trickster to appropriate the cargo, and sent the guys to press the fishermen, and he had some other business, but I do not know the details!	¿po?	11			
+11	A	And why is he doing all this?	po.	12		
+12,muqrin	Q	I have no idea! He's probably aiming for Kiara's place, wants to replace her and become the new boss. I don't know anything else!	¿po?	13			
+13,adaon	Q	Well, well done, but you shouldn't have worried so much, after all, my friend and I are heroes, we wouldn't kill anyone just like that! We need to take him to Kiara so that he can tell her all this himself.	¿po?	14			
+14	A	Good idea. You're coming with us, and don't do anything stupid.	po.	15		
+15,muqrin2	Q	Okay, I won't!	¿po?	16		"NPCFollow#"
+16,adaon	Q	I'm watching you.	¿po?	0		"NPCDespawn#muqrin;SetVariable#time_to_pay,65"

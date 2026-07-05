@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hello, passerby! If you are suddenly interested, my pets are ready to keep you company, protecting you in any difficult journey, I am ready to let them go with you, but for a small fee. Choose if you need a defender.	po    rt.	2		
+2	A	Yes I'm interested.	port.	3	hasNoFollower#	
+2	A	Sorry, but there are already too many of us in the group.	port.	0	hasFollower#	
+2	A	Not now, thank you. Maybe in the future.	port.	0		
+3	Q	Then choose who you want to take with you, a dragon for {LEVELx30}, cat for {LEVELx20}, wolf for {LEVELx10}.	po    rt.	4		
+4	A	I want a dragon.	port.	5	"PlayerHasGold#{LEVELx30}"	
+4	A	I want a cat.	port.	10	"PlayerHasGold#{LEVELx20}"	
+4	A	I want a wolf.	port.	15	"PlayerHasGold#{LEVELx10}"	
+4	A	I changed my mind.	port.	0		
+5	Q	What do you say, dragon?	port.	6		
+6,minidrake	Q	Ryyv-ryy.	port.	7		
+7,animallover	Q	Ну и отлично.	port.	8		
+8,minidrake	Q	Ryyy.	port.	9		
+9	A	That's great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx30}"	"NPCFollow#;LoseGold#{LEVELx30}"
+10	Q	What do you say, cat?	port.	11		
+11,minisabercat	Q	Meow-meow.	port.	12		
+12,animallover	Q	Ну и отлично.	port.	13		
+13,minisabercat	Q	Meow.	port.	14		
+14	A	That's great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx20}"	"NPCFollow#;LoseGold#{LEVELx20}"
+15	Q	What do you say, wolf?	port.	16		
+16,domewolf	Q	Yap-yap.	port.	17		
+17,animallover	Q	Ну и отлично.	port.	18		
+18,domewolf	Q	Yap.	port.	19		
+19	A	That's great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx10}"	"NPCFollow#;LoseGold#{LEVELx10}"

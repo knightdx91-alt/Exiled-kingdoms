@@ -1,0 +1,62 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hey, where did you suddenly disappear to?	¿po?	36	"VariableEqual#knave_h13,2"		
+1	Q	 Go back?	¿po?	34	"VariableEqual#knave_ark,2"		
+1	Q	It looks like we've done something very bad, or maybe it'll blow over, what do you think?	¿po?	38	"VariableEqual#guest_other_worlds,100"		
+1	Q	We have the last artifact, and it means that we will finally get our wealth!	¿po?	0	"VariableEqual#ladies_man,100"		
+1	Q	Buddy, we just have to find one more artifact, and we'll get our treasure and get incredibly rich! I'm going back to Freetown in the meantime, maybe I'll be lucky to find out something about the latest artifact. We'll meet there again later!	¿po?	31	"VariableGreater#immersed_darkness,99"		
+1	Q	No matter how difficult it is, we will definitely find a way out of here!	¿po?	0	"VariableGreater#immersed_darkness,84;VariableLower#immersed_darkness,99"		
+1	Q	I hope we will be lucky and find the entrance to this temple of knowledge!	¿po?	0	"VariableGreater#immersed_darkness,9;VariableLower#immersed_darkness,84"		
+1	Q	Buddy, enough time has passed, it would be worth returning to Solliga, maybe Elizar managed to find out something.	¿po?	0	"VariableEqual#guest_other_worlds,42"		
+1	Q	It seems that it will not be so easy to get all four artifacts, but we will manage, buddy, we will get our treasure and get incredibly rich!	¿po?	0	"VariableGreater#guest_other_worlds,40"		
+1	Q	We have a weapon against the troll, which means he's out of luck, he won't be able to keep his eggs!	¿po?	0	"VariableEqual#fatal_eggs,50"		
+1	Q	You're there, okay, so it's time to act. Now I will explain to you where my dad keeps his knives, I will make my way into the house first to check the situation, you follow me after a little while, quietly and quickly take the knife away, and I stand on the lookout, bati has a very clear hearing, so we need to be more careful, after which we also leave unnoticed The house. Is everything clear?	¿po?	25	"VariableEqual#fatal_eggs,45"		
+1	Q	The treasures are waiting for us, the main thing is that no one eats us before we get them.	¿po?	0	"VariableGreater#fatal_eggs,34;VariableLower#fatal_eggs,41"		
+1	Q	You know, we don't have to risk our skin trying to take down this bear, we could have taken a knife without my dad's consent, waiting for the right moment for this.	¿po?	20	"VariableEqual#fatal_eggs,30"		
+1	Q	It seems that it will not be so easy to get all four artifacts, but we will manage, my friend, we will get our treasure and get incredibly rich!	¿po?	0	"VariableEqual#guest_other_worlds,40"		
+1	Q	Eh, it turned out that not everything is so simple with our treasure!	¿po?	17	"VariableEqual#guest_other_worlds,30"		
+1	Q	Hey, buddy, we will definitely find this treasure and get incredibly rich!	¿po?	0	"VariableEqual#guest_other_worlds,20"		
+1	Q	Thanks for the help, buddy! If it wasn't for you, I'd be dead or worse!	¿po?	2			
+2	A	You're welcome, I was glad to help you.	po.	3		
+3	Q	And you know, in this city, there would hardly be anyone else willing to help a stranger for nothing, so I think I have to thank my savior! I have a very profitable case and I am ready to take you in, moreover, to share the reward equally!	¿po?	4				
+4	A	Okay, so what's the case?	po.	5		
+5	Q	A month ago, I managed to get hold of a treasure map in the Gray Library. But I managed to go after them right away, as I had to collect supplies for the trip, and I had to quickly escape from Freetown because of the owners of the library, who did not like that I was running their territory.	¿po?	6			
+6	A	That's why you came back to Freeport, but what kept you here for a few weeks?	po.	7		
+7	Q	Well, I had to thoroughly prepare for the trip, the road was planned to be long and dangerous, but I didn't have the money for all these preparations. Therefore, I borrowed money from a local dealer, promising to return everything, and when I acquired the necessary goods, I met a girl, and together with her we spent all my money.	¿po?	8			
+8	A	And you had to borrow again?	po.	9		
+9	Q	Yeah, I had to, but at a higher percentage and shorter payment terms, and again I was unlucky, the city guards confused me with some thief, and I had to pay them off so as not to end up in jail. It was already stupid to turn to Umrak for the third time, but I had nowhere to go.	¿po?	10			
+10	A	And Umrak still gave the borrow again?	po.	11		
+11	Q	Strangely enough, but yes, a little, of course, and even agreed to postpone the repayment of the debt. Although it turned out very quickly that I owed him a lot more than I borrowed, and must everything back in a very short time. So we'd better get out of town as fast as possible before Umrak sends more goons looking for me.	¿po?	12			
+12	A	So where exactly are we going in the treasure hunt?	po.	13		
+13	Q	We need to get to the northern part of the Thir mountains, there is a castle forgotten by everyone or not castle, in general, some kind of structure in which wealth awaits us! That's just the exact location of this castle was not specified, but I don't think there are many buildings in those mountains!	¿po?	14			
+14	A	Well, have to try, but I hope it will be worth it.	po.	15		
+15	Q	Of course it will! And yes, it's very cold in those mountains, so you need to prepare first so that you don't freeze there.	¿po?	16		"NPCFollow#"		
+16	A	It's a good idea, so let's do.	po.	0		"SetVariable#guest_other_worlds,20"
+17	A	And what do you think about this troll, the Whitetoad relic, and where to find two more artifacts?	po.	18		
+18	Q	Well, Whitetoad live in New Garand, and I have friends in this city who will help us somehow get this relic. And I know one magician who may be able to tell us at least something about the troll and other artifacts, he lives in Solliga.	¿po?	19			
+19	A	Well, then let's get down to case.	po.	0		"SetVariable#guest_other_worlds,40;SetVariable#fatal_eggs,10;SetVariable#varsilian_job,10"
+20	A	Do you want to steal from your father?	po.	21		
+21	Q	Of course not! We'll just borrow this knife for a while, and when we get the treasure, we'll return it and add some valuables on top.	¿po?	22			
+22	A	No, let's do your dad's job and get a knife.	po.	0		"SetVariable#fatal_eggs,35"
+22	A	Okay, let's borrow your dad's knife.	po.	23		
+23	Q	Great! I'll stay here for now to keep an eye on my dad, we'll meet at night behind his house.	¿po?	24		"NPCStopFollowing#"		
+24	A	Agreed.	po.	0		"SetVariable#fatal_eggs,45;NPCDespawn#knave"
+25	A	Yes, understand.	po.	26		
+26	Q	Then let's get to work! [BLUE](Neville crept up to the window of the house, unscrewed it and climbed inside, ten seconds later you followed him. Having made your way into the house, you followed Neville's explanations to where there was a chest containing two enchanted knives)[]	¿po?	27		"NPCFollow#"		
+27	A	[BLUE](take one knife)[]	po.	28		"GainItem#10398"
+27	A	[BLUE](take both knives)[]	po.	28		"GainItem#10398;GainItem#10398"
+28,father	Q	What the fuck, I heard like someone... Oh, you damn thieves!!!	¿po?	29			
+29,knave	Q	Damn it! Let's get out!	¿po?	30			
+30,father	Q	Well, no, you bastards won't just leave!	¿po?	0		"NPCSpawn#father2;SetVariable#fatal_eggs,50"
+31	A	Okay, be careful there, don't get into any more trouble.	po.	32		
+32	Q	Of course! I usually don't step into the same puddle of problems twice. Good luck to you!	¿po?	33		"NPCStopFollowing#"		
+33	A	And the same to you.	po.	0		"SetVariable#knaveFT,1;NPCDespawn#knave"
+34	A	Yes.	po.	35		"SetVariable#knave_ark,3"
+34	A	Not yet.	po.	0		
+35	Q	Great!	¿po?	0		"NPCFollow#"		
+36	A	It's okay, let's move on.	po.	37		"SetVariable#knave_h13,3"
+37	Q	Great!	¿po?	0		"NPCFollow#"		
+38	A	To be honest, I have no idea what will happen next.	port?	39			
+39	Q	Maybe this bastard will calm down and return to his world to his home? It would be great if it turns out that way. Although it's a shame that this greedy guy didn't even give us a coin for the work we did! Okay, I'm going back to Freetown for now, I hope everything will be fine.	¿po?	40		"NPCStopFollowing#"		
+40	A	And me too.	port?	0		"SetVariable#knaveFT,4;NPCDespawn#knave"
+41	A	Yes.	po.	42		
+42	Q	Good!	¿po?	0		"NPCFollow#"		

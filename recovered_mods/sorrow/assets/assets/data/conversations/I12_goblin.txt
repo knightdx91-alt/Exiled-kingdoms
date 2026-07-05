@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](old goblin is studying some scrolls, not paying attention to you)[]	port?	0	VariableGreater#dragons_service,59		
+1	Q	Hey, who's that over there?! Are you Gizmo? I told you not to come here anymore and not to carry any trash with you! And who else did you bring here?!	port?	2		
+2,goblin	Q	 Calm down, old man! I need your help, you know all about ancient things, right?	¿po?	3				
+3,old	Q	 Of course, as if Borkmuk wouldn't have figured it out! I'm ancient myself! What have you got there?	¿po?	4				
+4,goblin	Q	 Great! Show him this thing!	¿po?	5				
+5	A	Is this the true crown of the dragon lord?	port?	6		
+6,old	Q	 No, of course not! [BLUE](the old goblin replied without even looking at the object in your hands)[] If you were interested in history, you would know that the dragon slayer magicians defeated the dragon lord, and his crown was destroyed. And they made this filth out of remains, in mockery of all the dragons.	¿po?	7				
+7,goblin	Q	 This is a trap! So the crown of the dragon lord does not exist?! Well, we'll have to convince Shenron of this somehow, and he's unlikely to be happy to learn and accept this information! Friend, maybe you can talk him down?	¿po?	8				
+8	A	I'll try, though I could use your help...	port?	9		
+9,goblin	Q	 Great, we'll see you again!	¿po?	10		"NPCStopFollowing#"		
+10,orc	Q	 Or maybe not! [BLUE](goblin and his orc friend left without listening to you)[]	¿po?	11		"NPCStopFollowing#"		
+11	A	And what should I do with this useless thing if the dragon doesn't need it?	port?	12		
+12,old	Q	 Hmm, when you convince this Shenron of the futility of this crown, then try to visit my older brother, he is the most magnificent blacksmith who has ever existed on this earth. Although this item is disfigured, it should still contain the crumbs of ancient magic, and can try to reforge it to use the remnants of its former power.	¿po?	13				
+13	A	And where will I find this blacksmith?	port?	14		
+14,old	Q	 He lives somewhere far to the south in the mountains, and he was mainly engaged in weapons, but, as I remember, he was also interested in jewelry for a short time. If he has an interest, he will do something with this ugliness.	¿po?	15				
+15	A	Okay, thanks for the help.	port?	0		"NPCDespawn#goblin;NPCDespawn#orc;SetVariable#dragons_service,60"		

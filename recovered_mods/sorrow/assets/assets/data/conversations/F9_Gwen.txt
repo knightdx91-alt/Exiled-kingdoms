@@ -1,0 +1,67 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a young pale-skinned girl looked at you in surprise)[] What the Tol? Why did you bring a corpse here?	¿po?	61	"VariableEqual#hate_through,62"	
+1	Q	[BLUE](a young, pale-skinned girl, no longer glaring at you as she had before)[] Do you need anything? Speak up while I still have time to talk.	¿po?	43	"VariableGreater#time_collect_skulls,9"		
+1	Q	[BLUE](young pale-skinned girl glaring at you)[] I'm sorry, but I'm busy, I don't have time to talk.	¿po?	43	"VariableGreater#bloody_harvest,69"		
+1	Q	[BLUE](young pale-skinned girl glaring at you)[] There's your spirit, talk to him.	¿po?	0	"VariableEqual#f9ghost,1"		
+1	Q	[BLUE](young pale-skinned girl glaring at you)[] To connect with the spirit, I need something that belonged to him.	¿po?	16	"VariableEqual#bloody_harvest,67"		
+1	Q	[BLUE](young pale-skinned girl glaring at you from a dark corner of the house)[]	¿po?	46			
+46,anita	Q	 Hey, Gwen, are you home?	¿po?	2			
+2,gwen	Q	Of course I'm at home, but where else would I be? It's been a long time, Anita.	¿po?	3			
+3,anita	Q	 What have you been doing here these last days?	¿po?	4			
+4,gwen	Q	I'm not doing anything illegal. I sell some potions, establish contact with deceased relatives, and help capture the undead. Although the ministers of the church in the city are not happy to see me.	¿po?	5			
+5,anita	Q	 Okay, what's going on outside, there's a lot of dead people in there?	¿po?	6			
+6,gwen	Q	 Ah, my competitors are trying to prevent me from working, but I can easily control these dead people. Why did you come here, and who did you bring here?	¿po?	7			
+7,anita	Q	 These are my comrades, they need your help. One man hid something and died, and we need to find out from him exactly where.	¿po?	8			
+8,gwen	Q	 Okay, the usual spirit summoning, it won't be too difficult.	¿po?	9			
+9,anita	Q	 Only this dead guy lived a couple hundred years ago.	¿po?	10			
+10,gwen	Q	 It's not a problem, the main thing is that we need something that belonged to our dead man for a long time. I hope you have something suitable?	¿po?	11			
+11	A	Yes, I had a Storm ancestral sword somewhere.	po.	13		
+11	A	Grisenda, does your sister have anything that belonged to the Storm family?	po.	12		
+12,mercenary_grisenda	Q	For sure, let's go back to her and find out.	¿po?	13			
+13,gwen	Q	 When you find the right thing, come back, I can perform the ritual.	¿po?	14			
+14,anita	Q	 I'll stay here and wait for you.	¿po?	15		"NPCStopFollowing#"		
+15	A	 Okay.	¿po?	0		"SetVariable#bloody_harvest,67"
+16	A	Here is the sword that belonged to him.	port?	17	"PlayerHasItem#766"		
+16	A	Here's a ring that belonged to him.	port?	17	"PlayerHasItem#10794"		
+16	A	I'll find the right thing and come back.	port?	0			
+17,gwen	Q	 Great, what's your dead man's name?	¿po?	18			
+18	A	Holland Storm, founder of Castle Storm.	port?	19			
+19,gwen	Q	 A well-known person, but I don't see any problems with his summoning, although it will be difficult to communicate with him. I have everything ready to perform the ritual, give me this item.	¿po?	20			
+20,storm	Q	 [BLUE](after the girl's strange manipulations and spells in a language you don't understand, the room seemed to darken, you were drenched by a chilling wind to the point of trembling, and suddenly, a ghost of a man appeared in the air)[]	¿po?	0		"SetVariable#f9ghost,1;NPCSpawn#storm"
+43	A	I brought you four skulls of priests, as I promised.	port.	54	"PlayerHasItems#10850,4"		
+43	A	You said you were selling potions, I'd like to take a look at your product.	port?	44			
+43	A	Do you need any help with anything?	port?	60	"VariableLower#time_collect_skulls,9"		
+43	A	What can you teach me?	port?	58	"VariableEqual#time_collect_skulls,100;PlayerIsClass#mage"	
+43	A	I won't bother you.	port?	0			
+44	Q	 Of course, look, choose.	¿po?	45			
+45	A		po.	0		OpenShop#
+60	Q	 Em, why is it that there's always someone who thinks that a lonely girl living in a place like this needs some kind of help? Em, I mean, I do need help, but it's not because I'm a girl or because I'm lonely. Oh, I'm saying something wrong... It's just so unexpected, usually people come to me, albeit cautiously, to ask for help or make threats, but no one has ever come just like that, offering their assistance.	¿po?	47			
+47	A	So, do you need help or not?	port?	48			
+48	Q	 Hmm, yes, there's something you can help me with. I'm developing an experimental potion, and I need various rare ingredients. I can get most of them myself, but I'm having trouble obtaining one of them.	¿po?	49			
+49	A	And what is it?	port?	50			
+50	Q	 Skulls of the Tolassian priests. As you can imagine, they're not just lying around, and I don't have the strength to take them from their owners.	¿po?	51			
+51	A	Okay, I can get them for you. Where should I look for these priests, and how many skulls do you need?	port?	52			
+52	Q	 They hide in any Tolosian tombs. Four skulls will be enough to start, and if you bring them, I will reward you. And you seem like a magician, so I can teach you a few things.	¿po?	53	"PlayerIsClass#mage"	
+52	Q	 They hide in any Tolassian tombs. Four skulls will be enough to start, and if you bring them, I will reward you.	¿po?	53			
+53	A	Good, agreed.	port?	0		"SetVariable#time_collect_skulls,10"
+54	Q	 Wow, that's great! Can I take a look at them?	¿po?	55			
+55	A	Of course.	port.	56		"LoseItems#10850,4"
+56	Q	 Yes, they are! What need! Thank you, here's your reward. And if you want, I'll teach you a dark skill.	¿po?	57	"PlayerIsClass#mage"	
+56	Q	 Yes, they are! What need! Thank you, here's your reward.	¿po?	57			
+57	A	Thanks, I was glad to help.	port?	0		"GainItem#10863;GainXP#700;SetVariable#time_collect_skulls,100"
+58	Q	 I can teach you [BLUE]Necromancy[], which will allow you to summon a spirit to fight for you.	¿po?	59			
+59	A	Tell me more about Necromancy.	port.	0		TrainSkill#necromancy	
+59	A	I'm not interested in that.	port?	0			
+61	A	We need your help with this man, we need to ask him about something.	port?	62		
+62	Q	 Oh, okay. Why does this corpse look so much like your companion?	¿po?	63			
+63	A	It's a long story, and I don't think you'll be interested. Can you help us?	port?	64		
+64,gwen	Q	 Of course, the corpse looks fresh, there shouldn't be any problems. What are we going to ask him about?	¿po?	65			
+65,falseadaon	Q	 We need to get the coordinates from him, which he found out about shortly before his death.	¿po?	66			
+66,adaon	Q	 Coordinates? What are the coordinates?	¿po?	67			
+67,guard	Q	 The coordinates with which we can find and neutralize the leader of the killers who are hunting you.	¿po?	68			
+68,gwen	Q	 I don't know what's what, I don't mind other people's business. I'm using a simple spell to tap into his residual memory, it doesn't last long, but hopefully he'll be able to pass on the information you need. [BLUE](after the girl's strange manipulations and spells over Adaon's corpse, his lips suddenly began to move without any sound)[] Okay, now tell us the coordinates. Coordinates. We need the coordinates you found out.	¿po?	69		
+69,guard	Q	 [BLUE](with difficulty, the dead man began to pronounce some numbers and letters)[] Do you have a piece of paper? We need to write down these coordinates!	¿po?	70			
+70,gwen	Q	 Yes, there is. [BLUE](she looked at her desk and came back with a piece of paper and a stylus)[]	¿po?	71		
+71,guard	Q	 [BLUE](guard Adaon wrote down what the dead man had said, then asked him to repeat it to double-check the notes, after which the dead Adaon froze again)[] Great, we got the coordinates, now we're heading for Balthasar's tower!	¿po?	72			
+72,gwen	Q	 Wait! Take your corpse with you, I don't need it here!	¿po?	73		
+73,guard	Q	 Yes, of course, we'll hand him over to the Kingsbridge priest to be buried, and then we'll go to Balthasar's tower.	¿po?	0		"SetVariable#hate_through,65"

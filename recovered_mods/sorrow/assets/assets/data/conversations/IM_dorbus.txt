@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Oh, it's my friend again! Do you seek training?	¡Oh, es mi amigo de nuevo! ¿Buscas entrenamiento?	60	VariableEqual#dorbus_friend,1		
+1	Q	Can't you see I am busy? If you seek training just say so, my experiments can't wait.	¿No ves que estoy ocupado? Mis experimentos no pueden esperar, si buscas entrenamiento dilo ya.	2			
+2	A	Come on... I am sure they can wait! Let's just chat a bit.	Venga, seguro que pueden esperar. Vamos a charlar un rato.	3	VariableLower#dorbus_friend,1		
+2	A	Brother, no need to get angry. I seek training.	Hermano, no hace falta enfadarse. Busco entrenamiento.	61			
+3	Q	[BLUE](His face begins to turn to red-purple)[] Ch... Chat! How you dare! Begone you rascal!	[BLUE](Su cara adquiere un tono rojo-púrpura)[] ¡Ch... Charlar! ¡Cómo te atreves!¡Largo sinverguenza!	4			
+4	A	I apologize,I'll go now.	Te pido disculpas, me marcho.	0			
+4	A	The weather is very cold outside in the Fjords, right? But I think it was colder past year.	El tiempo está muy frío ahí fuera en los Fiordos, ¿verdad? Pero creo que el año pasado hacía más frío.	5			
+5	Q	I warn you... Stop pestering me with your babbling or I'll turn you to ashes on the spot.	Te lo advierto... Deja de molestarme con tonterías o te convierto en cenizas aquí mismo.	6			
+6	A	Just kidding. Time to go!	Sólo bromeaba. Hora de irse.	0			
+6	A	Speaking of ashes, don't you think this place could use some more frequent dusting? I think you should call for a formal Guild Meeting about this.	Hablando de cenizas, ¿no te parece que este lugar tiene demasiado polvo? Creo que deberíais convocar una reunión del Gremio al respecto.	7			
+7	Q	I dare you to say one more word, I dare you!	Como digas una palabra más...	8			
+8	A	... [BLUE](Remain silent and turn around)[]	...[BLUE](Quedarse callado y darse la vuelta)[].	0			
+8	A	I tell you, I can't stand the latest fashion in wizard robes. The way it hangs from the hips down is so unelegant.	Te digo que no me gusta nada la última moda en túnicas de mago. La forma en la que cae desde la cadera es poco elegante.	9			
+9	Q	[BLUE](He begins to breath heavily and raises his hands...)[]	[BLUE](empieza a respirar pesadamente y levanta sus manos...)[]	10			
+10	Q	[BLUE](But then suddenly bursts out in laugther)[] By the Shadows, finally someone wishes to be social with me.  Let's sit down and talk for a while.	[BLUE](Pero comienza a reir amistosamente)[] ¡Por todas las Sombras!  Por fin alguien es sociable conmigo. Siéntate un rato a charlar.	11		"SetVariable#dorbus_friend,1;GainXP#250;GainItems#5021,2"	
+11	A	Sure! [BLUE](Sit down and chit-chat for a while)[].	¡Claro! [BLUE](Sentarse y charlar un rato)[].	12			
+12	Q	In 30 years since I teach at this place, nobody ever tried to be friendly. Please have this as a gift, and come back soon.	Hace treinta años que enseño magia aquí y nadie había sido amistoso conmigo. Ya era hora. Por favor acepta este regalo y vuelve pronto.	0			
+60	A	What can you teach me?	¿Qué puedes enseñarme?	61			
+61	Q	Certainly there's much to learn. You can handle the basics of teleportation with [BLUE]Gate[]. Or maybe you wish to become an adept [BLUE]Summoner[]. Finally, as every experiment can go wrong, you can learn [BLUE]Toxic Ward[].	Ciertamente hay mucho que aprender. Por ejemplo, teleportación básica usando [BLUE]Portal[]. O quizá quieres ser un experto [BLUE]Invocador[]. Por último, como todo experimento puede acabar mal, aprender [BLUE]Barrera: Tóxico[] puede ser útil.	62			
+62	A	Tell me more about Gate	Dime más acerca de Portal.	0		TrainSkill#gate	
+62	A	Tell me more about Summoner.	Dime más acerca de Maestría de la Tierra.	0		TrainSkill#summoner	
+62	A	Tell me more about Toxic Ward.	Dime más acerca de Maestría de la Tierra.	0		TrainSkill#toxic_ward	
+62	A	Maybe another time.	Quizá en otro momento.	0			

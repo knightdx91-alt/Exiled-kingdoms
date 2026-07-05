@@ -1,0 +1,30 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	17	NPCisFollower#	
+1	Q	 [BLUE](a good-natured-looking warrior girl, but who is not particularly kind now)[] What the hell, sister, I forbade you to get involved in this case, but you still didn't listen to me!	¿po?	14	"VariableEqual#lost_prince,65"		
+1	Q	 [BLUE](a good-natured-looking warrior girl who seems to be responsible for guarding the castle)[] Welcome to our city, traveler! Without a doubt, the time spent here will be to your liking!	¿po?	2		
+2	A	Can I get into the castle?	po.	3		
+2	A	Do you have a job for a hero?	po.	4		
+2	A	In the forests of the Dream Valley on a snowy plateau, I found these human remains, perhaps they belong to prince Vardy.	po.	12	"VariableEqual#lost_prince,60"		
+2	A	Thank you for your hospitality, I have to go.	po.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	16	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	16	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	16	PlayerHasItem#10402		INT#5
+3	Q	 Unfortunately, outsiders are prohibited from visiting the king's castle.	¿po?	0		
+4	Q	 So far there is nothing.	¿po?	0	"VariableGreater#lost_prince,5"		
+4	Q	 Maybe there will be, but I'm not going to mess with who knows who. [BLUE](For this task, you need a reputation of 10 in the Northern Kingdom)[]	¿po?	0	"VariableLower#REP_north_kingdom,10;VariableLower#lost_prince,10"		
+4	Q	 There is something, but I'm not sure if you will succeed in this case, and even more so, whether you will receive a reward.	¿po?	5	"VariableLower#lost_prince,10"		
+5	A	I'm still interested in this case.	po.	6		
+5	A	In this case, I will probably refuse.	po.	0		
+6	Q	 This commission concerns the youngest son of our Queen. Prince Vardy is an avid hunter, he often disappeared for a long time in the woods. But he did not return from another hunt. Search teams were organized that combed the  Dream Valley, the area around the Lake of Tears, the Gelid Coast, the Northern Wastelands and even the Hidden Plateau, but all to no avail, and several weeks have passed.	¿po?	7		
+7	A	So I have to somehow find the prince alone, despite the fact that a lot of people did not succeed?	po.	8		
+8	Q	 Actually, you'll need to check some information first. My sister sent me a message that she found out about some villager forester who supposedly saw prince Vardy. It is not known how true this information can be, so I have not yet informed anyone about it, so as not to disappoint the queen with false hopes.	¿po?	9		
+9	A	Okay, where can I find this forester?	po.	10		
+10	Q	 My sister did not write the details, as she wanted to do it herself, but I forbade her, as it could be risky. She serves as a sergeant in the eastern outpost, go to her, tell her that I sent you, let her tell you where to look for this forester.	¿po?	11		
+11	A	Okay, I'll take care of it.	po.	0		SetVariable#lost_prince,10		
+12	Q	 Ohh, it's a royal ring on the finger of this body, maybe you're right. It is necessary to provide these remains to the royal magicians to find out for sure whether you have found prince Vardy. A terrible tragedy, if it is confirmed. For your efforts, traveler, get this award.	¿po?	13		
+13	A	Thank you, I was glad to help you.	po.	0		"GainXP#750;LoseItem#10284;GainItem#10141;IncVariable#REP_north_kingdom,15;SetVariable#lost_prince,100"		
+14,wintercalm	Q	 Oh, shut up, sis. In the Dream Valley we found this body-look, there is a royal ring on it! Perhaps this is prince Vardy, we need to show him to the royal magicians to make sure of this.	¿po?	15		"NPCStopFollowing#"		
+15,captain	Q	 I will leave this body to the magicians, it will be terrible if it turns out to be true. And you, sister, return to your post immediately, we will talk more later without outsiders. For your efforts, traveler, get this award.	¿po?	0		"GainXP#750;LoseItem#10284;GainItem#11050;IncVariable#REP_north_kingdom,15;NPCDespawn#wintercalm;SetVariable#lost_prince,100"		
+16	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#cwintercalm_follow,3;NPCFollow#"	
+17	A	Good girl.	port.	0		
+17	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#cwintercalm_follow,1;NPCStopFollowing#"

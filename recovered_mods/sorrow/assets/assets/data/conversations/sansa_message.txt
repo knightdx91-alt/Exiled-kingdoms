@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](The young man smiles at Sansa, not paying attention to you)[] Greetings, you. You are very similar in description to the one I am looking for, are you by any chance lady Sansa?	¿po?	2	"VariableLower#something_more,10;IsInParty#sansa"	"SetVariable#TMP_talk_messenger2,1"
+1	Q	 My work is done, now can look into the tavern!	¿po?	0	VariableGreater#something_more,0	SetVariable#TMP_talk_messenger2,1
+1	Q	 Leave me alone, I'm looking for an important lady and you obviously aren't one.	¿po?	19		SetVariable#TMP_talk_messenger2,1
+2,sansa	Q	 Yes, it's me. Who are you and what do you need?	¿po?	3			
+3,messenger2	Q	 I am a messenger and I have a message for you from...	¿po?	4				
+4,sansa	Q	 Okay, stop! If this is about the tax on the ownership of the golem servant again, I have long since sold it and provided all the necessary documents for the transaction to the treasurer.	¿po?	5			
+5,messenger2	Q	 Uh... In fact, this message is not from the tax service, but from an anonymous source.	¿po?	6			
+6,sansa	Q	 All right, give it here and you can be free.	¿po?	7		
+7,messenger2	Q	 Here it is, please. [BLUE](he takes a sealed envelope out of his bag and hands it to Sansa)[]	¿po?	8				
+8,sansa	Q	 [BLUE](Sansa opens the envelope, and her face freezes in great surprise, which begins to darkens as she reads the message, and when she finishes, she crushes it angrily)[]	¿po?	9		NPCDespawn#messenger2
+9	A	Bad news?	po.	10		
+10,sansa	Q	 Yes, that's what you can call them. You have become a very close friend to me, so I can trust you. [BLUE] (the sorceress showed you a magical portrait sent with the message, where she was depicted naked taking a bath)[] And the freak who sent me this informs me that he has a lot of similar portraits with my participation, and if I don't pay him, he will distribute them all over the Icemist! And considering that I will soon have to confirm my classification in the Guild of Wizards, this will negatively affect my success!	¿po?	11	"VariableEqual#sansa_quest,20"		
+10,sansa	Q	 Yes, that's what you can call them. You've become a good friend to me, so I can trust you. The freak who sent me the message also sent a magical portrait of me taking a naked bath, and wrote that he had a lot of similar portraits with my participation, and if I didn't pay him, he would distribute them all over the Icemite! And considering that I will soon have to confirm my classification in the Guild of Wizards, this will negatively affect my success!	¿po?	11	"VariableEqual#sansa_quest,15"		
+11	A	And he demands a large sum for them?	po.	12		
+12,sansa	Q	 It's not about the amount, recently a similar thing happened to another young sorceress from the Guild, she paid, but the scoundrel continued to blackmail her, demanding an increasing number of coins. Despite the fact that she tried to pay off, portraits with her image still fell into many other people's hands. This freak was still caught, but the reputation of the sorceress was already damaged, and she had to leave the Guild of Wizards under pressure.	¿po?	13		
+13	A	What do you propose to do?	po.	14		
+14,sansa	Q	 I need to find this bastard as soon as possible and seize all my images that he has before he sends them out! To begin with, we will meet with the blackmailer's broker, who, according to the message, will be waiting for me in New Anthur, we will be able to find out something from him.	¿po?	15		
+15	A	I know a detective magician, he helped me very well, I'm sure he can help deal with your blackmailer.	po.	17	"VariableGreater#smoke_without_fire,99"		
+15	A	All right, let's go there.	po.	16		
+16,sansa	Q	 Then we won't linger.	¿po?	0		"SetVariable#something_more,10"
+17,sansa	Q	 If you're so confident in him, let's enlist the help of this detective. Where will we find him?	¿po?	18				
+18	A	The last time I saw him was in New Garand, and I hope we'll meet him there again.	po.	0		"SetVariable#something_more,50"
+19	A	Who are you looking for?	po.	20		
+20	Q	 It's none of your case, okay?	¿po?	0		

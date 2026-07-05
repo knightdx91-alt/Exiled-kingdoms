@@ -1,0 +1,1670 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="80" height="70" tilewidth="64" tileheight="32" nextobjectid="183">
+  <properties>
+    <property name="maxlight" value="45" />
+    <property name="music" value="something_near" />
+    <property name="norecall" value="" />
+    <property name="sw1" value="2" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="dungeon.tsx" firstgid="9" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="dungeon2.tsx" firstgid="489" />
+  <tileset source="town_objexts2.tsx" firstgid="729" />
+  <tileset source="ruins.tsx" firstgid="793" />
+  <tileset source="castlewall.tsx" firstgid="857" />
+  <tileset source="trees.tsx" firstgid="921" />
+  <tileset source="dungeon stairs.tsx" firstgid="937" />
+  <tileset source="natural_grounds.tsx" firstgid="941" />
+  <tileset source="dryground.tsx" firstgid="1069" />
+  <tileset source="grassland.tsx" firstgid="1133" />
+  <layer name="nonwalk" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJzt3MEKgkAUhlF3vf8bh6sgahT+O1pzzwEXIc00HxUm2rYBrOsRPtf22ir7VTka68x8o/3v+z49Hq2r8v13h6vm/TZPRb/0NfyztN+qzq5Nv4x+Gf0y+p0z41jtzuOWK81aZ4d2O/1y1Wvt8tmdZcbv6W40AgAAAAAAAAAAunG9Wa5Tv1nX3nbsV3W/Qdd+lWPql42p33j/0X3D+mVj6peNqV82pn514+v3+3PcRb/M0X+UMDbr3snVv/d2M9bY7fxV9fq69pu9rUq/jH4Z/ejoCdC+CRw=
+  </data>
+  </layer>
+  <layer name="water" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAD8GVeAAAE=
+  </data>
+  </layer>
+  <layer name="ground" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJzt3F1ygjAQwHFwvEQ/rF6k2vO1016Eh54H8LX3qJkhk226IXy2if5/LyAkiDsbNjhiUQAA8LeeyuFtD6LteftzadSX9aZ7bZZyn2xjttdin2xn+rXd61Y5htbPb/MZ/yizNd579p2nbH9X6u3ajdt3LPVjWlUhYrRx65bZlqIHJdf8OIYcRd+vEZ9PxmJfuuNo73tONG59+sZvbGzb2GixfY709WNViWXtXROK4vd4CB53YLsphuZaiD23exGbXbduxuDei5mNidlnYq3l7SEQ50rfPDiOqYidr8kjrY3Mr92IGpW6x9i46omXjYOWR9p1zc/HZqvXi1z4tXOtPkCIVkOi17hMxxsAALgt75f7hFM3d35hDj3bR4bfLaXijdjhH9nrIGMYADCVrSUn5tSTvVKHB5NzZ3MfR96NI+99mQfOR/4BeWHMLov5CwAAAIBrNvfZi1sln5XTfkfMb4uXk+tzEUsiBsB1GDuWqdHjUHunCT0vlduzrWshr5CS2H9bwJk7f6YGYw3UFAAAAOcbPY5Srg==
+  </data>
+  </layer>
+  <layer name="scenery" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJzt0jENAEAIwEASfCLwVb4BNgYG7hR0aAQAAAAAAAAAAAAAAAAAAAAAU5XbBVz2/AcAAAAArQ+UfQEP
+  </data>
+  </layer>
+  <layer name="objects" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJztXEtPFEEQHmY8efGsCAeNgCagiV5YFVjQlYuPKxBlEokc1ahHExOjgPoPVOBCIPFn+Pgxxj9gooldbne2t6ia6cfOk/mSSvf0Y3r626qu6nlsEDRo0KBBAwrPoyB40Mh/WYrs+Vt16FNXbDjytyv77ch0W6Y/jyX3peo/E9ewnXBdO2hsDtR58TkUdtHxfkTn8Tld+NvQOMPj5oUkfgeJ/ZRx3jpcB9h82m+vI6+5FgEX/QPOsR1Sdplky79S7Lwo2OgFwMV/uHBeF+D1r/G/fnDhIqlPkl2m+eYqwoU/F5+TJ9JiExdwsZCL/WL/y+mVq9+9IeRaAdJmxsc40OblE/+5gLNv/fe4KqQjZE1ILFMqPyPbzWgSo2O9Da7D5beF3BGygM6/GXXlTXQ477r/MIXLmgf8PZT55bC/7sRQ//G0kA9C3gv5xJxvWtZDu49a+XWDazFpY4s0/pL2TSbtgb9V3GgIF3ShuEnCPab80BgEsuBP+Q/d5mzjTgpqnVf6txTybVdk3bTBee8y5RyvOrLSvyzX8cWgZ7+AV4KrOOymGCb8tZlyjlcdWfCn7v9tpsiYmO+8kDkhZ+Tcz4q0pZWrfEfIKSnjYde2BqV/XBuOVx1Z8GeKETHHCcauxyM6DxgO+/UvCdiH6r5ZCfwW1BpZ1PpnCuBvzGFdVPyZ6t9XId9Q/Q8tz+lfUf7XFLMJ80/CcGimGwCOm+8GbcrO300P/kz1z4RnPcaOg/74WY+ZqXh83mUCA0IbrX+3GD4WUbnN+mfqPy6I+PEiiiEp3SpS3zCAP+wbTAD8mc7DhD/Q0fNE/E3pbpn4m5X6x/lgDsBfK+iXjkyVPS3I4zjo+VzdFlUdpMDxFjFO2fVPxS+2PniYsPP7RLsFZk+H6zgdpfYfZeJvNOzJmIyXJ4VMhd04elTGzXMynZdl4wR/pv6YAvA3RXBN7T/KxJ+OEQtfTOkf5U/WDcs4/0HtP8rKn00sQ/G3IuSl49ic/yj7+qfDV/98+OPWv7L7Xx2++mcaD1Kw2X+UlT+bvRzFH6Urpusfd2+/Svz52i8Vv/iC4op6VtJi2uaJdkn5ey3zkCqd/C3kD9G2SJz05C+L67ex36rzp+xK7dVaAb1v022vQ9SrOu7eChenV50/l+t36cM9UyqaP1//6xK/wJyfCnlh0Yd7plQ0f5T/eKSVrWv5tPgF9rKUcH2e2VwnU140f5T9roV0ntt/ACYFT5eFXCGEuz9qw1+V/Adw9iXq5RXS1r9LQ7RwfZL4w/fwoc9xw71ynvDVP5f7Vyb8YV7g+K9Bu7xxTnBy2lAmBuQ/TNY//LvAMY6dAUXz5wuT5xwYrvpH2a/P/dsyIE/+KMA6Oajvt4oAfifSRNQzJyxx0HsPE/Yg+h5Yfz9Ttef2KlBX528R8tCNuvO3m/EYdedPwecbsqT3aevM30pGc9O/KSz7txw+WG7WPy+k+Q/unW2b99+rEr+4IAv/cYD4qjt/WaPO31Jmwd8eOmfDX/nHKAp5zO1Jw18DBpg/2+/yjjry8B+Pa/ybZGW/W0dk/wb8qb1q2jf8elys57G+Ad5pZXVeY7Oa217DX6XGKAqm39nCfxnETKqec+jHsXZcZ/4aVBP/AM0/B7A=
+  </data>
+  </layer>
+  <layer name="roofs" width="80" height="70">
+    <data encoding="base64" compression="zlib">
+   eJzt27sKwkAQQNFAvtxHo6LfrNhYaTTXCOo5MOWycIutdoaBd9uMw3Ay11mPr/c7zjjzq3b6Jfo1+jX6Nfo1+jX6Nfo1+jX6TTuM92el38fp1+jX6NdsL/32EzPnXQUAAAAAAAAAgEfetb/FzZz/p9/iE//E9Gv0a/Rr9Gv0a/Rr/qXfdqE7/qXfUvRr9Gv0a/Rr9Gv0a/Rr9Gv0a3653zN7tnXs6QKwhDMnhGTU
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit to NG" type="transition" id="1" x="2425" y="1883" width="39" height="141">
+      <properties>
+        <property name="area_id" value="I9" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="entry from farmlands" type="entry" id="2" x="2388" gid="1" y="1923">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="notice" type="conversation" id="3" x="1370" gid="5" y="913">
+      <point />
+      <properties>
+        <property name="conversation" value="I9_castle_notice_shrine" />
+        <property name="icon" value="notice" />
+        <property name="name" value="@NOTICE" />
+      </properties>
+    </object>
+    <object name="notice" type="conversation" id="4" x="1592" gid="5" y="912">
+      <point />
+      <properties>
+        <property name="conversation" value="I9_castle_notice_guestroom" />
+        <property name="icon" value="notice" />
+        <property name="name" value="@NOTICE" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="5" x="1787" gid="3" y="1817" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="6" x="1875" gid="3" y="1926">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="7" x="2087" gid="3" y="1932">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="8" x="1730" gid="3" y="1864">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="9" x="2026" gid="3" y="1718">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="10" x="1927" gid="3" y="1683">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="11" x="2168" gid="3" y="1672">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="12" x="2161" gid="3" y="1970">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="13" x="1984" gid="5" y="1568">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="conditions" value="VariableLower#invitation,100" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="entry from farmlands" type="entry" id="14" x="1951" gid="1" y="1449">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Captain" type="spawn" id="15" x="1932" gid="3" y="1559" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#invitation,10" />
+        <property name="conversation" value="I9_castle_captain" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="spawn" value="stormknight_captain" />
+        <property name="tag" value="captain_gate" />
+        <property name="unique_tag" value="I9_castle_captain" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="16" x="1952" gid="5" y="1184">
+      <point />
+      <properties>
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="conditions" value="VariableLower#invitation,40" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate2" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="17" x="2123" gid="3" y="1197" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="18" x="2123" gid="3" y="1221">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="19" x="2120" gid="3" y="1430">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="20" x="1647" gid="3" y="1314">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="21" x="1649" gid="3" y="1360">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="22" x="1648" gid="3" y="1405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="23" x="1797" gid="3" y="1416">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Captain" type="spawn" id="24" x="2018" gid="3" y="539" width="64" height="64">
+      <properties>
+        <property name="spawn" value="stormknight_captain" />
+        <property name="tag" value="captain_ambush" />
+        <property name="unique_tag" value="I9_castle_captain" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="25" x="1989" gid="3" y="529">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="26" x="2037" gid="3" y="527">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="27" x="1758" gid="3" y="943" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="28" x="1762" gid="3" y="583">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="29" x="1762" gid="3" y="661">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="30" x="1476" gid="3" y="581">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="31" x="1522" gid="3" y="575">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="32" x="1254" gid="3" y="1058" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,36" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="33" x="1239" gid="3" y="891" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#invitation,10" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="34" x="1936" gid="3" y="832">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="35" x="1972" gid="3" y="814">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Radia" type="staticNPC" id="36" x="1250" gid="3" y="1286">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#invitation,40" />
+        <property name="conversation" value="I9_castle_radia" />
+        <property name="gender" value="f" />
+        <property name="name" value="@RADIA" />
+        <property name="portrait" value="40" />
+        <property name="sprite" value="female_white_2" />
+        <property name="tag" value="radia_alive" />
+      </properties>
+    </object>
+    <object name="radias corpse" type="mapitem" id="37" x="1270" gid="5" y="1275">
+      <point />
+      <properties>
+        <property name="active_sprite" value="corpse4" />
+        <property name="conditions_activate" value="VariableGreater#invitation,30" />
+        <property name="inactive" value="" />
+        <property name="tag" value="radia_body" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="Radia conversation" type="conversation" id="38" x="1269" gid="5" y="1276">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#invitation,30;VariableLower#invitation,60" />
+        <property name="conversation" value="I9_castle_radia" />
+        <property name="icon" value="radia" />
+        <property name="name" value="@RADIA" />
+      </properties>
+    </object>
+    <object name="Baron" type="staticNPC" id="39" x="1269" gid="3" y="1015">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#invitation,10" />
+        <property name="conversation" value="I9_castle_baron" />
+        <property name="facing" value="r" />
+        <property name="name" value="@DOBROS_STORME" />
+        <property name="portrait" value="105" />
+        <property name="sprite" value="male_black_2" />
+        <property name="tag" value="baron1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="40" x="1285" gid="3" y="1447" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="41" x="1423" gid="3" y="1466">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Melee Soldier" type="spawn" id="42" x="1758" gid="3" y="1453">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,82" />
+        <property name="hostile" value="VariableGreater#invitation,30" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_melee_12" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Bed" type="conversation" id="43" x="1458" gid="5" y="733">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#invitation,10;VariableLower#invitation,40" />
+        <property name="conversation" value="I9_castle_bed" />
+        <property name="icon" value="bed" />
+        <property name="name" value="@BED" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="44" x="1494" gid="3" y="954">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="hostile" value="VariableLower#false,1" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="45" x="1609" gid="3" y="1012">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="hostile" value="VariableLower#false,1" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="46" x="1589" gid="3" y="974">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="hostile" value="VariableLower#false,1" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="47" x="1559" gid="3" y="1024">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="hostile" value="VariableLower#false,1" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Bed" type="conversation" id="48" x="1586" gid="5" y="740">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#invitation,10;VariableLower#invitation,40" />
+        <property name="conversation" value="I9_castle_bed" />
+        <property name="icon" value="bed" />
+        <property name="name" value="@BED" />
+      </properties>
+    </object>
+    <object name="Nightblade" type="spawn" id="49" x="1490" gid="3" y="808">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="male_nightblade" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Nightblade" type="spawn" id="50" x="1537" gid="3" y="761">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="male_nightblade" />
+        <property name="tag" value="ambush" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="priest" type="spawn" id="51" x="1199" gid="3" y="589">
+      <point />
+      <properties>
+        <property name="conversation" value="I9_castle_priest" />
+        <property name="name" value="@ANDRYS_STORME" />
+        <property name="spawn" value="I9_necromancer" />
+        <property name="tag" value="I9_priest" />
+        <property name="unique_tag" value="I9_necromancer" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="52" x="1866" y="651" width="307" height="35">
+      <properties>
+        <property name="actions" value="SetVariable#TMP_talk_captain,1;StartConversation#captain_ambush,I9_castle_captain" />
+        <property name="conditions" value="NPCinArea#captain_ambush;VariableLower#TMP_talk_captain,1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="53" x="1312" gid="5" y="896">
+      <point />
+      <properties>
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="barrier" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="54" x="1344" gid="5" y="896">
+      <point />
+      <properties>
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="barrier" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="55" x="1280" gid="5" y="896">
+      <point />
+      <properties>
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="barrier" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="Death Knight" type="spawn" id="56" x="1134" gid="3" y="696">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="death_knight" />
+        <property name="tag" value="priest_ambush" />
+      </properties>
+    </object>
+    <object name="Skeleton" type="spawn" id="57" x="1294" gid="3" y="670">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="skeleton_champion" />
+        <property name="tag" value="priest_ambush" />
+      </properties>
+    </object>
+    <object name="Skeleton" type="spawn" id="58" x="1237" gid="3" y="827">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="skeleton_champion" />
+        <property name="tag" value="priest_ambush" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="59" x="1080" y="666" width="273" height="34">
+      <properties>
+        <property name="actions" value="SetVariable#TMP_talk_priest,1;StartConversation#I9_priest,I9_castle_priest" />
+        <property name="conditions" value="NPCinArea#I9_priest;VariableLower#TMP_talk_priest,1;VariableGreater#invitation,30" />
+      </properties>
+    </object>
+    <object name="corpse" type="container" id="60" x="2209" gid="5" y="185">
+      <point />
+      <properties>
+        <property name="icon" value="corpse1" />
+        <property name="items" value="6010,6010,6002,5016" />
+        <property name="name" value="@CORPSE" />
+        <property name="unique_tag" value="I9_castle_corpse" />
+      </properties>
+    </object>
+    <object name="Secret Door" type="secretdoor" id="61" x="736" gid="5" y="640">
+      <point />
+      <properties>
+        <property name="maxlevel" value="25" />
+        <property name="minlevel" value="25" />
+        <property name="secretdoor_tag" value="I9_castle_1" />
+      </properties>
+    </object>
+    <object name="Captain" type="spawn" id="62" x="726" gid="3" y="345" width="64" height="64">
+      <properties>
+        <property name="spawn" value="executioner" />
+        <property name="unique_tag" value="I9_castle_executioner" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="63" x="2143" y="1570" width="75" height="578">
+      <properties>
+        <property name="actions" value="SetVariable#TMP_talk_gris,1;StartConversation#mercenary_grisenda,I9_castle_grissenda" />
+        <property name="conditions" value="VariableLower#TMP_talk_gris,1;VariableEqual#invitation,10" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="64" x="592" y="680" width="235" height="30">
+      <properties>
+        <property name="actions" value="SetVariable#invitation,70;StartConversation#mercenary_grisenda,I9_castle_grissenda" />
+        <property name="conditions" value="VariableLower#invitation,70" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="65" x="926" gid="3" y="865">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="66" x="715" gid="3" y="877">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="67" x="742" gid="3" y="1071">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="68" x="871" gid="3" y="1057">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="69" x="943" gid="3" y="1013">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="70" x="955" gid="3" y="1129">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+      </properties>
+    </object>
+    <object name="exit to NG" type="transition" id="71" x="855" y="1337" width="50" height="46">
+      <properties>
+        <property name="area_id" value="I9_temple" />
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="entry from farmlands" type="entry" id="72" x="887" gid="1" y="1297">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="73" x="854" gid="5" y="1173">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="16" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="74" x="889" gid="5" y="1165">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="16" />
+      </properties>
+    </object>
+    <object name="spikes trap" type="trap" id="75" x="817" gid="5" y="1181">
+      <point />
+      <properties>
+        <property name="id" value="spikes" />
+        <property name="maxlevel" value="16" />
+        <property name="minlevel" value="16" />
+      </properties>
+    </object>
+    <object name="Skeletons" type="spawn" id="76" x="745" gid="3" y="1191">
+      <point />
+      <properties>
+        <property name="spawntable" value="skeletons" />
+      </properties>
+    </object>
+    <object name="entry from farmlands" type="entry" id="77" x="1259" gid="1" y="570">
+      <point />
+      <properties>
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="78" x="1434" gid="5" y="537">
+      <point />
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="79" x="1722" gid="5" y="893">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="80" x="1014" gid="3" y="236">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="81" x="985" gid="3" y="359">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="82" x="1032" gid="3" y="318">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="83" x="1105" gid="3" y="356">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED2" type="spawn" id="84" x="1076" gid="3" y="262">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded2" />
+      </properties>
+    </object>
+    <object name="BEHEADED2" type="spawn" id="85" x="1156" gid="3" y="224">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded2" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="86" x="1218" gid="3" y="212">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="87" x="1432" gid="3" y="211">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="88" x="1462" gid="3" y="350">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED2" type="spawn" id="89" x="1398" gid="3" y="342">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded2" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="90" x="1306" gid="3" y="397">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED" type="spawn" id="91" x="1249" gid="3" y="359">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded" />
+      </properties>
+    </object>
+    <object name="BEHEADED2" type="spawn" id="92" x="1193" gid="3" y="392">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded2" />
+      </properties>
+    </object>
+    <object name="BEHEADED2" type="spawn" id="93" x="1145" gid="3" y="353">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded2" />
+      </properties>
+    </object>
+    <object name="BEHEADED3" type="spawn" id="94" x="1448" gid="3" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded3" />
+      </properties>
+    </object>
+    <object name="BEHEADED3" type="spawn" id="95" x="1341" gid="3" y="387">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded3" />
+      </properties>
+    </object>
+    <object name="BEHEADED3" type="spawn" id="96" x="1283" gid="3" y="327">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded3" />
+      </properties>
+    </object>
+    <object name="BEHEADED3" type="spawn" id="97" x="1311" gid="3" y="260">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#executioner_dead,1" />
+        <property name="respawn" value="30" />
+        <property name="spawn" value="beheaded3" />
+      </properties>
+    </object>
+    <object name="entry from farmlands" type="entry" id="98" x="1645" gid="1" y="1715">
+      <point />
+      <properties>
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="99" x="1984" gid="5" y="1568">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,9;VariableLower#bloody_harvest,44" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="100" x="1952" gid="5" y="1184">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,56" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="101" x="1690" y="1570" width="30" height="480">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,39" />
+        <property name="actions" value="StartConversation#mercenary_grisenda,NG_amos" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="102" x="1860" y="1570" width="210" height="120">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,41" />
+        <property name="actions" value="StartConversation#isabelle,I9_vampires" />
+      </properties>
+    </object>
+    <object name="Isabelle" type="spawn" id="103" x="1975" gid="3" y="1585" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,44" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,41" />
+        <property name="spawn" value="isabelle_2" />
+        <property name="tag" value="isabelle" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Anita" type="spawn" id="104" x="1815" gid="3" y="1825" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,56" />
+        <property name="conversation" value="NG_anita" />
+        <property name="spawn" value="anita" />
+        <property name="tag" value="anita" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Baron" type="spawn" id="105" x="1265" gid="3" y="1015" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,51" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,49" />
+        <property name="spawn" value="I9_baron2" />
+        <property name="tag" value="baron" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Amelia" type="spawn" id="106" x="1235" gid="3" y="975" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,48" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,46" />
+        <property name="spawn" value="amelia_2" />
+        <property name="tag" value="amelia" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="107" x="1255" gid="3" y="1095" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,51" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,49" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="baron_guard" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="108" x="1245" gid="3" y="925" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,51" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,49" />
+        <property name="name" value="@STORMKNIGHT" />
+        <property name="spawn" value="stormknight" />
+        <property name="tag" value="baron_guard" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="109" x="1210" y="960" width="100" height="120">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,46" />
+        <property name="actions" value="StartConversation#baron,I9_baron" />
+      </properties>
+    </object>
+    <object name="pandora" type="spawn" id="110" x="1105" gid="3" y="975" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,51" />
+        <property name="spawn" value="pandora" />
+        <property name="tag" value="pandora" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="isabelle" type="spawn" id="111" x="1105" gid="3" y="945" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,50" />
+        <property name="spawn" value="isabelle" />
+        <property name="tag" value="isabelle2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Radia" type="spawn" id="112" x="1335" gid="3" y="1135" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="name" value="@RADIA" />
+        <property name="spawn" value="living_corpse" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="captain" type="spawn" id="113" x="1335" gid="3" y="945" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="name" value="@FENDRICK" />
+        <property name="spawn" value="zombie_s2" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="114" x="1425" gid="3" y="1075" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="spawn" value="zombie" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="zombie" type="spawn" id="115" x="1425" gid="3" y="1005" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="spawn" value="zombie" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="116" x="1525" gid="3" y="1075">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="hostile" value="" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="117" x="1525" gid="3" y="1005">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="hostile" value="" />
+        <property name="name" value="@SOLDIER" />
+        <property name="spawn" value="rogue_archer_12" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="lich" type="spawn" id="118" x="1205" gid="3" y="655">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,50" />
+        <property name="name" value="@HIGH_PRIEST" />
+        <property name="spawn" value="lich" />
+        <property name="tag" value="baron_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Alaric" type="spawn" id="119" x="1295" gid="3" y="1105">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,51;VariableLower#bloody_harvest,54" />
+        <property name="spawn" value="vampire_lord_2" />
+        <property name="tag" value="alaric" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Alaric" type="spawn" id="120" x="1295" gid="3" y="1105">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,54;VariableLower#bloody_harvest,66" />
+        <property name="spawn" value="vampire_lord_3" />
+        <property name="tag" value="alaric2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="necromancer" type="spawn" id="121" x="1265" gid="3" y="985">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,52" />
+        <property name="spawn" value="necromancer_male2" />
+        <property name="tag" value="necromancer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="122" x="1080" y="510" width="1000" height="1000">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,51" />
+        <property name="actions" value="StartConversation#necromancer,I9_baron" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="124" x="1984" gid="5" y="1568">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,64;VariableLower#bloody_harvest,86" />
+        <property name="active" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="nonwalk" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="125" x="2432" gid="5" y="1984">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="grate3" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="126" x="2432" gid="5" y="1952">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="grate3" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="127" x="2432" gid="5" y="1920">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grate_r" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="grate3" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="128" x="1845" gid="3" y="1935">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="129" x="1845" gid="3" y="1875">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="130" x="1845" gid="3" y="1815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="131" x="1845" gid="3" y="1755">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="132" x="1845" gid="3" y="1695">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="133" x="1905" gid="3" y="1935">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="134" x="1965" gid="3" y="1935">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="135" x="1935" gid="3" y="1995">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="136" x="1905" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="137" x="1965" gid="3" y="1685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="138" x="1815" gid="3" y="1675">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="139" x="1875" gid="3" y="1675">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampir" type="spawn" id="140" x="1785" gid="3" y="1835">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire2" />
+        <property name="tag" value="vampir_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Alaric" type="spawn" id="141" x="1785" gid="3" y="1775">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire_lord_5" />
+        <property name="tag" value="alaric3" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Alaric" type="spawn" id="142" x="1785" gid="3" y="1775">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#easy_alaric,1;VariableEqual#bloody_harvest,85" />
+        <property name="spawn" value="vampire_lord_4" />
+        <property name="tag" value="alaric4" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="143" x="1905" gid="3" y="1835">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="name" value="@VARSILIAN_KNIGHT" />
+        <property name="spawn" value="human_captain" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="144" x="1905" gid="3" y="1775">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="name" value="@VARSILIAN_KNIGHT" />
+        <property name="spawn" value="human_captain" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="145" x="1975" gid="3" y="1875">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="human_sergeant_male" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="146" x="1975" gid="3" y="1815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="human_archer" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="147" x="1975" gid="3" y="1755">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="kingly_bowman_male" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="148" x="2035" gid="3" y="1835">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="kingly_bowman_female" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="149" x="2035" gid="3" y="1775">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="human_captain" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="warrior" type="spawn" id="150" x="2065" gid="3" y="1815">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="spawn" value="mist_hunter" />
+        <property name="tag" value="amos_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="151" x="2050" y="1570" width="30" height="480">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,83" />
+        <property name="actions" value="StartConversation#amos,I9_Alaric" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="152" x="1647" gid="3" y="1314">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_archer" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="153" x="1649" gid="3" y="1360">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_evoker" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="154" x="1648" gid="3" y="1405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_archer" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="155" x="1797" gid="3" y="1416">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_champion" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="156" x="1758" gid="3" y="1453">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_warrior" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="157" x="1285" gid="3" y="1447" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="158" x="1423" gid="3" y="1466">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="159" x="2123" gid="3" y="1197" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="160" x="2123" gid="3" y="1221">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_archer" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="161" x="2120" gid="3" y="1430">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_warrior" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="162" x="1989" gid="3" y="529">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_hero" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="163" x="2037" gid="3" y="527">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_hero" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="164" x="1758" gid="3" y="943" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="165" x="1938" gid="3" y="843" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="166" x="1762" gid="3" y="583">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_warrior" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="167" x="1762" gid="3" y="661">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_warrior" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Archer" type="spawn" id="168" x="1476" gid="3" y="581">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_archer" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="169" x="1522" gid="3" y="575">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_champion" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="170" x="1932" gid="3" y="1155">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_champion" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="171" x="1273" gid="3" y="1026">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire2" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="172" x="1883" gid="3" y="276">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire2" />
+        <property name="tag" value="storme" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="173" x="736" gid="5" y="672">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="active_sprite" value="barrier_blue" />
+        <property name="barrier" value="" />
+        <property name="active" value="" />
+        <property name="tag" value="barrier1" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+    <object name="Amelia" type="spawn" id="174" x="535" gid="3" y="345" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="amelia" />
+        <property name="tag" value="amelia" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Pandora" type="spawn" id="175" x="535" gid="3" y="315" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,89" />
+        <property name="spawn" value="pandora" />
+        <property name="tag" value="pandora" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Isabelle" type="spawn" id="176" x="535" gid="3" y="375" width="64" height="64">
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,82;VariableLower#bloody_harvest,91" />
+        <property name="hostile" value="VariableGreater#bloody_harvest,89" />
+        <property name="spawn" value="isabelle" />
+        <property name="tag" value="isabelle" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="177" x="1465" gid="3" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,89;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire2" />
+        <property name="tag" value="vamp_t" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vampire" type="spawn" id="178" x="1625" gid="3" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,89;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="vampire" />
+        <property name="tag" value="vamp_t" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="179" x="1495" gid="3" y="405">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,89;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_hero" />
+        <property name="tag" value="vamp_t" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="skeleton" type="spawn" id="180" x="1495" gid="3" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#bloody_harvest,89;VariableLower#bloody_harvest,91" />
+        <property name="spawn" value="skeleton_hero" />
+        <property name="tag" value="vamp_t" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="181" x="640" y="160" width="90" height="460">
+      <properties>
+        <property name="conditions" value="VariableEqual#bloody_harvest,87" />
+        <property name="actions" value="StartConversation#isabelle,I9_vampires" />
+      </properties>
+    </object>
+    <object name="grate" type="mapitem" id="182" x="1984" gid="5" y="1408">
+      <point />
+      <properties>
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="inactive" value="" />
+        <property name="tag" value="grate4" />
+        <property name="walkable" value="" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Welcome to the West Bank Enclave, the Wizards Guild is just getting used to these places, I hope that in a year I will have my own tower, not this old tent, but I am ready to provide the same magical services as other enclaves.	port.	2		
+2	A	I found this magic crystal in the sewers of Freeport, perhaps you know what it is for or how to use it?	port.	8	"VariableEqual#fiery_dancing,10;PlayerHasItem#10287"		
+2	A	I need to use your teleport.	port.	3		
+2	A	Is there any work for the Wizards' Guild?	port.	7		
+2	A	What do you have for sale?	port.	0		OpenShop#
+2	A	Thanks, but I don't need anything.	port.	0		
+3	Q	My portable teleport works at a weak range, so I can only teleport you to the Iron Enclave for [BLUE]300 coins[].	port [BLUE][].	4		
+4	A	Okay, teleport me! Here's my gold.	port.	5	PlayerHasGold#300	
+4	A	Maybe another time.	Quizá en otro momento.	0		
+5	Q	No problem. Tell me when you're ready...	De acuerdo, di cuándo estás preparado...	6		
+6	A	Send me away!	Estoy preparado.	0		"loseGold#300;Particle#;Travel#D9_tower,2;Particle#teleport"
+7	Q	Not yet. But later, something will happen...	port.	0		
+8	Q	If I were you, I wouldn't pick up incomprehensible things, especially in the sewers. Hmm, undoubtedly the crystal is magical, here you are right, associated with the fire element. Unfortunately, I don't have a suitable equipment here to study it in more detail, and it takes a lot of time. But in the city, I heard that a red ghost suddenly began to wander around here at night, perhaps there is a connection here. Try to find out from him, if, of course, he doesn't kill you.	port.	0		SetVariable#fiery_dancing,20		

@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0	"VariableEqual#fisherman_joy1,5"		
+1	Q	We'll get back to work as soon as you get rid of extortioners. 	port.	11	"VariableGreater#fisherman_joy1,1;VariableLower#fisherman_joy1,5"		
+1	Q	[BLUE](looks like these are the fishermen you were looking for)[] 	[BLUE]()[] port.	2	"VariableGreater#time_to_pay,39"		
+1	Q	[BLUE](these are fishermen, they are busy with their cases, not paying attention to you)[] 	[BLUE]()[] port.	0		
+2	A	Hey guys, how's the catch?	port?	3			
+3	Q	Not really, for some reason there are no fish here, or the weather is changing, or maybe the moon is waning. 	port.	4		
+4	A	Yes, it's a shame when something doesn't happen the way we would like it to.	port?	5			
+5	Q	But actually, who are you, what do you need? 	port.	6		
+6	A	I'm from Kiara, it looks like you decided to dump your boss by defecting to her competitors?	port?	7			
+7	Q	Oh, sea devil! We were forced! Some thugs pressed us every day until we abandoned our occupation in the sea. And they still continue to visit us from time to time, their lair is not far from here. 	port.	8		
+8	A	If I deal with these assholes, will you get your job back?	port?	9			
+9	Q	Yes, of course, we ourselves would be happy to continue working for your boss. 	port.	10		
+10	A	Okay, you said their lair is not far from here, so it won't take long.	port?	0		"SetVariable#fisherman_joy1,2"
+11	A	I solved your problem, those bastards will never bother you again.	port?	12	"VariableEqual#fisherman_joy1,4"		
+11	A	Clearly.	port?	0			
+12	Q	Great, tell the boss that we'll be delivering a new batch of fish in a few days! 	port.	0		"SetVariable#fisherman_joy1,5;IncVariable#REP_town_liberty,2;IncVariable#REP_seventhhouse,1;IncVariable#time_to_pay,1"

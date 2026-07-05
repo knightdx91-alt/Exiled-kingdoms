@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Ah, Alarion! You finally decided to come to the meeting. And who's this with you?.. Wait a minute! I recognize this bastard! He almost killed me in that damned mine!	port.	2	"VariableEqual#royal_will,97"		
+1	Q	 It's not just going to end here! See you again, hero...	¿po?	0		"NPCDespawn#rosalia"
+2	A	I can finish it right now, witch.	port.	3		
+3,alarion	Q	Hey, I don't care what happened between you two! We agreed to a peaceful meeting. And I'll feel safer in your castle with this hero.	port.	4			
+4,rosalia	Q	Okay! If I turn you away, the queen will be unhappy with me, and I don't want to upset her, especially since we've been trying to get you to come to this meeting for a long time. By the way, my sister is here, and she'll be happy to see you too! We enjoyed working with you last time!	port.	5			
+5,alarion	Q	You were enjoying yourself, but I wasn't very comfortable dealing with you.	port.	6			
+6,rosalia	Q	But you came back to us anyway! Okay, let's not linger, let's go.	port.	7			
+7	A	[BLUE](bluish smoke began to envelop you, and soon it became so thick that you could no longer see through it. When the smoke began to dissipate, you realized that you had arrived in an unknown place.)[].	port.	0		"NPCDespawn#alarion;NPCDespawn#rosalia;Travel#R8_dungeon,1"

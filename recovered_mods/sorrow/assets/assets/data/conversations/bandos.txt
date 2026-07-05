@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	15	"VariableEqual#bandos_follow,3;NPCisFollower#"	
+1	Q	What, man?	port	4	NPCisFollower#	
+1	Q	Hello, brother, for a small reward {LEVELx200} I'm going to work with you.	po  {LEVELx200}  rt.	2		
+2	A	Sorry, but there are already too many of us in the group.	port.	0	hasFollower#	
+2	A	That would be great! Follow me. Welcome to the team.	port.	0	"hasNoFollower#;PlayerHasGold#{LEVELx200}"	"NPCFollow#;LoseGold#{LEVELx200}"
+2	A	Not now, thank you. Maybe in the future.	port.	3		
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		STR#6
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	14	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	14	PlayerHasItem#10402		INT#5
+3	Q	If th, I'll be here.	port.	0		
+4	A	Nothing, let's move on.	port.	0		
+4	A	I don't need your services anymore. Thank you for your help and goodbye.	port.	5		
+4	A	Please move a little, you're standing in the way.	port.	6		
+5	Q	We'll see each other again! Wait, locomotive, don't knock the wheels...	port.	0		NPCStopFollowing#
+6	Q	Now.	port	0		NPCMoveRandom#
+14	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#bandos_follow,3;NPCFollow#"	
+15	A	Good fellow.	port.	0		
+15	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#bandos_follow,1;NPCStopFollowing#"

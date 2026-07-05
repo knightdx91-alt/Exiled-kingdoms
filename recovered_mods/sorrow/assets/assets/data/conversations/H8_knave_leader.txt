@@ -1,0 +1,63 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](A middle-aged male salesman)[] Well, another successful case. It was a pleasure to work with all of you again, and with someone for the first time, hopefully not the last.	¿po?	57	"VariableEqual#end_job,2"		
+1	Q	 [BLUE](A middle-aged male salesman)[] So, Anika, have you had enough time, what have you been able to find out about our goal?	¿po?	32	"VariableEqual#varsilian_job,83"		
+1	Q	 [BLUE](A middle-aged male salesman)[] Let's wait until everyone gets ready, in the meantime, you can relax after your adventures, after which we will all start drawing up a robbery plan together.	¿po?	31	"VariableEqual#varsilian_job,80"		
+1	Q	 [BLUE](A middle-aged male salesman)[] Let's be more professional and not waste time on empty conversations.	¿po?	0	"VariableGreater#varsilian_job,19"		
+1	Q	 [BLUE](it's the same middle-aged male salesman.)[] Still, this is Neville, and I've heard rumors that you were hanged for doing bad things in Freetown, I'm glad that's not true, even though you shouldn't have gone to Varsilia.	¿po?	3			
+3,knave	Q	 Come on, Hugh, how can we not do cases in New Garand itself? This is the most productive place on the rich.	¿po?	4				
+4,leader	Q	 Are you serious about Whitetoad? Was it an unexpected choice of goal, or did you decide to work on someone's tip? It will be difficult to pull off such a thing, but I have already noticed simpler options.	¿po?	5			
+5,knave	Q	 My friend and I only need one relic of Whitetoad, all the other stuff we can carry will go to you and your team.	¿po?	6			
+6,leader	Q	 Hmm, generous, however, although I understand what kind of thing you need, and the fact that the customer will pay you for it no less generously.	¿po?	7		
+7,knave	Q	 So, are we going to take on this case, or will we have to do it ourselves without you?	¿po?	8				
+8,leader	Q	 Times have changed here, now the Seventh House controls all criminal activity, constantly increasing its share from any more or less significant jackpot, so I formally retired from big business.	¿po?	9			
+9,knave	Q	 But really?	¿po?	10			
+10,leader	Q	 Incognito, I continue to deal with the old, recruiting a team of henchmen from non-talkative and trusted people who have no relationship with the Seventh House. So we immediately have a problem with your new friend, I don't know him, but it will take a lot of time to check who he is and where he comes from.	¿po?	11			
+11,knave	Q	 Come on, Hugh, this is our man, proven, he's already helped me out a couple of times, and he's not stupid enough to just share the loot with hangers-on from the Seventh House.	¿po?	14		
+14,leader	Q	 You decide for yourself, Neville, you're responsible for him, but if anything happens, don't be offended if next time I suddenly refuse to help you. So, this is not an easy matter, so we will need a team of the best specialists in their fields, and since most of the locals are connected with the Seventh House, we will have to recruit them outside the capital.	¿po?	15				
+15,knave	Q	 We take our time and are ready to explore all the kingdoms in search of the best of the best.	¿po?	16				
+16,leader	Q	 I've already outlined a list of candidates I've worked with before and where to look for them. Our team will need: a burglar magician, Whitetoad are very rich and it's stupid to assume that their vault does not have magical protection, a very strong and hardy guy who can take out as much good as possible at a time, because you can't return to the vault again, a spy girl who can easily seduce anyone and find out all the necessary information.	¿po?	17				
+17	A	Oh, I have one candidate in mind who is suitable for this role.	po.	18		
+18,leader	Q	 This is good, of course, but I usually prefer to work with my own people. Next, we need a good disguise so that you can't be recognized, and you can't do without an illusionist magician here. You can handle being a burglar on your own, Neville.	¿po?	19				
+19,knave	Q	 Naturally, you will only find the right tools for me, I don't have anything with me.	¿po?	20				
+20,leader	Q	 Fine. And finally, an experienced coachman who can easily take you away from the scene of the robbery and, if anything, get away from the chase. You'll do the search, but in the meantime I'll try to find out at least something about the Whitetoad home.	¿po?	21				
+21,knave	Q	 Great, where do we look for all these guys?	¿po?	22				
+22,leader	Q	 The magician-burglar lives in Icemite, he prefers to hide his identity and does not pay attention to strangers, but if you tell him that from me, he will agree to make contact. Our strongman named Katasakh will have to be rescued in Freetown, he is very much in debt and sold himself for debts to the arena.	¿po?	23				
+23,knave	Q	 Did poor Katasakh lose badly again? We will try to help him out, although I will obviously not be welcome in Freetown.	¿po?	24				
+24,leader	Q	 Our spy Anika Jennet, and you know her yourself, the last time I saw her was in Nivarian, where she pretended to be one of their nuns, obviously working on someone's behalf, maybe she's still there. It will be more difficult with an illusionist magician, his name is Maurice, and he moved from his previous place of residence to Friguld.	¿po?	25				
+25,knave	Q	 It's a bit far, but at least I haven't been in trouble in that city yet.	¿po?	26				
+26,leader	Q	 And our coachman, Dominic, he's a bit of a strange guy, but I don't know anyone who can handle any wagon better than him. He travels all over the cities, but stays in Rhoneis the longest.	¿po?	27				
+27,knave	Q	 Clearly, we will try to assemble our team.	¿po?	29		
+29,leader	Q	 I suggest you first go to Nivarian so that Anika has more time to spy for us, then release Katasakh so that he can regain his strength for the robbery, then hire both the magicians we need, and finally the coachman. For now, I'm cautiously probing the ground around our goal. Let's not delay, let's get to work.	¿po?	30				
+30	A	Let's get to work.	po.	0		"SetVariable#varsilian_job,20"
+31	A	All right i will.	po.	0		"SetVariable#varsilian_job,83;FullRest#;Travel#H8_dungeon,2"
+32,anika	Q	 I talked to different people working in the Whitetoad mansion, there are no more than twenty guards inside the building all the time, they are not armed or equipped with anything serious, in general, they will not provide any difficulties for Katasakh and Neville's new friend.	¿po?	33				
+33,katasakh	Q	 I rested after the arena, and now I'm not averse to warming up again in a new fight!	¿po?	34		
+34,anika	Q	 But there is an additional security team on duty in a separate house nearby, and they are much better equipped. Another problem is that the mansion has only one entrance. The vault is in the basement, thanks to my acquaintance with the head of security, I was able to get casts of the keys to it, so Neville won't have to sweat over the locks.	¿po?	35				
+35,leader	Q	 Well, this really makes it easier for us, I'll make the keys while we have time.	¿po?	36				
+36,anika	Q	 In addition to the usual locks, the vault has magical protection, but no one has really been able to explain how strong it is and how it turns off, but our old friend the witch will probably cope with it, otherwise why is she needed here?	¿po?	37				
+37,sansa	Q	 Any magical protection can be hacked, this is not a problem for me, but the main thing is not just to hack, but to hack so that the owners do not understand for as long as possible that their protection does not work.	¿po?	38				
+38,anika	Q	 Oh, yes, I remember you saying the same thing once, but as a result, we didn't have a single coin in our pocket.	¿po?	39				
+39,sansa	Q	 Hey, I didn't feel well that time, but you talked me into doing it anyway.	¿po?	40				
+40,anika	Q	 Yes, you constantly feel not well when the crucial moment comes, where exactly you should join the work. I don't understand, maybe you don't get enough sleep, or the guy doesn't fuck you, which is why your magical powers are struggling, how do they work for you?	¿po?	41				
+41,sansa	Q	 Shut up, whore, I'm not interested in what methods you use to get information?! So don't bother me either!	¿po?	42				
+42,anika	Q	 I don't need to jump into someone's bed to find out something, but it seems that this is how you got your place in the Wizards Guild, right?	¿po?	43				
+43,sansa	Q	 One more bad word about my ability or competence, and you'll regret being born, little bitch!	¿po?	44				
+44,leader	Q	 Calm down, ladies! You will find out your relationship later and in another place, and now we will deal with our case.	¿po?	45				
+45,anika	Q	 That's right, Hugh. Regarding the vault itself, no one knows anything, although one guard blabbed that there is no security inside the vault, except for an elderly woman who cleans there, but this guy was fired more than a week ago, it is quite possible that the situation could have changed, so this information should not be trusted.	¿po?	46				
+46,dom	Q	 No, as he said, that's really how it will be.	¿po?	47				
+47,anika	Q	 What?.. How do you know that?	¿po?	48				
+48,dom	Q	 I don't know. You just have to believe in such things.	¿po?	49				
+49,anika	Q	 Uh-uh... Okay. So, what else? And, the owners are away now, with the exception of the eldest son, so we need to start acting as soon as possible. That seems to be all. Although I can still help you, I'll try to distract the guards outside the mansion somehow.	¿po?	50				
+50,leader	Q	 Don't need it, you've done enough, I'll take care of the extra security, I  prepared a drink with strong sleeping pills for them. Maurice, how's your witchcraft going?	¿po?	51				
+51,moris	Q	 The masking charms are ready for the entire team that will enter the vault, as well as for the coachman, and even for his horses and cart. The spell will work steadily for about an hour, no one will suspect anything and none of people will be their recognize. I'm ready to use them as soon as we get out.	¿po?	52		
+52,dom	Q	 I'll bring my cart around and stand not far from the mansion, but so as not to attract too much attention.	¿po?	53		
+53,leader	Q	 Great. Katasakh, Neville and his new friend will infiltrate the mansion, get to the vault by quietly eliminating the guards, Sansa will remove the magical protection. Grab as much stuff as possible and load into the cart, Dominic will take you to the agreed place next to Lanneger, where we will all gather.	¿po?	54				
+54,knave	Q	 If everything is ready, we'll not pull the cat by the tail, but get to work?	¿po?	55		
+55,leader	Q	 That's right, let's move out, gentlemen and ladies!	¿po?	56		"SetVariable#varsilian_job,85;NPCDespawn#moris;NPCDespawn#dom;NPCDespawn#sansa;NPCDespawn#anika;NPCDespawn#leader"
+56,katasakh	Q	 Time for work!	¿po?	0		"NPCFollow#"		
+57,anika	Q	 And I hope that I won't have to work with some of you anymore.	¿po?	58				
+58,sansa	Q	 It's mutual.	¿po?	59		"NPCStopFollowing#"		
+59,moris	Q	 I was glad to be a part of our team.	¿po?	60		
+60,katasakh	Q	 My friends, you can always contact me if you have any problems!	¿po?	61		"NPCStopFollowing#"		
+61,dom	Q	 Do it again sometime.	¿po?	62		
+62,leader	Q	 Well, let's split the loot and scatter before New Garand guards get on our trail.	¿po?	0		"SetVariable#varsilian_job,100;GainXP#1100;NPCDespawn#katasakh;NPCDespawn#moris;NPCDespawn#dom;NPCDespawn#sansa;NPCDespawn#anika;NPCDespawn#leader"

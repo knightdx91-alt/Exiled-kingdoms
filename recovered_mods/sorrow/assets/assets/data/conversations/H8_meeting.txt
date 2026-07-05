@@ -1,0 +1,33 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Well, hello. Dear Agnes and the lady who came with you, I know, but that's who you are, I'm interested to know.	¿po?	9	"VariableEqual#sin_kingdom,80"		
+1	Q	 ...and you know what, Vince, let your faggot boss shove his suggestions up his ass, as he likes to be inserted, and every one of you faggots loves it.	¿po?	7	"VariableEqual#sin_kingdom,60"		
+1	Q	 ...you keep telling us the same thing, Vince, but nothing changes, and if it does, it doesn't last at all.	¿po?	2	"VariableEqual#sin_kingdom,15"		
+2	A	[BLUE](it seems that the negotiations are going on calmly, and there will be no need to interfere)[]	po.	3		
+3,vince	Q	 I assure you, everything will be different now, the boss will monitor the behavior of the guys more strictly.	¿po?	4				
+4,agnes	Q	 He should have figured it out earlier. It just so happened that I found the corpse of one of our girls, who was last seen by her friends in the company of Johnny, who was taking her somewhere.	¿po?	5			
+5,bandit1	Q	 I'm not in the case! I wanted to talk things over with her as a friend, but he let her guts out! [BLUE] (and the bandit started pointing his finger in your direction)[]	¿po?	6			
+6,agnes	Q	 Well, what kind of conversations can there be with you bastards now?	¿po?	0		"NPCHostile#agnes;NPCHostile#agnes_team;SetVariable#sin_kingdom,17"
+7,vince	Q	 Hey! We have peace talks after all, so stop insulting and we can somehow come to an agreement.	¿po?	8				
+8,agnes	Q	 Your peace talks have been fucked up for a long time, now instead of words, you faggots are finished.	¿po?	0		"NPCHostile#vince;NPCHostile#vince_team;SetVariable#sin_kingdom,62"
+9	A	I represent the interests of mistress Philippa and her group here, and I speak on behalf of the entire collective. I hope we will be able to come to an agreement, resolve all conflicts, and come to mutual understanding and a profitable existence.	po.	10		
+10,vince	Q	 Well... my boss is trying to achieve all this. He has long wanted to establish good relations with your headmistress. Now the boss is very serious, now everything will be different, he will monitor the behavior of his people more strictly, but he also hopes for reciprocal actions.	¿po?	11				
+11	A	And what does he want in return about our arrangements?	po.	12		
+12,vince	Q	 First, the division of territories of activity, the boss is ready to give up most of them, including the most productive ones, in return for the immunity of his guys and a small percentage of the proceeds from the girls. Secondly, the boss wants the mistress not to interfere in his business with the House of Seven, in any way. So also, questions about personal safety.	¿po?	13				
+13	A	Well, some proposals are quite reasonable and feasible, but others should be discussed with the mistress and the terms should be reviewed.	po.	14		
+14,vince	Q	 This, of course, is clear, and the process of reaching mutually beneficial agreements is long. I was also thinking of offering...	¿po?	15				
+15,bandit1	Q	 [BLUE](another bandit came running from somewhere, the one you met by the road, where he threatened the girl)[] Hey, Vince, get back to base right away!	¿po?	16			
+16,vince	Q	 Johnny? What the hell happened?	¿po?	17				
+17,bandit1	Q	 The boss was attacked by some unknown assholes while you're talking here!	¿po?	18			
+18,vince	Q	 What!? So that's how, while we're trying to come to an agreement here, you're making an attempt on our boss behind back!?	¿po?	19				
+19,agnes	Q	 We have nothing to do with it! If our mistress wanted to kill your boss, she sent me and a squad to blow your whole kennel to hell, along with its inhabitants, fucking faggots!	¿po?	20			
+20,bandit1	Q	 There is no faith in the words of bitches like you, and there cannot be!	¿po?	21			
+21,agnes	Q	 I'll kill you first, you little nit, and then all the other faggots who are here!	¿po?	22			
+22	A	Hey, calm down, you don't have any evidence of the involvement of mistress's people in this assassination attempt, do you? Am I right? Just speculation based on existing hostility? Until our relationship is completely damaged, it is necessary to investigate this case and at the same time continue negotiations. To begin with, I suggest we arrange a personal meeting between mistress and your boss on neutral territory.	po.	23			PER#4
+22	A	Hey, calm down, don't get excited, let's discuss everything peacefully!.. [BLUE](but it seems that no one listens to you anymore)[]	po.	0		"NPCHostile#vince;NPCHostile#vince_team;SetVariable#sin_kingdom,62;NPCDespawn#bandit1;NPCSpawn#vince_team2"
+23,christine	Q	 It's unlikely that our mistress will agree to something like this...	¿po?	24			
+24,vince	Q	 I'm sure our boss won't mind such a decision, he's been wanting to talk to your mistress personally for a long time. As a guarantor of security and trust, Johnny will accompany you in the role of, uh... temporary hostage.	¿po?	25				
+25,bandit1	Q	 What?! Hey, what kind of hostage is this?! And why me?!	¿po?	26			
+26,vince	Q	 You mess up too much, that's why. Take it easy and do as I say, or you'll have to deal with the boss himself, one-on-one.	¿po?	27				
+27,bandit1	Q	 Okay, I get it, I hope it all goes away quickly and I'll be free again!	¿po?	28		"NPCFollow#"		
+28	A	I think it would be safe to arrange this meeting in New Garand.	po.	29		
+29,vince	Q	 I agree, I'll tell my boss everything I said, and I'm sure he'll agree to this meeting right away and arrive in New Garand. See you later!	¿po?	0		"NPCDespawn#vince;NPCDespawn#vince_team;NPCDespawn#agnes;NPCDespawn#agnes_team;SetVariable#sin_kingdom,82"

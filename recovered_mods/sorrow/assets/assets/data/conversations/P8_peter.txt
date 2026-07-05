@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 We did what we had to do, and although the evil was not completely defeated, it retreated for a while, which means that new battles await us, but we will be ready for them, we will become stronger and more persistent!	¿po?	13	"VariableEqual#simple_choice,70"		
+1	Q	 We must kill the traitor and his mistress!	¿po?	0	"VariableEqual#simple_choice,60"		
+1	Q	 I hope we can help Morgen!	¿po?	0	"VariableEqual#simple_choice,50"		
+1	Q	 The magic field has changed, as if it was thinning, it looks like you managed to destroy all the protective totems?	¿po?	9	"VariableEqual#simple_choice,43"		
+1	Q	 We need to destroy the totems so that the field weakens and we can get to Morgen!	¿po?	0	"VariableGreater#simple_choice,39"		
+1	Q	 Thank you, friend, for helping me deal with these creatures! I am Peter from Rigordian, and I have come here with my associates on a sacred mission that we are not destined to fulfill anymore.	¿po?	2	"VariableEqual#simple_choice,30"		
+1	Q	 [BLUE](a young and strong-looking warrior fights the undead with fury, but there are too many of them)[] Hey, friend, help me fight off these creatures!	¿po?	0		"SetVariable#simple_choice,30"
+2	A	I was glad to help. The dying warrior priest sent me to find his surviving associates, is there anyone else besides you?	po.	3		
+3	Q	 I'm afraid not, there's too much evil in these mines, I'd be dead myself if it weren't for you.	¿po?	4				
+4	A	So we need to get out of here.	po.	5		
+5	Q	 I can't, an evil curse has taken hold of one of my fellow priest Morgen, even though I'm just a senior disciple, I have to try to bring him back or kill him to free his spirit.	¿po?	6			
+6	A	 Okay, but where will we find him?	¿po?	7		
+7	Q	 He is in a large hall, but the way there is blocked by a magic field. I studied it and as I understood, it is supported by a totem, most likely there are three of them, if you find and destroy these totems, then the protective field will weaken, and I will be able to remove it.	¿po?	8				
+8	A	All right, I'll find and destroy these totems.	po.	0		"SetVariable#simple_choice,40;ItemHide#idinaxuy;ItemWalkable#idinaxuy"
+9	A	 Yes, there are no more totems.	¿po?	10		
+10	Q	 Great, since the magic field has weakened, I'll remove it now, and we can get to Morgen.	¿po?	11		"ItemHide#barrier1;ItemWalkable#barrier1"
+11	A	 Do you think you can overcome the curse that has captured this priest?	¿po?	12		"SetVariable#simple_choice,50"
+12	Q	 I have no idea if this is possible, but if I have to kill Morgen to free his spirit, I will do it.	¿po?	0		"NPCFollow#"		
+13	A	I was glad to help you.	po.	14		
+14	Q	 I will return to Rigordian with news of what happened here. Will be glad to see you there. I'm sure the high priest will reward you for doing a good deed. If you need my help, you can find me at temple.	¿po?			"GainXP#750;IncVariable#REP_north_kingdom,3;SetVariable#simple_choice,100;NPCStopFollowing#;NPCDespawn#peter2"

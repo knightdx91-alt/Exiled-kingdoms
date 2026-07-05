@@ -1,0 +1,60 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Nice to see you again! Are you surprised by my appearance? 	port.	39	"VariableEqual#sylvia_talks,4"		
+1	Q	[BLUE](a short and skinny beggar, wrapped in rags from head to toe so that it is not clear whether it is a man or a woman, hangs around the tavern)[] 	port.	36	"VariableGreater#between_worlds,99"		
+1	Q	Wow, this is a much bigger city than I expected! 	port.	29	"AreaIs#NI;VariableEqual#between_worlds,85"		
+1	Q	I hope that despite everything that has happened, we will remain friends? 	port.	28	"VariableEqual#between_worlds,85"		
+1	Q	This creature has been destroyed, so the path to the portal stone is open. 	port.	0	"VariableEqual#between_worlds,80"		
+1	Q	[BLUE](naked varannari girl)[] I hope this place won't become our last resting place. 	port.	0	"VariableEqual#between_worlds,75"		
+1	Q	[BLUE](Sylvia walked up to one of the magic barriers)[] It seems to be this one. I hope I have enough strength to open the way for us, but this obstacle is the least of our problems. 	port.	25	"VariableEqual#sylvia_talks,2"		
+1	Q	[BLUE](lying on the floor, Sylvia reacts to your approach by rolling over on her back. Rising up, the Varannari girl looked at you, then looked around the place where you found yourself)[] Oh, no! No! She left me! Left me in this damned place! 	port.	13	"VariableEqual#between_worlds,70"		
+1	Q	[BLUE](defeated Silvia collapsed to the floor, but you, distracted by the naked ass of a varannari girl lying on the floor, do not immediately notice the appearance of another varannari woman)[] 	port.	10	"VariableEqual#between_worlds,65"		
+1	Q	[BLUE](sister Vevea turned into a naked, familiar varannari girl)[] 	port.	2			
+2	A	Sylvia!	port?	3			
+3	Q	Oh, you recognized me! Although, I'm sure it's very difficult to forget someone like me! To be honest, I'm glad to meet you again. 	port.	4		
+4,orion	Q	What's going on?! Where is sister Vevea?! And who are you?! 	port.	5		"NPCStopFollowing#"		
+5,sylvia	Q	She's okay, I hope. Much more, you should take care of yourself. My queen sent me here, she gives you a chance to survive, she will spare you if you serve her. 	port.	6		
+6,hirge	Q	No way! All of you and your queen will be defeated, and all the evil you have created will be wiped off the face of our earth!	port?	7			
+7,torian	Q	Three keep us safe! 	port.	8		"NPCStopFollowing#"		
+8,sylvia	Q	Well, actually, I didn't expect any other answer. 	port.	9		
+9	A	[BLUE](black smoke envelops the room, and suddenly, you find yourself surrounded by dark creatures!)[] 	port.	0		"SetVariable#between_worlds,65;NPCSpawn#sylvia_team;NPCSpawn#anthea;NPCHostile#sylvia"
+10,sylvia	Q	[BLUE](Sylvia also notices the presence of this varannari, gets up from the floor, looks at her pleadingly)[] Help me, Anthea, they turned out to be stronger than we thought! 	port.	11		
+11,anthea	Q	What kind of stupid witches have gone now, they can't cope with a seemingly easy task with so many resources at their disposal. It looks like I'll have to finish everything myself so as not to anger our queen. 	port.	12		
+12	A	[BLUE](black smoke envelops you, it begins to swirl wildly, as if compacting, and when the movement stops and it begins to disperse, you realize that you have found yourself in a new place)[] 	port.	0		"NPCDespawn#sylvia;NPCDespawn#anthea;NPCDespawn#orion;NPCDespawn#torian;Travel#C13_pit2,1"
+13	A	Sylvia, do you know where we are? If so, do you know how to get out of here?	port?	14			
+14,sylvia	Q	Yes, it's a kind of prison that our queen has been preparing for her most powerful enemies. I'm afraid there's no way out of this place. 	port.	15		
+15,orion	Q	So it doesn't make sense to let you live! 	port.	16		
+16,sylvia	Q	That's your right, I'm used to being treated like this, being an outcast. As a representative of two different worlds, it seems that I have no place in either of them. People have always seen me as nothing more than a savage, and my powers have been considered a threat and a legacy of ancient evil. I hoped that by faithfully serving the folk of varannari and the queen, I would become a part of them, but obviously they needed me as long as I was useful. 	port.	17		
+17	A	There is also a peaceful part of your folk, and I'm sure you can still become a part of it by abandoning the queen and her evil plans for revenge.	port?	18			
+18,sylvia	Q	It's easy to say, but I hardly have a way back, and anyway, I've already been thrown out here to die... Although, there is one loophole, but you will not be able to use it, since the incredibly powerful creature will not allow anyone to leave this place. 	port.	19		
+19,hirge	Q	And yet, it's at least a chance to leave this place, it's better to try your luck in battle with this creature than just wait for your death here!	port?	20			
+20	A	I agree. Will you take us there, Sylvia?	port?	21			
+21,sylvia	Q	Why not, I'll help you in any way I can. I don't want to die here either. 	port.	22		
+22,hirge	Q	Even if we manage to get out of here, you will still answer for your crimes before the people of Ilmara and before the face of the Three!	port?	23			
+23,sylvia	Q	Let's not look into the future, we are still in this prison, and there is no guarantee that our escape plan will work. 	port.	24		
+24	A	Then let's not waste time and check if this is the case. 	port.	0		"SetVariable#sylvia_talks,2;NPCSpawn#sylvia2;NPCDespawn#sylvia"
+25	A	I believe in you, you can remove this barrier.	port?	26			
+26,sylvia2	Q	[BLUE](varannari girl placed her palms on the magic barrier, her body tensed, the barrier gradually began to fade until it completely disappeared)[] Oh, it worked. Now we need to get to the guardian's place of residence, this creature is very ancient and powerful, probably only the queen herself can control it. And we'll have to defeat this monster somehow to open the way to the portal stone. 	port.	27		NPCFollow#
+27	A	If there's no other choice, we'll have to do it. 	port.	0		"ItemHide#barrier1;ItemWalkable#barrier1;SetVariable#between_worlds,75"
+28	A	Of course, if you don't try to kill me again.	port?	0			
+29	A	[BLUE](you notice a crowd of townspeople who were moving, most likely, towards the Hall of Wisdom)[] We're already in town, could you hide behind your charms, Sylvia?	port?	30			
+30,sylvia2	Q	Yes, of course. 	port.	31		"NPCStopFollowing#"
+31	A	[BLUE](as the crowd of townspeople passes by you, you discover that Sylvia, who was walking next to you, has disappeared)[]	port?	32			
+32,hirge	Q	[BLUE](Hirge also notices Sylvia's absence)[] Oh no, where did that witch go?!	port?	33			
+33	A	It seems that she was deliberately saving up her strength and waiting for the moment to completely change her appearance and blend in with the crowd.	port?	34			
+34,hirge	Q	The cunning witch. Well, I hope your words will have an effect, and she will decide to give up her former life in the service of witches. I'm going to leave for now, I need to report on our success and think about the next plans to confront the witch queen. See you in New Garand.	port?	35		"NPCStopFollowing#;NPCDespawn#hirge;NPCDespawn#sylvia2"
+35	A	Agreed, Hirge.	port?	0		"IncVariable#REP_ilmara,8;IncVariable#REP_the_three,14;GainXP#4500;SetVariable#between_worlds,100"
+36,mercenary_grisenda	Q	Here is an example of wrong decisions in life, unlike us who embarked on the path of heroism, this poor guy drags out a miserable existence.	¿po?	37	NPCIsInParty#grissenda,mercenary_grisenda		
+36,adaon	Q	This tramp looks too plausible to be a fraud.	¿po?	37	NPCIsInParty#adaon,adaon		
+36,sansa	Q	Ugh, why is there so much dirt and poverty in the cities outside of Thuram?	¿po?	37	NPCIsInParty#sansa2,sansa		
+36,damian	Q	You know, all these rich barons could, instead of spending a bunch of coins on their senseless wars, direct these funds to the well-being of their citizens. Although this, of course, is only possible in a fairy tale.	¿po?	37	NPCIsInParty#durak2,damian		
+36,peter	Q	It looks like this poor guy is hungry, I always have something delicious for my wolves, maybe he'll treat?	¿po?	37	NPCIsInParty#durak,peter		
+36,hirge	Q	Just as Three take care of us all, so we ourselves must take care of our neighbors who need help. Let's donate some coins to this poor guy so he can eat. 	port.	37	NPCIsInParty#hirge,hirge		
+36,R	Q	[BLUE](noticing you, the beggar looked around and for some reason began to take off his rags, and suddenly you realize that he is not taking them off, the rags simply dissolve, and the beggar turns into a naked, well-known varannari girl)[]	port?	38			
+37,R	Q	[BLUE](the beggar does not pay attention to you, walks away)[]	port?	0		"NPCDespawn#true_sylvia"
+38	A	Sylvia!	port?	0		"NPCDespawn#true_sylvia;NPCSpawn#sylvia;SetVariable#sylvia_talks,4"
+39	A	What are you doing here, Sylvia?	port?	40		
+40	Q	You know, I've been thinking about how I didn't have time to thank you. No matter how you look at it, we're enemies, but you still stood up for me and helped me survive, and that attitude means a lot to me. I don't know if we'll see each other again, but I want to leave you something to remember me by. Here, this ring will be my gift, and you will always remember me when you look at it. 	port.	41		
+41	A	Don't worry, I'll remember you even without any ring. 	port.	42		
+41	A	Thank you for the gift, I will keep it and remember you. 	port.	42		"GainItem#10791"		
+42	Q	[BLUE](varannari girl smiled back at you, turned into a beggar again, and walked away without looking back)[]	port?	43		
+43	A	See you later, Sylvia.	port?	0		"NPCDespawn#sylvia;SetVariable#sylvia_talks,6"

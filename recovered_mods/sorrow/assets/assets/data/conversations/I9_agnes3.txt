@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1,agnes	Q	 Now this piece of shit is definitely not to able to stand up!	¿po?	2			
+2,agnes	Q	 One handout of fate was enough for him.	¿po?	3	"VariableEqual#death_fighter_l,2"		
+2,fighter1	Q	 To a dog - a dog's death!	¿po?	3		"VariableLower#death_fighter_l,2;NPCStopFollowing#"		
+3,agnes	Q	 Our work here is complete.	¿po?	4	"VariableEqual#death_fighter_m,2"		
+3,fighter2	Q	 Our work here is complete.	¿po?	4		"VariableLower#death_fighter_m,2;NPCStopFollowing#"		
+4,agnes	Q	 You can go back to the mistress, my friend, while I check here to see if there is any rat hiding somewhere.	¿po?	5		"NPCStopFollowing#"		
+5	A	Clearly.	po.	0		"SetVariable#agnes_stop,4;SetVariable#evil_rick,2"

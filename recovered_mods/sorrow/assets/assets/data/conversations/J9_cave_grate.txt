@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	The steel grate has been unlocked already.	Ya has abierto la verja de acero.	0	VariableGreater#abyss_gazed,35		
+1	Q	This sturdy steel grate is locked magically, you won't be able to open it without the right key. However, you notice it seems to be opened frequently. Could this be Duremas' hideout?	Esta verja de acero está cerrada con cerradura, no conseguirás abrirla sin la llave apropiada. Pero te das cuenta de que la abren frecuentemente. ¿Podría ser el escondite de Duremas?	2	VariableEqual#abyss_gazed,10	SetVariable#abyss_gazed,30	
+1	Q	This sturdy steel grate is locked magically, you won't be able to open it without the right key. However, you notice it seems to be opened frequently. 	Esta verja de acero está cerrada con cerradura, no conseguirás abrirla sin la llave apropiada. Pero te das cuenta de que la abren frecuentemente.	2			
+2	A	Walk away from the grate.	Alejarse de la verja.	0			
+2	A	Unlock it with the Steel Key.	Usar la Llave de Acero	3	PlayerHasItem#2526	"LoseItem#2526;SetVariable#abyss_gazed,36;ItemHide#grate1;ItemWalkable#grate1"	
+3	Q	The key fits the old lock perfectly and you open it!	La llave entra perfectamente en la cerradura  la reja se abre.	0			

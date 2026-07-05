@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a hut in which there was a group of unpleasant-looking people)[] Hey, damn, what are you doing here?! Get out of here while you're safe! 	[BLUE]()[] port.	2	"VariableEqual#fisherman_joy1,2"		
+1	Q	[BLUE](a hut in which there was a group of unpleasant-looking people)[] Get out of our hut! 	[BLUE]()[] port.	0		
+2	A	I came to talk about the fishermen.	port?	3			
+3	Q	As you come, so you will leave, we have nothing to talk about with you! 	port.	4		
+4	A	I'm not just leaving.	port?	5			
+5	Q	Then we'll help you leave! 	port.	6		
+6	A	Try.	port?	0		"NPCHostile#bandit1;SetVariable#fisherman_joy1,3"

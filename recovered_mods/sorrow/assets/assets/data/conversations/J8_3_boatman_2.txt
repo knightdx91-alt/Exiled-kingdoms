@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the same unfriendly and nervous man)[] Are you going back to the other shore? If you have money, keep up and get into the boat, but if not, get out here. 	port.	2		
+2	A	No, I'm staying here for now.	No, adiós.	0		
+2	A	Is the price the same for the ferry?	¿port?	3			
+3	Q	Yes, it will remain the same [BLUE]50 gold[] if you don't annoy me. 	port.	4		
+4	A	All right, let's go.	port.	0	"playerhasGold#50"	"loseGold#50;Travel#P9,4,2"
+4	A	No, I've changed my mind.	port.	0		

@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	13	NPCisFollower#	
+1	Q	 Greetings, traveler, the northern places are infested with zombies, so it's better to use a safe coastal path. 	¿po?	2			
+2	A	Hello, have you met any zombies in the vicinity who look like priests?	po.	14	"VariableGreater#last_honors,9;VariableLower#last_honors,29;VariableLower#talkz_captainp8,1"		
+2	A	I understand, I will keep in mind.	po.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	12	PlayerHasItem#10402		INT#5
+12	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of her)[]	port.	0		"LoseItem#10402;SetVariable#captainp8_follow,3;NPCFollow#"	
+13	A	Good girl.	port.	0		
+13	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#captainj7_follow,1;NPCStopFollowing#"
+14	Q	Hmm, the other day, one of the scouts reported to me about a group of zombies who, as you said, look like clerics. Without any idea why you are looking for them, the last time these zombies were observed in the Royal Forest near the old castle of the king.	port.	0		"SetVariable#talkz_captainp8,2;SetVariable#last_honors,30"	

@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Adaon collapsed to the floor, dead, and the man in the robe disappeared into a dark purple glow, laughing angrily. As soon as everything was quiet, Adaon came down from the top along with... another Adaon!)[] 	[BLUE]()[] port.	4	"VariableEqual#hate_through,67"		
+1	Q	Okay, we're on site, let's hurry before the enemies show up here too. Adaon, take the piece of paper with the coordinates to the very top, give it to my ally, and don't be surprised by his external appearance. Meanwhile, we'll activate the defense against infiltration into this tower. 	port. port.	2			
+2,adaon	Q	Good. [BLUE](Adaon went up the stairs to the upper level, but you only managed to seal the entrance, when suddenly you noticed a strange dark purple glow near the stairs)[]	port?	3			
+3,guard	Q	Damn it! He showed up here himself. Get ready, He's devilishly strong, I doubt we can beat Him.	port?	0		"ItemActivate#grate1;NPCStopFollowing#;NPCDespawn#guard;NPCDespawn#adaon;NPCSpawn#falseadaon;NPCSpawn#magister;SetVariable#hate_through,67"
+4,scientist	Q	[BLUE](this Adaon was wearing a strange robe and looked like some kind of researcher from the Great Library)[] Is he gone? Well, that means my adaon-disguiser is working fine! Oh, he killed him, didn't he? What a pity, we almost beat Him! Eh... Okay, let's go before He comes back.	port?	5			
+5,adaon	Q	I didn't understand anything that's going on here, I hope you'll explain!	port?	6		"NPCFollow#"
+6	A	Okay, let's go.	port	0		"NPCDespawn#magister;SetVariable#hate_through,70;Travel#H9_tower,4"		

@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](this villager is well equipped for a forest hike)[] Greetings, officers from the city don't come here often, what can I do for you?	¿po?	8	"VariableEqual#lost_prince,25"		
+1	Q	 [BLUE](this villager is well equipped for a forest hike)[] Hello, friend, it's not often that people come here, where the city itself attracts the most.	¿po?	2	"VariableEqual#lost_prince,20"		
+1	Q	 [BLUE](this villager is well equipped for a forest hike)[] I've already told you everything I know about the prince.	¿po?	0			
+2	A	Captain Wintercalm sent me, do you know anything about the missing prince Vardy?	po.	3		
+3	Q	 Yes, exactly, it was about a week ago, I climbed far deep into the forests of the Dream Valley to the snowy plateau, and at the top of this plateau I noticed the prince, and while I was getting closer, he had already disappeared somewhere. Well, how to climb there I have no idea, the slopes are too steep everywhere there.	¿po?	4		
+4	A	Do you know someone who knows how to climb to this plateau?	po.	5		
+5	Q	 Hmm, perhaps to the royal huntsmen, they know those forests well, their camp is in the Dream Valley.	¿po?	6		
+6	A	Okay, thanks for sharing the information.	po.	0		SetVariable#lost_prince,30		
+8,wintercalm	Q	 Are you the forester who told corporal Bigir about seeing prince Vardy? I want to know where and when it was.	¿po?	9		
+9,ranger	Q	 Yes, exactly, it was about a week ago, I climbed far deep into the forests of the Dream Valley to the snowy plateau, and at the top of this plateau I noticed the prince, and while I was getting closer, he had already disappeared somewhere. Well, how to climb there I have no idea, the slopes are too steep everywhere there.	¿po?	10		
+10	A	Do you know someone who knows how to climb to this plateau?	po.	11		
+11	Q	 The royal huntsmen know those forests well, they probably know it, their camp is located in the Dream Valley.	¿po?	12		
+12	A	Okay, thanks for sharing the information.	po.	0		SetVariable#lost_prince,35		

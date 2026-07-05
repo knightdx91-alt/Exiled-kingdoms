@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](this is the entrance to the vault, but the way is blocked by a magical barrier, without the help of Sansa you can not do here)[]	¿po?	2	"VariableEqual#door_zapil,1"		
+1	Q	[BLUE](this is the entrance to the vault, but the way is blocked by a magical barrier, without the help of Sansa you can not do here)[]	¿po?	0		"SetVariable#door_zapil,1;NPCSpawn#sansa"	
+2	A	Sansa, use the key you found.	po.	3	PlayerHasItem#10404	
+2	A	There's nothing I can do.	po.	0		
+3,sansa	Q	 No problem, I'm going to remove this barrier now.	¿po?	0		"ItemHide#barrier1;ItemWalkable#barrier1;LoseItem#10404"

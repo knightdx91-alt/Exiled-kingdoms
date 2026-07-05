@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](you go outside without any problems)[] Let's hurry up, while no one is here, Dominic is waiting for us on that street!	¿po?	2	"VariableEqual#arne_death,1"		
+1	Q	 [BLUE](you go outside, where a squad of guards is waiting for you)[] Damn, it looks like that bastard managed to raise the alarm!	¿po?	3			
+2	A	A good idea.	po.	0		"SetVariable#varsilian_job,97;NPCSpawn#dom"
+3,katasakh	Q	 We break through, Dominic is waiting for us on that street, he will take us away from them!	¿po?	4		
+4	A	Breaking through!	po.	0		"SetVariable#varsilian_job,97;NPCSpawn#dom;NPCSpawn#guard_go"

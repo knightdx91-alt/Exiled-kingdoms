@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	I know a lot about mushrooms, if in doubt, then try my mushrooms.	¿po?	0	"VariableEqual#further_into_forest,100"		
+1	Q	Well, that's what I'm saying, a couple of days in Lanneger and a week in the woods, that's how we live...	¿po?	8	"VariableEqual#further_into_forest,60"		
+1	Q	Buddy, have you changed your mind and decided to try my mushrooms?	¿po?	2	"VariableEqual#further_into_forest,15"		
+1	Q	Hello, buddy! Have you explored the local forests? Tired, hungry? Sit down by the fire, help yourself. These are good mushrooms, it's not the first year I've been picking them in this forest.	¿po?	2			
+2	A	Of course, why not.	po.	3		
+2	A	No, thanks.	po.	0		"SetVariable#further_into_forest,10"
+3	Q	I spent the whole day in the forest myself, and so I decided to make a stop before heading back to Lanneger. Don't be shy, help yourself, the mushrooms are proven - you see, I eat them myself and nothing.	¿po?	4				
+4	A	[BLUE](to taste the mushrooms)[]	po.	5		
+5	Q	You see, nothing bad happened to you, it's just good and delicious mushrooms, right? I know a lot about mushrooms.	¿po?	6			
+6	A	Well, yeah...	po.	0		"HideParty#;LoseInventory#;Travel#H11_halluc,1"
+8	A	And what happened just now, I didn't understand anything?	po.	9		
+9	Q	What happened? You went to the bushes, I thought you were out of need, and then came back a minute later. And that's it, what's wrong? If you want, you can also help yourself to mushrooms, there are plenty of them left.	¿po?	10				
+10	A	No, thanks, I've already tried your mushrooms, I don't need any more.	po.	0		"GainXP#1300;SetVariable#further_into_forest,100"

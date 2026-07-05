@@ -1,0 +1,193 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a rather elderly-looking wizard, although he behaves very actively for his age)[] Hello, traveler, if you are not tormented, for example, by diarrhea or a runny nose, which you need to get rid of, I can enchant for you some kind of sword suitable for working with it!	¿po?	8	"VariableEqual#charm_ronald,1"		
+1	Q	 [BLUE](a rather elderly-looking wizard, although he behaves very actively for his age)[] Hello, traveler, I'm glad that at least someone visited me. My name is Ronald, for many years I have studied thunderstorm magic and unfortunately, my research has bankrupted me. Now I live in this tower, offering my magical services to the residents of the city in order to have the means to exist.	¿po?	2		
+2	A	What magical services do you offer?	po.	3		
+2	A	Glad to meet you, but I have to go.	po.	0		
+3	Q	 Most of my clients are elderly, whom I relieve from back pain or other senile sores, but you obviously don't need it. Although during my research I have learned how to set up thunderstorm spells on ordinary weapons, perhaps you will be interested in this.	¿po?	4		
+4	A	What weapons can you enchant?	po.	5		
+5	Q	 When I used to experiment with charms, I did not work well with metal, but wood is another matter. Therefore, I do not want to take any chances, we will use bows, staffs and wands in enchantment, but they must be unaffected by other charms. And I will need four small stones each to concentrate the energy for various charms.	¿po?	6		
+6	A	How much will the enchantment cost?	po.	7		
+7	Q	 Enchantment of bows will cost you [BLUE](250 coins)[], wands in [BLUE](300 coins)[], and the staffs in [BLUE](500 coins)[]. If you already have the right weapon and the right ingredients, I can get to work right now.	¿po?	8		"SetVariable#charm_ronald,1"
+8	A	I have some little sapphires with me.	po.	9	PlayerHasItems#2003,4	
+8	A	I have some little rubies with me.	po.	18	PlayerHasItems#2001,4	
+8	A	I have some little emeralds with me.	po.	27	PlayerHasItems#2002,4	
+8	A	How many ingredients do you need to enchant and how much will it cost?	po.	14	"VariableEqual#charm_ronald,1"		
+8	A	No, thanks.	po.	0		
+9	Q	 Not bad, but what kind of sword do you have for enchantment?	¿po?	10		
+10	A	I have some bow.	po.	11	PlayerHasGold#250	
+10	A	I have some wand.	po.	12	PlayerHasGold#300	
+10	A	I have some staff.	po.	13	PlayerHasGold#500	
+10	A	I don't have anything.	po.	0		
+11	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	15		
+12	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	16		
+13	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	17		
+14	Q	 I will need four small stones to concentrate the energy for the various charms. Enchantment of bows will cost you [BLUE](250 coins)[], wands in [BLUE](300 coins)[], and the staffs in [BLUE](500 coins)[].	¿po?	0		
+15	A	Enchant this short bow.	po.	41	PlayerHasItem#601	
+15	A	Enchant this hunting bow.	po.	42	PlayerHasItem#602	
+15	A	Enchant this oaken bow.	po.	43	PlayerHasItem#603	
+15	A	Enchant this bow.	po.	44	PlayerHasItem#604	
+15	A	Enchant this silver bow.	po.	45	PlayerHasItem#700	
+15	A	Enchant this bow.	po.	46	PlayerHasItem#721	
+15	A	Enchant this composite bow.	po.	47	PlayerHasItem#729	
+15	A	Enchant this Satisfier.	po.	97	PlayerHasItem#10361	
+15	A	I don't have anything suitable.	po.	0		
+16	A	Enchant this oak wand.	po.	48	PlayerHasItem#371	
+16	A	Enchant this elm wand.	po.	49	PlayerHasItem#391	
+16	A	Enchant this wand.	po.	50	PlayerHasItem#395	
+16	A	Enchant this wand of the arcanist.	po.	51	PlayerHasItem#361	
+16	A	Enchant this wand of power.	po.	52	PlayerHasItem#367	
+16	A	Enchant this Giver of Slumber.	po.	100	PlayerHasItem#10427	
+16	A	Enchant this Baffle.	po.	103	PlayerHasItem#10611	
+16	A	I don't have anything suitable.	po.	0		
+17	A	Enchant this staff.	po.	53	PlayerHasItem#380	
+17	A	Enchant this staff.	po.	54	PlayerHasItem#392	
+17	A	Enchant this staff.	po.	55	PlayerHasItem#362	
+17	A	Enchant this staff.	po.	56	PlayerHasItem#365	
+17	A	Enchant this Staff of Madman.	po.	106	PlayerHasItem#10124	
+17	A	Enchant this Staff of Balthasar.	po.	109	PlayerHasItem#10645	
+17	A	Enchant this Wall-Punch.	po.	112	PlayerHasItem#10783	
+17	A	Enchant this Whirl of Death.	po.	115	PlayerHasItem#10860	
+17	A	Enchant this Mighty Power.	po.	118	PlayerHasItem#11020	
+17	A	I don't have anything suitable.	po.	0		
+18	Q	 Not bad, but what kind of sword do you have for enchantment?	¿po?	20		
+20	A	I have some bow.	po.	21	PlayerHasGold#250	
+20	A	I have some wand.	po.	22	PlayerHasGold#300	
+20	A	I have some staff.	po.	23	PlayerHasGold#500	
+20	A	I don't have anything.	po.	0		
+21	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	24		
+22	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	25		
+23	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	26		
+24	A	Enchant this short bow.	po.	61	PlayerHasItem#601	
+24	A	Enchant this hunting bow.	po.	62	PlayerHasItem#602	
+24	A	Enchant this oaken bow.	po.	63	PlayerHasItem#603	
+24	A	Enchant this bow.	po.	64	PlayerHasItem#604	
+24	A	Enchant this silver bow.	po.	65	PlayerHasItem#700	
+24	A	Enchant this bow.	po.	66	PlayerHasItem#721	
+24	A	Enchant this composite bow.	po.	67	PlayerHasItem#729	
+24	A	Enchant this Satisfier.	po.	98	PlayerHasItem#10361	
+24	A	I don't have anything suitable.	po.	0		
+25	A	Enchant this oak wand.	po.	68	PlayerHasItem#371	
+25	A	Enchant this elm wand.	po.	69	PlayerHasItem#391	
+25	A	Enchant this wand.	po.	70	PlayerHasItem#395	
+25	A	Enchant this wand of the arcanist.	po.	71	PlayerHasItem#361	
+25	A	Enchant this wand of power.	po.	72	PlayerHasItem#367	
+25	A	Enchant this Giver of Slumber.	po.	101	PlayerHasItem#10427	
+25	A	Enchant this Baffle.	po.	104	PlayerHasItem#10611	
+25	A	I don't have anything suitable.	po.	0		
+26	A	Enchant this staff.	po.	73	PlayerHasItem#380	
+26	A	Enchant this staff.	po.	74	PlayerHasItem#392	
+26	A	Enchant this staff.	po.	75	PlayerHasItem#362	
+26	A	Enchant this staff.	po.	76	PlayerHasItem#365	
+26	A	Enchant this Staff of Madman.	po.	107	PlayerHasItem#10124	
+26	A	Enchant this Staff of Balthasar.	po.	110	PlayerHasItem#10645	
+26	A	Enchant this Wall-Punch.	po.	113	PlayerHasItem#10783	
+26	A	Enchant this Whirl of Death.	po.	116	PlayerHasItem#10860	
+26	A	Enchant this Mighty Power.	po.	119	PlayerHasItem#11020	
+26	A	I don't have anything suitable.	po.	0		
+27	Q	 Not bad, but what kind of sword do you have for enchantment?	¿po?	28		
+28	A	I have some bow.	po.	29	PlayerHasGold#250	
+28	A	I have some wand.	po.	30	PlayerHasGold#300	
+28	A	I have some staff.	po.	31	PlayerHasGold#500	
+28	A	I don't have anything.	po.	0		
+29	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	32		
+30	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	33		
+31	Q	 Let's take a look at it first, I won't be able to work with junk.	¿po?	34		
+32	A	Enchant this short bow.	po.	81	PlayerHasItem#601	
+32	A	Enchant this hunting bow.	po.	82	PlayerHasItem#602	
+32	A	Enchant this oaken bow.	po.	83	PlayerHasItem#603	
+32	A	Enchant this bow.	po.	84	PlayerHasItem#604	
+32	A	Enchant this silver bow.	po.	85	PlayerHasItem#700	
+32	A	Enchant this bow.	po.	86	PlayerHasItem#721	
+32	A	Enchant this composite bow.	po.	87	PlayerHasItem#729	
+32	A	Enchant this Satisfier.	po.	99	PlayerHasItem#10361	
+32	A	I don't have anything suitable.	po.	0		
+33	A	Enchant this wand.	po.	88	PlayerHasItem#371	
+33	A	Enchant this oak wand.	po.	89	PlayerHasItem#391	
+33	A	Enchant this elm wand.	po.	90	PlayerHasItem#395	
+33	A	Enchant this wand of the arcanist.	po.	91	PlayerHasItem#361	
+33	A	Enchant this wand of power.	po.	92	PlayerHasItem#367	
+33	A	Enchant this Giver of Slumber.	po.	102	PlayerHasItem#10427	
+33	A	Enchant this Baffle.	po.	105	PlayerHasItem#10611	
+33	A	I don't have anything suitable.	po.	0		
+34	A	Enchant this staff.	po.	93	PlayerHasItem#380	
+34	A	Enchant this staff.	po.	94	PlayerHasItem#392	
+34	A	Enchant this staff.	po.	95	PlayerHasItem#362	
+34	A	Enchant this staff.	po.	96	PlayerHasItem#365	
+34	A	Enchant this Staff of Madman.	po.	108	PlayerHasItem#10124	
+34	A	Enchant this Staff of Balthasar.	po.	111	PlayerHasItem#10645	
+34	A	Enchant this Wall-Punch.	po.	114	PlayerHasItem#10783	
+34	A	Enchant this Whirl of Death.	po.	117	PlayerHasItem#10860	
+34	A	Enchant this Mighty Power.	po.	120	PlayerHasItem#11020	
+34	A	I don't have anything suitable.	po.	0		
+41	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#601;GainItem#10531"				
+42	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#602;GainItem#10532"				
+43	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#603;GainItem#10533"				
+44	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#604;GainItem#10534"				
+45	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#700;GainItem#10535"				
+46	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#721;GainItem#10536"				
+47	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#729;GainItem#10537"				
+48	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#371;GainItem#10571"				
+49	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#391;GainItem#10572"				
+50	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#395;GainItem#10573"				
+51	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#361;GainItem#10574"				
+52	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#367;GainItem#10575"				
+53	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#380;GainItem#10558"				
+54	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#392;GainItem#10559"				
+55	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#362;GainItem#10560"				
+56	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#365;GainItem#10561"				
+61	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#601;GainItem#10541"				
+62	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#602;GainItem#10542"				
+63	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#603;GainItem#10543"				
+64	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#604;GainItem#10544"				
+65	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#700;GainItem#10545"				
+66	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#721;GainItem#10546"				
+67	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#729;GainItem#10547"				
+68	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#371;GainItem#10576"				
+69	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#391;GainItem#10577"				
+70	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#395;GainItem#10578"				
+71	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#361;GainItem#10579"				
+72	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#367;GainItem#10580"				
+73	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#380;GainItem#10562"				
+74	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#392;GainItem#10563"				
+75	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#362;GainItem#10564"				
+76	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#365;GainItem#10565"				
+81	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#601;GainItem#10551"				
+82	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#602;GainItem#10552"				
+83	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#603;GainItem#10553"				
+84	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#604;GainItem#10554"				
+85	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#700;GainItem#10555"				
+86	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#721;GainItem#10556"				
+87	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#729;GainItem#10557"				
+88	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#371;GainItem#10581"				
+89	Q	 I need a little time, obviously, this is not the treatment of impotence with magic!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#391;GainItem#10582"				
+90	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#395;GainItem#10583"				
+91	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#361;GainItem#10584"				
+92	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#367;GainItem#10585"				
+93	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#380;GainItem#10566"				
+94	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#392;GainItem#10567"				
+95	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#362;GainItem#10568"				
+96	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#365;GainItem#10569"				
+97	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#250;LoseItems#2003,4;LoseItem#10361;GainItem#10964"				
+98	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#250;LoseItems#2001,4;LoseItem#10361;GainItem#10965"				
+99	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#250;LoseItems#2002,4;LoseItem#10361;GainItem#10966"				
+100	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#10427;GainItem#10967"				
+101	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#10427;GainItem#10968"				
+102	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#10427;GainItem#10969"				
+103	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#300;LoseItems#2003,4;LoseItem#10611;GainItem#10970"				
+104	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#300;LoseItems#2001,4;LoseItem#10611;GainItem#10971"				
+105	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#300;LoseItems#2002,4;LoseItem#10611;GainItem#10972"				
+106	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#10124;GainItem#10961"				
+107	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#10124;GainItem#10962"				
+108	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#10124;GainItem#10963"				
+109	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#10645;GainItem#10973"				
+110	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#10645;GainItem#10974"				
+111	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#10645;GainItem#10975"				
+112	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#10783;GainItem#10976"				
+113	Q	 I need some time, it's not a runny nose to treat!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#10783;GainItem#10977"				
+114	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#10783;GainItem#10978"				
+115	Q	 I need some time, it's not baldness enchant!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#10860;GainItem#10979"				
+116	Q	 I need some time, I'm not dealing with chondrosis here!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#10860;GainItem#10980"				
+117	Q	 I need a little time, it's not a wart to cut off with magic!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#10860;GainItem#10981"				
+118	Q	 I need a little time, I'm not the wrinkles here to enchant!	¿po?	0		"LoseGold#500;LoseItems#2003,4;LoseItem#11020;GainItem#11055"				
+119	Q	 I need a little time, it's clearly not constipation to heal!	¿po?	0		"LoseGold#500;LoseItems#2001,4;LoseItem#11020;GainItem#11056"				
+120	Q	 I need a little time, I'm not putting the dislocation back in place here!	¿po?	0		"LoseGold#500;LoseItems#2002,4;LoseItem#11020;GainItem#11057"				

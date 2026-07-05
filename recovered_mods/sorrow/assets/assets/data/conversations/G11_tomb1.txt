@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Ruined.	¿po?	0	"VariableEqual#tomb_b1,1"		
+1	Q	[BLUE](it's an enchanted tombstone)[]	¿po?	2			
+2	A	[BLUE](destroy it)[]	po.	3		"SetVariable#tomb_b1,1;IncVariable#death_attack,1"
+2	A	Exit.	po.	0			
+3	Q	[BLUE](you have broken the tombstone, but the released enchantments amaze you)[]	¿po?	0		"LoseHPDeath#45"

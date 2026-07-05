@@ -1,0 +1,36 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Make yourself at home, friends.	port.	0	"VariableGreater#changing_hierarchy,34"		
+1	Q	Come back when the case is ready.	port.	21	"VariableGreater#changing_hierarchy,24"		
+1	Q	 [BLUE](a group of men dressed in hoodie and lots of chains with massive medallions sitting at a richly furnished table, when you appeared, they all frowned, one of them spoke)[] This is Black gang territory, and crooks are not welcome here. Get lost if you don't want any trouble.	¿po?	2			
+2,n_n	Q	 Exactly! This is a place only for blacks like me and my brothers! We don't let white bastards in here who don't understand or even imagine what it's like to be like us in this world!	¿po?	3				
+3	A	Wait a minute, you're white, actually.	po.	4		
+4,n_n	Q	 Maybe, but at heart I'm as black as my brothers, I'm blacker than the night itself! And you're just an ordinary white bastard who came here to show your superiority over blacks, to show how special you are compared to my black brothers! What do you say, Thiefcatt, am I right?!	¿po?	5			
+5,thiefcatt	Q	 I have no idea. I'm already getting high.	¿po?	6			
+6,n_n	Q	 My brother is polite and noble, but I'm not like that, I'm not going to tolerate white bastards here and babble with them! So get out while you're safe!	¿po?	7				
+7,30coins	Q	 Calm down, Eninen. Don't you recognize? A man respected in the kingdom, the Chief Philosopher, has come to see us. It's been a while, friend. I heard you died.	¿po?	8		
+8,philosopher2	Q	It's not the first time I've been buried. But can't kill me. The last time they tied me up and shoved me into a burning cart, which was pushed off a cliff into a chasm with jagged stalactites and an avalanche of stones descended from above, but I escaped with only a couple of scratches and burns to the little finger on my left foot. But it's all nonsense. And I see that everything is fine with you.	port.	9		
+9,30coins	Q	 As you can see, the guards don't pay attention to us, other gangs treat us respectfully or neutrally, and we don't have much to complain about.	¿po?	10		
+10,philosopher2	Q	I'm happy for you. My comrades and I are actually here on business. We're looking for a guy named Bubba, who's recruiting people to take down his gang boss. By any chance, has he been here?	port.	11		
+11,fireball	Q	We had this guy, but we're not interested in getting into other people's fights, especially since we found out that he's involved with some nasty guys, so he left with nothing.	port.	12		
+12,30coins	Q	 But we know where to find him, and we'll give you a tip if you can help us figure out a problem. An honest exchange.	¿po?	13		
+13	A	What needs to be done?	po.	14		
+14,30coins	Q	We had a conflict with a gang of bad people, I won't go into details about how and why it all started, so recently these bastards smashed and plundered one of our establishments, and most importantly, they stole a magical artifact with the recording of our new tracks.	port.	15		
+15,n_n	Q	 Damn white bastards! They despise us, they despise our black creativity, they want to destroy it, trample it and consign it to oblivion!	¿po?	16				
+16,30coins	Q	Unfortunately, this magical artifact is in a single copy and we would like to return it. Most likely, he is with the leader of this gang.	port.	17		
+17	A	Where can we find him?	po.	18		
+18,30coins	Q	Their lair is not far from Friguld, they take advantage of the fact that the local governor consorts with all sorts of dirty bastards, and settled down at his side, set up their lair.	port.	19		
+19	A	Okay, we'll find the leader of these freaks and take your artifact.	po.	20		
+20,threebag	Q	It's not cool to involve outside people to solve our problems, but since there is a situation that you and we need help, both we and you will benefit from cooperation.	port.	0		"SetVariable#changing_hierarchy,25"
+21	A	I've brought you an artifact.	po.	22	"PlayerHasItem#10893"		
+21	A	Okey.	po.	0		
+22,thiefcatt	Q	 From the bottom of my heart, bro, you save our creativity.	¿po?	23			
+23,n_n	Q	 I hope those white bastards didn't do anything to our artifact!	¿po?	24			
+24,fireball	Q	Well, the integrity of the artifact is now our concern.	port.	25		
+25,30coins	Q	Good job, as promised, and in return, we managed to find out that this Bubba's lair is located on one of the pirate islands.	port.	26		
+26,threebag	Q	We will send a message to our people in Friguld so that they can get you to this island without any problems and help you get back.	port.	27		
+27	A	Thanks for the help.	po.	28		
+28,vince2	Q	So, here's what I propose to do, the Philosopher and I will go to this island to start scouting what's going on there, and you give the information to the boss to prepare for the showdown.	port.	29		
+29	A	Okay, argee.	po.	30		
+30,vince2	Q	Then let's not waste time, let's get down to work.	port.	31		"NPCStopFollowing#"		
+31,philosopher2	Q	Work is not a wolf. No one is a wolf at all. Only the wolf is a wolf.	port.	32		"NPCStopFollowing#"		
+32	A	That sounds very smart, okay, good luck.	po.	0		"LoseItem#10893;NPCDespawn#vince2;NPCDespawn#philosopher2;SetVariable#changing_hierarchy,35"

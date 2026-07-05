@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 The bastard got what he deserved! Thanks for helping me deal with him and his gang, let's move to a quieter place, the neighborhood of Lanneger will suit, we'll discuss everything there!	¿po?	4	"VariableEqual#last_race,55"		
+1	Q	 This is not the time to talk!	¿po?	0	"VariableEqual#last_race,52"		
+1	Q	 [BLUE](Dominick was standing next to a wrecked wagon in front of a squad of thugs led by a big shaven man)[] You just made a big mistake.	¿po?	2			
+2,duan	Q	 I couldn't find you for a long time, but your trough was quickly discovered. You got caught!	¿po?	3				
+3,dom	Q	 Talk less!	¿po?	0		"NPCHostile#duan;NPCHostile#duan_team;NPCSpawn#dom_team;SetVariable#last_race,52"
+4	A	Fine.	po.	0		"NPCDespawn#dom;NPCDespawn#dom_team;SetVariable#last_race,57"

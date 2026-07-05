@@ -1,0 +1,31 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](horned creature burst into flames and disappeared without a trace. Now all you have to do is find a way out of this place)[]	¿po?	0	VariableEqual#holiday_coming,75	"NPCDespawn#horned;SetVariable#holiday_coming,77"	
+1	Q	 [BLUE](in the dark, you heard some noise, noticed a dark silhouette, a healthy, shaggy monster with large horns was moving towards you, some chains were ringing, steam was pouring from its fur, the hooves of its feet were loudly imprinting into the stone covering of the cave, the air from its nostrils was rushing out with a loud noise, black eyes seemed to pierce you through)[] And here's the main scoundrel! [BLUE](creature's voice seemed to fill the entire space of the cave)[]	¿po?	2			
+2	Q	 You've been behaving badly, so you'll be punished by me! Is there anything to say?	¿po?	4			
+3	Q	 What else can you say?	¿po?	4			
+4	A	I'm not going to justify myself to some monster!	port.	30		
+4	A	Actually, I saved the world by defeating the forsakens!	port.	5	"VariableEqual#ark_lothasan,100;VariableLower#pohuy_ark,1"	
+4	A	I saved Icemist from possible destruction by crazy magicians and saved a doomed man!	port.	6	"VariableEqual#sewer_horrors,100;VariableLower#pohuy_sewer,1"	
+4	A	I was able to save my sister!	port.	7	"VariableEqual#where_is_amarisa,100;VariableLower#pohuy_amarisa,1"	
+4	A	I helped secure the seal in Mount Orogg, thereby preventing the terrible shadows from breaking free!	port.	11	"VariableEqual#ancient_seal,100;VariableLower#pohuy_seal,1"	
+4	A	I have defeated Xidar and rid the kingdom of her threat!	port.	8	"VariableEqual#web_terror,100;VariableLower#pohuy_web,1"	
+4	A	I stopped the poisoning of the Wyvern Tail River, keeping the residents of New Antur safe!	port.	9	"VariableEqual#poisoned_river,100;VariableLower#pohuy_river,1"	
+4	A	I freed Fyogas from the evil deeds of the cursed abbot!	port.	10	"VariableEqual#cursed_abbey,100;VariableLower#pohuy_abbey,1"	
+4	A	I saved Grisenda's sister, and prevented the threat from vampires!	port.	12	"VariableEqual#invitation,100;VariableLower#pohuy_gris,1"	
+4	A	I helped varannari escape from slavery in Jabal!	port.	13	"VariableEqual#price_of_freedom,100;VariableLower#pohuy_varann,1"	
+4	A	I defeated the goblins, ensuring Lanneger's safety!	port.	14	"VariableEqual#goblin_hunt3,100;VariableLower#pohuy_goblin,1"	
+4	A	I was able to defeat the vampires of Mount Storm by sealing them in the dungeons!	port.	15	"VariableEqual#bloody_harvest,100;VariableLower#pohuy_vampir,1"	
+4	A	I was able to reconcile Rickman's gang and the gang of the Mistress!	port.	16	"VariableEqual#sin_kingdom,120;VariableLower#pohuy_bitch,1"	
+5	Q	 Saved the world? Don't be ridiculous! Nothing will ever happen to this world! You saved your humanity, but I believe you're parasites; no matter what disasters happen, a part of you will always survive.	¿po?	3		"SetVariable#pohuy_ark,2"
+6	Q	 The rotten city of magicians will soon collapse into the abyss itself, you only delayed its fall, and one life saved is nothing compared to the hundreds ruined in that hole!	¿po?	3		"SetVariable#pohuy_sewer,2"
+7	Q	 One girl you've only known for five minutes? What a pettiness! Where is she now, and to whom has this uselessness surrendered?!	¿po?	3		"SetVariable#pohuy_amarisa,2"
+8	Q	 Seriously, are you bragging about defeating such a weakling?! And what threat could this naked-assed fool and her zoo pose to the kingdoms with their huge armies?!	¿po?	3		"SetVariable#pohuy_web,2"
+9	Q	 Cleaned up the river that you fucked up yourself?! A dubious feat!	¿po?	3		"SetVariable#pohuy_river,2"
+10	Q	 Who needs this wilderness?! Do you think there are so many people who care what's going on, or even know about the existence of that place?!	¿po?	3		"SetVariable#pohuy_abbey,2"
+11	Q	 Seriously? Are you doing the work for the saints while they're out somewhere?! Has this church run out of money? Can't they assign someone adequate to guard that rubbish?!	¿po?	3		"SetVariable#pohuy_seal,2"
+12	Q	 What? Another useless fool?! And besides, what's to stop the vampires, who are full under the mountain, left without food, from going outside to hunt?!	¿po?	3		"SetVariable#pohuy_gris,2"
+13	Q	 Really? A handful of ragamuffins, perhaps already devoured by spiders or wolves? And how many of these varannari are still rotting in slavery or have already died in captivity?!	¿po?	3		"SetVariable#pohuy_varann,2"
+14	Q	 What a trifle, goblins multiply like rabbits, soon they will fill the entire valley and the mine again!	¿po?	3		"SetVariable#pohuy_goblin,2"
+15	Q	 And you think that this is a victory?! Over time, the seal will weaken and a crowd of starved vampires will come out!	¿po?	3		"SetVariable#pohuy_vampir,2"
+16	Q	 Thieves, bandits, and lecherous, corrupt girls, if I were you, I'd be ashamed to brag about being associated with such a rabble!	¿po?	3		"SetVariable#pohuy_bitch,2"
+30	Q	 Okay, so we'll get right to the point! Time to suffer!	¿po?	0		"NPCHostile#horned;SetVariable#holiday_coming,75"

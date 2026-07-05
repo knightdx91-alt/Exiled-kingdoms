@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="24" height="28" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="faction_guard" value="varsilia"/>
+  <property name="music" value="townhall"/>
+  <property name="name" value="Royal Castle yard"/>
+  <property name="name_ES" value="Patio del Castillo Real"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grassland.tsx"/>
+ <tileset firstgid="217" source="trees.tsx"/>
+ <tileset firstgid="233" source="natural_grounds.tsx"/>
+ <tileset firstgid="361" source="dungeon.tsx"/>
+ <tileset firstgid="601" source="grounds_indoor.tsx"/>
+ <tileset firstgid="761" source="town_objexts2.tsx"/>
+ <tileset firstgid="825" source="castlewall.tsx"/>
+ <layer name="nonwalk" width="24" height="28" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF7FA8av6o+SPBfHYceKiYj8sOYvRQYge1wVA3H90OWoGRYj6p7iAn/ZOijlzzycWj5g9u82kBABlTBBQ=
+  </data>
+ </layer>
+ <layer name="ground" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztlQFOwzAMRe0sPTSICwATIDht23WlIX7kq1o6DoClqE2b/Njf347Zv/3Z3GzaHiev74vVwfvF6n/f5mOsS17n5f1q9XvP1sAqz6tgWeCN8Z+5x1r2DTHv2Rxry96yFn9niWG25ucc/5c4q4z5Dj9JuFDcNeZDYOQ4H8zyPfsxP/h6if1JhuaG8+FjjJjSHfw59k+x/xoDTnLgZW/nzIF7ldh6drEWc47h4f8a8a2xJsm/7C0PP/nf2WN8e0t1fKaGOVqLhzhM+HLhfY34e/jnDfd5G++p4p1Cc+SA+PETvsjXxPk7e/B6RsE/Bz56031wvEgOVmv1lf0Y/0X8X8J/9MQTDcE9tTZZ09wte9q+v6Y6Cj7a07zhH9yR/1HOzh38Yh+pjq9U9+MXGkHfedcj6B3E3DNqBv0x1zwOwTU5paew5gj/5G2YtxioJXqYSTz0tnv8F6PfeOBozZJf4tAcT9byddQ/wStY9F745+whYgLXJAZqvmf4DC+FE+qSOwHeyPHFWl6pmZ6hbfoMOYYTeh6apfZczrnVfzDdr/0XHviGhgbpteRt6cP/6oY4uQ+5p4gNDZu3/j1by8uR/6pLvdPJOXchWjCJg3rsGXlU/tE1dYZ+6HXwP0icPePOAJ+7F22gXe5CYkJP3PlH+PQvOKX3612ivYweSp/e438DzW3wgw==
+  </data>
+ </layer>
+ <layer name="ground2" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAOBnCoAAAQ==
+  </data>
+ </layer>
+ <layer name="scenery" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzLYmZgyKICxgUy8chRA4yaP2r+qPmj5hNj/hNG2ppPCzBq/qj5o+YPbvPxtX9GAX4AAOS7Ex0=
+  </data>
+ </layer>
+ <layer name="objects" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOsphxSJAIMqlkzkADB6A/QoA4A4odoNgG6j93IG2HJGeHpg6GLfGEBz45YkEajc0nxv3PaWw+seAFFrH0AQ6fpzQ2n4GJMvNpHT74zLcm03zk9IYv/VuRYD4s7TxDEx/o9ENq/KLnAVqXP/YEzOcg0Q70/EKu+cSWSbQOn4Eu/ykpm2FmkCOHC6DHL7XMR863yG0QYsMHOd8gs7GV38htJVrEL7KdA5k+Q6DtmlRoWwYbbQfFyHwHJD66+QCM2yhb
+  </data>
+ </layer>
+ <layer name="roofs" width="24" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzLYmagGGRSwYxR80fNHzV/1PxR80fNHzV/1Hx6mZ/FTDke6uEzkAAAUmESow==
+  </data>
+ </layer>
+ <objectgroup name="data" width="24" height="28">
+  <object name="entry from farmlands" type="entry" gid="1" x="324" y="193">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="288" y="86" width="36" height="32">
+   <properties>
+    <property name="area_id" value="NG"/>
+    <property name="entry_id" value="23"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="259" y="607">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="336" y="606">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="386" y="399">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="438" y="265">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="214" y="221">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="151" y="480">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="255" y="157">
+   <properties>
+        <property name="conversation" value="guard_male" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="governor" type="staticNPC" gid="3" x="140" y="371">
+   <properties>
+    <property name="conversation" value="NG_governor"/>
+    <property name="facing" value="r"/>
+    <property name="faction" value="varsilia"/>
+    <property name="name" value="@GOVERNOR_DAZLAN"/>
+    <property name="portrait" value="50"/>
+    <property name="sprite" value="male_black_2"/>
+   </properties>
+  </object>
+  <object name="Brawley Veitch" type="spawn" gid="3" x="395" y="165">
+   <properties>
+    <property name="conditions" value="VariableLower#brawley_follow,2"/>
+        <property name="conversation" value="NG_Brawley_Veitch" />
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@BRAWLEY_VEITCH"/>
+    <property name="portrait" value="165"/>
+    <property name="spawn" value="brawley"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you returned to your bedroom. Soon, a richly dressed man who had brought you here entered the room with a knock)[] I am sorry to inform you that your meeting with Princess Bernadette has been canceled due to urgent matters. She will inform you about a new meeting later. Would you like to stay or leave the castle?	po.	3	"VariableEqual#royal_will,87;VariableEqual#good_alarion,1"		
+1	Q	[BLUE](you returned to your bedroom. Soon, a richly dressed man who had brought you here entered the room with a knock)[] I am sorry to inform you that your meeting with Princess Bernadette has been canceled due to urgent matters. She will inform you about a new meeting later. Would you like to stay or leave the castle?	po.	2	"VariableEqual#royal_will,87"		
+1	Q	[BLUE](you were awakened by some noise outside the door. Going out into the corridor, you proceeded to the adjacent room, from where, as you thought, this noise came. Inside, you found a secret door, behind which you could hear the sounds of battle. Opening it, you found yourself in a small room with a darkened balcony)[]	port.	4	"VariableEqual#royal_will,85"		
+2	A	I want to leave the castle.	port	0		"ShowParty#;SetVariable#royal_will,100;GainXP#1000;Travel#P7,7"
+3	A	I want to leave the castle.	port	0		"ShowParty#;SetVariable#royal_will,95;Travel#P7,7"
+4	A		port	0		"SetVariable#royal_will,85;Travel#P7_dungeon3,2"

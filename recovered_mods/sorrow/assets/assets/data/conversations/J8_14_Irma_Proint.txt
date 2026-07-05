@@ -1,0 +1,176 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the good-natured priest is glad to see you)[] Welcome to the temple of the Northern Gods, traveler, if you have the right weapon and the necessary donation, you can get a blessing for him right now!	¿po?	6	"VariableEqual#blessed_irma,1"		
+1	Q	 [BLUE](the good-natured priest is glad to see you)[] Welcome to the temple of the Northern Gods, traveler, in our sanctuary even non-believers can receive a blessing or bless their weapons, if well known in the kingdom! [BLUE](10 reputation needed in the Northern Kingdom)[]	¿po?	0	VariableLower#REP_north_kingdom,10	
+1	Q	 [BLUE](the good-natured priest is glad to see you)[] Welcome to the temple of the Northern gods, traveler, in our sanctuary even non-believers can receive a blessing or bless their weapons, for our gods patronize all warriors!	¿po?	2		
+2	A	What weapons can you bless?	po.	3		
+2	A	Thanks, but I have to go.	po.	0		
+3	Q	 Any weapon, untainted by any enchantments, that you have, but for the blessing you will need to make a donation to the temple.	¿po?	4		
+4	A	What kind of donation should I make?	po.	5		
+5	Q	 You will have to donation three small diamonds and [BLUE] (from 150 to 250 gold)[] for blessing daggers and swords, [BLUE] (200 gold each)[] for hammers and axes, and [BLUE] (over 300 gold)[] for heavy weapons. If you have a suitable weapon with you and the necessary donation, you can get a blessing for the weapon right now.	¿po?	6		"SetVariable#blessed_irma,1"
+6	A	I have small diamonds with me.	po.	7	"PlayerHasItems#2004,3"	
+6	A	What kind of donation should I make?	po.	13	"VariableEqual#blessed_irma,1"		
+6	A	You can bless this adamantite shortsword?	po.	15	"PlayerHasItem#552"	
+6	A	You can bless this adamantite sword?	po.	16	"PlayerHasItem#553"	
+6	A	You can bless this adamantite greatsword?	po.	17	"PlayerHasItem#554"	
+6	A	You can bless this terrifying sword?	po.	75	PlayerHasItem#541	
+6	A	You can bless this terrifying sword?	po.	55	PlayerHasItem#10360	
+6	A	Can you bless this short terrifying sword?	po.	55	PlayerHasItem#10892	
+6	A	Can you bless this thing? [BLUE](show her dildo)[]	po.	78	"VariableLower#dyldo_irma,1;PlayerHasItem#10106"	
+6	A	Can you bless this two-handed sword Widowmaker?	po.	82	PlayerHasItem#10175	
+6	A	Can you bless this two-handed sword Dragon Slayer?	po.	83	PlayerHasItem#10200	
+6	A	Can you bless this maul Rock Breaker?	po.	84	PlayerHasItem#10444	
+6	A	Can you bless this axe Thinker's Argument?	po.	85	PlayerHasItem#10446	
+6	A	Can you bless this two-handed sword Bloodsucker?	po.	86	PlayerHasItem#10613	
+6	A	Can you bless this maul Killing power?	po.	87	PlayerHasItem#10772	
+6	A	Can you bless this long sword Sacrifice?	po.	88	PlayerHasItem#10776	
+6	A	Can you bless this two-handed sword Soulcatcher?	po.	89	PlayerHasItem#10855	
+6	A	Can you bless this dagger Wolfish Ferocity?	po.	90	PlayerHasItem#10856	
+6	A	No, thanks.	po.	0		
+7	Q	 Okay, which weapon do you want to bless?	¿po?	10		
+10	A	Bless this dagger.	po.	31	"PlayerHasItem#521;PlayerHasGold#150"	
+10	A	Bless this short sword;PlayerHasGold#200.	po.	32	"PlayerHasItem#522;PlayerHasGold#200"	
+10	A	Bless this sword.	po.	33	"PlayerHasItem#523;PlayerHasGold#250"	
+10	A	Bless this mace.	po.	34	"PlayerHasItem#525;PlayerHasGold#200"	
+10	A	Bless this hammer.	po.	35	"PlayerHasItem#526;PlayerHasGold#200"	
+10	A	Bless this axe.	po.	36	"PlayerHasItem#528;PlayerHasGold#200"	
+10	A	Bless this great sword.	po.	37	"PlayerHasItem#524;PlayerHasGold#300"	
+10	A	Bless this maul.	po.	38	"PlayerHasItem#527;PlayerHasGold#350"	
+10	A	Bless this great axe.	po.	39	"PlayerHasItem#529;PlayerHasGold#300"	
+10	A	Bless this bluesteel dagger.	po.	41	"PlayerHasItem#531;PlayerHasGold#150"	
+10	A	Bless this bluesteel short sword.	po.	42	"PlayerHasItem#532;PlayerHasGold#200"	
+10	A	Bless this bluesteel sword.	po.	43	"PlayerHasItem#533;PlayerHasGold#250"	
+10	A	Bless this bluesteel mace.	po.	44	"PlayerHasItem#535;PlayerHasGold#200"	
+10	A	Bless this bluesteel hammer.	po.	45	"PlayerHasItem#536;PlayerHasGold#200"	
+10	A	Bless this bluesteel axe.	po.	46	"PlayerHasItem#528;PlayerHasGold#200"	
+10	A	Bless this bluesteel great sword.	po.	47	"PlayerHasItem#534;PlayerHasGold#300"	
+10	A	Bless this bluesteel maul;PlayerHasGold#350.	po.	48	"PlayerHasItem#537"	
+10	A	Bless this bluesteel great axe.	po.	49	"PlayerHasItem#539;PlayerHasGold#300"	
+10	A	Bless this silver dagger.	po.	50	"PlayerHasItem#701;PlayerHasGold#150"	
+10	A	Bless this silver short sword.	po.	51	"PlayerHasItem#702;PlayerHasGold#200"	
+10	A	Bless this silver sword.	po.	52	"PlayerHasItem#703;PlayerHasGold#250"	
+10	A	Bless this silver great sword.	po.	53	"PlayerHasItem#704;PlayerHasGold#300"	
+10	A	Bless this silver mace.	po.	54	"PlayerHasItem#705;PlayerHasGold#200"	
+10	A	Bless this thief's blade.	po.	56	"PlayerHasItem#203;PlayerHasGold#250"	
+10	A	Bless this falchion.	po.	57	"PlayerHasItem#598;PlayerHasGold#300"	
+10	A	Bless this knife.	po.	58	"PlayerHasItem#204;PlayerHasGold#200"	
+10	A	Bless this dagger.	po.	59	"PlayerHasItem#578;PlayerHasGold#200"	
+10	A	Bless this sacrificial dagger.	po.	60	"PlayerHasItem#600;PlayerHasGold#200"	
+10	A	Bless this sting.	po.	61	"PlayerHasItem#612;PlayerHasGold#200"	
+10	A	Bless this fang.	po.	62	"PlayerHasItem#613;PlayerHasGold#200"	
+10	A	Bless this Orcslicer.	po.	63	"PlayerHasItem#589;PlayerHasGold#300"	
+10	A	Bless this Righteousness.	po.	64	"PlayerHasItem#594;PlayerHasGold#300"	
+10	A	Bless this hammer.	po.	65	"PlayerHasItem#540;PlayerHasGold#250"	
+10	A	Bless this Beastgrinder.	po.	66	"PlayerHasItem#579;PlayerHasGold#250"	
+10	A	Bless this bone mace.	po.	67	"PlayerHasItem#617;PlayerHasGold#250"	
+10	A	Bless this mystic bone mace.	po.	68	"PlayerHasItem#618;PlayerHasGold#250"	
+10	A	Bless this scimitar.	po.	69	"PlayerHasItem#599;PlayerHasGold#350"	
+10	A	Bless this bone maul.	po.	70	"PlayerHasItem#616;PlayerHasGold#400"	
+10	A	Bless this Maul of Terror.	po.	71	"PlayerHasItem#742;PlayerHasGold#400"	
+10	A	Bless this minotaur axe.	po.	72	"PlayerHasItem#608;PlayerHasGold#350"	
+10	A	Bless this executioner's axe.	po.	73	"PlayerHasItem#714;PlayerHasGold#350"	
+10	A	Bless this Axe of the Depths.	po.	74	"PlayerHasItem#740;PlayerHasGold#350"	
+10	A	Bless this bit.	po.	79	"PlayerHasItem#10123;PlayerHasGold#400"	
+10	A	Bless this hunting knife.	po.	80	"PlayerHasItem#10280;PlayerHasGold#200"	
+10	A	Bless this orc axe.	po.	81	"PlayerHasItem#10833;PlayerHasGold#350"	
+10	A	Next time.	po.	0		
+13	Q	 You will have to sacrifice three small diamonds and [BLUE] (from 150 to 250 gold)[] for blessing daggers and swords, [BLUE] (200 gold each)[] for hammers and axes, and [BLUE] (over 300 gold)[] for heavy weapons.	¿po?	0		
+15	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](200 gold)[].	¿po?	18						
+16	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](350 gold)[].	¿po?	19						
+17	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 gold)[].	¿po?	20						
+18	A	I have small diamonds with me.	po.	21	"PlayerHasGold#200;PlayerHasItems#2004,6"	
+18	A	No, thanks.	po.	0		
+19	A	I have small diamonds with me.	po.	22	"PlayerHasGold#350;PlayerHasItems#2004,6"	
+19	A	No, thanks.	po.	0		
+20	A	I have small diamonds with me.	po.	23	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+20	A	No, thanks.	po.	0		
+21	Q	 This sword will be even more powerful than it already was!	¿po?	0		"LoseGold#200;LoseItems#2004,6;LoseItem#552;GainItem#10523"				
+22	Q	 This sword will be even more powerful than it already was!	¿po?	0		"LoseGold#350;LoseItems#2004,6;LoseItem#553;GainItem#10524"				
+23	Q	 This sword will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#554;GainItem#10525"				
+31	Q	 It will take a little time!	¿po?	0		"LoseGold#150;LoseItems#2004,3;LoseItem#521;GainItem#10261"				
+32	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#522;GainItem#10262"				
+33	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#523;GainItem#10263"				
+34	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#525;GainItem#10265"				
+35	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#526;GainItem#10266"				
+36	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#528;GainItem#10268"				
+37	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#524;GainItem#10264"				
+38	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#527;GainItem#10267"				
+39	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#529;GainItem#10269"				
+41	Q	 It will take a little time!	¿po?	0		"LoseGold#150;LoseItems#2004,3;LoseItem#531;GainItem#10511"				
+42	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#532;GainItem#10512"				
+43	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#533;GainItem#10513"				
+44	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#535;GainItem#10515"				
+45	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#536;GainItem#10516"				
+46	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#538;GainItem#10518"				
+47	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#534;GainItem#10514"				
+48	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#537;GainItem#10517"				
+49	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#539;GainItem#10519"				
+50	Q	 It will take a little time!	¿po?	0		"LoseGold#150;LoseItems#2004,3;LoseItem#701;GainItem#10606"				
+51	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#702;GainItem#10607"				
+52	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#703;GainItem#10608"				
+53	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#704;GainItem#10609"				
+54	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#705;GainItem#10610"				
+55	Q	 Eh? What kind of blasphemy is this?! Go away and don't come back here with a weapon like that!	¿po?	0						
+56	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#203;GainItem#10657"				
+57	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#598;GainItem#10662"				
+58	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#204;GainItem#10667"				
+59	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#578;GainItem#10672"				
+60	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#600;GainItem#10677"				
+61	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#612;GainItem#10682"				
+62	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#613;GainItem#10687"				
+63	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#589;GainItem#10692"				
+64	Q	 It will take a little time!	¿po?	0		"LoseGold#300;LoseItems#2004,3;LoseItem#594;GainItem#10697"				
+65	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#540;GainItem#10702"				
+66	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#579;GainItem#10707"				
+67	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#617;GainItem#10712"				
+68	Q	 It will take a little time!	¿po?	0		"LoseGold#250;LoseItems#2004,3;LoseItem#618;GainItem#10717"				
+69	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#599;GainItem#10722"				
+70	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2004,3;LoseItem#616;GainItem#10727"				
+71	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2004,3;LoseItem#742;GainItem#10732"				
+72	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#608;GainItem#10742"				
+73	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#714;GainItem#10747"				
+74	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#740;GainItem#10752"				
+75	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 монет)[].	¿po?	76						
+76	A	I have small diamonds with me.	po.	77	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+76	A	No, thanks.	po.	0		
+77	Q	 This maul will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#541;GainItem#10737"				
+78	Q	 What kind of blasphemy is this?! Go away and don't come back here with a weapon like that!	¿po?	0	"VariableEqual#dyldo_irma,1"		
+78	Q	 Where did you get mine?.. Oops! Em, what kind of blasphemy is this?! Go away and don't come back here with a weapon like that!	¿po?	0		"SetVariable#dyldo_irma,1"
+79	Q	 It will take a little time!	¿po?	0		"LoseGold#400;LoseItems#2004,3;LoseItem#10123;GainItem#10905"				
+80	Q	 It will take a little time!	¿po?	0		"LoseGold#200;LoseItems#2004,3;LoseItem#10280;GainItem#10920"				
+81	Q	 It will take a little time!	¿po?	0		"LoseGold#350;LoseItems#2004,3;LoseItem#10833;GainItem#10950"				
+82	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 gold)[].	¿po?	91						
+83	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 gold)[].	¿po?	92						
+84	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 gold)[].	¿po?	93						
+85	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](350 gold)[].	¿po?	94						
+86	Q	 What an unusual weapon! To bless him, you will have to sacrifice 12 small diamonds and [BLUE](1500 gold)[].	¿po?	95						
+87	Q	 What an unusual weapon! To bless him, you will have to sacrifice six small diamonds and [BLUE](500 gold)[].	¿po?	96						
+88	Q	 What an unusual weapon! To bless him, you will have to sacrifice 12 small diamonds and [BLUE](1000 gold)[].	¿po?	97						
+89	Q	 What an unusual weapon! To bless him, you will have to sacrifice 18 small diamonds and [BLUE](3500 gold)[].	¿po?	98						
+90	Q	 What an unusual weapon! To bless him, you will have to sacrifice 18 small diamonds and [BLUE](2500 gold)[].	¿po?	99						
+91	A	I have small diamonds with me.	po.	100	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+91	A	No, thanks.	po.	0		
+92	A	I have small diamonds with me.	po.	101	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+92	A	No, thanks.	po.	0		
+93	A	I have small diamonds with me.	po.	102	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+93	A	No, thanks.	po.	0		
+94	A	I have small diamonds with me.	po.	103	"PlayerHasGold#350;PlayerHasItems#2004,6"	
+94	A	No, thanks.	po.	0		
+95	A	I have small diamonds with me.	po.	104	"PlayerHasGold#1500;PlayerHasItems#2004,12"	
+95	A	No, thanks.	po.	0		
+96	A	I have small diamonds with me.	po.	105	"PlayerHasGold#500;PlayerHasItems#2004,6"	
+96	A	No, thanks.	po.	0		
+97	A	I have small diamonds with me.	po.	106	"PlayerHasGold#1000;PlayerHasItems#2004,12"	
+97	A	No, thanks.	po.	0		
+98	A	I have small diamonds with me.	po.	107	"PlayerHasGold#3500;PlayerHasItems#2004,18"	
+98	A	No, thanks.	po.	0		
+99	A	I have small diamonds with me.	po.	108	"PlayerHasGold#2500;PlayerHasItems#2004,18"	
+99	A	No, thanks.	po.	0		
+100	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#10175;GainItem#10910"				
+101	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#10200;GainItem#10915"				
+102	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#10444;GainItem#10925"				
+103	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#350;LoseItems#2004,6;LoseItem#10446;GainItem#10930"				
+104	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#1500;LoseItems#2004,12;LoseItem#10613;GainItem#10935"				
+105	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#500;LoseItems#2004,6;LoseItem#10772;GainItem#10940"				
+106	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#1000;LoseItems#2004,12;LoseItem#10776;GainItem#10945"				
+107	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#3500;LoseItems#2004,18;LoseItem#10855;GainItem#10955"				
+108	Q	 This weapon will be even more powerful than it already was!	¿po?	0		"LoseGold#2500;LoseItems#2004,18;LoseItem#10856;GainItem#10960"				

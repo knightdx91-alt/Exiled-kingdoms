@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Salute, buddy! Did you get tiger eyes?	¿po?	9	"VariableEqual#oneeyed,1"		
+1	Q	 Salute, buddy! I'm one-eyed Will. Do you want to know how I lost my eye?	¿po?	2			
+2	A	Come on, tell.	po.	3		
+3	Q	 Once upon a time I was young and green, just like you. And so in those early days, through my stupidity, I ended up in prison, which is known to everyone in Varsilia for its severity. And so the local old-timers meet me there and offer me a choice - sharpening in the eye or to one place once...	¿po?	4				
+4	A	And of course you chose the eye?	po.	5		
+5	Q	Well... in fact, when I went to prison, I was already one-eyed. Ha ha ha!	¿po?	6			
+6	A	You're a real joker, as I see it.	po.	7		
+7	Q	In fact, I've never been in jail, thank the Three! And a wild cat knocked out my eye, it was a cat - a big beast, not what you thought. In general, I make souvenirs out of sabercat eyes, people quickly snatch them up, but I haven't those years to hunt myself. Therefore, if you get sabercat eyes, I'm ready to buy them from you for great money.	¿po?	8			
+8	A	Well, if I have something, I'll bring to you.	po.	0		"SetVariable#oneeyed,1"
+9	A	Yes, I have sabercat eye with me.	po.	10	playerhasitem#1016	"loseitem#1016;gainGold#100"
+9	A	Yes, I have corrupted sabercat eye with me.	po.	11	playerhasitem#1017	"loseitem#1017;gainGold#135"
+9	A	Not.	po.	0		
+10	Q	 Good, I'm paying you 100 coins for it, is there more?	¿po?	9			
+11	Q	 An interesting specimen, I'm paying you 135 coins for it, is there more?	¿po?	9			

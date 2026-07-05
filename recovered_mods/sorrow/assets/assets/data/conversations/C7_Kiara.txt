@@ -1,0 +1,104 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](young serious looking girl)[] Nice to see... Adaon?! You're alive! And I thought that... Wait, why are you alive? They told me that you...	¿po?	83	"NPCIsInParty#adaon,adaon;VariableGreater#hate_through,99;VariableLower#hate_kiara,1	
+1	Q	[BLUE](young serious looking girl)[] Nice to see... Adaon?! You're alive! And I thought that... Wait, why are you alive? They told me that you...	¿po?	82	"VariableGreater#hate_through,54;VariableLower#hate_through,99;VariableLower#hate_kiara,1	
+1	Q	[BLUE](young serious looking girl)[] Nice to see... Adaon?! You're alive! And I thought that... Wait, why are you alive? They told me that you...	¿po?	77	"VariableGreater#hate_through,49;VariableLower#hate_through,99;VariableLower#hate_kiara,1	
+1	Q	[BLUE](When you dealt with most of the attackers, the survivors teleported away, and the girl examined the battlefield)[] And what kind of freaks were they? Would you like to explain?	¿po?	72	"VariableEqual#hate_through,37"		
+1	Q	These freaks will regret coming here!	¿po?	0	"VariableEqual#hate_through,35"		
+1	Q	[BLUE](young serious looking girl)[] Nice to see you! Are you probably looking for Adaon, or are you just visiting?	¿po?	59	"VariableEqual#hate_through,30"		
+1	Q	[BLUE](young serious looking girl)[] Nice to see you!	¿po?	0	"VariableGreater#time_to_pay,109"		
+1	Q	Let's deal with this bastard first, then we'll talk!	¿po?	0	"VariableEqual#time_to_pay,70"		
+1	Q	[BLUE](young serious looking girl)[] I see that everything went well, since Makrin is here with you or not?	¿po?	56	"VariableEqual#time_to_pay,65"		
+1	Q	[BLUE](young serious looking girl)[] Don't hang around here doing nothing!	¿po?	0	"VariableGreater#time_to_pay,54;VariableLower#time_to_pay,64"		
+1	Q	[BLUE](young serious looking girl)[] You're back, and I hope you have good news.	¿po?	38	"VariableGreater#time_to_pay,49;VariableLower#time_to_pay,54"		
+1	Q	[BLUE](young serious looking girl)[] Don't hang around here doing nothing!	¿po?	0	"VariableGreater#time_to_pay,39;VariableLower#time_to_pay,49"		
+1	Q	[BLUE](a young girl with a serious look looks at you with interest)[] Wow, what a surprise! Adaon! How many years has it been since we last met?	¿po?	2		
+2,adaon	Q	Ten years, I guess. Hi Kiara, how you've matured, in all the right places... Looking great!	¿po?	3			
+3,kiara	Q	Hmm, ten? It was like yesterday, when we were saying goodbye at the north pier... As far as I can see, you haven't changed much in appearance since then. Well, since you're here, it means you've decided to keep your promise to me the last time we met. Do you remember it?	¿po?	4			
+4,adaon	Q	[BLUE](Adaon obviously hesitated, not knowing what to answer)[] The last time we met?..	¿po?	5			
+5,kiara	Q	Yes, don't you remember? You said that you would definitely come back to me and take me as your wife. You even left me a ring that you stole from some rich granny as a keepsake, although, unfortunately, it was lost during one of the orc raids.	¿po?	6			
+6,adaon	Q	Uh-uh, Kiara, that wasn't serious! We were just kids then and we came up with all sorts of stupid things!	¿po?	7			
+7,kiara	Q	Maybe it wasn't serious and stupid for you, but for me, when I was all alone here many years ago, it wasn't like that at all. Although I was able to survive and even made my way to the top of the bandit power, resentment against you has never left me. You said we were too young then, well, now we're adults and we'll solve this issue in an adult way, don't you think?	po.	9		
+9,adaon	Q	What are you suggesting I do?	¿po?	10			
+10,kiara	Q	Make a simple choice. Either you marry me, or I'll cut off your dick and feed it to the harbor dogs. Well, you see, it's simple?	po.	11		
+11	A	The choice seems obvious, Adaon, but in any case, you cease to be the master of your penis.	po.	12	"PlayerIsMale#"		
+11	A	This is clearly blackmail, but it seems you have no choice, Adaon.	po.	12	"PlayerIsFemale#"		
+12,adaon	Q	Come on, as if I hadn't figured it out myself, can you help me with something more specific?	¿po?	13			
+13	A	Kiara, I'm a friend of Adaon's, maybe there's something I can do to help you instead of Adaon?	po.	14	"PlayerIsMale#"		
+13	A	Kiara, I'm a friend of Adaon's, maybe there's something I can do to help you instead of Adaon?	po.	17	"PlayerIsFemale#"		
+13	A	If you don't want to come to an amicable agreement so that Adaon doesn't have to suffer, then there is another way to convince, but you won't like it.	po.	35		
+14,kiara	Q	Oh, you sure are handsome, but not my type, though... You are ready to sacrifice yourself for Adaon, and such heroism cannot but be admired, I agree to your proposal, we probably won't delay the ceremony?	po.	15		
+15	A	That's not what I meant when I said I wanted to help you!	po.	16		
+16,kiara	Q	Don't worry, I was just joking! I get what you mean.	po.	20		
+17,kiara	Q	Oh, so you're together, since you're ready to be a hero for Adaon, but you probably understand that with a man like him, it's unlikely that you'll be able to build a strong and trusting relationship, you'll only ruin your youth years in vain.	po.	18		
+18	A	What?! We are not a couple! I didn't mean anything like that when I wanted to help him!	po.	19		
+19,kiara	Q	Don't worry, I was just joking! I get what you mean.	po.	20		
+20,adaon	Q	Great joke! So, seriously, Kiara, what do you think about my friend's proposal?	¿po?	21			
+21,kiara	Q	Well, actually, I was counting on it. I've long since given up on the dreams of a young girl, and now I have enough problems, and I don't care about old grudges and showdowns with you, for now.	po.	22		
+22	A	How can we help you?	po.	23		"SetVariable#kiara_good,1"
+23,kiara	Q	In recent years, many new faces have appeared in the city, competition has intensified, and I am still afloat, thanks to the fact that I have one of the largest enterprises in my hands.	po.	24		
+24	A	What kind of enterprise is this, if it's not a secret?	po.	25		
+25,kiara	Q	Clandestine activities that the authorities would not approve of. There are some special fish in the local waters, they are poisonous, so they are not suitable for food, but if they are dried and wiped off, they get a powder that people use in small doses, I think you understand for what purposes. This product is in great demand, so someone unknown decided to take over my enterprise.	po.	26		
+26	A	And you want us to deal with these detractors?	po.	27		
+27,kiara	Q	It would be great to do this, but I haven't figured out who exactly is acting against me yet. First, I need to solve the existing problems. Someone is luring away the fishermen working for me, I need to intimidate them to bring them back under my control. I would send my guys, but they are not particularly good at peacefully resolving issues, and I need these fishermen intact so that they can continue to do their job.	po.	28		
+28	A	Okay, I'll arrange it with them.	po.	29		
+29,kiara	Q	Secondly, we need to deal with the captain of a ship transporting goods to Varsilia. He appropriated my cargo for himself, he decided to do it himself, or at someone's behest - it doesn't matter, the main thing is that the ship and goods must also return to my control.	po.	30		
+30	A	Clearly, where I can find these fishermen and captain?	po.	31		
+31,kiara	Q	First, deal with the fishermen, you will find them along the seashore at the foot of Zamor. After that, my man on the pier will take you to the ship and its rebellious captain, you should do all this at night, so as not to attract the attention of the legionnaires. If you do a great job, then I will not leave you without a reward.	po.	32		
+32,adaon	Q	Don't worry, Kiara, we'll do everything right!	¿po?	33			
+33,kiara	Q	I'm not counting on you, Adaon, but I hope your friend won't let me down.	po.	34		
+34	A	We'll do it.	po.	0		"SetVariable#time_to_pay,40"
+35,kiara	Q	Seriously? Did you come to my house and threaten me? I advise you to think carefully before you do anything stupid, there are shooters hiding in these walls, ready to shoot anyone with poisoned arrows at my signal.	po.	36		
+36	A	I mean, we can skip the wedding nonsense and help you with something specific.	po.	37		
+36	A	It looks like you're threatening me now, well, you're not giving me a choice.	po.	0		"ItemActivate#grate1;losehp#30;losehptoxic#20;losehp#30;losehptoxic#20;losehp#30;losehptoxic#20;losehp#30;losehptoxic#20;losehp#30;losehptoxic#20;losehp#30;losehptoxic#20;NPCDespawn#kiara;NPCSpawn#kiara2;NPCHostile#bookkeeper;NPCHostile#bugs_gambino;NPCHostile#mary_ann;NPCHostile#leland;NPCHostile#muqrin;NPCHostile#riyada;NPCSpawn#team_bandits;DecVariable#REP_seventhhouse,25;SetVariable#time_to_pay,97"
+37,kiara	Q	Well, you're right, I can use some help, I have enough problems right now, and I don't care about Adaon yet. In recent years, many new faces have appeared in the city, competition has intensified, and I am still afloat, thanks to the fact that I have one of the largest enterprises in my hands.	po.	24		
+38	A	Yes, I came to an agreement with the fishermen, some scoundrels intimidated them, but I dealt with them, and the fishermen will continue to work for you.	po.	39		
+39	Q	Okay, but those bastards you killed were probably working for someone, and it's a pity we didn't find out who.	po.	40		
+40	A	We've dealt with the captain who betrayed you, too.	po.	41		
+41,adaon	Q	The bastard mentioned that he had defected to someone else, but he didn't tell us anything more in detail.	¿po?	42			
+42,kiara	Q	It's a pity, but at least the goods and the ship are mine now, we need to send someone there to check everything.	po.	43		
+43,bookkeeper	Q	I can personally go there and check if everything is in order with our goods.	po.	44		
+44,kiara	Q	No, you'll be needed here, send one of your sixers, and you, Bugs, will make sure that everything is in order there.	po.	45		
+45,bugs_gambino	Q	Got it, boss.	¿po?	46			
+46,kiara	Q	And I need to verify some of my suspicions, and for this I will need people from the outside.	po.	47		
+47,adaon	Q	What do we need to do?	¿po?	48			
+48,kiara	Q	I think I've got a rat, or rather, rats that are acting in cahoots. So, I recently made contact with one of the wizards of Icemist, I want to arrange for the delivery of my goods to their city. He wants to hold a meeting with me, and I'm going to send one of my assistants suspected of betrayal.	po.	49		
+49,adaon	Q	And we will have to monitor how everything goes?	¿po?	50			
+50,kiara	Q	That's right, the meeting will be a set-up, you will watch how everything goes without attracting attention. If everything goes well, my man will go to a real meeting with the magician, if not, I will know who the rat, and I hope you will be able to get him to talk to find out who else is in on it.	po.	51		
+51	A	Clearly, where exactly this meeting will take place?	po.	52		
+52,kiara	Q	At night, in the north outside the city.	po.	53		
+53,adaon	Q	Everything is clear, as you said, Kiara, so it will be if your man turns out to be a rat, he won't just get rid of us!	¿po?	54			
+54,kiara	Q	If he really betrayed me, you don't have to stand on ceremony with him, but first try to get him to talk about other rats.	po.	55		
+55	A	Okay, we'll try to find out about it.	po.	0		"NPCDespawn#bugs_gambino;SetVariable#time_to_pay,55"
+56,adaon	Q	He's a fucking traitor! He and his scumbags slaughtered your fake sorcerer when we arrived! And we found out from him that he was acting on the orders of your bodyguard Bugs, and that this big guy is also behind all the other problems. Brought him here to tell you everything himself, Kiara.	¿po?	57			
+57,muqrin2	Q	Exactly!	¿po?	58		"NPCStopFollowing#"		
+58,kiara	Q	That's how it is. So what do you say to that, Bugs? Is he lying to slander you, or is he telling the truth?	po.	0		"NPCSpawn#bugs_gambino2"
+59	A	Kiara. Adaon is dead. The guards found his body near New Garand.	po.	60		
+60,kiara	Q	Is he dead? But how... I just saw him recently... [BLUE](The girl was clearly shocked, even though she was trying to look calm)[] How did it happen?	po.	61		
+61	A	It is not known exactly. But he was killed by magic.	po.	62		
+62,kiara	Q	Magic?	po.	63		
+63	A	Yes. The last time I saw him, he was going to come here, but he never made it.	po.	64		
+64,kiara	Q	Wait, but he was here recently! I asked him to help me with something, and he agreed. But why did he come back to New Garand?	po.	65		
+65,guard	Q	Unfortunately, we won't be able to ask him about it. Do you know if he had any magical enemies?	port?	66			
+66,kiara	Q	[BLUE](girl frowned at him.)[] I have no idea, we haven't talked for ten years, and we met again not so long ago. Although, the case I assigned him is related to a wizard. But it seemed to me that something really dangerous for Adaon should not have been foreseen.	po.	67		
+67	A	Can you tell us more about this case to find out if it's related to Adaon's murder?	po.	68		
+68,kiara	Q	[BLUE](girl looked at the guard again, then at you)[] I'm sorry, but no, this concerns the welfare of the entire gang, and Adaon is just one person...	po.	69		
+69,mary_ann	Q	Hey, what is this?!	po.	70		
+70,guard	Q	[BLUE](distracted by the scream, you noticed a strange glow in the room, and suddenly, the same wizards who attacked Whitetower began to appear)[] They found us again!	po.	71		
+71	A			0		"ItemActivate#grate1;NPCSpawn#adept1;SetVariable#hate_through,35"	
+72,guard	Q	They have something to do with Adaon's murder and are trying to interfere with the investigation.	port?	73			
+73,kiara	Q	Well, such impudence changes the course of events. That wizard's name is Murlon, he's from Icemist, possibly one of the queen's confidants, but he provided little information about himself. The meeting with him was supposed to take place in Lamis; perhaps you'll be able to find out something there before heading off to Icemist to find him.	po.	74		
+74	A	Thank you for sharing this information.	po.	75		
+75,kiara	Q	Good luck to you, I hope you find Adaon's killers and send them to the grave after him.	po.	76		
+76	A			0		"ItemHide#grate1;ItemWalkable#grate1;NPCDespawn#adept1;SetVariable#hate_through,40"	
+77,adaon	Q	You won't believe it, but I had a double! He was mistakenly killed in my place, and these unknown guys are still hunting me, so I can't stay here for long!	¿po?	78			
+78,kiara	Q	Okay. But wait a moment. Obviously, you don't have time for this right now, but how are things with my assignment?	po.	79		
+79,adaon	Q	Everything's fine! I met with this Murlon, we discussed the matter, agreed on the necessary steps, had a few drinks... I hope he won't forget what we agreed on when he sleeps it off...	¿po?	80			
+80,kiara	Q	Oh, I hope things really worked out for you with him. Okay, be careful, don't disappear for too long.	po.	81		
+81,adaon	Q	Of course, I'll be back.	¿po?	0		"SetVariable#hate_kiara,2"	
+82,adaon	Q	You won't believe it, but I had a double! He was mistakenly killed in my place, and these unknown guys are still hunting me, so I can't stay here for long! And take care of Janod, okay?	¿po?	78			
+83,adaon	Q	You won't believe it, but I had a double! He was mistakenly killed in my place, but we dealt with the guys who were hunting me, so everything is fine again!	¿po?	84			
+84,kiara	Q	Okay, I'm happy for you. But what about my assignment?	po.	85		
+85,adaon	Q	Everything's fine! I met with this Murlon, we discussed the matter, agreed on the necessary steps, had a few drinks... I hope he won't forget what we agreed on when he sleeps it off...	¿po?	86			
+86,kiara	Q	Oh, I hope you really did work it out with him, otherwise I'll skin you.	po.	87		
+87,adaon	Q	Hey, calm down, have I ever deceived you?	¿po?	88		"SetVariable#hate_kiara,2"	
+88,kiara	Q	Adaon, get out of my sight before I nail you here.	po.	0		

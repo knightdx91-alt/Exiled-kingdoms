@@ -1,0 +1,508 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="47">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="bandos" />
+    <property name="name" value="Bandit hut" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="Desert.tsx" firstgid="797" />
+  <tileset source="greenground.tsx" firstgid="861" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="grassland.tsx" firstgid="1085" />
+  <tileset source="artifacts.tsx" firstgid="1213" />
+  <tileset firstgid="1329" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <tileset firstgid="1569" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1785" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset source="indoor walls.tsx" firstgid="2073" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLngNSMqjU2OXPPI0U+OG8i1C58earmdVHOoFW60so/a6WUUjIKhDgBk/GxnQAYAAA==
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgwA3SmSCYWoAU854xYtdLLCbWLaPmjZo3EObhswMfQM8XlJpHD0CKm0cBJhjM4QcAz5SJmEAGAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjAAI+MdFHD6Xg8wDYOQpGwSjABACZovWTQAYAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgwA3kOFBpSgEl5ikA9cgCsSSUlgZieag5SmhyIKxIwA6QG7xZIewkIM2Fpt6TjYHBhw3C/spE2M3I8mlA81JYiVePDUgB5QOwmMGNpm8KOwPDJXbC5skA5fmQ1OTgcd8FIsxDlufFojYRaH4qkh1SRJgH0pNBINyw2Y8NELIPBrJZiTMPJL8Xmh58oXr4oXomsSPEiHWfElJalURLs+hpXRYprZMCqJ1/R8EoQAcAP4ITMUAGAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="270" gid="487" y="280">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="3" x="115" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="conversation" value="F10_rickman" />
+        <property name="spawn" value="rickman" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="johnny" type="spawn" id="4" x="225" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,14" />
+        <property name="conversation" value="H9_bandit" />
+        <property name="spawn" value="johnny" />
+        <property name="tag" value="bandit1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="oneeyed" type="spawn" id="5" x="405" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="conversation" value="F10_oneeyed" />
+        <property name="name" value="@ONEEYED_WILL" />
+        <property name="portrait" value="236" />
+        <property name="spawn" value="human_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="security" type="spawn" id="6" x="265" gid="489" y="55">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="conversation" value="F10_security" />
+        <property name="name" value="@BANDIT" />
+        <property name="portrait" value="208" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="huckster" type="spawn" id="7" x="435" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="name" value="@HUCKSTER_MARTY" />
+        <property name="portrait" value="237" />
+        <property name="shop_items" value="5000,5002,5006,5007,5012,6002,150,147,149,3201,531,575,577,3010" />
+        <property name="spawn" value="villager_male_black" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="8" x="155" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_machete" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="9" x="335" gid="489" y="215">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,9;VariableLower#sin_kingdom,49" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="horton_thug" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="10" x="270" gid="487" y="65">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="11" x="130" y="100" width="100" height="230">
+      <properties>
+        <property name="actions" value="StartConversation#rickman,F10_rickman" />
+        <property name="conditions" value="VariableLower#sin_kingdom,14" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="12" x="275" gid="487" y="460">
+      <point />
+      <properties>
+        <property name="conversation" value="F10_door_house2" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="F10_door_house2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="13" x="245" y="400" width="60" height="10">
+      <properties>
+        <property name="actions" value="StartItemConversation#F10_door_house2" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="14" x="205" gid="487" y="1">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,80" />
+        <property name="conversation" value="F10_door_house3" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="F10_door_house3" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="15" x="240" y="1" width="40" height="15">
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,75" />
+        <property name="actions" value="StartItemConversation#F10_door_house3" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="16" x="115" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109;VariableLower#size_matters,14" />
+        <property name="conversation" value="F10_rickman" />
+        <property name="spawn" value="rickman" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="oneeyed" type="spawn" id="17" x="405" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109" />
+        <property name="conversation" value="F10_oneeyed" />
+        <property name="name" value="@ONEEYED_WILL" />
+        <property name="portrait" value="236" />
+        <property name="spawn" value="human_archer" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="security" type="spawn" id="18" x="265" gid="489" y="55">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109" />
+        <property name="conversation" value="F10_security" />
+        <property name="name" value="@BANDIT" />
+        <property name="portrait" value="208" />
+        <property name="spawn" value="shooter" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="huckster" type="spawn" id="19" x="435" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109" />
+        <property name="name" value="@HUCKSTER_MARTY" />
+        <property name="portrait" value="237" />
+        <property name="shop_items" value="5000,5002,5006,5007,5012,6002,150,147,149,3201,531,575,577,3010" />
+        <property name="spawn" value="villager_male_black" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="20" x="155" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="bandit_machete" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="bandit" type="spawn" id="21" x="335" gid="489" y="215">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#sin_kingdom,109" />
+        <property name="name" value="@BANDIT" />
+        <property name="spawn" value="horton_thug" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="22" x="145" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,75" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="23" x="405" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,75" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="24" x="325" gid="489" y="195">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,75" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="corpse" type="staticNPC" id="25" x="215" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#sin_kingdom,75" />
+        <property name="name" value="@CORPSE" />
+        <property name="sprite" value="male_black_lay" />
+      </properties>
+    </object>
+    <object name="vince" type="spawn" id="26" x="145" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#size_matters,10" />
+        <property name="conversation" value="F10_Vince" />
+        <property name="spawn" value="vince_1" />
+        <property name="tag" value="vince" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="27" x="115" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#size_matters,19;VariableLower#changing_hierarchy,39" />
+        <property name="conversation" value="F10_rickman" />
+        <property name="spawn" value="rickman_2" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="mino" type="spawn" id="28" x="525" gid="489" y="375">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#size_matters,19;VariableLower#size_matters,99" />
+        <property name="spawn" value="bulls_dick" />
+        <property name="tag" value="mino" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="mino2" type="spawn" id="29" x="305" gid="489" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="bulls_dick" />
+        <property name="tag" value="mino_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mino" type="spawn" id="30" x="275" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="minotaur_lord" />
+        <property name="tag" value="mino_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mino" type="spawn" id="31" x="275" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="minotaur" />
+        <property name="tag" value="mino_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mino" type="spawn" id="32" x="275" gid="489" y="215">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="minotaur" />
+        <property name="tag" value="mino_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mino" type="spawn" id="33" x="275" gid="489" y="145">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="minotaur_lord" />
+        <property name="tag" value="mino_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="barrier" type="mapitem" id="34" x="288" gid="491" y="384">
+      <point />
+      <properties>
+        <property name="inactive" value="" />
+        <property name="active_sprite" value="grate_l" />
+        <property name="barrier" value="" />
+        <property name="tag" value="grate1" />
+      </properties>
+    </object>
+    <object name="philosopher" type="spawn" id="35" x="45" gid="489" y="465">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#size_matters,99;VariableLower#changing_hierarchy,99" />
+        <property name="conversation" value="F10_philosophy" />
+        <property name="spawn" value="chief_philosopher_3" />
+        <property name="tag" value="philosopher2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="philosopher" type="spawn" id="36" x="145" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#size_matters,99;VariableLower#changing_hierarchy,19" />
+        <property name="spawn" value="chief_philosopher_2" />
+        <property name="tag" value="philosopher" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="duan" type="spawn" id="37" x="225" gid="489" y="255">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="duan_2" />
+        <property name="tag" value="duan" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="38" x="100" y="100" width="330" height="240">
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="actions" value="StartConversation#duan,F10_rickman" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="39" x="275" gid="489" y="365">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="secret_guard" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="40" x="175" gid="489" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="secret_guard" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="41" x="175" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="hicks" />
+        <property name="tag" value="helper" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="42" x="275" gid="489" y="115">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="secret_guard_archer" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="43" x="335" gid="489" y="275">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="secret_guard_archer" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="44" x="335" gid="489" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#changing_hierarchy,10" />
+        <property name="spawn" value="secret_guard_archer" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="vince" type="spawn" id="45" x="45" gid="489" y="595">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#changing_hierarchy,99" />
+        <property name="conversation" value="F10_Vince" />
+        <property name="spawn" value="vince_1" />
+        <property name="tag" value="vince2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="guard" type="spawn" id="46" x="595" gid="489" y="45">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#changing_hierarchy,99" />
+        <property name="spawn" value="secret_guard_archer" />
+        <property name="tag" value="duan_team" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="47" x="115" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#changing_hierarchy,49;VariableLower#changing_hierarchy,59" />
+        <property name="conversation" value="F10_rickman" />
+        <property name="spawn" value="rickman_2" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="master" type="spawn" id="47" x="145" gid="489" y="335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#changing_hierarchy,49;VariableLower#changing_hierarchy,59" />
+        <property name="spawn" value="master_ultra_violence" />
+        <property name="tag" value="master" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="rickman" type="spawn" id="47" x="115" gid="489" y="235">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#changing_hierarchy,99" />
+        <property name="conversation" value="F10_rickman" />
+        <property name="spawn" value="rickman_2" />
+        <property name="tag" value="boss1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

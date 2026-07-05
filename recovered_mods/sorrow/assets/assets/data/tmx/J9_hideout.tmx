@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="84">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Coastal cave" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <layer name="water0" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VsQ0AIAhFQeL+rfu6wceORO8SBuAVUAUAAAAAAAAAAAAAAABM2OtufqVPlvbXp99fH30SfTJ9su4G6+O/J/oAAAAA8LoDOEjv/gBRAAA=
+  </data>
+  </layer>
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WQQ5EQBBAUU7j7AhzxWkrJNR0LAap95LasGk/3dJNAwAAAAAAAADv1bXnz47eZbc00SVm/xzThSuifzQAAAA59GXGysloKPMpM1dONkuf6e5FPNivPsO/FvJQNX0y7y99YvrE9Iltv//szqPPyp1nL/v5qaEPAAAAwPt9AfUvAfgAUQAA
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ZaXLTQBCFxxOfgipzEzuWFzlergAUCVfiFlyD7UcIYNbANQiBmGW6/F5NW0hyTKREUuZVvZIiO7Lmc3dPz9iYoKCgm9TAGrNw3ocj5ymuyWu3XbFjMHEegY8cD5z7zt1bzOebWcdKH7FyBDYjcOnhGOF8btcsxzg2XcJHxj2De2BzHwweglsXbCL8Pcax6RI+Mu5D53tgM0GODZBj5MPci3G9d0v4rJxbLWN+G19vIngGJrw+BK8hrg8RV8L0h8n2XXf/Pzc1yCtI+JCNcDpSNSZWsdQFF8ZNX9WsOa7l8RGPaxhvHcfmwnizBu3jOEWezcArQsxM1N8HKrayco6M6q5HYDNXOTSBhcED8JqjRs8RQ8y5UcP5cJwzzF0x8igGC9YaznkD1Q9wvkvTttpUF8nzco4Snzq/gt8mzj/adb0awpHN7iUlj/MY1UXyrIwF8Xvnd86vE8enzkvUHvbbI8TTLvFQVz4cK3NrpGq0xMix8wny7MD6tQh78MsyqiMf3f9wPufajOuMY8QP++qH4DNT9foyjOrGJ009NTdF4PEG8ROjB5iq+b2r6vY2NYGPaK7mq1jFz8Burl0XeB97pG1qCh9RD3kUIX6W4HAIFgvre8qpysk8NYkP1+wTVZ/JYqx6oKGq2WPwzFId+djW2pEac1+NUfMZoN70EVtT63OReZa37qojnzb4TFWtnasxLlR+zRBPcvxgfe/4BfEztPn7aHXjI1yEz7nx+z3MIaoPPs/tZk/9zPkxvFQ9QlP4MK++m/V+R6Rih+OMce2zXffR2k8Vn+eIIfZDWaobnzN3/GXWfMQPkGMH4HJofb+4QN1hb32s+GhGms+3DLfx2dpVk/BZ4SiM2OMNrd8HYk8j682hqslyLmu114k4WoLhCp+RxUe+C2Ek51Xmw33EPZxzDzVWczs1sX6/jPtqC3AioxPE3Ar3lfHfQQ7LucTnKeqY9pecnLwpsTa3ET9So7memFvf51ATsOnjuuTgERixPn2yvo4JQ8bLKRjI58h7XyZy86SifBg/8v2eG58XaeogH8iN+0CsSwt1vq/YyH2FyVdce5RSu5YV5NNp+TrJOUzGsst+DmONc14XccP7Z9UfXbtegF0V9xo74NNW8/wFnquIZxMWrD33rI8n/o6i46qqe41kxDnl3Gxyuop0zJATP0ss84LMiRcp/1sVPiLmmoxBnnVPxdNVGCXz6kydS/zstXw/lFSV+Ij0b2NnZvN3srZ6jd/9RYqLrBdV4yNK/n6oTS7t1uYxya8oVZGPqIN+SDuLWZLNbeCzq3RcBT7pCnzyFfh4/c6wrE0CH89D6vZKud3KX7/tquvg0y7Bmgl7bX2tKNWZD/tr7j1y7R/4rHlIf834EU7MrTrzydKTLf+XlV/CRa81y+Dzs8D7pakMProf5L7jXmv7/touIps68tG1mLnFWlQEH82m7P2xLD5p4972epIPc+vMbDJLrt0ua9YbsiljTyCpMvhQXOsn17H/y+en+ZdN2YzK5CNKrvWL7J+vg1HZfMpW2YyaxqfI+BSVMX9dpwKffKXt9xapuvOhOiXsb4vyxvm/bpICn6CgoKCgoKCgoKCgoKCgoDrqL1C4hg4AUQAA
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YSw6AIAwFQPUEbv2cwnhoj2nc+6loQpSZNYuGQHm0qgAA4F1zk7sCAAAA4Ezr784NfX29xjwInhkC9wz2jM5OWGevSKRHx0QyI8f0qHu8fwB80Z9z5TYbnBLmgzJQjKxNCpmZt+jV5VlyFwAAAAAAABRjBTZPbPgAUQAA
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1bzU4UQRCe4W58il1dRFkWAV08eOFPvYK+AsIVRONFDwZfxPgeCDeNR+8cNGhMfAO7Y1eoLap/Zqd7pnvsL6nMsNMzTH1UVdfPUhQZGRkZcWKjLIq+kB0h60JmhTxSR/j8Ttn2W7aDp0LvTQfdx4gv4Kz/H/C25qjfvlj3R50fC9lV993qOD+Dmvp1nZ9tjX7XZ8z3LYrro5lLv4PY1Ufxax35JBxHifHZq/C+CxbOXJCavbn61/MKeq2ItTeJ3Es0Xt0lejzw8P43mGf0EuWHAuzpSBxfVNAF2xfHD+yTEK8gPqWWJ4Aeh+L4SslBxXfn+NmyPIO7J0bgfOhl+U+qYpmxh6H4eU4JF5dS4YfGa8529hzzbRdsJ8aPaz7tClu+s5YYP0ODDwA+oHPbvm/brwaJ8cNhyHDkChs/qfmXDtNyxMVqjC7YDyCEHaUWfyRuo5oScrhZZQdDhxx7n7mu07+XGD+PxXs+Y95V9ntAB65m27Xop9N/KyF+bL1E0GGaHEDnXynFH1uvY6z8bqmiLntlN/zLVCO9JteukV6Qax60QepT4HqMalWIe7HVrNRvoI44UnUqYFXlkFV6IcAP5DuUz4/MPbHZFO21gg6HpE4FXav0rqGv4TIrkXhbxMePq77Ajy5Oc/v7NIiNHxkrudp8hfQmFtUaW0/nnbruUu9ziI0fnb6yRuDq8KGljsVYLav3b8cqTsMst+1eo6l+GGs4ovfT2h/sbh755KjmHKTNHrapflhWf8c6MyxTjkX3NDoHiWUGYrIjGXtdbEmHXnm1Z6uLTzT+xDQDsdXqEBvw3HSnnPzeB8QOHC9ozJozyDz5/bHV+nX6GQDpM770ibFW88GRL31i7TVSn3ARHON96ZNSLWvDIAA/scWfOugF4CfG+OOCh+Xkd+7k/rUUgJ+Ueo0Yp+romsdMiybizxchF0LOhPxQRym/0LmU3+gcr7sg66RIft4b3jkl/zq1L6mMb5brvvLdJuwnBD82+OKnif3rZ4Bn2jj3wY+crdxP1H5C87NQTs7kUuTn2HC9Dj9yXvmE3B+Sn/MAz7RxDnMz/J1onCtB7oTrfljDzdrasJ83NZ75uXDrsfpCnf6TDd81nx/UeOYJOudmINB7riuYex+9TA4mXzDFEBMwP/h7mLo+17Tger++bSlE/DmxL/EGzj599ltD7F9N8sP9P03m5xLczNYnPyHy5yb5gV4mjkPZfq4C93x9xX8J3/zIPa8NfkJB5nKfPMvXRjXIyMjIyMjIyMjIyMjIyOgm/gKgDTqFAFEAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="615" gid="485" y="274">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to J9" type="transition" id="2" x="557" y="175" width="75" height="50">
+      <properties>
+        <property name="area_id" value="J9" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="15" x="465" gid="487" y="813">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="17" x="982" gid="489" y="950">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="batrax_chest" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="18" x="1458" gid="487" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="21" x="1230" gid="487" y="880">
+      <point />
+      <properties>
+        <property name="spawn" value="larva_1" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="22" x="1260" gid="487" y="1040">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="24" x="1450" gid="489" y="877">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="batrax_chest" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="25" x="495" gid="487" y="713">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="26" x="310" gid="487" y="216">
+      <point />
+      <properties>
+        <property name="spawn" value="larva_1" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid King" type="spawn" id="27" x="335" gid="487" y="1615">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#very_strange_thing,59" />
+        <property name="spawn" value="male_mermaid" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Mermaid King" type="spawn" id="27" x="335" gid="487" y="1615">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#very_strange_thing,60" />
+        <property name="spawn" value="male_mermaid" />
+        <property name="unique_tag" value="mking_quest" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Mermaid King" type="spawn" id="27" x="335" gid="487" y="1615">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#very_strange_thing,109" />
+        <property name="spawn" value="male_mermaid" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="30" x="435" gid="487" y="305">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="33" x="565" gid="487" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="larva_1" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="35" x="885" gid="487" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="36" x="435" gid="487" y="505">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="38" x="755" gid="487" y="535">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="40" x="725" gid="487" y="665">
+      <point />
+      <properties>
+        <property name="spawn" value="larva_1" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="42" x="825" gid="487" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="43" x="1015" gid="487" y="785">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="44" x="915" gid="487" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="47" x="375" gid="487" y="945">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="50" x="595" gid="487" y="1075">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="52" x="915" gid="487" y="1145">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="53" x="855" gid="487" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="54" x="855" gid="487" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="59" x="305" gid="487" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="60" x="305" gid="487" y="1555">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="61" x="145" gid="487" y="1775">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="62" x="145" gid="487" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="63" x="145" gid="487" y="1455">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="64" x="275" gid="487" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="66" x="595" gid="487" y="1395">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="67" x="275" gid="487" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="69" x="595" gid="487" y="1845">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="71" x="565" gid="487" y="1615">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="73" x="695" gid="487" y="1745">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Mermaid" type="spawn" id="75" x="695" gid="487" y="1485">
+      <point />
+      <properties>
+        <property name="spawn" value="female_mermaid" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Devourer" type="spawn" id="76" x="1685" gid="487" y="1715">
+      <point />
+      <properties>
+        <property name="spawn" value="devourer" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Devourer" type="spawn" id="77" x="1745" gid="487" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="devourer" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Worm" type="spawn" id="79" x="1395" gid="487" y="1585">
+      <point />
+      <properties>
+        <property name="spawn" value="worm" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Worm" type="spawn" id="80" x="1655" gid="487" y="1305">
+      <point />
+      <properties>
+        <property name="spawn" value="worm" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Worm" type="spawn" id="81" x="1295" gid="487" y="565">
+      <point />
+      <properties>
+        <property name="spawn" value="worm" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Worm" type="spawn" id="82" x="1105" gid="487" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="worm" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="83" x="315" gid="489" y="1590">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="items" value="581,1021" />
+        <property name="name" value="@CHEST" />
+        <property name="unique_tag" value="J9_hideout_chest_small1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

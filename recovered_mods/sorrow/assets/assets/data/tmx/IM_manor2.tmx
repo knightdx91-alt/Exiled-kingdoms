@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="40" tilewidth="64" tileheight="32" nextobjectid="10">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="sw1" value="62" />
+    <property name="sw2" value="84" />
+    <property name="sw3" value="49" />
+    <property name="sw4" value="91" />
+    <property name="sw5" value="87" />
+    <property name="sw6" value="85" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="town_objexts2.tsx" firstgid="490" />
+  <tileset source="town_objects3.tsx" firstgid="554" />
+  <tileset source="icemist_large.tsx" firstgid="586" />
+  <tileset firstgid="626" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="914" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <layer name="nonwalk" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzDERAAAIBKDvX9jVEg56QgASALihhq9PH8AWDaKtBsI=
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztk1EKACEIRBP3/mfenwQR/dAmMHBASKHHZLrWG/pMkFPLiBSDgjzrT+7xztlwKzzhSOh6lRedO/jTHDl38te9f6j5u7EfyP21d9mpVXjsxCkv8pnled60xwrP9kzXO/CQ70X/x415Qc8zijcajUZo/WmjArI=
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzEENADAIBDCCWjb/AvBA7tkKaBXk/M5dL3hN8AIA4G4BdKoBQg==
+  </data>
+  </layer>
+  <layer name="scenery" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztlL0KwkAQhC9JpxYigrbW/v+johEVEWtFQcGn8AUsfCYbfTZn8QIac4EbbIQMDMnO4cfeXk6l/kMT+Ajv4Y1+3+i6B/uWvAP8gC+67rhKdd3Xew3PNsG7v9UN53PdlreDXfRxCuVSFxyuv7zznVeRjYj9buGzYa1F8uLE7LfoRM+P4cl5lCLmF4jpz6QKMb+mfv5qv8IL73eCvnw4TXx/cn/lnsp9HepspPj724VvnlKpUI9l1BW4T/By+N3d+8zlHovnlrxdzFras+dJf7WY74/htcCrG5gMr2ngZYn5CS/8HxooQ8zPdB5ZsGbkeVy973yBbE3yLhG8JbIVwRvDHe3BWx5kU0teokSJEv1aTy+iHok=
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="40">
+    <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AlPPhXjAv2tAqaAHTstAcAwLcDZH0ADA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="195" gid="241" y="535">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="stairs down" type="transition" id="2" x="180" y="790" width="70" height="25">
+      <properties>
+        <property name="area_id" value="IM" />
+        <property name="entry_id" value="5" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="3" x="150" y="350" width="90" height="70">
+      <properties>
+        <property name="actions" value="StartConversation#perci,NG_Percival_Stickitail" />
+      </properties>
+    </object>
+    <object name="Percival" type="spawn" id="4" x="195" gid="243" y="385">
+      <point />
+      <properties>
+        <property name="name" value="@PERCIVAL" />
+        <property name="portrait" value="227" />
+        <property name="spawn" value="conjurer_14" />
+        <property name="tag" value="perci" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="131" gid="245" y="351">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="shelf_s1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="131" gid="245" y="451">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="blue_hag3" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="7" x="161" gid="245" y="131">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="chest_mage1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="table" type="container" id="8" x="251" gid="245" y="131">
+      <point />
+      <properties>
+        <property name="icon" value="table" />
+        <property name="loot_table" value="laboratory_13" />
+        <property name="name" value="@TABLE" />
+      </properties>
+    </object>
+    <object name="shelf" type="container" id="9" x="321" gid="245" y="131">
+      <point />
+      <properties>
+        <property name="icon" value="shelf" />
+        <property name="loot_table" value="table_s1" />
+        <property name="name" value="@SHELF" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

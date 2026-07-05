@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="32" nextobjectid="13">
+  <properties>
+    <property name="faction_guard" value="neutral" />
+    <property name="maxlight" value="50" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Rented Room" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <tileset source="grounds_effects.tsx" firstgid="925" />
+  <tileset source="indoor walls.tsx" firstgid="1281" />
+  <tileset firstgid="1393" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="1681" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1897" name="library_dangerous" columns="16" tilecount="240" tileheight="128" tilewidth="64">
+    <image source="library_dangerous.png" width="1024" height="1920" />
+  </tileset>
+  <layer name="nonwalk" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3RQQkAQAgAQe0f1RL3OMygyAxsgo1gSuWPW/qrvwAAbPcASzdh8xAOAAA=
+  </data>
+  </layer>
+  <layer name="water" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="ground" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJlAnhE3Hmn20tL+UXuHt73EuGfU3uFn7ygYBaNgFIyCUTAKhg8AANP4wgAQDgAA
+  </data>
+  </layer>
+  <layer name="ground2" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <layer name="objects" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGJmAg5WBgRUL5mSlrb1sQPNbgPQ+IC5jZ2CoYUeI09peENiLJs5HY39j89c3JoQ4rfzNRMBcWtkLMleJjYFhJjBe5wHxHCAWpYN/uXCkZ0Ea24sL0Nq/o/YOrL2jYBSMglEwCkbBKBg+AAAznYWMEA4AAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="30" height="30">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="115" gid="245" y="145">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="2" x="305" gid="245" y="405">
+      <point />
+      <properties>
+        <property name="conversation" value="NG_door_rented_house" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+      </properties>
+    </object>
+    <object name="item" type="conversation" id="3" x="255" gid="245" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#harlot,5" />
+        <property name="conversation" value="NG_dungeon_equipment_chest" />
+        <property name="icon" value="chest_big1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="item" type="conversation" id="3" x="255" gid="245" y="245">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#harlot,7" />
+        <property name="conversation" value="NG_dungeon_equipment_chest" />
+        <property name="icon" value="chest_big1" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="4" x="90" y="120" width="80" height="80">
+      <properties>
+        <property name="conditions" value="VariableEqual#harlot,1" />
+        <property name="actions" value="StartItemConversation#NG_sleep_harlot1" />
+      </properties>
+    </object>
+    <object name="house" type="conversation" id="5" x="145" gid="245" y="45">
+      <point />
+      <properties>
+        <property name="conversation" value="NG_sleep_harlot1" />
+        <property name="icon" value="door" />
+        <property name="name" value="@RENTED_ROOM" />
+        <property name="tag" value="NG_sleep_harlot1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="90" y="120" width="80" height="80">
+      <properties>
+        <property name="conditions" value="VariableEqual#harlot,2" />
+        <property name="actions" value="StartItemConversation#NG_sleep_harlot2" />
+      </properties>
+    </object>
+    <object name="house" type="conversation" id="7" x="145" gid="245" y="45">
+      <point />
+      <properties>
+        <property name="conversation" value="NG_sleep_harlot2" />
+        <property name="icon" value="door" />
+        <property name="name" value="@RENTED_ROOM" />
+        <property name="tag" value="NG_sleep_harlot2" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="8" x="90" y="120" width="80" height="80">
+      <properties>
+        <property name="conditions" value="VariableEqual#harlot,3" />
+        <property name="actions" value="StartItemConversation#NG_sleep_harlot3" />
+      </properties>
+    </object>
+    <object name="house" type="conversation" id="9" x="145" gid="245" y="45">
+      <point />
+      <properties>
+        <property name="conversation" value="NG_sleep_harlot3" />
+        <property name="icon" value="door" />
+        <property name="name" value="@RENTED_ROOM" />
+        <property name="tag" value="NG_sleep_harlot3" />
+      </properties>
+    </object>
+    <object name="setup" type="spawn" id="10" x="195" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="bandit_female_setup" />
+        <property name="tag" value="setup" />
+      </properties>
+    </object>
+    <object name="setup" type="spawn" id="11" x="235" gid="247" y="195">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="bandit_female_setup" />
+        <property name="tag" value="setup" />
+      </properties>
+    </object>
+    <object name="setup" type="spawn" id="12" x="235" gid="247" y="125">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="spawn" value="bandit_female_setup" />
+        <property name="tag" value="setup" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

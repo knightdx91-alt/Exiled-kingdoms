@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Welcome, traveler, to my laboratory. Would you like to see my assortment, or do you need healing or mana restoration right here? 	port.	2		
+2	A	Hello, have you seen Princess Evelina Lightwind?	port?	8	"VariableEqual#trouble_again,10;VariableLower#alchemp7,1"		
+2	A	I need healing.	port.	3		
+2	A	I need to restore mana.	port.	6	"PlayerIsClass#priest"	
+2	A	I need to restore mana.	port.	6	"PlayerIsClass#mage"	
+2	A	I want to take a look at your product.	port.	0		OpenShop#
+2	A	Thanks, I don't need anything.	port	0		
+3	Q	Okay, a small healing will cost you 20 coins, a medium one will cost you 40 coins, and a large one will cost you 60 coins. 	port. 	4		
+4	A	I need a small heal. [BLUE](give 20 coins, heal for 30 HP)[]	port.	5	PlayerHasGold#20	"GainHP#30;LoseGold#20"
+4	A	I need an average heal. [BLUE](give 40 coins, heal 65 HP)[]	port.	5	PlayerHasGold#40	"GainHP#65;LoseGold#40"
+4	A	I need a big heal. [BLUE](give 60 coins, heal 100 HP)[]	port.	5	PlayerHasGold#60	"GainHP#100;LoseGold#60"
+4	A	I've changed my mind.	port.	0		
+5	Q	It won't take long!	port.	0		
+6	Q	Okay, mana restoration will cost you 50 coins. 	port. 	7		
+7	A	Restore my mana. [BLUE](give 50 coins, restore mana by 80)[]	port.	5	PlayerHasGold#50	"GainMana#80;LoseGold#50"
+7	A	I've changed my mind.	port.	0		
+8	Q	She was here, she bought some potions from me, but I didn't pay attention to where she went after she bought them. 	port.	0		"SetVariable#alchemp7,2"		

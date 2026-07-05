@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](everything is quiet and peaceful in your house)[]	¿po?	2		
+2,adaon	Q	You got yourself a great house, boss!	port.	0	NPCIsInParty#adaon,adaon		
+2,mercenary_grisenda2	Q	Hey, do you happen to know where your friend is? It's been a while since I've seen this jerk.	port.	3			
+2,R	Q	[BLUE](everything is quiet and peaceful in your house)[]	¿po?	0		
+3	A	Who do you mean?	po.	4		
+4	Q	Adaon, of course.	¿po?	5			
+5	A	I have no idea, he usually hangs out at my house or in the southern part of the city.	po.	6		
+6	Q	Maybe we'll check if something happened to him, he obviously likes to get into trouble, but he's not such a useless guy.	¿po?	7			
+7	A	Really?	po.	8		
+8	Q	Well, yes, for example, when you're not at home, he cleans the floors here if I ask him politely.	¿po?	9			
+9	A	Okay, I'll go into town and look for him.	po.	0		"NPCDespawn#adaon;SetVariable#time_to_pay,10"

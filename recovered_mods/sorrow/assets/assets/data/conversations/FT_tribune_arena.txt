@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Freedom, foreigner. As many city visitors, I am sure you want to see the Games in the Arena, but unfortunately it is closed due to... Technical difficulties.	Libertad, extranjero. Como todos los visitantes de la ciudad, estoy seguro de que querrías ver los Juegos en la Arena, pero lamentablemente permanece cerrada debido a un... Problema técnico.	2		
+2	A	I would like to buy back a gladiator named Katasakh.	po.	3	"VariableEqual#varsilian_job,35"		
+2	A	Clearly.	po.	0			
+3	Q	 Hmm. [BLUE](takes out a scroll and starts looking through it, running his fingers along the lines)[]"Yeah, here he is - sold for debts. He has almost fulfilled his debt, pay [BLUE](4000 coins)[] and he will be released. There is a second option for his release, but this is not possible while the arena is closed.	¿po?	4			
+4	A	I have the necessary amount with me.	po.	5	playerhasGold#4000	"loseGold#4000"	
+4	A	I'll think about it.	po.	0			
+5	Q	All right, I'll arrange for this gladiator to be released.	port.	0		"SetVariable#varsilian_job,40;NPCSpawn#katasakh"	

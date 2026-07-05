@@ -1,0 +1,64 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](bloody monster has been defeated, and the magician has safely set to work. The stone seal turned into a sparkling ball of intertwined fiery threads, releasing its power, a rumble rang through the dungeon, the walls trembled, crumbs fell from the canvas. Soon everything was quiet, but the echoes continued to sound, and thick dust hung in the air)[]	¿po?	51	"VariableEqual#bloody_harvest,98"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Let's talk later, okay?	¿po?	0	"VariableGreater#bloody_harvest,74"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Hi, how are you doing?	¿po?	46	"VariableEqual#bloody_harvest,72"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] She's a real sweetheart, right?	¿po?	0	"VariableEqual#bloody_harvest,67"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] I hope my friend hasn't run off.	¿po?	0	"VariableEqual#bloody_harvest,65"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Oh, you're already back. On the mountain, so far seemingly unchanged. Have you learned something useful?	¿po?	29	"VariableEqual#bloody_harvest,62"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] No weapon took that bastard, we need to figure out how to defeat him!	¿po?	0	"VariableEqual#bloody_harvest,55"		
+1	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Don't worry, unlike some people, I can safely put any undead to rest.	¿po?	0	"VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,53"		
+1	Q	 Damn bitch! Filthy slut! How did you find me again!?	¿po?	2			
+2,anita	Q	 [BLUE](girl looks like a sorceress, but she is dressed in light leather armor and armed with a long enchanted sword)[] Considering how much you stink, it wasn't a big deal. Do you have any new friends now?	¿po?	3			
+3,necromancer	Q	 Shut up, scum! Do you think you've beaten me? You're celebrating too soon, bitch!	¿po?	4			
+4,anita	Q	 If you haven't noticed, you're the one rolling around in the mud like a beaten dog, and it's up to me whether you die right away or suffer more before you die. And considering all your bastard business, I prefer the second option.	¿po?	5			
+5,amos	Q	 Wait, this criminal must answer for his crimes in the face of the Church of Three!	¿po?	6			
+6,anita	Q	 Hey, brother, don't push it. This is my prey, and I like to engage in vigilante justice, and not rely on the will of the lawmen - earthly or divine, it doesn't matter to me.	¿po?	7			
+7	A	Actually, we were the first to encounter him, and it's up to us to decide what to do with him.	po.	8		
+8,anita	Q	 So, are we going to line up now, each with his own proposal for solving the fate of this freak?	¿po?	9			
+9,amos	Q	 We must do as the gods tell us, not rely on our own whims!	¿po?	10			
+10,anita	Q	 Brother, are you an idiot? I'm used to listening to nonsense, but now is not the time to preach. Do you even know who this freak is and what he... Wait a minute...	¿po?	11			
+11,necromancer	Q	 [BLUE](necromancer was enveloped in thick black smoke, and when the smoke cleared, the villain disappeared somewhere)[]	¿po?	12			
+12,anita	Q	 Damn, that bastard got away while I was arguing with you! That's what happens when you have to deal with stubborn, sentimental fools!	¿po?	13			
+13	A	Calm down, actually, who are you?	po.	14		
+14,anita	Q	 I'm the one who kicks the ass of all kinds of lousy assholes who interfere with normal people's lives! If you don't understand, I'm a hunter of the undead and those who use black magic, and just now, because of you, I missed one of those brutes! So, who are you, and what are you doing here?	¿po?	15			
+15,amos	Q	 It's none of your case! Go on your hunt, and don't go where you shouldn't!	¿po?	16			
+16,anita	Q	 What? It's you, brother, meddling in someone else's case! Do you have any idea how many days I've been tracking this bastard, and he just slipped away! Because of you! So much effort and time is wasted!	¿po?	17			
+17,amos	Q	 No wonder, amateurs like you shouldn't be involved in exterminating the undead, that's the calling of paladins and holy brothers and sisters!	¿po?	18			
+18,anita	Q	 That's why I see how well you do your job, there is a lot of evil all over Varannar, everywhere, in every corner dark crap is moving!	¿po?	19			
+19,amos	Q	 We are doing everything in our power, there are too many dark forces, but gradually we will clear all the lands of their presence!	¿po?	20			
+20,anita	Q	 I'd more quickly be a virgin again than your dreams will come true!	¿po?	21			
+21	A	Hey, calm down already! We're here for a serious case, vampires are hunting humans, and they were able to get to the city.	po.	22		
+22,anita	Q	 So do you know what these pale creatures are? This is the first time I've encountered such creatures.	¿po?	23			
+23	A	Not much. They feed on blood and live on Mount Storm.	po.	24		
+24,anita	Q	 Wait a minute, but there's Storm Castle on the mountain, owned by one of the wealthy barons of Varsilia.	¿po?	25			
+25	A	And these creatures live under lock and key, and they have an alliance with the baron, or rather, was.	po.	26		
+26,anita	Q	 I've heard that Baron Storm is dead, and no one knows what's going on in his castle right now. Now I understand what's going on there, and why these pale creatures are being thrown around the city. And my lousy necromancer buddy is clearly involved in this. Well, thanks for the information, I have to go.	¿po?	27			
+27,amos	Q	 Great, we don't need any amateur help! So, vampires, and their breeding ground is Storm Castle, from where they make their raids. Let's talk it over with the local priest, maybe he'll share some more information with us.	¿po?	28		"NPCFollow#"
+28	A	 Good.	¿po?	0		"SetVariable#bloody_harvest,20;NPCDespawn#anita;NPCDespawn#zomb_corp;NPCDespawn#necromancer"
+29	A	The founder of Castle Storm discovered some way to defeat the vampires and left notes about it, we have to find them somewhere in the castle.	po.	30		
+30,anita	Q	 Wow, the castle is huge to search, but can anyone tell us where, more precisely, we should look for notes?	¿po?	31			
+31,amos	Q	 Obviously, the owner of these notes himself will not be able to help us, he lived hundreds of years ago, so we will have to rely on ourselves!	¿po?	32			
+32,anita	Q	 Well, it's not an easy task, like looking for a needle in a haystack. Although this founder of the castle will still be able to help us.	¿po?	33			
+33	A	What do you mean?	po.	34		
+34,anita	Q	 Well... I have a necromancer friend who I think can help us.	¿po?	35			
+35,amos	Q	 Wait a minute! You said you were hunting those who use black magic, how come you're friends with some kind of necromancer?!	¿po?	36			
+36,anita	Q	 This necromancer is being reformed under my supervision, I make sure that she doesn't do her dark things.	¿po?	37			
+37	A	She? Do you trust her? Is she sure she can help us?	po.	38		
+38,anita	Q	 Of course, she will help! She is a mediocre magician, but she has certain talents, for example, communicating with spirits.	¿po?	39			
+39,mercenary_grisenda	Q	Well, maybe you don't like it, holy brother, but it seems to me that all means are good to achieve victory over evil!	¿po?	40			
+40,amos	Q	 Okay, do as you want, but I'm not going to participate in this! I'll go back to the city, try to gather supporters, in case we have to invade Castle Storm again!	¿po?	41		"NPCStopFollowing#"		
+41,mercenary_grisenda	Q	We will be grateful to you for this! So where does your necromancer live?	¿po?	42			
+42,anita	Q	 In Deadwood, near Kingsbridge.	¿po?	43			
+43	A	Not the best place to housing.	po.	44		
+44,anita	Q	 Everyone has their own quirks.	¿po?	45		NPCFollow#	
+45	A	Okay, let's go visit your necromancer.	po.	0		"SetVariable#bloody_harvest,65;NPCDespawn#amos"
+46	A	We managed to find an ancient seal, but what about you?	po.	47		
+47,anita	Q	 Anyway, here's what I found out. Many years ago, an adventurer who worked for the Golden Hand stole the sword we needed from them. This guy was very interested in all kinds of antiquities, searched and studied various historical information. Before his escape, he was looking for information about a way to get to an area called the Gorge of the Silent Kings, and it seems like he set up his hideout somewhere in the Emerald Valley. That's it.	¿po?	48			
+48	A	Some information.	po.	49		
+49,anita	Q	 I understand, but at least it's something. If we find this hideout, maybe we'll get lucky and find out the location of the sword.	¿po?	50		"NPCFollow#"
+50	A	Let's look for it.	po.	0		"SetVariable#bloody_harvest,75"
+51,anita2	Q	 Well, did it work out?	¿po?	52			
+52,mage	Q	 Yes, now no undead will be able to leave these dungeons and get out.	¿po?	53			
+53,amos	Q	 Well, I hope they all disappear here, and if anyone survives, we'll come back to destroy them completely!	¿po?	54			
+54,mercenary_grisenda	Q	Let's not linger here. [BLUE](using the same path as when you first visited this dungeon, you climb to the first floor of the castle and leave it)[]	¿po?	55			
+55	A		po.	0		"Travel#I9,2,2"

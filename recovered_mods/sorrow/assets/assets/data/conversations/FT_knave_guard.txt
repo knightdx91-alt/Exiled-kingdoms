@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Neville, whom you know, is surrounded by two angry guards)[] Stop twitching and whining, brat! Will you come with us peacefully, or will we have to drag you by force?	¿po?	2			
+2,knave	Q	[BLUE](Neville notices you)[] Oh, my friend, it's good to see you again! I need your help urgently!	po.	3			
+3,guard1	Q	[BLUE](The guards turn their attention to you)[] You! Stop! Are you an accomplice of this bastard?!	¿po?	4			
+4	A	What? No, I have no idea who it is! What's going on here anyway?	port?	5			
+4	A	Yes, I'm his friend, and you better let him go, otherwise you'll be in trouble!	port?	12			
+4	A	Are you crazy?! The praetor sent me, he wants to personally interrogate this scoundrel, as he suspects his involvement in another serious crime. I will take the criminal to the praetor, and you return to your post!	port?	13			PER#3
+4	A	[BLUE](before the guards take out their weapons, hit the first one hard on the head, and then the second one)[]	port?	11			STR#6
+5,guard1	Q	[BLUE](похоже, стражники вам не верят)[] it looks like the guards don't believe you)[] Don't get cagey, you obviously didn't just happen to be around! You will come with us with this scoundrel, explain to the praetor who you are and why!	¿po?	6			
+6	A	We could come to an agreement here on the spot, and you wouldn't have to take us anywhere.	port?	7	PlayerHasGold#3000	
+6	A	You'll have to catch me first!	port?	14			AGI#5
+6	A	[BLUE](you are trying to escape, but the guards are serious about detaining you)[]	port?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;DecVariable#REP_mercia,1;NPCHostile#guard1;NPCHostile#guard2"		
+7,guard1	Q	What?! Are you trying to bribe us?! We are the most honest in all the kingdoms!..	¿po?	8			
+8,guard2	Q	Shut up, idiot! 3000 coins and you can go.	¿po?	9			
+9	A	Here are the coins.	port?	10		"loseGold#3000"		
+10,guard2	Q	Свободны. Free. And you, bastard, better not get in our way again.	¿po?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;NPCDespawn#guard1;NPCDespawn#guard2"		
+11,guard1	Q	[BLUE](while the guards were recovering, you and Neville managed to escape from them)[]	¿po?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;DecVariable#REP_mercia,1;NPCDespawn#guard1;NPCDespawn#guard2"		
+12,guard1	Q	[BLUE](the guards take out their weapons)[] Someone else is in trouble right now! It is better not to resist, so as not to suffer much, our city needs healthy and unharmed slaves!	¿po?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;DecVariable#REP_mercia,1;NPCHostile#guard1;NPCHostile#guard2"		
+13,guard1	Q	Uh, okay, we'll do that... That is, that's right, sir, we are doing it!	¿po?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;NPCDespawn#guard1;NPCDespawn#guard2"		
+14,guard1	Q	[BLUE](the guards rush at you, but you jump aside, trip one up, he falls to the ground, you push the second one in the side, and he stumbles over the lying one and falls on top of him, while they were trying to get up, you and Neville run away from them)[]	¿po?	0		"SetVariable#knaveFT,2;SetVariable#ladies_man,10;DecVariable#REP_mercia,1;NPCDespawn#guard1;NPCDespawn#guard2"		

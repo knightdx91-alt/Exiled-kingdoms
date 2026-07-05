@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	What's wrong, friend?	port	7	NPCisFollower#	
+1	Q	 [BLUE](a hunter you know)[] Hello, friend, and here is not such a bad place, the main thing is I will try not to get into new trouble.	¿po?	2			
+2	A	Hi, glad to see you here, be careful with muddy guys so I don't have to help you out again.	po.	3		
+2	A	Hello! I'm going on a dangerous hike in the Dream Valley, and I could use the help of an excellent hunter. Would you like to join me?	po.	5	"VariableGreater#lost_prince,45;VariableLower#lost_prince,60;VariableLower#assistance,10"		
+3	Q	 I'll try, friend.	¿po?	0			
+5	Q	 I'll be glad to help you out, as you helped me out!	¿po?	6		"NPCFollow#"
+6	A	I'm glad to hear that!	po.	0		SetVariable#assistance,10		
+7	A	Nothing, let's move on.	po.	0	"VariableLower#lost_prince,90"		
+7	A	Thanks for the help, you can go back to the city.	po.	8		
+8	Q	 I was glad to help you!	¿po?	0		"NPCStopFollowing#;NPCDespawn#mironn"		

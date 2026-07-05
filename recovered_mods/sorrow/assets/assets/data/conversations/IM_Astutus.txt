@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a very young-looking wizard looks at you condescendingly)[] Leave me alone, I'm busy.	po.	0	"VariableEqual#size_matters,72"		
+1	Q	 [BLUE](a very young-looking wizard looks at you condescendingly)[] Finally, this scoundrel is dead, thanks for helping me.	po.	10	"VariableEqual#size_matters,67"		
+1	Q	 [BLUE](a very young-looking wizard looks at you condescendingly)[] Leave me alone, I'm busy.	po.	0	"VariableGreater#size_matters,51;VariableLower#size_matters,66"		
+1	Q	 [BLUE](a very young-looking wizard looks at you condescendingly)[] Welcome, traveler, to my abode. I am Magister Astutus. You're here at Gigi's invitation, why did you come?	¿po?	2			
+2	A	Hello, I brought the necessary contribution and wanted to get your help. A friend of mine really needs to enlarge some part of his body, and I have learned that your group of magicians practice similar magic.	po.	3	"VariableEqual#size_matters,50"		
+2	A	Hello, I brought the necessary contribution and wanted to get your help. A friend of mine really needs to enlarge some part of his body, and I have learned that your group of magicians practice similar magic.	po.	4	"VariableEqual#size_matters,47"		
+2	A	Hello, I was hoping to get your help. A friend of mine really needs to enlarge some part of his body, and I have learned that your group of magicians practice similar magic.	po.	5	"VariableEqual#size_matters,45"		
+3	Q	 I accept your donation. Regarding your request, I will try to fulfill it, but I cannot guarantee that everything will work correctly, my magic reacts differently to people, and does not work at all on some. But first you have to help me with something.	¿po?	6		"LoseItem#10614"
+4	Q	I accept your donation. Regarding your request, I will try to fulfill it, but I cannot guarantee that everything will work correctly, my magic reacts differently to people, and does not work at all on some. But first you have to help me with something.	po.	6		"loseGold#50000"
+5	Q	 I will try to help you, but I cannot guarantee that everything will work correctly, my magic reacts differently to people, and does not work at all on some. But first you have to help me with something.	¿po?	6			
+6	A	What needs to be done?	po.	7		
+7	Q	I have been feuding with one group of magicians for a long time, they are led by the scoundrel Lexus, who wanted to steal my magical developments in order to become famous. I've infiltrated his rabble with my spies enough, and now I'm ready to deal with him and his subordinates. I've set a trap for them, but we need someone to play the role of a defector who will lure them there. But the scoundrel knows my people, so needs some newbie, he doesn't know, and you're perfect for that!	po.	8		
+8	A	Okay, but how can I trap him?	po.	9		
+9	Q	 I have recently created a new laboratory, and Lexus is aware of this, but he does not know about its location. You will reveal this secret to him, no doubt he will be curious to take a look at my laboratory himself, only there my trap will be waiting for him! Serunus is one of my spies, we came up with this plan together, he will help you get into the lair of Lexus and his rabble.	¿po?	0		"SetVariable#size_matters,52"
+10	A	You promised to help me with my friend after I help you.	po.	11		
+11	Q	 Yes, of course, in order to start preparing for the spell, I need to know exactly which part of your friend's body will need to be enlarged.	¿po?	12		
+12	A	Uh, he needs to increase the size of his penis.	po.	13		
+13	Q	 Hmm, I have no idea why someone would need such a thing, but I won't have any problems doing it. Bring your friend to my abode, Gigi will help you get there, and I will fulfill your request.	¿po?	0		"SetVariable#size_matters,72"

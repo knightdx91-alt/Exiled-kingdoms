@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a large man, bare to the waist, was leaning on the handle of a hammer and looking at you attentively, Vince was lying motionless not far from him)[]	¿po?	2			
+2,boss1	Q	 Bubba, what did you do to Vince? Is he alive?	¿po?	4				
+4,bubba	Q	 Ah, Rickman! I'm amazed at the loyalty of some of your guys - even under threat of death, Vince didn't want to come over to my side, remaining loyal to you! I'm sorry, but you know that I don't like to be contradicted, it seems that I didn't calculate my strength a little, or this guy turned out to be so flimsy!	¿po?	5			
+5,boss1	Q	 You will answer for all your outrages.	¿po?	6			
+6,bubba	Q	 Are you serious about this? I'm doing what people like us should do. Oh, yes, I forgot, you're a noble man! Well, then let's not have a rat fight, but let's fight fairly! You and me, me and my best guys, against you and your guys, the winner becomes the boss! What do you say?	¿po?	7				
+7,boss1	Q	 Actually, I'm already the boss, but let's fight according to your rules, finally end the mess you've made in our gang. Meet me at our old base.	¿po?	8		
+8,bubba	Q	Great, sit out your last moments on your throne, after you fall by my hand, a new dawn will come for our gang under my leadership! We will become a real force in the kingdom, which everyone, from small to large, will fear and respect!	port.	9		
+9,boss1	Q	 [BLUE](big man slung his hammer over his shoulder and strode towards the jungle. Rickman watched him go, then walked over to Vince, who was lying motionless, and squatted down next to him)[] Poor Jumbo, he and Vince were very close friends. We'll have to tell him somehow that Vince is no longer with us. Oh well, we'll grieve later, first I need to deal with Bubba, are you ready to help me with that?	¿po?	10				
+10	A	Of course.	po.	11		
+11,boss1	Q	Thank you, I'll meet you in our lair, I'll gather my strongest fighters and go to the showdown.	port.	12		"NPCStopFollowing#"		
+12	A	Agreed.	po.	0		"LoseItem#10893;NPCDespawn#vince2;NPCDespawn#boss1;NPCDespawn#bubba;SetVariable#changing_hierarchy,50"

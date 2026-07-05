@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	7	NPCisFollower#	
+1	Q	[BLUE](The proud hunter ignores your presence, you need a Trusted reputation, 25, for him to talk to you)[]	Saludos, Impiri. Impiri fuerte y sin miedo, espíritus susurran.	0	VariableLower#REP_varannari,25	
+1	Q	I have heard of you. You are the Impiri that has helped the Free People, many times, when we were in need. And you are a strong hunter yourself. I am Star Shadow, Master of the Hunters. Do you seek training?	He oido hablar de tí. Eres el Impiri que ayuda a la Gente Libre, y además eres un valiente cazador. Soy Sombra de Estrella, Maestro de Cazadores. ¿Quieres entrenar?	2		
+2	A	What can you teach me, Star Shadow?	¿Qué puedes enseñarme, Sombra de Estrella?	3		
+2	A	Thank you, but not now.	Gracias, pero ahora no.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	6	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	6	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	6	PlayerHasItem#10402		INT#5
+3	Q	I already taught you the ways of the Varannari Beastmaster. There's nothing else you can learn from me.	Ya te enseñé la senda del Señor de las Bestias, ya no puedes aprender más de mí.	0	VariableEqual#trained_beast,1	
+3	Q	I will teach you how to be a [BLUE]Beast Master[]. You will learn to cause more damage to beasts, and you can call a Bear to assist you in the Hunt. [BLUE]Beast Master is a General Skill, it will not count as one of your Advanced Skills, nor requires any gold to be learned[]	Puedo enseñarte a ser un [BLUE]Maestro de Bestias[]. Aprenderás a causar más daño a bestias, y un oso te acompañará en la Caza. [BLUE]Maestría de Bestias es una habilidad General que no cuenta como habilidad avanzada, ni requiere que gastes oro[].	4		
+4	A	It will be a honor to learn from you.	Será un honor aprender de tí.	0		"TrainSkill#beast_mastery;SetVariable#trained_beast,1"
+5	A	Damn him.	port.	0		
+5	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	6	PlayerHasItem#10402		STR#5
+5	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	6	PlayerHasItem#10402		AGI#5
+5	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	6	PlayerHasItem#10402		INT#5
+6	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#stars_follow,3;NPCFollow#"	
+7	A	Good fellow.	port.	0		
+7	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#stars_follow,1;NPCStopFollowing#"

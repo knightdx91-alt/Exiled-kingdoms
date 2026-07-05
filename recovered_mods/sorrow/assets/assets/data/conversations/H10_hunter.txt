@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	([BLUE]it seems that the elderly hunter is no longer able to fight[]) Damn it, I underestimated you!..	port?	16	VariableEqual#midnight_bear,50		
+1	Q	([BLUE]when he came closer to you, you identified the elderly hunter Colt[]) I see you've managed to deal with the bear after all, since you're carrying a trophy!	port?	6	VariableEqual#midnight_bear,45		
+1	Q	([BLUE]elderly-looking man with a scarred face, who had obviously been in trouble many times[]) So you're the young hunter Whitewater was supposed to send? Well, we'll have to work with what we have... My name is Colt, and now I'm going to tell you about the beast that you'll have to kill, or he'll kill you, whichever is luckier, ahem.	port?	2	VariableEqual#midnight_bear,10		
+1	Q	([BLUE]elderly-looking man with a scarred face, who had obviously been in trouble many times[]) Nothing to do? Go for a walk in Sagar.	port?	0		
+2	A	Why don't you find and kill this bear yourself?	port?	3		
+3	Q	I've become too old to compete with such an animal, but I'll help you in any way I can to take down this beast and stay alive! Although the main advice is simple - hit more precisely and do not get under the paw, and do not forget, any animal is afraid of fire, and bears can fly into a rage if they are severely injured. As for where to look for him, this bear is cautious and hunts mostly at night in our forests of the Lannegar Hollow, but is not afraid to attack travelers on the road. It seems that's all I wanted to say.	port	4			
+4	A	Well, thanks for the advice.	port!	5				
+5	Q	 Then good luck hunting, I hope they don't send your replacement to me.	¿po?	0		"NPCDespawn#hunter;SetVariable#midnight_bear,20"		
+6	A	Yeah, what are you doing here? Didn't you say you were too old to hunt bears?	port?	7		
+7	Q	Maybe so, but at least I would have helped you with something, and you yourself single-handedly brought down the beast, well done, I respect. Let's not linger, we're going to Lanneger, there are plenty of other dangers here at night.	port	8			
+8	A	That's right, let's go quickly.	port?	9		
+9	Q	Take a closer look around, does it seem to me like there's some kind of movement in those bushes to our left?	port	10			
+10	A	[BLUE](you look in the indicated direction, but out of the corner of your eye you notice some movement to your right, you manage to jump aside)[]	port?	11			AGI#1
+10	A	[BLUE](you look in the indicated direction, but out of the corner of your eye you notice some movement to your right, but you don't have time to react, you get hit on the head)[]	port?	12		"losehp#40"
+11	Q	[BLUE](hunter Colt glares at you, holding a club in his hand, which he tried to hit you with)[] Look how nimble you are, but it's okay, maybe I can't handle a bear, but I'll deal with you somehow!	port	13			
+12	Q	[BLUE](hunter Colt is grinning at you, holding in his hand the club with which he hit you)[] You're such a clumsy, maybe I can't handle a bear, but I'll deal with you without any problems!	port	13			
+13	A	What the hell are you doing?!	port?	14		
+14	Q	Come on, it's simple. I can't handle a bear myself, but I'm not averse to getting my old fame back, and it won't hurt to get a good reward in my old age. So it doesn't matter who killed the bear, the main thing is who brings the trophies. Did you get it?	port	15			
+15	A	I see, but I'm afraid that now your pension will be guaranteed only in the next world!	port?	0		"SetVariable#midnight_bear,50;NPCHostile#hunter2"
+16	A	Of course, don't worry too much, or you'll die here, I'll take you to the captain, let him decide what to do with you.	port?	17		
+17	Q	Ha, there's not much demand from the old man... Wait, what was that noise there?	port	18			
+18	A	I won't fall for it again.	port?	19		
+19	Q	No, I'm serious now, there was something there... Watch out! [BLUE](suddenly, a huge bear jumped out of the bushes right at the hunter, the old man did not have the slightest chance to survive. In a matter of moments, the beast dealt with its victim, turned its attention to you!)[]	port	0		"SetVariable#midnight_bear,60;NPCDespawn#hunter2;NPCSpawn#real_bear"

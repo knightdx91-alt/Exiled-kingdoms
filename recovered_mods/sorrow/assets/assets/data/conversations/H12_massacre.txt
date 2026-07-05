@@ -1,0 +1,20 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](leader of the attacking sorcerers fell, left without a leader, his team immediately escaped by teleportation. After examining the settlement, you noticed several guards who were killed or injured, the residents managed to hide, and now they began to come out of hiding to help the wounded and extinguish the burning fires from spells)[] 	[BLUE]()[] port.	2			
+2,boy	Q	[BLUE](near the square, you notice Kai coming out of his hiding place)[] Evil uncles attacked us!	port?	3	"VariableEqual#there_gifts,4"	
+2,boy	Q	[BLUE](near the square, you notice Kai coming out of his hiding place)[] Evil uncles burned down our holiday tree!	port?	3	"VariableGreater#holiday_coming,99;VariableLower#there_gifts,3"	"NPCDespawn#fur_tree;SetVariable#there_gifts,4"	
+2,boy	Q	[BLUE](near the square, you notice a little boy coming out of his hiding place)[] Evil uncles attacked us!	port?	3			
+3,mifadis	Q	[BLUE](little further from the square, you notice Mifadis kneeling next to a shapeless, smoldering pile, and immediately realize that these are the remains of his piggy)[] Oh no! Piggy! They killed piggy...	port?	6	"VariableEqual#pig_wife,120"	
+3,mifadis	Q	[BLUE](little further from the square, you notice Mifadis kneeling next to a shapeless, smoldering pile, and immediately realize that these are the remains of his piggy)[] Oh no! Rosy! My Rosy! My beautiful flower... [BLUE](seeing this scene, Tonel, standing next to you, went to calm the poor guy down)[]	port?	6	"VariableEqual#pig_wife,110"	
+3,mifadis	Q	[BLUE](little further from the square, you notice Mifadis kneeling next to a shapeless, smoldering pile, and immediately realize that these are the remains of his piggy)[] Oh no! Piggy! They killed piggy...	port?	4	"VariableEqual#pig_wife,100"	
+4,rosy2	Q	[BLUE](Rosy came out from behind the building and went to her husband)[] Calm down, darling, it's just a pig. We'll get a new one.	port?	5			
+5,mifadis	Q	No! You don't understand! While you weren't by my side, only she, piggy, warmed my soul...	port?	6			
+6	A	We also need to help the victims.	port?	7			
+7,guard	Q	No, [BLUE](guard retorted sharply)[] we don't have time for this. The attackers might return. They're clearly connected to Adaon's murder and want to interfere with the investigation, so they won't just leave us alone. Jenod is obviously innocent....	port?	8			
+8,janod	Q	Of course! 	port.	9		
+9,guard	Q	Perhaps there are some other wizards whom Adaon has recently crossed the road?	port?	10			
+10	A	Hmm, not so long ago we helped a friend of Adaon's, the boss of a gang in Liberty, she tried to negotiate with some wizards from Icemist about an alliance, but everything went wrong with them. Could they be connected to the murder of Adaon?	port?	11			
+11,guard	Q	Well, that's a clue. Let's go to Liberty and talk to this bandit.	port?	12			
+12,janod	Q	Maybe it's none of my case, but after the attack on our settlement, I'm not going to stay away. I will go with you, help you find and punish the villains who staged this massacre and killed Adaon! 	port.	13		
+13,guard	Q	Okay, gramps, we'll need your help if we have to fight those wizards again.	port?	14			
+14,janod	Q	Rest assured, son, they will be in trouble in such a case! 	port.	15		"NPCFollow#"
+15	A	Okay, let's not linger, let's go.	port?	0		"NPCDespawn#mifadis;NPCDespawn#rosy2;NPCDespawn#adept2;SetVariable#hate_through,30"	

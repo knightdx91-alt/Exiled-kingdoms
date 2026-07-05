@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](decent-looking man who didn't look much like a bandit)[] Kiara is the boss here, but I handle most of the money issues here.	¿po?	2	"VariableEqual#kiara_good,1;VariableEqual#stretch_dead,2"		
+1	Q	 [BLUE](decent-looking man who didn't look much like a bandit)[] Kiara is the boss here, if you wanted to discuss something, talk to her.	¿po?	0		
+2	A	Kiara said I'm in the share.	po.	3		
+2	A	Hi, I have to go.	po.	0		
+3	Q	 Yes, she informed me, but there's nothing today yet, come back tomorrow.	¿po?	0	VariableEqual#TMP_prayed,1		
+3	Q	 Yes, she informed me, here's your percentage.	¿po?	0		"GainGold#1500;SetVariable#TMP_prayed,1"	

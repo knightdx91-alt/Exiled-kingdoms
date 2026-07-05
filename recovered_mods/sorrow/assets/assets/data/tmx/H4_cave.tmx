@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="80" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="75"/>
+  <property name="music" value="dark_chamber"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="natural_grounds.tsx"/>
+ <tileset firstgid="617" source="dungeon.tsx"/>
+ <tileset firstgid="857" source="grounds indoor 2.tsx"/>
+ <layer name="nonwalk" width="80" height="80" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="water" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WQQqDMBAFUD1GbdXe/5TFhRAitQUzTUneWwoO+P1OHAYAAAAAAAAAAAAAAAAAAAAAAABaNI0xc+9Bc3v16CDPvTO3gGdtPb858Pny7NL3E7U/avlVTyI6XtOWW+ns8nnLeLy+Npbj5srZmd6753Q2L3Jv1HJ1J6X9WrJep1m2lN385vstsad6/BcsdS6e5d9jrt/41Nmn3AAAgD/yAvwgXjkAZAAA
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="80">
+  <object name="exit to D12" type="transition" x="2533" y="1542" width="65" height="134">
+   <properties>
+    <property name="area_id" value="H4"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="2468" y="1609">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="1888" y="2112">
+   <properties>
+    <property name="maxlevel" value="25"/>
+    <property name="minlevel" value="25"/>
+    <property name="secretdoor_tag" value="H4_cave_1"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2016" y="1480">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2063" y="1526">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1570" y="1481">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1503" y="1441">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2289" y="1492">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1765" y="1477">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2087" y="1327">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2146" y="1302">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2120" y="1349">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1433" y="1575">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1997" y="846">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1950" y="799">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2118" y="888">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2071" y="841">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2042" y="743">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1995" y="696">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2077" y="1032">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1991" y="475">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2166" y="349">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2013" y="304">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="2091" y="234">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2089" y="335">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2048" y="243">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2063" y="390">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1263" y="1406">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1384" y="1477">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1269" y="1513">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1389" y="1342">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1159" y="1324">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1166" y="1517">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1295" y="1617">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1613" y="709">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1295" y="620">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1406" y="778">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1583" y="827">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1472" y="915">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1211" y="778">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1249" y="949">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1349" y="470">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1449" y="1026">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1603" y="587">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1004" y="772">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1365" y="1125">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1357" y="1203">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1355" y="813">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="766" y="1079">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="610" y="1145">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="563" y="989">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="671" y="747">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="729" y="1103">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="467" y="1549">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="379" y="2058">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="396" y="1999">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="527" y="1919">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="536" y="2029">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="371" y="1901">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="628" y="1916">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="494" y="269">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="675" y="349">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="593" y="399">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="682" y="441">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="330" y="1257">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1280" y="2123">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1306" y="2022">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1348" y="1951">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1357" y="2182">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="1713" y="2005">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="277" y="723">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon" type="spawn" gid="243" x="1560" y="1984">
+   <properties>
+    <property name="name" value="@ZOGARIS"/>
+    <property name="spawn" value="red_dragon"/>
+    <property name="unique_tag" value="H4_dragon_red"/>
+   </properties>
+  </object>
+  <object name="Dragon" type="spawn" gid="243" x="216" y="728">
+   <properties>
+    <property name="name" value="@SYXADRIS"/>
+    <property name="spawn" value="green_dragon"/>
+    <property name="unique_tag" value="H4_dragon_green"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="418" y="718">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Dragon" type="spawn" gid="243" x="2361" y="2065">
+   <properties>
+    <property name="name" value="@FEVRESEE"/>
+    <property name="spawn" value="white_dragon"/>
+    <property name="unique_tag" value="H4_dragon_white"/>
+   </properties>
+  </object>
+  <object name="Dragon" type="spawn" gid="243" x="2232" y="1987">
+   <properties>
+    <property name="name" value="@BASRUDAXUL"/>
+    <property name="spawn" value="red_dragon_elder"/>
+    <property name="unique_tag" value="H4_dragon_elder"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="2202" y="2347">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="2432" y="2283">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2177" y="1865">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2221" y="1883">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2272" y="1885">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2339" y="1882">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2404" y="1911">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2465" y="1943">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2319" y="1919">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1997" y="2069">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="2007" y="2174">
+   <properties>
+    <property name="spawn" value="goblin_zealot"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1645" y="1936">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="412,714,2627"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H4_chest_1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2299" y="1786">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="411,259,462,5027,5027,5013"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H4_chest_2"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1293" y="1459">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2260" y="1809">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="196,1013,1021,1021,1021,1021,5013"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H4_chest_3"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="370" y="2102">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="zealots_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1531" y="445">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="zealots_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2037" y="123">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="zealots_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="435" y="149">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="zealots_chest_16"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="599" y="777">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Dragon Priest" type="spawn" gid="243" x="1441" y="503">
+   <properties>
+    <property name="spawn" value="dragon_priest"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="1376" y="416">
+   <properties>
+    <property name="maxlevel" value="20"/>
+    <property name="minlevel" value="20"/>
+    <property name="secretdoor_tag" value="H4_cave_4"/>
+   </properties>
+  </object>
+  <object name="Zealot" type="spawn" gid="243" x="1185" y="189">
+   <properties>
+    <property name="conversation" value="H4_smith"/>
+    <property name="portrait" value="103"/>
+    <property name="spawn" value="goblin_weaponsmith"/>
+    <property name="tag" value="weaponsmith"/>
+    <property name="unique_tag" value="goblin_weaponsmith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Light" type="light" gid="245" x="1111" y="161"/>
+  <object name="Light" type="light" gid="245" x="1117" y="216"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](captain falls down dead, and you notice that his key has fallen out. You may find it useful)[]	po?	0	"VariableEqual#fee_for_merits,60"	"SetVariable#fee_for_merits,70;GainItem#10174"	
+1	Q	Wow! I'm surprised you'll be able to get here alive and unharmed!	po.	2			
+2	A	What's going on here? I thought you didn't have any available people to catch the thief, and where exactly is this thief?	po!	3		
+3	Q	There was no thief. I have arranged a lucrative business for myself - I find idiots to perform difficult tasks, then I waste them when they do everything, and I appropriate the merits and the reward for myself.	po.	4			
+4	A	These are very bastard actions, do you really get away with this?	po!	5		
+5	Q	Well, yes, because I'm not leaving anyone alive who could talk about my enterprise, so you'll have to die now, too!	po.	0		"SetVariable#greedy_pizda,2;NPCSpawn#lich;NPCHostile#captain_greedy;NPCHostile#team_greedy"	

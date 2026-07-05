@@ -1,0 +1,41 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the heavens suddenly darkened, and several more huge dragons descended from them to the ground, the largest of them spoke)[] Well, who gathered us all here? Are you a Shen? What did you want to show us so interesting?	port?	19	VariableEqual#dragons_service,80		
+1	Q	[BLUE](огненные глаза твари жадно смотрят на вас)[] Oh, you're back! So you've been to the tower, and I hope you didn't come empty-handed?	port?	26	VariableEqual#dragons_service,60		
+1	Q	[BLUE](the creature's fiery eyes stare hungrily at you)[] Oh, you're back! So you've been to the tower, and I hope you didn't come empty-handed?	port?	16	VariableEqual#dragons_service,45		
+1	Q	[BLUE](the creature's fiery eyes stare into your soul)[] Calm down! Don't panic! I'm not going to fight you, I just need to talk.	port?	2		
+2	A	What?! Can you talk?	port?	3		
+3	Q	Well, technically, yes, I can, but in fact, I don't have vocal cords, and you can hear my voice right in your head. But don't worry, I can't get into your brain and read your thoughts and see your memories or anything like that!	port	4			
+4	A	Okay, thanks for reassuring me. What did you want to talk about?	port!	5				
+5	Q	 You can call me Shannon, and I have business with you, and you're clearly one of those adventurers who takes on any job, no matter who it is. What do you think?	¿po?	6		
+6	A	Well, it's obviously not wise to refuse a dragon. So, what's your deal?	port?	7		
+7	Q	Anyway, I recently met a dragoness, an indescribable beauty, she is just death and destruction of everything and everyone! But she thinks I am a loser, like my cave under the mountain is small and there are not enough jewels in it, I burn less than the required hundreds of heroes a year, and most importantly, as if I have, you know what, small! But this is not so, at least by dragon standards!	port	8			
+8	A	Okay, I believe you! But how can I help you get the attention of this... ladies?	port?	9		
+9	Q	Well, I have to do something really outstanding that other dragons have not been able to do! And that's what I came up with, there are legends among the dragons about the crown of the dragon lord, in ancient times countless dragons lived on this earth, and the dragon lord ruled them all, and his crown was a symbol of supreme power! By becoming the master of this thing, I will be the coolest dragon, and all the dragons will be at my feet! So, there have been rumors for a long time that some sorcerer discovered something similar to this great relic and locked it in his tower. And the other day, my assistants managed to find out the possible location of this tower!	port	10			
+10	A	Why don't you go there yourself and take this crown?	port?	11		
+11	Q	Uh, this tower has a very powerful protective spell aimed specifically at dragons, it's safe for other creatures, and with my size, it will be difficult to explore this tower!	port	12			
+12	A	And what other dangers will await me in this tower?	port?	13		
+13	Q	Well, maybe some undead, but you're unlikely to have problems putting them to rest, maybe some more traps, but my assistant will go there with you, he's an experienced tomb raider!	port	14			
+14	A	Okay, where is this tower located?	port?	15		
+15	Q	At the Thir mountain pass, my assistant and his friend will be waiting for you there, I warned them about your arrival. Well, good luck to you, hero!	port	0		"SetVariable#dragons_service,15;NPCDespawn#dragon;NPCDespawn#trap"		
+16	A	I don't have anything for you.	port?	17		
+16	A	Yes, I managed to get the crown of the dragon lord.	port?	18	PlayerHasItem#10636		
+17	Q	Oh, you pathetic worm! Are you trying to trick me?! Did you want to laugh at me like all those worthless lizards?! Now you will see my anger, you will feel it on your own skin!	port	0		"SetVariable#dragons_service,110;NPCHostile#dragon"		
+18	Q	Oh, yes! Finally! Now, with this relic, I will become the most respected and famous dragon, everyone will admire and envy me, even those lizards who despised me! I can imagine their faces when they see me with the crown of the dragon lord! All the she-dragons will be mine now!	port	0		"LoseItem#10636;SetVariable#dragons_service,80;NPCSpawn#dragon2;NPCSpawn#dragon3;NPCSpawn#dragons"		
+19,dragon	Q	Exactly! Behold and tremble, the legendary crown of the Dragon Lord and its master, I, Shenron the Mighty!	port	20			
+20,dragon2	Q	Eh? What the hell is this? What are you talking about here anyway?	port	21			
+21,dragon	Q	Ignoramus! Don't you know the story of the dragon Lord and his great relic, who ruled all lands in ancient times?	port	22			
+22,dragon3	Q	But you're the ignoramus here. If you had studied history better, you would know that the dragon lord was killed by the dragon slayer magicians, and the crown was destroyed by them. From its remains, the magicians created this useless fake as a symbol of shame and humiliation of the dragon people. So owning such an item is quite shameful.	port	23			
+23,dragon2	Q	Ha ha! Do you understand now, loser, what you wanted to surprise us with?! Ha ha ha! Let's get out of here, guys, I hate being around this!	port	24			
+24,dragon	Q	What bastards! You'll dance for me yet, you dung lizards! [BLUE](the dragon yelled after his flying away relatives, then flew away himself, leaving you alone)[]	port	25			
+25	A	Hmm.	port?	0		"SetVariable#dragons_service,100;GainXP#1800;NPCDespawn#dragon;NPCDespawn#dragon2;NPCDespawn#dragon3;NPCDespawn#dragons"		
+26	A	I don't have anything for you.	port?	34		
+26	A	Yes, I managed to get the crown of the dragon lord, but there is one problem.	port?	27	PlayerHasItem#10636		
+27	Q	Is there a problem? [BLUE](dragon stared at you menacingly)[] What's the problem?	port	28			
+28	A	This crown is a fake, the real one has long been destroyed by the dragon slayer magicians.	port?	29		
+29	Q	What?! This can't be happening! Have you decided to take the crown of the dragon lord for yourself?!	port	30			
+30	A	I'm telling you the truth, the old goblin Borkmuk told me the story of the victory of the dragon slayer magicians over the dragon lord and the destruction of his crown.	port?	32			PER#3
+30	A	I'm telling you the truth, I don't need this useless thing.	port?	31		
+31	Q	No! You obviously want to deceive me and claim the crown of the dragon lord for yourself, just like that thief-mage from the tower did! This is not going to happen!	port	0		"SetVariable#dragons_service,120;NPCHostile#dragon"		
+32	Q	Borkmuk? I know him, and... oh, how could I forget that part of the story?! A symbol of the dragon shame created from the remnants of the Dragon Lord's crown. Oh, I'll have to come up with some other great achievement. [BLUE](as if looking longingly at the fake, the dragon flew away, leaving you alone)[]	port	33			
+33	A	Hmm.	port?	0		"SetVariable#dragons_service,130;GainXP#1800;NPCDespawn#dragon"		
+34	Q	Oh, you pathetic worm! Are you trying to trick me?! Did you want to laugh at me like all those worthless lizards?! Now you will see my anger, you will feel it on your own skin!	port	0		"SetVariable#dragons_service,125;NPCHostile#dragon"		

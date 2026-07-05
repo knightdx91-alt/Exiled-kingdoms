@@ -1,0 +1,18 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	We will find these scoundrels and punish them for their crimes.	port	0	NPCisFollower#	
+1	Q	[BLUE](wizard you met in Kingsbridge came out of the building)[] Who wants to see me there? Oh, hello, friend, I didn't think I'd see you again... [BLUE](he frowned when he noticed the guard next to you)[] How can I help you? 	[BLUE]()[] port.	2			
+2,guard	Q	Are you Jenod? The body of a man named Adaon was discovered near New Garand today. Were you acquainted with the deceased?	port?	3			
+3,janod	Q	Oh, what a nightmare! I feel sorry for the guy, even though I didn't really know him... [BLUE] (the wizard looked at you and frowned even more)[] Wait, do you think I killed him?! Why would I do that?! Yes, we had a conflict, but we settled everything! Besides, after returning from Varsilia, I spent all my time here, I didn't go anywhere, all the residents will confirm this! 	port.	4		
+4,guard	Q	If you're innocent, then you have nothing to worry about. We're not accusing you yet; it just so happens that Adaon was killed by magic, and you're one of those who had dealings with him recently.	port?	5			
+5,janod	Q	As I said, we parted peacefully, and I never saw him again. I don't want to speak ill of the deceased, but I'm sure that a man like him has managed to annoy a lot of people, including other wizards! 	port.	6		
+6,guard	Q	It is possible that the victim had other enemies. Okay, let's interview the residents, who will confirm your words that you did not leave the settlement.	port?	7			
+7,janod	Q	No problem! Here, you can start with Tonel, he's already here! 	port.	8		
+8,guard	Q	Well...	port?	9			
+9,guard1	Q	[BLUE](you noticed some kind of commotion at the town hall, there was a man in a robe and with a staff, clearly a wizard, not far from him was one of the arcane knights, talking loudly)[] First, introduce yourself and tell us the purpose of your visit to our settlement, and then ask your questions! 	port.	10		
+10,adept1	Q	Get out of the way! I've come for him! [BLUE] (the unknown pointed his staff in your direction)[] Don't bother me! 	port.	11		
+11,guard1	Q	Well, no way. [BLUE](the knight drew his sword from its scabbard, raised his shield higher)[] Put down the staff and calm down, and then we calmly talked about the problem! 	port.	12		
+12,adept1	Q	No, I told you to stay out of the way! And now - die! [BLUE](a ray of energy shot out from his staff towards the knight, and despite the fact that he raised his shield to deflect the attack and the magic armor on it, his body turned to burning dust almost instantly)[] 	port.	13		
+13,janod	Q	Murderer!!! 	port.	14		
+14,guard	Q	Oh, damn it! We were attacked!	port?	15			
+15,adept1	Q	[BLUE](you notice several other people in the same robes with staffs, they also seem to be hostile)[] You won't be able to hide or escape from us! He told me to find you and do His will! Die, you and all who stand in our way! 	port.	16		
+16	A			0		"NPCDespawn#boy;NPCDespawn#guard1;NPCSpawn#adept2;NPCHostile#adept1;SetVariable#hate_through,25"	

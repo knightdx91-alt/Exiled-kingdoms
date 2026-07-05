@@ -1,0 +1,35 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hello, my partner! We're doing great!	po.	18	VariableEqual#lucrative_undertaking,100		
+1	Q	How'd we do?	po.	16	"VariableGreater#lucrative_undertaking,79;VariableLower#lucrative_undertaking,84"		
+1	Q	The work is in full swing, soon we will need new skins!	po.	11	VariableEqual#lucrative_undertaking,70		
+1	Q	I don't know how you managed to persuade Hilt, but the first wagon with iron has already arrived! I will talk to our potential buyers for now, it would not be bad to get at least fifteen more bear skins.	po.	10	VariableEqual#lucrative_undertaking,60		
+1	Q	Any luck with the blacksmith Hilt?	po.	9	VariableEqual#lucrative_undertaking,50		
+1	Q	Any luck with the blacksmith Hilt?	po.	9	VariableEqual#lucrative_undertaking,40		
+1	Q	Any luck with the blacksmith Hilt?	po.	9	VariableEqual#lucrative_undertaking,30		
+1	Q	The production is standing, but as soon as you get the skins, we'll get to work!	po.	6	VariableEqual#lucrative_undertaking,20		
+1	Q	I still need a partner, have you changed your mind by any chance?	po?	2	VariableEqual#lucrative_undertaking,10		
+1	Q	[BLUE](a business-looking guy)[] Oh, hello, traveler! I am Agnius Northson, descendant of the very first merchants of the kingdom. For the first time in our city? If you need a job, then I need a partner in one business, and you seem to inspire me with confidence.	po?	2		
+2	A	Hello, what exactly is the business you have in mind??	po?	3		
+2	A	No, I'm not interested in that.	po!	0		SetVariable#lucrative_undertaking,10		
+3	Q	Everything is legal, don't suddenly think what! In general, I decided to organize an enterprise for the manufacture of insulated armor, in our region it will be an actual thing! I found a suitable place and people for production, that's just a problem with the lack of material for work!	po	4		
+4	A	What exactly do you need?	po!	5		
+5	Q	Bear skins, for a start, about ten pieces, so that people have something to work with, but for now I will try to negotiate with the blacksmith Hilt about iron for armor.	po.	0		SetVariable#lucrative_undertaking,20		
+6	A	I got the necessary number of skins.	po!	7	PlayerHasItems#1014,10	
+6	A	I'm working on it.	po!	0		
+7	Q	Great! I'll hand them over to my people right now so they can get started. But I couldn't come to an agreement with the blacksmith Hilt about the iron, maybe you can convince him.	po	8		LoseItems#1014,10				
+8	A	Okay, I'll try to talk to him..	po!	0		SetVariable#lucrative_undertaking,30		
+9	A	Not yet.	po!	0				
+10	A	Well, it will be done.	po!	0		SetVariable#lucrative_undertaking,70		
+11	A	I got the necessary number of skins.	po!	12	PlayerHasItems#1014,15	
+11	A	I'm working on it.	po!	0		
+12	Q	Great! You know, so that you don't have to get skins, you can hire at least three hunters to deliver them to us!	po	13		LoseItems#1014,15				
+13	A	Good idea, where can I find them?	po!	14				
+14	Q	In any city or settlement, the main thing is that they are ready to move to our kingdom. I'll even prepare employment contracts, if they agree, then let them just sign them or at least put a cross if they can't write.	po	15						
+15	A	I'll try to find us hunters.	po!	0		SetVariable#lucrative_undertaking,80		
+16	A	Here are three hunters who agreed to work for us.	po!	17	PlayerHasItems#10260,3	
+16	A	I'm still looking for the people we need.	po!	0		
+17	Q	Great! And I have already found the first buyers, and soon we will receive revenue!	po	0		"LoseItems#10260,3;GainXP#800;IncVariable#REP_north_kingdom,5;SetVariable#lucrative_undertaking,100"				
+18	A	And what about the revenue?	po.	19		
+18	A	Hello, I have to go.	po.	0		
+19	Q	 Nothing yet, come back tomorrow.	¿po?	0	VariableEqual#TMP_prayed,1		
+19	Q	 Great, get your share, partner!	¿po?	0		"GainGold#300;SetVariable#TMP_prayed,1"	

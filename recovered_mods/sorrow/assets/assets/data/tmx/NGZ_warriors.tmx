@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="2">
+  <properties>
+    <property name="maxlight" value="30" />
+    <property name="music" value="ossuary" />
+    <property name="name" value="The Warrior's Guild" />
+    <property name="name_ES" value="Gremio de Guerreros" />
+    <property name="sw1" value="764" />
+    <property name="sw2" value="763" />
+    <property name="sw3" value="773" />
+    <property name="sw4" value="800" />
+    <property name="sw5" value="80" />
+    <property name="sw6" value="78" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="town_objects.tsx" firstgid="9" />
+  <tileset source="grassland.tsx" firstgid="89" />
+  <tileset source="trees.tsx" firstgid="217" />
+  <tileset source="natural_grounds.tsx" firstgid="233" />
+  <tileset source="grounds_indoor.tsx" firstgid="361" />
+  <tileset source="dungeon2.tsx" firstgid="521" />
+  <tileset source="town_objexts2.tsx" firstgid="761" />
+  <layer name="ground" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztVO0KhDAMm48xu6/XPvBhb3IpFG+yu6rVHwuUigzTpHHODTwBy+Tca/ruVmhxL4b8Le49T3pdg9Z3NNxaz4b+Z+uPtXytXKvUSngXN/NepX/lmzHDDN6MZwv9BG4vZlgrGO0/wAP23sOD0tH/a056mWK9EZ3QS0f/kf9Eno3wIIA3o+JJ+luQZ2Xu5AxW+tlrEt7v5f+se2Krn0T2eIak5P5XP2efoJv/x2Skn33ne4izR0b7Z93y3mH/LfKv3etZ+rV7vVv/EVyV64GBgQ/eTAjjAw==
+  </data>
+  </layer>
+  <layer name="ground2" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgMBvpoF2AXkgYKAdMEIAH/NAu2BkgwAc7FFAHPgzRMu3wQT8B9oBZIKh6u7BAFhHy/1RMApGwTAEAGELA6M=
+  </data>
+  </layer>
+  <layer name="ground3" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztzkENACAMBLAlGMEBTvAvBw28boRWQauAl82RHvCLlQ4A13Y6AEArB2T8AKE=
+  </data>
+  </layer>
+  <layer name="objects" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztlUsKwjAQhkO68IFFvIJHcOejFd+CS91VV0UP4U6sj6V30oOZ0BSGcaK1jcFFfxjShCRfZiaZMlboHzTljHWQzbg9fluwKqItOYy11FjXMh9LxsRHMVkT/Z2BmFH8kMfxcIU13hhU1phJ1gGt9UD/1/wNsc7LsFce/+/CHmD91iKfyj/0/yy+j4Rd0DqT/g/Bd6TuohRsI0N8Kv9QmCPlGuRL/0eiHYOxgdrrxmOOqznXDTAxH9bVnaonPlEnJqLfQ+ah+Dc1fCjMD1R/z+O3uuf0PEom3p/uDfUt8UPNHssUeydnT/Jfdl7n4PiPVH6TXA8z+JCojfKPVXNe759JYT72v0q8vzG6wwPN2VYpzhxq/K879LhU2vwvvrx/V039PX3gU3WdmkfJxP8nyME38f6ouiZtbomfR7qzv7M0fhUqVCjWE7djOk8=
+  </data>
+  </layer>
+  <layer name="roofs" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry from farmlands" type="entry" id="1" x="925" gid="1" y="570">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="967" y="529" width="51" height="83">
+   <properties>
+    <property name="area_id" value="NGZ"/>
+    <property name="entry_id" value="33"/>
+   </properties>
+  </object>
+  <object name="zomb1" type="spawn" gid="3" x="819" y="521">
+   <properties>
+    <property name="name" value="@BOUNCER_TILGAR"/>
+    <property name="spawn" value="living_corpse"/>
+    <property name="unique_tag" value="tilgarzomb"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="448" y="602">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="425" y="635">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Darema" type="spawn" gid="3" x="562" y="212">
+   <properties>
+    <property name="name" value="@DAREMA_BRIGHTHAMMER"/>
+    <property name="spawn" value="zombie_s2"/>
+    <property name="unique_tag" value="daremazomb"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="trainer1" type="spawn" gid="3" x="420" y="423">
+   <properties>
+    <property name="name" value="@SERGEANT_RAKKUS"/>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="unique_tag" value="sergezomb2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="trainer2" type="spawn" gid="3" x="303" y="246">
+   <properties>
+    <property name="name" value="@SERGEANT_DAUKAR"/>
+    <property name="spawn" value="zombie_s1"/>
+    <property name="unique_tag" value="sergezomb"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="876" y="657">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="3" x="109" y="181">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="190" y="155">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="168,170,533,531"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="NGZ_warriors_chest"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

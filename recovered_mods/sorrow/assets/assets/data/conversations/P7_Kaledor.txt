@@ -1,0 +1,46 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Greetings, hero, I received a message from Alarion, he warned that you would come to the meeting. Here are his cloaks, [BLUE](the wizard discreetly handed you a bundle)[] I would have made more if it weren't for the rush. Whatever he has in mind, they will serve him well.	port	29	"VariableGreater#royal_will,63;VariableLower#royal_will,67"		
+1	Q	Hello, hero, it's nice to see you again. Please excuse me, I have an important matter in the city, so I don't have time to talk right now.	port	18	"VariableEqual#drastic_steps,42"		
+1	Q	Well, here we are in Istril. Thank you, hero, for helping us complete our task.	port	6	"VariableEqual#trouble_again,85"		
+1	Q	Ah, such an inglorious end for a great mage, but at least he will no longer be able to cause harm unknowingly, and his spirit will be at rest. It is necessary to take his body back to the city for a proper farewell. Let us use the teleportation.	port	2	"VariableEqual#trouble_again,80"		
+1	Q	He leaves us no choice but to fight him!	port	0	"VariableEqual#trouble_again,70"		
+1	Q	Be careful, magister Dagget is a powerful wizard, even though he is mad now, he has not lost his skills and strength.	port	0			
+2,evelina2	Q	That's a good idea, because I'm tired from today, and I don't feel like walking back to the city.	port	3		
+3	A	I don't mind it either.	port	4		
+4,mage	Q	Okay, then I'll teleport us all to Istril.	port	5		
+5	A	Go ahead.	port	0		"SetVariable#trouble_again,85;Travel#P7,7"
+6	A	I was glad to help.	port	7		
+7,mage	Q	I'm going to the magical council to report on our work, and I'll also arrange for your reward. And by the way, later, you might be able to help me with a personal matter related to Alarion... Oh, I probably shouldn't have mentioned him.	port	8		NPCStopFollowing#
+8	A	Alarion of the Royal Forest? I know him, I've done some work for him.	port	10	"VariableGreater#one_way_road,49"		
+8	A	If there's time, I'll help you.	port	11		
+9	A	If there's time, I'll help you.	port	11		
+10,mage	Q	What a coincidence, since you know Alarion, he won't mind if I ask for your help.	port	9		
+11,evelina2	Q	I enjoyed traveling with you again, especially how you helped me calm down after the encounter with the savages. I'll rest, and we'll see each other later, okay?	port	12	"VariableEqual#eve_kex,2"		
+11,evelina2	Q	I enjoyed traveling with you again, and I'll see you later, okay?	port	12		
+12	A	Okay, I'll see you later, Evelina.	port	13		
+13,evelina2	Q	See you later! [BLUE](the girl headed towards the castle gates, which were opened for her by the guards, while deliberately wagging her behind more than usual)[]	port	14		NPCStopFollowing#
+14,mage	Q	I wanted to warn you about the princess right away, [BLUE](wizard spoke, looking after the girl)[] she is prone to extravagance and promiscuity, so I would not advise you to count on a permanent relationship, especially since she is a titled person. Although, of course, it is not my case, it is up to you to decide how to proceed.	port	15	"VariableEqual#eve_kex,2"		
+14,mage	Q	Well, it's time for me too. Thank you again for your help, and your efforts will be rewarded.	port	16			
+15	A	Thank you, I'll take your advice into account. See you later, magister.	port	17		
+16	A	Good, see you later, magister.	port	17		
+17,mage	Q	See you later.	port	0		"SetVariable#trouble_again,100;NPCDespawn#evelina2;NPCDespawn#mage;GainXP#3600;REP_sorrowland,7"
+18	A	Hello, I won't take much of your time. I'm from Alarion, and he wants to know if you've met his man named Lukan.	port	19		
+19	Q	I'm afraid I don't have good news, I haven't been able to meet with him, and my acquaintances have reported that they saw him taken to the castle by Bernadette's men. Perhaps he will be lucky and will be released, although it is uncertain how things will turn out in reality.	port	20			
+20	A	Most likely, there's no point in hoping for anything. [BLUE](you inform him about Bernadette's message)[]	port	21		
+21	Q	It's terrible, although there is still a chance that he is still alive. Despite this, I am still willing to help Alarion, especially now that I have several supporters. Although this is not the best place to talk, Bernadette has ears everywhere.	port	22			
+22	A	Good, I will pass on your words to Alarion, magister. Are the bad rumors about Bernadette true?	po.	23		"NPCDespawn#mage;SetVariable#drastic_steps,10"
+22	A	Good, I will pass on your words to Alarion, magister. See you.	po.	0		"NPCDespawn#mage;SetVariable#drastic_steps,10"
+23	Q	Oh, Princess Bernadette, after she assumed the position of Guardian of the Kingdom, many dark and evil rumors began circulating about her, and some of them are true. Her story begins after the death of King Kalion's first wife. For a long time, he had no intention of remarrying, but someone of his close advisors convinced him otherwise.	port	24			
+24	Q	As is well known, the king's first wife came from a not rich family from Sol-Laqueul, while his new wife became a member of an influential family from Istril. This decision would later lead to tragic consequences... But that's not the point now. The king's new marriage, unfortunately, didn't last long; his wife died in childbirth, and many healers believed the newborn wouldn't survive long and would follow his mother.	port	25			
+25	Q	But King Calion was known for his healing skills, and thanks to him, the baby survived, but she remained very weak and never learned to speak for five years. Many teachers assumed that she would remain mentally disabled, but to their surprise, the girl eventually developed speech and quickly learned to write and count, as well as becoming interested in various sciences. Additionally, she displayed a talent for magic, which was not surprising, as her mother was a powerful wizard and a member of the Magical Council.	port	26			
+26	Q	Although even then, the little princess's teachers noted her cruelty and indifference, having witnessed her experiments on various animals. When Bernadette was around nine years old, a young boy, the son of one of the kitchen servants, died, and it was announced that it was an accident, but rumors spread that she had killed the child. Although there was no evidence, several similar incidents occurred during the princess's formative years.	port	27			
+27	Q	In general, despite all her talents, her loyalty to the king and the kingdom, and her concern for the safety of the people, fear and dislike of Princess Bernadette have become ingrained in people's minds, and in recent years, this has only intensified.	port	28			
+28	A	Well, thank you for your story, magister, I won't take up any more of your time. See you around.	po.	0		"NPCDespawn#mage;SetVariable#drastic_steps,45"
+29	A	Thanks, I'll give them to him.	port	30		
+30	Q	Also, inform Alarion that I will be taking a break from his affairs for a while. Princess Bernadette clearly suspects that someone in Istril is helping him, and many of her people have become more active, constantly questioning and spying. Until things calm down, I will stay on the sidelines to avoid drawing unnecessary attention to myself.	port	34	"VariableEqual#good_alarion,1"		
+30	Q	And it seems I will no longer be able to help Alarion. After what happened to Princess Evelina Lightwind, it is clear my days are numbered. Perhaps I should try to escape from Istril, but I fear Bernadette will be able to find me anywhere. Inform Alarion of this.	port	31			
+31	A	What happened to Evelina?	port	32	"VariableLower#berna_evil,1"		
+31	A	Clearly, I'll pass on your message.	port	0	"VariableEqual#berna_evil,1"	"NPCDespawn#mage;SetVariable#royal_will,68"	
+32	Q	Bernadette's people took her to the castle, and she never returned. There are witnesses who reported that Evelina was executed, and they have no reason to lie about such a tragedy.	port	33			
+33	A	It's terrible, and I'm very sorry that such cruelty happened to her. I will convey your words to Alarion.	port	0		"NPCDespawn#mage;SetVariable#royal_will,68"
+34	A	Clearly, I'll pass on your message.	port	0		"NPCDespawn#mage;SetVariable#royal_will,68"	

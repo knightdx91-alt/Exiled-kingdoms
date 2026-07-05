@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](this man is sober enough to talk to him)[]	¿po?	2			
+2	A	Hello!	po.	3		
+2	A	Do you know anything about the wizard who comes here?	po.	5	"VariableEqual#family_matters,50"		
+2	A	[BLUE](ignore)[]	po.	0		
+3	Q	 Hello, how are you?	¿po?	4		
+4	A	It's all right.	po.	0		
+5	Q	 He's not very talkative. Not long ago I was here with some guy, I accidentally overheard part of their conversation, if you have a dozen coins for my booze, I can tell you what they were talking about.	¿po?	6		
+6	A	There is, come on, tell me what you heard.	po.	7	PlayerHasGold#10	
+6	A	No, get off.	po.	3		
+7	Q	 In general, they talked about the fact that they had failed some business, and the fact that after the tavern they were going to go to the river landing, which one and why, I have no idea, they did not discuss it.	¿po?	8		
+8	A	Thank you for information.	po.	0		"SetVariable#family_matters,60;loseGold#10"	

@@ -1,0 +1,39 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it looks like you've dealt with all the cannibals in the village)[] 	port. port.	0	"VariableEqual#saving_escape,99"	"NPCDespawn#r6_enemy;GainXP#1100;SetVariable#saving_escape,130"	
+1	Q	[BLUE](this is the building where the fugitive was taken, and from where, as it seemed to you, you heard some kind of scream)[] 	port. port.	2			
+2	A	Take a look inside.	port.	3		
+2	A	It's none of my case.	port.	0		
+3,trima	Q	[BLUE](This is a small room, and the fugitive immediately caught your eye, he was naked and hanging upside down with his hands tied behind his back, his throat was cut, blood was slowly flowing out, his stomach was slit open from groin to chest, a woman in a long leather apron was standing next to him and disemboweling his entrails. She noticed you and froze in surprise)[]	port?	4			
+4,vanda2	Q	It seems that heroes tend to stick their noses where they shouldn't! [BLUE](did you hear the head of the guard's voice behind you)[]	port?	5			
+5	A	You sick, crazy bastards, you will answer for your brutality!	port?	0		"NPCDespawn#trima;NPCDespawn#r6_guard2;NPCDespawn#vanda2;NPCSpawn#r6_enemy;NPCHostile#r6_wolf;SetVariable#saving_escape,90"		
+5	A	What the hell is going on here?!	port?	6		
+6	Q	I'm sorry, but I won't be able to answer you, you've already seen too much, and we'll have to kill you too to keep our secret.	port?	7			
+7	A	Try it, you sick bastards!	port?	0		"NPCDespawn#trima;NPCDespawn#r6_guard2;NPCDespawn#vanda2;NPCSpawn#r6_enemy;NPCHostile#r6_wolf;SetVariable#saving_escape,90"		
+7	A	What other secret? I thought I was going to return this poor guy to his wife, but you killed him and butchered him like some kind of animal! Explain yourself, or I'm going to kill you all now!	port?	8			STR#5
+7	A	Seriously? This weakling managed to escape from you, and you couldn't find him. Do you think you can catch me? And I, unlike him, will head straight to Istril. I'm sure there will be someone there who will be interested in what's happening here!	port?	8			PER#4
+8	Q	[BLUE](the guard looked at you appraisingly)[] Okay, since you're not getting into a fight right away, let's talk. First of all, you don't have to worry about this guy, he's an ordinary criminal who escaped from an Istrian prison. They have escapes from time to time, and the fugitives usually end up in our area, as there are plenty of patrols in the north, deadly Enchanted Valley in the west, and the wilderness in the east. Sometimes we catch those who are lucky enough to escape from the guards for our own purposes.	port?	9			
+9	A	Purposes? What are you eating them for?! But you have plenty of game in the forest, and you're growing something here for yourself!	port?	10		
+10	Q	We don't have any problems with food here, but we really use them for food. Descendants from southern tribes live here, and we practice ancient rituals that give us vitality and energy by eating human meat, giving us longevity and healing any wounds and injuries. Of course, this is not welcome in the kingdom, so we try to keep everything a secret.	port?	11			
+11	A	I've heard enough, you sick bastards, now you're going to die!	port?	0		"NPCDespawn#trima;NPCDespawn#r6_guard2;NPCDespawn#vanda2;NPCSpawn#r6_enemy;NPCHostile#r6_wolf;SetVariable#saving_escape,90"		
+11	A	Okay, so what do you have to offer in return for me keeping your secret?	port?	12		
+12,mercenary_grisenda	Q	Do you seriously want to negotiate with these monsters?! Death to them!	¿po?	22	"NPCIsInParty#grissenda,mercenary_grisenda"		
+12,hirge	Q	Such heresy deserves no mercy! In the name of the Three, I will punish you!	¿po?	22	"NPCIsInParty#hirge,hirge"		
+12,adaon	Q	What they are doing is very disgusting, but if they have something to offer us, why not negotiate with them?	¿po?	13	"NPCIsInParty#adaon,adaon"		
+12,vanda2	Q	I am ready to give you a relic of our descendants for your silence.	port?	14			
+13,vanda2	Q	I am ready to give you a relic of our descendants for your silence.	port?	14			
+14	A	Perhaps you can suggest something else?	port?	16		
+14	A	Okay, I agree. Your secret will remain a secret.	port?	15		
+15	Q	Well, a deal!	port?	0		"GainItem#11040;SetVariable#saving_escape,110"		
+16	Q	If you are brave enough, I am ready to initiate you into the secret of the ritual of our ancestors, and you will become one with our people.	port?	17			
+17	A	No, thanks, I agree to your relic.	port?	15		
+17	A	I am ready to learn the secret of your ancestors' ritual.	port?	18		
+18,adaon	Q	Well, that's too much, boss! I'm not going to become an cannibal!	¿po?	22	"NPCIsInParty#adaon,adaon"		
+18,sansa	Q	Are you completely stupid?! I'm going to roast these fucking cannibals myself!	¿po?	22	"NPCIsInParty#sansa2,sansa"		
+18,damian	Q	Well, what can I say? This is the way. Any means are good, making us stronger!	¿po?	19	"NPCIsInParty#durak2,damian"		
+18,vanda2	Q	Good. Trima will prepare everything necessary for the initiation ceremony, and then you will perform your first ritual of absorbing the life force of this fugitive. [BLUE](woman who disemboweled the fugitive left her occupation, she went to the far wall, where there was a massive chest with carvings, she returned with the skull of a creature similar to a human, but with a more elongated shape and a fanged mouth)[]	port?	20			
+19,vanda2	Q	Good. Trima will prepare everything necessary for the initiation ceremony, and then you will perform your first ritual of absorbing the life force of this fugitive. [BLUE](woman who disemboweled the fugitive left her occupation, she went to the far wall, where there was a massive chest with carvings, she returned with the skull of a creature similar to a human, but with a more elongated shape and a fanged mouth)[]	port?	20			
+20,vanda2	Q	This is the deity of our ancestors. They named it Kadavar-Eterno. He gave them the knowledge of the flesh eater, passed down from generation to generation. [BLUE](after the ritual of chanting in front of the skull in an unknown language, the two women performed the ritual of eating the flesh of the dead man, and then you repeated it under their guidance. After eating a small piece of meat, you felt your body fill with energy, but this feeling quickly disappeared)[]	port?	21			
+21,vanda2	Q	Well, welcome to our tribe, brother.	port?	23	"PlayerIsMale#"		
+21,vanda2	Q	Well, welcome to our tribe, sister.	port?	23	"PlayerIsFemale#"		
+22	A		port?	0		"NPCDespawn#trima;NPCDespawn#r6_guard2;NPCDespawn#vanda2;NPCSpawn#r6_enemy;NPCHostile#r6_wolf;SetVariable#saving_escape,90"		
+23	A		port?	0		"GainHP#25;GainMana#15;SetVariable#saving_escape,120"		

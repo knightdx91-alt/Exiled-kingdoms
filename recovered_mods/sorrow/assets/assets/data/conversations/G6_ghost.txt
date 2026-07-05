@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](ghost is destroyed, and you inspect the human remains that he guarded, but you only find a sword that radiated an evil aura.)[] 	port.	3	"VariableEqual#bloody_harvest,77"		
+1	Q	[BLUE](ghost hovered over the human remains, talking softly to himself)[] Pathetic cowards... traitors... we were so close... could become equal to the gods... a knife in the back... cowardly traitors... [BLUE](noticing your presence, the ghost attacks you with a furious howl!)[] 	port.	2			
+2	A		port?	0		"NPCHostile#ghost;SetVariable#bloody_harvest,77"
+3	A	It looks like this is the sword we were looking for. Now we need to find a mage who can activate the ancient seal. Anisa, you're seem to be a sorcerer, can you do this?	port?	4			
+4,anita	Q	 Of course, I'm trained in magic, mostly combat spells, but working with such ancient stuff is not my level. But I have one friend in Icemist, I think he can handle it. I'll try to persuade him to help us, and we'll meet later at the castle on Mount Storm.	¿po?	5		"NPCStopFollowing#"		
+5	A	Agreed.	po.	0		"SetVariable#bloody_harvest,80;GainItem#10776;NPCDespawn#anita"

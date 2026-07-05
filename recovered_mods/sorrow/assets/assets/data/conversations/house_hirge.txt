@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it looks like there's someone in your bedroom.)[] 	[BLUE]()[] port.	2			
+2	A	Hirge? What are you doing here, I thought you went to Navarian on case?	port?	3			
+3	Q	On case? They'll wait, I have an important conversation to have with you, but I wanted to discuss it alone with you.. 	port.	4		
+4,mercenary_grisenda	Q	Of course, friends always have something personal to discuss in private.	¿po?	5	NPCIsInParty#grissenda,mercenary_grisenda	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+4,adaon	Q	Come on, you have some secrets again! Okay, I'll wait for you outside, and I promise I won't eavesdrop at the door!	¿po?	5	NPCIsInParty#adaon,adaon	"NPCStopFollowing#;NPCDespawn#adaon"	
+4,sansa	Q	Just no nonsense, saint, I don't care who you think you are, I know such quiet ones! If you have thought up something here... indecent, Three will not protect you from my wrath!	¿po?	5	NPCIsInParty#sansa2,sansa	"NPCStopFollowing#;NPCDespawn#sansa"	
+4,damian	Q	Of course, this is your own case, I won't bother you.	¿po?	5	NPCIsInParty#durak2,damian	"NPCStopFollowing#;NPCDespawn#damian"	
+4,peter	Q	I respect the desire of friends to be alone, I leave you here.	¿po?	5	NPCIsInParty#durak,peter	"NPCStopFollowing#;NPCDespawn#peter"	
+4,hirge	Q	[BLUE](girl looked at you)[]	port?	5			
+5	A	Okay, it's just us here, Hirge, what did you want to talk about?	port?	6			
+6,hirge	Q	I wanted to express my gratitude once again for your actions for our faith, and for... me. Yes, I feel this... your affection for me. And to be honest, it seems to me that this feeling is mutual. Our church does not forbid... closeness between believers, but I am inexperienced in such... matters. 	port.	7		
+7	A	It was... an unexpected confession, but I can't deny that your guess was true. But regarding... intimacy, it seems to me that you're in a hurry, although if that's what you want... Are you absolutely sure about that?	port?	8			
+8	Q	Without a doubt. We need to get closer to each other than we are now, so we can better understand our feelings. [BLUE](with these words, the girl began to get rid of her armor, and then her clothes.)[] 	port.	9		
+9	Q	[BLUE](hesitating a little when you see Hirge's naked body, you respond to the girl's outburst of passion. In the process, you become convinced that she is not so inexperienced in love affairs, despite her words)[]	port?	10			
+10	Q	[BLUE](when you're done, suddenly you notice that the girl's skin on hand... has turned green? Looking at her face, you realize that it's not Hirge)[]	port?	11			
+11	A	What the hell!? What's going on?! Who are you?!	port?	0		"NPCDespawn#hirge;NPCSpawn#sylvia"

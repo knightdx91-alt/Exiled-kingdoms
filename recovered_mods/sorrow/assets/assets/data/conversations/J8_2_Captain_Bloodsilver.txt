@@ -1,0 +1,54 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Hear and obey.	port	23	NPCisFollower#	
+1	Q	Hello, traveler, if I have a new job, I will be glad of your help, but in the meantime you can relax in a local tavern.	po.	19	VariableEqual#skilled_hands,110		
+1	Q	Hello, traveler, if I have a new job, I will be glad of your help, but in the meantime you can relax in a local tavern.	po.	19	VariableEqual#skilled_hands,100		
+1	Q	It's terrible that something like this happened to him, but we had to kill him to protect the residents. Thank you for being able to break him out of captivity and trying to save him, accept your reward.	po.	0	VariableEqual#skilled_hands,90	"GainXP#700;GainGold#450;IncVariable#REP_sorrowland,4;SetVariable#skilled_hands,100"	
+1	Q	Whoever he is, he needs to be stopped before he harms the residents!	po.	0	VariableEqual#skilled_hands,80		
+1	Q	Oh, it's Hermes! You saved him! He looks very sickly... How are you, my friend?	po.	15	VariableEqual#skilled_hands,60		
+1	Q	I hope Hermes has not been harmed, and you will bring him here in one piece!	po.	18	VariableEqual#skilled_hands,50		
+1	Q	Hey, it's not Hermes! Who did you bring to me?	po.	12	VariableEqual#skilled_hands,30		
+1	Q	So he's dead... It's a pity, his inventions did a lot of useful things for the residents, accept part of the reward, you tried to help him.	po.	0	VariableEqual#skilled_hands,70	"GainXP#300;GainGold#150;IncVariable#REP_sorrowland,2;SetVariable#skilled_hands,110"	
+1	Q	I hope Hermes has not been harmed, and you will bring him here in one piece!	po.	18	VariableEqual#skilled_hands,20		
+1	Q	If you are willing to help Hermes, I will reward you for his release!	po?	6	VariableEqual#skilled_hands,10		
+1	Q	[BLUE](the captain is clearly worried about something, although he pretends that it is not so)[]Hello, traveler, I hope you like our restless, but beautiful places these days, we are doing everything possible to make at least this settlement safe.	[BLUE](po)[]	2			
+2	A	Can I help you with something?	¿po?	3			
+2	A	Glad to meet you, but I have to go.	0			
+2	A	Did you happen to meet zombies in these places, looking like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_bloodsilver,1"		
+2	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	22	PlayerHasItem#10402		INT#5
+3	Q	Of course, I have few free people, so many have to be sent to the other shore of Despair to repel the raids of the heavenly knights, so a volunteer would be very useful for one not simple job.	po.	4			
+4	A	What exactly should be done?	po.	5			
+5	Q	In general, a jack-of-all-trades named Hermes settled here, he made it very easy for the locals to live with his inventions, but a few days ago he suddenly disappeared. My scouts managed to find out that he was abducted by the heavenly knights.	po.	6			
+6	A	Do you know where they might have taken him?	po.	8			
+6	A	Did you happen to meet zombies in these places, looking like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_bloodsilver,1"		
+6	A	Perhaps you have some other work?	po.	20	VariableLower#curses_dont_die,10		
+8	Q	Rumor has it that behind the lake of the abandoned fort is the fortress of these same heavenly knights. Recently, we have some magician spinning around here, who is also interested in this fortress, perhaps he knows its more precise location. If you are willing to take on this job, I am willing to pay for it [BLUE]1000 gold[]. 	po.	9			
+9	A	I think it will not be easy, but I am ready to rescue this man from captivity. 	po.	10			
+9	A	It seems like a dangerous idea, I think I'll give up.	po.	11			
+10	Q	I really hoped that you would agree! This is a very good man, good luck to you in getting him out of trouble.	po.	0		SetVariable#skilled_hands,20	
+11	Q	Well, I have no right to demand something in such a difficult case.	po.	0		SetVariable#skilled_hands,10		
+12,falsehermes	Q	I'm sorry, friend, that I deceived you, but I had no other idea about escaping from that dungeon.	po.	13			
+13,bloodsilver	Q	It was pretty mean of you to do that. But you can stay in this settlement if you have nowhere to go. 	po.	14			
+14	Q	Anyway, the real Hermes is still in captivity and he needs to be rescued.	po.	0		"SetVariable#skilled_hands,50;disband#falsehermes"	
+15,hermes	Q	The sorcerers of these heavenly knights have been doing something to me, my body is all on fire! I can't stand it!	po.	16			
+16,bloodsilver	Q	[BLUE](right in front of your eyes, Hermes is enveloped in magical fire and his body begins to transform into a monster that furiously pounces on you!)[] 	po.	17		"disband#hermes;NPCDespawn#hermes;NPCSpawn#demonhermes"	
+17	Q	What the hell is this?!	po.	0		"SetVariable#skilled_hands,80"	
+18	A	Perhaps you have some other work?	po.	20	VariableLower#curses_dont_die,10		
+18	A	I will definitely save him!	po.	0			
+18	A	Did you happen to meet zombies in these places, looking like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_bloodsilver,1"		
+18	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		STR#5
+18	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		AGI#5
+18	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	22	PlayerHasItem#10402		INT#5
+19	A	Perhaps you have some other work?	po.	20	VariableLower#curses_dont_die,10		
+19	A	Did you happen to meet zombies in these places, looking like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_bloodsilver,1"		
+19	A	Thank you for advice.	po.	0			
+19	A	[BLUE](Using brute force to put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		STR#5
+19	A	[BLUE](Imperceptibly and quickly put a collar of submission on he)[]	¿po?	22	PlayerHasItem#10402		AGI#5
+19	A	[BLUE](By tricking he into putting on a collar of submission)[]	¿po?	22	PlayerHasItem#10402		INT#5
+20	Q	There doesn't seem to be anything specific that could interest you, but though... A few weeks ago, the Sighted Hills suddenly began to fill with the undead, and all sorts of fighters against evil from different places began to gather there. Despite their efforts, the amount of abomination there is not getting less, and the other day some of the undead fighters visited here to find help, but I myself have few people. So you can go to them and offer your services.	po.	21			
+21	A	I'll try to help them with something.	po.	0		"SetVariable#curses_dont_die,10"	
+22	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#bloodsilver_follow,3;NPCFollow#"	
+23	A	Good fellow.	port.	0		
+23	A	[BLUE](Take off he collar of submission)[]	port.	0		"SetVariable#bloodsilver_follow,1;NPCStopFollowing#"
+24	Q	No, we have enough problems here without any zombies.	po.	0		"SetVariable#talkz_bloodsilver,2"	

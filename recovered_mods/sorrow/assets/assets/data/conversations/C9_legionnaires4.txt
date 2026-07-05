@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the road is blocked by a formidable legionnaire)[] Stop! Unknown malefactors robbed lady Merinsolt, the wife of the governor of Freeport, and by his order, no one will be able to get into the city, as well as leave it, until the villains are caught! 	[BLUE]()[] port.	2		
+2	A	Okay, I get you.	port.	0		
+2	A	Perhaps I can help you find these thieves?	port?	3	"VariableLower#freedom_law_order,10"		
+3	Q	Your zeal is commendable, but in such a serious matter I cannot rely on strangers. [BLUE](For this task, you need a reputation of 15 at Mercia)[] 	port.	4	VariableLower#REP_mercia,15	
+3	Q	Some rumors about you have reached our city, and I think you will be useful in this matter. Find Praetor Anwar, he will tell you the details about this crime! 	port.	5		SetVariable#freedom_law_order,10		
+4	A	Okay, I won't bother you.	po.	0		
+5	A	Okay, I'll talk to him.	po.	0		"Travel#C9,6"

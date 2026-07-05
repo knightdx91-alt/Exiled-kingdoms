@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This seal is broken.	¿po?	0	"VariableEqual#magic_seal2,1"		
+1	Q	[BLUE](This is one of the magical seals that holds back a creature from other worlds)[]	¿po?	2			
+2	A	[BLUE](use magic eggs to activate a spell to destroy the seal)[]	po.	3	PlayerHasItem#10401		
+2	A	[BLUE](use a relic of family Whitetoad to activate a spell to destroy the seal)[]	po.	4	PlayerHasItem#10405		
+2	A	[BLUE](use the Blood Tree ring to activate the spell to destroy the seal)[]	po.	5	PlayerHasItem#10413		
+2	A	[BLUE](use the diadem of family Rusthatchet to activate the spell to destroy the seal)[]	po.	6	PlayerHasItem#10429		
+2	A	Exit.	po.	0			
+3	Q	[BLUE](the spell destroys the seal, but at the same time frees the spirit of the creator of this seal, who becomes enraged because of the deed you have done)[]	¿po?	0		"IncVariable#guest_other_worlds,1;SetVariable#magic_seal2,1;LoseItem#10401;NPCSpawn#sealmaster2"
+4	Q	[BLUE](the spell destroys the seal, but at the same time frees the spirit of the creator of this seal, who becomes enraged because of the deed you have done)[]	¿po?	0		"IncVariable#guest_other_worlds,1;SetVariable#magic_seal2,1;LoseItem#10405;NPCSpawn#sealmaster2"
+5	Q	[BLUE](the spell destroys the seal, but at the same time frees the spirit of the creator of this seal, who becomes enraged because of the deed you have done)[]	¿po?	0		"IncVariable#guest_other_worlds,1;SetVariable#magic_seal2,1;LoseItem#10413;NPCSpawn#sealmaster2"
+6	Q	[BLUE](the spell destroys the seal, but at the same time frees the spirit of the creator of this seal, who becomes enraged because of the deed you have done)[]	¿po?	0		"IncVariable#guest_other_worlds,1;SetVariable#magic_seal2,1;LoseItem#10429;NPCSpawn#sealmaster2"

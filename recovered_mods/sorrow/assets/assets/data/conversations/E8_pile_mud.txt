@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](this is a big pile of dirt, and perhaps not only dirt, it gave off such a strong smell, it seemed that you could suffocate to death if you were near it for a long time)[]	¿po?	2	"VariableEqual#fatal_eggs,100"		
+1	Q	[BLUE](this is a big pile of dirt, and perhaps not only dirt, it gave off such a strong smell, it seemed that you could suffocate to death if you were near it for a long time)[]	¿po?	3	"VariableEqual#fatal_eggs,70"		
+1	Q	[BLUE](this is a big pile of dirt, and perhaps not only dirt, it gave off such a strong smell, it seemed that you could suffocate to death if you were near it for a long time)[]	¿po?	2			
+2	A	[BLUE](I have nothing to do here)[]	po.	0						
+3	A	[BLUE](investigate the presence of eggs, which were mentioned by a creature from other worlds)[]	po.	4						
+3	A	[BLUE](I have nothing to do here)[]	po.	0						
+4	Q	[BLUE](after spending a lot of time digging in the stinking mud, taking breaks to catch your breath and vomit, you manage to find the magic eggs)[]	¿po?	0		"GainItem#10401;GainXP#700;SetVariable#fatal_eggs,100"

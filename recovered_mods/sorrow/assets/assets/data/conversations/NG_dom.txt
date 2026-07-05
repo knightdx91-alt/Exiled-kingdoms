@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Hello, brother. My family is in serious trouble again.	¿po?	11	"VariableEqual#last_race,82"		
+1	Q	 So, what did you find out? Who did this?	¿po?	2			
+2,duan	Q	 He is known as Chief Philosopher of all the kingdoms - a former elite legionnaire, and he has a younger brother whom you killed or severely injured in one of your previous fights, and now Philosopher is taking revenge on you for him.	¿po?	3				
+3,dom	Q	 Okay, we figured out who he is, but I'm primarily interested in where to find this bastard.	¿po?	4				
+4,duan	Q	 He works for a group of other former legionnaires and various experienced mercenaries, together they managed to steal the Eye of Tol 2.0 again, and now they are going to cause major riots in Freetown, for sure, Philosopher will also be there.	¿po?	5				
+5,dom	Q	 Okay, thanks for the information, I'll go there and find this bastard.	¿po?	6				
+6,duan	Q	 I will be there too, we must prevent bloodshed and return the "Eye of Tol 2.0".	¿po?	7				
+7,dom	Q	 Just don't get in my way, that Philosopher bastard is mine.	¿po?	8				
+8,duan	Q	 I'll fight, but I don't promise anything.	¿po?	9				
+9,dom	Q	 Well, brother, I'll see you in Freetown.	¿po?	10				
+10	A	Fine.	po.	0		"NPCDespawn#dom;NPCDespawn#duan;SetVariable#last_race,72"
+11	A	What happened?	po.	12		
+12,dom	Q	 While we were dealing with Chief Philosopher, some psycho took advantage of our absence and kidnapped my son.	¿po?	13			
+13,duan	Q	 I found out that this is a mercenary named Durant, who worked for the governor of Friguld, who has assembled his own gang and is acting in alliance with some evil sorceress and another gang led by Jack "Torrero".	¿po?	14				
+14,sister	Q	 What? Our own little brother?	¿po?	15				
+15,duan	Q	 Exactly. In general, Durant has assembled a serious group, it will be difficult to cope with all of them.	¿po?	16				
+16,dom	Q	 It doesn't matter how many there are - ten or a hundred, we are a family, which means we will win. It's time for the last race.	¿po?	17			
+17,han	Q	 It's the twentieth time you've talked about the last race, but they still don't stop.	¿po?	18			
+18,dom	Q	 Where can I find that bastard Durant?	¿po?	19				
+19,duan	Q	 With the help of the "Eye of Tol 2.0", before he was kidnapped from us once again, it was possible to find out that Durant's hideout is located in the Eastern Korne.	¿po?	20				
+20,dom	Q	 So let's go there, get my son, deal with all the bastards, and put my brother's brains back in place.	¿po?	21				
+21	A	Fine.	po.	0		"NPCDespawn#dom;NPCDespawn#duan;NPCDespawn#sister;NPCDespawn#han;SetVariable#last_race,85"

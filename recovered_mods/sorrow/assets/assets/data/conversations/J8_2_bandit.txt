@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	We seem to have solved the problem, what else is needed?	po.	0	"VariableEqual#problem_mironn,20"		
+1	Q	[BLUE](it looks like these are the bandits the hunter was talking about)[] Who are you? What do you need?	po.	2			
+2	A	I came to talk about the hunter Mironn.	po.	3		
+3	Q	 What's there to talk? Let him give me 600 coins borrowed from me and 200 coins on top for overdue debt, otherwise he will recover to feed the fish!	¿po?	4		
+4	A	I'll pay his debt if you leave him alone.	po.	5	PlayerHasGold#800	
+4	A	If you don't leave him alone, you will become fish food yourself.	po.	7		
+5	Q	 No problem, give me 800 coins, and that hunter won't hear from us anymore.	¿po?	6		
+6	A	Agreed.	po.	0		"LoseGold#800;SetVariable#problem_mironn,20"
+7	Q	 You asked for it, you freak!	¿po?	0		"NPCHostile#badn_river"

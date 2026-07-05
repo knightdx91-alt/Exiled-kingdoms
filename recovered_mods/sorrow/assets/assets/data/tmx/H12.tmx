@@ -1,0 +1,730 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="68">
+  <properties>
+    <property name="exit_e" value="I12" />
+    <property name="exit_s" value="H11" />
+    <property name="faction_civilian" value="thuram,town_whitetower" />
+    <property name="faction_guard" value="thuram,town_whitetower" />
+    <property name="music" value="thuram" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="85" />
+    <property name="sw2" value="20" />
+    <property name="sw3" value="17" />
+    <property name="sw4" value="18" />
+    <property name="sw5" value="1731" />
+    <property name="sw6" value="1733" />
+  </properties>
+  <tileset source="spawns.tsx" firstgid="1" />
+  <tileset source="town_objects.tsx" firstgid="9" />
+  <tileset source="grassland snow.tsx" firstgid="89" />
+  <tileset firstgid="217" name="grassland_trees_2" columns="8" tilecount="16" tileheight="256" tilewidth="128">
+    <image source="grassland_trees_2.png" width="1024" height="512" />
+  </tileset>
+  <tileset source="grassland_snow_structures.tsx" firstgid="233" />
+  <tileset firstgid="269" name="snow water" columns="16" tilecount="64" tileheight="64" tilewidth="64">
+    <image source="grassland_snow_water.png" width="1024" height="256" />
+  </tileset>
+  <tileset source="natural_grounds.tsx" firstgid="333" />
+  <tileset source="rocks_blue.tsx" firstgid="461" />
+  <tileset source="rocks_small_blue.tsx" firstgid="467" />
+  <tileset source="bluewall.tsx" firstgid="477" />
+  <tileset source="dungeon.tsx" firstgid="541" />
+  <tileset source="grounds_indoor.tsx" firstgid="781" />
+  <tileset source="dungeon.tsx" firstgid="941" />
+  <tileset source="house_village_blue_1.tsx" firstgid="1181" />
+  <tileset source="stoneroad1-grass.tsx" firstgid="1253" />
+  <tileset source="townhall_red.tsx" firstgid="1271" />
+  <tileset source="wall_stone_low.tsx" firstgid="1307" />
+  <tileset source="icemist_large.tsx" firstgid="1319" />
+  <tileset source="icemist_items.tsx" firstgid="1359" />
+  <tileset firstgid="1407" name="trifles_sborka2" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka2.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="1623" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <layer name="nonwalk" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1Y267jMAg8b/3/P17tQyXLMmaAAZPUI1VtE24eDDj5+7u4sOMzfTw66OfXYOFF42jH5UrvM/2W9N6cG2ltn+l7lkc5tsQxf69y/8Q8ZNW8pTYsNsdvyeeT8iDtYZZtJieWXvcEVOwVNv+IrSfUQGWMTD+WM1ZXVO+PE1x0rIEnzqcIOq01yn3ms1DmM1eHHHhimHUyn0e182SW/Sp4uc/ak5I/672uWO1bq/6JHGjxaPoVcSKIxIBw71lX1O54vxPXM5gzls2/5s8SW1cg65CuZ3E/2kd8STKzHS3+anTrOZ74PDJdauJUb2bC4qdTP8rs+5GYfgVZ/Ff4fzoYa2fxX3H2emrf2clG1xblxbqGLnnZ8YnKfu+x9v/pGWq1GZ1xmf3HchZEY6naq5X8R7Hi4zPdQ/TQeE7yL60z4oe5/y32Iz2Yyb+nble/o36z7FhyoMnPugx45l00BmYdRc8u0fnhhbZndnqInOYXjQWxlcV/VB/t46v7yD0vX5JN7zqY/Su6JqSXaT4y+bfIInEiObLYYK/JU1ts/hn7VLObYR+NgW2PwX8lL6e4//pm2rLUBpKnCl5Occ+Epd+O/1f3q/fjyf3PRIR/FgeemXJyBjB9Wudy5CzkjWGU8/Jf3bOZvqT/rHVb1rOqvxO9zyIb3Tfz84UnDosPr24kHg8nqF0GVvFl1LQ3B0z/qzii+5eFjPk72uryTKX1XevMygKLs25nml081lqoWE+Ut9P7/xtDRHcXu6dmrPO5wxz1gOmXlYNRXptHyPWIr1HGCqRvs/POzMGs9xn+e4BwYOUD6b2Wsw0DO3vRPjHaiMSFflCbWszzb002AstctvakUTcaV5T7lc0IqmrA61PrP6gvtBdY9j87Bwx7rBoe5cZvD5D55KlLJmc7u8z5NMuh/TG6TjQHFl1WbBKkPEgykX20u4/KIr48sSC9LyMHlljQ+5IO2t8jNW/pdx57GTWw8qnVgdcuQ16rpYyzAeKbjVVvkuQs9rz+tetaPNbzz8pWRf9ZyTDPYlZI54Rs/ne5R/VZsOYg2z86z602UPuoDBOWc9Ap7v8UmdV5Zr4WicvCkQereLN6Ejp/JN2dTclPxloqcpAB7xllp3t6hrHyLM1Ej/5OxouKvhgBIw/es8FKV5Lxxted/y8iNaH1Uga8tqQ51Y3/EexzhnbGs8ZlhXd2dwHjnCvViDcWj073fa+BkQNmHBW10w2Rswp7/dY8vIX/So4RWPh/Sw6k6yefaVDZCz5+rQa64RdncSesnllYzx0XNmg5uPzX4Q01gL4j64on8B8903day4zMd4O7uYO+R2PE0p3/yDsgK8cn3jd15v8/LHxIHHbgWcJp/yx029cousXjwe6s2o37jjFF0HUdT6m/CLqs6e08S8heq2emXP7r7P4Kzztk8X+BA+m9lc+0vw5kHu7ydJGPy/95SHVxUYPL/3lc/s9i9fx0UYvL/1lc/s/iDfz/A270n2YAkAAA
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2d727aQBDE8QOQxmlpSxva0vSrARtD2kr9J+X9n6k+ZaeeXuFTxRwR85NOgDEomV3v7Z3vlsnE/C8fqsmkG1o7tH5oTVX6L7osXlePNtiGDZL+X4a2sh1k5DZo45owOmADxKH7oW2iGQ23g9bX1dgn9GQLo+M2bLCnvtloQTzqww7uj/XUof3W+heBrwGPC8owzcYGRgtiUOs8qAjJ/3eUCxkt8H/3AXpmg97L0L6NfsBoSNovaBzsHFRLHdoj9qyjmdODuIO8s4s+2GioQ3eMfXvHHinQfxf67z0PLYXHvLgGvlp/GTXFfcR+x38dmHdD/MG1YHQgBnXx6LkfLVPqg/eee5DDOVDr/FMOj3+TDZ5ZfynQH9fA3dDe2gYyoD9yoOfWXkpN856t44+Uecy/Ye5zb/2lwPcd+8tQh+6Yf7Dva4H+O8f+IvD8/97aS8G9L+wDSLH/lW0gAffcd9T/Ou/XgTFXT2Nfx34dNcX8pP17xx4p3watf1H7Ye2l4J6Lx7x6kPeg7+2tv5QU+/m+r8e9WjDnM6V5N+uvI/n+p9Afub/11zIl/7f+eupqXPfg+KMnxSDMvdn/y8Dx5+PQXtoGUlB7gPe92AZabiMXwj0YxyE9yEe7iENvbAM5tkF50B9s3R8XI78ObAM9U8qJ3jkWyUFOlMYFn+M6MFpgg7QXz/thygAbeF1QOWADU46p9S+K9S+L9S9Lbf2LMY91oqYM2B9gymD9y4G9ea4HpCNpfjW0m9B+5fGvhDlpzvWwGut/Mmah+U3kOHkNPqwN7a3/Hzg+XNFzbunY9+y9qwOfW0Rsb6pxLTp8HntiLrEe4vyIXogP2Cu6rsb9Q0011q1Nxx/isa3G33aBf6/ivS77LtTdxvegHso518KdkT6s1032/JjPHvrskrTdhAYNabYiX+U1/NC5Df138ZlVZocmzucYg9pjd6H1i+qxXUc7N+Cjy+rv3zTb0v8E3+mpwff4/BU9Qr9NfMea3sP5WDO+i/P6A68fqnFPexfHsdaNax3C358Kue6oFb6h5/x7QvBXaMq+h+NYA95lj+yj7KvQC/7Jfor2s/rXh/n8/DPnTq47x07Uy4fP4nec2FfRUN90T42vEXwH1yCHXqzbpexVRI7GtdnXpN39EZ/i14f0y48d881LrkWCfWrIL+D3rk93WjjWoN87lANfSgxQgjmnhnzenJ4Z+TzyOMeZ08P9K8bhyEfMaUENFowLMeZ8SuORp8wifJ7rb/legw4es/aOOXJ4PiBh/fWsnecYY4wxxhhjjDkjfgOczqQ+AJAAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2ba07DMBCEi9S7cVDgFCCx9C7QH4CEOAFUxWqwksax92nPJ1VARIwzWc/uOmG3AwAAAMaGrCfgkAPjWE8zx6hxzNbze+BZaNwXoXFHhqwnYMycBySk4liLa9fmEao8jzMnAF0erScAmojmMYk87shiEkqMvMbIegKDg5odeEHKB6PmwJ6ghnOnHtUyDtChNKd46Au589/Ua0rHvuZ7I9eGvUPWE2DEw1quAbWBDcf95fNwo/u3o8aqFNr6l6LVm26Nh2nscnCnrD8tHLd6nmLtwV7jvxRN/d72/+M//9RwH1x/TV6ZPGdK9PjXREJ/xH85EvpHxWLvHvrLspbLo+pPhb/XGtPS+2VR9W+ltWdOcU2N4/ekP9c+hGYe4NQ/et0TPf9+Kq8l6/c1qeD42pr0pn8egxx7Adb7Mdfwpr93uOuhk/5c92AE/bnh0v/7d4wPJv09+wU3XPpHiX1v7x+Mpj83rfeTy/u/FPS3rjclQP3TDz3pT9YTqEDDg8CF25ljUmtgpJq0hVHWgEUt8L4v+3D1YZHooTbzfg1ePVCqp9w6btJnbc/X4n1Rjb575Pdga6+99pmPd6/wgMTzNK8euJWWtYr/8V0napxweri3vV4PcGqCHMCLxLNvD3jxay96Ss7Di9ZcSHiMVl6Ici849civeeSerAcOC9+DOlCT1hPFTwGQoLYWot157aBfq8dL7wBQhwAAAABRQS8HvJPqzHzPBr0AL0nnvD8l5Xn0RIrZaayi/5ch5TLs7cpBf19RN/jj5DFr92UpZ265n73v+yT/mPPpqX7WOqD+OUOMY53uObxtGeRWGVrWMuJVB8p+hv/KAI8B4Mx0LeQ+j30EMDrWPRgAAAAAAKjjBxJjx3kAkAAA
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZOQpCMRRA0V9oqZ1j4f6X4KzbcMJxIba/Mmgi76Pn9IFwAyHkVRUAAAAAAAAAAMDv67ajd/C/Om+037a+tw9e22gfZq392yYZd/q4tnalfVGHRM9Rrf1S+6L2iZ7DWvuF9kXtEj0H3qBh+tqH6WkPAEDD5PwlAZTy8C8X5q79R04Fut20D3PVPssxo99F+yypeeMrZ+2zpOaNNM/cmYWZaR9mqj0AAAAAAAAAAAAAAAAAAABQ2BOJ/T8lAJAAAA==
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Zy0rDQBiA0Sp24QV8E31mi3aj4vUF1C68FLS2Xp5GxYVYhiSTIUMGyjmrJp3A8KUklH8wAAAAAAAAAKBv443SO1gtk6Dna3C8Pvz/fKR9VneRnmtL7Q8ja6/dmyS3Nb1mf+eH1d9XudI+yU2k13dCz0vts/pK6HmhfVbPCT3Pg7W7ebdCYGfpfXDmd9+r7YR3MXltaV/MpvZAj/Y9c4rZ0x5am/ofVsyT9sU8al/Mg/adxOaNTe4jaz/dm2I+tG/0O2+smjnOMnR7175RbN5YZ9TiujftO3mp6XfQoutC+05S5o2hufZAT049b4o50b6YY+0BAAAAAAAAAAAAAAAAAAAAgBX2A4yH1wEAkAAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="Light" type="light" id="1" x="2161" gid="5" y="1071">
+      <point />
+    </object>
+    <object name="Light" type="light" id="2" x="2218" gid="5" y="1129">
+      <point />
+    </object>
+    <object name="Inn" type="restpoint" id="3" x="2608" gid="5" y="860">
+      <point />
+      <properties>
+        <property name="id" value="H12_inn" />
+        <property name="name" value="WHITETOWER_INN" />
+        <property name="sleep_cost" value="10" />
+      </properties>
+    </object>
+    <object type="entry" id="4" x="2324" gid="1" y="1305">
+      <point />
+      <properties>
+        <property name="entry_id" value="999" />
+      </properties>
+    </object>
+    <object name="Icemist Town Hall" type="castle" id="5" x="2401" gid="5" y="1022">
+      <point />
+      <properties>
+        <property name="castle_id" value="11" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="6" x="2014" gid="3" y="1196">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@ARCANE_KNIGHT" />
+        <property name="spawn" value="arcane_knight" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="7" x="2353" gid="3" y="1041">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@ARCANE_KNIGHT" />
+        <property name="spawn" value="arcane_knight" />
+        <property name="tag" value="guard1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="knight" type="spawn" id="8" x="2830" gid="3" y="1281">
+      <point />
+      <properties>
+        <property name="conversation" value="guard_male" />
+        <property name="facing" value="rd" />
+        <property name="faction" value="#guard#" />
+        <property name="name" value="@ARCANE_KNIGHT" />
+        <property name="spawn" value="arcane_knight" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="alchemist marelle" type="staticNPC" id="9" x="2508" gid="3" y="1004">
+      <point />
+      <properties>
+        <property name="facing" value="r" />
+        <property name="faction" value="#civilian#" />
+        <property name="gender" value="m" />
+        <property name="name" value="@ALCHEMIST_MATOR" />
+        <property name="portrait" value="153" />
+        <property name="shop_items" value="5000,5002,5006,5008,5009,5010,5037,6002,6011,301,302,370,380,300" />
+        <property name="sprite" value="male_red_1" />
+      </properties>
+    </object>
+    <object name="alchemist markus" type="staticNPC" id="10" x="2566" gid="3" y="946">
+      <point />
+      <properties>
+        <property name="conversation" value="H12_brewmaster" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@BREWER_TONEL" />
+        <property name="portrait" value="151" />
+        <property name="sprite" value="male_brown_12" />
+        <property name="tag" value="brewmaster" />
+      </properties>
+    </object>
+    <object name="Merple" type="plant" id="11" x="2774" gid="5" y="402">
+      <point />
+      <properties>
+        <property name="id" value="merple" />
+      </properties>
+    </object>
+    <object name="Merple" type="plant" id="12" x="1925" gid="5" y="2456">
+      <point />
+      <properties>
+        <property name="id" value="merple" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="13" x="2281" gid="3" y="2494" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="14" x="1991" gid="3" y="2544" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="15" x="1174" gid="3" y="2632" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="16" x="2396" gid="3" y="2047" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="17" x="1823" gid="3" y="1790" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="18" x="1482" gid="3" y="1779" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="19" x="1289" gid="3" y="1283" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="20" x="1431" gid="3" y="986" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="21" x="1886" gid="3" y="186">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="22" x="2232" gid="3" y="130">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="23" x="2586" gid="3" y="190">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="24" x="1511" gid="3" y="346">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="25" x="1073" gid="3" y="298">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="26" x="734" gid="3" y="612">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="27" x="327" gid="3" y="1225">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="28" x="519" gid="3" y="1059">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="flames" type="mapeffect" id="29" x="672" gid="5" y="2235">
+      <point />
+      <properties>
+        <property name="id" value="medium_flames" />
+      </properties>
+    </object>
+    <object name="Light" type="light" id="30" x="677" gid="5" y="2244">
+      <point />
+    </object>
+    <object name="Bear" type="spawn" id="31" x="997" gid="3" y="1538">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="weaponsmith" type="staticNPC" id="32" x="2224" gid="3" y="987">
+      <point />
+      <properties>
+        <property name="facing" value="l" />
+        <property name="faction" value="thuram" />
+        <property name="name" value="@ARMORER_TORDAM" />
+        <property name="portrait" value="150" />
+        <property name="shop_items" value="310,312,233,532,533,713" />
+        <property name="shop_modifier" value="1.0" />
+        <property name="sprite" value="male_red_1" />
+      </properties>
+    </object>
+    <object name="Wizard" type="spawn" id="33" x="2688" gid="3" y="1600">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#hate_through,29" />
+        <property name="conversation" value="H12_mifadis" />
+        <property name="faction" value="wizardsguild" />
+        <property name="name" value="@MIFADIS" />
+        <property name="portrait" value="154" />
+        <property name="spawn" value="wizard_green_static" />
+        <property name="tag" value="mifadis" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Woodsman" type="spawn" id="34" x="754" gid="3" y="2354">
+      <point />
+      <properties>
+        <property name="hostile" value="VariableEqual#pig_wife,85" />
+        <property name="spawn" value="h12_woodsman" />
+        <property name="tag" value="woodsman" />
+        <property name="unique_tag" value="h12_woodsman2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Rosy 1" type="spawn" id="35" x="735" gid="3" y="2399">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#pig_wife,100" />
+        <property name="conversation" value="H12_rosy" />
+        <property name="name" value="@WOODSWOMAN" />
+        <property name="portrait" value="39" />
+        <property name="spawn" value="villager_female_purple" />
+        <property name="tag" value="rosy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Ramund" type="spawn" id="36" x="2856" gid="3" y="2012">
+      <point />
+      <properties>
+        <property name="conversation" value="H12_ramund" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@RASMUND" />
+        <property name="portrait" value="152" />
+        <property name="spawn" value="villager_male_green" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="37" x="391" gid="3" y="1618">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Bear" type="spawn" id="38" x="336" gid="3" y="1630">
+      <point />
+      <properties>
+        <property name="spawn" value="polar_bear" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="39" x="2167" gid="3" y="1140">
+      <point />
+      <properties>
+        <property name="spawntable" value="rhoneis" />
+      </properties>
+    </object>
+    <object name="villager" type="spawn" id="40" x="2430" gid="3" y="1380">
+      <point />
+      <properties>
+        <property name="spawntable" value="rhoneis" />
+      </properties>
+    </object>
+    <object name="Woodsman" type="spawn" id="41" x="626" gid="3" y="2277">
+      <point />
+      <properties>
+        <property name="hostile" value="VariableEqual#pig_wife,85" />
+        <property name="spawn" value="h12_woodsman" />
+        <property name="tag" value="woodsman" />
+        <property name="unique_tag" value="h12_woodsman1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="White Wolf" type="spawn" id="42" x="925" gid="3" y="1041" width="64" height="64">
+      <properties>
+        <property name="spawn" value="white_wolf" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="craftsman" type="staticNPC" id="43" x="2136" gid="3" y="1266">
+      <point />
+      <properties>
+        <property name="conversation" value="H12_craftsman" />
+        <property name="facing" value="r" />
+        <property name="faction" value="#civilian#" />
+        <property name="gender" value="f" />
+        <property name="name" value="@ARTISAN_JEANNE" />
+        <property name="portrait" value="124" />
+        <property name="sprite" value="female_blue_5" />
+        <property name="tag" value="craftman" />
+      </properties>
+    </object>
+    <object type="entry" id="44" x="2174" gid="1" y="1265">
+      <point />
+      <properties>
+        <property name="entry_id" value="8" />
+      </properties>
+    </object>
+    <object name="father" type="spawn" id="45" x="2325" gid="3" y="1395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#fatal_eggs,19;VariableLower#fatal_eggs,44" />
+        <property name="conversation" value="H12_knave_father" />
+        <property name="name" value="@BALDWIN" />
+        <property name="portrait" value="249" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="tag" value="father" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="giant_bear" type="spawn" id="46" x="2725" gid="3" y="355">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#fatal_eggs,29;VariableLower#fatal_eggs,39" />
+        <property name="spawn" value="giant_polar_elder" />
+        <property name="wander" value="2" />
+        <property name="tag" value="h12_bear" />
+        <property name="unique_tag" value="h12_bear" />
+      </properties>
+    </object>
+    <object name="knave" type="spawn" id="47" x="2515" gid="3" y="1695">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#fatal_eggs,45" />
+        <property name="conversation" value="C9_knave" />
+        <property name="cycle" value="night" />
+        <property name="spawn" value="knave_male" />
+        <property name="wander" value="0" />
+        <property name="tag" value="knave" />
+      </properties>
+    </object>
+    <object name="father" type="spawn" id="48" x="2225" gid="3" y="1495">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#fatal_eggs,45" />
+        <property name="cycle" value="night" />
+        <property name="name" value="@BALDWIN" />
+        <property name="portrait" value="249" />
+        <property name="spawn" value="villager_male_blue" />
+        <property name="tag" value="father" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="father" type="spawn" id="49" x="2465" gid="3" y="1735">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#false,1" />
+        <property name="conversation" value="H12_father" />
+        <property name="cycle" value="night" />
+        <property name="spawn" value="father_knave" />
+        <property name="tag" value="father2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Wizard2" type="staticNPC" id="50" x="2665" gid="3" y="885">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#immersed_darkness,9;VariableLower#immersed_darkness,79" />
+        <property name="conversation" value="H12_Mundrick" />
+        <property name="faction" value="wizardsguild" />
+        <property name="name" value="@MUNDRICK" />
+        <property name="portrait" value="184" />
+        <property name="sprite" value="wizard_blue" />
+        <property name="tag" value="mage" />
+      </properties>
+    </object>
+    <object name="Wizard2" type="staticNPC" id="51" x="2665" gid="3" y="885">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#ladies_man,70" />
+        <property name="conversation" value="H12_Mundrick" />
+        <property name="faction" value="wizardsguild" />
+        <property name="name" value="@MUNDRICK" />
+        <property name="portrait" value="184" />
+        <property name="sprite" value="wizard_blue" />
+        <property name="tag" value="mage" />
+      </properties>
+    </object>
+    <object type="entry" id="52" x="2514" gid="1" y="1495">
+      <point />
+      <properties>
+        <property name="entry_id" value="7" />
+      </properties>
+    </object>
+    <object name="boy" type="spawn" id="53" x="2305" gid="3" y="1265">
+      <point />
+      <properties>
+        <property name="conversation" value="H12_boy" />
+        <property name="faction" value="#civilian#" />
+        <property name="name" value="@KAI" />
+        <property name="portrait" value="336" />
+        <property name="spawn" value="villager_male_boy" />
+        <property name="tag" value="boy" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="fur" type="spawn" id="54" x="2275" gid="3" y="1285">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,65;VariableLower#there_gifts,3" />
+        <property name="conversation" value="H12_fir_tree" />
+        <property name="faction" value="#civilian#" />
+        <property name="spawn" value="fur_tree" />
+        <property name="tag" value="fur_tree" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="lumberjack" type="spawn" id="55" x="595" gid="3" y="1205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,25" />
+        <property name="spawn" value="corpse_male_green" />
+        <property name="tag" value="lumberjack_dead" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="lumberjack" type="spawn" id="56" x="535" gid="3" y="1335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,25" />
+        <property name="spawn" value="corpse_male_green" />
+        <property name="tag" value="lumberjack_dead" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="lumberjack" type="spawn" id="57" x="495" gid="3" y="1225">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,25" />
+        <property name="spawn" value="corpse_male_green" />
+        <property name="tag" value="lumberjack_dead" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="spirit" type="spawn" id="58" x="335" gid="3" y="1135">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,30" />
+        <property name="spawn" value="winter_spirit_forest" />
+        <property name="tag" value="spirit" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="spirit" type="spawn" id="59" x="55" gid="3" y="915">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#holiday_coming,29" />
+        <property name="faction" value="neutral" />
+        <property name="spawn" value="winter_spirit_forest" />
+        <property name="tag" value="spirit" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="60" x="280" y="1090" width="350" height="60">
+      <properties>
+        <property name="conditions" value="VariableLower#holiday_coming,26" />
+        <property name="actions" value="StartConversation#lumberjack_dead,H12_spirit" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="61" x="330" y="1190" width="80" height="80">
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,27" />
+        <property name="actions" value="StartConversation#spirit,H12_spirit" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="62" x="2090" y="1030" width="530" height="430">
+      <properties>
+        <property name="conditions" value="VariableLower#holiday_coming,67" />
+        <property name="actions" value="StartConversation#snow1,H12_snow_maiden" />
+      </properties>
+    </object>
+    <object name="snow_maiden" type="spawn" id="63" x="2325" gid="3" y="1395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,65;VariableLower#holiday_coming,71" />
+        <property name="hostile" value="VariableGreater#holiday_coming,66;VariableLower#holiday_coming,71" />
+        <property name="portrait" value="214" />
+        <property name="spawn" value="evil_snow_maiden" />
+        <property name="tag" value="snow1" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="snow_maiden" type="spawn" id="64" x="2415" gid="3" y="1395">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,65;VariableLower#holiday_coming,71" />
+        <property name="hostile" value="VariableGreater#holiday_coming,66;VariableLower#holiday_coming,71" />
+        <property name="portrait" value="213" />
+        <property name="spawn" value="evil_snow_maiden" />
+        <property name="tag" value="snow2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="snow_maiden" type="spawn" id="65" x="2165" gid="3" y="1205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,65;VariableLower#holiday_coming,71" />
+        <property name="hostile" value="VariableGreater#holiday_coming,66;VariableLower#holiday_coming,71" />
+        <property name="spawn" value="evil_snow_maiden" />
+        <property name="tag" value="snow_maiden" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="snow_maiden" type="spawn" id="66" x="2365" gid="3" y="1205">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#holiday_coming,65;VariableLower#holiday_coming,71" />
+        <property name="hostile" value="VariableGreater#holiday_coming,66;VariableLower#holiday_coming,71" />
+        <property name="spawn" value="evil_snow_maiden" />
+        <property name="tag" value="snow_maiden" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="67" x="2090" y="1030" width="530" height="530">
+      <properties>
+        <property name="conditions" value="VariableEqual#holiday_coming,71" />
+        <property name="actions" value="StartConversation#fur_tree,H12_snow_maiden" />
+      </properties>
+    </object>
+    <object name="pig" type="spawn"  x="2656" gid="3" y="1600">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#hate_through,29" />
+        <property name="facing" value="rd" />
+        <property name="spawn" value="pig" />
+        <property name="tag" value="pig" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="Janod" type="spawn"  x="2585" gid="3" y="985">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,19;VariableLower#hate_through,53" />
+        <property name="conversation" value="H12_Janod" />
+        <property name="faction" value="#guard#" />
+        <property name="spawn" value="H12_janod" />
+        <property name="tag" value="janod" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="adept1" type="spawn"  x="2335" gid="3" y="1095">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,19;VariableLower#hate_through,26" />
+        <property name="spawn" value="H12_adept_greatness" />
+        <property name="tag" value="adept1" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2575" gid="3" y="1135">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2445" gid="3" y="1195">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2175" gid="3" y="1055">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2365" gid="3" y="1335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2055" gid="3" y="1105">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="adept" type="spawn"  x="2705" gid="3" y="1195">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="spawn" value="adept_greatness" />
+        <property name="tag" value="adept2" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="Rosy" type="spawn"  x="2565" gid="3" y="1335">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#hate_through,25" />
+        <property name="name" value="@ROSY" />
+        <property name="portrait" value="39" />
+        <property name="spawn" value="villager_female_purple" />
+        <property name="tag" value="rosy2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

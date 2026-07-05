@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE] This chest is empty []	port	0	"VariableEqual#keeperloot,1"	
+1	Q	[BLUE] This chest is obviously not empty, but its owner is sure to get angry if we encroach on his property []	port	3	"VariableEqual#dangerous_curiosity,100"		
+1	Q	[BLUE] This chest is obviously not empty, but its owner is sure to get angry if we encroach on his property []	port	0	"VariableGreater#dangerous_curiosity,9;VariableLower#dangerous_curiosity,99"		
+1	Q	[BLUE] This chest is obviously not empty, but its owner is sure to get angry if we encroach on his property []	port	2		
+2	A	[BLUE]Leave the chest alone[]	port.	0		
+2	A	[BLUE]Empty the chest[]	port.	0		"SetVariable#dangerous_curiosity,110;SetVariable#keeperloot,1;GainGold#400;GainItem#5031;GainItem#10146;GainItem#10147;GainItem#10148;NPCHostile#keeper_lost_kingdom;NPCHostile#ice_big_guy"	
+3	A	[BLUE]Leave the chest alone[]	port.	0		
+3	A	[BLUE]Empty the chest[]	port.	0		"SetVariable#dangerous_curiosity,120;SetVariable#keeperloot,1;GainGold#400;GainItem#5031;GainItem#10146;GainItem#10147;GainItem#10148;NPCHostile#keeper_lost_kingdom;NPCHostile#ice_big_guy"	

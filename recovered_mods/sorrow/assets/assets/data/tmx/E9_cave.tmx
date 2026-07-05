@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="80" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="faction_trap" value="beasts"/>
+  <property name="maxlight" value="60"/>
+  <property name="music" value="magical_forest"/>
+  <property name="name" value="Jabal Grotto"/>
+  <property name="name_ES" value="Gruta de Jabal"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="grassland.tsx"/>
+ <tileset firstgid="617" source="trees.tsx"/>
+ <tileset firstgid="633" source="dungeon stairs.tsx"/>
+ <tileset firstgid="637" source="dryground.tsx"/>
+ <tileset firstgid="701" source="town_objects.tsx"/>
+ <tileset firstgid="781" source="town_objexts2.tsx"/>
+ <tileset firstgid="845" source="grounds_indoor.tsx"/>
+ <tileset firstgid="1005" source="natural_grounds.tsx"/>
+ <layer name="nonwalk" width="80" height="80" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="water" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VQQqAIBAFUDtGRXX/W6bbQUF0EdJ78PfDh8+kBAAAAAAAAAAAAAAA/3JsX1+wttLfpcNh+pujv3n6gzXtebtnCP3K/3hy7hD6+L91cZOtFPqri5tsBQAAAAAAAAAAAFbwAgioV9kAZAAA
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3by07CQBiG4dq6caFINx6uxoUbTTTBRMOVqBuMLpSwcmVcGVeGqxIUb8T5QwkEisx0OowzeZ/kD6ZBnX62c6ImCQCU2870jkHfT+q7BeEYkRUAjxjvAAAA4NqWqqMN360AAAAm9rIkGaRJ8sX+tbGhyixjz21tGirrffIGgkH/CKBuO/Qr0dsN5G98q+qsZP3USsclbtbQjrzIqxlIbqtMsjsvXq8d/q6yeUpscxeX+UGP7LcMI9hrOfbdAFQSypj6HzVWZCd7qPLM9CYZL5jMSXT2mQcR9I8ulOXySVbWvksy5Hl+faN0+r8i0vfJNRnLGsRWX2XxuuJakqxkrSHjC+PzIp0Mc4PxJRSnlufyMfP9OhmGsi45WdLOZcdtmGYYi4sazzO2DOvMporQM8w9jnHP6bj66fTrSYWSaV48B3HoKcdHldOTqjtV98WrHHsPJD+ZYzU95yfzZMmwq6oTWH4H2XgfU4erMfmhuO46AeXXM3x/y9H5vKif+zZXIeQneolejqZZm5L1Wuz7fFUybBefec7e9/Pzpdg+V/uLzT3fDuB+XIeuwXvL+sxLctTmaswBbNAXVnNVkpvruVGMZq8/8kMdZF7sey8RgD3WGOYYR+1JhibrYwAAACAEv3sHb18AZAAA
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aSwrCMBQF0BoX4G+gLku3Ii7XT60LMUUHQov0g9roOZBJRuHy0gd9yTIAAF7Zj6p7u5o9AAAAAAAAaKMI3z5B2s7y4wOONXV2iHvT8efPAstYdzO118k65jaJ66J3tHZ4yuwU9N+u6voJ9LHQD3qT4fsFGVeoOwCgD/+FIF0r9xeSNR/I/R3KOVJkrtvdNWRZHu4zDvOh9orHu4JyRnmSH/CDvL8A/k3uu9fI9pHTRl6NlHmVaxNkBwAAAL/oBkyYkXEAZAAA
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aSwqAIBQF0GiHuf/FRANB4kGF2UfPmVgggbdnlDlNAAAAAAAAAAAA8C3LHLf5uDwnJiMA4K+8x9SRH29K6q+K+XtdCtYNaq/Vo7RbV+E7er8frcfXe36t9fzca03tXTdavY023recydl8fdbotR/91zzqm42eHQAAZOXeQN90sZxLCrKS2XlbVmWGAAAAAHCnFUui5rwAZAAA
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="80">
+  <object name="exit to E9" type="transition" x="520" y="2124" width="63" height="92">
+   <properties>
+    <property name="area_id" value="E9"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="655" y="2189">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="544" y="1472">
+   <properties>
+    <property name="maxlevel" value="8"/>
+    <property name="minlevel" value="8"/>
+    <property name="secretdoor_tag" value="E9_grotto_1"/>
+   </properties>
+  </object>
+  <object name="barrier conv" type="conversation" gid="245" x="1098" y="1869">
+   <properties>
+    <property name="conditions" value="IsItemActive#barrier1"/>
+    <property name="conversation" value="E9_grotto_barrier"/>
+    <property name="icon" value="blue_energy"/>
+    <property name="name" value="@MAGICAL_BARRIER"/>
+   </properties>
+  </object>
+  <object name="Sargos" type="spawn" gid="243" x="1021" y="1864">
+   <properties>
+    <property name="conditions" value="VariableGreater#web_terror,29;VariableLower#web_terror,50"/>
+    <property name="conversation" value="E9_sargos"/>
+    <property name="name" value="@DECURION_SARGOS"/>
+    <property name="spawn" value="madman_sargos"/>
+    <property name="tag" value="madman_sargos"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1131" y="1670" width="115" height="77">
+   <properties>
+    <property name="actions" value="SetVariable#web_terror,50;StartConversation#madman_sargos,E9_sargos_betrayal"/>
+    <property name="conditions" value="VariableEqual#web_terror,40"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1212" y="1720" width="58" height="126">
+   <properties>
+    <property name="actions" value="SetVariable#web_terror,50;StartConversation#madman_sargos,E9_sargos_betrayal"/>
+    <property name="conditions" value="VariableEqual#web_terror,40"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="1120" y="1824">
+   <properties>
+    <property name="active" value="VariableLower#web_terror,70"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="1120" y="1856">
+   <properties>
+    <property name="active" value="VariableLower#web_terror,70"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="1120" y="1888">
+   <properties>
+    <property name="active" value="VariableLower#web_terror,70"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="1120" y="1920">
+   <properties>
+    <property name="active" value="VariableLower#web_terror,70"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1422" y="1336">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Tyogos" type="spawn" gid="243" x="2354" y="311">
+   <properties>
+    <property name="faction" value="beasts"/>
+    <property name="spawn" value="druid_tyogos"/>
+    <property name="tag" value="tyogos"/>
+    <property name="unique_tag" value="tyogos"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wolf" type="spawn" gid="243" x="2307" y="278">
+   <properties>
+    <property name="spawn" value="dire_wolf"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Tyogos" type="spawn" gid="243" x="1928" y="1338">
+   <properties>
+    <property name="conditions" value="VariableGreater#web_terror,79;VariableLower#web_terror,90"/>
+    <property name="faction" value="beasts"/>
+    <property name="spawn" value="druid_tyogos"/>
+    <property name="tag" value="tyogos_summoned"/>
+    <property name="unique_tag" value="tyogos"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Surtag" type="spawn" gid="243" x="202" y="1052">
+   <properties>
+    <property name="faction" value="beasts"/>
+    <property name="spawn" value="bodyguard_surtag"/>
+    <property name="tag" value="surtag"/>
+    <property name="unique_tag" value="surtag"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="334" y="1179">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Surtag" type="spawn" gid="243" x="1930" y="1386">
+   <properties>
+    <property name="conditions" value="VariableGreater#web_terror,79;VariableLower#web_terror,90"/>
+    <property name="faction" value="beasts"/>
+    <property name="spawn" value="bodyguard_surtag"/>
+    <property name="tag" value="surtag_summoned"/>
+    <property name="unique_tag" value="surtag"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Xidar" type="spawn" gid="243" x="1909" y="1358">
+   <properties>
+    <property name="faction" value="beasts"/>
+    <property name="spawn" value="xidar"/>
+    <property name="unique_tag" value="xidar"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="2050" y="1195" width="71" height="310">
+   <properties>
+    <property name="actions" value="SetVariable#web_terror,80;StartConversation#xidar,E9_xidar"/>
+    <property name="conditions" value="VariableLower#web_terror,80;"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="2240" y="1344">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="2240" y="1408">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="2240" y="1376">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1429" y="1425">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1364" y="1504">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1261" y="1438">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1086" y="1317">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1165" y="1244">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1444" y="1132">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1488" y="1061">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1523" y="1005">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1589" y="852">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1242" y="786">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="1340" y="1128">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="426" y="1179">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="455" y="1281">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="431" y="1559">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="244" y="1565">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="493" y="1817">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="781" y="1748">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1027" y="1550">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="2081" y="456">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1947" y="485">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1713" y="349">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1577" y="333">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1374" y="355">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1463" y="508">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1432" y="618">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="998" y="874">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="732" y="875">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="558" y="788">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="397" y="779">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="391" y="517">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="429" y="382">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="624" y="309">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="663" y="1466">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="579,5001"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="E9_cave_secretchest1"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1542" y="1670">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1613" y="2007">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1659" y="2213">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="1938" y="2270">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="2389" y="2279">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="2199" y="2321">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="2197" y="2399">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Grotto spawn" type="spawn" gid="243" x="2364" y="2372">
+   <properties>
+    <property name="spawntable" value="jabal_grotto"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2319" y="2103">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="wolf" type="spawn" gid="243" x="2311" y="345">
+   <properties>
+    <property name="spawn" value="dire_wolf"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="wolf" type="spawn" gid="243" x="2316" y="414">
+   <properties>
+    <property name="spawn" value="dire_wolf"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2088" y="1938">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="1932" y="1909">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="1844" y="1920">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="1854" y="1808">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="1870" y="1738">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2341" y="1960">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2439" y="1081">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2104" y="922">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2161" y="994">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2111" y="1019">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1781" y="1750">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1781" y="1845">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="148" y="1172">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2325" y="246">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2039" y="919">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2040" y="1882">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="2400" y="960">
+   <properties>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="10"/>
+    <property name="secretdoor_tag" value="E9_grotto_2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2361" y="791">
+   <properties>
+    <property name="icon" value="altar"/>
+    <property name="items" value="5013,5016,5016,450"/>
+    <property name="name" value="@ALTAR"/>
+    <property name="unique_tag" value="E9_cave_secretchest2"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2364" y="852">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="14"/>
+    <property name="minlevel" value="10"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2363" y="824">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="14"/>
+    <property name="minlevel" value="10"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="147" y="1561">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="122" y="1595">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="respawning bloodcrawler" type="spawn" gid="243" x="163" y="1665">
+   <properties>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="corpse_loreseeker" type="container" gid="245" x="1373" y="1307">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="corpse_loreseeker" type="container" gid="245" x="1503" y="924">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="corpse_loreseeker" type="container" gid="245" x="117" y="1629">
+   <properties>
+    <property name="icon" value="corpse3"/>
+    <property name="loot_table" value="quest_e9_corpse,dungeon_chest_7"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="E9_cave_corpse"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="1069" y="393">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="947" y="397">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="870" y="485">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="981" y="490">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="corpse_loreseeker" type="container" gid="245" x="1879" y="1370">
+   <properties>
+    <property name="icon" value="throne"/>
+    <property name="items" value="2600,5010,5001"/>
+    <property name="name" value="@THRONE"/>
+    <property name="unique_tag" value="E9_throne"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2468" y="1664">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="varannari spawn" type="spawn" gid="243" x="2470" y="1398">
+   <properties>
+    <property name="spawntable" value="jabal_grotto_inner"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2071" y="1727">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2133" y="1737">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2464" y="1550">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2465" y="1150">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2369" y="1009">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

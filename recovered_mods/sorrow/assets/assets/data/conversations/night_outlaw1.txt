@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](an unpleasant-looking man)[] Hello, friend, I got lost here, can you tell me how to get to the library?	¿po?	2			
+2	A	Of course.	po.	3		
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	4	"playerhasGold#100000"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	5	"playerhasGold#50000"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	6	"playerhasGold#25000"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	7	"playerhasGold#10000"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	8	"playerhasGold#1000"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	9	"playerhasGold#100"	
+3	Q	 [BLUE](as soon as you started explaining the way to him, suddenly, the man pulled out a dagger and put it to your throat)[] Give up your coins or you'll die!	¿po?	10		
+4	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#100000"
+4	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#70"
+5	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#50000"
+5	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#60"
+6	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#25000"
+6	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#50"
+7	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#10000"
+7	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#40"
+8	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#1000"
+8	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#30"
+9	A	Give away your money.	po.	0		"NPCDespawn#outlaw1;loseGold#100"
+9	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#20"
+10	A	But I don't have any money!	po.	11		
+10	A	Try to dodge the dagger.	po.	0		"NPCHostile#outlaw1;LoseHP#10"
+11	Q	 Really nothing? That's a fucking beggar! Take a couple of coins so that you don't starve to death!	¿po?	0		"NPCDespawn#outlaw1;GainGold#12"

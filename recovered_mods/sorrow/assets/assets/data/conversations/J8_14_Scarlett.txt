@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	What is it, traveler?	port	7	NPCisFollower#	
+1	Q	 [BLUE](familiar to you, a young and fragile-looking huntress)[] Hi, traveler, it's quite a cozy place here, despite the frosts. The local forests are full of different game, do you want to hunt with me?	¿po?	2			
+2	A	Hello! I'm going on a dangerous hike in the Dream Valley, and I could use the help of an excellent hunter. Would you like to join me??	po.	5	"VariableGreater#lost_prince,45;VariableLower#lost_prince,60;VariableLower#assistance,10"		
+2	A	Hello, I'm sorry, but I don't have time for this right now.	po.	0		
+5	Q	 I will be happy to help you, we can hunt rare game at the same time!	¿po?	6		"NPCFollow#"
+6	A	I'm glad to hear that!	po.	0		SetVariable#assistance,10		
+7	A	Nothing, let's move on.	po.	0	"VariableLower#lost_prince,90"		
+7	A	Thanks for the help, you can go back to the city.	po.	8		
+8	Q	 I was glad to hunt with you!	¿po?	0		"NPCStopFollowing#;NPCDespawn#scarlett"		

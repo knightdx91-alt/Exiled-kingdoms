@@ -1,0 +1,5 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE]there is something in the room, but the grating blocking the entrance looks very strong, it will not be possible to break it[]	po?	2			
+2	A	[BLUE]I didn't have to go there[]	po	0			
+2	A	[BLUE]perhaps it will be possible to open it with the found key[]	po.	3	PlayerHasItem#10304	"LoseItem#10304;ItemHide#grate1;ItemWalkable#grate1;SetVariable#opens_grate,2"	
+3	Q	The grate is open!	po.	0			

@@ -1,0 +1,11 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Who is it that appeared in front of me? Ah, this is the villain who is destroying my offsprings, my servants have reported you. What do you have to say for yourself before I burn you to the ground? 	[BLUE]()[] port.	2		
+2	A	I'm not going to justify myself to monsters, I'm killing them!	port?	3			
+2	A	In fact, I was acting at the behest of a demon I encountered at the foothills of Zamohr.	port?	4			PER#2
+3	Q	Then try your luck, in an attempt to kill me! 	port.	0		"SetVariable#fiery_dancing,60;NPCHostile#gruselig;NPCSpawn#lava_team"
+4	Q	Clearly, this evil creature is trying to hurt me again. And what did Femipet promise you? A grain of your strength, in return for eternal service to him? Or were you hoping that you could just get rid of the demon by doing just one of his errands? 	port.	5				
+5	A	And what do you suggest I do?	port?	6		
+6	Q	A very simple solution is to kill him. Moreover, I will help you do it myself, the main thing is to take him by surprise, and you will serve as a great distraction so that I can attack the demon. When this thing falls, I'll take his powers, some of them will fall to you, much more than what he would have given himself. Well, I'm waiting for an answer. 	port.	7				
+7	A	Okay, let's do what you suggest.	port?	8		
+7	A	I'm not going to help you, monster.	port?	3		
+8	Q	Well done, the right decision. When the demon appears, distract him so that I can get close enough to him, and then try not to get hit by an accidental blow. 	port.	0		"SetVariable#fiery_dancing,65;NPCDespawn#gruselig"		

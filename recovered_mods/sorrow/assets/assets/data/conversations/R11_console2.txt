@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](You see a magical window that displays a text message)[] No entry allowed! A Level 2 pass card is required for access. [BLUE](A small slot below the window becomes lit)[]	¿po?	4	"VariableEqual#console2_active,2"		
+1	Q	 [BLUE](You see a magical window that displays a text message. The message is very dim, barely readable)[] Warning: Power below operational level, please provide secondary power source.	¿po?	2		
+2	A	Try to somehow attach an ancient battery into the device.	po.	3	PlayerHasItem#1022	"SetVariable#console2_active,2;LoseItem#1022"	
+2	A	What a strange device...	po.	0		
+3	Q	 [BLUE](You find an opening that fits the shape of the battery. As soon as it makes contact, the console begins to buzz back into life and the screen becomes bright)[] No entry allowed! A Level 2 pass card is required for access. [BLUE](A small slot below the window becomes lit)[]	¿po?	4		
+4	A	Insert the card that the Oracle gave you.	po.	5	PlayerHasItem#11054		
+4	A	I don't have the right card.	po.	0		
+5	Q	 [BLUE](The machine buzzs softly and the card is expelled again; you take it back)[] Access is allowed!	¿po?	0		"ItemDeactivate#barrier2"

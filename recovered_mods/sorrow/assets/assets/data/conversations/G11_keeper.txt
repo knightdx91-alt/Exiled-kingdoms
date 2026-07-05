@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](an ugly creature that was once human)[] Go away, there's nothing for you to do here.	¿po?	0	"VariableEqual#immersed_darkness,100"		
+1	Q	 [BLUE](an ugly creature that was once human)[] Go away, there's nothing for you to do here.	¿po?	9	"VariableEqual#immersed_darkness,95"		
+1	Q	 [BLUE](an ugly creature that was once human)[] Oh, did another researcher manage to get here, but it's all in vain, you won't find anything here. You are greeted by one of the last keepers, there has been nothing in this place for a long time that you take with you.	¿po?	2			
+2	A	But this is a Temple of Knowledge, I was hoping to find some strong magical artifact here!	po.	3		
+3	Q	 Was once. The Temple of Knowledge. Now it is only a refuge for all evil spirits. But you have seen for yourself what this place has become.	¿po?	4			
+4	A	Surely something must be preserved here?	po.	5		
+4	A	[BLUE](show the ancient totem you found)[] What do you say about this thing?	po.	6	PlayerHasItem#10412		
+5	Q	 No, your search is in vain.	¿po?	0		"SetVariable#immersed_darkness,95"
+6	Q	 Hmm, this is one of Tol's totems, but it has completely lost its power. Although it is useless, it clearly lures the undead here with its presence, and perhaps their can be controlled with the help of a totem. I would like to receive it in my custody, in return I can give you my ring, it has more than enough magical power that you were looking for here.	¿po?	7			
+7	A	Okay, I agree to the exchange.	po.	8		
+8	Q	 Here's my ring. And since you got what you wanted, you can leave the Temple of Knowledge, the portal located at the very bottom will send you to the surface. But if you are brave and strong, try your luck with other portals, you will find yourself in other places inhabited by powerful enemies.	¿po?	0		"LoseItem#10412;GainItem#10413;GainXP#950;SetVariable#immersed_darkness,100"
+9	A	Surely something must be preserved here?	po.	10		
+9	A	[BLUE](show the ancient totem you found)[] What do you say about this thing?	po.	6	PlayerHasItem#10412		
+10	Q	 No, your search is in vain.	¿po?	0		

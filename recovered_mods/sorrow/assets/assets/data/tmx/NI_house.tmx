@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" nextobjectid="17">
+  <properties>
+    <property name="house" value="" />
+    <property name="maxlight" value="70" />
+    <property name="name" value="New Garand House" />
+    <property name="name_ES" value="Casa en New Garand" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grounds_indoor.tsx" firstgid="329" />
+  <tileset source="teleporter.tsx" firstgid="489" />
+  <tileset source="town_objexts2.tsx" firstgid="490" />
+  <tileset source="town_objects3.tsx" firstgid="554" />
+  <layer name="nonwalk" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="ground" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFIwXUMDIwVOLA+OTQ1eEzHxuuxCGOSx0ugM/dyGYQUkes+3GZT0gdMeFPyHx86kbNJ998WsYvvdMnPfIXNcsHfIAY99dQaD6t3T+Uw2ekAgDuZX1+
+  </data>
+  </layer>
+  <layer name="ground2" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="scenery" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <layer name="objects" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFIwXYAbEZFEcAcRgStkMSN0PDyGL2eMyPhtImTAwMpkyocqZA/IkRwobRMFCGxDYmwnwDRkw5Uzz6kAEh83WYsMuFU8F8fGZQy/0cONzvQaT51kBshcd8XMCdSPPxAXzmW9LY/FAg1sOSrtCBDR63gOJ3NxDvwWG+EdB8fQJ2EJP+cdltiMd8mN/wmW8LxCY4sCED9nwHArpAcS0izMcHQOaL4QkbTSqYTwwYrObjixtk7ECm+SMVAAD8kxj6
+  </data>
+  </layer>
+  <layer name="roofs" width="24" height="24">
+    <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="601" gid="241" y="373">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="stairs down" type="transition" id="2" x="661" y="338" width="50" height="94">
+      <properties>
+        <property name="area_id" value="NI" />
+        <property name="entry_id" value="4" />
+      </properties>
+    </object>
+    <object name="Bed" type="bed" id="3" x="173" gid="245" y="457">
+      <point />
+    </object>
+    <object name="Chest" type="conversation" id="4" x="367" gid="245" y="214">
+      <point />
+      <properties>
+        <property name="conversation" value="NI_house_chest_1" />
+        <property name="icon" value="chest_gold" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="conversation" id="5" x="443" gid="245" y="214">
+      <point />
+      <properties>
+        <property name="conversation" value="NI_house_chest_2" />
+        <property name="icon" value="chest_gold" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="6" x="453" gid="243" y="456">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#want_letter_back,70;VariableEqual#adaon_free,1;VariableLower#trial_error,99" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="6" x="452" gid="243" y="456">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#time_to_pay,99;VariableLower#go_hate_through,1" />
+        <property name="conversation" value="adaon" />
+        <property name="name" value="Adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Adaon" type="spawn" id="6" x="452" gid="243" y="456">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#hate_through,99" />
+        <property name="conversation" value="adaon" />
+        <property name="spawn" value="adaon" />
+        <property name="tag" value="adaon" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="Hirge" type="spawn" id="7" x="471" gid="243" y="557">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#restoring_faith,99;VariableLower#house_hirge,1" />
+        <property name="conversation" value="hirge" />
+        <property name="spawn" value="hirge" />
+        <property name="tag" value="hirge" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Hirge" type="spawn" id="7" x="471" gid="243" y="557">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#between_worlds,99" />
+        <property name="conversation" value="hirge" />
+        <property name="spawn" value="hirge" />
+        <property name="tag" value="hirge" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Grisenda" type="spawn" id="8" x="495" gid="243" y="439">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#warrior_honor,100" />
+        <property name="conversation" value="mercenary_grisenda" />
+        <property name="name" value="Grissenda" />
+        <property name="portrait" value="14" />
+        <property name="spawn" value="grissenda" />
+        <property name="tag" value="mercenary_grisenda" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="sign3" type="conversation" id="9" x="157" gid="245" y="351">
+      <point />
+      <properties>
+        <property name="conversation" value="vault" />
+        <property name="icon" value="sphere" />
+        <property name="name" value="@SPHERE" />
+      </properties>
+    </object>
+    <object name="Peter" type="spawn" id="10" x="405" gid="243" y="575">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#simple_choice,99" />
+        <property name="conversation" value="peter" />
+        <property name="spawn" value="durak" />
+        <property name="tag" value="peter" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Damian" type="spawn" id="11" x="385" gid="243" y="305">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#lost_foreign_lands,99" />
+        <property name="conversation" value="damian" />
+        <property name="spawn" value="durak2" />
+        <property name="tag" value="damian" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="14" x="380" y="220" width="170" height="370">
+      <properties>
+        <property name="conditions" value="VariableGreater#warrior_honor,100;VariableGreater#trial_error,99;VariableLower#time_to_pay,9" />
+        <property name="actions" value="StartItemConversation#house_problem" />
+      </properties>
+    </object>
+    <object name="door" type="conversation" id="15" x="755" gid="245" y="495" width="4" height="4">
+      <properties>
+        <property name="conditions" value="VariableLower#time_to_pay,9" />
+        <property name="conversation" value="house_problem" />
+        <property name="icon" value="door" />
+        <property name="name" value="@DOOR" />
+        <property name="tag" value="house_problem" />
+      </properties>
+    </object>
+    <object name="Grisenda" type="spawn" id="16" x="745" gid="243" y="685">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#warrior_honor,100;VariableLower#time_to_pay,9" />
+        <property name="name" value="@GRISENDA" />
+        <property name="portrait" value="14" />
+        <property name="spawn" value="bandit_bitch_neutral_2" />
+        <property name="tag" value="mercenary_grisenda2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

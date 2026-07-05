@@ -1,0 +1,9 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the leader of the robbers seems to have decided to surrender)[] Hey, what are you, I'm not in business, man! They told me - to slow down one sucker here and take the things, and we'll give you some money, so I agreed, how was I supposed to know that I would deal with serious guys?! 	[BLUE]()[] port.	2		"NPCSpawn#perci"
+2	A	You better shut up before I shut you up forever.	port?	3			
+3,perci	Q	It looks like I'm a little late, and you've already figured it out yourself? And this means our bait for big fish?	port?	4		
+4,outlaw	Q	Uh, what kind of guy is this??	port?	5		
+5,perci	Q	I'm your lucky ticket. If you want to get out of this mess alive and even get the promised money, then you will do as I tell you. Do you understand me?	port?	6		
+6,outlaw	Q	Yeah, I get it, what should I do?	port?	7		
+7,perci	Q	Nothing complicated. You have to contact your employer, say that the job is done, and you will give the things you have taken away only to the most important, and you will appoint a meeting place, for example, at the pier in Solliga. Is everything clear?	port?	8		
+8,outlaw	Q	I got it all figured out. I will do it in the best possible way.	port?	0		"NPCDespawn#outlaw;NPCDespawn#outlaw_team"

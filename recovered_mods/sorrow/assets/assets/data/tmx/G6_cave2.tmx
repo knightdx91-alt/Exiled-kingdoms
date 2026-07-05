@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="5">
+  <properties>
+    <property name="maxlight" value="50" />
+    <property name="music" value="dark_chamber" />
+    <property name="name" value="Caves of the Devil's Breath" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="1309" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="cave.tsx" firstgid="1405" />
+  <layer name="nonwalk" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="water" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="ground" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2SSwrAIAxE3eTkough+qOk51RpQm1wYdVdHRjEhY+ZQaX+LQO3R7KSr05mYujoFcZw+f0BD7uHaUSuLdpD+56YcQz1tplbhJRpIYaj8xRsLVyT0xGX+1q6e+rArL1yX4T3nrbAqs3IkrxS1y88zP7j1FRSAOhzDmVABgAA
+  </data>
+  </layer>
+  <layer name="ground2" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWDHQgxMTAIMlHPPAEqmjUKRsEoGLkAAOjDJYFABgAA
+  </data>
+  </layer>
+  <layer name="ground3" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <layer name="objects" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGLlgKysDwyUg3gTEu1gpM+syUP9BqBksbAwMh4DsbRSYuRaL3kNQt5Jj7k2gHgU2THF5Mt16EUk9KxZz15NoHrJ/2ZDMA5nNDMSbSTRvB1D9ESQ9zGhuhIXlOiA+B2VfIhC+6GZiA9jC4hAePSAzN6Cbi8UMUsFGCtMzOoD5XQTqtsNQd2PDW4B4OxH274CqJVb9KBh8AACthwdgQAYAAA==
+  </data>
+  </layer>
+  <layer name="roofs" width="20" height="20">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="495" gid="245" y="360">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="exit to" type="transition" id="2" x="560" y="350" width="15" height="40">
+      <properties>
+        <property name="area_id" value="G6" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="ghost" type="spawn" id="3" x="175" gid="247" y="175">
+      <point />
+      <properties>
+        <property name="hostile" value="VariableGreater#bloody_harvest,76" />
+        <property name="spawn" value="G6_ghost" />
+    <property name="tag" value="ghost"/>
+    <property name="unique_tag" value="G6_ghost"/>
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="conversationTrigger" type="trigger" id="6" x="90" y="250" width="160" height="60">
+      <properties>
+        <property name="conditions" value="VariableLower#bloody_harvest,76" />
+        <property name="actions" value="StartConversation#ghost,G6_ghost" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

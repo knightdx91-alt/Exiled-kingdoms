@@ -1,0 +1,16 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](having received a beating, the fugitive dejectedly followed you)[] 	port. port.	0	"VariableEqual#saving_escape,30"	"NPCDespawn#fugitive;NPCFollow#;SetVariable#saving_escape,40"	
+1	Q	[BLUE](you dealt with the robbers, the survivors rushed away, and the fugitive you were looking for remained in place)[] 	port. port.	9	"VariableEqual#saving_escape,20"		
+1	Q	[BLUE](group of unkempt-looking people)[] Oh, damn it! We thought it was the guards! Hello, tramp, this is not the best place to walk. 	port. port.	2	"VariableEqual#saving_escape,10"		
+1	Q	[BLUE](this tramp doesn't want to talk to you)[] 	port. port.	0			
+2	A	I'm looking for someone lost from a village by the lake, maybe you've seen someone?	port?	3		
+3,fugitive	Q	Oh, damn, they finally found me...	port?	4			
+4	A	So you're the one who ran away? They're waiting for you there...	port?	5		
+5,fugitive	Q	No, there's no way I'm going back! I'd rather stay here than end up there again!	port?	6			
+6,convict	Q	You heard him, he doesn't want to come back, so get lost!	port?	7			
+7	A	I'm not leaving without him.	port?	8		
+8,convict	Q	Then we'll help you leave!	port?	0		"NPCHostile#convict;NPCHostile#convicts;SetVariable#saving_escape,20"		
+9	A	Well, if those freaks kept you here, they're gone now. Let's go to the village, your wife is waiting for you there.	port?	10		
+10,fugitive	Q	A wife? Nothing like that! I'm not going back to that horrible place! I don't care what they said, don't believe them! I went there with my buddies, looking for shelter, they disappeared somewhere! I couldn't find them, I wanted to leave, but they wouldn't let me go! I barely managed to escape, I'm not going back there voluntarily!	port?	11			
+11	A	Stop making up nonsense! They won't do anything to you there, let's go!	port?	12		
+12,fugitive	Q	No, no way!	port?	0		"NPCDespawn#convicts;NPCHostile#fugitive;SetVariable#saving_escape,30"		

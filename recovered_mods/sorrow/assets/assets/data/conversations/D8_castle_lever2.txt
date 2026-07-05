@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This lever is stuck.	Esta palanca está atascada.	0	VariableGreater#prisoners_dilemma,29	
+1	Q	This lever has already been activated.	Esta palanca ya ha sido activada.	0	IsItemActive#lever2	
+1	Q	This lever opens the cell grate next to it.	Esta palanca abre la puerta de la celda que está junto a ella.	2		
+2	A	Open the cell.	Abrir la celda.	3		
+2	A	Hmm... Maybe I should talk to the guy inside before doing anything.	Hmmm... Quizá primero debería hablar con el prisionero.	0		
+3	Q	The grate slides up, and the prisoner comes out, smiling. Suddenly, he turns into a monstruous werewolf and jumps at you!	La reja se abre, y el hombre sale de la celda, sonriendo. De pronto, se transforma en un gigantesco hombre-lobo que salta sobre tí.	0		"ItemHide#grate2;ItemWalkable#grate2;ItemActivate#lever2;NPCDespawn#human_werewolf;NPCSpawn#D8_werewolf"

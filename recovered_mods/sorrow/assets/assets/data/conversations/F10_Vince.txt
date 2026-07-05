@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Don't worry, bro, Philosopher is a good man, he knows his business.	port.	0	"VariableGreater#changing_hierarchy,9"		
+1	Q	Salute, bro.	port.	0	"VariableGreater#size_matters,86"		
+1	Q	The boss is waiting for us.	port.	0	"VariableEqual#size_matters,85"		
+1	Q	Guys, that's where you are. I've been looking for you!	port.	6	"VariableEqual#size_matters,82"		
+1	Q	We need Johnny alive, so if he resists, don't overdo it by calming him down.	port.	0	"VariableGreater#size_matters,14"		
+1	Q	 Salute, bro. So the boss brought you up to speed? The situation is like this, Johnny has disappeared, we need to find him, he usually hangs out in New Garand in one of the dorms. I have no idea how stupid he is to hide in that place, but we still need to check out this lair, maybe we'll be lucky.	¿po?	2			
+2	A	Okay, then we won't linger.	po.	3		
+3,vince	Q	 That's right, let's go.	¿po?	4		"NPCFollow#"
+4,boss1	Q	 I'll catch up too when you find Johnny.	¿po?	5				
+5,vince	Q	 Got it, boss.	¿po?	0		"SetVariable#size_matters,15"
+6,johnny	Q	 Vince, actually, we were looking for you! We drove to the devil's island, but you're not there, you've already somehow ended up here!	¿po?	7				
+7,vince	Q	 Well, I haven't actually been to Skull Island, although I wanted to go there at first. And then I found out that you were looking for me, I wanted to intercept you on the way so that you wouldn't climb this island in vain, but I didn't have time.	¿po?	8		
+8,johnny	Q	 I have no idea what the topic is with this island, but obviously no one there would help you. But we agreed with the wizards, they will do everything right for you!	¿po?	9				
+9,vince	Q	 Actually, I don't need it anymore, I talked to Jumbo, and we decided that it was ours... friendship is more important than some stupid arguments, in general, it doesn't matter to us who has more, because happiness isn't in penises?	¿po?	10		
+10,johnny	Q	 What the fuck?! I've seen all sorts of shit while I've been running back and forth to help you, and it's all going to fuck up?!	¿po?	11		"NPCStopFollowing#"		
+11,vince	Q	 To make you feel better, hold a bag of gold, and to you, bro, this is a great little thing for your efforts. Thank you for helping me, even though it turned out to be unnecessary. Back to the boss.	¿po?	12		"NPCFollow#"
+12,johnny	Q	 For me to sign up for such a case again, it's better to die! Good luck to you, so long!	¿po?	0		"NPCDespawn#johnny;GainItem#10615;SetVariable#size_matters,85"

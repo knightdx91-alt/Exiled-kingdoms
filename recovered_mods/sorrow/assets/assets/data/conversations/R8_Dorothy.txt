@@ -1,0 +1,28 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	13	NPCisFollower#	
+1	Q	 Greetings, traveler, I am the head and chief of the guards of this Dorothy settlement. These places are restless, but my guards and I are doing everything possible to ensure that everyone in our settlement is safe. You can visit a merchant or relax at a local tavern before continuing on your way again. 	¿po?	2			
+2	A	Hello, do you know where Alarion is? Is he in the settlement?	po.	27	"VariableEqual#royal_will,95;VariableLower#talkz_dorothy2,1"		
+2	A	Hello, have you met any zombies in the vicinity who look like priests?	po.	14	"VariableGreater#last_honors,9;VariableLower#last_honors,39;VariableLower#talkz_dorothy,1"		
+2	A	Hello, I've been asked to deliver this message to you.	po.	15	"PlayerHasItem#10831"		
+2	A	I understand, I will keep in mind.	po.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		STR#5
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	12	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	12	PlayerHasItem#10402		INT#5
+12	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of her)[]	port.	0		"LoseItem#10402;SetVariable#dorothy_follow,3;NPCFollow#"	
+13	A	Good girl.	port.	0		
+13	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#dorothy_follow,1;NPCStopFollowing#"
+14	Q	Indeed, a couple of days ago, one of our hunters saw a similar group of zombies coming from somewhere in the west. Most likely, they are now wandering near the old royal castle in the north, then the cursed place attracts all sorts of evil spirits, it is scary to imagine what is happening inside it, for many years no one dares to cross the threshold of the old castle, and if someone has been foolish, he clearly not returned.	port.	0		"SetVariable#talkz_dorothy,2;SetVariable#last_honors,40"	
+15,dorothy	Q	[BLUE](the woman examined the message you gave her)[] Hmm, it's probably not intended for me, but for Alarion. [BLUE](she called out to one of the guards)[]	port.	16			
+16,alarion	Q	[BLUE](frowning man approached her, took the message, and looked at you carefully)[] Greetings, hero. We have heard of your deeds, and thanks to you, the suburbs of Istril and its surroundings have become safe. I am pleased to meet you.	port.	26	"VariableGreater#trouble_again,99;VariableGreater#true_lie,99"		
+16,alarion	Q	[BLUE](frowning man approached her, took the message, not paying any attention to you)[] What nonsense, why is he sending unknown people as messengers?	port.	17			
+17,alarion	Q	[BLUE](after finishing reading the message, the man finally looked at you)[] So where are you from? From Istril or the Quiet Haven?	port.	18			
+18	A	In fact, I have come from Varannar to your lands.	port.	19		
+19,alarion	Q	So that's how it is. [BLUE](the man looked at the message again)[] Then it makes sense. Dorothy, could you send a message to Havis?	port.	20			
+20,dorothy	Q	Of course, but she won't be welcome here in the settlement.	port.	21			
+21,alarion	Q	I understand, but this is a very important matter, and our future may depend on it. I want everything to go perfectly. [BLUE](the man turned to you again)[] Thank you for delivering this message, and if you don't mind, there's another message that needs to be delivered. You'll receive a much larger reward than the gatekeeper promised.	port.	22			
+22	A	Where and to whom should this message be delivered?	port.	23		
+23	Q	To my men. I sent them north on a mission, but circumstances have changed, and the mission has become more dangerous than expected. I need to tell them to return. They left recently, and you can catch up with them in the northwest, beyond the forest.	port.	24			
+24	A	Crearly, I'll try to catch up with them and bring them back.	port.	25		
+25	Q	Good luck, and be careful, the forest is full of dangerous animals.	port.	0		"LoseItem#10831;NPCSpawn#corpse;NPCDespawn#alarion;SetVariable#one_way_road,20"
+26,alarion	Q	[BLUE](after finishing reading the message, the man looked at you again)[] So where are you from? From Istril or the Quiet Haven?	port.	18			
+27	Q	Yes, he's back in the settlement, not himself. Now he usually hangs out at our tavern, you can find him there.	port.	0		"SetVariable#talkz_dorothy2,2"	

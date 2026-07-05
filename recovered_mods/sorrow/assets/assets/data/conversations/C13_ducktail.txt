@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Greetings, Impiri.	¿po?	0	"VariableGreater#size_matters,34"		
+1	Q	 These creatures are dead, then, as promised, I will tell you a legend from a long time ago. Those were harsh times for my people. The Orogg witches hunted the men of the tribe in order to exterminate them all and establish their matriarchy. And they would have done it, if not for the Strong Trunk.	¿po?	11	"VariableEqual#size_matters,30"		
+1	Q	 Greetings, Impiri.	¿po?	0	"VariableGreater#size_matters,24"		
+1	Q	 Greetings, Impiri. I am a Duck's Tail.	¿po?	2	"VariableEqual#talk_redmoon,2"		
+1	Q	 Greetings, Impiri. I am a Duck's Tail.	¿po?	0			
+2	A	Hello, Duck Tail. Could you tell me about wild magic?	po.	3		
+3	Q	 We don't share our secrets with Impiri [BLUE](It is necessary to have a reputation of 10 or higher in varannari)[].	¿po?	0	VariableLower#REP_varannari,10	
+3	Q	 We don't share our secrets with Impiri. But you are famous among us, what exactly did you want to know?	¿po?	4			
+4	A	Uh, I'm interested in the method of penis enlargement using your magic.	po.	5		
+5	Q	 Hmm, I see. All the men of my people have big penises since birth, so we don't need such magic. But this is clearly not the case with you, Impiri, as with us. But I know one legend, although it is unlikely that it will be useful.	¿po?	6			
+6	A	Still, I'd like to hear it.	po.	7		
+7	Q	 Well, if you want, I'll tell this legend if you do me a favor.	¿po?	8			
+8	A	What should I do?	po.	9		
+9	Q	 Recently, strange beastmen have appeared in our area. I suspect they came from the snowy land of the sorcerer Impiri. They are unnatural creatures that contradict the order of life. They usually roam at night near Mount Orogg, I could gather hunters and deal with them on my own, but now the moon is in an unfavorable stage for hunting, so help me find and destroy them, and I will fulfill your request.	¿po?	10			
+10	A	Okay, so be it.	po.	0		"SetVariable#size_matters,25"
+11	A	 And who was he?	¿po?	12			
+12	Q	The greatest hero, and to possess the largest penis in the history of our world. He could impregnate up to a hundred women a day, and the children from his seed were born stronger and healthier, and they grew faster than usual. So he saved the population of our people, thwarting the villainous plans of the witches, and became the strongest leader.	po.	13		
+13	A	 But these witches weren't defeated?	¿po?	14			
+14	Q	Unfortunately, no. After the death of the Strong Trunk, the oldest shamans of the tribe decided to insure themselves in case of a repeated attack by witches. They dried and pulverized the penis of a Strong Trunk, created a potion from it that could grant great masculine strength. But trouble happened, one of the witches stole this potion. It is not known if she just wanted revenge on my people or wanted something else, the witch drank all the potion, and she grew a huge penis. The other witches exiled her for what had happened, and she went to the far southern humid forests. She may know the secret you need, but no one knows where to look for her.	po.	15		
+15	A	 Well, thank you for sharing this interesting information.	¿po?	16			
+16	Q	Don't thank me, I don't think you've learned anything useful from my story. I would be happy to help you solve your problem, but I do not know how to solve it, and I have not heard about it from other shamans of my people.	po.	17		
+17,johnny	Q	 That's bad luck, we'll have to drag ourselves to the Icemist! I know boss's man there, maybe he can help us in some way if we find him!	¿po?	18		
+18	A	Apparently, this will have to be done.	po.	0		"SetVariable#size_matters,35"

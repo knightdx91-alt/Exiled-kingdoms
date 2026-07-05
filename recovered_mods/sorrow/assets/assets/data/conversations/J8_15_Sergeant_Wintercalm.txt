@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	10	"VariableEqual#swintercalm_follow,3;NPCisFollower#"	
+1	Q	 It is necessary to deliver the body of the deceased to the castle to find out exactly who we found.	¿po?	0	"VariableEqual#lost_prince,65"		
+1	Q	 I hope we're lucky enough to find at least some traces of prince Vardy to continue the search.	¿po?	0	"VariableEqual#lost_prince,55"		
+1	Q	 I'm sure the huntsmens know how to climb this plateau.	¿po?	0	"VariableEqual#lost_prince,35"		
+1	Q	 I hope our forester really saw prince Vardy, otherwise he will not be lucky if he lied.	¿po?	0	"VariableEqual#lost_prince,25"		
+1	Q	 [BLUE](a little arrogant warrior girl, it looks like she keeps order in the camp)[] If you have something important to report, say it, and if not, get lost, I don't have time for crooks and their trifles.	¿po?	2		
+2	A	Hello, your sister sent me, she wants you to tell me about the forester who saw prince Vardy.	po.	3	"VariableEqual#lost_prince,10"		
+2	A	I won't waste your time.	po.	0		
+2	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	9	PlayerHasItem#10402		STR#4
+2	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	9	PlayerHasItem#10402		AGI#5
+2	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	9	PlayerHasItem#10402		INT#5
+3	Q	 What? Is she serious or what? I wanted to deal with it myself! Although okay, I know my sister well - it's impossible to convince her, no matter how hard you try. This forester lives in a village near the southern wall of the city, although he goes into the forest for a long time, so if you're lucky, you'll find him at home.	¿po?	4		
+4	A	Thanks for the information.	po.	0		SetVariable#lost_prince,20		
+4	A	You know, you don't have to listen to your sister, you're already an adult girl! Let's go check on this forester together, I'll probably need help finding the prince.	po.	5			PER#3
+5	Q	 Hmm, you're right! I'm not that little girl anymore who can be constantly bullied! And my sister, after she received the rank of captain and the appointment of a royal guard, became completely arrogant and became unbearable! She thinks she knows what's best for me, and she's not interested in my opinion at all!	¿po?	6		
+6	A	So, are we going to this forester?	po.	7		
+7	Q	 Of course! It is unlikely that anything will happen here in my absence, especially since there is a captain Doomalone here who will solve problems if they arise. Let's go!	¿po?	8		"NPCFollow#"
+8	A	Let's go.	po.	0		SetVariable#lost_prince,25		
+9	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#swintercalm_follow,3;NPCFollow#"	
+10	A	Good girl.	port.	0		
+10	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#swintercalm_follow,1;NPCStopFollowing#"

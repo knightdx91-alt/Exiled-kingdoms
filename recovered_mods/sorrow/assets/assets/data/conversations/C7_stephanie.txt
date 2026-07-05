@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 What happened? Did you attack the boss?!	¿po?	2	"VariableEqual#time_to_pay,100"		
+1	Q	 Don't hang around here if the boss has assigned you a job.	¿po?	3	"isNight#;VariableEqual#time_to_pay,55;VariableLower#steph_talk,1"		
+1	Q	 Don't hang around here if the boss has assigned you a job.	¿po?	0	"VariableEqual#time_to_pay,55"		
+1	Q	 Hi, the boss is here if you need to see her.	¿po?	0	"VariableGreater#time_to_pay,36"		
+1	Q	 Turn around and go back, you have nothing to do here!	¿po?	0		
+2	A			0		"NPCHostile#steph;NPCHostile#frank;NPCHostile#nail;NPCHostile#ginn;NPCHostile#bandit2c7;NPCHostile#bandit3;NPCHostile#bandit4"
+3	A			0		"SetVariable#steph_talk,2;NPCSpawn#muqrin;NPCSpawn#muqrin2;NPCSpawn#corpse;NPCSpawn#muqrin_team"

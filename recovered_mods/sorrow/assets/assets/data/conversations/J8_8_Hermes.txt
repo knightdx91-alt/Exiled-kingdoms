@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I'm sorry, but I don't have the energy to talk, I barely have enough to move my legs.	¿po?	9	VariableEqual#skilled_hands,60	
+1	Q	[BLUE](a completely exhausted prisoner, but the release from the lock gives him new strength)[] I did not hope that I would ever get out of the cage, I am very grateful to you!	po.	2	"VariableGreater#skilled_hands,15;VariableLower#skilled_hands,60"	
+2	A	Are you, by any chance, the inventor Hermes from the settlement at the mouth of Despair?	po.	3		
+2	A	I was glad to help you.	po	0		
+3	Q	How do you know my name? Did old fellow Bloodsilver send someone to my rescue?	po.	5		
+5	A	It's him, and now let's get out of here, I'll take you back to the settlement.	po.	0	"VariableGreater#skilled_hands,35;VariableLower#skilled_hands,60"	"NPCFollow#;SetVariable#skilled_hands,60"	
+5	A	It is he, I will deliver you back to the settlement. But then who are you?	po.	6	VariableEqual#skilled_hands,30	
+5	A	It's him, and now let's get out of here, I'll take you back to the settlement.	po.	0	"VariableGreater#skilled_hands,15;VariableLower#skilled_hands,25"	"NPCFollow#;SetVariable#skilled_hands,60"	
+6,falsehermes	Q	I'm just a prisoner, I'm sorry I tricked you, but you're not going to leave me here, are you?	po.	7		
+7,hermes	Q	I think it would be a terrible thing to leave someone in this bad place.	po.	8		
+8	A	Okay, let's get out of here.	po.	0		"NPCFollow#;SetVariable#skilled_hands,60"
+9	A	Okay, hang on, we'll get to your settlement soon.	po.	0		

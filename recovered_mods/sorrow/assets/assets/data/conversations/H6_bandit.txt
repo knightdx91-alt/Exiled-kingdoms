@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](unpleasant-looking types)[] What are you doing here? Get out of here while I'm being kind! [BLUE](bandit took a dagger from his belt and pointed it threateningly at you)[]	¿po?	2	"VariableEqual#changing_hierarchy,25"		
+1	Q	 [BLUE](unpleasant-looking types)[] What are you doing here? Get out of here while I'm being kind! [BLUE](bandit took a dagger from his belt and pointed it threateningly at you)[]	¿po?	5			
+2,philosopher2	Q	 If you pick up a knife - cut, if you pick up a Doshirak - eat!	¿po?	3				
+3,bandit	Q	 Uh-uh???	¿po?	4			
+4,philosopher2	Q	 Okay, let's kill them silently!	¿po?	0		"SetVariable#ne_vduplyat,2;NPCHostile#bandit"
+5	A	Okay, I'm leaving.	po.	0		
+5	A	Get out of here while I'm not mad!	po.	0		"NPCHostile#bandit"

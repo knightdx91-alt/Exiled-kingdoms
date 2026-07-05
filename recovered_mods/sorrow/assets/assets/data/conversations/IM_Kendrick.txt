@@ -1,0 +1,22 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](the wizard looks at the zombie bodies in shock)[] Damn, it's the captain of the guard, and I recognize some of the others too-they're locals! I've heard rumors that people are disappearing in the city, but I didn't give it any importance how terrible the reason for these disappearances turns out to be.! 	[BLUE]()[] port.	17	"VariableEqual#between_worlds,35"		
+1	Q	Where are the guards?! 	port.	0	"VariableEqual#between_worlds,30"		
+1	Q	[BLUE](not a young wizard looking at a statue, distracted when you approach)[] Ah, greetings, I'm Magister Kendrick, Sansa informed me about you, did you want to discuss the Lady of the Night? I'm not surprised, interest in her has increased dramatically lately, and all because of the changes that have happened to her. 	[BLUE]()[] port.	2			
+2	A	Changes?	port?	3			
+3	Q	Yes, don't you notice? It was as if the old charming power that lived in her had disappeared, like something alive. 	port.	4		
+4	A	I may know the reason for this change, but I'll tell you if you help me learn more about this statue, and you'll keep what I tell you a secret.	port?	5			
+5	Q	Of course, you intrigue me. 	port.	6		
+6	A	In general, I am to blame for what happened, as I freed the entity that was trapped in the statue. [BLUE] (in short, you told what you remembered about what happened to the statue and what you learned from Orion)[]	port?	7			
+7	Q	Hmm, well, you obviously acted very stupidly, although I understand your curiosity, I'm sure most of the wizards of Icemist, if they were in your place, would do the same thing. Well, if you've shared your secret with me, then I've shared my secret with you. Despite the public version that magicians have not discovered anything magical in the statue over the years of research, a narrow circle of close to the Queen of magisters knows what kind of creature was trapped in the stone, and even some bad rituals were conducted. 	port.	8		
+8	A	Were they trying to free her?	port?	9			
+9	Q	That's partly true, but most likely the main goal was to take control of this creature. Obviously, these attempts were unsuccessful, since after being released, this creature immediately escaped. So you're suggesting that this creature is the very ancient Varannari queen? 	port.	10		
+10	A	Yes, I'm sure it's her.	port?	11			
+11	Q	Hmm, I studied the history of the Ilmara people and their faith, as I remember the witch queen was defeated by Arbenos, but it is not described exactly what happened to her. It can be assumed that the witch's body was taken by her supporters and left in the tomb where you found that heart, and her spirit was somehow trapped in this statue, which served as a kind of cocoon for her rebirth. I assume that the witch created it herself, as a safety net in case of her death, since a reaction occurred with a part of her flesh, and for sure, the connection between the statue and the witch is still preserved, which will allow us to defeat her, the main thing is to understand how all this dark magic works. 	port.	12		
+12	A	This is great news, we have a chance to defeat this witch queen!	port?	13			
+13	Q	But there is one problem - we need powerful enough magicians who will be interested in doing this, as long as they are safe here in the city, they will not care about all the troubles that the witch will arrange outside these walls. 	port.	14		
+14	A	But this evil will affect all kingdoms!	port?	15			
+15	Q	Yes, I understand your aspirations and heroism, but... [BLUE](he falls silent as you are enveloped in black smoke, and suddenly you notice dark silhouettes pouncing on you)[] 	port.	16		
+16	A	It looks like evil has already arrived here!	port?	0		"NPCSpawn#zombie_var;SetVariable#between_worlds,30"
+17	A	It's more serious than we thought.	port?	18			
+18	Q	Yes, it looks like this creature doesn't like anyone prying into her secrets, so I'm right, and we're on the right track - this statue is our chance to defeat the witch queen! Taking into account what has happened now, I hope our queen and her supporters will take a concrete approach to solving this problem. I'll see you later. 	port.	19		
+19	A	Okay, agreed.	port?	0		"NPCDespawn#kendrick;SetVariable#between_worlds,40"

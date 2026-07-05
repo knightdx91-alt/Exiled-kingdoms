@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 What?	¿po?	5	"VariableEqual#l9bandit,1"		
+1	Q	 [BLUE](it seems that this is the only one of the boss's thugs who managed to survive)[]	¿po?	2		"NPCHostile#dominatrix2;NPCHostile#dom_team2"
+2	A	Hey, are you okay?	po.	3		
+3	Q	 Aha.	¿po?	4		"NPCFollow#"		
+4	A	Then let's go do our job.	po.	0		"SetVariable#l9bandit,1"
+5	A	Nothing.	po.	0		
+5	A	Go back to the boss.	po.	6		"NPCDespawn#l9_bandit"
+6	Q	 Aha.	¿po?	0		"NPCStopFollowing#"		

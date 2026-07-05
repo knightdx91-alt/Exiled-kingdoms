@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	I am the Bridge! And you - go where you wanted!	¿po?	0	"VariableGreater#further_into_forest,44"		
+1	Q	Hey, what the hell, man?! My friends come here and complain that they are being beaten by some guy who looks very similar to you in description! What's up, man?!	¿po?	4	"VariableEqual#further_into_forest,43"		
+1	Q	I am the Bridge! And you're a loser, ha ha ha!	¿po?	0	"VariableGreater#further_into_forest,34;VariableLower#further_into_forest,43"		
+1	Q	I am the Bridge! And who are you, what do you want here?	¿po?	2			
+2	A	I was just walking here, I need to get to the other side.	po.	3		
+3	Q	Yeah, right now! He needs it, you see. You're not fucking going through here, do you understand me?! I'm the only bridge here, and there's nothing you can do! Loser, ha ha ha!	¿po?	0		"SetVariable#further_into_forest,35"
+4	A	I need to get to the other shore to save a friend whom the little green men want to eat, and you won't let me through, so I started beating up your friends.	po.	5		
+5	Q	Damn, but you could have told me right away that you needed to get to the other shore so urgently, and not start a fight! Okay, come on in, there are three camps of little green men, in one of them you will definitely find your friend!	¿po?	0		"ItemActivate#bridge;ItemWalkable#bridge;SetVariable#further_into_forest,45"

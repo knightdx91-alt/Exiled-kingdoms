@@ -1,0 +1,63 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a serious-looking, well-dressed man)[] Oh, Your Grace! You have returned to us! What wonderful news! The king was just about to send some reinforced troops in search of you.	port	24	"VariableGreater#strangers_foreign_lands,39;VariableLower#strangers_foreign_lands,51"		
+1	Q	[BLUE](a serious-looking, well-dressed man)[] Hello, hero! I'm always glad to see you in our city!	port	50	"VariableEqual#true_lie,100"		
+1	Q	[BLUE](a serious-looking, well-dressed man)[] Hello, please let me know as soon as you make any progress in your work.	port	46	"VariableGreater#true_lie,14"		
+1	Q	[BLUE](a serious-looking, well-dressed man)[] Greetings, hero! I hope you've changed your mind and will take on my work after all?	port	44	"VariableEqual#true_lie,10"		
+1	Q	[BLUE](a serious-looking, well-dressed man, clearly a local official)[] Greetings, hero! I am the governor of this city. Our spies have reported that you were the one who killed the orc general, which allowed our warriors to defeat the enemy. It is strange that neither you nor Captain Greedy sent anyone to reward you for this feat!                                      	port	4	"VariableEqual#fee_for_merits,100"		
+1	Q	[BLUE](a serious-looking, well-dressed man, clearly a local official)[] Hello, I am the governor of this city. Do not disturb me without a reason. If you have any requests, please submit them in writing to my assistants. They will review them and, if they deem them important, will pass them on to me.	port	2		
+2	A	Clearly.	port.	0		
+4	A	In fact, there was a very unpleasant incident between me and Captain Greedy. [BLUE](and you tell them everything that happened in the sewers of Istril, and what the late captain told you)[]	port.	5		
+5,guardmaster	Q	[BLUE](man in the armor frowned)[] I'm sending my men to the suburbs to investigate all of Captain Greefy's dirty, shameful, and illegal activities.	port	6		
+6,governor	Q	And obviously, we'll have to find someone new to fill his position. But right now, it doesn't matter, let's right the wrong, here's your reward for the feat, hero! [BLUE](he handed you a heavy bag of coins)[]	port	7		
+7,guardmaster	Q	And accept this weapon from me personally, as compensation for having to deal with Captain Greedy's nefarious deeds. [BLUE](the man unclipped a dagger sheath from his belt and handed it to you)[]	port	8		
+8,governor	Q	And by the way, since you've already helped our city, would you mind doing one more favor?	port	9		
+9	A	What exactly needs to be done?	port.	10		
+10,governor	Q	You've probably noticed that the city's sewers are filled with undead, have to use protective spells to keep them from escaping. And the reason for this disaster is connected with one wizard. He used to serve at the royal court, but then he became involved in black magic, and other wizards exposed him and banished him from the city. However, this villain took refuge in the sewers and began committing evil deeds in retaliation.	port	11		
+11	A	So I have to find this sorcerer in the sewers and eliminate him?	port.	12		
+12,governor	Q	Yes, although it's not that simple, Istril was built on the site of ancient ruins, and some of their remnants, still intact, are located under the sewers, and it's likely that the villain is hiding somewhere within them. Additionally, the villain is spreading malicious rumors about our kind king, and he will undoubtedly try to convince you of his lies. Don't fall for his deceitful schemes!	port	13		
+13,guardmaster	Q	[BLUE](man in armor hesitated, wanting to add something to the official's words, but decided to remain silent)[]	port	14		
+14,governor	Q	So you agree to take on this job, the reward will be more generous than the one you received?	port	15		
+15	A	Yes, I agree to this job.	port.	16		"SetVariable#true_lie,15"
+15	A	No, this job is too dangerous.	port.	17		"SetVariable#true_lie,10"
+16,governor	Q	Glad to hear it. This mage has a special spell book, and he won't part with it unless he's dead. Bring the book as proof of his death.	port	18		
+17,governor	Q	If you change your mind, you can meet me here before I find someone else for the job.	port	18		
+18,guardmaster	Q	I also have a task for you, if you're willing to accept it. Although our warriors have managed to defeat the orc army, there are still many orcs and minotaurs in the area, and people continue to disappear. Our scouts believe that the source of these creatures is in the western part of the kingdom, in area the Istrilian Tract, and it may be possible for you to discover how they entered our lands and how we can eliminate their presence forever.	port	19		
+19	A	I'll try to find out something.	port.	20		
+20,guardmaster	Q	There's also a royal mage who went missing in the area, and our scouts haven't been able to find her. Maybe you'll be lucky enough to find her, if she's still alive.	port	21		
+21	A	I will definitely find this sorceress.	port.	22		
+22,guardmaster	Q	I will be very grateful if you can solve the problem with the strangers and bring the sorceress back, and the Royal Magical Council will reward you for saving their colleague.	port	23		
+23	A	Clearly.	port.	0		"GainItem#10829;GainGold#4500;IncVariable#REP_sorrowland,8;SetVariable#strangers_foreign_lands,10"
+24,evelina	Q	He wasn't in any particular hurry to organize my search. This hero saved me, pulled me from the clutches of the strangers who had overrun our lands; he should receive the highest honors and a significant reward!	port	25		
+25,governor	Q	His Majesty has his hands full; these are troubled times, but he wanted to personally search for you as quickly as possible. Well, the hero who rescued you will, of course, receive a worthy reward.	port	26		
+26,evelina	Q	I will definitely check for myself that you will not deprive my hero!	port	27		
+27	A	So you're a princess?	port.	28		
+28,evelina	Q	Yes, although I am the third oldest child of one of the king's younger cousins, and I am the forty-seventh or forty-sixth in line to inherit the throne. So I don't like to advertise my title, and few people know that I am a princess. For example, I was chosen for the magical council based on my abilities and talent, not because of my royal blood!	port	29		
+29,governor	Q	[BLUE](after this speech, the man rolled his eyes until Evelina looked in his direction)[]	port	30		
+30,guardmaster	Q	I am very grateful to you, hero, for saving Princess Evelina Lightwind. I am responsible for all the citizens of the city, and it is a shame that I have failed one of them, and it is doubly shameful that this person is a member of the royal family. I am ready to resign from my position immediately and face the king for allowing you to endure all the horrors you have experienced.	port	31		
+31,evelina	Q	Oh, you shouldn't do that, captain Titus! You've been doing a great job all these years. The fact that I was captured by the orcs is a misunderstanding that I'm personally responsible for. If you leave, they'll send some idiot who got the position because of their connections at the castle, and it won't end well!	port	32		
+32,guardmaster	Q	Thank you for your trust in me, but I still feel guilty about your accident.	port	33		
+33,evelina	Q	No need, I've already told you everything about this... [BLUE](girl abruptly pulled her cloak to the side, the bottom of which was wrapped around her leg, causing the cloak to open completely for a few moments, revealing that she was completely naked underneath.)[]	port	34		
+34,governor	Q	Oh! Princess, why are you naked?!	port	35		
+35,evelina	Q	When the orcs captured me, they took all my equipment and clothes! [BLUE](the girl answered, wrapping her cloak)[]	port	36		
+36,governor	Q	Filthy, ill-mannered savages!	port	37		
+37,evelina	Q	It happened near the Royal Lake, and if your men go to the Istrilian Tract, captain Titus, they might be able to find my belongings.	port	38		
+38,guardmaster	Q	I will give them the appropriate order.	port	39		
+39	A	Me and the princess also managed to figure out how the orcs and minotaurs got into your lands and solve the problem. [BLUE](and you told everything you knew about the portal and how you deactivated it)[]	port.	40		
+40,guardmaster	Q	It is necessary to inform the magical council about this, so they can send their specialists to study this portal, although I doubt that they will be able to find out the identity of the person who activated it. Once again, I would like to express my gratitude, hero, for your great service to the city and its inhabitants.	port	41		
+41,evelina	Q	Oh, that's enough talk for today, I want to finally get to the castle and take a bath. See you, my hero!	port	42		"NPCStopFollowing#"		
+42,governor	Q	I'll arrange for a reward for our hero right away! You'll receive gratitude from the magical council later, when they're informed about your heroic deed.	port	43		
+43	A	Thank you, I was happy to help you all.	port.	0		"NPCDespawn#evelina;GainGold#15000;GainXP#2900;IncVariable#REP_sorrowland,12;SetVariable#strangers_foreign_lands,100"
+44	A	Yes, I agree to this job.	port.	45		"SetVariable#true_lie,15"
+44	A	No, this job is too dangerous.	port.	49		
+45	Q	Glad to hear it. This mage has a special spell book, and he won't part with it unless he's dead. Bring the book as proof of his death.	port	0		
+46	A	I found and killed the necromancer, and here is the book you asked me to take from him.	port.	47	"PlayerHasItem#10830"		
+46	A	Good.	port.	0		
+47	Q	Well done, hero! I hope this scoundrel didn't bother you too much with his false words? Here's your reward!	port	48		
+48	A	Thanks, I was glad to help.	port.	0		"LoseItem#10830;GainGold#8000;GainXP#1800;IncVariable#REP_sorrowland,4;SetVariable#true_lie,100"
+49,governor	Q	If you change your mind, you can meet me here before I find someone else for the job.	port	0		
+50	A	Hello, I'd like to see Princess Evelina Lightwind. I've found the staff that the orcs took from her.	port.	51	"PlayerHasItem#10842;VariableLower#trouble_again,9"		
+50	A	Hello.	port.	0		
+51,guardmaster	Q	Unfortunately, this is not possible right now. The gate guards have reported that the princess has left the royal castle and is currently somewhere in the city or the suburbs, but they do not know exactly where. I hope that this is the case, and that she does not come up with any more foolish ideas to travel away from the city. I will probably have to assign people to watch over her and prevent her from doing anything foolish.	port	52		
+52	A	Okay, maybe I can find her myself, or ask around.	port.	53		
+53,guardmaster	Q	I would appreciate it if you could make sure that the princess is safe and report back to me.	port	54		
+54	A	Good, agreed.	port.	0		"SetVariable#trouble_again,10"

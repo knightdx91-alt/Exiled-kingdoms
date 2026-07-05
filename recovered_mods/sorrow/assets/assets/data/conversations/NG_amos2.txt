@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 I greet you, my friend, in this holy place!	¿po?	2	"VariableEqual#eirenda_castle,1"		
+1	Q	 It's time to punish the undead who have taken refuge in this castle!	¿po?	0	"VariableGreater#bloody_harvest,80"		
+1	Q	 Evil will be punished sooner or later!	¿po?	0	"VariableGreater#bloody_harvest,53;VariableLower#bloody_harvest,63"		
+1	Q	 This place is clearly cursed, its walls are saturated with evil!	¿po?	0	"VariableGreater#bloody_harvest,36;VariableLower#bloody_harvest,53"		
+1	Q	 We have to rescue the surviving villagers!	¿po?	0	"VariableEqual#bloody_harvest,30"		
+1	Q	 Those people in the village probably need our help!	¿po?	0	"VariableGreater#bloody_harvest,21;VariableLower#bloody_harvest,29"		
+1	Q	 Brother Gabriel must be in the temple.	¿po?	0	"VariableEqual#three_versus_eleven,100;VariableEqual#bloody_harvest,20"		
+1	Q	 Brother Gabriel must be in his sanctuary right outside.	¿po?	0	"VariableEqual#bloody_harvest,20"		
+1	Q	 [BLUE](young priest)[] Evil in the city!	¿po?	0			
+2	A	I require healing	port.	3		
+2	A	I must be on my way.	port.	0		
+3	Q	I can heal you, in exchange of a small contribution to our Shrine. 	Puedo curarte, a cambio de una pequeña contribución a esta Capilla. 	4		
+4	A	Here is a small donation. Please heal me. [BLUE](Pay 25 gold coins, be healed for 25hp)[]	Aquí tienes un pequeño donativo. Por favor cúrame. [BLUE](Pagar 25 monedas, curar 25hp)[]	5	PlayerHasGold#25	"GainHP#25;LoseGold#25"
+4	A	I wish to make a large donation then. Please heal me. [BLUE](Pay 60 gold coins, be healed for 80hp)[]	Voy a hacer una buena donación. Por favor cúrame. [BLUE](Pagar 60 monedas, curar 80hp)[]	5	PlayerHasGold#60	"GainHP#80;LoseGold#60"
+4	A	Not at the moment thanks. I better be on my way.	Ahora no, gracias. Mejor me marcho.	0		
+5	Q	By the Power of Arbenos, Thelume and Nivaria, be healed of your wounds!	¡Por el poder de Arbenos, Thelume y Nivaria, que tus heridas se cierren!	0		

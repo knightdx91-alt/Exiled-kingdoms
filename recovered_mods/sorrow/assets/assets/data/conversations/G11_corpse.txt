@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](These are the remains of some warrior whose dagger you have appropriated)[]	port.	5	"VariableEqual#dead_resentment,2"		
+1	Q	[BLUE](these are the remains of some kind of warrior, his bony fingers clutched the hilt of a magnificent dagger, there was a flat stone next to it, on which illegible writing was inscribed)[]	port.	2		
+2	A	Try to make out the text on the stone.	port.	3			INT#2
+2	A	Take the dead man's dagger.	port.	4		"SetVariable#dead_resentment,2;GainItem#10435"
+2	A	Leave the dead man alone.	port.	0			
+3	Q	[BLUE](you have spent some time studying the text, it talks about an invincible hero who, with his arrogance, brought upon himself a terrible curse, and now even after death there is no rest for him)[]	port.	2		
+4,corpse	Q	[BLUE](an eerie howl swept through the area, foreshadowing nothing good)[]	port.	0		"NPCSpawn#corpse2"		
+5	A	Leave the dead man alone.	port.	0			

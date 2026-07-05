@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](festive fir tree that Kai and Jeanne decorated)[]	¿po?	10	"VariableEqual#there_gifts,2"		
+1	Q	 [BLUE](festive fir tree with gifts piled under it, it looks like someone left gifts for you too!)[]	¿po?	2	"VariableGreater#holiday_coming,99"		
+1	Q	 [BLUE](festive fir tree that Kai and Jeanne decorated)[]	¿po?	0		
+2	A	Pick up! 	pi.	3			
+3	Q	 [BLUE](in the first box you find beautiful boots with a note: not stolen, honestly, boss!)[]	¿po?	4		"GainItem#10991"	
+4	Q	 [BLUE](in the next box you find a supply of cognac, but the sender wishes to remain anonymous)[]	¿po?	5		"GainItems#5037,10"	
+5	Q	 [BLUE](from the third, large box, you take out a beautifully decorated shield with the inscription: continue to be a hero and save the world, I am always ready to help you!)[]	¿po?	6		"GainItem#10992"	
+6	Q	 [BLUE](in the next small box, you will find an album with magical images of Sansa, some with rather piquant content, with the inscription: let it warm your soul when I am not with you!)[]	¿po?	7	"VariableEqual#sansa_quest,20"	"GainItem#10994"	
+6	Q	 [BLUE](you will not receive a gift from Sansa, because you have offended her, or have not yet opened access to her)[]	¿po?	7		
+7	Q	 [BLUE](in the last box you find a hat with a clumsily written note: You are a real hero, thank you for helping to arrange this holiday! I made the hat myself, under the strict guidance of Aunt Jeanne)[]	¿po?	0		"GainItem#10993;SetVariable#there_gifts,2"	
+10	A	Remove. 	pi.	0		"NPCDespawn#fur_tree;SetVariable#there_gifts,4"	
+10	A	Let the tree stand until spring! 	pi.	0			

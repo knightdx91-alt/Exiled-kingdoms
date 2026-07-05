@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	There's nothing else interesting here.	¿po?	0	"VariableEqual#stone_b3,1"		
+1	Q	[BLUE](an ancient stone altar with a blue stone on it)[]	¿po?	2			
+2	A	[BLUE](take the stone)[]	po.	3		"GainItem#10411;SetVariable#stone_b3,1;IncVariable#immersed_darkness,1"
+2	A	Exit.	po.	0			
+3	Q	[BLUE](you manage to take the stone, but the protective charms hit you)[]	¿po?	0		"LoseHPCold#75"

@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a swarthy man dressed in a tunic with a hood)[] I am glad that everything went well.	¿po?	0	"VariableEqual#end_job,2"		
+1	Q	 [BLUE](a swarthy man dressed in a tunic with a hood)[] Hello, I am grateful for your help, the merchant generously rewarded me for the return of his daughter, this little fool often gets into trouble, so I think dad will have to cough up many more times.	¿po?	0	"VariableGreater#varsilian_job,65"		
+1	Q	 [BLUE](a swarthy man dressed in a tunic with a hood)[] Oh, wow, that's her! You managed to save her from the clutches of pirates!	¿po?	12	"VariableEqual#varsilian_job,60"		
+1	Q	 [BLUE](a swarthy man dressed in a tunic with a hood)[] Hello, I hope you will return the merchant's daughter in one piece.	¿po?	0	"VariableEqual#varsilian_job,55"		
+1	Q	 [BLUE](a swarthy man dressed in a tunic with a hood)[] Hi, if you wanted to buy some kind of product, then you got the wrong address, go to Han.	¿po?	3			
+3,knave	Q	 We're actually looking for a wizard named Maurice, on a tip from Hugh.	¿po?	4				
+4,moris	Q	 Well, let's say I'm Maurice, what does Hugh want from me?	¿po?	5			
+5,knave	Q	 He needs an magician illusionist for a lucrative case, and his choice fell on you.	¿po?	6			
+6,moris	Q	 You know, I'd love to work with Hugh again, but I promised a local merchant to save his daughter from the clutches of pirates, and until I do that, won't let me out of town.	¿po?	7		
+7,knave	Q	 You're a wizard, it's not a problem for you to sort out with some dirty pirates!	¿po?	8				
+8,moris	Q	 That's how it is, but I'm not some kind of combat magician destroying the enemy in packs, besides, my real talents are useless, because these pirates have a shaman who can see and dispel my illusions without any problems.	¿po?	9			
+9	A	We can help you figure out this problem.	po.	10		
+10	Q	 Wow, if that's the case, then you'll help me out a lot! The merchant's daughter's name is Catherine, her kidnappers are on one of the islands, Captain Dorse knows the way there, here are coins for you to take you there and back.	¿po?	11			
+11	A	Then we're going.	po.	0		"GainGold#350;SetVariable#varsilian_job,55"
+12,catherine	Q	 Those bastards made me do all sorts of bad things! If they weren't dead, my dad would have punished them all harshly!	¿po?	13		"NPCStopFollowing#"		
+13,moris	Q	 Calm down, Catherine, it's all over now! Here, take this for help. I will take the girl to her father, after which I will immediately go to Captain Dorse to get to New Garand to meet Hugh.	¿po?	0		"GainItem#2012;GainItem#2002;GainItem#2004;SetVariable#varsilian_job,65;NPCDespawn#moris;NPCDespawn#catherine"

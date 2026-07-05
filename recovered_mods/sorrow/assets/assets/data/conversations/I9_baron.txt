@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](man wrapped in a cloak comes out of the black smoke)[] Get up, you fucking bastard, you can still serve the Blood Lords!	¿po?	15	"VariableEqual#alaric_tut,1"		
+1	Q	 [BLUE](baron is dead again, and suddenly, black smoke appears not far from him)[]	¿po?	14	"VariableEqual#bloody_harvest,50"		
+1	Q	 [BLUE](very pale girl, with no clothes on her slender body)[] Oh no! I didn't make it, Alaric won't be happy! [BLUE](girl turned into white smoke and disappeared)[]	¿po?	9	"VariableEqual#bloody_harvest,47"		
+1	Q	 [BLUE](baron hasn't changed much since your last meeting, except that his skin has become painfully pale)[] Well, what a meeting! You robbers and murderers have come to my house again.	¿po?	2			
+2,mercenary_grisenda	Q	The monster! How could you survive?!	¿po?	3			
+3,baron	Q	 Damned blood, it didn't grant me immortality, but it allowed my spirit to remain in my body. But it doesn't matter where you hide my wife, I will find her and the ritual will be completed!	¿po?	4			
+4,mercenary_grisenda	Q	This is not going to happen! You won't escape your doom a second time!	¿po?	5			
+5,baron	Q	 Don't get your hopes up! Now I'm much better prepared for any eventuality!	¿po?	6			
+6,amos	Q	 Where are the survivors of the village that you took?!	¿po?	7			
+7,baron	Q	 You're too late, saint, I've already given all these peasants to be eaten by vampires, there are more and more of them every day, they need a lot of food! But it doesn't matter, you've already tired me out. Hey, you, vampire, Alaric said that he wouldn't allow strangers to come here and rule again!	¿po?	8			
+8,amelia	Q	 [BLUE](very pale girl, with no clothes on her slender body)[] Don't worry, Dobras, stay quiet and don't interfere, I'll deal with them alone!	¿po?	0		"ItemActivate#grate4;SetVariable#bloody_harvest,47;NPCHostile#amelia"
+9,baron	Q	 Damn it! Always have to do everything yourself! Although, where are the rest of these shitty whores?! I need you here!	¿po?	10			
+10,pandora	Q	 If you address us like that, I won't care if Alaric needs you for some reason, I'll tear you to pieces!	¿po?	11			
+11,baron	Q	 Ha! He needs my influence in New Garand. I'm useful, unlike you! He can make himself any number of new whores like you!	¿po?	12			
+12,isabelle2	Q	 Since you're so smart and important, figure it out yourself, and we'll get out of here!	¿po?	13			
+13,baron	Q	 What?! Where are you going?! Lousy bitches! Servants, come to me! Kill them all! Destroy!	¿po?	0		"SetVariable#bloody_harvest,50;NPCDespawn#amelia;NPCDespawn#isabelle2;NPCDespawn#pandora;NPCHostile#baron;NPCHostile#baron_guard;NPCSpawn#baron_team"
+14	A	 	¿po?	0		"SetVariable#alaric_tut,1;NPCSpawn#necromancer;NPCSpawn#alaric"
+15,alaric	Q	 [BLUE](another vampire appears out of nowhere)[] Leave him, we need to deal with the uninvited guests first.	¿po?	0		"SetVariable#bloody_harvest,52;NPCHostile#necromancer;NPCHostile#alaric"

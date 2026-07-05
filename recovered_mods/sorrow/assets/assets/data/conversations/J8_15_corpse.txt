@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](have you already examined these human remains)[]	¿po?	0	"VariableGreater#lost_prince,65"		
+1	Q	 [BLUE](among the human remains, you caught sight of one skeleton in rags, which clearly used to be expensive attire and with expensive jewelry)[]	¿po?	3	"VariableEqual#lost_prince,55"		
+1	Q	 [BLUE](among the human remains, you caught sight of one skeleton in rags, which clearly used to be expensive attire and with expensive jewelry)[]	¿po?	2	"VariableEqual#lost_prince,50"		
+2	A	Perhaps these remains belong to prince Vardy, and it is necessary to take them to the city for identification.	po.	0		"GainItem#10284;SetVariable#lost_prince,60"		
+3,wintercalm	Q	 Oh, no. This corpse has a royal ring on his finger, it looks like we have found prince Vardy after all. It is necessary to deliver him to the castle so that the identity of the deceased is accurately determined there.	¿po?	0		"GainItem#10284;SetVariable#lost_prince,65"		

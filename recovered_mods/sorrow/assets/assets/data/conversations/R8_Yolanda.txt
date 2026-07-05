@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](you found yourself in a dimly lit hall. A pale-skinned, middle-aged woman sat in a chair, and next to her stood an equally pale-skinned, young woman in scanty clothing. You recognized her as the second witch you and Peter had encountered at the entrance to the mine, she was the first to speak)[] He didn't come alone? Hmm, Rosalia, is this the hero you couldn't handle and had to run away from? 	¿po?	3	"VariableEqual#talk_azalea,2"		
+1	Q	 [BLUE](you found yourself in a dimly lit hall. A pale-skinned, middle-aged woman sat in a chair, and next to her stood an equally pale-skinned, young woman in scanty clothing, she was the first to speak)[] Is he not alone? Rosalia, who is this with him? 	¿po?	2			
+2,rosalia	Q	 This is Alarion's trusted companion, and he didn't want to come here without him. 	¿po?	5			
+3,rosalia	Q	 Oh, come on, are you serious? I seem to remember you ran into him too, Azalea, and you also ran away from him without doing anything to him. 	¿po?	4			
+4,azalea	Q	 I just wasn't ready for a fight back then, I thought you could handle it on your own. And anyway, there's no need to bring it up. What's this hero doing here? 	¿po?	2			
+5,azalea	Q	 Really? What's the problem, Alarion? You don't trust us? And here I thought we were already close friends, after everything we've done together. 	¿po?	6			
+6,alarion	Q	 This is the first time I'm meeting you on your territory, and I'll feel more secure with a trusted person by my side. 	¿po?	7			
+7,azalea	Q	 Okay, he can stay if he behaves himself... 	¿po?	8			
+8,yolanda	Q	 You bore me with your empty talk. 	¿po?	9			
+9,azalea	Q	 Forgive me, my queen... 	¿po?	10			
+10,yolanda	Q	 So this is the prince Alarion you told me about, the son of the upstart who took my throne. Do you know who I am? 	¿po?	11			
+11,alarion	Q	 I don't know, I came here looking for allies, and I don't care who you are. 	¿po?	12			
+12,rosalia	Q	 Hey, you're talking to our queen, show respect! She's the granddaughter of the last emperor, the true ruler of all the lands!.. 	¿po?	13			
+13,yolanda	Q	 Calmly, girl, too many years have passed, our existence has been forgotten, so his ignorance can be understood. I and all my family have sworn to avenge the usurper, to destroy him and all his heirs. And now one of them has come to us to ask for help? 	¿po?	14			
+14,alarion	Q	 I don't care who will rules the kingdom, I just want to kill the monster on the throne. 	¿po?	15			
+15,yolanda	Q	 Hmm, I can feel that your hatred for your father is genuine, and your recent losses weigh heavily on your soul, fueling your desire for revenge. Well, I am willing to help you, Alarion, as our goals are somewhat similar. However, I will first gather my allies, and we will meet again to discuss our collaboration. The girls will show you out. 	¿po?	16			
+16,alarion	Q	 Then, see you again. 	¿po?	17			
+17	A		po.	0		"SetVariable#royal_will,110;Travel#R8,1"

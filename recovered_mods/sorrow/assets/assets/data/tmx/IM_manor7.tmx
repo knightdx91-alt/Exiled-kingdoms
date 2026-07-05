@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="5">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="music" value="intro_dragons" />
+    <property name="name" value="Abode of Magister Astutus" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+    <property name="norecall" value="" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="245" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="icemist_walls.tsx" firstgid="1213" />
+  <tileset source="icemist_large.tsx" firstgid="1253" />
+  <tileset source="town_objects3.tsx" firstgid="1373" />
+  <tileset source="grounds indoor 2.tsx" firstgid="1405" />
+  <layer name="nonwalk" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+  </layer>
+  <layer name="water" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QQQrAIAwF0VzFivb+N2wEF24UKYmKzINZxg+KoBW0WPO86Xm0V8s1r5vRW2nBDfvn78fJxGm/yJNZsfzLv3bvAwAA4F4fv6MNKwAQAAA=
+  </data>
+  </layer>
+  <layer name="ground" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3UwQnAIAyFYQ9doNoRuv+MxYMQbKGhjf6ieeBN+KKJhjBONoP11/9Sj1Xcd38k/ymnoef+3X9bh2JPSz/BfoT9Hfbp/pN+tqOihpa+ZgasI2cvv7/yBnqlvv9y/t5+PX+EL3tP+PL/JXz5/xI+3f/Vz0/Mv6wjAe7MuQBQI8jQABAAAA==
+  </data>
+  </layer>
+  <layer name="ground2" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OOQoAIBQDURu9/4VdsLDwu1URkXmQeuLc48JhQtn3q6Ifd6NfpcUHdb+12+wHZd+2Zx+U/VnbflDa9ZO4DQAAAOAvBdZIJLwAEAAA
+  </data>
+  </layer>
+  <layer name="ground3" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGDzADohj0HAIFBMSA+EoILanwP5oLGIzkNhlOMSRgTGV7YeBqUSaQSv7iQVD2f5gLGK44hmXHDXtjydCD7qaoRz+o/bjB0VoNDZgzUB+GYic/mB24Ev/yPLIbiI3DED+ryRTLwxUUmg/NQC17cdVDuASJ9d+UPwjhz+huMemjpLwNyRTHzog1/5AItR8YaSd/bZAbIIFWyKpQQ5rGxzqHci0HxcIxyFOSVlHCsBWL9PbfvRyiZJ0TioYDf/R8B/J9sPKRVg5SKtybiQCAOj8YeEAEAAA
+  </data>
+  </layer>
+  <layer name="roofs" width="32" height="32">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object type="entry" id="1" x="385" gid="245" y="850">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+  </object>
+  <object name="Gigi" type="spawn" gid="247" x="375" y="805">
+   <properties>
+        <property name="conversation" value="IM_Gigi" />
+    <property name="name" value="@GIGI"/>
+    <property name="portrait" value="176"/>
+    <property name="spawn" value="magician_doctor"/>
+        <property name="tag" value="gigi" />
+        <property name="wander" value="2" />
+   </properties>
+  </object>
+  <object name="Serunus" type="spawn" gid="247" x="165" y="475">
+   <properties>
+        <property name="conversation" value="IM_Serunus" />
+    <property name="name" value="@SERUNUS"/>
+    <property name="portrait" value="283"/>
+    <property name="spawn" value="wizard_miracle"/>
+        <property name="wander" value="1" />
+   </properties>
+  </object>
+  <object name="Astutus" type="spawn" gid="247" x="365" y="115">
+   <properties>
+        <property name="conversation" value="IM_Astutus" />
+    <property name="spawn" value="astutus_1"/>
+        <property name="wander" value="1" />
+   </properties>
+    </object>
+    <object name="mage" type="spawn"  x="245" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="535" gid="247" y="85">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_2" />
+        <property name="wander" value="0" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="305" gid="247" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="495" gid="247" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="305" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="515" gid="247" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="405" gid="247" y="485">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="mage" type="spawn"  x="625" gid="247" y="485">
+      <point />
+      <properties>
+        <property name="spawn" value="astutus_wizard_1" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

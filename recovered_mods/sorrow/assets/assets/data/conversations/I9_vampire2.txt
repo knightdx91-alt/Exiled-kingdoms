@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10945"		
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10944"		
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10943"		
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10942"		
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10941"		
+1	Q	 [BLUE](despite the fatal wounds, the vampire continued to try to fight)[]	¿po?	2	"PlayerHasItem#10776"		
+1	Q	 [BLUE](the vampire turns into white smoke, but then returns to his real form and attacks you again)[] It's useless, mortals! Your weapon can't kill me!	¿po?	0	VariableEqual#bloody_harvest,85	"NPCDespawn#alaric3;NPCSpawn#alaric3"
+1	Q	 [BLUE](the vampire turns into white smoke, but then returns to his real form and attacks you again)[] It's useless, mortals! Your weapon can't kill me!	¿po?	0	VariableEqual#vamp_alaric,2	"NPCDespawn#alaric;NPCDespawn#alaric2;NPCSpawn#alaric2"
+1	Q	 [BLUE](the vampire turns into white smoke, but then returns to his real form and attacks you again)[] It's useless, mortals! Your weapon can't kill me!	¿po?	3		
+2	A		po.	0		"SetVariable#easy_alaric,1;NPCDespawn#alaric3;NPCSpawn#alaric4"
+3	Q	 Run, fools!	¿po?	4			
+4	A		po.	0		"SetVariable#vamp_alaric,2;NPCDespawn#alaric;NPCDespawn#alaric2;NPCSpawn#alaric2;SetVariable#bloody_harvest,55;ItemHide#grate4;ItemWalkable#grate4"

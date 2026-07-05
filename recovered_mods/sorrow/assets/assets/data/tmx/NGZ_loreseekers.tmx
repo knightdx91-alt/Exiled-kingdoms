@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="2">
+  <properties>
+    <property name="maxlight" value="40" />
+    <property name="music" value="ossuary" />
+    <property name="name" value="The Loreseeker's Library" />
+    <property name="name_ES" value="Biblioteca de los Buscadores de Secretos" />
+    <property name="sw1" value="317" />
+    <property name="sw2" value="318" />
+    <property name="sw3" value="773" />
+    <property name="sw4" value="764" />
+    <property name="sw5" value="774" />
+    <property name="sw6" value="763" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset source="spawns.tsx" firstgid="241" />
+  <tileset source="town_objects.tsx" firstgid="249" />
+  <tileset source="grassland.tsx" firstgid="329" />
+  <tileset source="trees.tsx" firstgid="457" />
+  <tileset source="natural_grounds.tsx" firstgid="473" />
+  <tileset source="grounds_indoor.tsx" firstgid="601" />
+  <tileset source="town_objexts2.tsx" firstgid="761" />
+  <layer name="ground" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztlFEKxCAMRGNvX9gLVlvdo9RChFCWdrJRocWBoB+S5I1RoqEnaZ6IPpNtRWStcbX24hz8g78nP8qGqpW3qFp5i6oGv8WvGvx359HcwRHFHFuOlGPlWJyNH+VKXOvowXMfpYce/FHU9LwGDst/gJ79su/Fh5X30f1fW8Pvxd0ncfdWfnT+g/A9cu3iyVVOy39xnv9ScxH77Qe/Zv5R/lbvH+V/6/+nlaZ/Kz+S8061+c85Nb3W4h96j3Yk8zJs
+  </data>
+  </layer>
+  <layer name="ground2" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFXwm2mgXTAKRiKwZxxoF4wCYoEDhXH1B1rGbEQzB51PDYCvPFszSNIcpeFJC8DGTHs76BH/owA/GIxpjxBgpUPaHAWjYBSQDgDXvQeC
+  </data>
+  </layer>
+  <layer name="ground 3" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJzt0lEJACAQRMETi1hE+8eywn0ICzKT4LFsFQD0rZkuoOuMdMFf7EnK9j3gkQsdJADg
+  </data>
+  </layer>
+  <layer name="objects" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztVclOAzEMzahnjpRF5QB3kNqyFQSUHQQHpLZcWDQ3hFgvfEJRyxfwLywfAP0obDVRXY+zzKgcQH3SUxIn8cs4jkepIf4S1oGLwHPgpW7rwLa243wJeKpb3t9IoVPS/tvERxHY1GvmIqVa0M5EvX04/0lsvF8O1Ec/b8B3PX7W7QJwFvxN5ZSazCX3HQA/yJj3Q/XPgNORbHdh3zMfqo/f2RLsxYB9g9BvqO79clx49uH5nixzryn0bTq++Pvikyb/svhfA847WA3URz/4BneBe6r71vEN1rUNsaptxo5t6PsOAeYAz8ERISeMHdcuDVDfd9cSttkYY2hi9EL6IbHC749TaMeCPuZxXsdsjLVlcj5TYylrxM8j8BZ4pcfXenzH9Lh+w3HeMpmfsNRSgxthfydK2rPqFwR9CtT5EnKP6x8BtwhXBF9Gy+g3hTWIikPHZw8B6rvqBb1/SedbiP8xcIewktjVr+8CrcGo0wmIv+/+aZ759On7e1C9/Mc8MPl/T9bHFv1xcu5CCv2aZ14C13f9L3z6WP9GLfVWAq6Vvj9v8RESf4PYsobbB3n/+DaWVX8+Iw/1PM915AnzQesvIs3927CpW/6tEnz177f1XfWlmlF/iP+DH4r+TH4=
+  </data>
+  </layer>
+  <layer name="roofs" width="32" height="32">
+    <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry from farmlands" type="entry" id="1" x="466" gid="241" y="819">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="426" y="841" width="63" height="50">
+   <properties>
+    <property name="area_id" value="NGZ"/>
+    <property name="entry_id" value="11"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="243" x="638" y="543">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="243" x="449" y="416">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Anton Gerdt" type="spawn" gid="243" x="820" y="213">
+   <properties>
+    <property name="conversation" value="anton_zombie"/>
+    <property name="name" value="@ANTON_GERDT"/>
+    <property name="portrait" value="13"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="villager_male_green"/>
+    <property name="unique_tag" value="villager_male_green"/>
+        <property name="wander" value="4" />
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="243" x="270" y="525">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb2" type="spawn" gid="243" x="852" y="470">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="243" x="293" y="430">
+   <properties>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb2" type="spawn" gid="243" x="835" y="730">
+   <properties>
+    <property name="spawn" value="zombie_s2"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb2" type="spawn" gid="243" x="124" y="526">
+   <properties>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="zomb2" type="spawn" gid="243" x="290" y="235">
+   <properties>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb2" type="spawn" gid="243" x="490" y="235">
+   <properties>
+    <property name="spawn" value="alive_carrion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="zomb" type="spawn" gid="243" x="910" y="595">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="570" y="150">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="1001,1005,1005,1006,1006,1007,1007"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="NGZ_loreseekers_chest"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="255" y="220">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="1018,3019,3202,4002"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="NGZ_loreseekers_chest"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="730" y="150">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="210,3002,3205,3505"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="NGZ_loreseekers_chest"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="830" y="150">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="5013,5013,5035"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="NGZ_loreseekers_chest"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="794" y="774">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="5013,6008"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="NGZ_loreseekers_shelf"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="154" y="504">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="5035,6011"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="NGZ_loreseekers_shelf"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="794" y="524">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="6001,6002,6006"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="NGZ_loreseekers_shelf"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

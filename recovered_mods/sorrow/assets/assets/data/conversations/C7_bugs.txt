@@ -1,0 +1,26 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](the big man collapsed to the floor, his accomplices, seeing that their leader was defeated, decide to surrender, but one of the archers hiding in the walls shoots directly at Kiara, and she also falls to the floor)[]	¿po?	2	"VariableEqual#time_to_pay,70"		
+1	Q	What can I say, that's the way it is. You lost control a long time ago, loosened your grip. I was hoping the new difficulties I've created for you would force you to quietly and voluntarily retire, making way for the boss, but it looks like I'm going to have to move you myself.	¿po?	59	"VariableEqual#time_to_pay,65"		
+1	Q	 [BLUE](a large, well-built man)[] The boss is standing over there, go talk to her!	¿po?	0		
+2,adaon	Q	Oh, no, Kiara! [BLUE](he throws it to the girl lying on the floor while you deal with the shooter)[] Don't die, Kiara! Don't die!	¿po?	3			
+3,kiara	Q	Don't scream like that, I'm alive. [BLUE](lifted up with the help of Adaon)[] It's a minor wound, and I always have an antidote with me, just in case.	¿po?	4			
+4,adaon	Q	I thought you were dead!	¿po?	5			
+5,kiara	Q	Seriously, were you worried about me that much? Well, maybe you're not such a lost man, Adaon, as I assumed. And the bastard who betrayed me is dead?	¿po?	6			
+6	A	Yes, we've dealt with him.	po.	7		
+7,kiara	Q	Good. All the survivors who decided to support this rat, you can get lost while I'm kind, but if we meet again, I'll kill you without further ado.	¿po?	8			
+8,adaon	Q	You need medical attention, Kiara!	¿po?	9			
+9,kiara	Q	Obviously, you're right, but first I have to come to an agreement with you and your friend. I am grateful for your help, especially for helping me deal with the traitor and his henchmen here, and the reward is as promised. I also decided to take you into a share of my company, contact Bookkeeper to receive your percentage.	¿po?	10	"VariableEqual#kiara_good,1;VariableEqual#stretch_dead,2"		
+9,kiara	Q	Obviously, you're right, but first I have to come to an agreement with you and your friend. I am grateful for your help, especially for helping me deal with the traitor and his henchmen here, and the reward is as promised.	¿po?	10			
+10	A	I was glad to help.	po.	11		
+11,kiara	Q	And I'll be glad to see you here again, and you, Adaon, too. You can stay here for a while, and maybe I won't be so disgusted to see you, and we'll find common ground again.	¿po?	12			
+12,adaon	Q	I am very grateful to you, Kiara, I hope I will be able to correct the mistakes of the past, and you will forgive me for my insults!	¿po?	13			
+13,kiara	Q	We'll just have to wait and see if that arrow doesn't kill me. See you soon.	¿po?	0		"IncVariable#REP_seventhhouse,10;GainItem#10767;GainItem#10768;GainXP#1900;ItemHide#grate1;ItemWalkable#grate1;setVariable#time_to_pay,110;NPCDespawn#kiara;NPCDespawn#leland;NPCDespawn#muqrin2;NPCDespawn#team_bandits"
+59,kiara	Q	Your efforts were pointless, I had trusted people who sorted out all your shady dealings. I have long suspected you of betrayal, but I waited for when and how you would show yourself, and it turned out to be very stupid, even for such a slow-witted person like you.	po.	60		
+60,bugs_gambino2	Q	Bragging at the expense of other people's hands is ridiculous, but the way I easily pulled off all these things behind your back and on your own territory speaks to your weakness. With the old boss, no one could sneeze unnoticed and evade the answer, no wonder he said that a whore like you shouldn't be trusted to run even a small street gang.	¿po?	61			
+61,kiara	Q	You know what happened to the last one who called me a whore, he went to feed the crocodiles, you won't get off that easy!	po.	62		
+62,bugs_gambino2	Q	Come to your senses, fool, few people here respect you and listen to you now, unlike me, so don’t assert your rights, I’m trying to negotiate with you in a good way for now, out of memory of old friendship.	¿po?	63			
+63,kiara	Q	Aren't you overestimating yourself too much, Bugs? What makes you think that a minor oaf like you can become the boss?	po.	64		
+64,bugs_gambino2	Q	Do you want to check how many people will stand up for me, and how many who will stand up for you? Let's check it out, although it's unlikely you'll find out before I wring your neck.	¿po?	65			
+65,adaon	Q	If you try to touch her, you'll be dealing with me! And my friend...	¿po?	66			
+66,bugs_gambino2	Q	Your new friends, they are unlikely to somehow change the balance of power, which is in my favor, and somehow help you.	¿po?	67			
+67	A	Let's see if that's the case.	po.	0		"ItemActivate#grate1;NPCHostile#bugs_gambino2;NPCHostile#leland;NPCHostile#muqrin2;NPCSpawn#team_bandits;NPCSpawn#team_bandits2;SetVariable#time_to_pay,70"

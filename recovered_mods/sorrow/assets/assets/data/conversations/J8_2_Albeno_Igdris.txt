@@ -1,0 +1,30 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	You rascal! My informants in New Garand saw how you visited my book customer, decided to deceive me and appropriate a reward for yourself? Now you will pay for your treachery!	po.	23	VariableEqual#troubles_from_knowledge,100		
+1	Q	I surprised that you managed to get the book, I was hoping that you would only distract attention to yourself while I teleport with my guards to the library and pick up the loot. Well, now give me the book, I'm sorry, but I'm not going to share the reward with the crooks. Give it to me voluntarily, or I will teleport my mercenaries here, who will take my book by force.	po.	20	PlayerHasItem#10173		
+1	Q	I hope you've prepared well before you hit the road. When you get the book, come back here!	po.	0	VariableGreater#troubles_from_knowledge,10		
+1	Q	Have you changed your mind? I still need a heroic assistant!	po?	4	VariableEqual#troubles_from_knowledge,10		
+1	Q	[BLUE](this strange man, who looks like a magician, for some reason clearly wants to stay apart from the inhabitants of the settlement)[]	[BLUE](po)[]	2			
+2	A	Can I help you with something?	¿po?	3			
+2	A	[BLUE](ignore him)[]	[BLUE](Ignorarle)[]	0			
+3	Q	Oh, the first new face in a few days I spent in this wilderness! I am very glad of this meeting, because I need help, and none of the locals has the trait of heroism.	po.	4			
+4	A	And for what purpose did you need a hero?	po.	5			
+5	Q	In short, I took on a job in New Garand - to find a rare book of lost knowledge about ancient magic, following the trail of its movement, I found myself in these places. Exploring the neighborhood and communicating with people, I managed to bribe someone and find out about the location of the book.	po.	6			
+6	A	If you know where the book is, why don't you take it yourself?	po.	8			
+8	Q	Because the book is in the library of one fortress under the protection of a large detachment of heavenly knights and their sorcerers, and I am not a powerful enough magician to cope with all of them. Now you understand why I need a brave hero, in New Garand for this book I am guaranteed more than [BLUE]8000 gold[], which we will divide in half if you help me. 	po.	9			
+9	A	Before I agree, what do you know about these heavenly knights guarding the book? 	po.	10			
+9	A	Sounds dangerous, I'll probably refuse.	po.	15			
+10	Q	Heavenly knights are an order of very fanatical and aggressive warriors, exciting and mastering these places for several months, but it is not known where they came from. They are quite dangerous, strong fighters.	po.	11			
+11	A	How can I get into this fortress, and where is it located?	po.	14			
+14	Q	The fortress is located in the northeast from here, in an area called the "Hidden Plateau", you need to first get to the lake fort, where a familiar boatman will transport you to the other shore, and about how to get inside, if you are powerful enough, you can try to break through the guards, but there are rumors that under this fortress there are dungeons, if you can find the entrance, then you may be able to get to the library unnoticed.	po.	0		SetVariable#troubles_from_knowledge,20	
+15	Q	I understand you, I hope I will be able to find a more courageous assistant.	po.	0		SetVariable#troubles_from_knowledge,10		
+20	A	Okay, here's your fucking book.	po.	21			
+20	A	I fought with the heavenly knights, do you think I can't handle you and whoever your mercenaries are?	po.	22			
+21	Q	The right choice. Nothing personal, next time be careful when dealing with strangers.	po.	0		"NPCDespawn#mighty_wizard4;SetVariable#troubles_from_knowledge,120;LoseItem#10173;GainXP#600"	
+22	Q	You will regret your decision.	po.	0		"NPCSpawn#albeno_eknight;NPCHostile#mighty_wizard4;SetVariable#troubles_from_knowledge,90"	
+23	A	Hey, can we peacefully sort out this misunderstanding?	po.	24			PER#2
+23	A	Well, try to teach me a lesson if you're strong enough!	po.	27			
+24	Q	Well, if you have [BLUE]8000 coins[], we can negotiate.	po.	25			
+25	A	Of course, will you take this money and let's go in peace?	po.	26	PlayerHasGold#8000	
+25	A	Isn't that too much for you? Maybe it will be easier for me to solve this problem in your opinion?	po.	27			
+26	Q	Okay, so be it, I hope we won't see each other again, at the next meeting I won't be so good-natured.	po.	0		"NPCDespawn#mighty_wizard4;SetVariable#troubles_from_knowledge,120;loseGold#8000;GainXP#300"	
+27	Q	You will regret your decision.	po.	0		"NPCSpawn#albeno_eknight;NPCHostile#mighty_wizard4;SetVariable#troubles_from_knowledge,110"	

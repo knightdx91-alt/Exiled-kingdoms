@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Don't bother us if you're not going to help us anyway!	¿po?	0	"VariableEqual#will_or_death,50"		
+1	Q	 I hope we manage to get to the city without any trouble!	¿po?	0	"VariableGreater#will_or_death,25;VariableLower#will_or_death,45"		
+1	Q	 Don't bother us if you're not going to help us anyway!	¿po?	0	"VariableEqual#will_or_death,20"		
+1	Q	 [BLUE](a group of young people looking emaciated and dressed in rags)[] Go your own way, stranger, we don't need anyone to attract too much attention.	¿po?	2			
+2	A	Can I help you out?	po.	12		
+2	A	You all don't look very well, maybe I can help you with something.	po.	3			PER#3
+2	A	Okay, I'll leave if it makes you feel better.	po.	0		"SetVariable#will_or_death,10"		
+3	Q	 You look like an honest man, I think I can trust you.	¿po?	4			
+4	A	Who are you and what happened to you?	po.	5		
+5	Q	 We are traders from a very distant country, located across the opposite ocean, washing the coast of this continent. We were caught by sea robbers and sold into slavery in this country where we are staying, I have no idea for how many months. With difficulty and not all of us managed to escape from the city. I don't know how we can get home, but it's better to die here than to be in captivity again.	¿po?	6			
+6	A	It's a sad story, I'm sorry, but I also don't know how to help you without incurring Mercia's wrath.	po.	0		"SetVariable#will_or_death,20"		
+6	A	I will help you get out of Mercia and get to the nearest city of another kingdom.	po.	7		
+7,slave1	Q	We would be very grateful to you if you help us, although we have nothing to thank you with but words, but when we get home we will tell everyone about you.	po.	8		"NPCFollow#"
+8,slave2	Q	 And a warm welcome will be waiting for you if you suddenly find yourself in our native places.	¿po?	9		"NPCFollow#"
+9,slave3	Q	 In any case, you will always be remembered.	¿po?	10		"NPCFollow#"
+10,slave4	Q	 Which city are we going to?	¿po?	11		"NPCFollow#"
+11	A	Kingsbridge.	po.	0		"SetVariable#will_or_death,30"		
+11	A	Rhöneis.	po.	0		"SetVariable#will_or_death,40"		
+12	Q	 Thank you for your concern, but we can't trust an unknown person.	¿po?	0			

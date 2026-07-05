@@ -1,0 +1,75 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 Have a fun and happy holiday!	¿po?	0	"VariableGreater#holiday_coming,99"		
+1	Q	 [BLUE](a little boy was looking at you with interest)[] You're back again! Where did you disappear to? What happened?	¿po?	42	"VariableEqual#holiday_coming,80"		
+1	Q	 [BLUE](the little boy came out of his hiding place when everything was quiet)[] Yes! We have defeated these evil aunts! Now no one will stop us from having a holiday!	¿po?	38	"VariableEqual#holiday_coming,72"		
+1	Q	 We were attacked again!	¿po?	0	"VariableGreater#holiday_coming,65"		
+1	Q	 [BLUE](the little boy was jumping for joy)[] Hurrah! You managed to get our fir tree and gifts back!	¿po?	34	"VariableEqual#holiday_coming,65"		
+1	Q	 [BLUE](a little boy looks at you hopefully)[] Surely you will return our festive fir tree and gifts?	¿po?	31	"VariableGreater#holiday_coming,49"		
+1	Q	 [BLUE](a little boy is happily looking at you)[] I hope we will be able to arrange the best holiday!	¿po?	0	"VariableGreater#holiday_coming,19"		
+1	Q	 [BLUE](a little boy is looking at you sadly)[] I thought you would help me with the holiday.	¿po?	25	"VariableEqual#holiday_coming,15"		
+1	Q	 [BLUE](little boy doesn't want to talk to you when Sansa is next to you)[]	¿po?	0	"VariableEqual#sansa_spitfire,1;NPCIsInParty#sansa2,sansa"		
+1	Q	 [BLUE](a lonely little boy near the statue frowned at your approach)[] I won't talk to you until you bring me something to eat.	¿po?	16	"VariableEqual#holiday_coming,10"		
+1	Q	 [BLUE](a lonely little boy stood near the statue, looking at it, there were no parents or other adults nearby to look after him)[]	¿po?	2			
+2	A	Hi! Why are you here alone? Are you lost?	po.	3		
+3	Q	 [BLUE](the boy frowned at you)[] I don't talk to strange uncles or aunts, and even more so on an empty stomach.	¿po?	4			
+4	A	Okay, I'll bring you something delicious.	po.	0		"SetVariable#holiday_coming,10"
+5	A	I can give you a golden apple.	port?	20	"PlayerHasItem#5022"		
+5	A	I have me zombie meat!	port?	6	"PlayerHasItem#1009"		
+5	A	I have lard!	port?	7	"PlayerHasItem#1024"		
+5	A	I have a Vorator's egg!	port?	8	"PlayerHasItem#1018"		
+5	A	I have Friguld rum!	port?	9	"PlayerHasItem#5026"		
+5	A	I have giant mead!	port?	9	"PlayerHasItem#5029"		
+5	A	I have Deepfrost cognac!	port?	14	"PlayerHasItem#5037"		
+5	A	I have Whitetower special!	port?	9	"PlayerHasItem#5038"		
+5	A	I have epic omelette!	port?	10	"PlayerHasItem#5060"		
+5	A	I have elixir of Galade!	port?	11	"PlayerHasItem#5036"		
+5	A	I have draught of the forest druid!	port?	11	"PlayerHasItem#5040"		
+5	A	I have potion of heroism!	port?	11	"PlayerHasItem#5027"		
+5	A	I have potion of lesser restoration!	port?	11	"PlayerHasItem#5023"		
+5	A	I have potion of moderate healing!	port?	11	"PlayerHasItem#5001"		
+5	A	Okay, I'll bring you something delicious.	po.	0		
+6,hirge	Q	Hey, don't give junk to little kids! 	port.	13	NPCIsInParty#hirge,hirge		
+6	Q	 Ugh! I'm not hungry enough to taste such filth!	¿po?	0				
+7	Q	 I don't like lard, especially since it's raw!	¿po?	0				
+8	Q	 Eggs are great, but I don't know how to cook them!	¿po?	0				
+9,adaon	Q	Oh, yes, I always knew that alcohol is a great gift for kids!	port.	12	NPCIsInParty#adaon,adaon		
+9,hirge	Q	Hey, don't give junk to little kids! 	port.	12	NPCIsInParty#hirge,hirge		
+9	Q	 Thank you, of course, but I'm too young to drink alcohol!	¿po?	0				
+10	Q	 Oh, no, my stomach gets upset with eggs!	¿po?	0				
+11	Q	 Ugh! Is this some kind of medicine?!	¿po?	0				
+12,boy	Q	 Thank you, of course, but I'm too young to drink alcohol!	¿po?	0				
+13,boy	Q	 Ugh! I'm not hungry enough to taste such filth!	¿po?	0				
+14,mercenary_grisenda	Q	I know one person for whom this cognac would be much more desirable.	port.	15	NPCIsInParty#grissenda,mercenary_grisenda		
+14	Q	 Thank you, of course, but I'm too young to drink alcohol!	¿po?	0				
+15,boy	Q	 Thank you, of course, but I'm too young to drink alcohol!	¿po?	0				
+16,sansa	Q	Or maybe you don to get punched in the neck? Get out of here, puppy!	port.	17	NPCIsInParty#sansa2,sansa		
+16	Q	 [BLUE](the little boy returned to his occupation, no longer paying attention to you)[]	¿po?	5			
+17,boy	Q	 You're an evil aunt! [BLUE](the little boy roared)[]	¿po?	18				
+18,sansa	Q	Yes, yes, go complain to your mommy!	port.	0		"SetVariable#sansa_spitfire,1"
+20	Q	 Wow! What an unusual apple! I've never tried them! Thank you, aunt! By the way, my name is Kai! I probably won't eat it now, but I'd rather leave it for the holiday!	¿po?	21	"PlayerIsFemale#"		
+20	Q	 Wow! What an unusual apple! I've never tried them! Thank you, uncle! By the way, my name is Kai! I probably won't eat it now, but I'd rather leave it for the holiday!	¿po?	21	"PlayerIsMale#"		
+21	A	What kind of holiday is this?	po.	22		
+22	Q	 The day of a new beginning, people gathered at an old fir tree in the forest, sacrificed, gutted it and hung the giblets on the branches, after which they dressed up in animal skins and danced around the tree, and of course, then they had a feast!	¿po?	23				
+23	A	What kind of nightmarish holiday is this!? I hope they don't spend it in this settlement?	po.	24		
+24	Q	 No, there are no holidays here, but it will be possible to arrange it! You can do without sacrifices and skins, but cut down a fir tree and bring it right here and dress it up with some kind of colored rags and fruits, and have a feast! I'm sure we can easily persuade uncle Tonel and aunt Jeanne to help us!	¿po?	25				
+25	A	Okay, I'll talk to them about your holiday.	po.	26		"LoseItem#5022;SetVariable#holiday_coming,20"
+25	A	I'm sorry, but I don't have time for that.	po.	27		"LoseItem#5022;SetVariable#holiday_coming,15"
+26	Q	 Yes! We're going to have a holiday!	¿po?	28				
+27	Q	 Okay, you grown-ups always don't have time for me...	¿po?	0				
+28	A	Who do you think should be contacted first? 	pi.	29			
+29	Q	 Hm? I think I'd better talk to uncle Tonel, and you talk to aunt Jeanne, she's sulking at me because I tore the new sweatshirt she gave me.	¿po?	30				
+30	A	Clearly. 	pi.	0			
+31	A	Do you know where exactly the creature that stole the fir tree and the gifts was seen? 	pi.	32	"PlayerHasItem#10984"		
+31	A	Of course! 	pi.	0			
+32	Q	 Yes! Come on, I'll show you this place! [BLUE] (a little boy took you behind one of the houses, then you noticed that the artifact that the sorceress gave you began to glow. When you picked it up, the light enveloped you, blinded you for a moment, and when your vision returned, you realized that you were in some strange place)[]	¿po?	33				
+33	A		po.	0		"SetVariable#holiday_coming,60;Travel#H12_2,1"
+34	A	Yes, although it wasn't that easy! 	pi.	35			
+35	Q	 Cool! You are a real hero! Will the villains be afraid to come back?	¿po?	36				
+36	A	I'll take care of it... 	pi.	37			
+37	Q	 [BLUE](you didn't have time to finish, because suddenly, a blizzard swept down the village street)[]	¿po?	0		"LoseItem#10900;NPCSpawn#fur_tree;SetVariable#holiday_coming,66;NPCSpawn#snow1;NPCSpawn#snow2;NPCSpawn#snow_maiden"
+38	A	I hope so... 	pi.	39			
+39	Q	 [BLUE](you notice the snow beneath your feet begin to steam, turning into water, then mud, and suddenly, black, acrid smoke begins to billow from the ground. You try to run, but the smoke is everywhere, choking you, draining your strength, and you feel yourself losing consciousness...)[]	¿po?	40		
+40	Q	 [BLUE](when you woke up, you immediately realized that you were in some unknown place, in some kind of cave)[]	¿po?	41		
+41	A		po.	0		"SetVariable#holiday_coming,73;Travel#H12_3,1"
+42	A	Honestly, I have no idea, but now no one will interfere with our holiday. 	pi.	43			
+43	Q	 Cool! The people have already gathered, so we can start! Happy and happy holidays to all of you!	¿po?	0		"GainXP#20260;SetVariable#holiday_coming,100"

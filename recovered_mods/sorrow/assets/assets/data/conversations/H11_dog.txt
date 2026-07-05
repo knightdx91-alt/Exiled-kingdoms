@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a very strange looking dog with green fur)[] Did you figure out the Bridge?	¿po?	0	"VariableGreater#further_into_forest,39"		
+1	Q	[BLUE](a very strange looking dog with green fur)[] Well, have you been where you wanted to be?	¿po?	9	"VariableEqual#further_into_forest,35"		
+1	Q	[BLUE](a very strange looking dog with green fur)[] Go on your way more cheerfully, keep your tail up more cheerfully!	¿po?	0	"VariableEqual#further_into_forest,30"		
+1	Q	[BLUE](a very strange looking dog with green fur)[] Go on your own, wherever you want!	¿po?	0	"VariableEqual#further_into_forest,25"		
+1	Q	[BLUE](a very strange looking dog with green fur)[] Hey, you! You seem to be lost? Maybe I can tell you the way, huh? If anything, I know these places perfectly well, like my own tail.	¿po?	2			
+2	A	What the hell is this green, talking dog?!	po.	3		
+2	A	Yes, of course, I would be glad to hear about the road from a talking dog.	po.	7		
+3	Q	You're a dog yourself! Is this really the first time you've seen a talking dog with a green color?	¿po?	4				
+4	A	Actually, yes!	po.	5		
+5	Q	Damn it, lived, have never met talking dogs! So, should I show you the way?	¿po?	6			
+6	A	No, I'll figure it out on my own without talking dogs.	po.	0		"SetVariable#further_into_forest,25"
+7	Q	So I'll explain this to you quickly now! If you need to get to the other side of the river, go straight along this path, you will come out to the bridge. Is everything clear?	¿po?	8				
+8	A	Yes, thanks for pointing the way!	po.	0		"SetVariable#further_into_forest,30"
+9	A	Bridge won't let me go to the other side!	po.	10		
+10	Q	The bridge won't let you in? Yeah, it happens to him, I usually piss on him, and he stops fussing right away, but you can't do that.	¿po?	11				
+11	A	And what should I do with him?	po.	12		
+12	Q	Hmm, let me think about it... This Bridge has a couple of friends, they usually wander on this side of the river. So, if you beat them hard, they will run to complain to Bridge, and you will also come to him and say that you will beat his friends over and over again, but if he lets you through, you will stop doing it. Do you understand everything?	¿po?	13				
+13	A	It seems, yes! And where and how many of these bridge friends are?	po.	14		"NPCSpawn#cornstalk;NPCSpawn#littleman;NPCSpawn#invisibleman"
+14	Q	Where? Somewhere here, and there are only three of them, okay?	¿po?	15				
+15	A	It seems, yes!	po.	0		"SetVariable#further_into_forest,40"

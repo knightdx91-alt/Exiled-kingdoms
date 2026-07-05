@@ -1,0 +1,13 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](in the shadow of a pile of rubble, you notice a piece of cloth sticking out from under them, deciding to check the find, you discover a small corpse under the rubble. Some boy somehow managed to get to this place, and most likely, frightened by the glowing people, hid here, where he froze to death)[]	port	0	"VariableEqual#dangerous_curiosity,110"	"SetVariable#s11_boy,2"	
+1	Q	Ah-ah-ah-ah-ah!!! [BLUE](as soon as you grabbed and pulled a piece of fabric, a scream was heard, and upon closer inspection you realized that in your hands you were holding the edge of a cloak that had been worn by a boy who was hiding under the rubble)[]	port	4	"VariableEqual#s11_boy,2"		
+1	Q	[BLUE](in the shadow of a pile of rubble, you notice a piece of cloth sticking out from under them, perhaps the boy you are looking for dropped it)[]	port	2		
+2	A	[BLUE](take it and examine it, maybe this trail will lead me somewhere)[]	port.	0		"NPCSpawn#boy;SetVariable#s11_boy,2"		
+2	A	It's unlikely that this will help me in my search in any way!	port.	0		
+4	A	Take it easy! I'm a hero, I came to save you and bring you home!	port.	5		
+5	Q	Oh, at least someone came, because I thought I'd have to get out on my own!	port	6		
+6	A	What are you doing here anyway?	port.	7		
+7	Q	Well, granddad from the lake told me about this city, and it was interesting for me to see and explore it myself. But I didn't believe that the white monsters he was scaring me with actually existed! I somehow managed to escape from them when they suddenly appeared, and hid here!	port	8		
+8	A	Well, if you are convinced of the truth of his stories, then let's go back.	port.	9		
+9	Q	Yes! There's no way I'm going here anymore!	port	10		"NPCFollow#"
+10	A	Well, that's good.	port.	0		"SetVariable#dangerous_curiosity,20"

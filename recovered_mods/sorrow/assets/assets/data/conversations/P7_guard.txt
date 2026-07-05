@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Let's act quickly, there are no royal guards here, although Dariel may be guarded by one of Bernadeth's people, there is no point in pitying these bastards.	port.	3			
+3	A	How do we get out of here? The same way?	po.	4		
+4,alarion	Q	No, it's not safe to return the same way, especially since our loyal guard can only provide a free passage once without attracting the attention of the rest of the guards. I know another way leading to the sewers, and I recently contacted one of my loyal castle servants, who confirmed that the passage is still open. Once we enter the sewers, we can easily exit them outside the city.	port.	5		"SetVariable#royal_will,75"
+5,havis	Q	You could have informed our friend in advance.	po.	6		"NPCFollow#"
+6,alarion	Q	There was no time, it all happened too quickly. Okay, let's not linger.	port.	0		"NPCFollow#"

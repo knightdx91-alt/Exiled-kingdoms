@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="65">
+  <properties>
+    <property name="exit_n" value="R10" />
+    <property name="exit_s" value="R8" />
+    <property name="exit_w" value="P9" />
+    <property name="faction_guard" value="ilmara" />
+    <property name="music" value="reflection" />
+    <property name="name" value="Painful Fens" />
+    <property name="name_ES" value="Un pequeño islote" />
+    <property name="outdoor" value="" />
+    <property name="sw1" value="255" />
+    <property name="sw2" value="240" />
+    <property name="sw3" value="239" />
+    <property name="sw4" value="244" />
+    <property name="sw5" value="256" />
+    <property name="sw6" value="252" />
+  </properties>
+  <tileset source="grassland.tsx" firstgid="1" />
+  <tileset source="trees.tsx" firstgid="129" />
+  <tileset source="spawns.tsx" firstgid="145" />
+  <tileset source="water.tsx" firstgid="233" />
+  <tileset firstgid="297" name="rocks_small" columns="5" tilecount="10" tileheight="64" tilewidth="64">
+    <image source="rocks_small.png" width="320" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="1">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="2">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="3">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="4">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="5">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="6">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="7">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="8">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+    <tile id="9">
+      <properties>
+        <property name="obstacle" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="natural_grounds.tsx" firstgid="313" />
+  <tileset source="grassland_structures.tsx" firstgid="697" />
+  <tileset firstgid="1062" name="rocks" columns="3" tilecount="6" tileheight="192" tilewidth="128">
+    <image source="rocks.png" width="384" height="384" />
+  </tileset>
+  <tileset source="rocks_ground.tsx" firstgid="1671" />
+  <tileset source="town_objects.tsx" firstgid="1935" />
+  <tileset source="town_objexts2.tsx" firstgid="2015" />
+  <tileset source="farmhouse.tsx" firstgid="2079" />
+  <tileset source="dryground.tsx" firstgid="2127" />
+  <tileset firstgid="2191" name="grassland_water" columns="16" tilecount="128" tileheight="32" tilewidth="64">
+    <image source="grassland_water.png" width="1024" height="256" />
+  </tileset>
+  <tileset source="greenground.tsx" firstgid="3087" />
+  <tileset firstgid="3151" name="trifles_sborka" columns="12" tilecount="216" tileheight="64" tilewidth="64">
+    <image source="trifles_sborka.png" width="768" height="1152" />
+  </tileset>
+  <tileset firstgid="3367" name="grass_water" columns="4" tilecount="25" tileheight="48" tilewidth="64">
+    <image source="grass_water.png" width="256" height="336" />
+  </tileset>
+  <tileset firstgid="3552" name="desert_water" columns="16" tilecount="224" tileheight="32" tilewidth="64">
+    <image source="desert_water.png" width="1024" height="448" />
+  </tileset>
+  <tileset firstgid="3776" name="wooden_trifles" columns="16" tilecount="288" tileheight="64" tilewidth="64">
+    <image source="wooden_trifles.png" width="1024" height="1152" />
+  </tileset>
+  <tileset firstgid="4064" name="Clouds_2" columns="16" tilecount="320" tileheight="32" tilewidth="64">
+    <image source="Clouds_2.png" width="1024" height="640" />
+  </tileset>
+  <tileset firstgid="4384" name="Clouds_2" columns="1" tilecount="1" tileheight="640" tilewidth="1024">
+    <image source="Clouds_2.png" width="1024" height="640" />
+  </tileset>
+  <layer name="nonwalk" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aOWIEIQwFUe5/Aa7rYCJjM6xCW73IiafRF9BrLaXUAi1k75NU3yR+19McuzVWT/2xLmPNgDTW1W/k4UOvT9r90z6+lKh1YV70ORC9Pm/oB/Cb1eseAP6xjwCw5L89iX0K8Mf6u1UrotfXk7VuAD6xZyED5jlWMWeAHFjrkOZ9jnkfP3Jj/gJ/sS5soi/nyBDAC+w1cdDLt6znbX18s6LUMSNTrauyZJOlTivIGwDQM3OO4Dyyjsw+TnKonb8hrxbdzLP3u5a9HrCfn9vNHneRv007fZn9Hys9tzKODCJmHbEmQEqU9RKljpEsdUogO2ANawaeWJyvlsYkPZYbz+8s5eUR+enSfIZN7z8k3t9gXpsn+b71Yg+ip31es/E67pbEu2QP2VgaI+/y9b3uwex5X/Jd9mu1fN9vpL4nGo0li/Z7Rck5OGM0H6Jr63+dwWg+RKddf3tML+vB8thao7He2PO85GFxnN/y710jnP62lt45V+M8MDqW9T1o10zWFt79SF5zWSe1HlZ+L+r833Ejh917O2/fZUu4sR5O75M1aR+/tXrOPs1wtf+r17TtPcguzT69nKezz01e0753fHnt6tEPKHevjACQAAA=
+  </data>
+  </layer>
+  <layer name="water0" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BtM1WAGAJAAAA==
+  </data>
+  </layer>
+  <layer name="water" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="ground" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="ground2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2cS3bUQAxFOxM6A9bEHgKsgED4hN882yDrgJOErA/6QJ84OWW7Pvo8ye9OMknbcrkkvVLJtdvl4JO3AQH44m1AUl56G2DAO28DjPhc+X9fle5/pnRdST56G1DJK+f7vx38/RZyWpS55M3aXOA4kiXQNYqGvoiiWUq+/d7cCmLFubcBhBD64YQPAtdAGM+DDu7Nna8lDVHmwtsARbiWyUmE2pYko/Ufb0btj/78UdiaX0UHzS+Yb21Be/8SaGt/D72rsf+y9BxI8wLJll4knkFj3qHX4gkW1HePWcs1Uz3j3QMwhToLF6/apcWcaN0HRajjEn8s4xX6frfEWmArug8tfiCtZUZ9KkpPizTaOm6r4zoCmp9bQA2Pv0+O9I6Qck8tFjZHHBdPvnkb4MxcrkHydUIQmWrb6HGXOl2mVzPSfb357m0AIcpkOhugVyuiaUnmujpu9//+3uzrf4Oog5Z6TXprbaN7Dmv9L7/+j/ldw9iPEiEfZ/Fd6XMuEP1Ogqex5+AXB5/4vW+LS6RMz7y5/zvuPwOO/VKsH9EoXr532/AOIsR2QiwZycFZ860G0z2WS+N7I/WpjqLdryy5FzaXT738hr3eOXg6r7ZwlpskLTp3rTZi3a8iXUesiUWWvVhr9lw9b79mTf1Z68zNVkZytWRead2PoxbUY65O+mbwuuj7MpnPocmCV59uhv7gLcVMy1iDttdKHtjKd0pIIOZRFB9F0f1zZMhzJbI+V4ksz4ris9L01nCyjgeRAf1bthK1WsF6LwE9Tx9hTCijsf7zWj9nyeclPOav53ii10CPZOn5rOXo2xbfpkbM0+QxEWNyjabpmZsIWqn3zKWo3wGu5RHGGJKRkXmd8dyJqPHriGaP/NLaIkr+RvyGAKmvU2L9iDjGWbh+5m1BG6X8EmXNXuLH4PjXxElJ/5FaS0SJ78SfHv/m+opI1j22vo+DrsEQe5qskNQ/zMv1INRViR7UEOvM5YVSLS/yOq2X69Pd7sWJzb3m3gVK7v4DvGW+oACQAAA=
+  </data>
+  </layer>
+  <layer name="scenery" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XQQqAIBAF0ILOUqmtuv/hMiKIaBdo4XsbtzLjH5muAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgr0Jf+wbtSsNxrnpAo0LOQPL+iztnD7Qu5iwsZlBxwQz6nCgHVchCHZO6F7f/t/edVx/qmB/qPuoFjbn+v3ZjAAAA4K0NmQYTOgCQAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3bTW7UMBTA8RZVYoPELWiTTAv0JmzYsOUG3bLhq7ABep3SnodzkIiJiCw7seOvZ/v/kypGRZNx7Of3bGd6coLcfuZuQMN+5G4Adok1br8iXLOk+R3q/u8CXUfV4nxt8Z6B2ErKyynEytkIy1Sjc49fjLWTBOQJ5J5bsdU6d0tVe7wBrkx1mPoMwBc1F4B07NXSYW2JUD4Fus7nQNeRKlQ/lYbnvABKwp4ZLWDPBVdfcjcAQBLUB8RW+rlP6e1H277nbgAg0G3uBkCL5wn+vuZuAIAmkGvqwV4hLelzp5azD+n9HFItYxZDK8+2yONpfcvdAACAWDY1udW6/eHZ/9dvnru9t9U+U330eO/jk2DNwA4PY/+/dYz7UFpcu94c/30/5p37se9/K/H/5+n2NWyeH7bYt3u8yxT7WHfDuBTHdj0k5fsPPusWuKnx/LOls33AVy375Vb+3r6W8cqB2gC44cwC8COpZqf6PlB3uv+91Gl/12P/v/IYA/iZ4r8ff14nHgMp53ilIeeEd7WIfUk1EGGwN6hPrfP0KkAdLqG2Sn2m07MWjWaw7NuXGcbAtK7ak2ek5qbDca2/1r/TGB0c9mQ+9zqc6X+fei+S0lZ+n/Zj6p4s1/ql9n358v7mc6Cp323zVEgXyly4PKUWpXBuyEGTHHFgY+/Z6EFQXVUtx6E7vrbt/5L2d1JjymRu71y3OH8K74UmB/Vn/87GO486IG0f2K3k2mX9U2thKrr26earz/pUwphcaHLtzLQmX+PTH3Psu4x5S+ui3rJfpji9dOiXtXXPzDQfrjWfIyGubSzj7FyJPTUPr+Urk63nyWqc95r4t5kLKdcRMZ7Fb92j6f/V37vkq2FnjdF9RrdyRmI6E7E5Y/Lt662/S9gT05N5bgyG2rE1DoNm3qmv1TGZr99rPuew2KdLWZPOY2f6ju9f3fxXIACQAAA=
+  </data>
+  </layer>
+  <layer name="roofs" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs2" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roof3" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aZbBVZRyFcbrh3ks3it0JdiN2J3YXKtgBtqBidwt2N3Z3d2LR3d3grPG5zmEG8d59zj77vPus9eX35Z4Z+O9vz7xVqnie53lecW5ySdL/guLdJG6/2N8g75vIzRdhSWly/5Zi2wRuvhAbcfsO/gaxbzw3X4ANuXl7XMffILaN4+bzsQG3bodr41b+BjnfWG4+D+tz47a4Fm6Je/gb5GxjuPlcrMdt2+CauAXujof7G2S90dx8Dtblpq1xDdwcd8PDsIe/QeSN4uazsQ63bIWr42a4Kx6Kp+JF/gaV3khuPgtrc8OWuBpuirvgIXgKXojX+xtUeCO4+Uysxe1a4Kq4Ce6MB+PJeAFeh/39Df53w7n5DKzJzZrjKrgx7oQHYXfsjdfiffisv8F/bhg3n441uFUzXBk3wh2xG56EvfAavBefwXdS+A2y7ZBD+f00rM6NmuJK2Bl3wAPxRDwfr8Z78Gl8G79J0TfItkMO4XdTsRq3aYIrYifsigfgCXge9sO78Sl8C7/GwSn4BrnqkFP4fVV+3xhXwA1xe9wfj8dz8Sq8C5/EN/Er/AsnB/wNct4h+V0ZdsQNsAvuh8fhOXgl3olP4Bv4Jf6Jk3BxgN8grg5Zyu+Wx/VxO9wXj8Wz8Qq8Ax/H1/EL/AMn4iIsKYv2701icXfI5fjdergt7oPH4FnYF2/Hx/A1/Bx/xwm4EBtx+w4BfIN8dch1+d02uDcejWdiH7wNH8VX8TP8DcfjAmzIzdsHcPt8d8it+d1eeBSegZfjrfgIvoKf4iAch/OxATdvF8Dtk+qQe/K7I/F0vAxvwYfxZfwEf8WxOA/rc/O2Adw+6Q55BL87DS/Fm/EhfAk/xl9wDM7Fety8TQC3L5QO2ZPfXYI34YM4ED/Cn3E0zsG63Lx1ALcvtA55Mb+7ER/AF/FD/AlH4Wysw81bBXD7Qu2QN/C7+/EF/AB/xJE4C2tz85YB3D6JDlmZfjeA3z2P7+MPOAJnYi1u3iKA2yfRIaP0u+f4/Xv4PQ7HGViTmzcP4PZJdEj1O3XIKP3uXf72OxyG07EGN28WwO3Ll88OqX6nDql+pw4Zpd99y98OxWlYnZs3Dej2/47/Q5wdUv1OHVL9Th1S/U4dMkq/G8LfTsVq3LxJiLdncXZI9Tt1SPU7dUj1O3VI9Tt1yCj9bgp/W5WbNw749uWLo0Oq36lDqt+pQ6rfqUOq36lDqt+pQ0bqd9y8LAW3L18uO6T6nTqk+p06pPqdOqT6nTqk+p06ZDb9rjRFty9fLjqk+p06pPqdOqT6nTqk+p06pPqdOqTfES592XRI9Tt1SPU7dUj1O3VI9Tt1SPU7dUi/I1z2onRI9Tt1SPU7dUj1O3VI9Tt1SPU7dUi/I6zYKtMh1e/UIdXv1CHV79Qh1e/UIdXv1CH9jrByq0iHVL9Th1S/U4dUv1OHVL9Th1S/U4f0O8JoW1aHVL9Th1S/U4dUv1OHVL9Th1S/U4f0O8LstrQOqX6nDql+pw6pfqcOqX6nDql+pw7pd4S5WWaHVL9Th1S/U4dUv1OHVL9Th1S/U4f0O8LcLrNDqt+pQ6rfqUOq36lDqt+pQ/odYTxbokOW/tMh1e/UIdXv1CH9jjDeZXZI9Tt1SPU7dUi/I8zPMjuk+p06pN8R5nkZHdLvCJNZZof0O8Lk53eEya+Y3xEWyorxHWGhrZjeERbqiuEdYaEvze8IQ1ka3xGGtjS+IwxtqXxHGNjS+I4wtKXxHWFwS+E7wtCWxneEnud5nud5nud5nud5nud5nud5nud5nud5nud5nud5nud5Se1vqPBzYQCQAAA=
+  </data>
+  </layer>
+  <layer name="roof4" width="96" height="96">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aU5CfZxyG4djYjZ3atm3btm2ltm3btm2bsW2nJ1e3M81kkv1nk69tnvvkOn3neU9/1aqllFJKKaWUUkoppZRSSimllFJKKaX/UkOaFv2CObfBtp+SP5jtDbL5ZDYtK+4tc1oDbT6JTWzfOX8wyxtg84lsbPNOXDJ/MMvqb/MJbGTrjlyCa+YPqrx+Nh/PhjbuwMW5BrfMH1RZfW0+jg1s256LcXVuwT3zBzNdH5uPZX2btuOiXI2bcw8emT8oud42H8N6tmzLRbgqN+PuPIJd8geVrpfNR7OuDdtwYa7CTbkbD+cZvCJ/MMP1tPko1rFday7ElbkJd+VhPJ2X8478wXTrYfORrG2zVlyQK3Fj7sJDeRov4+18In8wzbrbfARr2aolF+CK3Ig78xCeykt5Gx/nG/mDqepm8+GsaaMWnJ8rcEPuxIN5Ci/hrXyMr/OL/EFFXW0+jDVs05zzcXluwB15EE/mxbyFj/I1fs4/8gcVDbV9dZs047xcjutzBx7Ik3gRb+YjfJWf8XcOyR/8nS3KOQ+X5XrcngfwRF7Im/gwX+Gn/I2DOSV/UFGZLebmMlyX23F/nsALeCMf4sv8hL9yECezaXnVvP//0Fw2WZrrcFvux+N5Pm/gg3yJH/MXDuQkNrF95/xBRUvZZm1uw315HM/j9XyAL/Ij/swBnMjGNu+U7adqLRttzX14LM/ldbyfL/BD/sT+nMBGNu+Y7afZVrbam8fwHF7L+/g8P+CP7MfxbGjzDtl+uu1ls6N5Nq/hvXyO7/MH9uU4NrB5+2w/wx1lu7N4Ne/hs3yP37MPx7K+zdtl+0p3pg2v4t18hu/yO/bmGNazedtsX3JX2vIuPs13+C17cTTr2rxNti+5v26u7rTpU3yb37AnR7GOzVtn+5L7583Vk7Z9i1+zB0eyts1bZfuSm9bN1Zv8it05grVs3jLbl1xlb66Gs6bNW2T7kiv15qqGzZtn+5Kb2ZurZtm+5HJzVVy5uSqu3FwVV26uiis3V8WVm6viys1VceXmqvhyc/UvyBa5uSqu3FwVX26uii83V8WXm6viy81V8eXmqvhyc1V8ubkqvtxcFV9uroovN1fFl5ur4vvS1t2Ym6vZX1ebD2NurmZ/Q21f3ea5uSogm5dn+8Iqy/YppZRSSimllFJKKaU0y/sT9ooRewCQAAA=
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="entry" type="entry" id="1" x="2575" gid="145" y="1905">
+      <point />
+      <properties>
+        <property name="entry_id" value="1" />
+      </properties>
+    </object>
+    <object name="swamp2" type="spawn" id="2" x="2165" gid="147" y="1425">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_horror" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="3" x="1135" gid="147" y="1725">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp2" type="spawn" id="4" x="2775" gid="147" y="455">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_horror" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="swamp2" type="spawn" id="5" x="2785" gid="147" y="2275">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_horror" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="Road spawn" type="spawn" id="6" x="2705" gid="147" y="2765">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableGreater#problem_sirius,2" />
+        <property name="spawnChance" value="100" />
+        <property name="spawntable" value="beast_roads" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="swamp2" type="spawn" id="7" x="2295" gid="147" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_horror" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="8" x="1235" gid="147" y="755">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="9" x="855" gid="147" y="1145">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="10" x="885" gid="147" y="795">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="11" x="1175" gid="147" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="12" x="1205" gid="147" y="2035">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="13" x="1555" gid="147" y="595">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="14" x="1455" gid="147" y="1045">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="15" x="1405" gid="147" y="1305">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="16" x="1465" gid="147" y="1595">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="17" x="1525" gid="147" y="1935">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="18" x="1675" gid="147" y="2365">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="19" x="1745" gid="147" y="1175">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="20" x="1685" gid="147" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="21" x="1905" gid="147" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="22" x="1855" gid="147" y="1915">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="23" x="1775" gid="147" y="405">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="24" x="1965" gid="147" y="685">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="25" x="2005" gid="147" y="2365">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="26" x="2065" gid="147" y="425">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="27" x="2145" gid="147" y="1015">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="28" x="2265" gid="147" y="1855">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="29" x="2225" gid="147" y="2135">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="30" x="2295" gid="147" y="2735">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="31" x="2515" gid="147" y="2195">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="32" x="2425" gid="147" y="985">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="33" x="2605" gid="147" y="1235">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="34" x="2705" gid="147" y="825">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="35" x="2865" gid="147" y="1245">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp" type="spawn" id="36" x="2395" gid="147" y="165">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="37" x="655" gid="147" y="375">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="38" x="625" gid="147" y="655">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="39" x="655" gid="147" y="975">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="40" x="855" gid="147" y="225">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="41" x="875" gid="147" y="505">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="42" x="885" gid="147" y="1525">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="43" x="745" gid="147" y="1685">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="44" x="745" gid="147" y="1965">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="45" x="975" gid="147" y="2005">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="46" x="555" gid="147" y="2065">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="47" x="755" gid="147" y="2165">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="48" x="1465" gid="147" y="2385">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="49" x="1995" gid="147" y="2695">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="50" x="1235" gid="147" y="475">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="51" x="1545" gid="147" y="395">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="rat" type="spawn" id="52" x="2095" gid="147" y="175">
+      <point />
+      <properties>
+        <property name="spawn" value="swamp_rat2" />
+        <property name="wander" value="4" />
+      </properties>
+    </object>
+    <object name="wolf" type="spawn" id="53" x="165" gid="147" y="185">
+      <point />
+      <properties>
+        <property name="spawn" value="dire_wolf" />
+        <property name="spawn_u" value="wolf" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="wolf" type="spawn" id="54" x="165" gid="147" y="665">
+      <point />
+      <properties>
+        <property name="spawn" value="dire_wolf" />
+        <property name="spawn_u" value="wolf" />
+        <property name="wander" value="3" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="55" x="305" gid="147" y="2515">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="56" x="855" gid="147" y="2745">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="57" x="1045" gid="147" y="2555">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="58" x="1645" gid="147" y="2865">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="59" x="125" gid="147" y="1945">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="wyvern" type="spawn" id="60" x="155" gid="147" y="1345">
+      <point />
+      <properties>
+        <property name="spawn" value="wyvern_whelp" />
+        <property name="spawn_u" value="wyvern" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="swamp3" type="spawn" id="61" x="2715" gid="147" y="2735">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#problem_sirius,2" />
+        <property name="spawn" value="spotted_swamp_critter" />
+        <property name="wander" value="5" />
+      </properties>
+    </object>
+    <object name="skullhead" type="spawn" id="62" x="2835" gid="147" y="1555">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableLower#witch_ass,1" />
+        <property name="spawn" value="R9_skullhead" />
+        <property name="tag" value="skullhead2" />
+        <property name="wander" value="1" />
+      </properties>
+    </object>
+    <object name="Swamp Hag" type="spawn" id="63" x="2755" gid="147" y="1915">
+      <point />
+      <properties>
+        <property name="conditions" value="VariableEqual#witch_ass,2" />
+        <property name="conversation" value="J7_9_swamp_hag" />
+        <property name="spawn" value="swamp_hag" />
+        <property name="tag" value="witch" />
+        <property name="wander" value="2" />
+      </properties>
+    </object>
+    <object name="stone" type="conversation" id="64" x="2590" gid="149" y="1890">
+      <point />
+      <properties>
+        <property name="conversation" value="J7_9_stone" />
+        <property name="icon" value="rocks" />
+        <property name="name" value="@ROCKS" />
+      </properties>
+    </object>
+  </objectgroup>
+</map>

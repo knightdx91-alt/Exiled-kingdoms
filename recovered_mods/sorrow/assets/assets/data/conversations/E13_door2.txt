@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](it's a magical door, it's open)[]	port.	3	"VariableEqual#E13door_open,1"		
+1	Q	[BLUE](it's a magical door, and there's no way to open it to get outside)[]	port.	4	VariableGreater#dragons_service,39		
+1	Q	[BLUE](it's a magical door, and there's no way to open it to get outside)[]	port.	2			
+2	A	Use the password to open the door.	port!	0	VariableEqual#dragons_service,30	"SetVariable#dragons_service,35;SetVariable#E13door_open,1"	
+2	A	Get away.	port.	0		
+3	A	Enter.	port.	0		Travel#E13,4
+3	A	Stay.	port.	0		
+4	A	Use the password to open the door.	port!	0	VariableEqual#parol_open,1	"SetVariable#E13door_open,1"	
+4	A	Get away.	port.	0		

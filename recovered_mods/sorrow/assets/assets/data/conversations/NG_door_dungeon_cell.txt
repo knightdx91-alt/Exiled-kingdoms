@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The cell door is locked, but thanks to Amarisa you could go past it.	la puerta de la celda está cerrada, pero gracias a Amarisa, pudiste escapar	0	VariableGreater#want_letter_back,40	
+1	Q	This sturdy door seems to be locked from the outside	Esta robusta puerta parece estar cerrada desde fuera	2		
+2	A	Punch the door angrily and call for someone to come	Golpear la puerta furiosamente y llamar para que alguien venga.	3		IncVariable#cell_noise,1
+2	A	Kick the door out of desperation	Patear la puerta, en completa desesperación.	4		IncVariable#cell_noise,1
+2	A	Do nothing	No hacer nada	0		
+3	Q	test	test	0	VariableGreater#cell_noise,3	StartConversation#amarisa,amarisa_dungeon
+3	Q	You knock violently and call loudly. But nothing happens.	Llamas con fuerza y gritas, pero no acude nadie.	0		
+4	Q	test	test	0	VariableGreater#cell_noise,3	StartConversation#amarisa,amarisa_dungeon
+4	Q	Yes, it is breaking! No, wait, that creaking was your foot. Ouch.	¡Se está rompiendo! No, espera... Ese crujido ha sido tu pie. Duele.	0		LoseHP#2

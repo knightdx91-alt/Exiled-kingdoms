@@ -1,0 +1,1113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<map version="1.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="14">
+  <properties>
+    <property name="maxlight" value="70" />
+    <property name="music" value="nerves" />
+    <property name="name" value="Caves Madness" />
+    <property name="name_ES" value="Guarida abandonada" />
+    <property name="sw1" value="101" />
+    <property name="sw2" value="245" />
+    <property name="sw3" value="301" />
+    <property name="sw4" value="322" />
+    <property name="sw5" value="293" />
+    <property name="sw6" value="309" />
+  </properties>
+  <tileset source="dungeon.tsx" firstgid="1" />
+  <tileset firstgid="241" name="dungeon stairs" columns="4" tilecount="4" tileheight="128" tilewidth="128">
+    <image source="dungeon_stairs.png" width="512" height="128" />
+    <tile id="0">
+      <properties>
+        <property name="blocked" value="" />
+      </properties>
+    </tile>
+  </tileset>
+  <tileset source="cave.tsx" firstgid="245" />
+  <tileset source="spawns.tsx" firstgid="485" />
+  <tileset source="town_objects.tsx" firstgid="493" />
+  <tileset source="grounds_indoor.tsx" firstgid="573" />
+  <tileset source="town_objexts2.tsx" firstgid="733" />
+  <layer name="water" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <layer name="ground" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="ground3" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WsQ3CMBAF0AArMAli/02AhoaSJAMgCqQIpYhMSJy79waw/L/tk5sGGDrv194BtTgmugvdIGsbIPcnzyVAln/77uhZ0Nk1cM9jfcx1r3aHedZZ2pTzjjBHHj9kmJI/63yKPC+Wdk/cZR80+2mlXJneZWnW998yU0+lan6bt5G99QXrdBVnBAAAAAAAAAAAAAAAAAAA2IoX1Z2i0gBRAAA=
+  </data>
+  </layer>
+  <layer name="ground2" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aMQqAMBAEQPFHgv//iT7ALoLWYiFYGDnFQriZ9qpbNoRAmgY469r6bLqZAQAAvNV7awAAAAAAAAAAAAAAiQ3+VIesSXNaku4d8fTsjLKsmhNmoz/3SmDfvTfZcjm4u7+RtT/EXPVDZ3hq70xJfF8B8F8bhimYLgBRAAA=
+  </data>
+  </layer>
+  <layer name="objects" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   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
+  </data>
+  </layer>
+  <layer name="roofs" width="72" height="72">
+    <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+  </layer>
+  <objectgroup name="data">
+    <object name="exit from dungeon" type="entry" id="1" x="2210" gid="485" y="1980">
+      <point />
+      <properties>
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit to G10" type="transition" id="2" x="2290" y="1950" width="30" height="70">
+      <properties>
+        <property name="area_id" value="K11" />
+        <property name="entry_id" value="3" />
+      </properties>
+    </object>
+    <object name="exit from dungeon" type="entry" id="3" x="2110" gid="485" y="450">
+      <point />
+      <properties>
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="exit to G10" type="transition" id="4" x="2170" y="475" width="50" height="50">
+      <properties>
+        <property name="area_id" value="K11_cave2" />
+        <property name="entry_id" value="2" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="5" x="915" gid="5" y="155">
+      <point />
+      <properties>
+        <property name="icon" value="chest_big1" />
+        <property name="loot_table" value="dungeon_chest_7" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="6" x="1015" gid="245" y="495">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="7" x="1305" gid="245" y="785">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="8" x="85" gid="245" y="1875">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="orc_chest_3" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="9" x="915" gid="245" y="1365">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="dungeon_chest_2" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Chest" type="container" id="10" x="365" gid="245" y="215">
+      <point />
+      <properties>
+        <property name="icon" value="chest_small1" />
+        <property name="loot_table" value="orc_chest_3" />
+        <property name="name" value="@CHEST" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="11" x="1165" gid="489" y="715" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="mine_barrel1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Crate" type="container" id="12" x="1435" gid="489" y="2095" width="64" height="64">
+      <properties>
+        <property name="icon" value="crate1" />
+        <property name="loot_table" value="mine_barrel1" />
+        <property name="name" value="@CRATE" />
+      </properties>
+    </object>
+    <object name="Barrel" type="container" id="13" x="2065" gid="489" y="1715" width="64" height="64">
+      <properties>
+        <property name="icon" value="barrel1" />
+        <property name="loot_table" value="mine_barrel1" />
+        <property name="name" value="@BARREL" />
+      </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1810" y="2070">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1810" y="2100">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1810" y="2130">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1810" y="1990">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1810" y="1960">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1620" y="1840">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1680" y="1810">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1780" y="1810">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1880" y="1840">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="820" y="1740">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="950" y="1740">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1050" y="1740">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1090" y="1440">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1150" y="1440">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="240" y="1770">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="360" y="1740">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="310" y="560">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="410" y="560">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="570" y="570">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="570" y="700">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="570" y="830">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="770" y="900">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1120" y="770">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1120" y="640">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1120" y="510">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1010" y="470">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1300" y="240">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1330" y="240">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="247" x="1360" y="240">
+   <properties>
+    <property name="spawn" value="obsessed_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1890" y="1910">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1760" y="2150">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1760" y="2050">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1760" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1690" y="2080">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1690" y="1980">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1630" y="2050">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1630" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1440" y="2050">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1440" y="1980">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1240" y="1980">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1110" y="1980">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="980" y="1980">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="890" y="1870">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1660" y="1690">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1790" y="1690">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1920" y="1690">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1730" y="1600">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1850" y="1600">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1980" y="1600">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1760" y="1500">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1980" y="1500">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1860" y="1280">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1860" y="1120">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1990" y="1060">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1730" y="1060">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1570" y="1060">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1410" y="1060">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1090" y="1250">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1210" y="1180">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="270" y="820">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="350" y="670">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="190" y="1830">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="320" y="1830">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="450" y="1830">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="860" y="1660">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="990" y="1660">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1120" y="1660">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="890" y="1570">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1020" y="1570">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1150" y="1570">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1120" y="1500">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="1020" y="1470">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="890" y="1470">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="610" y="1380">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="610" y="1300">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="420" y="1280">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="260" y="1280">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="260" y="1440">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="260" y="1600">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="260" y="1120">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="260" y="960">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="290" y="450">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="410" y="450">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="540" y="450">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="670" y="450">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="250" y="360">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="410" y="360">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses1" type="spawn" gid="247" x="570" y="360">
+   <properties>
+    <property name="spawn" value="obsessed_female"/>
+    <property name="spawn_u" value="obsessed_male"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1530" y="2000">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1880" y="1500">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="890" y="1400">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="730" y="1480">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="730" y="1390">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="90" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="220" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="350" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="460" y="1950">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="190" y="2050">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="380" y="2050">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="240" y="2160">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="340" y="2160">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="290" y="250">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="410" y="250">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="540" y="250">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="670" y="600">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="670" y="730">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1210" y="670">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1210" y="580">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1210" y="480">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1350" y="770">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1440" y="770">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1010" y="400">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1070" y="340">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1020" y="600">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1020" y="730">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="930" y="640">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="800" y="540">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="800" y="670">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="800" y="800">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1660" y="420">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1660" y="540">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1410" y="540">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1540" y="540">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1510" y="670">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1500" y="420">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1380" y="420">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1250" y="420">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1410" y="320">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1280" y="320">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="obses2" type="spawn" gid="247" x="1130" y="280">
+   <properties>
+    <property name="spawn" value="obsessed_female_2"/>
+    <property name="spawn_u" value="obsessed_male_2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="furious" type="spawn" gid="247" x="930" y="800">
+   <properties>
+    <property name="spawn" value="furious_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="furious" type="spawn" gid="247" x="1340" y="640">
+   <properties>
+    <property name="spawn" value="furious_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="madman" type="spawn" gid="247" x="930" y="220">
+   <properties>
+    <property name="spawn" value="madman_male"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1210" y="60">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1440" y="60">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1630" y="60">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1820" y="60">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="2010" y="60">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="2090" y="160">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="2090" y="320">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="2160" y="430">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="2050" y="460">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="zombie2" type="spawn" gid="247" x="2140" y="570">
+   <properties>
+    <property name="spawn" value="ancient_mummy"/>
+    <property name="wander" value="0"/>
+   </properties>
+    </object>
+  </objectgroup>
+</map>

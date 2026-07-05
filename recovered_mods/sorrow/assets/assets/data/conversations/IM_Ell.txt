@@ -1,0 +1,29 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Wow, the old liar and crook came to me personally!	port?	11	"VariableEqual#unstoppable_stalker,25"		
+1	Q	Well, where are my seeds? 	[BLUE]()[] port.	8	"VariableEqual#smoke_without_fire,63"		
+1	Q	Well, where are my seeds? 	[BLUE]()[] port.	8	"VariableEqual#smoke_without_fire,60"		
+1	Q	[BLUE](this sorceress is not in the mood for conversations)[] If you need to talk to someone, find someone who is willing to listen to you, okay? 	[BLUE]()[] port.	2			
+2	A	Actually, I'm on business. I've heard rumors that you have a device with which can hack a magic alarm.	port?	3	"VariableEqual#smoke_without_fire,55"		
+2	A	Okay, I get you.	port?	0			
+3	Q	Hmm, did that old goat Percival send you? Although it doesn't matter if you need my device, then do one errand for me.	port?	4		
+4	A	What should I do?	port?	5			
+5	Q	I need the seeds of a plant called ice thistle, bring them to me, and I'll give you what you need.	port?	6		
+6	A	And where can I get them?	port?	7			
+7	Q	And these are your problems, where you will look for them. Although the last time these seeds were delivered to me from Whitetower. Good luck, and greetings to the worthless scammer.	port?	0		"SetVariable#smoke_without_fire,60#"		
+8	A	Here they are.	port?	9	"PlayerHasItem#10291"		
+8	A	I haven't got them yet.	port?	0			
+9	Q	Great, and this is the device that you need, hide it before anyone sees it, this thing is illegal, and it's not me or you who don't want problems with the authorities of Thuram, right? Oh, and tell Percy that if he doesn't return my device himself again, I'll personally find him and make him wish he was born into this world, okay?	port?	10		
+10	A	Yeah, that's how I'll tell him everything.	port?	0		"LoseItem#10291;SetVariable#smoke_without_fire,65"		
+11,perci	Q	I've never lied to you, Ell, it's just that sometimes I haven't told you the whole truth. You look great, by the way.	port?	12		
+12,ell	Q	Of course, do you have any idea how much money I spend on maintaining my freshness and beauty? Tell me why you're here while I'm in a good mood to tolerate your company.	port?	13		
+13,perci	Q	Do you remember that magical researcher we were looking for with your special device in the Thir Mountains?	port?	14		
+14,ell	Q	You bet! Everything ended badly for her, and we were almost devoured by those creepy creatures!	port?	15		
+15,perci	Q	Do you still have this device? In working condition?	port?	16		
+16,ell	Q	Let's say. And what will I get in return?	port?	17		
+17,perci	Q	How about one of the artifacts confiscated from the necromancer who was recently forced into the sewers of Icemist?	port?	18		
+18,ell	Q	No, in cases like this, I don't have the device you need.	port?	19		
+19,perci	Q	Okay, then two artifacts. And you herself choose which one you take?	port?	20		
+20,ell	Q	Okay, the device is stored in my old house in Solliga, do you remember how to use it??	port?	21		
+21,perci	Q	Yes, there doesn't seem to be anything complicated there.	port?	22		
+22,ell	Q	You can use our portal, the road to the village is long and not safe.	port?	23		
+23	A	Thank for your help.	port?	0		"SetVariable#walk_stalker,1;Travel#I10,2,6"		

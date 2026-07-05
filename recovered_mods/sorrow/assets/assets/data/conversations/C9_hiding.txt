@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](an unremarkable room, it seems, in which the Nail's gang spends the night, after looking around, you noticed stacks of empty boxes in the corner, pushing them aside, you found a hiding place in the floor, which contained a large bag filled with jewelry)[]	¿po?	2			
+2	A	[BLUE](put everything back in place and leave)[]	po.	0		Travel#C9,7
+2	A	[BLUE](take a bag of jewelry)[]	po.	3		"GainItem#10406;SetVariable#freedom_law_order,87;NPCSpawn#nail;NPCSpawn#nail_band"
+3,mercenary_grisenda	Q	That's right, we steal from thieves and give what we steal to the poor, right?	port.	0	NPCIsInParty#grissenda,mercenary_grisenda		
+3,adaon	Q	Of course, I understand everything, I'm not a holy man myself, but stealing from the House of Seven is clearly a bad idea, so let's go without me! 	port.	0	"NPCIsInParty#adaon,adaon"	"NPCStopFollowing#;NPCDespawn#adaon"
+3	Q	[BLUE](now we must somehow leave the city without getting caught by the guards)[]	¿po?	0			

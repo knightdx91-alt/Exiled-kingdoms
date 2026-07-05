@@ -1,0 +1,34 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](You dealt with all the bandits, and now you could calmly examine those who came to your rescue, it turned out to be Alarion and a woman in a hooded cloak, squatting down, studying the slain enemies) [] These are her people.	¿po?	16	"VariableEqual#one_way_road,40"		
+1	Q	[BLUE](bandits stopped, looking around)[]	po.	8	"VariableEqual#one_way_road,35"		
+1	Q	 [BLUE](bandit leader was defeated, and his subordinates immediately lost their desire to fight and fled. However, the attack did not end there, as another, larger group of bandits emerged from the forest)[]	¿po?	0	"VariableEqual#one_way_road,30"	"SetVariable#one_way_road,35;NPCDespawn#bandit2;NPCSpawn#bandit3;NPCSpawn#bandit4;NPCSpawn#arhont"	
+1	Q	[BLUE](looking back at the noise, you see a group of bandits coming out of the forest)[] And Archont definitely said that someone else would come here, and you, idiot, didn't want to wait, you decided to leave right away.	po.	3	"VariableEqual#one_way_road,25"		
+1	Q	 [BLUE](at the edge of the forest, you notice bodies lying in the grass, and after examining them, you realize that they were killed recently, and they may be the people Alarion asked you to find. Suddenly, you hear a noise behind you)[]	¿po?	0		"SetVariable#one_way_road,25;NPCSpawn#bandit1;NPCSpawn#bandit2"	
+3,bandit2	Q	Fuck you and your Archont! There are damned mines nearby, and anyone in my position wouldn't want to stay here for long!	po.	4			
+4,bandit1	Q	And you want to get coins without much effort, right, buddy?	po.	5			
+5	A	Hey, who are you?!	po.	6		
+6	Q	Don't worry about us, we'll finish you off quickly, you won't even have time to feel anything, that's just our job!	po.	7			
+7	A	We'll see who kills who here!	po.	0		"SetVariable#one_way_road,30;NPCHostile#bandit1;NPCHostile#bandit2"	
+8,bandit3	Q	And I told you, Archont, that you shouldn't rely on all sorts of rabble, they're no use, but they can get chatty and attract unnecessary attention to us!	po.	9			
+9,arhont	Q	You're wrong, they're useful, I was selecting this rabble for specific targets, but someone extra appeared here who wasn't part of my calculations, this stranger clearly turned out to be too tough for them.	po.	10			
+10,bandit3	Q	We've been messing around here for a long time, the boss won't be happy.	po.	11			
+11,arhont	Q	That's not your problem...	po.	12			
+12,bandit4	Q	[BLUE](another bandit appeared from the forest)[] The scout reported that he had seen someone else in the forest!	po.	13			
+13,arhont	Q	Okay, I'll check who it is, and you and your people finish up here.	po.	14			
+14,bandit3	Q	I understand you, Archont. [BLUE](some of the bandits went back into the forest, the rest, taking out their weapons, began to surround you, then you noticed that although they were dressed in simple cloaks, they had armor underneath them, and were armed with good swords)[]	po.	15			
+15,bandit3	Q	[BLUE](suddenly, someone attacked the bandits from the rear, it seems to be a woman and a vaguely familiar man, this is clearly your chance to deal with the bandits while some of them are distracted by another target!)[]	po.	0		"SetVariable#one_way_road,40;NPCHostile#bandit3;NPCHostile#bandit4;NPCDespawn#arhont;NPCSpawn#havis2;NPCSpawn#alarion2"	
+16,alarion2	Q	It's possible, but we can't know for sure without evidence. [BLUE](Alarion replied to her and looked at you)[] The hunters who returned to the settlement reported that they had seen some unknown people in the forest, so I decided to take precautions and went after them with Havis. We hurried as fast as we could, but unfortunately we were a little late and were unable to save everyone.	po.	17			
+17	A	Not all of the bandits are here, some of them have returned to the forest.	po.	18			
+18,alarion2	Q	Hmm, if they noticed me and Havis, they'll probably avoid a fight and get out of here. Did those bastards talk about anything before they attacked? Maybe you managed to memorize something?	po.	19			
+19	A	Well, there seems to be nothing interesting, only one of them, who left, was called by the name of Archont.	po.	20			
+20,alarion2	Q	[BLUE](Alarion and the woman exchanged glances)[] Well, you were obviously right, Havis, he really is keeping an eye on me and everyone I deal with.	po.	21			
+21,havis2	Q	And you still don’t intend to give up on your idea?	po.	22			
+22,alarion2	Q	This circumstance only strengthens my resolve, he leaves me no other choice, I must act before it is too late. Especially since the governor of Sol-Laqueul is now ready to...	po.	23			
+23,havis2	Q	Not in front of strangers. [BLUE](woman interrupted him, frowning in your direction)[]	po.	24			
+24,alarion2	Q	Oh, yes. Thank you for your help, so sorry that couldn't be saved my people, but you deserve the reward anyway.	po.	25			
+25,havis2	Q	We must take the bodies of our comrades and give them a proper burial. [BLUE](said the woman, and you saw her cutting off the faces of the bandits she had killed)[]	po.	28	"VariableGreater#trouble_again,99;VariableGreater#true_lie,99"		
+25,havis2	Q	We must take the bodies of our comrades and give them a proper burial. [BLUE](said the woman, and you saw her cutting off the faces of the bandits she had killed)[]	po.	26			
+26	A	What the hell is she doing?!	po.	27			
+27,alarion2	Q	[BLUE](he looked at the woman's actions, grimacing slightly, and spoke quietly)[] Havis comes from the southern wild tribes, and they have their own unique customs. We'll come back here to choose them, Havis. Your reward, hero, and I could use a good fighter like you, but while the suburbs of Istril and its environs are restless, it is too early to act, so you can return to the gatekeeper and inform him that I have received his message and agree to his offer, but with my own conditions. See you later in our settlement.	po.	0		"GainGold#3200;GainXP#800;IncVariable#REP_sorrowland,1;SetVariable#one_way_road,50;NPCDespawn#alarion2;NPCDespawn#havis2;NPCDespawn#bandit4;NPCDespawn#corpse"	
+28	A	What the hell is she doing?!	po.	29			
+29,alarion2	Q	[BLUE](he looked at the woman's actions, grimacing slightly, and spoke quietly)[] Havis comes from the southern wild tribes, and they have their own unique customs. We'll come back here to choose them, Havis. Your reward, hero, and I could use a good fighter like you. Thanks to you, the suburbs of Istril and its surroundings have become safe, so I can act. You can return to the gatekeeper and tell him that I have received his message and agree to his offer, but with my own conditions. See you later in our settlement.	po.	0		"GainGold#3200;GainXP#800;IncVariable#REP_sorrowland,1;SetVariable#one_way_road,50;NPCDespawn#alarion2;NPCDespawn#havis2;NPCDespawn#bandit4;NPCDespawn#corpse"	

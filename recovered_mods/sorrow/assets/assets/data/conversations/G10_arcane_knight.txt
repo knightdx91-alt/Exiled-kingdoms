@@ -1,0 +1,40 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	([BLUE]a knight in unusual armor[]) Hello, my friend, good to see you! The goblins continue to bother me, but I don't give them a break!	port?	22	VariableEqual#green_king,100		
+1	Q	([BLUE]a knight in unusual armor cleans the sword of blood[]) Thanks again for your help, buddy! Now, for sure, the goblins will cause less problems for the settlers, and I will continue to try to permanently deter the green bastards from encroaching on these lands.	port?	20	VariableEqual#green_king,60		
+1	Q	([BLUE]a knight in unusual armor fights goblins[]) Beat them, buddy!	port?	0	VariableEqual#green_king,50		
+1	Q	([BLUE]a knight in unusual armor[]) Quiet! I heard something...	port?	0	"VariableEqual#gob_sha,1"		
+1	Q	([BLUE]a knight in unusual armor[]) Are you making any progress, my friend?	port?	18	VariableEqual#green_king,40		
+1	Q	([BLUE]a knight in unusual armor[]) I will be here, protecting the settlers from goblin attacks.	port?	0	VariableEqual#green_king,30		
+1	Q	([BLUE]a knight in unusual armor[]) If you've changed your mind, then I still need a hero for an important cause.	port?	12	VariableEqual#green_king,25		
+1	Q	([BLUE]a knight in unusual armor cleans the sword of blood[]) Thank you, my friend, for helping me defeat these vile creatures! Damn goblins, there are more and more of them every day, and no one in New Garand cares what happens here on the border of their kingdom! By the way, my name is Duncan.	port?	4	VariableEqual#green_king,20		
+1	Q	([BLUE]a knight in unusual armor, surrounded by a crowd of goblins, is fiercely fighting them[]) Hey, buddy, I could use your help!	port?	0	VariableEqual#green_king,15		
+1	Q	([BLUE]a knight in unusual armor, surrounded by a crowd of goblins, is fiercely fighting them[]) Hey, buddy, I could use your help!	port?	2	VariableEqual#green_king,10		
+1	Q	([BLUE]a knight in unusual armor, surrounded by a crowd of goblins, is fiercely fighting them, but there are too many of them, perhaps it's worth helping this knight defeat the vile creatures[])	port?	2		
+2	A	([BLUE]help the knight[])	port?	0		"NPCSpawn#gob_boss;SetVariable#green_king,15"		
+2	A	This is clearly not my problem!	port?	0		"SetVariable#green_king,10"		
+4	A	Nice to meet you. And who are you, and what is this place, what are you doing here?	port!	5				
+5	Q	 I'm a arcane knight in exile, that's all I can tell the first person I meet. As a noble hero, I patrol the border of the kingdom, destroying any evil threatening the nearest villages, and this is one of the places I use for camping. If you're interested, I can tell you about the history of these ruins.	¿po?	6		
+6	A	Yes, I'd be interested to hear about it.	port?	7		
+6	A	No, I'm not interested in that.	port?	9		
+7	Q	It was here that the Guild of Wizards was going to build their enclave, for reasons I don't understand, they were very interested in the mines that are located on the eastern side of the hills. But the wizards didn't take care of the guards, and due to the constant attacks of goblins on the workers, the construction site was abandoned and unfinished, as the whole area was overrun by goblins. After this setback, the Guild took a more organized approach to the issue, and they were still able to build their enclave, but in Sagar.	port	8			
+8	A	Okay, I'll know.	port?	9		
+9	Q	Well, you helped me, do me a favor again, I won't leave you without a worthy reward. There is one important matter, and it concerns the safety of the residents of the nearby villages.	port	10			
+10	A	Okay, tell me what your case is.	port?	13		
+10	A	No, I'm not interested in that.	port?	11		
+11	Q	Well, thanks for helping me fight off the goblins here.	port	0		"SetVariable#green_king,25"		
+12	A	Okay, tell me what your case is.	port?	13		
+12	A	No, I'm not interested in that.	port?	0		
+13	Q	Lately there have been too many goblins, they are taking up more and more places. And here is the reason. I managed with difficulty to extort information from one of the freaks I caught that the goblins have a kind of king, he has gathered and organized several tribes into a common army, under his leadership the goblins can cause a lot of trouble for the inhabitants of the kingdom.	port	14			
+14	A	And what do you propose to do? Kill this goblin king?	port?	15		
+15	Q	That's right, I found out that the goblin king is in caves at the foot of the Wyvern Mountains in the northwest Sagar Forest. I would go there myself, but then I would have to leave the villagers unprotected for a while, and if I died there, they would be left without anyone's care at all.	port	16			
+16	A	Okay, I'll find that bastard and finish him off.	port?	17		
+17	Q	Thank you, you will do a good deed for the people of the kingdom. Here, I'm sure you'll find it useful in this case.	port	0		"GainItem#5008;GainItem#5052;GainItems#5001,2;GainItem#10621;SetVariable#green_king,30"		
+18	A	Yes, here's the head of the green bastard you were talking about.	port?	19	PlayerHasItem#10622		
+18	A	Not yet.	port?	0		
+19	Q	You've done a very good deed! Without their leader, the goblins will become disunited again and their attacks on villages will be less frequent. Well, you need to get what you deserve...	port	0		"LoseItem#10622;NPCSpawn#goblin_sh;SetVariable#gob_sha,1"		
+20	A	I was glad to help.	port?	21		
+21	Q	Take this as a thank you from me. And if you're a mage, I can teach you more advanced use of elemental weapons.	port	0		"GainItem#10639;GainXP#800;SetVariable#green_king,100"		
+22	A	What can you teach me?	port?	23		
+22	A	Hello.	port?	0		
+23	Q	If you are a mage, I can teach you [BLUE]Arcane Blade[] so you can use elemental-enchanted weapons with great efficiency.	Si eres un mago te puedo enseñar [BLUE]Arma Arcana[] para que puedas usar armas encantadas con los elementos.	24			
+24	A	Tell me more about Arcane Blade.	Dime más acerca de Arma Arcana.	0		TrainSkill#arcane_blade	

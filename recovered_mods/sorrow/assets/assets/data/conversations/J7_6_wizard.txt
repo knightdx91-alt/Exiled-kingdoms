@@ -1,0 +1,53 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hello, have you managed to find the cache and take its contents? Or do you need to use one of the magical services?	port.	2	"VariableGreater#unsurpassed_craftsmanship,39;VariableLower#unsurpassed_craftsmanship,99"		
+1	Q	Greetings, how are the progress of the search for the wreckage of the magic map? Or do you need to use one of the magic services?	port.	2	"VariableGreater#unsurpassed_craftsmanship,19;VariableLower#unsurpassed_craftsmanship,99"		
+1	Q	Welcome, I am a representative of independent magicians, I am ready to provide magical services to all those in need for an appropriate fee, such as teleportation, buying and selling magical items, elixirs, spells, or you can use the magic storage.	port.	2		
+2	A	I need to use your teleport.	port.	3		
+2	A	Do you have any work for me?	port.	9	"VariableLower#unsurpassed_craftsmanship,19"		
+2	A	What do you have for sale?	port.	0		OpenShop#
+2	A	Thanks, but I don't need anything.	port.	0		
+2	A	Yes, this is the legendary armor you were talking about.	port.	24	"PlayerHasItem#10827;PlayerHasItem#10828"		
+2	A	Not yet.	port.	0	"VariableGreater#unsurpassed_craftsmanship,39;VariableLower#unsurpassed_craftsmanship,61"		
+2	A	I found five map fragments.	port.	22	"PlayerHasItems#10839,6"		
+2	A	I found four map fragments.	port.	21	"PlayerHasItems#10839,5"		
+2	A	I found three fragments of the map.	port.	21	"PlayerHasItems#10839,4"		
+2	A	I found two fragments of the map.	port.	21	"PlayerHasItems#10839,3"		
+2	A	I found one fragments of the map.	port.	20	"PlayerHasItems#10839,2"		
+2	A	I haven't found any map fragments yet.	port.	0	"PlayerHasItem#10839"		
+2	A	I haven't found any map fragments yet.	port.	0	"VariableLower#unsurpassed_craftsmanship,39"		
+3	Q	I can teleport you to one of the major settlements in our kingdom: Quiet Harbor or Sol-Laqueul for [BLUE]250 gold[].	port [BLUE][].	4		
+4	A	Okay, teleport me to [BLUE]Quiet Harbor[]! Here's my gold.	port.	5	PlayerHasGold#250	
+4	A	Okay, teleport me to [BLUE]Sol-Laqueul[]! Here's my gold.	port.	7	PlayerHasGold#250	
+4	A	Maybe another time.	Quizá en otro momento.	0		
+5	Q	No problem. Tell me when you're ready...	De acuerdo, di cuándo estás preparado...	6		
+6	A	Send me!	Estoy preparado.	0		"loseGold#250;Particle#;Travel#O9,999;Particle#teleport"
+7	Q	No problem. Tell me when you're ready...	De acuerdo, di cuándo estás preparado...	8	IsRegistered#	
+8	A	Send me!	Estoy preparado.	0		"loseGold#250;Particle#teleport;Travel#N6,999;Particle#teleport"
+9	Q	Hmm, there is something, although I would not call it a normal work, rather it is a study. Perhaps you will be interested in it.	port.	10		
+10	A	Yes, tell us more about it.	port.	11		
+10	A	I have a feeling that I will have to wander around your entire kingdom a lot, so I'll pass.	port.	0		"SetVariable#unsurpassed_craftsmanship,10"
+11	Q	So, even in my youth, I became interested in studying the legacy of the ancient empire, and I was particularly fascinated by finding and studying various armor and weapons from that time. For example, the Mirozian armor is a true work of art! And, incredibly, you are wearing a piece of armor similar to this one! In its time, this armor was essentially a mass-produced item, but there were also truly unique examples.	port.	12	"PlayerHasItem#162"		
+11	Q	So, even in my youth, I became interested in studying the legacy of the ancient empire, and I was particularly fascinated by finding and studying various armor and weapons from that time. For example, the Mirozian armor is a true work of art! And, incredibly, you are wearing a piece of armor similar to this one! In its time, this armor was essentially a mass-produced item, but there were also truly unique examples.	port.	12	"PlayerHasItem#169"		
+11	Q	So, even in my youth, I became interested in studying the legacy of the ancient empire, and I was particularly fascinated by finding and studying various armor and weapons from that time. For example, the Mirozian armor is a true work of art! You may have heard of it, and perhaps you've even had the opportunity to see it in person. However, for its time, this armor was essentially a mass-produced item, and there were truly unique examples.	port.	12		
+12	Q	There isn't much information about such armor, although I've traveled extensively in search of even the smallest bits of information. Unfortunately, as I age, I find it increasingly difficult to engage in active research, although even spending more time in the tower allows me to uncover interesting insights.	port.	13		
+13	Q	And here's the most intriguing thing I know. Ancient magicians were able to create so-called wandering caches, which can be accessed from any enchanted location using the creator's magic map. I have discovered fragmentary accounts of an imperial hero who kept his unique armor in a similar cache.	port.	14		
+14	Q	Moreover, after digging through the old hiding places of the magical council, I found a fragment of this hero's magic map! The remaining fragments are scattered throughout the kingdom and hidden by special enchantments, making them impossible to find. However, with the fragment I have, I can locate them. Once I collect all the fragments, I will be able to reconstruct the map, which will grant me access to a hidden cache in a suitable location. The challenge lies in exploring numerous ancient ruins in search of the map fragments.	port.	15		
+15	A	And where, at least approximately, can I find these ruins?	port.	16		
+16	Q	As far as I know, they should be in the outskirts of our kingdom, mostly in remote and wild places. So will you take on this job?	port.	17		
+17	A	Yes, I will do this search.	port.	18		
+17	A	No, I'm not interested in that.	port.	0		"SetVariable#unsurpassed_craftsmanship,15"
+18	Q	Excellent! I don't know exactly how many pieces the magic map was broken into, so bring them all here. It will gradually become clear, and we can restore it.	port.	19		
+19	A	Okay, I get it.	port.	0		"GainItem#10839;SetVariable#unsurpassed_craftsmanship,20"
+20	Q	Obviously, this is not enough to restore the map.	port.	0		
+21	Q	Let's take a look at them. Hmm, it's clear that not all parts of the map have been collected yet.	port.	0		
+22	Q	Let's take a look at them. Wow, it's working! Yes, they've come together! A few spells, and the magic map will be restored. [BLUE](after the wizard's magical manipulations, the pieces of the artifact came together, and he rubbed his hands together in satisfaction)[] Done! Well, now that you have the magic map, you can find a hidden cache in one of the ruins you've visited, and I'll finally get to see the legendary armor of antiquity!	port.	23		
+23	A	Okay, I'll get you those armor pieces from the cache.	port.	0		"GainItem#10840;LoseItems#10839,6;SetVariable#unsurpassed_craftsmanship,40"
+24	Q	Incredible! I couldn't even imagine how amazing they really are! [BLUE](the wizard was enthusiastically examining the armor you brought)[] I have a contract with the Magic Council, I provide various ancient artifacts for their museum at the royal castle, this is the best place for these armor to stay, so that any citizen of the city can admire this beauty!	port.	25		
+25	A	Yes, without a doubt, this armor belongs there.	port.	26		
+25	A	Wait, I spent a lot of time and effort finding this armor, and now it's mine!	port.	28		
+26	Q	I am glad that you agree with my opinion, now these legendary armor will become public property! And as a reward for your efforts, I want to give you this artifact and coins, they will always be useful to you!	port.	27		
+27	A	Thank you.	port.	0		"LoseItem#10827;LoseItem#10828;LoseItem#10840;GainItem#10841;GainGold#2000;GainXP#1400;IncVariable#REP_sorrowland,2;SetVariable#unsurpassed_craftsmanship,100"
+28	Q	What a foolish act of selfishness! These legendary armor should be a public good! And you will receive a worthy reward in return!	port.	29		
+29	A	No, I won't give up these armor, I need them!	port.	30		
+30	Q	Well, I was hoping to change your mind, but now I see that it's useless, and I'll have to use force to take these armor!	port.	31		
+31	A	Well, try to take them away, old man!	port.	0		"ItemActivate#grate1;SetVariable#unsurpassed_craftsmanship,90;GainXP#1000;LoseItem#10840;NPCHostile#p6_wizard"

@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a sturdy grate that cannot be opened without a key)[]	¿po?	2			
+2	A	Use the key you found on the orc's corpse.	po.	3	PlayerHasItem#10832	
+2	A	There's nothing I can do.	po.	0		
+3	Q	 [BLUE](the key opens the lock, and the cage opens)[]	¿po?	0		"ItemHide#barrier1;ItemWalkable#barrier1;LoseItem#10832;SetVariable#strangers_foreign_lands,35"

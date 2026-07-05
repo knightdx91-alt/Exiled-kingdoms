@@ -1,0 +1,14 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	I'm busy! 	port. port.	0	"VariableEqual#hate_through,77"		
+1	Q	It's a complete failure! 	port. port.	0	"VariableGreater#hate_through,71"		
+1	Q	Well, well. I've figured out how this machine works, it actually works exactly like a similar machine in my world, we shouldn't have any problems. Let's get to work before the owners of the tower show up or the Magister returns. 	port. port.	2			
+2,adaon	Q	Wait! I don't understand anything! What is this thing? Who is this Magister? Why did we ask the dead man about some numbers, and why do he and you look so much like me?!	port?	3			
+3,scientist	Q	I take it you haven't explained anything to him?	port?	4			
+4	A	That's right, the Adaon who is the guard was against our Adaon knowing the truth.	port?	5		
+5,adaon	Q	What? Was that guard like me too?! What are you hiding from me?	port?	6			
+6,scientist	Q	Now I'll explain everything to you clearly, so that it's honest, because you're also an Adaon and you're the Magister's target. [BLUE](he told you about the same thing that you learned from another Adaon)[] And thanks to this machine and the coordinates obtained, we will send the Magister to a special reality from which it will be impossible to escape using the method of movement developed by him.	port?	7			
+7,adaon	Q	This is crazy! So you, that corpse, and that guard are me, but another version? And we're all being hunted by some kind of psycho?	port?	8			
+8,scientist	Q	Yes, yes, yes, a psycho who overcame space and time to finish off all our variants. But we'll stop him. Get ready, I'm starting this machine!  [BLUE](after Adaon's incomprehensible manipulations, the strange metal arch began to glow and hum, gradually the light began to cover the entire room)[]	port?	9			
+9,scientist	Q	Wait! Something's wrong! [BLUE](he started doing something with the device more frantically)[] These coordinates, they don't work properly for some reason! No! Did he really betray us?! Damn it, there's no stopping the process!	port?	10			
+10,scientist	Q	[BLUE](glow intensified, and suddenly people began to appear in the room, and one look at them was enough to realize that even though they were a little different from each other, but all these people - it was Adaon!)[] Oh, damn it! There are so many of them! My adaon-disguiser won't be able to hide all their presence from the Magister!	port?	11			
+11	A			0		"NPCSpawn#adaons;NPCSpawn#adaon2;NPCSpawn#adaon3;NPCSpawn#outlaw;NPCSpawn#king;NPCSpawn#prime;NPCSpawn#skuf;NPCSpawn#priest;NPCSpawn#batrax;NPCSpawn#girl;SetVariable#hate_through,72"		

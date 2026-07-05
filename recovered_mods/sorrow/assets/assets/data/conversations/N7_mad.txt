@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](you were standing by the seashore again, facing the mad wizard, and this time you immediately looked away from him to avoid falling under his spell again, but the madman was clearly angry that you had managed to break free from his spell, and he raised his staff, causing icy whirlwinds of magic to swirl around him)[]	port.	6	VariableEqual#trouble_again,65		
+1	Q	[BLUE](near the seashore, you notice a man in a cloak, standing with his staff, looking into the water. Remembering the advice of magister Kaledor, you decide to approach him cautiously, but suddenly, he turns to you sharply, staring at you intently)[]	port	2			
+2,mage	Q	Be careful! Don't look into his eyes!	port	3		
+3	Q	[BLUE](but you couldn't look away, your body seemed paralyzed, the madman's eyes fixed on you, and you felt like you were falling into a bottomless well, the world around you darkening...)[]	port.	4		
+4	A	[BLUE](...nevertheless, with great effort, you managed to look away from the wizard's eyes, and the spell was broken. You felt able to move again)[]	port.	5			INT#6
+4	A		port.	0		"HideParty#;SetVariable#trouble_again,50;Travel#N7_2,1"
+5	Q	[BLUE](madman was clearly angry when he couldn't enchant you, and he raised his staff, causing icy whirlwinds of magic to spin around him)[]	port.	6		
+6	A	It looks like we won't be able to handle him peacefully.	port.	0		"NPCHostile#mad;SetVariable#trouble_again,70"

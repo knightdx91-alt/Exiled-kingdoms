@@ -1,0 +1,46 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] What the hell?! It's lady Merinsolt's tiara, I've seen her wear it many times! 	[BLUE]()[] port.	25	PlayerHasItem#10407		
+1	Q	 [BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. Glad to see you.	¿po?	11	"VariableEqual#freedom_law_order,120"		
+1	Q	 [BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. Glad to see you.	¿po?	11	"VariableGreater#freedom_law_order,109"		
+1	Q	 [BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. Any progress?	¿po?	18	"VariableEqual#freedom_law_order,87"		
+1	Q	 [BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. Any progress?	¿po?	13	"VariableEqual#freedom_law_order,85"		
+1	Q	[BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. In Freeport, we are glad to see all civilizational people! When the criminals who have attacked the honor of the governor are caught, the possible inconveniences caused to you during your stay in our city will end. 	[BLUE]()[] port.	17	"VariableEqual#freedom_law_order,55"		
+1	Q	 [BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. Any progress?	¿po?	5	"VariableGreater#freedom_law_order,15;VariableLower#freedom_law_order,55"		
+1	Q	[BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. In Freeport, we are glad to see all civilizational people! When the criminals who have attacked the honor of the governor are caught, the possible inconveniences caused to you during your stay in our city will end. 	[BLUE]()[] port.	17	"VariableGreater#freedom_law_order,10;VariableLower#freedom_law_order,20"		
+1	Q	[BLUE](a very large man in armor, who clearly should not be disturbed for nothing)[] Freedom to you, traveler. In Freeport, we are glad to see all civilizational people! When the criminals who have attacked the honor of the governor are caught, the possible inconveniences caused to you during your stay in our city will end. 	[BLUE]()[] port.	2		
+2	A	Perhaps I can help you find these thieves?	port?	3			
+2	A	Freedom! Not far from the Zamor pass, I noticed a group of fugitive slaves, I reported this to legionnaire Alia, and she sent me to you.	port?	12	"VariableEqual#will_or_death,50"	
+3	Q	I am glad of your loyalty and desire to help our city, but this matter is handled by people I have tested. [BLUE](For this task, you need a reputation of 15 at Mercia)[] 	port.	0	VariableLower#REP_mercia,15	
+3	Q	I've heard a lot about you, the help of a hero like you wouldn't hurt. Thieves will obviously try to escape from the city somehow, and I have one type under suspicion, his name is Makbul, he has been living in the city for a long time, so he knows all my people and is very careful with them, and you are a newcomer in the city, perhaps you will be able to talk to him at least a little and find out something. 	port.	4				
+4	A	Ok, I'll find this Makbul and try to get him to talk.	po.	0		SetVariable#freedom_law_order,20		
+5	A	Freedom! Not far from the Zamor pass, I noticed a group of fugitive slaves, I reported this to legionnaire Alia, and she sent me to you.	port?	12	"VariableEqual#will_or_death,50"	
+5	A	Not yet.	po.	0		
+5	A	I managed to find out from Makbul that his boss was going to take some things out of the city through the sewers at night, quite possibly stolen from the governor's wife.	po.	6	"VariableEqual#freedom_law_order,50"		
+6	Q	Hmm, it's quite possible if they are so determined to escape from the city. I hope you are ready to help our city a little more? The governor will reward you handsomely. 	port.	7				
+7	A	What should I do?	po.	8		
+8	Q	The thieves will be very careful in the city, and I doubt that we will be able to catch them all, so you have to help the thieves escape from the city, where a squad led by me will be waiting for them, which will be a complete surprise for them. 	port.	9				
+9	A	I will try to help you.	po.	10		
+10	Q	Great, I'll make sure you don't get hurt during the ambush and get your reward. 	port.	0		"NPCDespawn#anwar;SetVariable#freedom_law_order,60"		
+11	A	Freedom!	port?	0		
+11	A	Freedom! Not far from the Zamor pass, I noticed a group of fugitive slaves, I reported this to legionnaire Alia, and she sent me to you.	port?	12	"VariableEqual#will_or_death,50"	
+12	Q	Clearly, thanks for your vigilance, I will immediately send a squad to catch them before they have time to go far. 	port.	0		"SetVariable#will_or_death,110;NPCDespawn#slave1;NPCDespawn#slave2;NPCDespawn#slave3;NPCDespawn#slave4;IncVariable#REP_town_freeport,2;IncVariable#REP_mercia,1"		
+13	A	I managed to find out a place where thieves can be together with stolen things [BLUE](tell him the address that Nail gave you)[].	port?	14		
+13	A	Freedom! Not far from the Zamor pass, I noticed a group of fugitive slaves, I reported this to legionnaire Alia, and she sent me to you.	port?	12	"VariableEqual#will_or_death,50"	
+13	A	Not yet.	po.	0		
+14	Q	Great news! I'm sending a squad there immediately, we'll capture these scoundrels! 	port.	15		"ItemHide#grate1;ItemWalkable#grate1"
+15	A	[BLUE](by order of the praetor, a legionary detachment departs, after some time one of them returns and reports that the thieves were not there, but they found a large bag of jewelry. The governor's assistant arrives, who identifies the found jewels as stolen from the governor's wife)[]	port?	16		
+16	Q	It's a shame that the thieves managed to escape from us, but we were able to return the stolen items, lady Merinsolt will be pleased. Here is the reward for your efforts. 	port.	0		"SetVariable#freedom_law_order,110;GainItem#156;GainItem#157;GainXP#600;IncVariable#REP_town_freeport,14;IncVariable#REP_mercia,4;IncVariable#REP_seventhhouse,5"		
+17	A	I am glad to visit your city, despite what is happening.	port?	0		
+17	A	Freedom! Not far from the Zamor pass, I noticed a group of fugitive slaves, I reported this to legionnaire Alia, and she sent me to you.	port?	12	"VariableEqual#will_or_death,50"	
+18	A	I managed to find out the place where the thieves were hiding in order to prevent them from escaping, I decided to detain them myself, but in the process I had to kill them all, I also found the stolen things there [BLUE](give him the address and give him the bag of jewelry)[].	port?	19	PlayerHasItem#10406		
+18	A	Not yet.	po.	0		
+19	Q	Unexpected news! Your initiative and dedication are worthy of great praise! I will send a message to the governor, and I will send a message to the place where you killed the thieves, the corpses of these scoundrels will be hung at the gate so that no one forgets about law and order in the city! 	port.	20		"ItemHide#grate1;ItemWalkable#grate1"
+20	A	[BLUE](by order of the praetor, a legionary detachment departs. The governor's assistant arrives, who identifies the jewelry you brought as stolen from the governor's wife)[]	port?	21		
+21	Q	We have managed to eliminate the thieves and return the stolen items, and both the governor and lady Merinsolt will be pleased. Here is the reward for your efforts. 	port.	0		"SetVariable#freedom_law_order,130;LoseItem#10406;GainItem#156;GainItem#157;GainGold#2500;GainXP#700;IncVariable#REP_town_freeport,20;IncVariable#REP_mercia,9"		
+25	A	[BLUE](you tell the praetor where and from whom you purchased the tiara, then you begin to describe all its differences from lady Merinsolt's tiara for a long time and tediously)[]	po.	27			PER#7
+25	A	[BLUE](you try to justify yourself, but to no avail)[]	po.	26						
+26	Q	Ha! One of the thieves has fallen into our hands! Soldiers, detain him! 	[BLUE]()[] port.	28		"SetVariable#freedom_law_order,145;DecVariable#REP_town_freeport,50;DecVariable#REP_mercia,25"		
+27	Q	[BLUE](praetor gets tired of your chatter)[] Well, maybe I made a mistake, get lost!! 	[BLUE]()[] port.	0		
+28	A	[BLUE](soldiers attack you, but you manage to escape, run to the entrance to the sewer and jump down there)[]	port.	29			AGI#2
+28	A	[BLUE](soldiers are attacking you, you are trying to escape, but the soldiers are not going to take you alive!)[]	port.	0		"LoseHP#50;LoseHP#50;LoseHP#50;LoseHP#100;LoseHP#100;LoseHP#150;LoseHP#150;LoseHP#200;LoseHP#200;LoseHP#500;LoseHP#500;LoseHP#1000;LoseHP#1500;LoseHP#5000;LoseHP#5000;LoseHP#5000"	
+29	Q	[BLUE](it seems that you should not return to the city anymore)[] 	[BLUE]()[] port.	0		"NPCSpawn#jude2;Travel#C9_sewer,2"

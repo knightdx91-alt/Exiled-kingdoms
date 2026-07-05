@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Behind this steel grating there may be a hiding place of captain Greedy, but it is impossible to open it without a key.	po.	2	VariableEqual#fee_for_merits,70		
+1	Q	This is a very strong steel grating, if your efforts are enough to open it.	po.	2			
+2	A	I didn't have to get there. 	pi.	0			
+2	A	Perhaps it will be possible to open it with the key found on the corpse of captain Greedy.	po.	3	PlayerHasItem#10174	"SetVariable#grate_o7sewer,2;LoseItem#10174;ItemHide#grate1;ItemWalkable#grate1"	
+3	Q	The grate is open!	po.	0			

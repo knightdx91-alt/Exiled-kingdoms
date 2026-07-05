@@ -1,0 +1,26 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] Hi, everything is calm with us so far, but you know Mika, it won't last long!	¿po?	0	"VariableGreater#unstoppable_stalker,99"		
+1	Q	 This asshole is completely fucked up, hit him!	¿po?	0	"VariableEqual#unstoppable_stalker,70"		
+1	Q	 This asshole is completely fucked up, hit him!	¿po?	0	"VariableEqual#unstoppable_stalker,52"		
+1	Q	 Oh, hi, you're probably looking for Mika?	¿po?	8	"VariableEqual#unstoppable_stalker,50;VariableLower#alice_go,1"		
+1	Q	 This asshole is completely fucked up, hit him!	¿po?	0	"VariableEqual#unstoppable_stalker,32"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] If this fool had exposed her ass less, she wouldn't have had problems with such crazy, horny fans!	¿po?	0	"VariableGreater#unstoppable_stalker,9"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] Hi, it looks like Mika wants to get you into her new troubles!	¿po?	0	"VariableGreater#most_famous,99"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] If we are not killed by the disgruntled locals, then either the wolves living in the local forests will devour us, or we will be raped by goblins hurling in the area!	¿po?	0	"VariableGreater#most_famous,84"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] If nothing good comes out of our troupe, I'm sure Mika will come up with another fun game that she will pull all of us into.	¿po?	0	"VariableGreater#most_famous,64"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] With a Mighty Rock, it will be much easier for us to deal with sectarians.	¿po?	0	"VariableEqual#most_famous,60"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] We need to go to New Anthur, Violetta is waiting for us there.	¿po?	0	"VariableEqual#most_famous,57"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] I'm not an outstanding fighter, but I can still help you, I can deal with one of the weak musicians.	¿po?	0	"VariableGreater#most_famous,54"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] I don't like walking outside the shelter, but since I promised to help Mika, I'll have to overcome.	¿po?	0	"VariableGreater#most_famous,24"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] Hi, you're probably the hero who helped our mistress deal with the bandits, I'm glad to meet you, but I don't really communicate with people I don't know.	¿po?	2	"VariableGreater#most_famous,14"		
+1	Q	 [BLUE](a red-haired girl who is not in the mood for communication)[] Hi, I don't have time to talk.	¿po?	0			
+2	A	Hello, you must be Alice. Mikaela sent me to look for you, she wants you to...	po.	3		
+3	Q	 Oh, no, no, no! I'm not going to mess with this crazy woman again, no matter what she's up to, I'm fine here!	¿po?	4		
+4	A	But she wanted you to join her musical troupe.	po.	5		
+5	Q	 Yes, yes, of course! Sometimes she creates a dramatic arts club, then a circle of lovers of romantic novels, or some other nonsense. Thanks, but I'll pass, I've had enough of her stupid ideas, they never ended with anything sensible! You can return to her and convey my rejection and everything I think about her new idea!	¿po?	6		
+6	A	But she is your friend, speaks well of you and hopes for your favor, she may be overly talkative and likes to invent various nonsense, but this is not a reason to be offended and upset her.	po.	7			PER#3
+6	A	Okay, I get you.	po.	0		
+7	Q	 Maybe you're right. Although she can sometimes be unbearable with her incessant chatter, which makes you want to strangle this infection, but her dedication to friends and tireless energy cannot but admire. Besides, I'm not having much fun here, I have to deal with smelly potions, mixing all sorts of stuff, while listening to Gunnild's constant grumbling. Okay, I'll pack my things, I'll meet you at Mika's.	¿po?	0		"SetVariable#most_famous,20;NPCDespawn#alice2;NPCSpawn#alice"
+8	A	Yes, where is she?	po.	9		
+9	Q	She and all the girls went to New Garand for a rehearsal, I'll pack some things and go there too, will you come with me? 	¿po?	10		
+10	A	Yes, of course.	po.	0		"SetVariable#alice_go,2;NPCDespawn#alice4;Travel#NG_arena2,1,7"

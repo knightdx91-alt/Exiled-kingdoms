@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](a girl in armor nods at you in greeting)[] Greetings, traveler! If you are planning to travel south, be careful, for this road leads to the Enchanted Valley.	port	6	"VariableEqual#talkcapp7,2"		
+1	Q	[BLUE](the girl in armor nods at you in greeting)[] Greetings, traveler! If you are planning to travel south, be careful, for this road leads to the Enchanted Valley. A few decades ago, the magical council led a rebellion, and a great battle took place in this valley between them and the wizards who remained loyal to the king. And all these years later, the consequences of that battle have not disappeared, and the remaining magic can be deadly, not to mention the fortress in the center of the valley, which was not damaged in that battle.	port	2		
+2	A	And how did that battle end?	port.	3		
+2	A	What kind of fortress is this?	port.	4		
+2	A	Hello, have you seen Princess Evelina Lightwind? Did she leave the city through these gates?	port?	5	"VariableEqual#trouble_again,10;VariableLower#p7capt1,1"		
+2	A	Okay, I'll be careful.	port.	0		"SetVariable#talkcapp7,2"
+3	Q	There is no detailed information about those days, as the battle was over very quickly and there were very few witnesses. The result was the defeat of the rebels, the formation of a new magical council, and the abandonment of the Enchanted Valley.	port	1		
+4	Q	This fortress was built during the dawn of the empire, but no records of it have survived to this day. The fortress survived the invasion of the horrors, and after their departure and the formation of our kingdom, it became the home of the magical council. No one knows who currently rules the tower.	port	1		
+5	Q	Almost no one uses this gate, so the princess wasn't here. 	port.	0		"SetVariable#p7capt1,2"		
+6	A	Hello.	port?	0			
+6	A	Hello, have you seen Princess Evelina Lightwind? Did she leave the city through these gates?	port?	5	"VariableEqual#trouble_again,10;VariableLower#p7capt1,1"		

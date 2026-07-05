@@ -1,0 +1,37 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Come at night. 	port.	0	"VariableGreater#freedom_law_order,55"		
+1	Q	Come at night. 	port.	0	"VariableGreater#freedom_law_order,45"		
+1	Q	 [BLUE](not a very friendly-looking young man)[] Well, how are you doing regarding my assignment?	¿po?	9	"VariableGreater#freedom_law_order,25;VariableLower#freedom_law_order,45"		
+1	Q	 [BLUE](not a very friendly-looking young man)[] Well, how are you doing regarding my assignment?	¿po?	20	"VariableGreater#freedom_law_order,10;VariableLower#freedom_law_order,20"		
+1	Q	 [BLUE](not a very friendly-looking young man)[] What do you want? Go your own way, before you get hit on the neck, I have enough problems without you.	¿po?	2			
+2	A	Okay, I'm leaving, why be so nervous?	port?	3			
+3	Q	So leave without too much chatter. [BLUE](For this task, you need a reputation of 15 at the House of Seven)[] 	port.	0	"VariableEqual#freedom_law_order,20;VariableLower#REP_seventhhouse,15"	
+3	Q	So leave without too much chatter. [BLUE](For this task, you need a reputation of 15 at the House of Seven)[] 	port.	0	"VariableLower#REP_seventhhouse,15"	
+3	Q	Although wait, I hear something about you in certain circles, and maybe you will be useful to us if you know how to keep your mouth shut. Except I'm not sure I should trust you until I see you in action myself. 	port.	4	"VariableEqual#freedom_law_order,20"	
+3	Q	Although wait, I hear something about you in certain circles, and maybe you will be useful to us if you know how to keep your mouth shut. Except I'm not sure I should trust you until I see you in action myself. 	port.	15		
+4	A	You can trust me, I'll be dumb as a fish, no matter what I have to do.	po.	5				
+4	A	Then give me some kind of job so that you can be convinced of my competence.	po.	6			PER#3
+5	Q	I'm sorry, of course, but these are just empty words, and they did not convince me. 	port.	0				
+6	Q	Okay, I have a friend named Omar, I need to take something from him, and it doesn't matter to me which way you do it - you will fulfill this assignment, and there will be another conversation about a larger case. 	port.	7				
+7	A	What exactly am I supposed to take away from this guy?	po.	8		
+8	Q	One little thing, Omar will immediately understand what it is when you say that you came from me. 	port.	0		SetVariable#freedom_law_order,30		
+9	A	Not yet.	port?	0			
+9	A	Here, I took the goods from Omar.	port?	10	PlayerHasItem#10286		
+10	Q	Did a great job. Now we can talk about our business. My boss needs to get some things out of town that we didn't get quite legally. But it's not so easy to leave Freeport now, I think you noticed it yourself. 	port.	11		"LoseItem#10286"				
+11	A	And how exactly do you want to do it?	port?	12			
+12	Q	We will try to do it through the sewer, the entrance to it is, of course, under surveillance, but at night it is guarded less zealously, and during the shift we will be able to leak. That's just in the sewer itself and at night outside the city, unforeseen troubles may well arise, so we will need a person with such experience and reputation as you have. Well, are you ready to help us? 	port.	13		
+13	A	Ready.	port?	14			
+14	Q	Then come to the same place at night to meet the boss. 	port.	0		"SetVariable#freedom_law_order,50;IncVariable#REP_seventhhouse,1"		
+15	A	You can trust me, I'll be dumb as a fish, no matter what I have to do.	po.	16				
+15	A	Then give me some kind of job so that you can be convinced of my competence.	po.	17			PER#3
+16	Q	I'm sorry, of course, but these are just empty words, and they did not convince me. 	port.	0				
+17	Q	Okay, I have a friend named Omar, I need to take something from him, and it doesn't matter to me which way you do it - you will fulfill this assignment, and there will be another conversation about a larger case. 	port.	18				
+18	A	What exactly am I supposed to take away from this guy?	po.	19		
+19	Q	One little thing, Omar will immediately understand what it is when you say that you came from me. 	port.	0		SetVariable#freedom_law_order,15		
+20	A	Not yet.	port?	0			
+20	A	Here, I took the goods from Omar.	port?	21	PlayerHasItem#10286		
+21	Q	Did a great job. Now we can talk about our business. My boss needs to get some things out of town that we didn't get quite legally. But it's not so easy to leave Freeport now, I think you noticed it yourself. 	port.	22		"LoseItem#10286"				
+22	A	And how exactly do you want to do it?	port?	23			
+23	Q	We will try to do it through the sewer, the entrance to it is, of course, under surveillance, but at night it is guarded less zealously, and during the shift we will be able to leak. That's just in the sewer itself and at night outside the city, unforeseen troubles may well arise, so we will need a person with such experience and reputation as you have. Well, are you ready to help us? 	port.	24		
+24	A	Ready.	port?	25			
+25	Q	Then come to the same place at night to meet the boss. 	port.	0		"SetVariable#freedom_law_order,55;IncVariable#REP_seventhhouse,1"		

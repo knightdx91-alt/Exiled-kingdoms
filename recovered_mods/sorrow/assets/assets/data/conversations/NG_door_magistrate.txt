@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This is Magistrate Steinz's house.	Esta es la casa del Magistrado Steinz.	2	"VariableGreater#want_letter_back,29;VariableLower#want_letter_back,100"	
+1	Q	This door is closed and locked.	Esta puerta está cerrada con llave	0		
+2	A	Knock and state your name and why you are here.	Llamar a la puerta y decir quién eres y por qué has venido.	3	VariableLower#want_letter_back,40	
+2	A	Enter the house	Entrar en la casa.	0	VariableGreater#want_letter_back,39	Travel#NG_house_1,1,0
+2	A	Walk away	Marcharse	0		
+3	Q	A servant allows you to walk in.	Un sirviente te permite entrar.	4	"HasNoFollower#;HasNoCompanion#"	
+3	Q	A servant allows you to walk in, but alone. [BLUE](your party will not follow you inside, but they'll join you again when they have a chance)[]	Un criado te permite entrar, pero sin acompañantes. [BLUE](Tu grupo no te seguirá, pero volverá a reunirse contigo cuando pueda)[]	5		
+4	A	Enter the house	Entrar en la casa.	0		Travel#NG_house_1,1,0
+4	A	Not now, maybe later.	Ahora no, quizá más tarde.	0		
+5	A	Tell your party to take a rest, and walk through the door.	Decir a tu grupo que se tome un descanso, y entrar en la casa.	0		"HideParty#;Travel#NG_house_1,1,0"
+5	A	Not now, maybe later.	Ahora no, quizá más tarde.	0		

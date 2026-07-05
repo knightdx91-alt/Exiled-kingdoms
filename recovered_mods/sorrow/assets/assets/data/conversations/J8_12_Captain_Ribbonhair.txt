@@ -1,0 +1,45 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hear and obey.	port	23	NPCisFollower#	
+1	Q	 Glad to see you, hero!	¿po?	21	"VariableEqual#black_memories,100"		
+1	Q	 I have no idea who it was, but I'm glad that there was no battle!	¿po?	12	"VariableEqual#black_memories,60"		
+1	Q	 I have no idea who he was, but he paid because of the evil he planned against the inhabitants of this settlement!	¿po?	12	"VariableEqual#black_memories,50"		
+1	Q	 Now is not the time to talk!	¿po?	0	"VariableEqual#black_memories,40"		
+1	Q	 The invasion of the undead has stopped, it looks like you managed to cope with your task!	¿po?	8	"VariableEqual#black_memories,30"		
+1	Q	 So far, we manage to cope with the undead, but they are becoming more and more, do not delay with the execution of the assignment, otherwise there will be no one left alive who could reward you!	¿po?	21	"VariableEqual#black_memories,20"		
+1	Q	 If you decide to help us, get down to business before these black servants destroy the settlement, if not, then don't mess with my head!	¿po?	6	"VariableEqual#black_memories,10"		
+1	Q	 [BLUE](This warrior girl doesn't look very friendly)[] Hey, you, stop! We don't welcome strangers here, so get out where you came from!	¿po?	2		
+2	A	Why are you so rude to strangers? I came in peace and do not wish you any harm, perhaps I can even help with some of your problems!	po.	3		
+2	A	I just wanted to ask if there are any zombies in these places that look like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_ribbonhair,1"		
+2	A	Okay, I won't bother you.	po.	0		"Travel#O10,1"
+3	Q	 We are surrounded by restless places, we had enough problems with the bear people, so now any black servants have also appeared. Every night they send evil spirits to our settlement, and I believe that they also carry out more terrible atrocities. I don't have many people left who can fight, and if you really want to help us, I will be very happy.	¿po?	4		
+4	A	What is required of me?	po.	5		
+4	A	I'm sorry, but I don't want to mess with necromancers.	po.	7		
+5	Q	 We managed to catch and interrogate one of these black types. From him we learned that somewhere in the forest there is an ancient cemetery with an entrance to an underground complex, where they generally settled in. They have a certain leader, if you find him and kill him, then they are unlikely to leave forever, but at least they will leave us alone, and the inhabitants of my settlement will definitely reward the hero.	¿po?	6		
+6	A	Well, I will definitely solve this problem so that the residents can live more peacefully.	po.	0		"SetVariable#black_memories,20"
+6	A	I just wanted to ask if there are any zombies in these places that look like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_ribbonhair,1"		
+6	A	I will think about a solution to your problem, as soon as I find the time for it.	po.	0		"SetVariable#black_memories,10;Travel#O10,1"
+7	Q	Then don't make me nervous, but get out of here.	po.	0		"Travel#O10,1"
+8	A	I was glad to help you.	po.	9		
+9,ribbonhair	Q	 Now it will be easier for the residents of the settlement to live by getting rid of this problem!..	¿po?	10		"NPCSpawn#braveear"
+10,braveear	Q	 I would not rush to such conclusions! Even though you got rid of our main necromancer, I will carry out the planned retribution on this settlement with my own methods!	¿po?	11		
+11,ribbonhair	Q	 Damn it! Those scoundrels followed you from the cemetery! I knew it wouldn't just end like that!	¿po?	14		"NPCSpawn#team_braveear;SetVariable#black_memories,40"
+12	A	I hope that now the troubles with these necromancers are over.	po.	13		
+13	Q	 Well, if it will be so. And here is the promised reward from grateful residents!	¿po?	0		"GainXP#800;GainGold#500;GainItem#2002;GainItems#2015,2;GainItem#5001;IncVariable#REP_sorrowland,8;SetVariable#black_memories,100"	
+14,braveear	Q	 Wait a minute, you have that blade... I recognize - long lost is our ancestral blade! But how is it possible after all these years, where did you find it?	¿po?	15	"PlayerHasItem#10198"		
+14,braveear	Q	 Do not wait for mercy, you will all die!	¿po?	0		"NPCSpawn#team_braveear;SetVariable#black_memories,40"
+15	A	I found it in the mines of the Sighted Hills.	po.	16		
+16,braveear	Q	 If you give me this sword, I'll leave this settlement alone!	¿po?	17		
+17	A	All right, take him, since he belongs to your family.	po.	18		
+17	A	No, he's mine.	po.	20		
+18,braveear	Q	 The blade of my kind has returned, with it the former power of my kind will be revived!	¿po?	19		
+19	A	So be it.	po.	0		"NPCDespawn#braveear;LoseItem#10198;SetVariable#black_memories,60"
+20,braveear	Q	 Do not wait for mercy, you will all die!	¿po?	0		"NPCSpawn#team_braveear;SetVariable#black_memories,40"
+21	A	I wanted to ask if there are any zombies in these places that look like priests?	po.	24	"VariableEqual#last_honors,10;VariableLower#talkz_ribbonhair,1"		
+21	A	Okay.	po.	0		
+21	A	[BLUE](Using brute force to put a collar of submission on her)[]	¿po?	22	PlayerHasItem#10402		STR#6
+21	A	[BLUE](Imperceptibly and quickly put a collar of submission on her)[]	¿po?	22	PlayerHasItem#10402		AGI#5
+21	A	[BLUE](By tricking her into putting on a collar of submission)[]	¿po?	22	PlayerHasItem#10402		INT#5
+22	Q	[BLUE](As soon as the collar snaps on the neck, the magic takes control of it)[]	port.	0		"LoseItem#10402;SetVariable#ribbonhair_follow,3;NPCFollow#"	
+23	A	Good girl.	port.	0		
+23	A	[BLUE](Take off her collar of submission)[]	port.	0		"SetVariable#ribbonhair_follow,1;NPCStopFollowing#"
+24	Q	 There are a lot of zombies roaming around, but I have never seen anyone like priests.	¿po?	0		"SetVariable#talkz_ribbonhair,2"	

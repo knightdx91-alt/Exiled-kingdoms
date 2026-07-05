@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](A pale woman is looking at you intently)[] Don't stay here for long, the cold of these walls can plunge you into eternal sleep.	¿po?	17	"VariableGreater#holiday_coming,51"		
+1	Q	 [BLUE](everything inside the tower was covered with frost and ice, and it felt colder than outside. Your attention was attracted by a stone armchair on which sat a beautiful, black-haired woman with very pale skin, dressed in a transparent, patterned dress, you did not notice any other clothes on her, but it does not look like she was cold)[]	¿po?	2			
+2	Q	 [BLUE](the pale woman got up from her armchair, came closer to you, looking at you attentively, unlike you, she did not have steam coming out of her mouth)[] Don't be afraid. Not many people have been able to visit my dwelling, but I have allowed them all to leave these walls. My name is Ginerva, I will be glad to meet you.	¿po?	3			
+3	A	I'm glad to meet you too. You're so pale, are you sick?	po.	4		
+3	A	I'm glad to meet you too. You're so pale, aren't you a vampire by any chance?	po.	5	"VariableGreater#invitation,99"		
+4	Q	 [BLUE](woman laughed softly)[] I would not call my condition a disease, rather it is a curse, very ancient and merciless.	¿po?	6			
+5	Q	 [BLUE](woman laughed softly)[] Oh, no! I know about these creatures, we obviously have a lot in common, but no, I'm not one of them, the method of becoming a vampire is quite unpleasant, I doubt I could survive it. I'm like this because of a curse, very ancient and merciless.	¿po?	6			
+6	A	What kind of curse is this?	po.	7		
+7	Q	 Hmm, I'm not sure I can explain it clearly to you. It's all started... Oh, I can't even remember how it all started, it was so long ago. All I remember clearly is that Oberon was with me. He was mine... A friend? Beloved? Who we were to each other, what connected us, has already been erased from memory... Maybe he was the reason for what happened to us, or maybe it was me. But now there's nothing left, just pathetic, dim fragments of memories...	¿po?	8				
+8	Q	 Although one thread still remains between us - the curse to which we have condemned ourselves. Oberon still roams these mountains in the guise of a terrible beast, animal rage erased his memory of his former life, but still a ghostly attachment to me remains in his soul and does not allow him to leave these places where I live.	¿po?	9				
+9	Q	 Whatever we were looking for in those days, we found immortality, but it became only an endless miserable existence... I rarely have visitors, so I like to talk, to disturb my memory - it helps to preserve the integrity of the remains of the former me. But you obviously decided to come to me for a reason?	¿po?	10				
+10	A	Yes, an unknown shaggy, green creature stole something from the villagers of Whitetower, they hope that you know who it is and help them find it.	po.	11		
+11	Q	 I recently sensed the presence of some kind of outside creature in this village, and judging by your description, it was most likely a spirit of envy.	¿po?	12				
+12	A	The spirit of envy? This is the first time I've heard of such a creature.	po.	13		
+13	Q	 It lives in a layer between worlds and rarely gets out of its lair, it is usually attracted by strong emotions of joy and admiration, it rarely harms people, at least physically, but spoiling everyone's good mood is in its line. I will help you get into his lair and return the stolen goods if you fulfill one of my requests.	¿po?	14				
+14	A	What should I do?	po.	15		
+15	Q	 I want you to find Oberon and bring me his heart. Perhaps, thanks to his ever-burning heart, my icy one will feel something for the first time in endless years since it became dead in my chest.	¿po?	16				
+16	A	Okay, I'll do what you're asking.	po.	0		"SetVariable#holiday_coming,52"
+17	A	I brought what you asked for. [BLUE](gave her the still warm heart of Oberon)[] 	pi.	18	"PlayerHasItem#10983"		
+17	A	Clearly.	po.	0		
+18	Q	 Oh, I felt Oberon's presence suddenly disappear. [BLUE](woman took Oberon's heart, and it instantly froze in her hands and crumbled into small pieces)[] Well, at least he's freed from the chains of eternal and meaningless life, and his spirit has found peace...	¿po?	19				
+19	Q	 I promised to help you, so, [BLUE](woman came to the table, took some kind of amulet)[] with it help, you can get into the lair of the spirit of envy and come back. It is enough just to come to the place where this creature was seen and activate my artifact.	¿po?	20				
+20	A	Thanks for your help, Ginerva. 	pi.	21		"LoseItem#10983;GainItem#10984;SetVariable#holiday_coming,57"
+21	Q	 [BLUE](pale woman suddenly smiled at you)[] Come back if you need anything, I'll be glad to see you again.	¿po?	0			

@@ -1,0 +1,116 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	 [BLUE](Alarion stood near the gates of the abandoned castle)[] Thanks for coming, it's not very pleasant to be here alone, especially after drinking. Has Lukan told you about this place?	¿po?	84	"VariableEqual#royal_will,97"		
+1	Q	 [BLUE](Alarion was standing at the entrance to the tavern, and he didn't look very sober)[] It's you. It's good to see you.	¿po?	75	"VariableEqual#good_alarion,1;VariableEqual#royal_will,95"		
+1	Q	 [BLUE](Alarion was standing at the entrance to the tavern, and he didn't look very sober)[] It's you. So Bernadette has spared you, I'm glad you're okay.	¿po?	73	"VariableEqual#royal_will,95"		
+1	Q	 [BLUE](Alarion in a camouflage cloak called out to you)[] Are you ready? Then let's go. A loyal royal guard is waiting for us at the castle gates. He's one of the guards on duty tonight, so he can easily guide us to the part of the castle where Dariel is being held.	¿po?	68	"VariableEqual#royal_will,72"		
+1	Q	 [BLUE](frowning man looked at you attentively)[] So you managed to get the cloaks?	¿po?	64	"VariableEqual#royal_will,68"		
+1	Q	 You're just in time, Havis has returned with news from Sol-Laqueul.	¿po?	38	"VariableEqual#royal_will,57"		
+1	Q	 You're just in time, Havis has returned with news from Sol-Laqueul.	¿po?	38	"VariableEqual#royal_will,55"		
+1	Q	 [BLUE](frowning man looked at you attentively)[] Obviously, you've learned something important if you're using the coin.	¿po?	31	"VariableEqual#royal_will,42"		
+1	Q	 [BLUE](frowning man nodded his head in greeting)[] Havis returned before you and told me that you went to Istril to check on Lukan's progress, but he never returned, and I have a feeling that you have bad news.	¿po?	22	"VariableEqual#drastic_steps,45"		
+1	Q	[BLUE](frowning man looked you over)[] Have a safe journey, and I hope you come back with good news.	po.	0	"VariableGreater#drastic_steps,9"		
+1	Q	 [BLUE](frowning man looked you over)[] Greetings, hero. I have heard of your deeds, thanks to you, the suburbs of Istril and its surroundings have become safe, you deserve my respect for the good deeds done for the benefit of the kingdom's inhabitants. And we can do even more to make our lands prosper, if you agree to help me.	¿po?	2	"VariableGreater#one_way_road,99;VariableGreater#trouble_again,99;VariableGreater#true_lie,99"		
+1	Q	[BLUE](frowning man looked you over)[] Greetings, hero. I will need the help of a good fighter like you, but as long as the suburbs of Istril and its surroundings are not calm, it is too early to act.	po.	0	"VariableGreater#one_way_road,49"		
+1	Q	 [BLUE](frowning man looked you over)[] Hello, traveler. Dorothy is the one in charge here, so feel free to ask her any questions.	¿po?	0			
+2	A	Okay, what do you need help with?	po.	3			
+3	Q	I need to meet someone in Sol-Laqueul, a coastal city in the southwest of our kingdom, but I can't travel far right now, so Havis will go there in my place. The journey there can be dangerous, I'm sure she can handle any threat on her own. But I'll feel better if you accompany her.	port.	4			
+4	A	Okay, I'll help her get to that city safely and soundly.	port.	5		
+5,havis	Q	[BLUE](woman in a hooded cloak approached and spoke in a displeased tone, glaring at Alarion)[] I don't need help, but if you think it's better for me, I won't object.	po.	6			
+6,alarion	Q	[BLUE](man frowned even more as he looked at her)[] You yourself said that her people are wandering in our lands, and the presence of the Archon our friend mentioned confirms this. We didn't kill them all in the forest, so they might attack you if you travel alone.	port.	7			
+7,havis	Q	She's unlikely to order my murder.	po.	8			
+8,alarion	Q	[BLUE](man sighed heavily, not taking his eyes off the woman)[] A lot could have changed over the years, you could have seen how her character changed, and with it her behavior.	port.	9			
+9,havis	Q	Don't worry, nothing will happen to me, and I'll take your new friend with me so you don't have to worry about me.	po.	10			
+10,alarion	Q	Okay, you decide the route. Now, Lukan. [BLUE](Alarion looked at the man with the roguish appearance)[] Magister Kaledor has agreed to help us, so go to Istril and discuss everything with him.	port.	11			
+11,lukan	Q	No problem, the old man won't get away from us, I know him well. And don't worry about my safety, I'm great friends with the sailor Bo, so I'll get to the city by water without any problems.	port.	12			
+12,havis	Q	Maybe we shouldn't bother the magister? You heard what happened to Fyidon, as soon as he agreed to help us, he was declared some kind of necromancer, after which he disappeared, most likely he was already killed. And sending Lukan to Istril is not the best idea, he's too talkative and attracts too much attention, and he doesn't look decent for negotiations with decent people.	po.	13			
+13,lukan	Q	Don't belittle my dignity! When it's necessary for the cause, I can be quiet and inconspicuous. And as for my gravitas, I come from a noble and wealthy family, so I know how to behave with those of equal status.	port.	14			
+14	A	You don't look like it.	port.	15		
+15,lukan	Q	Looks can be deceiving. Life has dealt me ​​quite a beating, and all because of one woman. It was about twenty years ago, when my father held the position of chief city builder in the Royal Council, and it so happened that he took a woman on the side, who turned out to be the king's mistress.	port.	16			
+16,lukan	Q	The king soon found out about this, of course, and could not tolerate such an insult. My father was arrested, accused of treason, and executed, and all the family's property was confiscated, and his relatives were exiled to the far reaches of the kingdom. That's how I, still a young man at the time, found myself here without a penny in my pocket.	port.	17			
+17,lukan	Q	Here. [BLUE](he showed an obviously expensive-looking ring with a seal)[] A family heirloom, all that remains of the wealth of our Burntier family. I have kept it, despite all my needs, as a reminder of who I truly am.	port.	18			
+18,alarion	Q	Lukan has never let me down, and I'm confident that he will do the same this time.	port.	19			
+19,lukan	Q	Of course it will. The city is my element, and language is my main weapon. You know that...	port.	20			
+20,havis	Q	If everything is decided, [BLUE](Havis interrupted him)[] let's not waste time and get on our way.	po.	21		"NPCFollow#"
+21,alarion	Q	Well, good luck to you.	port.	0		"NPCDespawn#lukan;SetVariable#drastic_steps,10"
+22	A	That's right, magister Kalidor told me that Lukan was taken to the royal castle, and I also ran into your sister Bernadette in the city. She told me to give you this [BLUE](you gave him the pouch that you received from the woman in Istril)[].	port.	23		
+23,alarion	Q	[BLUE](man carefully took the pouch and looked inside, and his face became sad)[] None of those who fell into Bernadette's hands ever returned. Poor Lukan, another victim of my father's unjustified cruelty... Oh, yes, Havis told you who I really am. I hope, knowing the truth, and despite Lucan's terrible fate, you will still remain my supporter.	port.	24			
+24	A	Of course, I will continue to help you.	port.	25		
+24	A	Your case turned out to be quite dangerous, so I'll have to refuse you.	port.	27		
+25,alarion	Q	Thank you, I appreciate your loyalty, and when this is over, I guarantee that you will receive royal honors. In the meantime, let's continue our work. Lukan's death should not be in vain, and he will undoubtedly be avenged. However, I still want to resolve this peacefully. I need your assistance for a task, but first, I need to discuss something with my non-local acquaintances, so we'll meet later.	port.	26			
+26	A	Okay, I'll be waiting.	po.	29		
+27,alarion	Q	I understand you, thank you for your help, but be careful, Bernadette knows that you helped me, and she won't care if you're still with me or not.	port.	28			
+28	A	Thanks for the advice, good luck to you.	po.	0		"GainGold#2800;GainXP#600;NPCDespawn#alarion;SetVariable#drastic_steps,100"
+29,alarion	Q	I almost forgot, [BLUE](man handed you a coin)[] this is a special sign. If you need to contact me urgently, go to tavern "Cheerful Passerby" in Istril and show this coin to the innkeeper.	port.	30			
+30	A	Clearly, I will keep in mind.	po.	0		"GainItem#10847;GainGold#2800;GainXP#600;IncVariable#REP_sorrowland,1;NPCDespawn#alarion;SetVariable#drastic_steps,110"
+31	A	Exactly. [BLUE](and you told him about your meeting with Bernadette, about what happened in the basement, and about her plan to eliminate the rebels)[]	po.	32		
+32	Q	Well, this is indeed very important news, [BLUE](man smiled at you, and it was the first time you had seen him smile during your meetings)[] I will try to warn Dariel as soon as possible. As for Bernadette, I wanted you to continue working for her while spying on her. You will have to continue participating in her unpleasant schemes, but we will be able to learn many important things that will benefit our cause.	port.	33			
+33	A	Okay, I'll try, but she'll immediately suspect that I'm the one who gave you her plan.	po.	34		
+33	A	But she'll immediately suspect that I'm the one who gave you her plan, and it will be deadly to stay near her.	po.	37		
+34	Q	That's right, so you'll have to go meet Archont and the pirates, but try to avoid attacking Dariel somehow.	port.	35			
+35	A	I will try.	po.	36		
+36	Q	Well, good luck to you, friend. [BLUE](man turned to the table, did something, and disappeared in a bright flash)[]	port.	0		"NPCDespawn#alarion;SetVariable#royal_will,45;SetVariable#openthedoormlya,1;SetVariable#good_alarion,1"
+37	Q	That's right, then return to the Royal Forest, we'll figure out how to help Dariel and his friends. [BLUE](man turned to the table, did something, and disappeared in a bright flash)[]	port.	0		"NPCDespawn#alarion;SetVariable#royal_will,55;SetVariable#openthedoormlya,1"
+38,havis	Q	Your message about the danger reached Dariel and his friends, they prepared for the attack, and were able to fight back, but a sad mishap occurred. One of the attackers had a teleport, he managed to disarm Dariel and kidnap him. Soldiers of Sol-Laqueul have been exploring the vicinity of the Desolate Cape, but they could not find anyone.	po.	39			
+39,alarion	Q	Damn it! It's Bernadette's doing, and Dariel's already at the royal castle.	port.	40			
+40	A	Why would she want him alive?	po.	41		
+41,alarion	Q	I don't know, perhaps she wants to blackmail the governor of Sol-Laqueul or me with his life. She doesn't need any more turmoil, but thanks to you, her plan was foiled, and the prisoner can serve as a neutralizer.	port.	42			
+42,havis	Q	And what are you going to do?	po.	43			
+43,alarion	Q	Of course I'm going to save him! Too many of our allies have already died, and I don't want to lose anyone else. I need to send a message to one of our loyal guards in the royal castle so they can find out where the prisoner is being held. When was the last time you contacted magister Kaledor? How are the production of the camouflage cloaks going? It looks like they'll be needed sooner than expected for this new task.	port.	44			
+44,havis	Q	There are fully completed cloaks, but there are only three of them.	po.	45			
+45,alarion	Q	I don't need many people for this. I'll go to Istril myself, and I'll need two good fighters.	port.	54	"VariableEqual#royal_will,57"		
+45,alarion	Q	You don't need many people for this. I'll go to Istril myself, and I hope you'll join me, hero.	port.	46	"VariableEqual#royal_will,55"		
+46	A	Yes, I will help you save Dariel.	po.	47		
+47,alarion	Q	Thank you, I appreciate your help, and we'll need a third good fighter.	port.	48			
+48,havis	Q	I'll join you.	po.	49			
+49,alarion	Q	This could be a very dangerous thing, Havis, and you could get hurt...	port.	50			
+50,havis	Q	So are you, Alarion. We'll all be on equal footing there, no one is immune to misfortune. Don't argue, Dariel is also my friend, and I want to save him as much as you do.	po.	51			
+51,alarion	Q	[BLUE](man looked at her for a long time, then sighed heavily.)[] Okay, whatever you want, Havis. Send a message to magister Kaledor. I or Havis will be recognized in Istril and reported to Bernadeth, so you'll have to retrieve the cloaks from him. If you have trouble finding his, contact Titus, the guardmaster, and he will assist you.	port.	52			
+52	A	Okay, I'll meet him.	po.	53		
+53,alarion	Q	After the meeting, go to the tavern "Cheerful Passerby". Do you still have my coin? As before, show it to the innkeeper. Let's not waste time and get down to case.	port.	0		"NPCDespawn#alarion;NPCDespawn#havis;SetVariable#royal_will,64"
+54	A	I'm ready to help you save Dariel.	po.	55		
+55,alarion	Q	I appreciate your help, but you could be exposed, and I want you to continue spying on Bernadette.	port.	56			
+56,havis	Q	I'll join you, Alarion.	po.	57			
+57,alarion	Q	This could be a very dangerous thing, Havis, and you could get hurt...	port.	58			
+58,havis	Q	So are you, Alarion. We'll all be on equal footing there, no one is immune to misfortune. Don't argue, Dariel is also my friend, and I want to save him as much as you do.	po.	59			
+59,alarion	Q	[BLUE](man looked at her for a long time, then sighed heavily.)[] Okay, whatever you want, Havis. We'll need a third fighter.	port.	60			
+60,havis	Q	Let's choose one of our most experienced allies from Sol-Laqueul.	po.	61			
+61,alarion	Q	Send a message to magister Kaledor. I or Havis will be recognized in Istril and reported to Bernadeth, so you'll have to retrieve the cloaks from him. If you have trouble finding his, contact Titus, the guardmaster, and he will assist you.	port.	62			
+62	A	Okay, I'll meet him.	po.	63		
+63,alarion	Q	After the meeting, go to the tavern "Cheerful Passerby". Do you still have my coin? As before, show it to the innkeeper. Let's not waste time and get down to case.	port.	0		"NPCDespawn#alarion;NPCDespawn#havis;SetVariable#royal_will,64"
+64	A	Yes, I have them.	po.	65		
+65,alarion	Q	Okay, I suggest you leave Istril for a while, so as not to attract attention while we rescue Dariel. See you in the Royal Forest when it's over.	port.	66	"VariableEqual#good_alarion,1"		
+65,alarion	Q	Okay, let's hide here for now, and meet at the entrance to this tavern at night.	port.	67			
+66	A	Clearly, good luck.	po.	0		"NPCDespawn#alarion;NPCDespawn#havis;NPCDespawn#soldat;SetVariable#royal_will,70;SetVariable#openthedoormlya,2"
+67	A	Clearly.	po.	0		"NPCDespawn#alarion;NPCDespawn#havis;SetVariable#royal_will,72;SetVariable#openthedoormlya,2"
+68,havis	Q	I don't trust this guard, except his words, but in reality he hasn't shown his loyalty to you in any way yet.	po.	69			
+69,alarion	Q	Today, we'll test this. We have no time to retreat. Dariel is in mortal danger. If we delay rescuing him, it could cost him his life. I share your concern, I'm not one to trust anyone, but we have no choice now.	port.	70			
+70,havis	Q	Yes, I understand that. I hope we can make it work.	po.	71			
+71,alarion	Q	Me too. Come on.	port.	72			
+72	Q	[BLUE](guard was waiting for you at the castle gates, after a quick exchange of words with Alarion, he let you inside. Through the shadow of the castle courtyard, he led you to a corridor, silently pointing the way, and the guard left)[]	port.	107			
+73	A	I'm sorry about what happened to Havis and that boy, and I'm sorry to you.	po.	74		
+74,alarion	Q	Words don't mean anything now, they don't change anything. If we'd tried to break through the line of soldiers, and none of us had been cowardly, then Havis... Oh, no, I'm sorry. There were too many of them. Havis would have been killed, and so would you. It's all my fault, and now I'm just trying to justify myself by blaming others. I'm so pathetic!	port.	77			
+75	A	I saw how everything went in the castle. I'm sorry about what happened to Havis and that boy, and I'm sorry to you.	po.	76		
+76,alarion	Q	You saw everything, but you didn't want to intervene? If you had helped us, we would have broken through the line of soldiers, and then Havis... Oh, no, I'm sorry. There were too many of them. If you had given yourself away, you would have died there too. It's all my fault, and now I'm just trying to justify myself by blaming others. I'm so pathetic!	port.	77			
+77	A	What are you going to do now? Stay here or go on with your case?	po.	78		
+78,alarion	Q	I have no close or loyal allies left, and now it's all for nothing. If I continue, there will be more senseless deaths, and it will lead to nothing.	port.	79			
+79	A	But you once said that Lukan's death should not be in vain, and that he should be avenged.	po.	80		
+80,alarion	Q	That's right, it shouldn't be all for nothing. My friends can't be brought back, but they believed in my idea and followed me, and for their sake, I must continue. But this time, I'm taking a different path. I would be proud if you stayed with me, but you might not like how things will unfold, so I'll understand if you leave.	port.	81			
+81	A	I'll still help you.	port.	82		
+82,alarion	Q	I'm very grateful that you've decided to stay and continue my case. I need to meet with some people, but I'm not in the best condition right now, so I'd appreciate it if you could accompany me to these people, even though you might not like seeing them. We'll meet at the old royal castle next night.	port.	83			
+83	A	Okay, agreement.	po.	0		"NPCDespawn#alarion;SetVariable#royal_will,97"
+84	A	Yes, does anyone live there?	port.	85		
+85,alarion	Q	[BLUE](man suddenly laughed)[] Yes, do live, or rather, they exist. I visited the castle only once, with my father and older brother, when I was still a child. I don't have any clear memories of that visit, but I do remember that even then it was an unsettling place. They say that even back then, local magicians were practicing some kind of devilry here.	port.	86			
+86	A	Do you know what really happened here, why the castle was sealed?	port.	87		
+87,alarion	Q	It's like because of the Curse, the mages who studied it went mad and killed each other, but the real reason, I think, is connected with something else, or rather someone. Perhaps you will find out yourself if we manage to get inside.	port.	88			
+88,alarion	Q	And I wanted to give you this two-handed sword. I'm not comfortable using it after I injured my left arm during the battle with the sky knights, but I'm sure you'll find a worthy use for it.	port.	94			
+89	A	What's the mystery of the king's immortality? I've heard some rumors, and you mentioned sacrifices in Istril.	port.	90		
+89	A	And who is that big man in heavy armor who often appears next to Bernadette?	port.	92		
+89	A	I don't have any questions.	port.	99		
+90,alarion	Q	This is one of the main reasons why I started this fight after learning the truth. My father has an ancient treatise on dark magic, from which he has drawn sinister knowledge. Thanks to this knowledge, he has learned a vile ritual that can extend one's life by sacrificing the lives of others.	port.	91			
+91,alarion	Q	And for the past hundred years, the king has been living off the lives of his subjects. Moreover, I suspect that his most loyal advisors have recently been practicing this vile ritual as well. It's no surprise that the sewers of Istril have been flooded with undead in recent years. I think you can see why I want to stop my father.	port.	88			
+92,alarion	Q	This is Lorcan, the son of one of the former Kingsguard. When he was a boy, his father took him king's hunting with in near the Royal Lake. He nearly drowned there, but they managed to pull him out of the water, and my father saved him, perhaps using his dark arts.	port.	93			
+93,alarion	Q	And from that day on, Lorcan swore eternal loyalty to the king. When he grew up, he joined the royal guard and quickly rose to a position of prominence. He now serves as one of the king's chief bodyguards, but my sister is also under his protection at times.	port.	88			
+94	A	Thank you for this gift.	port.	95		
+95,alarion	Q	While we're waiting, we have time, so ask me anything you're interested in.	port.	89			
+99,alarion	Q	Okay, then we're waiting. [BLUE](for a while, nothing happened, except for the distant moans of the undead, but then a bluish glow appeared at the gate, turning into a cloud of smoke, from which a young, pale-skinned woman in a scantily clad clothes emerged. You almost immediately recognized her as the witch you and Peter had encountered in the mine)[]	port.	0		"GainItem#10861;NPCSpawn#rosalia"
+107	A		po.	0		"NPCDespawn#alarion;NPCDespawn#havis;HideParty#;Travel#P7_dungeon3,1"
