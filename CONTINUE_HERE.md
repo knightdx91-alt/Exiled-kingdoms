@@ -78,8 +78,13 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
    GENERAL (`skills.json`, Active/Passive + mana tags, optional). The created PC now
    carries `attributes` + `startingSkill`; both persist into the auto-save. Styled to
    the EK gold-on-stone look.
-2. **Player model + HUD** — HP/mana/XP/level/gold/inventory from the deobfuscated
-   formulas; responsive HUD that reflows tall↔wide. Persist `gameState` in saves.
+2. ~~**Player model + HUD**~~ ✅ DONE (`src/player.js`, `src/hud.js`; spec
+   `deobf/HUD_SPEC.md`). `PlayerModel` derives level/maxHP/maxMana/damage from the
+   created character via the recovered formulas + XP table (max level 25) + start gold
+   18; the HUD shows portrait, HP/mana(caster)/XP bars + level + gold, action buttons,
+   and a Character panel (attributes + derived stats); persisted in the save.
+   *(Styling is placeholder EK-theme; exact GameHUD art is a later fidelity pass.
+   Inventory/quickslots come with combat.)*
 3. **Combat + followers** — real-time-with-pause from the recovered AI/`Rules`
    (skills, weapons `weapons.txt`, bestiary, loot); companions physically follow/
    fight (followers are tracked in state but don't yet move). Enemies from
