@@ -1,0 +1,58 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Glad you're not forgetting me! Want to discuss my latest observations about the world around us?		34	"VariableEqual#pr_djeck,18;VariableGreater#eloiza,99"	
+1	Q	Glad you're not forgetting me! Want to discuss my latest observations about the world around us?		33	VariableGreater#eloiza,99	
+1	Q	You're here too soon. The scarecrow's not ready yet		0	VariableEqual#TMP_elo1,1	
+1	Q	You're here too soon. The scarecrow's not ready yet		0	VariableEqual#TMP_elo,1	
+1	Q	It's all right. The stuffed wolf is ready. Thanks for helping me out and not leaving me in the lurch.		32	VariableEqual#eloiza,14	
+1	Q	Did you bring new skins?		30	VariableEqual#eloiza,13	
+1	Q	You see, here's the thing. The scarecrow has ruined the skins and asks for two more damaged ones.		27	VariableEqual#eloiza,10	
+1	Q	Oh, you're here! The wolf should be ready by now. Thank you!		28	VariableEqual#eloiza,11	
+1	Q	There's the hero! Everyone comes to see the stuffed white wolf! Even the inn's revenues are up. Thank you! Oh, yeah. It's from the house. [BLUE]Hurriedly slips you a baggie.[]		29	VariableEqual#eloiza,12	
+1	Q	Master Adventurer, you changed your mind and decided to help me out?		16	VariableEqual#eloiz1,1	
+1	Q	О! It's you my friend...Did you bring the skins?		18	VariableEqual#eloiza,9	
+1	Q	[BLUE](You see a rather sad-looking young man. All in all, it looks pretty pathetic)[]		2		
+2	A	Hey! You've got something going on?		3		
+2	A	Leave the guy alone.		0		
+3	Q	Sad? Of course I'm sad....[BLUE](A heavy sigh)[] Because the beautiful Eloise doesn't pay any attention to me at all!		26		
+4,tract1	Q	"The beautiful Eloise, that's me.! Mister, is that little punk bothering you? Just say the word and he'll be put out on the street...		5		
+5	A	No, no it's fine...we're just having a conversation.....		6		
+6,tract1	Q	Oh well...as soon as you get tired of hearing his snotty stories chase him away!		7		
+7,R	Q	Oh Eloise! Why are you so cruel to me? [BLUE](The shriek made your ears perk up a little, but the other visitors didn't even notice. I guess they're used to it)[]		8		
+8,tract1	Q	Oh Abelard! I've told you a hundred times I want a stuffed wolf in the tavern! Is it so hard to score a couple of wolves for a stuffed one?! You're completely useless!		9		
+9,R	Q	[BLUE](He's looking at you hopefully)[] that's how it always is! She doesn't want flowers or poems. Give her the damn stuffed animals... How am I going to get those wolves??		10		
+10	A	You gonna chop me with a sword or shoot me with a bow?		11		
+11	Q	Kill an animal? What a savage thing to do... No, I can't and I don't know how to do that....		12		
+12	A	You're so pathetic! If I were Eloise, I'd turn you down too. And I probably will. What use would I be with a bastard like you?		13		
+13	Q	Master adventurer! I can be very helpful and grateful! I have connections in the city, you know. I'll be forever indebted to you! Can you help me with the skins? The scarecrow's only asking for three grand.		14		
+14	A	Connections, you say? If that's the case, I'll help you with your trouble. What kind of hides do you need? Any kind?		15		
+14	A	Connections? You? Maybe I can help you. When I have time. See you later!		0		SetVariable#eloiz1,1
+15	Q	Oh, it's nothing, I need three [BLUE]holes[] skins or one but [BLUE]excellent[]. The hide will also do [BLUE]white[] wolf.		17		
+16	A	Let me help you. What kind of hides do you need?		15		SetVariable#eloiz1,0
+16	A	I'll be back later..		0		
+17	A	Fine. I'll find the skins and come back.		0		SetVariable#eloiza,9
+18	A	I've got three holey wolf pelts.		19	PlayerHasItems#1002,3	
+18	A	Yeah, I got a nice wolf pelt.		20	PlayerHasItem#1003	
+18	A	I brought a white wolf skin.		21	PlayerHasItem#1004	LoseItem#1004
+18	A	No. I haven't found the hide yet.		22		
+19	Q	All right! I'll take them to the scarecrow. Find me here in 12 hours at the earliest.		23		"SetVariable#TMP_elo,1;LoseItems#1002,3;SetVariable#eloiza,10"
+20	Q	It's perfect! This great pelt will be perfect for a stuffed wolf. Come back in 12 hours to see the result!		24		"SetVariable#TMP_elo,1;LoseItem#1003;SetVariable#eloiza,11"
+21	Q	Wow! How did you find the white wolf? Eloise sure can't resist. Check back here in 12 hours.		25		"SetVariable#TMP_elo,1;LoseItem#1004;SetVariable#eloiza,12"
+22	Q	Oh...Try to bring them back soon.		0		
+23	A	I'll be sure to stop by.		0		
+24	A	I hope everything goes well.		0		
+25	A	Oh, it's nothing to me.		0		
+26	A	Who is this Eloise?		4		
+26	A	Oh, I don't have time for this at all.... Let's just do it ourselves...		0		
+27	A	Two more? That stuffed animal man of yours is as untalented as you are. Okay. Since you're in this, I'll help you out. Wait. I'll be back soon.		0		SetVariable#eloiza,13
+28	A	I'm glad I could help. But remember! You owe me one.		0		"GainXP#200;SetVariable#eloiza,100"
+29	A	Hmm. Turns out you can be useful, too. Now I'm leaving, but remember, you still owe me!		0		"SetVariable#TMP_elo1,1;GainXP#290;GainGold#200;SetVariable#eloiza,101"
+30	A	I've got the skins! Take them and hurry up. I'm getting tired of this whole thing.		31	PlayerHasItems#1002,2	
+30	A	No! As soon as I get it, I'll come straight away!		0		
+31	Q	Oh master adventurer! You'll have to wait some more...While I take these skins away, while the scarecrow is finished...About 12 hours....		0		"SetVariable#TMP_elo1,1;LoseItems#1002,2;SetVariable#eloiza,14"
+32	A	Oh...Even though you annoy me...But I'm glad it's over. Remember, you still owe me.		0		"GainXP#100;SetVariable#eloiza,100"
+33	A	No no...Spare me Troy from that...I was just passing through.		0		
+34	A	I don't want to. But do you remember you still owe me something?		35		
+35	Q	[BLUE](The good mood is starting to leave this man)[] P-remember...Is it that time yet? [BLUE]It's starting to pale[].		36		
+36	A	Don't be so afraid. You boast of your connections... Well, see if you can find me a man's house. Jack, otherwise known as Trickster Jack.		37		
+37	Q	Oh, I've heard of a Jack. Only he's disappeared from these parts. It's not hard to find his house. When you come out of the gate, turn left. And look for the road between the dervishes that leads to the river. There'll be a house on the shore. Only there are bandits there.		38		
+38	A	Thank you for your help. If it's true, consider your debt repaid, and brigands are no problem. I don't think they'll be operating there again.		0		SetVariable#pr_djeck,21

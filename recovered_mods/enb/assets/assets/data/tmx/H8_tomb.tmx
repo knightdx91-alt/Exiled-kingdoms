@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="76" height="48" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="interior" value=""/>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="nerves"/>
+  <property name="name" value="Nayau Tomb"/>
+  <property name="name_ES" value="Tumba Nayau"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="dungeon stairs.tsx"/>
+ <tileset firstgid="245" name="spawns" tilewidth="64" tileheight="64">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="253" source="town_objects.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <layer name="water" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YAQqEIBCFYa/SLrX3v+EyhGyJJqbT6vh/EASRNE/F1Lk2Xo3a6Y1WXdLuqtT2P2nVRV59tPuEq+8mr7Mt81yzrhHzyhl1HGiSPN6Jyz/HbgvuY5eGxf364yjWX7NIjVmfwyfyzhN9VUtzvqXGbK9Z5Iz63RgH619auH+eaT76NflqDQqV/H9aO3ORemRNLlmDSvOyNFfv1ENeeu/MllftftBaXiJXT81/tcW8WuFsopyVPR4AAAAAAAAAAAAAAF8F3TszADkAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aCQrDIBBAUXOQLndpL5rELMdsJQ4RKaa0ZhnzH0jCGMJ0qFalxgC/G/ZOYGW3au8MdHhUU0PaM6oRNUujPgAAAIh17zZ+iPfB/ehbs0lGx+b27K4OtZlq4upkfV/v43K/ljXfnZPLU2rkdL5Jn8StgVP7Nvhr6+Nt0C+o2TwOpS61mecoiX1zxmbN/3Obhrkx/P4MUczlL+PTRs8uvat0S5+19HNcALpcOfsFDuOiaDxqWMv+Kve+SfazZ1oPI62JriW5Z5zHZCx2yaeAPLScm2IbOeayks9+NK1ZgTPgP7XYEr8BAAAg9AKFWvbEADkAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1ayW4UMRD1fAdnxAkkskwCgSQIAhwJJCwTlnwAFzgAYREi4Q9YlGsSwh0OcAr/xB/gp3FpKqVy29XtngXlSSV73N3u7tdVrsXjXD4WvXSDTAVB/7xhDppnjc1xN8h91idZMs5dFwvKvS82nHPWy3bof2TjN43zgN8/oS/bUx3n5rzMd/q/6Rs9dH0+0U4lftfl+GvN62KYNY7HAL6OQl+2wExn0F/18oMde8H6zyPzT2c+xyUvFzLPrYNSfN0znLsa2l0vT8SxV6zPj+XyBRskm9tVjmtjFpTiy7IuSP2qAr1fLl9tA3rxQRnH+vXUIBZoa+PrSEsYd3u80eI9tblTfMHObisi/QC3xzYQ4wvrt0W/8E2nOupUWfdM8fUz0g7bTqciYv1G4OCc52s6gzNt/UrxFYPkq217LIUNL2cz9Qt8NfVTBMlX2/ZYCpe9zGQK1y8ZT3BUHSOMi99sE6vpU7IxqfZoQUm+lsXvkvaIvK3n+rkb8jK5xvfcIN9+LM7rhf5i+M3Hac4uu2aRzYu5uN+H7Wo6QNfw/F+2kBUv18NYm2vVowJzIM5AXg5/vhPaAzfw7wQZk0q74XxClpy9JpJCU59S4nmIrxRkTCr5knyOo19D7vO94Ry5dR75bcAH7JTs3FovGgXuFJgjN09K5etN8606tradPuUY8M2/1biPnCOntiD5gp/nMZi2Nlxp9mjFAT9egq8cSL7k+qXVy0rz1VatyzpHTL82K+4l+UJMMe/lGpNx0y9LDTSGXM5lTGrJW/gezLD2RjRsFJhjGHzx7zrK/JC+G4+PeSzNY0i+D7bmBntjdL7G26a4F7+PRU/A198go+QrFt/Tugj9++L6+zXke2lP7JW4JqVnMnbJfW/wjLopxa5UVx2FXabsUePgSBmLncsh/WguX7juQBkfhZ6l8keL/5T5HxfYrcxtLHztKONa/tkVUloHU/4Ra/QbL+8rzjkTaqjW2AR2xf9vABvTaiSxPGnBDWofPJ/aD+0eOwf74b3QrrHWymcq1qTjbyPH+X4G1qeXxvvnIDdPsuRTWJ8/e5kzPst6aJ9Fjqf47DK+rPol86GY5MaIVc/Kawr7rH+14hptfXmQeAbwueXi+jXbQL8s61cK4D61X6DVI6v4wn1Pi/2alH8EX1i/3inHoNMzDfSrBF+ko8sZ8/B3JX1L8SVBMVHMHtcj4xra0q+q72CJKehd99iYla+UPVrqr23pF8UJ8J88P7DGrJotVfGl2XeKD+7f6VlX3PE8iGSY+kXxq8W/4fnofzSHoa3iS0PKP1pg3QsosX5Z3teqXxpK1L8Iw/KPh6xveV+t9m7lq0T9ntCWfuGbfoocs7yvVo+8ZbgeKGmPVb7jt5df7ng9OJcv7T3rvm9TlNQv6AFyjK3M8yfxfyGx/17WAfiy7CdMIl8l99vBl4X7SeSrxP8nCOBLq1PFMIl8lYwn2orvxwmW/wCmxDrXcvuvd4ITnOA/wD9/tcPQADkAAA==
+  </data>
+ </layer>
+ <layer name="roofs" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TuQ0AIAwEQbfF039d0IIDZAEz0uWXbMR/5l6rPnGRsderT/AsPebokZP0mKNHTtJjjh4BAAAAAAAAAAAA4E0L50LHIQA5AAA=
+  </data>
+ </layer>
+ <objectgroup color="#1f99a4" name="data" width="76" height="48">
+  <object name="exit to H8" type="transition" x="1594" y="757" width="42" height="22">
+   <properties>
+    <property name="area_id" value="H8"/>
+    <property name="entry_id" value="0001"/>
+   </properties>
+  </object>
+  <object type="entry" gid="245" x="1643" y="837">
+   <properties>
+    <property name="entry_id" value="0001"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1659" y="1135">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="571" y="792">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="2138" y="1114">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_3"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H8_tomb_1"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="2180" y="1112">
+   <properties>
+    <property name="quest_location" value="H8_tomb_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="1946" y="910">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="zombie" type="spawn" gid="247" x="1603" y="1169">
+   <properties>
+    <property name="spawn" value="zombie"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="908" y="1325">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="994" y="1239">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="932" y="1071">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="1042" y="1124">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="1379" y="537">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="1381" y="583">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="1418" y="521">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="923" y="558">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="890" y="706">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="838" y="529">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="412" y="536">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="421" y="604">
+   <properties>
+    <property name="respawn" value="100"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="326" y="623">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="260" y="499">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="423" y="1212">
+   <properties>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1735" y="342">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1761" y="303">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1384" y="203">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1396" y="288">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1657" y="326">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1179" y="169">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1109" y="178">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="1081" y="238">
+   <properties>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="345" y="973">
+   <properties>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="tomb1" type="spawn" gid="247" x="2163" y="1007">
+   <properties>
+    <property name="quest_location" value="H8_tomb_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="zombie"/>
+    <property name="spawn_u" value="skeleton"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="2269" y="570">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4,dungeon_chest_5"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H8_tomb_2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="410" y="55">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H8_tomb_3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="414" y="106">
+   <properties>
+    <property name="quest_location" value="H8_tomb_3"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="wraith"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="409" y="141">
+   <properties>
+    <property name="quest_location" value="H8_tomb_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="ghost"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="459" y="181">
+   <properties>
+    <property name="quest_location" value="H8_tomb_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="ghost"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="406" y="182">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="608" y="224">
+   <properties>
+    <property name="quest_location" value="H8_tomb_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="ghost"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="450" y="489">
+   <properties>
+    <property name="respawn" value="100"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="533" y="527">
+   <properties>
+    <property name="respawn" value="100"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="526" y="634">
+   <properties>
+    <property name="respawn" value="100"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="641" y="606">
+   <properties>
+    <property name="respawn" value="100"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="529" y="991" width="188" height="65">
+   <properties>
+    <property name="actions" value="SetVariable#forgotten_lore,77;StartConversation#leader,h8_necromancer"/>
+    <property name="conditions" value="VariableEqual#forgotten_lore,70"/>
+   </properties>
+  </object>
+  <object name="necromancer" type="spawn" gid="247" x="554" y="834">
+   <properties>
+    <property name="conditions" value="VariableGreater#forgotten_lore,69;VariableLower#forgotten_lore,80"/>
+    <property name="spawn" value="necromancer_lord"/>
+    <property name="tag" value="leader"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="247" x="634" y="846">
+   <properties>
+    <property name="conditions" value="VariableGreater#forgotten_lore,70"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="247" x="587" y="831">
+   <properties>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Riella" type="spawn" gid="247" x="505" y="913">
+   <properties>
+    <property name="conditions" value="VariableGreater#forgotten_lore,69;VariableLower#forgotten_lore,90"/>
+    <property name="conversation" value="h8_tomb_riella"/>
+    <property name="spawn" value="riella"/>
+    <property name="tag" value="riella"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="250" y="1301">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="854" y="469">
+   <properties>
+    <property name="icon" value="barrel1"/>
+    <property name="loot_table" value="dungeon_chest_3"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="860" y="1337">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Priest" type="spawn" gid="247" x="1497" y="141">
+   <properties>
+    <property name="conditions" value="VariableGreater#dark_matters,0;VariableLower#dark_matters,20"/>
+    <property name="spawn" value="tolassian_priest"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="247" x="1464" y="143">
+   <properties>
+    <property name="conditions" value="VariableGreater#dark_matters,0;VariableLower#dark_matters,20"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="summoned" type="spawn" gid="247" x="1635" y="218">
+   <properties>
+    <property name="conditions" value="VariableGreater#false,1"/>
+    <property name="spawn" value="nightwalker_lord"/>
+    <property name="tag" value="summoned"/>
+   </properties>
+  </object>
+  <object name="altar" type="conversation" gid="249" x="1523" y="119">
+   <properties>
+    <property name="conversation" value="H8_tomb_altar"/>
+    <property name="icon" value="altar"/>
+    <property name="name" value="Altar"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="679" y="204">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="667" y="1267">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+    <property name="random_range" value="2"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="513" y="1179">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="9"/>
+    <property name="random_range" value="2"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="764" y="229">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="952" y="199">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="2224" y="504">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="2231" y="193">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="249" x="224" y="1056">
+   <properties>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="8"/>
+    <property name="secretdoor_tag" value="H8_tomb_1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="249" x="126" y="1027">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="minlevel" value="11"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="487" y="662">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="skeleton" type="spawn" gid="247" x="322" y="495">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="249" x="832" y="1216">
+   <properties>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="secretdoor_tag" value="H8_tomb_2"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="247" x="90" y="1053">
+   <properties>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="90" y="1015">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="1071" y="1239">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="dungeon_chest_5"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="448">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="416">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="384">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="352">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="320">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="288">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="256">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="249" x="2240" y="224">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="249" x="1088" y="1408">
+   <properties>
+    <property name="conversation" value="H10_tomb_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="249" x="1088" y="1408">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="Librarian" type="spawn" gid="247" x="2205" y="53">
+   <properties>
+    <property name="name" value="Librarian"/>
+    <property name="name_ES" value="Bibliotecario"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="249" x="2208" y="36">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="577,5013,6004"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="H8_tomb_shelf"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="249" x="2168" y="52">
+   <properties>
+    <property name="conversation" value="H8_tomb_book"/>
+    <property name="icon" value="book"/>
+    <property name="name" value="@BOOK"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="247" x="2234" y="72">
+   <properties>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="247" x="1804" y="527">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="247" x="1880" y="497">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="247" x="688" y="1220">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="247" x="530" y="1291">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="2221" y="614">
+   <properties>
+    <property name="quest_location" value="H8_tomb_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="2217" y="543">
+   <properties>
+    <property name="quest_location" value="H8_tomb_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="247" x="2164" y="550">
+   <properties>
+    <property name="quest_location" value="H8_tomb_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="Event" type="spawn" gid="247" x="307" y="1357" width="64" height="64">
+   <properties>
+    <property name="event_location" value="H8_tomb_1"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

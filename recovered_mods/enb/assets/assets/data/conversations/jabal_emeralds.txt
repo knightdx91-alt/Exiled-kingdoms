@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The robed man looks you up and down, and offers a forced smile)[] I deal in emeralds, traveller. I pay higher than other traders. You have any to sell? 	[BLUE](El hombre vestido con túnica te examina y sonrie de manera forzada)[] Comercio con esmeraldas, viajero. Pago más que otros comerciantes. Tienes alguna para vender?	2		
+2	A	Maybe. How much do you offer?	Quizá. ¿Cuánto ofreces?	3		
+2	A	Not interested, thanks	No me interesa, gracias.	0		
+2	A	And why do you need so many emeralds? I am curious.	Y ¿para qué necesitas tantas esmeraldas? Tengo curiosidad.	6		
+3	Q	I am willing to pay 200 gold for the small ones, 350 for regular emeralds.	Estoy dispuesto a pagar 200 monedas por las pequeñas, y 350 por las normales.	4		
+4	A	You may have this small one, it's a great deal.[BLUE](Sell one small emerald for 200 gold)[]	Puedes quedarte esta, trato hecho.[BLUE](Vender una pequeña esmeralda por 200 monedas)[]	5	playerhasitem#2002	"loseitem#2002;gainGold#200;SetVariable#emeral_sold,1"
+4	A	You may have this regular one, it's a great deal.[BLUE](Sell one emerald for 350 gold)[]	Puedes quedarte esta, trato hecho.[BLUE](Vender una esmeralda por 350 monedas)[]	5	playerhasitem#2012	"loseitem#2012;gainGold#350;SetVariable#emeral_sold,1"
+4	A	No, sorry.	No, lo siento.	0		
+5	Q	A pleasure to make deals with you. You have any other emeralds for sale?	Un placer hacer negocios contigo. Tienes más esmeraldas para vender?	4		
+6	Q	That is hardly your business, is it? [BLUE](The man frowns)[] Now, you have any for sale, or not?	Eso no creo que sea asunto tuyo, ¿no crées?[BLUE](El hombre frunce el ceño)[] Entonces, ¿tienes alguna para vender, o no?	4		

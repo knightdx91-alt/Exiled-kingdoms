@@ -1,0 +1,78 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	I don't have any more assignments for you		0	"VariableGreater#orkben,99;VariableGreater#gurd,99;VariableGreater#omon,13"		
+1	Q	Did you come? Where's the head?		37	VariableEqual#orkben,90	
+1	Q	How is our orc's health?		27	"VariableGreater#orkben,9;VariableLower#orkben,101"	
+1	Q	How's it going with Gurd? What did you find out?		26	VariableEqual#omon,13	
+1	Q	[BLUE](The thief seems quite calm)[] Hey! Are you making such a fuss? Why did you come here and kill my comrades?		2		
+2	A	Rumour has it you can help solve the problem...		4	VariableEqual#sem1,1	
+2	A	I'm here to clean up this rat hole. And you're the biggest, fattest rat in here!		3	VariableEqual#sem1,1	
+2	A	Why don't you attack me like all these thugs?		40		
+2	A	No no. Nothing. I'm leaving now.		0		
+3	Q	You talk too much! [BLUE](The thief makes a lightning-fast dagger stab to your side)[]		0		"LoseHP#100;NPCHostile#semen"
+4	Q	Problem problems...Solving any problem has a price. If you're willing to pay the price, we'll make a deal.		5		
+5	A	I would like to know the price first?		6		
+6	Q	I'd like to know what your problem is!		7		
+7	A	I had a bit of a misunderstanding with [BLUE]A special unit[] The New Garand guards. And they still have my thing. I want to get my thing back while this unit is still in Kingsbridge...But I don't know where they are.		8		
+8	Q	[BLUE](The robber thought hard)[] So they're here for you? Sneaking around, making money. I happen to know where the temporary headquarters is located. But quid pro quo! You know what I mean.		9		
+9	A	I see...and what kind of "Service" are you interested in?		10		
+10	Q	There's this man Gurd. He's been doing some business of his own lately. Cutting off all contact with us, looking for bodyguards. I want to know what he's up to. Find out and I'll help you.		11		
+11	A	Gurd's not up to anything anymore. I killed him... He wanted to supply weapons to the Orcs.		12	VariableEqual#gurd,110	
+11	A	Gurd has decided to start supplying weapons to the Orcs. And the first shipment has already been made		13	"VariableGreater#gurd,90;VariableLower#gurd,110"	
+11	A	Gurd has decided to start supplying weapons to the Orcs. And hired me to make the first delivery of weapons. 		14	VariableGreater#gurd,11	
+11	A	Hmm. This honourable man works with you? Well, I'll find out what he's up to.		15		SetVariable#omon,13
+12	Q	Killed? That's also a solution to the problem, even if we have to find a new supplier. The temporary headquarters for your special unit is located in the local holding cell. Our guys have long scouted a route through the natural pacers. I'll give you the route and you'll be on your way.[BLUE](Tells me)[]		0		SetVariable#omon,14
+13	Q	Good work. I take it this first delivery was not without your help?		16		
+14	Q	Wow! Fine tell me, do you still have the gun?		32		
+15	Q	Honourable? Heh-heh-heh, he's a bastard! He's our breed. As soon as you find out anything, come and see me.		0		
+16	A	Yes, I personally took these weapons to the Orc camp. You promised you'd tell me how to find Squad Headquarters!		17		
+17	Q	Yeah, yeah, yeah. I will. But maybe you'd like to make a little extra money. I have a job. It's about [BLUE]1500[] gold!		18		
+18	A	A job? I'm interested in you. I'm open to an offer.		20		
+18	A	Sounds interesting, but I need to get to HQ right away! Tell me where it is.		19		
+19	Q	It's up to you. The temporary headquarters of your special unit is located in the local holding cell. Our guys have long scouted a way there through the natural caves, I'll tell you the route and you'll get there easily.[BLUE](Tells me)[]		0		SetVariable#omon,14
+20	Q	Just go and kill the orcs you were carrying weapons to. Most importantly, kill whoever you negotiated the supply deal with! I want to see his head! I'll nail her to the wall...		21		
+21	A	Get the money ready! Soon you'll have the orc's head! And by the way... You still haven't told me about the headquarters!		51	VariableLower#orkben,10	SetVariable#orkben,10
+21	A	Only 1500? There's a hell of a lot of orcs out there! I'm not going for less than 3000.		22	VariableLower#orkben,10		PER#3
+21	A	Isn't that the orc we're talking about? [BLUE]Show orc head[] I killed him while I was still carrying his weapon...		33	PlayerHasItem#10053	
+21	A	I killed that orc while I was still carrying his blacksmith's weapon...		34	VariableEqual#orkben1,1	
+22	Q	Ha ha ha! For 3000 gold, I'll kill him myself! 2000 is my last price. I agree?		23		
+23	A	Yes. 2,000 gold and the orc will be killed. By the way, what about HQ?		24		SetVariable#ork2000,1
+23	A	I'm not going to risk my hide for a measly 2,000 coins! What about HQ?		25		SetVariable#orkben,130
+24	Q	Oh, great. Bring the head right here. The temporary headquarters of your special unit is located in the local holding cell. Our guys have long since scouted a way in through the natural caves. I'll give you the route and you can get there easily.[BLUE](Tells me)[]		0		"SetVariable#omon,14;SetVariable#orkben,10"
+25	Q	You're too rich, mate. 2000 isn't money. Okay. Suit yourself. The temporary headquarters of your special unit is located in the local punishment cell. Our guys have long scouted a way there through the natural caves. I'll tell you the route and you'll get there easily.[BLUE](Tells me)[]		0		SetVariable#omon,14
+26	A	I'm still working on it.		0		
+26	A	I found out what he was doing...But I couldn't resist killing him...He wanted to supply weapons to the orcs.		12	VariableEqual#gurd,110	
+26	A	Gurd has decided to start supplying weapons to the Orcs. And the first shipment has already been made		13	"VariableGreater#gurd,90;VariableLower#gurd,110"	
+26	A	Gurd has decided to start supplying weapons to the Orcs. And hired me to make the first delivery of weapons. 		14	"VariableGreater#gurd,11;VariableLower#gurd,110"	
+27	A	The orc is still in good health.		0		
+27	A	The orc is dead, but I lost my head along the way.		28	VariableEqual#orkben1,1	
+27	A	The orc is dead, that's his head.		29	"VariableEqual#orkben1,1;PlayerHasItem#10053"	
+27	A	The orc is dead, that's his head.		29	"VariableEqual#bentrup,1;PlayerHasItem#10053"	
+28	Q	No head? You have broken the terms of the treaty. On the other hand, my scouts report a commotion among the Orcs... I'll pay you 500 coins.		0		"GainGold#500;GainXP#150;SetVariable#orkben,101"
+29	Q	Nice head. I'm thinking of hanging it over there... Here's some coins. Well deserved!		0	VariableEqual#ork2000,1	"GainGold#2000;GainXP#550;SetVariable#orkben,101;LoseItem#10053"
+29	Q	Nice head. I'm thinking of hanging it over there... Here's some coins. Well deserved!		0		"GainGold#1500;GainXP#550;SetVariable#orkben,101;LoseItem#10053"
+32	A	I have with me		44	PlayerHasItem#10054	
+32	A	I have it, but it's tucked away in a safe place.		48		
+32	A	No. I've already delivered the weapon to its destination.		50	"VariableGreater#gurd,13;VariableLower#gurd,110"		
+33	Q	I'm amazed at how quick you are. Even if you lied to me now, my guys will find you and you'll pay twice as much...Keep your money and give me your head.		0		"LoseItem#10053;GainGold#1500;GainXP#350;SetVariable#orkben,111"
+34	Q	Don't get cocky mate... You expect me to believe you so easily? Show me the orc's head. Then we'll talk.		35		
+35	A	Why would I lie? I don't have the orc's head on me. But I'll go and get it right now.		0	VariableEqual#orkben1,1	SetVariable#orkben,90
+35	A	There's no head. Did I say there was a head? I threw it away as soon as I killed that orc...	PlayerHasItem#10053	36		
+35	A	I'm just kidding. Take it easy. Here's the orc's head.		34	PlayerHasItem#10053	"LoseItem#10053;GainGold#1500;GainXP#350;SetVariable#orkben,111"
+36	Q	Don't make me look like an idiot.!!!!. You expect me to go to the orcs and check it out myself? No head, no money. Go away, clown.		0		SetVariable#orkben,120
+37	A	The head... The head is here. Give me my money.		0	PlayerHasItem#10053	"LoseItem#10053;GainGold#1500;GainXP#350;SetVariable#orkben,111"
+37	A	Here's the thing....[GREEN](WARNING: This option should be chosen only if you sold the head or threw it away, but for some reason you lied to Semyon that you have the head. There will be no reward, but at least you will complete the quest)[]		39		
+37	A	I'll be back later.		0		
+38	Q	Just like that. Okay. I'll pay you. Give me the head		0	PlayerHasItem#10053	"LoseItem#10053;GainGold#1500;GainXP#350;SetVariable#orkben,111"
+39	Q	Did you leave your head at home? Why did you say you had a head? Ooo-ahahahahahahahahahahahahahahahahahahahahahahahahahahahaha...Without a head, there's no reward. You can go about your business.		0		SetVariable#orkben,140
+40	Q	I work for House of Seven and I'm here temporarily, so I don't see the point in fighting you yet.		41		
+41	A	House of Seven? I've heard of it...Do you do any favours?		42		
+42	Q	I don't know you and I don't want anything to do with you. Go away.		43		
+43	A	Well, cheers. I'm off, then.		0		
+44	Q	I wonder...how did you get that box into your inventory?		45		
+45	A	I don't understand how it happens. I just open up the inventory and shove a lot of different things in there		46		
+46	Q	I wish I had an inventory like that...Well, do you want to sell the weapons to me? For, like, 1500 gold pieces.		47		
+47	A	Gurd offered more...I'll honour my end of the bargain with him. You promised to tell me about HQ.		17		
+48	Q	I know you can't put it in your inventory... Anything else?		49		
+49	A	Yeah. Someone promised to tell me about HQ.		17		
+50	Q	Well, whatever. The guild will take care of it. By the way, you want to make some money? I have a job. It's about [BLUE]1500[] gold!		18		
+51	Q	Oh, great. Bring the head right here. The temporary headquarters of your special unit is located in the local holding cell. Our guys have long since scouted a way in through the natural pacers. I'll give you the route and you'll find your way there easily.[BLUE](Tells me)[]		0		SetVariable#omon,14

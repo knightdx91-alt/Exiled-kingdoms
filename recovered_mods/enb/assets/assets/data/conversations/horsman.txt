@@ -1,0 +1,18 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Here is the groom)[] Would you like to buy a horse? For only 1000 gold pieces. I also have wheat and excellent saddlebags.		2		
+2	A	My horse is lost, did it not return to the stable?	Mi caballo se ha perdido, ¿ha vuelto a los establos?	9	"VariableEqual#horseon,1;VariableEqual#horssum,1"	NPCDespawn#hors1
+2	A	My horse is lost, did it not return to the stable?	Mi caballo se ha perdido, ¿ha vuelto a los establos?	8	"VariableEqual#horseon,1;VariableLower#horssum,1"	NPCDespawn#hors
+2	A	I want to buy a horse.		0	"PlayerHasGold#1000;VariableLower#horseon,1"	"SetVariable#horseon,1;LoseGold#1000;NPCSpawn#hors"
+2	A	I need wheat..		0		OpenShop#
+2	A	I'll take a bag for the horse.		3		
+2	A	Go		0		
+3	Q	But I'm sorry... You don't have a horse!		0	VariableLower#horseon,1	
+3	Q	Your horse already has a bag.		0	VariableEqual#horssum,1	
+3	Q	You have an unopened bag from the last horse. Open it first.		0	PlayerHasItem#7700	
+3	Q	Sure, that'll be 5,000 gold pieces.		4		
+4	A	All right, here's the money.		6	"PlayerHasGold#5000;VariableLower#horsum,1"	"NPCSpawn#hors1;SetVariable#horssum,1;LoseGold#5000"
+4	A	I don't need the bags yet		0		
+6,hors	Q	[BLUE](Horse neighs)[] Igo-go-go-go		7		NPCStopFollowing#hors
+7	A	Stay here for a while. Let's get you some bags		0		NPCDespawn#hors
+8	Q	The horse is here. I'll get her.		0		NPCSpawn#hors
+9	Q	The horse is here. I'll get her.		0		NPCSpawn#hors1

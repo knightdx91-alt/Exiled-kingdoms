@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Старый рычаг, повёрнутый направо. Так и застрявший.		0	IsItemActive#lever3	
+1	Q	Рычаг, повёрнутый налево. Интересно, что он открывает?...		2		
+2	A	А ну-ка глянем, что выйдет! [BLUE](Повернуть направо)[]		3		NPCDespawn#mino
+2	A	М-да... Спасибо, но нет. Лучше не буду его трогать.		0		
+3	Q	Опа.Дверь с Минотавром открылась.		0		"ItemHide#grate2;ItemWalkable#grate2;ItemActivate#lever3;NPCSpawn#mino1"

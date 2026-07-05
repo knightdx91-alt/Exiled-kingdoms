@@ -1,0 +1,18 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](Gurd defiantly ignores you.)[]		0	VariableEqual#gurd,102	
+1	Q	[BLUE](Gurd has his usual mug of ale. He nods a greeting but does not invite you to the table.)[]		0	VariableEqual#gurd,100	
+1	Q	[BLUE](The armour salesman salutes you with a mug of foam.)[]		2		
+2	A	Good night Gurd!		3		
+2	A	[BLUE](Make a very concerned face and hurry away.)[]		0		
+3	Q	Hey, adventurer! Why don't you order yourself a decent ale and drink with me to the king's health? [BLUE](Winks)[]		4		
+4	A	It's always nice to have a drink with a good man! "Innkeeper! The best ale for me and my mate!"[BLUE](-60 coins)[]		5	PlayerHasGold#60	LoseGold#60
+4	A	I've got important work to do today! I need a fresh head...		6		
+5	Q	[BLUE](Laughing loudly)[] That's what I'm talking about! Cheers! [BLUE](drains a half-litre mug in one gulp.)[]		7		
+6	Q	And all you adventurers in business, in business...You need to rest too! [BLUE](Shakes his head disapprovingly)[]		0		
+7	A	[BLUE](Drinks)[] Gurd, how's the trade going?		8	VariableLower#gurd,1	"SetVariable#gurd,1;SetVariable#gurd1,1"
+7	A	Well, I should go. Thanks for the company.		0		
+8	Q	Trading? Trade is good! Otherwise I wouldn't be here. [BLUE](Looking at you thoughtfully.)[] Or it could go even better if you help me with something.		9		
+9	A	I smell adventure...and money. What do you need help with?		10		
+10	Q	Not here. There are too many prying ears [BLUE](Lowers his voice to a whisper and looks around)[] meet me tonight outside Kingsbridge. On the river bank, there are trees with leaves...well, trees...not Christmas trees, but trees with leaves.		11		
+11	A	[BLUE](The hop hits you in the head)[] All right, I'll be there.		12		SetVariable#gurd,10
+12	Q	[BLUE](You keep drinking until you're completely unconscious.)		0		Sleep#,12

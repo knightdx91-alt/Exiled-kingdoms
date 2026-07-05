@@ -1,0 +1,30 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Now we can rest for a while.		14	VariableEqual#garden,100	
+1	Q	Have you harvested your crops yet?		11	VariableEqual#garden,11	
+1	Q	[BLUE](This is obviously the gardener, the man sighs and inquires what you want)[] What do you want? Go hit on someone else. Can't you see work's standing by!		2	VariableEqual#garden,10	
+1	Q	[BLUE](In front of you is a farmer scrutinising a vegetable garden)[]		0		
+2	A	Whoa! What the hell's the job cost? You're a gardener? You garden.		3		
+3	Q	Don't get smart if you don't know what you're doing! How am I supposed to work if there are myrmics in this field?!? I still want to live.		4		
+4	A	Mirmiki, you say? Then I'm off.		0		
+4	A	Ha! Cheer up, man. That's why I came here! Tell me what's wrong.		5		
+5	Q	[BLUE](The farmer was visibly shaken)[] Oh, so you're one of those knuckleheads they were supposed to send over from Kingsbridge?		6		
+6	A	Let's not get into details. I was told to find you and help you.		7		
+7	Q	It's a simple matter. All you have to do is harvest! Wheat, pumpkins and cabbage. And all would be fine, but the damn myrmica got into the garden and burrowed into the ground!		8		
+8	A	I'll deal with the Myrmecs, don't worry.		9		
+9	Q	Good good good good. I need 3 wheat, 4 cabbages and 3 pumpkins of each variety. You can keep the rest as a thank you.		10		
+10	A	I see. I'll be back when I've harvested the crops.		0		SetVariable#garden,11
+11	A	I want to wander around the beds some more.		0		
+11	A	Yes! Everything you asked for is here.		12	"PlayerHasItems#10060,4;PlayerHasItems#10061,3;PlayerHasItems#10062,3;PlayerHasItems#10063,3"	"SetVariable#garden,100;GainXP#250;LoseItems#10060,4;LoseItems#10061,3;LoseItems#10062,3;LoseItems#10063,3"
+11	A	Yes! It's all here, even more than you asked for!		13	"PlayerHasItems#10060,7;PlayerHasItems#10061,6;PlayerHasItems#10062,6;PlayerHasItems#10063,6"	"SetVariable#garden,100;GainXP#500;LoseItems#10060,7;LoseItems#10061,6;LoseItems#10062,6;LoseItems#10063,6"
+12	Q	Thank you.		0		
+13	Q	Thank you. We could use the extra supplies.		0		
+14	A	Listen...I couldn't resist eating your vegetables...What's wrong with them?		15	VariableLower#gard1,1	SetVariable#gard1,1
+14	A	Glad to be of help		0		
+15	Q	Yes? What's the problem? You didn't like the taste?		16		
+16	A	I liked the taste, but you know there are side effects, right?		17		
+17	Q	Ah effects...[BLUE](The farmer lowered his voice)[] These so-called effects have appeared quite recently... About the same time as the beetles started devouring the crops from the beds... Maybe their manure has some effect?		18		
+18	A	Hmmm...maybe maybe maybe...And you're just going to let it go?		19		
+19	Q	Why just like that? Perhaps rumours of these vegetables will reach a clever wizard who will study them and our village will come to life.		20		
+20	A	I know some magicians. I could take them your vegetables		21		
+21	Q	No! Please don't do that. We have too small a stockpile yet... We can't have it taken away.		22		
+22	A	Okay... Whatever you say.		0		

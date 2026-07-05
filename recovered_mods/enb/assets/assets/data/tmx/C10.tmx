@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="112">
+ <properties>
+  <property name="exit_e" value="D10"/>
+  <property name="exit_n" value="C11"/>
+  <property name="exit_s" value="C9"/>
+  <property name="music" value="magic_forest"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" name="spawns" tilewidth="64" tileheight="64" tilecount="8" columns="2">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="137" source="trees.tsx"/>
+ <tileset firstgid="153" source="water.tsx"/>
+ <tileset firstgid="217" source="rocks.tsx"/>
+ <tileset firstgid="223" source="town_objects.tsx"/>
+ <tileset firstgid="303" source="natural_grounds.tsx"/>
+ <tileset firstgid="431" source="rocks_small.tsx"/>
+ <tileset firstgid="441" name="water_grass" tilewidth="64" tileheight="48" tilecount="28" columns="4">
+  <image source="grass_water.png" width="256" height="336"/>
+ </tileset>
+ <tileset firstgid="469" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="487" source="stoneroad1.tsx"/>
+ <tileset firstgid="503" source="stone_bridge_small_64_128.tsx"/>
+ <tileset firstgid="543" source="grounds_indoor.tsx"/>
+ <tileset firstgid="703" source="dungeon.tsx"/>
+ <tileset firstgid="943" name="trees_big" tilewidth="128" tileheight="320" tilecount="14" columns="14">
+  <image source="trees_big.png" width="1792" height="320"/>
+ </tileset>
+ <tileset firstgid="957" source="grassland_structures.tsx"/>
+ <tileset firstgid="993" source="town_objexts2.tsx"/>
+ <tileset firstgid="1057" source="desert_water.tsx"/>
+ <tileset firstgid="1169" name="dryground1" tilewidth="64" tileheight="32" tilecount="64" columns="8">
+  <image source="dryground1.png" width="512" height="256"/>
+ </tileset>
+ <tileset firstgid="1233" source="grassland_snow.tsx"/>
+ <tileset firstgid="1361" source="dryground.tsx"/>
+ <tileset firstgid="1425" source="ruins.tsx"/>
+ <layer id="1" name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztmQmKwzAMRXP7XHsoQyGkXrTr29aDUKZNLOnJcdzpdf1yGx0trMbe5fB00wOp5uyctDlcr9eoHozGuK55fGo+rc8taxqNQXl/FH+G5by5Gp95+aeOK/FvgWRs7bzRQu2zdW1IZPXAYn2QxkAD3f/7fG0cRCjeLfOX9FnicAf/rfM8443Gt+gBKlHPLM06t6v/qLXH6jnDyUfjP6JfVBeR/qk9kMREQnL/W8fyXvcsxrTOMaJubsyo543mWmkNWXNPkoN3XM21GYcVGe5bcTXXruZcUot3XO315V8XW3v9qr3QxrPyJ6U1xgreOXlyxpDG10CZH2j+e+Nx42hy9F7fWnGye2BdsybHKP/PWK3YM9cWPYi4l7jjR/vvxeeMob3PJXOUG0OSlzc9/1Zjzc73fp4840jyyoB6j2pjRLh/x+Ocm+W/R8Ta7N0D6nmI/q2J2Fdpc+Ocu1rPqP6z6sq+DyNA74E1aLVw/aPkLQWxlmcud+P9VXpAyRG1jpb/79+r9ICSl6YGzn6Ay+iaVdYkai6SvDW1WvhBc93DqwcI8w3d/ZeWp97f0ntgFRcZSPdz3GdH9aGN534acY+ONge4/jX5z8aM6AnivRjlnxrPE8T1kOLDuwfv973IXv96cOajVe4ZDhCeQSM4uVk/F6JA9v+Bk49lD6JA989ltf0k+hokYaX7IGvv5c0K9WTufSNArA8tH29mPYisHSWPaGZ1RtV+qv8PWXU+453s/0N0vSPHvb6cwP169YrBmeMn+f+C5P9Eyn8uXj5OfsZyyPJfPfjH00f5nyN1Qj23/M/x9lL+53h7qR7Mif4+XPwS4aX851P+i6LYjXq+51F72zzqu0Ue9d0ul/KfR/1/L5fyn0f9vuADxV/9vuYDxSHFfcTvGLtB9Vr+fSj/uazmf7cerOh/px6U/zys3a/iH6GfHu7Lvy6HE/yjrGe7+x+dX/71eUquo3wWgZd7dP/34LMoPN2j+qeOKa3H2+nK/jlj7nBYcz9ereb0zkcEJ85rNP/Vgzj/rXHLf6x/aqzs+rOPP7t35bw=
+  </data>
+ </layer>
+ <layer id="2" name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztmz1OJDEQRkHamyCCjVdciASJA3A8gg0ISNpHYgJaWKWqst0uu4T0ntSapgcCPn/1O1Du7+6O7+vzdsFeSqX/B/pv59S/4P8U8H8uB/qnUucf9N9Pof9Jpdz/nAH67+eo9Cf/7Of0P/1nDgX/p3JU/kf//RT0T6Wuv/9v1ztnsJV6/qUG76euv+cr7ENqX8hBW5HanxfsQfM/MbAPTf+DGNiGzDuFGNhKvX+uz+KcB2AtWu6vz4MYWEsR3pf3xMBarPpb3xMD69ByvzwLdhLr0HSXz9iLrkPrf+Qr/l+HVntlDLCXXofWe8o5jBqwDi33azMBNWAN1uwr7/H/GrR+R4sJ9F+DNm9ptZgavAbL+9osTAzE09KcHmgtVr7XzgP942nV3focqAHxeJ8/arWBGIjF2v9bfRD6xyL1tfTnbxTXYO3cvFggBuLQcoy2j6i/Rv84en1fv08OisPyuaU9OSgWr956Own0j8HbPXtnQA6KQcv5Wu7R8hQxMI83b1l1AP3j0HT19g/UgFh66y27oDX05H4r/1CD52nV39ZeiBiYw9Pf8r58Rgxcx/O7pbk8H2LgOt6OoacnpQ7MYe35rc8ire8lBq7h6W/5XbtH/2t4vWZr/8BOeh5v1m31/9TheazcbvWhXn+E/uN4PvfyDrNYDFaf35oB2MfF0PJ+awdKDZ6jtX9rxYd8nxgYo6ff6emH0P8aXr/j7SOsOsH/iY1h5Rar52y9h//H6PG1NQto95/U4CF69gue9+XPk3/G8HrNnl6IGXiOmd5Hy1H4fwyvz7GeefkH/4/R43+r/9RyE/4fw8szlt+9mRj/j9Grfys2mL+uMaq/FQ/kn2tc1d/qh8g/Y0ToLy/oJ1p7/D9GtP7k/zHQPxfyTy74Pxf6n1zwfy7onwv1Nxf0zyVa/39/sn+j30W0/g/oPwT654L+uUTr/6Lo/5czMYnW/+2m9avQ+xH9TaL1P8/gubqe0N/kC6eFbp4=
+  </data>
+ </layer>
+ <layer id="3" name="bridges" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+ </layer>
+ <layer id="4" name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer id="5" name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztnF9y0zAQxm3qcBG4ATxxDg4ACXSmvQHHAPLG9IkT8NgkJ8gxuEixxtJEaBRHtlbalfT9ZjRxUtdef/s3bpOuAwCAdTxwGzCycx4NX3IbwsTLuPo+7zl92qrXJMRDTgZL9zfj9mv9/IXHnCoJiamN1l35Q623mfOBizX59pHcCj+5a1LLvPJo/ZjfjFmk2ZMN5EHTzM2h7sxKCVe+qVpkzz+S+0Br82pOoK2MnifBBirca6np2pbiy6+U/QT8T673UWtB/QWgLpDTYAmx81HI79c+g0m5Pil2AD/wD1iK6efS30vEEtpH7P1Szzotz1K+a29Zj5Jw/ZS6dqCvXQfa5MWO/Uf9vDUfpP6/ttb0XAN6ZTjcf5NAPNMDTcE15mpjyt7FXWekQJmb0DQNqJ+0KD05Pu9RwhxYgo0ApMbNg9bygrPn5JwjJPTWWu6vS9CyJbj1rmner+laKKCuPxI/78uVP62dF7TJ14X7S43PmLrFXfPutQ3cdgCgyBWH226K/RBa+e6XnCj9la9dH7Q4Z3P0Napzlt43QuynikkV61uiY5VOzpoqdW6kpNYeVXp98VHjNYF5QmdNAKiQUmda6L9rie3boT5eeq9NKqljKcX3a1Frn3PWK2muvOYfKXUwNZLvnbTiA4mo2bOW+g/4kFxfQN1w9Q8p848UO2pF0ntUSbaE4ovP1P0COVEuNfgO81B6bvX9Q991R71SnbPEekzJadT2uZ8eD47ORvtnZ7n+oPRPaxj9D/1l29VcoeLU/Ozk+OJg7QeWobT8sJm21ePJ0tS85mLnwE4f4wT9FxMTt27dPnqOxX1fkvv8c5x7mZotpdQ5zej/3lNf1kB1HAPlDC/x/cC5p5tbVM74+gQltc2pZ0/PfBehYUiMlVorUkE5t1DXnxag0v/TeIzP49r20/ZOP24xk85Cpb/vM1ah+RBT1yX21VBM/Y/V/+/d7X1K1ikltv7S63eNPgyN/5i56BYtz0Rz+sfkQ42xmoLQ+A+p8SlzpFZw35KP/dB1TwO3Fe2i9Dfr+7h+DeXd+yyZJx3/e6294Thu//YsQM+PYZpV9pa+JhfMUvv8hP6kfNOzyp/hsgz2a76fg3geNhcfgDD+AZBOmRs=
+  </data>
+ </layer>
+ <layer id="6" name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7DZxb8BBOwl4WkVNAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg2nwHACgL3RoAag==
+  </data>
+ </layer>
+ <layer id="7" name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztnWty0zAQgG1M/3EhHtcAhscv/pULMHAP4BhJ0/RdWl6XKLQ9Q1v6g59Ek2hQtlo9V9LK9jfjcWrHtrJarXZXm7Rp6NjtmmbWLV9P2qaZtuvndcd093B5DsZUOTdfvZ51+vfI41vtcrM+t11ugmOHduZkjrTn0NBOIcdfaZqjZWqRGfYZJPvg/KU41i73kvOQhhmYARnB+4vzO4ttK1IfdhyuF++BMpDI46JPt6Ved+synSjHXYF9cmS4FvbHb/fH3EGnKxea920j7TkwyMpF1io2vbQxsVyPfQbJXsDzdx3smQmbjsTqO4bsMygTnQxEv8jjsE9tMrUhro+Vobje1x7ZdMWFEH0xETOOBY8X2xOKhvSMZ0o/6foMk7tJtx9FtSgMk4/BFSH7d816H0h084wrDyOuxahRvi7oZI9hskHQv88FtZ3lCDYWTDboOcFzhc4fDEC+GC5+QyofjDO2GDI10NbExgYQTOePO/uzStnBPrPTxscBFLjGBVQ6AO0+tDWx8ZUL81U+0fasIdlBLKdBBbU9S4ma96PUgRj/n4Jtgnxin1DzPKnIYc9Sg/mMZ6u9Ol4uwLlz5fqzBsdlfSYEzO7U4NOo8TmM1WNyZ6V1MlVf5wKTvar7ckzINR5sDPmuGUAwPdb18bytw/4fdH7j02VevbS/hQRdu+XY9e3r0jGpxJQvwXKI8Lhtfd6XUD3mEHOZiB2fsn4gJLcbkw+OWfuFYDEpt3kjVsZUPohq66FsKXKdXOwQRP1ssn5gPyC/K97v8xlDY9lQv0vMG3uM7FaITqn5BWofxCWXE8LEMK644RLH6vrNpy6gRNyQc75O0ccp8wtyHKWMZX36fM7IRg2VkPFSOh8QSg2xbCq4+cIYtdWYcKu/9qEWnYghNl+WAp3fYPKRVV+Yy/gw1V/nJCTWDNEJ2zzJ3Zfx8VVj/FqTb+nrN6i+8FBrsDB5UtRnm1B1oOZ5AtM5Xf1CjF87ZN9SYJqXQuaKUvJUdYCj7xDDNKB+gWsulyNwDOSsGVDtderncquFsPkGIXNl6vm1z5hsN2W8fAjy+PK5qWxWjXN8zfkJHbq+5WaP9jXrg9AHitFRzN6NNus/Op8Tkw+V/qRce9K1nYs9krkP4VuW1kHf/Bg325GTnPqTel1W5Ci4r7n74jN3++bHuNgOTthsAcc82DxRLUtJjjzrq3LBZe2FGpstwPJgJfuobzovKe0/udKXuNL3e4y7BXzcmVKjurk69qbhX5tOSUnfDv2tMw/5l+gr03zluw6Qcy1EzityXnoLznOpPQjFx+aUnOeG8LsyIaTMGUjdT/39+tTo4lGoT+/zNIWEPuWJQufSmJyBLXaWPpWPzTHpDyfdEp+9ZHtivksp+7y22Fcn79C5VHcv+NvNGKF+ky6+2rx7iDV9q58ZWf/t5hQxjc63F74EjAH6RMzckCsHV5v97yOcfBpfqNueKwc31LrzHFDoRI1jooY219DGVFB99g9E9xmhZSi6zf07aSMjIyOlGcp8UBt9qm/Q/Y8R12M1wC0/9GfRntvV9kfZbsFx2zXi9TXRmtTQeLXYXls2l2tuurrGBYc69Hv3m+Zps9yuxBbQpnZxj5eNn/6XoIYc3ZXn++X/LnrR8Je/pI81uTXJnytfu/W9xMWmC/nfVCB/tV6Lg/1XOe3W9yZgzlLqP/SdbpVjI2ZOuvW9D0L+Jv/Jd2xQ+6dqvRZX+3+C2J8YxL1MvlHO3CvH76WpnCj2J9SPh9eJe41zsxsx9sd0z9LyF/Vl3PIOOmLsz0/kGin/GnyjknzplrISe2EzHjjYZdFP3xbb98X2o9PHbqP83fG1P6eIzHX3LEkNeQeBj/zleHG95wjO32bd/lDJjPJeQ+HTBu39RvnbuQZ/fybugxE/qMfAiB8fN8x9sNWj9W5f/gGJ7nUo
+  </data>
+ </layer>
+ <layer id="8" name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt3FGKgzAUBVD3v0N1nLUM6RAIEqE/k9vhnfOj1BbC5RmTtM22QS17ugHF7Ldjd65uCC9HugG8fKUbUNB3ugGF3bO/Iq2Az+A5vJ7MP4dnMRX1ujf/pTLjfyqz/kNlxj9Z+p8s9Z9l/YHKzL+ozO+AsuRPZcafAAAAAAAAAAAAAAAAAAAAv/z/Oste3Dn2/slp+77pe6iq1b69fzLs+Zmn78/R72TJf517X2+/4bXGWjfXpZr94Zw1ztsRqmg1fwznrGN+mzOOM63x57gH1upz3Wuzxpmk7v/ebF3h2qwxzLzzDJy953g4H7Mfv8etXPfnG+fNmHPPcZbt2H/PPjO7VtVT3rMs+/VZbpXnSD2PlkHPq9dlv6/H1/fh/f/dD1XVT7U=
+  </data>
+ </layer>
+ <objectgroup id="9" name="data">
+  <object id="53" name="Archer" type="spawn" gid="131" x="1176.67" y="2495.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="54" name="Centurion" type="spawn" gid="131" x="900.417" y="2859.42" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1;VariableLower#last_legion,120"/>
+    <property name="conversation" value="C10_centurion"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="portrait" value="114"/>
+    <property name="spawn" value="C10_centurion"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="55" name="Guard" type="spawn" gid="131" x="1020" y="2743.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="56" name="ranger leader" type="spawn" gid="131" x="572.333" y="194.333" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="C10_stone_fang"/>
+    <property name="tag" value="stone_fang"/>
+    <property name="unique_tag" value="C10_stone_fang"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="57" name="exit from dungeon" type="entry" gid="129" x="249.833" y="295.333" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="58" name="conversationTrigger" type="trigger" x="384.667" y="116" width="137.333" height="300.667">
+   <properties>
+    <property name="actions" value="StartConversation#stone_fang,C10_stonefang"/>
+    <property name="conditions" value="VariableLower#elderforest,1"/>
+   </properties>
+  </object>
+  <object id="59" name="ranger" type="spawn" gid="131" x="620" y="265.333" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="var_guards"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="60" name="ranger" type="spawn" gid="131" x="606" y="172.667" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="var_guards"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="61" name="warrior" type="spawn" gid="131" x="530.667" y="336" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="var_guards"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="62" name="druid" type="spawn" gid="131" x="764.167" y="387.833" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="63" name="warrior" type="spawn" gid="131" x="1784" y="293.333" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="64" name="druid" type="spawn" gid="131" x="1836.67" y="254" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="65" name="warrior" type="spawn" gid="131" x="1867.33" y="367.333" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="66" name="black wolf" type="spawn" gid="131" x="1831" y="1473" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="67" name="black wolf" type="spawn" gid="131" x="2000" y="1264" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="68" name="black wolf" type="spawn" gid="131" x="1740" y="1128" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="69" name="black wolf" type="spawn" gid="131" x="2364" y="836" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="70" name="black wolf" type="spawn" gid="131" x="2110" y="782" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="71" name="black wolf" type="spawn" gid="131" x="2842" y="770" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="72" name="black wolf" type="spawn" gid="131" x="2634" y="486" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="73" name="Worg" type="spawn" gid="131" x="2708" y="244" width="64" height="64">
+   <properties>
+    <property name="spawn" value="worg"/>
+   </properties>
+  </object>
+  <object id="74" name="Worg" type="spawn" gid="131" x="2803" y="285" width="64" height="64">
+   <properties>
+    <property name="spawn" value="worg"/>
+   </properties>
+  </object>
+  <object id="75" name="black wolf" type="spawn" gid="131" x="2483" y="1949" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="76" name="black wolf" type="spawn" gid="131" x="2646" y="2038" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="77" name="black wolf" type="spawn" gid="131" x="2513" y="1187" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="78" name="black wolf" type="spawn" gid="131" x="935" y="1565" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="79" name="warrior" type="spawn" gid="131" x="1209" y="919" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="80" name="warrior" type="spawn" gid="131" x="1601" y="507" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="81" name="warrior" type="spawn" gid="131" x="505" y="875" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="82" name="warrior" type="spawn" gid="131" x="487" y="957" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="83" name="warrior" type="spawn" gid="131" x="365" y="719" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="84" name="druid" type="spawn" gid="131" x="717" y="197" width="64" height="64">
+   <properties>
+    <property name="faction" value="varannari"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="varannari"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="87" name="black wolf" type="spawn" gid="131" x="1122" y="1806" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="88" name="quartermaster" type="spawn" gid="131" x="1164.25" y="2661.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="conversation" value="C10_quartermaster"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="name" value="@QUARTERMASTER"/>
+    <property name="portrait" value="51"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="tag" value="legion"/>
+    <property name="unique_tag" value="C10_quartermaster"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="89" name="sleep" type="entry" gid="129" x="1231.25" y="2668.75" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="10"/>
+   </properties>
+  </object>
+  <object id="90" name="Guard" type="spawn" gid="131" x="1093" y="2589" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="spawn" value="mercian_legionnaire_male"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object id="92" name="Archer" type="spawn" gid="131" x="891.5" y="2521.83" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="95" name="Guard" type="spawn" gid="131" x="892.167" y="2723.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="spawn" value="mercian_legionnaire_male"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object id="96" name="Guard" type="spawn" gid="131" x="942" y="2951.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#C10_camp_evacuated,1"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="spawn" value="mercian_legionnaire_male"/>
+    <property name="tag" value="legion"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object id="100" name="warrior" type="spawn" gid="131" x="996.667" y="2510" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="101" name="warrior" type="spawn" gid="131" x="1062" y="2415.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="102" name="warrior" type="spawn" gid="131" x="1089.33" y="2372" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="103" name="warrior" type="spawn" gid="131" x="966.667" y="2545.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#last_legion,80"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="104" name="warrior" type="spawn" gid="131" x="1130.67" y="2522.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_warrior"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="105" name="warrior" type="spawn" gid="131" x="902.667" y="2409.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="106" name="warrior" type="spawn" gid="131" x="846.667" y="2393.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="107" name="warrior" type="spawn" gid="131" x="983.333" y="2414" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="faction" value="player"/>
+    <property name="respawn" value="10"/>
+    <property name="spawn" value="varannari_druid"/>
+    <property name="tag" value="attacker"/>
+   </properties>
+  </object>
+  <object id="109" name="black wolf" type="spawn" gid="131" x="2127" y="2611" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="110" name="black wolf" type="spawn" gid="131" x="1918" y="2614" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+  <object id="111" name="black wolf" type="spawn" gid="131" x="2200" y="2308" width="64" height="64">
+   <properties>
+    <property name="spawn" value="black_wolf"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

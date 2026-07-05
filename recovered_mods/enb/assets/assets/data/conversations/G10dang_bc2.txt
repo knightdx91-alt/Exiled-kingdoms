@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	В сундуке больше ничего нет.		0	VariableEqual#bc1,1	
+1	Q	Сундук больше не заперт и вы без труда забрали все вещи.		0	VariableEqual#bc,1	"GainItem#5001;GainItem#1021;GainItem#10050;SetVariable#bc1,1"
+1	Q	Этот сундук заперт хитроумной ловушкой. Желаете открыть?....		2	VariableLower#bc,1	
+2	A	Открыть сундук [BLUE](Ловушка разрядится и вещи можно будет забрать)[]		3	VariableLower#bc,1	SetVariable#bc,1
+2	A	М-да... Спасибо, но нет.		0		
+3	Q	Раздался удар грома и вас отбросило в сторону. вокруг расползлось колдовское пламя		0		"ItemActivate#trap_emp;Travel#G10_dang,6"

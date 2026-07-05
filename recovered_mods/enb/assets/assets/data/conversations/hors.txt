@@ -1,0 +1,308 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The horse is following you. What do you want to do?		20	NPCisFollower#hors	
+1	Q	It's your horse. What do you want to do?		2		
+2	A	Call a horse to come with you		0		"NPCFollow#hors;SetVariable#horsoff,0"
+2	A	I'll be back later.		0		
+3	Q	The horse is too tired. He needs to rest or eat hay.		9	VariableEqual#TMP_hors,1	
+3	Q	Where do you want to go? (You can only leave from locations that are on the map. You can't leave from houses, caves, etc.)		4		
+4	A	View map.		25	AreaIs#E9	
+4	A	View map.		21	AreaIs#E10	
+4	A	View map.		27	AreaIs#F8	
+4	A	View map.		29	AreaIs#F9	
+4	A	View map.		31	AreaIs#F10	
+4	A	View map.		33	AreaIs#G8	
+4	A	View map.		7	AreaIs#G9	
+4	A	View map.		35	AreaIs#G10	
+4	A	View map.		10	AreaIs#H8	
+4	A	View map.		37	AreaIs#H9	
+4	A	View map.		5	AreaIs#H10	
+4	A	View map.		39	AreaIs#H11	
+4	A	View map.		41	AreaIs#I8	
+4	A	View map.		43	AreaIs#I9	
+4	A	View map.		45	AreaIs#I10	
+4	A	View map.		47	AreaIs#I11	
+4	A	View map.		49	AreaIs#G11	
+4	A	View map.		51	AreaIs#D10	
+4	A	View map.		53	AreaIs#D9	
+4	A	View map.		55	AreaIs#D8	
+4	A	View map.		57	AreaIs#E8	
+4	A	View map.		59	AreaIs#I12	
+4	A	View map.		61	AreaIs#J11	
+4	A	View map.		12	AreaIs#J10	
+4	A	View map.		63	AreaIs#J9	
+4	A	View map.		65	AreaIs#J8	
+4	A	View map.		67	AreaIs#G7	
+4	A	View map.		69	AreaIs#D11	
+4	A	View map.		71	AreaIs#E11	
+4	A	View map.		73	AreaIs#F11	
+4	A	View map.		75	AreaIs#E12	
+4	A	View map.		77	AreaIs#D12	
+4	A	View map.		79	AreaIs#H7	
+4	A	View map.		81	AreaIs#H6	
+4	A	View map.		83	AreaIs#G6	
+4	A	View map.		85	AreaIs#H5	
+4	A	View map.		87	AreaIs#H4	
+4	A	View map.		89	AreaIs#H3	
+4	A	View map.		91	AreaIs#I3	
+4	A	View map.		93	AreaIs#I13	
+4	A	View map.		95	AreaIs#H13	
+4	A	View map.		97	AreaIs#G13	
+4	A	View map.		99	AreaIs#H12	
+4	A	View map.		101	AreaIs#D13	
+4	A	View map.		103	AreaIs#C13	
+4	A	View map.		14	AreaIs#J7	
+4	A	View map.		105	AreaIs#K7	
+4	A	View map		16	AreaIs#K11	
+4	A	View map.		107	AreaIs#J12	
+4	A	View map.		109	AreaIs#F6	
+4	A	View map.		111	AreaIs#C10	
+4	A	Ancient forest. The horse doesn't listen to you at all, he's scared.		0	AreaIs#C11	
+4	A	The forest of the Witches' Coven. The horse threw you to the ground and ran away.		0	AreaIs#C12	NPCDespawn#hors
+4	A	Get off the horse.		0		
+5	Q	You're in [BLUE](Lannegar Valley)[] from here you can go to [BLUE](Kingsbridge)[],[BLUE](New Garand)[] or in [BLUE](New Anthur)[].		6		
+6	A	Let's go to Kingsbridge		0		"Travel#G9,45,1;SetVariable#TMP_hors,1"
+6	A	Let's go to New Garand		0		"Travel#H8,45,2;SetVariable#TMP_hors,1"
+6	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+6	A	Back		3		
+7	Q	You're in [BLUE](Kingsbridge)[] from here you can go to [BLUE](New Garand)[],[BLUE](Rhöneis)[] и [BLUE](Sydarun)[].		8		
+8	A	Let's go to Rhöneis		0		"Travel#F10,45,1;SetVariable#TMP_hors,1"
+8	A	Let's go to New Garand		0		"Travel#H8,45,2;SetVariable#TMP_hors,1"
+8	A	Let's go to Sydarun		0		"Travel#F8,45,3;SetVariable#TMP_hors,1"
+8	A	Back		3		
+9	A	Feed hay		3	PlayerHasItem#10062	"LoseItem#10062;SetVariable#TMP_hors,0"
+9	A	I don't have any hay		0		
+10	Q	You're in [BLUE](New Garand)[] from here you can go to [BLUE](Golden Cove)[],[BLUE](Sydarun)[] or in [BLUE](Western Korne)[].		11		
+11	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+11	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+11	A	Let's go to Western Korne		0		"Travel#J7,45,3;SetVariable#TMP_hors,1"
+11	A	Back		3		
+12	Q	You're in [BLUE](New Anthurе)[] from here you can go to [BLUE](Solligan)[],[BLUE](Lannegar)[] or in [BLUE](Whitetower Valley)[].		13		
+13	A	Let's go to Solligan		0		"Travel#K11,45,1;SetVariable#TMP_hors,1"
+13	A	Let's go to Lannegar		0		"Travel#H10,3010,2;SetVariable#TMP_hors,1"
+13	A	Let's go to Whitetower Valley		0		"Travel#H12,45,3;SetVariable#TMP_hors,1"
+13	A	Back		3		
+14	Q	You're in [BLUE](Western Korne)[] from here you can go to [BLUE](Lannegar)[],[BLUE](New Garand)[] or in [BLUE](New Anthur)[].		15		
+15	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+15	A	Let's go to New Garand		0		"Travel#H8,45,2;SetVariable#TMP_hors,1"
+15	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+15	A	Back		3		
+16	Q	You're in [BLUE](Solligan)[] from here you can go to [BLUE](Icemist Fjord)[],[BLUE](Deepfrost Glacier)[] or in [BLUE](Whitetower Valley)[].		17		
+17	A	Let's go to Icemist Fjord		0		"Travel#I13,45,1;SetVariable#TMP_hors,1"
+17	A	Let's go to Deepfrost Glacier		0		"Travel#G13,45,2;SetVariable#TMP_hors,1"
+17	A	Let's go to Whitetower Valley		0		"Travel#H12,45,3;SetVariable#TMP_hors,1"
+17	A	Back		3		
+18	Q	You're in [BLUE](Whitetower Valley)[] from here you can go to [BLUE](Icemist Fjord)[],[BLUE](Solligan)[] or in [BLUE](Lannegar)[].		17		
+19	A	Let's go to Icemist Fjord		0		"Travel#I13,45,1;SetVariable#TMP_hors,1"
+19	A	Let's go to Deepfrost Glacier		0		"Travel#G13,45,2;SetVariable#TMP_hors,1"
+19	A	Let's go to Lannegar		0		"Travel#H10,3010,3;SetVariable#TMP_hors,1"
+19	A	Back		3		
+20	A	Get in the saddle		3	NPCisFollower#hors	
+20	A	Let the horse go.		0	NPCisFollower#hors	"NPCStopFollowing#hors;SetVariable#horsoff,1"
+20	A	I'll be back later.		0		
+21	Q	You're in [BLUE](North Jabal Hills)[] from here you can go to [BLUE](Rhöneis)[],[BLUE](Freetown)[] or in [BLUE](Fögas Forest)[].		22		
+22	A	Let's go to Rhöneis		0		"Travel#F10,45,1;SetVariable#TMP_hors,1"
+22	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+22	A	Let's go to Fögas Forest		0		"Travel#D11,45,3;SetVariable#TMP_hors,1"
+22	A	Back		3		
+23	Q	You're in [BLUE](Sydarun)[] from here you can go to [BLUE](New Garand)[],[BLUE](Freetown)[] or in [BLUE](Golden Cove)[].		24		
+24	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+24	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+24	A	Let's go to Golden Cove		0		"Travel#H6,45,3;SetVariable#TMP_hors,1"
+24	A	Back		3		
+25	Q	You're in [BLUE](South Jabal Hills)[] from here you can go to [BLUE](Jabal)[],[BLUE](Freetown)[] or in [BLUE](Sydarun)[].		26		
+26	A	Let's go to Jabal		0		"Travel#E10,45,1;SetVariable#TMP_hors,1"
+26	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+26	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+26	A	Back		3		
+27	Q	You're in [BLUE](Sydarun)[] from here you can go to [BLUE](New Garand)[],[BLUE](Freetown)[] or in [BLUE](Golden Cove)[].		28		
+28	A	Let's go to New Garand		0		"Travel#H8,45,2;SetVariable#TMP_hors,1"
+28	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+28	A	Let's go to Golden Cove		0		"Travel#H6,45,3;SetVariable#TMP_hors,1"
+28	A	Back		3		
+29	Q	You're in [BLUE](Deadwood)[] from here you can go to [BLUE](Rhöneis)[],[BLUE](Kingsbridge)[] or in [BLUE](Sydarun)[].		30		
+30	A	Let's go to Rhöneis		0		"Travel#F10,45,1;SetVariable#TMP_hors,1"
+30	A	Let's go to Kingsbridge		0		"Travel#G9,45,1;SetVariable#TMP_hors,1"
+30	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+30	A	Back		3		
+31	Q	You're in [BLUE](Rhöneis Plains)[] from here you can go to [BLUE](Jabal)[],[BLUE](Fögas Forest)[] or in [BLUE](Lannegar)[].		32		
+32	A	Let's go to Jabal		0		"Travel#E10,45,1;SetVariable#TMP_hors,1"
+32	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+32	A	Let's go to Lannegar		0		"Travel#H10,3010,3;SetVariable#TMP_hors,1"
+32	A	Back		3		
+33	Q	You're in [BLUE](Northern Inori)[] from here you can go to [BLUE](New Garand)[],[BLUE](Sydarun)[] or in [BLUE](Kingsbridge)[].		34		
+34	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+34	A	Let's go to Kingsbridge		0		"Travel#G9,45,1;SetVariable#TMP_hors,1"
+34	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+34	A	Back		3		
+35	Q	You're in [BLUE](Northern Bluemist River)[] from here you can go to [BLUE](Lannegar)[],[BLUE](Rhöneis)[] or in [BLUE](Kingsbridge)[].		36		
+36	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+36	A	Let's go to Rhöneis		0		"Travel#F10,45,2;SetVariable#TMP_hors,1"
+36	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+36	A	Back		3		
+37	Q	You're in [BLUE](Southern Bluemist River)[] from here you can go to [BLUE](Lannegar)[],[BLUE](New Garand)[] or in [BLUE](Kingsbridge)[].		38		
+38	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+38	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+38	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+38	A	Back		3		
+39	Q	You're in [BLUE](Northwest Sagar Forest)[] from here you can go to [BLUE](Whitetower Valley)[],[BLUE](New Anthur)[] or in [BLUE](Lannegar)[].		40		
+40	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+40	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+40	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+40	A	Back		3		
+41	Q	You're in [BLUE](Imperial Coast)[] from here you can go to [BLUE](Kingsbridge)[],[BLUE](New Garand)[] or in [BLUE](Western Korne)[].		42		
+42	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+42	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+42	A	Let's go to Western Korne		0		"Travel#J7,45,3;SetVariable#TMP_hors,1"
+42	A	Back		3		
+43	Q	You're in [BLUE](Mount Storme)[] from here you can go to [BLUE](Lannegar)[],[BLUE](New Garand)[] or in [BLUE](New Anthur)[].		44		
+44	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+44	A	Let's go to Lannegar		0		"Travel#H10,3010,2;SetVariable#TMP_hors,1"
+44	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+44	A	Back		3		
+45	Q	You're in [BLUE](South Sagar)[] from here you can go to [BLUE](Lannegar)[],[BLUE](Kingsbridge)[] or in [BLUE](New Anthur)[].		46		
+46	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+46	A	Let's go to Lannegar		0		"Travel#H10,3010,2;SetVariable#TMP_hors,1"
+46	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+46	A	Back		3		
+47	Q	You're in [BLUE](North Sagar)[] from here you can go to [BLUE](Whitetower Valley)[],[BLUE](New Anthur)[] or in [BLUE](Lannegar)[].		48		
+48	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+48	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+48	A	Let's go to New Anthur		0		"Travel#J10,45,3;SetVariable#TMP_hors,1"
+48	A	Back		3		
+49	Q	You're in [BLUE](Crimson Hills)[] from here you can go to [BLUE](Lannegar)[],[BLUE](Rhöneis)[] or in [BLUE](Kingsbridge)[].		50		
+50	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+50	A	Let's go to Rhöneis		0		"Travel#F10,45,2;SetVariable#TMP_hors,1"
+50	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+50	A	Back		3		
+51	Q	You're in [BLUE](Nekhar Valley)[] from here you can go to [BLUE](Freetown)[],[BLUE](Rhöneis)[] or in [BLUE](Kingsbridge)[].		52		
+52	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+52	A	Let's go to Rhöneis		0		"Travel#F10,45,2;SetVariable#TMP_hors,1"
+52	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+52	A	Back		3		
+53	Q	You're in [BLUE](Iron Valley)[] from here you can go to [BLUE](Jabal)[],[BLUE](Fögas Forest)[] or in [BLUE](Sydarun)[].		54		
+54	A	Let's go to Jabal		0		"Travel#E10,45,1;SetVariable#TMP_hors,1"
+54	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+54	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+54	A	Back		3		
+55	Q	You're in [BLUE](Zamohr Mountains)[] from here you can go to [BLUE](Freetown)[] or in [BLUE](Sydarun)[].		56		
+56	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+56	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+56	A	Back		3		
+57	Q	You're in [BLUE](The Trollfens)[] from here you can go to [BLUE](Freetown)[] or in [BLUE](Sydarun)[].		58		
+58	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+58	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+58	A	Back		3		
+59	Q	You're in [BLUE](Wyvern Mountains)[] from here you can go to [BLUE](Whitetower Valley)[],[BLUE](Icemist)[] or in [BLUE](Solligan)[].		60		
+60	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+60	A	Let's go to Icemist		0		"Travel#I13,45,2;SetVariable#TMP_hors,1"
+60	A	Let's go to Solligan		0		"Travel#K11,45,3;SetVariable#TMP_hors,1"
+60	A	Back		3		
+61	Q	You're in [BLUE](Wyverntail Valley)[] from here you can go to [BLUE](Solligan)[],[BLUE](New Anthur)[] or in [BLUE](Lannegar)[].		62		
+62	A	Let's go to New Anthur		0		"Travel#J10,45,1;SetVariable#TMP_hors,1"
+62	A	Let's go to Solligan		0		"Travel#K11,45,2;SetVariable#TMP_hors,1"
+62	A	Let's go to Lannegar		0		"Travel#H10,3010,3;SetVariable#TMP_hors,1"
+62	A	Back		3		
+63	Q	You're in [BLUE](Steel Coast)[] from here you can go to [BLUE](Western Korne)[],[BLUE](New Anthur)[] or in [BLUE](Kingsbridge)[].		64		
+64	A	Let's go to Western Korne		0		"Travel#J7,45,3;SetVariable#TMP_hors,1"
+64	A	Let's go to New Anthur		0		"Travel#J10,45,1;SetVariable#TMP_hors,1"
+64	A	Let's go to Kingsbridge		0		"Travel#G9,45,2;SetVariable#TMP_hors,1"
+64	A	Back		3		
+65	Q	You're in [BLUE](Nilomar Cape)[] from here you can go to [BLUE](Western Korne)[],[BLUE](New Anthur)[] or in [BLUE](New Garand)[].		66		
+66	A	Let's go to Western Korne		0		"Travel#J7,45,3;SetVariable#TMP_hors,1"
+66	A	Let's go to New Anthur		0		"Travel#J10,45,1;SetVariable#TMP_hors,1"
+66	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+66	A	Back		3		
+67	Q	You're in [BLUE](Great Inori)[] from here you can go to [BLUE](Golden Cove)[],[BLUE](Sydarun)[] or in [BLUE](New Garand)[].		68		
+68	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+68	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+68	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+68	A	Back		3		
+69	Q	You're in [BLUE](Лес Fögas Forest)[] from here you can go to [BLUE](Nivar Wetlands)[],[BLUE](Mount Orogg)[] or in [BLUE](Rhöneis)[].		70		
+70	A	Let's go to Nivar Wetlands		0		"Travel#F11,45,1;SetVariable#TMP_hors,1"
+70	A	Let's go to Mount Orogg		0		"Travel#C13,45,2;SetVariable#TMP_hors,1"
+70	A	Let's go to Rhöneis		0		"Travel#F10,45,2;SetVariable#TMP_hors,1"
+70	A	Back		3		
+71	Q	You're in [BLUE](Great Plains)[] from here you can go to [BLUE](Nivar Wetlands)[],[BLUE](Jabal)[] or in [BLUE](Fögas Forest)[].		72		
+72	A	Let's go to Nivar Wetlands		0		"Travel#F11,45,1;SetVariable#TMP_hors,1"
+72	A	Let's go to Jabal		0		"Travel#E10,45,2;SetVariable#TMP_hors,1"
+72	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+72	A	Back		3		
+73	Q	You're in [BLUE](Nivar Wetlands)[] from here you can go to [BLUE](Rhöneis)[],[BLUE](Jabal)[] or in [BLUE](Fögas Forest)[].		74		
+74	A	Let's go to Rhöneis		0		"Travel#F10,45,2;SetVariable#TMP_hors,1"
+74	A	Let's go to Jabal		0		"Travel#E10,45,2;SetVariable#TMP_hors,1"
+74	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+74	A	Back		3		
+75	Q	You're in [BLUE](Thyr Ridges)[] from here you can go to [BLUE](Mount Orogg)[],[BLUE](Fögas Forest)[] or in [BLUE](Nivar Wetlands)[].		76		
+76	A	Let's go to Mount Orogg		0		"Travel#C13,45,2;SetVariable#TMP_hors,1"
+76	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+76	A	Let's go to Nivar Wetlands		0		"Travel#F11,45,1;SetVariable#TMP_hors,1"
+76	A	Back		3		
+77	Q	You're in [BLUE](Iross Highlands)[] from here you can go to [BLUE](Mount Orogg)[] or in [BLUE](Fögas Forest)[].		78		
+78	A	Let's go to Mount Orogg		0		"Travel#C13,45,2;SetVariable#TMP_hors,1"
+78	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+78	A	Back		3		
+79	Q	You're in [BLUE](Eastern Inori)[] from here you can go to [BLUE](Golden Cove)[] or in [BLUE](New Garand)[].		80		
+80	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+80	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+80	A	Back		3		
+81	Q	You're in [BLUE](Golden Cove)[] from here you can go to [BLUE](Sydarun)[] or in [BLUE](New Garand)[].		82		
+82	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+82	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+82	A	Back		3		
+83	Q	You're in [BLUE](Emerald Valley)[] from here you can go to [BLUE](Golden Cove)[] or in [BLUE](New Garand)[].		84		
+84	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+84	A	Let's go to New Garand		0		"Travel#H8,45,1;SetVariable#TMP_hors,1"
+84	A	Back		3		
+85	Q	You're in [BLUE](Dragon Coast)[] from here you can go to [BLUE](Golden Cove)[].		86		
+86	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+86	A	Back		3		
+87	Q	You're in [BLUE](Southern Dragon Mountains)[] from here you can go to [BLUE](Golden Cove)[].		88		
+88	A	Let's go to Golden Cove		0		"Travel#H6,45,2;SetVariable#TMP_hors,1"
+88	A	Back		3		
+89	Q	You're in [BLUE](Ashen Wastes)[] from here you can go to [BLUE](Golden Cove)[].		90		
+90	A	Let's go to Golden Cove		0		"Travel#H6,45,3;SetVariable#TMP_hors,1"
+90	A	Back		3		
+91	Q	You're in [BLUE](Ashen Cape)[] from here you can go to [BLUE](Golden Cove)[].		92		
+92	A	Let's go to Golden Cove		0		"Travel#H6,45,4;SetVariable#TMP_hors,1"
+92	A	Back		3		
+93	Q	You're in [BLUE](Icemist Fjord)[] from here you can go to [BLUE](Whitetower Valley)[].		94		
+94	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+94	A	Back		3		
+95	Q	You're in [BLUE](White Plains)[] from here you can go to [BLUE](Whitetower Valley)[] or in [BLUE](Icemist)[].		96		
+96	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+96	A	Let's go to Icemist		0		"Travel#I13,45,2;SetVariable#TMP_hors,1"
+96	A	Back		3		
+97	Q	You're in [BLUE](Deepfrost Glacier)[] from here you can go to [BLUE](Whitetower Valley)[] or in [BLUE](Icemist)[].		98		
+98	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+98	A	Let's go to Icemist		0		"Travel#I13,45,2;SetVariable#TMP_hors,1"
+98	A	Back		3		
+99	Q	You're in [BLUE](Whitetower Valley)[] from here you can go to [BLUE](Icemist)[],[BLUE](Solligan)[] or in [BLUE](Lannegar)[].		100		
+100	A	Let's go to Icemist		0		"Travel#I13,45,2;SetVariable#TMP_hors,1"
+100	A	Let's go to Solligan		0		"Travel#K11,45,3;SetVariable#TMP_hors,1"
+100	A	Let's go to Lannegar		0		"Travel#H10,3010,1;SetVariable#TMP_hors,1"
+100	A	Back		3		
+101	Q	You're in [BLUE](Sanctuary Peak)[] from here you can go to [BLUE](Mount Orogg)[],[BLUE](Fögas Forest)[] or in [BLUE](Nivar Wetlands)[].		101		
+102	A	Let's go to Mount Orogg		0		"Travel#C13,45,2;SetVariable#TMP_hors,1"
+102	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+102	A	Let's go to Nivar Wetlands		0		"Travel#F11,45,1;SetVariable#TMP_hors,1"
+102	A	Back		3		
+103	Q	You're in [BLUE](Mount Orogg)[] from here you can go to [BLUE](Nivar Wetlands)[] or in [BLUE](Fögas Forest)[].		104		
+104	A	Let's go to Fögas Forest		0		"Travel#D11,45,2;SetVariable#TMP_hors,1"
+104	A	Let's go to Nivar Wetlands		0		"Travel#F11,45,1;SetVariable#TMP_hors,1"
+104	A	Back		3		
+105	Q	You're in [BLUE](Eastern Korne)[] from here you can go to [BLUE](Western Korne)[].		106		
+106	A	Let's go to Western Korne		0		"Travel#J7,45,1;SetVariable#TMP_hors,1"
+106	A	Back		3		
+107	Q	You're in [BLUE](Eastern Wyvern Mountains)[] from here you can go to [BLUE](Solligan)[],[BLUE](Whitetower Valley)[] or in [BLUE](Icemist)[].		108		
+108	A	Let's go to Solligan		0		"Travel#K11,45,3;SetVariable#TMP_hors,1"
+108	A	Let's go to Whitetower Valley		0		"Travel#H12,45,1;SetVariable#TMP_hors,1"
+108	A	Let's go to Icemist		0		"Travel#I13,45,2;SetVariable#TMP_hors,1"
+108	A	Back		3		
+109	Q	You're in [BLUE](Gorge of the Silent Kings)[] from here you can go to [BLUE](Golden Cove)[] or in [BLUE](Sydarun)[].		110		
+110	A	Let's go to Golden Cove		0		"Travel#H6,45,1;SetVariable#TMP_hors,1"
+110	A	Let's go to Sydarun		0		"Travel#F8,45,2;SetVariable#TMP_hors,1"
+110	A	Back		3		
+111	Q	You're in [BLUE](Varann Woodland)[] from here you can go to [BLUE](Freetown)[] or in [BLUE](Jabal)[].		112		
+112	A	Let's go to Freetown		0		"Travel#D9,45,2;SetVariable#TMP_hors,1"
+112	A	Let's go to Jabal		0		"Travel#E10,45,1;SetVariable#TMP_hors,1"
+112	A	Back		3		

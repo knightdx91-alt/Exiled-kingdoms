@@ -1,0 +1,39 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	I don't want anything to do with you. Go away.		0	VariableGreater#tearalove,109	
+1	Q	[BLUE](Theara turns away from everyone and flips through the pages of the book. You can see how her shoulders sometimes shudder. Perhaps she shouldn't be disturbed just yet.)[]		0	VariableEqual#TMP_teara,1	
+1	Q	Thank you for giving me the opportunity to be alone for a while...Tell me...Can you do one request for me?		17	VariableEqual#tearalove,11	
+1	Q	[BLUE](This female guard seems completely immersed in her own thoughts.)[]		11	PlayerHasItem#7605	
+1	Q	Greetings. Remember, there is a reward for hunting down ten coyotes.	Saludos. Recuerda que hay una recompensa por eliminar a diez coyotes salvajes.	0	"VariableGreater#coyote_hunt,9;VariableLower#coyote_hunt,20"	
+1	Q	Well done. Now our woodsmen and farmers will feel safer, thanks to you. Now please choose your reward. You can take a steel longsword, or a small emerald.	Bien hecho, ahora los viajeros podrán sentirse a salvo. Puedes escoger tu recompensa. ¿Prefieres una espada larga de acero, o una esmeralda pequeña?	9	"VariableGreater#coyote_hunt,19;VariableLower#coyote_hunt,100"	"GainXP#240;IncVariable#REP_town_rhoneis,3;IncVariable#REP_ilmara,3;SetVariable#coyote_hunt,100"
+1	Q	Greetings, adventurer. If you seek more jobs, please check the Town Hall.	Saludos, aventurero. Si buscas más tareas, puedes mirar en el ayuntamiento.	0	VariableEqual#coyote_hunt,100	
+1	Q	Welcome to Rhöneis and to the holy land of Ilmara. May the Three bless you. [BLUE](The woman bows her head slowly)[]	Bienvenido a Rhöneis y a la tierra sagrada de Ilmara. Que los Tres te bendigan.	2		
+2	A	Thanks! I have to go.	Gracias! Me tengo que marchar.	0		SetVariable#salute_rhoneis,1
+2	A	Hello, I was wondering if you have any jobs for a wandering adventurer like myself.	Hola, me preguntaba si hay alguna misión para un aventurero como yo.	3		SetVariable#salute_rhoneis,1
+2	A	May the Three guide your every step.[BLUE](Bow your head respectfully)[]	Que los Tres guíen tus pasos.	4	VariableLower#salute_rhoneis,1	"SetVariable#salute_rhoneis,1;IncVariable#REP_town_rhoneis,3"
+3	Q	Maybe. To the south lie the wildlands, not part of any Kingdom. We're having problems with a pack of wild coyotes, which attack travellers continuously.	Quizá. Hacia el sur se extiende la tierra salvaje, de ningún reino. Allí, una manada de coyotes salvajes ataca continuamente a los viajeros.	5		
+4	Q	[BLUE](The woman smiles pleased at your observance of the proper greeting)[]How may I help you?	[BLUE](La mujer sonríe satisfecha a tu correcto saludo)[]Puedo ayudarte?	2		
+5	A	You want me to kill wild beasts? I thought here in Ilmara you always respected natural life.	¿Quieres que caze bestias salvajes? Pensaba que en Ilmara se respetaba la vida natural.	6		
+6	Q	Yes, the Three have taught us that all life is precious. But these tainted beasts are clearly evil, likely influenced by the Deadwood to the south. We must protect our people from such malign monsters.	Si, los Tres nos enseñan que toda vida es preciosa. Pero estas bestias son claramente malignas, quizá bajo la influencia de Deadwood, al sur. Debemos proteger a nuestra gente de tales criaturas perversas.	7		
+7	A	Very well, I'll do it.	Muy bien, lo haré	0		SetVariable#coyote_hunt,10
+7	A	The Deadwood?	Deadwood? Qué es eso?	8	VariableLower#ask_deadwood,1	SetVariable#ask_deadwood,1
+7	A	Not interested in dealing with that, sorry.	Creo que no me interesa, gracias.	0		
+8	Q	A terrible place, where the restless dead rise to haunt the living. Legends say, the Empire defeated an army of heathens there during the Colonization. Now it is a petrified forest, avoided by everyone.	Un lugar terrible, donde los muertos se alzan para vengarse de los vivos. Se dice que durante la Colonización, el Imperio derrotó allí a un ejército de herejes. Ahora es un bosque petrificado, que todos evitan.	7		
+9	A	I prefer the sword, thanks.	Prefiero la espada, gracias.	0		GainItem#523
+9	A	I prefer the emerald, thanks.	Prefiero la esmeralda, gracias.	0		GainItem#2002
+9	A	I don't want any reward. I just did what I felt was my duty.	No quiero ninguna recompensa. Hice lo que consideré mi deber.	10		
+10	Q	[BLUE](The woman bows down and salutes you)[] May the Three be as gracious to you as you are, adventurer. At least take this potion, maybe it can save your life!	[BLUE](La mujer se inclina y te saluda respetuosamente)[] Que los Tres sean tan generosos contigo como mereces, aventurero. Al menos acepta esta poción, podría salvarte la vida.	0		"GainItem#5002;IncVariable#REP_town_rhoneis,5;IncVariable#REP_ilmara,2"
+11	A	Excuse me...I think I should pass this on to you. [BLUE](You hand over the soldier's diary.)[]		12		LoseItem#7605
+11	A	Go away.		0		
+12	Q	[BLUE](Shudders when she hears your voice)[] What? Pass me...? Oh, please forgive my indiscretion... I was a little preoccupied. [BLUE](picks up thin book and deep sadness clouds woman's face)[] You have this diary... So... So I won't see it again... Could you leave me alone for a while?		13		
+13	A	Yes... yes, of course. I'll come back to you later [BLUE](To leave a woman alone with her sadness.)[]		0		"SetVariable#TMP_teara,1;SetVariable#tearalove,11"	
+13	A	Leave? No, I can't. I didn't bring you this book to just walk away. I see this diary means a lot to you... Maybe I'll get some gold as a reward?		14		
+14	Q	Gold? [BLUE](She looks confused. Your insolence has visibly taken the girl aback)[] You dare say that to me? You lousy impudence! You ought to be taught a lesson... But in memory of my lover, I'm willing to forgive you for your insolent speeches. Just go away and don't come near me again. [BLUE](The captain's face contorts with rage, and her hand rests on the hilt of her sword. She is still trying to hold herself together.)[]		15		SetVariable#tearalove,110
+15	A	Wait, wait, wait... Don't get so hot. What did I say? Just a humble reminder of gratitude...		16		"DecVariable#REP_town_rhoneis,7;DecVariable#REP_ilmara,5;SetVariable#tearalove,111"
+15	A	Yes, I'll go... But I won't apologize!		0		
+16	Q	You filthy bastard! I'll ram these words down your throat with my sword! [RED](Theara finally loses control of herself and draws her weapon.)[]		0		NPCHostile#teara
+17	A	Yes, of course. How can I help you?		18		
+17	A	I'm busy right now, maybe some other time?		19		SetVariable#tearalove,102
+18	Q	In this bag are some of my beloved's things. Could you take them to the local priest [BLUE]Brother Gudazar[] he can take care of them. I would take them myself, but it is too heavy a burden for me now...But I can no longer look at them...		20		
+19	Q	Oh... It's okay. Go about your business.		0		
+20	A	I understand. I'm sorry for your loss... Now I'll just take this bag. [BLUE] (You take a very weighty bag from Theara.)[]		21		SetVariable#tearalove,12
+21	Q	Thank you...you are doing a good deed, my friend.		0		GainItem#7606

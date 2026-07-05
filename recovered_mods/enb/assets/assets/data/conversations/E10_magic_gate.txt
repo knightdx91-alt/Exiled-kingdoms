@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This impressive magical gate is sealed. Your key fits the lock, but for some reason, it doesn't work at all.	Esta impresionante puerta mágica ha sido sellada. Tu llave entra en la cerradura, pero por alguna razón, no funciona.	0	VariableLower#key_to_past,40	
+1	Q	The magical gate has been unlocked. It hums with powerful magic, and probably wouldn't let anyone but Tremadan's descendant walk through it.	La puerta mágica ya no está bloqueada. Puedes sentir su enorme poder mágico, que posiblemente sólo deje cruzar al otro lado a un descendiente de Tremadan.	2		
+2	A	Pass through the door.	Cruzar la puerta.	0	VariableEqual#key_to_past,40	"SetVariable#key_to_past,50;travel#E10_tower,5"
+2	A	Pass through the door.	Cruzar la puerta.	0	VariableGreater#key_to_past,40	travel#E10_tower,5
+2	A	Stay here.	Quedarme aquí.	0		

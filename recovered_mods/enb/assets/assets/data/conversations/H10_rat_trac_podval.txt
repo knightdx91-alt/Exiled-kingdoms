@@ -1,0 +1,14 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Ha! In the name of the Three! You're good for something. Your reward. [BLUE](Holds out 30 coins to you)[]		7	"VariableGreater#podval_tract,14;VariableLower#podval_tract,100"	"GainXP#60;GainGold#30;SetVariable#podval_tract,100;IncVariable#REP_town_lannegar,2;IncVariable#REP_varsilia,1"
+1	Q	You still haven't killed the rats? Get out of here.		0	"VariableGreater#podval_tract,9;VariableLower#podval_tract,15"	
+1	Q	Thanks for helping with those rats.		0	VariableEqual#podval_tract,100	
+1	Q	Hello, traveller. Behave yourself and don't cause trouble.		2		
+2	A	No harm will come from me.		3		
+2	A	Whatever you say.		0		
+2	A	Fuck off, you flawed bastard.		0		"Travel#H10,3010;Sleep#;DecVariable#REP_town_lannegar,2"
+3	Q	I'll keep an eye on you.		4		
+4	A	Is there a job at this tavern?		5		
+5	Q	[BLUE](The bouncer gives you a brief glance.)[] We have a rat problem in the basement. Go out and kill a few of them.		6		
+6	A	All right! I'm going in right now!		0		SetVariable#podval_tract,10
+6	A	I need to think about it. Goodbye.		0		
+7	A	Thank you. All the best.		0		

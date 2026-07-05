@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="64" height="64" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="40"/>
+  <property name="music" value="complex"/>
+  <property name="name" value="Wyverntail Complex"/>
+  <property name="name_ES" value="Subterráneo Wyverntail"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="dungeon2.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" name="town_objexts2" tilewidth="64" tileheight="64">
+  <image source="town_objects2.png" width="512" height="512"/>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="light" value="brazier_lamp"/>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="553" source="natural_grounds.tsx"/>
+ <tileset firstgid="681" source="town_objects3.tsx"/>
+ <tileset firstgid="713" name="dungeon stairs" tilewidth="128" tileheight="128">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="717" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="877" source="ruins.tsx"/>
+ <tileset firstgid="941" source="teleporter.tsx"/>
+ <layer name="nonwalk" width="64" height="64" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKADAIA0C3/v/HPkC7iNChd5DFJQSMALacR51d7+0OU7//k/01AAAAAAAAAAAAAAAAAMCuBEGtAFU=
+  </data>
+ </layer>
+ <layer name="water" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztmUmu3DAQQxs6Tm4s23J76OGaceHzwUSQXVYpiUDBbrk3VI0SH4+BgYGB/xNr+bF62XHZfNmuZ7NvTTZpLQuCy2JcV+0D67s4V63xngWb+XuRVT2PP3jH2lP/zwL87vvw1Npsv3ke2ocsIJ9X83nTfmzy+6znoT3Kwv/X44fTJo6vyz62D9/LTr0f+t4SxX/wx79f+RjfEwdeA49k+R/8T/m8mX9nrZHr2CruRyL+H8vzpngP/m+tnfrufXJKxB+f0+Oe1ufYB8+HLVn9w+dv2aLY/ygf3JgR5kT8q/jv5Z51iX32hPrnM1EGBH/6OTO+97rd8r/Kdv0vA4L/V5w2xTy+/5Z7BiT/z3LPxhkAf89v/L+We2+a6mET/0z5z3mOs+8p3l7rqZHMfpnmH597npbjb/2mD1Afs80/k/Idzs1iYNFatW812fxDz6vlPvMxB5zmb85H1MQMCP6LcazWA1a9czfgM2Km+Kf2U/M4776s1jMfrOU+E2YB8U//P63eERfckbzKfTbIAs7/3IFwB0ZdpA8S9/TKLGjG3+8+dlurtj/Uiyw4jBe5vZb7noe5j/vPKRl/v9N3jYM53+99iYNM+gcxzuxH7E82D+B3Yn9LxB+/UuvhSO/j3muy9Uz9j9mPPCce9r/4nz3KVP+H/jn0z6F/Dv2zR/0z0LP+GehZ/wz0rH8GetY/Az3rn4Ge9c9Az/pnoGf9M9Cz/hnoWf8M9Kx/BnrWPwM965+BnvXPQM/6Z2Don0P/HPrn0D+H/jn0z6F/Dv2zN/1z4N/wG6zCAHc=
+  </data>
+ </layer>
+ <layer name="bridges" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEOgCAMQFGuo0a9/+3EjQENk8T2vaR7f6EUAAD4j332ApPpz03/u/WTLeYZ6Y/6R5Y6W2dakftvZ52jM+0tIvc/tbW3iCzy247Qn5v+3PQDAAAAAAAAAACQ0QUmCgZx
+  </data>
+ </layer>
+ <layer name="ground" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztmuGSqjAMhbezv3ffF+gLoDz06lw6Hj4PKF4oFD0zGV2t256kTdKEr68PPngOVfgn9UWa/jVJ7L+LMib24yJ+Uyoq4VSHmz4iPlcd8Del8092VF5NGNpcxzXQVyycf+Kg+5tnQu3dGB2VCp5jtXfiGPG5+ow0rlSQSw17N8JR9VRBSkXiStvq/o+iF8aDNKZUkFcN+8Yw3P9un5Rq/xo21tdGdNCE4f5owr0PnILmETqHzp90mQsa7zTOMeeJ+O4Vm6uuVL+qg9x+hHubayS4T+bEPD1fOp+et9x5FOMbzzuhfj/9bs5cyl3PAmNLLjCfbWSNbh2MB3PWWoMn7xI69xhOl+/OF+kW0pHbk/pKuPzvWUz5Ut0TVzn1cuXZhhvvs/y9BB6tx/FXmcuf/o759qM40vY6WIq/8/tT59D57zlz0e/T9+XOI6pwfw7VJxHuvD4Lt7+cP80Z/6PhHSfsoHeiub7a1VbUJ1Qv/M//Be/6qg/Hn/t/bv6jZ15jgO6LnPxZw1L7Om7Me+fy1//Pu9YrPvURunCLIyl2XN//fu9blsIZ/Ls343+C3dternP8PJC0li3GLc0/nYMkv1gThevNPW4N/h3O/4/MSf279eYctxRSzqx6aA1/t7YtP1uTv7P/UfnrfUF1sCeua/JPvNswfL8nrjn5p9d383+aA7xT/GPN5ITzPyW6ptzjlkKyOXOgMf3vRZaC1s06nP89y1LQ2iH9354lF8ZqcHyuwfXFxvpkY3Uc1v841xbPT7AO5dbEZ0JYq2PtWvXp5nL9htx1vwT2cl3vl+vlMx+sYY31RqZ0NVZvXxtc+9TzHuyFuj6wjiN/t+d5/nJD1+1qwK5mp/Zyv1E/onA9ZOp+C/7ueQ+1o7NxFe5tTf9A/q7Oz75LbpA76/9cM8+B6x2qKFwc0VrzFvZnvZ8xjWddex9j8UB1s3eQD/cj45/+XRv+tOneEcGDMUr7VdwPzGPYFyuBP5/7Yj+avp59WucP9fdHQQMdsGdeheE+SWOOApfnje2bV3qjewfzHuqD/jJ3H3ttqK9jrGCOVJL/exbMb5kD0AeUEv+fhZ5z3uPHcoAt7rNrQW3L3E/jPu/ER4Grg7iagMbDI+1/zfvoB9y992j5z9RdmLmy6uooYPx3vPn9kfyfq/Pyzqv33qPlPx988EFZ+APlWySY
+  </data>
+ </layer>
+ <layer name="ground2" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2D0OgkAQBtAlXsSbwLXUGxlBL4e1wVhYiLEwO6vzXkPHfvuTZYZSgE9du+gEAP9t5559ax+0PuMmZlxKOSRZ+yzz5LfMvkmp6f0AAAAAAHIbVv4Tn+rGCPVqrlP1FPWdH8/jF9/Zd+tnCoC2XKIDNGypDcboEFTTq13u1HB52GueuQNZbPXyADTgBomPDRQ=
+  </data>
+ </layer>
+ <layer name="scenery" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2VENwCAMBUAmY4RJWcC/FUygYR+EZO9OQdvXfrUUgL3mdboCOKMH7/4I7h2Suf1sT3j+d3j/6Zr8CVTtPQAAAAD8kp/fHq+5AgAAAADwwQKtcgKe
+  </data>
+ </layer>
+ <layer name="objects" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztW8tu00AUHQe6SEhWSLBnVx4l24aniGgXPMSSRqKlbehHJPwUj1+ARQtIiOcGwZasShfdoErMoTPKZOqxfe1rO34c6cj2eDwzJ74z93pmIkSNGtGwInlT8alxjvSBZE9yS90bqPOeuu4prmbbZFY8c6Q/kux7QoxPuZ9tNoQ4I3krjYZlhBsMZdxjKCMvbEi2vWRlFFk/3v/Ix8YpdlFk/ZvCv49vEMooun68f3Cs+FxyW6afi9gviqwfdj42tI+U/k1CGUXWvyaO9QJaPxCm/77BxyF5EUv0DA7EydgCMccDcuvjA23aMerfUkQa4pm7ktcNrqj2PZTsC1rMAxtbaEyvm6pf4bc+3ZgyS+C9XzD6t26TK56x4yRKzANbWiDoo+SNi2XJlk897YZ/f162ril93n7/YchCP9rUcozvftpsf0jRT/GlQBb6YZMU/bb9U/S7vjGSIOlv9N/+CfqT2j83kupHm85WWD/G/6ajDO7+b84xgNrnwp/uiJN+36WN01cGxTd5v/8sxr+1gHtV0G/rMZG3fg7oPjdQRx17f5WcSH6Q3Jc8lPwhjuPaT8Y9pB+o60OV18y3a5UxUWkH6qjP94289vMTK/83Rv3avkdW+m/ruk+Y+6HkjfP8XrLiZ+Cy7z+MdXCDU78r5nzPWAc3OPW7xpyq66+K/WOsv+OT/ouxDm5w6nfhZwZ1xAWn/l1HDPWRsQ5ucOpH/ONn/1UZ/1z+ryrjnyv+seO/eUIW/s/UHyeeTfOZOv7hg71+oflF8p1F7RM++9xzMY1nvjPqD4Nek9LzT3pdR89NrRr58P08VPmHAc/0VF57bQhlrFvPrBvMY/8M5qQ7jhjhyJuu72Ad+Iq8vih51Zs9d+Gadf0koB3nvXz2z4TNyev5HfhRaF409C8y6jfryhIYH9sB82y6Tdvq2DX0dkPGc1t/2PpPXvpfRtAfZ+3G7/0vOX6zjmO9MW1A14sI+oPmSV3w039J6r9MWG9JG7BJ1/oXoNsUZ+7W1g9ffFvM7pmg7J9IA0HrnwDn+59HwP7/BtzX+s21q6Fxbvpye+9sEfbDwq6PfNL1PhBz/H8lx4nXaqzwHGNGS+2F7RRkP2zUPol1hDB/Z6PI+8FsxPF/ZdJP2QeoUSb98JNv1bnraAJ7qcukH+//jTp3HW2UTb/eExsVZdIPP0nRDpRJf9XHP+in/D9kqWTjH+X7R88NlUk/xf/puaEy6af6v27J9Id9J8zL93yNGjVqAP8ABNnThA==
+  </data>
+ </layer>
+ <layer name="roofs" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztz0ERACAMBLF2EEZ9YR4HfO9BomC3CgB4OStdAAAAAAAAAEDCdLoga3/+DwAAAAAAkHABZ14BAA==
+  </data>
+ </layer>
+ <objectgroup name="data" width="64" height="64">
+  <object name="exit to Grasslands" type="transition" x="36" y="902" width="47" height="78">
+   <properties>
+    <property name="area_id" value="J11"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="141" y="956">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="690" y="214">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever1"/>
+    <property name="toggle_items" value="runes1"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="704" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_B_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_B_i"/>
+    <property name="tag" value="runes1"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="672" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_A_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_A_i"/>
+    <property name="tag" value="runes1"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="768" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_D_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_D_i"/>
+    <property name="tag" value="runes_2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="736" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_C_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_C_i"/>
+    <property name="tag" value="runes_2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="754" y="214">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever2"/>
+    <property name="toggle_items" value="runes_2"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="800" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_A_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_A_i"/>
+    <property name="tag" value="runes_3"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="832" y="192">
+   <properties>
+    <property name="active_sprite" value="rune_C_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_C_i"/>
+    <property name="tag" value="runes_3"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="818" y="214">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever3"/>
+    <property name="toggle_items" value="runes_3"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="687" y="132">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever4"/>
+    <property name="toggle_items" value="runes_4"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="704" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_D_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_D_i"/>
+    <property name="tag" value="runes_4"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 2" type="mapitem" gid="5" x="672" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_A_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_A_i"/>
+    <property name="tag" value="runes_4"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 5" type="mapitem" gid="5" x="736" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_B_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_B_i"/>
+    <property name="tag" value="runes_5"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="lever5" type="mapitem" gid="5" x="751" y="130">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever5"/>
+    <property name="toggle_items" value="runes_5"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 5" type="mapitem" gid="5" x="768" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_C_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_C_i"/>
+    <property name="tag" value="runes_5"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="lever5" type="mapitem" gid="5" x="814" y="128">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever6"/>
+    <property name="toggle_items" value="runes_6"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 6" type="mapitem" gid="5" x="800" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_B_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_B_i"/>
+    <property name="tag" value="runes_6"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="rune 6" type="mapitem" gid="5" x="832" y="160">
+   <properties>
+    <property name="active_sprite" value="rune_D_a"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="rune_D_i"/>
+    <property name="tag" value="runes_6"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="576" y="160">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Inactive#lever1;Active#lever2;Inactive#lever3;Inactive#lever4;Active#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="576" y="192">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Inactive#lever1;Active#lever2;Inactive#lever3;Inactive#lever4;Active#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1472" y="608">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Active#lever1;Inactive#lever2;Active#lever3;Inactive#lever4;Active#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1504" y="608">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Active#lever1;Inactive#lever2;Active#lever3;Inactive#lever4;Active#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="416" y="1152">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Active#lever1;Inactive#lever2;Inactive#lever3;Inactive#lever4;Inactive#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="sign1" type="conversation" gid="5" x="351" y="1117">
+   <properties>
+    <property name="conversation" value="J11_sign_security"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign2" type="conversation" gid="5" x="381" y="768">
+   <properties>
+    <property name="conversation" value="J11_sign_storage"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="480" y="768">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Inactive#lever1;Inactive#lever2;Inactive#lever3;Active#lever4;Inactive#lever5;Active#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="729" y="763">
+   <properties>
+    <property name="conversation" value="J11_sign_control"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign4" type="conversation" gid="5" x="763" y="1115">
+   <properties>
+    <property name="conversation" value="J11_sign_quarters"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign5" type="conversation" gid="5" x="1248" y="768">
+   <properties>
+    <property name="conversation" value="J11_sign_river"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign6" type="conversation" gid="5" x="1184" y="1120">
+   <properties>
+    <property name="conversation" value="J11_sign_study"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1579" y="676">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1584" y="651">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1583" y="617">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1577" y="481">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1584" y="458">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1583" y="426">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1591" y="554">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1628" y="512">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1665" y="546">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1632" y="543">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1760" y="669">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1602" y="637">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1882" y="637">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1662" y="702">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1821" y="619">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1597" y="512">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="418" y="1474">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever_golems"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="5" x="420" y="1474">
+   <properties>
+    <property name="conversation" value="J11_lever_golems"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="3" x="433" y="1327">
+   <properties>
+    <property name="conditions" value="VariableGreater#false,1"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="tag" value="security_guard"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="623" y="856">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="439" y="1007">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="1184" y="1035">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="1330" y="830">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="1366" y="972">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="1106" y="861">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="1068" y="939">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="785" y="1039">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="3" x="626" y="212">
+   <properties>
+    <property name="spawn" value="golem_iron"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="3" x="1367" y="1327">
+   <properties>
+    <property name="spawn" value="golem_iron"/>
+   </properties>
+  </object>
+  <object name="Earth elemental" type="spawn" gid="3" x="835" y="1343">
+   <properties>
+    <property name="spawn" value="elemental_earth"/>
+   </properties>
+  </object>
+  <object name="Earth elemental" type="spawn" gid="3" x="925" y="1623">
+   <properties>
+    <property name="spawn" value="elemental_earth"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="3" x="1325" y="461">
+   <properties>
+    <property name="spawn" value="golem_iron"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="1765" y="490">
+   <properties>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="1760" y="512">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever_river"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1442" y="373">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1203" y="390">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1230" y="370">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1793" y="629">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1747" y="605">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1853" y="563">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1867" y="534">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1867" y="508">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="gas" type="mapeffect" gid="5" x="1713" y="516">
+   <properties>
+    <property name="active" value="VariableLower#poisoned_river,90"/>
+    <property name="conditions" value="VariableLower#poisoned_river,90"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="river_gas"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="1388" y="646">
+   <properties>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="5" x="1760" y="512">
+   <properties>
+    <property name="conversation" value="J11_river_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="5" x="611" y="289">
+   <properties>
+    <property name="conversation" value="J11_runes_manual"/>
+    <property name="icon" value="book"/>
+    <property name="name" value="@BOOK"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1176" y="1268">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="6001,6001,6002,6002,6003,6003"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="J11_tower_shelf"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1377" y="1349">
+   <properties>
+    <property name="icon" value="corpse3"/>
+    <property name="items" value="2606"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="J11_tower_librarycorpse"/>
+   </properties>
+  </object>
+  <object name="Earth elemental" type="spawn" gid="3" x="490" y="1298">
+   <properties>
+    <property name="spawn" value="elemental_earth"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="3" x="419" y="460">
+   <properties>
+    <property name="spawn" value="golem_iron"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="462" y="595">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1012" y="1620">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="503" y="1496">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="438" y="405">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Banishable Acid elemental" type="spawn" gid="3" x="969" y="1336">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="golems_banish"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="675" y="1505">
+   <properties>
+    <property name="icon" value="table"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@TABLE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1303" y="374">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="663" y="1782">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="406" y="181">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="746" y="438">
+   <properties>
+    <property name="spawn" value="elemental_acid"/>
+   </properties>
+  </object>
+  <object name="corpse" type="conversation" gid="5" x="411" y="121">
+   <properties>
+    <property name="conversation" value="J11_teleporter_corpse"/>
+    <property name="icon" value="corpse4"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="602" y="123">
+   <properties>
+    <property name="conversation" value="J11_sign_teleportation"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="349" y="407">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="5051,5051,5051,725,3024,5021,385,322"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="J11_storage_chest"/>
+   </properties>
+  </object>
+  <object name="corpse" type="conversation" gid="5" x="121" y="761">
+   <properties>
+    <property name="conversation" value="J11_statue"/>
+    <property name="icon" value="statue1"/>
+    <property name="name" value="@STATUE"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="448" y="1152">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Active#lever1;Inactive#lever2;Inactive#lever3;Inactive#lever4;Inactive#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="480" y="1152">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Active#lever1;Inactive#lever2;Inactive#lever3;Inactive#lever4;Inactive#lever5;Inactive#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="873" y="1769">
+   <properties>
+    <property name="conditions" value="IsItemInActive#lever_golems"/>
+    <property name="respawn" value="60"/>
+    <property name="spawn" value="elemental_acid"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="448" y="768">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Inactive#lever1;Inactive#lever2;Inactive#lever3;Active#lever4;Inactive#lever5;Active#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="416" y="768">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions_deactivate" value="Inactive#lever1;Inactive#lever2;Inactive#lever3;Active#lever4;Inactive#lever5;Active#lever6"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

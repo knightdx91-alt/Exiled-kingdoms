@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.5.0" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="11">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="70"/>
+  <property name="name" value="Sagar Forest House"/>
+  <property name="name_ES" value="Casa del bosque de Sagar"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="gate_blue.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <tileset firstgid="493" source="teleporter.tsx"/>
+ <tileset firstgid="494" source="artifacts.tsx"/>
+ <tileset firstgid="498" source="town_objects3.tsx"/>
+ <tileset firstgid="530" source="town_objexts2.tsx"/>
+ <tileset firstgid="594" source="cave.tsx"/>
+ <tileset firstgid="834" source="palisade.tsx"/>
+ <tileset firstgid="874" source="grassland_structures.tsx"/>
+ <tileset firstgid="910" source="town_woodenObjects.tsx"/>
+ <tileset firstgid="934" source="Household.tsx"/>
+ <tileset firstgid="978" source="ruins.tsx"/>
+ <tileset firstgid="1042" source="tiled_room.tsx"/>
+ <tileset firstgid="1122" source="Library Pack.tsx"/>
+ <layer id="1" name="nonwalk" width="24" height="24" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer id="2" name="ground" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwxmUM2LiUfNHzR81f+QBYRZMPGr+qPkj1XxQWQAAUC4ZhQ==
+  </data>
+ </layer>
+ <layer id="3" name="ground2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGAQjMZBloF4wCegEANscAng==
+  </data>
+ </layer>
+ <layer id="4" name="scenery" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMNyBOgsDgzkQSwOxNgv1zZeigZn0NF+LxuYb0dh8syEePrR2vxoW8wH+ZQIh
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwxnYAbEREransvmGQLwbiPdA+cY0MB8Z0MJ8RUYE34EG5tMSgMzXQ3I/LcLHCGi+PiPtzDekofttgdgECTtQ2fyhCJYzQ2gNFuqaewFo7jJmBF+GyubvQjJ7ETP1zUcHQ838U9DwOcpMG/NB4AgzYTWUgOM0TD/HgGbLsiCwJhADAOjHEBM=
+  </data>
+ </layer>
+ <layer id="6" name="roofs" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <objectgroup id="7" name="data">
+  <object id="1" type="entry" gid="241" x="704" y="640" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="2" name="stairs down" type="transition" x="750.5" y="669.5" width="17.5" height="32.5">
+   <properties>
+    <property name="area_id" value="I10"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="3" name="Bed" type="bed" gid="245" x="680.167" y="532.5" width="64" height="64"/>
+  <object id="4" name="Chest" type="conversation" gid="245" x="736" y="544" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I10_house_chest_1"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="5" name="Chest" type="conversation" gid="245" x="56.6667" y="279" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_house_chest_2"/>
+    <property name="icon" value="chest_gold"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="9" name="Chest" type="container" gid="245" x="640" y="576" width="64" height="64">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="5013,6007,5035"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="I10_house_shelf"/>
+   </properties>
+  </object>
+  <object id="10" name="Chest" type="container" gid="245" x="672" y="672" width="64" height="64">
+   <properties>
+    <property name="icon" value="table4"/>
+    <property name="items" value="5080,5081,5082,5083,5084,5085,10051,10052"/>
+    <property name="name" value="@TABLE"/>
+    <property name="unique_tag" value="I10_house_shelf"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

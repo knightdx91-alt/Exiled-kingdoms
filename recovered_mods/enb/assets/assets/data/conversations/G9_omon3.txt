@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	And here you are again, a cultist. I'm not surprised, and I knew the medallion would pull you down...But I trusted my men to stop you. Apparently you killed them, too?		2		
+2	A	I was only defending myself. And anyone can call themselves some kind of guard, any kind of crook or thug! I don't believe you.		3		
+3	Q	Let's say in the case of that bandit's house, yes. But right now we're in a building belonging to the Kingsbridge Guards... Unlike you, I didn't break in, I didn't kill the guards. Even if you're not a cultist, you've already outlawed yourself.		4		
+4	A	Yet you still haven't attacked me. Why not?		7			PER#3
+4	A	This has gone too far...I have to finish what I started. Just give me the medallion and I'll leave.		5		
+5	Q	That's a shame. Looks like that dark medallion has already begun to corrupt your soul. No, I'm not giving it to you. This place will be your grave!		6		
+6	A	So be it!		0		"NPCHostile#omon1;NPCHostile#omon2"
+7	Q	This is no place for that kind of talk. Tell you what, I'm gonna let you go now. You find my house in New Grand and we'll talk.		8		
+8	A	You're just gonna let me go? But I've killed everyone here.		9		
+9	Q	My men will take care of that. We'll write it off as a wall collapse and monsters breaking out of the dungeons... Especially since it happened once before.		10		
+10	A	That's an interesting offer. But I don't want to owe you anything, so I'll just kill you!		11		"NPCHostile#omon1;NPCHostile#omon2"
+10	A	All right. I'm in. How am I gonna find your house?		12		
+11	Q	What? Then die, you bloody cultist!		0		
+12	Q	Just ask the local priest. Now go away.		0		"SetVariable#omon,16;Travel#G9,35"

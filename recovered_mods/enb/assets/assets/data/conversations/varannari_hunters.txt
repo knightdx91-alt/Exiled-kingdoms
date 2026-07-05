@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	"Greetings, Empiri. We come in peace and leave in peace. We hunt wolves for their skin, but we also hunt bear when we can."		2		
+2	A	"All right, then go in peace. Goodbye."		0		
+2	A	Would you like to buy a couple of skins from me?		4		
+2	A	"You filthy savages, you will not go in peace. You will die here and now."		3		
+3	Q	Empyrean is now going to find out the power of the Free People.		0		"NPCHostile#varannari_traveller;DecVariable#REP_varannari,5"
+4	Q	[BLUE](The man smiles)[] We are always in need of wolf skin. We pay shiny imbiri gold for the skins of fierce wolves, but we are willing to buy bear skins as well. Do you have any?		5		
+5	A	"Yes, I have white wolf pelts, isn't that gorgeous?"		12	playerhasitem#1004	
+5	A	"Yes, I have them, perfect, very precious."		6	playerhasitem#1003	
+5	A	"Yes, I have damaged skins, but still useful."		8	playerhasitem#1002	
+5	A	"Yes, I have a bear skin worthy of your finest warriors."		13	playerhasitem#1014	
+5	A	"No, sorry, I don't have any wolf skins."		11		
+6	Q	I'm offering you [BLUE]100 gold pieces[] for this.		7		
+7	A	It's a deal.!		4		"loseitem#1003;gainGold#100"
+7	A	"No, thank you."		11		
+8	Q	I'm offering you [BLUE]25 gold[] for this.		9		
+9	A	It's a deal.!		4		"loseitem#1002;gainGold#25"
+9	A	"No, thank you."		11		
+11	Q	"Очень жаль, тогда счастливого тебе пути."		0		
+12	Q	I'm offering you [BLUE]150 gold[] for this.		14		
+13	Q	I'm offering you [BLUE]190 gold[] for this.		15		
+14	A	It's a deal.!		4		"loseitem#1004;gainGold#150"
+14	A	"No, thank you."		11		
+15	A	It's a deal.!		4		"loseitem#1014;gainGold#190"
+15	A	"No, thank you."		11		

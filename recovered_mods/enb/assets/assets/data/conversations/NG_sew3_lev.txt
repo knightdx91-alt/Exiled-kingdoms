@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The old lever is turned to the right. And it's frozen in that position.		0	IsItemActive#lever3	
+1	Q	"The old lever, turned to the left. Who knows what will happen if you move it to the right..."		2		
+2	A	"Let's see what he's doing! [BLUE](turn right)[]"		3		
+2	A	"Yes... No, thank you. I prefer not to touch it."		0		
+3	Q	"Unfortunately, he seems to be stuck."		0	VariableLower#want_letter_back,100	
+3	Q	A deep scraping echoed through the dungeon.		0		"ItemActivate#bridge3;ItemWalkable#bridge3;ItemActivate#lever3"

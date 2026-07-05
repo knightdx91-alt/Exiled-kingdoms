@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You did a really good job. Hand over your weapon and let's go let you out.		5	VariableEqual#oxrana,31	LoseArenaItems#
+1	Q	Orcs! They are very rare in these lands. Thanks for your help... I'll put in a good word for you with the Judge.		0	VariableEqual#oxrana,30	SetVariable#oxrana,31
+1	Q	Keep patrolling.		0	"VariableGreater#oxrana,24;VariableLower#oxrana,30"	
+1	Q	A prisoner and you're good for something. Go on one more patrol and be done with it.		0	VariableEqual#oxrana,24	"SetVariable#oxrana,25;GainXP#140"
+1	Q	Keep patrolling.		0	"VariableGreater#oxrana,19;VariableLower#oxrana,24"	
+1	Q	I see you've successfully killed all the wolves. You can get some rest and go back on patrol.		0	VariableEqual#oxrana,19	"SetVariable#oxrana,20;GainXP#90"
+1	Q	Keep patrolling.		0	"VariableGreater#oxrana,12;VariableLower#oxrana,19"	
+1	Q	Have you had a look around? Let's get down to business.		3	VariableEqual#oxrana,12	
+1	Q	Here we are. You want to take a look around, or we can get right down to business.?		2		
+2	A	I want to explore the area first.		0		SetVariable#oxrana,12
+2	A	Yeah, I'm ready. What do I need to do?		4		
+3	A	Yeah, I've looked into it. What I need to do?		4		
+3	А	No, I still haven't finished the inspection.		0		
+4	Q	All right. You hear that? Wolves howling. Stay in the bushes and around the fences. Be ready for an attack.		0		SetVariable#oxrana,13
+5	A	Let's go! It's about time.		0		"travel#G9_karcer,4;FullRest#;Sleep#"
+5	A	I still have to look around		0		

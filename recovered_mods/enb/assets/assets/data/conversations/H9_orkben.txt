@@ -1,0 +1,38 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](The orc looks annoyed)[] I'm asking you to leave. Why are you here again? I don't have much patience		19	"VariableEqual#orkben,10;VariableGreater#gurd,13;VariableEqual#bentrup,1"	
+1	Q	[BLUE](Orc digs through the weapons crate.)[] Don't distract me man. Porra to leave.		0	VariableGreater#gurd,13	
+1	Q	[BLUE](The orc languishes in anticipation)[] Whoo-cha-cha! Man bring weapons?		10	VariableEqual#gurd,13	
+1	Q	[BLUE](This orc doesn't even seem like he's going to attack you. You can hear him humming a little song.)[]"The orc drank three beers, burped ugly, and said "Goodbye" to the elf."....		2		
+2	A	...And it was all quiet, not a sound, not a scream, but someone's paradise had ended...		16			PER#2
+2	A	[BLUE](Stay out of the orc's way)[]		3		
+3	Q	Arrrrrghhhh!!! [BLUE](The orc notices you and looks disgruntled)[] Man.... you come here to kill another orc. You are strong. Why do you come here and disturb my rest?		4		
+4	A	I came here from Kingsbridge. I brought weapons from the blacksmith. Give me the stones to get the weapon you filthy pig.		5		
+4	A	You speak? How did you learn our language?		6		
+4	A	I brought weapons from the blacksmith to sell. I didn't want to kill anyone, but they attacked me.		7		
+5	Q	A foolish weak man has no reverence. [BLUE](fangs)[] you come into my house. You behave badly. Mine can kill you and take away your guns and your meat hit my belly..		8		
+6	Q	[BLUE](is making strange, gurgling noises. Probably laughter)[] A man praise my speech. I do a lot of interrogating other people. I tell them to let them go. They believe. But I kill them anyway.[BLUE](Watching your reaction carefully)[]		9		
+7	Q	Good. Mine also sometimes like to kill another orc. Humans like to kill too. Showing off my weapons, getting nice rocks.		10		SetVariable#gurd,13
+8	A	It's mine to kill you and take the stones.[BLUE](Battle)[]		0		"NPCHostile#orcben;NPCHostile#orcben1;NPCHostile#orcben2"
+8	A	Why do we need this fight? We can talk like civilised human beings. Discuss the deal.		11		
+9	A	[BLUE](Shrug indifferently)[] Apparently humans should have been more careful before coming in here..		12		
+9	A	[BLUE](Just show the orc a crate of weapons)[]		13	PlayerHasItem#10054	LoseItem#10054
+10	A	Here are the weapons. Get the rocks.		13	PlayerHasItem#10054	LoseItem#10054
+10	A	The crate is big and heavy. It's not good for killing orcs. I've stashed it somewhere safe... I'll go and get it for you.		0		
+11	Q	Nemrok Ka Warrock [BLUE](The orc bares his teeth and says something in his own dialect)[] My don't expect a stupid person to make good decisions. Kindness. Show crash.... weapons and do the deal.		10		SetVariable#gurd,13
+12	Q	Khaz-Tak [BLUE](Ben is pleased with your reaction)[] You are a warrior. Strong in spirit. Deal to be... Show me your weapons.		10		SetVariable#gurd,13
+13	Q	[BLUE](The orc leaned over the crate and ran his paws into it, muttering contentedly. He was completely absorbed in it.)[]		14		
+14	A	[BLUE](Just the perfect moment to blow a stupid orc's head off in one blow.)[]		0		"NPCHostile#orcben1;SetVariable#gurd,15;NPCHostile#orcben;NPCHostile#orcben2;HurtNPC#orcben,4000"
+14	A	[BLUE](Wait for the inspection to be completed)[]		15		
+15	Q	[BLUE](The orc is absolutely delighted. He hands you a bag of gems.)[] A man to do a good job. A man take his pay and leave.		0		"GainItem#10055;SetVariable#gurd,14;GainXP#450"
+16	Q	[BLUE](The orc stops singing and slowly slowly slowly turns to you)[] O-o-o-o-o-o-o-o-o-o-o-....How he sang! Well sung! Good song!. [BLUE](Fangface grins.)[] my give your gold of men. Yours to take. Can yours still sing? My prisoner will never sing like this...		17		GainGold#300
+17	A	I don't know the words anymore. Are you Ben? I brought the weapons from the blacksmith and I want to get the stones.		18		
+17	A	Оhow do you know our language?		6		
+18	Q	Уг-ггу-аауарUg-ggoo-aaaaaaaaaaaar...my sadness. My no longer know the words to the song...your showing your orrery and getting stones.		10		SetVariable#gurd,13
+19	A	[RED](Draw your weapon and attack)[]		0		"NPCHostile#orcben;NPCHostile#orcben1;NPCHostile#orcben2"
+19	A	There is a man who wants you dead. I've come for your head Orc!		20			PER#2
+20	Q	Still no fight. So you want to talk... People love money. You want gold?		21		
+21	A	Yes. I love gold... What about the head?		22		
+21	A	Ha ha! I'm not for sale. Die, you stupid orc.!		23		"NPCHostile#orcben;NPCHostile#orcben1"
+22	Q	The head's no problem.. [BLUE](Ben abruptly draws his weapon and in one blow blows the head off a nearby orc)[] here's the head. People don't understand whose head it is. You give. Take the gold and the head. I'm leaving.		24		"HurtNPC#orcben2,1000;GainGold#1000;GainItem#10053;SetVariable#bentrup,1"
+23	Q	Stupid decision, man.		0		
+24	A	It's a deal.		0		NPCDespawn#orkben

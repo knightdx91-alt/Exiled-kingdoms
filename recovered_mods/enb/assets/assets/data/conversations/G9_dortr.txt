@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The room is paid for, you may enter.)[]		3	"VariableEqual#TMP_tractdoor1,1;VariableLower#vxodtrac1,1"	
+1	Q	[BLUE](You want to leave?)[]		4	VariableEqual#vxodtrac1,1	
+1	Q	This room can be rented for 12 hours for [BLUE]({LEVELx10} gold)[]		2	VariableLower#TMP_tractdoor1,1	
+2	A	Pay for the room and come in		0	PlayerHasGold#{LEVELx10}	"LoseGold#{LEVELx10};Travel#G9_tract,2,0;SetVariable#TMP_tractdoor1,1"
+2	A	Go		0		
+3	A	Enter the room		0		"Travel#G9_tract,2,0"
+3	A	Go		0		
+4	A	Get out of the room		0		"Travel#G9_tract,3,0;SetVariable#vxodtrac1,0;SetVariable#vxodtr1,0"
+4	A	Stay		0		

@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE]You see a disfigured body, blood everywhere..[]		3	VariableEqual#lizardman,10	
+1	Q	[BLUE]A disfigured body[]		2		
+2	A	Hmmm, I wonder who did this to him? Certainly not rats...		0		
+3	A	Examine the body		4		
+4	Q	Middle-aged man. City dweller by the looks of his clothes.		5		
+5	A	[BLUE]Examine the torso[]		6	VariableLower#tors,1	SetVariable#tors,2
+5	A	[BLUE]Examine the abdomen[]		7	VariableLower#givot,1	SetVariable#givot,2
+5	A	[BLUE]Examine the legs[]		8	VariableLower#nogi,1	SetVariable#nogi,2
+5	A	[BLUE]Finish the examination and draw conclusions.[]		9		
+6	Q	Chest cavity shattered by a powerful blow, broken ribs sticking out, spine fractured.		10		
+7	Q	Internal organs are absent traces of very developed jaws are visible.		11		
+8	Q	Legs twisted at an unnatural angle, obviously broken...Chunks of meat bitten off in places.		10		
+9	Q	Judging by the condition of the rib cage, the blow was a single blow, but it penetrated the body to the spine and even fractured it. All the insides have been eaten out and there's bits of meat missing. The body hasn't been lying around long enough for the rats to chew on it. We need to follow the blood trail. We don't know what this thing is yet.		0	"VariableEqual#tors,2;VariableEqual#givot,2;VariableEqual#nogi,2"	SetVariable#lizardman,11
+9	Q	There's not enough data to draw a conclusion. We need to keep going.		10		
+10	A	[BLUE]Continue with the inspection[]		4		
+11	A	[BLUE]Continue with the inspection[]		4		

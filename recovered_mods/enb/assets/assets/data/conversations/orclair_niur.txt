@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Yes, friend?	¿Si, amigo?	9	VariableEqual#prisoner_orcs,50		
+1	Q	Finally back home. Those orcs are going to hear from me, very soon.	Por fin de vuelta en casa. Esos orcos van a saber de mí muy pronto.	0	VariableEqual#prisoner_orcs,100		
+1	Q	[BLUE](This slave was once a very large and strong man, now he is thin and pale. But he meets the description of the man you are looking for)[]	[BLUE](Este hombre era hace tiempo alto y fuerte, ahora es delgado y pálido. Pero sin duda cumple con la descripción del hombre que estás buscando)[]	2			
+2	A	You are Niur! I came here to save you. Come with me.	¡Eres Niur! He venido a salvarte, ven conmigo.	3			
+2	A	I'll be back later.	Volveré más tarde.	0			
+3	Q	[BLUE](the man shakes his head and looks at you with empty eyes)[] I don't believe you. It is just another trick to punish me. But this time I won't fall. I'll just keep working.	[BLUE](El hombre menea su cabeza y te mira con ojos vacíos)[] No, no me lo creo. Es otra trampa de los orcos, pero esta vez no me la creeré. Debo seguir trabajando.	4			
+4	A	What? No, I swear, I'm an adventurer, your friend hired me to save you.	¿Qué? No, te lo juro, soy un aventurero, tu amigo me ha contratado para salvarte.	5			
+4	A	I don't work for the orcs, you idiot. Just follow me.	No trabajo para los orcos, imbécil. Sígueme y calla.	5			
+4	A	I don't work for the orcs and I can prove it.	No trabajo para los orcos y puedo demostrarlo.	6			
+5	Q	I don't know what are you talking about! [BLUE](the man shakes his head angrily. Unfortunately, this alerts some nearby orcs.)[]	¡No sé de que me hablas![BLUE](El hombre grita, agitado. Por desgracia, varios orcos se han dado cuenta)[]	0		NPCSpawn#alerted	
+6	Q	Really? Very well, tell me who sent you exactly.	¿En serio? Muy bien, dime quién te ha enviado.	7			
+7	A	It was Orrin... Yes, definitely. Your friend Orrin.	Ha sido Orrin... Eso es, tu amigo Orrin.	5			
+7	A	It was... Usham I think.	Ha sido... Creo que Usham.	8			
+7	A	His name was Saleb, maybe?	El nombre era... Saleb?	5			
+7	A	Usham sends me.	Usham me envía.	8			INT#1
+8	Q	Good old Usham? Hmmm maybe you are saying the truth. I'll follow you.	¿El bueno de Usham? Hmmmm quizá dices la verdad. Te seguiré.	0		"NPCFollow#;SetVariable#prisoner_orcs,50"	
+9	A	Nothing, let's just go to your friend Usham.	Nada. Volvamos con tu amigo Usham.	0			

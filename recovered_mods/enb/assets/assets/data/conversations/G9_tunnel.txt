@@ -1,0 +1,8 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Following the recommendations of the brigands you can follow these tunnels to the Squad Headquarters.		3	"VariableEqual#omon,14;VariableLower#om1,1"	SetVariable#om1,1
+1	Q	Following the map directions you can follow these tunnels to the Squad Headquarters.		3	"VariableEqual#omon,110;VariableLower#om2,1"	SetVariable#om2,1
+1	Q	There is a confusing system of tunnels and caves in front of you. You should not go there without precise information about the road.		0		
+2	A	Go away.		0		
+3	A	Go to the caves.		0		Travel#G9_karcer1,9,0
+3	A	Go away.		0	"VariableEqual#omon,14;VariableLower#om1,1"	SetVariable#om1,0
+3	A	Go away.		0	"VariableEqual#omon,110;VariableLower#om2,1"	SetVariable#om2,0

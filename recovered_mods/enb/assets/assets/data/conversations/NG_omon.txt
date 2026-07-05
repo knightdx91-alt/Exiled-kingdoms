@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	How's the progress? Is the monster dead yet?		19	VariableEqual#omon,18	
+1	Q	And here you are. As you can see, I've invited you into my home. I assume you've had a look around?		2		
+2	A	You've got a suspiciously posh house...What are you in for?		3		
+3	Q	I wasn't always a squad captain. Once upon a time, the road of adventure led me too. Once I managed to slay a dragon and take its treasure... I used the money to buy this baron's house.		4		
+4	A	And then what happened?		11		
+4	A	Enough talk. Let's get down to business.		5		
+5	Q	Oh, yes. I forgot I had an ignorant and rude man in the house. So I'll just cut to the chase, then? Well, listen up. There's a monster in the sewers under the city. Kill it and you'll get your medallion.		6		
+6	A	Why would you do that? Kill him yourself if you're so tough.		7		
+7	Q	Cool? You interrupted my entire squad, I made a number of mistakes...Let's just say this is my last gift to this town. And then I'm retiring. I'm done.		8		
+8	A	All right. I'm in. Anything on that bastard?		9		
+9	Q	Absolutely nothing. All the local crooks found were corpses and bones. The monster is still in the sewers, but what if it starts crawling out soon?		10		
+10	A	Heh...Fine. I'm on it.		0		SetVariable#omon,18
+11	Q	And then I got bored with the fat life again. I was still young and had money...I gathered a group of like-minded people, called them witch-hunters, and began to fulfil various orders.		12		
+12	A	That's refreshing. So some adventurers do get lucky. Shall we get down to business?		13		
+13	Q	Yeah. There's some weird stuff in the sewers eating people. It's mostly crooks...but the monster has tasted human blood and may start coming to the surface for easier prey. Track it down and kill it. Then you'll get your medallion.		14		
+14	A	Hmm. I see. I'll do it. Will you come with me?		15		
+15	Q	No. First of all, I won't trust you to protect my back, and secondly, I'm barely recovered from the wounds you gave me. I need to retire. This is my last job.		16		
+16	A	All right. Then I'm off. I have to get ready.		17		
+17	Q	Wait a minute. I like you in spite of everything. Before you go, check out my library.		18		"SetVariable#omon,18;SetVariable#lib1,1;SetVariable#lib2,1;SetVariable#lizardman,10"
+18	A	Thank you. I'll do that.		0		
+19	A	The creature is dead. It turned out to be a big ogre lizard.		20	VariableEqual#omon,19	
+19	A	I'm working on it.		0		

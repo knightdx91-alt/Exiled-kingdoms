@@ -1,0 +1,35 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	I think it's time for you to go.		0	VariableEqual#gurd,12	
+1	Q	Mate! It's so good to see you!		2		
+2	A	Gurd! Let's get down to business.		3		
+2	A	I'm going to step away for a minute.		0		
+3	Q	Straight to the point? All right. (chuckles)[BLUE](The armoured man's gaze turns serious)[] I have a confession to make. I recently received an order from [BLUE]orcs[] they want a shipment of weapons. And you're required to deliver those weapons and bring me payment...What do you say??		4		
+4	A	Lousy pig! You want to supply weapons to orcs? The vile creatures that kill us? I'll kill you right here.[RED](Attack)[]		5		"NPCHostile#gurd;NPCSpawn#gurd1"
+4	A	You're an unprincipled bastard. I respect strong men. If the reward is good, I'm in..		6		SetVariable#gurd1,0
+5	Q	Oh, yeah? I trusted you, and you....[BLUE](Grabbing his gun and shouting, "Guys, let's kick this prick's arse!" A couple of muzzies come out of the trees.)[]		0		SetVariable#gurd,11
+6,hirge	Q	[BLUE](Suddenly, he enters the conversation)[] Wait! What--what are you doing?? You're really going to help that bastard.?		7	NPCIsInParty#hirge,hirge	
+6,mercenary_grisenda	Q	[BLUE](She enters the conversation. Her voice rings with rage.)[] Will you help this filthy man? My honour as a nobleman demands that I challenge you immediately, but out of respect for our friendship, I will not.		18	NPCIsInParty#grissenda,mercenary_grisenda	
+6,adaon	Q	Whoa! Mate! I'm really glad you're starting to do real stuff and not this saving the world stuff. I'm in!		24	NPCIsInParty#adaon,adaon		
+6	Q	Ha, that's the spirit! Speaking of the reward. I think a percentage of the deal should be fine with you. [BLUE](Shouting to the side)[] "Guys, drag the crate" [BLUE](A pair of brigands dragged a crate and quickly disappeared into the darkness)[] Here. Take it and take it to the Orcs in Urzuganar's Lair... There you'll find Orc Ben and make a deal with him..		15			
+7,R	Q	You allow this mercenary to interrupt the conversation of two gentlemen with such insolence.?[BLUE](Иsincerely trying to figure out what's going on)[]		8		
+8	A	She is not a mercenary, but my battle buddy and friend! Apologise to the lady immediately! Or else....		9		
+8	A	Stay out of this, Gurd! This is our private business.		10		
+9,hirge	Q	Flattery won't help! Think of your soul. Three will turn their backs on you, and I...I will follow you, true to my vow.		11		
+10,hirge	Q	You are unbearable at times! Three give me patience with this man.... I can't watch this. I'll see you later.		14		
+11	A	Hirji! Calm down. We're leaving immediately.		12		
+11	A	[BLUE](Make a surprised face)[] You'll leave? Really? Well, go... if that's what you want. I'll see you later. [BLUE](Turning to the blacksmith)[] I apologise for the misunderstanding. Where were we?		13		
+12,R	Q	Will you leave? No way! You're not going anywhere....[BLUE](Bandits appear from behind the trees)[] Guys...Let's send these saints to heaven.!		0		"NPCHostile#gurd;NPCSpawn#gurd1"
+13,hirge	Q	You are disgusting! Your lust for profit is truly unbearable! [BLUE](The girl's face contorts with rage and she walks away)[]		14	AreaIsnt#C13_pits	"NPCStopFollowing#;NPCDespawn#hirge"
+14,R	Q	What a ridiculous scene! So the reward will be good, I promise you that. [BLUE](Shouting to the side)[] "Guys, drag the crate" [BLUE](A pair of brigands dragged a crate and quickly disappeared into the darkness)[] Here. Take it and take it to the Orcs in Urzuganar's Lair...There you'll find Orc Ben and make a deal with him.		15		
+15	A	What about the orcs? They won't hurt me, will they? How will the Orcs pay? [BLUE](Putting the box away in the inventory...(and once it got there??))[]		16		"GainItem#10054;SetVariable#gurd,12"
+16	Q	Sadly touched... Because old Urzuganar doesn't know anything about this little deal. But I don't think it's a problem for you. Must be paid in jewels.		17		
+17	A	[BLUE](Estimating the weight of the bag)[]...Decent. Well, I'm always up for slaughtering an orc or two!		0		
+18,R	Q	[BLUE](Watching with interest)[]		19		
+19,mercenary_grisenda	Q	[BLUE](It's calming down a bit)[] Kingsbridge has become almost like a hometown to me. I know firsthand what orc raids are like. If you help this man, I will leave you. What do you say?		20		
+20	A	Grizz. I appreciate your loyalty to me. But I really need this job. I'm not gonna ask you to go along with me on this.		21		
+20	A	Grizenda, your words mean a lot to me. [BLUE](Turning to the blacksmith)[] Gurd, the deal's off.		22		
+21,mercenary_grisenda	Q	You've made your choice. In that case, I'm leaving.[BLUE](Doesn't look back and walks away)[]		23	"AreaIsnt#I9_castle;AreaIsnt#I9_temple"	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda;SetVariable#sorrygris,10"
+22,R	Q	This is all insanely touching, but you're not going anywhere. I don't need witnesses.... Kill them![BLUE](Bandits appear from behind the trees)[]		0		"NPCHostile#gurd;NPCSpawn#gurd1"
+23,R	Q	Ha, that's the spirit! You wanted to know about the reward? I think a percentage of the deal should be good enough for you. [BLUE](Shouting to the side)[] "Guys, drag the crate" [BLUE](A pair of brigands dragged a crate and quickly disappeared into the darkness)[] Here. Take it and take it to the Orcs in Urzuganar's Lair...There you'll find Orc Ben and make a deal with him.		15		
+24	A	Do not rejoice too much, Adaon...It's, uh, a one-time thing..		25		
+25,R	Q	Everything discussed? The reward will be well deserved. Whatever I do, I always pay my bills. [BLUE](Shouting to the side)[] "Guys, drag the crate" [BLUE](A pair of brigands dragged a crate and quickly disappeared into the darkness)[] Here. Take it and take it to the Orcs in Urzuganar's Lair...There you'll find Orc Ben and make a deal with him.		15		

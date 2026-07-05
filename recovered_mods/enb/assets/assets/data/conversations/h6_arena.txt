@@ -1,0 +1,69 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Go get some rest. The arena isn't ready yet.		38	VariableEqual#TMP_arfight,1	
+1	Q	Oh, our best fighter! What can I do for you?		29	VariableEqual#arenah6,100	
+1	Q	Have you come to learn about our "Free Fighting"? You've proven yourself worthy of the Free Fight. We keep it simple...		26	VariableEqual#arenah6,22	
+1	Q	Have you come to learn about our "Free Fighting"? You've proven yourself worthy of the Free Fight. We keep it simple...		26	VariableEqual#arenah6,21	
+1	Q	Here comes the final fight! You've already made a big name for yourself! Now it's time to build on it.		24	VariableEqual#5_arenah6,1	
+1	Q	Wow! That was really cool. Two animal fights left.		21	VariableEqual#4_arenah6,1	
+1	Q	Ha! Here comes our bear tamer. You're in for a special fight this time.		18	VariableEqual#3_arenah6,1	
+1	Q	Good to see you. You ready?		14	VariableEqual#2_arenah6,1	
+1	Q	Greetings! The audience is already assembled, are you ready to fight?		14	VariableEqual#2_arenah6,1	
+1	Q	Good day! And here you are again...		10	VariableEqual#1_arenah6,1	
+1	Q	So. You ready?		7	VariableEqual#arenah6,10	
+1	Q	Hey! You wanna fight in the arena?		2		
+2	A	Yeah. Watching fights is too boring. I want to stretch my legs.		3		
+3	Q	All right, all right. We're a serious firm here, and you're not gonna get to human fights that fast. First you have to make a name for yourself and prove yourself against animals.		4		
+4	A	To make a name for myself? Ha...I am the Champion of the Freetown Arena. What more proof do you need! I will fight the humans at once!		6	VariableEqual#arena,100	
+4	A	I got it. When can we start?		5		
+5	Q	Any time you're ready. Just come to me again and let's get started.		0		SetVariable#arenah6,10
+6	Q	Seriously? News from Freetown can take a long time to reach us... Come back tomorrow, we need a day to verify the information. If it checks out, no problem.		0		"SetVariable#TMP_arfight,1;SetVariable#arenah6,22"
+7	A	Yeah. Who's my opponent?		8		
+7	A	I need a little more time.		0		
+8	Q	Ah, it's nothing. Snakes and someone else. I'll take you to the ready room. Your gear stays here.		9		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#"
+9	A	It's clear. Let's go.		0		"NPCSpawn#arplay1;travel#H6_podval,4,0"
+10	A	I'm ready for a fight. Who we got today?		11		SetVariable#arenah6,12
+10	A	I need more rest.		0		
+11	Q	Ooh, we got three tigers for you. You still want to fight?		12		
+12	A	Yeah. I'm gonna make these tigers into fluffy doormats!		13		
+12	A	I'm going to need training.		0		
+13	Q	All right. Come on...I'll give you the gear.		0		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;NPCSpawn#arplay2;travel#H6_podval,4,0"
+14	A	Probably. Who is it this time?		15		SetVariable#arenah6,14
+14	A	Not now.		0		
+15	Q	You'll be pleased...Bears. Real man-killers.		16		
+16	A	Ha! I've skinned enough of them to cover the floor of this whole inn... It's nothing.		17		
+17	Q	Commendable confidence. You know the drill. Hand in your gear and let's go.		0		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;NPCSpawn#arplay3;travel#H6_podval,4,0"
+18	A	Are you trying to scare me? Who's in there?		19		SetVariable#arenah6,16
+18	A	Mm-hmm. You know, I've got other things to do. I'll be right back.		0		
+19	Q	Trolls. Yeah. See how you beat them.		20		
+20	A	What?? Trolls? But what about-- Hey hey hey wait! Where are you taking me?		0		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;NPCSpawn#arplay4;travel#H6_podval,4,0"
+21	A	I can't even imagine what you've cooked there.....		22		SetVariable#arenah6,18
+22	Q	A group of minotaurs this time. Shall we?		23		
+23	A	Yeah, I'm ready.		0		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;travel#H6_podval,4,0;NPCSpawn#arplay_5"
+23	A	A little later.		0		
+24	A	I think I can handle it.		25		SetVariable#arenah6,20
+24	A	Knowing you...I'll rest up for now before this fight.		0		
+25	Q	That's the spirit! You'll need it for the battle with...the Ice Giant!!! The undisputed leader in character assassination.		0		"SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;travel#H6_podval,4,0;NPCSpawn#arplay_6"
+26	Q	As you may have noticed there are various types with guns roaming around. You can partner up with them and go into a group fight. There's also one-on-one duels. I take bids and organise the fights.		27		SetVariable#arenah6,100
+27	A	Sounds interesting. I'm gonna go find some competition.		28		
+28	Q	Oh yes...We give all fighters equipment. It is always the same, and your things will lie in the chest....One say, however, sometimes things from this chest for some reason disappear...For only 100 coins you can get access to the vault. I recommend that you leave your stuff there yourself before every fight. Good luck!		0		
+29	A	I'd like to use the vault.		0	PlayerHasGold#100	"LoseGold#100;OpenVault#"
+29	A	I'd like to sleep for 500 gold pieces.		0	PlayerHasGold#500	"LoseGold#500;FullRest#;Sleep#"
+29	A	Nothing yet.		0		
+29	A	Tell me about Free Fighting.		30		
+30	Q	There are 2 types of "Free Fights" duels and group fights. In group fights usually go with a partner, but if you are a maniac you can go alone. In a group fight you can raise more money, but your partner will take half of the bet to himself. In duels, you can only go alone.		31		
+31	A	Tell me about the rates.		32		
+31	A	Organise a group fight for me!		34		
+31	A	Organise a duel for me!		35	HasNoFollower#	
+32	Q	The betting odds for the group fight are {LEVELx250} of gold, and if you win, you get {LEVELx500} of gold. The bet for the duel is {LEVELx150} of gold, and if you win, you get {LEVELx300} gold.		33		
+33	A	Organise a group fight for me!		34		
+33	A	Organise a duel for me!		35	HasNoFollower#	
+33	A	It's clear. I'll be back later.		0		
+34	Q	So you picked a group fight! Give it to me {LEVELx250} gold and go to the arena.		36		
+35	Q	You want a duel? Fine. Let's do it {LEVELx150} of gold and go to the arena.		37		
+36	A	Here's the money. Let's go.		0	PlayerHasGold#{LEVELx250}	"LoseGold#{LEVELx250};SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;travel#H6_podval,4,0;SetVariable#volwarg,1;NPCSpawn#arplay_7"
+36	A	I changed my mind.		0		
+37	A	Here's the money. Let's go.		0	PlayerHasGold#{LEVELx150}	"LoseGold#{LEVELx150};SetVariable#arena_recovered_items,0;SetVariable#TMP_arfight,1;LoseInventory#;travel#H6_podval,4,0;SetVariable#volward,1;NPCSpawn#arplay_8"
+37	A	I premeditated.		0		
+38	A	I'd like to use the vault.		0	PlayerHasGold#100	"LoseGold#100;OpenVault#"
+38	A	I'd like to sleep for 500 gold pieces.		0	PlayerHasGold#500	"LoseGold#500;FullRest#;Sleep#"
+38	A	Go away.		0		

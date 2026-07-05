@@ -1,0 +1,30 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	That's great! Now the bloody wolves will stop coming to us. [BLUE](Throws you a bag of gold)[]		10	"VariableGreater#tree,50;VariableLower#tree,100"	"GainXP#350;GainGold#500;SetVariable#tree,100;IncVariable#REP_town_lannegar,2;IncVariable#REP_varsilia,2"
+1	Q	That's great! Now the bloody wolves will stop coming to us. [BLUE](Throws you a bag of gold)[]		10	"VariableGreater#tree1,50;VariableLower#tree1,100"	"GainXP#350;GainGold#500;SetVariable#tree1,100;IncVariable#REP_town_lannegar,2;IncVariable#REP_varsilia,2"
+1	Q	What's up? You've already hung up the skins?		9	"VariableGreater#tree,9;VariableLower#tree,100"	
+1	Q	What's up? You've already hung up the skins?		9	"VariableGreater#tree1,9;VariableLower#tree1,100"	
+1	Q	СThank you, on behalf of all the people of Lannegar.		0	VariableEqual#tree,100	
+1	Q	Thank you, on behalf of all the people of Lannegar.		0	VariableEqual#tree1,100	
+1	Q	Hey! Adventurer! How would you like to earn some money?		2			
+2	A	Depends on what you need to do...		3			
+2	A	Maybe a little later..		0			
+3	Q	Lately, the wolves have gone wild and come very close to the gate. I'm talking about that west gate over there.. [BLUE](Pointing his hand somewhere behind his back.)[]		4			
+4	A	All you have to do is kill the wolves? I can easily do that.		5			
+4	А	Raging wolves? No, I think I'll just go and have a beer at the tavern.		0			
+5	Q	[BLUE](Looking at you appraisingly)[] Not quite. Just killing it won't be enough... We need to get five hides and hang them on dry trees in the Northwest Forest. Then those things will be less likely to come near our town.		6			
+6	A	Hmmm...Things take time, what about the reward.?		7			
+7	Q	Don't worry about the reward. The Baron himself has ordered the money to be allocated from the treasury. [BLUE](The guardswoman's face takes on a pensive expression for a moment.)[] By the way, the skins should be hung in a strictly defined order...Only the savage shaman didn't say in which order.		8			
+8	A	So there are savages involved, too? Interesting.... Well, it looks like it's worth it. I'll take it.		0		SetVariable#tree,10
+8	A	I have to get ready. I'll be back later.		0			
+8	A	It's very strange that the guardian is talking to a shaman. We all know where there are shamans, there's trouble. You're not thinking straight.		12			INT#1
+9	A	Not yet. I'm still busy getting hides.		0			
+10	Q	[BLUE](You catch the bag and weighing it in your hand realise that there are about 500 coins in there)[]		11			
+11	A	A good job is a good reward. Thank you!		0			
+12	Q	[BLUE](A crooked grin distorts the girl's pretty face)[] You're on to me. There is no shaman...I have an agreement with the Warranari hunters, they sometimes drive away wolves, and they take the skins from the trees for themselves. The whole shaman thing was cooked up for the local municipality to give them extra money for security.		13		GainXP#30
+13	A	What do you think would happen if I told the Captain the details of your little business?		14			PER#1
+13	A	That's a good idea! Since there are no shamans here, I'll hang the skins in the order I see fit. Prepare your reward.		0		SetVariable#tree1,10					
+14	Q	[BLUE](He looks extremely unhappy)[] Are you trying to blackmail me? If this is a joke, you better finish it soon..[BLUE](I put my hand on the hilt of my sword)[]		15			
+15	A	Easy, easy I really did make a bad joke.... I'm going to go hang the skins in the order I want!		0		SetVariable#tree1,10
+15	A	[BLUE](With a smirk )[] You're really gonna fight me over 150 coins? How are you gonna explain that to the Captain?		17			
+17	Q	[BLUE](The hand from the sword reached for the purse)[] I guess you're right. I didn't appreciate you... Well, keep your money and let that be a lesson to me. I'm still waiting for the job to be done, so hang the damn hides any way you want, just make it quick! [BLUE](Transmits 150 coins)[]		18		"GainXP#20;GainGold#150"
+18	A	That's great. I'm going to go beat the wolf.		0		SetVariable#tree1,10

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="60" height="60" tilewidth="64" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="19">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="70"/>
+  <property name="music" value="margh"/>
+  <property name="name" value="Marg House"/>
+  <property name="name_ES" value="Marg House"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="teleporter.tsx"/>
+ <tileset firstgid="490" source="town_objexts2.tsx"/>
+ <tileset firstgid="554" source="town_objects3.tsx"/>
+ <tileset firstgid="586" source="Household.tsx"/>
+ <tileset firstgid="630" source="1dungeon.tsx"/>
+ <layer id="1" name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer id="2" name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2sEKwjAQBND0s4V+vAwiXtTqMTvvQeill2FDsrBZC2CO27HWeTy+Vyv/7e6Z42pNzPutrlPzfqrr5Lzv6irvnuTtyzv5vIqm+yia+o1o6ifjl/qew/K21bctb9N+BgAAAABevBmZPcPxZmT2DNaMXV5599V2XkXTfRRN/UY09ZPRNmNvrG9b3qb9DP+6A8qnsqE=
+  </data>
+ </layer>
+ <layer id="3" name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer id="4" name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2j0OgkAQhmGEO3gHTVRQMfHf0pbCaKvewcvp4Rwihi1woRAIs++TfMHAFvMFo814HgDospMsJJfsasa8t29rwD+LJVf/8zkMPC8K8mcP49ysyaFqFFc8p6XvueI5LX1de7/H7Hr37efWklXdwzQgkdxKumqStD1Aw06Sca/83EayrHuYBqR9p9J3UtJZy+9V+n8UWfp+372WvpEk/NF1JPeHCvv2Ld/lgcK+VdC3m7aSeYUcWpoPAAAAAAAAQL1c3hl5Sl7GM3ZGuo+dkWJa+rIzohs7I8XYGekmdkZy7Ix0n2s7FK71ZWcEsHsDEDUgCQ==
+  </data>
+ </layer>
+ <layer id="6" name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup id="7" name="data">
+  <object id="1" name="tuda" type="entry" gid="241" x="455.266" y="261.547" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="10" name="final" type="entry" gid="241" x="1424.78" y="1672.23" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="14" name="vxod" type="entry" gid="241" x="1527.95" y="1503.72" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="16" name="go marg" type="waypoint" gid="241" x="1376.11" y="1390.89" width="64" height="64">
+   <properties>
+    <property name="id" value="6"/>
+   </properties>
+  </object>
+  <object id="6" name="Marg" type="spawn" gid="243" x="1384.83" y="1708.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#marg,11"/>
+    <property name="conversation" value="G9H_marg"/>
+    <property name="spawn" value="margerithe"/>
+    <property name="tag" value="marg"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="11" name="bad" type="conversation" gid="245" x="442.157" y="203.64" width="64" height="64">
+   <properties>
+    <property name="conversation" value="G9H_margson"/>
+    <property name="icon" value="campfire"/>
+    <property name="name" value="@BED"/>
+   </properties>
+  </object>
+  <object id="13" name="vixod" type="conversation" gid="245" x="1592.16" y="1526.97" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="conversation" value="G9H_bed"/>
+    <property name="icon" value="campfire"/>
+    <property name="name" value="@BED"/>
+   </properties>
+  </object>
+  <object id="17" name="son" type="trigger" x="1309" y="1335" width="117.5" height="61">
+   <properties>
+    <property name="actions" value="StartConversation#marg,G9H_marg1"/>
+    <property name="conditions" value="VariableEqual#margg,1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

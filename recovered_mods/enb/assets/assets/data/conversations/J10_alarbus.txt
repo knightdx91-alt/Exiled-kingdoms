@@ -1,0 +1,29 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	req
+1	Q	[BLUE](Smiles recognizing you)[] Greetings, I am glad to see you again. 	[BLUE](Sonríe al reconocerte)[] Saludos, me alegra verte de nuevo.	10	VariableEqual#talked_alarbus,1		
+1	Q	Ah, the polite young one. Greetings.	Ah, el jóven tan educado. Saludos.	20	VariableEqual#talked_alarbus,2		
+1	Q	I have nothing to tell you!	¡No tengo nada que decirte!	0	VariableEqual#talked_alarbus,3		
+1	Q	[BLUE](This old man wears extravagant clothes and jewery, all of them jagged and ruined. He drags around large bags full with old junk)[] I am... Very important! I am a very important person! You should bow down to me!	[BLUE](Este anciano lleva ropajes y joyas extravagantes, pero desgastados y rotos por el tiempo. Arrastra consigo sacos llenos de trastos viejos)[] ¡Yo... Yo soy muy importante! ¡Deberías hacerme una reverencia!	2			
+2	A	[BLUE](Bow down politely)[] Greetings, noble sir.	[BLUE](Bow down politely)[] Saludos, noble señor.	3			
+2	A	Oh, really. I don't have time for you this.	Ah, que bien. No tengo tiempo para esto.	0			
+2	A	Sir, have you seen Laertes, the Islander actor?	Señor, ¿ha visto a Laertes, el actor isleño?	30	VariableEqual#world_stage,30		
+3	Q	[BLUE](He bows comically, then he tries to recognize you. You see in his eyes, that his mind is probably broken, a long time ago)[] Welcome to my town, you maybe are the Imperial Envoy I await? Ah, I forgot, no more Empire...	[BLUE](Hace una reverencia cómica, y luego trata de reconocerte. Te das cuenta de que este anciano ha perdido la cabeza hace tiempo)[] Bienvenido a mi ciudad. ¿Eres un emisario del Emperador? Ah... No... Había olvidado que... Ya no hay Imperio.	4			
+4	A	Who are you?	¿Quién eres?	5			
+5	Q	I am Lord Alarbus. My great-grandfather was named Supreme Governor of the Colony of Varannar, by his Imperial Majesty Lemadar XXIII. But then came this new 'kingdom' and stole the authority from my grandfather and now... I am what you see and nothing more, young one. 	Soy Lord Alarbus. Mi bisabuelo fue nombrado Gobernador de la Colonia de Varannar por su Majestad Imperial Lemadar XXIII. Pero entonces llegó este nuevo 'reino' y le robó su autoridad. Ahora... Soy lo que ves, y nada más, joven.	6			
+6	A	And those bags you carry?	¿Y esas bolsas que llevas?	7			
+7	Q	[BLUE](He smiles like a madman)[] This is my legacy. Look! [BLUE](He shows you a rotten piece of cloth)[] My governor's band. I keep everything, the imperial edicts, the medals, the keys... even grandpa's monocle! [BLUE](He keeps mumbling while digs through the useless junk)[]	[BLUE](Sonríe como un loco)[] Es mi legado, ¡Mira! [BLUE](Te enseña una tela podrida)[] Mi banda de gobernador. Lo guardo todo, edictos imperiales, medallas, llaves... Incluso el monóculo del abuelo. [BLUE](Sigue murmurando mientras escarba en la basura)[]	8			
+8	A	Um... Goodbye.	Um... Adiós.	0		SetVariable#talked_alarbus,1	
+8	A	Lord Alarbus... I was wondering, do you keep an old steel key from the mines? 	Lord Alarbus, me preguntaba, ¿Guardas en esas bolsas una llave de acero de las viejas minas?	11	VariableEqual#abyss_gazed,30		
+10	A	Greetings, but I must go now.	Saludos, pero me tengo que marchar.	0			
+10	A	Lord Alarbus... I was wondering, do you keep an old steel key from the mines? 	Lord Alarbus, me preguntaba, ¿Guardas en esas bolsas una llave de acero de las viejas minas?	11	VariableEqual#abyss_gazed,30		
+10	A	Sir, have you seen Laertes, the Islander actor?	Señor, ¿ha visto a Laertes, el actor isleño?	30	VariableEqual#world_stage,30		
+11	Q	[BLUE](He eyes you suspiciously)[] Maybe... Why do you ask? Does the King send you?	[BLUE](He eyes you suspiciously)[] Quizá... ¿Por qué lo preguntas? ¿Te envía acaso el Rey?	12			
+12	A	Yes, the King sends me. I need the key to stop a very evil man.	Si, el Rey me envía. Necesito la llave para detener a un hombre malvado.	13			
+12	A	No, nobody sends me. But someone has trespassed into the mine, violating the orders of the Imperial Governor, your great-grandfather.	No, nadie me envía. Pero alguien se ha colado en la mina, violando las órdenes de tu bisabuelo el Gobernador Imperial.	14			
+13	Q	Oh really? The King took all we had, Our manor! Our riches! the whole Varannar! I don't care what he wants or why, begone!	¿De veras? Ese rey nos quitó todo, ¡Nuestra mansión! ¡nuestra riqueza! ¡Todo Varannar! Me importa un bledo lo que quiera ahora, o para qué, ¡Márchate!	15			
+14	Q	That's unacceptable. An imperial edict must be enforced. Here, have the key and punish that trespasser!	Eso es inaceptable. Un edicto imperial no se puede ignorar, toma la llave y castiga a ese rufián.	0		"SetVariable#talked_alarbus,2;GainItem#2526"	
+15	A	You are crazy, the empire is gone and forgotten. Bah.	Estás desquiciado, el imperio está muerto y olvidado. Bah.	0			
+15	A	[BLUE](Point at the bags full with junk)[] Lord Alarbus, if you don't cooperate now, the King will send his men and take your bags away. All I want is the key.	[BLUE](Señalar a las bolsas llenas de basura)[]Lord Alarbus, si no cooperas, el rey enviará a sus hombres y te quitarán todo. Sólamente quiero la llave.	16			PER#4
+16	Q	[BLUE](He turns red with rage... Then with trembling hands he gives you a heavy key)[] This outrage will not be forgotten, you... Rebel!	[BLUE](Se pone rojo de furia... Y después con manos temblorosas te entrega una pesada llave)[] Este asalto no lo voy a olvidar... Eres un... ¡Rebelde!	0		"SetVariable#talked_alarbus,3;GainItem#2526;DecVariable#REP_town_new_anthur,2"	
+20	A	Greetings, but I must go now.	Saludos, pero me tengo que marchar.	0			
+20	A	Sir, have you seen Laertes, the Islander actor?	Señor, ¿ha visto a Laertes, el actor isleño?	30	VariableEqual#world_stage,30		
+30	Q	Don't come bothering the Highborn with menial things. I have no idea what you are talking about.	No molestes a los aristócratas con nimiedades. No tengo ni idea de qué me hablas.	0			

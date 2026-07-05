@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="70" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="45"/>
+  <property name="music" value="something_near"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="dungeon.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="dungeon2.tsx"/>
+ <tileset firstgid="729" source="town_objexts2.tsx"/>
+ <tileset firstgid="793" source="ruins.tsx"/>
+ <tileset firstgid="857" source="castlewall.tsx"/>
+ <tileset firstgid="921" source="trees.tsx"/>
+ <tileset firstgid="937" source="dungeon stairs.tsx"/>
+ <tileset firstgid="941" source="natural_grounds.tsx"/>
+ <tileset firstgid="1069" source="dryground.tsx"/>
+ <tileset firstgid="1133" source="grassland.tsx"/>
+ <layer name="nonwalk" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt3MEKgkAUhlF3vf8bh6sgahT+O1pzzwEXIc00HxUm2rYBrOsRPtf22ir7VTka68x8o/3v+z49Hq2r8v13h6vm/TZPRb/0NfyztN+qzq5Nv4x+Gf0y+p0z41jtzuOWK81aZ4d2O/1y1Wvt8tmdZcbv6W40AgAAAAAAAAAAunG9Wa5Tv1nX3nbsV3W/Qdd+lWPql42p33j/0X3D+mVj6peNqV82pn514+v3+3PcRb/M0X+UMDbr3snVv/d2M9bY7fxV9fq69pu9rUq/jH4Z/ejoCdC+CRw=
+  </data>
+ </layer>
+ <layer name="water" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAD8GVeAAAE=
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztnNtuIkkShl1yvQ4ng8EGXqxnLna1uzfY2I8yo5mbVbvb5/bhsRbk+JQf0YVGoseCZh1SqqisrKrMP+OYZNTBwQd90Ad90Ac10Ul9cDBclMmidBbldFFGizKu364tz3uLchzHaVxrL8og7ulGu9O4frQo/ajvxXNO4vwo3tWPZ4zjfHm9FefTuHYUZRrPGcY7T+NZXb1jEP1uxfOO1J9OXPNYOtG2rfFvQqfxnGG8ayo8JjGeUbyT8R0lPLvRn06MoyUMR/GcUbQFt37UD6LtWM8G404cu4EvmDJXnejHWHPTimvH0d79HqV5Gal/nQ3xa6lPJ3pfK8Z7HNc7ek8/sOvF76n6TZ+Z53aUifrejWtDtYXP+qrvxDVkAn6bRl/HcX0ShfqWxgG/HkcZRJlGPf0Z/QB+XWHGvDDH9G8QfYPve3Xh/aGwZByTuvAnY+mr3VhzMozzlviM5x5HfzyHyCc4IIdtYTiMc+QLPYPuQM+A66b8B1aMCdk9iX73xSun0WagcZ3URYaNPXiABX2GZ5CnYV3kFfnqC69hXWQfrNG9/XpVrq3nBnXR4S3NwUSYwS+03YT6deF3cOT94INugneYS/i2o75MVTr16ljQo+jAoa519X6w6eqZ6OJxXewHvAbeE73PegAbA/boJHgcfDehTr1q25DnjngI/Yh+n+o863FKk9yCN/w8EsbwxVFdbDX6NutD5u5Yc9WEE/qmq3lBlyJjyPzRhviBBfNiPyCPER2JrUUO8BNG6gu8yliwc9gRdBe81dL70euM3TZoVK/afZ450HXm+DgwOtIR/jevwIebEHN9nPo6qItughfBGjlEj09SH7v6zX3IfTvV4XP0Vd/TO+E/5oh+cR05tk0+1hE7hgwM68Kn4AufbEJt9RddwDjwRdH7YM070TXTutgIdPpE54x3pLqOsGOM8B9yhX0ZiE/Qz/At/iE8C77ce6rrPT1/oufgq21CyBOYWe+gb5Aj7Cnz3auLDzquV3UN849fjp+HHaKO8eFrUIw9c2YMwQjd4z5bpsCbcdLfnt6Djt+EmHf7gPSzXRe9xPiJtbCh9Mu+nGVmSfPq4OCiejtSzqJc6NpsUc6jcH0WZdnmMo7nDe0uVeb6fa669yBjgk/nGNP4oduIy9An1iVT3YdOBpeZ8LpM477QOMHbGLseDOfC8DIV48+z34M6ddG9yBA4oXuwregX8DnSPei2trDrCT/zw7L0DwoOHjN1xnmmI3jNVZ9x5Dr3UN6DesKhLf5yPNSri47FN+kJK/sDXrthTeNcWJxXqzLl8WbZvBBm4GXenFXfzwFtm+biPQg5xH+y/4xtw9ZhQ+EtyzOYEQNTB34zjcv4+Gg8qbeuNP95ToyV6y/SM7ZJL9Vb+boo94tytSjf4vfnRXldlC+LchvlPs5vJGfWY2dp3GBjnQ9OGbtZ4j9+Z97M8r5N+hJ4PQQuT4HTc2B5HdjeBc7La4/Rznx2Wa3qdHTWvFrVVZZrrtH2IhUwct2Z7uf6tvF7Eo9dB889B489R7kPnG+j/Z36bzxsPy2TlvHsk5hPsw61nfGc2DZvk5DRx8Dwa+D0Gvz2GJjeBYZPcf1G/T9rGCOYGbezahVD8LJMZpzWnZs/t0nPgdNzYLTE5qoq+u8xroHvbbR/SLxhWaN+rmu2M8bAMpzvtx60DO8SPQdOt8F7L4HfU9SD6W0cwfNJY7Ydtb7LMm1Zzn7LhX7PdLS9eU9/b1NC310HXleB4+eq6MCvVdGF94HxU8LHPkbGIMcn9gF5hmML+8h5bnaN/56Cp65CPl/Fe/fBd/g0z9HmLu7JZP1mLNFr9uXc1jbbPrd1pXXoLtF94PQauLwGvy1xegi+w358+wv8ss6zfmtaS7BP51jZvtB59b2O3VV6qIq/cl0VP++6KvrxJuoeGsbRtF5gPkMes/5zLGc7kWMNMNxVegm5RY7hRWIO4/faMI55tcpDjk3sgxhjY36W2ueYF127q7TEBdtwH3jhU+O3oANv1+BnX9i8ltdWsn3Itsh+j+dkl+XXuu9LVewH+vEl6rHZmezDZZzsy2Vc7BvaZ7H9meneXaUlVndV8QfRhzdViT2oe2oYR15rsS+TfcOMi/nR2Jqf33O99O+gpZ9CIaa7ltwiw1eBcSbrK/vCxvIy1Rsb6znHZ/Zhds3/MxHLfa6Kv/waPIc9Zr1mnf/CWK3b7C9bDr3uYv8kz4H956b/P8B828T6FGtXrAPeVSUGfgxM79fghw0wj2Ubagx9zXHKrPqen+1XOg7cFfxY+7sP/nsIfsRvvqmK73y1Br+8ftcU29q25FgvryPMdZyn87z2uG1yLPxSlVgXH+Yqft9U6/0X63zbVmPp9c/Mq00+j/3wHAfaFm2b8JPhQccdSx7ELsObmSxzTWt39u0yzuZN2xzbmbyWmv9X2TZ5DYvY7a4q9niJKbqxSX69dpDXA/N6fP6viTbr1l+yj53XFHbBr8ZWgA/rf9hexyLfGvqb9Z75KmOV9x80+Srn6Whb0bTWvW1CdvGX8fuuQ15ZV32smv0/x66Wxfxf7rr/QfLaYV5/9X8F5rtdieuWGBHzgh829zV4jhj5ZQ1+ed3UdrNpv4FjtxyvgdunRfk1yi86N/67oP/ABR/lq87539I6MFP2Sxi/MVr3H0n+T9z2Fbx+0THfswv4/SjZ18j20mugl2n8thnWa7T/FJjBe5907678D/d3ULahTWv09k9yPJHXGNCLvwpD+M+xB/f+7OT9AZepzBJGxjf7NI5t58LNsutnMDfsS2WvHvth95nY28keZ+c2sEfsPwts/qny7+qtHXvD2PPE3mH2+rJXdJ8p72tnT29PPMQeYvbrsl+MPArak8tDfiR47jNNxCvkQoAF++nZr03eh3N9wJG9+eybXtKP5F/+LETuAvv7nVPjXAf22bNPnDwVcCUniFwK37/P9K+qYML+WOdpgSc5DeQVj1Jp1at5Nr8flryqfaZ/VIWXvNefHI5uwoV92tga9iafCkf2zJNLsc+0tKXkPQ/rstff+Xb9ejWXBL3XTm2dU03Ozv+D/0IO56Auea7sbWdfu3Ndu2rrvG5yj5D9cb15/tvPQuQlYSec78YedviTnBXyb8lDx6chT9l59K09xw+fgzxQ5wQO6tW8HvLMnEePTkSHOn+RZw72GEPwaotn+PaEc1gGwpa8RXwX/BZ4dFn/22HBcdMcwp+B4LHTuuTVkjNGHDERnuSjkCfoXHDu+XOB3dXh6rcm9pWIf8nfdCzsHGrnQdnndv5oztMlLjnZY/z8vQ7yuMkRwy7DW8Qh+CvGFr9xIDz5VsY+8x9xK7lj5OL5mwDEY+AKnl6jIre0I+zIUevuMX7IH7l55L4799bf9Vhi/d/DYlv8vQF+0578+X3Hz9/qAZ+W6uGxPw7f4tpl+TMKcQb+yjDud376Pq8hOHef74vhE8JPrKOM67IeSI439oHYA/2Jb0Mu7r4S8uvvGsFPrBPwDYy8rgrmzo33d078HaN9JWJaxw6sSfENDdab22qLffG3s/D3WGvAV/ygD9o1+h+2Dlzt
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt3F1ygjAQwHFwvEQ/rF6k2vO1016Eh54H8LX3qJkhk226IXy2if5/LyAkiDsbNjhiUQAA8LeeyuFtD6LteftzadSX9aZ7bZZyn2xjttdin2xn+rXd61Y5htbPb/MZ/yizNd579p2nbH9X6u3ajdt3LPVjWlUhYrRx65bZlqIHJdf8OIYcRd+vEZ9PxmJfuuNo73tONG59+sZvbGzb2GixfY709WNViWXtXROK4vd4CB53YLsphuZaiD23exGbXbduxuDei5mNidlnYq3l7SEQ50rfPDiOqYidr8kjrY3Mr92IGpW6x9i46omXjYOWR9p1zc/HZqvXi1z4tXOtPkCIVkOi17hMxxsAALgt75f7hFM3d35hDj3bR4bfLaXijdjhH9nrIGMYADCVrSUn5tSTvVKHB5NzZ3MfR96NI+99mQfOR/4BeWHMLov5CwAAAIBrNvfZi1sln5XTfkfMb4uXk+tzEUsiBsB1GDuWqdHjUHunCT0vlduzrWshr5CS2H9bwJk7f6YGYw3UFAAAAOcbPY5Srg==
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt0jENAEAIwEASfCLwVb4BNgYG7hR0aAQAAAAAAAAAAAAAAAAAAAAAU5XbBVz2/AcAAAAArQ+UfQEP
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztXEtPFEEQHmY8efGsCAeNgCagiV5YFVjQlYuPKxBlEokc1ahHExOjgPoPVOBCIPFn+Pgxxj9gooldbne2t6ia6cfOk/mSSvf0Y3r626qu6nlsEDRo0KBBAwrPoyB40Mh/WYrs+Vt16FNXbDjytyv77ch0W6Y/jyX3peo/E9ewnXBdO2hsDtR58TkUdtHxfkTn8Tld+NvQOMPj5oUkfgeJ/ZRx3jpcB9h82m+vI6+5FgEX/QPOsR1Sdplky79S7Lwo2OgFwMV/uHBeF+D1r/G/fnDhIqlPkl2m+eYqwoU/F5+TJ9JiExdwsZCL/WL/y+mVq9+9IeRaAdJmxsc40OblE/+5gLNv/fe4KqQjZE1ILFMqPyPbzWgSo2O9Da7D5beF3BGygM6/GXXlTXQ477r/MIXLmgf8PZT55bC/7sRQ//G0kA9C3gv5xJxvWtZDu49a+XWDazFpY4s0/pL2TSbtgb9V3GgIF3ShuEnCPab80BgEsuBP+Q/d5mzjTgpqnVf6txTybVdk3bTBee8y5RyvOrLSvyzX8cWgZ7+AV4KrOOymGCb8tZlyjlcdWfCn7v9tpsiYmO+8kDkhZ+Tcz4q0pZWrfEfIKSnjYde2BqV/XBuOVx1Z8GeKETHHCcauxyM6DxgO+/UvCdiH6r5ZCfwW1BpZ1PpnCuBvzGFdVPyZ6t9XId9Q/Q8tz+lfUf7XFLMJ80/CcGimGwCOm+8GbcrO300P/kz1z4RnPcaOg/74WY+ZqXh83mUCA0IbrX+3GD4WUbnN+mfqPy6I+PEiiiEp3SpS3zCAP+wbTAD8mc7DhD/Q0fNE/E3pbpn4m5X6x/lgDsBfK+iXjkyVPS3I4zjo+VzdFlUdpMDxFjFO2fVPxS+2PniYsPP7RLsFZk+H6zgdpfYfZeJvNOzJmIyXJ4VMhd04elTGzXMynZdl4wR/pv6YAvA3RXBN7T/KxJ+OEQtfTOkf5U/WDcs4/0HtP8rKn00sQ/G3IuSl49ic/yj7+qfDV/98+OPWv7L7Xx2++mcaD1Kw2X+UlT+bvRzFH6Urpusfd2+/Svz52i8Vv/iC4op6VtJi2uaJdkn5ey3zkCqd/C3kD9G2SJz05C+L67ex36rzp+xK7dVaAb1v022vQ9SrOu7eChenV50/l+t36cM9UyqaP1//6xK/wJyfCnlh0Yd7plQ0f5T/eKSVrWv5tPgF9rKUcH2e2VwnU140f5T9roV0ntt/ACYFT5eFXCGEuz9qw1+V/Adw9iXq5RXS1r9LQ7RwfZL4w/fwoc9xw71ynvDVP5f7Vyb8YV7g+K9Bu7xxTnBy2lAmBuQ/TNY//LvAMY6dAUXz5wuT5xwYrvpH2a/P/dsyIE/+KMA6Oajvt4oAfifSRNQzJyxx0HsPE/Yg+h5Yfz9Ttef2KlBX528R8tCNuvO3m/EYdedPwecbsqT3aevM30pGc9O/KSz7txw+WG7WPy+k+Q/unW2b99+rEr+4IAv/cYD4qjt/WaPO31Jmwd8eOmfDX/nHKAp5zO1Jw18DBpg/2+/yjjry8B+Pa/ybZGW/W0dk/wb8qb1q2jf8elys57G+Ad5pZXVeY7Oa217DX6XGKAqm39nCfxnETKqec+jHsXZcZ/4aVBP/AM0/B7A=
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt27sKwkAQQNFAvtxHo6LfrNhYaTTXCOo5MOWycIutdoaBd9uMw3Ay11mPr/c7zjjzq3b6Jfo1+jX6Nfo1+jX6Nfo1+jX6TTuM92el38fp1+jX6NdsL/32EzPnXQUAAAAAAAAAgEfetb/FzZz/p9/iE//E9Gv0a/Rr9Gv0a/Rr/qXfdqE7/qXfUvRr9Gv0a/Rr9Gv0a/Rr9Gv0a3653zN7tnXs6QKwhDMnhGTU
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="70" opacity="0.99">
+  <object name="exit to NG" type="transition" x="2425" y="1883" width="39" height="141">
+   <properties>
+    <property name="area_id" value="I9"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="2388" y="1923">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="notice" type="conversation" gid="5" x="1370" y="913">
+   <properties>
+    <property name="conversation" value="I9_castle_notice_shrine"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="notice" type="conversation" gid="5" x="1592" y="912">
+   <properties>
+    <property name="conversation" value="I9_castle_notice_guestroom"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="1787" y="1817" width="64" height="64">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1875" y="1926">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="2087" y="1932">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1730" y="1864">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="2026" y="1718">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1927" y="1683">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="2168" y="1672">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="2161" y="1970">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="1984" y="1568">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="conditions" value="VariableLower#invitation,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="1951" y="1449">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="Captain" type="spawn" gid="3" x="1932" y="1559" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#invitation,10"/>
+    <property name="conversation" value="I9_castle_captain"/>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="spawn" value="stormknight_captain"/>
+    <property name="tag" value="captain_gate"/>
+    <property name="unique_tag" value="I9_castle_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="1952" y="1184">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="conditions" value="VariableLower#invitation,40"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="2123" y="1197" width="64" height="64">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="2123" y="1221">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="2120" y="1430">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1647" y="1314">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1649" y="1360">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1648" y="1405">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1797" y="1416">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Captain" type="spawn" gid="3" x="2018" y="539" width="64" height="64">
+   <properties>
+    <property name="spawn" value="stormknight_captain"/>
+    <property name="tag" value="captain_ambush"/>
+    <property name="unique_tag" value="I9_castle_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1989" y="529">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="2037" y="527">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="1758" y="943" width="64" height="64">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1762" y="583">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1762" y="661">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1476" y="581">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1522" y="575">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="1254" y="1058" width="64" height="64">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="1239" y="891" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#invitation,10"/>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1936" y="832">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1972" y="814">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Radia" type="staticNPC" gid="3" x="1250" y="1286">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,40"/>
+    <property name="conversation" value="I9_castle_radia"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@RADIA"/>
+    <property name="portrait" value="40"/>
+    <property name="sprite" value="female_white_2"/>
+    <property name="tag" value="radia_alive"/>
+   </properties>
+  </object>
+  <object name="radias corpse" type="mapitem" gid="5" x="1270" y="1275">
+   <properties>
+    <property name="active_sprite" value="corpse4"/>
+    <property name="conditions_activate" value="VariableGreater#invitation,30"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="radia_body"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="Radia conversation" type="conversation" gid="5" x="1269" y="1276">
+   <properties>
+    <property name="conditions" value="VariableGreater#invitation,30;VariableLower#invitation,60"/>
+    <property name="conversation" value="I9_castle_radia"/>
+    <property name="icon" value="radia"/>
+    <property name="name" value="@RADIA"/>
+   </properties>
+  </object>
+  <object name="Baron" type="staticNPC" gid="3" x="1269" y="1015">
+   <properties>
+    <property name="conditions" value="VariableEqual#invitation,10"/>
+    <property name="conversation" value="I9_castle_baron"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@DOBROS_STORME"/>
+    <property name="portrait" value="105"/>
+    <property name="sprite" value="male_black_2"/>
+    <property name="tag" value="baron1"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="3" x="1285" y="1447" width="64" height="64">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1423" y="1466">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="3" x="1758" y="1453">
+   <properties>
+    <property name="hostile" value="VariableGreater#invitation,30"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="storme"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Bed" type="conversation" gid="5" x="1458" y="733">
+   <properties>
+    <property name="conditions" value="VariableGreater#invitation,10;VariableLower#invitation,40"/>
+    <property name="conversation" value="I9_castle_bed"/>
+    <property name="icon" value="bed"/>
+    <property name="name" value="@BED"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1494" y="954">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="hostile" value="VariableLower#false,1"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1609" y="1012">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="hostile" value="VariableLower#false,1"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1589" y="974">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="hostile" value="VariableLower#false,1"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="1559" y="1024">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="hostile" value="VariableLower#false,1"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Bed" type="conversation" gid="5" x="1586" y="740">
+   <properties>
+    <property name="conditions" value="VariableGreater#invitation,10;VariableLower#invitation,40"/>
+    <property name="conversation" value="I9_castle_bed"/>
+    <property name="icon" value="bed"/>
+    <property name="name" value="@BED"/>
+   </properties>
+  </object>
+  <object name="Nightblade" type="spawn" gid="3" x="1490" y="808">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="male_nightblade"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Nightblade" type="spawn" gid="3" x="1537" y="761">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="male_nightblade"/>
+    <property name="tag" value="ambush"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="priest" type="spawn" gid="3" x="1199" y="589">
+   <properties>
+    <property name="conversation" value="I9_castle_priest"/>
+    <property name="name" value="@ANDRYS_STORME"/>
+    <property name="spawn" value="I9_necromancer"/>
+    <property name="tag" value="I9_priest"/>
+    <property name="unique_tag" value="I9_necromancer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1866" y="651" width="307" height="35">
+   <properties>
+    <property name="actions" value="SetVariable#TMP_talk_captain,1;StartConversation#captain_ambush,I9_castle_captain"/>
+    <property name="conditions" value="NPCinArea#captain_ambush;VariableLower#TMP_talk_captain,1"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1312" y="896">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1344" y="896">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1280" y="896">
+   <properties>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="barrier"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="Death Knight" type="spawn" gid="3" x="1134" y="696">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="death_knight"/>
+    <property name="tag" value="priest_ambush"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="3" x="1294" y="670">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_champion"/>
+    <property name="tag" value="priest_ambush"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="3" x="1237" y="827">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_champion"/>
+    <property name="tag" value="priest_ambush"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1080" y="666" width="273" height="34">
+   <properties>
+    <property name="actions" value="SetVariable#TMP_talk_priest,1;StartConversation#I9_priest,I9_castle_priest"/>
+    <property name="conditions" value="NPCinArea#I9_priest;VariableLower#TMP_talk_priest,1;VariableGreater#invitation,30"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="5" x="2209" y="185">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="6010,6010,6002,5016"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="I9_castle_corpse"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="736" y="640">
+   <properties>
+    <property name="maxlevel" value="25"/>
+    <property name="minlevel" value="25"/>
+    <property name="secretdoor_tag" value="I9_castle_1"/>
+   </properties>
+  </object>
+  <object name="Captain" type="spawn" gid="3" x="726" y="345" width="64" height="64">
+   <properties>
+    <property name="spawn" value="executioner"/>
+    <property name="unique_tag" value="I9_castle_executioner"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="2143" y="1570" width="75" height="578">
+   <properties>
+    <property name="actions" value="SetVariable#TMP_talk_gris,1;StartConversation#mercenary_grisenda,I9_castle_grissenda"/>
+    <property name="conditions" value="VariableLower#TMP_talk_gris,1;VariableEqual#invitation,10"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="592" y="680" width="235" height="30">
+   <properties>
+    <property name="actions" value="SetVariable#invitation,70;StartConversation#mercenary_grisenda,I9_castle_grissenda"/>
+    <property name="conditions" value="VariableLower#invitation,70"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="926" y="865">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="715" y="877">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="742" y="1071">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="871" y="1057">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="943" y="1013">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="955" y="1129">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="855" y="1337" width="50" height="46">
+   <properties>
+    <property name="area_id" value="I9_temple"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="887" y="1297">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="854" y="1173">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="16"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="889" y="1165">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="16"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="817" y="1181">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="16"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="3" x="745" y="1191">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="1" x="1259" y="570">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1434" y="537">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1722" y="893">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1014" y="236">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="985" y="359">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1032" y="318">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1105" y="356">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED2" type="spawn" gid="3" x="1076" y="262">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded2"/>
+   </properties>
+  </object>
+  <object name="BEHEADED2" type="spawn" gid="3" x="1156" y="224">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded2"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1218" y="212">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1432" y="211">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1462" y="350">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED2" type="spawn" gid="3" x="1398" y="342">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded2"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1306" y="397">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED" type="spawn" gid="3" x="1249" y="359">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded"/>
+   </properties>
+  </object>
+  <object name="BEHEADED2" type="spawn" gid="3" x="1193" y="392">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded2"/>
+   </properties>
+  </object>
+  <object name="BEHEADED2" type="spawn" gid="3" x="1145" y="353">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded2"/>
+   </properties>
+  </object>
+  <object name="BEHEADED3" type="spawn" gid="3" x="1448" y="375">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded3"/>
+   </properties>
+  </object>
+  <object name="BEHEADED3" type="spawn" gid="3" x="1341" y="387">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded3"/>
+   </properties>
+  </object>
+  <object name="BEHEADED3" type="spawn" gid="3" x="1283" y="327">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded3"/>
+   </properties>
+  </object>
+  <object name="BEHEADED3" type="spawn" gid="3" x="1311" y="260">
+   <properties>
+    <property name="conditions" value="VariableLower#executioner_dead,1"/>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="beheaded3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

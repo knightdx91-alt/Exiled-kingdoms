@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](And here you are in the house of a glorious maiden.)[] So how about some wine?		2		
+2	A	Wine? Come on, I like wine. Why did you call me here?		3		
+3	Q	[BLUE](Rattling glasses and pouring wine.)[] Don't ask stupid questions. To the meeting! [BLUE](A girl drinking wine)[]		4		SetVariable#margg,1
+4	A	[BLUE](Have a drink)[]		5		SetVariable#marg,12
+4	A	[BLUE](Pour it discreetly on the floor)[]		5		SetVariable#marg,13	AGI#3
+5	Q	Oh, good! Come on, let's get to the bed!		6		
+6	A	Let me walk you out.		0		NPCGoTo#marg,6

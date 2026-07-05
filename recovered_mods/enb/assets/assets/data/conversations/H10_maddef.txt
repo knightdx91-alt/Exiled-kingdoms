@@ -1,0 +1,25 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You hit me? What was that for?		2		
+2	A	If you don't shut up, I'll hit you again!		3		"SetVariable#TMP_mad1,1;NPCStopFollowing#mad"
+3	Q	You're a sick fuck! I don't want to talk to you anymore!		4	PlayerIsMale#	
+3	Q	You're a sick fool! I don't want to talk to you anymore!		4	PlayerIsFemale#	
+4	A	And don't come near me again, or you'll get another one!		5		NPCDespawn#mad
+4	A	Kill.		0		SetVariable#mad,100
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,1	SetVariable#mad,2
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,2	SetVariable#mad,3
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,3	SetVariable#mad,4
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,4	SetVariable#mad,5
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,5	SetVariable#mad,6
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,6	SetVariable#mad,7
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,7	SetVariable#mad,8
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,8	SetVariable#mad,9
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,9	SetVariable#mad,10
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,10	SetVariable#mad,11
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,11	SetVariable#mad,12
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,12	SetVariable#mad,13
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,13	SetVariable#mad,14
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,14	SetVariable#mad,15
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,15	SetVariable#mad,16
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,16	SetVariable#mad,17
+5	Q	I... I won't... Just don't hit me again! Please.		0	VariableEqual#mad,17	SetVariable#mad,1
+5	Q	I... I won't... Just don't hit me again! Please.		0		SetVariable#mad,1

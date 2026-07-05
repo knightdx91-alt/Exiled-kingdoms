@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="76" height="76" tilewidth="64" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="85">
+ <properties>
+  <property name="faction_civilian" value="varsilia"/>
+  <property name="faction_guard" value="varsilia"/>
+  <property name="music" value="newgarand"/>
+  <property name="name" value="New Garand"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" name="spawns" tilewidth="64" tileheight="64" tilecount="8" columns="2">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="9" source="water.tsx"/>
+ <tileset firstgid="73" source="town_objects.tsx"/>
+ <tileset firstgid="153" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="171" source="house_village_blue_1.tsx"/>
+ <tileset firstgid="243" source="house_village_blue_2.tsx"/>
+ <tileset firstgid="315" source="townhall_blue.tsx"/>
+ <tileset firstgid="351" name="house_bricks_1" tilewidth="64" tileheight="128" tilecount="30" columns="10">
+  <image source="house_bricks_1.png" width="640" height="384"/>
+ </tileset>
+ <tileset firstgid="381" source="stoneroad1.tsx"/>
+ <tileset firstgid="397" name="bridge" tilewidth="256" tileheight="320" tilecount="8" columns="4">
+  <image source="bridge.png" width="1024" height="640"/>
+ </tileset>
+ <tileset firstgid="405" source="stone_bridge_small_64_128.tsx"/>
+ <tileset firstgid="445" source="wall_stone_large1.tsx"/>
+ <tileset firstgid="454" source="tower_blue.tsx"/>
+ <tileset firstgid="460" source="ship.tsx"/>
+ <tileset firstgid="468" source="manor2.tsx"/>
+ <tileset firstgid="492" source="manor3.tsx"/>
+ <tileset firstgid="512" source="dryground.tsx"/>
+ <tileset firstgid="576" name="temple" tilewidth="64" tileheight="192" tilecount="16" columns="8">
+  <image source="temple.png" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="592" source="grassland.tsx"/>
+ <tileset firstgid="720" source="trees.tsx"/>
+ <tileset firstgid="736" source="dungeon.tsx"/>
+ <tileset firstgid="976" source="natural_grounds.tsx"/>
+ <tileset firstgid="1104" source="reflex_water.tsx"/>
+ <tileset firstgid="1107" source="reflex_water_2.tsx"/>
+ <layer id="1" name="nonwalk" width="76" height="76" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztls2OwyAMBnvb93/jPVSrStkm4F9smJF6aSh8nhjo6wUAVflJ+OyEl4dMZyvfMb7W+BrN5ckuvp7m80STEV/+eyDCl7YeTyTvanbcib6kc3j7qkpFX5XBlwzNOW4dP/rdzPhVaOq//maFr1XeLPee9V6Lfh8RaPfY6b6ua+PrO9V8zY6r5uvbs1W+RlkyGa2Nr+cco+fevrohzRzRX53Q5j25vyy5Pfurwvk0IjKTl69KziKzePqq4iwjx90a3vftLnj72t0ZvmTg64Olvh19PeW01mbxtcrZaF1rTfiK9zW7/gqie8DqSzIuA21WL1/anPjqgeX8wNf/GiN9dQRfMmZqxNeH2Rrx9Wa2Pny9kd5n+NLXl+Grmn/L+if2l5ZT96OW7r6yz+Luvq5k+tjJlyavp6suvv6I+o/Q3ZdH7ghXnX2NsuOL/rqD/pKBLxnsRxn4kvGU0+rs7vvuvrzmwZd8Lnzlgi8Z1X1VA18y8CUHXwAAAABr+QWVSCsg
+  </data>
+ </layer>
+ <layer id="2" name="water" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztnNuSm0YQQInNSz5l19Y6F9vPCAToNfmzfFr+KDthTunQwbtSVlsSl66aAoaL6KOenp6BpijmLVV56zuYlxwWzCvp1jyX43P5++NQ9uVQX+f6ZC99rktln+tb7a/ydjquy9fsc1mi/PmhKP74MPBK8nMxsEHnRhy6zKnL7MynyvvWIIlZKo/FwGsvNmbXig18sLUmlzXIb8XAa1ec7ItyzLa0V9vEpjoxZHst8vtzeVBp5Ms68cKm2lxvpmtpjxZ44btgU2UmbWaI/VX5OPqKtQm84IAPS3WtGNH+juLVrpQXy322pSrzgg2sqIfvfmW8HrT+10/D9qEc+7VUuok6+s01iXn15cnvRzY/KvXG618G5/J6KNYl1rcNvPozua1Foq7EVPbnm52dxP0ifaP9+rnt0tdamjxMrLu/O7cNrsG+rNuj1n/V/jbwOl7Ab2nypbi8rU3FYkvnhT674uSnprjZtpoL+8gl8UpCu4t285r9rDUWi3pdGiusjVeSc3Xe+shB3sOeNl4bL2TjdZn8Umy8LpEU018aH6yZV9LnW/F+fJbG63NxivE3Xq/L92JgluQcDmvn9bUYmO3f0YctSZ6KgRfvQmy8XpbUFpNOqZ/s3jg3uBZeqTzm8h42tiRJsUR6L+dRZeo57MZrkMSK9uiy8ZqWp1wir2syW5Ik+0r948brPEnz0VOsUqHv3HidJL1P+N68lsQszedMcbomqyXxSvHEOX7rrfyWIjH2uhYfGC2NV4wlHorr9Y9FcVte1ie1o0+5fM3LVP8lbxMnfM/n7HJ96g/xT0/5vF0x5nONmAK5NS/egef95DSXnNgk3VNfl5gkFonTTstU/y0ft8vHfipOPKdYRWaX8ENuyYucJnIEyCFoQ2n0rvexPOX61FrGd+Sjvtdsk7cS5z6RZ+EcKN5NPuRtWO7LcX5Uq3N4T7zV8XG8zW+8xiY+N7m1VOKDrRy13QduzjXwu/K92nQvXrUKeVVTco5/vwdezn1CJ+eMYXd78WIfhVwp57Y4Rw+fSM7QlNxrfxillm7YA+/jHspxjid2AicYHcuxLfWy1Ub1zRt43Ys4L8z+aC9mXVi3z3P+mHNk7dOwTfLSpuRe/XuUphz7I/sn9sGGdtWomLPzP50/6770pTyze/RXUexvyIFC11pM8OvYDHxju4Ob2yXnc9xrcq+skvTiZd2xC9oYOcIwhF3MtT6UY/70DcQkc8/7tC25TaKbfXuveuIQfFtV/jeOgJnj27nnfaI3toJN0DZdT7siz7MOy17nx28nYINz5+VYnHbkvFZ0RH/sCDbYZKt12q370qXk+cfYqCvHfSAc8Eut9jmHn7G6YzeuHeOzOUvMAXZ8gO6OBbAX+lWO7cO5+HjskDJ3+3KsYF8U7YPib5K04mT/xTHmVov9nMWxAXrG+QbHtCyxqTgecN66+wn7vzkLPivGotgYPP19jUqFYz0Wh+VRjPwbcxZsx34q2pzH2Y7babtxTrEK1/B5c49X0cl6+zs27gvid0e6wC3OfTn2oC/ARucq9PWe72qCjtgKvqoJxzl+Z51xgGNfxgFz9vuee/Hcob9lYx9Uv3C8n5d4LszfZOJ/YBwwN2mCno7zoz1Q7+8FcX6nes+VHXQdruUYeW7+DD9kLvgqGLLtuN5jb8/XePzpOBZu2Fj85t5cxPHTsZxm5ZjzqOM8fqxU7+/owdKxWZxXbHXdthz3J7Et1+GYOG8S471r+0nPs8TnFdE3mYPHN9yj262fFzlGs41ZLz9X8TcgOa/Vb5wr/i+uJdwb7dDxeS9d7b89ZxPHnB5fO37wnI6f13FtM3bcix3FZ3gH/SbXxkb/jzgGf2kMYt3ifDT3E2N8t0H7beIS7Mzfj2vD9iH8Bv9V5O5ncpzn70O6n2H5ljk2dHqJl8ctZnPUfXMfre4df0I916jLcQwSn4k0YT9L7Nk+yNfztse1np+M/wVt2P1VvB9//xWdfyTWf+o8P6ulD6y1Hm2D/93zaZ6fqLTfcxyRZ1WO7dX/I2230jX9/8XnDFPfrnPM42cW3Nc/AuLvEQ==
+  </data>
+ </layer>
+ <layer id="3" name="bridge" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt2rEKgzAYhVHz/ogVHfq4gkuFQlukV5NwzpLBJcOX8EMcBgAA4FfPuzcA7OZy9w7omb5I0hdJ+nr3KJ9XXvRDkr5I0hdJ+iJJXyTpiyR9kaQvqNN6OJtL+f+3Hri/SNIXSfoiSV8k9dzXt/8czq4ANRjdSVCNyXkEGmWegHqYJ4BWmScAgFak3o69IXMFPeZsnswj1g==
+  </data>
+ </layer>
+ <layer id="4" name="ground" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer id="5" name="ground2" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt201OwzAQhuEp4lo0XxFILIE9h2FFJfYch7OhyLIA1zHuTzIxfh9pFC+cavTJTheJzQAA6MPn5ve1JYN3A40hr+PohHs+GtxHl7K1kNl4vflRJT3ndWchr1tjb9aQhcx2Rl41ZGFt9ZTX/ox7Zf3ldQ5ZyGvq+fV8vWg7qzf+L+4sv76eZsrqZZ6fXcSYV24/PrKusraF6lEpj7+qR0rGys5CpGSs7CxESsbKzkKkZKzsLERKxsrOQqRkrOwsRPJuAAAAAAAANO/NuwGgQN4NNEbeDTRG3g00Rt4NNEbeDTjRCTUY38BNUaEAAABwOZwnqDfXeYL/iPMEAABgrR6uvDsA6vE9A9C3/SYU6r2uMK8hKdnhu2Kv98VrzKsG79ePI/teZ/d2uCan1uH7ci2iY19W8ykP
+  </data>
+ </layer>
+ <layer id="6" name="scenery" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztnElv1DAUxzPDVsT+EUpbruyrxJEDBYoQIESBE+LGbYC2gCrxEbjApylLWduyFHGEC9BlWgSUK/t4OkGW+5z4Oc+xPfZPimbGcZ79/nnJeEuSJFKUSdsV8IjXhu0PVxa3UBnVOKbd9LpXMf856qBmqzXr9FA47j2Q54GeaaPonj9GB/c9K18e79SzWmWksvS8flY8dlXBWBfjC8OrYkU36Wxsmxtbl2L+O8j6TnP5V1q8L7y0V3QyDKTNA2lTnD4riLTSia8XyPwL+CJQzAFpnyzE0iyQNpFzTK/w+xtRXfKoc98/GtQqK74OCPvGkba/5uzv4LYi8Of1g6V71H6h3DHk8V/IamKGTUTtL8Y+S+doi51iUexuabOn9bnX4n9uD7G9GWJ7jCLtL2q6CW1NE9rymbsK53dKw+4yxbgxEV+D9CaNUWn4XyXSYKND1yrEKUTev5AvGv6l8dUnpG9wXCsMfwz7st4jrSZKrqt4/1onKb9f0z51m4q/348Ddb0k/DbZH1urcK6w7TXqNlXKmEJdWX+spmjvN/L/cY2huKZsU2GQ9ceuAH7+Qvr+xKP7VRFqDT/PCGk/kb4/DkQriB9I3x8FrFWkHLD9oYtmqhFpU1waz/GJyxq63XRU6+WW5juyuOGoVhG3yIqvgRhDylxraXUhJ998YJpC8XVVSKsvzdJkrkStvhsYM+4hsCn239O5Y3FcqV6iVguSsjDj0Qx+zLg7p/67JPv5+KopajDr4TXIjxl35dR/Z8Z+bHtixkOtZGPGEDs89E8H2fioyphxynaFvCNtoKdsfBQzZrzNER1MryHBjo9CbHVEK4ap+Q4Kyuj/DiDzlzXfgfU9lP4vtN4E6/v1QLSCwPo+FLBWWN8HA9YqEolEIovYWkPvMunzdC6toafgbTVJJqu0Nm0+TxdpD2Rr6E94fr0xsM/JHie+Pn0Do1df4FoxmF5vFHQ4FrVqohJfR6NW/8mLryOKWsnm32XPXJz39N6fFV+9BeMqnT87LaSfa6SfTOB5XnFO3zVkeh0uqJVs/qw/Qw9oTT4l9wnsU7ffGbL5s7MZ9VWd05eBeQ+Ni+8RKhPM2oAQ170+D9BnXZ4BWsX4gnla0NfbAWmVBRQztxTWjUWy8T2+sGsa8lBpS/DYald0JvC71sp+rwzmGXIXr0udNUEHW9sh5HHQM+QUecukrDVBKs+Q6+T1lX8c+pYO
+  </data>
+ </layer>
+ <layer id="7" name="objects" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztnNtOwyAYx0f3dh7jPMyo0cRXWKa3293mfefpwgv1CZaY+Ra6JxIyGruOrkChUPj/EtKGcvj6H/34oM06HQAAiJsL1wa0lJlrA4BRLl0bYIkBTUPXRjTETY26dzTdKtZ5IfADKjwT1xZsckzTSYP93Xflyz4Z0Mv0+Lwy2FZqsC3Go6ZedfxGFU34B925a+bh89gEqn4+I41ULxEyY073eQwRmXUW02vHYvsAgPZx4NoA4IxD1waADXTXLWVrgUHunMVVKmvErf2Rla27ZprzEra3ZSr2YXrtqdaR6P+Bp9BgevU06/ZpOt9yPVS9jmy0a6FNHwh5f2Kbj9e9xvYn9hVsuFYoawusWwHwC9P78rK8BuzvbZDF9yq4+m19gOl15tqIFsH0OnVtBJBGN5aK2SfkCXUdxcZFLN8AAX1CXW/rvu+vIlS94CtAyGDPSZ1BdRHjtPV3Ynu0/a6593hlfYjOfUJ1fhx6eh9NkWrs58RMqPFXFW/0vt8L6aMifZJ49RLxnayOi2Q9f5HLh15ivqg2P8lmHvSSZynQy2W804Z4At/fq4HnsZziGJ/X8F+9SHSec5+/5EeMLzXgv4ApfJ2jXSPSJcsrxqz43kSeOvNjrEAvNWLVi8UFWWz1m/NR80RcnsFisBT/P1FK0dcDe8iOQYxVAMJgSueeCVkdxzyBckZcqxH5PwflTPj4GnOtoJeYEVnXagK9KpkWdBpDL6DIH/sPYOE=
+  </data>
+ </layer>
+ <layer id="8" name="roofs" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztm8duFEEQhmeN34F0IBzIcAZuOHEiSMCZnJPNkyHgugbvgRxsA86BILhwwUaASIIdvC2N2t3V9fd0z/TMzietdj3ToaqmvFvV3RVFakY01xEmHYxBMZqy/x8nUkTRsOLaHXCMCenvm5ay6OA8z8ma/t5vR3K8UFy7DY4x7kIQC+YTnycIW/1yOOdGaZ5bhvYN6e8xQ/uPoDw6VM9VME7Y6ifR7zTRT8UGov2s4toQNnz0AWyPMtd8jRE6/CD6ngJttR5sj/Le7/D/n+drSx1OMvo1Em3WgfPcxZp7t1XMK0tbnWD2G2K22yW1G8TEid4Z7i+C4+mYtuhz3GCDq+Az2Cm1r2Pdo7eG+wvgeFlyRdLd5F87PH+fhcxlg+5bW/e3td63l8hWU2D7SxrdVf71HZZmebwWEmg+dhHQ5Rs4dgwVr+WNyMfeSDJSMSnlL0n/+mohj+94LQ26fIyKSW38RUWnYg40XvPFQ4UcunwsjklXaOTm+Asn/tKNTyHHa754AMwTx6S+f+87LMaX4zUbnjPGuA/Mw4lJvzDGo/yrZqF3yPGaLh+LY9LFtHIz+vuI1555srcuH4tj0gVgTpV//bWSiGZvjn6ny8fimPRzgP8PexgyPc1YbiQmTcJdn7Bld4DPr515mfHzsPWvC5XfsDkfgK1Gc5IB9a9zAdgqRHT5+9mc7TWS8/wq/9Ll72dqSy8VN9rU7zh7SjIDzT7znu01HMjzqCfk4O4pJelv9pkLRBcKmzVjCk7+rvrumi2ArZA1wLUO9JG/t8SZgJkC2ApZM17jQB95T2mm9T5dAFuZSK4Zr3agj7ynJPaOp0pgq+Sa8SqDPluk+w1Fe9v8XeZThrblrI/GJNeMVxr6bAb3t4sCd31UrBlz8t9NJbGNDDv3b7VLk/+G5F/HOvE+XN3FmnFZ8t+jFrZCdTflviL24O5v58URC1uh6PJeQTvkv65y/4GU+0NFBtE9pr9k+iOgul+X2stnskTskYxty+Jfsu4mrkntl53JKoldfCCfyaL2q7PyL875kTwI5UxWGVCdyfLtX77Oj3BB6+kELs5kFQ20nk5Ancny5V9Znx+R4dbTlfkMvSuG0vQNzJ7U+ZH9HenHv9d89QWmsw/6QFup1hjierpewlacOtFQ/Is6P9IL2kq1fxbX0/UQc6B1oqHSA9pKtX8W19N1E/ZA9vTz9i/q/Ei3g++rmC5iDps9fV/YrC8LuhzZisKmTtSXf5nWl6nzI/sc20pXc3GYkEGuE/VJFuvLXHQ1F4cIe1B1opR/qeqYCoVG/oOEXro6URNIHVOI6NawDhB6cfb0Vf6F1DFVVFDkHX9VlBsb/3pS+SSbx21uK8S/HmnaFj5Oy5Cix2koaX4fqzitwkS98pGKglLlDhjtbK/B2tJLfNa9y9fKyj90wbEw
+  </data>
+ </layer>
+ <objectgroup id="9" name="data">
+  <object id="1" name="entry from farmlands" type="entry" gid="1" x="2278" y="895" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="2" name="exit to farmlands" type="transition" x="2313" y="874" width="55" height="120">
+   <properties>
+    <property name="area_id" value="H8"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="3" name="south stairs" type="conversation" gid="5" x="1953" y="2153" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_stairs_south"/>
+    <property name="icon" value="stairs_down"/>
+    <property name="name" value="@STAIRS"/>
+   </properties>
+  </object>
+  <object id="4" name="south stairs" type="conversation" gid="5" x="2143" y="2293" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_south"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="5" name="entry from farmlands" type="entry" gid="1" x="2121" y="2327" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="6" name="entry from farmlands" type="entry" gid="1" x="1948" y="2098" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object id="7" name="entry from farmlands" type="entry" gid="1" x="610" y="1460" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+  <object id="8" name="south stairs" type="conversation" gid="5" x="418" y="1282" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_stairs_west"/>
+    <property name="icon" value="stairs_down"/>
+    <property name="name" value="@STAIRS"/>
+   </properties>
+  </object>
+  <object id="9" name="south stairs" type="conversation" gid="5" x="560" y="1418" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_west"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="10" name="entry from farmlands" type="entry" gid="1" x="413" y="1227" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="6"/>
+   </properties>
+  </object>
+  <object id="11" name="entry from farmlands" type="entry" gid="1" x="629" y="381" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+  <object id="12" name="south stairs" type="conversation" gid="5" x="706" y="447" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_stairs_north"/>
+    <property name="icon" value="stairs_down"/>
+    <property name="name" value="@STAIRS"/>
+   </properties>
+  </object>
+  <object id="13" name="entry from farmlands" type="entry" gid="1" x="894" y="575" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="7"/>
+   </properties>
+  </object>
+  <object id="14" name="south stairs" type="conversation" gid="5" x="862" y="576" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_north"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="15" name="Alchemist" type="spawn" gid="3" x="2094" y="815" width="64" height="64">
+   <properties>
+    <property name="conversation" value="torg"/>
+    <property name="cycle" value="day"/>
+    <property name="faction" value="varsilia"/>
+    <property name="name" value="@ALCHEMIST_TULL"/>
+    <property name="portrait" value="18"/>
+    <property name="shop_items" value="7000,7001,5001,5016,5002,5007,5008,5009,5010,6001"/>
+    <property name="spawn" value="tull"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="17" name="weaponsmith" type="spawn" gid="3" x="1648" y="823" width="64" height="64">
+   <properties>
+    <property name="conversation" value="torg"/>
+    <property name="cycle" value="day"/>
+    <property name="faction" value="varsilia"/>
+    <property name="name" value="@ARMORER_FLOYD"/>
+    <property name="portrait" value="18"/>
+    <property name="shop_items" value="111,112,115,116,117,118,119,128,129,533,534,535,536,582,603"/>
+    <property name="shop_modifier" value="1.0"/>
+    <property name="spawn" value="floyd"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="18" name="trader" type="spawn" gid="3" x="363" y="365" width="64" height="64">
+   <properties>
+    <property name="conversation" value="torg"/>
+    <property name="cycle" value="day"/>
+    <property name="name" value="@TRADER_PINK"/>
+    <property name="portrait" value="4"/>
+    <property name="shop_items" value="5000,5004,5008,5009,3002,3003,6006,6009,305,306,381"/>
+    <property name="spawn" value="tr_pink"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="19" name="knight" type="spawn" gid="3" x="1697" y="737" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="20" name="Lannegar Town Hall" type="castle" gid="5" x="2026" y="2010" width="64" height="64">
+   <properties>
+    <property name="castle_id" value="5"/>
+   </properties>
+  </object>
+  <object id="21" name="south stairs" type="conversation" gid="5" x="2363" y="2323" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_sewer"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object id="22" name="entry from farmlands" type="entry" gid="1" x="2315" y="2321" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="9"/>
+   </properties>
+  </object>
+  <object id="23" name="south stairs" type="conversation" gid="5" x="2183" y="783" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_house_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="80" name="door_tract" type="conversation" gid="5" x="1895" y="709" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_trac_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="83" name="door_tract2" type="conversation" gid="5" x="277.5" y="608.5" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_trac2_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="24" name="south stairs" type="conversation" gid="5" x="1692" y="657" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_warriors"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="25" name="magistrate house" type="conversation" gid="5" x="1913" y="247" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_magistrate"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="26" name="south stairs" type="conversation" gid="5" x="1859" y="1938" width="64" height="64">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="27" name="south stairs" type="conversation" gid="5" x="869" y="353" width="64" height="64">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="28" name="door omon" type="conversation" gid="5" x="527" y="279" width="64" height="64">
+   <properties>
+    <property name="conversation" value="door_omon"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="29" name="south stairs" type="conversation" gid="5" x="567" y="1209" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_loreseekers"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="30" name="entry from farmlands" type="entry" gid="1" x="1963" y="272" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="10"/>
+   </properties>
+  </object>
+  <object id="31" name="entry from farmlands" type="entry" gid="1" x="232" y="786" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="82" name="entry from tract2" type="entry" gid="1" x="333.833" y="644.167" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3025"/>
+   </properties>
+  </object>
+  <object id="32" name="villager" type="spawn" gid="3" x="656" y="1254" width="64" height="64">
+   <properties>
+    <property name="cycle" value="day"/>
+    <property name="spawntable" value="new_garand"/>
+   </properties>
+  </object>
+  <object id="33" name="Townsman" type="staticNPC" gid="3" x="647" y="710" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_informant"/>
+    <property name="name" value="@TOWNSMAN"/>
+    <property name="portrait" value="12"/>
+    <property name="sprite" value="male_brown_12"/>
+   </properties>
+  </object>
+  <object id="34" name="villager" type="spawn" gid="3" x="365" y="677" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="new_garand"/>
+   </properties>
+  </object>
+  <object id="35" name="villager" type="spawn" gid="3" x="1647" y="2027" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="new_garand"/>
+   </properties>
+  </object>
+  <object id="84" name="Hedhant spawn" type="spawn" gid="3" x="2033" y="2093" width="64" height="64">
+   <properties>
+    <property name="cycle" value="night"/>
+    <property name="spawnChance" value="35"/>
+    <property name="spawntable" value="headhunt"/>
+   </properties>
+  </object>
+  <object id="36" name="villager" type="spawn" gid="3" x="1770" y="1403" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="new_garand"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="37" name="villager" type="spawn" gid="3" x="1864" y="867" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="new_garand"/>
+   </properties>
+  </object>
+  <object id="38" name="Adaon" type="spawn" gid="3" x="358" y="470" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#want_letter_back,70;VariableEqual#adaon_free,1"/>
+    <property name="conversation" value="adaon"/>
+    <property name="spawn" value="adaon"/>
+    <property name="tag" value="adaon"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="39" name="exit to farmlands" type="transition" x="131" y="730" width="55" height="120">
+   <properties>
+    <property name="area_id" value="G8"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="40" name="Elisse" type="spawn" gid="3" x="2135" y="2028" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_fritha"/>
+    <property name="cycle" value="day"/>
+    <property name="faction" value="varsilia"/>
+    <property name="name" value="@FRITHA_RHAYADER"/>
+    <property name="portrait" value="20"/>
+    <property name="spawn" value="fritha"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="41" name="alchemist markus" type="spawn" gid="3" x="1643" y="1100" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_jethro"/>
+    <property name="cycle" value="day"/>
+    <property name="faction" value="goldenhand"/>
+    <property name="name" value="@SPICE_TRADER_JETHRO"/>
+    <property name="portrait" value="22"/>
+    <property name="spawn" value="jethro"/>
+    <property name="tag" value="jethro"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="42" name="conversationTrigger" type="trigger" x="1613" y="1039" width="168" height="90">
+   <properties>
+    <property name="actions" value="SetVariable#spicing_things_up,20;StartConversation#jethro,ng_jethro"/>
+    <property name="conditions" value="VariableEqual#spicing_things_up,10"/>
+   </properties>
+  </object>
+  <object id="43" name="entry from farmlands" type="entry" gid="1" x="559" y="1241" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="11"/>
+   </properties>
+  </object>
+  <object id="44" name="teleport" type="entry" gid="1" x="1741" y="849" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object id="46" name="Waters" type="staticNPC" gid="3" x="1632" y="2248" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_waters"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@WATERS"/>
+    <property name="portrait" value="34"/>
+    <property name="sprite" value="male_green_1"/>
+   </properties>
+  </object>
+  <object id="48" name="priest" type="staticNPC" gid="3" x="1943" y="1488" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#three_versus_eleven,100"/>
+    <property name="conversation" value="NG_priest"/>
+    <property name="faction" value="the_three"/>
+    <property name="name" value="@BROTHER_GABRIEL"/>
+    <property name="portrait" value="15"/>
+    <property name="sprite" value="male_grey_1"/>
+   </properties>
+  </object>
+  <object id="49" name="Boatman" type="staticNPC" gid="3" x="873" y="1338" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_boatman"/>
+    <property name="name" value="@BOATMAN_TIOM"/>
+    <property name="portrait" value="16"/>
+    <property name="sprite" value="male_red_1"/>
+   </properties>
+  </object>
+  <object id="50" name="Captain" type="staticNPC" gid="3" x="759" y="1491" width="64" height="64">
+   <properties>
+    <property name="conversation" value="sea_captain"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@CAPTAIN_WRIGHT"/>
+    <property name="portrait" value="32"/>
+    <property name="sprite" value="male_grey_2"/>
+   </properties>
+  </object>
+  <object id="51" name="Latimer" type="spawn" gid="3" x="348" y="1142" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_latimer"/>
+    <property name="cycle" value="day"/>
+    <property name="faction" value="varsilia"/>
+    <property name="name" value="@LATIMER"/>
+    <property name="portrait" value="43"/>
+    <property name="spawn" value="latimer"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="52" name="knight" type="spawn" gid="3" x="267" y="1259" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@VARSILIAN_KNIGHT"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="53" name="south stairs" type="conversation" gid="5" x="454" y="1447" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_sewer2"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object id="54" name="entry from farmlands" type="entry" gid="1" x="511" y="1469" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="20"/>
+   </properties>
+  </object>
+  <object id="55" name="entry from farmlands" type="entry" gid="1" x="1149" y="259" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="21"/>
+   </properties>
+  </object>
+  <object id="56" name="south stairs" type="conversation" gid="5" x="1112" y="258" width="64" height="64">
+   <properties>
+    <property name="conversation" value="ng_sewer3"/>
+    <property name="icon" value="sewer"/>
+    <property name="name" value="@SEWER"/>
+   </properties>
+  </object>
+  <object id="57" name="Mason" type="spawn" gid="3" x="1434" y="1942" width="64" height="64">
+   <properties>
+    <property name="conditions" value="SetVariableLower#mason,10"/>
+    <property name="conversation" value="NG_mason"/>
+    <property name="cycle" value="day"/>
+    <property name="name" value="@SIR_ANDREW_MASON"/>
+    <property name="portrait" value="27"/>
+    <property name="spawn" value="mason"/>
+    <property name="tag" value="mason"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="58" name="fisherman" type="staticNPC" gid="3" x="990" y="692" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_marten"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@BARRET"/>
+    <property name="portrait" value="57"/>
+    <property name="sprite" value="male_red_1"/>
+   </properties>
+  </object>
+  <object id="59" name="thug boss" type="spawn" gid="3" x="1197" y="314" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_thugs,3;VariableGreater#want_letter_back,70"/>
+    <property name="conversation" value="NG_bafrat"/>
+    <property name="faction" value="neutral"/>
+    <property name="name" value="@BAFRAT"/>
+    <property name="portrait" value="58"/>
+    <property name="spawn" value="bafrat"/>
+    <property name="tag" value="bafrat"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="60" name="thug" type="spawn" gid="3" x="1236" y="308" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_thugs,3;VariableGreater#want_letter_back,70"/>
+    <property name="faction" value="neutral"/>
+    <property name="name" value="@THUG"/>
+    <property name="spawn" value="bandit_ranged"/>
+    <property name="tag" value="docks_thugs"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="61" name="thug" type="spawn" gid="3" x="1241" y="362" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_thugs,3;VariableGreater#want_letter_back,70"/>
+    <property name="faction" value="neutral"/>
+    <property name="name" value="@THUG"/>
+    <property name="spawn" value="bandit_female_elite"/>
+    <property name="tag" value="docks_thugs"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="62" name="conversationTrigger" type="trigger" x="1123" y="268" width="113" height="125">
+   <properties>
+    <property name="actions" value="StartConversation#bafrat,NG_bafrat"/>
+    <property name="conditions" value="VariableLower#ng_thugs,1"/>
+   </properties>
+  </object>
+  <object id="63" name="thug" type="spawn" gid="3" x="1128" y="354" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ng_thugs,3;VariableGreater#want_letter_back,70"/>
+    <property name="faction" value="neutral"/>
+    <property name="name" value="@THUG"/>
+    <property name="spawn" value="bandit_female_elite"/>
+    <property name="tag" value="docks_thugs"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="64" name="Sargos" type="spawn" gid="3" x="1646" y="330" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#web_terror,30"/>
+    <property name="conversation" value="ng_sargos"/>
+    <property name="spawn" value="madman_sargos"/>
+    <property name="tag" value="madman_sargos"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="65" name="warrior's guild exit 33" type="entry" gid="1" x="1732" y="666" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="33"/>
+   </properties>
+  </object>
+  <object id="79" name="NG tract" type="entry" gid="1" x="1910.75" y="769.25" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3021"/>
+   </properties>
+  </object>
+  <object id="66" name="entry from temple" type="entry" gid="1" x="1327" y="1997" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="22"/>
+   </properties>
+  </object>
+  <object id="67" name="south stairs" type="conversation" gid="5" x="1313" y="1913" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_door_temple"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="68" name="Hirge" type="spawn" gid="3" x="1918" y="1534" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#restoring_faith,99;VariableLower#three_versus_eleven,100"/>
+    <property name="conversation" value="hirge"/>
+    <property name="spawn" value="hirge"/>
+    <property name="tag" value="hirge"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="69" name="conversationTrigger" type="trigger" x="1597" y="1810" width="78" height="138">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_temple"/>
+    <property name="conditions" value="VariableLower#three_versus_eleven,10;NPCIsInParty#hirge,hirge"/>
+   </properties>
+  </object>
+  <object id="70" name="entry from farmlands" type="entry" gid="1" x="342" y="1822" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="23"/>
+   </properties>
+  </object>
+  <object id="71" name="knight" type="spawn" gid="3" x="320" y="1884" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_castle_guard"/>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@CASTLE_GUARD"/>
+    <property name="portrait" value="25"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="72" type="entry" gid="1" x="2187" y="840" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="77"/>
+   </properties>
+  </object>
+  <object id="73" name="entry from sea" type="entry" gid="1" x="814" y="1477" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="72"/>
+   </properties>
+  </object>
+  <object id="74" name="altar" type="conversation" gid="5" x="1927" y="1471" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#three_versus_eleven,100"/>
+    <property name="conversation" value="altar_the_three"/>
+    <property name="icon" value="altar"/>
+    <property name="name" value="@ALTAR_THREE"/>
+   </properties>
+  </object>
+  <object id="75" name="priest" type="staticNPC" gid="3" x="1960" y="1492" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#three_versus_eleven,200"/>
+    <property name="conversation" value="NG_priest"/>
+    <property name="faction" value="the_three"/>
+    <property name="name" value="@BROTHER_GABRIEL"/>
+    <property name="portrait" value="15"/>
+    <property name="sprite" value="male_grey_1"/>
+   </properties>
+  </object>
+  <object id="76" name="Boatman" type="staticNPC" gid="3" x="866" y="668" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#transport_friguld,1"/>
+    <property name="conversation" value="NG_dorse"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@CAPTAIN_DORSE"/>
+    <property name="portrait" value="101"/>
+    <property name="sprite" value="male_red_1"/>
+   </properties>
+  </object>
+  <object id="77" name="HIRGE Trigger" type="trigger" x="1835" y="727" width="29" height="254">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_dreams"/>
+    <property name="conditions" value="NPCIsInParty#hirge,hirge;VariableEqual#three_versus_eleven,100;VariableLower#ancient_seal,10;VariableLower#TMP_hirge_dream,1;PlayerIsLevel#13"/>
+   </properties>
+  </object>
+  <object id="78" name="HIRGE Trigger" type="trigger" x="377" y="635" width="27" height="232">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_dreams"/>
+    <property name="conditions" value="NPCIsInParty#hirge,hirge;VariableEqual#three_versus_eleven,100;VariableLower#ancient_seal,10;VariableLower#TMP_hirge_dream,1;PlayerIsLevel#13"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

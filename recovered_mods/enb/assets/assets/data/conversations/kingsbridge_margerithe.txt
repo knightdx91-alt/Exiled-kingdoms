@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You rescued my daughter! She told me of your heroic quest. As a reward, please accept one of our family heirlooms. I can offer you a [BLUE]Short sword of Frost[], or a [BLUE]Ring of the Elements[].	Rescataste a mi hija! Esta en casa y a salvo. Estoy tan feliz de tenerla de vuelta! Como recompensa, escoge uno de los objetos mágicos de mi familia: [BLUE]Espada corta de Escarcha[], o [BLUE]Anillo de los elementos[].	6	VariableEqual#find_constanze,20	
+1	Q	I see, still no news about Constanze. This is terrible.	Ya veo, sin noticias de Constanze. Es terrible.	0	"VariableGreater#find_constanze,9;VariableLower#find_constanze,100"	
+1	Q	Thank you again, stranger. Very soon I will be trading once more, and I will be glad to offer you my best prices!	Gracias de nuevo, viajero. Pronto abriré de nuevo el negocio, y estaré encantada de ofrecerte los mejores precios	0	VariableEqual#find_constanze,100	
+1	Q	I am sorry, but shop is closed. My daughter Constanze is missing... By the Gods, I can't even sleep at nights. I am losing my sanity.	Los iento pero la tienda está cerrada. Mi hija Constanze ha desaparecido... Por los Dioses, no puedo ni dormir por las noches! Voy a perder la razón.	2		
+2	A	I don't care.	No me importa.	0		
+2	A	Are you in need of help? Because I am looking for a job.	Necesitas ayuda? Porque busco algún trabajo.	3		
+2	A	By the Gods, a missing girl? I will help you, tell me what happened.	Por los Dioses, una chica desaparecida? Te ayudaré, dime qué ha ocurrido.	3		
+3	Q	Constanze is about your age, a very capable young woman which can defend herself. She went south to New Garand a week ago to purchase herbs, but she never came back! If you can find her, or what... happened to her, I will forever be in your debt, adventurer.	constanze es más o menos de tu edad, una chica despierta y capaz de cuidar de si misma. Hace una semana salió hacia New Garand a comprar hierbas, pero nunca regresó! Si puedes encontrarla o... Al menos averiguar qué le ocurrió, estaría para siempre en deuda contigo, aventurero.	4		
+4	A	I will investigate and find her, if she is still alive	Investigaré, y si está viva, la encontraré.	5		
+4	A	I am sorry but I can't afford to look for her... I don't even know these lands.	Lo siento pero no puedo permitirme buscarla... Soy nuevo y ni conozco la zona.	0		
+5	Q	Thanks, stranger, I will await your news!	Gracias forastero! Esperaré tus noticias.	0		SetVariable#find_constanze,10
+6	A	I choose the short sword	Escojo la espada corta	7		"GainItem#582;GainXP#400;SetVariable#find_constanze,100;IncVariable#REP_town_kingsbridge,7;IncVariable#REP_varsilia,4"
+6	A	I choose the ring	Escojo el anillo	7		"GainItem#3002;GainXP#400;SetVariable#find_constanze,100;IncVariable#REP_town_kingsbridge,7;IncVariable#REP_varsilia,4"
+7	Q	It's all yours. And I'll make sure everyone knows of your good deed!	Toma. Y me aseguraré de que todo el mundo sepa que eres un héroe	0		

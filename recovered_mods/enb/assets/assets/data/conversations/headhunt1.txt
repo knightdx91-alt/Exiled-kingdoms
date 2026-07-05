@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hold it right there! Present your gear for inspection. We're catching a dangerous bandit. [BLUE](A heavily armed squad is blocking your path.)[]		2	VariableLower#TMP_hhead1,1	SetVariable#TMP_hhead1,1
+2	A	You got some suspicious faces, mates. There will be no search.		3		
+2	A	[BLUE](Get out before it's too late)[]		9		
+3	Q	You're a keen observer...[BLUE](The squad prepared for battle)[] But that's not gonna save you. Guys, let's get our money's worth!		4		
+4	A	You leave me no choice...[RED](With wild shouts, rush out to attack.)[]		0		"NPCHostile#robber2;NPCHostile#robber_boss2"
+4	A	Wait wait wait... Can we make a deal? I have money!		6			PER#2
+6	Q	We're professionals. We'll take the money off your corpse.		7		
+7	A	Well....The deal fell through....[RED](Prepare for a fight)[]		0		"NPCHostile#robber2;NPCHostile#robber_boss2"
+9	Q	[BLUE](You hear the bandits screaming behind you.)[] He's trying to escape! Catch and kill! Quickly, quickly!		0		"NPCHostile#robber2;NPCHostile#robber_boss2"

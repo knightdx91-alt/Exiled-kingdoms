@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You can open the chest with the key.		2	VariableEqual#dropsemen,1	
+1	Q	The chest is empty.		0	VariableEqual#dropsemen,2	
+1	Q	The chest is locked.		0		
+2	A	Take everything out of the chest.		0		"RecoverInventory#;SetVariable#dropsemen,2;GainItem#7607"
+2	A	Not yet.		0		

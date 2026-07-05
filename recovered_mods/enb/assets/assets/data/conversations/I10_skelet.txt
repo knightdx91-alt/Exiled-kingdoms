@@ -1,0 +1,9 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Underneath the corpse, you notice a tattered book.)[]		2		
+2	A	Flip through the book		3	VariableLower#dnev1,1	"GainXP#5;SetVariable#dnev1,1"
+2	A	Go		0		
+3	Q	[BLUE](The book almost falls apart in your hands. It appears to be the diary of an adventurer. You can make out some of the sentences)[]		4		
+4	A	Keep scrolling through the diary		5		
+5	Q	.Iz..Re....a with a detachment....Lannegar, further went alone....g..ah...Ambush go.l..nov...driven into a cave. I can't find a way out.... went there is nothing there...walls...howling creatures.... Damn green bastards...I won't survive...that....Theatre her .....loved....[BLUE](The remaining pages are stuck together with blood.)[]		6		
+6	A	Take the diary with you		0		"SetVariable#tearalove,10;GainItem#7605;SetVariable#dnev2,1"
+6	A	Throw the diary back on the corpse		0		

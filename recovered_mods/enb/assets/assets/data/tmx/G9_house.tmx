@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="46">
+ <properties>
+  <property name="maxlight" value="80"/>
+  <property name="music" value="gloom"/>
+  <property name="name" value="House Djeck"/>
+  <property name="name_ES" value="House Djeck"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="town_objexts2.tsx"/>
+ <tileset firstgid="313" source="dungeon.tsx"/>
+ <tileset firstgid="553" source="indoor walls1.tsx"/>
+ <tileset firstgid="665" source="town_objexts4.tsx"/>
+ <layer id="1" name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJAEAIA0F7t/FrQXx4KDOQ9yYCgI2yMX19ff0L/cqnab/7ABUPMP5Gnw==
+  </data>
+ </layer>
+ <layer id="2" name="ground2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztz6ERACAMA8AeCzIhEubE1sNRwb+MSRIBANwyWl1fT/l8vKPS+ugrAJzYGQUC3Q==
+  </data>
+ </layer>
+ <layer id="3" name="scenery" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzQEJAAAIA7B3t7gpDoJbgSUAAB3z/AeASxaUeQEH
+  </data>
+ </layer>
+ <layer id="4" name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBSBARMDgy4Qa0NpYrAhE/Xs1wOa9QuNL8XIwCDDCOELQmlJRlQ11LQfF98aiG2Q5HYyUd9+LSz225KohxKgB41TZD4xeqhpvwwjdjlpHOK0jH9a6cEFyIlLase/JI5wRgYydMp/tNKDCxgBzdIkUL7BykiYOn0q2o8N4CuTRsEoGAWjYLAAAG3lDH8=
+  </data>
+ </layer>
+ <layer id="5" name="roofs" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <objectgroup id="6" name="data">
+  <object id="1" name="entry from farmlands" type="entry" gid="1" x="723.833" y="657.5" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="43" name="kult" type="conversation" gid="5" x="631" y="566.668" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#ktrup1,1"/>
+    <property name="conversation" value="G9_kult_trup"/>
+    <property name="icon" value="kultist"/>
+    <property name="name" value="@KULTTRUP"/>
+   </properties>
+  </object>
+  <object id="23" name="dver" type="conversation" gid="5" x="735.25" y="735.417" width="64" height="64">
+   <properties>
+    <property name="conversation" value="G9_housdver"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="29" name="emp" type="mapeffect" gid="5" x="592.417" y="566.917" width="64" height="64">
+   <properties>
+    <property name="id" value="emp2"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="trap_emp1"/>
+   </properties>
+  </object>
+  <object id="41" name="emp" type="mapeffect" gid="5" x="663.416" y="562.583" width="64" height="64">
+   <properties>
+    <property name="id" value="emp2"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="trap_emp1"/>
+   </properties>
+  </object>
+  <object id="42" name="emp" type="mapeffect" gid="5" x="625.416" y="534.251" width="64" height="64">
+   <properties>
+    <property name="id" value="emp2"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="trap_emp1"/>
+   </properties>
+  </object>
+  <object id="40" name="emp" type="mapeffect" gid="5" x="634.249" y="605.417" width="64" height="64">
+   <properties>
+    <property name="id" value="emp2"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="trap_emp1"/>
+   </properties>
+  </object>
+  <object id="17" name="rat" type="spawn" gid="3" x="724" y="558.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#pau,1"/>
+    <property name="spawn" value="giant_rat"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="45" name="prizrac" type="spawn" gid="3" x="695.25" y="569.417" width="64" height="64">
+   <properties>
+    <property name="conversation" value="G9_bill"/>
+    <property name="spawn" value="bill"/>
+    <property name="tag" value="bill"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="sold" type="spawn" gid="3" x="781.667" y="598.334" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="omon"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="31" name="captain" type="spawn" gid="3" x="747.333" y="635.334" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1;VariableLower#omon,9"/>
+    <property name="spawn" value="human_captain2"/>
+    <property name="tag" value="omon1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="32" name="soldarch" type="spawn" gid="3" x="595.333" y="455.334" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="human_archer1"/>
+    <property name="tag" value="omon"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="33" name="sold" type="spawn" gid="3" x="859" y="582.334" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="omon"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="18" name="rat" type="spawn" gid="3" x="564" y="586.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#pau,1"/>
+    <property name="spawn" value="giant_rat"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="19" name="spider" type="spawn" gid="3" x="705" y="513.666" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#pau,1"/>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="21" name="spider" type="spawn" gid="3" x="870.667" y="526.666" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#pau,1"/>
+    <property name="spawn" value="spider_monstruous"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="34" name="omon1" type="trigger" x="691" y="357.333" width="34.9997" height="380">
+   <properties>
+    <property name="actions" value="SetVariable#omon1,1;StartConversation#omon1,G9_omon1"/>
+    <property name="conditions" value="VariableLower#omon1,1;NPCInArea#omon1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

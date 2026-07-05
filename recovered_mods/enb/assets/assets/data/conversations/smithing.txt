@@ -1,0 +1,612 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Blacksmithing)[] Here you can strengthen any weapon. Weapon sharpening at +1 is available immediately, at +2 you need to level 31 Blacksmithing, at +3 from level 71 Blacksmithing. [RED](If you have too many weapons (More than 4) and gems in your inventory, the sharpening menu may not be able to fit all the rows in the sharpening menu)[]		2		
+2	A	Sharpen the weapon to +1		3		
+2	A	Sharpen the weapon to +2		7	VariableGreater#REP_smithing,30	
+2	A	Sharpen the weapon to +3		11	VariableGreater#REP_smithing,70	
+2	A	Retrieved from		0		
+3	Q	In order to sharpen weapons you need small gems. Rubies for one-handed weapons, Sapphires for two-handed weapons and Emeralds for bows, staffs and wands. You can also check out the vault here.		4		
+4	A	Sharpen a weapon (Make sure the weapon is in your inventory)		5		
+4	A	Open the vault		1		OpenVault#
+4	A	Back		1		
+5	Q	Reinforce the weapons:		6		
+6	A	Goblin Flesh-Cutter+1		0	PlayerHasItem#201;PlayerHasItem#2001	LoseItem#2001;LoseItem#201;GainItem#7016;IncVariable#REP_smithing,1
+6	A	Thief's Blade+1		0	PlayerHasItem#203;PlayerHasItem#2001	LoseItem#2001;LoseItem#203;GainItem#7017;IncVariable#REP_smithing,1
+6	A	Sharp Orc Knife+1		0	PlayerHasItem#204;PlayerHasItem#2001	LoseItem#2001;LoseItem#204;GainItem#7018;IncVariable#REP_smithing,1
+6	A	Bone Shiv+1		0	PlayerHasItem#205;PlayerHasItem#2001	LoseItem#2001;LoseItem#205;GainItem#7019;IncVariable#REP_smithing,1
+6	A	Troll Cleaver+1		0	PlayerHasItem#211;PlayerHasItem#2001	LoseItem#2001;LoseItem#211;GainItem#7020;IncVariable#REP_smithing,1
+6	A	Scepter of the Underworld+1		0	PlayerHasItem#360;PlayerHasItem#2002	LoseItem#2002;LoseItem#360;GainItem#7021;IncVariable#REP_smithing,1
+6	A	Wand of the Arcanist+1		0	PlayerHasItem#361;PlayerHasItem#2002	LoseItem#2002;LoseItem#361;GainItem#7022;IncVariable#REP_smithing,1
+6	A	Staff of the Arcanist+1		0	PlayerHasItem#362;PlayerHasItem#2002	LoseItem#2002;LoseItem#362;GainItem#7023;IncVariable#REP_smithing,1
+6	A	Branch of the Holy Tree+1		0	PlayerHasItem#363;PlayerHasItem#2002	LoseItem#2002;LoseItem#363;GainItem#7024;IncVariable#REP_smithing,1
+6	A	Staff of the Traveller+1		0	PlayerHasItem#364;PlayerHasItem#2002	LoseItem#2002;LoseItem#364;GainItem#7025;IncVariable#REP_smithing,1
+6	A	Staff of Impact+1		0	PlayerHasItem#365;PlayerHasItem#2002	LoseItem#2002;LoseItem#365;GainItem#7026;IncVariable#REP_smithing,1
+6	A	Staff of the Dead Kings+1		0	PlayerHasItem#366;PlayerHasItem#2002	LoseItem#2002;LoseItem#366;GainItem#7027;IncVariable#REP_smithing,1
+6	A	Wand of Power+1		0	PlayerHasItem#367;PlayerHasItem#2002	LoseItem#2002;LoseItem#367;GainItem#7028;IncVariable#REP_smithing,1
+6	A	Crystallized Wand+1		0	PlayerHasItem#368;PlayerHasItem#2002	LoseItem#2002;LoseItem#368;GainItem#7029;IncVariable#REP_smithing,1
+6	A	Staff of Wonders+1		0	PlayerHasItem#369;PlayerHasItem#2002	LoseItem#2002;LoseItem#369;GainItem#7030;IncVariable#REP_smithing,1
+6	A	Willow Wand+1		0	PlayerHasItem#370;PlayerHasItem#2002	LoseItem#2002;LoseItem#370;GainItem#7031;IncVariable#REP_smithing,1
+6	A	Oak Wand+1		0	PlayerHasItem#371;PlayerHasItem#2002	LoseItem#2002;LoseItem#371;GainItem#7032;IncVariable#REP_smithing,1
+6	A	Wand of Scorching+1		0	PlayerHasItem#372;PlayerHasItem#2002	LoseItem#2002;LoseItem#372;GainItem#7033;IncVariable#REP_smithing,1
+6	A	Icy Wand+1		0	PlayerHasItem#373;PlayerHasItem#2002	LoseItem#2002;LoseItem#373;GainItem#7034;IncVariable#REP_smithing,1
+6	A	Batrax Wand+1		0	PlayerHasItem#374;PlayerHasItem#2002	LoseItem#2002;LoseItem#374;GainItem#7035;IncVariable#REP_smithing,1
+6	A	Acidspitter+1		0	PlayerHasItem#375;PlayerHasItem#2002	LoseItem#2002;LoseItem#375;GainItem#7036;IncVariable#REP_smithing,1
+6	A	Polarized Staff+1		0	PlayerHasItem#376;PlayerHasItem#2002	LoseItem#2002;LoseItem#376;GainItem#7037;IncVariable#REP_smithing,1
+6	A	Staff of Force+1		0	PlayerHasItem#380;PlayerHasItem#2002	LoseItem#2002;LoseItem#380;GainItem#7038;IncVariable#REP_smithing,1
+6	A	Caduceus of Scorching+1		0	PlayerHasItem#381;PlayerHasItem#2002	LoseItem#2002;LoseItem#381;GainItem#7039;IncVariable#REP_smithing,1
+6	A	GreatStaff of Force+1		0	PlayerHasItem#382;PlayerHasItem#2002	LoseItem#2002;LoseItem#382;GainItem#7040;IncVariable#REP_smithing,1
+6	A	Vitriolic Staff+1		0	PlayerHasItem#383;PlayerHasItem#2002	LoseItem#2002;LoseItem#383;GainItem#7041;IncVariable#REP_smithing,1
+6	A	Staff of the Seas+1		0	PlayerHasItem#384;PlayerHasItem#2002	LoseItem#2002;LoseItem#384;GainItem#7042;IncVariable#REP_smithing,1
+6	A	Wand of Storms+1		0	PlayerHasItem#385;PlayerHasItem#2002	LoseItem#2002;LoseItem#385;GainItem#7043;IncVariable#REP_smithing,1
+6	A	Tolassian Wand+1		0	PlayerHasItem#386;PlayerHasItem#2002	LoseItem#2002;LoseItem#386;GainItem#7044;IncVariable#REP_smithing,1
+6	A	Tolassian Greatstaff+1		0	PlayerHasItem#387;PlayerHasItem#2002	LoseItem#2002;LoseItem#387;GainItem#7045;IncVariable#REP_smithing,1
+6	A	Staff of Storms+1		0	PlayerHasItem#388;PlayerHasItem#2002	LoseItem#2002;LoseItem#388;GainItem#7046;IncVariable#REP_smithing,1
+6	A	Imperial Battlemage Wand+1		0	PlayerHasItem#389;PlayerHasItem#2002	LoseItem#2002;LoseItem#389;GainItem#7047;IncVariable#REP_smithing,1
+6	A	Rod of Incineration+1		0	PlayerHasItem#390;PlayerHasItem#2002	LoseItem#2002;LoseItem#390;GainItem#7048;IncVariable#REP_smithing,1
+6	A	Elm Wand+1		0	PlayerHasItem#391;PlayerHasItem#2002	LoseItem#2002;LoseItem#391;GainItem#7049;IncVariable#REP_smithing,1
+6	A	Staff of Mighty Missiles+1		0	PlayerHasItem#392;PlayerHasItem#2002	LoseItem#2002;LoseItem#392;GainItem#7050;IncVariable#REP_smithing,1
+6	A	Magma Greatstaff+1		0	PlayerHasItem#393;PlayerHasItem#2002	LoseItem#2002;LoseItem#393;GainItem#7051;IncVariable#REP_smithing,1
+6	A	First Winter+1		0	PlayerHasItem#394;PlayerHasItem#2002	LoseItem#2002;LoseItem#394;GainItem#7052;IncVariable#REP_smithing,1
+6	A	Invisible Fist+1		0	PlayerHasItem#395;PlayerHasItem#2002	LoseItem#2002;LoseItem#395;GainItem#7053;IncVariable#REP_smithing,1
+6	A	The Corruptor+1		0	PlayerHasItem#396;PlayerHasItem#2002	LoseItem#2002;LoseItem#396;GainItem#7054;IncVariable#REP_smithing,1
+6	A	Tesla Emitter+1		0	PlayerHasItem#398;PlayerHasItem#2002	LoseItem#2002;LoseItem#398;GainItem#7055;IncVariable#REP_smithing,1
+6	A	Tesla Rod+1		0	PlayerHasItem#399;PlayerHasItem#2002	LoseItem#2002;LoseItem#399;GainItem#7056;IncVariable#REP_smithing,1
+6	A	Iron Dagger+1		0	PlayerHasItem#501;PlayerHasItem#2001	LoseItem#2001;LoseItem#501;GainItem#7057;IncVariable#REP_smithing,1
+6	A	Iron Shortsword+1		0	PlayerHasItem#502;PlayerHasItem#2001	LoseItem#2001;LoseItem#502;GainItem#7058;IncVariable#REP_smithing,1
+6	A	Iron Longsword+1		0	PlayerHasItem#503;PlayerHasItem#2001	LoseItem#2001;LoseItem#503;GainItem#7059;IncVariable#REP_smithing,1
+6	A	Iron Greatsword+1		0	PlayerHasItem#504;PlayerHasItem#2003	LoseItem#2003;LoseItem#504;GainItem#7060;IncVariable#REP_smithing,1
+6	A	Iron Mace+1		0	PlayerHasItem#505;PlayerHasItem#2001	LoseItem#2001;LoseItem#505;GainItem#7061;IncVariable#REP_smithing,1
+6	A	Iron Hammer+1		0	PlayerHasItem#506;PlayerHasItem#2001	LoseItem#2001;LoseItem#506;GainItem#7062;IncVariable#REP_smithing,1
+6	A	Iron Maul+1		0	PlayerHasItem#507;PlayerHasItem#2003	LoseItem#2003;LoseItem#507;GainItem#7063;IncVariable#REP_smithing,1
+6	A	Iron Axe+1		0	PlayerHasItem#508;PlayerHasItem#2001	LoseItem#2001;LoseItem#508;GainItem#7064;IncVariable#REP_smithing,1
+6	A	Iron Greataxe+1		0	PlayerHasItem#509;PlayerHasItem#2003	LoseItem#2003;LoseItem#509;GainItem#7065;IncVariable#REP_smithing,1
+6	A	Steel Dagger+1		0	PlayerHasItem#521;PlayerHasItem#2001	LoseItem#2001;LoseItem#521;GainItem#7066;IncVariable#REP_smithing,1
+6	A	Steel Shortsword+1		0	PlayerHasItem#522;PlayerHasItem#2001	LoseItem#2001;LoseItem#522;GainItem#7067;IncVariable#REP_smithing,1
+6	A	Steel Longsword+1		0	PlayerHasItem#523;PlayerHasItem#2001	LoseItem#2001;LoseItem#523;GainItem#7068;IncVariable#REP_smithing,1
+6	A	Steel Greatsword+1		0	PlayerHasItem#524;PlayerHasItem#2003	LoseItem#2003;LoseItem#524;GainItem#7069;IncVariable#REP_smithing,1
+6	A	Steel Mace+1		0	PlayerHasItem#525;PlayerHasItem#2001	LoseItem#2001;LoseItem#525;GainItem#7070;IncVariable#REP_smithing,1
+6	A	Steel Hammer+1		0	PlayerHasItem#526;PlayerHasItem#2001	LoseItem#2001;LoseItem#526;GainItem#7071;IncVariable#REP_smithing,1
+6	A	Steel Maul+1		0	PlayerHasItem#527;PlayerHasItem#2003	LoseItem#2003;LoseItem#527;GainItem#7072;IncVariable#REP_smithing,1
+6	A	Steel Axe+1		0	PlayerHasItem#528;PlayerHasItem#2001	LoseItem#2001;LoseItem#528;GainItem#7073;IncVariable#REP_smithing,1
+6	A	Steel Greataxe+1		0	PlayerHasItem#529;PlayerHasItem#2003	LoseItem#2003;LoseItem#529;GainItem#7074;IncVariable#REP_smithing,1
+6	A	Bluesteel Dagger+1		0	PlayerHasItem#531;PlayerHasItem#2001	LoseItem#2001;LoseItem#531;GainItem#7075;IncVariable#REP_smithing,1
+6	A	Bluesteel Shortsword+1		0	PlayerHasItem#532;PlayerHasItem#2001	LoseItem#2001;LoseItem#532;GainItem#7076;IncVariable#REP_smithing,1
+6	A	Bluesteel Longsword+1		0	PlayerHasItem#533;PlayerHasItem#2001	LoseItem#2001;LoseItem#533;GainItem#7077;IncVariable#REP_smithing,1
+6	A	Bluesteel Greatsword+1		0	PlayerHasItem#534;PlayerHasItem#2003	LoseItem#2003;LoseItem#534;GainItem#7078;IncVariable#REP_smithing,1
+6	A	Bluesteel Mace+1		0	PlayerHasItem#535;PlayerHasItem#2001	LoseItem#2001;LoseItem#535;GainItem#7079;IncVariable#REP_smithing,1
+6	A	Bluesteel Hammer+1		0	PlayerHasItem#536;PlayerHasItem#2001	LoseItem#2001;LoseItem#536;GainItem#7080;IncVariable#REP_smithing,1
+6	A	Bluesteel Maul+1		0	PlayerHasItem#537;PlayerHasItem#2003	LoseItem#2003;LoseItem#537;GainItem#7081;IncVariable#REP_smithing,1
+6	A	Bluesteel Axe+1		0	PlayerHasItem#538;PlayerHasItem#2001	LoseItem#2001;LoseItem#538;GainItem#7082;IncVariable#REP_smithing,1
+6	A	Bluesteel Greataxe+1		0	PlayerHasItem#539;PlayerHasItem#2003	LoseItem#2003;LoseItem#539;GainItem#7083;IncVariable#REP_smithing,1
+6	A	Bonegrinder+1		0	PlayerHasItem#540;PlayerHasItem#2003	LoseItem#2003;LoseItem#540;GainItem#7084;IncVariable#REP_smithing,1
+6	A	Gurguth's Maul+1		0	PlayerHasItem#541;PlayerHasItem#2003	LoseItem#2003;LoseItem#541;GainItem#7085;IncVariable#REP_smithing,1
+6	A	Adamantite Shortsword+1		0	PlayerHasItem#552;PlayerHasItem#2001	LoseItem#2001;LoseItem#552;GainItem#7086;IncVariable#REP_smithing,1
+6	A	Adamantite Longsword+1		0	PlayerHasItem#553;PlayerHasItem#2001	LoseItem#2001;LoseItem#553;GainItem#7087;IncVariable#REP_smithing,1
+6	A	Adamantite Greatsword+1		0	PlayerHasItem#554;PlayerHasItem#2003	LoseItem#2003;LoseItem#554;GainItem#7088;IncVariable#REP_smithing,1
+6	A	Vulcan Dagger+1		0	PlayerHasItem#571;PlayerHasItem#2001	LoseItem#2001;LoseItem#571;GainItem#7089;IncVariable#REP_smithing,1
+6	A	Shock Dagger+1		0	PlayerHasItem#572;PlayerHasItem#2001	LoseItem#2001;LoseItem#572;GainItem#7090;IncVariable#REP_smithing,1
+6	A	Dagger of Corrosion+1		0	PlayerHasItem#573;PlayerHasItem#2001	LoseItem#2001;LoseItem#573;GainItem#7091;IncVariable#REP_smithing,1
+6	A	Dagger of Ice+1		0	PlayerHasItem#574;PlayerHasItem#2001	LoseItem#2001;LoseItem#574;GainItem#7092;IncVariable#REP_smithing,1
+6	A	Dagger of Poison+1		0	PlayerHasItem#575;PlayerHasItem#2001	LoseItem#2001;LoseItem#575;GainItem#7093;IncVariable#REP_smithing,1
+6	A	Bluesteel Poisonous Dagger+1		0	PlayerHasItem#576;PlayerHasItem#2001	LoseItem#2001;LoseItem#576;GainItem#7094;IncVariable#REP_smithing,1
+6	A	Deathclaw+1		0	PlayerHasItem#577;PlayerHasItem#2001	LoseItem#2001;LoseItem#577;GainItem#7095;IncVariable#REP_smithing,1
+6	A	Hunter's Fang+1		0	PlayerHasItem#578;PlayerHasItem#2001	LoseItem#2001;LoseItem#578;GainItem#7096;IncVariable#REP_smithing,1
+6	A	Beastgrinder+1		0	PlayerHasItem#579;PlayerHasItem#2001	LoseItem#2001;LoseItem#579;GainItem#7097;IncVariable#REP_smithing,1
+6	A	Sword of Shock+1		0	PlayerHasItem#580;PlayerHasItem#2001	LoseItem#2001;LoseItem#580;GainItem#7098;IncVariable#REP_smithing,1
+6	A	Icy Greatsword+1		0	PlayerHasItem#581;PlayerHasItem#2003	LoseItem#2003;LoseItem#581;GainItem#7099;IncVariable#REP_smithing,1
+6	A	Shortsword of Frost+1		0	PlayerHasItem#582;PlayerHasItem#2001	LoseItem#2001;LoseItem#582;GainItem#7100;IncVariable#REP_smithing,1
+6	A	Sword of Flames+1		0	PlayerHasItem#583;PlayerHasItem#2001	LoseItem#2001;LoseItem#583;GainItem#7101;IncVariable#REP_smithing,1
+6	A	Winter Stone+1		0	PlayerHasItem#584;PlayerHasItem#2001	LoseItem#2001;LoseItem#584;GainItem#7102;IncVariable#REP_smithing,1
+6	A	Crushing Ember+1		0	PlayerHasItem#585;PlayerHasItem#2001	LoseItem#2001;LoseItem#585;GainItem#7103;IncVariable#REP_smithing,1
+6	A	Silvery Mace+1		0	PlayerHasItem#586;PlayerHasItem#2001	LoseItem#2001;LoseItem#586;GainItem#7104;IncVariable#REP_smithing,1
+6	A	Magma Shortsword+1		0	PlayerHasItem#587;PlayerHasItem#2001	LoseItem#2001;LoseItem#587;GainItem#7105;IncVariable#REP_smithing,1
+6	A	Sir Mason's Longsword+1		0	PlayerHasItem#588;PlayerHasItem#2001	LoseItem#2001;LoseItem#588;GainItem#7106;IncVariable#REP_smithing,1
+6	A	Orcslicer+1		0	PlayerHasItem#589;PlayerHasItem#2001	LoseItem#2001;LoseItem#589;GainItem#7107;IncVariable#REP_smithing,1
+6	A	Cruelty+1		0	PlayerHasItem#590;PlayerHasItem#2003	LoseItem#2003;LoseItem#590;GainItem#7108;IncVariable#REP_smithing,1
+6	A	Thunder+1		0	PlayerHasItem#591;PlayerHasItem#2001	LoseItem#2001;LoseItem#591;GainItem#7109;IncVariable#REP_smithing,1
+6	A	Blood Thunder+1		0	PlayerHasItem#592;PlayerHasItem#2001	LoseItem#2001;LoseItem#592;GainItem#7110;IncVariable#REP_smithing,1
+6	A	Magma Longsword+1		0	PlayerHasItem#593;PlayerHasItem#2001	LoseItem#2001;LoseItem#593;GainItem#7111;IncVariable#REP_smithing,1
+6	A	Righteousness+1		0	PlayerHasItem#594;PlayerHasItem#2001	LoseItem#2001;LoseItem#594;GainItem#7112;IncVariable#REP_smithing,1
+6	A	Vulcan Maul+1		0	PlayerHasItem#595;PlayerHasItem#2003	LoseItem#2003;LoseItem#595;GainItem#7113;IncVariable#REP_smithing,1
+6	A	Icy Maul+1		0	PlayerHasItem#596;PlayerHasItem#2003	LoseItem#2003;LoseItem#596;GainItem#7114;IncVariable#REP_smithing,1
+6	A	Rancor+1		0	PlayerHasItem#597;PlayerHasItem#2003	LoseItem#2003;LoseItem#597;GainItem#7115;IncVariable#REP_smithing,1
+6	A	Corsair Falchion+1		0	PlayerHasItem#598;PlayerHasItem#2001	LoseItem#2001;LoseItem#598;GainItem#7116;IncVariable#REP_smithing,1
+6	A	Heavy Scimitar+1		0	PlayerHasItem#599;PlayerHasItem#2003	LoseItem#2003;LoseItem#599;GainItem#7117;IncVariable#REP_smithing,1
+6	A	Sacrificial Dagger+1		0	PlayerHasItem#600;PlayerHasItem#2001	LoseItem#2001;LoseItem#600;GainItem#7118;IncVariable#REP_smithing,1
+6	A	Short Bow+1		0	PlayerHasItem#601;PlayerHasItem#2002	LoseItem#2002;LoseItem#601;GainItem#7119;IncVariable#REP_smithing,1
+6	A	Hunting Bow+1		0	PlayerHasItem#602;PlayerHasItem#2002	LoseItem#2002;LoseItem#602;GainItem#7120;IncVariable#REP_smithing,1
+6	A	Oaken Bow+1		0	PlayerHasItem#603;PlayerHasItem#2002	LoseItem#2002;LoseItem#603;GainItem#7121;IncVariable#REP_smithing,1
+6	A	Hunter's Mark+1		0	PlayerHasItem#604;PlayerHasItem#2002	LoseItem#2002;LoseItem#604;GainItem#7122;IncVariable#REP_smithing,1
+6	A	Lightning Blade+1		0	PlayerHasItem#605;PlayerHasItem#2001	LoseItem#2001;LoseItem#605;GainItem#7123;IncVariable#REP_smithing,1
+6	A	Justice+1		0	PlayerHasItem#606;PlayerHasItem#2001	LoseItem#2001;LoseItem#606;GainItem#7124;IncVariable#REP_smithing,1
+6	A	Winter Wail+1		0	PlayerHasItem#607;PlayerHasItem#2001	LoseItem#2001;LoseItem#607;GainItem#7125;IncVariable#REP_smithing,1
+6	A	Minotaur Axe+1		0	PlayerHasItem#608;PlayerHasItem#2003	LoseItem#2003;LoseItem#608;GainItem#7126;IncVariable#REP_smithing,1
+6	A	Firesplitter+1		0	PlayerHasItem#609;PlayerHasItem#2001	LoseItem#2001;LoseItem#609;GainItem#7127;IncVariable#REP_smithing,1
+6	A	Primal Icicle+1		0	PlayerHasItem#610;PlayerHasItem#2001	LoseItem#2001;LoseItem#610;GainItem#7128;IncVariable#REP_smithing,1
+6	A	Stiletto+1		0	PlayerHasItem#611;PlayerHasItem#2001	LoseItem#2001;LoseItem#611;GainItem#7129;IncVariable#REP_smithing,1
+6	A	Devourer Sting+1		0	PlayerHasItem#612;PlayerHasItem#2001	LoseItem#2001;LoseItem#612;GainItem#7130;IncVariable#REP_smithing,1
+6	A	Ancient Fang+1		0	PlayerHasItem#613;PlayerHasItem#2001	LoseItem#2001;LoseItem#613;GainItem#7131;IncVariable#REP_smithing,1
+6	A	Icicle+1		0	PlayerHasItem#614;PlayerHasItem#2001	LoseItem#2001;LoseItem#614;GainItem#7132;IncVariable#REP_smithing,1
+6	A	Scimitar of Flames+1		0	PlayerHasItem#615;PlayerHasItem#2003	LoseItem#2003;LoseItem#615;GainItem#7133;IncVariable#REP_smithing,1
+6	A	Bone Maul+1		0	PlayerHasItem#616;PlayerHasItem#2003	LoseItem#2003;LoseItem#616;GainItem#7134;IncVariable#REP_smithing,1
+6	A	Bone Mace+1		0	PlayerHasItem#617;PlayerHasItem#2001	LoseItem#2001;LoseItem#617;GainItem#7135;IncVariable#REP_smithing,1
+6	A	Mystic Bone Mace+1		0	PlayerHasItem#618;PlayerHasItem#2001	LoseItem#2001;LoseItem#618;GainItem#7136;IncVariable#REP_smithing,1
+6	A	Lightning Falchion of Defense+1		0	PlayerHasItem#619;PlayerHasItem#2001	LoseItem#2001;LoseItem#619;GainItem#7137;IncVariable#REP_smithing,1
+6	A	Glacier Stone+1		0	PlayerHasItem#620;PlayerHasItem#2001	LoseItem#2001;LoseItem#620;GainItem#7138;IncVariable#REP_smithing,1
+6	A	Forest Lament+1		0	PlayerHasItem#621;PlayerHasItem#2001	LoseItem#2001;LoseItem#621;GainItem#7139;IncVariable#REP_smithing,1
+6	A	Demonclaw+1		0	PlayerHasItem#622;PlayerHasItem#2003	LoseItem#2003;LoseItem#622;GainItem#7140;IncVariable#REP_smithing,1
+6	A	Ancestral Blade of the Deer+1		0	PlayerHasItem#624;PlayerHasItem#2001	LoseItem#2001;LoseItem#624;GainItem#7142;IncVariable#REP_smithing,1
+6	A	Fiendish Dagger+1		0	PlayerHasItem#625;PlayerHasItem#2001	LoseItem#2001;LoseItem#625;GainItem#7143;IncVariable#REP_smithing,1
+6	A	Silver Bow+1		0	PlayerHasItem#700;PlayerHasItem#2002	LoseItem#2002;LoseItem#700;GainItem#7144;IncVariable#REP_smithing,1
+6	A	Silver Dagger+1		0	PlayerHasItem#701;PlayerHasItem#2001	LoseItem#2001;LoseItem#701;GainItem#7145;IncVariable#REP_smithing,1
+6	A	Silver Shortsword+1		0	PlayerHasItem#702;PlayerHasItem#2001	LoseItem#2001;LoseItem#702;GainItem#7146;IncVariable#REP_smithing,1
+6	A	Silver Longsword+1		0	PlayerHasItem#703;PlayerHasItem#2001	LoseItem#2001;LoseItem#703;GainItem#7147;IncVariable#REP_smithing,1
+6	A	Silver Greatsword+1		0	PlayerHasItem#704;PlayerHasItem#2003	LoseItem#2003;LoseItem#704;GainItem#7148;IncVariable#REP_smithing,1
+6	A	Silver Mace+1		0	PlayerHasItem#705;PlayerHasItem#2001	LoseItem#2001;LoseItem#705;GainItem#7149;IncVariable#REP_smithing,1
+6	A	Vulcan Bow+1		0	PlayerHasItem#708;PlayerHasItem#2002	LoseItem#2002;LoseItem#708;GainItem#7150;IncVariable#REP_smithing,1
+6	A	Lightning Axe+1		0	PlayerHasItem#709;PlayerHasItem#2001	LoseItem#2001;LoseItem#709;GainItem#7151;IncVariable#REP_smithing,1
+6	A	Lightning Greataxe+1		0	PlayerHasItem#710;PlayerHasItem#2003	LoseItem#2003;LoseItem#710;GainItem#7152;IncVariable#REP_smithing,1
+6	A	Greataxe of Falling Stars+1			PlayerHasItem#711;PlayerHasItem#2003	LoseItem#2003;LoseItem#711;GainItem#7153;IncVariable#REP_smithing,1
+6	A	Longsword of Falling Stars+1		0	PlayerHasItem#712;PlayerHasItem#2001	LoseItem#2001;LoseItem#712;GainItem#7154;IncVariable#REP_smithing,1
+6	A	Frost Bow+1		0	PlayerHasItem#713;PlayerHasItem#2002	LoseItem#2002;LoseItem#713;GainItem#7155;IncVariable#REP_smithing,1
+6	A	Executioner's Axe+1		0	PlayerHasItem#714;PlayerHasItem#2003	LoseItem#2003;LoseItem#714;GainItem#7156;IncVariable#REP_smithing,1
+6	A	Poisonous Bow+1		0	PlayerHasItem#715;PlayerHasItem#2002	LoseItem#2002;LoseItem#715;GainItem#7157;IncVariable#REP_smithing,1
+6	A	Poisonous Longbow+1		0	PlayerHasItem#716;PlayerHasItem#2002	LoseItem#2002;LoseItem#716;GainItem#7158;IncVariable#REP_smithing,1
+6	A	Sonnet+1		0	PlayerHasItem#717;PlayerHasItem#2001	LoseItem#2001;LoseItem#717;GainItem#7159;IncVariable#REP_smithing,1
+6	A	Ghostbane+1		0	PlayerHasItem#718;PlayerHasItem#2001	LoseItem#2001;LoseItem#718;GainItem#7160;IncVariable#REP_smithing,1
+6	A	Hammer of Corrosion+1		0	PlayerHasItem#719;PlayerHasItem#2001	LoseItem#2001;LoseItem#719;GainItem#7161;IncVariable#REP_smithing,1
+6	A	Maul of Corrosion+1		0	PlayerHasItem#720;PlayerHasItem#2003	LoseItem#2003;LoseItem#720;GainItem#7162;IncVariable#REP_smithing,1
+6	A	Jester's Bow+1		0	PlayerHasItem#721;PlayerHasItem#2002	LoseItem#2002;LoseItem#721;GainItem#7163;IncVariable#REP_smithing,1
+6	A	Despair+1		0	PlayerHasItem#722;PlayerHasItem#2001	LoseItem#2001;LoseItem#722;GainItem#7164;IncVariable#REP_smithing,1
+6	A	Maul of Garrak+1		0	PlayerHasItem#723;PlayerHasItem#2003	LoseItem#2003;LoseItem#723;GainItem#7165;IncVariable#REP_smithing,1
+6	A	Iron Golem Fist+1		0	PlayerHasItem#724;PlayerHasItem#2001	LoseItem#2001;LoseItem#724;GainItem#7166;IncVariable#REP_smithing,1
+6	A	Magma Axe+1		0	PlayerHasItem#725;PlayerHasItem#2001	LoseItem#2001;LoseItem#725;GainItem#7167;IncVariable#REP_smithing,1
+6	A	Soul Drinker+1		0	PlayerHasItem#726;PlayerHasItem#2003	LoseItem#2003;LoseItem#726;GainItem#7168;IncVariable#REP_smithing,1
+6	A	Soul Cleaver+1		0	PlayerHasItem#727;PlayerHasItem#2001	LoseItem#2001;LoseItem#727;GainItem#7169;IncVariable#REP_smithing,1
+6	A	Icy Claymore+1		0	PlayerHasItem#728;PlayerHasItem#2003	LoseItem#2003;LoseItem#728;GainItem#7170;IncVariable#REP_smithing,1
+6	A	Composite Bow+1		0	PlayerHasItem#729;PlayerHasItem#2002	LoseItem#2002;LoseItem#729;GainItem#7171;IncVariable#REP_smithing,1
+6	A	Assasin's Longbow+1		0	PlayerHasItem#730;PlayerHasItem#2002	LoseItem#2002;LoseItem#730;GainItem#7172;IncVariable#REP_smithing,1
+6	A	Maul of Desecration+1		0	PlayerHasItem#731;PlayerHasItem#2003	LoseItem#2003;LoseItem#731;GainItem#7173;IncVariable#REP_smithing,1
+6	A	Mist Hunter's Bow+1		0	PlayerHasItem#732;PlayerHasItem#2002	LoseItem#2002;LoseItem#732;GainItem#7174;IncVariable#REP_smithing,1
+6	A	Flaming Warhammer+1		0	PlayerHasItem#733;PlayerHasItem#2001	LoseItem#2001;LoseItem#733;GainItem#7175;IncVariable#REP_smithing,1
+6	A	Paladin's Longsword+1		0	PlayerHasItem#734;PlayerHasItem#2001	LoseItem#2001;LoseItem#734;GainItem#7176;IncVariable#REP_smithing,1
+6	A	Permafrost Greataxe+1		0	PlayerHasItem#735;PlayerHasItem#2003	LoseItem#2003;LoseItem#735;GainItem#7177;IncVariable#REP_smithing,1
+6	A	Imperial Trollhunter Bow+1		0	PlayerHasItem#736;PlayerHasItem#2002	LoseItem#2002;LoseItem#736;GainItem#7178;IncVariable#REP_smithing,1
+6	A	Wild Thunder+1		0	PlayerHasItem#737;PlayerHasItem#2003	LoseItem#2003;LoseItem#737;GainItem#7179;IncVariable#REP_smithing,1
+6	A	Axe of the Depths+1		0	PlayerHasItem#740;PlayerHasItem#2003	LoseItem#2003;LoseItem#740;GainItem#7180;IncVariable#REP_smithing,1
+6	A	Axe of the Minotaur Kings+1		0	PlayerHasItem#741;PlayerHasItem#2003	LoseItem#2003;LoseItem#741;GainItem#7181;IncVariable#REP_smithing,1
+6	A	Maul of Terror+1		0	PlayerHasItem#742;PlayerHasItem#2003	LoseItem#2003;LoseItem#742;GainItem#7182;IncVariable#REP_smithing,1
+6	A	Nanocarbon Sword+1		0	PlayerHasItem#750;PlayerHasItem#2001	LoseItem#2001;LoseItem#750;GainItem#7183;IncVariable#REP_smithing,1
+6	A	Pneumatic Mallet+1		0	PlayerHasItem#751;PlayerHasItem#2003	LoseItem#2003;LoseItem#751;GainItem#7184;IncVariable#REP_smithing,1
+6	A	Nanocarbon Scalpel+1		0	PlayerHasItem#752;PlayerHasItem#2001	LoseItem#2001;LoseItem#752;GainItem#7185;IncVariable#REP_smithing,1
+6	A	Ion Recurve+1		0	PlayerHasItem#753;PlayerHasItem#2002	LoseItem#2002;LoseItem#753;GainItem#7186;IncVariable#REP_smithing,1
+6	A	Wyrmslayer+1		0	PlayerHasItem#754;PlayerHasItem#2002	LoseItem#2002;LoseItem#754;GainItem#7187;IncVariable#REP_smithing,1
+6	A	Enchanted Vulcan Bow+1		0	PlayerHasItem#755;PlayerHasItem#2002	LoseItem#2002;LoseItem#755;GainItem#7188;IncVariable#REP_smithing,1
+6	A	Phantom Longsword+1		0	PlayerHasItem#756;PlayerHasItem#2001	LoseItem#2001;LoseItem#756;GainItem#7189;IncVariable#REP_smithing,1
+6	A	Queen's Heart+1		0	PlayerHasItem#757;PlayerHasItem#2001	LoseItem#2001;LoseItem#757;GainItem#7190;IncVariable#REP_smithing,1
+6	A	Wooden Club+1		0	PlayerHasItem#758;PlayerHasItem#2001	LoseItem#2001;LoseItem#758;GainItem#7191;IncVariable#REP_smithing,1
+6	A	Burning Club+1		0	PlayerHasItem#759;PlayerHasItem#2001	LoseItem#2001;LoseItem#759;GainItem#7192;IncVariable#REP_smithing,1
+6	A	Spirit Cleaver+1		0	PlayerHasItem#760;PlayerHasItem#2003	LoseItem#2003;LoseItem#760;GainItem#7193;IncVariable#REP_smithing,1
+6	A	Spirit Breaker+1		0	PlayerHasItem#761;PlayerHasItem#2001	LoseItem#2001;LoseItem#761;GainItem#7194;IncVariable#REP_smithing,1
+6	A	Midnight+1		0	PlayerHasItem#762;PlayerHasItem#2001	LoseItem#2001;LoseItem#762;GainItem#7195;IncVariable#REP_smithing,1
+6	A	Shadow Blade+1		0	PlayerHasItem#763;PlayerHasItem#2001	LoseItem#2001;LoseItem#763;GainItem#7196;IncVariable#REP_smithing,1
+6	A	Melporth's Sword+1		0	PlayerHasItem#764;PlayerHasItem#2001	LoseItem#2001;LoseItem#764;GainItem#7197;IncVariable#REP_smithing,1
+6	A	Silver Bow of Malan+1		0	PlayerHasItem#765;PlayerHasItem#2002	LoseItem#2002;LoseItem#765;GainItem#7198;IncVariable#REP_smithing,1
+6	A	Scimitar of the Wolf+1		0	PlayerHasItem#766;PlayerHasItem#2003	LoseItem#2003;LoseItem#766;GainItem#7199;IncVariable#REP_smithing,1
+6	A	Maul of Disease+1		0	PlayerHasItem#767;PlayerHasItem#2003	LoseItem#2003;LoseItem#767;GainItem#7200;IncVariable#REP_smithing,1
+6	A	Hammer of the White Priest+1		0	PlayerHasItem#768;PlayerHasItem#2001	LoseItem#2001;LoseItem#768;GainItem#7201;IncVariable#REP_smithing,1
+6	A	Screaming Mace+1		0	PlayerHasItem#769;PlayerHasItem#2001	LoseItem#2001;LoseItem#769;GainItem#7202;IncVariable#REP_smithing,1
+6	A	Vindicator+1		0	PlayerHasItem#770;PlayerHasItem#2003	LoseItem#2003;LoseItem#770;GainItem#7203;IncVariable#REP_smithing,1
+6	A	Skeletal Bow+1		0	PlayerHasItem#771;PlayerHasItem#2002	LoseItem#2002;LoseItem#771;GainItem#7204;IncVariable#REP_smithing,1
+6	A	Ghost Eye+1		0	PlayerHasItem#772;PlayerHasItem#2002	LoseItem#2002;LoseItem#772;GainItem#7205;IncVariable#REP_smithing,1
+6	A	Permafrost Bow+1		0	PlayerHasItem#773;PlayerHasItem#2002	LoseItem#2002;LoseItem#773;GainItem#7206;IncVariable#REP_smithing,1
+6	A	Lady's Eye+1		0	PlayerHasItem#774;PlayerHasItem#2002	LoseItem#2002;LoseItem#774;GainItem#7207;IncVariable#REP_smithing,1
+6	A	Lord's Fist+1		0	PlayerHasItem#775;PlayerHasItem#2001	LoseItem#2001;LoseItem#775;GainItem#7208;IncVariable#REP_smithing,1
+6	A	Hunter's Machete+1		0	PlayerHasItem#776;PlayerHasItem#2001	LoseItem#2001;LoseItem#776;GainItem#7209;IncVariable#REP_smithing,1
+6	A	Magma Dagger+1		0	PlayerHasItem#777;PlayerHasItem#2001	LoseItem#2001;LoseItem#777;GainItem#7210;IncVariable#REP_smithing,1
+6	A	Dancing Flame+1		0	PlayerHasItem#778;PlayerHasItem#2001	LoseItem#2001;LoseItem#778;GainItem#7211;IncVariable#REP_smithing,1
+6	A	Golden Wand+1		0	PlayerHasItem#779;PlayerHasItem#2002	LoseItem#2002;LoseItem#779;GainItem#7212;IncVariable#REP_smithing,1
+6	A	Back		3		
+7	Q	In order to sharpen weapons you need [BLUE](large)[] gems. Rubies for one-handed weapons, Sapphires for two-handed weapons and Emeralds for bows, staffs and wands. You can also check out the vault here.		8		
+8	A	Sharpen a weapon (Make sure the weapon is in your inventory)		9		
+8	A	Open the vault		1		OpenVault#
+8	A	Back		1		
+9	Q	Reinforce the weapon:		10		
+10	A	Goblin Flesh-Cutter+2		0	PlayerHasItem#7016;PlayerHasItem#2013	LoseItem#2013;LoseItem#7016;GainItem#7213;IncVariable#REP_smithing,1
+10	A	Thief's Blade+2		0	PlayerHasItem#7017;PlayerHasItem#2013	LoseItem#2013;LoseItem#7017;GainItem#7214;IncVariable#REP_smithing,1
+10	A	Sharp Orc Knife+2		0	PlayerHasItem#7018;PlayerHasItem#2013	LoseItem#2013;LoseItem#7018;GainItem#7215;IncVariable#REP_smithing,1
+10	A	Bone Shiv+2		0	PlayerHasItem#7019;PlayerHasItem#2013	LoseItem#2013;LoseItem#7019;GainItem#7216;IncVariable#REP_smithing,1
+10	A	Troll Cleaver+2		0	PlayerHasItem#7020;PlayerHasItem#2013	LoseItem#2013;LoseItem#7020;GainItem#7217;IncVariable#REP_smithing,1
+10	A	Scepter of the Underworld+2		0	PlayerHasItem#7021;PlayerHasItem#2012	LoseItem#2012;LoseItem#7021;GainItem#7218;IncVariable#REP_smithing,1
+10	A	Wand of the Arcanist+2		0	PlayerHasItem#7022;PlayerHasItem#2012	LoseItem#2012;LoseItem#7022;GainItem#7219;IncVariable#REP_smithing,1
+10	A	Staff of the Arcanist+2		0	PlayerHasItem#7023;PlayerHasItem#2012	LoseItem#2012;LoseItem#7023;GainItem#7220;IncVariable#REP_smithing,1
+10	A	Branch of the Holy Tree+2		0	PlayerHasItem#7024;PlayerHasItem#2012	LoseItem#2012;LoseItem#7024;GainItem#7221;IncVariable#REP_smithing,1
+10	A	Staff of the Traveller+2		0	PlayerHasItem#7025;PlayerHasItem#2012	LoseItem#2012;LoseItem#7025;GainItem#7222;IncVariable#REP_smithing,1
+10	A	Staff of Impact+2		0	PlayerHasItem#7026;PlayerHasItem#2012	LoseItem#2012;LoseItem#7026;GainItem#7223;IncVariable#REP_smithing,1
+10	A	Staff of the Dead Kings+2		0	PlayerHasItem#7027;PlayerHasItem#2012	LoseItem#2012;LoseItem#7027;GainItem#7224;IncVariable#REP_smithing,1
+10	A	Wand of Power+2		0	PlayerHasItem#7028;PlayerHasItem#2012	LoseItem#2012;LoseItem#7028;GainItem#7225;IncVariable#REP_smithing,1
+10	A	Crystallized Wand+2		0	PlayerHasItem#7029;PlayerHasItem#2012	LoseItem#2012;LoseItem#7029;GainItem#7226;IncVariable#REP_smithing,1
+10	A	Staff of Wonders+2		0	PlayerHasItem#7030;PlayerHasItem#2012	LoseItem#2012;LoseItem#7030;GainItem#7227;IncVariable#REP_smithing,1
+10	A	Willow Wand+2		0	PlayerHasItem#7031;PlayerHasItem#2012	LoseItem#2012;LoseItem#7031;GainItem#7228;IncVariable#REP_smithing,1
+10	A	Oak Wand+2		0	PlayerHasItem#7032;PlayerHasItem#2012	LoseItem#2012;LoseItem#7032;GainItem#7229;IncVariable#REP_smithing,1
+10	A	Wand of Scorching+2		0	PlayerHasItem#7033;PlayerHasItem#2012	LoseItem#2012;LoseItem#7033;GainItem#7230;IncVariable#REP_smithing,1
+10	A	Icy Wand+2		0	PlayerHasItem#7034;PlayerHasItem#2012	LoseItem#2012;LoseItem#7034;GainItem#7231;IncVariable#REP_smithing,1
+10	A	Batrax Wand+2		0	PlayerHasItem#7035;PlayerHasItem#2012	LoseItem#2012;LoseItem#7035;GainItem#7232;IncVariable#REP_smithing,1"
+10	A	Acidspitter+2		0	PlayerHasItem#7036;PlayerHasItem#2012	LoseItem#2012;LoseItem#7036;GainItem#7233;IncVariable#REP_smithing,1
+10	A	Polarized Staff+2		0	PlayerHasItem#7037;PlayerHasItem#2012	LoseItem#2012;LoseItem#7037;GainItem#7234;IncVariable#REP_smithing,1
+10	A	Staff of Force+2		0	PlayerHasItem#7038;PlayerHasItem#2012	LoseItem#2012;LoseItem#7038;GainItem#7235;IncVariable#REP_smithing,1
+10	A	Caduceus of Scorching+2		0	PlayerHasItem#7039;PlayerHasItem#2012	LoseItem#2012;LoseItem#7039;GainItem#7236;IncVariable#REP_smithing,1
+10	A	GreatStaff of Force+2		0	PlayerHasItem#7040;PlayerHasItem#2012	LoseItem#2012;LoseItem#7040;GainItem#7237;IncVariable#REP_smithing,1
+10	A	Vitriolic Staff+2		0	PlayerHasItem#7041;PlayerHasItem#2012	LoseItem#2012;LoseItem#7041;GainItem#7238;IncVariable#REP_smithing,1
+10	A	Staff of the Seas+2		0	PlayerHasItem#7042;PlayerHasItem#2012	LoseItem#2012;LoseItem#7042;GainItem#7239;IncVariable#REP_smithing,1
+10	A	Wand of Storms+2		0	PlayerHasItem#7043;PlayerHasItem#2012	LoseItem#2012;LoseItem#7043;GainItem#7240;IncVariable#REP_smithing,1
+10	A	Tolassian Wand+2		0	PlayerHasItem#7044;PlayerHasItem#2012	LoseItem#2012;LoseItem#7044;GainItem#7241;IncVariable#REP_smithing,1
+10	A	Tolassian Greatstaff+2		0	PlayerHasItem#7045;PlayerHasItem#2012	LoseItem#2012;LoseItem#7045;GainItem#7242;IncVariable#REP_smithing,1
+10	A	Staff of Storms+2		0	PlayerHasItem#7046;PlayerHasItem#2012	LoseItem#2012;LoseItem#7046;GainItem#7243;IncVariable#REP_smithing,1
+10	A	Imperial Battlemage Wand+2		0	PlayerHasItem#7047;PlayerHasItem#2012	LoseItem#2012;LoseItem#7047;GainItem#7244;IncVariable#REP_smithing,1
+10	A	Rod of Incineration+2		0	PlayerHasItem#7048;PlayerHasItem#2012	LoseItem#2012;LoseItem#7048;GainItem#7245;IncVariable#REP_smithing,1
+10	A	Elm Wand+2		0	PlayerHasItem#7049;PlayerHasItem#2012	LoseItem#2012;LoseItem#7049;GainItem#7246;IncVariable#REP_smithing,1
+10	A	Staff of Mighty Missiles+2		0	PlayerHasItem#7050;PlayerHasItem#2012	LoseItem#2012;LoseItem#7050;GainItem#7247;IncVariable#REP_smithing,1
+10	A	Magma Greatstaff+2		0	PlayerHasItem#7051;PlayerHasItem#2012	LoseItem#2012;LoseItem#7051;GainItem#7248;IncVariable#REP_smithing,1
+10	A	First Winter+2		0	PlayerHasItem#7052;PlayerHasItem#2012	LoseItem#2012;LoseItem#7052;GainItem#7249;IncVariable#REP_smithing,1
+10	A	Invisible Fist+2		0	PlayerHasItem#7053;PlayerHasItem#2012	LoseItem#2012;LoseItem#7053;GainItem#7250;IncVariable#REP_smithing,1
+10	A	The Corruptor+2		0	PlayerHasItem#7054;PlayerHasItem#2012	LoseItem#2012;LoseItem#7054;GainItem#7251;IncVariable#REP_smithing,1
+10	A	Tesla Emitter+2		0	PlayerHasItem#7055;PlayerHasItem#2012	LoseItem#2012;LoseItem#7055;GainItem#7252;IncVariable#REP_smithing,1
+10	A	Tesla Rod+2		0	PlayerHasItem#7056;PlayerHasItem#2012	LoseItem#2012;LoseItem#7056;GainItem#7253;IncVariable#REP_smithing,1
+10	A	Iron Dagger+2		0	PlayerHasItem#7057;PlayerHasItem#2013	LoseItem#2013;LoseItem#7057;GainItem#7254;IncVariable#REP_smithing,1
+10	A	Iron Shortsword+2		0	PlayerHasItem#7058;PlayerHasItem#2013	LoseItem#2013;LoseItem#7058;GainItem#7255;IncVariable#REP_smithing,1
+10	A	Iron Longsword+2		0	PlayerHasItem#7059;PlayerHasItem#2013	LoseItem#2013;LoseItem#7059;GainItem#7256;IncVariable#REP_smithing,1
+10	A	Iron Greatsword+2		0	PlayerHasItem#7060;PlayerHasItem#2014	LoseItem#2014;LoseItem#7060;GainItem#7257;IncVariable#REP_smithing,1
+10	A	Iron Mace+2		0	PlayerHasItem#7061;PlayerHasItem#2013	LoseItem#2013;LoseItem#7061;GainItem#7258;IncVariable#REP_smithing,1
+10	A	Iron Hammer+2		0	PlayerHasItem#7062;PlayerHasItem#2013	LoseItem#2013;LoseItem#7062;GainItem#7259;IncVariable#REP_smithing,1
+10	A	Iron Maul+2		0	PlayerHasItem#7063;PlayerHasItem#2014	LoseItem#2014;LoseItem#7063;GainItem#7260;IncVariable#REP_smithing,1
+10	A	Iron Axe+2		0	PlayerHasItem#7064;PlayerHasItem#2013	LoseItem#2013;LoseItem#7064;GainItem#7261;IncVariable#REP_smithing,1
+10	A	Iron Greataxe+2		0	PlayerHasItem#7065;PlayerHasItem#2014	LoseItem#2014;LoseItem#7065;GainItem#7262;IncVariable#REP_smithing,1
+10	A	Steel Dagger+2		0	PlayerHasItem#7066;PlayerHasItem#2013	LoseItem#2013;LoseItem#7066;GainItem#7263;IncVariable#REP_smithing,1
+10	A	Steel Shortsword+2		0	PlayerHasItem#7067;PlayerHasItem#2013	LoseItem#2013;LoseItem#7067;GainItem#7264;IncVariable#REP_smithing,1
+10	A	Steel Longsword+2		0	PlayerHasItem#7068;PlayerHasItem#2013	LoseItem#2013;LoseItem#7068;GainItem#7265;IncVariable#REP_smithing,1
+10	A	Steel Greatsword+2		0	PlayerHasItem#7069;PlayerHasItem#2014	LoseItem#2014;LoseItem#7069;GainItem#7266;IncVariable#REP_smithing,1
+10	A	Steel Mace+2		0	PlayerHasItem#7070;PlayerHasItem#2013	LoseItem#2013;LoseItem#7070;GainItem#7267;IncVariable#REP_smithing,1
+10	A	Steel Hammer+2		0	PlayerHasItem#7071;PlayerHasItem#2013	LoseItem#2013;LoseItem#7071;GainItem#7268;IncVariable#REP_smithing,1
+10	A	Steel Maul+2		0	PlayerHasItem#7072;PlayerHasItem#2014	LoseItem#2014;LoseItem#7072;GainItem#7269;IncVariable#REP_smithing,1
+10	A	Steel Axe+2		0	PlayerHasItem#7073;PlayerHasItem#2013	LoseItem#2013;LoseItem#7073;GainItem#7270;IncVariable#REP_smithing,1
+10	A	Steel Greataxe+2		0	PlayerHasItem#7074;PlayerHasItem#2014	LoseItem#2014;LoseItem#7074;GainItem#7271;IncVariable#REP_smithing,1
+10	A	Bluesteel Dagger+2		0	PlayerHasItem#7075;PlayerHasItem#2013	LoseItem#2013;LoseItem#7075;GainItem#7272;IncVariable#REP_smithing,1
+10	A	Bluesteel Shortsword+2		0	PlayerHasItem#7076;PlayerHasItem#2013	LoseItem#2013;LoseItem#7076;GainItem#7273;IncVariable#REP_smithing,1
+10	A	Bluesteel Longsword+2		0	PlayerHasItem#7077;PlayerHasItem#2013	LoseItem#2013;LoseItem#7077;GainItem#7274;IncVariable#REP_smithing,1
+10	A	Bluesteel Greatsword+2		0	PlayerHasItem#7078;PlayerHasItem#2014	LoseItem#2014;LoseItem#7078;GainItem#7275;IncVariable#REP_smithing,1
+10	A	Bluesteel Mace+2		0	PlayerHasItem#7079;PlayerHasItem#2013	LoseItem#2013;LoseItem#7079;GainItem#7276;IncVariable#REP_smithing,1
+10	A	Bluesteel Hammer+2		0	PlayerHasItem#7080;PlayerHasItem#2013	LoseItem#2013;LoseItem#7080;GainItem#7277;IncVariable#REP_smithing,1
+10	A	Bluesteel Maul+2		0	PlayerHasItem#7081;PlayerHasItem#2014	LoseItem#2014;LoseItem#7081;GainItem#7278;IncVariable#REP_smithing,1
+10	A	Bluesteel Axe+2		0	PlayerHasItem#7082;PlayerHasItem#2013	LoseItem#2013;LoseItem#7082;GainItem#7279;IncVariable#REP_smithing,1
+10	A	Bluesteel Greataxe+2		0	PlayerHasItem#7083;PlayerHasItem#2014	LoseItem#2014;LoseItem#7083;GainItem#7280;IncVariable#REP_smithing,1
+10	A	Bonegrinder+2		0	PlayerHasItem#7084;PlayerHasItem#2014	LoseItem#2014;LoseItem#7084;GainItem#7281;IncVariable#REP_smithing,1
+10	A	Gurguth's Maul+2		0	PlayerHasItem#7085;PlayerHasItem#2014	LoseItem#2014;LoseItem#7085;GainItem#7282;IncVariable#REP_smithing,1
+10	A	Adamantite Shortsword+2		0	PlayerHasItem#7086;PlayerHasItem#2013	LoseItem#2013;LoseItem#7086;GainItem#7283;IncVariable#REP_smithing,1
+10	A	Adamantite Longsword+2		0	PlayerHasItem#7087;PlayerHasItem#2013	LoseItem#2013;LoseItem#7087;GainItem#7284;IncVariable#REP_smithing,1
+10	A	Adamantite Greatsword+2		0	PlayerHasItem#7088;PlayerHasItem#2014	LoseItem#2014;LoseItem#7088;GainItem#7285;IncVariable#REP_smithing,1
+10	A	Vulcan Dagger+2		0	PlayerHasItem#7089;PlayerHasItem#2013	LoseItem#2013;LoseItem#7089;GainItem#7286;IncVariable#REP_smithing,1
+10	A	Shock Dagger+2		0	PlayerHasItem#7090;PlayerHasItem#2013	LoseItem#2013;LoseItem#7090;GainItem#7287;IncVariable#REP_smithing,1
+10	A	Dagger of Corrosion+2		0	PlayerHasItem#7091;PlayerHasItem#2013	LoseItem#2013;LoseItem#7091;GainItem#7288;IncVariable#REP_smithing,1
+10	A	Dagger of Ice+2		0	PlayerHasItem#7092;PlayerHasItem#2013	LoseItem#2013;LoseItem#7092;GainItem#7289;IncVariable#REP_smithing,1
+10	A	Dagger of Poison+2		0	PlayerHasItem#7093;PlayerHasItem#2013	LoseItem#2013;LoseItem#7093;GainItem#7290;IncVariable#REP_smithing,1
+10	A	Bluesteel Poisonous Dagger+2		0	PlayerHasItem#7094;PlayerHasItem#2013	LoseItem#2013;LoseItem#7094;GainItem#7291;IncVariable#REP_smithing,1
+10	A	Deathclaw+2		0	PlayerHasItem#7095;PlayerHasItem#2013	LoseItem#2013;LoseItem#7095;GainItem#7292;IncVariable#REP_smithing,1
+10	A	Hunter's Fang+2		0	PlayerHasItem#7096;PlayerHasItem#2013	LoseItem#2013;LoseItem#7096;GainItem#7293;IncVariable#REP_smithing,1
+10	A	Beastgrinder+2		0	PlayerHasItem#7097;PlayerHasItem#2013	LoseItem#2013;LoseItem#7097;GainItem#7294;IncVariable#REP_smithing,1
+10	A	Sword of Shock+2		0	PlayerHasItem#7098;PlayerHasItem#2013	LoseItem#2013;LoseItem#7098;GainItem#7295;IncVariable#REP_smithing,1
+10	A	Icy Greatsword+2		0	PlayerHasItem#7099;PlayerHasItem#2014	LoseItem#2014;LoseItem#7099;GainItem#7296;IncVariable#REP_smithing,1
+10	A	Shortsword of Frost+2		0	PlayerHasItem#7100;PlayerHasItem#2013	LoseItem#2013;LoseItem#7100;GainItem#7297;IncVariable#REP_smithing,1
+10	A	Sword of Flames+2		0	PlayerHasItem#7101;PlayerHasItem#2013	LoseItem#2013;LoseItem#7101;GainItem#7298;IncVariable#REP_smithing,1
+10	A	Winter Stone+2		0	PlayerHasItem#7102;PlayerHasItem#2013	LoseItem#2013;LoseItem#7102;GainItem#7299;IncVariable#REP_smithing,1
+10	A	Crushing Ember+2		0	PlayerHasItem#7103;PlayerHasItem#2013	LoseItem#2013;LoseItem#7103;GainItem#7300;IncVariable#REP_smithing,1
+10	A	Silvery Mace+2		0	PlayerHasItem#7104;PlayerHasItem#2013	LoseItem#2013;LoseItem#7104;GainItem#7301;IncVariable#REP_smithing,1
+10	A	Magma Shortsword+2		0	PlayerHasItem#7105;PlayerHasItem#2013	LoseItem#2013;LoseItem#7105;GainItem#7302;IncVariable#REP_smithing,1
+10	A	Sir Mason's Longsword+2		0	PlayerHasItem#7106;PlayerHasItem#2013	LoseItem#2013;LoseItem#7106;GainItem#7303;IncVariable#REP_smithing,1
+10	A	Orcslicer+2		0	PlayerHasItem#7107;PlayerHasItem#2013	LoseItem#2013;LoseItem#7107;GainItem#7304;IncVariable#REP_smithing,1
+10	A	Cruelty+2		0	PlayerHasItem#7108;PlayerHasItem#2014	LoseItem#2014;LoseItem#7108;GainItem#7305;IncVariable#REP_smithing,1
+10	A	Thunder+2		0	PlayerHasItem#7109;PlayerHasItem#2013	LoseItem#2013;LoseItem#7109;GainItem#7306;IncVariable#REP_smithing,1
+10	A	Blood Thunder+2		0	PlayerHasItem#7110;PlayerHasItem#2013	LoseItem#2013;LoseItem#7110;GainItem#7307;IncVariable#REP_smithing,1
+10	A	Magma Longsword+2		0	PlayerHasItem#7111;PlayerHasItem#2013	LoseItem#2013;LoseItem#7111;GainItem#7308;IncVariable#REP_smithing,1
+10	A	Righteousness+2		0	PlayerHasItem#7112;PlayerHasItem#2013	LoseItem#2013;LoseItem#7112;GainItem#7309;IncVariable#REP_smithing,1
+10	A	Vulcan Maul+2		0	PlayerHasItem#7113;PlayerHasItem#2014	LoseItem#2014;LoseItem#7113;GainItem#7310;IncVariable#REP_smithing,1
+10	A	Icy Maul+2		0	PlayerHasItem#7114;PlayerHasItem#2014	LoseItem#2014;LoseItem#7114;GainItem#7311;IncVariable#REP_smithing,1
+10	A	Rancor+2		0	PlayerHasItem#7115;PlayerHasItem#2014	LoseItem#2014;LoseItem#7115;GainItem#7312;IncVariable#REP_smithing,1
+10	A	Corsair Falchion+2		0	PlayerHasItem#7116;PlayerHasItem#2013	LoseItem#2013;LoseItem#7116;GainItem#7313;IncVariable#REP_smithing,1
+10	A	Heavy Scimitar+2		0	PlayerHasItem#7117;PlayerHasItem#2014	LoseItem#2014;LoseItem#7117;GainItem#7314;IncVariable#REP_smithing,1
+10	A	Sacrificial Dagger+2		0	PlayerHasItem#7118;PlayerHasItem#2013	LoseItem#2013;LoseItem#7118;GainItem#7315;IncVariable#REP_smithing,1
+10	A	Short Bow+2		0	PlayerHasItem#7119;PlayerHasItem#2012	LoseItem#2012;LoseItem#7119;GainItem#7316;IncVariable#REP_smithing,1
+10	A	Hunting Bow+2		0	PlayerHasItem#7120;PlayerHasItem#2012	LoseItem#2012;LoseItem#7120;GainItem#7317;IncVariable#REP_smithing,1
+10	A	Oaken Bow+2		0	PlayerHasItem#7121;PlayerHasItem#2012	LoseItem#2012;LoseItem#7121;GainItem#7318;IncVariable#REP_smithing,1
+10	A	Hunter's Mark+2		0	PlayerHasItem#7122;PlayerHasItem#2012	LoseItem#2012;LoseItem#7122;GainItem#7319;IncVariable#REP_smithing,1
+10	A	Lightning Blade+2		0	PlayerHasItem#7123;PlayerHasItem#2013	LoseItem#2013;LoseItem#7123;GainItem#7320;IncVariable#REP_smithing,1
+10	A	Justice+2		0	PlayerHasItem#7124;PlayerHasItem#2013	LoseItem#2013;LoseItem#7124;GainItem#7321;IncVariable#REP_smithing,1
+10	A	Winter Wail+2		0	PlayerHasItem#7125;PlayerHasItem#2013	LoseItem#2013;LoseItem#7125;GainItem#7322;IncVariable#REP_smithing,1
+10	A	Minotaur Axe+2		0	PlayerHasItem#7126;PlayerHasItem#2014	LoseItem#2014;LoseItem#7126;GainItem#7323;IncVariable#REP_smithing,1
+10	A	Firesplitter+2		0	PlayerHasItem#7127;PlayerHasItem#2013	LoseItem#2013;LoseItem#7127;GainItem#7324;IncVariable#REP_smithing,1
+10	A	Primal Icicle+2		0	PlayerHasItem#7128;PlayerHasItem#2013	LoseItem#2013;LoseItem#7128;GainItem#7325;IncVariable#REP_smithing,1
+10	A	Stiletto+2		0	PlayerHasItem#7129;PlayerHasItem#2013	LoseItem#2013;LoseItem#7129;GainItem#7326;IncVariable#REP_smithing,1
+10	A	Devourer Sting+2		0	PlayerHasItem#7130;PlayerHasItem#2013	LoseItem#2013;LoseItem#7130;GainItem#7327;IncVariable#REP_smithing,1
+10	A	Ancient Fang+2		0	PlayerHasItem#7131;PlayerHasItem#2013	LoseItem#2013;LoseItem#7131;GainItem#7328;IncVariable#REP_smithing,1
+10	A	Icicle+2		0	PlayerHasItem#7132;PlayerHasItem#2013	LoseItem#2013;LoseItem#7132;GainItem#7329;IncVariable#REP_smithing,1
+10	A	Scimitar of Flames+2		0	PlayerHasItem#7133;PlayerHasItem#2013	LoseItem#2013;LoseItem#7133;GainItem#7330;IncVariable#REP_smithing,1
+10	A	Bone Maul+2		0	PlayerHasItem#7134;PlayerHasItem#2014	LoseItem#2014;LoseItem#7134;GainItem#7331;IncVariable#REP_smithing,1
+10	A	Bone Mace+2		0	PlayerHasItem#7135;PlayerHasItem#2013	LoseItem#2013;LoseItem#7135;GainItem#7332;IncVariable#REP_smithing,1
+10	A	Mystic Bone Mace+2		0	PlayerHasItem#7136;PlayerHasItem#2013	LoseItem#2013;LoseItem#7136;GainItem#7333;IncVariable#REP_smithing,1
+10	A	Lightning Falchion of Defense+2		0	PlayerHasItem#7137;PlayerHasItem#2013	LoseItem#2013;LoseItem#7137;GainItem#7334;IncVariable#REP_smithing,1
+10	A	Glacier Stone+2		0	PlayerHasItem#7138;PlayerHasItem#2013	LoseItem#2013;LoseItem#7138;GainItem#7335;IncVariable#REP_smithing,1
+10	A	Forest Lament+2		0	PlayerHasItem#7139;PlayerHasItem#2013	LoseItem#2013;LoseItem#7139;GainItem#7336;IncVariable#REP_smithing,1
+10	A	Demonclaw+2		0	PlayerHasItem#7140;PlayerHasItem#2014	LoseItem#2014;LoseItem#7140;GainItem#7337;IncVariable#REP_smithing,1
+10	A	Ancestral Blade of the Deer+2		0	PlayerHasItem#7142;PlayerHasItem#2013	LoseItem#2013;LoseItem#7142;GainItem#7338;IncVariable#REP_smithing,1
+10	A	Fiendish Dagger+2		0	PlayerHasItem#7143;PlayerHasItem#2013	LoseItem#2013;LoseItem#7143;GainItem#7339;IncVariable#REP_smithing,1
+10	A	Silver Bow+2		0	PlayerHasItem#7144;PlayerHasItem#2012	LoseItem#2012;LoseItem#7144;GainItem#7340;IncVariable#REP_smithing,1
+10	A	Silver Dagger+2		0	PlayerHasItem#7145;PlayerHasItem#2013	LoseItem#2013;LoseItem#7145;GainItem#7341;IncVariable#REP_smithing,1
+10	A	Silver Shortsword+2		0	PlayerHasItem#7146;PlayerHasItem#2013	LoseItem#2013;LoseItem#7146;GainItem#7342;IncVariable#REP_smithing,1
+10	A	Silver Longsword+2		0	PlayerHasItem#7147;PlayerHasItem#2013	LoseItem#2013;LoseItem#7147;GainItem#7343;IncVariable#REP_smithing,1
+10	A	Silver Greatsword+2		0	PlayerHasItem#7148;PlayerHasItem#2014	LoseItem#2014;LoseItem#7148;GainItem#7344;IncVariable#REP_smithing,1
+10	A	Silver Mace+2		0	PlayerHasItem#7149;PlayerHasItem#2013	LoseItem#2013;LoseItem#7149;GainItem#7345;IncVariable#REP_smithing,1
+10	A	Vulcan Bow+2		0	PlayerHasItem#7150;PlayerHasItem#2012	LoseItem#2012;LoseItem#7150;GainItem#7346;IncVariable#REP_smithing,1
+10	A	Lightning Axe+2		0	PlayerHasItem#7151;PlayerHasItem#2013	LoseItem#2013;LoseItem#7151;GainItem#7347;IncVariable#REP_smithing,1
+10	A	Lightning Greataxe+2		0	PlayerHasItem#7152;PlayerHasItem#2014	LoseItem#2014;LoseItem#7152;GainItem#7348;IncVariable#REP_smithing,1
+10	A	Greataxe of Falling Stars+2		0	PlayerHasItem#7153;PlayerHasItem#2014	LoseItem#2014;LoseItem#7153;GainItem#7349;IncVariable#REP_smithing,1
+10	A	Longsword of Falling Stars+2		0	PlayerHasItem#7154;PlayerHasItem#2013	LoseItem#2013;LoseItem#7154;GainItem#7350;IncVariable#REP_smithing,1
+10	A	Frost Bow+2		0	PlayerHasItem#7155;PlayerHasItem#2012	LoseItem#2012;LoseItem#7155;GainItem#7351;IncVariable#REP_smithing,1
+10	A	Executioner's Axe+2		0	PlayerHasItem#7156;PlayerHasItem#2014	LoseItem#2014;LoseItem#7156;GainItem#7352;IncVariable#REP_smithing,1
+10	A	Poisonous Bow+2		0	PlayerHasItem#7157;PlayerHasItem#2012	LoseItem#2012;LoseItem#7157;GainItem#7353;IncVariable#REP_smithing,1
+10	A	Poisonous Longbow+2		0	PlayerHasItem#7158;PlayerHasItem#2012	LoseItem#2012;LoseItem#7158;GainItem#7354;IncVariable#REP_smithing,1
+10	A	Sonnet+2		0	PlayerHasItem#7159;PlayerHasItem#2013	LoseItem#2013;LoseItem#7159;GainItem#7355;IncVariable#REP_smithing,1
+10	A	Ghostbane+2		0	PlayerHasItem#7160;PlayerHasItem#2013	LoseItem#2013;LoseItem#7160;GainItem#7356;IncVariable#REP_smithing,1
+10	A	Hammer of Corrosion+2		0	PlayerHasItem#7161;PlayerHasItem#2013	LoseItem#2013;LoseItem#7161;GainItem#7357;IncVariable#REP_smithing,1
+10	A	Maul of Corrosion+2		0	PlayerHasItem#7162;PlayerHasItem#2014	LoseItem#2014;LoseItem#7162;GainItem#7358;IncVariable#REP_smithing,1
+10	A	Jester's Bow+2		0	PlayerHasItem#7163;PlayerHasItem#2012	LoseItem#2012;LoseItem#7163;GainItem#7359;IncVariable#REP_smithing,1
+10	A	Despair+2		0	PlayerHasItem#7164;PlayerHasItem#2013	LoseItem#2013;LoseItem#7164;GainItem#7360;IncVariable#REP_smithing,1
+10	A	Maul of Garrak+2		0	PlayerHasItem#7165;PlayerHasItem#2014	LoseItem#2014;LoseItem#7165;GainItem#7361;IncVariable#REP_smithing,1
+10	A	Iron Golem Fist+2		0	PlayerHasItem#7166;PlayerHasItem#2013	LoseItem#2013;LoseItem#7166;GainItem#7362;IncVariable#REP_smithing,1
+10	A	Magma Axe+2		0	PlayerHasItem#7167;PlayerHasItem#2013	LoseItem#2013;LoseItem#7167;GainItem#7363;IncVariable#REP_smithing,1
+10	A	Soul Drinker+2		0	PlayerHasItem#7168;PlayerHasItem#2014	LoseItem#2014;LoseItem#7168;GainItem#7364;IncVariable#REP_smithing,1
+10	A	Soul Cleaver+2		0	PlayerHasItem#7169;PlayerHasItem#2013	LoseItem#2013;LoseItem#7169;GainItem#7365;IncVariable#REP_smithing,1
+10	A	Icy Claymore+2		0	PlayerHasItem#7170;PlayerHasItem#2014	LoseItem#2014;LoseItem#7170;GainItem#7366;IncVariable#REP_smithing,1
+10	A	Composite Bow+2		0	PlayerHasItem#7171;PlayerHasItem#2012	LoseItem#2012;LoseItem#7171;GainItem#7367;IncVariable#REP_smithing,1
+10	A	Assasin's Longbow+2		0	PlayerHasItem#7172;PlayerHasItem#2012	LoseItem#2012;LoseItem#7172;GainItem#7368;IncVariable#REP_smithing,1
+10	A	Maul of Desecration+2		0	PlayerHasItem#7173;PlayerHasItem#2014	LoseItem#2014;LoseItem#7173;GainItem#7369;IncVariable#REP_smithing,1
+10	A	Mist Hunter's Bow+2		0	PlayerHasItem#7174;PlayerHasItem#2012	LoseItem#2012;LoseItem#7174;GainItem#7370;IncVariable#REP_smithing,1
+10	A	Flaming Warhammer+2		0	PlayerHasItem#7175;PlayerHasItem#2013	LoseItem#2013;LoseItem#7175;GainItem#7371;IncVariable#REP_smithing,1
+10	A	Paladin's Longsword+2		0	PlayerHasItem#7176;PlayerHasItem#2013	LoseItem#2013;LoseItem#7176;GainItem#7372;IncVariable#REP_smithing,1
+10	A	Permafrost Greataxe+2		0	PlayerHasItem#7177;PlayerHasItem#2014	LoseItem#2014;LoseItem#7177;GainItem#7373;IncVariable#REP_smithing,1
+10	A	Imperial Trollhunter Bow+2		0	PlayerHasItem#7178;PlayerHasItem#2012	LoseItem#2012;LoseItem#7178;GainItem#7374;IncVariable#REP_smithing,1
+10	A	Wild Thunder+2		0	PlayerHasItem#7179;PlayerHasItem#2014	LoseItem#2014;LoseItem#7179;GainItem#7375;IncVariable#REP_smithing,1
+10	A	Axe of the Depths+2		0	PlayerHasItem#7180;PlayerHasItem#2014	LoseItem#2014;LoseItem#7180;GainItem#7376;IncVariable#REP_smithing,1
+10	A	Axe of the Minotaur Kings+2		0	PlayerHasItem#7181;PlayerHasItem#2014	LoseItem#2014;LoseItem#7181;GainItem#7377;IncVariable#REP_smithing,1
+10	A	Maul of Terror+2		0	PlayerHasItem#7182;PlayerHasItem#2013	LoseItem#2013;LoseItem#7182;GainItem#7378;IncVariable#REP_smithing,1
+10	A	Nanocarbon Sword+2		0	PlayerHasItem#7183;PlayerHasItem#2013	LoseItem#2013;LoseItem#7183;GainItem#7379;IncVariable#REP_smithing,1
+10	A	Pneumatic Mallet+2		0	PlayerHasItem#7184;PlayerHasItem#2014	LoseItem#2014;LoseItem#7184;GainItem#7380;IncVariable#REP_smithing,1
+10	A	Nanocarbon Scalpel+2		0	PlayerHasItem#7185;PlayerHasItem#2013	LoseItem#2013;LoseItem#7185;GainItem#7381;IncVariable#REP_smithing,1
+10	A	Ion Recurve+2		0	PlayerHasItem#7186;PlayerHasItem#2012	LoseItem#2012;LoseItem#7186;GainItem#7382;IncVariable#REP_smithing,1
+10	A	Wyrmslayer+2		0	PlayerHasItem#7187;PlayerHasItem#2012	LoseItem#2012;LoseItem#7187;GainItem#7383;IncVariable#REP_smithing,1
+10	A	Enchanted Vulcan Bow+2		0	PlayerHasItem#7188;PlayerHasItem#2012	LoseItem#2012;LoseItem#7188;GainItem#7384;IncVariable#REP_smithing,1
+10	A	Phantom Longsword+2		0	PlayerHasItem#7189;PlayerHasItem#2013	LoseItem#2013;LoseItem#7189;GainItem#7385;IncVariable#REP_smithing,1
+10	A	Queen's Heart+2		0	PlayerHasItem#7190;PlayerHasItem#2013	LoseItem#2013;LoseItem#7190;GainItem#7386;IncVariable#REP_smithing,1
+10	A	Wooden Club+2		0	PlayerHasItem#7191;PlayerHasItem#2013	LoseItem#2013;LoseItem#7191;GainItem#7387;IncVariable#REP_smithing,1
+10	A	Burning Club+2		0	PlayerHasItem#7192;PlayerHasItem#2013	LoseItem#2013;LoseItem#7192;GainItem#7388;IncVariable#REP_smithing,1
+10	A	Spirit Cleaver+2		0	PlayerHasItem#7193;PlayerHasItem#2014	LoseItem#2014;LoseItem#7193;GainItem#7389;IncVariable#REP_smithing,1
+10	A	Spirit Breaker+2		0	PlayerHasItem#7194;PlayerHasItem#2013	LoseItem#2013;LoseItem#7194;GainItem#7390;IncVariable#REP_smithing,1
+10	A	Midnight+2		0	PlayerHasItem#7195;PlayerHasItem#2013	LoseItem#2013;LoseItem#7195;GainItem#7391;IncVariable#REP_smithing,1
+10	A	Shadow Blade+2		0	PlayerHasItem#7196;PlayerHasItem#2013	LoseItem#2013;LoseItem#7196;GainItem#7392;IncVariable#REP_smithing,1
+10	A	Melporth's Sword+2		0	PlayerHasItem#7197;PlayerHasItem#2013	LoseItem#2013;LoseItem#7197;GainItem#7393;IncVariable#REP_smithing,1
+10	A	Silver Bow of Malan+2		0	PlayerHasItem#7198;PlayerHasItem#2012	LoseItem#2012;LoseItem#7198;GainItem#7394;IncVariable#REP_smithing,1
+10	A	Scimitar of the Wolf+2		0	PlayerHasItem#7199;PlayerHasItem#2014	LoseItem#2014;LoseItem#7199;GainItem#7395;IncVariable#REP_smithing,1
+10	A	Maul of Disease+2		0	PlayerHasItem#7200;PlayerHasItem#2014	LoseItem#2014;LoseItem#7200;GainItem#7396;IncVariable#REP_smithing,1
+10	A	Hammer of the White Priest+2		0	PlayerHasItem#7201;PlayerHasItem#2013	LoseItem#2013;LoseItem#7201;GainItem#7397;IncVariable#REP_smithing,1
+10	A	Screaming Mace+2		0	PlayerHasItem#7202;PlayerHasItem#2013	LoseItem#2013;LoseItem#7202;GainItem#7398;IncVariable#REP_smithing,1
+10	A	Vindicator+2		0	PlayerHasItem#7203;PlayerHasItem#2014	LoseItem#2014;LoseItem#7203;GainItem#7399;IncVariable#REP_smithing,1
+10	A	Skeletal Bow+2		0	PlayerHasItem#7204;PlayerHasItem#2012	LoseItem#2012;LoseItem#7204;GainItem#7400;IncVariable#REP_smithing,1
+10	A	Ghost Eye+2		0	PlayerHasItem#7205;PlayerHasItem#2012	LoseItem#2012;LoseItem#7205;GainItem#7401;IncVariable#REP_smithing,1
+10	A	Permafrost Bow+2		0	PlayerHasItem#7206;PlayerHasItem#2012	LoseItem#2012;LoseItem#7206;GainItem#7402;IncVariable#REP_smithing,1
+10	A	Lady's Eye+2		0	PlayerHasItem#7207;PlayerHasItem#2012	LoseItem#2012;LoseItem#7207;GainItem#7403;IncVariable#REP_smithing,1
+10	A	Lord's Fist+2		0	PlayerHasItem#7208;PlayerHasItem#2013	LoseItem#2013;LoseItem#7208;GainItem#7404;IncVariable#REP_smithing,1
+10	A	Hunter's Machete+2		0	PlayerHasItem#7209;PlayerHasItem#2013	LoseItem#2013;LoseItem#7209;GainItem#7405;IncVariable#REP_smithing,1
+10	A	Magma Dagger+2		0	PlayerHasItem#7210;PlayerHasItem#2013	LoseItem#2013;LoseItem#7210;GainItem#7406;IncVariable#REP_smithing,1
+10	A	Dancing Flame+2		0	PlayerHasItem#7211;PlayerHasItem#2013	LoseItem#2013;LoseItem#7211;GainItem#7407;IncVariable#REP_smithing,1
+10	A	Golden Wand+2		0	PlayerHasItem#7212;PlayerHasItem#2012	LoseItem#2012;LoseItem#7212;GainItem#7408;IncVariable#REP_smithing,1
+10	A	Back		7		
+11	Q	In order to sharpen your weapon to +3 you need gems: [BLUE](1 large and 2 small.)[] Rubies for one-handed weapons, Sapphires for two-handed weapons and Emeralds for bows, staffs and wands. You can also check out the vault here.		12		
+12	A	Sharpen a weapon (Make sure the weapon is in your inventory)		13		
+12	A	Open the vault		1		OpenVault#
+12	A	Back		1		
+13	Q	Reinforce the weapons:		14		
+14	A	Goblin Flesh-Cutter+3		0	PlayerHasItem#7213;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7213;GainItem#7409;IncVariable#REP_smithing,1
+14	A	Thief's Blade+3		0	PlayerHasItem#7214;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7214;GainItem#7410;IncVariable#REP_smithing,1
+14	A	Sharp Orc Knife+3		0	PlayerHasItem#7215;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7215;GainItem#7411;IncVariable#REP_smithing,1
+14	A	Bone Shiv+3		0	PlayerHasItem#7216;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7216;GainItem#7412;IncVariable#REP_smithing,1
+14	A	Troll Cleaver+3		0	PlayerHasItem#7217;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7217;GainItem#7413;IncVariable#REP_smithing,1
+14	A	Scepter of the Underworld+3		0	PlayerHasItem#7218;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7218;GainItem#7414;IncVariable#REP_smithing,1
+14	A	Wand of the Arcanist+3		0	PlayerHasItem#7219;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7219;GainItem#7415;IncVariable#REP_smithing,1
+14	A	Staff of the Arcanist+3		0	PlayerHasItem#7220;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7220;GainItem#7416;IncVariable#REP_smithing,1
+14	A	Branch of the Holy Tree+3		0	PlayerHasItem#7221;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7221;GainItem#7417;IncVariable#REP_smithing,1
+14	A	Staff of the Traveller+3		0	PlayerHasItem#7222;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7222;GainItem#7418;IncVariable#REP_smithing,1
+14	A	Staff of Impact+3		0	PlayerHasItem#7223;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7223;GainItem#7419;IncVariable#REP_smithing,1
+14	A	Staff of the Dead Kings+3		0	PlayerHasItem#7224;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7224;GainItem#7420;IncVariable#REP_smithing,1
+14	A	Wand of Power+3		0	PlayerHasItem#7225;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7225;GainItem#7421;IncVariable#REP_smithing,1
+14	A	Crystallized Wand+3		0	PlayerHasItem#7226;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7226;GainItem#7422;IncVariable#REP_smithing,1
+14	A	Staff of Wonders+3		0	PlayerHasItem#7227;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7227;GainItem#7423;IncVariable#REP_smithing,1
+14	A	Willow Wand+3		0	PlayerHasItem#7228;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7228;GainItem#7424;IncVariable#REP_smithing,1
+14	A	Oak Wand+3		0	PlayerHasItem#7229;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7229;GainItem#7425;IncVariable#REP_smithing,1
+14	A	Wand of Scorching+3		0	PlayerHasItem#7230;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7230;GainItem#7426;IncVariable#REP_smithing,1
+14	A	Icy Wand+3		0	PlayerHasItem#7231;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7231;GainItem#7427;IncVariable#REP_smithing,1
+14	A	Batrax Wand+3		0	PlayerHasItem#7232;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7232;GainItem#7428;IncVariable#REP_smithing,1
+14	A	Acidspitter+3		0	PlayerHasItem#7233;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7233;GainItem#7429;IncVariable#REP_smithing,1
+14	A	Polarized Staff+3		0	PlayerHasItem#7234;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7234;GainItem#7430;IncVariable#REP_smithing,1
+14	A	Staff of Force+3		0	PlayerHasItem#7235;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7235;GainItem#7431;IncVariable#REP_smithing,1
+14	A	Caduceus of Scorching+3		0	PlayerHasItem#7236;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7236;GainItem#7432;IncVariable#REP_smithing,1
+14	A	GreatStaff of Force+3		0	PlayerHasItem#7237;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7237;GainItem#7433;IncVariable#REP_smithing,1
+14	A	Vitriolic Staff+3		0	PlayerHasItem#7238;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7238;GainItem#7434;IncVariable#REP_smithing,1
+14	A	Staff of the Seas+3		0	PlayerHasItem#7239;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7239;GainItem#7435;IncVariable#REP_smithing,1
+14	A	Wand of Storms+3		0	PlayerHasItem#7240;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7240;GainItem#7436;IncVariable#REP_smithing,1
+14	A	Tolassian Wand+3		0	PlayerHasItem#7241;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7241;GainItem#7437;IncVariable#REP_smithing,1
+14	A	Tolassian Greatstaff+3		0	PlayerHasItem#7242;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7242;GainItem#7438;IncVariable#REP_smithing,1
+14	A	Staff of Storms+3		0	PlayerHasItem#7243;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7243;GainItem#7439;IncVariable#REP_smithing,1
+14	A	Imperial Battlemage Wand+3		0	PlayerHasItem#7244;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7244;GainItem#7440;IncVariable#REP_smithing,1
+14	A	Rod of Incineration+3		0	PlayerHasItem#7245;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7245;GainItem#7441;IncVariable#REP_smithing,1
+14	A	Elm Wand+3		0	PlayerHasItem#7246;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7246;GainItem#7442;IncVariable#REP_smithing,1
+14	A	Staff of Mighty Missiles+3		0	PlayerHasItem#7247;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7247;GainItem#7443;IncVariable#REP_smithing,1
+14	A	Magma Greatstaff+3		0	PlayerHasItem#7248;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7248;GainItem#7444;IncVariable#REP_smithing,1
+14	A	First Winter+3		0	PlayerHasItem#7249;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7249;GainItem#7445;IncVariable#REP_smithing,1
+14	A	Invisible Fist+3		0	PlayerHasItem#7250;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7250;GainItem#7446;IncVariable#REP_smithing,1
+14	A	The Corruptor+3		0	PlayerHasItem#7251;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7251;GainItem#7447;IncVariable#REP_smithing,1
+14	A	Tesla Emitter+3		0	PlayerHasItem#7252;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7252;GainItem#7448;IncVariable#REP_smithing,1
+14	A	Tesla Rod+3		0	PlayerHasItem#7253;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7253;GainItem#7449;IncVariable#REP_smithing,1
+14	A	Iron Dagger+3		0	PlayerHasItem#7254;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7254;GainItem#7450;IncVariable#REP_smithing,1
+14	A	Iron Shortsword+3		0	PlayerHasItem#7255;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7255;GainItem#7451;IncVariable#REP_smithing,1
+14	A	Iron Longsword+3		0	PlayerHasItem#7256;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7256;GainItem#7452;IncVariable#REP_smithing,1
+14	A	Iron Greatsword+3		0	PlayerHasItem#7257;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7257;GainItem#7453;IncVariable#REP_smithing,1
+14	A	Iron Mace+3		0	PlayerHasItem#7258;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7258;GainItem#7454;IncVariable#REP_smithing,1
+14	A	Iron Hammer+3		0	PlayerHasItem#7259;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7259;GainItem#7455;IncVariable#REP_smithing,1
+14	A	Iron Maul+3		0	PlayerHasItem#7260;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7260;GainItem#7456;IncVariable#REP_smithing,1
+14	A	Iron Axe+3		0	PlayerHasItem#7261;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7261;GainItem#7457;IncVariable#REP_smithing,1
+14	A	Iron Greataxe+3		0	PlayerHasItem#7262;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7262;GainItem#7458;IncVariable#REP_smithing,1
+14	A	Steel Dagger+3		0	PlayerHasItem#7263;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7263;GainItem#7459;IncVariable#REP_smithing,1
+14	A	Steel Shortsword+3		0	PlayerHasItem#7264;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7264;GainItem#7460;IncVariable#REP_smithing,1
+14	A	Steel Longsword+3		0	PlayerHasItem#7265;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7265;GainItem#7461;IncVariable#REP_smithing,1
+14	A	Steel Greatsword+3		0	PlayerHasItem#7266;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7266;GainItem#7462;IncVariable#REP_smithing,1
+14	A	Steel Mace+3		0	PlayerHasItem#7267;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7267;GainItem#7463;IncVariable#REP_smithing,1
+14	A	Steel Hammer+3		0	PlayerHasItem#7268;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7268;GainItem#7464;IncVariable#REP_smithing,1
+14	A	Steel Maul+3		0	PlayerHasItem#7269;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7269;GainItem#7465;IncVariable#REP_smithing,1
+14	A	Steel Axe+3		0	PlayerHasItem#7270;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7270;GainItem#7466;IncVariable#REP_smithing,1
+14	A	Steel Greataxe+3		0	PlayerHasItem#7271;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7271;GainItem#7467;IncVariable#REP_smithing,1
+14	A	Bluesteel Dagger+3		0	PlayerHasItem#7272;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7272;GainItem#7468;IncVariable#REP_smithing,1
+14	A	Bluesteel Shortsword+3		0	PlayerHasItem#7273;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7273;GainItem#7469;IncVariable#REP_smithing,1
+14	A	Bluesteel Longsword+3		0	PlayerHasItem#7274;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7274;GainItem#7470;IncVariable#REP_smithing,1
+14	A	Bluesteel Greatsword+3		0	PlayerHasItem#7275;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7275;GainItem#7471;IncVariable#REP_smithing,1
+14	A	Bluesteel Mace+3		0	PlayerHasItem#7276;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7276;GainItem#7472;IncVariable#REP_smithing,1
+14	A	Bluesteel Hammer+3		0	PlayerHasItem#7277;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7277;GainItem#7473;IncVariable#REP_smithing,1
+14	A	Bluesteel Maul+3		0	PlayerHasItem#7278;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7278;GainItem#7474;IncVariable#REP_smithing,1
+14	A	Bluesteel Axe+3		0	PlayerHasItem#7279;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7279;GainItem#7475;IncVariable#REP_smithing,1
+14	A	Bluesteel Greataxe+3		0	PlayerHasItem#7280;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7280;GainItem#7476;IncVariable#REP_smithing,1
+14	A	Bonegrinder+3		0	PlayerHasItem#7281;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7281;GainItem#7477;IncVariable#REP_smithing,1
+14	A	Gurguth's Maul+3		0	PlayerHasItem#7282;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7282;GainItem#7478;IncVariable#REP_smithing,1
+14	A	Adamantite Shortsword+3		0	PlayerHasItem#7283;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7283;GainItem#7479;IncVariable#REP_smithing,1
+14	A	Adamantite Longsword+3		0	PlayerHasItem#7284;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7284;GainItem#7480;IncVariable#REP_smithing,1
+14	A	Adamantite Greatsword+3		0	PlayerHasItem#7285;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7285;GainItem#7481;IncVariable#REP_smithing,1
+14	A	Vulcan Dagger+3		0	PlayerHasItem#7286;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7286;GainItem#7482;IncVariable#REP_smithing,1
+14	A	Shock Dagger+3		0	PlayerHasItem#7287;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7287;GainItem#7483;IncVariable#REP_smithing,1
+14	A	Dagger of Corrosion+3		0	PlayerHasItem#7288;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7288;GainItem#7484;IncVariable#REP_smithing,1
+14	A	Dagger of Ice+3		0	PlayerHasItem#7289;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7289;GainItem#7485;IncVariable#REP_smithing,1
+14	A	Dagger of Poison+3		0	PlayerHasItem#7290;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7290;GainItem#7486;IncVariable#REP_smithing,1
+14	A	Bluesteel Poisonous Dagger+3		0	PlayerHasItem#7291;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7291;GainItem#7487;IncVariable#REP_smithing,1
+14	A	Deathclaw+3		0	PlayerHasItem#7292;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7292;GainItem#7488;IncVariable#REP_smithing,1
+14	A	Hunter's Fang+3		0	PlayerHasItem#7293;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7293;GainItem#7489;IncVariable#REP_smithing,1
+14	A	Beastgrinder+3		0	PlayerHasItem#7294;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7294;GainItem#7490;IncVariable#REP_smithing,1
+14	A	Sword of Shock+3		0	PlayerHasItem#7295;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7295;GainItem#7491;IncVariable#REP_smithing,1
+14	A	Icy Greatsword+3		0	PlayerHasItem#7296;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7296;GainItem#7492;IncVariable#REP_smithing,1
+14	A	Shortsword of Frost+3		0	PlayerHasItem#7297;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7297;GainItem#7493;IncVariable#REP_smithing,1
+14	A	Sword of Flames+3		0	PlayerHasItem#7298;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7298;GainItem#7494;IncVariable#REP_smithing,1
+14	A	Winter Stone+3		0	PlayerHasItem#7299;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7299;GainItem#7495;IncVariable#REP_smithing,1
+14	A	Crushing Ember+3		0	PlayerHasItem#7300;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7300;GainItem#7496;IncVariable#REP_smithing,1
+14	A	Silvery Mace+3		0	PlayerHasItem#7301;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7301;GainItem#7497;IncVariable#REP_smithing,1
+14	A	Magma Shortsword+3		0	PlayerHasItem#7302;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7302;GainItem#7498;IncVariable#REP_smithing,1
+14	A	Sir Mason's Longsword+3		0	PlayerHasItem#7303;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7303;GainItem#7499;IncVariable#REP_smithing,1
+14	A	Orcslicer+3		0	PlayerHasItem#7304;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7304;GainItem#7500;IncVariable#REP_smithing,1
+14	A	Cruelty+3		0	PlayerHasItem#7305;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7305;GainItem#7501;IncVariable#REP_smithing,1
+14	A	Thunder+3		0	PlayerHasItem#7306;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7306;GainItem#7502;IncVariable#REP_smithing,1
+14	A	Blood Thunder+3		0	PlayerHasItem#7307;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7307;GainItem#7503;IncVariable#REP_smithing,1
+14	A	Magma Longsword+3		0	PlayerHasItem#7308;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7308;GainItem#7504;IncVariable#REP_smithing,1
+14	A	Righteousness+3		0	PlayerHasItem#7309;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7309;GainItem#7505;IncVariable#REP_smithing,1
+14	A	Vulcan Maul+3		0	PlayerHasItem#7310;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7310;GainItem#7506;IncVariable#REP_smithing,1
+14	A	Icy Maul+3		0	PlayerHasItem#7311;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7311;GainItem#7507;IncVariable#REP_smithing,1
+14	A	Rancor+3		0	PlayerHasItem#7312;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7312;GainItem#7508;IncVariable#REP_smithing,1
+14	A	Corsair Falchion+3		0	PlayerHasItem#7313;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7313;GainItem#7509;IncVariable#REP_smithing,1
+14	A	Heavy Scimitar+3		0	PlayerHasItem#7314;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7314;GainItem#7510;IncVariable#REP_smithing,1
+14	A	Sacrificial Dagger+3		0	PlayerHasItem#7315;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7315;GainItem#7511;IncVariable#REP_smithing,1
+14	A	Short Bow+3		0	PlayerHasItem#7316;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7316;GainItem#7512;IncVariable#REP_smithing,1
+14	A	Hunting Bow+3		0	PlayerHasItem#7317;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7317;GainItem#7513;IncVariable#REP_smithing,1
+14	A	Oaken Bow+3		0	PlayerHasItem#7318;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7318;GainItem#7514;IncVariable#REP_smithing,1
+14	A	Hunter's Mark+3		0	PlayerHasItem#7319;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7319;GainItem#7515;IncVariable#REP_smithing,1
+14	A	Lightning Blade+3		0	PlayerHasItem#7320;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7320;GainItem#7516;IncVariable#REP_smithing,1
+14	A	Justice+3		0	PlayerHasItem#7321;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7321;GainItem#7517;IncVariable#REP_smithing,1
+14	A	Winter Wail+3		0	PlayerHasItem#7322;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7322;GainItem#7518;IncVariable#REP_smithing,1
+14	A	Minotaur Axe+3		0	PlayerHasItem#7323;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7323;GainItem#7519;IncVariable#REP_smithing,1
+14	A	Firesplitter+3		0	PlayerHasItem#7324;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7324;GainItem#7520;IncVariable#REP_smithing,1
+14	A	Primal Icicle+3		0	PlayerHasItem#7325;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7325;GainItem#7521;IncVariable#REP_smithing,1
+14	A	Stiletto+3		0	PlayerHasItem#7326;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7326;GainItem#7522;IncVariable#REP_smithing,1
+14	A	Devourer Sting+3		0	PlayerHasItem#7327;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7327;GainItem#7523;IncVariable#REP_smithing,1
+14	A	Ancient Fang+3		0	PlayerHasItem#7328;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7328;GainItem#7524;IncVariable#REP_smithing,1
+14	A	Icicle+3		0	PlayerHasItem#7329;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7329;GainItem#7525;IncVariable#REP_smithing,1
+14	A	Scimitar of Flames+3		0	PlayerHasItem#7330;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7330;GainItem#7526;IncVariable#REP_smithing,1
+14	A	Bone Maul+3		0	PlayerHasItem#7331;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7331;GainItem#7527;IncVariable#REP_smithing,1
+14	A	Bone Mace+3		0	PlayerHasItem#7332;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7332;GainItem#7528;IncVariable#REP_smithing,1
+14	A	Mystic Bone Mace+3		0	PlayerHasItem#7333;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7333;GainItem#7529;IncVariable#REP_smithing,1
+14	A	Lightning Falchion of Defense+3		0	PlayerHasItem#7334;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7334;GainItem#7530;IncVariable#REP_smithing,1
+14	A	Glacier Stone+3		0	PlayerHasItem#7335;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7335;GainItem#7531;IncVariable#REP_smithing,1
+14	A	Forest Lament+3		0	PlayerHasItem#7336;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7336;GainItem#7532;IncVariable#REP_smithing,1
+14	A	Demonclaw+3		0	PlayerHasItem#7337;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7337;GainItem#7533;IncVariable#REP_smithing,1
+14	A	Ancestral Blade of the Deer+3		0	PlayerHasItem#7338;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7338;GainItem#7534;IncVariable#REP_smithing,1
+14	A	Fiendish Dagger+3		0	PlayerHasItem#7339;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7339;GainItem#7535;IncVariable#REP_smithing,1
+14	A	Silver Bow+3		0	PlayerHasItem#7340;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7340;GainItem#7536;IncVariable#REP_smithing,1
+14	A	Silver Dagger+3		0	PlayerHasItem#7341;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7341;GainItem#7537;IncVariable#REP_smithing,1
+14	A	Silver Shortsword+3		0	PlayerHasItem#7342;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7342;GainItem#7538;IncVariable#REP_smithing,1
+14	A	Silver Longsword+3		0	PlayerHasItem#7343;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7343;GainItem#7539;IncVariable#REP_smithing,1
+14	A	Silver Greatsword+3		0	PlayerHasItem#7344;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7344;GainItem#7540;IncVariable#REP_smithing,1
+14	A	Silver Mace+3		0	PlayerHasItem#7345;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7345;GainItem#7541;IncVariable#REP_smithing,1
+14	A	Vulcan Bow+3		0	PlayerHasItem#7346;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7346;GainItem#7542;IncVariable#REP_smithing,1
+14	A	Lightning Axe+3		0	PlayerHasItem#7347;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7347;GainItem#7543;IncVariable#REP_smithing,1
+14	A	Lightning Greataxe+3		0	PlayerHasItem#7348;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7348;GainItem#7544;IncVariable#REP_smithing,1
+14	A	Greataxe of Falling Stars+3		0	PlayerHasItem#7349;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7349;GainItem#7545;IncVariable#REP_smithing,1
+14	A	Longsword of Falling Stars+3		0	PlayerHasItem#7350;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7350;GainItem#7546;IncVariable#REP_smithing,1
+14	A	Frost Bow+3		0	PlayerHasItem#7351;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7351;GainItem#7547;IncVariable#REP_smithing,1
+14	A	Executioner's Axe+3		0	PlayerHasItem#7352;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7352;GainItem#7548;IncVariable#REP_smithing,1
+14	A	Poisonous Bow+3		0	PlayerHasItem#7353;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7353;GainItem#7549;IncVariable#REP_smithing,1
+14	A	Poisonous Longbow+3		0	PlayerHasItem#7354;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7354;GainItem#7550;IncVariable#REP_smithing,1
+14	A	Sonnet+3		0	PlayerHasItem#7355;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7355;GainItem#7551;IncVariable#REP_smithing,1
+14	A	Ghostbane+3		0	PlayerHasItem#7356;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7356;GainItem#7552;IncVariable#REP_smithing,1
+14	A	Hammer of Corrosion+3		0	PlayerHasItem#7357;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7357;GainItem#7553;IncVariable#REP_smithing,1
+14	A	Maul of Corrosion+3		0	PlayerHasItem#7358;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7358;GainItem#7554;IncVariable#REP_smithing,1
+14	A	Jester's Bow+3		0	PlayerHasItem#7359;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7359;GainItem#7555;IncVariable#REP_smithing,1
+14	A	Despair+3		0	PlayerHasItem#7360;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7360;GainItem#7556;IncVariable#REP_smithing,1
+14	A	Maul of Garrak+3		0	PlayerHasItem#7361;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7361;GainItem#7557;IncVariable#REP_smithing,1
+14	A	Iron Golem Fist+3		0	PlayerHasItem#7362;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7362;GainItem#7558;IncVariable#REP_smithing,1
+14	A	Magma Axe+3		0	PlayerHasItem#7363;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7363;GainItem#7559;IncVariable#REP_smithing,1
+14	A	Soul Drinker+3		0	PlayerHasItem#7364;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7364;GainItem#7560;IncVariable#REP_smithing,1
+14	A	Soul Cleaver+3		0	PlayerHasItem#7365;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7365;GainItem#7561;IncVariable#REP_smithing,1
+14	A	Icy Claymore+3		0	PlayerHasItem#7366;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7366;GainItem#7562;IncVariable#REP_smithing,1
+14	A	Composite Bow+3		0	PlayerHasItem#7367;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7367;GainItem#7563;IncVariable#REP_smithing,1
+14	A	Assasin's Longbow+3		0	PlayerHasItem#7368;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7368;GainItem#7564;IncVariable#REP_smithing,1
+14	A	Maul of Desecration+3		0	PlayerHasItem#7369;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7369;GainItem#7565;IncVariable#REP_smithing,1
+14	A	Mist Hunter's Bow+3		0	PlayerHasItem#7370;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7370;GainItem#7566;IncVariable#REP_smithing,1
+14	A	Flaming Warhammer+3		0	PlayerHasItem#7371;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7371;GainItem#7567;IncVariable#REP_smithing,1
+14	A	Paladin's Longsword+3		0	PlayerHasItem#7372;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7372;GainItem#7568;IncVariable#REP_smithing,1
+14	A	Permafrost Greataxe+3		0	PlayerHasItem#7373;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7373;GainItem#7569;IncVariable#REP_smithing,1
+14	A	Imperial Trollhunter Bow+3		0	PlayerHasItem#7374;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7374;GainItem#7570;IncVariable#REP_smithing,1
+14	A	Wild Thunder+3		0	PlayerHasItem#7375;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7375;GainItem#7571;IncVariable#REP_smithing,1
+14	A	Axe of the Depths+3		0	PlayerHasItem#7376;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7376;GainItem#7572;IncVariable#REP_smithing,1
+14	A	Axe of the Minotaur Kings+3		0	PlayerHasItem#7377;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7377;GainItem#7573;IncVariable#REP_smithing,1
+14	A	Maul of Terror+3		0	PlayerHasItem#7378;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7378;GainItem#7574;IncVariable#REP_smithing,1
+14	A	Nanocarbon Sword+3		0	PlayerHasItem#7379;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7379;GainItem#7575;IncVariable#REP_smithing,1
+14	A	Pneumatic Mallet+3		0	PlayerHasItem#7380;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7380;GainItem#7576;IncVariable#REP_smithing,1
+14	A	Nanocarbon Scalpel+3		0	PlayerHasItem#7381;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7381;GainItem#7577;IncVariable#REP_smithing,1
+14	A	Ion Recurve+3		0	PlayerHasItem#7382;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7382;GainItem#7578;IncVariable#REP_smithing,1
+14	A	Wyrmslayer+3		0	PlayerHasItem#7383;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7383;GainItem#7579;IncVariable#REP_smithing,1
+14	A	Enchanted Vulcan Bow+3		0	PlayerHasItem#7384;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7384;GainItem#7580;IncVariable#REP_smithing,1
+14	A	Phantom Longsword+3		0	PlayerHasItem#7385;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7385;GainItem#7581;IncVariable#REP_smithing,1
+14	A	Queen's Heart+3		0	PlayerHasItem#7386;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7386;GainItem#7582;IncVariable#REP_smithing,1
+14	A	Wooden Club+3		0	PlayerHasItem#7387;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7387;GainItem#7583;IncVariable#REP_smithing,1
+14	A	Burning Club+3		0	PlayerHasItem#7388;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7388;GainItem#7584;IncVariable#REP_smithing,1
+14	A	Spirit Cleaver+3		0	PlayerHasItem#7389;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7389;GainItem#7585;IncVariable#REP_smithing,1
+14	A	Spirit Breaker+3		0	PlayerHasItem#7390;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7390;GainItem#7586;IncVariable#REP_smithing,1
+14	A	Midnight+3		0	PlayerHasItem#7391;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7391;GainItem#7587;IncVariable#REP_smithing,1
+14	A	Shadow Blade+3		0	PlayerHasItem#7392;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7392;GainItem#7588;IncVariable#REP_smithing,1
+14	A	Melporth's Sword+3		0	PlayerHasItem#7393;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7393;GainItem#7589;IncVariable#REP_smithing,1
+14	A	Silver Bow of Malan+3		0	PlayerHasItem#7394;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7394;GainItem#7590;IncVariable#REP_smithing,1
+14	A	Scimitar of the Wolf+3		0	PlayerHasItem#7395;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7395;GainItem#7591;IncVariable#REP_smithing,1
+14	A	Maul of Disease+3		0	PlayerHasItem#7396;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7396;GainItem#7592;IncVariable#REP_smithing,1
+14	A	Hammer of the White Priest+3		0	PlayerHasItem#7397;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7397;GainItem#7593;IncVariable#REP_smithing,1
+14	A	Screaming Mace+3		0	PlayerHasItem#7398;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7398;GainItem#7594;IncVariable#REP_smithing,1
+14	A	Vindicator+3		0	PlayerHasItem#7399;PlayerHasItem#2014;PlayerHasItems#2003,2	LoseItem#2014;LoseItems#2003,2;LoseItem#7399;GainItem#7595;IncVariable#REP_smithing,1
+14	A	Skeletal Bow+3		0	PlayerHasItem#7400;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7400;GainItem#7596;IncVariable#REP_smithing,1
+14	A	Ghost Eye+3		0	PlayerHasItem#7401;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7401;GainItem#7597;IncVariable#REP_smithing,1
+14	A	Permafrost Bow+3		0	PlayerHasItem#7402;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7402;GainItem#7598;IncVariable#REP_smithing,1
+14	A	Lady's Eye+3		0	PlayerHasItem#7403;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7403;GainItem#7599;IncVariable#REP_smithing,1
+14	A	Lord's Fist+3		0	PlayerHasItem#7404;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7404;GainItem#7600;IncVariable#REP_smithing,1
+14	A	Hunter's Machete+3		0	PlayerHasItem#7405;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7405;GainItem#7601;IncVariable#REP_smithing,1
+14	A	Magma Dagger+3		0	PlayerHasItem#7406;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7406;GainItem#7602;IncVariable#REP_smithing,1
+14	A	Dancing Flame+3		0	PlayerHasItem#7407;PlayerHasItem#2013;PlayerHasItems#2001,2	LoseItem#2013;LoseItems#2001,2;LoseItem#7407;GainItem#7603;IncVariable#REP_smithing,1
+14	A	Golden Wand+3		0	PlayerHasItem#7408;PlayerHasItem#2012;PlayerHasItems#2002,2	LoseItem#2012;LoseItems#2002,2;LoseItem#7408;GainItem#7604;IncVariable#REP_smithing,1
+14	A	Back		11		

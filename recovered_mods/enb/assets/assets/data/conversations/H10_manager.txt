@@ -1,0 +1,17 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	There will be no more fights today. Come back later.		0	VariableEqual#TMP_h10ar,1	
+1	Q	What can I do for you?		6	VariableEqual#stav1,1	
+1	Q	Hi! I see you're new here. Do you want to place bets or do you want to get in on the action?		2		
+2	A	I'd like to place bets. Who's fighting?		3		
+3	Q	It's Bear versus Sabertooth tonight! The bear has a higher percentage.		4		
+4	A	I'll bet 300 on the bear!		5		"NPCSpawn#ar1;SetVariable#stav1,1;SetVariable#1ar1ber,1;SetVariable#1ar1sabcat,0;LoseGold#300"
+4	A	I'll bet 300 on the sabertooth		5		"NPCSpawn#ar1;SetVariable#stav1,1;SetVariable#1ar1sabcat,1;SetVariable#1ar1ber,0;LoseGold#300"
+5	Q	Good choice! Now pull the lever and release the beasts! Come to me after the fight and you'll get your money if the bet goes through.		0		
+6	A	The bear won, the bet is on.		7	"VariableEqual#ar1sabcat,1;VariableEqual#1ar1ber,1"	"NPCDespawn#ar1;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	Sabertooth wins, the bet is settled.		7	"VariableEqual#ar1ber,1;VariableEqual#1ar1sabcat,1"	"NPCDespawn#ar1;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	The bear won. 		7	"VariableEqual#ar1sabcat,1;VariableEqual#1ar1ber,0"	"NPCDespawn#ar1;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	Sabretooth won.		7	"VariableEqual#ar1ber,1;VariableEqual#1ar1sabcat,0"	"NPCDespawn#ar1;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+7	Q	Lucky you. Here's your money, minus our commission.		0	"VariableEqual#ar1sabcat,1;VariableEqual#1ar1ber,1"	"GainGold#580;SetVariable#1ar1sabcat,0;SetVariable#1ar1ber,0;SetVariable#ar1sabcat,0;SetVariable#ar1ber,0"
+7	Q	Lucky you. Here's your money, minus our commission.		0	"VariableEqual#ar1ber,1;VariableEqual#1ar1sabcat,1"	"GainGold#520;SetVariable#1ar1sabcat,0;SetVariable#1ar1ber,0;SetVariable#ar1sabcat,0;SetVariable#ar1ber,0
+7	Q	Well, well...Sabertooth wins and you bet on Bear. We keep the money.		0	"VariableEqual#ar1ber,1;VariableEqual#1ar1sabcat,0"	"SetVariable#1ar1sabcat,0;SetVariable#1ar1ber,0;SetVariable#ar1sabcat,0;SetVariable#ar1ber,0"
+7	Q	Well, well...Bear won and you bet on Sabertooth. We keep the money.		0	"VariableEqual#ar1sabcat,1;VariableEqual#1ar1ber,0"	"SetVariable#1ar1sabcat,0;SetVariable#1ar1ber,0;SetVariable#ar1sabcat,0;SetVariable#ar1ber,0"

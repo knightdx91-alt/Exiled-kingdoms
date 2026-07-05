@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	This tome is titled 'The Witches of Orogg, Volume II'	Este tomo se titula 'Las Brujas de Orogg, Volumen II'	2			
+2	A	I have already read this.	Ya he leido este libro.	0	VariableEqual#KNOW_NI_book2,1		
+2	A	Let's read it.	Vamos a leerlo.	3			
+3	Q	The Witches of Mount Orogg had a Sorceress-Queen, Syllara. She was the one that uncovered the Ancient Evil. Her powers were beyond what any human wizard could dream of... more powerful even than their old Tolassian masters. Many of her followers wanted to take arms against the Tolassians, and rescue the rest of their enslaved kin	"Las brujas del Monte Orogg tenían a una Reina Hechicera, Syllara. Fue ella quien descubrió el Mal Anciano; sus poderes iban más allá de lo que ningún mago pudiera soñar... incluso más poder que el que tenían sus antiguos señores, los Tolassian. Muchos de sus seguidores querían hacer la guerra a los Tolassian, para liberar al resto de su gente."	4			
+4	A	What do I care about this?	Y ¿A mí esto qué me importa?	0			
+4	A	This is fascinating! [BLUE](Continue reading)[]	Esto es fascinante! [BLUE](Continuar leyendo)[]	5			
+5	Q	"But Syllara laughed. For her, the Varannari still enslaved were weaklings that had refused to join her rebellion. They had been scared of the evil powers that Syllara had embraced, and she wouldn't forgive them for that; not even her own parents, still enslaved. Instead of confronting the Tolassians she ordered her followers to build a Fortress on top of Mount Orogg"	"Pero Syllara se rió. Para ella los Varannari aun esclavizados eran cobardes que no habían querido unirse a su rebelión. Tuvieron miedo del poder demoníaco que ella había desatado, y Syllara no se lo perdonó; ni siquiera a sus padres, que aun eran esclavos. En lugar de enfrentarse a los Tolassians, ordenó construir una Ciudad-Fortaleza en lo alto del Monte Orogg."	6			
+6	A	This Syllara must have been a piece of work.	Esa Syllara parece que era una buena pieza.	0	VariableLower#KNOW_NI_book2,1	"SetVariable#KNOW_NI_book2,1;GainXP#200"	
+6	A	Interesting.	Interesante.	0	VariableEqual#KNOW_NI_book2,1		

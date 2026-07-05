@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="24" height="12" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Magistrate Steinz's House"/>
+  <property name="name_ES" value="Casa del Magistrado Steinz"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <layer name="ground" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzNkd0KwCAIRu2xB72APw+9BRO+iRZrNxOkojoei+ifYY1IIBVyrMf+V/5xZS9GTfh212VwcL8YOmH3wp+B52wtXHjhz8Ud94+9eC2DmjP/jK/t6a/3OecKrGXhn72PAsOgBvbi/ez4R4ZzsrMr/+zPBPga5lmvu++P/8qb/tmdNxF7lZDOPwEmHVcB
+  </data>
+ </layer>
+ <layer name="ground2" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C6wI6RtuY7AM23p7Edo4A+AAB0LADB
+  </data>
+ </layer>
+ <layer name="objects" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBicwA6IjYA4DIpB7AgoDcOmFJgP0svFiODrMUIwuhp0N8WgYXsc5ocisXWB5hoDsQkQ6yPZgW5+NBBPBeJ9SGLGRJgPAgaMEIzP/SDzG4F4L5KYNRCbYcEeOOwlZD6xwJ0M8w2BuBTKtkXyqw0Qm6BhSyLMR/ejIQ512OIgnAESryAgwIhFARZAivkgv4tBzQXZo4XFDnQ/2jJghgMIO+AwXxTJTE0s5uNyLzEAl1uQ3WQFxADmhxZ9
+  </data>
+ </layer>
+ <layer name="roofs" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKBAQAEgAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="24" height="12">
+  <object name="entry from farmlands" type="entry" gid="241" x="686" y="245">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="man in black" type="staticNPC" gid="243" x="489" y="225">
+   <properties>
+    <property name="conditions" value="VariableEqual#want_letter_back,30"/>
+    <property name="conversation" value="false_magistrate"/>
+    <property name="facing" value="r"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@MAN_BLACK"/>
+    <property name="portrait" value="26"/>
+    <property name="sprite" value="male_black_1"/>
+    <property name="tag" value="man_black"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="conversation" gid="245" x="764" y="289">
+   <properties>
+    <property name="conversation" value="NG_door_magistrate_exit"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="465" y="134" width="68" height="154">
+   <properties>
+    <property name="actions" value="StartConversation#man_black,false_magistrate"/>
+    <property name="conditions" value="VariableEqual#want_letter_back,30"/>
+   </properties>
+  </object>
+  <object name="corpse" type="conversation" gid="245" x="213" y="251">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,100"/>
+    <property name="conversation" value="magistrate_corpse"/>
+    <property name="icon" value="corpse3"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="243" x="520" y="124">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,100;VariableGreater#want_letter_back,70"/>
+    <property name="name" value="@FORSAKEN"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="243" x="592" y="238">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,100;VariableGreater#want_letter_back,70"/>
+    <property name="name" value="@FORSAKEN"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="cultist" type="spawn" gid="243" x="231" y="171">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,100;VariableGreater#want_letter_back,70"/>
+    <property name="name" value="@FORSAKEN"/>
+    <property name="spawn" value="cultist_male"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="146" y="182">
+   <properties>
+    <property name="conditions" value="VariableLower#want_letter_back,100"/>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="3200,5008,110"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="ng_magistrate_chest"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

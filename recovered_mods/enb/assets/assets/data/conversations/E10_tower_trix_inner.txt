@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	It is the New Master! Trix happy to be back home, so happy!	Es el nuevo Maestro! Trix tan feliz de estar de vuelta en casa!	2		
+2	A	Hello Trix. Is that a teleporter over there? Does it even work?	Hola Trix, ¿es eso un círculo de teleportación? ¿sabes si funciona?	3		
+2	A	What's that big metal door over there?	¿Qué es esa puerta de metal de ahí?	6	VariableLower#masters_laboratory,10	SetVariable#masters_laboratory,10
+2	A	Trix, I might need your help. Inside the laboratory I found some notes about certain artifact, but I don't understand them.	Trix, quizá necesite tu ayuda. En el laboratorio encontré unas notas que no comprendo acerca de un artefacto.	10	VariableEqual#masters_laboratory,30	
+2	A	I don't have time now	Ahora no tengo tiempo.	0		
+3	Q	Yes, the Master is very smart, he connected his own circle to those of the Wizard's Guild near New Garand. And they don't even know.	Si, el Maestro es tan listo, conectó este teleportador con uno de los del Gremio de Magos en New Garand. Y ellos ni lo saben.	4		
+4	A	Does that mean I can travel to New Garand from here? Just like that?	Eso significa que desde aquí puedo ir a New Garand? Así de fácil?	5		
+5	Q	Yes! If you walk inside, you will travel to Inori. So hot. But if you don't know how to teleport, no way back except walking! 	¡Sí! Si caminas encima, viajarás a Inori. ¡Que calor! Pero recuerda, si no sabes cómo teleportarte, tendrás que volver caminando.	0		
+6	Q	The Old Master's Laboratory! But you need power to activate the gate...	¡El Laboratorio del Antiguo Maestro! Pero necesitas energía para abrir la puerta...	7		
+7	A	Oh this again... Okay, when I have time for it, I'll go downstairs and search for one of those damn crystals. I just hope I don't need one to flush the toilet as well...	Oh otra vez eso... Vale, cuando tenga tiempo, iré al sótano y conseguiré uno de esos cristales. Espero que no haga falta uno para tirar de la cadena...	0		
+10	Q	Wonderful, Trix and the Master working together once more!Trix is so filled with joy! 	¡Maravilloso!¡Trix y el Maestro trabajando juntos de nuevo!¡Trix es tan feliz!	11		
+11	A	Um... Okay, me too. So, about that artifact...	Um... Vale, yo también. Entonces, respecto a ese artefacto...	12		
+12	Q	That will be [BLUE]3,000 gold[].	Eso va a costar [BLUE]3,000 monedas[].	13		
+13	A	What??? I thought I was your Master, and that you were happy to help me!	¿¿¿Qué??? ¡¡¡Pensaba que yo era tu Maestro y que estabas feliz de ayudarme!!!	14		
+14	Q	Yes, Trix sooooo happy, and now you know why. Gold is wonderful, Master!	¡¡¡Claro, Trix es taaaaaan feliz!!! Y ahora ya sabes por qué. ¡El oro es maravilloso, Maestro!	15		
+15	A	No way, I'll figure it out myself.	No pienso pagar, lo resolveré yo mismo.	0		
+15	A	Sigh... Here it is, 3,000 coins. Now please help me.	Sigh... Aquí tienes, 3,000 monedas. Ahora por favor ayúdame.	16	PlayerHasGold#3000	
+16	Q	[BLUE](The sparkling creature counts coin by coin delighted. Then moves to the nearby lab and returns shortly after)[] Ahhh yes, mighty artifact, but Old Master never wrote down what it is. It will be completed if you bring the missing ingredients: 'Three of the noblest gems, three tears from the Sea Queen, three coats of the pale hunters'.	[BLUE](La centelleante criatura cuenta las monedas, extasiada. Después entra en el laboratorio y pronto regresa)[] Ahhh si, poderoso artefacto, pero el Maestro nunca escribió qué era. Estará completo si traes los ingredientes que faltan: 'Tres de las más nobles gemas. Tres lágrimas de la Reina del Mar. Tres Capas del Cazador Pálido'	0		"LoseGold#3000;SetVariable#masters_laboratory,40"

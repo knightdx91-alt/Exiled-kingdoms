@@ -1,0 +1,10 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	This magical gate is sealed. 	Esta puerta mágica ha sido sellada.	3	VariableLower#masters_laboratory,20	
+1	Q	The laboratory door is unlocked.	La puerta del laboratorio ya puede abrirse.	2		
+2	A	Pass through the door.	Cruzar la puerta.	0		travel#E10_tower,9
+2	A	Stay here.	Quedarme aquí.	0		
+3	A	Use the Crystal of Fire to open the door.	Usar el Cristal del Fuego para abrir la puerta.	4	"PlayerHasItem#2508;VariableEqual#masters_laboratory,10"	"LoseItem#2508;SetVariable#masters_laboratory,20"
+3	A	Use the Crystal of Ice to open the door.	Usar el Cristal del Hielo para abrir la puerta.	4	"PlayerHasItem#2509;VariableEqual#masters_laboratory,10"	"LoseItem#2509;SetVariable#masters_laboratory,20"
+3	A	Use the Crystal of Energy to open the door.	Usar el Cristal de Energía para abrir la puerta.	4	"PlayerHasItem#2510;VariableEqual#masters_laboratory,10"	"LoseItem#2510;SetVariable#masters_laboratory,20"
+3	A	Leave.	Marcharse.	0		
+4	Q	The Crystal dissolves and you become attuned with the magical door. Now you can pass it freely.	El Cristal se disuelve y quedas conectado mágicamente con la puerta. Ya puedes cruzarla.	2		

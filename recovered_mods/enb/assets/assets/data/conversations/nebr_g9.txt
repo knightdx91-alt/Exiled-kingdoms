@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Thank you! You're a fine fighter. All the people are alive... We'll go to Sheryl's.		4	VariableEqual#2nebr,1	SetVariable#nebr,28
+1	Q	Oh...It's been a tough journey...Too bad not everyone got there alive...Now we have to go.		4	VariableEqual#nebr,22	SetVariable#nebr,27
+1	Q	Oh...It's been a tough journey...Too bad not everyone got there alive...Now we have to go.		4	VariableEqual#nebr,23	SetVariable#nebr,27
+1	Q	Oh...It's been a tough journey...Too bad not everyone got there alive...Now we have to go.		4	VariableEqual#nebr,24	SetVariable#nebr,27
+1	Q	Oh...It's been a tough journey...Too bad not everyone got there alive...Now we have to go.		4	VariableEqual#nebr,25	SetVariable#nebr,27
+1	Q	Oh...It's been a difficult journey...Sad that all the peasants died. I'll go report back to Sheryl.		4	VariableEqual#nebr,26	SetVariable#nebr,27
+1	Q	Something wrong, Chief?		3	"VariableGreater#nebr,20;VariableLower#nebr,27"	
+1	Q	[BLUE](In front of you is a group of peasants)[] Hello traveller! We were told that you would guard us as we travelled to the colonists' settlement...		2		
+2	A	Yeah. Come on! Stay close to me.		0		"NPCFollow#nebr1;NPCFollow#nebrboss;NPCFollow#nebr2;NPCFollow#nebr3;NPCFollow#nebr4;NPCFollow#nebr5;SetVariable#nebr,21;SetVariable#1nebr,1"
+2	A	I need to get ready		0		
+3	A	Let's keep moving		0		
+4	A	Good luck		5		
+5,mercenary_grisenda	Q	Can't we take them all the way to camp?		6	NPCIsInParty#grissenda,mercenary_grisenda	NPCStopFollowing#mercenary_grisenda
+5,hirge	Q	Can't we take them all the way to camp?		6	NPCIsInParty#hirge,hirge	NPCStopFollowing#hirge
+5,adaon	Q	Can't we take them all the way to camp?		6	NPCIsInParty#adaon,adaon	NPCStopFollowing#adaon
+5	Q	You too. Maybe I'll see you around.		0		DisbandAll#
+6,R	Q	No need to worry. We'll be fine from here.		7		DisbandAll#
+7,mercenary_grisenda	Q	Then let's go!		0	NPCinArea#mercenary_grisenda	NPCFollow#
+7,hirge	Q	Then let's go!		0	NPCinArea#hirge	NPCFollow#
+7,adaon	Q	Then let's go!		0	NPCinArea#adaon	NPCFollow#

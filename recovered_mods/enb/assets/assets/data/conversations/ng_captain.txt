@@ -1,0 +1,23 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](Whistling a song about the adventures of a soldier and a maid.)[] Something else?		17	VariableEqual#gans,1	
+1	Q	[BLUE](The Captain of the Guard, familiar to you from Kingsbridge.)[] What? You again? So you've been released from the SHU.?		2		
+2	A	Good day, Captain. Yes, I've been completely cleared of all charges. I've heard rumours that you're having trouble with the ghost?		3		
+3	Q	Problems? Not at all. Some difficulties. What's it to you?		4		
+4	A	I told you my story. It's the ghost that started it all. Do you believe me now?		5		
+5	Q	Personally, I don't believe it. But the facts are that you're actually involved in this case. You want to help, go ahead. But you won't get a penny from me in return.		6		
+6	A	Tell me, do you still have that locket?		7		
+7	Q	That dark cultist artefact? No. I don't have it. And if you want it, go to our squad wizard. It's over there by the ghost.		8		
+8	A	Fine, I'll talk to him. Maybe your guys will let me in.		9		
+9	Q	Oh, yes. Hans! Gruber! Bring in Flüggeheimen!!!		10		
+10,gans	Q	Excuse me?		11		
+11,gruber	Q	But Captain, what can I do?		12		
+12,R	Q	Are you deaf, you morons??? I said step back and let him pass.		13		
+13	A	Captain, but it seemed to me, too.		14		
+14	Q	What? Silence! Execute! Move it!		15		SetVariable#TMP_gans1,1
+15,gans	Q	Yes, Captain.!		16		NPCGoTo#gans,1
+16,gruber	Q	It's done.!		0		"NPCGoTo#gruber,2;SetVariable#gans,1"
+17	A	I'm leaving now		0		
+17	A	I wanted to go through...		18	VariableLower#TMP_gans1,1	
+18	Q	Hans, Gruber! Skip it.		19		SetVariable#TMP_gans1,1
+19,gans	Q	Yes, sir.!		20		NPCGoTo#gans,1
+20,gruber	Q	Bingo!		0		NPCGoTo#gruber,2

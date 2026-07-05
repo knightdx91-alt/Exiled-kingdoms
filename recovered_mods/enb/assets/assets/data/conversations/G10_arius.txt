@@ -1,0 +1,27 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Greetings traveller! Need any help? I buy animal skins and can offer access to the vault for a fee. There are some items available for purchase from my Assistant.		2		
+2	A	What about the vault?		3		
+2	A	I have skins.		4		
+2	A	I'll be back later.		0		
+3	Q	For {LEVELx50} gold coins, you will get access to the storage with items.		16		
+4	Q	I'm interested in wolf and bear skins. I'm a little cheaper than the green savages, but you don't have to look for me in the woods. I'm always here.		5		
+5	A	"How much do you want for the pelt of a white wolf?"		12	playerhasitem#1004	
+5	A	"How much do you want for the perfect skins?"		6	playerhasitem#1003	
+5	A	"How much do you want for the damaged hides?"		8	playerhasitem#1002	
+5	A	"How much will you take a bear skin for?"		13	playerhasitem#1014	
+5	A	"No, sorry, I don't have any wolf skins."		11		
+6	Q	I'm offering you [BLUE]80 gold[] for this.		7		
+7	A	It's a deal!		4		"loseitem#1003;gainGold#80"
+7	A	"No, thank you."		11		
+8	Q	I'm offering you [BLUE]19 gold[] for this.		9		
+9	A	It's a deal!		4		"loseitem#1002;gainGold#19"
+9	A	"No, thank you"		11		
+11	Q	You need gold, come on in.		0		
+12	Q	I'm offering you [BLUE]120 gold[] for this.		14		
+13	Q	I'm offering you [BLUE]180 gold[] for this.		15		
+14	A	It's a deal!		4		"loseitem#1004;gainGold#120"
+14	A	"No, thank you"		11		
+15	A	It's a deal!		4		"loseitem#1014;gainGold#180"
+15	A	"No, thank you"		11		
+16	A	I need access to the stuff. Here's the gold.		0	PlayerHasGold#{LEVELx50}	"LoseGold#{LEVELx50};OpenVault#"
+16	A	Back		1		

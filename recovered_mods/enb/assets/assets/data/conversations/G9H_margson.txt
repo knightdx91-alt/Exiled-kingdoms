@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](The girl's already in bed waiting for you.)[] What are you waiting for, hero? Come to me!		2	VariableEqual#marg,12	
+1	Q	[BLUE](The girl's already in bed waiting for you.)[] What are you waiting for, hero? Come to me!		3	VariableEqual#marg,13	
+2	A	[BLUE](Smirk and jump into bed.)[]		0		"SetVariable#marg,14;LoseInventory#;SetVariable#marginv,1;EndGame#4"
+3	A	[BLUE](Smirk and jump into bed.)[]		4		"SetVariable#marg,15;SetVariable#marginv,2;Sleep#"
+4	Q	[BLUE](The bed creaked and almost collapsed. The girl laughed lasciviously and started kissing you....)[]		5		
+5	A	[BLUE](Spread your lustful hands)[]		6		
+6	Q	[BLUE](Some time has passed and you notice that the woman is getting more and more nervous, instead of relaxing, and moreover muttering something inarticulately)[]		7		
+7	A	What's the matter? Something's wrong?		8		
+8	Q	[BLUE](The girl freezes, you manage to hear something like, "Why isn't he asleep?")[] No, no, it's okay, honey....[BLUE](Suddenly he leans over the bed and hits you over the head with a decent-sized club. The light in your eyes fades, your body goes limp and your consciousness leaves you)[]		0		travel#G9_H,2,0

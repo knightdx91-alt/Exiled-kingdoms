@@ -1,0 +1,6 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The ore vein's depleted. Try back later.		0	VariableEqual#TMP_ruda2,1	
+1	Q	There's an ore vein in front of you... There's nothing to do without a pickaxe.		2		
+2	A	 [BLUE](Pounding the ore vein with a pickaxe.)[]		3	PlayerHasItem#7608	
+2	A	I'll be back later.		0		
+3	Q	You've managed to extract some ore.		0		"NPCDespawn#ruda2;SetVariable#TMP_ruda2,1;GainItems#7612,2"

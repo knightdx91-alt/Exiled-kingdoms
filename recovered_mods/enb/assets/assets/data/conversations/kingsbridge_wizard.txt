@@ -1,0 +1,51 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Hello, have you brought me the...? [BLUE](The man suddenly frowns and points at Adaon)[] You! I recognize you, damn thief!	hola, ¿has conseguido encontrar...? [BLUE](de pronto, el hombre se enfurece y señala a Adaon)[] ¡Tú!¡Maldito ladrón, te reconozco!	21	"NPCIsInParty#adaon,adaon;VariableLower#mad_wizard,10;VariableEqual#fair_deal,10"	"decVariable#REP_thuram,40;decVariable#REP_wizardsguild,40;SetVariable#fair_deal,110"	
+1	Q	You! I recognize you, damn thief!	¡Tú!¡Maldito ladrón, te reconozco!	21	"NPCIsInParty#adaon,adaon;VariableLower#mad_wizard,10"	"decVariable#REP_thuram,40;decVariable#REP_wizardsguild,40"	
+1	Q	Do you bring my [BLUE]Orb of Shadows[], or the [BLUE]10,000 gold[] pieces?	¿Traes mi [BLUE]Orbe de Sombras[], o las [BLUE]10.000 monedas[]?	40	"VariableGreater#mad_wizard,1;VariableLower#mad_wizard,100"		
+1	Q	Greetings. I will depart soon, I have what I need to continue my task.	Saludos. Me marcharé pronto, tengo lo necesario para proseguir con mi tarea.	0	VariableGreater#mad_wizard,99		
+1	Q	Ah, my friend. I see you brought everything. Now give me a few minutes to enchant the reagents [BLUE](The man begins casting his spells over the wolf skin)[]	Ah, amigo mio, lo has traido todo. Ahora dame unos minutos para que encante la capa. [BLUE](El hombre empieza a hacer encantamientos sobre la piel de lobo)[]	12	"VariableEqual#fair_deal,10;PlayerHasItem#1004;PlayerHasItem#2001;PlayerHasGold#500"		
+1	Q	I hope you are capable of bringing those ingredients. Otherwise, I'll have to return to Thuram.	Espero que seas capaz de traer esos ingredientes. De otro modo, tendré que regresar a Thuram.	0	VariableEqual#fair_deal,10		
+1	Q	[BLUE](This tall and ceremonious man bows down politely)[] Greetings. I am Janod, from Whitetower.	[BLUE](Este viajero, alto y ceremonioso, te hace una reverencia)[] Saludos. Soy Janod, de Whitetower.	2	VariableLower#fair_deal,10		
+1	Q	I am now able to continue my research. You have my gratitude again.	Ahora puedo continuar con mi investigación. De nuevo te doy las gracias.	0			
+2	A	Greetings. You've travelled very far south from Thuram. What brings you here?	Saludos. Has viajado muy al sur desde Thuram. Que te trae por aquí?	3			
+2	A	Sorry, I am busy	Lo siento, estoy ocupado	0			
+3	Q	I am a Sorcerer, and a Weaver. My travel is mostly due to research. But sadly, I was robbed of all my belongings, so I may need to return home, and face failure.	Soy un Hechicero, y un Tejedor. Mi viaje es sobre todo para investigar. Pero me han robado todas mis pertenencias, y posiblemente debo regresar.	4			
+4	A	Really? Who robbed you?	En serio? Quién te robó?	5	"VariableLower#robbed_wizard,1;VariableLower#adaon_free,1"	SetVariable#robbed_wizard,1	
+4	A	You're not going to ask me for money, are you? Because I forgot my purse at the inn.	No me irás a pedir dinero, ¿verdad? Porque me he olvidado la bolsa del dinero.	8			
+4	A	Maybe I can help you with some money?	Quizá pueda ayudarte con algo de dinero.	8			
+5	Q	It was someone called Adaon. He accompained me in the road. But when I was sleeping...	Ha sido un tal Adaon. Me acompañaba en el viaje. Pero mientras estaba durmiendo...	6			
+6	A	I can't believe it. That same thief also took my letter!	No puedo creerlo. Ese mismo ladrón también me robó a mí!	7			
+7	Q	Then there's no doubt the Mystical Powers have brought us together, not mere chance.	Entonces no hay duda de que los Poderes Místicos nos han reunido hoy, no sólo la casualidad.	4			
+8	Q	I would never accept that. I am a Thuramian Sorcerer. However, maybe I could create a magical item for you, in exchange of 500 coins, and the required ingredients. A cloak to protect you.	Nunca aceptaría algo así. Soy un Hechicero de Thuram. Pero quizá podría crear un objeto mágico para ti, a cambio de 500 monedas, y los ingredientes necesarios. Una capa de protección.	9			
+9	A	Interesting. That way both you and me would benefit. What ingredients do you need?	Interesante. De ese modo ambos nos beneficiamos. Qué ingredientes necesitas?	10			
+10	Q	There's little I can do without my spellbook. But if you bring me a [BLUE]white wolf pelt[] and a [BLUE]small ruby[], I can enchant it into a [BLUE]Cloak of the Wolf[], for 500 coins.	No puedo hacer mucho sin mis libros. Pero si me traes una [BLUE]piel blanca de lobo[] y un [BLUE]pequeño rubí[], la convertiré en una [BLUE]Capa del Lobo[], a cambio de 500 monedas.	11			
+11	A	If I get those ingredients, I'll bring them to you.	Si consigo esos ingredientes, te los traeré.	0		SetVariable#fair_deal,10	
+12	A	[BLUE](Wait until he is done)[]	[BLUE](Esperar a que termine)[]	13			
+13	Q	Here you go. I hope we meet again, and especially, that we find that thief...	Aquí tienes. Espero que nos volvamos a encontrar, y sobre todo, que encontremos a ese ladrón...	0		"LoseItem#1004;LoseItem#2001;LoseGold#500;GainItem#3501;GainXP#350;SetVariable#fair_deal,100;IncVariable#REP_thuram,2;IncVariable#REP_wizardsguild,2"	
+21,adaon	Q	[BLUE](Adaon is trying to hide behind you, but the old man has already seen him, so eventually he smiles at the wizard)[] Hey gramps, long time no see. How's that cold, healed I hope?	[BLUE](Adaon intenta esconderse detrás de tí, pero como es evidente que le han visto, finalmente sonríe al mago)[] Hey abuelo, cuánto tiempo sin vernos. ¿Qué tal el resfriado?	22			
+22	A	Adaon... Be quiet. [BLUE](Bow down to the robed man)[] Sir, please, calm down, let's solve this like civilized people.	Adaon... cállate. [BLUE](Hacer una reverencia al mago)[] Señor, por favor, cálmese. Resolvamos esto de forma civilizada.	24			
+22	A	[BLUE](Laugh)[] Mate, that one was funny. Chill, old man.	[BLUE](Reirse)[] Amigo, eso ha sido gracioso. Cálmate, abuelo.	23		IncVariable#LOY_adaon,1	
+22	A	You dare to challenge me, or one of my allies? Get out of my way, old fool.	¿Te atreves a desafiarme a mí, o a uno de mis aliados? Apártate, viejo loco.	23			
+23,R	Q	You're going to learn the price of mocking a Thuramian Wizard.	Vais a aprender el precio que se paga por reirte de un Mago de Thuram.	0		"NPCHostile#janod;SetVariable#mad_wizard,200"	
+24,R	Q	Your fine friend there put something in my drink, and when I woke up, all my gold, and my valuable magic items had disappeared!	Tu buen amigo, me echó algo en la bebida. Cuando me desperté, todo mi oro y mis objetos mágicos habían desaparecido!	25			
+25,adaon	Q	Come on, gramps, it was barely enough to pay for all the wine you had... You were boozed up, I put nothing in your drink.	Venga abuelo, si apenas era suficiente para pagar la cuenta del vino que te bebiste! Estabas curda, no te eché nada en la bebida.	26			
+26,R	Q	You dare... The Orb of Shadows you stole is a priceless artifact. Give it back to me and I might forgive you. Refuse, and I'll seek justice, by my own hand.	Te atreves a decir... El Orbe de las Sombras que me robaste es un artefacto de gran valor, devuélvemelo ahora o te obligaré a hacerlo.	27			
+27	A	Adaon, do you have it? Give it back immediately.	Adaon, ¿Lo tienes? Devuélvelo de inmediato.	28			
+27	A	I've heard enough. Leave us alone, wizard.	Ya he oido bastante. Déjanos en paz, mago.	23			
+28,adaon	Q	That sphere thingie? No... I threw the whole bunch at some random guy in the sewers for a couple hundred. Good luck trying to find him tho, faces are covered in such deals.	¿Esa esfera? No... Se lo coloqué todo a uno que me encontré en las alcantarillas, pero íbamos con la cara tapada, así que...	29			
+29,R	Q	What an outrage. You'll either return the [BLUE]Orb of Shadows[], or pay me [BLUE]10,000 gold[] in compensation. Until then, I'll make sure everyone in Thuram and in the Wizards' Guild knows you two are criminals.	Que sinverguenza. Quiero que me devolváis mi [BLUE]Orbe de las Sombras[], o bien [BLUE]10.000 monedas[] para compensarme. Hasta entonces, me aseguraré de que todos en Thuram y en el Gremio de Magos sepan que sois criminales.	0		SetVariable#mad_wizard,10	
+40	A	No, sorry.	No, lo siento.	41			
+40	A	I bring you the money. Here it is. [BLUE](Pay 10,000 gold)[]	Tengo el dinero. Aquí está [BLUE](Dar 10.000 monedas)[].	42	"PlayerHasGold#10000;PlayerHasntItem#2516"		
+40	A	I bring you the Orb. Here, it is yours.	Tengo el Orbe. Toma, es tuyo.	50	PlayerHasItem#2516		
+40	A	I am not going to give you anything. Not now, not ever.	No te voy a dar nada. Ni ahora, ni nunca.	23			
+41	Q	Then we have nothing to discuss.	Entonces no tenemos nada que hablar.	0			
+42	Q	Definitely this is more than enough to compensate me. I will make sure your name will be clean in Thuram again. If I was you, I'd reconsider who I associate with, though.	Esto es más que suficiente para compensarme por lo perdido. Me aseguraré de que tu nombre queda limpio en Thuram. En tu lugar, creo que no andaría con ciertas amistades...	43		"LoseGold#10000;incVariable#REP_thuram,40;incVariable#REP_wizardsguild,40;GainXP#400;SetVariable#mad_wizard,100"	
+43	A	Good, we're even now.	De acuerdo, quedamos en paz, entonces.	0			
+43	A	Wait... Did you just say... 'more' than enough?	Espera, acabas de decir... ¿'más' que suficiente?	44			PER#2
+44	Q	You are right... Maybe I set a price a bit high. Here, have back [BLUE]2,000 coins[].	Tienes razón... Quizá fijé un precio demasiado alto. Toma, te devuelvo [BLUE]2.000 monedas[].	0		GainGold#2000	
+50	Q	I thought I'd never see those crystal reflections again... You've proved you're a honorable man, in my eyes. I'll make sure your name is cleared again.	Pensaba que nunca volvería a ver esos extraños reflejos de cristal... Has demostrado ser honorable a mis ojos. Me aseguraré de que tu nombre quede limpio de nuevo.	51		"LoseItem#2516;incVariable#REP_thuram,40;incVariable#REP_wizardsguild,40;GainXP#750;SetVariable#mad_wizard,110"	
+51	A	Very well, I'm glad we solved this matter.	Muy bien, me alegro de que hayamos arreglado esto.	52	NPCIsInParty#adaon,adaon		
+51	A	Very well, I'm glad we solved this matter.	Muy bien, me alegro de que hayamos arreglado esto.	0	NPCisNotInParty#adaon,adaon		
+52,adaon	Q	Hey gramps, see? It wasn't such a big deal, was it? Now... What about a reward?	Hey abuelo, ¿ves como no era para tanto? ¿Que tal una recompensa?	53			
+53	A	Adaon, zip it.	Adaon, cierra el pico...	0			
+53	A	[BLUE](Smirk)[] You'll never change, mate.					

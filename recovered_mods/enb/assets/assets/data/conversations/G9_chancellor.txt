@@ -1,0 +1,27 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Do you need something?		6	VariableEqual#nebr,10	
+1	Q	Greetings, hero.	Saludos, héroe.	0	VariableEqual#fort_assault,100	
+1	Q	"Welcome back to town, our esteemed hero. You have provided a great service to the city by freeing the fort; I just sent our forces to defend it. From now on, our lands will be safer to travel."	Bienvenido, nuestro héroe. Has prestado un gran servicio a la ciudad. De ahora en adelante, nuestros hombres defenderán el fuerte, y nuestras tierras serán más seguras.	2	VariableEqual#fort_assault,90	
+1	Q	Please don't bother me, can't you see I am an important person?	Por favor, no me molestes. ¿No ves que soy una persona importante?	0		
+2	A	Thanks! I hope those orcs don't trouble you again. Now, I was told there was a reward...	Gracias, espero que los orcos no vuelvan en un buen tiempo. Respecto a la recompensa...	3		
+3	Q	Of course, of course. I will pay you immediately your [BLUE]2,000 gold coins[], and you can choose one of these items.	Por supuesto, por supuesto. Te pagaré ahora mismo [BLUE]2.000 monedas[], y puedes elegir uno de estos objetos mágicos.	4		"IncVariable#REP_town_kingsbridge,5;IncVariable#REP_varsilia,3;IncVariable#REP_warriorsguild,3;GainXP#900;Gaingold#2000;SetVariable#fort_assault,100"
+4	A	I choose the [BLUE]Breastplate of the Forge[]	Escojo la [BLUE]Coraza de la Forja[].	5		GainItem#209
+4	A	I choose the [BLUE]Ring of Health[]	Escojo el [BLUE]anillo de Salud[].	5		GainItem#3012
+4	A	I choose the [BLUE]Magma Shortsword[]	Escojo la [BLUE]Espada Corta de Magma[].	5		GainItem#587
+4	A	I choose the [BLUE]Arcane Pendant[]	Escojo el [BLUE]Medallón Arcano[].	5		GainItem#4002
+5	Q	Very well, as per the Baron's promise, it is yours.	Muy bien. Tal y como prometió el Barón, es tuyo.	0		
+6	A	It just so happens that I need to pay a fine of 5,000 coins...		7		
+7	Q	So...fine. Very good. Go ahead.		8		
+8	A	You see...I don't have that kind of money, maybe I can do some work for you?		9		
+8	A	How about I personally give you 2,500 gold pieces and we'll call it a day?		10	PlayerHasGold#2500		PER#3
+8	A	Yes. Here's 5,000 gold pieces. I assume that's the end of the formalities?		11	PlayerHasGold#5000	
+8	A	I'll be back later.		0		
+9	Q	A job? I can do that. There's a job to escort a group of colonists. We need to get everyone alive to a small settlement north of the Blooming River.		12		
+10	Q	Hmmm. Give it here and you can go wherever you want. [BLUE]The money disappeared into the pockets of the chancellor[]		0		"SetVariable#nebr,110;GainXP#100;LoseGold#2500"
+11	Q	Okay. All charges are dropped.		0		"SetVariable#nebr,100;GainXP#200;LoseGold#5000"
+12	A	What if they don't all make it?		13		
+12	A	This job seems very difficult. I'd rather look for money.		0		
+13	Q	Then you have to compensate their families. 1,000 gold pieces each. Don't worry about the reputation, I'll make the arrangements, it will be returned as soon as you take the job. If you succeed, you may be rewarded... But that's up to the local authorities.		14		
+14	A	Yes, I'll do it. Who needs an escort?		15		SetVariable#nebr,20
+14	A	I think I'll save up some money and pay the fine.		0		
+15	Q	Do you need something?		0		"NPCSpawn#nebr1;NPCSpawn#nebr2;NPCSpawn#nebr3;NPCSpawn#nebrboss;NPCSpawn#nebr4;NPCSpawn#nebr5"

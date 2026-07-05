@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="76" height="48" tilewidth="64" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="150">
+ <properties>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="nerves"/>
+  <property name="name" value="Mason's Shrine"/>
+  <property name="name_ES" value="Mason's Shrine"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="dungeon stairs.tsx"/>
+ <tileset firstgid="245" name="spawns" tilewidth="64" tileheight="64" tilecount="8" columns="2">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="253" source="town_objects.tsx"/>
+ <tileset firstgid="333" source="grounds_indoor.tsx"/>
+ <tileset firstgid="493" source="Graveyard.tsx"/>
+ <tileset firstgid="541" source="Graveyard_2.tsx"/>
+ <tileset firstgid="589" source="spawns.tsx"/>
+ <layer id="1" name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3c3W6rMBBFYfogef+HzE0vqqgpDWZsj2eP7fVJSEc9Atxlwl+lPL6O42FYalm2WdpXyzqf1nv9bNTYe43cfs8ceCznMXjL3r+0fcs6NeOMOFYt42zdxugxe2zTOraI9ud99a4fdayMbKHaZ08/RZfV1fSM+pyuqNTN2jPyXLmau2aW62rk/cIMIq8X7/9mHn5E3jMp752zytp/pzkYrbU/c+HD0pR5GKemJZ8Lf7XtZjtHZRnHlZZWM10zVux/t/7d8jxs+3u+LV6/XzYex6bH52FUpx36l7alnouZ+ntv79PvHj0PWbpfjUN9bCjOSQpZ+1+NJVN/z/Pg1c8z9H/J0v3TeGbado9sY9qt/+oynV9nVmpXcz2jfxuvewb6tyk95yAG53G91Z8fZ7HL8/xsmIecRs9Bz99OdpH9c7DDHGbuDwCYA9eSep7Nst9PZUQvLe/+PF/Xob8W/bXor0UnLfpr0R8AgHhcf7Xor0V/Lfpr0V+L/lr016K/Fv216K9Ffy36a9EfAAAA2Af3/1r0j8f3EOicm9M/xtUxT/8Ype+Kw3j016K/v5r7F/r7s95D3n1XKNrU9G/5P5Td9bfMD/3HsbSlv6/adwv099PyPof+fuiv0fMuk/59et8h07+e5/t7/gbwX+R3aNP/r+jnJfr/6n2X0LPPqM9bdtYenss3S0+pcQCQAAA=
+  </data>
+ </layer>
+ <layer id="2" name="water" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAvgxAKPyNADkAAA==
+  </data>
+ </layer>
+ <layer id="3" name="ground" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3W6wnCMBRA4VRBRf8FHNcRHEWcoOpotpBiCXndWDRJzwcXxECJxxqrFAAAAAAAANCu7cKTet2cvZSAXjL0kqGXzLgPrdz7057Xofdsm8Caay819HJ99lgfX2ObpJdrX7/o1HdKvWbzsGZcd+1Lq3CLaS20bqul1z0wvl6xVq33ujom1GuJ++vfc87otTNzHObSfWbqdRvmaUZyfqX00gWM1HR/7RN7pfw/ttzrYOaU2Ct2XrX+e5yfX9/2ko6t5fN+7b1ynifW2ivneXWtvUqS00v6ndQs5x6UXqMl9JKhlwy9ZOgFAAAAoBZvazOjMwA5AAA=
+  </data>
+ </layer>
+ <layer id="4" name="ground2" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAvgxAKPyNADkAAA==
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2Yz04CMRDGC/GdPHn0jXg3vQJqFBRN1MSLcQ8mHA2Jd6WhzQ5Dp/+sze7y/ZIJ7ZQpu1+6M8MqBQAAAAAAAAAAAADAcFlt7YYYn3PfjNiKzR/Zvq+CfXiuJTWmNtfC/GR06LvY2qUndk7Gb57ffBb8ezHjuJjaSHqFfC6/T69Tcv8hvX5Gh2tD1+vF2J2Z3xNfI+yXcyZro3PGwoyXapej+DzWR/OXxWowd6xx3lWr6dT4rM5NRHwNpLOTg0uTFL0oVq/UuBxsnflUbX2hY3ruoZc/D/B16KXU2nx+Mb+d/5deOo/xvonmuFmCLdievCekJsXGEjpf9H5K6tVXQnpRhqbXJiNG6/Ud+V3bTyyVu7dw+SS/7ieumNH+i6/5LCfuVu16j1TWgXX7v48/j3/pVTUl873dv2Z9TM33Pr0mgp/Sd71i1nG+wvWX1tsH1T7/dOzzSf4nx7X0Qa8ukaMXryVdfA9WCv7Oj9+36z85Z+pZ68p7ilKEcmfMOTs2vc7H8jr02qfE+dJ7nAmaD00vqZ76aiiHvjfk1hS/YgAAAAAAAMCx8guv4nA/ADkAAA==
+  </data>
+ </layer>
+ <layer id="6" name="roofs" width="76" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAvgxAKPyNADkAAA==
+  </data>
+ </layer>
+ <objectgroup color="#1f99a4" id="6" name="data">
+  <object id="17" name="tomb1" type="spawn" gid="247" x="1272.66" y="1148" width="64" height="64">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="tag" value="z1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="146" name="mason" type="spawn" gid="247" x="1130.66" y="823.333" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H8_mason"/>
+    <property name="spawn" value="mas"/>
+    <property name="tag" value="mas"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="135" name="tomb1" type="spawn" gid="247" x="817.66" y="1113" width="64" height="64">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="tag" value="z2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="136" name="tomb1" type="spawn" gid="247" x="798.16" y="572.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="tag" value="z2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="134" name="tomb1" type="spawn" gid="247" x="1257.16" y="619.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="zombie"/>
+    <property name="tag" value="z1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="44" name="skeleton" type="spawn" gid="247" x="199.17" y="793.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#mason,11"/>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object id="111" name="skeleton" type="spawn" gid="247" x="236.67" y="691.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton1"/>
+    <property name="tag" value="s"/>
+   </properties>
+  </object>
+  <object id="113" name="skeleton" type="spawn" gid="247" x="99.67" y="690.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton1"/>
+    <property name="tag" value="s"/>
+   </properties>
+  </object>
+  <object id="114" name="skeleton" type="spawn" gid="247" x="127.67" y="804.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton1"/>
+    <property name="tag" value="s"/>
+   </properties>
+  </object>
+  <object id="112" name="skeleton" type="spawn" gid="247" x="278.67" y="803.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton1"/>
+    <property name="tag" value="s"/>
+   </properties>
+  </object>
+  <object id="103" name="skeleton" type="spawn" gid="247" x="192.67" y="701.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#mason,11"/>
+    <property name="spawn" value="skeleton1"/>
+   </properties>
+  </object>
+  <object id="108" name="skeleton_a" type="spawn" gid="247" x="398.67" y="701.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer1"/>
+    <property name="tag" value="s_a"/>
+   </properties>
+  </object>
+  <object id="115" name="lord" type="spawn" gid="247" x="558.67" y="773.67" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="lord_mas"/>
+    <property name="tag" value="lmas"/>
+   </properties>
+  </object>
+  <object id="109" name="skeleton_a" type="spawn" gid="247" x="175.17" y="895.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer1"/>
+    <property name="tag" value="s_a"/>
+   </properties>
+  </object>
+  <object id="110" name="skeleton_a" type="spawn" gid="247" x="55.17" y="607.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer1"/>
+    <property name="tag" value="s_a"/>
+   </properties>
+  </object>
+  <object id="102" name="krist" type="spawn" gid="247" x="60.67" y="755.67" width="64" height="64">
+   <properties>
+    <property name="spawn" value="krist"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="94" name="entry" type="entry" gid="245" x="1590.5" y="817.5" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="145" name="entry" type="entry" gid="245" x="1568.5" y="786.167" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="95" name="entry" type="entry" gid="245" x="2316" y="814.666" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="99" name="entry" type="entry" gid="245" x="2203.33" y="820.666" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="96" name="stairs down" type="transition" x="2102.67" y="794.667" width="48.6667" height="48">
+   <properties>
+    <property name="area_id" value="H8_mason"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="97" name="naverx" type="transition" x="1637.33" y="782.667" width="65.3333" height="58.6667">
+   <properties>
+    <property name="area_id" value="H8_mason"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="98" name="exit" type="transition" x="2396" y="770.667" width="37.3333" height="124.667">
+   <properties>
+    <property name="area_id" value="H8"/>
+    <property name="entry_id" value="15"/>
+   </properties>
+  </object>
+  <object id="121" name="flame" type="mapeffect" gid="249" x="1587" y="881" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="144" name="flame" type="mapeffect" gid="249" x="1565" y="849.667" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="132" name="flame" type="mapeffect" gid="249" x="1629.5" y="864.5" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="143" name="flame" type="mapeffect" gid="249" x="1607.5" y="833.167" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="122" name="flame" type="mapeffect" gid="249" x="1532" y="896" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="123" name="flame" type="mapeffect" gid="249" x="1533" y="857" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="124" name="flame" type="mapeffect" gid="249" x="1531.5" y="818.5" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="128" name="flame" type="mapeffect" gid="249" x="1578" y="834" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="142" name="flame" type="mapeffect" gid="249" x="1556" y="802.667" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="131" name="flame" type="mapeffect" gid="249" x="1626.5" y="827.5" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="130" name="flame" type="mapeffect" gid="249" x="1589" y="793" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="125" name="flame" type="mapeffect" gid="249" x="1526" y="780" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="126" name="flame" type="mapeffect" gid="249" x="1520.5" y="745.5" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="127" name="flame" type="mapeffect" gid="249" x="1519.5" y="714.5" width="64" height="64">
+   <properties>
+    <property name="id" value="flames1"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="wall_flame1"/>
+   </properties>
+  </object>
+  <object id="133" name="trig" type="trigger" x="1373.5" y="662.5" width="44" height="260">
+   <properties>
+    <property name="actions" value="ItemActivate#wall_flame1;SetVariable#lmas,1;NPCGoTo#z1,2;NPCGoTo#z2,3;NPCGoTo#mas,4;ItemWalkable#pent"/>
+    <property name="conditions" value="VariableLower#lmas,1"/>
+   </properties>
+  </object>
+  <object id="137" name="zomb" type="waypoint" gid="245" x="1254" y="828" width="64" height="64">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object id="138" name="zomb" type="waypoint" gid="245" x="819" y="823" width="64" height="64">
+   <properties>
+    <property name="id" value="3"/>
+   </properties>
+  </object>
+  <object id="139" name="mason" type="waypoint" gid="245" x="482.667" y="769.333" width="64" height="64">
+   <properties>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+  <object id="140" name="pent_on" type="mapitem" gid="249" x="384.5" y="832.5" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="pent_off"/>
+    <property name="inactive_sprite" value="pent_on"/>
+    <property name="tag" value="pent"/>
+   </properties>
+  </object>
+  <object id="147" name="103" type="conversation" gid="593" x="1194.67" y="552" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H8_mas1"/>
+    <property name="icon" value="sarcophagus"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="148" name="104" type="conversation" gid="593" x="692.17" y="1100.5" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H8_mas2"/>
+    <property name="icon" value="sarcophagus"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="149" name="105" type="conversation" gid="593" x="371.17" y="547.5" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H8_mas3"/>
+    <property name="icon" value="sarcophagus"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

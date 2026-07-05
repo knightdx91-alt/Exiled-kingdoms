@@ -1,0 +1,7 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](You see a dry tree, it seems quite appropriate.)[]		2	"VariableGreater#tree,9;VariableEqual#tree,10"	
+1	Q	[BLUE](The hide from the tree is gone. What could that mean?)[]		0	VariableEqual#tree,100	
+1	Q	[BLUE](The hide hangs on the branches, you've been here before.)[]		0	VariableEqual#tree,20	
+1	Q	[BLUE](Just dry wood. Nothing interesting)[]		2			
+2	A	[BLUE] (Hang the hide on the branches)[]		0	"VariableGreater#tree,9;VariableEqual#tree,10;PlayerHasItem#1002"	"SetVariable#tree,20;loseItem#1002"
+2	A	Pass by		0			

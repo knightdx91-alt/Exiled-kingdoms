@@ -1,0 +1,24 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Yes, my friend?	Saludos, amigo.	11	NPCisFollower#		
+1	Q	Why did you come? I know you're not done with this dirty business yet!		9			
+9	A	That would be great! Follow me. Welcome to the team.	Sería genial! Sígueme. Bienvenida al equipo.	0		NPCFollow#	
+9	A	Not right now, thanks. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	10			
+10	Q	Very well. If you change your mind, you can usually find me in Kingsbridge. Goodbye, friend.	Muy bien. Si cambias de opinión, seguramente puedas encontrarme en Kingsbridge. Adiós, amigo.	0			
+11	A	Nothing, let's move on.	Nada, continuemos.	0			
+11	A	I don't need your services for now, you can return to Kingsbridge.	Ya no necesito tus servicios, puedes volver a Kingsbridge.	0		"NPCStopFollowing#;NPCDespawn#amaris"	
+11	A	Let's talk for a moment	Hablemos un momento.	0			
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91			
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92			
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#	
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#	
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93			
+92	A	Nevermind.	No importa.	0			
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94			
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never	
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend	
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close	
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all	
+95	Q	Understood.	Entendido.	0			
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0			
+97	A	Gris, I'm sorry about our fight and I'll be back later...I just wanted you to know about it....[BLUE](Grisenda turns away and leaves without saying a word)[]		99			
+98	A	Yes I'm ready		0		Travel#G9_1,25,0	

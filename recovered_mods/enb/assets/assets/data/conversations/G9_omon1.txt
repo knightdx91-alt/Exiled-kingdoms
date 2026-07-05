@@ -1,0 +1,11 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](There are several armed men in good armour in the house besides you. The biggest one comes closer to you)[] Captain Mark. New Garand Special Victims Unit. What have we got here? Corpses, ghosts, dangerous dark artefacts...Give me the medallion you lousy cultist! We've been watching you for a long time.		2		
+2	A	This is a mistake! I'm not a cultist, I'm only following in their footsteps!		3		
+2	A	[BLUE](Give the guards the cursed locket)[]		4		"NPСDespawn#omon1;LoseItem#2640"
+2	A	[RED](Attack the guard squad)[]		0		"SetVariable#pr_djeck,25;NPCHostile#omon;NPCHostile#omon1;DecVariable#REP_varsilia,10;SetVariable#dver1,0"
+3	Q	I don't believe you. We saw you performing some strange ritual...We saw a ghost disappear and we detected magical vibrations from a dark artefact. Hand over the artefact, cultist, and maybe we'll arrest you instead of killing you on the spot.[BLUE](The guards bare arms)[]		5		
+4	Q	[BLUE](The squad leader is running an amulet test on your medallion. He seems satisfied with the results)[] Just as I thought. A dark cultist artefact. Kill the bastard and I'm off to Kingsbridge![BLUE](The captain quickly reads the scroll and teleports into the city, the soldiers bare their weapons and attack you)[]		0		"SetVariable#dver1,0;NPCHostile#omon;SetVariable#omon,10;SetVariable#pr_djeck,26"
+5	A	[BLUE](Give the guards the cursed locket)[] All right! Take it. But I have nothing to do with any cultists!		7		
+5	A	You try and take it away! [RED](Attack the guard squad)[] 		0		"NPCHostile#omon;NPCHostile#omon1;DecVariable#REP_varsilia,10;SetVariable#pr_djeck,25;SetVariable#dver1,0"
+7	Q	The right decision. [BLUE](Turns to the soldiers Take his weapons from him and send him to Kingsbridge, I've still got to look round the place.")[] We're gonna have to take you with us for further proceedings. Surrender your weapon and come with us.		8		LoseItem#2640
+8	A	Okay. Go ahead. 		0		"HideParty#;LoseInventory#;Travel#G9_karcer,1,0;SetVariable#pr_djeck,11;SetVariable#g9_recovered_items,0"

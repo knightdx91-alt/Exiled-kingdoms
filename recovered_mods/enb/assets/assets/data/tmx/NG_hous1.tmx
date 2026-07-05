@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="24" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="20">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="70"/>
+  <property name="name" value="New Garand House"/>
+  <property name="name_ES" value="Casa en New Garand"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="Household.tsx"/>
+ <tileset firstgid="533" source="Library Pack.tsx"/>
+ <tileset firstgid="603" source="tiled_room.tsx"/>
+ <tileset firstgid="683" source="town_woodenObjects.tsx"/>
+ <layer id="1" name="nonwalk" width="24" height="24" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU4APfkfBQAkPNvcSC72j0KBgFxAJa52Vc5tI6rVLL/KHiTmoBAOUHDYM=
+  </data>
+ </layer>
+ <layer id="2" name="ground" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJyrZGRgqBzFo3gUj2Iq4m40PGo+fc0fxaN4FBPGAEjGE7A=
+  </data>
+ </layer>
+ <layer id="3" name="ground2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDEYwh4mBYTYQz2UaaJcQBvNp7MZ5QyAMRsEoGMxg9mgewgAAVZwDuQ==
+  </data>
+ </layer>
+ <layer id="4" name="scenery" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUFDAxMJQAcQ0QpwBxAxDXIfFLoLQdUK0rEEdA6Rg0Pgh7YDG/lAlCT2DC745wIP4DZfMyIjAywGZ+NdTcKTjMF4OKm+KwVwhJHzbzy7GY64Am9gHozmgc5iMDbOYnEwiX99AwCKeR+TAACh9lqNo9OPRgMx+WLtwYEOkAPV2AsBUOewmFPzYxcsFAmI8eb7DwQsfo4ujhiSt/oYvh8g+yOCcjYTXkmK8GjMtDONLOWibquR8dcDDhVoMe/vjMZ8LidnYS0yc+8xkJ5EVsetHTAq58BJIzIoCR9QIA4gMl6g==
+  </data>
+ </layer>
+ <layer id="6" name="roofs" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGBuBiop3ZnDQ0exRQHwAANBwAGA==
+  </data>
+ </layer>
+ <objectgroup id="7" name="data">
+  <object id="9" name="input" type="entry" gid="241" x="127.5" y="678.5" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="10" name="Capitan" type="spawn" gid="243" x="566" y="390" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_omon"/>
+    <property name="spawn" value="human_captain3"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="11" name="Closet1" type="conversation" gid="245" x="80" y="340" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_lib1"/>
+    <property name="icon" value="lib"/>
+    <property name="name" value="@CLOSET"/>
+   </properties>
+  </object>
+  <object id="12" name="Closet2" type="conversation" gid="245" x="269" y="271" width="64" height="64">
+   <properties>
+    <property name="conversation" value="NG_lib2"/>
+    <property name="icon" value="lib"/>
+    <property name="name" value="@CLOSET"/>
+   </properties>
+  </object>
+  <object id="13" name="chest" type="container" gid="245" x="499.5" y="594.5" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="14" name="bed" type="bed" gid="245" x="357.5" y="386.5" width="64" height="64"/>
+  <object id="19" name="exit" type="transition" x="81" y="739" width="51" height="30">
+   <properties>
+    <property name="area_id" value="NG"/>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

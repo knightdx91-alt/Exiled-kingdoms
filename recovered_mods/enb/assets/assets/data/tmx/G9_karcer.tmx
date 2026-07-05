@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="262">
+ <properties>
+  <property name="house" value=""/>
+  <property name="maxlight" value="60"/>
+  <property name="music" value="karser"/>
+  <property name="name" value="Bandit Hideout"/>
+  <property name="name_ES" value="Guarida de bandidos"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="town_objects.tsx"/>
+ <tileset firstgid="569" source="grounds_indoor.tsx"/>
+ <tileset firstgid="729" name="town_objexts2" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="town_objects2.png" width="512" height="512"/>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="light" value="brazier_lamp"/>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="793" source="grassland.tsx"/>
+ <tileset firstgid="921" source="trees.tsx"/>
+ <tileset firstgid="937" source="tents_3.tsx"/>
+ <tileset firstgid="977" source="town_objexts2.tsx"/>
+ <layer id="1" name="nonwalk" width="72" height="72" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3QMQoAIAADsf7/w11dBQfdFEmge7kEgBO9feBhncaq0WhHHwAAAAAAAAAAAAAAAAAAAAAA+N8AGvE1YABRAAA=
+  </data>
+ </layer>
+ <layer id="2" name="water" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3VsQmAQBBFwcP+E0sRy7ApDQzlYXYKM/Dz5SU7Bm+ty+wL/kMrAP7E3wIAAAAAAAAAAAAAAAD4lu3aPvuID9On6dP0afo0fZo+7bjHM32aPk2fpk/Tp+nT9Gn6PDsB8Tut6gBRAAA=
+  </data>
+ </layer>
+ <layer id="3" name="ground" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer id="4" name="ground2" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3YwQnCMBSA4UqmEaEgUi/O4wheXMAdenAqB/JgpFXqu4WG+H3woKUQHv8hh3YdAAAAAAAAAAAA8G2bXnNI03Ofpu/97H2fls/4B+9Gx9xjl2dIn40AAAAAaMtpNvzWYp/7Zu0N6vOo/D/oNQ/LtKFFo7u6Sre1F6Coc4EzL3laUKJPS4a1F6icPjF9YvrE9InpE9Mnpk/sCZmKMDoAUQAA
+  </data>
+ </layer>
+ <layer id="5" name="scenery" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+ </layer>
+ <layer id="6" name="objects" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer id="7" name="roofs" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3cMQ0AMAgAQdCDvPpPOrOTwHCn4BV8BMANL7cLAAAAAAAAAAAAAAAAAAAAAAAAYE75azUfez8xwwBRAAA=
+  </data>
+ </layer>
+ <objectgroup id="8" name="data">
+  <object id="90" name="entry" type="entry" gid="241" x="84.6667" y="78" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="91" name="villager" type="spawn" gid="243" x="105.5" y="291.167" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="kingsbridge"/>
+   </properties>
+  </object>
+  <object id="92" name="grate1" type="mapitem" gid="245" x="122.999" y="147.666" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object id="93" name="Karcer conv" type="conversation" gid="245" x="114.333" y="137.666" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,11;IsItemActive#grate1"/>
+    <property name="conversation" value="G9_karc"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="95" name="items chest" type="conversation" gid="245" x="42.2499" y="424.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,24"/>
+    <property name="conversation" value="g9_dungeon_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="159" name="items chest int" type="conversation" gid="245" x="44.5833" y="423.084" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,14"/>
+    <property name="conversation" value="g9_dungeon_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="163" name="items chest int" type="conversation" gid="245" x="43.1666" y="421.834" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,13"/>
+    <property name="conversation" value="g9_dungeon_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="102" name="items chest" type="conversation" gid="245" x="234.667" y="299" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="conversation" value="g9_dungeon_equipment_chest"/>
+    <property name="icon" value="chest_big1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="96" name="Karcer exit" type="conversation" gid="245" x="12.1667" y="555.833" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,24"/>
+    <property name="conversation" value="G9_karc_ex"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="148" name="Karcer exit2" type="conversation" gid="245" x="12.9166" y="555.417" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,25"/>
+    <property name="conversation" value="G9_karc_ex"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="164" name="Karcer exit3" type="conversation" gid="245" x="13.8334" y="555.5" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,13"/>
+    <property name="conversation" value="G9_karc_ex1"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="97" name="sudya" type="spawn" gid="243" x="216.667" y="447.333" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,16"/>
+    <property name="conversation" value="G9_sud"/>
+    <property name="spawn" value="sudya"/>
+    <property name="tag" value="oxran2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="98" name="oxran" type="spawn" gid="243" x="277.667" y="291.666" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="99" name="oxran" type="spawn" gid="243" x="430.666" y="492.001" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="147" name="oxran" type="spawn" gid="243" x="323.999" y="448.001" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="103" name="oxran" type="spawn" gid="243" x="419.667" y="99.0003" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="100" name="oxran" type="spawn" gid="243" x="413.333" y="241.333" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_soldier1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="101" name="oxran2" type="spawn" gid="243" x="260.501" y="575.5" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,16"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_archer1"/>
+    <property name="tag" value="oxran2"/>
+   </properties>
+  </object>
+  <object id="108" name="oxran" type="spawn" gid="243" x="162.667" y="569.333" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_archer1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="106" name="oxran" type="spawn" gid="243" x="66.0003" y="560.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_captain1"/>
+    <property name="tag" value="oxran"/>
+   </properties>
+  </object>
+  <object id="120" name="oxran2" type="spawn" gid="243" x="90.0033" y="534.664" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#pr_djeck,16"/>
+    <property name="faction" value="varsilia"/>
+    <property name="spawn" value="human_captain1"/>
+    <property name="tag" value="oxran2"/>
+   </properties>
+  </object>
+  <object id="104" name="Trigger" type="trigger" x="156" y="94.6667" width="71.6667" height="123.667">
+   <properties>
+    <property name="actions" value="NPCHostile#oxran"/>
+    <property name="conditions" value="VariableEqual#pr_djeck,15"/>
+   </properties>
+  </object>
+  <object id="109" name="entry sud" type="entry" gid="241" x="203" y="555" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="118" name="entry sud2" type="entry" gid="241" x="152" y="532" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object id="114" name="corpse" type="container" gid="245" x="51" y="466.333" width="41.3333" height="47.3333">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="arena_armor1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="115" name="corpse" type="container" gid="245" x="45.8333" y="495.5" width="47.3333" height="46">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="arena_weapons1"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="153" name="pauk" type="spawn" gid="243" x="49.8333" y="1988.83" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider_lesser"/>
+    <property name="tag" value="pauk1"/>
+   </properties>
+  </object>
+  <object id="154" name="pauk" type="spawn" gid="243" x="314.106" y="1869.22" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider_lesser"/>
+    <property name="tag" value="pauk1"/>
+   </properties>
+  </object>
+  <object id="173" name="pauk" type="spawn" gid="243" x="480.743" y="1985.5" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider_lesser"/>
+    <property name="tag" value="pauk1"/>
+   </properties>
+  </object>
+  <object id="175" name="bat" type="spawn" gid="243" x="1052.5" y="1840.77" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bat"/>
+    <property name="tag" value="pauk1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="176" name="bat" type="spawn" gid="243" x="888.985" y="1970.83" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bat"/>
+    <property name="tag" value="pauk1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="174" name="bat" type="spawn" gid="243" x="700.046" y="2090.19" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bat"/>
+    <property name="tag" value="pauk1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="156" name="pauk_boss" type="spawn" gid="243" x="1373.32" y="1794.75" width="64" height="64">
+   <properties>
+    <property name="conversation" value="demonic_spid"/>
+    <property name="portrait" value="202"/>
+    <property name="spawn" value="demonic_spid"/>
+    <property name="tag" value="demonicsp"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="155" name="pauk" type="spawn" gid="243" x="61.5" y="1827.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider_lesser"/>
+    <property name="tag" value="pauk1"/>
+   </properties>
+  </object>
+  <object id="150" name="entry_cave" type="entry" gid="241" x="83" y="2295.67" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="8"/>
+   </properties>
+  </object>
+  <object id="151" name="exit int" type="conversation" gid="245" x="395.417" y="17.9167" width="67" height="56">
+   <properties>
+    <property name="conversation" value="G9_karc_int"/>
+    <property name="icon" value="wall_broken"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object id="152" name="trig mes exit" type="trigger" x="-48.1667" y="1971.17" width="181.666" height="86.833">
+   <properties>
+    <property name="actions" value="StartConversation#demonicsp,demonic_spid;SaveGame#;SetVariable#mescav,1"/>
+    <property name="conditions" value="VariableLower#mescav,1"/>
+   </properties>
+  </object>
+  <object id="157" name="exit_cave" type="transition" x="1772.64" y="3.15152" width="355.273" height="93">
+   <properties>
+    <property name="area_id" value="G9_cave"/>
+    <property name="entry_id" value="87"/>
+   </properties>
+  </object>
+  <object id="165" name="beartrap" type="trap" gid="245" x="58.25" y="2204.75" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="maxlevel" value="7"/>
+   </properties>
+  </object>
+  <object id="166" name="spikes trap" type="trap" gid="245" x="147.5" y="2117.5" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="random_range" value="2"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="205" name="oxran3" type="spawn" gid="243" x="728.84" y="1101.58" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="conversation" value="g9_exit"/>
+    <property name="faction" value="varsilia"/>
+    <property name="portrait" value="76"/>
+    <property name="spawn" value="human_captain1"/>
+    <property name="tag" value="oxran3"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="206" name="rabota" type="entry" gid="241" x="229" y="1134.75" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object id="207" name="vilage" type="spawn" gid="243" x="568.5" y="1491.25" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="kingsbridge1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="208" name="vilage" type="spawn" gid="243" x="661.5" y="1388.25" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="kingsbridge1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="209" name="vilage" type="spawn" gid="243" x="658.5" y="1221.25" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="kingsbridge1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="210" name="loot" type="conversation" gid="245" x="217.33" y="1442.42" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#oxrana,12"/>
+    <property name="conversation" value="drop1"/>
+    <property name="icon" value="loot"/>
+    <property name="name" value="@DROP"/>
+   </properties>
+  </object>
+  <object id="211" name="loot" type="conversation" gid="245" x="475.33" y="979.08" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#oxrana,12"/>
+    <property name="conversation" value="drop"/>
+    <property name="icon" value="loot"/>
+    <property name="name" value="@DROP"/>
+   </properties>
+  </object>
+  <object id="212" name="wolf" type="spawn" gid="243" x="165" y="1500.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="213" name="ork" type="spawn" gid="243" x="384.5" y="1499.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="ork1"/>
+   </properties>
+  </object>
+  <object id="214" name="ork" type="spawn" gid="243" x="226.5" y="1505.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="ork1"/>
+   </properties>
+  </object>
+  <object id="215" name="ork" type="spawn" gid="243" x="660.83" y="1278.92" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="ork1"/>
+   </properties>
+  </object>
+  <object id="216" name="ork" type="spawn" gid="243" x="687.33" y="1080.42" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="ork1"/>
+   </properties>
+  </object>
+  <object id="217" name="ork" type="spawn" gid="243" x="731" y="1054.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="ork1"/>
+   </properties>
+  </object>
+  <object id="218" name="wolf" type="spawn" gid="243" x="94.5" y="1037.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="219" name="wolf" type="spawn" gid="243" x="150" y="939.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="220" name="wolf" type="spawn" gid="243" x="689.83" y="1141.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="221" name="wolf" type="spawn" gid="243" x="501.5" y="882.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="222" name="bear" type="spawn" gid="243" x="327" y="884.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bear"/>
+    <property name="tag" value="bear1"/>
+   </properties>
+  </object>
+  <object id="223" name="bear" type="spawn" gid="243" x="192.5" y="963.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bear"/>
+    <property name="tag" value="bear1"/>
+   </properties>
+  </object>
+  <object id="224" name="bear" type="spawn" gid="243" x="78" y="1183.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bear"/>
+    <property name="tag" value="bear1"/>
+   </properties>
+  </object>
+  <object id="225" name="bear" type="spawn" gid="243" x="697" y="1002.75" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bear"/>
+    <property name="tag" value="bear1"/>
+   </properties>
+  </object>
+  <object id="226" name="wolf" type="spawn" gid="243" x="654.5" y="1497.25" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="wolf"/>
+    <property name="tag" value="wolf1"/>
+   </properties>
+  </object>
+  <object id="227" name="trigger_wolf" type="trigger" x="28" y="829.08" width="53.3333" height="677.333">
+   <properties>
+    <property name="actions" value="NPCSpawn#wolf1;SetVariable#wolf,1"/>
+    <property name="conditions" value="VariableEqual#oxrana,13;VariableLower#wolf,1"/>
+   </properties>
+  </object>
+  <object id="228" name="trigger_wolf" type="trigger" x="565" y="854.08" width="53.3333" height="677.333">
+   <properties>
+    <property name="actions" value="SaveGame#"/>
+    <property name="conditions" value="VariableEqual#oxrana,13"/>
+   </properties>
+  </object>
+  <object id="229" name="trigger bear" type="trigger" x="99" y="810.75" width="626" height="74">
+   <properties>
+    <property name="actions" value="NPCSpawn#bear1;SetVariable#bear,1"/>
+    <property name="conditions" value="VariableEqual#oxrana,20;VariableLower#bear,1"/>
+   </properties>
+  </object>
+  <object id="230" name="trigger_ork" type="trigger" x="87.5" y="1455.25" width="644.5" height="57">
+   <properties>
+    <property name="actions" value="NPCSpawn#ork1;SetVariable#ork,1"/>
+    <property name="conditions" value="VariableEqual#oxrana,25;VariableLower#ork,1"/>
+   </properties>
+  </object>
+  <object id="232" name="bat" type="spawn" gid="243" x="1865.88" y="2173.83" width="64" height="64">
+   <properties>
+    <property name="spawn" value="bat"/>
+    <property name="tag" value="pauk1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="233" name="skelet" type="spawn" gid="243" x="1755.88" y="2163.83" width="64" height="64">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object id="234" name="skelet" type="spawn" gid="243" x="1830.54" y="2078.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object id="235" name="skelet" type="spawn" gid="243" x="1992.54" y="2204.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+   </properties>
+  </object>
+  <object id="236" name="madman" type="spawn" gid="243" x="2095.88" y="1872.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="travelling_monk"/>
+    <property name="tag" value="mad"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="237" name="beast" type="spawn" gid="243" x="1283.88" y="1305.83" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="238" name="beast" type="spawn" gid="243" x="1489.21" y="1332.5" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="239" name="beast" type="spawn" gid="243" x="1395.21" y="1439.83" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="240" name="mirmek" type="spawn" gid="243" x="1565.88" y="261.163" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mirmek"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="241" name="mirmek" type="spawn" gid="243" x="1506.54" y="339.163" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mirmek"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="242" name="goblin" type="spawn" gid="243" x="1977.88" y="934.497" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="243" name="goblin" type="spawn" gid="243" x="1446.54" y="1015.16" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="244" name="goblin" type="spawn" gid="243" x="1784.54" y="1319.83" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="245" name="goblin" type="spawn" gid="243" x="1425.21" y="713.83" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="246" name="goblin" type="spawn" gid="243" x="2109.21" y="1384.5" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="247" name="goblin" type="spawn" gid="243" x="1693.21" y="971.163" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="248" name="goblin" type="spawn" gid="243" x="2018.54" y="861.83" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="249" name="goblin" type="spawn" gid="243" x="1962.54" y="867.163" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="goblins"/>
+   </properties>
+  </object>
+  <object id="250" name="mirmek" type="spawn" gid="243" x="1508.54" y="259.83" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mirmek"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="251" name="madman" type="spawn" gid="243" x="2123.38" y="1689" width="64" height="64">
+   <properties>
+    <property name="spawn" value="travelling_monk"/>
+    <property name="tag" value="mad"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="252" name="madman" type="spawn" gid="243" x="1960.71" y="1742.33" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="mad_monk_healer"/>
+    <property name="tag" value="mad1"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="253" name="Mastermadman" type="spawn" gid="243" x="2151.54" y="1758.16" width="64" height="64">
+   <properties>
+    <property name="conversation" value="G9_madman"/>
+    <property name="spawn" value="master_monk1"/>
+    <property name="tag" value="mad"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="254" name="madman" type="spawn" gid="243" x="2173.46" y="1876.91" width="61" height="65">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="mad_monk_healer"/>
+    <property name="tag" value="mad1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="256" name="chest" type="container" gid="245" x="2006.51" y="792.072" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="257" name="chest" type="container" gid="245" x="1393.51" y="1173.07" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="258" name="chest" type="container" gid="245" x="2219.01" y="1910.24" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="259" name="light" type="light" gid="245" x="2248.18" y="1871.74" width="64" height="64"/>
+  <object id="260" name="flame" type="mapeffect" gid="245" x="2244.01" y="1862.57" width="64" height="64">
+   <properties>
+    <property name="id" value="medium_flames"/>
+   </properties>
+  </object>
+  <object id="261" name="chest" type="container" gid="245" x="1587.51" y="211.072" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

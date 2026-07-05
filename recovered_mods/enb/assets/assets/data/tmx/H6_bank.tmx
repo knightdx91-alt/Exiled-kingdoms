@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="70"/>
+  <property name="music" value="anguish"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="town_objects3.tsx"/>
+ <tileset firstgid="281" source="town_objexts2.tsx"/>
+ <tileset firstgid="345" source="dungeon2.tsx"/>
+ <tileset firstgid="585" source="teleporter.tsx"/>
+ <layer name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7Bu/v+xS08QXBJIAnemAQAAAAAAAAAAAAAAAPi1K3EADw==
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmdtuwyAMQPn9/MW6buvjnvp/20ORIsvgK8akHAkhtYll5xiStKVsNjae/+PozBlzehpij4prgcrp7EHqK8qvJL7Er9RXlF9JfI5f7txi9Lr19sudW4xet95+K1n9FiQfbi6e61eaiwXuNd1+/X2s6nd0LhYyPMtE5pLhWdUrF897YwTWXDyffSLYfm3nb7/yazqyRzL6vb+O/TTEaLGK33u5rt967FfBa808azj3cq+nM84aZuc8wy/s4VU8a5ids7c/itk1efujmF1TtF8OV/LL4Qp+Z/dqtN8a85aktu3Xl9m1rOLXGrdHxvXLjas5f/v1o8as771Wvwcyfl8D++5onEudo/Xu7bcewx2wXsl5mmvhfY84H0cNS73cawjh9PI38jmnXiqnGfW+k19trbPXL6d3MLS1Un6lQ1uvdL9a2a8Gi9+WZ+v6lfaEBKqWB6NmKianJ6Po1QJ/m63P1x9ghlj8RmDtaYhl/UZA1fRDfI/F0+7PEXA81t7Gaodg9XDfF6KQ7FnwPxZI9n4+56jp6V6sjPtVKf1aW/sz5/6b7X7UytFjf17VL/WuCFlh/WJY/Ga+H22uyR+fJjuh
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2bkRgDAMBECgOyLovxP+JyMj8gPabUDSSB4H1zQAQApD6QYyGzPU6LsMRQD4jKUt3QGp7XbMi+m6kTnInaxB5nzaAs18z+pfg286vF0AAAAAoFLy1v+bfr7jiBlpNFHyfoAanOx7DcE=
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7D6P3izgy8ILgkkgTtdGwAAAAAAAAAAAAAAAIBfA3umAR8=
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztWktu1EAQHQMbuEEkTsEGhRDgDpwqYTIQYIZfgADhswkzIQOcJYIbkAVbFkh0CZdUqamu6o/t9kTzpJbt/tZzdXVXlz0YrLBCHibVYDBzae7SnzpvXuc9qcrJNKplGtWy0OccubaUtvcL8d1x414jz/yeyvXB3T/3pI+C/BrfFw3yBZ19I7r6oujp2BiXyvXM3f8W6kOeJP/Y5Q1d2iVlB+5+z6VPDfI9EvryzZ8dY9x3RIdvXbrrqafpi+q5Sb0iJA6+caYNjV+S71iYQ775o9kYtt2r05tEe2ybb8wYsfYbUo9j2iO+ln5p2/dE1zxp608X+j1qgW8q+jSfwdYfMPs8CNRb07L0fYxQHK/4RgH8p891mrOEPhWmkr45Ivfdw/q+5q63jHp/62sp3xyRy/ewbnPRXS8FtC89n3P3X2sP4SjNN1e/lk/EETLGhNk8nqswr6lzcF/0a52T7i0JX9/ZlEM6Q1L0le9j4i/F+EiWfh9VZ2M/82px/vvKHlZn++H75Ygl3gev99KlV9X/vlLtzOIL2K/85/0uQWVInXdfA9q9LrzOS0jlG6Lf3XPENySuE/JOEBOPvWEe9Ym3a/vcrhMdB9ajoZKetqjfmFiX1R/4iD5/mLbN2Rc0jI33OKwWOaCOpDXWejdQvuGuN4WyLviGgPt1oKNNd70h1LX0q5VPe8KX7/t4blkX6u4bcmrlbep3QtaJGVtDaB7cc76ajqy9Sytvky/nwG2KPnOb1GzU2ru08jb5wpyk9neHldPnGP1a9qu9q7b5gv3dDqjbJN/Qtm3PZw10fQY/QNvDrP2I+iPaXtY03xgfYitCjhz9xowTixj9nge+fL1CwHyjfu+sCjt3QjuMC8OVn31pGY8T4f8evvMy9eNifHnOV1qvwFZ/Kn363nusHLSfmLkmxdtCYm2+MayxfXyhHZ4DfOcBmp/KF/0z6d8TLd7uW69S+cK8QB/F57vQ/FS+mn+W8j0U3sNpwnyO/T8ila/mn6XwBTv8kcA3NjZO+2nqfJ3DV+L8q9LtNwYp+kVfh8dhQ+KxfN/BWAtd96R4jO+7I+r3uyE7lqfwbSoWLuVdubBYjnnSOphjvyExlpyYFcp3wtoD38sCTw7JTnLstwtI+oV3sB4gh8Q3x367gDWfNSyjfiWbyeHbd/1KsOwX/5GV+HK/1vL9S/xbQmN2GJfbSLRf2LevB7TFOiX0CzJeJc+he4qPbwxK8OX8cuw3Z//tCocCX26/0n/ty6pfvkZb+l2rr8vKl0PzxS2/XNrf6NmNf9/M8Q37Cr4nrdA+/gH3m3S+
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="exit to Grasslands" type="transition" x="877" y="1829" width="94" height="31">
+   <properties>
+    <property name="area_id" value="H6"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="917" y="1781">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="1525" y="754">
+   <properties>
+    <property name="conversation" value="H6_sign_director"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="766" y="1698">
+   <properties>
+    <property name="conversation" value="vault"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="@SPHERE"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="1060" y="1706">
+   <properties>
+    <property name="conversation" value="vault"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="@SPHERE"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="928" y="1664">
+   <properties>
+    <property name="active" value="VariableGreater#snake_gang,100"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="476" y="762">
+   <properties>
+    <property name="conversation" value="H6_sign_loans"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="217" y="343">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="928" y="149">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="exit to Grasslands" type="transition" x="169" y="390" width="61" height="34">
+   <properties>
+    <property name="area_id" value="H6_bank"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="1728" y="192">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever1"/>
+    <property name="toggle_items" value="barrier3"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1312" y="1248">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier3"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="1760" y="480">
+   <properties>
+    <property name="maxlevel" value="17"/>
+    <property name="minlevel" value="14"/>
+    <property name="secretdoor_tag" value="H6_bank_1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="256" y="1792">
+   <properties>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="12"/>
+    <property name="secretdoor_tag" value="H6_bank_2"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="1344" y="1248">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier3"/>
+   </properties>
+  </object>
+  <object name="bank" type="conversation" gid="5" x="930" y="91">
+   <properties>
+    <property name="conversation" value="H6_vault_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="468" y="215">
+   <properties>
+    <property name="conversation" value="H6_sign_teleporter"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="exit to Grasslands" type="transition" x="562" y="212" width="42" height="37">
+   <properties>
+    <property name="area_id" value="H6"/>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="117" y="147">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="H6_bank_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="318" y="149">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="714,715,390,5013,5016,5016,5016"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H6_bank_chest_3"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1622" y="1303">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="2012,2012,2012,2012,2004,2004,2004,2004,1021,1021,1021,1021"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H6_bank_chest_4"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1721" y="1305">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="3503,3201,3019,3037,6005,5016,5016,5016,2533"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H6_bank_chest_5"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1426" y="499">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="147" y="1719">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="2615"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H6_bank_chest_6"/>
+   </properties>
+  </object>
+  <object name="Greater Demon" type="spawn" gid="3" x="1525" y="503">
+   <properties>
+    <property name="spawn" value="H6_director"/>
+    <property name="unique_tag" value="H6_director"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="5" x="193" y="894">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="2617"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="394" y="1633">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="478" y="1554">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="465" y="1730">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="333" y="1755">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="161" y="1517">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="145" y="1337">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="144" y="1176">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="211" y="1093">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="354" y="1115">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="419" y="1341">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="864" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="864" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="896" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="896" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="928" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="928" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="960" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="960" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="992" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="992" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="1024" y="128">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="1024" y="160">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="928" y="192">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="flames" type="mapeffect" gid="5" x="960" y="192">
+   <properties>
+    <property name="id" value="gas"/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="911" y="211">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="vault_guard"/>
+   </properties>
+  </object>
+  <object name="Acid elemental" type="spawn" gid="3" x="947" y="213">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="elemental_acid"/>
+    <property name="tag" value="vault_guard"/>
+   </properties>
+  </object>
+  <object name="champion" type="spawn" gid="3" x="223" y="679">
+   <properties>
+    <property name="spawn" value="skeleton_champion"/>
+   </properties>
+  </object>
+  <object name="Inori spawn" type="spawn" gid="3" x="199" y="737">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Inori spawn" type="spawn" gid="3" x="213" y="803">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Inori spawn" type="spawn" gid="3" x="183" y="825">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="Inori spawn" type="spawn" gid="3" x="252" y="732">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="609" y="1015">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="mummy" type="spawn" gid="3" x="1179" y="904">
+   <properties>
+    <property name="name" value="@ACCOUNTANT"/>
+    <property name="spawn" value="ancient_mummy"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1093" y="883">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="6002,6004"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="H6_bank_shelf1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="600" y="960">
+   <properties>
+    <property name="icon" value="shelf"/>
+    <property name="items" value="6002,6002"/>
+    <property name="name" value="@SHELF"/>
+    <property name="unique_tag" value="H6_bank_shelf2"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1183" y="1033">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="635" y="1077">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="904" y="904">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="861" y="867">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="957" y="899">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="628" y="788">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="639" y="836">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1201" y="772">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1326" y="786">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1286" y="807">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="915" y="346">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="954" y="393">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="925" y="381">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="950" y="346">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="927" y="313">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="928" y="408">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="961" y="418">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="810" y="1390">
+   <properties>
+    <property name="faction" value="neutral"/>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="tag" value="security"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1507" y="1375">
+   <properties>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="119" y="1527">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="502" y="1818">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="896" y="1248">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="928" y="1248">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object name="clerk" type="spawn" gid="3" x="962" y="1294">
+   <properties>
+    <property name="conversation" value="H6_bank_clerk"/>
+    <property name="name" value="@CLERK"/>
+    <property name="spawn" value="H6_clerk"/>
+    <property name="tag" value="clerk"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="95" y="216" width="268" height="50">
+   <properties>
+    <property name="actions" value="StartConversation#H6_snake,H6_bank_zilda"/>
+    <property name="conditions" value="NPCinArea#H6_snake"/>
+   </properties>
+  </object>
+  <object name="Zilda" type="spawn" gid="3" x="840" y="1478">
+   <properties>
+    <property name="conditions" value="VariableEqual#snake_gang,60"/>
+    <property name="conversation" value="H6_bank_zilda"/>
+    <property name="spawn" value="H6_snake"/>
+    <property name="tag" value="H6_snake"/>
+    <property name="unique_tag" value="zilda"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="949" y="861">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="909" y="862">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="848" y="901">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="993" y="890">
+   <properties>
+    <property name="name" value="@GUARD"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="213" y="152">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="1021,1021,1021,1021"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H6_bank_chest_2"/>
+   </properties>
+  </object>
+  <object name="barrier conv" type="conversation" gid="5" x="905" y="1239">
+   <properties>
+    <property name="conditions" value="IsItemActive#barrier2"/>
+    <property name="conversation" value="H6_bank_barrier"/>
+    <property name="icon" value="blue_energy"/>
+    <property name="name" value="@MAGICAL_BARRIER"/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="5" x="896" y="1664">
+   <properties>
+    <property name="active" value="VariableGreater#snake_gang,100"/>
+    <property name="active_sprite" value="barrier_blue"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1449" y="1282">
+   <properties>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="1726" y="269">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="1743" y="239">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="1703" y="596">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="1606" y="1351">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="1695" y="1359">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="311" y="1622">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="411" y="1573">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="317" y="806">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="898" y="1015">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="343" y="1318">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="11"/>
+    <property name="minlevel" value="9"/>
+    <property name="random_range" value="1"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1518" y="797">
+   <properties>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="513" y="815">
+   <properties>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="guard" type="spawn" gid="3" x="1735" y="1372">
+   <properties>
+    <property name="spawn" value="golem_iron_lesser"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

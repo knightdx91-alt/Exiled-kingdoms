@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	req
+1	Q	The ancient stairs have collapsed after a few steps. Past the darkness you see the reflection of a polished stone floor below. It is hard to estimate the distance, though.	Estas escaleras se han derrumbado tras unos pocos scalones, dando paso a un oscuro tunel y, más abajo, elr eflejo de un suelo de piedra. Pero es difícil calcular a qué distancia.	2			
+2	A	Descend as much as you can, then jump down, hoping the fall is short.	Bajar las escaleras hasta donde se pueda, después saltar hasta abajo, esperando que la distancia no sea muy grande	3			
+2	A	Ignore the stairs.	Ignorar las escaleras.	0			
+2	A	With your keen eyes, notice some holds on a side wall to descend most of the distance, then make a short jump down.	Usar unos pequeños asideros en la pared para descender casi toda la distancia, después saltar al suelo.	4			AWA#3
+2	A	Down in the distance you think you recognize a rune; someone created a levitation enchantment in this place... Recite a well-known cantrip that should activate it, and then jump down.	Te parece distinguir una runa allá abajo; alguien puso un encantamiento de levitación en este lugar... Recitar un conjuro conocido para tratar de activarlo, y después saltar.	5			INT#4
+3	Q	The fall is longer than expected, and the impact against the cold ground is brutal... Maybe even lethal.	La caida es más larga de lo esperado, y el golpe es brutal... Puede que incluso mortal. 	10		LoseHP#120	
+4	Q	You descend several yards and then hop down to the ground. The fall is still painful, but not as deadly.	Desciendes varios metros y luego saltas al suelo. La caida es dolorosa, pero no tan peligrosa.	10		LoseHP#40	
+5	Q	"You float down nicely, it works! Unfortunately, the enchantment is old and after some time, you begin to fall; luckily there's not much distance to the ground."	Flotas lentamente hacia abajo, ¡Funciona! Pero la magia es antigua, y de pronto falla. Por suerte la caida ya no es muy grande.	10		LoseHP#25	
+10	Q	Ouch!	¡Ouch!	0		Travel#E12_cave,2,0	

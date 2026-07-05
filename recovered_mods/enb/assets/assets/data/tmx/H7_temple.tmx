@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="60" height="60" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="30"/>
+  <property name="music" value="dark_chamber"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="town_objexts2.tsx"/>
+ <tileset firstgid="553" name="tomb" tilewidth="64" tileheight="128">
+  <image source="tomb.png" width="640" height="512"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="light" value="torch"/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="light" value="torch"/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="door" value="L"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="door" value="R"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="blocked" value=""/>
+    <property name="wall" value=""/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="593" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="753" source="grassland.tsx"/>
+ <layer name="nonwalk" width="60" height="60" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="water" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2cEJwzAUREGj7hIn6b+coApMjIS+NjPgqx+LdRD4OIC7nu3/uq8FbV1dXV1dXV1dXV1dXV1dXV1dXd173bONf7qqe7t3G/+ssOpcrWJvNnvHvbeimd+34rlxnrPZu7dH0XvsLP37fQreY2dJO69X7M1mbzZ7s9mbzd5s9mbbYW/Cf5pf7f6fBiDNFxeiSJA=
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmuuyqkYQhU/nnfcD5Sdgrid/BFRQFB8rUumvekmA7bh1lzk7UzUFcptZ07fVPX779n/70dubpfX/ehswlJd+uPTOj8O1n3/6pxdyPnTa8E7l79Z+XvvvtZ8Px1+9/3njWv0h7zyij8cdsDU+z/zSN4K389+Z3+vl3ePlfH/p20s/O7bh90kw63r8diPeX3zM2o+8X/rvtXd+V7LW4+e3E+O++f2dPAfe1rFu/ZsrebeQeYGr8z5ca319sjvx8n3FxzpufL4Hl8PaZXb0sY7e5/B2fj/3+YF36xiP/s1c3i1dnq2MeRitdylzScHL+3wLWVV+VDliN1vppS3LN/e+8g7e2kJfS8dN28hYpbx78vm0Pj/0PAVv7e/s7doXsA47HwcdZh22cm3r70zhVX80dK7ljhW8hbzb27WtFC7Hwq9lLm/0IAUvsikFC/Z68rXkntouct5YyCMF787Cflkzla/6YvQPm1W/PaVXS3iR5VrmvvOjygB/Wcvzuj7lDN65jr/FZ6Aj+4V3xr2eGXcJbyV6ylqu7NrfE09W9m//rbZ8i3zpjb+PvTCH48I74174vFL1eW3X+pMJRvzqysLW1J+hF3P2y7fw4+rf0c+DRWw5yvN7H5/1qS18yTB+OzPuEl6dL7IDU2bX8TnzeaAT4J6LC28uP9WD3L/f+9xZz52Mja4Nz8PB4Bp7v3f+gD4rfwNnZaEvuZ8PvZNnW5c7sXQKL/6o8zXZujx7i7i9kTnsLGS5lrEbC65WWfCuVL6xneidhY2qDaNvG8fXWOj1VFx4cxmeLfgRPq/x9TpZ2AXcshGcBz+iE9hefqd8NR7V0ll79cWVz29lEf/wM4cZvMSd3kJPe79ODgHHOwsmvjmMNehzb9f+srXghR+JR2DEbzDuyWXIM7pGS/Gocbxw39yxYitwRjg0vHEnujPgZS7gZv1S5YuvUl7X+zzwU8xTczP8Cce5eKRxGw6+s/C/nYUP6OTbma9VZ8G3lfsUPu8uES/5Bty9dOzwDdZ+Y6HD+FvlW3P+irXkO0sxObVjF6n2i16Qm+Mrej8nV2UdxrwTDj+Fl/hFfAVv42PtLfgN3A5dgH/tRLbcR7ap8beUjq3ib7ER5qz5ovJp8CzlR5UfwbuS+ZPzHQV7YcFVWp8Xuk4Mxren6jN+R2MhfkxzM54h/hUjnZ7L908yR/D2Fr64scAPVq4Rs3qR51HmM2VH7+HVPBD9VDvdyHEtz1ejayn5Uec4TiMdbb3DJWvHST0IG0MnU/Eqz0B+Y6z6m3itus31W/OjAe/egmtmFvGAcbhGnUNzwFKeTbHfvy7P/f7A/n1GvvgW+OjBIibhl6gt4B+JiSvRJ2wartJYWr5/a7u3PqyyRPfhheA+W+RI1MmIAfhnOMFBMFYWdZlXw3u04H9gbAVX7/M+O8ajRTzEP6MjvV3XoFLqdZ+FlzygEj0kdzhaxGbqkOgyMYy1aC3yIs2pXw0v+QDzhIeTk6wFK/eonZFz65rpe6cXxLu26/wmt+AwxF3is9ol+W4t55ncI794NbzUSZBbIbi3FrUO4iLcDX/MPfQejg/nfyTepf2hW/HiZ6jZIF/0Ek7BffhH7/cbeZY6AbXcKd7+kaY54OpOvNRlyDd2gh+5Uw/MLeKO1kCxVWJxZxHHHokXjjne00rFi722Fvk+3Jr9L2ROPUdrpewv4KvJq1LywVua8mO4DjVFzc2X8MKr8C/EFvxx5p0c5WQRl8kHyUng0HCOlPzolqZ1Ztac2LKWOU41uCE8mbiCDY/jE3mu1jyoS6bw2I803afR2pPWcef0HD2AD2J78AnWUWucxGHy3ZT8J6VhT+MaVTmaVy3zIS+b02fWZWXXe8zUXJE93yQfQ797f+8ZeMEHbnJLrfVkfp/5VzK3uW+eR7KjntX4kXp2axF36NSdn4FX6xnE+/XMUWvdrMFUI8fV2ir5ET42l/PCIgZnMp9n6TOxDh+q+zhzPmmpITfqYODSnL6wqFudLfLCQp55Bl7sTPeONEaUd4xJXXznOMkLiWv4ZeITsZiYQz71DLzUEXPBTYyF16Y2rZlWFpypEUz4bvy/7pFSR3oG3rmm/iq1sV9ADkfdhn0UvovvhmNQE8WOPhMv4+p/ZbD193g1udxGsFLDUH5MbbaU58gPnlGveQ+vcno4Brk351ONWgQ1V3J8Yi/7vNRa69EY5EqfiZd5KA8hh4FTz8Vf6sa8C0eBR8C9DvJt1oac+dH8+L2m+yh6ji9CzlONGh01Rfa8qUNRf6WeQa2dPebU/2ekNP6Tov9TQV+RMXu2KwsuucSflS9qfKMuAWeklqP72Hz/WfGIehj5FzlKNdPZQ2T+U418gZyX2hOyw0fxvwjN83KZz7P4JPnLOA/CtlKb+iH0prHgk9SSiVesMVya/zg8S75wXa2bEBc3d4z5rH2aRzRsl9iDnVJPu4dvvHLT+gXY6XCOr9B0P/QrtKn/6/7IbSM2/RXa9gvq8731ja/U/gazzWYX
+  </data>
+ </layer>
+ <layer name="ground2" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2lEOgjAMgOHtGKB4FbyqPnhOQ8giQUAHhbbj/17ggYRmY91GFwIAhNDEEO6xv0/XpI7fzy/JfV7T1VGslqV2bIy0Z6sUx0Pnteqe2gEI0vp2trgJxjzMiZ5yea6pXDWe+yyohGPy+H1v1UabfbuHNH7P2M+lWsrvlwL7eW6sSudC6+baobR9y0s7gAN4WUutySdnG5dLujH7z9xbYt4GAAAAkK+0/T3ksX/8OPr/g2S9rTP1b6g2Uofbu27yqy3PUrcBAK8s5unc82hr5lkvdZ0xy+cDJPc/w3Xy3DqxmjgzIb3Gg509i5VzqgAAePMGNzUKpw==
+  </data>
+ </layer>
+ <layer name="scenery" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztW1tO6zAQDb1fvBZCUdPyLC8JEB+wmft5Je4OWEK3ge4Dlkcs1TBYM+OxxyaTliNFKbYTz8nYnpNxaJpvrDrmo6YZd8fh8nw7+iiD5f44G/VtsQ57iP2wbHMj3n4OnstseW4rPp+F4toYX6rOc3TjQdL+PoP3Q3fNU+I1i+V1MXtiZWGdO//88fF7ZwNvf2Bs/GP2SPlK2h8Z46vxr6T96ZrxvVTwdXM+dW1aNPxacYPUYWVh3Y2QL1fXB2CshfH3uDtOuuMKicW+zWz5+xzUtyAmuTpr65VkPLfI2iv1mzX/ent2ifE56bhed39PA87eb1ise0DulRN/qfnryh4bvO4p0ldqPPKQxhlr/p0QfLcjdkrjzBDnLwZpnLHm3ylij8QnUh5u3D+nmfSO+0z9zM1fzO47ARfpOLWmr7D5m+Lf2Pp8qfBvDeTO36HGX+fLncAmiY1eU3GHVl/l6Gc337n3X2y9KukTjd6ogdzxrLl/n0h9P0qFNb4w19aOPr//+PxUG7wv+fcfKkc3Btf6eZ6Tt+P0s0cYn3PiL1fOgdOgVvy8X5AvByt8KTtgHOHGh7TOCl8qPpbOK1rhW9OOv1/UTwqo+avJK3r8Ab+t8JXM35r95AD6ItUvknjE6dE+1itp7hsD5UeNfZhGqMU3VQsOMf7Cd3afP4eaj9uLpZ5PSQ3tUJIvHJOUv6g+w/0Fbl9hTJSF3wRgx0Wl8Rzmnl6645Xhq3nusXtr4fds/PP1+zewr1T/lrKzBl9J7ODiJna9a78ZsfV35MzZpoG757/u/D8ohz7l1hnKv1sFbK3BF8udOsA5y60b2JoxxPEM/VtKb0D0NZ4lWii1X8v+xXK+YY43VSdY5ivpq5S+0thQG5r4OwfPYxboK8m3HDX0UwxwjyBHX3F7FhK/uf2Y3YH4N8anz7wEnJvw2yCNvnJlv5g+++Qr0ZOp+grbL4OQxGc4Z0piItCTpfWVRf/CNSrVvqPIehXmoam2mm+wKdTQk5ZRQ09aBqUnJyvKl8Kq+pfCwZrxna4ZXxgzrP1/hCW8Adoqc4Y=
+  </data>
+ </layer>
+ <layer name="roofs" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztzjERAAAIBKA3h/17msJzEBKQAADArq7rAQAAAAAAAAAAAADAPwM62gAd
+  </data>
+ </layer>
+ <objectgroup name="data" width="60" height="60">
+  <object name="exit" type="transition" x="1481" y="1867" width="88" height="38">
+   <properties>
+    <property name="area_id" value="H7"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="1537" y="1828">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1344" y="1624">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1722" y="1495">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1348" y="1274">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1727" y="1180">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="dungeon_chest_4"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="544" y="352">
+   <properties>
+    <property name="maxlevel" value="22"/>
+    <property name="minlevel" value="22"/>
+    <property name="secretdoor_tag" value="H7_temple_1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="96" y="352">
+   <properties>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="14"/>
+    <property name="secretdoor_tag" value="H7_temple_2"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="128" y="128">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="122" y="122">
+   <properties>
+    <property name="conversation" value="E10_maze_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="256" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate"/>
+   </properties>
+  </object>
+  <object name="champion" type="spawn" gid="243" x="872" y="559">
+   <properties>
+    <property name="spawn" value="skeleton_hero"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="altar" type="conversation" gid="245" x="1528" y="409">
+   <properties>
+    <property name="conditions" value="VariableGreater#mangled_god,10;VariableLower#mangled_god,40"/>
+    <property name="conversation" value="H7_altar"/>
+    <property name="icon" value="altar"/>
+    <property name="name" value="@ALTAR"/>
+   </properties>
+  </object>
+  <object name="lich" type="spawn" gid="243" x="109" y="1649">
+   <properties>
+    <property name="spawn" value="lich_H7"/>
+    <property name="unique_tag" value="lich_H7"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Skeleton" type="spawn" gid="243" x="93" y="544">
+   <properties>
+    <property name="spawn" value="skeleton_hero"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="243" x="563" y="443">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="niche" type="conversation" gid="245" x="539" y="183">
+   <properties>
+    <property name="conversation" value="H7_inscription"/>
+    <property name="icon" value="tomb"/>
+    <property name="name" value="@INSCRIPTION"/>
+   </properties>
+  </object>
+  <object name="champion" type="spawn" gid="243" x="505" y="1049">
+   <properties>
+    <property name="spawn" value="skeleton_hero"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="647" y="1007">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="443" y="1044">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="367" y="1063">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="595" y="848">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="85" y="464">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="123" y="696">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="483" y="685">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="354" y="689">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="285" y="705">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="243" x="183" y="1289">
+   <properties>
+    <property name="spawn" value="vengeful_wraith"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="243" x="121" y="1346">
+   <properties>
+    <property name="spawn" value="vengeful_wraith"/>
+   </properties>
+  </object>
+  <object name="champion" type="spawn" gid="243" x="383" y="1591">
+   <properties>
+    <property name="spawn" value="skeleton_hero"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="558" y="1546">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="432" y="1661">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="242" y="126">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="374" y="119">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="287" y="161">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="129" y="874">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="132" y="1009">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="243" x="97" y="156">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="876" y="495">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="440" y="1339">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="452" y="1430">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="516" y="1418">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="506" y="1339">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="545" y="1210">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="617" y="1621">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="imperial_chest_15"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="793" y="975">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="sarcophagus_10"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="632" y="184">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="307" y="115">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5032,5032,6002,5005,6010"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="h7_temple_chest1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="243" x="123" y="210">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1184" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="889" y="605">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="845" y="171">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="evoker" type="spawn" gid="243" x="1551" y="955">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_evoker"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1517" y="569">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1625" y="521">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1609" y="337">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1485" y="323">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="701" y="475">
+   <properties>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="563" y="554">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="405" y="533">
+   <properties>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="720" y="163">
+   <properties>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="716" y="236">
+   <properties>
+    <property name="spawn" value="skeleton_warrior"/>
+   </properties>
+  </object>
+  <object name="archer" type="spawn" gid="243" x="636" y="244">
+   <properties>
+    <property name="spawn" value="skeleton_archer"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="243" x="298" y="539">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1152" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1120" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1088" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1056" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="1024" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="992" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="960" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="245" x="928" y="576">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="bridge" value=""/>
+    <property name="inactive" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1216" y="544">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever_bridge"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="1206" y="538">
+   <properties>
+    <property name="conversation" value="H7_bridge_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="896" y="736">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever_bridge"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="900" y="743">
+   <properties>
+    <property name="conversation" value="H7_bridge_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1383" y="372">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1547" y="928">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1684" y="444">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1622" y="615">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1807" y="750">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1417" y="498">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1678" y="349">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1380" y="660">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1531" y="1237">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_warrior"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1322" y="470">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="243" x="1499" y="645">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="skeleton_archer"/>
+    <property name="tag" value="trap"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

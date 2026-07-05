@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="48">
+ <properties>
+  <property name="maxlight" value="80"/>
+  <property name="music" value="temovodie"/>
+  <property name="name" value="House Arius"/>
+  <property name="name_ES" value="House Arius"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="town_objexts2.tsx"/>
+ <tileset firstgid="313" source="dungeon.tsx"/>
+ <tileset firstgid="553" source="indoor walls1.tsx"/>
+ <tileset firstgid="665" source="town_objexts4.tsx"/>
+ <layer id="1" name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENADAIBDF2z+KMEBqESGyJ+p4IADY6xdP/t99pw//67/ZvmyZM9wEqEtlENbw=
+  </data>
+ </layer>
+ <layer id="2" name="ground2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <layer id="3" name="scenery" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBSBARMDgy4Qa0NpdDYMGzLRxn49Is0lVh2pAJv/NbGI0cr/WkBzrZD40kBszwDxrwyQ/szIwPCFEaKOFgBkjyWQ3oRkPsx+dHW0st8BTYze9tthETdCinNQGtGnU/zjArT0P3r8YwO0TH/UVEcqMELK7+h53QBJjFbxjw3A/EorP4+CUTAKRgE1AAB2aBAQ
+  </data>
+ </layer>
+ <layer id="5" name="roofs" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt0jENAEAIwECCIPL+1f2GBQi5U9ChEQBwx8vpAjYpPwBA+y55AGM=
+  </data>
+ </layer>
+ <objectgroup id="6" name="data">
+  <object id="1" name="entry house" type="entry" gid="1" x="688.833" y="643.167" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="43" name="Arius Vand" type="staticNPC" gid="3" x="633.333" y="484" width="64" height="64">
+   <properties>
+    <property name="conversation" value="G10_arius"/>
+    <property name="facing" value="l"/>
+    <property name="faction" value="varsilia"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@ARIUS_VAND"/>
+    <property name="portrait" value="56"/>
+    <property name="sprite" value="male_green_11"/>
+   </properties>
+  </object>
+  <object id="44" name="torg" type="spawn" gid="3" x="780.333" y="619.667" width="64" height="64">
+   <properties>
+    <property name="spawnChanse" value="100"/>
+    <property name="spawntable" value="g10house"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="47" name="exit" type="transition" x="652.667" y="692" width="125.667" height="56.3333">
+   <properties>
+    <property name="area_id" value="G10"/>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

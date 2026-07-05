@@ -1,0 +1,82 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Tell me, where are we going? Or is it a surprise? You know I love surprises!		7	VariableEqual#mad,1	NPCFollow#mad
+1	Q	I won't bother you, don't worry. I'll just walk with you for a while.		8	VariableEqual#mad,2	NPCFollow#mad
+1	Q	Where are we going? Do you have a plan?		9	VariableEqual#mad,3	NPCFollow#mad
+1	Q	Are you looking for a quiet place where we can talk and stuff?		10	VariableEqual#mad,4	NPCFollow#mad
+1	Q	Maybe we're going in circles. I mean, I don't know where you want to go.....		11	VariableEqual#mad,5	NPCFollow#mad
+1	Q	You're so interesting! It's good that you took me with you. Maybe we should go out together more often.		12	"VariableEqual#mad,6;PlayerIsMale#"	NPCFollow#mad
+1	Q	You're so interesting! I'm glad you took me with you. Maybe we should go out together more often.		12	"VariableEqual#mad,6;PlayerIsFemale#"	NPCFollow#mad
+1	Q	I'm so used to you! We're good friends. You think so too? Where are you sleeping? You can stay at my place, I don't mind!		13	VariableEqual#mad,7	NPCFollow#mad
+1	Q	Do you like animals too? Yeah, not everyone does. That's why I got kicked out of Kingsbridge.		14	VariableEqual#mad,8	NPCFollow#mad
+1	Q	There are people in Varsilia who are always trying to beat me up. They're Kingsbridge types. Real barbarians! Next time I'll tell them you're my friend - that will certainly frighten them.		15	VariableEqual#mad,9	NPCFollow#mad
+1	Q	Those Kingsbridge brigands will be speechless when I tell them I have a protector. They'll shit their trousers in fear! That'll be fun! Murder's a commonplace for them, but now they'll think twice!		16	VariableEqual#mad,10	NPCFollow#mad
+1	Q	You know what? I'm gonna help you out. I'll put in a good word for you. Then you can move to Kingsbridge too, and we can see each other every day.		17	VariableEqual#mad,11	NPCFollow#mad
+1	Q	A lot of people think I'm a freak. But someone like you wouldn't talk to a freak, would you? They'll find out you're my friend and realise they were wrong.		18	VariableEqual#mad,12	NPCFollow#mad
+1	Q	You're my best friend! Before that, nobody wanted to talk to me. Everyone chased me away. Thank you for not doing that.		19	VariableEqual#mad,13	NPCFollow#mad
+1	Q	That's great! You know, you're like a big brother to me. I never had an older brother. I didn't have a little brother either. My parents didn't want to be around kids. I guess they had a hard time with me		20	VariableEqual#mad,14	NPCFollow#mad
+1	Q	Where did you live before that? You probably wanted to find someone who understood you, too. I'm from Kingsbridge myself. Have you ever been there? Well, it's not really important.		21	VariableEqual#mad,15	NPCFollow#mad
+1	Q	I'm already hungry. I consider myself your guest, in a way. so it would be most honourable of you to treat me like a good host. That's what my friends at Kingsbridge told me. They've been good to me.		22	VariableEqual#mad,16	NPCFollow#mad
+1	Q	Now that we're with you, we can show these ignorant people how to behave! They've been bothering me for years, so let them try to attack me again, and I'll.... Together we are invincible! We can even take over the whole of Varsilia. The two of us could take out the Barons in no time. Well, that's a good idea. It's worth considering.		23	VariableEqual#mad,17	NPCFollow#mad
+1	Q	Hey, kid! Are you new? I haven't seen you before.		2	PlayerIsMale#	
+1	Q	Hey, girl! Are you new? I haven't seen you before.		2	PlayerIsFemale#	
+2	Q	I'll walk with you for a while, okay? I'm sure you need a friend right now.		3		NPCFollow#mad
+3	A	Why not? Let's go.		4		NPCAttack#mad,never
+3	A	Get out!		5		
+3	A	[RED](Strike)[].		0		NPCHostile#mad
+4	Q	That's great. We can talk on the way.		0		SetVariable#mad,1
+5	Q	And you're not in the mood today...but I'd rather go with you.....		0		SetVariable#mad,1
+6	Q	Do you want to be alone for a while? I understand. I'll be in the neighbourhood.		0		
+7	A	Come on, come on.		0		"SetVariable#mad,2;NPCAttack#mad,never"
+7	A	Get out!		6		SetVariable#mad,2
+7	A	[RED](Strike)[].		0		NPCHostile#mad
+8	A	I doubt it...		0		"SetVariable#mad,3;NPCAttack#mad,never"
+8	A	Piss off!		6		SetVariable#mad,3
+8	A	[RED](Strike)[].		0		NPCHostile#mad
+9	A	I'm just going about my business.		0		"SetVariable#mad,4;NPCAttack#mad,never"
+9	A	You better not piss me off. Just go away!!!		6		SetVariable#mad,4
+9	A	[RED](Strike)[].		0		NPCHostile#mad
+10	A	What? Not at all.		0		SetVariable#mad,5
+10	A	Do I look like a homosexual? Get out of my sight before I kill you.		6	PlayerIsMale#	SetVariable#mad,5
+10	A	Hey!!! How dare you say that to a girl?...Go away or I'll beat you up.		6	PlayerIsFemale#	SetVariable#mad,5
+10	A	[RED](Strike)[].		0		NPCHostile#mad
+11	A	You don't need to know that...Buddy.		0		SetVariable#mad,6
+11	A	Get the fuck out of here!		6		SetVariable#mad,6
+11	A	[RED](Strike)[].		0		NPCHostile#mad
+12	A	We spend too much time together as it is.		0		SetVariable#mad,7
+12	A	Fuck you %##*&%$!!!!		6		SetVariable#mad,7
+12	A	[RED](Strike)[].		0		NPCHostile#mad
+13	A	Can I stay at your place for nothing?		24		SetVariable#mad,8
+13	A	I beg you to leave me alone.		6		SetVariable#mad,8
+13	A	[RED](Strike)[].		0		NPCHostile#mad
+14	A	Animals? Animals I prefer to kill.		0		SetVariable#mad,9
+14	A	I understand those people from Kingsbridge. Piss off		6		SetVariable#mad,9
+14	A	[RED](Strike)[].		0		NPCHostile#mad
+15	A	Sometimes I feel like beating you up, too.		0		SetVariable#mad,10
+15	A	Why don't you mind your own business?		6		SetVariable#mad,10
+15	A	[RED](Strike)[].		0		NPCHostile#mad
+16	A	You wouldn't brag too much there.....		0		SetVariable#mad,11
+16	A	You're unbearable. Get out of here.		6		SetVariable#mad,11
+16	A	[RED](Strike)[].		0		NPCHostile#mad
+17	A	God forbid such a...		0		SetVariable#mad,12
+17	A	If you don't leave now, I'll kill you.		6		SetVariable#mad,12
+17	A	[RED](Strike)[].		0		NPCHostile#mad
+18	A	Of course I am. You're perfectly normal.		0		SetVariable#mad,13
+18	A	Fucking psycho. Go away.		6		SetVariable#mad,13
+18	A	[RED](Strike)[].		0		NPCHostile#mad
+19	A	Mmmm... Okay, though...		0		SetVariable#mad,14
+19	A	I'M SENDING YOU AWAY.!!!!		6		SetVariable#mad,14
+19	A	[RED](Strike)[].		0		NPCHostile#mad
+20	A	I think you're right.		0		SetVariable#mad,15
+20	A	You again? No no no no no... Why don't you leave??		6		SetVariable#mad,15
+20	A	[RED](Strike)[].		0		NPCHostile#mad
+21	A	I've been to Kingsbridge.....		0		SetVariable#mad,16
+21	A	I don't want anything to do with you.		6		SetVariable#mad,16
+21	A	[RED](Strike)[].		0		NPCHostile#mad
+22	A	I'm not going to feed you.		0		SetVariable#mad,17
+22	A	Go away.		6		SetVariable#mad,17
+22	A	[RED](Strike)[].		0		NPCHostile#mad
+23	A	Are you out of your mind? We're not taking over.		0		SetVariable#mad,1
+23	A	Gods, give me the strength not to kill him right here. Get off me, you moron.		6		SetVariable#mad,1
+23	A	[RED](Strike)[].		0		NPCHostile#mad
+24	Q	Of course! You're my friend! I live in a tent near the city walls...		25		
+25	A	I'll think about it... And how the guards there put up with you!		0		SetVariable#maddom,1

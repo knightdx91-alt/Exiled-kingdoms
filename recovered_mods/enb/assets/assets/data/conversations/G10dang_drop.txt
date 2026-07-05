@@ -1,0 +1,5 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Сундук пуст.		0	VariableEqual#drop,1	
+1	Q	Перед вами сундук с книгами лича. Теперь они ваши...Владейте.		2		
+2	A	Хорошо [BLUE](Забрать добычу)[]		0	VariableLower#drop,1	"SetVariable#drop,1;GainItem#3513;GainItem#10051;GainItem#2014"
+2	A	Подозрительно..Пусть лежит.		0		

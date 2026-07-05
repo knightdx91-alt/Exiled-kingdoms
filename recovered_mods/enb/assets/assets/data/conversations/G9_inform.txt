@@ -1,0 +1,25 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	I have nothing more to say to you.		2	VariableEqual#sem1,1	
+1	Q	[BLUE](You are an ordinary citizen who is resting in a tavern and is obviously bored.)[] Hey, traveller, what do you think of our town?		2	VariableEqual#omon,10	
+1	Q	[BLUE](You see a man in a hoodie. He's resting)[] Mate, do you have a coin?		10		
+2	A	Quite nice and quiet. I'd even say a little sleepy. There's work for the adventurer?		11		
+2	A	[BLUE](You notice a man hiding something under his shirt.)[]		3			AWA#2
+3	Q	Я? What are you talking about?! I'm an honest man [BLUE](The man is highly indignant and tries to stand up)[]		4		
+4	A	[BLUE](Deftly grab the fugitive by the arm)[] Freeze! You're not going anywhere until you tell me what's going on.		6			AGI#3
+4	A	Hold it! I'll get the guards![BLUE](Grab your hand)[]		5		
+5	Q	[BLUE](You almost managed to catch the man by the arm, but he twisted and quickly escaped.)[]		0		"NPCDespawn#g9inform;SetVariable#omon,11"
+6	Q	[BLUE](You managed to catch the trapper by the arm. The man immediately whimpered)[] Master Adventurer... don't make a fuss. i'm just a poor pickpocket and i need to feed my family...Let me go and i can be useful.		7		SetVariable#omon,12
+7	A	Let's give it a try. I'll forget about you if you tell me how to contact the local bandits.		8		
+8	Q	[BLUE](The pickpocket instantly calms down)[] Ha! So you're one of ours? It doesn't matter. There's a cave nearby, get inside and find Semyon... Say "From Lame Joe". But don't expect a gentle welcome. The bandits are suspicious and will try to kill you.		9		
+9	A	All right. Thank you and that's it... You've earned your forgiveness. Get out of here.		0		"NPCDespawn#g9inform;SetVariable#sem1,1"
+10	A	Leave me alone, tramp. I'm not serving today.		0		
+11	Q	Do I look like I'm offering a job?		12		
+12	A	No. You look like a suspicious arsehole who knows a lot about this town.		13		
+13	Q	Bingo.![BLUE](The man grinned happily so that his rotten teeth were visible)[] but my information costs money.. [BLUE]500 gold[]		14		
+14	A	500 Gold??? You're crazy, that's a lot of money.!!!		15		
+14	A	Hmm. First I'd like to know what you know about.?		16	PlayerHasGold#500	
+15	Q	If you're talking to me, you need me. If you have money, come and see me. I work here a lot.		0		
+16	Q	I can bribe the guards, I've got some connections among the outlaws, and you probably don't want to know what house to raid. Wouldn't you?		17		
+17	A	I'm not in trouble with the law yet, but if you can hook me up with some local outlaws, I'd appreciate it..[BLUE](Hand over 500 coins)[]		18		LoseGold#500
+18	Q	Fine. Find the caves with the bandits. You'll have to fight your way in, but there's a bandit called Semyon. I think he's from the Guild. Tell him you came from Lame Joe and he'll listen to you... Maybe...		19		SetVariable#sem1,1
+19	A	He better listen to me...Otherwise you'll be found dead in a ditch.		0		

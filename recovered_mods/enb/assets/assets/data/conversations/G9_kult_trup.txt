@@ -1,0 +1,9 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The corpse in front of you looks a lot like the corpse of an outlaw. It's worth testing the medallion's reaction to his blood.)[]		2		
+2	A	[BLUE](Dip the "Medallion of Pain" in blood)[]		3	PlayerHasItem#2638	
+2	A	Step away from the body		0		
+2	A	Go through your pockets		6	VariableLower#tk,1	SetVariable#tk,1	AWA#2
+3	Q	[BLUE](As soon as it touched the blood, the medallion rapidly began to change colour until it turned yellow. It seemed to have undergone some changes in its characteristics as well.)[]		4		"LoseItem#2638;GainItem#2640"
+4	A	Step away from the body		5		SetVariable#ktrup1,0
+5	Q	Before you could move away from the corpse, there was a muffled bang from behind and the room began to fill with gas. You managed to take a few steps and fell asleep... you didn't notice the ghost disappearing.		0		"ItemActivate#trap_emp1;NPCSpawn#omon;NPCSpawn#omon1;Sleep#;SetVariable#dver1,1;NPCDespawn#bill"
+6	Q	You managed to find some money and a scroll.		0		"GainGold#350;GainItem#6007"

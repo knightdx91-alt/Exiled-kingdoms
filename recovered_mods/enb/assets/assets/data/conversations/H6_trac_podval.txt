@@ -1,0 +1,7 @@
+index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	You can't enter while you have mercenaries in your group.(Adaon,Hirji,Grizenda can stay in the group).		0	"VariableEqual#H6podval,1;hasFollower#"	
+1	Q	You may go down to the basement. However, your companions will remain here.		3	VariableEqual#H6podval,1	
+1	Q	The basement door is locked		2		
+2	A	Step away from the stairs.		0		
+3	A	He's going down to the basement.		0		"Travel#H6_podval,1,0;HideParty#"
+3	A	Step away from the stairs.		0		

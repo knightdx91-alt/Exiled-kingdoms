@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hey, what's up?		4	NPCisFollower#	
+1	Q	Hi friend, I'm fighting in Free Fighting! Are you here for business or just to chat?		7		
+2	Q	I'm sorry, but you're already in a band.		0	hasFollower#	
+2	Q	With you? Why not? But I want half the standard rate up front, and that's {LEVELx120} gold for a group fight. Also, I'm only with you within the confines of this arena. If you want to leave, you'll just lose your money!		8		
+3	Q	As you wish! See you in the arena.		0		
+4	A	That's okay, let's move on.		0		
+4	A	I don't need your services anymore. Thank you for your help and goodbye.		5		
+4	A	Please move over a little, you're in the way.		6		
+5	Q	Suit yourself. I hope we work together again.		0		NPCStopFollowing#
+6	Q	Of course.		0		NPCMoveRandom#
+7	A	Want to fight in the arena as a team?		2	VariableEqual#arenah6,100	
+7	A	I'm not cleared for Free Fighting yet.		0		
+7	A	"Expel everyone from the group" (If there is a bug with mercenaries and won't let them out of the location)		0	hasFollower#	DisbandAll#
+8	A	{LEVELx120} gold???? Isn't that a bit much?		9		
+8	A	I'm in. Deal!		0	"hasNoFollower#;PlayerHasGold#{LEVELx120}"	"NPCFollow#;LoseGold#{LEVELx120}"
+8	A	We'll come back to this conversation later.		0		
+9	Q	It's not too much. You get killed in the arena and I'm out of money, so it's either that or split.	2		

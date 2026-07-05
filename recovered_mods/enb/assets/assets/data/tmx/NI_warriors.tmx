@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="32" height="32" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="music" value="intro_dragons"/>
+  <property name="name" value="The Warrior's Guild"/>
+  <property name="name_ES" value="Gremio de Guerreros"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grassland.tsx"/>
+ <tileset firstgid="217" source="trees.tsx"/>
+ <tileset firstgid="233" source="natural_grounds.tsx"/>
+ <tileset firstgid="361" source="grounds_indoor.tsx"/>
+ <tileset firstgid="521" source="dungeon2.tsx"/>
+ <tileset firstgid="761" source="town_objexts2.tsx"/>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlF0KhDAMhN1jaEzrtRc8rBYmMA8FccnGHzIwBPuQ5Burw5C6q76fa+evN5jfMjhbvfTLbM/MIvl7fSL5e32exm9+I7/sHskTPAe9/zan7F5Q2w6KZw/+o0yNV1EFdXHiP9pJkcGMuRVWJ/6euOdI/LxDFL9lLZR9RY3iF7p7tkMJ4i/EX+l7LEH8QvyWveIsgt+4+b8z/Zk/lUql3qwNSJSEdg==
+  </data>
+ </layer>
+ <layer name="ground2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJAEAIBEE79PuvxgrMhBeciTY8uAgA2O01zQ0bPs/fAwBgQAFFxgFA
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BwAjcmBgY7ILYC4gQoDcJuUL4dFnknJurZnww0i50ZU5yaduADtnSyBwTcsIQzLvsdaeAuS6CZzkDaBYjtoWLxOOxJgcY7yK0pTAg+CLuT6TaQ/Q4MEAwD5IS/PQX2owNy0pk3mfaD0no3Hr1tQLlmJPlmKL8dTQ+59mOLa1g6WwCkW7DkRRC/hUr2g/x/GIiPIOlHjn+QPUpY9FHL/lgs+ohJf9T0Pyz/DYT9rkB9Nmg4Hi3+ObCUxdSyHxuwRIt/dMBDxfRHjP3o/ueisf3o6R8G+Jmxi1PbflCacABiHxJwBB3rzFEwCkbBKBjKAAAKMSdG
+  </data>
+ </layer>
+ <layer name="roofs" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <objectgroup name="data" width="32" height="32">
+  <object name="entry from farmlands" type="entry" gid="1" x="612" y="229">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to NI" type="transition" x="650" y="184" width="51" height="83">
+   <properties>
+    <property name="area_id" value="NI"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="448" y="288">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#ng_war_access,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="448" y="256">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#ng_war_access,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="448" y="224">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#ng_war_access,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="256" y="448">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#guild_warriors,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="256" y="416">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#guild_warriors,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="256" y="384">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#guild_warriors,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="3" x="448" y="602">
+   <properties>
+    <property name="faction" value="warriorsguild"/>
+    <property name="name" value="@WARRIOR"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="3" x="425" y="635">
+   <properties>
+    <property name="faction" value="warriorsguild"/>
+    <property name="name" value="@WARRIOR"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="trainer1" type="spawn" gid="3" x="278" y="262">
+   <properties>
+    <property name="conversation" value="NI_warriors_morg"/>
+    <property name="faction" value="warriorsguild"/>
+    <property name="name" value="@SERGEANT_MORG"/>
+    <property name="spawn" value="knight"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Warrior" type="spawn" gid="3" x="603" y="425">
+   <properties>
+    <property name="faction" value="warriorsguild"/>
+    <property name="name" value="@WARRIOR"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="5" x="128" y="471"/>
+  <object name="bouncer" type="spawn" gid="3" x="493" y="189">
+   <properties>
+    <property name="conversation" value="FT_warriors_bouncer"/>
+    <property name="faction" value="warriorsguild"/>
+    <property name="name" value="@BOUNCER_TENDOR"/>
+    <property name="portrait" value="30"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Maeve" type="staticNPC" gid="3" x="555" y="634">
+   <properties>
+    <property name="conversation" value="NG_warriors_darema"/>
+    <property name="facing" value="r"/>
+    <property name="faction" value="warriorsguild"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@SERGEANT_MAEVE"/>
+    <property name="portrait" value="29"/>
+    <property name="sprite" value="female_white_2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

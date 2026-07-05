@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="65" height="65" tilewidth="64" tileheight="32" nextobjectid="128">
+ <properties>
+  <property name="maxlight" value="35"/>
+  <property name="music" value="ship"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="scifi.tsx"/>
+ <tileset firstgid="601" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="761" source="town_objects3.tsx"/>
+ <tileset firstgid="793" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XIQ4AIAwDwLn+/8cIDCGIGQzcJc2SyrpVAQAAAABwSw75jQ0AAICOLDdbBwAAAEx+ZgAAAHjfAHNS8YcEQgAA
+  </data>
+ </layer>
+ <layer name="water" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAB4GxThSgoEQgAA
+  </data>
+ </layer>
+ <layer name="ground" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQrCMBAF0OJFvLMu9LgSpJsQS2Mymqbvw4dCYTp5SBG6LDJLbpd3f/WcPY2c3fvZUXtGzt7qo6LRO85o0HPPyDJoN/j3/gwYMGDAgAEDBlG9Z31+KAMGDBgcxSA/R0trDEbyYMCAwVwGLTNnM1ivGZzb4JuZsxrUzJ3FoKUMGDBgwIABAwZR5x/BoPd5jmbQsnfN96K1DBgw6Gcw0vudAQMGDGYzKKW0Y+k+gzH+H0SFwX6Dnu+fEQ2uWfP7eVsdRjTY+h2cIQwYpDBgkMKAQQoDBikMxjR4Aer0JaMEQgAA
+  </data>
+ </layer>
+ <layer name="ground2" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aUQ7CIAyA4QbPoT7PxOkNPILebRc2e+jDNkWSzcLa/0t4IGGBEOigmwgAbOuYRE7Jts+nbXfAwjlNC2DtVXsAGbeVz+f21Bj/u1l9bX8tIq5A6Zmn5T1f4nGoPQJ4cK89ALi391gLRNf9bgLAQOs5s+h5ZY2Vl8L20edL1cg9DWlZtsQ93UbrMREALBEP0SrWJfaOnNhnuftslDnjm8d3uj7Gb4+lORJvdH1cxec/N6X6WZ1cGOBTlHc/UEPkcwQAAADwL28hJAGjBEIAAA==
+  </data>
+ </layer>
+ <layer name="scenery" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DsQkAAAgDsPr/ve4OPiGSQBIAAAAAAAAALuvaAAAAAAAAAADAbwNo4Q85BEIAAA==
+  </data>
+ </layer>
+ <layer name="objects" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1bWU8cMQzeGQqL1D71gh4PpdCCet/tHyn9/4/LsQtVoeVurI2F19hJnGSgFftJ1s4MmRxfHMd2hl5viinSsd/0ejtEhso1yqCx17/h5NTJIbn+6eTYXz9vJ5/jdc8/B/ltbNeCkat7vh0LxdNWLm/l4MTX/9nJR//7hd1LvxTwPnC5RQS4etZOPtvK5As4uOnquqWMmcPKwUFzkV8r4P1NV89L9/vK17Xgfped3HZyh9Vv7eOe526U+B7q9rA519NfXvhzENCD1YR5j+nBpmFcVg4QqRxA/StkLrQ1Q8vX0IM1Qx0SBzh31MYc+jV1SuYMgff4Hq0TrvuG/kj2IFcPpHbvC88kDmCO6Xx9b8dCsSzUhXvGKdNvi82ppQdgV6TxLiZysE301wKsC215qI1QHaV6AAA9WCiw2yPPAQjwJvEpoVHKHXW4V2sADqQ5lxDjIJVLwIkyVu15lyjdF7bJM2ltausV9GB2ptebm4m3EerPk4x1yHW1lIPUfY9Ds0MWDmqtm6viQNP5fe8LzTp+brTjvQP3EHw29GV2I22jnw6yGtCXmmvBAs0mam1ItmY3wZ5rewHFXnORexrvHfv4Qdu7qR7UsAdnQhvAyzeFg4eF/gGC6yWM60c7FrpmL2MtSHoF7X4Sxgp1PKjEAR8b3K8bfKQabYaeh8pynzQXvI05w1rN1YPQuLh+H5E9ZJHppeSb1+jPjIGD3FgyxAHXb60sxuY0DpPyVHSP4fkrvOdzOVDsrdSXveZiLIht0mc7zWR8eSqUBdn2tohCspMSRsK7IdBYka9pLYaNzbnkt4Hdeu2evXHy1sk7J++dfOhA13LXpfSuxV7F/q7ZllAdEHv02bpPQQkHPI9SkwPNtoTqwBgstV1E7h4F4H4krmEuORzk5ss3vG/Gc4zUX97wPhxea3pAc/B0PPRe0oNH7tlj43xIfreVA14eY6uFNh7jaxygn/nCv0/jCAT32Q68PvK4LkcP9ptzX5vPpZQr5nWstel5qhAHX1kd3E/ne09Ne0BzLBoWArqG76dA4yDFLpf4ibG/nxEOUnLGoDfgcxz4sn8Ma0mziSl2meciLH4ihWYPVtp03yXX7wSE1oK13a7WQgoPoVxHDBoHKTlKXmag+Jy5e6OFg1huKISYHswTGzjP8hZd+Yl0rx/6vZz7HHxfAA6WEriS4pkYB30y7n4kl5vLAbcH1Bask/2dnvHSa0CJHmg2kX/nIMWPg2bSF6jlJ662kxykADi4J+QKALHzm9rxAq5h6Dv6jFYOcvx34OBupl0s4YDbxJNG3s+tHKTG/RQlZwYlHEh9zzn/kOxBaV9SgGsXbS745nD2D99uUB8LczkoofPuWvuCNXdAx7NBxgX2C7+twnEMhf5L8yad+0vg+pfrK3O7Ys0dYBv0PF36novHDyW+pVZHrq9cwyZq74T2BFi7qWfnGiQ/UUKOPVgicTsi9J3CIGM8XeiB5l9b9SDlPJAjx4Z0wYFFD2hOn+eqgAPr9wE5NiSHt1gdFg7WAnkBXAsW5PjKObzF6tB85di5MwfYN+u5cM63ODXWguQrr3s/P5bnD/VZOjeLIWc8JTl1hOQrS5D6d0BiHKm85ZtLrY0u3onVYbEHo0CMU+L38rNUfrZAy3XBgfXsXdv/Qn2TcvzaO5Je0nI11kKJnyjZzhKR8siS3aV9qaEHJfbgMiDF07U5qJVL6wqxc8wu1sK/xoH0/wW0L/x7lC7FcuZTE9J3MVc1H1eFGmf6/zti+8J1wFQPphwAphyM4zKO68bBVA/0b9mnuFr8BRG6xhoEQgAA
+  </data>
+ </layer>
+ <layer name="roofs" width="65" height="65">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAgDsDnEvxsk7CQhrYImAAAAAAAAfDfXAQAAAAAAAAAAAKBaBgYTgQRCAAA=
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="1" type="entry" gid="1" x="989" y="2003" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="2" name="exit" type="transition" x="917" y="2057" width="138" height="41">
+   <properties>
+    <property name="area_id" value="I3"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="3" type="entry" gid="1" x="503" y="127" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="4" name="exit" type="transition" x="396" y="106" width="34" height="47">
+   <properties>
+    <property name="area_id" value="I3_ark2"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="5" name="exit" type="transition" x="567" y="100" width="29" height="60">
+   <properties>
+    <property name="area_id" value="I3_ark3"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="6" name="Light" type="light" gid="5" x="453" y="475" width="64" height="64"/>
+  <object id="7" name="Light" type="light" gid="5" x="341" y="536" width="64" height="64"/>
+  <object id="8" name="Light" type="light" gid="5" x="1504" y="480" width="64" height="64"/>
+  <object id="9" name="Light" type="light" gid="5" x="1458" y="1261" width="64" height="64"/>
+  <object id="10" name="energy barrier" type="mapitem" gid="5" x="1440" y="1248" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier1_disabled,1"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object id="11" name="flames" type="mapeffect" gid="5" x="256" y="1184" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="12" name="Crate" type="container" gid="5" x="765" y="247" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest2"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="13" name="Crate" type="container" gid="5" x="473" y="952" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="14" name="Crate" type="container" gid="5" x="380" y="1563" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="15" name="Crate" type="container" gid="5" x="1887" y="701" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="16" name="Crate" type="container" gid="5" x="1913" y="1174" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="17" name="Crate" type="container" gid="5" x="1950" y="1499" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="18" name="Chest" type="container" gid="5" x="150" y="1463" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="items" value="5070,5070,1022,2619"/>
+    <property name="name" value="@CRATE"/>
+    <property name="unique_tag" value="ark_crate1"/>
+   </properties>
+  </object>
+  <object id="19" name="corpse" type="container" gid="5" x="1926" y="926" width="64" height="64">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="2620"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="ark_corpse_bluecard"/>
+   </properties>
+  </object>
+  <object id="20" name="Crate" type="container" gid="5" x="827" y="769" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest2"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="21" name="Spider" type="spawn" gid="3" x="922" y="1372" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="22" name="Spider" type="spawn" gid="3" x="538" y="1112" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="steel_spider"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="23" name="Spider" type="spawn" gid="3" x="634" y="1109" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="steel_spider"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="24" name="Wizard" type="spawn" gid="3" x="1548" y="1348" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="25" name="Spider" type="spawn" gid="3" x="1313" y="1399" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="26" name="Spider" type="spawn" gid="3" x="1400" y="1549" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="27" name="Spider" type="spawn" gid="3" x="1773" y="1605" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="28" name="Spider" type="spawn" gid="3" x="1957" y="1584" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="29" name="Spider" type="spawn" gid="3" x="1920" y="1345" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="30" name="Wizard" type="spawn" gid="3" x="1955" y="1657" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="31" name="Wizard" type="spawn" gid="3" x="1947" y="1253" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="32" name="Wizard" type="spawn" gid="3" x="1773" y="979" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="33" name="Spider" type="spawn" gid="3" x="1929" y="955" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="34" name="Spider" type="spawn" gid="3" x="1970" y="613" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="35" name="Spider" type="spawn" gid="3" x="1934" y="658" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="36" name="Wizard" type="spawn" gid="3" x="1850" y="284" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="37" name="Spider" type="spawn" gid="3" x="1728" y="160" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="38" name="Spider" type="spawn" gid="3" x="1811" y="370" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="39" name="Spider" type="spawn" gid="3" x="469" y="1371" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="40" name="Spider" type="spawn" gid="3" x="248" y="927" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+    <property name="unique_tag" value="ark1_corridor2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="41" name="Spider" type="spawn" gid="3" x="289" y="928" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="42" name="Wizard" type="spawn" gid="3" x="283" y="782" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="unique_tag" value="ark1_corridor1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="43" name="Spider" type="spawn" gid="3" x="547" y="957" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="44" name="Wizard" type="spawn" gid="3" x="658" y="786" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="45" name="Spider" type="spawn" gid="3" x="636" y="945" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="46" name="Spider" type="spawn" gid="3" x="687" y="613" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+    <property name="unique_tag" value="ark_medical2"/>
+   </properties>
+  </object>
+  <object id="47" name="Wizard" type="spawn" gid="3" x="189" y="452" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="48" name="Wizard" type="spawn" gid="3" x="407" y="436" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="49" name="Wizard" type="spawn" gid="3" x="1238" y="510" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="50" name="Wizard" type="spawn" gid="3" x="1499" y="395" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+   </properties>
+  </object>
+  <object id="51" name="Spider" type="spawn" gid="3" x="1568" y="543" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="52" name="Spider" type="spawn" gid="3" x="1335" y="1092" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="53" name="Spider" type="spawn" gid="3" x="1306" y="793" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="54" name="Spider" type="spawn" gid="3" x="1533" y="716" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="55" name="Spider" type="spawn" gid="3" x="1603" y="275" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="56" name="energy barrier" type="mapitem" gid="5" x="960" y="1728" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="57" name="energy barrier" type="mapitem" gid="5" x="992" y="1728" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="58" name="energy barrier" type="mapitem" gid="5" x="1024" y="1728" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="59" name="energy barrier" type="mapitem" gid="5" x="1056" y="1728" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="60" name="energy barrier" type="mapitem" gid="5" x="976" y="1729" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="61" name="energy barrier" type="mapitem" gid="5" x="1008" y="1729" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="62" name="energy barrier" type="mapitem" gid="5" x="1040" y="1730" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object id="63" name="Light" type="light" gid="5" x="1330" y="1569" width="64" height="64"/>
+  <object id="64" name="Light" type="light" gid="5" x="1398" y="1383" width="64" height="64"/>
+  <object id="65" name="Light" type="light" gid="5" x="1544" y="1574" width="64" height="64"/>
+  <object id="66" name="Light" type="light" gid="5" x="1581" y="1387" width="64" height="64"/>
+  <object id="67" name="Light" type="light" gid="5" x="958" y="1100" width="64" height="64"/>
+  <object id="68" name="Light" type="light" gid="5" x="1082" y="994" width="64" height="64"/>
+  <object id="69" name="Light" type="light" gid="5" x="1223" y="1289" width="64" height="64"/>
+  <object id="70" name="Secret Door" type="secretdoor" gid="5" x="256" y="1440" width="64" height="64">
+   <properties>
+    <property name="maxlevel" value="26"/>
+    <property name="minlevel" value="26"/>
+    <property name="secretdoor_tag" value="ark_1_1"/>
+   </properties>
+  </object>
+  <object id="71" name="conv" type="conversation" gid="5" x="379" y="1429" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console1"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="72" name="corpse" type="container" gid="5" x="1507" y="347" width="64" height="64">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="2628"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="ark_corpse_orangecard"/>
+   </properties>
+  </object>
+  <object id="73" name="Crate" type="container" gid="5" x="1621" y="697" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="74" name="Light" type="light" gid="5" x="1356" y="245" width="64" height="64"/>
+  <object id="75" name="Light" type="light" gid="5" x="1439" y="159" width="64" height="64"/>
+  <object id="76" name="Light" type="light" gid="5" x="1232" y="532" width="64" height="64"/>
+  <object id="77" name="corpse" type="container" gid="5" x="1639" y="1730" width="64" height="64">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="2629"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="ark_corpse2"/>
+   </properties>
+  </object>
+  <object id="78" name="Spider" type="spawn" gid="3" x="210" y="1567" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="79" name="flames" type="mapeffect" gid="5" x="288" y="1184" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="80" name="flames" type="mapeffect" gid="5" x="320" y="1184" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="81" name="flames" type="mapeffect" gid="5" x="288" y="1024" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="82" name="flames" type="mapeffect" gid="5" x="320" y="1024" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="83" name="flames" type="mapeffect" gid="5" x="256" y="1024" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="84" name="flames" type="mapeffect" gid="5" x="288" y="864" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="85" name="flames" type="mapeffect" gid="5" x="320" y="864" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="86" name="flames" type="mapeffect" gid="5" x="256" y="864" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="87" name="conv" type="conversation" gid="5" x="1407" y="1281" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console2"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="88" name="energy barrier" type="mapitem" gid="5" x="1472" y="1248" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier1_disabled,1"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object id="89" name="energy barrier" type="mapitem" gid="5" x="1458" y="1248" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier1_disabled,1"/>
+    <property name="tag" value="barrier1"/>
+   </properties>
+  </object>
+  <object id="90" name="energy barrier" type="mapitem" gid="5" x="1120" y="352" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier2_disabled,1"/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object id="91" name="energy barrier" type="mapitem" gid="5" x="1120" y="384" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier2_disabled,1"/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object id="92" name="energy barrier" type="mapitem" gid="5" x="1121" y="369" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier2_disabled,1"/>
+    <property name="tag" value="barrier2"/>
+   </properties>
+  </object>
+  <object id="93" name="Light" type="light" gid="5" x="1136" y="370" width="64" height="64"/>
+  <object id="94" name="conv" type="conversation" gid="5" x="1147" y="418" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console3"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="95" name="conv" type="conversation" gid="5" x="416" y="288" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console4"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="96" name="Light" type="light" gid="5" x="467" y="281" width="64" height="64"/>
+  <object id="97" name="energy barrier" type="mapitem" gid="5" x="448" y="256" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier3_disabled,1"/>
+    <property name="tag" value="barrier3"/>
+   </properties>
+  </object>
+  <object id="98" name="energy barrier" type="mapitem" gid="5" x="480" y="256" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier3_disabled,1"/>
+    <property name="tag" value="barrier3"/>
+   </properties>
+  </object>
+  <object id="99" name="energy barrier" type="mapitem" gid="5" x="466" y="257" width="64" height="64">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_effect" value="beam_blue"/>
+    <property name="barrier" value=""/>
+    <property name="conditions" value="VariableLower#ark1_barrier3_disabled,1"/>
+    <property name="tag" value="barrier3"/>
+   </properties>
+  </object>
+  <object id="100" name="Wizard" type="spawn" gid="3" x="689" y="438" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="unique_tag" value="ark_medical1"/>
+   </properties>
+  </object>
+  <object id="101" name="Spider" type="spawn" gid="3" x="306" y="480" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="102" name="conv" type="conversation" gid="5" x="658" y="313" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console_medical"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="103" name="Crate" type="container" gid="5" x="1722" y="253" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate2"/>
+    <property name="loot_table" value="ark_chest"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="104" name="conv" type="conversation" gid="5" x="1858" y="158" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console_energy"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="105" name="barrier conv" type="conversation" gid="5" x="1010" y="1762" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#false,1"/>
+    <property name="conversation" value="ark1_barrier"/>
+    <property name="icon" value="blue_energy"/>
+    <property name="name" value="@MAGICAL_BARRIER"/>
+    <property name="tag" value="entrance_barrier"/>
+   </properties>
+  </object>
+  <object id="106" name="conversationTrigger" type="trigger" x="914" y="1641.5" width="155" height="102.5">
+   <properties>
+    <property name="actions" value="StartItemConversation#entrance_barrier"/>
+    <property name="conditions" value="HasParty#"/>
+   </properties>
+  </object>
+  <object id="107" name="flames" type="mapeffect" gid="5" x="352" y="1024" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="108" name="flames" type="mapeffect" gid="5" x="352" y="864" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ark1_corridor_beams_disabled,1"/>
+    <property name="id" value="beam_red"/>
+    <property name="tag" value="corridor_beams"/>
+   </properties>
+  </object>
+  <object id="109" name="corpse" type="container" gid="5" x="602" y="338" width="64" height="64">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="5070,5070,5070,5070,1022,1022"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="ark_corpse_medical"/>
+   </properties>
+  </object>
+  <object id="110" name="conv" type="conversation" gid="5" x="1470" y="882" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_console_medical"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="111" name="Wizard" type="spawn" gid="3" x="1554" y="913" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#join_forsaken,1"/>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="unique_tag" value="ark_medical3"/>
+   </properties>
+  </object>
+  <object id="112" name="Wizard" type="spawn" gid="3" x="848" y="259" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="113" name="Spider" type="spawn" gid="3" x="812" y="300" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="114" name="Wizard" type="spawn" gid="3" x="881" y="377" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="115" name="Spider" type="spawn" gid="3" x="979" y="685" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="116" name="Spider" type="spawn" gid="3" x="1072" y="712" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="117" name="Spider" type="spawn" gid="3" x="997" y="573" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="118" name="Wizard" type="spawn" gid="3" x="922" y="1118" width="64" height="64">
+   <properties>
+    <property name="spawn" value="war_droid"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="119" name="Spider" type="spawn" gid="3" x="1071" y="1141" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="120" name="Spider" type="spawn" gid="3" x="1129" y="1026" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="121" name="Wizard" type="spawn" gid="3" x="839" y="689" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_wizard"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="122" name="conv" type="conversation" gid="5" x="1267" y="114" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_library"/>
+    <property name="icon" value="console"/>
+    <property name="name" value="@CONSOLE"/>
+   </properties>
+  </object>
+  <object id="123" name="conv" type="conversation" gid="5" x="825" y="951" width="64" height="64">
+   <properties>
+    <property name="conversation" value="I3_ark_elevator"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@ELEVATOR"/>
+   </properties>
+  </object>
+  <object id="124" name="Spider" type="spawn" gid="3" x="1006" y="994" width="64" height="64">
+   <properties>
+    <property name="spawn" value="steel_spider"/>
+   </properties>
+  </object>
+  <object id="125" name="valeran" type="spawn" gid="3" x="1616" y="928" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#ark_lothasan,84"/>
+    <property name="portrait" value="98"/>
+    <property name="spawn" value="valeran"/>
+    <property name="tag" value="valeran"/>
+    <property name="unique_tag" value="valeran"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="126" name="conversationTrigger" type="trigger" x="1463" y="908" width="69" height="56">
+   <properties>
+    <property name="actions" value="SetVariable#ark_lothasan,85;StartConversation#valeran,I3_ark_valeran"/>
+    <property name="conditions" value="VariableEqual#ark_lothasan,84"/>
+   </properties>
+  </object>
+  <object id="127" name="Assassin" type="spawn" gid="3" x="1617" y="996" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#ark_lothasan,84"/>
+    <property name="spawn" value="forsaken_assassin"/>
+    <property name="tag" value="forsaken"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

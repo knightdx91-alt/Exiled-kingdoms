@@ -1,0 +1,18 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](You see a dry tree, it seems quite appropriate.)[]		2	"VariableGreater#tree1,9;VariableEqual#tree1,10"	
+1	Q	[BLUE](Another dry tree, looks appropriate)[]		3	"VariableGreater#tree1,10;VariableEqual#tree1,20"	
+1	Q	[BLUE](You walk up to a dry tree, and there are wisps of wool on it, it looks like wolves are frequent visitors here)[]		4	"VariableGreater#tree1,20;VariableEqual#tree1,30"	
+1	Q	[BLUE](Another tree, I think you can hear the savages laughing)[]		5	"VariableGreater#tree1,30;VariableEqual#tree1,40"	
+1	Q	[BLUE](The last tree is found)[]		6	"VariableGreater#tree1,40;VariableEqual#tree1,50"	
+1	Q	[BLUE](The hide from the tree is gone. What could that mean?)[]		0	VariableEqual#tree1,100	
+1	Q	[BLUE](Just dry wood. Nothing interesting)[]		2			
+2	A	[BLUE] (Hang the hide on the branches)[]		0	"VariableGreater#tree1,9;VariableEqual#tree1,10;PlayerHasItem#1002"	"SetVariable#tree1,20;loseItem#1002"
+2	A	Pass by		0			
+3	A	[BLUE] (Hang the hide on the branches)[]		0	"VariableGreater#tree1,10;VariableEqual#tree1,20;PlayerHasItem#1002"	"SetVariable#tree1,30;loseItem#1002"
+3	A	Pass by		0			
+4	A	[BLUE] (Hang the hide on the branches)[]		0	"VariableGreater#tree1,20;VariableEqual#tree1,30;PlayerHasItem#1002"	"SetVariable#tree1,40;loseItem#1002"
+4	A	Pass by		0			
+5	A	[BLUE] (Silently you throw in the skin of a branch)[]		0	"VariableGreater#tree1,30;VariableEqual#tree1,40;PlayerHasItem#1002"	"SetVariable#tree1,50;loseItem#1002"
+5	A	Pass by		0			
+6	A	[BLUE] (Throw the skin on the branches)[]		0	"VariableGreater#tree1,40;VariableEqual#tree1,50;PlayerHasItem#1002"	"SetVariable#tree1,60;loseItem#1002"
+6	A	Pass by		0			

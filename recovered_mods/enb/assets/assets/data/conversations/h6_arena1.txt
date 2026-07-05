@@ -1,0 +1,14 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	The order you know...Just kill all the opponents.		0	"VariableEqual#sund1,1;VariableEqual#volward,2"	"travel#H6_podval,10,0;SetVariable#sund1,2"
+1	Q	The order you know...Just kill all the opponents.		0	"VariableEqual#sund1,1;VariableEqual#volwarg,2"	"travel#H6_podval,10,0;SetVariable#sund1,2"
+1	Q	Your opponents will be in about the same armour. Weapons are also standard... May the best man win!!!		5	VariableEqual#volward,1	SetVariable#volward,2
+1	Q	Your opponents will be in about the same armour. Weapons are also standard... May the best man win!!!		5	VariableEqual#volwarg,1	SetVariable#volwarg,2
+1	Q	Choose the right armour and weapons, then come to me.		2		
+2	A	[RED](Go to the arena)[]		3		
+2	A	Check the chests.		0		SetVariable#sund1,1
+2	A	There's nothing with fire damage in these chests! How do I kill them?		4	"VariableLower#aren_tr,1;VariableEqual#arenah6,16"	SetVariable#aren_tr,1
+3	Q	Fine. If you kill all the enemies, just come to the door. We'll let you out. Good luck.		0		travel#H6_podval,2,0
+4	Q	Oh right... I've got something for you. Always these morons forget to prepare this fight properly. Ha ha ha. Use it. You survive, it's yours.		0		GainItem#10072
+5	A	[RED](Go to the arena)[]		6		
+5	A	Check the chests.		0		SetVariable#sund1,1
+6	Q	The order you know...Just kill all the opponents.		0		travel#H6_podval,10,0

@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hey boss! Hold on...there's a conversation to be had.		2		SetVariable#1nebr,0
+2	A	Hello, is something wrong?		3		
+3	Q	Here's the thing...You seem to think we're peasants, but that's not quite true...We're adventurers like you, just not so lucky. Didn't you also come here straight from the punishment cell?		4		
+4	A	I think I'm beginning to realize who they've given me as a traveling companion. You guys seem to be one of those gangsters that hang around Kingsbridge.		5		
+5	Q	We prefer to call ourselves "The Romantics of the Road." Now to get to the point, me and my boys made some money and stashed it in New Garand's Suburbs. If you let us go now, we'll cut you in. I don't want to work in a field and wait for bugs to eat me.		6		
+6	A	I can't let you go. I don't advise you to run, either. I'll kill you where you stand. We'll all go to the village together and pretend this conversation never happened.		7		SetVariable#nebr1,0
+6	A	A share, you say? Where's your guarantee that you won't just screw me for the gold?		8		
+7	Q	Damn righteous saint. I hate that kind. All right, we'll submit. I saw you kill all those monsters.		0		
+8	Q	Guaranteed only by my word and thief's honor!		9		
+9	A	All right! I'll believe you. But if you cheat, I'll pull you out of the ground.		10		SetVariable#slovorazb,10
+9	A	Hmm. I think I'd better take you to your destination. No nonsense, and no one will know about this conversation.		12		SetVariable#nebr1,0
+10,mercenary_grisenda	Q	It's dangerous! I want to check out who's around.		11	NPCIsInParty#grissenda,mercenary_grisenda	NPCStopFollowing#mercenary_grisenda
+10,hirge	Q	It's dangerous! I want to check out who's around.		11	NPCIsInParty#hirge,hirge	NPCStopFollowing#hirge
+10,adaon	Q	It's dangerous! I want to check out who's around.		11	NPCIsInParty#adaon,adaon	NPCStopFollowing#adaon
+10	Q	Great choice, friend! You won't be disappointed. I'll find you in New Garand.		0		DisbandAll#
+11,R	Q	Great choice, friend! You won't be disappointed. I'll find you in New Garand.		13		DisbandAll#
+12	Q	I obey...Come on boss.		0		
+13,mercenary_grisenda	Q	It's all right. We can move on.		0	NPCinArea#mercenary_grisenda	NPCFollow#
+13,hirge	Q	It's all right. We can move on.		0	NPCinArea#hirge	NPCFollow#
+13,adaon	Q	It's all right. We can move on.		0	NPCinArea#adaon	NPCFollow#

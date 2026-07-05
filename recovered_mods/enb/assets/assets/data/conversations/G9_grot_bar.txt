@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	You see a strange energy barrier. The skeletons lying around hint that it's dangerous to go there...		2		
+2	A	[BLUE] (Trying to get through the barrier)[]		3		
+2	A	It's probably best not to touch anything...		0		
+2	A	Activate the Medallion here.		11	PlayerHasItem#2638	
+3	Q	[BLUE] (You take a step and a blue glow envelops you. You feel some resistance, but there is no discomfort.)[]		4		
+4	A	To keep moving forward...		5		
+4	A	Activate the medallion here.		12	PlayerHasItem#2638	
+4	A	Go back...		1		
+5	Q	[BLUE] (The barrier crackles mysteriously, you take another step, but the resistance is increasing.)[]		6		
+6	A	The barrier must have been damaged by time. I'll keep moving forward.		7		
+6	A	Activate the medallion here.		13	PlayerHasItem#2638	
+6	A	Go back...		1		
+7	Q	[BLUE] (The barrier is giving way, you can already see the outline of the corridor through the blue light.....)[]		8		
+8	A	Gathering what little strength we have left to push forward!		10		
+8	A	Activate the medallion here.		14	PlayerHasItem#2638	
+8	A	Better not take any more chances, I'm going back!		9		
+9	Q	[BLUE] (You realise with horror that moving backwards is impossible. You're too deeply entangled in the barrier)[]		7		
+10	Q	[BLUE] (You were almost through, when suddenly there was a deafening pop and you were thrown backwards with force. Looks like you got burns.)[]		0		"LoseHP#30;Travel#G10_dang,5"
+11	Q	[BLUE] (Nothing happened, try to move on)[]		3		
+12	Q	[BLUE] (Nothing happened, try to move on)[]		5		
+13	Q	[BLUE] (Nothing happened, try to move on)[]		7		
+14	Q	There is a flash of light, the barrier disappears, and the medallion is cracked and has lost its sinister aura.		0		"SetVariable#pr_djeck,30;ItemHide#bar1;ItemWalkable#bar1;LoseItem#2638;GainItem#2639"

@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="95">
+ <properties>
+  <property name="music" value="dungeon"/>
+  <property name="name" value="Urzuganar Lair"/>
+  <property name="name_ES" value="Guarida Urzuganar"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="town_objects.tsx"/>
+ <tileset firstgid="569" source="dungeon stairs.tsx"/>
+ <tileset firstgid="573" source="grounds_indoor.tsx"/>
+ <layer id="1" name="nonwalk" width="72" height="72" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3YsQkAAAgDQfdf2NYNBLES7yALfJkIAAAA+CmHAwAAAGDHz9LTp6cNAAAAAAAAAAAAAMB9Bar8gSoAUQAA
+  </data>
+ </layer>
+ <layer id="2" name="water" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3XQQ6CMBRFUVyGGnX/uxQGTgy8gFZqyzlJp0Ru6ReGAQAAAFjjcqr9C/7b1Oem0SJ9Mn0yfTJ9Mn0yfTJ9Mn0yfbLe+pT+XuqxT8n70Wff69WmT6ZPVno+n8frXcNqzS/+vx7juofVktL73eP5KrnfPfYxn5ft3ae1uV3j+Wlpbn+636/1Pt8nRztfaXbPzfeefHu+epvHc/RZb+v79NH6TLbc7xH7bKEPAAAAAAAAAPTlCQDd+sEAUQAA
+  </data>
+ </layer>
+ <layer id="3" name="ground" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer id="4" name="ground2" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3bQQ6CMBAFUGSHChcxiBvvfzU04G5KoiSt1vdW3dH+dNpFmaaB8o5t6Rl8r0k28JZUzThnFsMjh5ssQqlcoj11/sMMx3XN7qXYpLY+Jjf2GuyhpKi++h/L637I963a7rhLxuwAAAAAAABy8L68TT7bansPBNjj6p8CoJCx4vOna+Mxi2c/x0kuSa/+hF5OSXqCAAAAAADqMwOaZzh6AFEAAA==
+  </data>
+ </layer>
+ <layer id="5" name="objects" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer id="6" name="roofs" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3QsRFAEQBEQcT0okQd/xZ+B5gRYOzGL7i5EAC4QU27F5yv+Kgr+wcAAAAAAAAAln1x3LSJBgAAAAAAAAAAAOBFPzKhHD4AUQAA
+  </data>
+ </layer>
+ <objectgroup id="7" name="data">
+  <object id="1" name="exit to H9" type="transition" x="61" y="936" width="67" height="64">
+   <properties>
+    <property name="area_id" value="H9"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="2" name="exit from dungeon" type="entry" gid="241" x="169" y="998" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="94" name="k orku" type="entry" gid="241" x="251" y="1270" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="3" name="orc1 " type="spawn" gid="243" x="429" y="911" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="4" name="orc1 " type="spawn" gid="243" x="310" y="859" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="5" name="orc1 " type="spawn" gid="243" x="456" y="1021" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="6" name="orc1 " type="spawn" gid="243" x="594" y="1811" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="7" name="orc1 " type="spawn" gid="243" x="627" y="1745" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="8" name="orc1 " type="spawn" gid="243" x="436" y="531" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc"/>
+    <property name="spawn_u" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="9" name="orc2" type="spawn" gid="243" x="425" y="131" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="10" name="orc2" type="spawn" gid="243" x="396" y="169" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="11" name="orc2" type="spawn" gid="243" x="571" y="155" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="12" name="orc2" type="spawn" gid="243" x="479" y="366" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="13" name="orc2" type="spawn" gid="243" x="501" y="448" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="14" name="orc2" type="spawn" gid="243" x="617" y="216" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="15" name="orc2" type="spawn" gid="243" x="383" y="265" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="16" name="orc2" type="spawn" gid="243" x="438" y="454" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="17" name="orc2" type="spawn" gid="243" x="616" y="339" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="18" name="orc2" type="spawn" gid="243" x="641" y="480" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="19" name="cook" type="spawn" gid="243" x="245" y="275" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_cook"/>
+   </properties>
+  </object>
+  <object id="20" name="cook" type="spawn" gid="243" x="203" y="326" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_cook"/>
+   </properties>
+  </object>
+  <object id="21" name="antilion" type="spawn" gid="243" x="1142" y="1660" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mirmek_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="22" name="antilion" type="spawn" gid="243" x="1069" y="1693" width="64" height="64">
+   <properties>
+    <property name="spawn" value="mirmek_fire"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="23" name="orc_elite" type="spawn" gid="243" x="1038" y="933" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="24" name="orc_elite" type="spawn" gid="243" x="1034" y="1039" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="25" name="orc_elite" type="spawn" gid="243" x="1126" y="1163.33" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="26" name="orc_elite" type="spawn" gid="243" x="1175" y="1075" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="27" name="orc_elite" type="spawn" gid="243" x="1152" y="960" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="28" name="orc_elite" type="spawn" gid="243" x="1290" y="892.333" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="29" name="orc_elite" type="spawn" gid="243" x="1259.33" y="1004.67" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="30" name="orc_elite" type="spawn" gid="243" x="1011.33" y="852.667" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="31" name="orc_warlord" type="spawn" gid="243" x="2129" y="217" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Warlord"/>
+    <property name="name_ES" value="Comandante Orco"/>
+    <property name="quest_location" value="H9_lair_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="32" name="orc_elite" type="spawn" gid="243" x="2089" y="223" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="33" name="slave" type="spawn" gid="243" x="2084" y="1059" width="64" height="64">
+   <properties>
+    <property name="name" value="slave"/>
+    <property name="spawn" value="villager_male_red"/>
+   </properties>
+  </object>
+  <object id="34" name="slave" type="spawn" gid="243" x="2057" y="1396" width="64" height="64">
+   <properties>
+    <property name="name" value="slave"/>
+    <property name="spawn" value="villager_female_white"/>
+   </properties>
+  </object>
+  <object id="35" name="slave" type="spawn" gid="243" x="2119" y="1177" width="64" height="64">
+   <properties>
+    <property name="name" value="slave"/>
+    <property name="spawn" value="villager_male_blue"/>
+   </properties>
+  </object>
+  <object id="36" name="slave" type="spawn" gid="243" x="1995" y="777" width="64" height="64">
+   <properties>
+    <property name="name" value="slave"/>
+    <property name="spawn" value="villager_male_blue"/>
+   </properties>
+  </object>
+  <object id="37" name="Chest" type="container" gid="245" x="214" y="1431" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_3"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H9_lair_3"/>
+   </properties>
+  </object>
+  <object id="38" name="Chest" type="container" gid="245" x="536" y="1821" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_3"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="39" name="Chest" type="container" gid="245" x="1208" y="120" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="orc_chest_3"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="40" name="Chest" type="container" gid="245" x="2043" y="58" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="orc_chest_7"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H9_lair_1"/>
+   </properties>
+  </object>
+  <object id="41" name="Chest" type="container" gid="245" x="1175" y="502" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_7"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="H9_lair_2"/>
+   </properties>
+  </object>
+  <object id="42" name="orc_elite" type="spawn" gid="243" x="1271.33" y="1139.33" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="43" name="orc_elite" type="spawn" gid="243" x="2121" y="508" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="44" name="taskmaster" type="spawn" gid="243" x="1758" y="1519" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="45" name="taskmaster" type="spawn" gid="243" x="1990" y="1543" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="46" name="taskmaster" type="spawn" gid="243" x="1944" y="922" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="alerted"/>
+   </properties>
+  </object>
+  <object id="47" name="taskmaster" type="spawn" gid="243" x="2087" y="713" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+   </properties>
+  </object>
+  <object id="48" name="orc_elite" type="spawn" gid="243" x="2093" y="303" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="49" name="orc_elite" type="spawn" gid="243" x="234" y="1488" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="50" name="orc_elite" type="spawn" gid="243" x="274" y="1523" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="51" name="orc_warlord" type="spawn" gid="243" x="226" y="1531" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Warlord"/>
+    <property name="name_ES" value="Comandante Orco"/>
+    <property name="quest_location" value="H9_lair_3"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="52" name="King" type="spawn" gid="243" x="1123" y="542" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="orc_king"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="53" name="orc_elite" type="spawn" gid="243" x="1054" y="584" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="54" name="orc_elite" type="spawn" gid="243" x="1044" y="658" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="55" name="orc_elite" type="spawn" gid="243" x="1220" y="595" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="56" name="orc_elite" type="spawn" gid="243" x="1219" y="674" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="57" name="Chest" type="container" gid="245" x="1493" y="441" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_3"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="58" name="Niur" type="spawn" gid="243" x="2013" y="933" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#prisoner_orcs,10"/>
+    <property name="conversation" value="orclair_niur"/>
+    <property name="spawn" value="niur"/>
+    <property name="tag" value="niur"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="59" name="orc" type="spawn" gid="243" x="1844" y="131" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="60" name="orc" type="spawn" gid="243" x="1815" y="164" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="61" name="orc" type="spawn" gid="243" x="1848" y="213" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="62" name="orc" type="spawn" gid="243" x="1586" y="98" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="63" name="orc" type="spawn" gid="243" x="1462" y="81" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="64" name="orc" type="spawn" gid="243" x="1440" y="281" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="65" name="orc" type="spawn" gid="243" x="1504" y="356" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="66" name="orc" type="spawn" gid="243" x="1189" y="165" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="67" name="orc" type="spawn" gid="243" x="1238" y="222" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="68" name="orc" type="spawn" gid="243" x="1266" y="173" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="69" name="orc" type="spawn" gid="243" x="791" y="158" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="70" name="orc" type="spawn" gid="243" x="917" y="168" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="71" name="orc" type="spawn" gid="243" x="653" y="1398" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="91" name="orc" type="spawn" gid="243" x="487.333" y="1237" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_sham1"/>
+    <property name="tag" value="orcben1"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="90" name="orc" type="spawn" gid="243" x="315.333" y="1250.33" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite1"/>
+    <property name="tag" value="orcben2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="92" name="orc" type="spawn" gid="243" x="445.333" y="1316.34" width="64" height="64">
+   <properties>
+    <property name="spawn" value="orc_elite1"/>
+    <property name="tag" value="orcben1"/>
+   </properties>
+  </object>
+  <object id="72" name="orc" type="spawn" gid="243" x="454" y="1553" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="89" name="orc ben" type="spawn" gid="243" x="260.167" y="1234.17" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#ben1,1"/>
+    <property name="conversation" value="H9_orkben"/>
+    <property name="spawn" value="orc_ben"/>
+    <property name="tag" value="orcben"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="73" name="orc" type="spawn" gid="243" x="572" y="1548" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="74" name="orc" type="spawn" gid="243" x="862" y="1454" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="75" name="orc" type="spawn" gid="243" x="1634" y="1040" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="76" name="orc" type="spawn" gid="243" x="1635" y="857" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="77" name="orc" type="spawn" gid="243" x="628" y="1167" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="78" name="orc" type="spawn" gid="243" x="633" y="890" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="orcs"/>
+   </properties>
+  </object>
+  <object id="79" name="orc_elite" type="spawn" gid="243" x="1111" y="779" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_2"/>
+    <property name="spawn" value="orc_elite"/>
+   </properties>
+  </object>
+  <object id="80" name="Chest" type="container" gid="245" x="1781" y="403" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="81" name="orc_elite" type="spawn" gid="243" x="1738" y="406" width="64" height="64">
+   <properties>
+    <property name="name" value="Bodyguard"/>
+    <property name="quest_location" value="H9_lair_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="82" name="Secret Door" type="secretdoor" gid="245" x="1632" y="448" width="64" height="64">
+   <properties>
+    <property name="maxlevel" value="7"/>
+    <property name="secretdoor_tag" value="H9_lair_1"/>
+   </properties>
+  </object>
+  <object id="83" name="spikes trap" type="trap" gid="245" x="2049" y="92" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="minlevel" value="4"/>
+   </properties>
+  </object>
+  <object id="84" name="spikes trap" type="trap" gid="245" x="2089" y="391" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="minlevel" value="4"/>
+   </properties>
+  </object>
+  <object id="85" name="spikes trap" type="trap" gid="245" x="794" y="986" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="7"/>
+    <property name="minlevel" value="4"/>
+   </properties>
+  </object>
+  <object id="86" name="taskmaster" type="spawn" gid="243" x="1987" y="875" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="alerted"/>
+   </properties>
+  </object>
+  <object id="87" name="taskmaster" type="spawn" gid="243" x="1906" y="972" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="alerted"/>
+   </properties>
+  </object>
+  <object id="88" name="taskmaster" type="spawn" gid="243" x="1984" y="1257" width="64" height="64">
+   <properties>
+    <property name="name" value="Orc Taskmaster"/>
+    <property name="name_ES" value="Capataz Orco"/>
+    <property name="spawn" value="orc_warrior"/>
+    <property name="tag" value="alerted"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

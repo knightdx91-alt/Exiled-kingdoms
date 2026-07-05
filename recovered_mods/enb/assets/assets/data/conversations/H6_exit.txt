@@ -1,0 +1,7 @@
+index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	[RED](WARNING You cannot leave the arena with a mercenary in the group!)[]		3	hasFollower#	
+1	Q	You want to go upstairs?		2		
+2	A	Go to the inn.		0		Travel#H6_tract,2,0
+2	A	Stay.		0		
+3	A	Back off.		0		
+3	A	"Expel everyone from the group" (If there is a bug with mercenaries and won't let them out of the location)		0	hasFollower#	DisbandAll#

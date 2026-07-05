@@ -1,0 +1,17 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Leave me alone, I have nothing to say to you, thug!	¡Déjame en paz, no tengo nada que decirte, matón!	7	"VariableEqual#threatened_ng_townsman,1;VariableLower#want_letter_back,30"		
+1	Q	Wassup	¿Qué pasa?	2			
+2	A	Hello, do you know where can I find the house of Magistrate Odo Steinz	Hola, ¿sabe dónde puedo encontrar la casa del Magistrado Odo Steinz?	3	VariableLower#want_letter_back,30		
+2	A	Nothing, sorry. Goodbye.	No quiero nada. Adiós.	0			
+3	Q	Listen, I'm no public service. You are a foreigner, and for all I know, you could be a thief. If you want me to tell you about that house, I want 200 coins right now. Or go away. 	Escucha, no soy un servicio público. Eres un forastero, y no sé para qué quieres encontrar esa casa. Podrías incluso ser un ladrón. Si quieres ayuda, ya puedes soltar 200 monedas o largarte.	4			
+4	A	Very well, here's 200 gold coins, now tell me where is the house.	Muy bien, aquí tienes las 200 monedas. Ahora dime dónde está la casa.	6	PlayerHasGold#200	loseGold#200	
+4	A	No, thanks.	No, gracias.	0			
+4	A	Tell me, or I'll break your neck	Dímelo, o te romperé el cuello	5			
+4	A	So much money for a street address? Here is 50 coins, now speak.	¿Tanto dinero por una simple dirección? Aquí tienes 50. Empieza a hablar.	6	PlayerHasGold#50	loseGold#50	PER#1
+5	Q	I'm going to inform the guards about your threats! Leave me alone!	Voy a informar a los guardias de tus amenazas! Déjame en paz!	0		"DecVariable#REP_varsilia,4;SetVariable#threatened_ng_townsman,1"	
+6	Q	Very well. The house you seek is a large manor, on the East side of town, bordering the north wall.	Muy bien. La casa que buscas está en el lado Este de la ciudad, una mansión pegada al muro norte.	0		SetVariable#want_letter_back,30	
+7	A	Very well, just go to hell.	Muy bien, pues vete al infierno.	0			
+7	A	Wait, I want to apologize for my hasty words.	Espera, quiero pedirte disculpas por lo que dije.	8			
+8	Q	Hmmm apologizing, you say? Very well, but now if you want to know where is that house, it's going to cost you 400 coins.	hmmm... ¿disculparte, dices? De acuerdo, pero ahora te va a costar 400 monedas.	9			
+9	A	Very well, here's 400 gold coins, now tell me where is the house.	Muy bien, aquí tienes las 400 monedas. Ahora dime dónde está la casa.	6	PlayerHasGold#400	loseGold#400	
+9	A	No, thanks.	No, gracias.	0			

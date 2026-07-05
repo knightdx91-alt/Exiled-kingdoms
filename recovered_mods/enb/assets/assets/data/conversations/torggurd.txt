@@ -1,0 +1,48 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Would you like to see the products?		2		
+2	A	Show me		0		OpenShop#
+2	A	I'll come back later.		0		
+2	A	I'm not here to look at the merchandise, I'm here to show it...Your task is done.		3	"VariableGreater#gurd,13;VariableLower#gurd,17"	
+3	Q	Hush, hush... There's no need to shout like that. Have you got the stones? How did it go? [BLUE](Smiles broadly)[]		4		
+4	A	What are you suggesting, right here in the middle of the street?		5		
+4	A	Oh... I have an emergency. I'll be back later.		0		
+5	Q	What's the big deal? Seller and buyer talking business. And if you're too curious, my friends will escort you home...So, what about my payment?		6		
+6	A	There were some difficulties, but I delivered the weapons. I have the stones...but first let's talk about my reward.		7	PlayerHasItem#10055	
+6	A	I got the stones...but the orc had to be killed. We had no agreement...		17	PlayerHasItem#10056	
+6	A	Here's the thing... I got the bag of gems, but I went in there to check what those orcs put there, and he took and disappeared... here. But I still have the gems.		27	VariableEqual#gurd,16	
+6	A	I've been thinking. I've decided I'm gonna keep these stones. As a reward.		11	PlayerHasItem#10056	
+6	A	I've been thinking. I've decided I'm gonna keep these stones. As a reward.		11	PlayerHasItem#10055	
+7	Q	Let's think about it...There are 1200 stones there, if at market prices, plus for the trouble, for the wear and tear of equipment...It comes out to about 3000 coins and a discount in my shop. OK?		8		
+8	A	That'll do. Hold the rocks.		9		"LoseItem#10055;GainGold#3000;GainXP#800;SetVariable#gurd,103"
+8	A	Not really. 4,000 and no discount.		10		"LoseItem#10055;GainGold#4000;GainXP#800;SetVariable#gurd,101"
+8	A	No, it won't. I want to keep the stones.		11		
+9	Q	[BLUE](Takes the stones and hands over the bag of gold)[] I told you I wouldn't hurt you. Come back tomorrow. We'll trade.		0		NPCDespawn#torggurd
+10	Q	Well...Suit yourself. I won't offer a second discount. [BLUE](Takes the stones and hands over the bag of gold)[]		0		
+11	Q	[BLUE](The blacksmith blushes with anger)[] Are you serious? You're gonna screw me over? Think again, and I'll pretend I didn't hear that.		12		
+12	A	А? You're just hearing things. Let's start again.		13		
+12	A	I've already thought about it. I've decided that you'll give me 2,000 coins on top of that. Or else the guards will find out about your little business and I have proof-- You'll probably be hanged.		15			PER#3
+12	A	I'm not giving you the stones. I have other plans for them.		26		
+13	Q	Smart kid. Let's try to pretend this never happened. And I'll ask again. Where are my rocks?		14		
+14	A	There were some difficulties, but I delivered the weapons. I have the stones...but first let's talk about my reward.		7	PlayerHasItem#10055	
+14	A	[BLUE](Back)[]		11		
+15	Q	You're a scumbag. Take your filthy money and leave me alone. You're gonna regret this. Besides, I'm gonna tell the whole town what a hero you are. And from this day forward, my shop is closed to you.		16	PlayerHasItem#10055	"DecVariable#REP_varsilia,15;GainGold#2000;GainXP#500;SetVariable#gurd,102;NPCDespawn#torggurd;SetVariable#gurdfury,10;LoseItem#10055;GainItem#10057"
+15	Q	You're a scumbag. Take your filthy money and leave me alone. You're gonna regret this. Besides, I'm gonna tell the whole town what a hero you are. And from this day forward, my shop is closed to you.		16	PlayerHasItem#10056	"DecVariable#REP_varsilia,15;GainGold#2000;GainXP#500;SetVariable#gurd,102;NPCDespawn#torggurd;SetVariable#gurdfury,10;LoseItem#10056;GainItem#10057"
+16	A	That's better...You can shove your goblin threats up your arse. happily ever after		0		
+17	Q	Well, well, well... Killed an orc....[BLUE](Gourd is getting dark)[] What about the guns? Where's the box?		18		
+18	A	The weapons were left with the orcs. There was a fight and I couldn't get it back.		19		
+19	Q	[BLUE](He thought for a while.)[] So now the orcs have weapons and I no longer have a contact...Bad enough this will seriously hurt my business. Give me the stones and I'll pay you back.		20		
+20	A	Stones? What do I get as a reward?		21		
+21	Q	Let's do the math. Stones there for 1200, this if at market prices plus for the trouble, for the wear and tear of equipment...and minus the damage caused by the death of the orc...Comes out to about 1800 coins.		22		
+22	A	Bloody thief...I knew this would end...Take the stones and get the coins.		0		"LoseItem#10056;GainGold#1800;GainXP#700;SetVariable#gurd,103"
+22	A	You're an arsehole. In that case, you won't even get the stones. I'll keep them! And for your trouble, you'll pay me 2,000 coins extra. Or the guards will find out about your little business, and I have proof...		24			PER#3
+24	Q	I underestimated you...take your dirty money and leave me alone. You're gonna regret this. Besides, I'll tell the whole town what a hero you are. And from this day forward, my shop is closed to you.		25		"DecVariable#REP_varsilia,15;GainGold#2000;GainXP#500;SetVariable#gurd,102;NPCDespawn#torggurd;SetVariable#gurdfury,10;LoseItem#10056;GainItem#10057"
+25	A	That's better...You can shove your goblin threats up your arse. happily ever after		0		
+26	Q	You're a bastard. You're gonna regret this. Besides, I'm gonna tell the whole town what a hero you are. And from this day forward, my shop is closed to you.		16	PlayerHasItem#10055	"DecVariable#REP_varsilia,15;GainGold#2000;GainXP#500;SetVariable#gurd,102;NPCDespawn#torggurd;LoseItem#10055;GainItem#10057"
+26	Q	You're a bastard. You're gonna regret this. Besides, I'm gonna tell the whole town what a hero you are. And from this day forward, my shop is closed to you.		16	PlayerHasItem#10056	"DecVariable#REP_varsilia,15;GainGold#2000;GainXP#500;SetVariable#gurd,102;NPCDespawn#torggurd;LoseItem#10056;GainItem#10057"
+27	Q	[BLUE](Bronnick looks at you thoughtfully.)[] So the bag's gone? Sounds like some kind of clever spell. Maybe you have all the gems, maybe not all of them...[BLUE](Sighs)[] The hell with you. Show me what you got.		28		
+28	A	[BLUE](To give away all the gems)[]		29	"PlayerHasItems#2012,2;PlayerHasItems#2013,2;PlayerHasItems#2014,2"	
+28	A	[BLUE](Give up half the gems)[]		30	"PlayerHasItem#2012;PlayerHasItem#2013;PlayerHasItem#2014"		AGI#2
+28	A	After everything that's happened, you don't trust me? Then you'll get nothing. I'll keep the stones!		31		
+29	Q	Sounds about right. That'll do. [BLUE](Takes the gems and throws you a bag of money.)[] after all, you've been a great help.		0		"LoseItems#2012,2;LoseItems#2013,2;LoseItems#2014,2;GainGold#2500;GainXP#450;SetVariable#gurd,104;NPCDespawn#torggurd"
+30	Q	There's got to be more! All right. Even if you pocketed something for yourself, I won't make a scene. But you'll get less too [BLUE](Takes the gems and throws you a bag of money.)[] after all, you've been a great help.		0		"LoseItem#2012;LoseItem#2013;LoseItem#2014;GainGold#1250;GainXP#500;SetVariable#gurd,105;NPCDespawn#torggurd"
+31	Q	Not only did you get in the bag...but you don't want to give up the contents? You're an arsehole. That decision's gonna cost you dearly.		0		"DecVariable#REP_varsilia,15;GainXP#500;SetVariable#gurd,106;NPCDespawn#torggurd;SetVariable#gurdfury,10"

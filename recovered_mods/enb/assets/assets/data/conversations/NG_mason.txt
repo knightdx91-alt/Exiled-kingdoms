@@ -1,0 +1,46 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	That was an adventure! Maybe I'll become an adventurer. Well, when I'm done with my business.		28	VariableEqual#mason,100	
+1	Q	Go away. I don't want to talk to you, or I'll have to challenge you to a duel!		0	VariableEqual#mason1,1	
+1	Q	Please remember not to mention my little... Adventure.	Por favor, recuerda no mencionar a nadie mi pequeña... Aventura.	20	VariableGreater#where_put_sword,99		
+1	Q	That is my blade! Unbelievable! Everything is alright again. From now on, I'll be much more careful where I 'put my sword'.	Esa es mi espada... ¡increible! De ahora en adelante, tendré mucho más cuidado con dónde 'guardo mi espada'.	0	PlayerHasItem#588	"SetVariable#where_put_sword,100;LoseItem#588;GainXP#400;GainGold#500"	
+1	Q	That's my blade! Wait... it looks weird. Did you do something to it?		22	PlayerHasItem#7106	"SetVariable#where_put_sword,100;LoseItem#7106;GainXP#400;GainGold#500"	
+1	Q	That's my blade! What's wrong? It looks completely different, what happened? I demand an answer, now!		24	PlayerHasItem#7303	"SetVariable#where_put_sword,100;LoseItem#7303;GainXP#600;SetVariable#mason1,1"	
+1	Q	What did you bring me?		26	PlayerHasItem#7499	"SetVariable#where_put_sword,100;LoseItem#7499"	
+1	Q	I can't endure this. I'll be the laugh of the court. Please you have to find my sword!	No puedo aguantar esta espera. Por favor, ¡tienes que encontrar mi espada! Toda la corte se reirá de mí.	0	VariableGreater#where_put_sword,10		
+1	Q	Did you change your mind? Will you try to find my sword?	Has cambiado de idea? Buscarás mi espada?	5	VariableEqual#where_put_sword,10		
+1	Q	[BLUE](this noble seems to be talking to himself, while shifts his weight uneasy)[]	[BLUE](Este noble parece estar hablando solo, mientras se mueve inquieto)[]	2			
+2	A	Are you praying?	¿Estás rezando?	3			
+2	A	[BLUE](Ignore him)[]	[BLUE](Ignorarle)[]	0			
+3	Q	Praying? Oh, because of the temple. No, I wasn't praying but looks like the heavens have listened, because you are a stranger to the city. Which means only you can help me. You are exactly what I need.	¿Rezando? Oh, lo dices por el templo. No, pero aun así parece que los cielos me han escuchado, porque me parece que eres extranjero en esta ciudad. Lo que significa que puedes ayudarme. Exáctamente lo que necesitaba.	4			
+4	A	Please explain me what's the problem.	Por favor, explícame el problema.	5			
+5	Q	Two weeks ago, I spent the night with a Lady... Her name must remain a secret. But thieves entered her palace that very night, and stole many items, among them, my family sword. Without it, I can't show up in palace! There was a commotion, but I sneaked out unseen.	Hace dos semanas estaba en compañía de cierta Dama, cuyo nombre no diré. Pero unos ladrones robaron su palacio, y entre otras cosas se llevaron mi espada familiar. Un desastre, ¡sin mi arma no puedo aparecer por la corte! Se montó un buen lio, pero pude irme sin ser visto.	6			
+6	A	You know, while you worry about where you 'put your sword', people starve or die to monsters. Goodbye.	Mientras tu te preocupas de dónde 'metiste la espada', hay gente que pasa hambre o es atacada por monstruos. Adiós.	15			
+6	A	So you can't tell the guard. But maybe I can find it. What's in it for me?	Así que no puedes decírselo a la guardia. Quizá pueda ayudarte. Pero ¿qué gano yo?	8			
+8	Q	I will pay you [BLUE]600 gold[] and you'll have my gratitude. It is a lot of money. 	Te pagaré [BLUE]600 monedas[] y tendrás mi gratitud. Es mucho dinero.	9			
+9	A	Certainly it is good money. Agreed. 	Es bastante dinero, sí. De acuerdo.	14			
+9	A	Not interested. Goodbye.	No me interesa. Adiós.	15			
+9	A	I might accept. But you will tell me immediately where is the house of the Magistrate Oddo Steinz.	Puede que acepte. Pero me dirás inmediatamente dónde está la casa del magistrado Oddo Steinz.	10	VariableLower#want_letter_back,30	SetVariable#want_letter_back,30	INT#1
+10	Q	Old Steinz? A good man. Lives in a large manor, here on the East side of town, bordering the north wall.	¿El viejo Steinz? Es un buen hombre. Vive aquí en el lado Este de la ciudad, en una mansión pegada al muro norte.	11			
+11	A	Thanks. Very well, I will try to find that sword for you.	Gracias. De acuerdo, intentaré encontrar esa espada.	14			
+14	Q	good, good. Please hurry. I have no idea where the thieves went, the guards tried to catch them, but they just vanished.	Bien, bien. Por favor date prisa. No tengo idea de dónde pueden estar los ladrones, los guardias les persiguieron pero se desvanecieron.	0		SetVariable#where_put_sword,20	
+15	Q	No please... I am desperate...	No, por favor... Estoy desesperado...	0		SetVariable#where_put_sword,10	
+20	A	Sure.	Por supuesto.	0			
+20	A	Yes, I will be discreet, of course. But I would like to ask you a favor. Could you sign me a petition supporting a temple of The Three in town?	Claro, descuida, seré discreto. Pero me gustaría pedirte algo. ¿Podrías firmar una petición apoyando un templo de Los Tres en la ciudad?	21	"VariableGreater#three_versus_eleven,19;VariableLower#three_versus_eleven,23;VariableLower#petition_mason,1"		
+21	Q	This is outrageous, almost blackmail. Very well, have this paper, but I hope I don't make enemies because of this.	Esto es una verguenza, un chantaje. Toma tu papel, espero no ganarme enemigos por esto...	0		"IncVariable#three_versus_eleven,1;GainItem#2522;SetVariable#petition_mason,1"	
+22	A	Me? No. How could you think that? Maybe the thieves were trying to sharpen it to sell it for more.		23		
+23	Q	Thieves? You bastards! To smear my ancestral blade with their hands! I'm glad to be done with them.		0		
+24	A	You can't complain. Your sword is twice as strong! I sharpened it in the forge for a good four hours!		25		
+25	Q	But... But why did you do it? Were you asked to sharpen it? Go away... I don't want to talk to you anymore.		0		
+26	A	It's your family sword. But I've used it a little, and I've improved its combat characteristics a little...		27		
+27	Q	Oh, no! How could you? What have you done? My sword! The sword with no name! Do you have any idea what you've done? All the protective runes have been erased and wiped away. Damn it! I need to check our family tomb right away.		0		"SetVariable#mason,10;NPCDespawn#mason"
+28	A	It's a big decision. I advise you to think about it carefully first.		0		
+28	A	Look, I found these documents in your family vault.		29	PlayerHasItem#10076	
+29	Q	Well, well, well...[BLUE](Carefully taking the papers and leafing through)[] Mm-hmm-hmm, great-grandfather's promissory notes. If these papers fall into the wrong hands, they could cast a shadow over my family. Let me take them and compensate you?		30		
+30	A	Take it!		33		"LoseItem#10076;GainXp#700;GainGold#1200"
+30	A	Exactly how much money are we talking about?		31		
+30	A	Maybe I will. When I find out if anyone else wants them.		0		
+31	Q	You know, like 1,000 gold pieces.		32		
+32	A	It's a deal.		0		"LoseItem#10076;GainXp#300;GainGold#1000"
+32	A	I'll think about it.		34		
+33	Q	You are a good man. Here's your gold for your good deed. Farewell!		0		
+34	Q	Think about it. They won't give me much trouble anyway.		0		

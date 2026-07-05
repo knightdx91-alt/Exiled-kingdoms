@@ -1,0 +1,26 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Thank you for your help. My fire is at your service		15	VariableEqual#drovosek,100	
+1	Q	I don't want to talk to you.		0	VariableEqual#drovosek,110	
+1	Q	What's up? Did you find the axe?		12	VariableEqual#drovosek,10	
+1	Q	What's up? Did you find the axe?		12	VariableEqual#drovosek,11	
+1	Q	[BLUE](You see a middle-aged man. A peasant, cautiously eyeing your equipment.)[] Hello traveller...What are you doing in the middle of nowhere like this?		2		
+2	A	I'm lost in the woods. Trying to find my way to the nearest town. Looks like my map fooled me.		3		
+2	A	I'm just an adventurer. Wandering around looking for a better life.		7		
+3	Q	These maps are only bad for you. I had one, but I wiped my arse with it and threw it in the fire.. [BLUE](Blows his nose noisily at his feet)[] Go north and you'll come straight to the track. Only it's full of angry goblins. The bastards are out of their minds. They stole my axe. [BLUE](He's looking at you expectantly)[] They stole the axe, I say		4		
+4	A	I don't care about your axe. I'm in a hurry.		6		
+4	A	Well, since I don't care about killing these goblins...I'll look for your axe.		5		SetVariable#drovosek,10
+5	Q	Oh, yeah... when you get to the track, there's a fork in the road. Don't take the old road to the grotto. That's where those things are. You don't want to go in there alone. That's not where they took my axe.		0		
+6	Q	So help people like you! No thanks.		0		
+7	Q	I don't think you'll last long in our land with those powers. We're a harsh land, and the wolves are big! [BLUE](Spreads his arms out to the sides. Really big ones)[] just hold on!		8		
+8	A	And don't you be a grumpy old geezer! You'd better help me... you're an expert too.		9		
+8	A	О! He's just standing there being clever. I'm gonna punch you in the spine. Then you'll know...		0		
+9	Q	What's there to help? Go north to the track and you'll come out, and then go to town.		10		
+10	A	Thanks for that....		11		
+11	Q	Stomp, stomp, uncle.		0		
+12	A	Not yet.		0		
+12	A	Yeah. But I'm not giving it to you. I'm keeping it		13	"VariableEqual#drovosek,11;PlayerHasItem#508"	"SetVariable#drovosek,110;DecVariable#REP_town_lannegar,2"
+12	A	Yeah. You can have it.		14	"VariableEqual#drovosek,11;PlayerHasItem#508"	"SetVariable#drovosek,100;LoseItem#508;GainXP#15"
+13	Q	[BLUE](The woodsman only spread his hands and sighed bitterly.)[] You're not a good man. This axe will bring you no joy		0		
+14	Q	[BLUE](The woodcutter takes the axe back and smiles contentedly)[] Thank you. You're a kind man. I just can't thank you enough. You can rest by my fire, though.		15		
+15	A	Thank you. I'm going to get some rest and dress my wounds.		0		FullRest#
+15	A	Thank you. But I have to go.		0		

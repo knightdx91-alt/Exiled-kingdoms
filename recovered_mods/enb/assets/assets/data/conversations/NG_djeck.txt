@@ -1,0 +1,26 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	You found my killers?		19	"VariableGreater#pr_djeck,9;VariableLower#pr_djeck,80"	
+1	Q	[BLUE](You're looking at a ghost. He looks friendly enough)[] Thank you for sharing the crumbs of life with me..... Now we can talk.		2			
+2	A	[BLUE](Piss your trousers and faint.)[]		0	VariableLower#prd,1	"FullRest#;Sleep#;SetVariable#prd,1"
+2	A	Who are you?		11			
+2	A	[BLUE](Kneel down, put your hands to your chest in prayer.)[]Exorcizamus te, omnis immundus spiritus, omnis satanica potestas, omnis incursio.....		3	VariableLower#prd1,1	"FullRest#;Sleep#;SetVariable#prd1,1"
+3	Q	[BLUE](The ghost is watching you in bewilderment.)[]		4			
+4	A	[BLUE](Continue to pray fervently)[]....infernalis adversarii, omnis legio, omnis congregatio et secta diabolica, in nomine....		5			
+4	A	[BLUE](I think that's enough prayers)[] Doesn't work? Strangely the drunken priest in the tavern claimed this exorcism was foolproof..		9			
+5	Q	[BLUE](The Phantom has an epiphany of realisation and starts squirming...)[]		6			
+6	A	[BLUE](Add strength to your voice...)[]....ET VIRTUTE DOMINI NOSTRI JESU....[BLUE](Your gaze clouds over, your lips foam, saliva dripping down your chest. It's like a religious ecstasy)[]		7			
+7	Q	[BLUE](...The ghost has stopped fooling around and looks seriously concerned)[] What are you doing? Are you having a seizure? Don't you dare die next to me, you fucking fanatic!		8			
+8	A	[BLUE](Fall to the ground and beat convulsively....Your consciousness fades and slips away from you....)[]		0		"FullRest#;Sleep#"
+9	Q	[BLUE](Smiles)[] Nice try, but apparently you haven't led a righteous enough life.		10			
+10	A	Okay, now seriously. What are you? I've never met a friendly ghost before..		11			
+11	Q	[BLUE](The ghost is compacting a bit)[] Yes...It's a curious story..... You've seen my remains, but I died not so long ago. It was the cursed medallion that dried up my body and chained my soul to this place.		12			
+12	A	Waiting for the sequel		13			
+13	Q	My name was Quick Jack, I lived in Kingsbridge, and sometimes I robbed the roads with my friends...One day we robbed a strange weirdo in a cassock and learnt about an ancient shrine. Naturally we looted it and made a nice profit. The ones I thought were friends stabbed me here at the loot split.		14			
+14	A	It's a very entertaining story, but I have things to do right now.		0			
+14	A	And how much did you get on this case? Maybe your mates have already squandered it all.		15			
+15	Q	Gold ... Gold and precious stones. Besides, it was cursed gold...I don't think they could squander it. Will you avenge me and lift the curse?		16			
+16	A	Tell me what I need to do?		17			
+16	A	I need to get ready.		0			
+17	Q	Fine! Take this locket. Go to Kingsbridge and find my killers. The locket is hungry for blood...		18			
+18	A	Well... That sounds like a good adventure. I'll take it. Give me your medallion.		0		"SetVariable#pr_djeck,10;GainItem#2638"
+19	A	No. I'm still looking.		0			

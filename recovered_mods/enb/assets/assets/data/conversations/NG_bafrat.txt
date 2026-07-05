@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hello boss. Everything is in order here.	Hola jefe. Todo sigue en orden.	0	VariableEqual#ng_thugs,2	
+1	Q	Get out of my sight.	Fuera de mi vista.	0	VariableEqual#ng_thugs,1	
+1	Q	What are you doing here, kid? This is not a free wharf. Now you have to pay us three hundred gold.	¿Qué haces aquí, chaval? Este muelle no es gratis, por estar aquí tienes que pagarnos trescientas monedas.	2		
+2	A	This is going to be fun. You are going to receive, yes. A lot.	Esto va a ser divertido. Es cierto que vais a cobrar. Y mucho.	3		
+2	A	Very well, here is [BLUE]300 gold[], now leave me alone.	Muy bien, ahí van [BLUE]300 monedas[], ahora dejadme en paz.	0	PlayerHasGold#300	"Losegold#300;SetVariable#ng_thugs,1"
+2	A	But... I don't have that much!	Pero... ¡No tengo tanto oro!	3		
+3	Q	Very well. I bet what you're carrying is worth more than 100 gold...	Muy bien. Seguro que lo que llevas vale más de 100...	0		"NPCHostile#bafrat;NPCHostile#docks_thugs;SetVariable#ng_thugs,3"

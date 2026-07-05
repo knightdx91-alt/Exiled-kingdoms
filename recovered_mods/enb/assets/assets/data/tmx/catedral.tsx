@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset version="1.5" tiledversion="1.5.0" name="catedral" tilewidth="256" tileheight="256" tilecount="144" columns="18">
+ <image source="catedral.png" trans="ffffff" width="4608" height="2048"/>
+</tileset>

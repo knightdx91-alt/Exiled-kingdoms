@@ -1,0 +1,22 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Thanks a lot! I can't pay you, but I'll give you the ring I found in the mines..		0	"VariableGreater#fred,40;VariableEqual#fred,50"	"GainXP#100;GainItem#3041;SetVariable#fred,130"
+1	Q	You're very generous to me...		0	"VariableGreater#fred,30;VariableEqual#fred,40"	"GainXP#150;SetVariable#fred,120"
+1	Q	Thank you for your help!		0	"VariableGreater#fred,20;VariableEqual#fred,30"	"GainXP#60;SetVariable#fred,110"	
+1	Q	Thank you for your kindness.		0	"VariableGreater#fred,10;VariableEqual#fred,20"	"GainXP#40;SetVariable#fred,100"		
+1	Q	[BLUE] (The man in front of you is standing in deep thought with a mug of beer in his hand. As you come closer, his eyes become clearer)[] Hi! You look like an adventurer...do you have a minute?		2	VariableLower#fred,9		
+1	Q	You brought potions?!		5	"VariableGreater#fred,9;VariableLower#fred,40"	
+1	Q	Thank you for your help!		0	VariableEqual#fred,130	
+1	Q	Thank you for your help!		0	VariableEqual#fred,120	
+1	Q	Thank you for your help!		0	VariableEqual#fred,110	
+1	Q	Thank you for your help!		0	VariableEqual#fred,100	
+2	A	That's right, I love the adventure road!		3			
+2	A	Sorry, I'm busy right now.		0			
+3	Q	A month ago, I was hunting wolves and ran into some damn goblins...Although I managed to kill them, I was seriously injured. I spent all my money on healing and now I can't buy health potions from the alchemist. Do you have any extra? I won't be in debt.		4		
+4	A	I think I can help you.		5		SetVariable#fred,10
+4	A	I've been through a lot of battles myself. I can't help you yet.		0			
+5	Q	[BLUE] (You check your inventory. How many health potions do you want to give away?)[]		6			
+6	A	Give one potion		1	PlayerHasItem#5000	"SetVariable#fred,20;loseItem#5000"
+6	A	Give 2 potions.		1	PlayerHasItems#5000,2	"SetVariable#fred,30;loseItems#5000,2"
+6	A	Give 3 potions.		1	PlayerHasItems#5000,3	"SetVariable#fred,40;loseItems#5000,3"
+6	A	Give 4 potions.		1	PlayerHasItems#5000,4	"SetVariable#fred,50;loseItems#5000,4"
+6	A	I'll be back when I find more potions. 		0			

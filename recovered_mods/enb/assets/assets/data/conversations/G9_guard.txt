@@ -1,0 +1,35 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Oh, you're here... Did you make some money?		18	VariableEqual#sem3,1	
+1	Q	We don't have anything else to talk about.		14	"VariableGreater#pr_djeck,17;VariableLower#pr_djeck,130"	
+1	Q	Well, I brought you a drink.?		11	VariableEqual#pr_djeck,17	
+1	Q	What are you looking at? Come on in, don't linger...[BLUE](A young soldier casts an indifferent glance at you.)[]		2			
+2	A	Honourable Guardian, can you tell me where Jack's house is in this glorious city??		3			
+2	A	No, no. I'm leaving now.		0			
+2	A	Can't you be more polite to the honourable gentleman?		4			
+3	Q	[BLUE](He looks at you in bewilderment, then starts laughing.)[] Ha-ha-ha-ha-ha "Honourable guardian, glorious city"....  A travelling comedian? And who the hell is Jack? There's a lot of Jacks living here..		6			
+4	Q	[BLUE](I've been looking at you)[] Heh, what a gentleman...Well, don't be so hot, you'll get cranky with me too. Who the hell is this Jack you want?		6	VariableGreater#REP_varsilia,24	
+4	Q	And who are you that I need to be nice to you???		5			
+5	A	Who am I? Who am I? The one who's gonna punch you in your senile face.!![BLUE](punch a guard in the jaw)[]		7		
+5	A	Yes just an adventurer looking for one man...Jack..... To be exact, Jack the Grifter.		9			
+6	A	Mm-hmm. They also call him Tricky Jack..		9			
+7	Q	[BLUE](The blow hit the target, but the guard didn't even flinch. Seems like a tough guy)[] Puppy! You're waving your hands around, aren't you? Get out of here!		0		"SetVariable#pr_djeck,18;Travel#G9,37,0"
+9	Q	[BLUE](The guard's gaze became stern)[] Aaaaah, you sneaky bastard.... I know, but for you to find out, you're gonna have to get me a drink. I hear there's some great pirate liquor in New Arthur. You owe me a bottle and we'll make a deal.		10			
+10	A	You're a foodie! All right, it's a deal. I'll give you a bottle.		0		SetVariable#pr_djeck,17
+10	A	Travelling to the other side of the world for a bottle? No way. I'll ask someone else about this house.		0		SetVariable#pr_djeck,18
+11	A	I'm working on it.		0			
+11	A	Yeah. Here's the bottle.		12	PlayerHasItem#5026	"SetVariable#pr_djeck,21;loseItem#5026;GainXP#100;SetVariable#romg9,1"
+12	Q	[BLUE](The bottle disappears into the bag next to the guard. The guard smiles.)[] That Jack. He used to be a regular in our holding cell. But I haven't seen him in a while. I heard he went to New Garand, and his house is outside the city walls on the riverbank. His mates live there now while he's away.		13			
+13	A	Mates? Hmm, that's interesting. Thank you.		0			
+14	A	Have a good shift.		0		
+14	A	Mr Guardian, could you spare a moment?		15	VariableEqual#omon,11;VariableLower#sem1,1	
+15	Q	Of course mate... Are you going to buy me rum again? [BLUE](Winks)[]		16	VariableEqual#romg9,1	
+15	Q	[BLUE](The guard is silent)[] 		21		
+16	A	Maybe... I need some information about the local gang. Do you know anything about the local gang?		17		
+17	Q	Yeah, I know. And I'll even tell you for free. Once we caught a bandit and he told us that a bandit with a strange name, Semyon, was in charge of their lair... Try to find him.		0	PER#2	"SetVariable#sem1,1;IncVariable#rumor_semen,1"
+17	Q	The gang... Such questions will get me in trouble and you won't get off with rum. How about this? You give me 700 coins and I'll give you a hint on who to talk to.		18		
+18	A	Okay. Here's the money.		19	PlayerHasGold#700	"LoseGold#700;SetVariable#sem3,0"
+18	A	Hmm. I'll save up and come back..		0		SetVariable#sem3,1
+19	Q	[BLUE](The guard gawks around and the money quickly disappears into his pockets.)[] So listen. We caught a bandit and he told us that a bandit with a strange name Semyon runs everything in their lair... Try to find him.		20		
+20	A	That's all you know??? You're such a crook.		0		"SetVariable#sem1,1;IncVariable#rumor_semen,1"
+21	A	Listen, you old goat! I've had enough of your bullshit and I'm going to teach you a lesson in politeness. [RED](Put up a fight)[]		0		"NPCHostile#guard;SetVariable#gur1,1"
+21	A	Okay. All right, all right. I was wrong to hold on to that poor bottle of rum. Is there anything else I can do for you?.		22		

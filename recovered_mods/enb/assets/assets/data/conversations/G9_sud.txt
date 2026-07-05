@@ -1,0 +1,36 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	What do you want? You're free.		0	VariableEqual#pr_djeck,24	
+1	Q	Something else?		0	VariableEqual#oxrana,100	
+1	Q	The captain says you did well in the fight with the Orcs. I apologise and express my gratitude. This should not have happened.		11	VariableEqual#oxrana,31	"SetVariable#oxrana,100;SetVariable#pr_djeck,24"
+1	Q	You haven't picked up your gear yet?		10	VariableEqual#oxrana,11	
+1	Q	[BLUE](The judge goes through the papers on the table and without looking at you says)[] Well, well, well. Defendant, you were caught in the act. What can you tell us about the murder of three people? You're also suspected of having ties to cultists? Or perhaps even a secret cultist. 		2		
+2	A	[BLUE](Telling that you were hired to find one person but the house was filled with nothing but corpses, spiders and rats)[]		4		
+2	A	[BLUE](Begrudgingly inquire..)[] Mr Justice, why don't we make a deal?		5		
+4	Q	And how often do you do this kind of work? Who's your employer? There are dead gangsters and a member of a dangerous cult in this house. 		6		
+5	Q	[BLUE](He looks at you with interest)[] I wonder how? Your gold was taken from you and put in a chest.  		14		
+6	A	I'm an adventurer, I'm supposed to run errands like this. This is my job! My employer is the ghost of the master of the house...He asked me to find his killers and... "Talk to them."		7		
+7	Q	Well... The results of your "conversation" are impressive. Employed by a ghost? You're a necromancer?		8		
+8	A	No. This meeting was chance...I could not leave the poor man to suffer and decided to help rest a suffering soul.		9		
+9	Q	That's very noble of you. Well... The magic detector says you're not lying.		19		
+10	A	Not yet.		0		
+10	A	Got it. Ready to go on patrol.		0		"Travel#G9_karcer,3,0;NPCSpawn#oxran3"
+11	A	So now I'm free?		12		
+11	A	The captain said I was to be rewarded...		13		
+12	Q	Yes, absolutely free. You've fully redeemed yourself, take your things from the chest and leave.		0		GainXP#200
+13	Q	Did he? He said that? Well, here you go. [BLUE](hands you a purse of gold)[] I'll deduct it from his salary. You're free, your things are in the trunk.		0		"GainGold#300;GainXP#200"
+14	A	But I can reach into the chest and get the gold? [BLUE](wink)[] 		15		
+15	Q	Expelled. You'll have to serve your sentence.		16		
+16	A	What's going to happen to me now? 		17		SetVariable#oxrana,10
+17	Q	According to Art....[BLUE](indistinct muttering)[] You have been assigned community service work, namely guarding workers in a certain area against attacks by wild animals. We'll give you your equipment. Take it from the chests and come back to me. You will be escorted to the right place. 		0		"SetVariable#oxrana,11;FullRest#;Sleep#"
+19	Q	However, we need time for further investigation. And you will be assigned community service. We'll check your credibility at the same time.		23		
+20	A	What am I supposed to do? 		21		SetVariable#oxrana,10
+21	Q	I recently purchased a plot of land near the forest, but my workers are being attacked by wild animals. You'll go on patrol with the captain and guard the workers. We'll provide you with equipment. Take it from the chests and come back to me. You will be escorted to the right place.		0		"SetVariable#oxrana,11;FullRest#;Sleep#"
+22	Q	Corpses, defamatory connections...You adventurers have long been called to order and taxed! You've got a lot of nerve.		23		
+23	A	Mr Justice! This is against the norms of humanity and morality!		24		
+24	Q	[BLUE](The judge suddenly dawned)[] What? Do you know what those words mean?		25		
+25	A	Mmmm no...But I heard a merchant shout that when he was robbed by guards....It didn't help him either, though		26		
+26	Q	[BLUE](The judge sighs heavily, eyes fixed on the ceiling.)[] Three...What's in it for me? [BLUE](The judge's face takes on a truly stony rigidity, staring at you sternly.)[] Remember adventurer...Our guards don't rob anyone, they are the fairest in the whole world...Now GO AWAY from my sight! Yes...When you leave here, you will pay a fine to Chancellor Nebros. 5000 coins.		27		
+27	A	КHow so? What's the fine for, Mr Justice???		28		
+28	Q	You have dishonoured the honour and dignity of the valiant guard. Get going before I change my mind. "Humanity" and "Morality."		29		"SetVariable#pr_djeck,24;SetVariable#nebr,10"
+29	A	.....		30		
+30	Q	You're not saying anything? That's right. I'm the law and you have to obey it.		20		

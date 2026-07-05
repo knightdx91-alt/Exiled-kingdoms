@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](As you approach, the guards ready their weapons, and examine closely the forest behind you in fear of some trickery)[] State your reason to approach the Penitentiary of the Kingdom!	[BLUE](Al acercarte, los guardias preparan sus armas y escudriñan los bosques cercanos temiendo una emboscada)[] ¡Di tu motivo para acercarte a la Penitenciaría del Reino!	2		
+2	A	Sorry, I obviously took a wrong turn somewhere.	Lo siento, claramente me he equivocado de camino.	0		Travel#J7,2
+2	A	The dream of my life has always been knowing a prison from the inside.	El sueño de mi vida siempre ha sido saber cómo es una cárcel por dentro.	10		
+2	A	I come to talk to the Governor.	Vengo a hablar con el Alcaide.	3	"VariableGreater#trial_error,20;VariableLower#trial_error,100"	
+2	A	We come to visit a prisoner.	Venimos a visitar a un preso.	3	"VariableGreater#trial_error,0;VariableLower#trial_error,100"	
+3	Q	I can only let in relatives of prisoners, and only those that are on the list.	Sólo puedo permitir el paso a familiares de presos, y sólo si están en la lista.	4		
+4,adaon	Q	Old Bagadar is my uncle. I hope you haven't fed him to the rats yet.	El viejo Bagadar es mi tio. Espero que aun no se lo hayan comido las ratas.	5	IsInParty#adaon	
+4,R	Q	You're not on the list. Now go away and stop wasting my time.	No estás en la lista. Lárgate y no me hagas perder el tiempo.	0		Travel#J7,2
+5,R	Q	Yeah... I suppose he's still alive. You may pass.	Si, supongo que estará vivo. Podéis pasar.	0		Travel#J7,3
+10	Q	You're on the right track to achieving your dream with that attitude. But not today. Begone!	Vas por el buen camino de cumplir tu sueño con esa actitud. Preo hoy no. ¡Largo!	0		Travel#J7,2

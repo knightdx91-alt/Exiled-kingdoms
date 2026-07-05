@@ -1,0 +1,19 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah! I'll call security!		13	VariableEqual#marg,110	
+1	Q	[BLUE](Woman's a little tipsy)[] О! I'm so glad my daughter is saved!...I'm going to kick myself today so that no migraine will ever bother me again.		2		
+2	A	Have a good time.		3	PlayerIsMale#	
+2	A	Have a good time.		0	PlayerIsFemale#	
+3	Q	Wait, don't rush! I was thinking that for such a manly bloke, the reward of a family heirloom is too small. [BLUE](The woman fixes her hair and a slight blush spreads across her cheeks)[]		4		
+4	A	[BLUE](Take a step back.)[] I don't quite understand...the award was really good. What do you mean by that?		5		
+4	A	[BLUE](Come a little closer)[] I just love helping people. Would you like me to buy you some wine?		5		
+5	Q	I mean, my husband was mauled by wolves in the woods a long time ago and I get so lonely alone in the evenings...		6		
+6	A	But you have a daughter! Who I managed to save...you won't be alone anymore.		7		
+7	Q	[BLUE](Marguerite sighs languidly and has a strange gleam in her eyes)[] Those rude brigands must have hit you on the head too hard...but I'll help you! [BLUE](A woman quickly comes up and presses her whole body against you.)[] I just want to say thank you!		8		
+8	A	What are you doing! This place is full of people! Please get away from me. And no bandits hit me! I broke their skulls like kittens!		9		
+8	A	Oh, come on.... Don't worry so much.. [BLUE](Embrace)[] Everything's gonna be okay!		11		
+9	Q	[BLUE](The woman recoiled)[] You disgusting bastard! Don't come near me again.		10		
+10	A	I didn't really want to!		0		SetVariable#marg,110
+11	Q	[BLUE](Sobbing uncontrollably on your shoulder.)[] You'll walk me home, won't you? I want to get out of here.		12		
+12	A	Come on.		0		"SetVariable#marg,10;Travel#G9_H,1,0"
+12	A	No, I'm not! I have other things to do. More important than calming down hysterical ladies.		15		SetVariable#marg,110
+13	A	Ugh, you slut!		0		

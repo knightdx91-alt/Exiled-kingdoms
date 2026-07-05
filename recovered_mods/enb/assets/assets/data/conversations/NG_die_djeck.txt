@@ -1,0 +1,14 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](You see a pile of crushed bones)[].		0	VariableGreater#die_d,39	
+1	Q	[BLUE](You see a pile of crushed bones)[].		7	VariableEqual#die_d,20	
+1	Q	Kill all the ghosts first.		0	"VariableGreater#die_d,10;VariableLower#die_d,14"	
+1	Q	[BLUE](You noticed a pile of bones against the wall)[]		2			
+2	A	[BLUE](Come closer?)[]		3		SetVariable#die_d,10
+2	A	[BLUE](Ewww bones, I'll pass.!)[]		0			
+3	Q	[BLUE](It's the skeleton of a man)[]		4			
+4	A	Stomp on bones with your feet		5		"SetVariable#die_d,110;NPCSpawn#ghost2"
+4	A	Sprinkle your blood on the bones [BLUE](-60 HP)[]		6		"SetVariable#die_d,11;GainXP#100;LoseHP#60"
+5	Q	[BLUE](The wind rushes through the dungeon, you feel as if some entity is leaving this place forever)[]		0			
+6	Q	Ghosts! Apparently they were attracted by the smell of blood. Prepare for battle!		0		NPCSpawn#ghost1
+7	A	[BLUE](Did you notice something shiny in the pile of bones...)[] Pull the chain		0		"GainItem#2638;SetVariable#die_d,40"	AWA#2
+7	A	Hmm....There doesn't seem to be anything here		0			

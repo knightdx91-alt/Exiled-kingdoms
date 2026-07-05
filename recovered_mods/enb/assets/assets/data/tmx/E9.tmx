@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="65">
+ <properties>
+  <property name="exit_e" value="F9"/>
+  <property name="exit_n" value="E10"/>
+  <property name="exit_s" value="E8"/>
+  <property name="exit_w" value="D9"/>
+  <property name="faction_guard" value="mercia"/>
+  <property name="music" value="relent"/>
+  <property name="name" value="Southern Jabal Hills"/>
+  <property name="name_ES" value="Colinas Jabal Sur"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" name="spawns" tilewidth="64" tileheight="64" tilecount="8" columns="2">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="137" source="trees.tsx"/>
+ <tileset firstgid="153" source="dryground.tsx"/>
+ <tileset firstgid="217" source="rocks.tsx"/>
+ <tileset firstgid="223" source="rocks_small.tsx"/>
+ <tileset firstgid="233" source="grassland_structures.tsx"/>
+ <tileset firstgid="269" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="287" source="palisade.tsx"/>
+ <tileset firstgid="327" source="town_objects.tsx"/>
+ <tileset firstgid="407" source="natural_grounds.tsx"/>
+ <tileset firstgid="535" source="grassland_4.tsx"/>
+ <tileset firstgid="715" source="Desert.tsx"/>
+ <layer id="1" name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztmduKwzAMBfv3/e2Sh4AJSSpZRzqSrYGyUBJdRraT3f1+Pp9v8s8Vdj3o3tg17O4/e087+I/qS0L757m/q0NyTdWP1EGUe08i60N6qer7jor+tTHbvyynNW/75+et5v+AVauXp2ozYNbplbuK/yp1aqnSV7W9KiV7T1Xf16Sg+vJy0v7fr/N2s7L7A0//qFlF+Y9eW085rbWhZ8HaXwz/HrW2f10N6FqRvaE9VPKvjSPtQZMb7WIl/3exPOr3jie5DgVjPVlBx/Va19rcHvmj1gzDnZWqPVSte6T6Gqpa90n7jyf6vcoTS91ZnrVV3Z9Y/Uf3HeFf+v6PqGHmPua6q+Df28eq/hHeI9y0f+4MmP6f8mf3j6w1k/+37yxxM8+i/b/n956Fx95HYK2lun/2DDz93103E+cruGY2Ltv/gYd/VByrn+zuD7zc/btHEsPiKLPzOyL9n/f9i+F9Ls7G9QC9B6z3e5xlmf2P8REOpddFrv2d/D/F8PIuiW+l/c/VgHLm7X/MgTx7pddVcO/t35JL4+D6fSX/kXtAk8vzXJ/JV3X9X/NlnQFr1lHM9LSDf9YekOT1Pg+kZw7SUcR8pbln7qnu/y5vJNreop6Du/jX5l/J+1N+Bgz/Gu+eXjL4l4L0ktF/ZrRutH7b/z1oj+1fx6ren/rLxur+P6ScGjx8ZvYvqYExr4j1bL1+xom25iz7xWvNIvxr6tCuG9Y+fSLbeeHt/+4+Jiv5f/tOct8OoLwj6hh/WuJkm6P2/GX1gMjJ7uGK9HzJ4B9Bhl52c36F1d94hu7s/yC6T6vzVbyPRPa8q+N/XHtH+sm4vivMGeUpm/uxpsxo98S1p8xne8WzDvHsbP82qvq+kqGGWao6H8lWD4pq/lckq/ORrHUhyOz9JHt9q9P+ubR/Lu2fS4Vn1Mq0fy7Z349Xp/1zqfA74spk/tvIDrR/Lu2fC/r/GD07HR7+ewZ7UXn+P18OH80=
+  </data>
+ </layer>
+ <layer id="2" name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+ </layer>
+ <layer id="3" name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer id="4" name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztnUty1DAQhmfYTzK8HwmnY9aQi8A9YMeSygpOBTusYprRyJIs2VK3pP6/KlWycGLX3w+12rK92wFJfkpfQCL3e+krqMNX6QtIBPrLM6INetF/RO0Nveg/Kq3rfzP5/e00nsH/2THav57G22m8HFT/77t2a9DjpPnz83gxqP6GlmNAA63ob9c4o9Y7Pjj0j+mpSWsfLfi/ZhvUnoM1a5tKzRiA/su0kIM0A/+XBfrL0vI6WAuIAVmgvyyogWSprT9iIA78XxYO/0cMhIH/y8LVh0YM+OH0f9hgDvKPLEb/L0+kr0In36bxi/F8yD/XcPs+9L9GIvffDLyvLRdu/6e9baPua8vF6P+ZUf/DpPt76P8fbv83+t8V0v9HZPSChP+PvK82lx79/7Hc5Ygj4f/Q/8JH5vPR3vIt+8pd/f9suiJZJOr/rWswW//f2/6VOKT/SeDca+0wUv6R7n1q70dAf1ls/U+B30E94P+ypOpfKx603xeG/8sirb92cvUvnYeQf+SB/nNMT476crVrUeh/ja09F1ptgPwjSwv6a94PUWL9tWV+0L4fwtbfzfm1513S/t3g7/mJwX3/i4D2/wj1P2tT4j7kCLQw/2qG9H84/6xZ92uuc0Ks9f+H5UOuMNofkW9mcOQfmmvBHA7/pz23YM5a/T9lHEt73sAc0t/omZvTU2xg1/lgzpL/h+qhVP9HnR8n1H8Gdbnd+wfV5yk2SFkva+4tx3i69483FdZIsMEcer+4PV45dgjFhgE5Ko/YPUWaA46ODUrEh/b9DUTMX+13IB49ceHGR8gGIZ2h/zIp6zA3PpZyFEgn9T2gtg3uzsPOT/Z9RPh9Hqm9iFiOonWW+00F2GIZXwxQjV9iLxZssEwsBkrUnPee+AAXKAZcrUPaa3tOhmPd44uBHJ1PCcfTnNDjPcnaNuB8J/qhUs+jd7ieCz5U7Dv1DFcMYE0XJlQLfUj425RjiBp9J4NbY/VWc7kxkKNpLjX6TlKUfH5iSwyUYk2Okvb9Uvq38n2YpRwV2r8+wvcPuW0Qiq2UvpOhF11zSOnNaVsLc9JKHtJM7RjYUteuqQd66wUiBi5I7T/o6XmN1FhZ4/9Gf7yzH4xEL/MA2M5fVj6J3A==
+  </data>
+ </layer>
+ <layer id="5" name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt3cEJgDAQBMBI1HK0KO2/BvHtS004TWYqWA4Cm89dSgAAAADPzTk6AQAAf5d1SgAAAAAAAGjaHh2gY+fst+gQAAAAAAAAAAAAAB+0DtEJ+rWYPQC8MtnfBwAAcJu/FADA1dhwR7J3CepxawrK8Z7Ka7nfAFDPAUjmAic=
+  </data>
+ </layer>
+ <layer id="6" name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer id="7" name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt1DERADAIADFQwlL/GisDDhIFP30EAAAAAAAAAAAAAAAAAAAAAAAAAAAAsF1ldwFw2fMgAAAAAAAAAAAAAAAAhvja7ABG
+  </data>
+ </layer>
+ <objectgroup id="8" name="data">
+  <object id="1" name="spider" type="spawn" gid="131" x="2850" y="1338" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="2" name="spider" type="spawn" gid="131" x="2438" y="891" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="3" name="spider" type="spawn" gid="131" x="2306" y="781" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="4" name="spider" type="spawn" gid="131" x="2299" y="950" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="5" name="spider" type="spawn" gid="131" x="2072" y="1347" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="6" name="spider" type="spawn" gid="131" x="1640" y="1566" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="7" name="spider" type="spawn" gid="131" x="1069" y="1374" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="8" name="spider" type="spawn" gid="131" x="947" y="974" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="9" name="spider" type="spawn" gid="131" x="1600" y="824" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="10" name="spider" type="spawn" gid="131" x="1869" y="719" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="11" name="spider" type="spawn" gid="131" x="1582" y="345" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="12" name="spider" type="spawn" gid="131" x="2080" y="2101" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="13" name="spider" type="spawn" gid="131" x="1290" y="2056" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="14" name="spider" type="spawn" gid="131" x="1122" y="404" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="15" name="spider" type="spawn" gid="131" x="1194" y="1624" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="16" name="spider" type="spawn" gid="131" x="2630" y="1674" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="17" name="exit to dungeon" type="transition" x="1589" y="1236" width="58" height="59">
+   <properties>
+    <property name="area_id" value="E9_cave"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="18" name="exit from dungeon" type="entry" gid="129" x="1551" y="1251" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="19" name="road signpost" type="conversation" gid="133" x="826" y="2362" width="64" height="64">
+   <properties>
+    <property name="conversation" value="E9_signpost"/>
+    <property name="icon" value="signpost"/>
+    <property name="name" value="@SIGNPOST"/>
+   </properties>
+  </object>
+  <object id="20" name="spider" type="spawn" gid="131" x="1750" y="1572" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="21" name="spider" type="spawn" gid="131" x="1834" y="1695" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="22" name="Guard" type="spawn" gid="131" x="442" y="2356" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="portrait" value="30"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="tag" value="watchman"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="23" name="Guard" type="spawn" gid="131" x="337" y="2084" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="portrait" value="29"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="tag" value="watchman2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="24" name="Guard" type="spawn" gid="131" x="433" y="2134" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="Scout"/>
+    <property name="name_ES" value="Explorador"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="25" name="captain" type="spawn" gid="131" x="328" y="2198" width="64" height="64">
+   <properties>
+    <property name="conversation" value="E9_centurion"/>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@CENTURION_KANUM"/>
+    <property name="spawn" value="centurion_kanum"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="26" name="Spider" type="spawn" gid="131" x="572" y="2368" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="27" name="Spider" type="spawn" gid="131" x="566" y="2283" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sand_spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="28" name="Spider" type="spawn" gid="131" x="313" y="1935" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="29" name="Spider" type="spawn" gid="131" x="298" y="1969" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="sand_spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="30" name="Spider" type="spawn" gid="131" x="375" y="1950" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="31" name="Spider" type="spawn" gid="131" x="548" y="2457" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="spider"/>
+    <property name="tag" value="assault"/>
+   </properties>
+  </object>
+  <object id="32" name="Guard" type="spawn" gid="131" x="351" y="2346" width="64" height="64">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="Scout"/>
+    <property name="name_ES" value="Explorador"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="human_archer"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="33" name="spider" type="spawn" gid="131" x="2000" y="1523" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="34" name="spider" type="spawn" gid="131" x="2124" y="1092" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="35" name="spider" type="spawn" gid="131" x="2274" y="1314" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="36" name="spider" type="spawn" gid="131" x="1531" y="1456" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="37" name="spider" type="spawn" gid="131" x="1697" y="1695" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="38" name="spider" type="spawn" gid="131" x="1039" y="1904" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="39" name="spider" type="spawn" gid="131" x="971" y="354" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#web_terror,90"/>
+    <property name="spawntable" value="jabal_spider"/>
+   </properties>
+  </object>
+  <object id="40" name="conversationTrigger" type="trigger" x="223" y="2034" width="248" height="309">
+   <properties>
+    <property name="actions" value="SetVariable#safe_passage,40;StartConversation#liserpix,F8_liserpix"/>
+    <property name="conditions" value="NPCisInParty#liserpix,liserpix;VariableLower#safe_passage,40"/>
+   </properties>
+  </object>
+  <object id="41" name="conversationTrigger" type="trigger" x="1523" y="2664" width="33" height="193">
+   <properties>
+    <property name="actions" value="SetVariable#safe_passage,20;NPCSpawn#outlaws;StartConversation#outlaw_chief,E9_outlaw"/>
+    <property name="conditions" value="NPCisInParty#liserpix,liserpix;VariableEqual#safe_passage,10"/>
+   </properties>
+  </object>
+  <object id="42" name="Outlaw" type="spawn" gid="131" x="1559" y="2908" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="outlaws"/>
+   </properties>
+  </object>
+  <object id="43" name="Outlaw" type="spawn" gid="131" x="1719" y="2805" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="tag" value="outlaws"/>
+   </properties>
+  </object>
+  <object id="44" name="Outlaw" type="spawn" gid="131" x="1445" y="2671" width="64" height="64">
+   <properties>
+    <property name="conditions" value="NPCisInParty#liserpix,liserpix;VariableLower#safe_passage,20"/>
+    <property name="portrait" value="58"/>
+    <property name="spawn" value="outlaw_chief"/>
+    <property name="tag" value="outlaw_chief"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="45" name="Outlaw" type="spawn" gid="131" x="1446" y="2797" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="tag" value="outlaws"/>
+   </properties>
+  </object>
+  <object id="46" name="Crate" type="container" gid="133" x="339" y="248" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="druid,druid"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="E9_1"/>
+   </properties>
+  </object>
+  <object id="47" name="witch" type="spawn" gid="131" x="387" y="281" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="witch"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="48" name="Bodyguard" type="spawn" gid="131" x="456" y="330" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="49" name="Crate" type="container" gid="133" x="2499" y="2309" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="druid,druid"/>
+    <property name="name" value="@CHEST"/>
+    <property name="quest_location" value="E9_2"/>
+   </properties>
+  </object>
+  <object id="50" name="witch" type="spawn" gid="131" x="2559" y="2326" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="witch"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="51" name="Bodyguard" type="spawn" gid="131" x="2615" y="2261" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="52" name="Crate" type="container" gid="133" x="2422" y="182" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+    <property name="quest_location" value="E9_3"/>
+   </properties>
+  </object>
+  <object id="53" name="Archer" type="spawn" gid="131" x="2403" y="222" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_3"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="54" name="warrior" type="spawn" gid="131" x="2482" y="265" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="55" name="warrior" type="spawn" gid="131" x="2427" y="281" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_3"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="56" name="Bodyguard" type="spawn" gid="131" x="2614" y="2318" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="57" name="Bodyguard" type="spawn" gid="131" x="2617" y="2383" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="58" name="Bodyguard" type="spawn" gid="131" x="2547" y="2369" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="59" name="Bodyguard" type="spawn" gid="131" x="2508" y="2384" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="64" name="Hedhant spawn" type="spawn" gid="131" x="2653.45" y="2808.24" width="64" height="64">
+   <properties>
+    <property name="spawnChance" value="35"/>
+    <property name="spawntable" value="headhunt"/>
+   </properties>
+  </object>
+  <object id="60" name="Bodyguard" type="spawn" gid="131" x="358" y="326" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="61" name="Bodyguard" type="spawn" gid="131" x="419" y="365" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="E9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="varannari_hostile_rebel"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="62" name="roads_varsilia" type="spawn" gid="131" x="858" y="606" width="64" height="64">
+   <properties>
+    <property name="spawnChance" value="35"/>
+    <property name="spawntable" value="roads_varsilia"/>
+   </properties>
+  </object>
+  <object id="63" name="Outlaw" type="spawn" gid="131" x="1803" y="2193" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#restless_dead,0;VariableLower#restless_dead,90"/>
+    <property name="cycle" value="night"/>
+    <property name="portrait" value="93"/>
+    <property name="spawn" value="morfados"/>
+    <property name="tag" value="morfados"/>
+    <property name="wander" value="30"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

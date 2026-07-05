@@ -1,0 +1,20 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	There will be no more fights today. Come back later.		0	VariableEqual#TMP_h10ar,1	
+1	Q	The fight's not over yet. Come back later.		0	"VariableEqual#stav1,1;VariableEqual#stav2,1"	
+1	Q	What can I do for you?		6	"VariableEqual#stav1,1;VariableEqual#stav2,0"	
+1	Q	Good day! Would you like to place your bets?		2		
+2	A	I'd like to place bets. Who's fighting?		3		
+3	Q	Today we have a very special battle! Boss battle! Vorator versus Yeti. The stakes are also higher than 1500 coins.		4		
+4	A	I'll bet 1500 on the Yeti!		5	PlayerHasGold#1500	"NPCSpawn#ar3v;NPCSpawn#ar3y;SetVariable#stav2,1;SetVariable#stav1,1;SetVariable#2arber,1;SetVariable#1ar1wolf,0;LoseGold#1500"
+4	A	I'll bet 1500 on Vorator!		5	PlayerHasGold#1500	"NPCSpawn#ar3v;NPCSpawn#ar3y;SetVariable#stav2,1;SetVariable#stav1,1;SetVariable#1ar1wolf,1;SetVariable#2arber,0;LoseGold#1500"
+4	A	I'll come back later.		0		
+5	Q	Good choice! Now pull the lever and release the beasts! Come to me after the fight and you'll get your money if the bet goes through.		0		
+6	A	Bigfoot wins, the bet's on.		7	"VariableEqual#2arber,1;NPCinArea#ar3y"	"NPCDespawn#ar3y;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	Vorator wins, the bet's on.		8	"VariableEqual#1ar1wolf,1;NPCinArea#ar3v"	"NPCDespawn#ar3v;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	Yeti won. 		10	"VariableEqual#2arber,0;NPCinArea#ar3y"	"NPCDespawn#ar3y;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	Vorator won.		9	"VariableEqual#1ar1wolf,0;NPCinArea#ar3v"	"NPCDespawn#ar3v;SetVariable#stav1,0;ItemDeactivate#wallar;ItemDeactivate#arlever;ItemUnwalkable#wallar;ItemShow#wallar;SetVariable#TMP_h10ar,1"
+6	A	No no, it's nothing.		0		
+7	Q	Lucky you. Here's your money, minus our commission.		0		"GainGold#2000;SetVariable#1ar1wolf,0;SetVariable#2ar1ber,0"
+8	Q	Lucky you. Here's your money, minus our commission.		0		"GainGold#2000;SetVariable#1ar1wolf,0;SetVariable#2ar1ber,0"
+9	Q	Well, well...Vorator wins and you bet on Yeti. We keep the money.		0		"SetVariable#1ar1wolf,0;SetVariable#2ar1ber,0"
+10	Q	Well, well...Bigfoot wins, and you bet on Vorator. We keep the money.		0		"SetVariable#1ar1wolf,0;SetVariable#2ar1ber,0"

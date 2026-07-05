@@ -1,0 +1,61 @@
+index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	You have been thrown into a cell and the lock has been locked. There is a bed in the corner, all your belongings have been taken away, you can sit and think about your situation in peace...		2			
+2	A	To think about your situation		3			
+3	Q	After spending some time thinking about it, it occurred to you to do: 		4			
+4	A	Inspect the door lock.		5			
+4	A	Collapse on the bed and rest for a while. 		11		
+4	A	Do your time in the SHU in peace. It can't be long for such a minor offence...		34			
+5	Q	You have scrutinised the locking mechanism and concluded that you can try it:		6			
+6	A	Use dexterity		7		
+6	A	Use force		10			
+6	A	Apply intelligence		31			
+6	A	It's probably best to leave it as it is.		3			
+7	Q	Try to put your dexterity skills to use.		8			
+8	A	Oh, I think someone's lacking in agility.		5			
+8	A	Use the lock pick!		13	VariableEqual#zam,1	
+8	A	With your nimble fingers, you easily picked this lock even without a lock pick.		0		"SetVariable#pr_djeck,13;ItemHide#grate1;ItemWalkable#grate1"	AGI#4
+10	Q	It's not for nothing, they say you're strong, you're smart. How about we hit that grate real hard?		29			
+11	Q	The bed was a bit hard but quite comfortable. 		12			
+12	A	You noticed a shiny piece of metal. Looks like a lock pick.		3	VariableLower#zam,1	SetVariable#zam,1
+12	A	No more lying down. It's time for action.		3			
+13	Q	By carefully slipping the lock pick between the bars you are trying to move the lock. The lock pick is on the third division. Where do you want it to go? ++*+++  		14			
+14	A	Shift left		15			
+14	A	Slide to the right		16			
+14	A	Hook the lock and push		17			
+14	A	Give it all up and find another way.		3			
+15	Q	The lock is on the second division where you want to move it? +*++++  		18			
+16	Q	The lockout is on the fourth division where do you want to move it? +++*++  		19			
+17	Q	The lock is broken. We'll have to start over  		13			
+18	A	Shift left		20			
+18	A	Slide to the right		22			
+18	A	Hook the lock and push		17			
+19	A	Shift left		22			
+19	A	Slide to the right		24			
+19	A	Hook the lock and push		17			
+20	Q	Where do you want to move it? *+++++  		21			
+21	A	Slide to the right		15			
+21	A	Hook the lock and push		17			
+22	Q	The lockout is on the third division where do you want to move it? ++*+++  		23			
+23	A	Shift left		15			
+23	A	Slide to the right		16			
+23	A	Hook the lock and push		17			
+24	Q	Where do you want to move the locking lever to? ++++*+  		25			
+25	A	Shift left		16			
+25	A	Slide to the right		27			
+25	A	Hook the lock and push		26			
+26	Q	The lock has given way! You've opened the lock and the way is clear.  		0		"SetVariable#pr_djeck,13;ItemHide#grate1;ItemWalkable#grate1;GainXP#100"
+27	Q	The jumper is on the sixth division where do you want to move it? +++++*  		28			
+28	A	Shift left		24			
+28	A	Hook the lock and push		17			
+29	A	Easy! Hack and slam your foot into the door lock.		30		NPCSpawn#oxran	STR#3
+29	A	When you pull the grille you realise that it's held securely...There's not enough force to break it off..		5			
+29	A	It's probably best to leave it as it is.		3			
+30	Q	I did it! The grate fell with a thud. You can hear a guard yelling something in the corridor...we'll have to fight our way out.  		0		"DecVariable#REP_varsilia,10;SetVariable#pr_djeck,15;ItemHide#grate1;ItemWalkable#grate1;GainXP#100"
+31	Q	By taking another critical look at the grid and using your intellect, you've managed to figure out...		32			
+32	A	That the locking mechanism is a bolt, and your hand just goes through the bars....		33			INT#3
+32	A	That you lack the intelligence to conduct a qualitative analysis of the situation		5			
+32	A	It's probably best to leave it as it is..		3			
+33	Q	By grasping the deadbolt, you opened it. Strange locks in this province.		0		"SetVariable#pr_djeck,14;ItemHide#grate1;ItemWalkable#grate1;GainXP#50"
+34	Q	Just as you were getting ready to rest on the couch, a guard came and politely asked you to go to the interrogation room...		0		"SetVariable#pr_djeck,16;Travel#G9_karcer,2,0;NPCSpawn#oxran2"
+35	A	Looks like using a lockpick...You need a lockpick. Look for it.		3			
+35	A	Of course it is! Why would I be pushing that button in the dialogue?		13	VariableEqual#zam,1	

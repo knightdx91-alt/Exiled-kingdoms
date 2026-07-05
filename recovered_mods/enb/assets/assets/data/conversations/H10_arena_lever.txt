@@ -1,0 +1,7 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The lever is still inactive. Wait for the battle to end.		0	IsItemActive#arlever	
+1	Q	Pull the lever boldly and the animals will engage in bloody combat!...		2	VariableEqual#stav1,1	
+1	Q	Place your bet first, then pull the lever.		0		
+2	A	Let's release the beasts!!! [BLUE](Turn right)[]		3		
+2	A	We'll wait for now.		0		
+3	Q	[BLUE](The bars have gone underground and the beasts are about to claw at each other!)[]		0		"ItemActivate#wallar;ItemWalkable#wallar;ItemHide#wallar;ItemActivate#arlever"

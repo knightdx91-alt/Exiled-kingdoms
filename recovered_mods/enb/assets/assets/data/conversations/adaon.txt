@@ -1,0 +1,53 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hey, boss, what's up?	Que pasa, jefe?	11	NPCisFollower#	
+1	Q	Hey, look who's there. I'm available, if you need some brains on your team.	Mira quién ha venido... Estoy disponible, si necesitas a alguien inteligente y un experto ladrón	9		
+9	A	Sure... Just remember not to go too far with that 'brain'. Welcome back.	Vale, pero no te pases de listo... Bienvenido de nuevo.	16		
+9	A	Not right now, thanks. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	10		
+10	Q	Ha! If you think you can find better company, you'll be disappointed. You can find me here in New Garand usually, in the west side.	Ha! Si crées que vas a encontrar mejor compañía, lo llevas claro. Puedes localizarme normalmente en el lado Oeste de New Garand.	0		
+11	A	Nothing, let's move on.	Nada, continuemos.	0		
+11	A	I don't need your services for now, you can return to New Garand.	Ya no necesito tus servicios, puedes volver a New Garand.	12	"VariableGreater#want_letter_back,89;AreaIsnt#J7;AreaIsnt#K7;AreaIsnt#K7_observatory"	"NPCStopFollowing#;NPCDespawn#adaon"
+11	A	Let's talk about something.	Quiero que hablemos de algo.	19		
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91		
+12	Q	I was just starting to have fun too! As you wish, boss. I hope we work together again soon.	Ahora que me lo estaba pasando bien! Lo que tu digas, espero que volvamos a vernos.	0		
+16	Q	I would join you, but I think you already have a companion. Come back when you have room for me.	Te seguiría, pero creo que ya tienes un compañero. Vuelve cuando tengas sitio para mí.	0	HasCompanion#	
+16	Q	Let's have some fun and profit!	Busquemos algo de diversión y de ganancias...	0		NPCFollow#
+19	Q	Shoot, man.	Tu dirás.	20		
+20	A	What can you tell me of this place?	¿Qué puedes decirme de este lugar?	40		
+20	A	Let's just go on.	Continuemos.	0		
+20	A	Adaon, I can't believe the problem you just got us into with that Thuramian Sorcerer. Don't you have anything to say?	Adaon, menudo problema nos has causado con ese hechicero Thuramio. ¿No tienes nada que decir?	21	VariableEqual#mad_wizard,10	
+20	A	So, any idea about who these guys are that captured us, or where they might be hiding?	Bueno, ¿alguna idea acerca de quienes son los que nos capturaron, o dónde se esconden?	24		
+21	Q	Again with that? Please... Let's just recover his stupid orb, okay? It must be somewhere in New Garand.	Otra vez con eso? Por favor... Vamos a recuperar el orbe y ya está, ¿de acuerdo? Tiene que estar en algún sitio de New Garand.	22		
+22	A	You don't have any clues?	¿No tienes ninguna pista?	23		
+23	Q	No, sorry. It was some hooded fence down in the sewers. One doesn't ask questions in those situations. He was fat, short, and snorted a lot. But that's all I know.	No, lo siento. Un encapuchado en las alcantarillas, comprando contrabando... No se hacen preguntas. Era bajito y gordo, y resoplaba. Pero eso es todo.	0		
+24	Q	I asked here and there, but there's nothing about them.	He preguntado por aquí y por allí, pero nada. 	0		
+40	Q	This place is awful. Farmers with no money, and a lot of guards. Let's move South, or East to New Anthur.	Este sitio es horrible. Granjeros sin oro, un montón de guardias. Vámonos al sur, o al Este hacia New Anthur.	20	AreaIs#H10	
+40	Q	I'm no footpad and no farmer, this place is uninteresting to me.	No soy un asaltante de caminos ni un granjero, así que este sitio no me interesa.	20	AreaIs#G10	
+40	Q	Boring farmlands... Nothing to do. Let's go to New Garand and have some fun, eh?	Granjas aburridas, nada que hacer. Vámonos a New Garand a divertirnos, ¿eh?	20	AreaIs#H8	
+40	Q	The Oasis is a good place to lay down if you're under too much heat in New Garand, if you know what I mean. But little business here.	El Oasis es un buen sitio en el que pasar unos días si te conviene irte rápido de New Garand, no se si me entiendes. Pero aquí no hay mucho negocio.	20	AreaIs#F8	
+40	Q	New Garand? It's the place to be, you know? Money everywhere. Opportunities... if you know what I mean.	¿New Garand? Es la gran ciudad. El sitio donde hay que estar. Dinero por todas partes, y muchas oportunidades, ¿entiendes a que me refiero?	43	AreaIs#NG	
+40	Q	Pretty, ain't it? But this place is no good, I tell you. Or too good, if you know what I mean.	¿Bonito, eh? Pero este sitio a mi no me parece bueno... O más bien, demasiado bueno. No se si me explico.	20	AreaIs#NI	
+40	Q	This town is alright. In theory law is harsh, you get beheaded for the slightliest thing. But in reality, a few coins in the right pocket solve everything around here.	Esta ciudad no está mal. En teoría la ley es dura, te cortan la cabeza por todo. Pero en realidad con unas pocas monedas en el bolsillo adecuado te libras fácilmente.	20	AreaIs#FT	
+40	Q	Stinks, right? But it's what makes New Garand great. Down here there's no guards, so it's like a free town for making deals or staying out of the heat. It's not easy to find the Seventh House though.	Apesta, verdad? Pero es lo que hace grande a New Garand. Aquí abajo no hay guardias, así que es un buen sitio para hacer tratos o alejarse de los problemas. Pero no es fácil encontrar a la Séptima Casa.	20	"AreaIs#NG_sewers;VariableEqual#adaon_free,1"	
+40	Q	You know, this place makes a great hideout. Not far from the road, but not easy to find. And it has water.	Sabes, este sitio sería un buen escondite. No lejos de la carretera, pero oculto, y con agua.	20	AreaIs#F8_cave	
+40	Q	Kingsbridge is a boring place. Not a real city and way too many guardsmen to have any real fun, too.	Kingsbridge es un sitio aburrido. No es una verdadera ciudad. Demasiados guardias para poder divertirse.	20	AreaIs#G9	
+40	Q	Well, I was unconscious when they dragged me in, so I don't know the way out. I think there's about a dozen of them around.	Bueno, estaba inconsciente cuando me trajeron, así que no conozco el camino de salida. Pero sé que son más o menos una docena.	41	AreaIs#NG_dungeon	
+40	Q	I really don't know much about this place.	En realidad no se mucho sobre este lugar.	0		
+41	A	What about other prisoners, did you see a redheaded girl?	¿Viste a otros prisioneros? ¿Quizá una chica pelirroja?	42		
+42	Q	Nope. There was another guy, but they killed him. And I think they keep something in a maximum security cell too.	Nah. Tenían a otro tío pero le mataron. También tienen encerrado... Algo... En una celda de máxima seguridad.	0		
+43	A	Not really and I think I prefer not to ask either.	La verdad es que no, y prefiero no preguntar.	0		
+43	A	I think I understand, and I don't like it. No stealing while we work together, I really mean it.	Lo entiendo, y no me hace gracia. Nada de robar mientras trabajemos juntos. Lo digo en serio.	44		
+43	A	[BLUE](Nod at him)[] I sure do. We may need money, you know. What should we do, to make some quick... business?	[BLUE](Asentir)[] Claro que sí. Podemos necesitar dinero. ¿Que deberíamos hacer, para hacer un buen... Negocio?	45		
+44	Q	Sure mom...	Vale mamá...	0		
+45	Q	[BLUE](Grins)[] Now we're talking. First of all, never try to work without giving the [BLUE]Seventh House[] their cut. They'll know and they'll come kill us. We should meet them in the sewers, I know a few of their guys.	[BLUE](Sonríe)[] Por fín hablamos en serio. Lo primero de todo es nunca trabajar a las espaldas de la [BLUE]séptima Casa[]. Se enterarían y vendrían a matarnos. Deberíamos hablar con ellos en las alcantarillas, tengo algunos contactos.	0		
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92		
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Nevermind.	No importa.	0		
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Understood.	Entendido.	0		
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		
