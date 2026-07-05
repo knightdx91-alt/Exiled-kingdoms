@@ -29,7 +29,22 @@ Two different things get conflated as "de-obfuscation":
    intact — that's how the camera and lighting were recovered).
 
 So "what we never decoded" is **not** a big pile of mystery classes. It's the member-level
-logic of a known, small set of EK classes, tracked in §2, plus the fidelity gaps in §3.
+logic of a known set of EK classes, tracked in §2, plus the fidelity gaps in §3.
+
+**The complete per-file inventory is `CLASS_MAP.tsv`** — every one of the 292 obfuscated
+files, each with `owner` and `status`, so nothing is invisible. Current tally:
+
+| owner | count | meaning |
+|---|---|---|
+| EK — logic read / ported | 3 | `GameLevelRenderer`, `ADTIsometricTiledMapRenderer`, `GameMap` |
+| **EK — identified, logic NOT yet read** | **139** | name known, members still obfuscated — **this is the backlog of "what we're missing"** |
+| EK — name lost (UNDECODED) | 1 | `a/a.java` (in-app billing/store; jadx recovered no name) |
+| library (identity known) | ~137 | libGDX / box2dlights / AndroidX / Play — behaviour from public source |
+| Android-generated / synthetic | 12 | `k/*` = Android `R.*` resource ID tables, `c/a`, `e0/c` lambda — no logic to decode |
+
+The 139 EK "identified, not read" files are the honest answer to *what we haven't
+de-obfuscated*: we know the class (e.g. `o0/l` = `JournalWindow`) but haven't reversed its
+methods. Read them on demand as each feature is built, and flip the row's status.
 
 Reproduce the full decompile: `bash tools/extract.sh <apk>` recovers `net.fdgames`; for the
 obfuscated tier, decompile **all** `classes*.dex` (not just `net/`) — see `CAMERA.md` for
@@ -102,6 +117,15 @@ input/controller mapping. Track these as they get built.
 
 ---
 
-### Appendix: full obfuscated → original class map
-See `deobf/CLASS_MAP.tsv` (279 entries). Regenerate by decompiling all dex and reading the
-`// compiled from:` headers.
+### Appendix: complete obfuscated-file inventory
+See **`deobf/CLASS_MAP.tsv`** — all **292** obfuscated files, columns
+`obfuscated_path · original_name · owner · status`. This is the master "what's missing"
+list; §2 above is just the render/camera hot-path pulled out for convenience. Filter it:
+
+- `awk -F'\t' '$3=="EK" && $4 ~ /identified/' CLASS_MAP.tsv` → the 139-file decode backlog.
+- `grep UNDECODED CLASS_MAP.tsv` → files whose original name was lost.
+
+Regenerate by decompiling **all** `classes*.dex` (see `CAMERA.md`) and reading the jadx
+`// compiled from:` headers; owner/status are curated. The 185 fully-recovered
+`net.fdgames.*` game-logic classes are **not** listed here (they already have real names
+and readable bodies — Track A).
