@@ -187,7 +187,8 @@ class MapScene extends Phaser.Scene {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
         const pc = Object.assign(
-          { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1 },
+          { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1,
+            attributes: { STR: 0, END: 0, AGI: 0, INT: 0, AWA: 0, PER: 0 }, startingSkill: null },
           opts.pc || {});
         await this.startNewGame(pc, opts.map || DEV_START_MAP);
         return { name: this._mapName, mode: this.mode };

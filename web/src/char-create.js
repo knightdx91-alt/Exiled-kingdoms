@@ -30,9 +30,11 @@ const el = (tag, cls, txt) => {
 // { name, gender ('MALE'|'FEMALE'), charClass, portrait, difficulty }.
 export function startFlow(root) {
   return new Promise(async (resolve) => {
-    const [portraits, info] = await Promise.all([
+    const [portraits, info, creation, skills] = await Promise.all([
       fetch('assets/portraits/index.json').then(r => r.json()).catch(() => ({ male: [], female: [] })),
       fetch('assets/ui/class-info.json').then(r => r.json()).catch(() => ({})),
+      fetch('assets/data/creation.json').then(r => r.json()),
+      fetch('assets/data/skills.json').then(r => r.json()).catch(() => ({})),
     ]);
     if (info.IRONMAN_DESC) DIFFICULTIES[3].blurb = info.IRONMAN_DESC.split('\n')[0];
 
@@ -43,6 +45,8 @@ export function startFlow(root) {
     const state = {
       name: '', gender: 'MALE', charClass: 'WARRIOR', difficulty: 1,
       pIndex: 0,
+      attrs: { STR: 0, END: 0, AGI: 0, INT: 0, AWA: 0, PER: 0 },   // all start at 0
+      startingSkill: null,
       get portrait() { const l = listFor(this.gender); return l[this.pIndex] || null; },
     };
 
@@ -131,10 +135,9 @@ export function startFlow(root) {
       // -- actions --
       const actions = el('div', 'cc-actions');
       const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = title;
-      const begin = el('button', 'cc-btn cc-btn-primary', 'Begin');
-      begin.onclick = () => { if (!state.name) { nameIn.focus(); return; } overlay.remove();
-        resolve({ name: state.name, gender: state.gender, charClass: state.charClass, portrait: state.portrait, difficulty: state.difficulty }); };
-      actions.append(back, begin);
+      const next = el('button', 'cc-btn cc-btn-primary', 'Next →');
+      next.onclick = () => { if (!state.name) { nameIn.focus(); return; } attributesPage(); };
+      actions.append(back, next);
       panel.appendChild(actions);
 
       overlay.appendChild(panel);
@@ -153,9 +156,98 @@ export function startFlow(root) {
         dRow.querySelectorAll('.cc-choice').forEach(b => b.classList.toggle('on', b.dataset.d === String(state.difficulty)));
         dDesc.textContent = (DIFFICULTIES.find(d => d.id === state.difficulty) || {}).blurb || '';
       }
-      function validate() { begin.disabled = !state.name; }
+      function validate() { next.disabled = !state.name; }
 
       renderPortrait(); renderGender(); renderClass(); renderDiff(); validate();
+    }
+
+    // A shared page scaffold: logo + title + body + Back/primary actions.
+    function pageShell(titleText) {
+      overlay.innerHTML = '';
+      const panel = el('div', 'cc-panel');
+      const logo = el('img', 'cc-logo-sm'); logo.src = 'assets/ui/logo.png'; panel.appendChild(logo);
+      panel.appendChild(el('div', 'cc-heading cc-step-title', titleText));
+      const body = el('div', 'cc-step-body'); panel.appendChild(body);
+      const actions = el('div', 'cc-actions'); panel.appendChild(actions);
+      overlay.appendChild(panel);
+      return { panel, body, actions };
+    }
+
+    // ---------- attributes (traits) ----------
+    // 6 attributes, 0..attrMax, raised with a shared pool of `traitPoints`. Reaching
+    // rank v costs cumulative traitLadder[v]; the marginal cost of the next rank is v+1
+    // (triangular). Recovered in deobf/CHARACTER_STATS_SPEC.md.
+    function attributesPage() {
+      const { body, actions } = pageShell('Attributes');
+      const ladder = creation.traitLadder, max = creation.attrMax, pool = creation.traitPoints;
+      const spent = () => creation.attributes.reduce((s, a) => s + ladder[state.attrs[a.id]], 0);
+      const pip = el('div', 'cc-pool'); body.appendChild(pip);
+      const rows = el('div', 'cc-attrs'); body.appendChild(rows);
+
+      const rowEls = creation.attributes.map((a) => {
+        const row = el('div', 'cc-attr-row');
+        const dec = el('button', 'cc-step-btn', '−');
+        const val = el('span', 'cc-attr-val');
+        const inc = el('button', 'cc-step-btn', '+');
+        dec.onclick = () => { if (state.attrs[a.id] > 0) { state.attrs[a.id]--; refresh(); } };
+        inc.onclick = () => {
+          const v = state.attrs[a.id], cost = ladder[v + 1] - ladder[v];
+          if (v < max && pool - spent() >= cost) { state.attrs[a.id]++; refresh(); }
+        };
+        row.append(el('span', 'cc-attr-name', a.name), dec, val, inc);
+        rows.appendChild(row);
+        return { a, val, dec, inc };
+      });
+
+      function refresh() {
+        const rem = pool - spent();
+        pip.textContent = `Points to spend: ${rem}`;
+        for (const r of rowEls) {
+          const v = state.attrs[r.a.id];
+          r.val.textContent = v;
+          r.dec.disabled = v <= 0;
+          r.inc.disabled = v >= max || rem < (ladder[v + 1] - ladder[v]);
+        }
+      }
+
+      const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = create;
+      const next = el('button', 'cc-btn cc-btn-primary', 'Next →'); next.onclick = abilityPage;
+      actions.append(back, next);
+      refresh();
+    }
+
+    // ---------- starting ability ----------
+    // One starting skill (1 skill point) from the class's tier-1 abilities (class list +
+    // GENERAL), each tier-1 costing 1. Actives show a mana cost. Optional (may bank it).
+    function abilityPage() {
+      const { body, actions } = pageShell('Starting Ability');
+      const list = (skills[state.charClass] || []).concat(skills.GENERAL || [])
+        .filter(s => (s.cost || 1) <= creation.skillPoints);
+      body.appendChild(el('div', 'cc-pool', `Choose a starting ability (1 skill point) — or skip and save it.`));
+      const grid = el('div', 'cc-skills'); body.appendChild(grid);
+      const desc = el('div', 'cc-subdesc'); body.appendChild(desc);
+
+      for (const s of list) {
+        const b = el('button', 'cc-skill');
+        b.append(el('span', 'cc-skill-name', s.name),
+                 el('span', 'cc-skill-tag', s.type === 'A' ? (s.mana ? `Active · ${s.mana} mana` : 'Active') : 'Passive'));
+        b.onclick = () => {
+          state.startingSkill = state.startingSkill === s.name ? null : s.name;
+          grid.querySelectorAll('.cc-skill').forEach(x => x.classList.toggle('on', x === b && state.startingSkill));
+          desc.textContent = state.startingSkill ? s.desc : '';
+        };
+        grid.appendChild(b);
+      }
+      if (!list.length) desc.textContent = 'No selectable abilities for this class.';
+
+      const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = attributesPage;
+      const begin = el('button', 'cc-btn cc-btn-primary', 'Begin');
+      begin.onclick = () => { overlay.remove(); resolve({
+        name: state.name, gender: state.gender, charClass: state.charClass,
+        portrait: state.portrait, difficulty: state.difficulty,
+        attributes: { ...state.attrs }, startingSkill: state.startingSkill,
+      }); };
+      actions.append(back, begin);
     }
 
     title();

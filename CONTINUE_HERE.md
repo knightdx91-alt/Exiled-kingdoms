@@ -71,9 +71,13 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
   `gen-skills.mjs`).
 
 ### TODO (roughly in order)
-1. **Creation: traits + abilities pages** — attribute allocation (4 pts, triangular,
-   0–12) and starting ability pick (1 pt, class skill list w/ mana), from
-   `creation.json` / `skills.json`. *(Data ready; UI not built.)*
+1. ~~**Creation: traits + abilities pages**~~ ✅ DONE (`src/char-create.js`). After
+   name/gender/class/difficulty, an **Attributes** page allocates 4 points across the
+   6 attributes (0–12, triangular cost from `creation.json` `traitLadder`, pool
+   enforced) and a **Starting Ability** page picks 1 skill from the class list +
+   GENERAL (`skills.json`, Active/Passive + mana tags, optional). The created PC now
+   carries `attributes` + `startingSkill`; both persist into the auto-save. Styled to
+   the EK gold-on-stone look.
 2. **Player model + HUD** — HP/mana/XP/level/gold/inventory from the deobfuscated
    formulas; responsive HUD that reflows tall↔wide. Persist `gameState` in saves.
 3. **Combat + followers** — real-time-with-pause from the recovered AI/`Rules`
