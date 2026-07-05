@@ -56,9 +56,15 @@ purpose-catalogued in `UI_SPEC.md`). The library tier is identified and needs no
   triangular cost), trait pool `2L+2`, skill pool `2L−1`, per-class HP/mana/damage.
   Backed the web creation data (`web/assets/data/creation.json`, `skills.json`).
 
-**Tooling for these deep dives:** `tools/trace_calls.py` — point it at an obfuscated
-member (`Class#method` or a field) and it traces callers (up) and callees (down)
-across the tree, so a whole subsystem's call graph can be mapped before reversing it.
+**Tooling for these deep dives:** `tools/trace_calls.py <class>` — point it at a class
+(obfuscated path `k0/a` or original name `GameLevelRenderer`) and it maps the call graph:
+**DOWN** = classes it references (callees/collaborators), **UP** = classes that reference
+it (callers), every hit resolved to its original name. Class-level by design — R8 reuses
+member names, so fully-qualified `pkg.class` refs are the reliable unit; single-letter
+package refs count only when imported (kills local-var noise). Flags: `--ek` (EK +
+net.fdgames only), `--up`/`--down`, `--depth N` (recurse callees), `--members` (member
+tokens accessed on each callee). e.g. `trace_calls.py ConversationWindow --ek --down`
+maps the whole dialogue subsystem before you reverse it.
 
 ### Getting the real code when porting a feature (the guarantee)
 So we can always pull **actual member-level logic** — never re-simplify from memory — the
