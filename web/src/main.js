@@ -10,7 +10,7 @@
 import { loadMap, renderMap } from './map.js';
 
 const ORIENTS = [0, 90, 180, 270];
-const START_MAP = 'H6_bank';                        // first real map rendered
+const START_MAP = 'H10';                            // Lannegar Valley (starting town)
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
