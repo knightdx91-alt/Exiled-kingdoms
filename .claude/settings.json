@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && b=$(git branch --show-current) && if [ \"$b\" != \"main\" ]; then git fetch origin main >/dev/null 2>&1; git checkout -B main origin/main >/dev/null 2>&1 && echo \"SessionStart hook: was on branch '$b' — switched to main (this repo is main-only, no branches, no PRs).\" || echo \"SessionStart hook: on branch '$b' and could NOT auto-switch to main — switch manually before working (main-only repo).\"; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
