@@ -59,6 +59,17 @@ const map = {
   orientation: attr(mapTag, 'orientation'),
 };
 
+// Map-level <properties> (only the top block, before any layer). maxlight is the
+// ambient light level (0-100); the base renderer multiplies the map by it. Absent
+// => fully lit. music is the area track.
+const mapProps = xml.slice(0, xml.search(/<(layer|tileset)\b/));
+const prop = (name) => {
+  const m = mapProps.match(new RegExp(`<property name="${name}" value="([^"]*)"`));
+  return m ? m[1] : undefined;
+};
+map.maxlight = prop('maxlight') !== undefined ? +prop('maxlight') : 100;
+map.music = prop('music');
+
 // Tilesets (in document order so firstgid lookup is simple).
 const tilesets = [];
 const tsRe = /<tileset\b[^>]*?(?:\/>|>)/g;

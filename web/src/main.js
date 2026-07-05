@@ -7,7 +7,7 @@
 // are children of that container, Phaser hit-tests them through the rotation for
 // free — taps land correctly in every orientation.
 
-import { loadMap, renderMap } from './map.js';
+import { loadMap, renderMap, sortMid } from './map.js';
 import { loadHero, makeHero } from './sprite.js';
 
 const ORIENTS = [0, 90, 180, 270];
@@ -32,8 +32,14 @@ class MapScene extends Phaser.Scene {
     this.world = this.add.container(0, 0);          // rotated root for all content
 
     // Real map content lives in its own sub-container so we can fit-scale it to the
-    // viewport independently of the orientation transform on `world`.
+    // viewport independently of the orientation transform on `world`. Inside it, three
+    // depth planes: floor (under actors), mid (scenery/objects depth-sorted WITH the
+    // hero), roof (over actors).
     this.mapLayer = this.add.container(0, 0);
+    this.planes = { floor: this.add.container(0, 0),
+                    mid: this.add.container(0, 0),
+                    roof: this.add.container(0, 0) };
+    this.mapLayer.add([this.planes.floor, this.planes.mid, this.planes.roof]);
     this.mapBounds = null;
 
     this.grid = this.add.graphics();                // tile-grid placeholder / fallback
@@ -86,7 +92,11 @@ class MapScene extends Phaser.Scene {
           Object.assign(this.input.activePointer, { x: sx, y: sy }));
         return hits.includes(this.token);
       },
-      map: () => ({ name: START_MAP, tiles: this._mapTiles || 0 }),
+      map: () => ({
+        name: START_MAP, tiles: this._mapTiles || 0, light: this._mapLight,
+        midCount: this.planes.mid.list.length,
+        heroIndex: this.hero ? this.planes.mid.list.indexOf(this.hero) : -1,
+      }),
       zoom: () => this.zoomFactor,
       setZoom: (f) => this.setZoom(f),
       hero: () => this.hero ? {
@@ -129,14 +139,17 @@ class MapScene extends Phaser.Scene {
   async loadStartMap() {
     try {
       const map = await loadMap(this, START_MAP);
-      const { tiles, width, height } = renderMap(this, this.mapLayer, map);
+      const { tiles, width, height, light } = renderMap(this, this.planes, map);
       this._mapTiles = tiles;
+      this._mapLight = light;
       this.mapBounds = { width, height };
       this.grid.setVisible(false);                 // real content replaces the grid
 
-      // Real animated hero, placed on the map (in map-space so it scales with it).
+      // Real animated hero, placed in the mid plane so scenery/objects in front of
+      // him occlude him and those behind are occluded (iso depth by feet Y).
       await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
-      this.hero = makeHero(this, this.mapLayer, 'hero', width / 2, height / 2);
+      this.hero = makeHero(this, this.planes.mid, 'hero', width / 2, height / 2);
+      sortMid(this.planes.mid);
 
       this.fitMap();
     } catch (e) {

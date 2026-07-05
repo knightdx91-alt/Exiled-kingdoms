@@ -27,7 +27,19 @@ classes, every `a`…`z`/`a0`… package), then grepping the libGDX public API
     is the current map's width in tiles).
   - smooth `±0.33`-step transitions clamped to `≤1.5f` — camera effects.
 
-## What the web port uses
+## Lighting (recovered alongside the camera)
+The renderer multiplies the whole map batch by a grey light value before drawing:
+`this.f2283j.c().setColor(f13, f13, f13, 1.0f)` (k0/a.java ~694), where `f13 = 1/k()`
+and `k()` folds in the map's ambient level plus dynamic light sources / `light`-type
+map objects (k0/a.java 473-485, 724-726). The map's **ambient** term is `maxlight`
+(0-100), read in `m0/b.java:1498` into field `f2424i`.
+
+The web port currently reproduces the **ambient** term only: tiles are tinted by
+`maxlight/100` (floored at 0.25 for legibility) in `web/src/map.js` — so dungeons
+(maxlight 20-35) render dark and outdoor maps (100) full-bright. Dynamic light
+sources (torches, day/night, the `light` map objects) are a later step.
+
+## What the web port uses (camera)
 The phone view is **533 world-units of width at zoom 1.0** (≈2× the art on a 1080px
 phone). Reproduced in `web/src/main.js` (`EK_VIEWPORT_W = 533`, `fitMap()`): map the
 533 world-units across the **longer** logical axis (the base game is landscape; 533 is

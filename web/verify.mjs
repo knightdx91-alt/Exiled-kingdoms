@@ -38,7 +38,11 @@ await page.waitForFunction(() => window.__EK && window.__EK.logical().w > 0, { t
 await page.waitForFunction(() => window.__EK.map && window.__EK.map().tiles > 0, { timeout: 8000 });
 const mapInfo = await page.evaluate(() => window.__EK.map());
 console.log('map rendered:', mapInfo);
-const mapOk = mapInfo.tiles > 100;
+// tiles present; ambient light is a valid 0-1 factor; hero is depth-sorted INTO the
+// scenery/objects plane (not forced on top) — some objects draw after it.
+const mapOk = mapInfo.tiles > 100 &&
+              mapInfo.light > 0 && mapInfo.light <= 1 &&
+              mapInfo.heroIndex >= 0 && mapInfo.heroIndex < mapInfo.midCount - 1;
 
 // --- Real character sprite: hero exists and its walk animation advances frames ---
 await page.waitForFunction(() => window.__EK.hero && window.__EK.hero(), { timeout: 8000 });
