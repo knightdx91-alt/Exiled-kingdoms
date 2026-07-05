@@ -34,6 +34,12 @@ page.on('pageerror', e => errors.push(String(e)));
 await page.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle' });
 await page.waitForFunction(() => window.__EK && window.__EK.logical().w > 0, { timeout: 8000 });
 
+// --- Real map: the converted H6_bank .tmx should render real tiles on screen ---
+await page.waitForFunction(() => window.__EK.map && window.__EK.map().tiles > 0, { timeout: 8000 });
+const mapInfo = await page.evaluate(() => window.__EK.map());
+console.log('map rendered:', mapInfo);
+const mapOk = mapInfo.tiles > 100;
+
 fs.mkdirSync('shots', { recursive: true });
 const names = { 0: 'portrait', 90: 'landscape', 180: 'reverse-portrait', 270: 'reverse-landscape' };
 const results = [];
@@ -102,9 +108,9 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? 'VERIFY: PASS — 4 orientations + input, full-game cached, offline reload, saves round-trip'
+  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + 4 orientations + input, full-game cached, offline reload, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

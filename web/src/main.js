@@ -7,7 +7,10 @@
 // are children of that container, Phaser hit-tests them through the rotation for
 // free — taps land correctly in every orientation.
 
+import { loadMap, renderMap } from './map.js';
+
 const ORIENTS = [0, 90, 180, 270];
+const START_MAP = 'H6_bank';                        // first real map rendered
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
@@ -16,7 +19,12 @@ class MapScene extends Phaser.Scene {
     this.orient = 0;
     this.world = this.add.container(0, 0);          // rotated root for all content
 
-    this.grid = this.add.graphics();                // tile-grid placeholder
+    // Real map content lives in its own sub-container so we can fit-scale it to the
+    // viewport independently of the orientation transform on `world`.
+    this.mapLayer = this.add.container(0, 0);
+    this.mapBounds = null;
+
+    this.grid = this.add.graphics();                // tile-grid placeholder / fallback
     this.title = this.add.text(0, 0, '', {
       fontFamily: 'system-ui, sans-serif', fontSize: '20px', color: '#e9ecf1'
     }).setOrigin(0.5, 0);
@@ -41,7 +49,11 @@ class MapScene extends Phaser.Scene {
     });
     this.token.on('pointerdown', () => this.flash(0x51cf66));
 
-    this.world.add([this.grid, this.title, this.token, this.tokenLabel, this.hud]);
+    this.world.add([this.grid, this.mapLayer, this.title, this.token, this.tokenLabel, this.hud]);
+
+    // Load + render the first real game map. Async and self-contained: if it fails
+    // (e.g. assets missing) the prototype still boots with the placeholder grid.
+    this.loadStartMap();
 
     // expose a tiny test hook so the automated browser check can verify input.
     // Merge (don't overwrite) so the SW/cache fields set at module load survive.
@@ -57,11 +69,37 @@ class MapScene extends Phaser.Scene {
         const hits = this.input.hitTestPointer(
           Object.assign(this.input.activePointer, { x: sx, y: sy }));
         return hits.includes(this.token);
-      }
+      },
+      map: () => ({ name: START_MAP, tiles: this._mapTiles || 0 }),
     });
 
     this.scale.on('resize', () => this.relayout());
     this.relayout();
+  }
+
+  async loadStartMap() {
+    try {
+      const map = await loadMap(this, START_MAP);
+      const { tiles, width, height } = renderMap(this, this.mapLayer, map);
+      this._mapTiles = tiles;
+      this.mapBounds = { width, height };
+      this.grid.setVisible(false);                 // real content replaces the grid
+      this.fitMap();
+    } catch (e) {
+      console.warn('map load failed, keeping placeholder grid:', e);
+    }
+  }
+
+  // Scale + center the rendered map so it fits the current logical viewport.
+  fitMap() {
+    if (!this.mapBounds) return;
+    const pad = 8;
+    const s = Math.min((this.LW - pad * 2) / this.mapBounds.width,
+                       (this.LH - pad * 2) / this.mapBounds.height);
+    this.mapLayer.setScale(s);
+    this.mapLayer.setPosition(
+      (this.LW - this.mapBounds.width * s) / 2,
+      (this.LH - this.mapBounds.height * s) / 2);
   }
 
   flash(color) {
@@ -109,6 +147,7 @@ class MapScene extends Phaser.Scene {
       this.token.setPosition(this.LW / 2, this.LH / 2);
       this.tokenLabel.setPosition(this.LW / 2, this.LH / 2);
     }
+    this.fitMap();
     this.refreshHud();
   }
 

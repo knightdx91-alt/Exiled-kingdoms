@@ -44,8 +44,13 @@ Done and proven (`cd web && node verify.mjs` → `VERIFY: PASS`):
   Verified round-trip.
 
 Next steps (in order):
-1. **Render a real map**: convert a `.tmx` (Tiled CLI: `tiled --export-map in.tmx out.json`),
-   load its tileset PNGs, draw it in `MapScene`. Prove real game content on screen.
+1. ~~**Render a real map**~~ ✅ DONE. `web/tools/tmx2json.mjs` converts a `.tmx`
+   (parses the isometric map, resolves external `.tsx` tilesets, decodes the
+   base64 + gzip/zlib layer data) to compact JSON and copies the tileset PNGs into
+   `web/assets/tmx/`. `web/src/map.js` renders it isometrically into the rotatable
+   `world` container. `H6_bank` (the bank interior, 2,410 tiles) renders and is
+   asserted by `verify.mjs`. Convert another with
+   `node tools/tmx2json.mjs <path/to/map.tmx> <name>` then set `START_MAP` in `main.js`.
 2. **Wire texture atlases** so a real character sprite renders.
 3. **Responsive HUD** that reflows between tall/wide (the one design task
    orientation demands).
