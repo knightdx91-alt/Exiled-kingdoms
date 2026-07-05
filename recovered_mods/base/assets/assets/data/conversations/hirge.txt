@@ -1,0 +1,55 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	What you did for our Faith is impressive. I still don't understand why the Governor listened to you and not to me, and some of the things you do or say seem to be questionable, but just as I vowed, high or low, your road is my road.	Lo que has hecho por nuestra Fé es impresionante. Aun no entiendo por qué el gobernador te hizo caso a tí y no a mí, y algunas de las cosas que dices o haces me resultan difíciles, pero tal y como he jurado, sea luminoso u oscuro, tu camino será mi camino.	50	"VariableGreater#three_versus_eleven,99;VariableLower#hirge_thanks,1"	SetVariable#hirge_thanks,1
+1	Q	Your orders?	¿Tus órdenes?	11	NPCisFollower#	
+1	Q	Ah it is you. My visions were right once more. Shall I accompain you?	Ah, eres tú. Mis visiones se cumplen, de nuevo. ¿Quieres que te siga?	9		
+9	A	Yes please. Welcome back.	De acuerdo. Bienvenida de nuevo.	16		
+9	A	Not right now, thanks. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	10		
+10	Q	"This was written as well; but I know our fates are interwined. Until our next meeting."	Esto también estaba escrito, pero sé que nuestros destinos están unidos. Hasta pronto.	0		
+11	A	Nothing, let's move on.	Nada, continuemos.	0		
+11	A	I don't need your services for now, you can return to New Garand.	Ya no necesito tus servicios, puedes volver a New Garand.	12	AreaIsnt#C13_pits	"NPCStopFollowing#;NPCDespawn#hirge"
+11	A	Let's talk about something.	Quiero que hablemos de algo.	19		
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91		
+12	Q	"This was written as well; but I know our fates are interwined. Until our next meeting."	Esto también estaba escrito, pero sé que nuestros destinos están unidos. Hasta pronto.	0		
+16	Q	I would join you, but I think you already have a companion. Come back when you have room for me.	Te seguiría, pero creo que ya tienes un compañero. Vuelve cuando tengas sitio para mí.	0	HasCompanion#	
+16	Q	By Their Wisdom, that is a great decision. I follow you.	Por Su Divina Sabiduría, esa es una buena decisión. Te sigo.	0		NPCFollow#
+19	Q	I listen, my friend.	Te escucho, amigo mío.	20		
+20	A	What can you tell me of this place?	¿Qué puedes decirme de este lugar?	40		
+20	A	Let's just go on.	Continuemos.	0		
+20	A	I was told, the Church of the Three is trying to open a temple in New Garand. Will it ever happen?	Me han dicho que la Iglesia de Los Tres quiere abrir un templo en New Garand. ¿Es posible?	60	VariableLower#three_versus_eleven,10	
+40	Q	"I like the northern lands of Varsilia; they remind me of the green plains of Ilmara."	"Me gustan las tierras del norte de Varsilia; me recuerdan a las verdes llanuras de Ilmara."	20	AreaIs#H10	
+40	Q	"I like the northern lands of Varsilia; they remind me of the green plains of Ilmara."	"Me gustan las tierras del norte de Varsilia; me recuerdan a las verdes llanuras de Ilmara."	20	AreaIs#G10	
+40	Q	"I like the northern lands of Varsilia; they remind me of the green plains of Ilmara."	"Me gustan las tierras del norte de Varsilia; me recuerdan a las verdes llanuras de Ilmara."	20	AreaIs#I10	
+40	Q	We are close to New Garand. I never liked much the big cities, as they often corrupt the hearts of the weak.	Estamos cerca de New Garand. Nunca me gustaron mucho las grandes ciudades, ya que a menudo corrompen los corazones débiles.	20	AreaIs#H8	
+40	Q	We are in Mercian territory... I can barely stand the idea of enslaved human beings, but don't worry, I won't go into a rampage. It would solve nothing.	Estamos en territorio de Mercia. No soporto la idea de seres humanos esclavizados... Pero no te preocupes, no haré una locura. No ayudaría a nadie.	20	AreaIs#F8	
+40	Q	We are in Mercian territory... I can barely stand the idea of enslaved human beings, but don't worry, I won't go into a rampage. It would solve nothing.	Estamos en territorio de Mercia. No soporto la idea de seres humanos esclavizados... Pero no te preocupes, no haré una locura. No ayudaría a nadie.	20	AreaIs#D9	
+40	Q	We are in Mercian territory... I can barely stand the idea of enslaved human beings, but don't worry, I won't go into a rampage. It would solve nothing.	Estamos en territorio de Mercia. No soporto la idea de seres humanos esclavizados... Pero no te preocupes, no haré una locura. No ayudaría a nadie.	20	AreaIs#E10	
+40	Q	We are in New Garand. I never liked much the big cities, as they often corrupt the hearts of the weak.	Estamos en New Garand. Nunca me gustaron mucho las grandes ciudades, ya que a menudo corrompen los corazones débiles.	20	AreaIs#NG	
+40	Q	The town of Fögas is surrounded by many dangers. This is a dark land, full with ancient legends of witches and curses.	El pueblo de Fögas está rodeado por muchos peligros. Esta es una tierra oscura, envuelta en leyendas sobre brujas y maldiciones.	20	AreaIs#D11	
+40	Q	A disgrace, a hive of villiany! I am a woman of order and law, so I won't defy a legitimate authority. But this place shows what the human race can do without spiritual guidance.	Una desgracia, una colmena de maldad. Soy una mujer de ley y orden, así que no voy a desafiar a un gobierno legítimo, pero este lugar demuestra lo que es la humanidad cuando le falta espiritualidad.	20	AreaIs#FT	
+40	Q	The Holy capital! These small islands were raised above the waters by Nivaria herself, to shelter the founders of our Kingdom in the hour of greatest need.	¡La capital sagrada! Estos islotes fueron alzados de las aguas por Nivaria misma, para refugiar a los Fundadores del Reino cuando más lo necesitaban.	100	AreaIs#NI	
+40	Q	This temple was built for the vanity of men. Emperors, self-proclaimed gods. But with faith, dedication and mercy, this place can become a bastion of true sanctity, a place to heal both the body and the soul.	"Este templo fue construido por la vanidad de los hombres; emperadores que se autoproclamaron dioses. Pero con fé, dedicación y compasión, puede llegar a ser un auténtico bastión de virtud, un lugar de curacuón para el cuerpo y el alma."	20	AreaIs#NG_temple	
+40	Q	Sometimes evil can be... smelled.	A veces el mal se puede... oler.	20	AreaIs#NG_sewers	
+40	Q	The Inori... Thelume has revealed that, in ancient times, it was a jungle inhabited by the Tolassian civilization. There is so much we ignore about it...	El Inori... Thelume nos ha enseñado que en dias antiguos fue una jungla habitada por los Tolassian. Hay tánto que desconocemos.	20	AreaIs#G7	
+40	Q	The Inori... Thelume has revealed that, in ancient times, it was a jungle inhabited by the Tolassian civilization. There is so much we ignore about it...	El Inori... Thelume nos ha enseñado que en dias antiguos fue una jungla habitada por los Tolassian. Hay tánto que desconocemos.	20	AreaIs#G8	
+40	Q	I really don't know much about this place.	En realidad no se mucho sobre este lugar.	0		
+50	A	Isn't that a bit weird, making vows and oaths like that? I could be a monster, for all you know.	¿No es un poco raro hacer esos juramentos? Por lo que tú sabes, yo podría ser un monstruo.	51		
+50	A	It is reassuring to know of your loyalty. It is not misplaced.	Me gusta saber de tu lealtad. La has depositado en el lugar correcto.	0		
+51	Q	You could. But Thelume revealed to me that the fate of all humanity might be in your hands, so I must remain at your side and fight your battles. And if you are a monster, the more you'll need someone to show you the right path.	Podrías, pero Thelume me ha revelado que el futuro de la humanidad podría estar en tus manos, por lo que debo ayudarte. Además, si fueras un monstruo, razón de más para tener a quien te guíe por el buen camino.	0		
+60	Q	That, my friend, was my original mission when I arrived from the north. The next time we are near the ancient temple in New Garand I'll tell you about it.	Esa era mi misión cuando llegué desde el norte. La próxima vez que estemos en New Garand, vayamos al antiguo templo y te contaré más.	0		
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92		
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93		
+92	A	Nevermind.	No importa.	0		
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94		
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all
+95	Q	Understood.	Entendido.	0		
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		
+100	A	I imagine you want to meet your family and friends while we stay here.	Imagino que querrás reunirte con familiares y amigos mientras estamos aquí.	101		
+100	A	Interesting.	Interesante.	0		
+101	Q	I made a sacred vow to remain at your side, and if you don't need me, I'll return to my many duties in New Garand. I'd rather not run into distractions.	He hecho un juramento de seguir tu camino, y si no me necesitas marcharé a New Garand a continuar con mis muchas obligaciones. No quiero caer en distracciones.	102		
+102	A	I see... Some issues at home.	Ya veo... Algun problema en casa.	103		
+103	Q	[BLUE](She simply looks at the quiet waters and says nothing)[]	[BLUE](Mira las aguas tranquilas sin decir nada)[]	20		

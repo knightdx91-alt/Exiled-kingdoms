@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="96" height="96" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="exit_e" value="G9"/>
+  <property name="exit_n" value="F10"/>
+  <property name="exit_s" value="F8"/>
+  <property name="exit_w" value="E9"/>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="anguish"/>
+  <property name="name" value="Deadwood"/>
+  <property name="name_ES" value="Deadwood"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" source="grassland_structures.tsx"/>
+ <tileset firstgid="165" source="spawns.tsx"/>
+ <tileset firstgid="173" source="structures.tsx"/>
+ <tileset firstgid="237" source="trees.tsx"/>
+ <tileset firstgid="253" source="rocks.tsx"/>
+ <tileset firstgid="259" source="rocks_small.tsx"/>
+ <tileset firstgid="269" source="grassland_structures.tsx"/>
+ <tileset firstgid="305" source="grassland_structures.tsx"/>
+ <tileset firstgid="341" source="dryground.tsx"/>
+ <tileset firstgid="405" source="town_objects.tsx"/>
+ <tileset firstgid="485" source="ruins.tsx"/>
+ <tileset firstgid="549" source="grounds_indoor.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztWG2O7DAI6/2v0ku+Pzt6I5QPAwaSEZZWq22JIYZAus+D4/37afjwPnYtW38/Wv9aePXvHPjg0f+zvmFH138tuv/XQqv/+/h7VuM/ZlpKnV/xrsHBTF/5vOs+BqM6n+Vi9HfDB0//b/jRetai9a9F689F9/NaeL+nOg8+MPTvHORhpv8v5uTEPWj0vz0PJ+6Bof+J+5I4tY7Y+p+2P4nTYpv9z+d58Dg9+p+mRzYY9eqZF61/jf639KtoROwfnRfP5L20/WVU1J/GV+sf5xO1rUL0d1FF/9X6qpwNUfe46Ps6u2ZYMe5iyIoxQ3/kffS3wmqfiAYWXTxngIHo2tb2ZO/etFwn6K+JQ8aD2q16SCR2caKaevTPmBuIbRWQM5ChfxQicpsJOWNmNh79oxF1xjKxiv90/b993ar/B+gZQLnQ/sfC7frPEKF/xF3w9j40g1V/DScjD6foz/bP1l+jsdb3CfM4wi+z/3j6GWMdu++N/LFhqUGEyxor4yx+c7DyELWfyPrP3uuO0zt7LHti1LWMA7HxaBjd4zVxZtTSLsfWvuxBxqxF9Y/k/7ZjzDG2btU5yJpjqN7aHsTQLvos7GaalY+hvyUmtlZVvcg6b6P1f4B3kXeY1TtLz5TrEX9IDNZ1qP47LdjQzqlXrNP40K6z2Mt1llm742PDGqe1HiPXjNYy9Je8EbDoE82fqb+29ir6ldeHdn58/7b6YfR/xM/KfwQ8tamxO6n/aHzJd2x4e0Okn0z9Z35Hz5nwcGrrgql/dF/excTk867X6G+d3Vn9AI2HycngiMqBXCt5vL2eDUuNMfgi+9CKw5J7y1oLP7qGZZNxBlZ8yL10NFPZYGtx6hmQfmf3lVV+Vs+9MTFtNXlinSkUu3vSLi5tbjRx7d5ra5t5VhiwaovG470vIOdSy+e10dihPEjvt8SDniEkPsa9C90LysUAsy5QX5XnPPMMsHLJvnMhPlEbhMMyK1Buz3sNzy/or7FHbT3vUZ9s/TW9IMPPaA1qy+BB7KPOwM6nl/sW/Xd8knN159T6XN2dLFxe7Zl9j7kG2RvLr/bZLKab9EfXyTPw/dtaf7O1yA8LTD4PF9qXIzTR8GXPo0wu9BxE1eKHPwPWs4rYecCO50RY5zTTjoHb9Y9Yk1X/Hv7b8qbtU1m+PD5ugWVOsHxGIfsMeO8kWb4kT9RdO+NeP/JpXatdwwJLF/nNJp9Lf16w8ht5T7LEMXvO/G7V2Gv9ZGhZ0VdH+37Feys/O8cjG1ZPvPFut4LUgDUrZhp7a+bX9I/Gbh5Z+Fr/OrT+tWj9a9H616P1bzQajUajBv8Aw8OX+Q==
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJyV2tmOI9mRhOGOfkfuw+B21aPlbub5lSnEr/rCOwFJBRBMxnIWX8zN7dRvv/37f6/lt98+X5/D1+f59Xlv3+ftc/n6PLb7379PX591e+f72dt2/7N9f9+/b/e+33mNMe/btdN2rd835n9s8163Md7b84fteuPftzHX7Z3vz3G7t27ProzZWJ/tved2/b7N/9n+fjDflXH7/WLMG/Ov2+/X9vd/+u+2jXvf3lsZq7Udl/1zR+a5Dbu113x22Z5tL69tjOf2THtrX/m3mMgWJ2yqn0/b89m1uDiz5vf2/cReb8bNN89tHQ/GPW7z3rbn1uGHle/sf/4v7J/PW3N/f8bHvZ7xxX1bn/F94PuD3bJBdm2+xigvitPWti6/8qVcOnL/uF0rn4/bO0fmzW/lznX5lQcfxnwy18peyrH205yn5VfMrdt7h//C/to1X2fP4rmYL8bb95nv91hHti7Osk+xlB2KuWyQH6/bnMft3m34qJwqLx7b9Rn72aecKd7DzJkf2WLld880RmMfh2/D5//E/q0xDL3waZ5w+LX8irvWH9Zm0+ImW4fX5VMYNnE7/+S/curI/K3zstkm2xvHN55rvU9st/Jedi2OX7wfXrqmJ3P3TjZrD/mlOa/b8z/ZvbgqV7Jffs+35Wfrb5/Z8Myz1tgn87+Z4zr+zl/GVjl2YP4Hc4Sxt+VXbN+Wvf2mP6qd5fBp+YWxD64Vx2JnmNX1fNv8PZMt3OeDd7J7z+R/saH4K9bCwcu2Bv3mupqrPeeL4qBa9eITvreffK+Py2WxYsaw9cq4Nh/Lv+Z4MGexou/KQTlTf3f/yPdnzClm5fuwOpwKA7xe/ZAnhO9xzfxebsaXsmMxJm5nT8drjOLZ9ceRWku42P6tk9kwf4WLd8Y3lvJ5dsy28okb99unXNQ8MJfi1tWd8ijbXrjfnj9jnGppuVL8x7/M/fDvwXjxx+ppz8pR2lu+6Vk5ZDaxN2juN77IJmJgvo8LvJd97SiHpm39LQ998p49RvMZH9nxwLXi8sh47bM9nrg2+WdxX06eeLd9FBdhfrEgt7Svs+ZVm+WtxXO50N6N0zhbGNWcF941/qzdcqL2WK14MVZcp7nKI/Fs1iR5zHHZx3/Y17qLffvB9tuay6XGDbuz3Z1nWlNxd2XuM+PKA9vPk+fMh3J9Za5sIgeZ/ZGcPDy1j9Rm+VbukI1aj/WwOewdWns1Nt82T+tpLweeaV/dk6M0tv16GJAt8ls15TLGLJaqA9lHTaE5wvFqZznqPddSzBrHxWT52TVrm3wie1Q7suWJ+R0/v2bvOFGcOJwNC8Kc+F1r6SOGxmeKYceRixYP9i8Prrf3cCw7tWb7t/ZavjVOfrkvf64DjWvfVJ3RnsVX2Bom3XjOvm323uFEMdle7M2LHXOztcprjNGutRZ5nHllfbcXXZd97rVX86Ec00e9H/+1Hhm3YUEx4/X2Fr7al4ZFB643fv1TsWK9a73FRvHeOprnyriNk6+zUbVx5dk+1ULtYNysjNEeTsu+nubr6sKL8T6MKx/K3vYd1qhi+D7mdGx1HHvX8saYrnZUw6tX6hatp9h2/+J+eKReE68tj9Vse7/x2mv5Zz9Y7JY3vZvOkE1+4o/5Lcy/MZ987cKY6hf6sbHkXVPXaZ/lY/l34H5rW3m29Wf38KE1me93xlFjyZbFa+sPQ63pK/MXX+kWzV2uyuXs3eTv1pFqxHXM5TnAjP+wLv/PPjnMz979/vBc+Wte65vzso/hcih8DOvstatp8p3qjWNaD4uB/NA61X/Vp9Tcq7XzjMJ6Hc6I23IMNRV7IjVK87R4l6+q+xSX5ktzxtnsU7PB1OE8lwgbjLl6Atfl2Y38RM6b/4yF/CJuPBnHnlutUf0ojDdOs199hfqbNTiMDdPapz1Y66gW2Z80b2NZw7NH/myt+jefF9P6wJ5I+xTX5o49tjVKraj11Kdog/LGWhyOFD/97f38YWwXD2pYxV8xX17OPsi+3ppS/XJvxXn9UNePzCu3OjFGvpSjFovtwT5DDhh2qaeEG+3DmlnsiS/548Yz7bG8V8/PL9lOTMo3akLmavFSzqg/qG06v/YvT6tf1n+vFVtn5lbLsz80FjxfkCs/eV79Re6lxmUPr6Zg31euhf1hdTj2E1aWP+Wu7+sX+XN/h4XVjtarnhI3sp58eEffynfDqXLEM8L+ttfJT8VBa5Hvq7+K5S/GDhfT0+yt1F1ePCMPaB/WTfV/z5HzaetTn1FHKpflRNlM7LIXz2b2+sVM622N+aT5re2N51lV83cve1ZjirMwqv3IE5unfLIHlHcVR+aUOvz0SVyj+JDr2o+2B/XNsCA8rTbZV2Zra1M5Kk93f/YSjSWPyLZqcmG5eVS82RPKdbKbmBIeWmutV5MLfsYc8rDslB89eziOsXvfXPHsxtxuX2Fpdsh+npeo77ae+7L3W9g8+/JiTQwWyzxP9GyiWmB/okZ2Ge9Yp+Iize15bWurBqotyIM+jKlu3lhyIf1hv24NL7ZeYy77q3yeD+UVzmk/li2LYe9l45nH5WTxGY7GM8LT7ql3yy3U+LOV+zSO1SHU2s/M0RrLq8Yul8JNubQ8Vl2xWH4te1zJV2pbxUI2Lo7Dwvba2NUv+aU1Tx1WLav9N55+N2/FtslPw9fDeDbftk+58pu/i6cL7+SL3i1Xw/HipXertZ6b35c9rnoWYF1Uk01jyN7q2dmy+mZPKT48+c7nakLNFYbaP7R/e8bWMbUGe5Dy7chHXhSvyc+Tj6sBqYvLt33mzPutof0VY83ZeOaJZzutzz5S3G5f2cIzVbHUs+4716ozd8Z5c0/cUw+0H5bntl7PJxrX8yk5ab7td3k6MVNf5UexRU6V/8unK2NWF6onb35PXSaO/WLc4vbGs/Z4YoRYaR9QnS9OevbIvMaoekfj2EeElWpB5dDsX6zZnj2pLxYDx/FM4zRGsf9g7NZv/VGHfzH2lbk9o5S3PJY/r7FYbn/ZW13T85eVb8+vjDv1Uc8Z1BzDM/uj7NLetUf5MWuYmn7Y0fuNJ4fMjvbw9j6eu1nHwxbr64GxxK2wr/m+/1UH1fCzpTzKemgvNbVDz0zUxFqz71eL+jx4/s28D+YW84p7e5gwI2zofvvqmfiPMacmKqZ49hkPsjf0jMf+znOGcG/+Cz+LJc807A3Uh9VO1QQ8s1AzUmcKP6q95Wx+bl/2ox9+O656oGc32dz+J85oHyznUs+V71vzygPPkcSj5i/uw5wn7/70/zzj6tUK+7fWbR5NDleeeH555Vkx3p5j9vbmc7nkWdTU3tq3mpu+MY7DdfmC/L9c8kys/PNsqfnvzJ/NPIvSdyfGfgwfFFf1xI0z11QOV7/MK3Vqz9k+Y1xrh5yjNYvD8uCw1LMV635ry9fyKnNNPq++VKzmVzmJ+dd8+az4MA6z9eypw6f5Tw6f3dTGjfPGKP7t8yd3ikvmn3m+0H6sx1MTC3vz+XGMK6/yXEWcCnvsd5tXrTEeui77XLdP7Hdz93t+8sPU/8p9/1mT1einTh4XbY4797O3uZPdw2M1o2yqT6stxaNnDOV5+VBMFKeOZw9p3928zaMep5Z3ZB65sBpjdSdOr5YfVtr7W/PbS/+KAfOvnC9mrD32WZ5LF1Phj/rYT+c05Zm4Gb5bA9TEst3s56wx1Urn9KxpZTzP6uR25UJ5Vfz5kW/KsdSl5GZv5jsue/ypThYj4aE99pPn7EOyRXPa+6gPmRNquOqLp2XvX7lec+Xz/NA4+syzGfvCcurOO/P8J1+ceLc5yvFqVn5tzZ59ybmNtbiT+NOc8lDxX+3bs8lwUc7tGUsxXS79xOv71u+eAWYLa1g11/nzvdj4Zt5iq3paDMmrwpbsFCaoD6pNtA6xM5/JjewxW0v/5GKtJXtUU+WJxZW6V/b+59i/fz0zPuvvv3K/Gp2v82sYKdbYW4oN9txh8Z2x5F1dk9MV2+K9fX62lbPFTcqhuNCZ62qh8gvzvzzvX/4Rd8XwcFwtsHHV0cKLy5et//71+ePr85ft+/b7n/UtOVt7Vw9pTfpdjtm+woFyNvupb4bF6qldC5vmWEfG8zwifAgXV641p7U9n7aX1h8PElPl+Pa/L+Ys7tVhrXvf9v/fr89fvz5/+/r832Z/z2nk8nF1e63maV/NKQ+RH9gXhBVqo8VSc1STqkWtzd7bmlJdss/wrM5+2rMfMfbAvPHI73/VvupQ75nb5XdrjZM2vxrKZbP9H5v9/7LZf+XZOKs9qz16OK2GJp9vHdUIMaN4bvzsWk71MZaMg+K4WjK1zfoGtbHjmCt/qrlNfBK3xLpqnJyk/Os7O05d5YX9/759/rbZ357Rs7zWYe4VD3N+Ma/4VBN5LPs1WvPjPdolTli+eMagHeMm2r1xPYcqjz0fePGd/c3pE9fDPnvA6tiN73k+aH9k/P91+3zb/8g62mvXqrf2DMVWMRhuZ5/yJT/O/lRNLxyVK3meKIdXT8hvJ8ZSU/VsWZ1JexZf6s72inFgeV+83DoT73kztrj3rzOpzfZ/bPH//8P+6omt3R7UfsPzkeqBWpS/W1MxaJ8nd6jmq32IY1NPcc9yXM87Vt4ztzw3yQ/28K3P88PZB/S82GftKl7CleeXrf9nfB6//3omXPaM6cNcnteJe3Lx4r+8kacUS625MVtfuW+ehYvFffgzz/vy74l7+c34jp/Zk5cX5pv6QfjWR35t7Wp/Z+5NHmEd6145Xz/XnuZ5RnsoNoo9zxfLT+PiyTjqE3GfuIRYWQ62TrU2zw2KdbV8z956985z2cb62PrsG+Mw2W7lermUr9Sysos617rsbSJ2f7iWbesbJqeQB4rx8Rr78+rjhXtdn7HSHPnQmqpuaz/o2Y/YWE6FF+VRe7nzXTzYY8T9+vvE2GfeVxspd7N7OCGvsE6FHWG8Neex7LFIPmuO5ut8X19ZTIm3ctPyqzU9mW/q6/lHbduepDzQn/aG8iOxS73oynM907rkB+7Z8xC1wFnf2lv1Q4xtD2FgeXkav8sf62f7EesezNtennw841UPzm+epRS3rd+e98wY5XW5aK22dqk9iH9P3vGs4cMznmOcmL/9qtu05pWx1Hnzl7VILpMNulcstCcxyj4z/5ZLaib2nuonB77LmeLWGmvdyk7VbPleOW0c2i+o33gm1TXjSl6hrp4N1ZfDV88kXLc6cDwhXBC75EpdU7s5M5ccM9vXg8jn1ABn728/Wf8sFnp2EV6oB7dn4zssz0YXnlXzb464i3wpHlust25xV/3NPq59imPZSz5XrVt/mDOfN1Z5YJ1NV7AmZ6tw2N5HnUTdPs5T/s7+zRo165znYo3XnGKQesLc+5XvuEgxVwxdl33+65MZU/nc3qLaJSdqHdnlxTNhcDYOB9pbz4bLah3FxJPns5f9UTFcn6K9ihs5u2cq5Wh4rp6h3mX8pyWVi2qT8qDsG6+NT9nzttc3Y+gb8zA7hadq6uVpeKwOWuwfGaN8DSusd+VX9a53rQP6M4y1P3ozRpigLifWxY08DwzLnN/cVsexrouxjS2XlZ97fjV7MeO4GFQLav8PxjO+48BiYfeKmfJVHiqvtAfJhqfxvPxOPtPYchQ1uXImXMqGs9bbr9mXWGOnZpyd6ifUlsXb+rB8qF4cN2ldjfle9hgaJqhxFI/ykWym9p0twoRiaGVuc8Pa+ln2ezSePQsp3tqTMV3ONEexkc9akz2VfWq482Rc46Q1t9b8/Vz2seHv1uX5Z7XKc5p8oYZpj1N/Ks+xpoov5X4+Lg5bR/XCOPYMpzzJduZ1a1SrLz7CD7G5+Vq7OoPa3Mo7rUecyqZzDPtB65f6eDjaM+1xjtX9qfs1vn1g45bb8sLqafFUTLtHdfGwpffV9HqvvZvL1deftIfW1prLjWJDPdkaqj/MqSPztndrwp35s7t6jVpseWndLW/scYzL7rfnB2Nnf3tX64h2V0OeupTze+YTZ1Bnl7dNPaB64FlLtlMTPXPdc7Jyzvyw37EWGs/igtfshe1/y1t7Z89fwzz9n63ydXWgeeIj6qZTQ6wmVJfjT7MH1xZq0Reek8dceK/5qoFqLa2z+BGf2nvvGdOeM7UPz/muY+x4gD2Y+V09U0+2bmaHuLQ88sBHvcOa5tmB5xKeRWdTa7CxNM9N5Meeg6nRiKPWUs/Uqme9VywUl/JC9YY34+aj6rP+sJ7Kq9Q+21s+l0/F/+wfZm6pHfZe2C/fbZ/ZK47huVexWd2z/xUjZ69e7hQLcoqf9lhOyQXVxsLP/O05i2dPT+Y2Rro+tSm5u7WuulH8h73NZR3Rx+pY8fznssfw6odji4Gto1pf/r6471jqCfGf6of6d7llTnvO6TlQceR45YO4mt/tq8KBYsm1tYfsq363jnvhkGdiYU94mV2K3d5t7FkTVuZTFzWu1Urlj/ncM6DHuDa5XHFpfyTvKa7tWcpba738SA2i3LGXsS/qnvuy7qk13ZZ9jXjwvjpJ9TgbF2fl5jyrKO5W3v2JT2XncsLeL1uowYoL1qjyLaz33M6zhwPji2ezDpnv9inzrKsaUd/nuU54ql3tD/NF+zvyzou/7XXkjdWEara9YzFRjrdmuasc0jgvluWA2r516Vtrt71O9VCMn5qQ2qOcUN9Us/PHzN0wpWvZLf7Qu3K887KvWWqS1clyozwuj+QkUzP4LHu/WXOy+cwB99jfzdHz1oiuy020hZxHvSCOZk0NK+zhmrt5wr58cxrPPRi3eLavjoOXY/ZbalHFhfyoOub5VPVWzSfsKMemH9Q9snl4bW25L/u4t7+uzqg/2VvaW5y5ly+KH3G13G2v2VQ9O3zKNurZ6if2hJ51qTlNDTDM8vypWiIHbQ36tfVZ/1pf86vLdr/5p/5c7IY19mdvxmnv5njrnvFVTBy5fhkfNcliSX5XTj6YtzGLizjG5Mr5dmpc1jfPycO+6lzrvjBec5Q3nmd4FtXzclNzs34w356XvW/kMva8atThkPGg9tGe9HF5kF9X5rNuySt6zjOx97KPm3BBHcTeVMzw3ceyjw+xcdYL9Tzzor5M/LMvUDeWC6rd2XtWrxtfXmQvLp/0fMRzibBF/18ZN57SGi888+b+rIPFv5qcZ2fmt7WkcVtTseHvcl09w5oqt8nGJ+ZV57rz/JVPvpo9dLE4a4o8rDitLuUTcch+5clc4VtxUwyEd/asnrXFlR+8U5zlu+Zo341pzynfm3P3rnFo3VZPECuqtZ7xZ391ld5TS1aHFs/dc5xV/cxeXL3JcyvPU2ZPb48snysGrf93xsrOZ+ZTay6+5jmOmNuerTVTCwkvzH17OrV+967ebA8jVodt9pzm5+zh5caeZc7eujXaV4nZ6g1qR9ogTJMflYNP5vDsTt3aeM6ndz5xv+pomNWeWksxqa5aDS8PslexceMZz0nEiPDTWuLZVmP3vGdH+sy6Vo65Xnv21l4c2qvLhdU15XliRXsoP6w/9lkvnjWutPuLsdSRxM4rYxbH1ng1/Jlr4Ujxd+adF5/ZD2TTcPPAc9XGbNKatOeVOZsvG1yZz96uXHtwX/0wPJGXW6O6Ln627pk/2Vp9xjOgqYG8GCtO0b7UpLJxa+4d+aA9i9jzHOM1TrGtjexxe+Y+xrOOx2Ecr/oQT/swrn2TcSpXjn8Uh3KKcCC/6Avx1bOluIO1xX5B3e7Jp1qvHvBgzHnOoUakbmWfXow4ZvigVl5MWcu8r34kv/Isq9rWvHIENYZqcrllDQoLJ08IJ9vDh2s35sn29mTitf2R8dt7xYb6fhxXnmMNLH/nOcdj2eeM/c/s0837xm5P5YY9sGej9pfhS34rLrNpe5+cR20+3xTjYnx5fWX+7CwHlBeq1bRWa3PX1GKy2ZMxsnt8qfgPF5vT2iJnDq+Lf/nOhXGrefPs4sh19V21E3364Lp6YHbKj+rgs7ap/7Wu4vvOOK0t35mLanbliLpL9omXeN5SzXQM63DvmkdqztlOjCrPxNRwTA5kH+OZlJpbtpWrFsOTr2ZXtYE4Z3a2XsiVy8fu2x+/+C4uXowzdT+fnZp/fUA+VEMN7+ydV+6LIfaFcrP7mNPzC2tesbgybjER3hZD+fPA+HEGcyEcrX4YB9XRrrXfG3N7fmTdn33km/fUMD0XybfWaPvF8E89OHvYpxen1V37SnW15m498ownY6kT5r/2qWZr/5Vt7Dv0p+dR4qFxFW4Vn+lLxnrcJBwqh4pv+5nsWw/ouWE2k79V96/MGZ9xjVMfUtPJjtrbODbeqgHWNXFW/f3A31OzsVbl05945OQJanNiV/OeGVcu317tv8oH61X1QH8UJ3Goaoi5IQfX7uH55HHVwjPvqb2rH1YbmkebNq/ndeaw+Rdml5/2W+oXb34X08WrOqn5a7/a/NUwc0ed0f7rzjzFl1hVDPauWlG1Ri2y3JPHtV75fXlfHbGXVQPXZ5NH60t7QfVNe5t5Vl3c3hgzzFNzaN03nj3zjLEm59Z3R8abeBz2qvWXq8ZzdV0eU12VU7U++fHMTc8d6tt81h7O86p5nhEXrr62hvLV/l6t/s4c4WZxq77guYP8ONt6zmzf6jlOMWtNd43i0dTYwmjx01yxVoUd4vyLscJlz87sZcrfeW6pvcyNqan1XnGmRlDc9IxnROa4taBr1pDWZ86q38oxi4nmnPy2WLuPucsP9b1yoHXYN7hO+ZMc2rpfbyQX6VudVp6ar+98N7660WnZx0bva6fWYA9WHItb6o/1Xocxpn2mNaZYUWPyveYr/q7jmmdT8hjPfcRa+aA1oriwP6vGlKdqp3L97s3eT74tlrf/w3i+/RU7YXzz6M94Yhy//csv7evUB/Tjle/3so/D7BPm3Xi+OJHzHpjT2p291AezRX+7xmySD8uJ93hmZRxjb3LE/GItFYer5c3V3tTo8p+14s29E/fsy40Tn63OypnUBMLL9mLNKT7LpzNjxAmMs580Ct9t3eLIZ9njvRpSsVrfHidVV1HL1b+e2xQ/9Vv2NMVMGFxtCrvCivJl1oXisb0Vj63V/qI15R85TnmWLZ+M27rkLerj1eXPssfBfKKWe1z2/g43Wmf7yRdnfmffsDAOWW+QD+wZPow9+/b4U/YOU+cZatfzR+s2f/4B2sb5lQ==
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt2sFuwjAMAFD2/xf4mAHd9nETSEjVNKSWhsaO3ztxQUqiOLGdHg4AAABE9PXRewQA7O3H2Q8AAAAAaVz18yCsc4H4vBSYI21liItpNsbo72afC8YnV1iv9ZqN9u3N1vnM/5/hTBjBf+sc8WwYLVagskedIK7zemetp458n9HXtsf81uZMEXOsbKLX4S2dZr/tnX0dew+Au8m+B0jne9CzWy7W3+j17FylmmckWfdo5f6sWGtrTQxkjRee86Yfw5LvgyCyrXfzrW5bmttUzoEi0Pfdxnnfn9ynrb3XU58PeIX7l7/0t6gs8v4f9a0aopIjAa+65RN6bHlFzgcrEDtU4r4AAACgOm8xAADAEr9I9y01
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6D52j+wLfQQEpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBPXdcDAABg0wAUOgAM
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="data" width="96" height="96">
+  <object name="corpse_loreseeker" type="container" gid="169" x="1892" y="1853">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="quest_g9_loreseeker"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1669" y="2245">
+   <properties>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2057" y="1843">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1831" y="2160">
+   <properties>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1897" y="1910">
+   <properties>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="1920" y="1344">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1999" y="1345">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1997" y="1238">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1755" y="1221">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1439" y="1183">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1153" y="997">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1013" y="905">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2317" y="1142">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2607" y="1283">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2549" y="1080">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2495" y="1427">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2330" y="1561">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2561" y="2052">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2611" y="2328">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1667" y="1459">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="2251" y="2338">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="1665" y="1693">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse,dungeon_chest_7"/>
+    <property name="name" value="A corpse"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="795" y="1626">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse,dungeon_chest_7"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="221" y="1561">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse,dungeon_chest_7"/>
+    <property name="name" value="@A_CORPSE"/>
+    <property name="quest_location" value="F9_2"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="831" y="1022">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="735" y="1062">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="511" y="1076">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="442" y="873">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1075" y="1226">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="908" y="1172">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1087" y="2257">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="934" y="2191">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1122" y="2481">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1457" y="2471">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="1748" y="2529">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="975" y="2503">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="412" y="2145">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="407" y="2217">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="484" y="2239">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="ghost"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1532" y="1729">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2459" y="563">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2820" y="1052">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2878" y="1631">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2936" y="1947">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2810" y="2814">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="2394" y="2942">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="1836" y="2977">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="1101" y="2904">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="515" y="2810">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="105" y="1153">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="673" y="239">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="1187" y="437">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="1611" y="522">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="214" y="1626">
+   <properties>
+    <property name="quest_location" value="F9_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="1364" y="1392">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="1398" y="1402">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="1151" y="1533">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="1147" y="1565">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="1104" y="1484">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="2632" y="592">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="Deadweed" type="plant" gid="169" x="2520" y="522">
+   <properties>
+    <property name="id" value="deadweed"/>
+   </properties>
+  </object>
+  <object name="entrance to Mausoleum" type="transition" x="650" y="1332" width="66" height="58">
+   <properties>
+    <property name="area_id" value="F9_mausoleum"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="1599" y="2201">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse"/>
+    <property name="name" value="@A_CORPSE"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="211" y="1689">
+   <properties>
+    <property name="quest_location" value="F9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="254" y="1665">
+   <properties>
+    <property name="quest_location" value="F9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="204" y="1759">
+   <properties>
+    <property name="quest_location" value="F9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="265" y="1615">
+   <properties>
+    <property name="quest_location" value="F9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="439" y="454">
+   <properties>
+    <property name="quest_location" value="F9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="422" y="382">
+   <properties>
+    <property name="quest_location" value="F9_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="169" x="378" y="442">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="deadwood_corpse"/>
+    <property name="name" value="@A_CORPSE"/>
+    <property name="quest_location" value="F9_1"/>
+   </properties>
+  </object>
+  <object name="outer_undead" type="spawn" gid="167" x="778" y="540">
+   <properties>
+    <property name="spawn" value="skeleton"/>
+    <property name="spawn_u" value="ghost"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="426" y="508">
+   <properties>
+    <property name="quest_location" value="F9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="ghost" type="spawn" gid="167" x="348" y="484">
+   <properties>
+    <property name="quest_location" value="F9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="167" x="974" y="1430">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="167" x="863" y="1533">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="167" x="958" y="1596">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="167" x="819" y="1574">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Skeletons" type="spawn" gid="167" x="862" y="1627">
+   <properties>
+    <property name="spawntable" value="skeletons"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1592" y="1790">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1502" y="1797">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1584" y="1878">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1385" y="1828">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1135" y="1646">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1190" y="1962">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="1024" y="1919">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="720" y="1812">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="478" y="1545">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="wraith" type="spawn" gid="167" x="410" y="1304">
+   <properties>
+    <property name="respawn" value="45"/>
+    <property name="spawn" value="wraith"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object name="Event" type="spawn" gid="167" x="953" y="1522" width="64" height="64">
+   <properties>
+    <property name="event_location" value="F9_1"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="skeletons"/>
+   </properties>
+  </object>
+  <object type="entry" gid="165" x="682" y="1456">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

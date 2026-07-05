@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="80" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="faction_trap" value="beasts"/>
+  <property name="maxlight" value="60"/>
+  <property name="music" value="magical_forest"/>
+  <property name="name" value="Jabal Grotto"/>
+  <property name="name_ES" value="Gruta de Jabal"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="town_objects.tsx"/>
+ <tileset firstgid="569" source="town_objexts2.tsx"/>
+ <tileset firstgid="633" source="grounds_indoor.tsx"/>
+ <tileset firstgid="793" source="natural_grounds.tsx"/>
+ <tileset firstgid="921" source="dungeon stairs.tsx"/>
+ <tileset firstgid="925" source="town_objects3.tsx"/>
+ <tileset firstgid="957" source="gate_red.tsx"/>
+ <layer name="nonwalk" width="80" height="80" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DoQ0AAAgDsP3/MBY/i6RNmgAAAAAAAAAAAAAAABdTAQAAAAAAAAAAAAAAgF8WZwzrvABkAAA=
+  </data>
+ </layer>
+ <layer name="water" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VQQqAIBRFUd1GUftfZjTNL0IfivIccC6XJ5YCAAAAwJ8s9e0bfNvZb9PwNv1y9MvRL0e/HP1y9MvRL+fab63toS/a317bM5toR71teb+xaEe2BcBTRv83Y/5vAAAAAAAAAAAAAAAAAABmdACMnkGqAGQAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XvQqDMBiG0egN1TXudq3XZ/251UZw6FYSFIueA98uD28GQwAAAAAoE+sQ+nTtduSJW7OXdkWibqdq9OcPPOyw2POrnfd8jE7Xn9btecd59OLKpursL+Du5rTBId3bFrOt3UbddmF/AADAVSz+bwAAAAAAAAAAAAAAALipD6ETaqIAZAAA
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ToRWAMBBEwRBkSEHURX/UFoMFEXNH3oxd882WAgAAAAAA+fX6vrWPDcjpeH7rv8CfXVt0AQAAAJDJGR2wgHuPLgAAAAAAAAAAAAAAAIB5A+zxVd0AZAAA
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="80">
+  <object name="exit to E9" type="transition" x="767" y="1854" width="90" height="88">
+   <properties>
+    <property name="area_id" value="G6"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="241" x="924" y="1966">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="269" y="926">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit to Grasslands" type="transition" x="227" y="1005" width="61" height="34">
+   <properties>
+    <property name="area_id" value="G6_cave"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="230" y="705" width="64" height="64">
+   <properties>
+    <property name="faction" value="neutral"/>
+    <property name="hostile" value="VariableEqual#snake_gang,70"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="snake_gang"/>
+   </properties>
+  </object>
+  <object name="outlaw" type="spawn" gid="243" x="251" y="560" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="384" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="256" y="832">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="271" y="1294">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="Gate" type="conversation" gid="245" x="282" y="1233">
+   <properties>
+    <property name="conversation" value="G6_cave_gate"/>
+    <property name="icon" value="magic_gate_red"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1034" y="2313">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1249" y="2335">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1295" y="2326">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="697" y="2335">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="618" y="2265">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="283" y="2307">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="329" y="2234">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="232" y="2133">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="277" y="1998">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1255" y="1878">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1476" y="1969">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="851" y="1507">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="935" y="1425">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="932" y="1297">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="873" y="1418">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="924" y="1343">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="2026" y="2177">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="2000" y="2285">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1843" y="2338">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="1996" y="2412">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="2109" y="2377">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1568" y="160">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever1"/>
+    <property name="toggle_items" value="grate_ape"/>
+    <property name="walkable" value=""/>
+   </properties>
+  </object>
+  <object name="barrier" type="mapitem" gid="245" x="1472" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_ape"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="1536" y="352">
+   <properties>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="12"/>
+    <property name="secretdoor_tag" value="G6_cave_1"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2298" y="2001">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2356" y="1879">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2410" y="1985">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1975" y="1649">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1969" y="1858">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2307" y="1405">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2411" y="1357">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1842" y="1361">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1649" y="1124">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1759" y="977">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1937" y="933">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2077" y="1045">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2071" y="300">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2010" y="161">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="2078" y="221">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1615" y="415">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1677" y="437">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1640" y="843">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="spider" type="spawn" gid="243" x="1233" y="577">
+   <properties>
+    <property name="spawn" value="kurg_silverback"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spider" type="spawn" gid="243" x="849" y="724">
+   <properties>
+    <property name="spawn" value="kurg_silverback"/>
+   </properties>
+  </object>
+  <object name="spider" type="spawn" gid="243" x="881" y="546">
+   <properties>
+    <property name="spawn" value="kurg_silverback"/>
+   </properties>
+  </object>
+  <object name="spider" type="spawn" gid="243" x="1171" y="599">
+   <properties>
+    <property name="spawn" value="kurg_silverback"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="spider" type="spawn" gid="243" x="1243" y="231">
+   <properties>
+    <property name="spawn" value="kurg_silverback"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1246" y="311">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1229" y="645">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1331" y="645">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1262" y="375">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1025" y="191">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1054" y="138">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1530" y="155">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1064" y="621">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1523" y="895">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="243" x="1481" y="1551">
+   <properties>
+    <property name="spawn" value="kurg_elder"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1396" y="1399">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="1622" y="1461">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="361" y="1708">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="Apes" type="spawn" gid="243" x="349" y="1622">
+   <properties>
+    <property name="spawntable" value="apes"/>
+   </properties>
+  </object>
+  <object name="king" type="spawn" gid="243" x="662" y="631">
+   <properties>
+    <property name="spawn" value="kurg_king"/>
+    <property name="unique_tag" value="kurg_king"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2327" y="1811">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1525" y="1333">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2137" y="956">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1721" y="375">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="983" y="121">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="601" y="791">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="ape_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="2373" y="1245">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+  <object name="Zilda" type="spawn" gid="243" x="409" y="239">
+   <properties>
+    <property name="spawn" value="G6_snake"/>
+    <property name="unique_tag" value="zilda"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Zilda" type="spawn" gid="243" x="269" y="760">
+   <properties>
+    <property name="name" value="@ZILDA"/>
+    <property name="portrait" value="58"/>
+    <property name="spawn" value="villager_female_purple"/>
+    <property name="tag" value="zilda_cage"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="826" y="1182">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Jungle spawn" type="spawn" gid="243" x="281" y="1748">
+   <properties>
+    <property name="spawntable" value="jungle"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="352" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="320" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="288" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="256" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="224" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="192" y="960">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="barrier" value=""/>
+    <property name="tag" value="grate_snake"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="111" y="820" width="345" height="148">
+   <properties>
+    <property name="actions" value="StartConversation#zilda_cage,G6_trap"/>
+    <property name="conditions" value="VariableLower#snake_gang,60;VariableGreater#TMP_counter,1"/>
+   </properties>
+  </object>
+  <object name="door" type="conversation" gid="245" x="250" y="811">
+   <properties>
+    <property name="conditions" value="VariableEqual#snake_gang,80;IsItemActive#grate_snake"/>
+    <property name="conversation" value="G6_trap_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="343" y="721" width="64" height="64">
+   <properties>
+    <property name="faction" value="neutral"/>
+    <property name="hostile" value="VariableEqual#snake_gang,70"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="snake_gang"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="283" y="709" width="64" height="64">
+   <properties>
+    <property name="faction" value="neutral"/>
+    <property name="hostile" value="VariableEqual#snake_gang,70"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="tag" value="snake_gang"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="423" y="447" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="384" y="443" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="289" y="421" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer_elite"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="243" x="221" y="440" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer_elite"/>
+   </properties>
+  </object>
+  <object name="outlaw" type="spawn" gid="243" x="271" y="505" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="outlaw" type="spawn" gid="243" x="360" y="501" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="outlaw" type="spawn" gid="243" x="392" y="555" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="183" y="824" width="249" height="175">
+   <properties>
+    <property name="actions" value="IncVariable#TMP_counter,1"/>
+    <property name="conditions" value="VariableLower#TMP_counter,2"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="288" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="384" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="352" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="224" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="256" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="320" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="192" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="288" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="384" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="352" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="224" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="256" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="320" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="192" y="896">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="288" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="384" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="352" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="224" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="256" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="320" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+  <object name="gas trap" type="mapeffect" gid="245" x="192" y="928">
+   <properties>
+    <property name="active" value=""/>
+    <property name="conditions" value="VariableEqual#snake_gang,40"/>
+    <property name="id" value="gas_persistent"/>
+    <property name="tag" value="gas_trap"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

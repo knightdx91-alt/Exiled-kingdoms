@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="72" height="72" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="30"/>
+  <property name="music" value="dark_chamber"/>
+  <property name="name" value="Maze of Lamth"/>
+  <property name="name_ES" value="Laberinto de Lamth"/>
+ </properties>
+ <tileset firstgid="1" source="cave.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" name="town_objects" tilewidth="64" tileheight="128">
+  <image source="town_objects.png" width="512" height="1384"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="73">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="569" source="dungeon stairs.tsx"/>
+ <tileset firstgid="573" source="grounds_indoor.tsx"/>
+ <tileset firstgid="733" source="town_objects3.tsx"/>
+ <layer name="nonwalk" width="72" height="72" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QoQ0AAAgEsd9/YSwGiUaQNrkFLgEA+Kcmdv4AAAAAAAAAAAAAAAAAAAAAAHCtAUwlYXUAUQAA
+  </data>
+ </layer>
+ <layer name="water" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Yuw3AIAwFQMQA2YJ0Udh/Oio6RzSRIOGucmm9xp+UAAD+6cyzO1hXkQ0AAADwssu/IXTLJVRzXAPAbg5z8JE9CujcDGMyAgAAAAAAAAAA4EsaaF18YABRAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1czW4UMQye6SNwhRdgFyrBdAuXAlckpBaehUt7587rcmNHNJJlPsc/cTJb2E+KWnUyif2Nx3acTKepjut5mnbHdim0u8efO/YTtfXatXB/aWW+HbtvJ9zvba9nRWEnXiaPx+V7mOvXOT6x6z8r/cu1Zxf28b3I5ofrx6HJ/7FRHmqf3EbXn++c41N+ro6/vzK2N8I8mn63ynVpXCuKPpLd7Z3jr3x/CXAr2YGmH7JXeg/1R9w/ld/vQJ9y7a0yv5cfqqfnXokfatvIzpH82T6jhq35ieCU+fl85qeKU7YfT7zQ4kYB0pHmgNS3cX8m8cNjptb4HNG+3li8QstXkI7WZy3xM9L+KZYAZ/8TPwgLiYWIK01WpCP1wfydpu+rxE80h4w2a46I5D0oY78H91D9+JgW/3xr6JMJrqPEV5YsrfzU7h8ByaeM4Mei+9b8SD4lS5aajVh0r91P6zV0HVGrG9HYLl2jvvcp85NdH0HzSGv+ReAW1TX4dfoMevqfEfz0yi/2Bn5a/Q+VvTX2S7lGb35GvV+t/kAaS8tpWp9BLX+x5Da1PtH1LcKIOInmaPU/tT6W2MZjmLSeGsEPkjeqX0FNbqttrXh+MU0vyF7Dr1n2MyP5GeWfNX5QzdzKj1Rj4XGc77fxNSx6nlb/usx/5wq8ZsxrDrX6kSXuSHlOzU49sDxP6/NvRSs/PfJQy/uyFT8Wnaz8eGJ8rWaDuMiaV2u8tmKpK9N7svyzNx4dKjr0RJl39a03x/Zh/uO/pBrpVvxsDW5HLXUUdL6D8z0q389CJj9rn3tlPG8+wznne9moNoByDLQ3btmDOQCfiezAu9aR+tbsR8t/smG1Uf7cikz0fJB3rSP19dpPrxoNml8ClwvJxHNVdFYNnW/w2I8W31tqNGgfYQHvKHrnJPuR+njg4QfF8h5xk+NBmYPLgLiwPEf0jCI1G4qsmHaoyHlJ1uUWfpCftTxHlM/ynM6rb4/9vZotoTm+Ov1Pr/wwo78FNV+R8X61yOnluUfO6LUfCz9Zdt5iP7x+I+WNqP4k1UI5kExcdy1+LYqMfA9SOuPIa1oop83Kf6Q9Beqrr4C/5DJkx3cvetV4WtZN3OaRTKPOGWXWeCzngyJ7IMhWMmtRET0isOjOY7dlHGQr0jcvtTPVtb+N2DvKOh/E+0Tr7R5Ya/8taN1/lsYZ4Wv2Afuhe5qW2k0vfkbEqsjeY4/c22K7T4WfHrm3137QuWbUfhj7Ub9889h4HmjV22s/Ftvw8mPB9wT7ivhnzqP2vWfr+Q407yhE/DPnkX9vx78XzTrf6q1h8jVLpA9d51j58frJLP/To6bn8RVRfrTvaXvFdw3Z57J7xa/I2qFFvoKsuODty/XVvgXJene83ylmv19R+8nwP5Y+Xn6yfVo0/9FqCll23iNv9/iKaP6jIUv3rfmJ5j8aetU3NGwV36VavVRrQmczS9+yPpL6lPZttn0H7NXHc+4rkv9shS32pCL2sxW24Mf6LvasgWfWx7Proad47pCixT+jPT7pf7tIZ+G8/m80WuJ7Ns781PEv8NPTT448A27BAnIk7f88nXEa+A2/WrCnAFEAAA==
+  </data>
+ </layer>
+ <layer name="roofs" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQo/oAAAAAAAAAAAAAAAAAAAAAAAAAAAvgaEKQb9AFEAAA==
+  </data>
+ </layer>
+ <objectgroup name="data" width="72" height="72">
+  <object name="Secret Door" type="secretdoor" gid="245" x="1984" y="1632">
+   <properties>
+    <property name="maxlevel" value="9"/>
+    <property name="minlevel" value="8"/>
+    <property name="secretdoor_tag" value="E10_maze_2"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="320" y="160">
+   <properties>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="10"/>
+    <property name="secretdoor_tag" value="E10_maze_1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="245" x="256" y="1824">
+   <properties>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="7"/>
+    <property name="secretdoor_tag" value="E10_maze_3"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="1158" y="2229">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to E10" type="transition" x="1104" y="2256" width="105" height="56">
+   <properties>
+    <property name="area_id" value="E10"/>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1148" y="1837">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1165" y="1611">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="872" y="1203">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="841" y="1199">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1297" y="1495">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1727" y="1513">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1146" y="966">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1056" y="800">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1727" y="1047">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="12"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="623" y="1089">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1651" y="487">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="2175" y="1743">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="133" y="1377">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1001" y="66">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="813" y="190">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1397" y="190">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1311" y="67">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="1891" y="200">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1762" y="806">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1711" y="823">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="835" y="1272">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="581" y="2014">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="184" y="1709">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="419" y="1799">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="107" y="1309">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1104" y="806">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1226" y="821">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="2153" y="1385">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1758" y="1114">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1451" y="1331">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1971" y="827">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="546" y="1076">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1723" y="1016">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="406" y="1715">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="857" y="1175">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1305" y="1081">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1614" y="1519">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1291" y="1391">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1051" y="58">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="2179" y="2085">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1427" y="600">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="825" y="645">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="608" y="840">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="286" y="378">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="98" y="737">
+   <properties>
+    <property name="spawn" value="minotaur"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="89" y="820">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="295" y="355">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="766" y="74">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="981" y="262">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1044" y="84">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1350" y="117">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1626" y="193">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="2020" y="164">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="2032" y="272">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1844" y="51">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="dungeon_chest_9,dungeon_chest_9"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1686" y="546">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="2248" y="720">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="bear trap" type="trap" gid="245" x="2251" y="1005">
+   <properties>
+    <property name="id" value="bear"/>
+    <property name="random_range" value="5"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="torch" type="light" gid="245" x="2135" y="1897">
+   <properties>
+    <property name="id" value="fire"/>
+   </properties>
+  </object>
+  <object name="torch" type="light" gid="245" x="2135" y="1641">
+   <properties>
+    <property name="id" value="fire"/>
+   </properties>
+  </object>
+  <object name="torch" type="light" gid="245" x="2141" y="1488">
+   <properties>
+    <property name="id" value="fire"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="1258" y="750">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="dungeon_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="1504" y="1696">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="1040" y="830">
+   <properties>
+    <property name="conversation" value="E10_maze_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="415" y="65">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1056" y="832">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1824" y="1888">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="245" x="1824" y="1888">
+   <properties>
+    <property name="conversation" value="E10_maze_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="245" x="1824" y="1888">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="1661" y="410">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="exit to E10" type="transition" x="292" y="1696" width="22" height="23">
+   <properties>
+    <property name="area_id" value="E10_maze_1"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="87" y="1077">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object type="entry" gid="241" x="2013" y="214">
+   <properties>
+    <property name="entry_id" value="5"/>
+   </properties>
+  </object>
+  <object name="exit to E10" type="transition" x="2066" y="214" width="62" height="54">
+   <properties>
+    <property name="area_id" value="E10_maze_2"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1684" y="65">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="minotaur" type="spawn" gid="243" x="1611" y="82">
+   <properties>
+    <property name="spawn" value="minotaur_lord"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1498" y="57">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1737" y="56">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="245" x="1819" y="81">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="10"/>
+    <property name="minlevel" value="8"/>
+    <property name="random_range" value="4"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

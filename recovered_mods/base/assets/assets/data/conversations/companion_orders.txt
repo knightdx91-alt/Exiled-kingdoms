@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	2		
+2	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	6	NPCIsntWaiting#	NPCWait#
+2	A	I want you to follow me again.	Quiero que me sigas de nuevo.	5	NPCIsWaiting#	NPCDontWait#
+2	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	3		
+3	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	4		
+4	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	5		NPCAttack#never
+4	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	5		NPCAttack#defend
+4	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	5		NPCAttack#close
+4	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	5		NPCAttack#all
+5	Q	Understood.	Entendido.	0		
+6	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0		

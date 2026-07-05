@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The priest bows respectfully)[] Greetings, pilgrim. How may I assist you?	[BLUE](Este clérigo te hace una reverencia)[] Saludos, peregrino. ¿Cómo puedo servirte?	2		
+2	A	I seek training. Can you teach me how to better channel the powers of The Three?	Busco entrenamiento. ¿Podríais enseñarme cómo canalizar el poder de Los Tres?	30		
+2	A	Where is Bishop Bareid?	¿Dónde está el Obispo Bareid?	3		
+2	A	I must go now.	Debo marcharme.	0		
+3	Q	I am afraid he passed away.	Me temo que ha fallecido.	0		
+30	Q	As clerics of the three we must often act as commanders, leading others against the forces of evil. You might inspire your troops with [BLUE]Battle Prayer[], or turn the tide of any battle with [BLUE]Flames of Faith[].	Un clérigo es a menudo un lider en combate, inspirando a otros a luchar mediante su [BLUE]Oración de Batalla[], o cambiando el curso de la lucha con [BLUE]Llamas de la Fe[].	31	VariableEqual#guild_three,1	
+30	Q	I am afraid I can only provide such guidance to ordained priests of The Three. 	Me temo que sólo puedo ofrecer mi guía a miembros de nuestra iglesia.	32		
+31	A	Tell me more about  [BLUE]Battle Prayer[].	Dime más acerca de [BLUE]Oración de Batalla[].	0		TrainSkill#battle_prayer
+31	A	Tell me more about [BLUE]Flames of Faith[]	Dime más acerca de [BLUE]Llamas de la Fe[].	0		TrainSkill#flames_of_faith
+32	A	I understand, goodbye.	Comprendo. Adiós.	0		
+32	A	I wish to join the Church of The Three, your grace.	Deseo unirme a la Iglesia de Los Tres, excelencia.	33	PlayerIsClass#cleric	
+33	Q	I sense you are already loyal to another guild. A Loyalty Oath can only be taken once, in a lifetime.	Ya eres leal a otro gremio. Un juramento de Lealtad sólo puede hacerse una vez en la vida.	0	PlayerHasGuild#	
+33	Q	Splendid! All you have to do is spend five years here studying the scripture, then serve another five years as a novice. And you won't believe how good is the food in here.	¡Espléndido! Lo único que tienes que hacer es pasar cinco años estudiando las escrituras, y después otros cinco años de servicio a la Fe. ¡Y la comida es excelente!	34		
+34	A	Ten years? I was wondering if maybe there's another way of joining. I'm a bit in a hurry.	¿Diez años? Me pregunto si no hay otra forma de unirme. Tengo algo de prisa.	35		
+35	Q	"I am afraid not, we have our rules. Maybe, if you performed an outstanding service to the Faith. But I can't even imagine what could grant such an exception; maybe in the southern lands you can find such an opportunity."	Me temo que no, tenemos nuestras reglas. Quizá, si prestases un gran servicio a la Fe, extendiendo la palabra de Los Tres a otros Reinos. Pero ni siquiera me imagino cómo podrías hacer algo así, quizá en el sur puedas encontrar oportunidades así.	36		
+36,hirge	Q	My friend, I believe I know of a task which might make you a member of our Church. I can tell you more in New Garand, near the temple of the Imperial Religion.	Amigo mio, creo que conozco una misión que podría valer tu entrada en la Iglesia de Los Tres. Te diré más en New Garand, cerca del templo de la Religión Imperial.	0	VariableLower#three_versus_eleven,10	
+36,r	Q	[BLUE](Nods politely and resumes his prayers)[]	[BLUE](Se inclina cordialmente y continua con sus oraciones)[]	0		

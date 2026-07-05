@@ -1,0 +1,20 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Greetings. Remember, there is a reward for hunting down ten coyotes.	Saludos. Recuerda que hay una recompensa por eliminar a diez coyotes salvajes.	0	"VariableGreater#coyote_hunt,9;VariableLower#coyote_hunt,20"	
+1	Q	Well done. Now our woodsmen and farmers will feel safer, thanks to you. Now please choose your reward. You can take a steel longsword, or a small emerald.	Bien hecho, ahora los viajeros podrán sentirse a salvo. Puedes escoger tu recompensa. ¿Prefieres una espada larga de acero, o una esmeralda pequeña?	9	"VariableGreater#coyote_hunt,19;VariableLower#coyote_hunt,100"	"GainXP#240;IncVariable#REP_town_rhoneis,3;IncVariable#REP_ilmara,3;SetVariable#coyote_hunt,100"
+1	Q	Greetings, adventurer. If you seek more jobs, please check the Town Hall.	Saludos, aventurero. Si buscas más tareas, puedes mirar en el ayuntamiento.	0	VariableEqual#coyote_hunt,100	
+1	Q	Welcome to Rhöneis and to the holy land of Ilmara. May the Three bless you. [BLUE](The woman bows her head slowly)[]	Bienvenido a Rhöneis y a la tierra sagrada de Ilmara. Que los Tres te bendigan.	2		
+2	A	Thanks! I have to go.	Gracias! Me tengo que marchar.	0		SetVariable#salute_rhoneis,1
+2	A	Hello, I was wondering if you have any jobs for a wandering adventurer like myself.	Hola, me preguntaba si hay alguna misión para un aventurero como yo.	3		SetVariable#salute_rhoneis,1
+2	A	May the Three guide your every step.[BLUE](Bow your head respectfully)[]	Que los Tres guíen tus pasos.	4	VariableLower#salute_rhoneis,1	"SetVariable#salute_rhoneis,1;IncVariable#REP_town_rhoneis,3"
+3	Q	Maybe. To the south lie the wildlands, not part of any Kingdom. We're having problems with a pack of wild coyotes, which attack travellers continuously.	Quizá. Hacia el sur se extiende la tierra salvaje, de ningún reino. Allí, una manada de coyotes salvajes ataca continuamente a los viajeros.	5		
+4	Q	[BLUE](The woman smiles pleased at your observance of the proper greeting)[]How may I help you?	[BLUE](La mujer sonríe satisfecha a tu correcto saludo)[]Puedo ayudarte?	2		
+5	A	You want me to kill wild beasts? I thought here in Ilmara you always respected natural life.	¿Quieres que caze bestias salvajes? Pensaba que en Ilmara se respetaba la vida natural.	6		
+6	Q	Yes, the Three have taught us that all life is precious. But these tainted beasts are clearly evil, likely influenced by the Deadwood to the south. We must protect our people from such malign monsters.	Si, los Tres nos enseñan que toda vida es preciosa. Pero estas bestias son claramente malignas, quizá bajo la influencia de Deadwood, al sur. Debemos proteger a nuestra gente de tales criaturas perversas.	7		
+7	A	Very well, I'll do it.	Muy bien, lo haré	0		SetVariable#coyote_hunt,10
+7	A	The Deadwood?	Deadwood? Qué es eso?	8	VariableLower#ask_deadwood,1	SetVariable#ask_deadwood,1
+7	A	Not interested in dealing with that, sorry.	Creo que no me interesa, gracias.	0		
+8	Q	A terrible place, where the restless dead rise to haunt the living. Legends say, the Empire defeated an army of heathens there during the Colonization. Now it is a petrified forest, avoided by everyone.	Un lugar terrible, donde los muertos se alzan para vengarse de los vivos. Se dice que durante la Colonización, el Imperio derrotó allí a un ejército de herejes. Ahora es un bosque petrificado, que todos evitan.	7		
+9	A	I prefer the sword, thanks.	Prefiero la espada, gracias.	0		GainItem#523
+9	A	I prefer the emerald, thanks.	Prefiero la esmeralda, gracias.	0		GainItem#2002
+9	A	I don't want any reward. I just did what I felt was my duty.	No quiero ninguna recompensa. Hice lo que consideré mi deber.	10		
+10	Q	[BLUE](The woman bows down and salutes you)[] May the Three be as gracious to you as you are, adventurer. At least take this potion, maybe it can save your life!	[BLUE](La mujer se inclina y te saluda respetuosamente)[] Que los Tres sean tan generosos contigo como mereces, aventurero. Al menos acepta esta poción, podría salvarte la vida.	0		"GainItem#5002;IncVariable#REP_town_rhoneis,5;IncVariable#REP_ilmara,2"

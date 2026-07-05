@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="96" height="96" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="exit_e" value="E9"/>
+  <property name="exit_n" value="D10"/>
+  <property name="exit_s" value="D8"/>
+  <property name="exit_w" value="C9"/>
+  <property name="faction_guard" value="mercia"/>
+  <property name="music" value="decline"/>
+  <property name="name" value="Iron Valley"/>
+  <property name="name_ES" value="Valle de Hierro"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="147" source="trees.tsx"/>
+ <tileset firstgid="163" source="water.tsx"/>
+ <tileset firstgid="227" name="spawns" tilewidth="64" tileheight="64">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="235" source="dryground.tsx"/>
+ <tileset firstgid="299" source="rocks.tsx"/>
+ <tileset firstgid="305" source="rocks_small.tsx"/>
+ <tileset firstgid="315" source="grassland_structures.tsx"/>
+ <tileset firstgid="351" source="palisade.tsx"/>
+ <tileset firstgid="391" source="tower_blue.tsx"/>
+ <tileset firstgid="397" source="house_village_red.tsx"/>
+ <tileset firstgid="445" source="house_bricks_1.tsx"/>
+ <tileset firstgid="475" source="dungeon.tsx"/>
+ <tileset firstgid="715" source="wizardtower.tsx"/>
+ <tileset firstgid="727" source="town_objects.tsx"/>
+ <tileset firstgid="807" source="natural_grounds.tsx"/>
+ <tileset firstgid="935" source="walls_red.tsx"/>
+ <tileset firstgid="950" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztmFluhDAQBbn/TecWEYqiiVjs3hf7lTQfyYDdXQ9shs9xHJ/L54m3/1+PqfbJhlKfVc0SH5TjOmdArcvL/3GMx6XWZlFHBpJr0WKup+9m587GldSR6Z97P0rdzc7njDEaW3JOVAZP81zXgM5oHFKuOe341ntpRTz8X4+jeLPer7rg7Z861qp+Z0h7t/YPeMB/Llh/coH/XCS/n63GArb+M6lalyVV15dVf9NdqdhjlfdZEVTqb/TutEqN1lR8X0r9eNTiAfX9TgRa51ZZjN7dWjMbewX/3B4y/L+Nv5J/ai9Z/kcZRBDlP6ofCpSaomqO9J+dAbeeFf1nZsCZO6renfxz4eYlnQMZ3OGuU138dyGqN/h/Jqq/Xf1TaonocWf/lJq8+9zV/x/Uurx63d3/ieZ6nR3HHW/HDCR1cdYuyjE7+z/xqm3WN/x/8awP/ml43gej+eD+C/zn4lHr25jwf4dbK7XHp+/h/xlOvZKsrn/D/x1P/1mfTnjUDf88rGuGfx7V/O8G/OdC6ZnjBv55wH99rP0DHhx38G8Pxx/c+0D1Cv++YG+tAfzXARnkgwzyQQb5cJ6LgD3c51LqeIDGyK82A+Twi3Sdt/BPzcB7rcu6JrTP/Bb+KedF+o/MQev/bQzp3NRjrcl8nvDwz6lfcp9Zo+3BY26tf20Gn8H31mT6p9ShWVe0c2vG5FAlg/94rimUcyROLJxVzcD7XCv/Wm+V/GuwWL8y/D/V0RWPDCJYxf9JxjqkpeJ+rMFrL47KYQWsnqVWuzZHWPfHdca9F1bLwqMn7/sA/uljWu/Jq+Xg1UuU/+5ZeNYfsQ90z8G77uh7AP7l4+/mP6Ju6fhc1/A/n0dyjiSDLqzmvxvR/q0z6E5kP5J5drr2I3rxyKArWb1o5lvF/UkF/ztnkHkv7+y/ylqqmZNac8WsVvDPnaNCBtWe5bL8Z+518J/3vA3/8T3Dfy//P9xkhzc=
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt3E1KA0EQBtCC3P8IuvJnISIiIq4zUeOpnKJTzKwUhO4R8x4UCSGL4UtRmYZUIn7v81Rvp2Ksaa7baNnn8+ttL+fs7KPlP4X8RzvOdYil/7Pk3997tNzz8W6up2i9n+63uqgzkTlX7lfRst+H2TNKzpzq+Zo5+zB7Rqisc94fYsk9e/95rsftLu3fO8bS+y/RMq/sX8Pc76XOVNnvNXeq7/O1zF7f91Nn23XfZ/nO7e8jWsYPsfR95Z6fSc58c6ePvMfM3l/f61T+OXd83/aVOX+Xvb7vp863da5dl+z7y3lfPZ+Z172+mTPO5W7J3swZ62K3zJsk+/Gmn98CAAAAAAAAAAAAAPBn+A30dnLnonZgGKf2qtd7R3Z8x6nMa8fd7stY9ky3s/4PPdlv4+ZUsgcAAAAAAAAAAAAAAAAAAGC0LwOzeTQ=
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt2stu00AUxvFJWlbAimbHG5KXQCXcVPECLECsuK3bFWy5LnkXoICED2TUiTuejifHPr78f9KoUVyl7vdlfHcOAAAAGJ/TA+s1mKczcgcAVXesVwD//K7Gn2ocLZw73I7vy//LVtXrawvLtZs2yf4oyPewlvXa0UFX6tmnSAcrOlCVm71Yb38yF3T47P0++Odyd/naNbtJ/makL838X+h91GScB3Phx/Lycr7/tvj+61q1vL7V9fefTtL63P48U/ocf47ZdnR5rHer8LO7zv9V5nx83uIzf5WsiOv+f/UdhPvZ2HWhdbCsy3V6WXit38+T42rcjywfav4iNg/Oa8c91xcX40ZP25+3hV08irw35PyF7yB13tWnN3vc8xpj/qJ0f6DtdZX9+z3WZaz5C9m+hD3cNujk3fZv+n1B/Wf9df29MecvDgy29bk+Z6zP2PMfqk+ZWZC/vo8NOXyLvB/LP5zTbcbQ5r+FDy0zOHHxcwD0Rzo4Tgzfz5dqn/2V57t6xxyxtXG7HfBsqa4n1XjQMB4Hv8c80CfZP0wsv+d2e6ADXbHjzxjpgQ705eYv6EBfm/wFHeR7Wnj95yp0oKckfyEdbLavT5TWZY5K8xfhsSlzoMw++bMdSp875YzUsX+Oegf1a0ZTt8/3V0vYgfDXK+bQxRDyF/UOQlPeNg0lf+GvVUz52pH29rtLsTkxlR5K9f1sZ1MHsfs7c2Bxbz3cLsX2EXM6f7N+tqGpiyHtx7pknX/obvCa/NPIXwf52yJ/W+Rvi/xtDenZzjnmPyTkb4v8bZG/Le5f2qMDe3Rgjw7sNT1LkTPoS0fqPn5K276aBi7fx0+Nq7rKzXTjLp6nRL42XbXpDd1q6g0AAAAAAAAAAAAAAADAeP0FYX3WlQ==
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt20lOwzAYhuEijsO45EosuQZUApawoUKClqFQ5nGBgLJATCum06BKrkicP42d2jEk77OJ6jhR9NVx7dSp1QAAAAAAAACg3CZGQl8BENY09wAqbJz2H0xW9mvFXAYQzBj9TzBkH9Yk+f85rdH4Fv7o7b/pKfOGn9OW1oujfqk/fp1zc7rSmRJyfhbKtrX74iZS5zHlu6qr8i117Lr95VXOU0a7/xb2PwhlC/yuZ+o/dzMdg34J9bpC2XzK+Xb5Pc/tU8j03qKN75B9bh9Cznc5+pfG0FdSPlnzr3dh/23GMW/Cftq/O8vS+EiVvRqMnfDL9vnD0oD6JnOGDt9FbotCvi1VJs0ZdPtkH9Nb+6Cvf+hY3A9Ni7p7ZO/UpsWcoU32Tm0YZi/NGRDn+/+X08j5mf8W6ySSPeP/pLxtv25w3DF9j1PXKk/9ueaqkPMR81+nrlSe+nPNFSHnQ9q9lay1n5cWeR4MqEv7T9KfPZypz+dqe6Ht1/+Xt90iyXTt5zDtdzb/oYBX0vsvXaEe/bd70tqHHvrvYkXHQL7WX0HGuxdhsf45HNp+WLz7i6pLG4PCP959CYv8AQAAAABlNcOcFwAAAAAAAAAAAAAAAAAA4F/6AYb3QxU=
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt2DsKwkAQgOHEy6uF3kPwcQPfCqKiR7JJFQnCxs2I+b52m+GfZpmiAAAAAAAAAOCfncvoCfrrlNh+bGetHRMbjrRv7ZDYcKh9a/sPDZ8N7zvts3s0NN5qH2ajfZh1+d7/Yh8AAHRs5g+ahbtmnPpdc2oX2a2qxvW75kT77JYad25eNV9oDwAAAAAAAMCPuQ+iJ+ivm/ZhrtoDAAAAAAAAAAAAAADA17wA8B8UKA==
+  </data>
+ </layer>
+ <objectgroup name="data" width="96" height="96">
+  <object name="Guard" type="spawn" gid="229" x="946" y="1198">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="229" x="946" y="1068">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="229" x="1538" y="1046">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="229" x="1323" y="1778">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1170" y="1990">
+   <properties>
+    <property name="spawn" value="slave_var_male"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="997" y="1793">
+   <properties>
+    <property name="spawn" value="slave_var_male"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1468" y="748">
+   <properties>
+    <property name="spawn" value="slave_var_male"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1227" y="760">
+   <properties>
+    <property name="spawn" value="slave_var_female"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1378" y="745">
+   <properties>
+    <property name="spawn" value="slave_male"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1155" y="2167">
+   <properties>
+    <property name="spawn" value="slave_male"/>
+   </properties>
+  </object>
+  <object name="road signpost" type="conversation" gid="231" x="1497" y="1397">
+   <properties>
+    <property name="conversation" value="D9_signpost"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="south stairs" type="conversation" gid="231" x="1989" y="2186">
+   <properties>
+    <property name="conversation" value="D9_tower_gate"/>
+    <property name="icon" value="magic_gate"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object type="entry" gid="227" x="2030" y="2178">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to I10" type="transition" x="890" y="1076" width="47" height="78">
+   <properties>
+    <property name="area_id" value="FT"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="229" x="1235" y="2229">
+   <properties>
+    <property name="spawn" value="slave_var_male"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2783" y="1445">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2682" y="1442">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2843" y="1345">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2325" y="1091">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2341" y="1019">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="2065" y="839">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1951" y="313">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1896" y="376">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1963" y="221">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1160" y="2826">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1515" y="2727">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1548" y="2822">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="229" x="1485" y="2763">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+   </properties>
+  </object>
+  <object type="entry" gid="227" x="1022" y="1141">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="Leanna" type="spawn" gid="229" x="152" y="1776">
+   <properties>
+    <property name="conditions" value="VariableGreater#dubious_poetry,10;VariableLower#dubious_poetry,40"/>
+    <property name="cycle" value="night"/>
+    <property name="faction" value="neutral"/>
+    <property name="gender" value="f"/>
+    <property name="spawn" value="leanna_assassin"/>
+    <property name="tag" value="D9_leanna_assassin"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Assassin" type="spawn" gid="229" x="262" y="1753">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bandit_male_assasin"/>
+    <property name="tag" value="assassins"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="165" y="1648" width="28" height="220">
+   <properties>
+    <property name="actions" value="StartConversation#D9_leanna_assassin,D9_leanna_assassin"/>
+    <property name="conditions" value="VariableGreater#dubious_poetry,10;VariableLower#dubious_poetry,40"/>
+   </properties>
+  </object>
+  <object name="Assassin" type="spawn" gid="229" x="254" y="1841">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="spawn" value="bandit_male_assasin"/>
+    <property name="tag" value="assassins"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="229" x="1351" y="1110">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="praetor" type="spawn" gid="229" x="1292" y="1122">
+   <properties>
+    <property name="conversation" value="D9_legionnaire"/>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@LEGIONNAIRE_GNULBAM"/>
+    <property name="portrait" value="47"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="231" x="793" y="2681">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+    <property name="quest_location" value="D9_1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="229" x="837" y="2720" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="229" x="844" y="2672" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="229" x="912" y="2683" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="229" x="892" y="2756" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="229" x="611" y="341" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="229" x="530" y="368" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="warrior" type="spawn" gid="229" x="589" y="403" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="231" x="507" y="315">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+    <property name="quest_location" value="D9_2"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="229" x="555" y="305" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D9_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="229" x="2337" y="441">
+   <properties>
+    <property name="respawn" value="120"/>
+    <property name="spawn" value="wraith"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="229" x="2590" y="768">
+   <properties>
+    <property name="respawn" value="120"/>
+    <property name="spawn" value="wraith"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="229" x="2494" y="782">
+   <properties>
+    <property name="respawn" value="120"/>
+    <property name="spawn" value="wraith"/>
+   </properties>
+  </object>
+  <object name="Wraith" type="spawn" gid="229" x="2523" y="465">
+   <properties>
+    <property name="respawn" value="120"/>
+    <property name="spawn" value="wraith"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="229" x="2474" y="514">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object name="Evoker" type="spawn" gid="229" x="2602" y="546">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+   </properties>
+  </object>
+  <object type="entry" gid="227" x="2407" y="657">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="Notice" type="conversation" gid="231" x="2331" y="349">
+   <properties>
+    <property name="conversation" value="D9_graveyard_notice"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="exit to Grasslands" type="transition" x="2292" y="634" width="49" height="46">
+   <properties>
+    <property name="area_id" value="D9_crypt"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Notice" type="conversation" gid="231" x="2684" y="664">
+   <properties>
+    <property name="conversation" value="D9_graveyard_notice"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="roads_varsilia" type="spawn" gid="229" x="2445" y="2217">
+   <properties>
+    <property name="spawnChance" value="35"/>
+    <property name="spawntable" value="roads_varsilia"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="32" height="32" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="45"/>
+  <property name="music" value="decline"/>
+  <property name="name" value="The Seventh House"/>
+  <property name="name_ES" value="La Séptima Casa"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="town_objexts2.tsx"/>
+ <tileset firstgid="313" source="indoor walls.tsx"/>
+ <tileset firstgid="425" source="dungeon.tsx"/>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJAAAIAzF3d3F3EEHEBPq+RgBwUTam/7s/+UX/Xn/Sdh+AngLa9kir
+  </data>
+ </layer>
+ <layer name="ground2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMArIAz+BmJ9xYO0fSACy3x+JH4BFDTYxagE+AmHvj196FIyCUTAKRsEoGAUjDAAAsfwESQ==
+  </data>
+ </layer>
+ <layer name="scenery" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6AbzP61jKFzkIAEgA+6tgcAAFw2h70APw==
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlEsKgDAMRKMH8ACuRbyC//q5/5lMqYsg2dgGPzAPhpZCOjVOSwQAAOCPuIxoFKrzMPasVqzL+ZLZ+U+XvSr2d6xSrI+sjbWzZqUmhU7x13CntJoUtO+/W5PCELHXKrKQimUvY4jpv7V/cZ7B5977TxT0BFr+ex4HCndNwxn+/5j+W2ZGZtmryfU3T87nlzMLAABf4ADuIw+h
+  </data>
+ </layer>
+ <layer name="roofs" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6AbzP61jOG+QQISAADotfM9AOhwUa4APw==
+  </data>
+ </layer>
+ <objectgroup name="data" width="32" height="32">
+  <object name="entry from farmlands" type="entry" gid="1" x="939" y="551">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="988" y="509" width="51" height="93">
+   <properties>
+    <property name="area_id" value="FT"/>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="trainer1" type="spawn" gid="3" x="774" y="535">
+   <properties>
+    <property name="conversation" value="FT_seventh_arkados"/>
+    <property name="faction" value="seventhhouse"/>
+    <property name="name" value="@ARKADOS"/>
+    <property name="portrait" value="74"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="5" x="560" y="441"/>
+  <object name="guard" type="spawn" gid="3" x="719" y="573">
+   <properties>
+    <property name="faction" value="seventhhouse"/>
+    <property name="name" value="@ROGUE"/>
+    <property name="spawn" value="human_soldier"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Rolf Ehrar" type="spawn" gid="3" x="796" y="410">
+   <properties>
+    <property name="conditions" value="VariableEqual#dont_shoot_messenger,100;VariableLower#honor_among_thieves,100"/>
+    <property name="conversation" value="FT_seventh_rolf"/>
+    <property name="name" value="Rolf Ehrar"/>
+    <property name="portrait" value="15"/>
+    <property name="spawn" value="erhar"/>
+    <property name="unique_tag" value="erhar"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="merchant" type="staticNPC" gid="3" x="566" y="562">
+   <properties>
+    <property name="facing" value="r"/>
+    <property name="faction" value="seventhhouse"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@GRETA"/>
+    <property name="portrait" value="22"/>
+    <property name="shop_items" value="7007,6002,5006,3005,5014,5015,531,575,406,407"/>
+    <property name="sprite" value="female_blue_5"/>
+   </properties>
+  </object>
+  <object name="girl" type="spawn" gid="3" x="852" y="616">
+   <properties>
+    <property name="name" value="girl"/>
+    <property name="spawn" value="slave_var_female"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="girl" type="spawn" gid="3" x="573" y="421">
+   <properties>
+    <property name="name" value="girl"/>
+    <property name="spawn" value="slave_female"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="672" y="512">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#guild_seventh,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="672" y="544">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#guild_seventh,1"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="Kalis" type="spawn" gid="3" x="702" y="420">
+   <properties>
+    <property name="conditions" value="VariableGreater#exotic_substances,99"/>
+    <property name="conversation" value="FT_kalis"/>
+    <property name="faction" value="neutral"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@KALIS"/>
+    <property name="portrait" value="26"/>
+    <property name="spawn" value="human_soldier_female"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="96" height="96" tilewidth="64" tileheight="32" nextobjectid="72">
+ <properties>
+  <property name="exit_n" value="D11"/>
+  <property name="exit_s" value="D9"/>
+  <property name="exit_w" value="C10"/>
+  <property name="faction_guard" value="mercia"/>
+  <property name="music" value="decline"/>
+  <property name="name" value="Nekhar Valley"/>
+  <property name="name_ES" value="Valle del Nekhar"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="147" source="trees.tsx"/>
+ <tileset firstgid="163" source="water.tsx"/>
+ <tileset firstgid="227" name="spawns" tilewidth="64" tileheight="64" tilecount="8">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="235" source="rocks_small.tsx"/>
+ <tileset firstgid="245" source="town_objects.tsx"/>
+ <tileset firstgid="325" source="natural_grounds.tsx"/>
+ <tileset firstgid="453" source="town_objexts2.tsx"/>
+ <tileset firstgid="517" source="rocks.tsx"/>
+ <tileset firstgid="523" source="grounds_indoor.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztmA2OGyEMhbn/OapepO1h5hbbUbNqNBoG/zzzTPCTUJINYPuzDbM5WmvHxuNJM+yy42eP4p+L+VW99Sj7bBaZ2Y84tXa/b/GPz4FmbvHH8P/mJZ1X/HHcLSr+93HPykXxH8cfreLP5d8G9tksiv8+g6Xiz+Xf3uzvyl/D6bouMndsLpnYe5hYxWaTkf87Fwkjj9hsMufgndH18zU3nr1Zca/Cf6Ss/Nn2Z7DXqtdLrJiZ/DPkBhGbp9aY7DP0B7unETmX+hkZh1UM5hYfJGt630v+PkPSmphdI1YfrH4y+Gt6kl0fbD8ilJG/5VxZVRn5PymDD0itxv8T9cQ/0mbpn6qu+Sr+HB2X19Jc1b16r5k8iv9YaD7vzIu/TSNmT9/v9FzPis3zO2HJph5Xyf+3M/2L3LvqqS8LFynX4j+Wl430N38k/8rnfzHus9V7KvLZOVLonD79ppzx7Byd9RL9eA2rfSSTlfij7tvfrxHph2WvVfh75/z5O34B/NiN/ymJH6M5P1/Dap9x9mfij+gBj20UlxX5n5Ke/xF2d6//U9I7OMruzJrPzJ/hm9fmp/FvjeOf1WaP66r8Nf6hY0HxX6n+rf5liSWC/6x4PPUhnR+do5Xr33vuj2KKjlnDNSP/U0fnvXYPSZ154/bUdVb+7/L6JOHhif8T+TN8str0+JqVP0sWHuje2V1aJmz+CLsRQpwJrY33YPO36ri8RuyPqivpHWqxweQ/w260neKvs4O29Qn8Pest9tAxZ+YfcW5a1mc8g9jPnyj+lj5AC8VfsgfKf+8+nrpDC8l/dh94lcFf5B2wYg7YiuBfObgXklnx1+vKJZJ/hrstk3pMIvmv2AsSv5++13Kw8tLwXykfGv69eh69f9pP8yzvHRmFYGC12fussb0T/7u1Hrva+Stw19pn+ytVBPuI3CHqKqMizp6I/tGuWYH9KQ/3XmzoM8wzP3sfeOs+mr+nV651kjEHbP4jFt66l8xjysofOaT+WGLRxn03J1Js9hJmnh5AxR4lNuuIeDXrkf6gejbLmCmED9pY2Hwz5qE5bF/XjOJhc83Kvznsj+Jgs1yFP1pshjuz/xabZXQOsueOzTF7/maIzWL3HLA57J4DNgP2YGvk3xe1towb
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztnetO20AQhYf3fwxoS9PSqqCWcr+4EMhfVPV1uiPvkQfLjiKS3YPs80mjbBQEzpnZ2dlxNpgJMR8+JfuT7QP5WuaI699kk/71QfxLfw7Sn8u+tdq7Dz6Tr2WOIP9r/eUQ11/Ff31Uf3JB/lf8c1D9zyXGv/Svj/Tn4vnnwVT/s1D9yeUl2b9sf8nXMkfUf+AS91/Svz4e/9r/8kD9o/WXg+ofLnH9Vf6pT9x/Sf/6xPwv/evj+Uf9Bx6q/7nEzz9I//og/yj/c9DnH7io/ueC/o/yPwfdf+Si9ZeLPv/DZU7550uygwE7zI9fCdcU779MOf5d+xNrc+3lntlZsibZfbLbbL/ttT8OR8Z4vgt/zaH+ce1PretzNWGM5243yQdXye72Wh9dBf/cBJ/Bor/e6oupxz+0X1qrudtZskXPPib7ZZ0voAlqk4fwGnz3mM1/N3wR50q0sTl0atM9//Ld2vfnGkGzn8mORn7+m7V+cFuEcf95HLvPlvlv3Of5cpHnS5PnznWy8974Ij9eh/k1pfiH9jG/eNyPaf9W3Gdx/sQch/kzZPFnphb//l5iX6WU9n2O7XU+i3Nl0RsPza0pxP+ztfGFfSXy/Q/mRc0ArK/+iFrTx+vyvdgNnmOgu9cVrj1qk6nk1PeM5xzEPHRvTPrXwrWOn+Nw3T3n+5qmvF8e6I9aTuttPVDvuP7K+fUYqncQ+6p3yjJU7+gedj1U7/CA1v16R+tueZ6ti3301qL2yvtl8XhH3kHcq79TnpW1Wse4j/1b5fyyuM7ez0eNidrTe2va45ZlaH+ltbY86/ZXivmyqJ/MRfsrHmP7K+WdeqifzAP1jr4Xpy7r6h3l/LKon8xF9Q4P9ZN5qJ/MRf1kDuonc1E/mYf6yRzUT+ah/RUH6I1zZ9pf1WOT87b+mvTfPZuet/V6R3l/O2KOwbnWTc/bSvvtQE73mnJp3TnYTc/biu2A7qswfrKy521FB87er6zzgZu0r8PQOeJz016WiZ/HV9wLIYQQZdlnX8DMkf5cpD8XfM+U4ID7uOrjc/D49x6Q9Ofg+iv+eeD/Z0j/3fAfYJ3/7g==
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt20FuwjAURVG6u3YdHbX7X0CFmFWVCEnhxvY5U5DivPw8mwGXC6zp461ewdrk35J/S/6td/mnzH/L/LfMf8v8t+Tfkn9L/7fMf0v+Lf3TMv8t89+Sf0v/tOTf0j8t+bfk39L/LfPfMv8t89+Sf0v+Lfm35N9y/mnJ/+Yruq7+acm/Jf+W/m/JvyX/5/jc+L1r/tXZq/Lo/a6WzyNkA6zuu14AXOzHZ6Qb5uJ5Av/l2iez79s6E5jNs3tbb7KqPe/WaOeo0dbLMWfs82pN92b/r8+9L4zsjO//SFZ9/83NfTIak+fGK5gzXuH3GWWmM8tM93J2+up19s61ZwTsNfN+qhs5A//3WsOoz61ed339UcgJgK3q30D2rONkeLM1h3rmZyFHgO3s1cc9kqE9CoC9fgC+sCDh
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt1EEKgDAMBMD8/7XV+gCvPYQgWCzYmWNyWRLYCAAAAAAAAAAybXWAjVzJ7On9j5lBNpb9gDnOYtc/S/F/VWdUPTHu9P57umS9qnMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIi4AfYxDEc=
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwbkAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="1" name="bear trap" type="trap" gid="231" x="2753" y="2037" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="2" name="bear trap" type="trap" gid="231" x="2850" y="2049" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="3" name="Warrior" type="spawn" gid="229" x="2832" y="2420" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="4" name="Warrior" type="spawn" gid="229" x="2819" y="2549" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="5" name="Archer" type="spawn" gid="229" x="2701" y="2599" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="6" name="Warrior" type="spawn" gid="229" x="2274" y="2471" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="7" name="Warrior" type="spawn" gid="229" x="2261" y="2600" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="8" name="Archer" type="spawn" gid="229" x="2143" y="2650" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="9" name="Warrior" type="spawn" gid="229" x="1384" y="2697" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="10" name="Warrior" type="spawn" gid="229" x="1371" y="2826" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="11" name="Archer" type="spawn" gid="229" x="1253" y="2876" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="12" name="Warrior" type="spawn" gid="229" x="1624" y="2121" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="13" name="Warrior" type="spawn" gid="229" x="1616" y="2229" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="14" name="Archer" type="spawn" gid="229" x="1535" y="2312" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="15" name="bear trap" type="trap" gid="231" x="1476" y="2836" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="16" name="bear trap" type="trap" gid="231" x="2347" y="2749" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="17" name="bear trap" type="trap" gid="231" x="1190" y="2365" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="18" name="bear trap" type="trap" gid="231" x="1162" y="2337" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="19" name="Warrior" type="spawn" gid="229" x="2089" y="2238" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="20" name="Warrior" type="spawn" gid="229" x="2102" y="2109" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="21" name="Warrior" type="spawn" gid="229" x="2575" y="1502" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="22" name="Warrior" type="spawn" gid="229" x="2562" y="1631" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="23" name="Archer" type="spawn" gid="229" x="2444" y="1681" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="24" name="Archer" type="spawn" gid="229" x="1812" y="1442" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="25" name="Warrior" type="spawn" gid="229" x="2383" y="2009" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="26" name="deserter" type="spawn" gid="229" x="1810" y="1397" width="64" height="64">
+   <properties>
+    <property name="name" value="@LEGION_DESERTER"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="27" name="Deserter" type="spawn" gid="229" x="1882" y="1431" width="64" height="64">
+   <properties>
+    <property name="name" value="@LEGION_DESERTER"/>
+    <property name="spawn" value="female_knight_hostile"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="28" name="deserter" type="spawn" gid="229" x="1947" y="1400" width="64" height="64">
+   <properties>
+    <property name="name" value="@LEGION_DESERTER"/>
+    <property name="spawn" value="knight_hostile"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="29" name="Deserter" type="spawn" gid="229" x="2006" y="1404" width="64" height="64">
+   <properties>
+    <property name="name" value="@LEGION_DESERTER"/>
+    <property name="spawn" value="female_knight_hostile"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="Chest" type="container" gid="231" x="1790" y="1308" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="outlaw_chest_10,decurion"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="31" name="Archer" type="spawn" gid="229" x="2016" y="1438" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="32" name="deserter decurion" type="spawn" gid="229" x="1887" y="1334" width="64" height="64">
+   <properties>
+    <property name="name" value="@DECURION_DESERTER"/>
+    <property name="spawn" value="hostile_decurion"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="33" name="bear trap" type="trap" gid="231" x="1923" y="1564" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="34" name="bear trap" type="trap" gid="231" x="1971" y="1556" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="35" name="bear trap" type="trap" gid="231" x="1923" y="1497" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="36" name="Archer" type="spawn" gid="229" x="2375" y="1888" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw_archer_elite"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="37" name="Warrior" type="spawn" gid="229" x="2336" y="2018" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="38" name="Crate" type="container" gid="231" x="975" y="2448" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+    <property name="quest_location" value="D10_1"/>
+   </properties>
+  </object>
+  <object id="39" name="Archer" type="spawn" gid="229" x="1033" y="2481" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="40" name="warrior" type="spawn" gid="229" x="1129" y="2441" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="41" name="Archer" type="spawn" gid="229" x="1052" y="2439" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="42" name="warrior" type="spawn" gid="229" x="1054" y="2351" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="43" name="Archer" type="spawn" gid="229" x="1103" y="2484" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="44" name="warrior" type="spawn" gid="229" x="2796" y="1889" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="45" name="Archer" type="spawn" gid="229" x="2800" y="1848" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="46" name="warrior" type="spawn" gid="229" x="2856" y="1930" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="47" name="Archer" type="spawn" gid="229" x="2772" y="1914" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_2"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="48" name="Crate" type="container" gid="231" x="2841" y="1849" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+    <property name="quest_location" value="D10_2"/>
+   </properties>
+  </object>
+  <object id="49" name="Archer" type="spawn" gid="229" x="2833" y="1802" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_2"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="50" name="Warrior" type="spawn" gid="229" x="2702" y="2191" width="64" height="64">
+   <properties>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="51" name="bear trap" type="trap" gid="231" x="2363" y="2074" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="52" name="bag" type="conversation" gid="231" x="2741" y="1293" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#D10_gems,1"/>
+    <property name="conversation" value="D10_gems"/>
+    <property name="icon" value="loot"/>
+    <property name="name" value="@BAG"/>
+   </properties>
+  </object>
+  <object id="55" name="D10" type="transition" x="2994.59" y="436.75" width="90.08" height="73">
+   <properties>
+    <property name="area_id" value="E10"/>
+    <property name="entry_id" value="25"/>
+   </properties>
+  </object>
+  <object id="56" type="entry" gid="227" x="2888.75" y="467.917" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="25"/>
+   </properties>
+  </object>
+  <object id="57" name="beast" type="spawn" gid="229" x="595.636" y="1594.91" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="58" name="beast" type="spawn" gid="229" x="819.879" y="1407.03" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="59" name="beast" type="spawn" gid="229" x="542.606" y="1841.88" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="60" name="beast" type="spawn" gid="229" x="498.667" y="1007.03" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="61" name="beast" type="spawn" gid="229" x="1253.88" y="1066.97" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="62" name="beast" type="spawn" gid="229" x="2169.88" y="820.667" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="63" name="beast" type="spawn" gid="229" x="2301.7" y="288.848" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object id="64" name="warrior" type="spawn" gid="229" x="830.167" y="777.833" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="65" name="Crate" type="container" gid="231" x="655.167" y="682.833" width="64" height="64">
+   <properties>
+    <property name="icon" value="crate1"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@CRATE"/>
+   </properties>
+  </object>
+  <object id="66" name="Archer" type="spawn" gid="229" x="683.833" y="782.5" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="1"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="67" name="Archer" type="spawn" gid="229" x="673.167" y="743.5" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="68" name="bear trap" type="trap" gid="231" x="680.833" y="911.833" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+  <object id="69" name="Archer" type="spawn" gid="229" x="782.167" y="845.167" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw_archer"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="70" name="warrior" type="spawn" gid="229" x="672.5" y="865.833" width="64" height="64">
+   <properties>
+    <property name="quest_location" value="D10_1"/>
+    <property name="quest_spawn" value="2"/>
+    <property name="spawn" value="outlaw"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="71" name="bear trap" type="trap" gid="231" x="872.833" y="869.167" width="64" height="64">
+   <properties>
+    <property name="id" value="bear"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

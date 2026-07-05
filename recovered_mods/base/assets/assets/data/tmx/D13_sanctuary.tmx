@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="50" height="50" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="65"/>
+  <property name="music" value="townhall"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="dungeon.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="town_objexts2.tsx"/>
+ <tileset firstgid="553" source="dryground.tsx"/>
+ <tileset firstgid="617" source="tomb2.tsx"/>
+ <tileset firstgid="657" source="trees.tsx"/>
+ <tileset firstgid="673" source="town_objects3.tsx"/>
+ <tileset firstgid="705" source="icemist_large.tsx"/>
+ <layer name="nonwalk" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztw7ENAAAMAiC3/v9xT3A3kJAAAAAAbLgSAAAAAIBtD/z8ADk=
+  </data>
+ </layer>
+ <layer name="water" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0ssKhDAMhWHd+f7P0Fl4YXzFsWBBSmMZqKYJ/weh25yeDAMAAACAlibtBRqZhLFGymEty10Oq1nmUR4L0r/vx75bNpZyJDHHks18vpbs2S1d8/Tic+wSxvIb91/PO/oKs15Gk5QhVPYvjaa7Pv59NbXKEBz1odnXWxme7os+6OMJVv67xsp/13jpo8RiHyUeMkQebiqij77QR1+85OCuAMCHH3TdFl0=
+  </data>
+ </layer>
+ <layer name="ground2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="scenery" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztziEOwCAQRcENt6VBYehxe5SiEaSmrJlJflaseREAAABw3igRfa4t95q7S3bdd3XTuvvxryc7AAAAAACAFC8T8QVO
+  </data>
+ </layer>
+ <layer name="objects" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztl0tOAzEMQN3ZcAAoCzbcgR3/zxHoKfgI1BZpaGEBKzgjC8QKVkgVJ8DWxJJlMtF0NFU8wk+ynMZJxlY+dgEcx3Ecx3Ecx3Ecx/nvXBUA26H9VVSaf18UOTxqxxh9XaD+RP0DVZvkA+XWSBwl+jFBuQzC7eeisl2jzFHeI3OpbxbG0Jz7jDHRuVgfAGwM4rZl18oFffu7xjZF22sD33hMzjjo7L91tFbu/eiCEVR3ZRLui9Z3K47xKbH+g5G3qAll5K3i92rcozjoXK0Jf3eEbariWNS0LdCnfJyiy7Mjz6iWVd9z2o9D1HsdrZUL/vZuYsxLwj+ZJ3PGMYucgbZ1krW7lsopKazFUYb8ofOKvKuPwsa18dxYHPSGbYb6V+pRZCzbre0FQT4Ng39aa4aG46D92FpyjsU42vhkMQ5ZVx3VjNH9uhazwHnQlOfPUI6Vnfr3UQ4icyzB/zvI31P4G0dqjiVk7XjScI7F+8G1yk2iftViLQc6Tt/4BaiBRXo=
+  </data>
+ </layer>
+ <layer name="roofs" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENACAMA8GI/VckNWOwAU2KKOhugrfkCAAAgLdc3QV1+4MNzHB8DQAAAAAA2lz+8wKq
+  </data>
+ </layer>
+ <objectgroup name="data" width="50" height="50">
+  <object name="exit from dungeon" type="entry" gid="1" x="1491" y="911">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to D12" type="transition" x="1566" y="849" width="58" height="153">
+   <properties>
+    <property name="area_id" value="D13"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="notice" type="conversation" gid="5" x="1338" y="851">
+   <properties>
+    <property name="conversation" value="D13_sanctuary_notice"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="sign3" type="conversation" gid="5" x="802" y="961">
+   <properties>
+    <property name="conversation" value="vault"/>
+    <property name="icon" value="sphere"/>
+    <property name="name" value="@SPHERE"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="1251" y="921">
+   <properties>
+    <property name="name" value="@PILGRIM"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="1107" y="1011">
+   <properties>
+    <property name="name" value="@PILGRIM"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="3" x="1130" y="1378">
+   <properties>
+    <property name="name" value="@PILGRIM"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="992" y="832">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#ancient_seal,10"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="5" x="992" y="864">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#ancient_seal,10"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="weaponsmith" type="staticNPC" gid="3" x="877" y="1034">
+   <properties>
+    <property name="facing" value="r"/>
+    <property name="faction" value="the_three"/>
+    <property name="name" value="@BROTHER_HADRI"/>
+    <property name="portrait" value="18"/>
+    <property name="shop_items" value="129,130,131,193,525,535,536,537,705,5016,6010,6011"/>
+    <property name="shop_modifier" value="1.06"/>
+    <property name="sprite" value="hooded"/>
+   </properties>
+  </object>
+  <object name="Mantros" type="spawn" gid="3" x="855" y="768" width="64" height="64">
+   <properties>
+    <property name="conversation" value="D13_mantros"/>
+    <property name="spawn" value="D13_mantros"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="notice" type="conversation" gid="5" x="1110" y="1210">
+   <properties>
+    <property name="conversation" value="D13_sanctuary_notice2"/>
+    <property name="icon" value="notice"/>
+    <property name="name" value="@NOTICE"/>
+   </properties>
+  </object>
+  <object name="Bed" type="bed" gid="5" x="1276" y="1219"/>
+  <object name="Bed" type="bed" gid="5" x="1052" y="1221"/>
+  <object name="Bed" type="bed" gid="5" x="967" y="1226"/>
+ </objectgroup>
+</map>

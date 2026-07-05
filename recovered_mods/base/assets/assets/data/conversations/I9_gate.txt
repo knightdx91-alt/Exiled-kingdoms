@@ -1,0 +1,8 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The castle has fallen into chaos and the gate is open, but from the noises beyond you can tell the fortress is still inhabited.	El castillo es ahora un lugar caótico y la puerta está abierta, pero por los ruidos que se oyen es evidente que sigue habitado.	10	VariableEqual#invitation,100	
+1	Q	[BLUE](The castle gate is shut. From a murderhole above the gate you see an arrowtip pointing at you and a voice can be heard)[]. Go away or you'll be our practice target!	[BLUE](La puerta del castillo está cerrada. Por un hueco sobre las puertas ves asomar la punta de una flecha y escuchas una voz)[]. ¡Lárgate, o te usaremos para practicar puntería!	2		
+2	A	We have an invitation from the Baroness!	¡Tenemos una invitación de la Baronesa!	3	"VariableEqual#invitation,10;IsInParty#mercenary_grisenda"	
+2	A	It's not a good idea to stay here.	No es buena idea seguir aquí.	0		
+3	Q	[BLUE](You listen to the soldiers up above whispering among themselves, until you can hear a loud clang. They have unlocked the gate)[] Very well, you may come in and show that to our captain.	[BLUE](Escuchas a los guardias discutir entre susurros hasta que oyes un ruido metálico. Han abierto la puerta)[] Muy bien, pasad y enseñadle eso a nuestro capitán.	10		
+10	A	Enter Castle Storme.	Entrar al Castillo Storme.	0		Travel#I9_castle,1
+10	A	We need to prepare better for this... I'll return later.	Necesitamos prepararnos bien para esto... Mejor regresar luego.	0		

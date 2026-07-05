@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Greetings, Impiri. We come in peace and go in peace. We hunt wolves for their skin.	Saludos Impiri. Nosotros venir en paz y marchar en paz. Nosotros cazar lobos por su piel.	2		
+2	A	Okay, go in peace then. Goodbye.	De acuerdo, Pues marchad en paz. Adiós.	0		
+2	A	Are you interested in buying some pelts from me?	¿Os interesaría comprarme algunas pieles?	4		
+2	A	Disgusting savages, you are not leaving in peace. You are going to die here and now.	Malditos salvajes, no os dejaré marchar. Vais a morir aquí y ahora.	3		
+3	Q	Impiri is now going to find out the strenght of the Free People.	Impiri va a descubrir la fuerza de Gente Libre	0		"NPCHostile#varannari_traveller;DecVariable#REP_varannari,5"
+4	Q	[BLUE](The man smiles)[] We always need wolfskin. We pay shiny impiri gold for strong wolf pelts. You have?	[BLUE](El hombre sonrie)[] Nosotros siempre necesitar pieles. Nosotros pagar brillante oro Impiri por pieles de lobo fuertes. Tú tener?	5		
+5	A	Yes, I have this white wolf pelt, isn't it magnificent?	Sí, tengo esta piel de lobo blanco. ¿No es impresionante?	12	playerhasitem#1004	
+5	A	Yes, I have this perfect one, very precious.	Sí, tengo esta piel perfecta, muy valiosa.	6	playerhasitem#1003	
+5	A	Yes, I have some damaged ones, but still useful.	Sí, tengo algunas pieles, dañadas, pero fuertes.	8	playerhasitem#1002	
+5	A	No, sorry, I don't have any wolf pelts.	no, lo siento, no tengo pieles de lobo.	11		
+6	Q	I offer you [BLUE]100 gold[] for it.	Te doy [BLUE]100 monedas[] por ella.	7		
+7	A	Deal!	Trato hecho!	4		"loseitem#1003;gainGold#100"
+7	A	No, thanks	No gracias.	11		
+8	Q	I offer you [BLUE]20 gold[] for it.	Te doy [BLUE]20 monedas[] por ella.	9		
+9	A	Deal!	Trato hecho!	4		"loseitem#1002;gainGold#20"
+9	A	No, thanks	No gracias.	11		
+11	Q	Too bad. Safe travels then.	Lástima. Buen viaje entonces.	0		
+12	Q	I offer you [BLUE]150 gold[] for it.	Te doy [BLUE]150 monedas[] por ella.	13		
+13	A	Deal!	Trato hecho!	4		"loseitem#1004;gainGold#150"
+13	A	No, thanks	No gracias.	11		

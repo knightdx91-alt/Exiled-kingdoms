@@ -1,0 +1,12 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions	requisites
+1	Q	Your future is shrouded, traveller. I can't see anything for you.	Tu futuro está nublado, viajero. No puedo decir más.	0	VariableGreater#princess_sea,9		
+1	Q	Ah... A traveller... A foreigner...I can see your future, it is very clear.	Ah, un viajero... Un extranjero... Puedo ver tu futuro, está muy claro.	2			
+2	A	Yeah sure. If you would, you'd see I'm not going to talk to you.	Si claro. Si lo vieras, sabrías que no voy a hablar contigo.	0			
+2	A	Really? That's amazing! Tell me what you see.	¿En serio? ¡Increible! Dime qué ves.	3			
+3	Q	[BLUE](She closes her eyes and her face contorts as she focuses... And meanwhile extends her palm to you)[] Fifty coins please...	[BLUE](Cierra sus ojos y su cara se retuerce mientras se concentra... Y mientras tanto te extiende la palma de la mano)[] Cincuenta monedas, por favor...	4			
+4	A	Put 50 gold in her hand.	Poner 50 monedas en su mano.	5	PlayerHasGold#50	LoseGold#50	
+4	A	Maybe another time.	Quizá en otro momento.	0			
+5	Q	I see... A princess! She is desperate, cursed and cast away. But you will meet her and if you help her, you may earn her love.	Veo... ¡Una princesa! Está desesperada, maldita y desterrada. Pero la encontrarás, y si la ayudas, te amará.	6			
+6	A	That has to be the most standard prediction for adventurers, you're probably making it up.	Esa es seguramente la predicción más típica para un aventurero. Te lo estás inventando.	7			
+7	Q	She awaits you weeping by her beloved sea. Not far from the Imperial road that goes south.	Te espera llorando sobre las aguas del mar, cerca de la Carretera Imperial que va hacia el sur.	8			
+8	A	Hmmm, I admit that's a bit more specific than I had expected from a fortune teller...	Hmm, admito que eso ya es un poco más específico de lo que me esperaba de una adivina...	0		SetVariable#princess_sea,10	

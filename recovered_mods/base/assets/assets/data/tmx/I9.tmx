@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="96" height="96" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="exit_e" value="J9"/>
+  <property name="exit_n" value="I10"/>
+  <property name="exit_s" value="I8"/>
+  <property name="exit_w" value="H9"/>
+  <property name="music" value="relent"/>
+  <property name="name" value="Mount Storme"/>
+  <property name="name_ES" value="Monte Storme"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="grassland.tsx"/>
+ <tileset firstgid="129" source="spawns.tsx"/>
+ <tileset firstgid="137" source="trees.tsx"/>
+ <tileset firstgid="153" name="water" tilewidth="64" tileheight="64">
+  <image source="grassland_water.png" width="1024" height="256"/>
+ </tileset>
+ <tileset firstgid="217" source="rocks.tsx"/>
+ <tileset firstgid="223" source="rocks_small.tsx"/>
+ <tileset firstgid="233" source="dryground.tsx"/>
+ <tileset firstgid="297" source="town_objects.tsx"/>
+ <tileset firstgid="377" source="bridge.tsx"/>
+ <tileset firstgid="385" source="wall_stone_large1.tsx"/>
+ <tileset firstgid="394" source="tower_blue.tsx"/>
+ <tileset firstgid="400" source="stoneroad1.tsx"/>
+ <tileset firstgid="416" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="434" name="grassland_structures" tilewidth="64" tileheight="256">
+  <image source="grassland_structures.png" width="1152" height="512"/>
+  <tile id="8">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="470" source="natural_grounds.tsx"/>
+ <tileset firstgid="598" source="town_objexts2.tsx"/>
+ <layer name="nonwalk" width="96" height="96" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztl0uS5EAIQ+v2fe1Zt6fL5iMkSKMIb2YMiEcm5f75fD4/gx+LonGWPG9+ovxQUvdfweopBskPIUu/GVaMc3ma/mKA5rYz8Ktqn+4c7GLz31n8FnMH7Sz+Vxf+b51BJ/5vnIVy/+8scn1X8X7THJa/Vstfq0n8T5zBNP6nzWIy/xPmsPx1yval5j59Dtme1Lynz2Mqf6uHCAemEOeowwy+ebFKdW9Q97jLDKJ3IHN3Mpp8/j2+nrT8Y+fb6utJyz8+AwSrSN8IZdlbc0zlXz2D7vyt9TLK9l9Z21pfzT/CKeMBqeXPZ271Uckf7ReVhz0DNv8qv6g87Bkg6nfgX+W5Wmz+1nqIHAjfDDH6QPbC5M++A9l4Zi+nzGAq/7vaqDwT+F9zsPuY/luAqtGNv6del/ODyqM8Q5GanXYoKs/yj9VG5enC31J3+efFOP8VWv73sWzv2XgV/zsf0ViWlr/O87V2JlY9g2hNJfurj0hM5EErU0t5Z68+IjHZJ6tsfvXezEjNH5G/w+6MSukdVXcif4XPqrvF3JUodfCn4F99vjzvnsL/Kdf1/6uEODNMIT18Y86Upwc1/4r9oN7zWf5MVcy/A3/Puwr+U75PIqrmH2XU4duEIa9/b/+W9z2su3HPevLGZe4A8umirLdMjCd2+d/HZ2pG41TMkTkV/K91o3Gq896NP6JuJrZqpzB2VbaHjD/EHqrUBP7o+h1/Gxk11L13nkOluvQ84VuxQh17PX0OE/o7+T5M6Yv5TZ/VnSfF3ygoTfGt4m+JQ3JSzuCu3vXfrcyz3j38ETW78r97t/Lusvl/y9tNb+DfWazfradck3/7rfLsetTOt+Zje2NL0Zc1d4R91i97ph3Y/5U/yz7j3ZOrqk7V7BX8vT1E+Vc9SFlqeL1l+2HFKnhb/VresTKw1vTyYPCvltJjRb1J7FF+2fWrazCF2AHMO3CaOt/Nq8cT1X0/nq5lr9Xy5yn7nbPsc1r2Wu355wnFetnHtPy1ivL9BwmvHHU=
+  </data>
+ </layer>
+ <layer name="water" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJztm9mOGjEQRev//yDbJIoi5SVKnoFpaAbmIes3pa/wlSskGUaBsRX6HMnqFau5VV1VNiYCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg4q73A8wc6X/b+yFmjPTfXKiv1YX6mRPj1LZley7Sf3GBfubEOg7xRzbYn9nXqrTb0i+cRrFnF4c4JP3H+Pd3wdoPZf9Sce2akZ86B2i7i9O+K42t76bsL9O5Id0DD6O4I82ll/xf2i2i+rC2y3LO/q39TbpvUc5v0nl9Zl36hr8j/aR7jj/OoetyXVvbYlHaOqodhrRdRn0n1Bf6P4w0l15j1Fyc47b9fhW/2sNx3vY4Pq/36i4Y353Cvn8fNQ8P5Zr1zjHFMWaI6u/r0pwDdH6MGn90/+sWX+Y/RP46Ro0V9mNf037OqTnfOi/k7ZCabHpuTXvtjKVlOzjeRNrPOTlrn3Ovtnp/tmX/OJbB79i3XYPKZ51bM7mmcQyyxvuocSznEsZgp1HMuY+qu8cAx3E/1zqu822Lbfq87YLfP44xqn6eC7W21jOPA3IeWKTjfenDx/A45OuuFT0HpK1rHeE4Yxu4zrGNdlHrWO1/mtr7Zt/geslxJ+tuW0Ab/C5YfwAAAAAAeBpupva8tJuj4y9Hx3B5/BuIxpzH8+s/oo5LGY8+DW9Ke/mH9i1d830wPzxvDe2x9h+n9rbzs8yRd1P7EAc7YIM+2AaaI8UGfeA96I9toFoYG/ThVdT1LC/6Psoskf4eH7LmrT3S3+uA8P/2SH+vE8L/2/N5at9L+9r5WebIszisH2LNcx+sP/GnD86/0p/82x75v9dT4//tkf5ex4v/t8f1J/m3D4x/+yL9/b8B9G+P449sgP7tyfGf/Nse1//6nwD+3x7Xn9If/29Pnn/G/9vD/E9fXH9S//SB+qcv/P7Ylzz+Rf/2WH/ybx+8/gf/7wPzn32x//P7Yx88/8D4tw/W/xrGXz8BJapQsQ==
+  </data>
+ </layer>
+ <layer name="bridge" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt2FsKgzAQBVC77C7VR7uWIij1x2I06WByzpdCkCFcnYldBwAAAAAAAHAf7+gCIMgrcf1YpIo2DdEFcNoUXUAF9N37S+0ffPmG1EMvTyf/cUrsvV5A65yPj1ln/9zfjD7z86Ck3H1Y/q+5un/OAWnkP85eVq/0ZPk/Zs3pr72e341hWbPNdb+5H5c103It/+WY7fOaszp0Mku75uz7DwrHPR/RFdTFXBPHeYmWyX+cs3On/gsA/6f/AgAAAAAAAAAAAAAAAAAAtOcDDOkqfg==
+  </data>
+ </layer>
+ <layer name="ground" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt3EtOwzAQxvEUVsCOw8EZqGi5A4h7IFXisejl2BU2NKKRQknq+Dmeyf8nRXTRR/LFdsZOadMAgLxl7/Eq8XvHvN9Dsr2o1530DghJ3c5yWrqfEmQog/XIcy33hbYPdMd3cya5JzhFU5/V6Ja2jwhj1w7UgfHTnyszK5laru9Qj3vpHUBV2rlttwahYQyyWONoXgPS0GZ8aT4fQAoW+zVQu/NF3Ovpt8OePHKNPQfa5V5TeXTk+z7z/Dsp+/KzR6Zt/nPvA5La/K/IXwz5yyL/OC+R2fnmn7Pm1LjeF5L/dv+a18P2NuP2n6L23Oyz+/DIb3vIvE8qfyvzt02vPbu24+xbU/O3cv83h0VEG5YefzSO+0Pac3ARsF0K5c/94XliHEWMHHVL6DXASg2FX1ZqAcA66gggLYk5GTUU5oL6MgzX+v8YN/O6LrQuqnVM+M64+WTP2GDb6ugvAOSWo76ycs+TsRgp+gftCLBhyrxu7H89GAfi7Pbb54TnSX/XzqrQ/FnDO23q2lj33UeXmPaf+lz1j43xD2Omzhm1/KZjv91bmQ/nIjUucF7sOHXNs3Ddqf0YNNXcriw13qvs50+9XZ6m9m8R+csi/7R8x3Dy/6v0NZz85+ercd8L0MBnrJkyZy41r94V+pwQNdbgqc9LzfmHqvG8jcmR/7rROf+VMPRbFLnMZa1yLscJG2pfl4UutCegrFL1rlTfTvW5JedGUvMwTfM/jaSvb9Kfrw39wa3UnHVK27W2dqP9eOg/gC0W+zR1EQCtfgAxeHG+
+  </data>
+ </layer>
+ <layer name="scenery" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt1lsKgzAQQFFnYV2c0tY+7ZZFWtGfhEJjpHAOBIXx6wZkmgYAAAAAAAAA+EePWN6HSH9HefdV76f2Vd0yvY+f2SGWQ31X3Xdz0X5zp0TjXvsqXjrvJrdrzrOz+ylu2m1yu+Y8S/2b+F0X3z3ZRhvvAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUNoIqYcOEQ==
+  </data>
+ </layer>
+ <layer name="objects" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="96" height="96">
+  <data encoding="base64" compression="zlib">
+   eJzt1qERACAMBEFoHygahUURIrJbwc+pbw0AAAAAgNdWz15Qz2k+tf/uNB/af6c5QA2+ZZ7bt/Q7Y/k5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAlA2HEQV5
+  </data>
+ </layer>
+ <objectgroup name="data" width="0" height="0">
+  <object name="villager" type="spawn" gid="131" x="2132" y="2178" width="64" height="64">
+   <properties>
+    <property name="name" value="@VILLAGER"/>
+    <property name="name_ES" value="@VILLAGER"/>
+    <property name="spawn" value="villager_female_white"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="131" x="1896" y="2266" width="64" height="64">
+   <properties>
+    <property name="name" value="@VILLAGER"/>
+    <property name="name_ES" value="@VILLAGER"/>
+    <property name="spawn" value="villager_male_blue"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="131" x="2010" y="2138" width="64" height="64">
+   <properties>
+    <property name="name" value="@VILLAGER"/>
+    <property name="name_ES" value="@VILLAGER"/>
+    <property name="spawn" value="villager_male_blue"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2098" y="2910" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2642" y="2862" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2906" y="2029" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1902" y="1450" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2714" y="926" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2190" y="586" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2758" y="1388" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2800" y="688" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1812" y="148" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1630" y="418" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1797" y="810" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1698" y="895" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1506" y="206" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1012" y="164" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="1008" y="2856" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="236" y="2384" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="772" y="2788" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="294" y="2171" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2322" y="1091" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="176" y="1504" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="270" y="1226" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="625" y="2384" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="341" y="1067" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="Varsilian Roads Encounter" type="spawn" gid="131" x="2449" y="1792" width="64" height="64">
+   <properties>
+    <property name="spawnChance" value="35"/>
+    <property name="spawntable" value="roads_varsilia"/>
+   </properties>
+  </object>
+  <object name="elder" type="spawn" gid="131" x="1850" y="2162">
+   <properties>
+    <property name="conversation" value="I9_mayor"/>
+    <property name="name" value="@RADAIM"/>
+    <property name="portrait" value="57"/>
+    <property name="spawn" value="villager_male_red"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Teala" type="staticNPC" gid="131" x="1958" y="2068">
+   <properties>
+    <property name="conversation" value="I9_teala"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@TEALA"/>
+    <property name="portrait" value="8"/>
+    <property name="sprite" value="female_green_2"/>
+   </properties>
+  </object>
+  <object name="sleep" type="entry" gid="129" x="1860" y="1982">
+   <properties>
+    <property name="entry_id" value="10"/>
+   </properties>
+  </object>
+  <object name="Veteran" type="spawn" gid="131" x="177" y="293">
+   <properties>
+    <property name="conditions" value="variableGreater#those_in_need,9;VariableLower#those_in_need,100"/>
+    <property name="spawn" value="mercenary"/>
+    <property name="tag" value="veterans"/>
+    <property name="unique_tag" value="I9_vet2"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Veteran" type="spawn" gid="131" x="212" y="399">
+   <properties>
+    <property name="conditions" value="variableGreater#those_in_need,9;VariableLower#those_in_need,100"/>
+    <property name="spawn" value="mercenary"/>
+    <property name="tag" value="veterans"/>
+    <property name="unique_tag" value="I9_vet3"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Raegar" type="spawn" gid="131" x="223" y="323">
+   <properties>
+    <property name="conditions" value="variableGreater#those_in_need,9;VariableLower#those_in_need,100"/>
+    <property name="conversation" value="I9_raegar"/>
+    <property name="spawn" value="raegar"/>
+    <property name="tag" value="veterans"/>
+    <property name="unique_tag" value="I9_raegar"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Veteran" type="spawn" gid="131" x="261" y="371">
+   <properties>
+    <property name="conditions" value="variableGreater#those_in_need,9;VariableLower#those_in_need,100"/>
+    <property name="spawn" value="rogue_archer_8"/>
+    <property name="tag" value="veterans"/>
+    <property name="unique_tag" value="I9_vet1"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Raegar" type="spawn" gid="131" x="2023" y="2217">
+   <properties>
+    <property name="conditions" value="VariableEqual#those_in_need,110"/>
+    <property name="conversation" value="I9_raegar"/>
+    <property name="spawn" value="raegar"/>
+    <property name="unique_tag" value="I9_raegar"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2697" y="2621" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="beast" type="spawn" gid="131" x="2747" y="2456" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="Event" type="spawn" gid="131" x="2796" y="268" width="64" height="64">
+   <properties>
+    <property name="event_location" value="I9_1"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="Event" type="spawn" gid="131" x="481" y="2723" width="64" height="64">
+   <properties>
+    <property name="event_location" value="I9_2"/>
+    <property name="event_spawn" value="1"/>
+    <property name="spawntable" value="beasts"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="129" x="1179" y="789">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="knight" type="spawn" gid="131" x="1241" y="795" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,90"/>
+    <property name="name" value="@STORMKNIGHT"/>
+    <property name="spawn" value="stormknight"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="131" x="1289" y="1007">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,90"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="131" x="1170" y="976">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,90"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="131" x="1294" y="932">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,90"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Melee Soldier" type="spawn" gid="131" x="958" y="976">
+   <properties>
+    <property name="conditions" value="VariableLower#invitation,90"/>
+    <property name="name" value="@SOLDIER"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="door" type="conversation" gid="133" x="1126" y="792">
+   <properties>
+    <property name="conversation" value="I9_gate"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="Eirenda" type="staticNPC" gid="131" x="1267" y="795">
+   <properties>
+    <property name="conditions" value="VariableEqual#invitation,95"/>
+    <property name="conversation" value="I9_eirenda"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@EIRENDA"/>
+    <property name="portrait" value="22"/>
+    <property name="sprite" value="female_blue_3"/>
+    <property name="tag" value="eirenda"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

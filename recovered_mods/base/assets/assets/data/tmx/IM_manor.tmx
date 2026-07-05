@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="40" height="40" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="70"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grounds_indoor.tsx"/>
+ <tileset firstgid="489" source="teleporter.tsx"/>
+ <tileset firstgid="490" source="town_objexts2.tsx"/>
+ <tileset firstgid="554" source="town_objects3.tsx"/>
+ <layer name="nonwalk" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <layer name="ground" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztlkEKgDAMBOOzhX6lfxXv1QoizpZZyC2HYUM2qVJKfa22Ve0P6uz7i29WBL473yh8V76R+Ea+ybcGXx8UiY++H+R8Iedz+n1r+hfN53zf8dHzJSGfE+4b/X+Rb30+8n6Q84Wcz+n3zf8gm488X8XUAV/Fqrs=
+  </data>
+ </layer>
+ <layer name="ground2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <layer name="scenery" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <layer name="objects" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztlt8KgjAUhzefoKu6784gSy0j7R/0CFEKBr1Fz98ZbjRkuhHoWXA++F10NujjuOlhjCCIoTlBHjIV5Kml0tbOSH41JA0YW/Fv7Q2Za78jWN+NLSYpIQn8/6tjXdWvI/m0qR33YfndHPdh9q8I7Puw/MT5y1v3wwRm/2a8/35MuN/nL0L0s93fJbgtEP1Ky7rwCz3un2Dtwfmj78dv2M6fgvpnRsx/GWtmvVyrF7KWyWDNf1vHfemgFt347ud6P6h/Zu6O+8jPzD/4RZbZWYDpl3D7fI/5fol7/FRvsfxi1sx3JtTsLMD0m/Y829ADPxfIz8wRspHZa/WDVhe5jG5G+MwHnJIe0w==
+  </data>
+ </layer>
+ <layer name="roofs" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <objectgroup name="data" width="40" height="40">
+  <object type="entry" gid="241" x="738" y="1124">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="stairs down" type="transition" x="682" y="1162" width="121" height="54">
+   <properties>
+    <property name="area_id" value="IM"/>
+    <property name="entry_id" value="10"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="667" y="362" width="158" height="42">
+   <properties>
+    <property name="actions" value="StartConversation#IM_greyrune,IM_greyrune"/>
+    <property name="conditions" value="VariableLower#IM_trap,2"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="243" x="836" y="434">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#IM_trap,2"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="tag" value="golems"/>
+    <property name="unique_tag" value="IM_manor_golem"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Greyrune" type="spawn" gid="243" x="753" y="259">
+   <properties>
+    <property name="conversation" value="IM_greyrune"/>
+    <property name="hostile" value="VariableEqual#IM_trap,2"/>
+    <property name="spawn" value="IM_greyrune"/>
+    <property name="tag" value="IM_greyrune"/>
+    <property name="unique_tag" value="greyrune"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Iron golem" type="spawn" gid="243" x="678" y="437">
+   <properties>
+    <property name="faction" value="player"/>
+    <property name="hostile" value="VariableEqual#IM_trap,2"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="tag" value="golems"/>
+    <property name="unique_tag" value="IM_manor_golem2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="245" x="791" y="211">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="items" value="2534"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="IM_manor_chest"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="72" height="64" tilewidth="64" tileheight="32" backgroundcolor="#aba8a9">
+ <properties>
+  <property name="faction_civilian" value="mercia"/>
+  <property name="faction_guard" value="mercia"/>
+  <property name="music" value="hills"/>
+  <property name="name" value="Freetown"/>
+  <property name="outdoor" value=""/>
+ </properties>
+ <tileset firstgid="1" source="stoneroad1-grass.tsx"/>
+ <tileset firstgid="19" source="stoneroad1.tsx"/>
+ <tileset firstgid="35" source="water.tsx"/>
+ <tileset firstgid="99" name="spawns" tilewidth="64" tileheight="64">
+  <image source="spawns.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entry" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spawn" value="orc"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value="goblin"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="107" source="natural_grounds.tsx"/>
+ <tileset firstgid="235" source="rocks.tsx"/>
+ <tileset firstgid="241" source="tower_blue.tsx"/>
+ <tileset firstgid="247" source="house_village_red.tsx"/>
+ <tileset firstgid="295" source="town_objects.tsx"/>
+ <tileset firstgid="375" source="stone_bridge_small_64_128.tsx"/>
+ <tileset firstgid="415" source="trees.tsx"/>
+ <tileset firstgid="431" source="townhall_red.tsx"/>
+ <tileset firstgid="467" source="houses_brick_2.tsx"/>
+ <tileset firstgid="539" source="grounds_indoor.tsx"/>
+ <tileset firstgid="699" source="manor3.tsx"/>
+ <tileset firstgid="719" source="manor4.tsx"/>
+ <tileset firstgid="740" source="grassland.tsx"/>
+ <tileset firstgid="868" source="dungeon.tsx"/>
+ <tileset firstgid="1108" source="walls_red.tsx"/>
+ <tileset firstgid="1123" source="town_objexts2.tsx"/>
+ <tileset firstgid="1187" name="arena" tilewidth="64" tileheight="192">
+  <image source="arena.png" width="768" height="768"/>
+ </tileset>
+ <layer name="nonwalk" width="72" height="64" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztlksOwyAMRHPd3P8CVaUuooqAjT9jJ/OkbNrAmAemPQ5CenL+nqdwFnoqYq2ffux+NO9VQ7M+y3jJ+xW529/Re15980Q/knmknrr5QdTaxc+V7Bq7+RkRXX9nP5k9YLn/Uf8dLHetpa4ufjxrRWRq8qPHI/dQUuvOGM089DOfC9Fnu3T2o83ZIcKPdbzXOfI4d2/0Mxv//xnCj6b2DD9eedJcCdq9PCfjLLVW9pNBVz9Z0M8a+lnTzU+2z7schB/NmiufuSvefqTzScdU6GOEn9V80sxKIPrVs6ej8a6ZfnzmQu+FF0/1gzin2fV28ZN9bjyzo5Hk0s88U1rPbr13NaD9IHtaA8IP+s6Tgjg/6J6WgLx/sjN3MlB+OuwF8vermp9RblU/1jzNuma5Vf1Ezt3BT3SWxc+uI08ysqyOLE6ja4+Ys5Of1Xq854uoPxrv9bzNz2hNs+/pZ/4O/dS6P6PZXRf90M8XS6+8wQ8hhBCSzQd15H0Y
+  </data>
+ </layer>
+ <layer name="water" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztmt2O00AMhc+7gLT8iQtAIHG7dFnoLVc8M/AC/XPbfRByNDkaN1TQlLSZnfiTrNlNmso5sj3jmQJBEFybxdgOFMyqsWVj68a2zoIEdVm2tkVo1IXxw/yiPpvGrL1m47lUFIaky7YdlWcapwzjZoOsj8yQ42nKSAPFjdfJEPpQE8NhDVq561PHkLTQHOY1Yuw8dUZeXd/FUaEePq98fda9T5hmLPnabMg55vXR/TukGPqGw5iqOZ4M6d2Xnb8VT9SHms0au23vfUfORz7zDvVqxPfXPPXiL/a+sTlSDN039tA+s3ffVatG1EdrZR9La2dvkHT6iFSL7jGNdaPy51SoE2OJuTa/iEdloRrch9dIGn0Z3p3i0DqnL0+Qcmw2rDvFoVrzq7VTuWnsM5I+6+HdKgb16D9bOxXGj+azmvdBqI3y64ezf0F9GDtz5DXl80s4ODKGlGOkjz43l3KoMFY4rM+sQX3yrHa0fg7+hLWH+th/fMfdMK4Ui3rRvrA+s8/gOpr5uUOdcWg471yQ+nD9o30hmvrcWlgg7+/0xevj99ZsKOcKQPup5/YX1Ocrcm6d08uVjCHvG/aF6x/2X+xRVeepz24g30pA+8zn1mdqQ020p79CXTV64ewUjawdXzb2Aam/2CPXZp0J1YR+t9E9G9SevN+v5//ShnWZ8bNzn31A7lVqQXrw/XUe8ezIKHuLpAuNuu1a01lZTfWHGHJeSCdDriuKIb8/rbzau+drqjse9Req06qzut79zQKv3yLrqbyqlaUz1RhDXlf7sw2Ns/beHufPf48FxYzW0X6ulh5eQ/ajjJ+te65mDPmcdHPEpIvmMNXhGueqY5gzj3oP0q3bqk9TQO/drSF6/25v5n+jOAVUY7r6WDt2ddgeuVY7tc9BwXWwsR0IgiAIgiAIgiAIgiAIgmB0fgMSHzt+
+  </data>
+ </layer>
+ <layer name="ground" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt1k0OgjAQhmEIbky8g17Clb8H0KUn0Nt5NaIudC+NssFS2lAcGN4nmZCQphm+DIUkAQCdzpPfe9OatYes01Z65WLJpVSXj2EyGlNONiYfbTnsI+5l8ll65HPMPjUEu4h7zYrKAqvvttINCLtJNzAgd+kGMDj599r0nq2KWhe16badvzo5/tVsOIu6lUo3EJmZl/JMfkTYT1s+Ta6BD6wpnxjzUqUpnxL/PH5c8xT6HdSgmkduXYWY0kTnGeTjJd1Ajz2lG2hhMdaB9jAnGyjEWLuRjxv5uJGPG/m4kQ8AAAAAAAAAAAAAAADaegPtGRT4
+  </data>
+ </layer>
+ <layer name="scenery" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztm7lOAzEQQCGEO1SAuPkOEA2IX+AIAj6OmpIPoArQ5GyoSALh7jgbzkQQEaxZK96ZXXuceQ0CsZbnZX2Mx+nqEgRB+GMjabsHP6zV+7H+25eofjYJ+5wAk6572mLoaqAb9/yr8vsesj2X6EfG8mLwv2lm704f0s0zTTecpNejMUBNMkY3+8w+hx6L/eU2/8RF4x3aFDdtQ7GPrCVo++QKjf39KjDG7wzG/YWnboK41bipKC7OkW6ecI+DlCOc0280bZcVF1Wkm0fc405xRjyGHmib6ygozl5KhmNshNm+EENRifUaiP3TAx9hzl4KStxXgIePADfTjNbhMHv7vBL3JeDhPcDNFCM3Yfb2OSXuGuDhLcDNJCM3rey26SmLmEsmiNykYna8I/lhINvM3Mx7sBZGxZzGzTjTeY2KWY2bMcANtJ76yowm1lHADbSeCtFgUqOiZEk+Y0GIHGx9nxOmOTm2vu8qy0BcupwcOv/B1vc5ocvJofMfyvr+veOedTk5dP5DWd9v1sUWHXcEAZ3/UNb31brYSkDbKUvuTizmg1BdbAH427AlN8cMcuUhYjenbbZ3xMDNoKX3JsPAjeAOVYfWTWj+tUnFsf6ExUZ+5/qe1SYmd7miIOHwGqG7yyXU9z4x18ps3oM5MIw1E7Ob1rzpS97bf9jKmzhAnTf5QiedQ5vi6zl0kxJi7uZ2Dn1oGGsR4cb375kVDNw0zulb6xhxfs/MBnkDN0H3NH0lx+zOWZxkxY3QwXwDqKxN9Q==
+  </data>
+ </layer>
+ <layer name="objects" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztm0tvEzEQx3dJ7jw+Qi+QCpB4qhEckHLpgQsqldqKL8CV9AOU95HHFwBxpj22wA0EPbZSr6WAxDEhSVtAQjm0s41XWiyP47U3u+Ps/KSRFa+98fzjtddjJwgYhmHocjdMV/57JQhuKOpE+b7TE2kb7JflPTAd4vwNjU6vha5vIL1JTM+WY/0p8GkxdNMnJtJpmpg+WfET/PqmsB+VgX6RPq9SPrMU6Ii0bVD2nIV/F6DORbAt0GdTY/1Ev+l71Ifq4eAZosBctegW6FkkopOPfGDtUN6zNijvctTmmme/w5prezP0l9rYuDqkPetwvaUpc5Btc4ygouEXg3b8JdJWV1ZS+vFZKr+jqP9nTLRx5atCh9+G2jQ91XAZafcnKX9bUW7fU59NeYv493HM/WaKQ55Ta/D5dKgvQwnT+FgzsXa+D/48AHsI9gjsMdgTsKeE/XSlK9J95HqTeGwhS+JYWFfK39PUKZM+KnaHXC+zPh3NtQULXfKKNzbE99yCdAbsCtjVkM54/0y047lIX4j0JaGYrC0m8XiZecO+FMfkVdzzTDfT/YsoNp52reoCtfXXsH1T272DU8fs6lFAnt9lZqv/p9HaNE0fOumxNklU89dtqb9ga1OME55ro1pXJGMXWBzDhOMO2pwlNu70hhcpHaPWZGbEfeB6QX3M5p1IRbxnb7pfpTpXlZYzyD2yuHce1KT3/0lNu23XB3K9JTHH3LG4XzRnYet4Bke3VlWB9WumfIzLXD+R4fkz1/OZSaI5q17A85bXuY4stNLFfc7zWHUEtdgEkw+jGJ8bSF/C8l3x5X2ZwbkMv+G/gs94x/FvOaXAJUJtoYhP/w8oCtaIYUYLP2MMwzAMwzB+cAjglm6I
+  </data>
+ </layer>
+ <layer name="roofs" width="72" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztm8dSHDEQhhlYWIyLsODH8Otgmyckn4wNTpRt/AAm7ZLT1TiQo9NUeV2qKbVmpG6pe8J/2cPutKRve6QOMx0dbrp3vK6tM+T1knWHvP6UZBaw1js9D2DQLfL6E5JZyNQN9wQSWk74ySqj31zzDa3V5wSLFUY2V3xDV3LQZsQ9A7naQLDZYbwHQ6iFYLNdcDZpOlLYbSRYbJWczaHCppVgsVlyNgcKm2YOWTQ1e8Y3ovNn38M59qRGbxPSumb+X4E19f397yPmc3s0IJs1zVqPgfU/EHhfjAVkZVKvQDbPhLCpC2STFw0zsgvhP0uIvbaBYPNIGbdHY0d3nuZJQwg2I8rauzV2dOepTlL2n6QGEWyGlbXXNHZ052lZ1FDW3kWwb0n1HxcNWfjFgIbdXoH9atBibf0aNrvA9UXyH1ftFNhvbPRQ4zfbKWwq/5GhvpzmDyH8x5STZ6n/YPv7kmXKyaH6jypsfx8rn/5jysmh+o8qTH+foi/2lGlv/pJh7pj+PqYvJl2XEa6/79oX467nZtFF5Le/fwQxYGKzaHGmn3ue4yFg/7ffYUG9s2Bz5pnNAWD/l99hQb0VFAtCfbGfYafxX28MbB7nYA/USUp/R6Li+NCWz2yJeNrGzzOG33M/y3XqOD5VfjdtYMMds544jp+W32X1nynB99QPRzbY57fbmkSwAWNWIn13tJ81v0vznwlLNq+V30MxK6VMedMt8B3V89vjlmxehb4HDWxugO9s8zuq+s9CYDamvOlaWBw6H5iNKW+6ImJT/2cH6z8vA7KJ45QQeVMPEeMXAdlg69BRxpy5O8HG1X/mCNnEPQxTHwMdp2RkUyPym+eEbOI6vamPEeo9sy6m/vsng/20Or2098yotYRgL+U9M1/+8xFhN67TXzrsBe1nuqk/qfUBYde1Tp+X5yzeI+bpu05fZuXFfyrxiitOqVRs5dV/4hjCV1ziO06pZKc/8LmDJQ==
+  </data>
+ </layer>
+ <objectgroup name="data" width="72" height="64">
+  <object name="Alchemist" type="staticNPC" gid="101" x="1783" y="913">
+   <properties>
+    <property name="facing" value="l"/>
+    <property name="faction" value="mercia"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@TRADER_LIRDI"/>
+    <property name="portrait" value="17"/>
+    <property name="shop_items" value="7004,7005,5016,5003,5007,5008,5009,5012,6001,6003,6006"/>
+    <property name="shop_modifier" value="1.04"/>
+    <property name="sprite" value="female_red_1"/>
+   </properties>
+  </object>
+  <object name="The Generous King" type="restpoint" gid="103" x="1306" y="1133">
+   <properties>
+    <property name="id" value="FT_inn_1"/>
+    <property name="name" value="FT_INN"/>
+    <property name="sleep_cost" value="10"/>
+   </properties>
+  </object>
+  <object name="The Valiant King" type="restpoint" gid="103" x="543" y="242">
+   <properties>
+    <property name="id" value="FT_inn_2"/>
+    <property name="name" value="FT_INN2"/>
+    <property name="sleep_cost" value="10"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="101" x="744" y="190">
+   <properties>
+    <property name="spawn" value="slave_var_female"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="101" x="772" y="168">
+   <properties>
+    <property name="spawn" value="slave_male"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Slave" type="spawn" gid="101" x="835" y="167">
+   <properties>
+    <property name="spawn" value="slave_var_male"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="1351" y="783">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="1038" y="1417">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="767" y="760">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="471" y="837">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="475" y="800">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="teleport" type="entry" gid="99" x="1550" y="977">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object name="FT  Town Hall" type="castle" gid="103" x="806" y="738">
+   <properties>
+    <property name="castle_id" value="7"/>
+   </properties>
+  </object>
+  <object name="exit to farmlands" type="transition" x="2177" y="967" width="48" height="140">
+   <properties>
+    <property name="area_id" value="D9"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="99" x="2110" y="1010">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="weaponsmith" type="staticNPC" gid="101" x="1095" y="738">
+   <properties>
+    <property name="faction" value="mercia"/>
+    <property name="name" value="@WEAPONSMITH_LOE"/>
+    <property name="portrait" value="11"/>
+    <property name="shop_items" value="184,609,709,710,711"/>
+    <property name="shop_modifier" value="1.04"/>
+    <property name="sprite" value="male_red_1"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1435" y="876">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="471" y="881">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1522" y="1204">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1223" y="1313">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="937" y="1469">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1005" y="837">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1293" y="408">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1116" y="348">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="villager" type="spawn" gid="101" x="1767" y="592">
+   <properties>
+    <property name="spawntable" value="freetown"/>
+   </properties>
+  </object>
+  <object name="Armorer" type="staticNPC" gid="101" x="1007" y="1250">
+   <properties>
+    <property name="facing" value="l"/>
+    <property name="faction" value="mercia"/>
+    <property name="name" value="@ARMORER_DORMA"/>
+    <property name="portrait" value="11"/>
+    <property name="shop_items" value="157,158,159,151,155,533,539"/>
+    <property name="shop_modifier" value="1.03"/>
+    <property name="sprite" value="male_black_2"/>
+   </properties>
+  </object>
+  <object name="Leanna" type="spawn" gid="101" x="1415" y="591">
+   <properties>
+    <property name="conditions" value="VariableLower#dubious_poetry,11"/>
+    <property name="conversation" value="ft_leanna"/>
+    <property name="faction" value="mercia"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@LADY_LEANNA"/>
+    <property name="portrait" value="32"/>
+    <property name="spawn" value="villager_female_white"/>
+    <property name="tag" value="leanna"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="865" y="713" width="95" height="111">
+   <properties>
+    <property name="actions" value="StartConversation#eirama,FT_eirama"/>
+    <property name="conditions" value="NPCisInParty#zenmo,zenmo;VariableEqual#prisoners_dilemma,30"/>
+   </properties>
+  </object>
+  <object name="Eirama" type="staticNPC" gid="101" x="910" y="763">
+   <properties>
+    <property name="conversation" value="FT_eirama"/>
+    <property name="gender" value="f"/>
+    <property name="name" value="@EIRAMA"/>
+    <property name="portrait" value="40"/>
+    <property name="sprite" value="female_green_1"/>
+    <property name="tag" value="eirama"/>
+   </properties>
+  </object>
+  <object name="armorer rolgam" type="staticNPC" gid="101" x="918" y="1230">
+   <properties>
+    <property name="conversation" value="FT_armorer"/>
+    <property name="faction" value="#civilian#"/>
+    <property name="name" value="@ROLGAM"/>
+    <property name="portrait" value="12"/>
+    <property name="sprite" value="male_brown_12"/>
+   </properties>
+  </object>
+  <object name="Arena Master" type="staticNPC" gid="101" x="815" y="1609">
+   <properties>
+    <property name="conditions" value="VariableLower#web_terror,100"/>
+    <property name="conversation" value="FT_tribune_arena"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TRIBUNE_GELEB"/>
+    <property name="portrait" value="76"/>
+    <property name="sprite" value="male_black_1"/>
+   </properties>
+  </object>
+  <object name="Guard" type="spawn" gid="101" x="1063" y="1597">
+   <properties>
+    <property name="faction" value="#guard#"/>
+    <property name="respawn" value="15"/>
+    <property name="spawn" value="mercian_legionnaire_female"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="praetor" type="spawn" gid="101" x="898" y="295">
+   <properties>
+    <property name="conversation" value="FT_praetor"/>
+    <property name="faction" value="#guard#"/>
+    <property name="name" value="@PRAETOR_RONGAE"/>
+    <property name="portrait" value="52"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Boatman" type="staticNPC" gid="101" x="488" y="440">
+   <properties>
+    <property name="conversation" value="FT_boatman"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@BOATMAN_NOREAD"/>
+    <property name="portrait" value="16"/>
+    <property name="sprite" value="male_red_1"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="1312" y="692">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="1785" y="473">
+   <properties>
+    <property name="conversation" value="FT_door_library"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="1148" y="211">
+   <properties>
+    <property name="conversation" value="FT_door_warriors"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="1939" y="892">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="805" y="1281">
+   <properties>
+    <property name="conversation" value="locked_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="cook" type="staticNPC" gid="101" x="450" y="665">
+   <properties>
+    <property name="conversation" value="FT_cook"/>
+    <property name="facing" value="l"/>
+    <property name="name" value="@RONAEF"/>
+    <property name="portrait" value="51"/>
+    <property name="sprite" value="male_black_11"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="99" x="1229" y="239">
+   <properties>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object name="Thief" type="staticNPC" gid="101" x="1815" y="1275">
+   <properties>
+    <property name="conversation" value="FT_niruh"/>
+    <property name="facing" value="l"/>
+    <property name="faction" value="seventhhouse"/>
+    <property name="name" value="@NIRUH"/>
+    <property name="portrait" value="31"/>
+    <property name="sprite" value="male_black_2"/>
+   </properties>
+  </object>
+  <object name="locked door" type="conversation" gid="103" x="1906" y="1230">
+   <properties>
+    <property name="conversation" value="FT_thieves_door"/>
+    <property name="icon" value="door"/>
+    <property name="name" value="@DOOR"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="99" x="1934" y="1268">
+   <properties>
+    <property name="entry_id" value="3"/>
+   </properties>
+  </object>
+  <object name="Nifuruc" type="spawn" gid="101" x="1841" y="1403">
+   <properties>
+    <property name="conditions" value="VariableLower#honor_among_thieves,80"/>
+    <property name="conversation" value="FT_nifuruc"/>
+    <property name="hostile" value="VariableEqual#honor_among_thieves,70"/>
+    <property name="spawn" value="nifuruc"/>
+    <property name="tag" value="gang"/>
+    <property name="unique_tag" value="nifuruc"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="101" x="1812" y="1422">
+   <properties>
+    <property name="conditions" value="VariableLower#honor_among_thieves,80"/>
+    <property name="hostile" value="VariableEqual#honor_among_thieves,70"/>
+    <property name="name" value="@HOODED_MAN"/>
+    <property name="spawn" value="rogue_archer_12"/>
+    <property name="tag" value="gang"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Outlaw" type="spawn" gid="101" x="1767" y="1407">
+   <properties>
+    <property name="conditions" value="VariableLower#honor_among_thieves,80"/>
+    <property name="hostile" value="VariableEqual#honor_among_thieves,70"/>
+    <property name="name" value="@HOODED_MAN"/>
+    <property name="spawn" value="rogue_melee_12"/>
+    <property name="tag" value="gang"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Rolf Ehrar" type="spawn" gid="101" x="1784" y="1298">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="Rolf Ehrar"/>
+    <property name="portrait" value="15"/>
+    <property name="spawn" value="erhar_hostile"/>
+    <property name="tag" value="erhar_hostile"/>
+    <property name="unique_tag" value="erhar"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1776" y="1242" width="69" height="359">
+   <properties>
+    <property name="actions" value="StartConversation#erhar_betrayed,FT_seventh_rolf"/>
+    <property name="conditions" value="VariableEqual#honor_among_thieves,50"/>
+   </properties>
+  </object>
+  <object name="conversationTrigger" type="trigger" x="1681" y="1223" width="267" height="265">
+   <properties>
+    <property name="actions" value="StartConversation#nifuruc,FT_nifuruc"/>
+    <property name="conditions" value="VariableEqual#honor_among_thieves,55"/>
+   </properties>
+  </object>
+  <object name="entry from farmlands" type="entry" gid="99" x="1810" y="543">
+   <properties>
+    <property name="entry_id" value="4"/>
+   </properties>
+  </object>
+  <object name="Rolf Ehrar" type="spawn" gid="101" x="1792" y="1301">
+   <properties>
+    <property name="conditions" value="VariableEqual#honor_among_thieves,50"/>
+    <property name="name" value="Rolf Ehrar"/>
+    <property name="portrait" value="15"/>
+    <property name="spawn" value="villager_male_green"/>
+    <property name="tag" value="erhar_betrayed"/>
+    <property name="unique_tag" value="erhar"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Arena Master" type="staticNPC" gid="101" x="818" y="1626">
+   <properties>
+    <property name="conditions" value="VariableEqual#web_terror,100"/>
+    <property name="conversation" value="FT_tribune_arena2"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TRIBUNE_GELEB"/>
+    <property name="portrait" value="76"/>
+    <property name="sprite" value="male_black_1"/>
+   </properties>
+  </object>
+  <object name="entry from arena" type="entry" gid="99" x="911" y="1698">
+   <properties>
+    <property name="entry_id" value="30"/>
+   </properties>
+  </object>
+  <object name="HIRGE Trigger" type="trigger" x="1631" y="873" width="28" height="248">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_dreams"/>
+    <property name="conditions" value="NPCIsInParty#hirge,hirge;VariableEqual#three_versus_eleven,100;VariableLower#ancient_seal,10;VariableLower#TMP_hirge_dream,1;PlayerIsLevel#13"/>
+   </properties>
+  </object>
+  <object name="HIRGE Trigger" type="trigger" x="1288" y="1212" width="28" height="248">
+   <properties>
+    <property name="actions" value="StartConversation#hirge,hirge_dreams"/>
+    <property name="conditions" value="NPCIsInParty#hirge,hirge;VariableEqual#three_versus_eleven,100;VariableLower#ancient_seal,10;VariableLower#TMP_hirge_dream,1;PlayerIsLevel#13"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

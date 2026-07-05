@@ -1,0 +1,8 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The boatman smiles friendly)[] Hello there. Are you in need of transportation?	[BLUE](El barquero te sonríe)[] Hola, necesitas transporte?	2		
+2	A	No, goodbye.	No, adiós.	0		
+2	A	Yeah, I want transportation by boat.	Si, quiero que me lleves en bote.	3		
+3	Q	Good, I am getting a lot of business lately with all those orcs and bandits in the roads. I can take you upstream to [BLUE]Kingsbridge for 250 gold[], in about 12 hours. Or I can go all the way north to [BLUE]Rhöneis for 350 gold[]. That will take us a full day.	De acuerdo, he oido hablar de ti y creo que eres de confianza como para subir a mi bote.  Puedo remontar el río hasta [BLUE]Kingsbridge por 250 monedas[] en unas 12 horas. O puedo llevarte más lejos, hasta [BLUE]Rhöneis por 350 monedas[]. Tardaríamos un día entero.	4		
+4	A	Take me to Kingsbridge, then.	Llevame a Kingsbridge.	0	playerhasGold#250	"loseGold#250;Travel#G9,2,12"
+4	A	Take me to Rhöneis, up the river, in the Kingdom of Ilmara.	Llévame rio arriba a Rhöneis, en el Reino de Ilmara.	0	playerhasGold#350	"loseGold#350;Travel#F10,2,12"
+4	A	Hmmm I am not sure, maybe I'll be back later.	Hmmm no estoy seguro, quizá vuelva más tarde.	0		

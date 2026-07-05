@@ -1,0 +1,10 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Greetings, traveller	Saludos, viajero.	2		
+2	A	Hello, I must be going.	Hola, disculpa pero tengo prisa.	0		
+2	A	Can you take me in your boat? I need transportation	Me preguntaba si puedo viajar en tu bote.	3		
+3	Q	Sure, I've heard you're a nice fellow. I can take you downstream to Kingsbridge for 100 gold. We should get there in half a day.	De acuerdo, he oido hablar de ti y eres una buena persona. Por 100 monedas puedo llevarte rio abajo, a Kingsbridge.  Nos llevará medio día.	4	VariableGreater#REP_town_rhoneis,9	
+3	Q	Hum. Listen, I normally don't carry passengers, and I certainly don't carry people that I don't know and trust. Sorry.[BLUE](You need to rise your reputation in Rhöneis to 'Friendly')[]	Hum. Mira, normalmente no llevo pasajeros, y desde luego no voy a llevar a nadie conmigo que no sea de confianza. Lo siento.[BLUE](Necesitas mejorar tu reputación en Rhöneis a 'Amigable')[]	0		
+4	A	Take me south to Kingsbridge, in the Kingdom of Varsilia.	Llevame al sur hacia Kignsbridge en el Reino de Varsilia.	0	playerhasGold#100	"loseGold#100;Travel#G9,2,12"
+4	A	Can't you take me north to Nivarian?	No puedes llevarme al norte hasta Nivarian?	5	playerhasGold#100	
+4	A	Hmmm I am not sure, maybe I'll be back later.	Hmmm no estoy seguro, quizá vuelva más tarde.	0		
+5	Q	[BLUE](The man shakes his head)[] My boat is no good for Lake Nivar, you need to walk if you want to go to the Blessed Nivarian.	[BLUE](El hombre niega con la cabeza)[] Mi bote no vale para navegar el lago Nivar. Debes ir a pie si quieres visitar la Sagrada Nivarian.	0		

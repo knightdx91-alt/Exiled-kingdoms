@@ -1,0 +1,32 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hey there, are you an adventurer?	Eh tú,¿eres un aventurero?	2	VariableLower#spiders_sack,1	
+1	Q	Oh, you found them! Thank you very much friend,I guess I won't be needing these laboratory gloves to protect me from the venom. They will be your reward.	¡Oh, las has encontrado! Muchas gracias amigo, supongo que ya no necesitaré estos guantes de laboratorio para protegerme del veneno.	14	"VariableEqual#spiders_sack,10;PlayerHasItems#1008,3"	
+1	Q	Haven't you found them yet? I've heard there are many spiders in Inori desert and Jabal Hills.	¿Aun no las has encontrado? He oído que hay muchas en el desierto Inori y en las Colinas de Jabal. 	13	VariableEqual#spiders_sack,10	
+1	Q	Hello friend. I am finally an Alchemist Apprentice, thanks to you.	Hola amigo. Gracias a tí ahora soy un aprendiz de alquimista.	56	VariableEqual#spiders_sack,100	
+2	A	Yes, and one of the best around these lands.	Sí, y uno de los mejores de por aquí.	3		
+2	A	Yes, and a very busy one. Goodbye.	Sí, y uno muy ocupado. Adiós.	0		
+2	A	Is that some sort of greeting around here? because I've been asked that a lot recently.	¿Qué es eso, un saludo típico por aquí? porque me lo preguntan a menudo últimamente.	4		
+3	Q	Really? I have never heard of you.	En serio? Nunca he oído hablar de ti.	5		
+4	Q	I'm sorry if I bothered you, but I need some assistance.	Lo siento si te he interrumpido, pero necesito algo de ayuda.	6		
+5	A	Don't worry, you will. Now what do you need?	No te preocupés, lo harás. Ahora ¿en qué puedo servirte?	7		
+5	A	You want to hire an adventurer, not to make one angry, right? 	Tú quieres contratar a un aventurero, no enfadarle, ¿verdad?	4		
+6	A	All right, what do you need?	De acuerdo, qué quieres?	7		
+7	Q	I'm an alchemy student and I've been asked to prepare a potion. I hoped you would help me find [BLUE]3 venom sacs[].	Soy un estudiante de alquimia y me han mandado preparar una poción. Esperaba que me ayudases a encontrar [BLUE]3 glándulas de veneno[].	8		SetVariable#spiders_sack,10
+8	A	I'd be eager to help.	Me encantaría ayudar.	11		
+8	A	That depends. Will you give me a reward?	Depende. ¿Me darás alguna recompensa?	9		
+8	A	Why don't you search for them yourself?	¿Por qué no te las buscas tu´mismo?	10		
+9	Q	All in due time. Bring them to me and I will give you a generous reward.	Todo a su debido tiempo. Traemelas y te daré una generosa recompensa.	12		
+10	Q	I don't really like alchemy but everyone in my family is an alchemist. When I pass the initiation ritual that requires me to make this potion I will be an alchemist and so my ancestors will be pleased.	No me gusta mucho la alquimia pero todo el mundo en mi familia es alquimista. Cuando pase el ritual de iniciación que requiere que haga esta poción seré un alquimista y mis ancestros estarán contentos.	12		
+11	Q	You can find them mostly in spiders but be careful, their venom is one of their stronger weapons. Good luck and see you soon.	Deberías encontrarlas sobre todo en las arañas pero ten cuidado, su veneno es una de sus armas más fuertes. Hasta pronto y buena suerte.	13		
+12	A	And where can I find these sacks?	¿Y donde puedo encontrar estas glándulas?	11		
+13	A	Goodbye	Adiós	0		
+14	A	You know, these could have been really useful... if you had given them to me BEFORE sending me to face those disgusting things!	Bueno, pues me hubieran sido muy útiles... Si me los hubieras dado ANTES de tener que enfrentarme a esas cosas repugnantes.	15		
+15	Q	Oh of course! I'm really sorry, I should have given them to you earlier. But you did it anyway so I guess it's not a big deal.	¡Oh por supuesto! Lo siento mucho, debí habertelas dado antes. Pero lo conseguiste de todas formas así que tampoco es para tanto.	16		
+16	A	Well, they'll be useful for the next time. Thank you and goodbye.	Bueno, ya me servirán para la próxima vez. Muchas gracias y hasta la próxima.	0		"GainItem#3202;GainXP#350;IncVariable#REP_varsilia,1;LoseItems#1008,3;SetVariable#spiders_sack,100"
+16	A	Of course it's a big deal! Now give me at least some money so that I can buy something more useful than your gloves.	¡Claro que es para tanto! Ahora dame al menos algo de dinero para que me compre algo que sea más util que tus guantes.	0		"GainGold#400;GainXP#350;IncVariable#REP_varsilia,1;LoseItems#1008,3;SetVariable#spiders_sack,100"
+56	A	Good, when you become a master I hope I get some discounts.	me alegro. Cuando seas un maestro, espero que me hagas descuentos.	0		
+56	A	I want to ask you a favor. Could you sign me a petition supporting a temple of The Three in town?	 Quiero pedirte algo. ¿Podrías firmar una petición apoyando un templo de Los Tres en la ciudad?	71	"VariableGreater#three_versus_eleven,19;VariableLower#three_versus_eleven,23;VariableLower#petition_gilmour,1"	
+71	Q	Me? You are probably jesting, I am a nobody in this town. But wait... my uncle! he is a great alchemist, and desperate about obtaining [BLUE]10 fire salts[]. He doesn't care much about religion or politics, so I am sure he'd sign.	¿Yo? ¿Estás de broma? Soy un don nadie. Pero espera, mi tio es un alquimista importante... Y desesperado por conseguir [BLUE]10 Sales de Fuego[]- La política y la religión no le importan, así que creo que firmaría.	74		
+74	A	Very well... Here are the salts.	Muy bien... Aquí están.	75	PlayerHasItems#1005,10	"IncVariable#three_versus_eleven,1;GainItem#2522;SetVariable#petition_gilmour,1;LoseItems#1005,10"
+74	A	That is a very steep price, I'll think about it.	Es un precio elevado, me lo pensaré.	0		
+75	Q	Fantastic... My uncle will now be in awe at me being able to obtain the salts! This is your letter, he agreed to sign.	Fantástico... Mi tio estará impresionado conmigo. Aquí tienes, me lo firmó sin problemas.	0		

@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="72" height="72" tilewidth="64" tileheight="32" nextobjectid="239">
+ <properties>
+  <property name="maxlight" value="50"/>
+  <property name="music" value="ossuary"/>
+  <property name="name" value=""/>
+  <property name="name_ES" value=""/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="dungeon stairs.tsx"/>
+ <tileset firstgid="245" source="cave.tsx"/>
+ <tileset firstgid="485" source="spawns.tsx"/>
+ <tileset firstgid="493" source="grassland.tsx"/>
+ <tileset firstgid="621" source="town_objects.tsx"/>
+ <tileset firstgid="701" source="grounds_indoor.tsx"/>
+ <tileset firstgid="861" source="town_objexts2.tsx"/>
+ <tileset firstgid="925" source="dungeon2.tsx"/>
+ <tileset firstgid="1165" source="tomb2.tsx"/>
+ <tileset firstgid="1205" source="tomb.tsx"/>
+ <tileset firstgid="1245" source="town_objects3.tsx"/>
+ <layer name="nonwalk" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QwRGAIADAMNx/VJbwKaB2guSuC3QMAAAAAAAAAAAAAAAAAACgzOuJN3/+rW/82Z1v/Nn50/xp/jR/mj/Nn+ZP86f50/xp/jR/mj/Nn+ZP+/pzAwNw660AUQAA
+  </data>
+ </layer>
+ <layer name="water" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQrCQABE0Vwlinr/G2ZDCmGLv40Qi/dg+uFvGwAAAAAAAAAA/MY+9pzG12PsM/aexuXs87r7xB/Tp+nT9Gn6NH2aPk2fpk/Tp+nT9Gn6NH2aPk2fpk/Tp+nT9Gn6NH2aPk2fpk/Tp+nT9Gn6NH2aPk2fNX0AgJUDIOZASgBRAAA=
+  </data>
+ </layer>
+ <layer name="ground" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aTQ6CMBCGYUQP6lZ36hJJvEBBga07PYEe0DS24ScERcAO8D6JYSfwZZypBc8DMLSb6wvAqN1dXwAAAOjNdeX6CuQLFu9juHx/UHY0+ZzIppbNx9qSU0lYyGdTyWbtOKuH7/b8WlCpH9eZWE8B2QDAJ3V9XEJvl44ejyF1ra+9kLUQxuEwkXqhL7fDrIc0Z2oSwB/tKuufhB4EwAG9/lH0H7R0oWaA2ZOwB8b8Qh/ihjqKZlBjdqY35QAAgHR6b0PPtKzDPGua++nI56Qyez99PgPTeaUm87GvmeIB7kMV1lj6u/Wx6/6/q+fqQ/3vUiYTm9Gv55nq+waJ6WupyWZOe3Hf3Gtk6ibz8xmAstTP9/7ZPwHa43cD1GtaM/O+CwBAgheZ09+OAFEAAA==
+  </data>
+ </layer>
+ <layer name="scenery" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3cb07CQBCHYQSvpYAxXkPli8otPIBawBOIgQPoAW3DNvxJt13qtjuz+z5JwwcCmf6YWWgpDAbV7i4sdwCAEq+j0BXIsG35uHvyc7YJXYAwD/ROa2QHn75CF9CRdegCEhNrHyEt15ehK9j7Dl2AMTGZ3FZkM/GYVyxryLQhk7oeuxHUf76MI9wn6BDjPEE/Ke/tAOAils/nKbni8w+AhGh5n+K8CIC+NZ2fdvUz9PM8sbHl8kteaCHWOetyHg4zO82POaxGLoA+846uCWU92COLNHG9dbMnMrKajeTkU3ccEXJ9e+44H83HT4//yMbnfjf1R5/9c/jbs3N75y2vc5lv7/mWKe4LF2XvnLP+LEw+H56zWQ132Re5v1jq0TCnn2YfCr7qLbJemc3WkxqyKWWe+2dpeiczt/z29FgxT+V8LcyGY2XP1M0Yx3g7VfPlsv5o+d79VN+vu8Rrf+l9+ST2DXSS9J8UrD0AACn+AAMl84gAUQAA
+  </data>
+ </layer>
+ <layer name="objects" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="roofs" width="72" height="72">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DQQkAAAgEsHvYP4RJzSD4c4MlAAAAAAA/dN0EAAAAAAAAAAAAAAAAAAD2BvouXzQAUQAA
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="69" name="exit to H10" type="transition" x="414" y="1718.02" width="67.3333" height="53.9848">
+   <properties>
+    <property name="area_id" value="H10_mine_2"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object id="70" name="entry from H10_mine" type="entry" gid="485" x="454.742" y="1847.85" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="90" name="Guardian" type="spawn" gid="487" x="671.5" y="1986.5" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="119" name="respawning bloodcrawler" type="spawn" gid="487" x="2142" y="1664" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="120" name="respawning bloodcrawler" type="spawn" gid="487" x="2058.5" y="1725.5" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="121" name="respawning bloodcrawler" type="spawn" gid="487" x="2123" y="1761" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="122" name="respawning bloodcrawler" type="spawn" gid="487" x="2189" y="1609" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="123" name="respawning bloodcrawler" type="spawn" gid="487" x="2109.5" y="1536.5" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="124" name="spikes trap" type="trap" gid="489" x="1216" y="1664" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="125" name="spikes trap" type="trap" gid="489" x="1184" y="1728" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="126" name="spikes trap" type="trap" gid="489" x="1217.5" y="1823.5" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="127" name="spikes trap" type="trap" gid="489" x="1184" y="1856" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="128" name="spikes trap" type="trap" gid="489" x="1172" y="1770" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="129" name="spikes trap" type="trap" gid="489" x="960" y="1664" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+   </properties>
+  </object>
+  <object id="130" name="spikes trap" type="trap" gid="489" x="1152" y="1312" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="131" name="spikes trap" type="trap" gid="489" x="1312" y="1344" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="132" name="spikes trap" type="trap" gid="489" x="1088" y="1216" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="133" name="spikes trap" type="trap" gid="489" x="224" y="1024" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="18"/>
+    <property name="minlevel" value="16"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="134" name="spikes trap" type="trap" gid="489" x="1184" y="800" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="20"/>
+    <property name="minlevel" value="18"/>
+   </properties>
+  </object>
+  <object id="135" name="spikes trap" type="trap" gid="489" x="1216" y="2080" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="21"/>
+    <property name="minlevel" value="21"/>
+   </properties>
+  </object>
+  <object id="136" name="spikes trap" type="trap" gid="489" x="435" y="1305" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="13"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="137" name="spikes trap" type="trap" gid="489" x="395" y="2009" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="13"/>
+    <property name="minlevel" value="11"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="138" name="spikes trap" type="trap" gid="489" x="258" y="202" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="13"/>
+    <property name="minlevel" value="11"/>
+   </properties>
+  </object>
+  <object id="139" name="Guardian" type="spawn" gid="487" x="510" y="1498" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="140" name="Guardian" type="spawn" gid="487" x="587" y="1617" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="141" name="Guardian" type="spawn" gid="487" x="620" y="912" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="142" name="Guardian" type="spawn" gid="487" x="753" y="307" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="143" name="Guardian IRON" type="spawn" gid="487" x="1846" y="202" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="144" name="Guardian IRON" type="spawn" gid="487" x="1522" y="1330" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="145" name="Guardian IRON" type="spawn" gid="487" x="2015.67" y="805.667" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="146" name="Guardian IRON" type="spawn" gid="487" x="564" y="472" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H10_mine_golem"/>
+    <property name="facing" value="ld"/>
+    <property name="faction" value="neutral"/>
+    <property name="hostile" value="VariableEqual#false,1"/>
+    <property name="name" value="@GOLEM_TRADER"/>
+    <property name="portrait" value="95"/>
+    <property name="shop_items" value="340,324,325,709,710,3039"/>
+    <property name="shop_modifier" value="0.8"/>
+    <property name="spawn" value="golem_iron"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="147" name="Fungus" type="plant" gid="489" x="2112" y="2112" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="148" name="Fungus" type="plant" gid="489" x="2112" y="1856" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="149" name="Fungus" type="plant" gid="489" x="2112" y="1824" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="150" name="Fungus" type="plant" gid="489" x="2112" y="1920" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="151" name="Fungus" type="plant" gid="489" x="2112" y="1984" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="152" name="Fungus" type="plant" gid="489" x="2080" y="1888" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="153" name="Fungus" type="plant" gid="489" x="2176" y="1728" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="154" name="Fungus" type="plant" gid="489" x="512" y="128" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="155" name="Fungus" type="plant" gid="489" x="544" y="320" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="156" name="Fungus" type="plant" gid="489" x="672" y="128" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="157" name="Fungus" type="plant" gid="489" x="320" y="128" width="64" height="64">
+   <properties>
+    <property name="id" value="luminous_fungus"/>
+   </properties>
+  </object>
+  <object id="158" name="Guardian" type="spawn" gid="487" x="1057" y="563" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="159" name="Guardian" type="spawn" gid="487" x="1507" y="717" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="160" name="Guardian" type="spawn" gid="487" x="1487" y="873" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="161" name="Guardian" type="spawn" gid="487" x="1491" y="197" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="162" name="respawning bloodcrawler" type="spawn" gid="487" x="2183" y="1481" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="163" name="Guardian" type="spawn" gid="487" x="1968" y="1152" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="3"/>
+   </properties>
+  </object>
+  <object id="164" name="Guardian" type="spawn" gid="487" x="1407" y="2001" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="165" name="Guardian" type="spawn" gid="487" x="1567" y="2073" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="6"/>
+   </properties>
+  </object>
+  <object id="166" name="Secret Door" type="secretdoor" gid="489" x="1152" y="960" width="64" height="64">
+   <properties>
+    <property name="maxlevel" value="18"/>
+    <property name="minlevel" value="18"/>
+    <property name="secretdoor_tag" value="H10_mine_3_a"/>
+   </properties>
+  </object>
+  <object id="167" name="Secret Door" type="secretdoor" gid="489" x="1248" y="2016" width="64" height="64">
+   <properties>
+    <property name="maxlevel" value="21"/>
+    <property name="minlevel" value="21"/>
+    <property name="secretdoor_tag" value="H10_mine_3_b"/>
+   </properties>
+  </object>
+  <object id="168" name="Skeletons" type="spawn" gid="487" x="1203.33" y="1210" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="169" name="Skeletons" type="spawn" gid="487" x="1184" y="1341.33" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="170" name="Skeletons" type="spawn" gid="487" x="1108" y="1284" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="171" name="Skeletons" type="spawn" gid="487" x="1316" y="1225.33" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="172" name="lord" type="spawn" gid="487" x="820.667" y="1326" width="64" height="64">
+   <properties>
+    <property name="facing" value="rd"/>
+    <property name="spawn" value="city_lord"/>
+    <property name="unique_tag" value="H10_undead_lord"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="173" name="lady" type="spawn" gid="487" x="818" y="1264.67" width="64" height="64">
+   <properties>
+    <property name="facing" value="rd"/>
+    <property name="spawn" value="city_lady"/>
+    <property name="unique_tag" value="H10_undead_lady"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="175" name="ambush" type="spawn" gid="487" x="906.667" y="984" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@LIBRARIAN"/>
+    <property name="spawn" value="wraith"/>
+    <property name="tag" value="library_ambush"/>
+   </properties>
+  </object>
+  <object id="176" name="ambush" type="spawn" gid="487" x="954.667" y="946.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@LIBRARIAN"/>
+    <property name="spawn" value="wraith"/>
+    <property name="tag" value="library_ambush"/>
+   </properties>
+  </object>
+  <object id="177" name="ambush" type="spawn" gid="487" x="1014.67" y="966.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@LIBRARIAN"/>
+    <property name="spawn" value="wraith"/>
+    <property name="tag" value="library_ambush"/>
+   </properties>
+  </object>
+  <object id="178" name="ambush" type="spawn" gid="487" x="1022.67" y="894.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@LIBRARIAN"/>
+    <property name="spawn" value="wraith"/>
+    <property name="tag" value="library_ambush"/>
+   </properties>
+  </object>
+  <object id="179" name="ambush" type="spawn" gid="487" x="907.333" y="900.667" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableEqual#false,1"/>
+    <property name="name" value="@LIBRARIAN"/>
+    <property name="spawn" value="wraith"/>
+    <property name="tag" value="library_ambush"/>
+   </properties>
+  </object>
+  <object id="180" name="conversationTrigger" type="trigger" x="839.333" y="730.333" width="151.333" height="61">
+   <properties>
+    <property name="actions" value="SetVariable#TMP_H10_libambush,1;NPCSpawn#library_ambush"/>
+    <property name="conditions" value="VariableLower#TMP_H10_libambush,1"/>
+   </properties>
+  </object>
+  <object id="181" name="Skeletons" type="spawn" gid="487" x="929.333" y="1742.67" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="182" name="Skeletons" type="spawn" gid="487" x="1032.67" y="1738" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="183" name="Skeletons" type="spawn" gid="487" x="982" y="1796.67" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="185" name="devourer" type="spawn" gid="487" x="949.333" y="1898.67" width="64" height="64">
+   <properties>
+    <property name="faction" value="enemy"/>
+    <property name="spawn" value="devourer"/>
+   </properties>
+  </object>
+  <object id="187" name="Skeletons" type="spawn" gid="487" x="271.333" y="1126" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="188" name="Skeletons" type="spawn" gid="487" x="299.333" y="1076.67" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="189" name="Skeletons" type="spawn" gid="487" x="286.667" y="1340" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="190" name="Skeletons" type="spawn" gid="487" x="301.333" y="880" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="191" name="Skeletons" type="spawn" gid="487" x="217.333" y="897.333" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="192" name="Skeletons" type="spawn" gid="487" x="233" y="1783" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object id="193" name="Skeletons" type="spawn" gid="487" x="325.5" y="184.5" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="194" name="Skeletons" type="spawn" gid="487" x="132" y="114" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="195" name="Blood Wraith" type="spawn" gid="487" x="122" y="204" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="196" name="Blood Wraith" type="spawn" gid="487" x="1860.83" y="497.833" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="197" name="Blood Wraith" type="spawn" gid="487" x="2081.67" y="517.667" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="198" name="Blood Wraith" type="spawn" gid="487" x="1925.17" y="563.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="199" name="Blood Wraith" type="spawn" gid="487" x="2174.33" y="455.667" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="200" name="Skeletons" type="spawn" gid="487" x="1161.33" y="193.333" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="201" name="Skeletons" type="spawn" gid="487" x="1041.33" y="300" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="202" name="Blood Wraith" type="spawn" gid="487" x="1150.67" y="276" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="203" name="Guardian" type="spawn" gid="487" x="1848" y="2157.33" width="64" height="64">
+   <properties>
+    <property name="name" value="@GUARDIAN"/>
+    <property name="spawn" value="elemental_earth"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object id="204" name="Blood Wraith" type="spawn" gid="487" x="2078.5" y="85.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="205" name="Blood Wraith" type="spawn" gid="487" x="2190.5" y="91.5" width="64" height="64">
+   <properties>
+    <property name="spawn" value="blood_wraith"/>
+   </properties>
+  </object>
+  <object id="206" name="spikes trap" type="trap" gid="489" x="2132.67" y="112.667" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="207" name="spikes trap" type="trap" gid="489" x="1811.33" y="215.333" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="208" name="spikes trap" type="trap" gid="489" x="1894.67" y="220" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="209" name="spikes trap" type="trap" gid="489" x="1976" y="600" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="210" name="evoker" type="spawn" gid="487" x="791.333" y="1187.33" width="64" height="64">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="211" name="evoker" type="spawn" gid="487" x="792" y="1389.33" width="64" height="64">
+   <properties>
+    <property name="spawn" value="skeleton_evoker"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object id="212" name="spikes trap" type="trap" gid="489" x="1092" y="1380" width="64" height="64">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="16"/>
+    <property name="minlevel" value="15"/>
+    <property name="random_range" value="1"/>
+    <property name="spawn_chance" value="50"/>
+   </properties>
+  </object>
+  <object id="213" name="Chest" type="container" gid="489" x="1758.67" y="156" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="214" name="Chest" type="container" gid="489" x="2067.33" y="50" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="laboratory_13"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="215" name="Chest" type="container" gid="489" x="76.6667" y="275.333" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="216" name="Chest" type="container" gid="489" x="75.3333" y="84.6667" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="218" name="Chest" type="container" gid="489" x="898" y="1968.67" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="219" name="Chest" type="container" gid="489" x="994.667" y="2064" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="220" name="Chest" type="container" gid="489" x="1192.67" y="1924.67" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="loot_table" value="bandit_chest_6"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="221" name="Chest" type="container" gid="489" x="154.667" y="1016" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+   </properties>
+  </object>
+  <object id="223" name="Chest" type="container" gid="489" x="760.667" y="1111.33" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="h10_ruins"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object id="224" name="Chest" type="container" gid="489" x="1173.33" y="754.667" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5013,2636"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="H10_ruins_chest1"/>
+   </properties>
+  </object>
+  <object id="225" name="Chest" type="container" gid="489" x="1187.33" y="2092.67" width="64" height="64">
+   <properties>
+    <property name="icon" value="sarcophagus"/>
+    <property name="items" value="2012,2012,2012,2012,2012,2012,5023,5023"/>
+    <property name="name" value="@SARCOPHAGUS"/>
+    <property name="unique_tag" value="H10_ruins_chest2"/>
+   </properties>
+  </object>
+  <object id="226" name="Lich" type="spawn" gid="487" x="2138.67" y="72" width="64" height="64">
+   <properties>
+    <property name="spawn" value="lich_H10"/>
+    <property name="unique_tag" value="H10_lich"/>
+   </properties>
+  </object>
+  <object id="227" name="devourer" type="spawn" gid="487" x="166.667" y="590.667" width="64" height="64">
+   <properties>
+    <property name="faction" value="enemy"/>
+    <property name="spawn" value="devourer"/>
+   </properties>
+  </object>
+  <object id="229" name="Skeletons" type="spawn" gid="487" x="826.667" y="1370.67" width="64" height="64">
+   <properties>
+    <property name="spawntable" value="skeletons2"/>
+   </properties>
+  </object>
+  <object id="230" name="respawning bloodcrawler" type="spawn" gid="487" x="2044.67" y="1638" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="231" name="respawning bloodcrawler" type="spawn" gid="487" x="2096.67" y="1418" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="232" name="respawning bloodcrawler" type="spawn" gid="487" x="2170.67" y="1325.33" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="233" name="respawning bloodcrawler" type="spawn" gid="487" x="2022.67" y="1521.33" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="234" name="respawning bloodcrawler" type="spawn" gid="487" x="2012.67" y="1824.67" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="235" name="respawning bloodcrawler" type="spawn" gid="487" x="2024" y="1920" width="64" height="64">
+   <properties>
+    <property name="respawn" value="30"/>
+    <property name="spawn" value="bloodcrawler"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object id="236" name="Wall" type="conversation" gid="489" x="1737.33" y="100" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H10_mine_painting"/>
+    <property name="icon" value="wall"/>
+    <property name="name" value="@WALL"/>
+   </properties>
+  </object>
+  <object id="237" name="Book" type="conversation" gid="489" x="870" y="770" width="64" height="64">
+   <properties>
+    <property name="conditions" value="VariableGreater#temple_sleepers,0"/>
+    <property name="conversation" value="H10_mine_book"/>
+    <property name="icon" value="book"/>
+    <property name="name" value="@BOOK"/>
+   </properties>
+  </object>
+  <object id="238" name="Corpse" type="conversation" gid="489" x="2146.5" y="1731.5" width="64" height="64">
+   <properties>
+    <property name="conversation" value="H10_mine_corpse_page"/>
+    <property name="icon" value="corpse3"/>
+    <property name="name" value="@CORPSE"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

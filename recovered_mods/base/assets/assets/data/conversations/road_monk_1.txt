@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The Moon, Sun, or Stars... Of those, which one is like man?	La Luna, el Sol, o las Estrellas... ¿cuál de ellos se asemeja más al Hombre?	2	VariableLower#TMP_talk_monks_1,1	SetVariable#TMP_talk_monks_1,1
+1	Q	Greetings, wise one.	Saludos, hombre sabio.	0		
+2	A	What? I have no idea, goodbye.[BLUE](Leave)[]	¿Qué? No tengo ni idea, adiós. [BLUE](Leave)[]	3		
+2	A	Okay, let me think...	De acuerdo, déjame pensar...	4		
+2	A	I've heard tales of crazy monks attacking people, let's put an end to this nonsense.	He oiso historias de monjes locos atacando a viajeros. Acabemos con esta locura.	3		
+3	Q	You are not enlightened. We shall teach you wisdom, then!	No estás iluminado. ¡Nosotros te enseñaremos sabiduría!	0		NPCHostile#monks
+4	Q	[BLUE](He grows impatient)[] Which one is like man?	[BLUE](Se muestra impaciente)[] ¿Cuál de ellos es como el hombre?	5		
+5	A	It is the moon.	Es la luna.	6		
+5	A	It is the sun.	Es el sol.	8		
+5	A	It is the stars.	Son las estrellas.	6		
+5	A	It's all of them.	Todos ellos.	6		
+6	Q	And which one is more unlike man, sun moon or stars?	Y ¿cuál es menos parecido al hombre, luna, sol o estrellas?	7		
+7	A	hmmm... the moon?	hmmm... la luna?	3		
+7	A	Obviously, the sun.	Obviamente, el sol.	3		
+7	A	It is the stars, I am sure.	Las estrellas, estoy seguro.	3		
+7	A	Neither of them, right?	Ninguno, ¿verdad?	3		
+8	Q	And which one is more unlike man, sun moon or stars?	Y ¿cuál es menos parecido al hombre, luna, sol o estrellas?	9		
+9	A	hmmm... the moon?	hmmm... la luna?	3		
+9	A	Obviously, the sun.	Obviamente, el sol.	3		
+9	A	It is the stars, I am sure.	Las estrellas, estoy seguro.	10		
+9	A	Neither of them, right?	Ninguno, ¿verdad?	3		
+10	Q	You are enlightened. The sun is born and dies like man, and can procure both life and death. The stars are eternal and immutable. Accept this. [BLUE](All the monks bow down to you)[]	Estás iluminado. El sol nace y muere como el hombre, y puede dar vida o muerte, mientras que las estrellas son eternas e inmutables. Acepta este don. [BLUE](Los monjes se inclinan ante tí)[]	0		"SetVariable#monk_road,1;GainXP#500;GainItem#5016;GainItem#5025"

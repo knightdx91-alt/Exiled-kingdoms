@@ -1,0 +1,28 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Freedom, adventurer. Maybe one day you'll be interested in learning how to craft Trollskin armor, so my knowledge passes on.	Libertad, aventurero. Quizá algún día pueda enseñarte a fabricar armadura de piel de troll, para que mi técnica perdure.	0	VariableEqual#thick_skin,100	
+1	Q	I can't believe you defeated enough trolls to bring me this. Truly heroic. Now let's see if what the old recipes say is true. What shall I craft for you, a cap, gauntlets or boots?	No puedo creér que hayas derrotado a suficientes trolls como para traerme esto. Ahora veremos si las viejas fórmulas funcionan. ¿Qué prefieres que fabrique, un casco, guantes, o botas?	20	"VariableEqual#thick_skin,10;PlayerHasItems#1011,3;PlayerHasGold#2000"	
+1	Q	I'm glad to see you're still alive, even if you still don't have all the ingredients to make a piece of Trollskin armor.	Me alegro de ver que sigues vivo, aunque no tengas aun todos los ingredientes para hacer una armadura de piel de troll.	0	VariableEqual#thick_skin,10	
+1	Q	[BLUE](This crafter is sewing a piece of strange green-leather armor, with an expertise you've never seen before)[] Freedom, traveller. If you want to buy armor or weapons, Reia will assist you.	[BLUE](Este artesano está cosiendo una armadura de cuero verde, con una habilidad que nunca antes habías visto)[] Libertad, viajero. Si necesitas armas o armadura, Reia puede ofrecértelas.	2		
+2	A	Thanks, goodbye.	Gracias, adiós.	0		
+2	A	May I ask, what type of leather is that?	¿Puedo preguntar qué clase de cuero es ese?	3		
+3	Q	Sure, ask away [BLUE](the man grins)[]	Claro, pregunta. [BLUE](El hombre sonríe)[]	4		
+4	A	Oh, Mercian humor. Very well... what is that strange green leather?	Oh, humor mercio. Muy bien... ¿qué es ese extraño cuero verde?	5		
+5	Q	"It is Trollskin. Not easy to come by; this one was sold to me many years ago by the fabled adventurer Chea Trollhunter. It took me years to research how to make it into armor, and I am afraid, in the proccess, I ruined most of it."	Es piel de Troll, difícil de conseguir. Esta me la vendió hace muchos años la famosa aventurera Chea Cazatrolls. Por desgracia, al aprender cómo prepararla, la he estropeado bastante.	6		
+6	A	What is this armor good for? Is it better than a good chainmail?	Para qué es buena esta armadura? ¿Es mejor que una cota de mallas?	7		
+7	Q	It depends. It will not stop blows better than mail or plate, actually. But it is exceptional protection against poisons or acid. The town could finally be able to get rid of the spiders, and make safe the Jabal Hills again.	Depende. No parará un golpe mejor que una coraza o cota de mallas, pero es muy eficaz con ácidos o venenos. Sería muy útil para combatir a las arañas y devolver la seguridad a estas colinas.	8		
+8	A	What's going on with the spiders?	¿Qué está pasando con las arañas?	9		
+8	A	Where can one find Trolls?	¿Dónde puedo encontrar Trolls?	10		
+8	A	I want you to make some Trollskin armor for me, and I'm ready to pay you a lot of gold.	Quiero que me fabriques armadura de piel de troll, y estoy dispuesto a pagar bien por ella.	11		
+9	Q	It started six months ago. There's always been Giant Spiders in the Jabal Hills, but something very strange is going on. There's more and more each day, and right now, travelling south through the pass is almost suicide.	Empezó hace seis meses. Siempre ha habido arañas gigantes en las colinas de Jabal, pero algo está pasando, cada vez hay más. Viajar al sur por el paso es casi un suicidio.	15		
+10	Q	Well... Most tales describe how to avoid them. The only place where they're easily found is the Trollfens, but I wouldn't advise anyone to go there. It lies south of the Jabal Hills. Other than that, they usually hide in caves everywhere in Varannar.	Bueno... Las historias lo que cuentan es cómo evitarlos. El único sitio en el que es fácil encontrarlos es en las Ciénagas Troll, pero no recomendaría a nadie ir allí. Se encuentran al sur de las Colinas de Jabal. Aparte de eso, puedes encontrártelos en cuevas, en todo Varannar.	15		
+11	Q	I'd be glad to take your money, but without the materials, I simply can't. what I have here isn't enough. But bring me [BLUE]3 Trollskins and 2,000 gold[] and I'll make a piece of armor for you. Deal?	Me encantaría aceptar tu dinero, pero sin los materiales es imposible. Lo que me queda no es suficiente, pero si me tráes [BLUE]3 pieles de troll y 2.000 monedas[] te fabricaré una pieza de armadura. ¿De acuerdo?	17		
+15	A	Okay let me ask you something else...	De acuerdo, deja que te pregunte otra cosa...	16		
+16	Q	yes?	si?	8		
+17	A	No way. I want to stay as far away from trolls as I possibly can.	Ni hablar, quiero estar tan lejos de los trolls como me sea posible.	0		
+17	A	Very well, I will try!	Muy bien ¡Lo intentaré!	18		SetVariable#thick_skin,10
+18	Q	Just be careful, those beasts are nearly indestructible, and very agressive.	Recuerda tener cuidado, esas bestias son casi indestructibles, y muy agresivas.	0		
+20	A	I want a Trollskin leather cap	Quiero un casco de piel de troll.	21		GainItem#136
+20	A	I want Trollskin gauntlets	Quiero guantes de piel de troll	21		GainItem#134
+20	A	I want Trollskin boots	Quiero botas de piel de troll	21		GainItem#135
+20	A	Let me think about it, I'll be back.	Déjame pensarlo, volveré.	0		
+21	Q	[BLUE](the artisan begins working masterfully and smiles proudly when finished)[] Very well, here is your well-earned armor. 	[BLUE](el artesano comienza a trabajar con maestría y sonríe satisfecho al acabar)[] Muy bien, aquí está la armadura que te prometí.	0		"SetVariable#thick_skin,100;LoseItems#1011,3;GainXP#850;LoseGold#2000;IncVariable#REP_town_jabal,2;IncVariable#REP_mercia,2"

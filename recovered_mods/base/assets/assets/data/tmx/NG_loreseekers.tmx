@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="32" height="32" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="music" value="menuet"/>
+  <property name="name" value="The Loreseeker's Library"/>
+  <property name="name_ES" value="Biblioteca de los Buscadores de Secretos"/>
+ </properties>
+ <tileset firstgid="1" source="dungeon.tsx"/>
+ <tileset firstgid="241" source="spawns.tsx"/>
+ <tileset firstgid="249" source="town_objects.tsx"/>
+ <tileset firstgid="329" source="grassland.tsx"/>
+ <tileset firstgid="457" source="trees.tsx"/>
+ <tileset firstgid="473" source="natural_grounds.tsx"/>
+ <tileset firstgid="601" source="grounds_indoor.tsx"/>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlFEKxCAMRGNvX9gLVlvdo9RChFCWdrJRocWBoB+S5I1RoqEnaZ6IPpNtRWStcbX24hz8g78nP8qGqpW3qFp5i6oGv8WvGvx359HcwRHFHFuOlGPlWJyNH+VKXOvowXMfpYce/FHU9LwGDst/gJ79su/Fh5X30f1fW8Pvxd0ncfdWfnT+g/A9cu3iyVVOy39xnv9ScxH77Qe/Zv5R/lbvH+V/6/+nlaZ/Kz+S8061+c85Nb3W4h96j3Yk8zJs
+  </data>
+ </layer>
+ <layer name="ground2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt0aEBACAMBLGy/yoYNkRXUAXUJO7Ui48AADhbo+7X5uc9su7/AbhnA+x4A3Y=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztVstOQjEQ7f0Al6Jb3UGi8gq+ooKPiNGFCSAkurg7Y3xu/ASMn8C/iH6A8lHO5LZhGKaPa64LDSc5aTtt5/ROOwNKzfCXsAusAa+APd22db+m58vAC93y/l4KnTLRMT5KwD5wNUo4gP5yNN6H8x/ExvuVQH308wYc6vGLbrvAFfBXAVaBa9HkvibwnYx5P1T/ErgUyXZEMUrIcezxG6qP3/kq2EuefZsZ6XdUcr8cXc8+PN+zZW6QQh/9FBzxd+1zIY1+XtD3+d8BVh2sB+qjH8zBI2ADzrGtkhxsaxvC2Iwd29D8DgG+Af4G54SYGDuuXc9Q33fXEg7YGGNoYtQj/ZBY4ffHKbRjQR/zJadjtsDaCjkfPxuyRfw8Ae+A13p8o8f3TI/rd0jf1Ksi0TfzUq41Sf92elqNomm7S5+D6ku5RoE6n8Iarn8K3CfcCtDvW+ZpLZW+32UPAeq76gW9f0nnS4j/GfCQ0PV74KuFtNahzigg/r77x9/uAnl/LtD8e1Tj94/vwLz/B7I+tugvknOjfj5Qv+WZlyDlvw0+fax/8568oMC10vfnLD5C4m8QW9Zwe5b3j7mxoSbfM/JEz/O3jjxnPkz9Nf8T09y/DQ3d8m+V4Kt/v63vqi/1H+rP8H/wDfQ9Tls=
+  </data>
+ </layer>
+ <layer name="roofs" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <objectgroup name="data" width="32" height="32">
+  <object name="entry from farmlands" type="entry" gid="241" x="466" y="819">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit to NG" type="transition" x="426" y="841" width="63" height="50">
+   <properties>
+    <property name="area_id" value="NG"/>
+    <property name="entry_id" value="11"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="243" x="638" y="543">
+   <properties>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="conversation" value="loreseeker_guard"/>
+    <property name="name" value="@LORE_GUARDIAN"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="tag" value="library_guard"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="243" x="449" y="416">
+   <properties>
+    <property name="conversation" value="loreseeker_guard"/>
+    <property name="name" value="@LORE_GUARDIAN"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Anton Gerdt" type="staticNPC" gid="243" x="270" y="653">
+   <properties>
+    <property name="conditions" value="VariableGreater#forgotten_lore,69"/>
+    <property name="conversation" value="lannegar_explorer"/>
+    <property name="name" value="@ANTON_GERDT"/>
+    <property name="portrait" value="13"/>
+    <property name="sprite" value="male_green_1"/>
+   </properties>
+  </object>
+  <object name="captain" type="spawn" gid="243" x="270" y="525">
+   <properties>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="conversation" value="loreseeker_guard"/>
+    <property name="name" value="@LORE_GUARDIAN"/>
+    <property name="spawn" value="human_captain"/>
+    <property name="tag" value="library_guard"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="alchemist marelle" type="staticNPC" gid="243" x="852" y="470">
+   <properties>
+    <property name="gender" value="f"/>
+    <property name="name" value="@ALCHEMIST_DRYONOS"/>
+    <property name="portrait" value="17"/>
+    <property name="shop_items" value="6001,6002,6003,6007,6009,6010,5003,5005,5010,3005,3008,3021"/>
+    <property name="shop_modifier" value="0.91"/>
+    <property name="sprite" value="female_red_1"/>
+   </properties>
+  </object>
+  <object name="Loremaster" type="staticNPC" gid="243" x="293" y="430">
+   <properties>
+    <property name="conversation" value="NG_library_librarian"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@RURAZAR"/>
+    <property name="portrait" value="23"/>
+    <property name="sprite" value="male_brown_12"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="800" y="608">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="800" y="576">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="800" y="640">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="512" y="384">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="480" y="384">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_l"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate2"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="256" y="576">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="grate" type="mapitem" gid="245" x="256" y="608">
+   <properties>
+    <property name="active" value=""/>
+    <property name="active_sprite" value="grate_r"/>
+    <property name="conditions" value="VariableLower#forgotten_lore,100"/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="grate1"/>
+   </properties>
+  </object>
+  <object name="Tangir" type="staticNPC" gid="243" x="835" y="730">
+   <properties>
+    <property name="conversation" value="NG_library_tangir"/>
+    <property name="facing" value="r"/>
+    <property name="name" value="@TANGIR"/>
+    <property name="portrait" value="23"/>
+    <property name="sprite" value="wizard"/>
+   </properties>
+  </object>
+  <object name="priest" type="staticNPC" gid="243" x="124" y="526">
+   <properties>
+    <property name="conversation" value="NG_library_gebadi"/>
+    <property name="facing" value="r"/>
+    <property name="gender" value="m"/>
+    <property name="name" value="@GEBADI"/>
+    <property name="portrait" value="57"/>
+    <property name="sprite" value="male_grey_1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

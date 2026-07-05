@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The bulky female minotaur bows down and smiles)[] Welcome to the Halls of the King, not many of your people manage to reach this place!	[BLUE](La enorme hembra de minotauro se inclina y sonríe)[] Bienvenido a los Salones del Rey, no muchos de los tuyos consiguen llegar hasta aquí.	2		
+2	A	Un... Thanks, I guess. Are you not going to attack me?	Um... Gracias, supongo. ¿No vas a atacarnos?	3		
+2	A	How cute, you can talk. Time to choke in a pool of blood, monster.	Que monada, puedes hablar. Hora de ahogarte en un charco de sangre, monstruo.	0	VariableLower#lost_kingdom,100	"SetVariable#mino_hostile,1;NPCHostile#minos"
+3	Q	Attack you? A foreigner that has gone past the Maze? Never, you are now our most honored guest. His Majesty might want to have a word with you.	¿Atacarte? ¿Acaso no has superado el Laberinto? Ahora eres nuestro invitado de honor. Puede que Su Majestad quiera hablar contigo.	4		
+4	A	Can I now travel through the Maze safely?	¿Puedo ahora viajar por el laberinto sin peligro?	5		
+4	A	I require healing.	Necesito curación.	6		
+4	A	I need to go.	Me tengo que marchar.	0		
+4	A	What can you tell me about the Maze?	¿Qué puedes decirme del Laberinto?	9		
+5	Q	Of course not. You proved your worth and earned our friendship, but the young ones still roam the Maze to prove their own worth.	Por supuesto que no. Al cruzar el laberinto has obtenido nuestra amistad, pero los jóvenes siguen patrullando el laberinto para probar su valor. 	20		
+6	Q	I can, of course, heal you with the Blessings of the Cow in the Skies. The price is one [BLUE]small emerald[]. For a regular [BLUE]emerald[] you might spend a night here and recover fully.	Puedo curarte con la bendición de la Vaca de los Cielos. El precio es una [BLUE]esmeralda pequeña[]. También puedes pasar la noche completa a cambio de una [BLUE]esmeralda[].	7		
+7	A	Here is an emerald, I want to rest for 12 hours.	Aquí tienes una esmeralda, quiero dormir 12 horas.	8	playerhasitem#2012	"loseitem#2012;FullRest#;Travel#E10_maze_2,2;Sleep#"
+7	A	Here is a small one, please heal me (150hp)	Aquí tienes una equeña, por favor cúrame (150hp)	8	playerhasitem#2002	"loseitem#2002;GainHP#150;"
+7	A	Nevermind, goodbye.	No importa, adiós.	0		
+8	Q	May the Milk of the Mother satiate your thitst!	¡Que la Leche de la Madre sacie tu sed!	0		
+9	Q	It is a sacrilege to unveil the secrets of the Maze to another. 'Delve through your inner and outer maze' teaches the Mother. You might want to speak to the High Priestess, or to our King, if you want to learn more about Lamth.	Es un sacrilegio desvelar los secretos del Laberinto a otros. 'Explora tu Laberinto interior y exterior' nos enseña la Madre. Si quieres saber más acerca de Lamth, puedes hablar con la Suma Sacerdotisa o con nuestro Rey.	20		
+20	A	Let me ask something else...	Déjame preguntar otra cosa...	21		
+20	A	Goodbye.	Adiós.	0		
+21	Q	Of course, honored guest.	Por supuesto, huesped de honor.	4		

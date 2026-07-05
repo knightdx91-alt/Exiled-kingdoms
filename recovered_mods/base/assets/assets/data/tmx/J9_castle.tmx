@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="76" height="76" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="35"/>
+  <property name="music" value="anguish"/>
+  <property name="name" value="Imperial Fortress"/>
+  <property name="name_ES" value="Fortaleza Imperial"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="town_objects.tsx"/>
+ <tileset firstgid="89" source="grounds_indoor.tsx"/>
+ <tileset firstgid="249" source="dungeon.tsx"/>
+ <tileset firstgid="489" source="natural_grounds.tsx"/>
+ <tileset firstgid="617" name="town_objexts2" tilewidth="64" tileheight="64">
+  <image source="town_objects2.png" width="512" height="512"/>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="light" value="brazier_lamp"/>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="obstacle" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="681" source="castlewall.tsx"/>
+ <tileset firstgid="745" source="grounds indoor 2.tsx"/>
+ <layer name="nonwalk" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztzaENAAAIwDAc/3/MA4AlIa2cWQQAAAAA7PLo2X2nDgAAAAAAAAAAAAAAAAAAAAAAnxQkEgAk
+  </data>
+ </layer>
+ <layer name="water" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt21tOwzAQheHIu0wb5979bwEqzlEmkDp+KALK/0lR1Bcgw4wzvrRpAAAAAAAAAAAA8FcsqWnm96sPV04//Vf9XvdYLbqy7v0LxGt6f4Y15MCz5JBfs37HK+TXlLZnG574PGP6uIbws18hXqv+9/fnmV7geb7bojiNygOULZ9qBmWxFkfidWrQ+OV3Gco8fmXFDWWr6nBl/CpqVYOT4jSqB8cxz1Ouipljh2Ouv065db/fiNdDs2KUFSfHDcc6xahP25hPf/9YG3rUq3LsQrweumn88ntyZvwquql/6BSri/IMZYPy7MZ8qEoX8ox+9VwbapH50LmsMf/K+FVlCn0F9XiuVz221GOVSXU4Uo9V4v4z88dzq3ov1gvrLBq7euqxitd0PC9C2aD3o2OGY67Bi/qvlvw65TNHre7sp5V5Hcd3+vtzPsvE/nYd7xF53wNlcf+xJV6nOo3zE+NXFZ/F9Z4tyrzvuJBfVXwunvXCOj7/5TNzKPN47xxD2RzGe+K1N6et3/L70J997gQbn7tc0v6Mr9eimQ/t+XtCWTnVaQ3aZ/BZj97LofbmtN93dK1iE7//lMPdPQXx2sth3fka9jjWkHPYxO9WuS77tPVg9Pd73gPyedUc6pD8+ir2XY7VQj3in3oDAHFvtw==
+  </data>
+ </layer>
+ <layer name="bridges" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt2EEKwkAQAMH4DBVfL+o3zSUYkEhayMFYBfOAbeYyOwwAAAAAAAD8iuvhffjsMTa6z2YPThu+47aTRnN6NVv2uuj19/Rq9Gr0avRq9Gr0WmfqpNc6x7HTWavV7FWjV6NXo9d3dGv0avRq9Gr0avRq9Gr0avRq9Gr0avRq9Fpn+l/Vq9Gr0avRq9Gr0avRq9Gr0avRq9Gr0avRa9l0Y8+HZXap0avRq9Gr0avRq9Gr0QtengZRDXg=
+  </data>
+ </layer>
+ <layer name="ground" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="ground2" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt2YtNwzAQgGEzBhILpKVNFoFmqQ4BSMwKJ3LK1Upqg0z8yP9JUVuQG/tyftY5AK36eLh9BQAAQJnG3BWo0CV3BRLRZ//Jmj1IY/VOrKK9EaugceU96vL6fb14f3vMUREUbY/zx9p66bexYD5BrFbW6EBrSlznHnNXIAK/rQEAAADYq1PuCiBaiXv+kBrOBEpwzl2BSY1nvs+5K1A4G59S++NT7gq4cvogcDUXwojXLebEOEtj/iHxPWpcU+Uga5PB/exzWo9Zl/C7JF81brXaYl3ab3APoDV2rJLzwi366uDdO2ZOXqqblks53sby12D/sSaTNsu4P0zvpb2dudclcF89/9W4bb0HXnsu9nmniJsd++X7JGbSZmm/tHmYrpjcPpqyJ1O/YbVEvWxOabs1Xn6sNIb2s3NzTpV69pSStFnyQWIm7R7dnB/6uhQH7Qf295jetZlTPptPmm/O3fYtXz/97zyVO7j28+te+0J5ovmoOaljV2z5venc3Cd1X0WM7rNzeev79xTsvMB53d/o2oK9PQAAAADMvgBS0yOD
+  </data>
+ </layer>
+ <layer name="scenery" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJzt2kEKgzAQBdBcp7X1KvX+pykBQwOFVuNiOvU9kLhwMYZPJospBQAAAAAgpyW6gITqnt2ii+Avzev6CK0CAAAAAAAAAIAsrtEFJHSJLgDgx0zdu75CU2elWzZq75zLa851xJlm1ttdo/7z9OlD3jK1J2NH8pjdfX1Kt37jDrxPv19nOr9GtAw677Y72lMBAACAcU9jsgYp
+  </data>
+ </layer>
+ <layer name="objects" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztXNtOFEEQZfgLEn8AFFTwFvGW6IO3hEVA/8L4qn6Boom/o0a8oKsRvDz4IL4IJPIddoXubG2nq7uqp6Z3FvYklZ2d2bn0oarrdHUPY2MjjNBOnKnGxmaMLRu7jT7veN+X7e/OVoN+4sFiCbX/hdmetdv3q94+jOOHnK9bwvbPH3K+lkZ8ibA4ZHx1zf33jO0a+2PslbHPBZ9pWPwLeNo29sHe/wHqX9ctfyV4G5b+a8fc91Hi3q8LPNuCAl9Ok8xYHeK0R0dBg4BfrSG/imHdxmqTfub8617iHu54iK9ps+/Z+P72hLHn4/3Hj9Z4/n8Z5zbpZxr913TiGnX4+mTOfS84/6P57ZeafEG83LTxcdeLj1RbfYT4SsV0Hb4A0Hf5upmChm85Tibsd6zRT5vtE8YuWANuZ9HxOcuvO369sH8BuD6m4VsAvz2xHBdqe6q9TfMF2GFcQ6vfOgh8pXwsx7cglqZsH+U+O158AaR8zSG94DTCFDK3/6KxS1X/73090bWafM9+Otuu0lqd4iw3DrlaSspXXeD+8k3i+m8Tx18GjqfOocBt63zVrzGxSfUr934OfxPX38jgK3UOBczXNZTTfIMcN2ls1erK1Rr6ggLWv5ivlP4cFF+pcR7wdSRxDS3gZ9mqyVfIP3P5WhTwRcXdlZbzNUj/CuGyAl9+X4A1bqq/L8nXgoAvKu5OKvAVi2mKr19m/6ax3y31LxgHHQuYRv8Vu4arz3wz9r3ar8FsJ3QXRojvEnxxrpGL2DW2UF7G4GooTb4mh4AvKh65bR7xtQ9umzX1hEY8auh7Tb7cPMeaNU3/kuRHCk37FzUeotoMdZyHCT1ykOORqmPF+MII6d2DzJc0HqGG885qs03leJSMhyi0jS8fofF6k/4FdRyo6+EaDtT8XK0RrFP1zyfiOuCU3efXD2eqXo3Ir09itElPcPLjDWI/nLthdOSmpyXXA9qSc38KbdITnPxIrS9pOg5hLgK0wa7VB3g85LSCq02HxogOPt/AVZPxSPlXTHc9Hu83Cim+oK1PGf4q4ctdOwccvnLqXniuNDZvyuGLgy7yuW3kd84HsW/WWc/E4WuF2K9R90rxBbnNX1sRQsi/wC/h3Cc1xuo+uP19qA6tUfeK+ajEv34Kn6XJ/Aj9/dfA3wj2+7lRCsp3AcBXam7I4Uchvjj5MaYn6iK2thP44szpAyTrcQBN+hdVt4/5Rs79fUjiMZYfQ2ha38M6gWWr0zv2U7ouM4QYX5DLOGsEAak5JL8+q+FfV832+YBR/kXFae7966CUf3GeN0evcqG1lsCvSaQsNadU53kp/5Kuywwh9veCNTTcfrzEOmeAv1YwZFQOa1N/X4ovDppcBxDrA4eVrxVC32uMh1J8cfVqm/ii2qQxHkrxldIJ+LdtAdUmjf4rNR4axnik+mTpe2qSawOa4AvXfXD9x98HplHzwdDQqzE942pVzuD5u94+v67lrwf2OeDyD9Be49r0vLYPib9RkJyfOwaA8aN7h6xT9d4lo/xOgtJ8cfMtoM6YPFT/GgRfOe+eYUjOr8NXSH9p6NXSfEnqsBo1H4ym6/c+JPqVgqQOq7FmAKPpdas+JPVWCpI6rLZ/adSuJDlWIx5L5EdKg4fW/7pcGnqXyq2bwO/VxNZN+JCMjyiU6O8pHwi9c8fJmbl5AjSptC7oWwn/onR8iC9OjGrkiVxI+j/t/j7EF2dMqZEnclFCr1LvKZzLjMcm3s/iokQ8SsAZgw+SL0n/lzsnIgHwFfs/HnBskHy1DRw9NeKrh7bHY9sw4kuGEV8ytF1PtA1Yq2FdeqrSfb/0oAC/0+D/D6KcMfYIw4n/uF1/Dg==
+  </data>
+ </layer>
+ <layer name="roofs" width="76" height="76">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDJaQAAB
+  </data>
+ </layer>
+ <objectgroup name="data" width="76" height="76">
+  <object name="exit to Grasslands" type="transition" x="813" y="2349" width="86" height="39">
+   <properties>
+    <property name="area_id" value="J9"/>
+    <property name="entry_id" value="2"/>
+   </properties>
+  </object>
+  <object type="entry" gid="1" x="858" y="2283">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="670" y="1402">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="805" y="1401">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="1035" y="1413">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="636" y="1625">
+   <properties>
+    <property name="spawn" value="orc_archer"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="953" y="1420">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="441" y="1250">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="422" y="1133">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="737" y="1242">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="901" y="1256">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="384" y="1472">
+   <properties>
+    <property name="maxlevel" value="20"/>
+    <property name="minlevel" value="20"/>
+    <property name="secretdoor_tag" value="J9_deathcorridor"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="864" y="1627">
+   <properties>
+    <property name="spawn" value="orc_archer"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Archer" type="spawn" gid="3" x="937" y="1626">
+   <properties>
+    <property name="spawn" value="orc_archer"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="980" y="1535">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="763" y="1599">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="671" y="1601">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="674" y="1779">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="409" y="1634">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="401" y="1540">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="421" y="1896">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="430" y="1943">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Elite" type="spawn" gid="3" x="788" y="2007">
+   <properties>
+    <property name="spawn" value="orc_elite"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="655" y="237">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="768" y="234">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="801" y="721">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="729" y="725">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="1040" y="831">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="1046" y="909">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="931" y="773">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="888" y="854">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="747" y="883">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="902" y="644">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Devourer" type="spawn" gid="3" x="2300" y="1764">
+   <properties>
+    <property name="spawn" value="devourer"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="2282" y="2011">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="2074" y="2062">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="2135" y="1983">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="1870" y="1826">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="1869" y="1939">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="1625" y="1924">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Worm" type="spawn" gid="3" x="1681" y="1873">
+   <properties>
+    <property name="spawn" value="worm"/>
+    <property name="wander" value="4"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="808" y="1107">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="869" y="1107">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="1920" y="960">
+   <properties>
+    <property name="maxlevel" value="15"/>
+    <property name="minlevel" value="11"/>
+    <property name="secretdoor_tag" value="J9_castle_2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1445" y="1221">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1594" y="1201">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1794" y="1429">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1804" y="1238">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1899" y="1418">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="1170" y="587">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="1207" y="369">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="698" y="166">
+   <properties>
+    <property name="spawn" value="orc_king"/>
+    <property name="wander" value="0"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="613" y="153">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="782" y="135">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="1137" y="631">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="486" y="706">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Trooper" type="spawn" gid="3" x="516" y="636">
+   <properties>
+    <property name="spawn" value="orc_trooper"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1995" y="1261">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1450" y="918">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1507" y="850">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1537" y="951">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1439" y="593">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1522" y="579">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1627" y="709">
+   <properties>
+    <property name="spawn" value="batrax"/>
+    <property name="wander" value="2"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1993" y="839">
+   <properties>
+    <property name="spawn" value="batrax_theurgist"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1965" y="939">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="2017" y="940">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1164" y="1832">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1167" y="2053">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1439" y="1517">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1612" y="1504">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1245" y="1427">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="1120" y="1312">
+   <properties>
+    <property name="maxlevel" value="15"/>
+    <property name="minlevel" value="11"/>
+    <property name="secretdoor_tag" value="J9_castle_3"/>
+   </properties>
+  </object>
+  <object name=" Theurgist" type="spawn" gid="3" x="1599" y="1170">
+   <properties>
+    <property name="spawn" value="batrax_theurgist"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1845" y="347">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="1952" y="265">
+   <properties>
+    <property name="spawn" value="batrax_theurgist"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="2105" y="455">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name="Batrax" type="spawn" gid="3" x="2105" y="299">
+   <properties>
+    <property name="spawn" value="batrax"/>
+   </properties>
+  </object>
+  <object name=" Theurgist" type="spawn" gid="3" x="1608" y="601">
+   <properties>
+    <property name="spawn" value="batrax_theurgist"/>
+   </properties>
+  </object>
+  <object name=" Theurgist" type="spawn" gid="3" x="2011" y="1395">
+   <properties>
+    <property name="spawn" value="batrax_theurgist"/>
+   </properties>
+  </object>
+  <object name=" Kakrak" type="spawn" gid="3" x="2014" y="270">
+   <properties>
+    <property name="spawn" value="batrax_kakrak"/>
+    <property name="unique_tag" value="kakrak"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="1882" y="282">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="batrax_chest,batrax_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="1589" y="560">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="batrax_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="2042" y="1369">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="batrax_chest"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="5" x="1984" y="736">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="bridge" type="mapitem" gid="5" x="1984" y="768">
+   <properties>
+    <property name="active_sprite" value="grid_ground_brown"/>
+    <property name="invisible" value=""/>
+    <property name="nonwalk" value=""/>
+    <property name="tag" value="bridge"/>
+   </properties>
+  </object>
+  <object name="lever conv" type="conversation" gid="5" x="2048" y="863">
+   <properties>
+    <property name="conversation" value="J9_lever"/>
+    <property name="icon" value="lever"/>
+    <property name="name" value="@LEVER"/>
+   </properties>
+  </object>
+  <object name="lever" type="mapitem" gid="5" x="2048" y="864">
+   <properties>
+    <property name="active_sprite" value="lever_on"/>
+    <property name="inactive" value=""/>
+    <property name="inactive_sprite" value="lever_off"/>
+    <property name="tag" value="lever"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="405" y="1267">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_10"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="1147" y="344">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_10"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="472" y="664">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_10"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="627" y="114">
+   <properties>
+    <property name="icon" value="chest_big1"/>
+    <property name="loot_table" value="orc_chest_10,orc_chest_10"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="1221" y="326">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="400" y="1589">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Crate" type="container" gid="5" x="405" y="1846">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="loot_table" value="orc_chest_7"/>
+    <property name="name" value="@CHEST"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="1814" y="951">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="127,595,6004"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="J9_castle_chest1"/>
+   </properties>
+  </object>
+  <object name="Chest" type="container" gid="5" x="338" y="435">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="611,6005,6005"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="J9_castle_chest2"/>
+   </properties>
+  </object>
+  <object name="Shooter" type="spawn" gid="3" x="709" y="392">
+   <properties>
+    <property name="spawn" value="orc_shooter"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="346" y="508">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="14"/>
+    <property name="minlevel" value="14"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="944" y="1168">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="742" y="1171">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="906" y="717">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="12"/>
+    <property name="minlevel" value="9"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="368" y="476">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="14"/>
+    <property name="minlevel" value="14"/>
+   </properties>
+  </object>
+  <object name="spikes trap" type="trap" gid="5" x="310" y="478">
+   <properties>
+    <property name="id" value="spikes"/>
+    <property name="maxlevel" value="14"/>
+    <property name="minlevel" value="14"/>
+   </properties>
+  </object>
+  <object name="corpse" type="container" gid="5" x="2203" y="1878">
+   <properties>
+    <property name="icon" value="corpse1"/>
+    <property name="items" value="384"/>
+    <property name="name" value="@CORPSE"/>
+    <property name="unique_tag" value="J9_castle_corpse1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

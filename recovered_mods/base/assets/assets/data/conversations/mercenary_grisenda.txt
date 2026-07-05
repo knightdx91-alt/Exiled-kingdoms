@@ -1,0 +1,66 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Yes, my friend?	Saludos, amigo.	11	NPCisFollower#		
+1	Q	Hello, friend. Do you need my services as a warrior?	Hola, amigo. Necesitas de mis servicios como guerrera?	9	VariableEqual#warrior_honor,110		
+1	Q	I... I can't believe it, you found my grandfather's ring! And you did it all by yourself. I am impressed by your courage.	No puedo creerlo... Recuperaste el anillo de mi abuelo! Y lo hiciste tú solo. Tu coraje me deja sin palabras.	6	"VariableEqual#warrior_honor,20;playerhasitem#2502"		
+1	Q	Hello there, traveller.	Saludos, viajero. 	0	VariableEqual#warrior_honor,10		
+1	Q	Hello there, traveller.	Saludos, viajero. 	0	VariableEqual#warrior_honor,100		
+1	Q	Hello there, traveller. [BLUE](The armored woman salutes you, while she keeps watching the ruins' entrance)[]	Saludos, viajero. [BLUE](La mujer armada parece estar vigilando la entrada de las antiguas ruinas)[]	2			
+2	A	Hello, who are you? Why are you watching over these ruins?	Hola, quién eres, y por qué vigilas estas ruinas?	3			
+2	A	Hello... And goodbye, I am busy.	Hola... Y adiós, estoy ocupado.	0			
+3	Q	I am Grissenda, a Warrior from Kingsbridge. I heard a rumor about this ruin holding a valuable heirloom of my family: the Ring of the Elements.	Soy Grissenda, guerrera de Kingsbridge. Estoy aquí por un rumor, que dice que en este lugar se encuentra una antigua reliquia familiar: el Anillo de los Elementos.	4			
+4	A	Oh, so you are planning to go in? Maybe we could go together!	Ah, entonces ¿planeas entrar? Quizá podamos hacerlo juntos!	5			
+5	Q	[BLUE](The woman looks down, saddened and ashamed)[]No... I failed. I went down, and the undead overwhelmed me. I fled. I failed.	[BLUE](La mujer parece triste y avergonzada, y mira hacia el suelo)[]No... He fallado. Lo intenté pero los muertos vivientes eran demasiado fuertes. Escapé. Fracasé.	14		SetVariable#warrior_honor,10	
+6	A	Yes, I did. Here, take it, it is yours. I know it's important for you.	Si, lo hice. Tómalo, es tuyo. Sé que es importante para ti.	7		"SetVariable#warrior_honor,110;loseitem#2502;IncVariable#REP_varsilia,3;GainXP#300"	
+6	A	Yes, but I am going to keep it, because I am the one who earned it after all.	Si, pero pienso quedármelo. Al fin y al cabo, yo hice todo el trabajo.	8		"SetVariable#warrior_honor,100;GainXP#300"	
+7	Q	You are truly a honorable friend. I will never forget this. If you ever need that ring, just ask. Would you like me to accompain you in your adventures? I want to become a great knight, and I sense a great destiny in you.	Eres un verdadero amigo, y una persona honorable. Nunca olvidaré esto. Si alguna vez necesitas el anillo, pídemelo. Si lo deseas, te seguiré en tus aventuras y ayudaré en lo que pueda. Quiero convertirme en Caballero, y siento que el destino te ha escogido para algo grande.	9			
+8	Q	"You are right, of course; you earned it. At least I can now be at ease knowing it's not in some monster's den."	Por supuesto. Te lo has ganado. Quedo tranquila sabiendo que no está en poder de una panda de monstruos.	0			
+9	A	That would be great! Follow me. Welcome to the team.	Sería genial! Sígueme. Bienvenida al equipo.	13			
+9	A	Not right now, thanks. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	10			
+10	Q	Very well. If you change your mind, you can usually find me in Kingsbridge. Goodbye, friend.	Muy bien. Si cambias de opinión, seguramente puedas encontrarme en Kingsbridge. Adiós, amigo.	0			
+11	A	Nothing, let's move on.	Nada, continuemos.	0			
+11	A	I don't need your services for now, you can return to Kingsbridge.	Ya no necesito tus servicios, puedes volver a Kingsbridge.	12	"AreaIsnt#I9_castle;AreaIsnt#I9_temple"	"NPCStopFollowing#;NPCDespawn#mercenary_grisenda"	
+11	A	Let's talk for a moment	Hablemos un momento.	16			
+11	A	I have some battle orders for you.	Quiero darte órdenes de combate.	91			
+12	Q	Of course, I'll just return to my home in Kingsbridge. If you ever need me to join you again, I'll be ready.	De acuerdo, volveré a mi hogar en Kingsbridge. Si en algún momento necesitas de mi ayuda, ven a buscarme.	0			
+13	Q	I would join you, but I think you already have a companion. Come back when you have room for me.	Te seguiría, pero creo que ya tienes un compañero. Vuelve cuando tengas sitio para mí.	0	HasCompanion#		
+13	Q	Let's conquer evil and become the heroes of the Kingdoms!	Derrotemos al mal, y seamos los héroes de los Reinos!	0		NPCFollow#	
+14	A	If I find your ring, I will get back to you.	Si encuentro el anillo, regresaré	0			
+14	A	You haven't failed yet. You found this place, and you survived. What did you find down there?	No has fallado todavía. Has encontrado este lugar, y sigues con vida ¿Qué encontraste ahí abajo?	15			PER#1
+15	Q	Thanks for your words, noble adventurer. I found the remains of my ancestor, in a chamber to the northwest, and there was a hidden trap which I detected. Then... A deadly ghost came upon me. My weapon was useless and I ran.	Gracias por tus palabras, noble aventurero. Encontré los restos de mi antepasado en una cámara al noroeste, y detecté que había una trampa. Entonces, un fantasma cayó sobre mí. Mi arma era inútil, así que escapé.	0			
+16	Q	Yes, my noble friend. What do you want to talk about?	Si, mi noble amigo. ¿De qué quieres hablar?	17			
+17	A	Let's continue our travels.	Continuemos nuestro viaje.	0			
+17	A	What do you know about this place?	¿Qué sabes de este lugar?	18			
+17	A	Tell me about yourself. Why are you here, instead of joining the King's knights?	Háblame de tí. ¿Por qué estás aquí en lugar de unirte a los caballeros del rey?	50	"VariableLower#talk_grissenda,1;VariableLower#invitation,20"		
+18	Q	My aunt always said that Ilmara wasn't so special, that everybody thinks the neighbor's grass is greener. Well, the grass here really is greener!	Mi tía siempre decía que Ilmara no era tan especial, que la hierba del vecino siempre parece más verde. Pues es verdad, ¡La hierba aquí es más verde!	17	AreaIs#E11		
+18	Q	My aunt always said that Ilmara wasn't so special, that everybody thinks the neighbor's grass is greener. Well, the grass here really is greener!	Mi tía siempre decía que Ilmara no era tan especial, que la hierba del vecino siempre parece más verde. Pues es verdad, ¡La hierba aquí es más verde!	17	AreaIs#F11		
+18	Q	I always wanted to visit Nivarian, and see by myself the houses on the water. I love it! And unlike the Varsilian harbors, it doesn't smell funny.	Siempre quise visitar Nivarian, con sus casa sobre el agua. ¡Me encanta! Y al contrario que los puertos de Varsilia, no huele raro.	17	AreaIs#NI		
+18	Q	This is one of the most inhospitable regions of our beloved Kingdom, but I don't know much about it.	Esta es una de las regiones más inhóspitas de nuestro amado reino, pero no sé mucho más.	17	AreaIs#G10		
+18	Q	Mercia is a vile kingdom. Gold and force is what rules here, without any semblance of justice. But we're at peace with them now, so we should be fine if we respect the laws.	Mercia es un reino perverso, gobernado por el oro y la fuerza, y sin justicia alguna. Pero estamos en paz con ellos, mientras cumplamos con la ley no tendremos problemas.	17	AreaIs#F8		
+18	Q	I like how clean and organized is this place, but mercians have a cold soul, I don't enjoy being here.	Me gusta lo limpia y organizada que está la ciudad, pero los mercios tienen un alma fría... No me agrada este lugar.	17	AreaIs#FT		
+18	Q	Mercia is a vile kingdom. Gold and force is what rules here, without any semblance of justice. But we're at peace with them now, so we should be fine if we respect the laws.	Mercia es un reino perverso, gobernado por el oro y la fuerza, y sin justicia alguna. Pero estamos en paz con ellos, mientras cumplamos con la ley no tendremos problemas.	17	AreaIs#E10		
+18	Q	We're near New Garand, the greatest city in all the Kingdoms.	Estamos cerca de New Garand, la mayor ciudad de todos los Reinos.	17	AreaIs#H8		
+18	Q	New Garand? This is the finest city ever built here in Varannar, by the Empire. I've been here often, it's where I received my training.	¿New Garand? La más grandiosa ciudad construida en Varannar por el Imperio. He estado aquí a menudo, es donde recibí mi entrenamiento como guerrera.	19	AreaIs#NG		
+18	Q	The Bluemist River, yes. This area was once very civilized, but since the last war, it has become wild and dangerous.	el río Bluemist, sí. Hace tiempo era un area muy civilizada, pero desde la última guerra es salvaje y peligrosa.	17	AreaIs#H9		
+18	Q	Kingsbridge has been my home since I was born. But now nothing keeps me here anymore.	Kingsbridge ha sido siempre mi hogar, pero ya no queda aquí nada que me interese.	17	AreaIs#G9		
+18	Q	I really can't say much about this place, friend.	No puedo decir mucho de este lugar, amigo mío.	0			
+19	A	Really? Who trained you?	¿En serio? ¿Quien te entrenó?	20	VariableLower#invitation,20		
+19	A	I see. Let's continue.	Ya veo. Continuemos.	0			
+20	Q	Arms-master Rinald, in the royal castle.	El Maestro de Armas Rinald, en el castillo real.	21			
+21	A	That sounds pretty... Exclusive, are you a member of the major nobility?	Eso suena muy... Exclusivo, ¿eres un miembro de la alta nobleza?	22			
+22	Q	[BLUE](She looks at the castle towers and frowns)[] I apologize my friend, but I'd rather not talk about that right now.	[BLUE](Mira hacia las torres del castillo con seriedad)[] Lo siento, mi amigo, pero preferiría no hablar de ese tema.	0			
+50	Q	That is a long story, appropiate for another time my friend. I'll just say, that I once was a royal squire, but that part of my life is past. I'm not fit to serve in the Kings' ranks, but there's much I can do fighting evil and helping the weak in our lands.	Esa es una larga historia, apropiada para otro momento, amigo mio. Te diré que una vez fuí escudera real, pero esa vida ya ha pasado. No soy apta para servir al Rey. Pero es mucho lo que puedo hacer para derrotar al mal y ayudar a los necesitados.	51			
+51	A	Is this about your family ring? You already recovered it. I know that's important for a Varsilian noble like you.	¿Es por tu anillo familiar? Ya lo has recuperado. Sé que eso es importante para un noble Varsilio como tú.	52		SetVariable#talk_grissenda,1	
+51	A	Alright, I don't want to be nosey.	De acuerdo, no quiero ser entrometido.	0			
+52	Q	I can't never thank you enough for that. Not only the relic of my ancestors was recovered, but you showed me what courage can achieve. No, my reasons for leaving the Kings' ranks were different, and more appropiate for another time.	Nunca podré agradecerte bastante que lo recuperases, y que me demostrases que con coraje todo es posible. Pero no, las razones que me hicieron dejar la Guardia Real fueron otras, en otro momento lo hablaremos.	0			
+91	Q	Sure, what do you want me to do?	Claro, ¿qué quieres que haga?	92			
+92	A	I want you to wait here for a moment.	Quiero que esperes aquí un momento.	96	NPCIsntWaiting#	NPCWait#	
+92	A	I want you to follow me again.	Quiero que me sigas de nuevo.	95	NPCIsWaiting#	NPCDontWait#	
+92	A	I want to tell you when to attack enemies.	Quiero decirte cuándo debes atacar a los enemigos	93			
+92	A	Nevermind.	No importa.	0			
+93	Q	Alright, what about that?	De acuerdo, ¿Qué debo hacer?	94			
+94	A	Never attack anyone, even to defend yourself. I'll handle all the fighting.	Nunca ataques a nadie, ni siquiera para defenderte. Yo me encargo de todo.	95		NPCAttack#never	
+94	A	Attack only enemies that have attacked you first.	Ataca sólamente a enemigos que te hayan atacado primero.	95		NPCAttack#defend	
+94	A	Attack only enemies that are very close to you.	Ataca sólo a enemigos que estén muy cerca de tí.	95		NPCAttack#close	
+94	A	Attack all enemies in sight.	Ataca a todos los enemigos que veas.	95		NPCAttack#all	
+95	Q	Understood.	Entendido.	0			
+96	Q	Understood, but I can't stay here forever, I might go and seek you if you take too long.	Entendido, pero si te alejas mucho, quizá vaya a buscarte.	0			

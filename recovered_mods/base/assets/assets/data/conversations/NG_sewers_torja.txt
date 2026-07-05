@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Ah, you are now one of us. Sleep if you must, here you're safe among brothers and sisters. But not even us can protect you from company in bed...	Ah, ahora eres uno de nosotros. Duerme si lo necesitas, entre nosotros estás a salvo. Pero ni nosotros podemos protegerte de ciertas compañías en la cama...	2	VariableEqual#guild_seventh,1		
+1	Q	Oh look at you. A fish out of water, is what you appear to be. If you want a bed, it's [BLUE]500 gold[] for you. If you were a House member, it would be free, of course.	Mírate... Aquí pareces un pez fuera del agua. Si quieres una cama son [BLUE]500 monedas[]. Es gratis para miembros de la Casa.	5			
+2	A	What do you mean 'company'?!?	¿¡¿Qué quieres decir con 'compañías?!?	3			
+2	A	Very well, I want to sleep for a while. Thanks.	Muy bien, quiero dormir un rato. Gracias.	0		"FullRest#;Travel#NG_sewers,10;Sleep#"	
+2	A	Thanks Torja, maybe later.	Gracias Torja, quizá luego.	0			
+3	Q	I mean the fleas! [BLUE](She cackles, showing a fierce smile)[]	¡Me refiero a las pulgas! [BLUE](Se carcajea, ferozmente)[]	4			
+4	A	Very well, I want to sleep for a while. Thanks.	Muy bien, quiero dormir un rato. Gracias.	0		"FullRest#;Travel#NG_sewers,10;Sleep#"	
+4	A	Thanks Torja, maybe later.	Gracias Torja, quizá luego.	0			
+5	A	What a steal. Here is the money. I want to sleep for a while.	Vaya robo. Toma el dinero, quiero dormir un rato.	0	PlayerHasGold#500	"LoseGold#500;FullRest#;Travel#NG_sewers,10;Sleep#"	
+5	A	Five hundred? No way.	¿Quinientas? Ni hablar.	0			

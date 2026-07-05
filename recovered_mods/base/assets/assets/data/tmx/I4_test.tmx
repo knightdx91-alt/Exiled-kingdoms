@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" nextobjectid="5">
+ <properties>
+  <property name="maxlight" value="30"/>
+  <property name="music" value="ashen"/>
+  <property name="norecall" value=""/>
+ </properties>
+ <tileset firstgid="1" name="dungeon stairs" tilewidth="128" tileheight="128" tilecount="4">
+  <image source="dungeon_stairs.png" width="512" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" source="dungeon2.tsx"/>
+ <tileset firstgid="245" source="spawns.tsx"/>
+ <tileset firstgid="253" source="grounds_indoor.tsx"/>
+ <tileset firstgid="413" source="town_objects3.tsx"/>
+ <tileset firstgid="445" source="ruins.tsx"/>
+ <tileset firstgid="509" source="grounds indoor 2.tsx"/>
+ <tileset firstgid="669" source="scifi.tsx"/>
+ <layer name="nonwalk" width="32" height="32" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="water" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwDoL3Q+sdbj6NgL6mqqqr6+gD0sGUNABAAAA==
+  </data>
+ </layer>
+ <layer name="ground2" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="scenery" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQ0AMAjAMK7vW3Aa/YGBSrWl7IkAmMlbbU/A5872AADwvAb7JifsABAAAA==
+  </data>
+ </layer>
+ <layer name="roofs" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <objectgroup name="data">
+  <object id="1" name="entry from farmlands" type="entry" gid="245" x="476" y="473" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="999"/>
+   </properties>
+  </object>
+  <object id="2" name="entry from farmlands" type="entry" gid="245" x="633" y="116" width="64" height="64">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="Bed" type="bed" gid="249" x="613" y="277" width="64" height="64"/>
+  <object id="4" name="Chest" type="container" gid="249" x="661" y="505" width="64" height="64">
+   <properties>
+    <property name="icon" value="chest_small1"/>
+    <property name="items" value="5013,2636"/>
+    <property name="name" value="@CHEST"/>
+    <property name="unique_tag" value="testchest1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

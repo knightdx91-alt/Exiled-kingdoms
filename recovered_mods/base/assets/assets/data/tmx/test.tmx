@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="80" height="80" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="maxlight" value="75"/>
+  <property name="music" value="dark_chamber"/>
+ </properties>
+ <tileset firstgid="1" source="spawns.tsx"/>
+ <tileset firstgid="9" source="trees.tsx"/>
+ <tileset firstgid="25" source="town_objects.tsx"/>
+ <tileset firstgid="105" source="grounds_indoor.tsx"/>
+ <tileset firstgid="265" source="dungeon.tsx"/>
+ <tileset firstgid="505" name="scifi" tilewidth="64" tileheight="128">
+  <image source="scifi.png" width="1024" height="896"/>
+ </tileset>
+ <tileset firstgid="617" source="grounds indoor 2.tsx"/>
+ <layer name="nonwalk" width="80" height="80" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="water" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="ground" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XQQqDQAwF0DL3384RvGcpLtqGJBZ3Je+BoKOrTzITHw8AAAAAAAAAAID/cqzz4p69zot3Le31fb8/1nayHtcmihlkGe2Qbfx+coZV3WXPWZbx/URZRsfK6y32c+z9iRl2+1xXh1W+01TnQsyzqreY6TSxV7szpMo2rk+S9Wc3s1Q5Ts7vTt1VdTgtvy6v7r7LcJJs/+vmwWqmmdq/L1dnSJVptVdOc7WfVbNMNW9Pk+XySy1m307M76onqxm7mgenqeqp+4frZh561ZwjPwAAAAAAAAAAAODKEz1C3fUAZAAA
+  </data>
+ </layer>
+ <layer name="ground2" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMREAMAgEsD/8FP/ysMBWhkRBEgAAAAAAAAAAAAAAADZeJV2/FwAAAAAAAAAAAAAAAFwzUjN4jwBkAAA=
+  </data>
+ </layer>
+ <layer name="scenery" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <layer name="objects" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aS0vDQBSG4TS0WkEXxWrr/Y7utEhbN15B///f0YV4BlJ6GMdxxqnEOO8Dh7RJFsnXk8kktCgAAFi811bdR9BsnbIo3sgQf8BS1YuzWi7rPqJmscdCxsY45JeG/OLpMY784nVVfh3r/tHl/gEAqBnPNmmYG6UhrzTkl4b84th58Z42Dv2WhvzSkF88PT+21/EuZ/Ho0TS+/MzzHj3r58vPbNslPy9ffjnOFXdKd8+Ya7FdzZ83ZNmXWjX7qTLb3zPMLMSKZHMude3IdqDWXZbzwpy5Ti8CM7my9hvL90nmeX41zh1LLidWNiNHVluZ57cWcf5Dta/JbTvD7PrWOev+O/smj2GGeWnrjvPfVOtOA/Kb9V2u/Wczmd4E5pB7/7m0JJMpufyYeffsuq4Rrqfye5bPL57/feGzHv33q/Yk332pA6lDqaMq71tZ3kndSz1IPUo98VsA+Ce4/6axn5cBAAAAAAAAAAAAAAAAAM33AW4EpSYAZAAA
+  </data>
+ </layer>
+ <layer name="roofs" width="80" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQdvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDXAF0TSAQAZAAA
+  </data>
+ </layer>
+ <objectgroup name="data" width="80" height="80">
+  <object name="exit to D12" type="transition" x="2517" y="1539" width="65" height="134">
+   <properties>
+    <property name="area_id" value="H4"/>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="exit from dungeon" type="entry" gid="1" x="2445" y="1603">
+   <properties>
+    <property name="entry_id" value="1"/>
+   </properties>
+  </object>
+  <object name="Vorator" type="spawn" gid="3" x="2043" y="1138">
+   <properties>
+    <property name="spawn" value="vorator"/>
+    <property name="wander" value="1"/>
+   </properties>
+  </object>
+  <object name="Secret Door" type="secretdoor" gid="5" x="1888" y="2112">
+   <properties>
+    <property name="maxlevel" value="23"/>
+    <property name="minlevel" value="23"/>
+    <property name="secretdoor_tag" value="H4_cave_1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
