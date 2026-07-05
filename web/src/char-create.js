@@ -34,11 +34,12 @@ const el = (tag, cls, txt) => {
 // { name, gender ('MALE'|'FEMALE'), charClass, portrait, difficulty }.
 export function startFlow(root) {
   return new Promise(async (resolve) => {
-    const [portraits, info, creation, skills] = await Promise.all([
+    const [portraits, info, creation, skills, traits] = await Promise.all([
       fetch('assets/portraits/index.json').then(r => r.json()).catch(() => ({ male: [], female: [] })),
       fetch('assets/ui/class-info.json').then(r => r.json()).catch(() => ({})),
       fetch('assets/data/creation.json').then(r => r.json()),
       fetch('assets/data/skills.json').then(r => r.json()).catch(() => ({})),
+      fetch('assets/data/traits.json').then(r => r.json()).catch(() => ({})),
     ]);
     if (info.IRONMAN_DESC) DIFFICULTIES[3].blurb = info.IRONMAN_DESC.split('\n')[0];
 
@@ -198,46 +199,74 @@ export function startFlow(root) {
       return { panel, body, actions };
     }
 
-    // ---------- attributes (traits) ----------
-    // 6 attributes, 0..attrMax, raised with a shared pool of `traitPoints`. Reaching
-    // rank v costs cumulative traitLadder[v]; the marginal cost of the next rank is v+1
-    // (triangular). Recovered in deobf/CHARACTER_STATS_SPEC.md.
+    // ---------- attributes (traits) — reproduction of TraitsWindow (o0/a0) ----------
+    // A parchment window: "Available points: N" header + six trait cards
+    // (TraitDescriptionTable o0/y), each with the attribute icon, red name, current
+    // value, a rank-based description (DESC_<ATTR>_<rank>), an info (help) button, and a
+    // gold + button (arrow_up) that spends a point at the triangular cost. Reset + Next;
+    // Next warns (SPEND_ALL_TRAITS) if points remain. Recovered in
+    // deobf/CREATION_FLOW_SPEC.md + CHARACTER_STATS_SPEC.md.
+    const TRAIT_REGION = { STR: 'trait_strenght', END: 'trait_endurance', AGI: 'trait_agility',
+      INT: 'trait_intellect', AWA: 'trait_awareness', PER: 'trait_personality' };
     function attributesPage() {
-      const { body, actions } = pageShell('Attributes');
+      overlay.innerHTML = '';
       const ladder = creation.traitLadder, max = creation.attrMax, pool = creation.traitPoints;
       const spent = () => creation.attributes.reduce((s, a) => s + ladder[state.attrs[a.id]], 0);
-      const pip = el('div', 'cc-pool'); body.appendChild(pip);
-      const rows = el('div', 'cc-attrs'); body.appendChild(rows);
+      const descOf = (id, r) => {
+        const d = traits.desc && traits.desc[id] || [];
+        for (let i = Math.min(r, d.length - 1); i >= 0; i--) if (d[i] != null) return d[i];
+        return '';
+      };
 
-      const rowEls = creation.attributes.map((a) => {
-        const row = el('div', 'cc-attr-row');
-        const dec = el('button', 'cc-step-btn', '−');
-        const val = el('span', 'cc-attr-val');
-        const inc = el('button', 'cc-step-btn', '+');
-        dec.onclick = () => { if (state.attrs[a.id] > 0) { state.attrs[a.id]--; refresh(); } };
-        inc.onclick = () => {
+      const win = el('div', 'tw-window');
+      const title = el('div', 'tw-title', `${(traits.header || 'Available points')}: `);
+      const ptsVal = el('span', 'tw-pts'); title.appendChild(ptsVal);
+      win.appendChild(title);
+      const grid = el('div', 'tw-grid'); win.appendChild(grid);
+
+      const cards = creation.attributes.map((a) => {
+        const card = el('div', 'tw-card');
+        const head = el('div', 'tw-head');
+        const icon = el('img', 'tw-icon'); icon.src = `assets/ui/traits/${TRAIT_REGION[a.id]}.png`;
+        const name = el('span', 'tw-name', (traits.names && traits.names[a.id]) || a.name);
+        const val = el('span', 'tw-val');
+        head.append(icon, name, val);
+        const desc = el('div', 'tw-desc');
+        const foot = el('div', 'tw-foot');
+        const info = el('button', 'tw-info'); info.title = 'Info';
+        const plus = el('button', 'tw-plus');
+        info.onclick = () => { if (traits.stats && traits.stats[a.id]) alert(traits.stats[a.id]); };
+        plus.onclick = () => {
           const v = state.attrs[a.id], cost = ladder[v + 1] - ladder[v];
           if (v < max && pool - spent() >= cost) { state.attrs[a.id]++; refresh(); }
         };
-        row.append(el('span', 'cc-attr-name', a.name), dec, val, inc);
-        rows.appendChild(row);
-        return { a, val, dec, inc };
+        foot.append(info, plus);
+        card.append(head, desc, foot); grid.appendChild(card);
+        return { a, val, desc, plus };
       });
+
+      const actions = el('div', 'tw-actions');
+      const reset = el('button', 'cc-btn', traits.reset || 'Reset');
+      reset.onclick = () => { for (const a of creation.attributes) state.attrs[a.id] = 0; refresh(); };
+      const next = el('button', 'cc-btn cc-btn-primary', traits.next || 'Next');
+      next.onclick = () => {
+        if (pool - spent() > 0) { alert(traits.spendAll || 'Spend all your points first.'); return; }
+        abilityPage();
+      };
+      actions.append(reset, next);
+      win.appendChild(actions);
+      overlay.appendChild(win);
 
       function refresh() {
         const rem = pool - spent();
-        pip.textContent = `Points to spend: ${rem}`;
-        for (const r of rowEls) {
-          const v = state.attrs[r.a.id];
-          r.val.textContent = v;
-          r.dec.disabled = v <= 0;
-          r.inc.disabled = v >= max || rem < (ladder[v + 1] - ladder[v]);
+        ptsVal.textContent = rem;
+        for (const c of cards) {
+          const v = state.attrs[c.a.id];
+          c.val.textContent = v > 0 ? v : '';
+          c.desc.textContent = descOf(c.a.id, v);
+          c.plus.disabled = v >= max || rem < (ladder[v + 1] - ladder[v]);
         }
       }
-
-      const back = el('button', 'cc-btn cc-btn-ghost', 'Back'); back.onclick = create;
-      const next = el('button', 'cc-btn cc-btn-primary', 'Next →'); next.onclick = abilityPage;
-      actions.append(back, next);
       refresh();
     }
 

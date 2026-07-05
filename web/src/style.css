@@ -198,6 +198,36 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0d10; }
 .cc-img-tile.on .cc-tile-img { opacity: 1; filter: drop-shadow(0 0 7px rgba(202,160,74,.95)); }
 .cc-tile-label { font-size: 13px; letter-spacing: .3px; }
 
+/* --- Traits window (attribute allocation) — the parchment window with 6 trait cards,
+   matching TraitsWindow (o0/a0) + TraitDescriptionTable (o0/y). --- */
+.tw-window {
+  width: min(96vw, 1000px); margin: 2vh auto; padding: 18px 20px 20px;
+  background: url(../assets/ui/paperbg.png) center/cover no-repeat #cdb886;
+  border: 3px solid #241a0c; outline: 2px solid #7a5a2a; outline-offset: -6px; border-radius: 3px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.tw-title { text-align: center; font-size: 17px; color: #6a3a24; letter-spacing: .5px; }
+.tw-pts { color: #2e7d32; font-weight: 700; }
+.tw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.tw-card {
+  display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; min-height: 132px;
+  border: 2px solid #8a6a34; border-radius: 3px; background: rgba(180,150,95,.18);
+}
+.tw-head { display: flex; align-items: center; gap: 10px; }
+.tw-icon { width: 46px; height: 46px; image-rendering: auto; }
+.tw-name { font-size: 19px; font-weight: 700; color: #8f2f2a; flex: 1; }
+.tw-val { font-size: 22px; font-weight: 700; color: #2e7d32; min-width: 18px; text-align: right; }
+.tw-desc { font-size: 13.5px; line-height: 1.4; color: #4a3826; flex: 1; }
+.tw-foot { display: flex; justify-content: space-between; align-items: flex-end; }
+.tw-info, .tw-plus { background: none no-repeat center/contain; border: 0; cursor: pointer; image-rendering: pixelated; }
+.tw-info { width: 34px; height: 34px; background-image: url(../assets/ui/traits/help.png); }
+.tw-plus { width: 42px; height: 42px; background-image: url(../assets/ui/arrow_up.png); }
+.tw-plus:disabled { background-image: url(../assets/ui/arrow_up_disabled.png); cursor: default; }
+.tw-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; }
+.tw-actions .cc-btn { flex: 0 0 42%; }
+@media (max-aspect-ratio: 1/1) { .tw-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .tw-grid { grid-template-columns: 1fr; } .tw-card { min-height: 0; } }
+
 /* ================= Dialogue box (placeholder EK styling) ================= */
 #dlg {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
