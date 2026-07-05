@@ -49,9 +49,19 @@ files, each with `owner` and `status`, so nothing is invisible. Current tally:
 purpose-catalogued in `UI_SPEC.md`). The library tier is identified and needs no reversal
 (public source) — see `LIBRARY_MAP.md`. Nothing game-relevant remains unaccounted for.
 
-Reproduce the full decompile: `bash tools/extract.sh <apk>` recovers `net.fdgames`; for the
-obfuscated tier, decompile **all** `classes*.dex` (not just `net/`) — see `CAMERA.md` for
-the exact jadx invocation used.
+### Getting the real code when porting a feature (the guarantee)
+So we can always pull **actual member-level logic** — never re-simplify from memory — the
+full obfuscated source tree is regenerable from the APK:
+
+```
+tools/decompile_full.sh "apks/Exiled Kingdoms.apk"   # -> decompiled_full/sources/** (all 3241 classes)
+```
+
+Then, per feature: look the class up in `CLASS_MAP.tsv` → open its file → read the real
+methods → port faithfully. Example: conversation system → `ConversationWindow` →
+`decompiled_full/sources/n0/{k,l,m,n,o}.java`. (`tools/extract.sh` only keeps
+`net.fdgames`; `decompile_full.sh` keeps the obfuscated engine/render/UI tier too.)
+`decompiled_full/` is gitignored (large, re-derivable). The APK lives in the owner's Drive.
 
 ---
 
