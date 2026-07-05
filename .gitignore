@@ -2,9 +2,16 @@
 # re-extractable from the APK via tools/extract.sh — keep them out of git.
 recovered/assets/
 recovered/native/
-# Decompiled third-party mod APKs (Multiplayer/Sorrow/ENB) — large & not ours
-# to ship; re-extractable via tools/extract_mod.sh. See MOD_ANALYSIS.md.
-recovered_mods/
+# Extracted APK content lives in recovered_mods/ (creators' permission granted).
+# base + multiplayer: full (assets + decompiled src). sorrow + enb: assets only.
+recovered_mods/sorrow/src/
+recovered_mods/sorrow/native/
+recovered_mods/enb/src/
+recovered_mods/enb/native/
+# jadx/JVM crash + init logs that land in extracted assets — junk, not game data
+recovered_mods/*/assets/assets/hs_err_pid*.log
+recovered_mods/*/assets/assets/init_log.txt
+# Raw APK binaries exceed GitHub's 100MB/file limit; re-downloadable from Drive.
 apks/
 *.apk
 *.dex

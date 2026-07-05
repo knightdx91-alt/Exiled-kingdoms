@@ -1,0 +1,53 @@
+package net.fdgames.Rules.zrcH;
+
+/* JADX INFO: loaded from: /tmp/tmp.CKdUvKN3M2/classes.dex */
+public class pgtXvpMCFu {
+    public static String CdwSzbtL;
+    public static String CujfjBcZd;
+    public static String EPzaRVvNZ;
+    public static String EUYHT;
+    public static String FZOGLNpZl;
+    public static String FjSi;
+    public static String FkEr;
+    public static String FsbdjoAAuQjvnm;
+    public static String GRke;
+    public static String HaSlaUKH;
+    public static String IHZXveBLkYMj;
+    public static String JbPZOFt;
+    public static String JqGhBHTqPhYVTpz;
+    public static String KWVNJ;
+    public static String QNwIvPlNSxqSwLM;
+    public static String RKzpQ;
+    public static String RczUsMutX;
+    public static String RhxepKuYGFZ;
+    public static String SKOTyKSy;
+    public static String STDnLTTfCRmamk;
+    public static String SgwM;
+    public static String TCieeC;
+    public static String UqbCqWcSiHFD;
+    public static String aGJSXPpMqNCabjc;
+    public static String aRefTLxOLvv;
+    public static String bXyBIrWdoy;
+    public static String cibGcBcCuPTsAZI;
+    public static String dtncFoySlNfsiYF;
+    public static String eJqkA;
+    public static String eXdi;
+    public static String fKdnAvknduFlOBK;
+    public static String fkZ;
+    public static String jrepJUF;
+    public static String kHXCH;
+    public static String kTmZtUH;
+    public static String mlTzsNvltF;
+    public static String nQQgTysv;
+    public static String nbVrTrPTToEz;
+    public static String olhguhNPDb;
+    public static String pcOaOd;
+    public static String qStLhVWjXkc;
+    public static String qXfcHCxVQ;
+    public static String sFSzqGbGYOARBtO;
+    public static String tKiKH;
+    public static String uHCJTWzzsSE;
+    public static String uRikctJXlgJMp;
+    public static String wbEtkfApDNgV;
+    public static String xwyIbMhEMFrgX;
+}
