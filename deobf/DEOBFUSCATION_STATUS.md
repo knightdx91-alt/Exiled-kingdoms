@@ -106,8 +106,9 @@ reconciled against the recovered class in §2. Grep the code for `APPROX` too.
 |---|---|---|---|---|
 | A1 | **Ambient / dynamic lighting** | box2dlights **RayHandler**: colored ambient (`setAmbientLight`) **plus** additive `PointLight` sources (torches, fires, player light radius) with soft falloff. | Flat per-tile **tint** of the ambient color only. **No dynamic light sources, no falloff.** | Ambient formula yes (`CAMERA.md`); light sources ID only. |
 | A2 | **Camera follow** | Eased follow toward the player with a dead-zone (snaps if >320px). | Hard-centers on the hero every frame. | Partly (see `k0/a` 415–418, 626–632). |
-| A3 | **Roof fade/hide** | `ADTIsometricTiledMapRenderer` fades/hides roof (and scenery) bands when the player is underneath, using player x/y. | Roofs always drawn on top. | Not yet read in detail (`m0/a` 195–235). |
+| A3 | **Roof/object fade** | `ADTIsometricTiledMapRenderer`: an object/roof tile fades to **alpha 0.42** when the player is within a 4-tile band behind it (`d0(x,y) && player.x∈[x-4,x] && player.y∈[y,y+4]`); secret doors use a ≤0.35-alpha reveal. | Roofs always drawn fully opaque. | **YES — read from `m0/a` ~205-360** (concrete numbers above). |
 | A4 | **Particle effects** | Pooled map particles (fire, sparkle, water, spell FX); `nocturne` ones only at night. | None. | Class ID'd, logic not read. |
+| A5 | **Fog of war / explored map** | `GameMap.f2419d` (byte grid): tiles are marked explored within ~12 (Manhattan) of the player; **unexplored** tiles are LOS-culled (`c0`), **explored-but-not-currently-visible** floor renders at **1/3 brightness** (`color/3, alpha 1`), current view full. | Whole map always fully visible. | **YES — read from `m0/a` ~300-345 + `m0/b` b0/c0/d0**. |
 
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,
