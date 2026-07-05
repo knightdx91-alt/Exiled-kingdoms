@@ -7,9 +7,12 @@
 // - fetch: cache-first, so once cached the game runs with no network at all.
 //   Bookmark the page (or install it) and it opens offline.
 
-const VERSION = 'ek-v1';
+const VERSION = 'ek-v6';
 const SHELL = `${VERSION}-shell`;
 const FULL  = `${VERSION}-full`;
+// App code (HTML/JS/CSS/manifest) is served network-first so new deploys show up
+// immediately when online; the big immutable game assets stay cache-first.
+const SHELL_RE = /\.(?:html|js|css|webmanifest)$/;
 
 const SHELL_URLS = [
   './', './index.html', './manifest.webmanifest', './icon.svg',
@@ -31,15 +34,32 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  const sameOrigin = url.origin === self.location.origin;
+  const isShell = e.request.mode === 'navigate' || (sameOrigin && SHELL_RE.test(url.pathname));
+
+  if (isShell) {
+    // Network-first: always get the freshest app code online; fall back to cache offline.
+    e.respondWith((async () => {
+      try {
+        const res = await fetch(e.request, { cache: 'no-store' });
+        if (res.ok && sameOrigin) { const c = await caches.open(SHELL); c.put(e.request, res.clone()); }
+        return res;
+      } catch (err) {
+        const hit = await caches.match(e.request, { ignoreSearch: true });
+        return hit || caches.match('./index.html');
+      }
+    })());
+    return;
+  }
+
+  // Cache-first for the big, immutable game assets (tmx/png/mp3/…).
   e.respondWith((async () => {
     const hit = await caches.match(e.request, { ignoreSearch: true });
     if (hit) return hit;
     try {
       const res = await fetch(e.request);
-      // opportunistically cache same-origin successful responses
-      if (res.ok && new URL(e.request.url).origin === self.location.origin) {
-        const c = await caches.open(FULL); c.put(e.request, res.clone());
-      }
+      if (res.ok && sameOrigin) { const c = await caches.open(FULL); c.put(e.request, res.clone()); }
       return res;
     } catch (err) {
       return caches.match('./index.html');   // offline fallback for navigations

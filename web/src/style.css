@@ -52,6 +52,14 @@ body.ek-rot-270 #overlay-root {
   border: 1px solid #2b2f36; border-radius: 8px; background: #241d10; color: #e8ddc4; font-family: inherit;
 }
 
+/* ---- Visible build tag (bottom-left, unobtrusive, always upright) ---- */
+#ek-build {
+  position: fixed; left: 6px; bottom: calc(env(safe-area-inset-bottom, 6px) + 6px);
+  z-index: 70; pointer-events: none;
+  font: 600 12px system-ui, sans-serif; color: #cfe3ff;
+  background: rgba(10,12,16,.6); padding: 2px 7px; border-radius: 8px;
+}
+
 /* ---- Free-floating joystick ---- */
 #stick-layer {
   position: fixed; inset: 0; z-index: 20; touch-action: none; pointer-events: auto;
