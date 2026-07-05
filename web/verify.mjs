@@ -40,6 +40,14 @@ const mapInfo = await page.evaluate(() => window.__EK.map());
 console.log('map rendered:', mapInfo);
 const mapOk = mapInfo.tiles > 100;
 
+// --- Real character sprite: hero exists and its walk animation advances frames ---
+await page.waitForFunction(() => window.__EK.hero && window.__EK.hero(), { timeout: 8000 });
+const f1 = await page.evaluate(() => window.__EK.hero().frame);
+await page.waitForTimeout(300);
+const heroInfo = await page.evaluate(() => window.__EK.hero());
+console.log('hero:', heroInfo, 'startFrame:', f1);
+const heroOk = heroInfo.playing && heroInfo.anim.includes('walk') && heroInfo.frame !== f1;
+
 fs.mkdirSync('shots', { recursive: true });
 const names = { 0: 'portrait', 90: 'landscape', 180: 'reverse-portrait', 270: 'reverse-landscape' };
 const results = [];
@@ -108,9 +116,9 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-const ok = errors.length === 0 && orientOk && mapOk && cached.failed === 0 && offlineBooted && saveOk;
+const ok = errors.length === 0 && orientOk && mapOk && heroOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + 4 orientations + input, full-game cached, offline reload, saves round-trip`
+  ? `VERIFY: PASS — real map (${mapInfo.tiles} tiles) + animated hero + 4 orientations + input, full-game cached, offline reload, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

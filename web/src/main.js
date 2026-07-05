@@ -8,6 +8,7 @@
 // free — taps land correctly in every orientation.
 
 import { loadMap, renderMap } from './map.js';
+import { loadHero, makeHero } from './sprite.js';
 
 const ORIENTS = [0, 90, 180, 270];
 const START_MAP = 'H10';                            // Lannegar Valley (starting town)
@@ -37,6 +38,10 @@ class MapScene extends Phaser.Scene {
     this.tokenLabel = this.add.text(0, 0, '⚔', {
       fontSize: '24px', color: '#fff'
     }).setOrigin(0.5);
+    // The real animated hero (loaded with the map) is now the visible protagonist;
+    // this token stays as a faint, still-interactive input marker (drag/hit-test).
+    this.token.setAlpha(0.22);
+    this.tokenLabel.setAlpha(0);
     this.token.setInteractive({ draggable: true, useHandCursor: true });
     this.input.setDraggable(this.token);
     this.input.on('drag', (_p, obj, dx, dy) => {
@@ -71,6 +76,11 @@ class MapScene extends Phaser.Scene {
         return hits.includes(this.token);
       },
       map: () => ({ name: START_MAP, tiles: this._mapTiles || 0 }),
+      hero: () => this.hero ? {
+        playing: this.hero.anims.isPlaying,
+        anim: this.hero.anims.getName(),
+        frame: this.hero.anims.currentFrame && this.hero.anims.currentFrame.index,
+      } : null,
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -84,22 +94,28 @@ class MapScene extends Phaser.Scene {
       this._mapTiles = tiles;
       this.mapBounds = { width, height };
       this.grid.setVisible(false);                 // real content replaces the grid
+
+      // Real animated hero, placed on the map (in map-space so it scales with it).
+      await loadHero(this, 'hero', 'assets/sprites/male_knight.png');
+      this.hero = makeHero(this, this.mapLayer, 'hero', width / 2, height / 2);
+
       this.fitMap();
     } catch (e) {
       console.warn('map load failed, keeping placeholder grid:', e);
     }
   }
 
-  // Scale + center the rendered map so it fits the current logical viewport.
+  // Camera: zoom the map to a playable scale and center it on the hero, so we see
+  // a portion of the world around the character (not the whole map shrunk to fit).
+  // The hero stays fixed at the center of the logical viewport.
   fitMap() {
     if (!this.mapBounds) return;
-    const pad = 8;
-    const s = Math.min((this.LW - pad * 2) / this.mapBounds.width,
-                       (this.LH - pad * 2) / this.mapBounds.height);
-    this.mapLayer.setScale(s);
-    this.mapLayer.setPosition(
-      (this.LW - this.mapBounds.width * s) / 2,
-      (this.LH - this.mapBounds.height * s) / 2);
+    // zoom so ~12 tiles span the shorter logical dimension (tile width is 64)
+    const z = Math.min(this.LW, this.LH) / (12 * 64);
+    this.mapLayer.setScale(z);
+    const hx = this.hero ? this.hero.x : this.mapBounds.width / 2;
+    const hy = this.hero ? this.hero.y : this.mapBounds.height / 2;
+    this.mapLayer.setPosition(this.LW / 2 - hx * z, this.LH / 2 - hy * z);
   }
 
   flash(color) {

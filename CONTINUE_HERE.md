@@ -51,7 +51,15 @@ Next steps (in order):
    `world` container. `H6_bank` (the bank interior, 2,410 tiles) renders and is
    asserted by `verify.mjs`. Convert another with
    `node tools/tmx2json.mjs <path/to/map.tmx> <name>` then set `START_MAP` in `main.js`.
-2. **Wire texture atlases** so a real character sprite renders.
+2. ~~**Wire a real character sprite**~~ ✅ DONE. `web/src/sprite.js` slices EK
+   character sheets (9×11 grid of 140×140 frames; rows 1-5 = facings U/RU/R/RD/D,
+   col 1 = idle, cols 2-9 = 8-frame walk — per the base game's `AnimationSet.java`)
+   and builds Phaser walk/idle animations per facing. An animated `male_knight`
+   hero renders on the map; `verify.mjs` asserts its walk cycle advances frames.
+   A simple **hero-follow camera** (`fitMap` in `main.js`) zooms to ~12 tiles and
+   centers on the hero instead of shrinking the whole map. Next: move the hero
+   with input (tap-to-move / pathfinding) and swap facings; then the composite
+   player (body+head+clothes layered from `sprites/composite/`).
 3. **Responsive HUD** that reflows between tall/wide (the one design task
    orientation demands).
 4. **Port game systems** (movement, dialogue reader, combat) using Track A's
