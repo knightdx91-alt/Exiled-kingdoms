@@ -12,7 +12,12 @@ import { loadHero, makeHero } from './sprite.js';
 
 const ORIENTS = [0, 90, 180, 270];
 const START_MAP = 'H10';                            // Lannegar Valley (starting town)
-const CAMERA_ZOOM = 1;                              // native 1:1 pixel scale
+// Camera recovered from the base game's GameLevelRenderer (deobfuscated k0/a.java):
+// the phone camera is an OrthographicCamera with a 533x300 world-unit viewport and
+// gameplay zoom 1.0 — i.e. 533 world-px of width fill the screen. We reproduce that
+// art scale by mapping EK_VIEWPORT_W world-units across the longer logical axis
+// (the base game is landscape; 533 is its long side), independent of orientation.
+const EK_VIEWPORT_W = 533;
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
@@ -106,12 +111,12 @@ class MapScene extends Phaser.Scene {
     }
   }
 
-  // Camera: draw the map at NATIVE 1:1 pixel scale (tiles at their real 64px size,
-  // crisp art — no downscaling), following the hero at the center of the viewport,
-  // matching the base game's on-device look. `world` handles the orientation.
+  // Camera: reproduce the base game's phone view — 533 world-units of the long
+  // screen axis, gameplay zoom 1.0 (recovered from GameLevelRenderer) — following
+  // the hero at the center of the viewport. `world` handles the orientation.
   fitMap() {
     if (!this.mapBounds) return;
-    const z = CAMERA_ZOOM;
+    const z = Math.max(this.LW, this.LH) / EK_VIEWPORT_W;
     this.mapLayer.setScale(z);
     const hx = this.hero ? this.hero.x : this.mapBounds.width / 2;
     const hy = this.hero ? this.hero.y : this.mapBounds.height / 2;
