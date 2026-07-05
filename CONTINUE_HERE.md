@@ -27,54 +27,73 @@ Kept out of the repo on purpose (size / third-party copyright). All re-derivable
 
 ## Track B — Web rebuild (Phaser 3)   ← recommended, this is the product
 
-**Location:** `web/`. **Status:** foundation built and verified in headless Chrome.
+**Location:** `web/`. **Status:** a playable vertical slice — start a character, walk
+a seamless world, meet NPCs, and hold conversations. All verified in headless Chrome
+(`cd web && node verify.mjs` → `VERIFY: PASS`, screenshots in `web/shots/`).
 
-Done and proven (`cd web && node verify.mjs` → `VERIFY: PASS`):
-- Phaser 3 project (`web/src/main.js`), Phaser vendored in `web/vendor/`.
-- **Player-owned 4-way orientation** (portrait / landscape / reverse-portrait /
-  reverse-landscape). Engine-driven, not browser auto-rotate: canvas stays upright
-  (so touch input is correct) and all content sits in one `world` container we
-  rotate in-engine. Input hit-tests correctly through the rotation — verified.
-- **Offline PWA**: `web/sw.js` service worker + `web/manifest.webmanifest`.
-  Precaches the shell; on `CACHE_ALL` caches the **entire** game uncompressed from
-  `asset-manifest.json` (regenerate with `node tools/gen-manifest.mjs`). Bookmark
-  / "Add to Home Screen" → plays fully offline. Verified: network cut → reload →
-  game still boots.
-- **Browser-local saves**: `web/src/saves.js` (IndexedDB) with export/import.
-  Verified round-trip.
+### DONE (proven by verify.mjs)
+- **Foundation**: Phaser 3 (`web/src/main.js`, Phaser vendored in `web/vendor/`);
+  player-owned **4-way orientation** (engine-rotated `world` container, input
+  hit-tests through the rotation); **offline PWA** (`sw.js` + `manifest.webmanifest`,
+  precaches the whole game from `asset-manifest.json`); **IndexedDB saves**
+  (`src/saves.js`, export/import + an `auto` save of the created character).
+- **Isometric maps**: `tools/tmx2json.mjs` converts every `.tmx` (iso tiles, external
+  `.tsx`, base64+gzip/zlib layers, **object layer → transitions / entries / npcs /
+  containers / triggers**) to JSON; `src/map.js` renders three depth planes with
+  recovered ambient/day-night (`deobf/ENGINE_SPEC.md`, `CAMERA.md`). All **151 maps**
+  converted.
+- **Seamless streaming overworld** (`src/world.js`): the 53 `[outdoor][worldmap]`
+  tiles live in one global cell space and stream in a small window around the hero —
+  **no load screen between outdoor tiles**. Viewport **tile culling** via a sprite
+  pool bounds draw cost to the camera (~600 tiles, not ~90k); residency is lean for
+  mobile (1 chunk mid-map, up to 4 at a corner) with tileset-texture dedup. Towns/
+  buildings/caves stay discrete, entered by walking onto a transition cell (an arch).
+- **Movement**: `src/move.js` — collision grid (`GameMap.v()`), 8-way A*, iso
+  cell↔pixel (+ global variants). Two control schemes via a toggle: **tap-to-move**
+  and a **free-floating joystick** (`src/joystick.js`, reskinned to the game's real
+  `touchpad_base/knob`). Facing/anim from `src/sprite.js` (9×11×140 sheets).
+- **Game start** (`src/char-create.js`): title → character creation using EK's own
+  assets (logo, intro backdrop, portrait arrows, real class/difficulty text) →
+  begins in `I10_tutorial` (Adaon's road) with the gender-correct sprite.
+- **Entities** (`src/entity.js`): NPCs/monsters from each map's spawns render as
+  animated, depth-sorted actors (interior + streamed world), sprites resolved via a
+  **bestiary index** (`tools/gen-bestiary.mjs` → `assets/data/bestiary.json`);
+  composite paper-doll sprites fall back to their base layer.
+- **Dialogue reader** (`src/dialogue.js`): parses EK conversation trees, shows NPC
+  lines (portrait + Continue) and player choices, evaluates **conditions** and runs
+  **actions** against a shared world state (global variables + party/followers) — the
+  same store quests/triggers use. Tap an NPC to walk up and talk. Verified end-to-end
+  in the tutorial (Adaon greets you, the tree branches, `NPCFollow#` adds him).
+- **Deobfuscated stat model** (`deobf/CHARACTER_STATS_SPEC.md`): real numbers behind
+  creation/level-up — 6 attributes (0–12, triangular cost), trait pool `2L+2`, skill
+  pool `2L−1`, tier-1 skill cost 1 (+mana), per-class HP/mana/damage. Baked into
+  `assets/data/creation.json` + `skills.json` (`tools/gen-creation.mjs`,
+  `gen-skills.mjs`).
 
-Next steps (in order):
-1. ~~**Render a real map**~~ ✅ DONE. `web/tools/tmx2json.mjs` converts a `.tmx`
-   (parses the isometric map, resolves external `.tsx` tilesets, decodes the
-   base64 + gzip/zlib layer data) to compact JSON and copies the tileset PNGs into
-   `web/assets/tmx/`. `web/src/map.js` renders it isometrically into the rotatable
-   `world` container. `H6_bank` (the bank interior, 2,410 tiles) renders and is
-   asserted by `verify.mjs`. Convert another with
-   `node tools/tmx2json.mjs <path/to/map.tmx> <name>` then set `START_MAP` in `main.js`.
-2. ~~**Wire a real character sprite**~~ ✅ DONE. `web/src/sprite.js` slices EK
-   character sheets (9×11 grid of 140×140 frames; rows 1-5 = facings U/RU/R/RD/D,
-   col 1 = idle, cols 2-9 = 8-frame walk — per the base game's `AnimationSet.java`)
-   and builds Phaser walk/idle animations per facing. An animated `male_knight`
-   hero renders on the map; `verify.mjs` asserts its walk cycle advances frames.
-   A **hero-follow camera** (`fitMap`) uses the recovered base-game viewport
-   (533-wide, `deobf/CAMERA.md`) and supports pinch/wheel zoom (base view = max out).
-3. ~~**Move the hero**~~ ✅ DONE. `web/src/move.js`: walkable grid from the base
-   game's collision model (nonwalk layer / empty ground / `blocked`+`obstacle` object
-   tiles — `GameMap.v()`), 8-way A* pathfinding, iso cell↔pixel. **Tap-to-move** walks
-   the hero with correct facing (U/RU/R/RD/D + mirrored) and walk/idle anims; camera
-   follows; depth re-sorts each step. `verify.mjs` asserts collision-aware movement.
-   Next: **map transitions** (convert all maps + entry/exit objects), then the
-   recovered roof-fade (A3) + fog-of-war (A5), then dynamic lights (A1).
-3. **Responsive HUD** that reflows between tall/wide (the one design task
-   orientation demands).
-4. **Port game systems** (movement, dialogue reader, combat) using Track A's
-   recovered source as the spec. Data (`.txt` conversations/quests/rules) loads
-   directly.
-5. Copy `recovered/assets/data` → `web/assets/`, regenerate the asset manifest so
-   the full game precaches offline.
+### TODO (roughly in order)
+1. **Creation: traits + abilities pages** — attribute allocation (4 pts, triangular,
+   0–12) and starting ability pick (1 pt, class skill list w/ mana), from
+   `creation.json` / `skills.json`. *(Data ready; UI not built.)*
+2. **Player model + HUD** — HP/mana/XP/level/gold/inventory from the deobfuscated
+   formulas; responsive HUD that reflows tall↔wide. Persist `gameState` in saves.
+3. **Combat + followers** — real-time-with-pause from the recovered AI/`Rules`
+   (skills, weapons `weapons.txt`, bestiary, loot); companions physically follow/
+   fight (followers are tracked in state but don't yet move). Enemies from
+   `spawntables`. This is the big one — the tutorial goblin fight lives here.
+4. **Quests + world state** — quest tracking + faction/event flags on `gameState`.
+5. **Hero class + trainers** (design in flight) — a class that learns all skills via
+   RuneScape-style trainer NPCs (dialogue actions set unlock flags), with
+   trained-discipline gates for class-restricted equipment (`items.txt` Classes col).
+6. **Render polish** — recovered roof-fade (A3) + fog-of-war (A5), dynamic lights (A1).
+
+### UI fidelity note
+Per the owner: every UI surface (creation screens, dialogue box, menus) must
+eventually match the real game **exactly**. Current styling is an agreed placeholder;
+match to a screenshot when building each screen.
 
 Verify anytime: `cd web && node verify.mjs` (drives real Chrome, screenshots to
-`web/shots/`, asserts orientation + input + offline + saves).
+`web/shots/`, asserts start/creation, movement (tap + joystick), seamless world +
+transitions, NPCs + dialogue, day/night, zoom, 4 orientations, offline, saves).
 
 ---
 
@@ -128,18 +147,28 @@ Sorrow Mod, ENB authors) — permission needed to ship any of it.
 
 ## Repo map
 ```
-web/                Track B — Phaser 3 web rebuild (orientation, PWA offline, saves)
+web/                Track B — Phaser 3 web rebuild (the product)
+  web/src/          main.js (scene), world.js (seamless streamer), map.js, move.js,
+                    sprite.js, entity.js (NPCs), dialogue.js, char-create.js,
+                    joystick.js, saves.js
+  web/tools/        tmx2json, gen-manifest, gen-bestiary, gen-skills, gen-creation,
+                    gen-world-grid
+  web/assets/       tmx/ (151 maps), sprites/, portraits/, conversations/, ui/,
+                    data/ (bestiary, skills, creation, world-grid)
+  web/verify.mjs    end-to-end headless-Chrome check (keep green)
 recovered/src/      Track A — decompiled game source (readable spec)
 port/core/          Track A — buildable subset (154 green) + port/stubs
-deobf/              de-obfuscation maps + analysis docs
-tools/              full toolchain (extract, rebuild, triage, remappers, verify)
+deobf/              de-obfuscation specs (ENGINE, UI, CAMERA, CHARACTER_STATS, …)
+tools/              Track A toolchain (extract, rebuild, triage, remappers, verify,
+                    trace_calls — obfuscated call-graph tracer)
 MOD_ANALYSIS.md     what the Multiplayer mod changed
 REVERSE_ENGINEERING.md  original recovery writeup
 CONTINUE_HERE.md    this file
 ```
 
 ## Continuing on another account
-Repo: `knightdx91-alt/Exiled-Kingdoms`, branch `main`. Clone it, put the base APK
-somewhere, run the three `tools/*.sh` scripts to rebuild Track A, and
-`cd web && npm install && node verify.mjs` for Track B. Recommended focus: Track B
-step 1 (render a real `.tmx` map).
+Repo: `knightdx91-alt/Exiled-Kingdoms`, branch `main` (main-only, no branches/PRs —
+see CLAUDE.md). Clone it, put the base APK somewhere, run the `tools/*.sh` scripts to
+rebuild Track A, and `cd web && npm install && node verify.mjs` for Track B.
+Recommended focus: Track B TODO #1 (creation traits + abilities pages — data is
+already in `web/assets/data/creation.json` + `skills.json`).

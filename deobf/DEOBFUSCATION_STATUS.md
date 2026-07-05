@@ -49,6 +49,17 @@ files, each with `owner` and `status`, so nothing is invisible. Current tally:
 purpose-catalogued in `UI_SPEC.md`). The library tier is identified and needs no reversal
 (public source) — see `LIBRARY_MAP.md`. Nothing game-relevant remains unaccounted for.
 
+**Member-level reversals (deep dives), as the web port needs them:**
+- `CAMERA.md` — GameLevelRenderer camera/viewport.
+- `ENGINE_SPEC.md` — render loop, collision (`GameMap.v()`), roof-fade, fog-of-war.
+- `CHARACTER_STATS_SPEC.md` — the player stat/progression model: 6 attributes (0–12,
+  triangular cost), trait pool `2L+2`, skill pool `2L−1`, per-class HP/mana/damage.
+  Backed the web creation data (`web/assets/data/creation.json`, `skills.json`).
+
+**Tooling for these deep dives:** `tools/trace_calls.py` — point it at an obfuscated
+member (`Class#method` or a field) and it traces callers (up) and callees (down)
+across the tree, so a whole subsystem's call graph can be mapped before reversing it.
+
 ### Getting the real code when porting a feature (the guarantee)
 So we can always pull **actual member-level logic** — never re-simplify from memory — the
 full obfuscated source tree is regenerable from the APK:
