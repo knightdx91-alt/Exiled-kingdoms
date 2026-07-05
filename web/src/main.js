@@ -12,6 +12,7 @@ import { loadHero, makeHero } from './sprite.js';
 
 const ORIENTS = [0, 90, 180, 270];
 const START_MAP = 'H10';                            // Lannegar Valley (starting town)
+const CAMERA_ZOOM = 1;                              // native 1:1 pixel scale
 
 class MapScene extends Phaser.Scene {
   constructor() { super('map'); }
@@ -105,13 +106,12 @@ class MapScene extends Phaser.Scene {
     }
   }
 
-  // Camera: zoom the map to a playable scale and center it on the hero, so we see
-  // a portion of the world around the character (not the whole map shrunk to fit).
-  // The hero stays fixed at the center of the logical viewport.
+  // Camera: draw the map at NATIVE 1:1 pixel scale (tiles at their real 64px size,
+  // crisp art — no downscaling), following the hero at the center of the viewport,
+  // matching the base game's on-device look. `world` handles the orientation.
   fitMap() {
     if (!this.mapBounds) return;
-    // zoom so ~12 tiles span the shorter logical dimension (tile width is 64)
-    const z = Math.min(this.LW, this.LH) / (12 * 64);
+    const z = CAMERA_ZOOM;
     this.mapLayer.setScale(z);
     const hx = this.hero ? this.hero.x : this.mapBounds.width / 2;
     const hy = this.hero ? this.hero.y : this.mapBounds.height / 2;
