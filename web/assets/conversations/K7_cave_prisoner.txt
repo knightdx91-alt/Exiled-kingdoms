@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Thanks adventurer!	¡Gracias, aventurero!	0	VariableGreater#trial_error,39	
+1	Q	The man is too scared of the nearby monsters to talk to you.	El hombre está demasiado asustado de los monstruos cercanos como para hablar.	0	Hostiles#	
+1	Q	We are saved! Thanks adventurer, we know how to sneak out of this hellish cave by ourselves. I advise you do the same!	¡Estamos salvados! Gracias, aventurero. Nosotros sabemos como escabullirnos de esta cueva infernal, sugerimos que hagas lo mismo.	2		
+2	A	We're looking for a young knight called Sir Aramas, have you seen him around here?	Estamos buscando a un joven caballero llamado Aramas, ¿Le habéis visto por aquí?	3		
+3	Q	The young hero! The beasts ambushed him, but he managed to escape deep into the ursan sanctuary. The ursans believe anyone setting foot there is cursed, so they didn't follow him and locked the gate again.	"¡El joven héroe! Los monstruos le emboscaron pero consiguió huir y adentrarse en el santuario de los ursans; ellos piensan que cualquiera que entre allí queda maldito, así que no le siguieron y volvieron a cerrar la puerta."	4		
+4	A	Where's ths sanctuary? How can I get there?	¿Qué es ese santuario? ¿Cómo puedo llegar allí?	5		
+5	Q	Ursans believe it's a place built by their ancestors, but that's obviously not true as they descend from forest beasts. Anyways, there's a tunnel leading to it, but a locked gate prevents access.	Los Ursans creen que es un lugar construido por sus antepasados, pero obviamente no es cierto ya que descienden de bestias del bosque. Hay un tunel en lo profundo de estas cuevas que lelva hasta allí, pero una puerta bloquea el acceso.	6		
+6	A	How did Aramas open the locked gate?	¿Cómo abrió Aramas la puerta cerrada?	7		
+7	Q	He learned the secret from us: a mechanism activated by pushing a brick behind the unholy altar of the ursan. But beware, do not enter the throne room of the King of Korne, for you'll only find death.	Aprendió el secreto de nosotros: un mecanismo oculto, hay que presionar un ladrillo en la pared tras el altar maligno de los ursans. Pero ¡Cuidado! No entres en la sala del trono del Rey de Korne, porque supondrá tu muerte.	8		
+8	A	Thanks for all the advice.	Gracias por la ayuda.	9		
+9	Q	Thanks to you for saving us, and good luck!	¡Gracias a tí por salvarnos, y buena suerte!	0		"SetVariable#trial_error,40;NPCDespawn#prisoner;IncVariable#REP_town_port_malan,4;IncVariable#REP_varsilia,4"

@@ -1,0 +1,9 @@
+﻿index	type	text_english	text_ES	Go To	conditions	actions
+1	Q	Thrice blessed be you!	¡Que te bendigan tres veces!	2		
+2	A	I must be going.	Disculpa pero tengo prisa.	0		
+2	A	And you as well. Can you take me in your boat? I need transportation	Igualmente. Me preguntaba si puedo viajar en tu bote.	3		
+3	Q	Sure, I've heard you're a nice fellow. I can take you upstream to Rhöneis or Kingsbridge for 150 gold. We should get there in half a day.	De acuerdo, he oido hablar de ti y eres una buena persona. Por 100 monedas puedo llevarte rio abajo, a Kingsbridge.  Nos llevará medio día.	4	VariableGreater#REP_ilmara,9	
+3	Q	Hum. Listen, I normally don't carry passengers, and I certainly don't carry people that I don't know and trust. Sorry.[BLUE](You need to rise your reputation in the Kingdom of Ilmara to 'Friendly')[]	Hum. Mira, normalmente no llevo pasajeros, y desde luego no voy a llevar a nadie conmigo que no sea de confianza. Lo siento.[BLUE](Necesitas mejorar tu reputación en el Reino de Ilmara a 'Amigable')[]	0		
+4	A	Take me south to Rhöneis.	Llévamea Rhöneis, hacia el sur.	0	playerhasGold#150	"loseGold#150;Travel#F10,2,12"
+4	A	Take me south to Kingsbridge, in the Kingdom of Varsilia.	Llevame al sur hacia Kingsbridge en el Reino de Varsilia.	0	playerhasGold#150	"loseGold#150;Travel#G9,2,12"
+4	A	Hmmm I am not sure, maybe I'll be back later.	Hmmm no estoy seguro, quizá vuelva más tarde.	0		

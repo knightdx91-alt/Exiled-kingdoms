@@ -1,0 +1,19 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Greetings, citizen. Remember, while in our town, do as The Three command and you'll be under their Blessing.	Saludos, ciudadano. Recuerda, en nuestra ciudad, cumple los preceptos de Los Tres y estarás bajo su bendición.	2		
+2	A	I am an adventurer looking for work.	Soy un aventurero en busca de trabajo.	3		
+2	A	I will. Goodbye.	Lo haré. Adiós.	0		
+2	A	I want to access the Cathedral.	Quiero entrar en la Catedral.	4		
+2	A	I was wondering if I could purchase a home in Nivarian.	Me preguntaba si puedo comprar una casa en Nivarian.	20		
+3	Q	"The City Watch does not employ adventurers, although there's some jobs available at the Town Hall. But some citizens might have tasks for an adventurer for hire; you might want to check with Father Palver, or with that alchemist, Mallow."	"La Guardia de la Ciudad no contrata aventureros, aunque hay algunos trabajos en el Ayuntamiento. También puedes ayudar a otros ciudadanos; prueba a hablar con el Hermano Palver, o con ese alquimista, Mallow."	5		
+4	Q	"Indeed, that's a noble aspiration; spend some time in the company of our Lord and Her Majesty. But no visitors are allowed, you might want to go hunt down some beasts in the wilderness instead."	Claro, eso está muy bien, pasar un rato en compañía de nuestro Señor y de Su Majestad. Pero me temo que en lugar de eso vas a tener que conformarte con salir por ahí a matar algún monstruo.	0		
+5	A	Where can I find Mallow the alchemist?	¿Dónde puedo encontrar a Mallow el alquimista?	6	VariableLower#eye_tiger,10	
+5	A	Where can I find Brother Palver?	¿Dónde puedo encontrar al Hermano Palver?	7	VariableLower#moon_children,10	
+5	A	Thanks and goodbye.	Gracias y adiós.	0		
+6	Q	He usually wanders around the garden near the central square, maybe trying to scrap some herbs for a potion.	Normalmente anda por el jardín de la plaza principal, quizá buscando algún hierbajo para una poción.	0		
+7	Q	Just head south from here and you'll reach his street shrine. Give him my regards.	Camina hacia el sur desde aquí y encontrarás su altar. Dale recuerdos.	0		
+20	Q	You already own a house in this town… which is an extraordinary honor for a foreigner, if I might say so.	Ya tienes una casa en la ciudad… lo cual es un raro honor para un extranjero, me atrevo a decir.	0	VariableEqual#NI_house,1	
+20	Q	We rarely grant such honor to one not born in our town. Maybe, if everyone in Nivarian recognized you as a friend. [BLUE](You need a reputation of 40 with Ilmara)[]	Normalmente no otorgamos tal honor a alguien extranjero en Nivarian. Quizá, si todos te reconocieran como amigo. [BLUE](Necesitas una reputación de 40 con Ilmara)[]	0	VariableLower#REP_ilmara,40	
+20	Q	"You are a foreigner in our town, but you've got an impressive reputation as an adventurer; I see no problem in selling you a house, if you are able to pay [BLUE]40,000[] gold coins."	"Eres un extranjero en nuestra ciudad, pero tienes una reputación impresionante como aventurero; no tengo inconveniente en que consigas una casa, si puedes pagar [BLUE]40,000[] monedas de oro."	21		
+21	A	Agreed, here is the money.	De acuerdo, aquí está el dinero.	22	PlayerHasGold#40000	"LoseGold#40000;SetVariable#NI_house,1"
+21	A	Maybe another time...	Quizá en otro momento...	0		
+22	Q	Excellent. Your house is not far from the entrance bridge, now go and install yourself.	"Excelente, tu nueva casa está junto al puente de entrada; puedes ir e instalarte."	0		

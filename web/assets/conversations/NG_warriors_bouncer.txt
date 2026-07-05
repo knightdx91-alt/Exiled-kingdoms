@@ -1,0 +1,14 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Welcome home, veteran.	Bienvenido a casa, veterano.	0	VariableEqual#ng_war_access,1		
+1	Q	If you're looking for a children's playground, you entered the wrong place. This is the Warriors' Guild.	Si estás buscando un jardín de juegos infantiles, te has perdido. Esto es el Gremio de Guerreros.	2			
+2	A	I know where I am. I want to go inside, open that grate.	Sé dónde estoy. Quiero pasar, abre la verja.	3			
+2	A	Tell me more about the Warriors' Guild.	Dime más acerca del Gremio de los Guerreros.	10			
+2	A	Goodbye.	Adiós.	0			
+3	Q	We don't let in casual visitors, only members, or friends that have helped us in hour of need.	No dejamos pasar a visitantes casuales, sólo miembros, o amigos que nos han ayudado en momentos difíciles.	4			
+4	A	How could I help the guild?	¿Y cómo podría ayudaros?	5	VariableLower#fort_assault,100		
+4	A	I fought side to side with Sergeant Dumek in Kingsbridge. Together we conquered the orc fort.	Luché codo con codo con el Sargento Dumek en Kingsbridge. Juntos conquistamos el fuerte de los orcos.	6	VariableGreater#fort_assault,99		
+4	A	I don't really want to enter. Probably nothing of interest inside.	En realidad no quiero entrar. Seguramente no hay nada de interés.	0			
+5	Q	Maybe find some of the officiers out there working on a contract, and help them out. I heard Sergeant Dumek in Kingsbridge is having a hard time.	Podrías buscar a uno de los oficiales que están ahí fuera trabajando en un contrato. El Sargento Dumek está pasando apuros con los orcos en Kingsbridge.	0			
+6	Q	Oh you are THAT adventurer! Of course you are more than welcome here, son. I've raised more than one beer cheering to your deeds.	¡Ah, tú eres ESE aventurero! Por supuesto que entonces eres bienvenido. He levantado más de una cerveza a la salud de esa batalla.	0		"SetVariable#ng_war_access,1;ItemHide#grate1;ItemWalkable#grate1"	
+10	Q	"We're all brothers and sisters in arms. Some say we're mere mercenaries, but we will only take a honorable contract. We don't take sides in Kingoms' politics, and we don't accept contracts that go against unarmed populations. Most of us are not noble; but some Varsilian second sons tired of the power struggle, have chosen to join us."	"Somos hermanos en armas. Algunos dicen que simples mercenarios, pero sólo aceptamos contratos honorables, nunca contra población desarmada, y no entramos en política. La mayoría no somos nobles; pero algunos 'hijos segundos' de grandes familias de Varsilia, cansados de la lucha por el poder, se han unido a nosotros."	11			
+11	A	That sounds interesting. Can I go in?	Eso parece interesante. Puedo entrar?	3			

@@ -1,0 +1,23 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](This statue is very ancient, and represents an elderly knight, with the presence of a King from the old days)[] Who is it that disturbs my rest? Do you know my name?	[BLUE](Esta estatua es muy antigua, y representa a un anciano caballero, con el porte de un verdadero rey)[]¿Quién viene a perturbar mi descanso? ¿Conoces acaso mi nombre?	2		SetVariable#TMP_riddle,0	
+2	A	I don't.	No.	4			
+2	A	You are Abbot Marcillus.	Eres el Abad Marcillus.	4			
+2	A	You are Admus.	Eres Admus.	4		IncVariable#TMP_riddle,1	
+2	A	You are Arbenos.	Eres Arbenos.	4			
+4	Q	Do you know what was my homeland?	¿Sabes cuál fue mi patria?	5			
+5	A	Ilmara.	Ilmara.	6			
+5	A	Varsilia.	Varsilia.	6			
+5	A	Mercia.	Mercia.	6		IncVariable#TMP_riddle,1	
+5	A	Thuram.	Thuram.	6			
+6	Q	Say the name that brings more pain to my heart.	Dí el nombre que trae mayor dolor a mi corazón.	7			
+7	A	Zudea.	Zudea.	8		IncVariable#TMP_riddle,1	
+7	A	Silmarie.	Silmarie.	8			
+7	A	Marvia.	Marvia.	8			
+7	A	Therezza.	Therezza.	8			
+8	Q	Finally: what is the greatest virtue in a knight?	Finalmente: ¿Cuál es la mayor virtud en un caballero?	9			
+9	A	Courage.	Coraje.	10			
+9	A	Compassion.	Compasión.	10			
+9	A	Wisdom.	Sabiduría.	10			
+9	A	Honesty.	Honestidad.	10		IncVariable#TMP_riddle,1	
+10	Q	You are not worthy! Begone! [BLUE](The echoing voice of the statue alerts some nearby beasts)[]	¡No eres digno! ¡Márchate! [BLUE](La voz cavernosa de la estatua atrae la atención de algunas bestias.)[]	0	VariableLower#TMP_riddle,4	NPCSpawn#alerted_cat	
+10	Q	You indeed know me well, visitor. Let us talk, for much good can come from it. [BLUE](Suddenly, a traslucid knight appears besides the statue)[]	Verdaderamente me conoces bien, visitante. Hablemos, pues de ello podría venir mucho bien. [BLUE](De pronto un caballero transparente aparece junto a la estatua)[]	0		"ItemHide#grate;ItemWalkable#grate;SetVariable#riddle_admus,1;GainXP#1500; NPCSpawn#admus"	

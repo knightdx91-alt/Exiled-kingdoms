@@ -1,0 +1,11 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	The crimson steel gate is open now. On one side, there is a small plaque with an inscription.	Esta impresionante puerta mágica está abierta. Hay una inscripción a un lado.	2	VariableEqual#D9_crypt_unlock4,1	
+1	Q	"This crimson steel gate is obviously protected by ancient magic; trying to force it open without the right key would be fruitless, and probably very dangerous. On one side, there is a small plaque with an inscription."	Esta impresionante puerta mágica de acero rojo ha sido sellada. Intentar abrirla sin la llave posiblemente sea inútil, y además peligroso. Hay una inscripción a un lado.	2		
+2	A	Read the inscription.	Leer la inscripción.	3		
+2	A	Try to force it open.	Intentar forzar la puerta.	4	VariableLower#D9_crypt_unlock4,1	
+2	A	Unlock it using your Ruby Key.	Abrirla usando tu Llave Rubí.	5	"VariableLower#D9_crypt_unlock4,1;PlayerHasItem#2534"	"SetVariable#D9_crypt_unlock4,1;LoseItem#2534"
+2	A	Walk through the gate.	Cruzar la puerta.	0	VariableEqual#D9_crypt_unlock4,1	Travel#D9_crypt,14
+2	A	Ignore the door.	Ignorar la puerta.	0		
+3	Q	It says 'Myrso the Merciful, fourth King of Mercia. He often pardoned a prisoner during each nightly set of executions. Sometimes in the morning ones too. Died in 17 AE stabbed in his sleep '.	Dice: 'Myrso el benévolo, cuarto Rey de Mercia. A menudo indultaba a un preso durante las ejecuciones de cada noche. A veces también en las de la mañana. Falleció en 17 DE apuñalado mientras dormía.'	0		
+4	Q	Of course it doesn't budge at all. The whole corridor is suddenly bright with magical light as you are struck by lightning. You knew this would happen, didn't you?	No consigues ni siquiera moverla. Todo el pasillo se enciende iluminado por una brillante luz mágica, cuando un relámpago cae sobre tí. Sabías que ocurriría esto, ¿verdad?	0		LoseHPShock#100
+5	Q	The crimson steel gate is open now. On one side, there is a small plaque with an inscription.	Esta impresionante puerta mágica está abierta. Hay una inscripción a un lado.	2		

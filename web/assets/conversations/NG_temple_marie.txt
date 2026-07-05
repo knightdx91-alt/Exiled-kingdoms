@@ -1,0 +1,15 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Do you seek Inner Rebirth, faithful one?	¿Buscas renacer en tu interior, hermano?	2			
+2	A	What do you mean?	¿Qué quieres decir?	3			
+3	Q	A new beginning for the things you learned. Forgetting is painful, but with the adequate discipline, it will allow to learn again, this time with the Wisdom granted to you by The Three.	Un nuevo comienzo para las cosas que has aprendido. Olvidar es doloroso, pero con la disciplina adecuada puedes volver a aprender, esta vez con la sabiduría otorgada por Los Tres.	4			
+4	A	I might be interested in un-training some of my skills or traits. Tell me more.	Me puede interesar re-entrenar algunas de mis habilidades o atributos, cuéntame más. 	5			
+4	A	I might be interested, for my companion. Tell me more.	Me puede interesar, para mi compañero. Cuéntame más.	10			
+4	A	Not interested, thanks.	No me interesa, gracias.	0			
+5	Q	Let's pray and begin our meditation together, then. [BLUE]( Pay {RESET_COST} gold to reset your skills points, traits, or forget your advanced skills. This will cost more each time you do it.)[]	Comencemos pues nuestras oraciones. [BLUE](Paga {RESET_COST} y resetea tus puntos de atributos o de habilidades, u olvida las habilidades avanzadas que conoces. Cada vez que lo hagas, costará más.)[]	6			
+6	A	I want to reset my skill points.	Quiero resetear mis habilidades.	0	PlayerHasGold#{RESET_COST}	"LoseGold#{RESET_COST};ResetPlayerSkills#"	
+6	A	I want to reset my traits. 	Quiero resetear mis atributos.	0	PlayerHasGold#{RESET_COST}	"LoseGold#{RESET_COST};ResetPlayerTraits#"	
+6	A	I want to forget the Advanced Skills I learned.	Quiero olvidar las habilidades avanzadas que aprendí.	0	PlayerHasGold#{RESET_COST}	"LoseGold#{RESET_COST};ForgetPlayerAdvancedSkills#"	
+6	A	Nevermind...	Déjalo...	0			
+10	Q	I see... Well, that won't be easy, throwing aside years of training like that. But it can be done. [BLUE]( Pay {RESET_COMPANION_COST} to fully reset your companion traits, skills, and forget learned advanced skills. This will cost more each time you do it.)[]	No es sencillo olvidar tántos años de entrenamiento, pero puede hacerse. [BLUE](Pagar {RESET_COMPANION_COST} monedas para resetear completamente todos los puntos de atributos y habilidad de tu compañero, y que olvide sus habilidades avanzadas. Cada vez que lo hagas, costará más dinero.)[]	11			
+11	A	Very well, do it.	Muy bien, hazlo.	0	"PlayerHasGold#{RESET_COMPANION_COST};HasCompanion#"	"LoseGold#{RESET_COMPANION_COST};ResetCompanion#"	
+11	A	Not interested, thanks.	No me interesa, gracias.	0			

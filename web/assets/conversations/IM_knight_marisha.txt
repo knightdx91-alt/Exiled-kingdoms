@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](The pale woman clad in black armor bows slightly)[] Greetings. I am Lady Marisha, Arcane Knight and Death Mage.	[BLUE](La mujer pálida lleva armadura negra. Te saluda levemente con la cabeza)[] Soy Lady Marisha, Caballeros Arcanos y Especialista en Magia de Muerte.	2			
+2	A	Death?!... That sounds a little bit evil.	¿¡Muerte?! Eso suena un poco maligno.	3			
+2	A	Do you offer training?	¿Ofreces entrenamiento?	10			
+2	A	Nevermind, goodbye.	Disculpa, me voy.	0			
+3	Q	[BLUE](She laughs)[] Does it? Then you probably haven't used death to fulfill your goals. But no, you indeed have taken plenty of lives, probably more than myself. Death is not more evil than life, and deserves no less research and study.	[BLUE](Se rie)[] ¿Ah sí? Entonces supongo que nunca te has servido de la muerte para cumplir tus metas. Pero no... Tú has segado muchas vidas, más incluso que yo. La muerte no es más malvada que la vida, y merece el mismo conocimiento y estudio.	4			
+4	A	That's an interesting perspective. Do you offer training?	Es una perspectiva interesante. ¿Ofreces entrenamiento?	10			
+4	A	Alright, if you say so...	Si tú lo dices...	0			
+10	Q	Arcane Knights don't share their  knowledge with just anyone. Ask Irolio, he is our leader and ultimately it's his choice who is worthy and who isn't.	Los Caballeros Arcanos no comparten su sabiduría con el primero que pasa. Pregunta a Irolio, es nuestor lider y él decide quién es merecedor de ser entrenado.	0	VariableLower#track_forsaken,100		
+10	Q	Sir Sorom seemed satisfied with your services, so we can provide training, for a fee. Interested?	Sir Sorom está satisfecho con tu ayuda, así que podemos entrenarte, a cambio de oro. ¿Te interesa?	11			
+11	A	What can you teach me?	¿Qué puedes enseñarme?	12			
+11	A	Maybe another time, thanks.	Quizá en otro momento, gracias.	0			
+12	Q	If you are a Mage, I can teach you [BLUE]Vampiric Blade[] so you can use death-enchanted weapons better than any warrior. I can also teach you [BLUE]Death Cloud[] which will kill or weaken your enemies.	Si eres un mago te puedo enseñar [BLUE]Arma Vampírica[] para que puedas usar armas encantadas con magia de muerte mejor que ningún guerrero. También puedo enseñarte [BLUE]Nube de Muerte[], que mata y debilita a tus enemigos.	13			
+13	A	Tell me more about Vampiric Blade	Dime más acerca de Arma Vampírica.	0		TrainSkill#vampiric_blade	
+13	A	Tell me more about Death Cloud.	Dime más acerca de Nube de Muerte.	0		TrainSkill#death_cloud	
+13	A	Maybe another time.	Quizá en otro momento.	0			

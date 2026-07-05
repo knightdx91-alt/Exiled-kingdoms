@@ -1,0 +1,21 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	Let's travel swiftly. I won't rest easy until I leave the savage lands behind me. Remember, just following the road west will take us there.	Viajemos rápidamente. No estaré tranquila hasta que deje atrás las tierras salvajes. Recuerda, basta cons eguir la carretera al oeste y llegaremos allí.	5	"VariableGreater#safe_passage,9;VariableLower#safe_passage,40"		
+1	Q	Finally, I am safe in civilized Mercian soil. You earned your reward of [BLUE]500 gold[]. 	Por fín, a salvo en tierras civilizadas. Te has ganado la recompensa de [BLUE]500 monedas[].	7	VariableEqual#safe_passage,40	"NPCStopFollowing#;SetVariable#safe_passage,100"	
+1	Q	Greetings, foreigner. You seem to be well armed... Are you available for bodyguard work? I offer [BLUE]500 coins[] for a short trip west.	Saludos, extranjero. Pareces bien armado... Me pregunto si estás disponible para trabajar como guardaespaldas. Ofrezco [BLUE]500 monedas[] por un viaje corto hacia el oeste.	2	VariableLower#safe_passage,10		
+2	A	That's a fine sum, no doubt. But where exactly west? 	Es una buena cifra, sin duda, pero ¿exáctamente a dónde debo llevarte?	3			
+2	A	Not right now, thanks. I'm busy with other tasks, but I might return another time.	Ahora no, gracias. Estoy ocupado con otros asuntos. Pero puede que regrese en otro momento.	0			
+3	Q	My final destination is Freetown. But I only need escort until the [BLUE]guard post in Southern Jabal Hills[]. From there, the road is safe. It is easy to find, following the west road. We have to border the Trollfens, but I doubt we'll run into trolls if we follow the road.	Mi destino final es Freetown, pero solo necesito escolta hasta llegar al [BLUE]puesto de guardia en las colinas Jabal Sur[]. Desde ahí los caminos son ya seguros. Es fácil de encontrar, la carretera al oeste lleva directo hast allí. Hay que pasar por los Pantanos Troll, pero no tendremos problema si seguimos en el camino.	4			
+4	A	Agreed. I'll make sure you get there safely. Follow me.	De acuerdo. Te llevaré allí sano y salvo. Sígueme.	0		"NPCFollow#;SetVariable#safe_passage,10"	
+4	A	Not right now, thanks. I'm busy with other tasks, but I might return another time.	Ahora no, gracias. Estoy ocupado con otros asuntos. Pero puede que regrese en otro momento.	0			
+5	A	Very well. We'll be in that guard post in Southern Jabal in no time.	Muy bien, estaremos en ese puesto de guardia de Jabal Sur muy pronto.	0			
+7	A	I don't think that payment is fair at all. The dangers have been bigger than you led me to believe. You expected to be attacked on the road.	No creo que ese pago sea justo. Los peligros han sido mayores que lo que me diste a entender. Sabías que te iban a atacar.	8			
+7	A	Very well, thanks and have a safe trip!	Muy bien. ¡Gracias y que tengas buen viaje!	11			
+8	Q	A deal is a deal. It is true that I carry valuable gems, and expected to be attacked. But I never lied to you.	Un trato es un trato. Es verdad que llevo gemas valiosas, y que esperaba ser atacada, pero yo no te he mentido.	9			
+9	A	Very well, just pay me then, and let's split ways	Muy bien. Entonces dame mi dinero y despidámonos.	11			
+9	A	As you wish. However, I will make known to everyone you're carrying a fortune in gems. Let's see if the road to Freetown is as safe as you believe.	Como quieras. Pero me voy a asegurar de que todos sepan que llevas una fortuna en gemas encima. Veremos si el camino hasta Freetown es tan seguro como pensabas.	14			INT#2
+9	A	Pay me a thousand now, or I'll take it from you.	Págame mil monedas ahora, o las cogeré yo mismo.	12			
+11	Q	Farewell!	¡Hasta la vista!	0		"GainXP#500;GainGold#500;IncVariable#REP_mercia,1;NPCDespawn#liserpix"	
+12	Q	Are you crazy? The guards are right there. Do that and your head will rest on a pike.	¿Estas loco? Los guardias están ahí mismo. Inténtalo y tu cabeza acabará en una pica.	13			
+13	A	Very well, I accept the 500 coins. 	Muy bien. Acepto las 500 monedas.	11			
+13	A	[BLUE](Attack her)[]Now die, fool.	[BLUE](Atacar)[]Muere, estúpida.	0		"NPCHostile#liserpix;DecVariable#REP_mercia,30;SetVariable#safe_passage,110"	
+14	Q	You win... Here is 800 coins but please be quiet!	Tu ganas... Aquí tienes 800 monedas pero por favor, guarda silencio.	0		"GainXP#800;GainGold#800;IncVariable#REP_mercia,1;SetVariable#safe_passage,100;NPCDespawn#liserpix"	

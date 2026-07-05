@@ -196,11 +196,34 @@ const saveOk = await page.evaluate(async () => {
 });
 console.log('saves round-trip:', saveOk);
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk);
+// --- Entities + dialogue: enter the tutorial, talk to Adaon, walk the tree ---
+const dlg = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'I10_tutorial', pc: { name: 'Aria', gender: 'FEMALE' } });
+  await new Promise(r => setTimeout(r, 900));         // let NPC sheets load
+  const ents = window.__EK.entities();
+  const who = window.__EK.talkNearest();
+  await new Promise(r => setTimeout(r, 250));
+  const first = window.__EK.dlg();
+  let steps = 0;
+  while (window.__EK.dlg() && steps < 10) {           // pick the last option / Continue
+    const d = window.__EK.dlg();
+    window.__EK.dlgChoose(Math.max(0, d.choices.length - 1));
+    steps++; await new Promise(r => setTimeout(r, 120));
+  }
+  return { entTotal: ents.length, withConv: ents.filter(e => e.conv).length, who,
+           firstText: first && first.text, firstChoices: first && first.choices,
+           steps, followers: window.__EK.followers() };
+});
+console.log('dialogue:', dlg);
+const dlgOk = dlg.entTotal > 0 && dlg.who === 'adaon' && !!dlg.firstText &&
+              dlg.firstChoices && dlg.firstChoices.length >= 1 &&
+              dlg.followers.includes('adaon_tutorial');   // NPCFollow# action ran
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk);
 const ok = errors.length === 0 && titleOk && playerOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions + day/night + pinch-zoom + 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + a working dialogue reader (conditions/actions/party), day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

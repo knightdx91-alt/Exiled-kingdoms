@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	[BLUE](The knight in shiny white plate nods)[] Greetings. I am Sir Irolio, head of the Arcane Knights and Elementalist.	[BLUE](El caballero con armadura brillante te saluda)[] Soy Sir Irolio, Líder de los Caballeros Arcanos y Elementalista.	2			
+2	A	Who are the Arcane Knights?	¿Qué son los Caballeros Arcanos?	3			
+2	A	Do you offer training?	¿Ofreces entrenamiento?	10			
+2	A	Nevermind, goodbye.	Disculpa, me voy.	0			
+3	Q	"We are mages that choose to enhance our combat capabilities; not everything can be defeated by spells alone, and sometimes combining steel with sorcery can be more than the sum of its parts..."	"Somos magos que escogemos mejorar nuestra habilidad de combate; no todo se puede vencer con hechizos, y juntar acero con magia es más que la suma de sus partes."	4			
+4	A	Makes sense. Do you offer training?	Tiene sentido. ¿Ofreces entrenamiento?	10			
+4	A	Alright, if you say so...	Si tú lo dices...	0			
+10	Q	"We Arcane Knights don't share our knowledge with just anyone. However, if you perform a task for us we will consider it. I keep receiving these letters from Sir Sorom, in Solliga; he requests reinforcements for a scouting mission or some other banal issue. If you help him, return to me and we'll see about that training."	"Los Caballeros Arcanos no comparten su sabiduría con el primero que pasa. Pero si haces una misión para nosotros, lo podemos considerar. Recibo muchas cartas de Sir Sorom en Solliga pidiendo refuerzos para una misión de exploración o algo parecido; si le ayudas y queda satisfecho, vuelve y veremos qué podemos enseñarte."	0	VariableLower#track_forsaken,100		
+10	Q	Sir Sorom seemed satisfied with your services, so we can provide training, for a fee. Interested?	Sir Sorom está satisfecho con tu ayuda, así que podemos entrenarte, a cambio de oro. ¿Te interesa?	11			
+11	A	What can you teach me?	¿Qué puedes enseñarme?	12			
+11	A	Maybe another time, thanks.	Quizá en otro momento, gracias.	0			
+12	Q	If you are a Mage, I can teach you [BLUE]Arcane Blade[] so you can use elemental-enchanted weapons with great efficiency. I can also teach you [BLUE]Combustion[] which will burn or weaken your enemies.	Si eres un mago te puedo enseñar [BLUE]Arma Arcana[] para que puedas usar armas encantadas con los elementos. También puedo enseñarte [BLUE]Combustión[], que quema y debilita a tus enemigos.	13			
+13	A	Tell me more about Arcane Blade	Dime más acerca de Arma Arcana.	0		TrainSkill#arcane_blade	
+13	A	Tell me more about Combustion.	Dime más acerca de Combustión.	0		TrainSkill#combustion	
+13	A	Maybe another time.	Quizá en otro momento.	0			

@@ -15,6 +15,8 @@ import { Overworld } from './world.js';
 import { startFlow } from './char-create.js';
 import { Joystick } from './joystick.js';
 import { Saves } from './saves.js';
+import { Dialogue } from './dialogue.js';
+import { spriteName, loadNpcSheet, makeNpc, bestiaryOf, npcPortrait } from './entity.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
@@ -109,6 +111,13 @@ class MapScene extends Phaser.Scene {
     this.joystick = new Joystick(root);
     this._wireControlToggle();
 
+    // Entities + dialogue + shared world state (variables/party) for NPCs and quests.
+    this.entities = [];                              // { sprite, npc, cell, group }
+    this.bestiary = {};
+    this.gameState = { vars: {}, followers: new Set() };
+    this.dialogue = new Dialogue(this, root);
+    this._firedTriggers = new Set();
+
     this.boot();
 
     // expose a tiny test hook so the automated browser check can verify input.
@@ -171,6 +180,12 @@ class MapScene extends Phaser.Scene {
         if (!this.overworld) {
           try { const g = await (await fetch('assets/world-grid.json')).json(); this.overworld = new Overworld(this, g); } catch {}
         }
+        if (!Object.keys(this.bestiary).length) {
+          try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
+        }
+        if (!this._spriteSet) {
+          try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
+        }
         const pc = Object.assign(
           { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1 },
           opts.pc || {});
@@ -183,6 +198,16 @@ class MapScene extends Phaser.Scene {
       // test helper: drive the free-floating joystick with a screen vector (-1..1).
       stick: (x, y) => { this.joystick.active = (x || y) ? true : false; this.joystick.vec = { x, y }; },
       titleShown: () => !!document.querySelector('.cc-overlay'),
+      // entities + dialogue introspection for tests
+      entities: () => this.entities.map(e => ({ name: e.npc.name, conv: e.npc.conversation, cell: { ...e.cell } })),
+      talkNearest: () => { const e = this.entities.find(x => x.npc.conversation); if (!e) return null; this.talkTo(e); return e.npc.name; },
+      dlg: () => this.dialogue.active ? {
+        name: this.dialogue.$name.textContent, text: this.dialogue.$text.textContent,
+        choices: [...this.dialogue.$choices.children].map(b => b.textContent),
+      } : null,
+      dlgChoose: (i) => { const bs = [...this.dialogue.$choices.children]; if (bs[i]) bs[i].click(); return this.dialogue.active; },
+      followers: () => [...this.gameState.followers],
+      setVar: (k, v) => { this.gameState.vars[k] = v; },
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -202,7 +227,7 @@ class MapScene extends Phaser.Scene {
       if (!d || !this.hero || !this._map) return;
       if (Math.hypot(p.x - d.x, p.y - d.y) > 12) return;         // was a drag, ignore
       if ([this.input.pointer1, this.input.pointer2].filter(q => q && q.isDown).length) return;
-      this.moveTo(p.x, p.y);
+      this.handleTap(p.x, p.y);
     });
 
     this.relayout();
@@ -245,6 +270,25 @@ class MapScene extends Phaser.Scene {
     return (this._map && this._map.transitions) || [];
   }
 
+  // A tap either talks to a nearby NPC or walks. If the tapped NPC isn't adjacent, the
+  // hero paths to it and talks on arrival (_pendingTalk). Ignored while a dialogue is open.
+  handleTap(sx, sy) {
+    if (this._dialogue || this._loading || !this.hero || !this._map) return;
+    const local = this.mapLayer.getWorldTransformMatrix().applyInverse(sx, sy);
+    const cell = this.mode === 'world'
+      ? this.overworld.pxToCell(local.x, local.y) : pxToCell(local.x, local.y, this._map);
+    const e = this.entityNear(cell.c, cell.r, 1.6);
+    if (e) {
+      if (Math.hypot(e.cell.c - this.heroCell.c, e.cell.r - this.heroCell.r) <= 1.6) { this.talkTo(e); return; }
+      const goal = this.nearestWalkable(e.cell.c, e.cell.r);
+      const path = this.planPath(this.heroCell, goal);
+      if (path && path.length > 1) { this.path = path; this.pathIdx = 1; this._pendingTalk = e; }
+      return;
+    }
+    this._pendingTalk = null;
+    this.moveTo(sx, sy);
+  }
+
   // Path the hero from its cell to the map cell under screen point (sx,sy).
   moveTo(sx, sy) {
     const local = this.mapLayer.getWorldTransformMatrix().applyInverse(sx, sy);
@@ -269,6 +313,7 @@ class MapScene extends Phaser.Scene {
     } else {
       this._pinchPrev = null;
     }
+    if (this._dialogue) return;                      // gameplay pauses during dialogue
     if (this.control === 'joystick') this.stepJoystick(dtMs / 1000);
     else this.stepHero(dtMs / 1000);
   }
@@ -348,6 +393,91 @@ class MapScene extends Phaser.Scene {
       Math.abs(t.c - this.heroCell.c) <= 1 && Math.abs(t.r - this.heroCell.r) <= 1);
     if (this._transLock) { if (!t) this._transLock = false; return; }
     if (t && t.area) { this.path = null; this.goArea(t.area, t.entry); }
+    this.checkTriggers();
+  }
+
+  // ---- Entities (NPCs / monsters placed from the map's `spawn` objects) ---------
+
+  // Spawn an entity group. `toPx(c,r)` maps a cell (local for interiors, global for
+  // world chunks) to pixels. Sheets shared across NPCs load once.
+  async spawnEntities(npcs, group, toPx) {
+    if (!npcs || !npcs.length) return;
+    this._entityGroups = this._entityGroups || new Set();
+    this._entityGroups.add(group);
+    for (const npc of npcs) {
+      const sprite = spriteName(this.bestiary, npc, this._spriteSet);
+      const key = await loadNpcSheet(this, sprite);
+      if (!key || this._entityGroups && !this._entityGroups.has(group)) continue; // group cleared mid-load
+      const p = toPx(npc.c, npc.r);
+      const s = makeNpc(this, this.planes.mid, key, p.x, p.y);
+      this.entities.push({ sprite: s, npc, cell: { c: npc.c, r: npc.r }, group,
+        rec: bestiaryOf(this.bestiary, npc) });
+    }
+    sortMid(this.planes.mid);
+  }
+
+  despawnGroup(group) {
+    this.entities = this.entities.filter(e => {
+      if (e.group !== group) return true;
+      e.sprite.destroy(); return false;
+    });
+    if (this._entityGroups) this._entityGroups.delete(group);
+  }
+
+  clearEntities() {
+    for (const e of this.entities) e.sprite.destroy();
+    this.entities = [];
+    this._entityGroups = new Set();
+  }
+
+  // Keep world-chunk entity groups in sync with the currently-loaded chunks.
+  syncWorldEntities() {
+    if (this.mode !== 'world' || !this.overworld) return;
+    const loaded = this.overworld.loaded;
+    for (const g of [...(this._entityGroups || [])])
+      if (g !== 'interior' && !loaded.has(g)) this.despawnGroup(g);
+    for (const [name, ch] of loaded) {
+      if (this._entityGroups && this._entityGroups.has(name)) continue;
+      const gc0 = ch.col * this.overworld.CW, gr0 = ch.row * this.overworld.CH;
+      this.spawnEntities(ch.map.npcs, name, (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r));
+    }
+  }
+
+  // The interactable NPC (has a conversation) nearest to cell (c,r), within `rad`.
+  entityNear(c, r, rad = 1) {
+    let best = null, bestD = rad + 0.001;
+    for (const e of this.entities) {
+      if (!e.npc.conversation) continue;
+      const d = Math.hypot(e.cell.c - c, e.cell.r - r);
+      if (d <= bestD) { bestD = d; best = e; }
+    }
+    return best;
+  }
+
+  // Start an NPC's conversation, showing its bestiary portrait + a readable name.
+  talkTo(entity) {
+    if (!entity || !entity.npc.conversation) return;
+    const label = (entity.npc.name || 'NPC').replace(/_/g, ' ')
+      .replace(/\b\w/g, ch => ch.toUpperCase());
+    this.path = null;
+    this.dialogue.start(entity.npc.conversation, '1',
+      { label, portrait: npcPortrait(entity.rec) });
+  }
+
+  // Rectangular map triggers (StartConversation etc.) fire once when the hero enters
+  // and their conditions pass. Interior triggers only for now (map.triggers).
+  checkTriggers() {
+    const trigs = (this.mode === 'interior' && this._map && this._map.triggers) || [];
+    for (let i = 0; i < trigs.length; i++) {
+      const t = trigs[i];
+      const key = `${this._mapName}#${i}`;
+      if (this._firedTriggers.has(key)) continue;
+      const { c, r } = this.heroCell;
+      if (c < t.c || c >= t.c + t.w || r < t.r || r >= t.r + t.h) continue;
+      if (t.conditions && !this.dialogue.passes(t.conditions)) continue;
+      this._firedTriggers.add(key);
+      if (t.actions) this.dialogue.runActions(t.actions);
+    }
   }
 
   // Advance the hero along its path; update facing, camera follow, and depth order.
@@ -375,6 +505,10 @@ class MapScene extends Phaser.Scene {
         this.path = null;
         const f = facingFor(dx, dy);
         setFacing(h, this.heroKey, f.name, f.flip, false);  // idle in last direction
+        if (this._pendingTalk) {                     // walked up to an NPC -> talk
+          const e = this._pendingTalk; this._pendingTalk = null;
+          if (Math.hypot(e.cell.c - this.heroCell.c, e.cell.r - this.heroCell.r) <= 1.6) this.talkTo(e);
+        }
       }
     } else {
       h.setPosition(h.x + (dx / dist) * step, h.y + (dy / dist) * step);
@@ -422,6 +556,8 @@ class MapScene extends Phaser.Scene {
       console.warn('world-grid load failed; interiors only:', err);
       this.overworld = null;
     }
+    try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
+    try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     if (this._quickStarted) return;                  // a test already started the game
     const pc = await startFlow(document.getElementById('game-root'));
     await this.startNewGame(pc);
@@ -453,6 +589,8 @@ class MapScene extends Phaser.Scene {
   // everything else (interior tiles) is destroyed.
   clearScene() {
     if (this.overworld) this.overworld.clear();
+    this.clearEntities();
+    this._firedTriggers = new Set();
     for (const key of ['floor', 'mid', 'roof']) {
       for (const im of this._active[key]) { this.planes[key].remove(im); im.setVisible(false); this._pool[key].push(im); }
       this._active[key].length = 0;
@@ -502,6 +640,7 @@ class MapScene extends Phaser.Scene {
       this._ambient = ambientColor(ch.map, this.currentHour());
       this.fitMap();
       this.refreshVisible();                          // draw the tiles around the hero
+      this.syncWorldEntities();                       // NPCs for the loaded chunks
       this._loading = false;
     } catch (err) {
       console.warn('world enter failed:', name, err);
@@ -529,7 +668,7 @@ class MapScene extends Phaser.Scene {
     if (this._streaming) return;
     this._streaming = true;
     this.overworld.ensureWindow(this.heroCell.c, this.heroCell.r, this.currentHour())
-      .then(({ changed }) => { this._streaming = false; if (changed) this.refreshVisible(); })
+      .then(({ changed }) => { this._streaming = false; if (changed) { this.refreshVisible(); this.syncWorldEntities(); } })
       .catch(() => { this._streaming = false; });
   }
 
@@ -597,6 +736,7 @@ class MapScene extends Phaser.Scene {
       applyAmbient(this.planes, ambient);
       this.fitMap();
       this._loading = false;
+      this.spawnEntities(map.npcs, 'interior', (c, r) => cellToPx(c, r, map));
     } catch (err) {
       console.warn('area load failed:', name, err);
       this._loading = false;

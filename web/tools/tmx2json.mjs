@@ -131,20 +131,35 @@ while ((m = lyRe.exec(xml))) {
 // Object layer: transitions (portals) + entry points. EK stores object x/y in a
 // 32px world grid, so cell = round(coord/32). A `transition` links to area_id at
 // entry_id; an `entry` (entry_id) is an arrival point. Edge exits come from map props.
-const transitions = [], entries = {};
+const transitions = [], entries = {}, npcs = [], containers = [], triggers = [];
 const objRe = /<object\b([^>]*?)(?:\/>|>([\s\S]*?)<\/object>)/g;
 while ((m = objRe.exec(xml))) {
   const head = m[1], body = m[2] || '';
-  const type = attr(`<o ${head}>`, 'type');
-  if (type !== 'transition' && type !== 'entry') continue;
-  const c = Math.round(+attr(`<o ${head}>`, 'x') / 32);
-  const r = Math.round(+attr(`<o ${head}>`, 'y') / 32);
+  const oa = (n) => attr(`<o ${head}>`, n);
+  const type = oa('type');
+  const c = Math.round(+oa('x') / 32);
+  const r = Math.round(+oa('y') / 32);
   const p = (n) => { const mm = body.match(new RegExp(`name="${n}" value="([^"]*)"`)); return mm ? mm[1] : undefined; };
   if (type === 'transition') transitions.push({ c, r, area: p('area_id'), entry: p('entry_id') });
-  else entries[p('entry_id')] = { c, r };
+  else if (type === 'entry') entries[p('entry_id')] = { c, r };
+  else if (type === 'spawn') {                      // an NPC / monster placement
+    npcs.push({ c, r, name: oa('name'),
+      conversation: p('conversation'), spawn: p('spawn'),
+      faction: p('faction'), tag: p('tag'), wander: +(p('wander') || 0) });
+  } else if (type === 'container') {
+    containers.push({ c, r, name: oa('name'), icon: p('icon'), items: p('items') });
+  } else if (type === 'trigger') {                  // a rectangular area trigger
+    triggers.push({ c, r,
+      w: Math.max(1, Math.round(+(oa('width') || 32) / 32)),
+      h: Math.max(1, Math.round(+(oa('height') || 32) / 32)),
+      actions: p('actions'), conditions: p('conditions') });
+  }
 }
 map.transitions = transitions;
 map.entries = entries;
+map.npcs = npcs;
+map.containers = containers;
+map.triggers = triggers;
 map.edgeExits = { n: prop('exit_n'), s: prop('exit_s'), e: prop('exit_e'), w: prop('exit_w') };
 
 const out = { name: outName, ...map, tilesets, layers };

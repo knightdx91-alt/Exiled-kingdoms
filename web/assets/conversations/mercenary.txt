@@ -1,0 +1,12 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Hey, boss, what's up?	Que pasa, jefe?	4	NPCisFollower#	
+1	Q	Hello, friend. I am an adventurer currently looking for work. For a small fee, let's say, {LEVELx50} gold, I can join you in your travels.	Hola, amigo. Soy un aventurero en busca de empleo. Por un pequeño precio, digamos  {LEVELx50}  monedas, puedo unirme a ti y compartir tus aventuras.	2		
+2	A	Sorry but we're already too many in the party.	Lo siento, pero ya somos demasiados en el grupo.	0	hasFollower#	
+2	A	That would be great! Follow me. Welcome to the team.	Sería genial! Sígueme. Bienvenida al equipo.	0	"hasNoFollower#;PlayerHasGold#{LEVELx50}"	"NPCFollow#;LoseGold#{LEVELx50}"
+2	A	Not right now, thanks. Maybe in the future.	Ahora no, gracias. Quizá en el futuro.	3		
+3	Q	Too bad. Well, don't blame me if some goblins stuff you with iron.	Pues vaya. Bueno, a mí no me culpes si unos goblins te rellenan de hierro.	0		
+4	A	Nothing, let's move on.	Nada, continuemos.	0		
+4	A	I don't need your services anymore. Thanks for the help so far and goodbye.	Ya no necesito tus servicios, puedes volver a Kingsbridge.	5		
+4	A	Please move a little, you are in the way.	Por favor, muévete un poco, me bloqueas el paso.	6		
+5	Q	As you wish, boss. I hope we work together again.	Ahora que me lo estaba pasando bien! Lo que tu digas, espero que volvamos a vernos.	0		NPCStopFollowing#
+6	Q	Of course.	Por supuesto	0		NPCMoveRandom#

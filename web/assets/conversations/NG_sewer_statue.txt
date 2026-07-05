@@ -1,0 +1,18 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	The statue of the beggar seems to grin at you, mockingly.	La estatua del mendigo parece sonreirte, burlona.	0	VariableEqual#house_shadows,100		
+1	Q	"The statue of the beggar seems to grin at you, mockingly. It takes keen senses to notice it, but there is a small slot carved in the stone hand; It is more or less the size of a coin."	"La estatua del mendigo parece sonreirte, burlona. Hay una pequeña ranura en la mano de piedra; es muy difícil de detectar. Tiene más o menos el tamaño de una moneda."	8	VariableEqual#house_shadows,10		
+1	Q	Before you stands an ancient statue, from the days when New Garand was an imperial colony. It is very deteriorated, but seems to be a street beggar, extending a hand.	Ante tí hay una estatua antigua, de los días en los que New Garand era una colonia imperial. Está muy deteriorada, pero parece un mendigo callejero, que extiende la palma de la mano.	2			
+2	A	Hey Adaon, any thoughts about this?	Hey Adaon, ¿alguna idea acerca de esto?	3	NPCIsInParty#adaon,adaon		
+2	A	Hmmm... What's that I see on the palm...	Hmmm... Qué es eso que veo en la palma de la mano...	7			AWA#2
+2	A	A statue. Nice sewer they have here.	Una estatua. Bonitas alcantarillas tienen aquí.	0			
+3,adaon	Q	I like how you think... But nah, too heavy to carry and too old to be of any value.	Me gusta como piensas... Pero no. Demasiado pesada para moverla y demasiado vieja para venderla.	4			
+4	A	Come on, I mean, why is this thing even here? 	Venga hombre, quiero decir, ¿por qué está aquí?	5			
+4	A	A pity.	Una pena.	0			
+5	Q	Heh, I know. Listen, I bet this has something to do with the Seventh House. The Guild. Some kind of test that only rogues can go through. But beats me, maybe it has to do with that slot in its palm.	¡Ja! Te había entendido. Escucha, apuesto a que esto tiene que ver con la Séptima Casa. Con el gremio. Una prueba que sólo un ladrón podría superar. Pero ni idea... A lo mejor tiene que ver con esa ranura que tiene en la mano.	6			
+6	A	What slot? [BLUE](Examine the palm)[]	¿Qué ranura? [BLUE](Examinar la palma de la mano)[]	7			
+7,R	Q	"It takes keen senses to notice it, but there is a small slot carved in the stone hand; It is more or less the size of a coin."	"Hay una pequeña ranura en la mano de piedra; es muy difícil de detectar. Tiene más o menos el tamaño de una moneda."	8		SetVariable#house_shadows,10	
+8	A	Put a gold coin through.	Meter una moneda de oro.	9	PlayerHasGold#1		
+8	A	I have better things to do with my money.	Tengo cosas mejores que hacer con mi dinero.	0			
+8	A	Put the imperial copper in the slot.	Meter la moneda de cobre imperial en la ranura.	10	PlayerHasItem#2517	"LoseItem#2517;SetVariable#house_shadows,100;ItemHide#grate1;ItemWalkable#grate1;ItemHide#grate2;ItemWalkable#grate2;IncVariable#REP_seventhhouse,8;GainXP#800"	
+9	Q	"The gold coin tinkles down through the statue; and then suddenly you hear a mechanism activating. The statue spits a stream of acid on your face. Jackpot!"	La moneda de oro tintinea en el interior de la estatua, y escuchas un mecanismo activándose. De pronto, la estatua te escupe un chorro de ácido en la cara. ¡Jackpot!	0		"LoseGold#1;LoseHPToxic#45"	
+10	Q	"The copper coin tinkles down through the statue; you can hear an ancient mechanism rumble, and the grate opens."	La moneda de cobre tintinea en el interior de la estatua, y escuchas un mecanismo activándose. La reja de hierro se abre.	0			

@@ -1,0 +1,16 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	[BLUE](The fisherman holds several fishing lines down to the water)[] Hello, kid.  Welcome.	[BLUE](Este pescador está sujetando varios sedales de pesca que descienden hasta el agua)[] Hola, bienvenido.	2		
+2	A	What are you doing?	¿Qué estás haciendo?	3		
+2	A	Do you have any news?	¿Tienes alguna noticia?	4	VariableLower#message_in_bottle,10	
+2	A	Remember that message in a bottle? Well, it turned out, I found and saved the poor man.	¿Recuerdas ese mensaje en una botella? Pues resulta que encontré a quien lo envió, y le salvé.	11	VariableEqual#message_in_bottle,100	"SetVariable#message_in_bottle,110;IncVariable#REP_varsilia,3"
+2	A	Goodbye	Adiós	0		
+3	Q	I'm fishing, but I haven't been too lucky today. These muddy waters ain't blue enough!	Estoy pescando, pero no he tenido mucha suerte. Aguas fangosas, ni siquiera azules.	5		
+4	Q	Not really, except something curious I caught today. A note inside a small red glass bottle, whose author is supposely captive somewhere in the coast. 	Ninguna, excepto algo extraño que he pescado hoy. Dentro de una curiosa botella de vidrio roja, había una nota , pidiendo ayuda. La escribe, supuestamente, alguien prisionero en algún lugar de la costa.	6	VariableLower#message_in_bottle,10	SetVariable#message_in_bottle,10
+5	A	You could try fishing outside the city. Probably less noise and boats would help you a lot.	Podrías intentar pescar fuera de la ciudad. Creo que con menos ruido y menos barcos, te iría mejor.	7		
+6	A	Did it say anythig else? Maybe we can help him.	¿Decía algo más? A lo mejor podemos ayudarle.	8		
+7	Q	Sure thing, kid. But it's very dangerous to go outside of the city alone. Do you want to ask me something else?	cierto, joven. Pero es muy peligroso salir solo de la ciudad. Algo más?	9		
+8	Q	No, everything was faded so even if the content of the note was true, it could be very old and the coast is very big. I don't think you could ever find him. Or her.	No, todo estaba borroso así que incluso si el contenido de la nota fuese verdadero, podría ser muy antigua y la costa es muy grande. No creo que consiguieses encontrar nada.	10		
+9	A	Do you have any news?	¿Tienes alguna noticia?	4	VariableLower#message_in_bottle,10	
+9	A	Good luck then.	Buena suerte entonces.	0		
+10	A	Well, I'll be watching if I see something suspicious along the coast. Goodbye.	Bueno, estaré alerta si veo algo sospechoso en la costa. Adiós.	0		
+11	Q	Ah, wonderful, kid! And I helped too! Tonight the whole town will know what a hero you are.	¡Ah, maravilloso, joven! Y yo ayudé entonces. Esta noche toda la ciudad conocerá tu hazaña.	0		

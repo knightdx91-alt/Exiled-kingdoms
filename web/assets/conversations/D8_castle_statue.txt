@@ -1,0 +1,36 @@
+﻿index	type	text	text_ES	Go To	conditions	actions	requisites
+1	Q	This statue is of obvious imperial origin, as no one could chisel stone with such perfection nowadays... Nor care. It represents a warrior holding a sword and a lute, and there is a plaque below it.	Esta estatua claramente es de origen imperial. Nadie podría tallar la piedra así hoy día... Ni se molestaría en intentarlo. Representa a un guerrero que lleva en una mano una espada, y en la otra un laud. A sus pies hay una placa.	2			
+2	A	Let's read the plaque...	Leamos la placa...	3			
+2	A	What's this, a dungeon or a museum?	¿Qué es esto, una mazmorra o un museo?	0			
+3	Q	The first verse letters are gleaming with magical energy now. It says: 'I wish for eyes of fire, so suffering cannot blind me'	Las letras del primer verso brillan con energía mágica. Dice: 'Si tuviera ojos de fuego, el dolor no me haría ciego'.	4	VariableGreater#ancient_verses,19		
+3	Q	The first verse says: 'I wish for eyes of fire, so suffering cannot blind me'	El primer verso dice: 'Si tuviera ojos de fuego, el dolor no me haría ciego'.	4		SetVariable#ancient_verses,10	
+4	A	Put two rubies in the eye sockets of the statue.	Colocar dos rubíes en los ojos vacíos de la estatua.	20	"VariableLower#ancient_verses,20;PlayerHasItems#2013,2"	"LoseItems#2013,2;GainXP#200;SetVariable#ancient_verses,20"	
+4	A	Read the next verse.	Leer el siguiente verso.	5			
+4	A	Enough reading for now.	Ya he leido suficiente.	0			
+5	Q	This verse can't be read yet, it seems to be magically obfuscated.	"Este verso no puede leerse; parece estar mágicamente camuflado."	0	VariableLower#ancient_verses,20		
+5	Q	The second verse letters are gleaming with magical energy now. It says: 'Can hope sprout and blossom in the frozen wastes of despair?'	Las letras del segundo verso brillan con energía mágica. Dice:  '¿Puede la esperanza germinar y florecer, en los helados páramos del desespero?'.	6	VariableGreater#ancient_verses,29		
+5	Q	The second verse says: 'Can hope sprout and blossom in the frozen wastes of despair?'	El segundo verso dice: '¿Puede la esperanza germinar y florecer, en los helados páramos del desespero?'.	6			
+6	A	Put a Merple weed at the feet of the statue.	Colocar el tallo de Merple a los pies de la estatua.	21	"VariableLower#ancient_verses,30;PlayerHasItem#2104"	"LoseItem#2104;GainXP#300;SetVariable#ancient_verses,30"	
+6	A	Read the next verse.	Leer el siguiente verso.	7			
+6	A	Enough reading for now.	Ya he leido suficiente.	0			
+7	Q	This verse can't be read yet, it seems to be magically obfuscated.	"Este verso no puede leerse; parece estar mágicamente camuflado."	0	VariableLower#ancient_verses,30		
+7	Q	The third verse letters are gleaming with magical energy now. It says:  'The deepest Evil shall be conquered, beheaded, then forgotten.'	Las letras del tercer verso brillan con energía mágica. Dice: 'El profundo Mal será derrotado, decapitado y luego olvidado'.	8	VariableGreater#ancient_verses,39		
+7	Q	The third verse says: 'The deepest Evil shall be conquered, beheaded, then forgotten.'	El tercer verso dice: 'El profundo Mal será derrotado, decapitado y luego olvidado'.	8			
+8	A	Put the demonic skull at the feet of the statue.	Colocar el cráneo de demonio a los pies de la estatua.	22	"VariableLower#ancient_verses,40;PlayerHasItem#1013"	"LoseItem#1013;GainXP#400;SetVariable#ancient_verses,40"	
+8	A	Put the goblin head at the feet of the statue.	Colocar la cabeza de goblin a los pies de la estatua.	22	"VariableLower#ancient_verses,40;PlayerHasItem#2503"	"LoseItem#2503;GainXP#400;SetVariable#ancient_verses,40"	
+8	A	Read the next verse.	Leer el siguiente verso.	9			
+8	A	Enough reading for now.	Ya he leido suficiente.	0			
+9	Q	This verse can't be read yet, it seems to be magically obfuscated.	"Este verso no puede leerse; parece estar mágicamente camuflado."	0	VariableLower#ancient_verses,40		
+9	Q	"The fourth verse says: 'Pride is a holey fur coat; noble and comforting, yet the coldness will slip through.'"	El cuarto verso dice: 'El orgullo es un manto de pieles agujereado... Noble, confortable, pero el frío lo atraviesa'.	10			
+10	A	Interesting.	Interesante.	0			
+10	A	Put the damaged pelt at the feet of the statue.	Colocar la piel dañada a los pies de la estatua.	23	"VariableLower#ancient_verses,50;PlayerHasItem#1002"		
+20	Q	With a flash of blinding light, the rubies disappear, and the statue now has two bright, lively eyes.	Los rubíes desaparecen en un haz de luz cegadora, y la estatua ahora tiene dos ojos brillantes y que parecen vivos.	30			
+21	Q	With a flash of blinding light, the weed disappears, and the statue now feels warmer when you touch it.	La hierba desaparece en un haz de luz cegadora, y la estatua ahora se siente más cálida al tacto.	31			
+22	Q	With a flash of blinding light, the skull vanishes, and the statue now has an aura of goodness about it.	El cráneo desaparece en un haz de luz cegadora, y la estatua ahora irradia un aura de bondad.	32			
+23	Q	"The statue speaks: 'Too long I have been possessed by this evil spirit, that made me betray my kin and my nation. I failed to escape its domination in life; may you, hero of wit, sword and song, set me free in death at least'. "	"La estatua dice: 'Demasiado tiempo he estado poseido por un espíritu maligno, que me hizo traicionar . I failed to escape its domination in life; may you, hero of wit, sword and song, destroy it now, and make me free in death'. As the voice ends, a horrifying spectre appears besides you."	24			
+24	A	So, how can I free you from the...	y ¿Cómo te libero de...?	25			
+25	Q	As the voice goes quiet, a horrifying spectre appears besides you and attacks!!!	Cuando la voz calla, un espectro terrorífico aparece junto a tí y ¡te ataca!	26		"LoseItem#1002;GainXP#500;SetVariable#ancient_verses,50;NPCSpawn#nightwalker"	
+26	A	Okay, nevermind the question.	Vale, olvida la pregunta.	0			
+30	A	Woah! let's read the next verse.	¡Woah! Leamos el siguiente verso.	5			
+31	A	I knew it. Let's read the next verse.	Lo sabía. Leamos el siguiente verso.	7			
+32	A	I'm good at this. Let's read the next verse.	Soy bueno en esto. Leamos el siguiente verso.	9			

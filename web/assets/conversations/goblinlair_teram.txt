@@ -1,0 +1,20 @@
+﻿index	type	text	text_ES	Go To	conditions	actions
+1	Q	Yes, friend?	¿Si, amigo?	9	VariableEqual#goblin_hunt2,20	
+1	Q	Finally free! But I feel so weak...	¡Por fin libre! Me siento tán debil...	5	"VariableEqual#goblin_hunt2,10;isItemHidden#grate"	
+1	Q	If it wasn't for you, I would be dead. Thanks, friend.	Si no fuera por tí, estaría muerto. Gracias, amigo.	10	VariableEqual#goblin_hunt2,100	
+1	Q	[BLUE](This prisoner looks feverish and his voice trembles)[] Please help me!	[BLUE](Este prisionero parecef ebril y su voz tiembla)[] ¡Por favor ayúdame!	2		
+2	A	Wait here a moment, I'll be back.	Volveré pronto, espera aquí.	0		
+2	A	Don't worry, I'm here to help you. Do you know where the key is?	No te preocupes, he venido a salvarte. ¿Sabes dónde está la llave?	3	VariableLower#teram_ruby,1	
+2	A	Why should I help you? Give me one reason.	¿Y por qué debería ayudarte? Dame una razón.	6	VariableLower#teram_ruby,1	
+2	A	Don't worry,we have a deal. I'll find the mechanism that opens this.	No te preocupes, tenemos un trato. Encontraré el mecanismo que abre esto.	0	VariableEqual#teram_ruby,1	
+3	Q	The key... I've never seen a key. There must be some kind of mechanism that opens the door, but it is not here. Please hurry.	La llave... Nunca he visto una llave. Debe haber algún mecanismo que abre la puerta, pero no está por aquí. Por favor, date prisa.	0		
+5	A	Follow me, let's get out of here.	Sígueme, salgamos de aquí.	0		"NPCFollow#;SetVariable#goblin_hunt2,20"
+5	A	Wait a moment, I'll be back.	Espera un momento, volveré pronto.	0		
+6	Q	[BLUE](the man looks at you, confused)[] Wh... What...	[BLUE](el hombre te mira confundido)[]Qu... Qué...	7		
+7	A	Nevermind, how do I open this? Is there a key?	No importa,¿Cómo se abre esto? ¿hay una llave?	3		
+7	A	I asked a simple question. Answer it, and I might try to find the mechanism that open this.	He hecho una pregunta sencilla. Respóndela, y quizá encuentre el mecanismo que abre esta celda.	8		
+8	Q	I... I have a ruby at home, in Lannegar. Please save me and I will give it to you. There is no key to open this cage, you'll have to find the mechanism to open it elsewhere.	Yo... Tengo un rubí en casa, en Lannegar. Sálvame y te lo entregaré. No hay llave para esta celda, debes encontrar el mecanismo que la abre.	0		SetVariable#teram_ruby,1
+9	A	Nothing, I'll take you to Lannegar soon.	Nada, te llevaré hasta Lannegar en seguida.	0		
+10	A	I'm glad to see you free.	Me alegro de verte libre.	0		
+10	A	We had a deal, remember? I want my gem.	Teníamos un trato, ¿recuerdas? Quiero mi gema.	11	VariableEqual#teram_ruby,1	"SetVariable#teram_ruby,2;GainItem#2001;DecVariable#REP_town_lannegar,2;DecVariable#REP_varsilia,1"
+11	Q	Of course, friend. Here it is. I... I suppose I have to be glad to be alive.	Por supuesto, amigo. Aquí está. Yo... supongo que debería estar agradecido de estar con vida.	0		
