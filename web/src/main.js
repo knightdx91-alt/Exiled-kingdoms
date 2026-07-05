@@ -284,7 +284,7 @@ class MapScene extends Phaser.Scene {
     // (also re-sorts mid). Otherwise just keep the mid depth order correct.
     if (this.mode === 'world' && this._lastRefreshXY &&
         Math.hypot(h.x - this._lastRefreshXY.x, h.y - this._lastRefreshXY.y) > REFRESH_STEP) {
-      this.refreshVisible();
+      this.streamVisible();                          // re-cull + stream chunks near him
     } else {
       sortMid(this.planes.mid);
     }
@@ -362,12 +362,13 @@ class MapScene extends Phaser.Scene {
     try {
       this._loading = true;
       this.mode = 'world';
+      this._streaming = false;
       this.path = null; this.pathIdx = 0;
       this.clearScene();
 
       const g = this.overworld.grid[name];
       this._curChunk = { col: g.col, row: g.row };
-      await this.overworld.ensureWindow(g.col, g.row, this.currentHour());
+      await this.overworld.ensureChunk(name);         // bootstrap the start chunk
 
       const ch = this.overworld.loaded.get(name);
       this._map = ch.map; this._mapName = name;
@@ -375,6 +376,8 @@ class MapScene extends Phaser.Scene {
         || { c: Math.floor(ch.map.width / 2), r: Math.floor(ch.map.height / 2) };
       const { gc0, gr0 } = this.overworld.originOf(g.col, g.row);
       this.heroCell = this.nearestWalkable(e.c + gc0, e.r + gr0);
+      // now that we know his global cell, stream in whatever neighbours he's near
+      await this.overworld.ensureWindow(this.heroCell.c, this.heroCell.r, this.currentHour());
       this._transLock = true;
       this.mapBounds = { width: 1, height: 1 };
       this.grid.setVisible(false);
@@ -392,7 +395,8 @@ class MapScene extends Phaser.Scene {
   }
 
   // The hero moved a cell in world mode: if he crossed into a new chunk, make it the
-  // current chunk (for ambient/transitions) and re-stream the window around it.
+  // current chunk (for ambient/transitions/HUD). Streaming itself is driven by
+  // streamVisible() on the movement throttle, keyed to his global cell.
   onWorldStep() {
     const { col, row } = this.overworld.chunkOfGlobal(this.heroCell.c, this.heroCell.r);
     if (this._curChunk && col === this._curChunk.col && row === this._curChunk.row) return;
@@ -401,7 +405,17 @@ class MapScene extends Phaser.Scene {
     this._curChunk = { col, row };
     const ch0 = this.overworld.loaded.get(name);
     if (ch0) { this._map = ch0.map; this._mapName = name; }
-    this.overworld.ensureWindow(col, row, this.currentHour()).then(() => this.refreshVisible());
+  }
+
+  // Re-cull the visible tiles now, and stream chunks in/out around the hero's current
+  // global cell (loading is async; redraw once the resident set actually changes).
+  streamVisible() {
+    this.refreshVisible();
+    if (this._streaming) return;
+    this._streaming = true;
+    this.overworld.ensureWindow(this.heroCell.c, this.heroCell.r, this.currentHour())
+      .then(({ changed }) => { this._streaming = false; if (changed) this.refreshVisible(); })
+      .catch(() => { this._streaming = false; });
   }
 
   // Cull-render the overworld: draw only pooled tile sprites whose feet fall inside the

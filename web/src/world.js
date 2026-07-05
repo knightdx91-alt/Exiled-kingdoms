@@ -26,6 +26,9 @@ export class Overworld {
     this.loaded = new Map();                          // name -> { map, walk, tiles, col, row }
   }
 
+  // Prefetch radius (global cells). > viewport reach (~16 cells) so neighbours load
+  // before they're visible, < a chunk (96) so mid-chunk only 1 chunk stays resident.
+
   has(name) { return !!this.grid[name]; }
   nameAt(col, row) { return this.coord.get(`${col},${row}`) || null; }
 
@@ -61,20 +64,29 @@ export class Overworld {
     return { minC, minR, maxC, maxR };
   }
 
-  // Ensure the 3x3 window centred on chunk (col,row) is loaded; evict the rest.
-  // `hour` drives the shared outdoor ambient. Returns the set of names now loaded.
-  async ensureWindow(col, row, hour) {
+  // The chunks a hero at GLOBAL cell (gc,gr) needs resident: every chunk whose cells
+  // fall within PREFETCH cells of him. Mid-chunk that's just his own chunk; near an
+  // edge it adds that neighbour; near a corner the 2x2 block — so we hold ~1-2 chunks
+  // instead of a fixed 3x3, which matters on a mobile browser. PREFETCH is comfortably
+  // larger than the viewport reach, so a neighbour streams in well before it's visible.
+  neededSet(gc, gr) {
+    const P = Overworld.PREFETCH;
+    const c0 = Math.floor((gc - P) / this.CW), c1 = Math.floor((gc + P) / this.CW);
+    const r0 = Math.floor((gr - P) / this.CH), r1 = Math.floor((gr + P) / this.CH);
     const want = new Set();
-    for (let dr = -1; dr <= 1; dr++)
-      for (let dc = -1; dc <= 1; dc++) {
-        const n = this.nameAt(col + dc, row + dr);
-        if (n) want.add(n);
-      }
-    // evict chunks outside the window (records only — sprites are pooled by the scene)
+    for (let r = r0; r <= r1; r++)
+      for (let c = c0; c <= c1; c++) { const n = this.nameAt(c, r); if (n) want.add(n); }
+    return want;
+  }
+
+  // Ensure exactly the chunks the hero (global cell gc,gr) needs are resident; evict
+  // the rest. Returns { want, changed }. Sprites are pooled by the scene, so eviction
+  // just drops the tile records + lets shared textures stay cached.
+  async ensureWindow(gc, gr, hour) {
+    const want = this.neededSet(gc, gr);
     let changed = false;
     for (const [name] of [...this.loaded])
       if (!want.has(name)) { this.loaded.delete(name); changed = true; }
-    // load missing chunks
     for (const name of want) {
       if (this.loaded.has(name)) continue;
       await this._loadChunk(name);
@@ -82,6 +94,10 @@ export class Overworld {
     }
     return { want, changed };
   }
+
+  // Ensure a single named chunk is resident (used to bootstrap entry before we know
+  // the hero's global cell).
+  async ensureChunk(name) { if (!this.loaded.has(name)) await this._loadChunk(name); }
 
   async _loadChunk(name) {
     const g = this.grid[name];
@@ -94,6 +110,7 @@ export class Overworld {
 
   clear() { this.loaded.clear(); }
 
+
   // The transition list for the chunk the hero currently stands in, with cells
   // translated into GLOBAL space so the scene can test them against the global hero
   // cell. Only outdoor->interior arches live here (outdoor tiles join seamlessly).
@@ -104,3 +121,5 @@ export class Overworld {
     return ch.map.transitions.map(t => ({ c: t.c + gc0, r: t.r + gr0, area: t.area, entry: t.entry }));
   }
 }
+
+Overworld.PREFETCH = 40;

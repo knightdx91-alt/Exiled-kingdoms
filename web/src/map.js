@@ -11,12 +11,19 @@
 // tileset's tile dimensions (frame index == tile's local id). Resolves to the map.
 export async function loadMap(scene, name) {
   const map = await (await fetch(`assets/tmx/${name}.json`)).json();
-  map.tilesets.forEach((ts, i) => {
-    ts.key = `ts_${name}_${i}`;
+  // Key textures by IMAGE (+ tile dims), not by map name, so adjacent maps that reuse
+  // the same tileset PNG share ONE GPU texture instead of each uploading its own copy
+  // — a big memory win on mobile where many chunks are resident at once.
+  let queued = false;
+  map.tilesets.forEach((ts) => {
+    ts.key = `ts_${ts.image}_${ts.tilew}x${ts.tileh}`.replace(/[^a-z0-9_]/gi, '_');
+    if (scene.textures.exists(ts.key)) return;       // already uploaded by another chunk
     scene.load.spritesheet(ts.key, `assets/tmx/${ts.image}`,
       { frameWidth: ts.tilew, frameHeight: ts.tileh });
+    queued = true;
   });
-  await new Promise((resolve) => { scene.load.once('complete', resolve); scene.load.start(); });
+  if (queued)
+    await new Promise((resolve) => { scene.load.once('complete', resolve); scene.load.start(); });
   return map;
 }
 
