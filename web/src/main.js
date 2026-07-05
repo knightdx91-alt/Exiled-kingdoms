@@ -959,7 +959,17 @@ if ('serviceWorker' in navigator) {
     if (d.type === 'CACHE_PROGRESS') Object.assign(window.__EK.cache, d);
     if (d.type === 'CACHE_DONE') Object.assign(window.__EK.cache, d, { complete: true });
   });
-  navigator.serviceWorker.register('./sw.js').then(async () => {
+  // If a NEW service worker takes control (an update landed), reload once so the
+  // freshest app code runs immediately — no more "stuck on an old copy". Only when
+  // there was already a controller (a real update, not the first-ever install).
+  if (navigator.serviceWorker.controller) {
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (reloaded) return; reloaded = true; location.reload();
+    });
+  }
+  navigator.serviceWorker.register('./sw.js').then(async (reg) => {
+    if (reg && reg.update) { try { reg.update(); } catch (e) { /* ignore */ } }  // check for a new SW each load
     await navigator.serviceWorker.ready;
     // ask the browser to keep our storage (avoid eviction of the big cache + saves)
     if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
