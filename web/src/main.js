@@ -751,10 +751,14 @@ class MapScene extends Phaser.Scene {
     try { this.quests = await (await fetch('assets/data/quests.json')).json(); } catch {}
     try { this.trainers = await (await fetch('assets/data/trainers.json')).json(); } catch {}
     try { this.items = await (await fetch('assets/data/items.json')).json(); } catch {}
+    try { this.factions = await (await fetch('assets/data/factions.json')).json(); } catch {}
+    try { this.skillCat = await (await fetch('assets/data/skills.json')).json(); } catch {}
     this.gameHud.setQuests(this.quests, () => this.gameState.vars);
     this.gameHud.trainers = this.trainers;
     this.gameHud.items = this.items;
     this.gameHud.weapons = this.weapons;
+    this.gameHud.factions = this.factions;
+    this.gameHud.skillCat = this.skillCat;
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game

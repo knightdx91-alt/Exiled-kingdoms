@@ -427,42 +427,124 @@ export class HUD {
     this._wireCWBack();
   }
 
-  // SKILLS (o0.e(8) -> SkillWindow): learned skills + trainer-taught advanced skills.
+  // Real English strings from the game's strings table (data/ui/strings/texts.txt).
+  static get STR() {
+    return {
+      SKILLS: 'Skills', SKILLS_LIST: 'Skills', SPECIALIST_SKILLS: 'Advanced Skills',
+      POINTS: 'Points', FACTION: 'Faction', REPUTATION: 'Reputation',
+      HELP_STATS: 'Character Stats', STATS_TITLE: 'Game Stats',
+      HELP_ARMOR: 'You subtract {ARMOR-VALUE} from all physical attacks.',
+      HELP_ARMOR_ARROWS: 'You subtract an extra {ARMOR-VALUE} from all projectiles.',
+      HELP_PERCEPTION: '{per}% chance of finding secrets.',
+      HELP_DEVICES: '{dev}% chance of disabling traps.',
+      HELP_GOSSIP: '{gos}% chance of learning rumours.',
+      DAMAGE_BONUS: 'Damage bonus', PERCEPTION: 'Perception', DEVICES: 'Disarm Devices',
+      TIT_GOSSIP: 'Gossip', XP_BONUS: 'XP Bonus',
+      UNKNOWN: 'Neutral', FRIENDLY: 'Friendly', TRUSTED: 'Trusted', HERO: 'Hero',
+      GREAT_HERO: 'Great Hero', LEGENDARY_HERO: 'Legendary Hero', RASCAL: 'Rascal',
+      BANDIT: 'Bandit', CRIMINAL: 'Criminal', ENEMY: 'Enemy', 'ARCH-ENEMY': 'Arch-Enemy',
+    };
+  }
+  // Reputation tier for a rep value (WorldFaction.d).
+  _repTier(v) {
+    const S = HUD.STR;
+    return v <= -80 ? S['ARCH-ENEMY'] : v <= -60 ? S.ENEMY : v <= -40 ? S.CRIMINAL
+      : v <= -20 ? S.BANDIT : v <= -5 ? S.RASCAL : v <= 9 ? S.UNKNOWN : v <= 24 ? S.FRIENDLY
+      : v <= 39 ? S.TRUSTED : v <= 59 ? S.HERO : v <= 79 ? S.GREAT_HERO : S.LEGENDARY_HERO;
+  }
+
+  // SKILLS (o0.e(8) -> SkillWindow o0/t): the class + GENERAL skill lists with ranks, plus
+  // advanced (trainer-taught) skills. `SKILLS_LIST <Class>` / `<Class> SKILLS` / Advanced.
   renderCWSkills() {
-    const m = this.model, cat = this.trainers || {};
-    const known = (m.skills || []).map(s => s.name || s);
-    const trained = [...(m.trained || [])].map(id => (cat[id] && cat[id].name) || id);
-    const list = (arr) => arr.length ? arr.map(n => `<div class="cw-skill">${n}</div>`).join('') : `<p class="cw-dim">None</p>`;
-    this.cw.innerHTML = this._cwSubHead('Skills')
-      + `<div class="cw-h">Learned</div>${list(known)}`
-      + (trained.length ? `<div class="cw-h">Advanced (Trained)</div>${list(trained)}` : '')
+    const m = this.model, S = HUD.STR;
+    const base = (this.skillCat && this.skillCat.base) || {};
+    const cls = (k) => k ? k[0] + k.slice(1).toLowerCase() : '';
+    // class key in skills.json (MAGE is stored as WIZARD; HERO has no own list)
+    const clsKey = m.charClass === 'MAGE' ? 'WIZARD' : m.charClass;
+    const rankOf = (sk) => {
+      const id = sk.id || (sk.name || '').toLowerCase().replace(/\s+/g, '_');
+      const r = m.skillRank(id);
+      if (r) return r;
+      return (m.skills || []).some(s => (s.name || s) === sk.name) ? 1 : 0;
+    };
+    const skillRow = (sk) => {
+      const r = rankOf(sk), maxL = (sk.levels && sk.levels.length) || 1;
+      const tag = sk.type === 'P' ? ' (Passive)' : sk.type === 'A' ? ' (Active)' : '';
+      return `<div class="cw-skill ${r ? 'on' : ''}"><div class="cw-skl-h"><b>${sk.name}</b>` +
+        `<span class="cw-skl-lv">${r ? `Lv ${r}/${maxL}` : '—'}</span></div>` +
+        `<div class="cw-skl-d">${sk.desc || ''}${tag}</div></div>`;
+    };
+    const section = (title, arr) => arr && arr.length
+      ? `<div class="cw-h">${title}</div>${arr.map(skillRow).join('')}` : '';
+    const classList = base[clsKey] || [];
+    const generalList = base.GENERAL || [];
+    // advanced / trained (trainer catalogue), only those the hero has learned
+    const trained = [...(m.trained || [])].map(id => {
+      const t = (this.trainers || {})[id];
+      return { name: (t && t.name) || id, desc: (t && t.desc) || '', type: (t && t.type) || '' };
+    });
+    const body =
+      section(`${cls(m.charClass)} ${S.SKILLS}`, classList) +
+      section(`General ${S.SKILLS}`, generalList) +
+      (trained.length ? section(S.SPECIALIST_SKILLS, trained) : '');
+    this.cw.innerHTML = this._cwSubHead(S.SKILLS_LIST)
+      + (m.skillPoints ? `<div class="cw-points">Available skill points: <b>${m.skillPoints}</b></div>` : '')
+      + (body || `<p class="cw-dim">No skills.</p>`)
       + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
     this._wireCWBack();
   }
 
-  // REPUTATION (o0.g(1) -> ReputationWindow): factions + standing. No faction/rep data is
-  // tracked in the web build yet, so this is faithfully empty until it is.
+  // REPUTATION (o0.g(1) -> ReputationWindow o0/n): 3-col FACTION | (name+desc) | REPUTATION.
+  // Rep values are the `REP_<id>` variables; untouched factions read 0 -> Neutral.
   renderCWReputation() {
-    const reps = (this.varsOf && this.varsOf().__reputation) || null;
-    const body = reps && Object.keys(reps).length
-      ? Object.entries(reps).map(([f, v]) => `<div class="cw-stat"><span>${f}</span><b>${v > 0 ? '+' : ''}${v}</b></div>`).join('')
-      : `<p class="cw-dim">You have no reputation with any faction yet.</p>`;
-    this.cw.innerHTML = this._cwSubHead('Reputation') + body
+    const S = HUD.STR, vars = this.varsOf ? this.varsOf() : {}, facs = this.factions || [];
+    const rows = facs.map(f => {
+      let v = vars[`REP_${f.id}`]; if (v === undefined || v === -255) v = 0;
+      const color = v > 10 ? '#2f7a2f' : v < -10 ? '#a12a2a' : '#4a3410';
+      const rep = `${this._repTier(v)} (${v >= 0 ? '+' : ''}${v})`;
+      return `<div class="cw-rep">
+        <div class="cw-rep-f"><b>${f.name}</b><span>${f.desc}</span></div>
+        <div class="cw-rep-v" style="color:${color}">${rep}</div></div>`;
+    }).join('');
+    this.cw.innerHTML = this._cwSubHead(S.REPUTATION)
+      + `<div class="cw-rephead"><span>${S.FACTION}</span><span>${S.REPUTATION}</span></div>`
+      + (rows || `<p class="cw-dim">No factions.</p>`)
       + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
     this._wireCWBack();
   }
 
-  // DETAILS / STAT_DETAILS (o0.e(0) -> StatsDetailWindow): the derived-stat breakdown.
+  // DETAILS / STAT_DETAILS (o0.e(0) -> StatsDetailWindow o0/x): label | description rows
+  // with the real HELP_ text. Perception/Devices/Gossip use the recovered class formulas
+  // (rogue base + attribute·5 — APPROX; full SheetBonus math is TODO).
   renderCWDetails() {
-    const m = this.model;
+    const m = this.model, S = HUD.STR;
+    const rogue = m.charClass === 'ROGUE';
+    const per = (rogue ? 15 : 0) + (m.attributes.AWA || 0) * 5;
+    const dev = (rogue ? 20 : 0) + (m.attributes.AGI || 0) * 5;
+    const gos = (rogue ? 10 : 0) + (m.attributes.PER || 0) * 5;
+    const row = (label, desc) => `<div class="cw-detrow"><div class="cw-detl">${label}</div><div class="cw-detd">${desc}</div></div>`;
+    const armor = m.armor();
     const rows = [
-      ['Level', m.level()], ['Experience', m.xp.toLocaleString()],
-      ['Max Health', m.maxHP()], ...(m.isCaster() ? [['Max Mana', m.maxMana()]] : []),
-      ['Armor', m.armor()], ['Damage bonus', m.dmgBonus()], ['Gold', m.gold],
-      ...(m.skillPoints ? [['Unspent skill points', m.skillPoints]] : []),
+      row('Armor:', S.HELP_ARMOR.replace('{ARMOR-VALUE}', armor)),
+      row('', S.HELP_ARMOR_ARROWS.replace('{ARMOR-VALUE}', Math.floor(armor / 3))),
+      row('Damage:', `+${m.dmgBonus()} with hand weapons`),
+      row(`${S.DAMAGE_BONUS}:`, `${m.dmgBonus()}`),
+      row(`${S.PERCEPTION}:`, S.HELP_PERCEPTION.replace('{per}', per)),
+      row(`${S.DEVICES}:`, S.HELP_DEVICES.replace('{dev}', dev)),
+      row(`${S.TIT_GOSSIP}:`, S.HELP_GOSSIP.replace('{gos}', gos)),
+      row('XP:', m.xp.toLocaleString()),
     ];
-    this.cw.innerHTML = this._cwSubHead('Details')
-      + rows.map(([k, v]) => `<div class="cw-stat"><span>${k}</span><b>${v}</b></div>`).join('')
+    // Game Stats section — quests completed from the var store (a quest id var > 99).
+    const vars = this.varsOf ? this.varsOf() : {}, quests = this.quests || {};
+    let done = 0; for (const id of Object.keys(quests)) if ((vars[id] | 0) >= 100) done++;
+    const stats = [
+      row('Level:', m.level()), row('Quests completed:', done),
+      ...(m.isCaster() ? [row('Max Mana:', m.maxMana())] : []),
+      row('Max Health:', m.maxHP()), row('Gold:', m.gold.toLocaleString()),
+    ];
+    this.cw.innerHTML = this._cwSubHead(S.HELP_STATS)
+      + rows.join('')
+      + `<div class="cw-h" style="margin-top:10px">${S.STATS_TITLE}</div>` + stats.join('')
       + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
     this._wireCWBack();
   }
