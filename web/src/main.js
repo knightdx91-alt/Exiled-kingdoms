@@ -224,6 +224,7 @@ class MapScene extends Phaser.Scene {
         if (!this.loot) { try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {} }
         if (!this.quests) { try { this.quests = await (await fetch('assets/data/quests.json')).json(); this.gameHud.setQuests(this.quests, () => this.gameState.vars); } catch {} }
         if (!this.trainers) { try { this.trainers = await (await fetch('assets/data/trainers.json')).json(); this.gameHud.trainers = this.trainers; } catch {} }
+        if (!this.items) { try { this.items = await (await fetch('assets/data/items.json')).json(); this.gameHud.items = this.items; } catch {} }
         if (!this._spriteSet) {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
@@ -257,6 +258,13 @@ class MapScene extends Phaser.Scene {
       addFollower: (id) => this.gameState.followers.add(id),
       saveAuto: (area) => this.saveAuto(area),
       runAction: (s) => this.dialogue.runActions(s),
+      inventoryDebug: () => { const m = this.playerModel; return m ? {
+        backpack: [...m.backpack], equipment: { ...m.equipment },
+        armor: m.armor(), weaponId: m.weaponId(), maxHP: m.maxHP(),
+        resist: m.resist(), shield: m.hasShield() } : null; },
+      equip: (id) => this.playerModel && this.playerModel.equip(+id),
+      unequip: (slot) => this.playerModel && this.playerModel.unequip(slot),
+      useItem: (id) => this.useItem(+id),
       playerModelDebug: () => { const m = this.playerModel; return m ? {
         learnsAll: m.learnsAll(), trained: [...m.trained], disciplines: [...m.disciplines],
         skillPoints: m.skillPoints,
@@ -714,8 +722,11 @@ class MapScene extends Phaser.Scene {
     try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {}
     try { this.quests = await (await fetch('assets/data/quests.json')).json(); } catch {}
     try { this.trainers = await (await fetch('assets/data/trainers.json')).json(); } catch {}
+    try { this.items = await (await fetch('assets/data/items.json')).json(); } catch {}
     this.gameHud.setQuests(this.quests, () => this.gameState.vars);
     this.gameHud.trainers = this.trainers;
+    this.gameHud.items = this.items;
+    this.gameHud.weapons = this.weapons;
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game
@@ -730,6 +741,8 @@ class MapScene extends Phaser.Scene {
   async startNewGame(pc, startMap = TUTORIAL_MAP) {
     this.player = pc;
     this.playerModel = new PlayerModel(pc, this._creation || {});
+    this.playerModel.setItemDb(this.items || {});
+    this.gameHud.onUseItem = (id) => this.useItem(id);
     this.heroKey = `hero_${pc.gender.toLowerCase()}`;
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
@@ -738,6 +751,24 @@ class MapScene extends Phaser.Scene {
     this.gameHud.setModel(this.playerModel);
     this.gameHud.show();
     try { await this.saveAuto(startMap); } catch {}
+  }
+
+  // Use a consumable from the backpack: run its OnUse effect (GainHP/GainMana/…), then
+  // remove one from the backpack (deobf/INVENTORY_SPEC.md).
+  useItem(id) {
+    const m = this.playerModel, it = m && m.itemOf(id);
+    if (!it || !it.onUse) return false;
+    for (const part of it.onUse.split(';').filter(Boolean)) {
+      const [verb, rest] = part.split('#');
+      const n = +(rest || '').split(',')[0] || 0;
+      const v = (verb || '').trim().toLowerCase();
+      if (v === 'gainhp') m.heal(n);
+      else if (v === 'gainmana') m.mana = Math.min(m.maxMana(), m.mana + n);
+      else this.dialogue.runActions(part);        // fall back to the shared action runner
+    }
+    m.removeItem(id);
+    if (this.gameHud) this.gameHud.update(true);
+    return true;
   }
 
   // Serialize the shared world state (all game variables incl. quest progress, and the

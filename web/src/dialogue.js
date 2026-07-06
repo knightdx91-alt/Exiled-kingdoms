@@ -119,6 +119,8 @@ export class Dialogue {
       else if (v === 'losegold') this._gold(-(+args[0] || 0));
       else if (v === 'gainskillpoint') { const m = this.scene.playerModel; if (m) m.skillPoints = (m.skillPoints || 0) + (+args[0] || 1); }
       else if (v === 'trainskill') this._train(args[0]);
+      else if (v === 'giveitem' || v === 'additem') { const m = this.scene.playerModel; if (m) { const n = +args[1] || 1; for (let i = 0; i < n; i++) m.addItem(+args[0]); if (this.scene.gameHud) this.scene.gameHud.update(true); } }
+      else if (v === 'removeitem') { const m = this.scene.playerModel; if (m) { m.removeItem(+args[0]); if (this.scene.gameHud) this.scene.gameHud.update(true); } }
       else if (v === 'resetplayerskills') { const m = this.scene.playerModel; if (m) { m.trained.clear(); m.disciplines.clear(); } }
       // other verbs (give items, quests, sounds…) are no-ops for now
     }

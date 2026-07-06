@@ -268,19 +268,25 @@ const combat = await page.evaluate(async () => {
   while (!window.__EK.combatants().some(c => c.side === 'enemy' && !c.dead) && Date.now() - t0 < 8000)
     await new Promise(r => setTimeout(r, 120));
   const foe = window.__EK.combatants().find(c => c.side === 'enemy' && !c.dead);
+  const attached = window.__EK.combatants().length;
   window.__EK.teleport(foe.cell.c + 1, foe.cell.r);
   const startHp = foe.maxHp, heroStart = window.__EK.hp();
   window.__EK.targetByName(foe.name, foe.cell);
-  await new Promise(r => setTimeout(r, 5000));
-  const now = window.__EK.combatants().find(c => c.name === foe.name && c.cell.c === foe.cell.c && c.cell.r === foe.cell.r);
+  // poll until both sides have traded blows (deterministic vs a fixed window)
+  let enemyHurt = false, heroHurt = false;
+  const t1 = Date.now();
+  while ((!enemyHurt || !heroHurt) && Date.now() - t1 < 12000) {
+    await new Promise(r => setTimeout(r, 200));
+    const now = window.__EK.combatants().find(c => c.name === foe.name && c.cell.c === foe.cell.c && c.cell.r === foe.cell.r);
+    if (!now || now.dead || now.hp < startHp) enemyHurt = true;
+    if (window.__EK.hp() < heroStart) heroHurt = true;
+  }
   const before = window.__EK.stats().xp;
   const alive = window.__EK.combatants().find(c => c.side === 'enemy' && !c.dead);
   if (alive) window.__EK.hurtEnemy(alive.name, 99999);
   await new Promise(r => setTimeout(r, 700));
   const p1 = window.__EK.togglePause(), p2 = window.__EK.togglePause();
-  return { attached: window.__EK.combatants().length,
-           enemyHurt: !now || now.hp < startHp || now.dead,
-           heroHurt: window.__EK.hp() < heroStart,
+  return { attached, enemyHurt, heroHurt,
            xpGain: window.__EK.stats().xp - before, pause: p1 === true && p2 === false };
 });
 console.log('combat:', combat);
@@ -333,6 +339,32 @@ const heroClassOk = hero.learnsAll && hero.trained === 2 && hero.disc.includes('
                hero.warriorTrained.length === 1 && hero.warriorTrained[0] === 'battle_rage' &&
                !hero.warriorCanMage && hero.classes.includes('HERO');
 
+// --- Items / inventory / equipment: give gear, equip it (armor/HP/weapon/shield change),
+// class-gating blocks out-of-discipline gear, a potion heals + is consumed, and the
+// character/inventory screen renders the paper-doll (deobf/INVENTORY_SPEC.md). ---
+const inv = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'H10', pc: { charClass: 'WARRIOR', attributes: { STR: 4, END: 2, AGI: 0, INT: 0, AWA: 0, PER: 0 } } });
+  const base = window.__EK.inventoryDebug();
+  ['100', '120', '501', '201', '5000'].forEach(id => window.__EK.runAction('GiveItem#' + id));
+  const gotBackpack = window.__EK.inventoryDebug().backpack.length;
+  window.__EK.equip(100); window.__EK.equip(120); window.__EK.equip(501);
+  const rogueBlocked = window.__EK.equip(201) === false;
+  const eq = window.__EK.inventoryDebug();
+  window.__EK.hurt(20); const hpBefore = window.__EK.hp();
+  window.__EK.useItem(5000); const hpGain = window.__EK.hp() - hpBefore;
+  const potionGone = !window.__EK.inventoryDebug().backpack.includes(5000);
+  document.querySelector('#hud .hud-btn[data-act="inv"]').click();
+  await new Promise(r => setTimeout(r, 80));
+  const panel = document.querySelector('#hud .hud-panel').textContent;
+  return { base, gotBackpack, eq, rogueBlocked, hpGain, potionGone,
+           doll: /Leather Cuirass/.test(panel) && /Iron Dagger/.test(panel) && /Armor/.test(panel) };
+});
+console.log('inventory:', inv);
+const invOk = inv.base.armor === 3 && inv.base.weaponId === 'iron_longsword' && inv.base.maxHP === 51 &&
+              inv.gotBackpack === 5 && inv.eq.armor === 5 && inv.eq.maxHP === 57 && inv.eq.shield === true &&
+              inv.eq.weaponId === 'iron_dagger' && inv.rogueBlocked && inv.eq.backpack.includes(201) &&
+              inv.hpGain > 0 && inv.potionGone && inv.doll;
+
 // --- Render polish: in a dark dungeon, fog-of-war hides unexplored tiles and reveals
 // more as the hero moves (explored grows, hidden shrinks, some tiles dim to 1/3),
 // roof/object tiles fade, torch + player lights exist; in the open world the FX is inert
@@ -356,11 +388,11 @@ const fxOk = fx.start.enabled && fx.start.fog && fx.start.hidden > 0 && fx.start
              fx.start.playerGlow && fx.moved.explored > fx.start.explored &&
              fx.moved.hidden < fx.start.hidden && fx.moved.dimmed > 0 && !fx.world.enabled;
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' render-fx:', fxOk);
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' inv:', invOk, ' render-fx:', fxOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && invOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

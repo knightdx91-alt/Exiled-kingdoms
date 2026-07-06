@@ -23,6 +23,59 @@ export class PlayerModel {
     // Unlocked equipment disciplines: base classes have their own; HERO earns them by
     // training that discipline's skills. Re-derived on load from `trained`.
     this.disciplines = new Set(pc.disciplines || []);
+    // Inventory (deobf/INVENTORY_SPEC.md): 12 equipment slots (id or 0), a backpack of
+    // item ids, and quick slots. `itemDb` (items.json) is set by the scene after load.
+    this.equipment = Object.assign(
+      { mainhand: 0, offhand: 0, head: 0, body: 0, hands: 0, legs: 0, feet: 0,
+        ring: 0, ring2: 0, belt: 0, cloak: 0, necklace: 0 }, pc.equipment || {});
+    this.backpack = (pc.backpack || []).slice();
+    this.quickslots = (pc.quickslots || [0, 0, 0, 0]).slice();
+    this.itemDb = null;
+  }
+
+  // --- Inventory (deobf/INVENTORY_SPEC.md) -----------------------------------------
+  setItemDb(db) { this.itemDb = db || {}; return this; }
+  itemOf(id) { return (id && this.itemDb) ? this.itemDb[id] : null; }
+  addItem(id) { if (id) this.backpack.push(+id); return this; }
+  removeItem(id) { const i = this.backpack.indexOf(+id); if (i >= 0) this.backpack.splice(i, 1); return i >= 0; }
+
+  // Equip a backpack item into its slot (rings fill ring then ring2). Returns worn item
+  // to the backpack. Class-gated. Returns true on success.
+  equip(id) {
+    const it = this.itemOf(id);
+    if (!it || !it.slot) return false;
+    if (!this.canUseItemClass(it.classes)) return false;
+    const bi = this.backpack.indexOf(+id);
+    if (bi < 0) return false;
+    let slot = it.slot;
+    if (slot === 'ring') slot = this.equipment.ring ? (this.equipment.ring2 ? 'ring' : 'ring2') : 'ring';
+    this.backpack.splice(bi, 1);
+    const prev = this.equipment[slot];
+    this.equipment[slot] = +id;
+    if (prev) this.backpack.push(prev);
+    return true;
+  }
+  unequip(slot) {
+    const id = this.equipment[slot];
+    if (!id) return false;
+    this.equipment[slot] = 0;
+    this.backpack.push(id);
+    return true;
+  }
+  worn() {
+    if (!this.equipment || !this.itemDb) return [];   // pre-init / no catalog yet
+    return Object.entries(this.equipment)
+      .filter(([, id]) => id).map(([slot, id]) => ({ slot, id, item: this.itemOf(id) }))
+      .filter(w => w.item);
+  }
+  hasShield() { const o = this.itemOf(this.equipment.offhand); return !!(o && o.type === 'SHIELD'); }
+  wornArmor() { return this.worn().reduce((a, w) => a + (w.item.armor || 0), 0); }
+  wornHp() { return this.worn().reduce((a, w) => a + (w.item.hp || 0), 0); }
+  wornMana() { return this.worn().reduce((a, w) => a + (w.item.mana || 0), 0); }
+  wornResist() {
+    const r = { Fire: 0, Cold: 0, Shock: 0, Death: 0, Toxic: 0, Spirit: 0 };
+    for (const w of this.worn()) for (const k in (w.item.resist || {})) r[k] = (r[k] || 0) + w.item.resist[k];
+    return r;
   }
 
   cls() { return this.C.classes[this.charClass] || this.C.classes.WARRIOR; }
@@ -74,8 +127,8 @@ export class PlayerModel {
     return Math.min(lv, this.C.maxLevel || t.length - 1);
   }
 
-  maxHP() { const c = this.cls(); return c.hp + c.hpPerLevel * this.level(); }
-  maxMana() { const c = this.cls(); return c.mana ? c.mana + c.manaPerLevel * this.level() : 0; }
+  maxHP() { const c = this.cls(); return c.hp + c.hpPerLevel * this.level() + this.wornHp(); }
+  maxMana() { const c = this.cls(); const b = c.mana ? c.mana + c.manaPerLevel * this.level() : 0; return b ? b + this.wornMana() : 0; }
   isCaster() { return this.cls().mana > 0; }
 
   // --- Combat-derived stats (deobf/COMBAT_SPEC.md, CHARACTER_STATS_SPEC.md) -------
@@ -85,17 +138,19 @@ export class PlayerModel {
     const mul = this.cls().dmgMul != null ? this.cls().dmgMul : 0.5;
     return Math.max(0, Math.round(mul * (this.level() + (this.attributes.STR || 0))));
   }
-  // Armor b(): max(STR − k, 0), k = 1/2/1/3 for Warrior/Rogue/Cleric/Wizard.
+  // Armor b(): max(STR − k, 0), k = 1/2/1/3 for Warrior/Rogue/Cleric/Wizard, plus worn.
   armor() {
     const k = { WARRIOR: 1, ROGUE: 2, CLERIC: 1, WIZARD: 3 }[this.charClass] ?? 2;
-    return Math.max(0, (this.attributes.STR || 0) - k);
+    return Math.max(0, (this.attributes.STR || 0) - k) + this.wornArmor();
   }
-  // No equipment/resistance system yet → player base resistances are 0.
-  resist() { return { Fire: 0, Cold: 0, Shock: 0, Death: 0, Toxic: 0, Spirit: 0 }; }
-  // Default starting weapon id per class (resolved against weapons.json).
+  // Resistances come from worn gear (base 0).
+  resist() { return this.wornResist(); }
+  // Equipped mainhand weapon id (into weapons.json), else the class default starter.
   weaponId() {
+    const mh = this.itemOf(this.equipment && this.equipment.mainhand);
+    if (mh && mh.weapon) return mh.weapon;
     return { WARRIOR: 'iron_longsword', ROGUE: 'iron_dagger',
-             CLERIC: 'iron_mace', WIZARD: 'wand_1' }[this.charClass] || 'iron_dagger';
+             CLERIC: 'iron_mace', WIZARD: 'wand_1', HERO: 'iron_longsword' }[this.charClass] || 'iron_dagger';
   }
 
   // XP progress within the current level, 0..1 (1.0 at max level)
@@ -125,7 +180,8 @@ export class PlayerModel {
              attributes: this.attributes, skills: this.skills,
              xp: this.xp, gold: this.gold, hp: this.hp, mana: this.mana,
              trained: [...this.trained], skillPoints: this.skillPoints,
-             disciplines: [...this.disciplines] };
+             disciplines: [...this.disciplines],
+             equipment: this.equipment, backpack: this.backpack, quickslots: this.quickslots };
   }
   static fromJSON(o, C) { return new PlayerModel(o, C); }
 }

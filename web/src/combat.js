@@ -119,7 +119,8 @@ export class Combat {
     if (!m) return null;
     const w = this.s.weapons ? this.s.weapons[m.weaponId()] : null;
     return { hp: m.hp, maxHp: m.maxHP(), armor: m.armor(), resist: m.resist(),
-             weapon: w, dmgBonus: m.dmgBonus(), reach: (w && w.reach) || 1 };
+             weapon: w, dmgBonus: m.dmgBonus(), reach: (w && w.reach) || 1,
+             shield: m.hasShield() };
   }
 
   // Player taps an enemy → make it the hero's attack target.
@@ -268,7 +269,7 @@ export class Combat {
     if (!atk || !def) return;
     const roll = rollDamage(atk.weapon, atk.dmgBonus);
     const taken = mitigate(roll.hp, roll.type, def.armor || 0, def.resist || {},
-                           { projectile: roll.projectile, shield: false });
+                           { projectile: roll.projectile, shield: !!def.shield });
     def.hp = Math.max(0, def.hp - taken);
     if (def.hp <= 0) def.dead = true;
     const sprite = defEnt.sprite || defEnt;
@@ -317,9 +318,10 @@ export class Combat {
         const g = rint(1, 5) + (e.cbt.level || 1) * 2;
         if (this.s.playerModel) this.s.playerModel.addGold(g);
         this._floater(e.sprite, `+${g}g`, false, false, '#ffd54a');
-      } else {                                  // item — no inventory yet: log by name
-        if (this.s.gameState) (this.s.gameState.pickups ||= []).push(row.item);
-        this._floater(e.sprite, row.name || `item ${row.item}`, false, false, '#9ad');
+      } else {                                  // a real item → into the backpack
+        if (this.s.playerModel) this.s.playerModel.addItem(row.item);
+        const nm = (this.s.items && this.s.items[row.item] && this.s.items[row.item].name) || row.name || `item ${row.item}`;
+        this._floater(e.sprite, nm, false, false, '#9ad');
       }
     }
     if (this.s.gameHud) this.s.gameHud.update(true);

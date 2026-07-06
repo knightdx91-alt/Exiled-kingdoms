@@ -114,6 +114,24 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
    `tmx2json` → `map.lights`, + a player torch on dark maps). Inert in the open world.
    Remaining APPROX: true LOS raycast, ray-cast shadow occlusion, secret-door reveal,
    particles (A4) — see DEOBFUSCATION_STATUS.md.
+7. ~~**Items / inventory / equipment**~~ ✅ DONE (spec `deobf/INVENTORY_SPEC.md`). Reversed
+   the `Item`/`CharacterInventory` cluster (items.txt 25 cols, 12 equip slots, type→slot
+   map). `items.json` = 724 items (534 equippable). `PlayerModel` gains equipment/backpack/
+   quickslots + equip/unequip (class-gated) and folds worn armor/HP/mana/resist/shield into
+   its derived stats and combat. **Loot drops are now real items**; `GiveItem/RemoveItem`
+   dialogue actions; consumable `OnUse` (potions heal). **Character/inventory screen**
+   (portrait or 🎒 → paper-doll of 12 slots + Attack/Armor/Resist blocks + backpack grid,
+   tap to equip/unequip/use). *(Next: item procs + trait/attribute mods + `Requisites`;
+   icon art from the atlas; match the screen to the real InventoryScreen — DEOBF A14.)*
+
+### The remaining backlog (post-#1)
+Combat **layer 2**: skill/spell EXECUTION (base + 40 advanced skills are learned but have
+no effect yet — Whirlwind/Fireball/Heal/…), status effects (fury/mage-armor/stun/slow/
+bleed), mana-spend + cooldowns, quickslot use. Then: **faithful UI pass** (match every
+screen to the real game), **audio/music** (`music` map prop parsed, nothing plays yet),
+**save/load menu + Continue** (state serializes; no slots UI), minimap/automap, eased
+camera + shake, particles (A4), shops/merchants, reputation UI. See DEOBFUSCATION_STATUS.md
+§3–§4 for the full APPROX/known-missing list.
 
 ### UI fidelity note
 Per the owner: every UI surface (creation screens, dialogue box, menus) must

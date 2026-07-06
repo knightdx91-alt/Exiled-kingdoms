@@ -36,6 +36,9 @@ export class HUD {
     this.panel = this.$('.hud-panel');
     this.el.querySelectorAll('.hud-btn').forEach(b =>
       b.addEventListener('click', () => this.onButton(b.dataset.act)));
+    // Tapping the portrait opens the character/inventory screen (owner's request).
+    const port = this.$('.hud-portrait');
+    if (port) { port.style.cursor = 'pointer'; port.addEventListener('click', () => this.togglePanel('inv')); }
     this._cache = {};
   }
 
@@ -94,8 +97,7 @@ export class HUD {
     this.panel.style.display = '';
     if (which === 'char') this.renderCharacter();
     else if (which === 'journal') this.renderJournal();
-    else if (which === 'inv') this.panel.innerHTML =
-      `<div class="hud-panel-h">Inventory</div><p class="hud-dim">Items &amp; equipment come with the combat/inventory system.</p>${this.closeBtn()}`;
+    else if (which === 'inv') this.renderInventory();
     else this.panel.innerHTML =
       `<div class="hud-panel-h">Menu</div><p class="hud-dim">Progress auto-saves. Full save/settings menu TODO.</p>${this.closeBtn()}`;
     this.wireClose();
@@ -155,6 +157,65 @@ export class HUD {
       ? `${active.join('')}${done.length ? `<div class="hud-panel-sub">Completed</div>${done.join('')}` : ''}`
       : `<p class="hud-dim">No quests yet. Talk to people and explore.</p>`;
     this.panel.innerHTML = `<div class="hud-panel-h">Journal</div>${body}${this.closeBtn()}`;
+    this.wireClose();
+  }
+
+  // Character / inventory screen (deobf/INVENTORY_SPEC.md): equipment paper-doll (12
+  // slots), attack/armor/resistance stat blocks, backpack grid + quick slots. Tap a
+  // backpack item to equip (or use a potion); tap an equipped slot to unequip.
+  renderInventory() {
+    const m = this.model;
+    const items = this.items || {};
+    const nameOf = (id) => (items[id] && items[id].name) || (id ? `#${id}` : '—');
+    // equipment paper-doll — the 12 slots in a readable order
+    const SLOTS = [['head', 'Head'], ['necklace', 'Necklace'], ['cloak', 'Cloak'],
+      ['body', 'Chest'], ['hands', 'Hands'], ['legs', 'Legs'], ['feet', 'Feet'],
+      ['mainhand', 'Main Hand'], ['offhand', 'Off Hand'], ['belt', 'Belt'],
+      ['ring', 'Ring'], ['ring2', 'Ring 2']];
+    const doll = SLOTS.map(([slot, label]) => {
+      const id = m.equipment[slot];
+      const filled = id ? 'filled' : '';
+      return `<button class="eq-slot ${filled}" data-slot="${slot}" ${id ? '' : 'disabled'} title="${id ? 'Unequip' : ''}">` +
+             `<span class="eq-label">${label}</span><span class="eq-item">${nameOf(id)}</span></button>`;
+    }).join('');
+    // attack block from the equipped/derived weapon
+    const w = this.weapons ? this.weapons[m.weaponId()] : null;
+    const dmgLo = (w ? w.min : 1) + m.dmgBonus(), dmgHi = (w ? w.max : 3) + m.dmgBonus();
+    const atk = w ? `${dmgLo}–${dmgHi} ${w.type}${w.crit ? ` · crit ${w.crit}%` : ''}` : '—';
+    // resistances (only non-zero shown)
+    const res = m.resist();
+    const resStr = Object.entries(res).filter(([, v]) => v).map(([k, v]) => `${k} ${v > 0 ? '+' : ''}${v}`).join(', ') || 'none';
+    // backpack grid — tap to equip/use
+    const bp = m.backpack.length ? m.backpack.map((id, i) => {
+      const it = items[id]; const eq = it && it.slot;
+      const use = it && it.onUse;
+      return `<button class="bp-item" data-idx="${i}" data-id="${id}" title="${eq ? 'Equip' : use ? 'Use' : ''}">` +
+             `<span class="bp-name">${nameOf(id)}</span>${eq ? '<span class="bp-tag">equip</span>' : use ? '<span class="bp-tag use">use</span>' : ''}</button>`;
+    }).join('') : `<p class="hud-dim">Backpack is empty. Defeat foes to find loot.</p>`;
+
+    this.panel.innerHTML = `
+      <div class="hud-panel-h">${m.name} — Inventory</div>
+      <div class="inv-stats">
+        <div class="hud-stat"><span>Attack</span><b>${atk}</b></div>
+        <div class="hud-stat"><span>Armor</span><b>${m.armor()}</b></div>
+        <div class="hud-stat"><span>HP</span><b>${Math.ceil(m.hp)}/${m.maxHP()}</b></div>
+        <div class="hud-stat"><span>Gold</span><b>${m.gold}</b></div>
+      </div>
+      <div class="hud-stat inv-res"><span>Resistances</span><b>${resStr}</b></div>
+      <div class="hud-panel-sub">Equipment</div>
+      <div class="eq-doll">${doll}</div>
+      <div class="hud-panel-sub">Backpack (${m.backpack.length})</div>
+      <div class="bp-grid">${bp}</div>
+      ${this.closeBtn()}`;
+    // wire equip / unequip / use
+    this.panel.querySelectorAll('.eq-slot').forEach(b => b.onclick = () => {
+      if (m.unequip(b.dataset.slot)) { this.model.hp = Math.min(this.model.hp, this.model.maxHP()); this.update(true); this.renderInventory(); }
+    });
+    this.panel.querySelectorAll('.bp-item').forEach(b => b.onclick = () => {
+      const id = +b.dataset.id, it = items[id];
+      if (it && it.slot) { if (m.equip(id)) { this.update(true); this.renderInventory(); } }
+      else if (it && it.onUse && this.onUseItem) { this.onUseItem(id); this.update(true); this.renderInventory(); }
+    });
     this.wireClose();
   }
 
