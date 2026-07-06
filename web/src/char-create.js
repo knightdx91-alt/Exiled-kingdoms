@@ -26,6 +26,20 @@ export const DIFFICULTIES = [
   { id: 3, name: 'Iron Man', img: 'ironman', blurb: '' },   // real description injected from class-info.json
 ];
 
+// Random-name button (NewGameWindow's random imageButton). The base game's
+// WorldRandomNames pool isn't in the shipped string tables, so this is a small curated
+// set of era-appropriate names per gender (a convenience, not a fidelity-critical field).
+const NAMES = {
+  MALE: ['Adaon', 'Bran', 'Cedric', 'Darian', 'Edric', 'Gavin', 'Haldor', 'Joran',
+         'Kael', 'Loran', 'Marek', 'Rowan', 'Theron', 'Varen', 'Aldric', 'Corvin'],
+  FEMALE: ['Alys', 'Brenna', 'Petra', 'Devina', 'Elara', 'Freya', 'Isolde', 'Kira',
+           'Lyra', 'Mira', 'Rhiannon', 'Selene', 'Thalia', 'Vera', 'Nadia', 'Ysolde'],
+};
+function randomName(gender) {
+  const pool = NAMES[gender] || NAMES.MALE;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 const el = (tag, cls, txt) => {
   const e = document.createElement(tag);
   if (cls) e.className = cls;
@@ -82,19 +96,23 @@ export function startFlow(root) {
 
       const grid = el('div', 'cc-grid');
 
-      // -- left: portrait + gender + name --
+      // -- left column: NAME (+random) → GENDER → PORTRAIT (NewGameWindow q0/v order) --
       const left = el('div', 'cc-col');
 
-      const pWrap = el('div', 'cc-portrait-wrap');
-      const aL = el('button', 'cc-arrow'); aL.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
-      const frame = el('div', 'cc-frame');
-      const pImg = el('img', 'cc-portrait'); frame.appendChild(pImg);
-      const aR = el('button', 'cc-arrow cc-arrow-r'); aR.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
-      aL.onclick = () => cyclePortrait(-1);
-      aR.onclick = () => cyclePortrait(1);
-      pWrap.append(aL, frame, aR);
-      left.appendChild(pWrap);
+      // Name: text field + a random-name button (NewGameWindow: TextField + imageButton).
+      left.appendChild(el('div', 'cc-heading', 'Name'));
+      const nameRow = el('div', 'cc-name-row');
+      const nameIn = el('input', 'cc-input');
+      nameIn.type = 'text'; nameIn.maxLength = 18; nameIn.placeholder = 'Name your hero';
+      nameIn.value = state.name;
+      nameIn.oninput = () => { state.name = nameIn.value.trim(); validate(); };
+      const rnd = el('button', 'cc-btn cc-rand', '🎲'); rnd.title = 'Random name';
+      rnd.onclick = () => { nameIn.value = randomName(state.gender); state.name = nameIn.value; validate(); };
+      nameRow.append(nameIn, rnd);
+      left.appendChild(nameRow);
 
+      // Gender: two GenderImage tiles.
+      left.appendChild(el('div', 'cc-heading', 'Gender'));
       const gWrap = el('div', 'cc-genders');
       for (const g of [['MALE', 'male', 'Male'], ['FEMALE', 'female', 'Female']]) {
         const t = el('button', 'cc-img-tile cc-gender'); t.dataset.g = g[0];
@@ -105,11 +123,17 @@ export function startFlow(root) {
       }
       left.appendChild(gWrap);
 
-      const nameIn = el('input', 'cc-input');
-      nameIn.type = 'text'; nameIn.maxLength = 18; nameIn.placeholder = 'Name your hero';
-      nameIn.value = state.name;
-      nameIn.oninput = () => { state.name = nameIn.value.trim(); validate(); };
-      left.appendChild(nameIn);
+      // Portrait: left arrow, image, right arrow (CHOOSE_PORTRAIT).
+      left.appendChild(el('div', 'cc-heading', 'Portrait'));
+      const pWrap = el('div', 'cc-portrait-wrap');
+      const aL = el('button', 'cc-arrow'); aL.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
+      const frame = el('div', 'cc-frame');
+      const pImg = el('img', 'cc-portrait'); frame.appendChild(pImg);
+      const aR = el('button', 'cc-arrow cc-arrow-r'); aR.style.backgroundImage = 'url(assets/ui/arrow_left.png)';
+      aL.onclick = () => cyclePortrait(-1);
+      aR.onclick = () => cyclePortrait(1);
+      pWrap.append(aL, frame, aR);
+      left.appendChild(pWrap);
 
       grid.appendChild(left);
 

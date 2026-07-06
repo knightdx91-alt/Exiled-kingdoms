@@ -195,26 +195,40 @@ body.ek-rot-270 #overlay-root {
    slice = the atlas split, [top right bottom left]), so boxes/buttons match the game. --- */
 .cc-panel, .cc-btn, .cc-choice, .cc-skill, .cc-step-btn, .cc-pool { image-rendering: pixelated; }
 
-/* window frame for the creation panels */
+/* window frame = the real parchment (paperbg, drawn as a nine-patch: wood frame at the
+   edges, paper fills) — same 'windowbg' the game builds for NewGameWindow. */
 .cc-panel {
-  background: none; border: 18px solid transparent; border-radius: 0;
-  border-image: url(../assets/ui/skin/default-window.png) 20 3 3 4 fill stretch;
+  background: none; border: 22px solid transparent; border-radius: 0;
+  border-image: url(../assets/ui/hud/paperbg.png) 40 fill / 22px / 0 round;
+  color: #3a2a12;
 }
-/* gold rounded buttons (down/selected state uses the pressed texture) */
+/* on parchment, text is dark; headings the game's brown */
+.cc-panel .cc-heading, .cc-step-title { color: #731a1a; border-color: #9a7a44; }
+.cc-panel .cc-tile-label { color: #5a3d12; }
+.cc-panel .cc-img-tile.on .cc-tile-label { color: #731a1a; font-weight: 700; }
+/* real GOLD menuButton (default-round-orange up, brown down) — matches the game + the
+   character screen. */
 .cc-btn, .cc-choice, .cc-skill, .cc-step-btn {
-  background: none; border-radius: 0; border: 11px solid transparent;
-  border-image: url(../assets/ui/skin/default-round-brown.png) 5 5 4 5 fill stretch;
+  background: none; border-radius: 0; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  border: 9px solid transparent;
+  border-image: url(../assets/ui/hud/default-round-orange.png) 5 5 4 5 fill / 9px 9px 8px 9px / 0 round;
 }
-.cc-btn-primary { border-image: url(../assets/ui/skin/default-round-large-brown.png) 5 5 4 5 fill stretch; color: #fff5df; }
+.cc-btn-primary { color: #fff; }
 .cc-btn:active, .cc-choice.on, .cc-skill.on, .cc-step-btn:active {
-  border-image: url(../assets/ui/skin/default-round-down.png) 5 5 4 5 fill stretch; color: #fff5df;
-}
-.cc-btn:disabled, .cc-step-btn:disabled { opacity: .45; }
+  border-image: url(../assets/ui/hud/default-round-brown.png) 5 5 4 5 fill / 9px 9px 8px 9px / 0 round; }
+.cc-btn:disabled, .cc-step-btn:disabled { filter: grayscale(.6) brightness(.9); opacity: .7; }
+/* name field + description panels on parchment */
+.cc-panel .cc-input { background: rgba(255,255,255,.35); border-color: #9a7a44; color: #3a2a12; }
+.cc-panel .cc-input::placeholder { color: #8a6a3a; }
+.cc-panel .cc-desc, .cc-panel .cc-subdesc { background: rgba(255,255,255,.28); border-color: #9a7a44; color: #3a2a12; }
 /* inset panels (points pill, descriptions) use the rect texture */
 .cc-pool { background: none; border: 7px solid transparent; border-image: url(../assets/ui/skin/default-rect.png) 1 fill stretch; }
 
 /* --- image tiles: real class/gender/difficulty artwork from ui_icons (the game's
    pictures above the labels), with on/off + disabled states --- */
+.cc-name-row { display: flex; gap: 8px; align-items: stretch; }
+.cc-name-row .cc-input { flex: 1; }
+.cc-rand { flex: 0 0 auto; min-width: 48px; font-size: 18px; padding: 0 8px; }
 .cc-genders { display: flex; gap: 12px; justify-content: center; }
 .cc-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
 .cc-diffs { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
