@@ -96,7 +96,8 @@ export function renderMap(scene, planes, map, ambient, opts = {}) {
   let count = 0;
   for (const layer of map.layers) {
     if (!layer.visible) continue;              // e.g. the invisible "nonwalk" mask
-    const plane = planes[planeOf(layer.name)];
+    const planeName = planeOf(layer.name);
+    const plane = planes[planeName];
     for (let r = 0; r < H; r++) {
       for (let c = 0; c < W; c++) {
         const gid = layer.data[r * W + c];
@@ -108,6 +109,9 @@ export function renderMap(scene, planes, map, ambient, opts = {}) {
         const px = (gc - gr) * (TW / 2) + offX + TW / 2; // bottom-center of the cell
         const py = (gc + gr) * (TH / 2) + TH;
         const img = scene.add.image(px, py, ts.key, local).setOrigin(0.5, 1).setTint(tint);
+        // Tag for the render-FX layer (roof-fade A3, fog-of-war A5): local cell, which
+        // plane it's on, and the base ambient tint so fog can dim/restore it.
+        img._cell = { c, r }; img._plane = planeName; img._baseTint = tint;
         plane.add(img);
         images.push(img);
         count++;

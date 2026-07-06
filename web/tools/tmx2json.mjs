@@ -131,7 +131,7 @@ while ((m = lyRe.exec(xml))) {
 // Object layer: transitions (portals) + entry points. EK stores object x/y in a
 // 32px world grid, so cell = round(coord/32). A `transition` links to area_id at
 // entry_id; an `entry` (entry_id) is an arrival point. Edge exits come from map props.
-const transitions = [], entries = {}, npcs = [], containers = [], triggers = [];
+const transitions = [], entries = {}, npcs = [], containers = [], triggers = [], lights = [];
 const objRe = /<object\b([^>]*?)(?:\/>|>([\s\S]*?)<\/object>)/g;
 while ((m = objRe.exec(xml))) {
   const head = m[1], body = m[2] || '';
@@ -153,6 +153,9 @@ while ((m = objRe.exec(xml))) {
       w: Math.max(1, Math.round(+(oa('width') || 32) / 32)),
       h: Math.max(1, Math.round(+(oa('height') || 32) / 32)),
       actions: p('actions'), conditions: p('conditions') });
+  } else if (type === 'light') {                    // a placed torch/fire light source
+    // optional color (#rrggbb or r,g,b) + radius (tiles) props; sensible warm defaults
+    lights.push({ c, r, color: p('color') || undefined, radius: +(p('radius') || 0) || undefined });
   }
 }
 map.transitions = transitions;
@@ -160,6 +163,7 @@ map.entries = entries;
 map.npcs = npcs;
 map.containers = containers;
 map.triggers = triggers;
+map.lights = lights;
 map.edgeExits = { n: prop('exit_n'), s: prop('exit_s'), e: prop('exit_e'), w: prop('exit_w') };
 
 const out = { name: outName, ...map, tilesets, layers };

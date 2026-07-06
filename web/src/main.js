@@ -22,6 +22,7 @@ import { spriteName, loadNpcSheet, makeNpc, bestiaryOf, npcPortrait } from './en
 import { PlayerModel } from './player.js';
 import { HUD } from './hud.js';
 import { Combat } from './combat.js';
+import { RenderFX } from './render_fx.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
@@ -137,6 +138,7 @@ class MapScene extends Phaser.Scene {
     this.dialogue = new Dialogue(this, root);
     this.gameHud = new HUD(root);
     this.combat = new Combat(this);
+    this.renderFx = new RenderFX(this);
     this._firedTriggers = new Set();
 
     this.boot();
@@ -269,6 +271,14 @@ class MapScene extends Phaser.Scene {
       targetByName: (name, cell) => { const f = this.entities.find(e => e.cbt && e.cbt.side === 'enemy' && !e.cbt.dead && e.npc.name === name && (!cell || (e.cell.c === cell.c && e.cell.r === cell.r))); if (f) this.combat.setTarget(f); return !!f; },
       hp: () => this.playerModel ? Math.ceil(this.playerModel.hp) : null,
       teleport: (c, r) => { const g = this.nearestWalkable(c, r); this.heroCell = g; const p = this.toPx(g.c, g.r); if (this.hero) this.hero.setPosition(p.x, p.y); this.path = null; return g; },
+      fx: () => { const f = this.renderFx; if (!f) return null;
+        const imgs = f.images || [];
+        return { enabled: f.enabled, fog: f.useFog, tiles: imgs.length,
+          hidden: imgs.filter(i => i.visible === false).length,
+          dimmed: imgs.filter(i => i.visible !== false && i._baseTint != null && i.tintTopLeft === f.dimTint).length,
+          faded: (f.fadeImgs || []).filter(i => i.alpha < 1).length,
+          explored: f.explored ? f.explored.reduce((a, b) => a + b, 0) : 0,
+          lights: (f.glows || []).length, playerGlow: !!f.playerGlow }; },
       paused: () => this.combat ? this.combat.paused : false,
       togglePause: () => this.setPaused(this.combat.togglePause()),
       // damage a named enemy directly (test helper)
@@ -409,6 +419,7 @@ class MapScene extends Phaser.Scene {
     if (this.control === 'joystick') this.stepJoystick(dtMs / 1000);
     else this.stepHero(dtMs / 1000);
     if (this.combat) this.combat.tick(dtMs);         // real-time-with-pause combat
+    if (this.renderFx) this.renderFx.update(dtMs);   // roof-fade / fog / light flicker
   }
 
   // Swap control scheme. Tap-to-move uses Phaser pointer input; the joystick uses its
@@ -815,6 +826,7 @@ class MapScene extends Phaser.Scene {
       this._streaming = false;
       this.path = null; this.pathIdx = 0;
       this.clearScene();
+      this.renderFx.dispose();                         // no fog/roof-fade in the open world
 
       const g = this.overworld.grid[name];
       this._curChunk = { col: g.col, row: g.row };
@@ -914,11 +926,12 @@ class MapScene extends Phaser.Scene {
       const map = await loadMap(this, name);
       this._map = map; this._mapName = name;
       const ambient = ambientColor(map, this.currentHour());
-      const { tiles, width, height } = renderMap(this, this.planes, map, ambient);
+      const { tiles, width, height, images } = renderMap(this, this.planes, map, ambient);
       this._mapTiles = tiles; this._ambient = ambient;
       this.mapBounds = { width, height };
       this.grid.setVisible(false);
       this.walk = buildWalkable(map);
+      this.renderFx.onEnter(map, images);            // roof-fade / fog / lights (interiors)
 
       // Where to drop the hero: the named entry, else map centre — snapped walkable.
       const e = entryOf(map, entryId, preferDefault);
@@ -929,6 +942,7 @@ class MapScene extends Phaser.Scene {
       await this.placeHeroAt(hp.x, hp.y);
       sortMid(this.planes.mid);
       applyAmbient(this.planes, ambient);
+      this.renderFx.update(0);                        // paint initial fog/roof-fade now
       this.fitMap();
       this._loading = false;
       this.spawnEntities(map.npcs, 'interior', (c, r) => cellToPx(c, r, map));

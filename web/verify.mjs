@@ -333,11 +333,34 @@ const heroClassOk = hero.learnsAll && hero.trained === 2 && hero.disc.includes('
                hero.warriorTrained.length === 1 && hero.warriorTrained[0] === 'battle_rage' &&
                !hero.warriorCanMage && hero.classes.includes('HERO');
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk);
+// --- Render polish: in a dark dungeon, fog-of-war hides unexplored tiles and reveals
+// more as the hero moves (explored grows, hidden shrinks, some tiles dim to 1/3),
+// roof/object tiles fade, torch + player lights exist; in the open world the FX is inert
+// (deobf/RENDER_POLISH_SPEC.md). ---
+const fx = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'D12_cave' });
+  await new Promise(r => setTimeout(r, 400));
+  const start = window.__EK.fx();
+  const hc = window.__EK.heroCell();
+  window.__EK.teleport(hc.c + 20, hc.r + 8);
+  window.__EK.teleport(hc.c + 20, hc.r + 8);       // 2nd call forces a cell-change apply
+  await new Promise(r => setTimeout(r, 300));
+  const moved = window.__EK.fx();
+  await window.__EK.quickStart({ map: 'H10' });     // open world → FX inert
+  await new Promise(r => setTimeout(r, 250));
+  const world = window.__EK.fx();
+  return { start, moved, world };
+});
+console.log('render-fx:', fx);
+const fxOk = fx.start.enabled && fx.start.fog && fx.start.hidden > 0 && fx.start.lights > 0 &&
+             fx.start.playerGlow && fx.moved.explored > fx.start.explored &&
+             fx.moved.hidden < fx.start.hidden && fx.moved.dimmed > 0 && !fx.world.enabled;
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' render-fx:', fxOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

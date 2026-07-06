@@ -106,7 +106,14 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
    disciplines show in the Character panel and persist. *(Skill effects + `skill_req`
    gates + custom HERO art are the follow-ups; equipment gating awaits the inventory
    system.)*
-6. **Render polish** — recovered roof-fade (A3) + fog-of-war (A5), dynamic lights (A1).
+6. ~~**Render polish**~~ ✅ DONE (`src/render_fx.js`; spec `deobf/RENDER_POLISH_SPEC.md`).
+   Interiors now get **roof/object fade** (alpha 0.42 when the hero is in the 4-tile band
+   behind a tile), **fog-of-war** in dark dungeons (`maxlight>0`: explored grid, unexplored
+   hidden, explored-not-visible dimmed to 1/3, enemies hidden in fog), and **dynamic
+   lights** (additive torch glows from `type="light"` TMX objects, now extracted by
+   `tmx2json` → `map.lights`, + a player torch on dark maps). Inert in the open world.
+   Remaining APPROX: true LOS raycast, ray-cast shadow occlusion, secret-door reveal,
+   particles (A4) — see DEOBFUSCATION_STATUS.md.
 
 ### UI fidelity note
 Per the owner: every UI surface (creation screens, dialogue box, menus) must
