@@ -271,6 +271,14 @@ const combat = await page.evaluate(async () => {
   const attached = window.__EK.combatants().length;
   window.__EK.teleport(foe.cell.c + 1, foe.cell.r);
   const startHp = foe.maxHp, heroStart = window.__EK.hp();
+  // ATTACK BUTTON: hold it while adjacent to the foe and confirm it deals damage.
+  const atkEl = document.querySelector('#hud .hud-attack');
+  const foeHp0 = window.__EK.combatants().find(c => c.name === foe.name).hp;
+  atkEl.dispatchEvent(new Event('pointerdown'));
+  await new Promise(r => setTimeout(r, 1600));
+  atkEl.dispatchEvent(new Event('pointerup'));
+  const foeAfterBtn = window.__EK.combatants().find(c => c.name === foe.name);
+  const attackButtonHurt = !foeAfterBtn || foeAfterBtn.dead || foeAfterBtn.hp < foeHp0;
   window.__EK.targetByName(foe.name, foe.cell);
   // poll until both sides have traded blows (deterministic vs a fixed window)
   let enemyHurt = false, heroHurt = false;
@@ -286,12 +294,12 @@ const combat = await page.evaluate(async () => {
   if (alive) window.__EK.hurtEnemy(alive.name, 99999);
   await new Promise(r => setTimeout(r, 700));
   const p1 = window.__EK.togglePause(), p2 = window.__EK.togglePause();
-  return { attached, enemyHurt, heroHurt,
+  return { attached, enemyHurt, heroHurt, attackButtonHurt,
            xpGain: window.__EK.stats().xp - before, pause: p1 === true && p2 === false };
 });
 console.log('combat:', combat);
 const combatOk = combat.attached > 0 && combat.enemyHurt && combat.heroHurt &&
-                 combat.xpGain > 0 && combat.pause;
+                 combat.attackButtonHurt && combat.xpGain > 0 && combat.pause;
 
 // --- Quests + world state: set a quest variable, confirm the Journal shows it with the
 // right stage description, a completed quest is flagged, and world state (vars) persists
@@ -353,7 +361,7 @@ const inv = await page.evaluate(async () => {
   window.__EK.hurt(20); const hpBefore = window.__EK.hp();
   window.__EK.useItem(5000); const hpGain = window.__EK.hp() - hpBefore;
   const potionGone = !window.__EK.inventoryDebug().backpack.includes(5000);
-  document.querySelector('#hud .hud-btn[data-act="inv"]').click();
+  document.querySelector('#hud .hud-portrait').click();   // portrait opens char/inventory
   await new Promise(r => setTimeout(r, 80));
   const panel = document.querySelector('#hud .hud-panel').textContent;
   return { base, gotBackpack, eq, rogueBlocked, hpGain, potionGone,
@@ -429,6 +437,6 @@ const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && ma
            zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && invOk && skillsOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, castable skills/spells (damage/heal/buff/passive), dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (hold-to-attack button + attack/interact toggle, mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, castable skills/spells (damage/heal/buff/passive), dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

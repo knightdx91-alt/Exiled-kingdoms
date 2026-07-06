@@ -144,6 +144,50 @@ export class Combat {
   clearTarget() { this._target = null; }
   get target() { return this._target; }
 
+  // The hero's melee/attack reach in tiles (weapon reach, else 1).
+  heroReach() { const h = this._heroCbt(); return (h && h.reach) || 1; }
+
+  // Is there any live enemy within the hero's strike reach right now? Used to decide
+  // whether the attack button should attack or (when attackInteracts is on) interact —
+  // mirrors GameScreen.l()'s `bVarP.a(...) <= 0` adjacency test.
+  enemyInReach() {
+    const hc = this.s.heroCell; if (!hc) return false;
+    return !!this._nearestEnemy(hc, this.heroReach() + 0.5);
+  }
+
+  // The ATTACK button (GameHUD.f2942d → GameScreen.l() → player.E0(-1)). If an enemy is
+  // within reach, strike it now (respecting the hero's weapon cooldown); otherwise
+  // acquire the nearest enemy within ~6 tiles as the target so the hero walks in and the
+  // tick loop keeps attacking. Returns true if it engaged anything, false if no enemy.
+  heroSwing() {
+    const hc = this.s.heroCell; if (!hc) return false;
+    if (this.paused || this.s._dialogue || this.s._loading) return false;
+    const target = this._nearestEnemy(hc, this.heroReach() + 0.5);
+    if (target) {
+      this._target = target;
+      if (!this._heroCd || this._heroCd <= 0) {
+        const hero = this._heroCbt();
+        this._resolveAttack(hero, target.cbt, this.s.hero, target, false);
+        this._heroCd = (hero.weapon && hero.weapon.speed || 10) * 45;
+        this._face(this.s.hero, this.s.heroKey, hc, target.cell);
+        if (target.cbt.dead) this._onEnemyDeath(target);
+        if (this.s.gameHud) this.s.gameHud.update(true);
+      }
+      return true;
+    }
+    const near = this._nearestEnemy(hc, 6);
+    if (near) { this._target = near; return true; }
+    return false;
+  }
+
+  // The follower entity (ally combatant that is a party follower), or null. Powers the
+  // companion portrait + bars in the HUD.
+  follower() {
+    for (const e of this.s.entities)
+      if (e.cbt && e.cbt.side === 'ally' && this._isFollower(e)) return e;
+    return null;
+  }
+
   togglePause() { this.paused = !this.paused; return this.paused; }
 
   // Clear transient combat state (buffs/cooldowns/target) — on a new game/character.

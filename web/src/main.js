@@ -129,6 +129,13 @@ class MapScene extends Phaser.Scene {
     this.charSpriteFile = 'assets/sprites/male_knight.png';
     const root = document.getElementById('overlay-root');
     this.joystick = new Joystick(root);
+    // Gameplay settings (mirror SettingsData): attackInteracts folds interact into the
+    // attack button; showNumbersBars prints values on the HP/mana bars.
+    this.settings = { attackInteracts: true, showNumbersBars: false };
+    try {
+      const s = JSON.parse(localStorage.getItem('ek_settings') || '{}');
+      Object.assign(this.settings, s);
+    } catch (e) { /* private mode */ }
     this._wireSettings();
 
     // Entities + dialogue + shared world state (variables/party) for NPCs and quests.
@@ -433,6 +440,8 @@ class MapScene extends Phaser.Scene {
     if (this._dialogue) return;                      // gameplay pauses during dialogue
     if (this.control === 'joystick') this.stepJoystick(dtMs / 1000);
     else this.stepHero(dtMs / 1000);
+    // Attack button held → keep striking (weapon cooldown paces it inside heroSwing).
+    if (this.gameHud && this.gameHud.attackHeld() && !this._loading) this.combat.heroSwing();
     if (this.combat) this.combat.tick(dtMs);         // real-time-with-pause combat
     if (this.renderFx) this.renderFx.update(dtMs);   // roof-fade / fog / light flicker
   }
@@ -485,6 +494,18 @@ class MapScene extends Phaser.Scene {
     let savedControl = null;
     try { savedControl = localStorage.getItem('ek_control'); } catch (e) { /* private mode */ }
     this.setControl(savedControl || 'tap');
+
+    // Combat toggles: attackInteracts + showNumbersBars, persisted to ek_settings.
+    const ai = document.getElementById('set-attackinteracts');
+    const sn = document.getElementById('set-shownumbers');
+    const persist = () => {
+      try { localStorage.setItem('ek_settings', JSON.stringify(this.settings)); } catch (e) { /* private */ }
+      if (this.gameHud) { this.gameHud.settings = this.settings; this.gameHud.update(true); }
+    };
+    if (ai) { ai.checked = !!this.settings.attackInteracts;
+      ai.onchange = () => { this.settings.attackInteracts = ai.checked; persist(); }; }
+    if (sn) { sn.checked = !!this.settings.showNumbersBars;
+      sn.onchange = () => { this.settings.showNumbersBars = sn.checked; persist(); }; }
   }
 
   // The Settings gear stays reachable; nothing else to hide now that the movement
@@ -752,6 +773,11 @@ class MapScene extends Phaser.Scene {
     this.combat.reset();
     this.gameHud.onUseItem = (id) => this.useItem(id);
     this.gameHud.setCombat(this.combat, (id) => this.castSkill(id));
+    this.gameHud.items = this.items;
+    this.gameHud.settings = this.settings;
+    // ATTACK button (GameHUD.f2942d): press → one action now, then held-repeat via update().
+    this.gameHud.onAttackDown = () => this.heroAction();
+    this.gameHud.onRecover = () => this.heroRecover();
     this.heroKey = `hero_${pc.gender.toLowerCase()}`;
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
@@ -785,6 +811,44 @@ class MapScene extends Phaser.Scene {
     m.removeItem(id);
     if (this.gameHud) this.gameHud.update(true);
     return true;
+  }
+
+  // The attack button's action (GameScreen.l()). When attackInteracts is on and nothing
+  // is in strike range, interact with an adjacent NPC/door instead; otherwise swing.
+  heroAction() {
+    if (this._dialogue || this._loading || !this.combat || !this.heroCell) return;
+    if (this.settings.attackInteracts && !this.combat.enemyInReach()) {
+      if (this.interactNearest()) return;
+    }
+    this.combat.heroSwing();
+  }
+
+  // Interact with whatever is adjacent (mirrors GameHUD.E(0) dispatch, condensed to the
+  // web build's world objects): an adjacent conversation NPC → talk; else an adjacent
+  // area transition (door/arch) → travel. Returns true if something was interacted with.
+  interactNearest() {
+    const hc = this.heroCell;
+    const e = this.entityNear(hc.c, hc.r, 1.6);
+    if (e) { this.combat.clearTarget(); this.talkTo(e); return true; }
+    const t = this.currentTransitions().find(t =>
+      t.area && Math.abs(t.c - hc.c) <= 1 && Math.abs(t.r - hc.r) <= 1);
+    if (t) { this.path = null; this.goArea(t.area, t.entry); return true; }
+    return false;
+  }
+
+  // Rest & recover (GameHUD.G() / RecoverButton): only out of combat — heal HP + mana to
+  // full. If enemies are near, refuse (ENEMIES_AROUND).
+  heroRecover() {
+    if (this._dialogue || this._loading || !this.playerModel) return;
+    if (this.enemyNear(this.heroCell.c, this.heroCell.r, 8)) {
+      this.combat._floater(this.hero, 'Enemies around', false, false, '#ff9a9a');
+      return;
+    }
+    const m = this.playerModel;
+    m.hp = m.maxHP();
+    if (m.isCaster()) m.mana = m.maxMana();
+    if (this.gameHud) this.gameHud.update(true);
+    this.combat._floater(this.hero, 'Rested', false, false, '#7fd07f');
   }
 
   // Serialize the shared world state (all game variables incl. quest progress, and the

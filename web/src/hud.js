@@ -4,6 +4,7 @@
 // matched. A DOM overlay in screen space, so it reflows tall↔wide with the viewport.
 
 import { SKILL_FX, knownActives } from './skills.js';
+import { npcPortrait } from './entity.js';
 
 const ATTR = [['STR', 'Strength'], ['END', 'Endurance'], ['AGI', 'Agility'],
               ['INT', 'Intellect'], ['AWA', 'Awareness'], ['PER', 'Personality']];
@@ -14,9 +15,12 @@ export class HUD {
     this.el = document.createElement('div');
     this.el.id = 'hud';
     this.el.style.display = 'none';
+    // Layout mirrors the real GameHUD (deobf/GAMEHUD_LAYOUT_SPEC.md): portrait + bars
+    // top-left, companion below it, gold top-left, ATTACK button bottom-right, potion
+    // quickslots bottom-centre, skill bar bottom-right (above attack), recover left.
     this.el.innerHTML = `
       <div class="hud-top">
-        <img class="hud-portrait" alt="">
+        <img class="hud-portrait" alt="" title="Character / Inventory">
         <div class="hud-bars">
           <div class="hud-name-row"><span class="hud-name"></span><span class="hud-lvl"></span></div>
           <div class="hud-bar hud-hp"><div class="hud-fill"></div><span class="hud-bt"></span></div>
@@ -25,16 +29,28 @@ export class HUD {
         </div>
         <div class="hud-gold"><span class="hud-coin">◉</span><span class="hud-gold-n"></span></div>
       </div>
+      <div class="hud-comp" style="display:none">
+        <img class="hud-comp-portrait" alt="">
+        <div class="hud-bars">
+          <div class="hud-comp-name"></div>
+          <div class="hud-bar hud-hp"><div class="hud-fill"></div><span class="hud-bt"></span></div>
+          <div class="hud-bar hud-mp"><div class="hud-fill"></div><span class="hud-bt"></span></div>
+        </div>
+      </div>
       <div class="hud-btns">
-        <button class="hud-btn" data-act="char" title="Character">🛡</button>
         <button class="hud-btn" data-act="journal" title="Journal">📖</button>
-        <button class="hud-btn" data-act="inv" title="Inventory">🎒</button>
         <button class="hud-btn" data-act="menu" title="Menu">☰</button>
       </div>
+      <img class="hud-recover" src="assets/ui/hud/mend.png" alt="" title="Rest &amp; recover">
+      <div class="hud-quickslots"></div>
       <div class="hud-skillbar"></div>
+      <button class="hud-attack" title="Attack / interact">
+        <img src="assets/ui/hud/attackButton.png" alt="Attack">
+      </button>
       <div class="hud-panel" style="display:none"></div>`;
     root.appendChild(this.el);
     this.skillbar = this.el.querySelector('.hud-skillbar');
+    this.quickslots = this.el.querySelector('.hud-quickslots');
 
     this.$ = (s) => this.el.querySelector(s);
     this.panel = this.$('.hud-panel');
@@ -43,8 +59,25 @@ export class HUD {
     // Tapping the portrait opens the character/inventory screen (owner's request).
     const port = this.$('.hud-portrait');
     if (port) { port.style.cursor = 'pointer'; port.addEventListener('click', () => this.togglePanel('inv')); }
+
+    // ATTACK button — press & hold to keep attacking (the held flag is polled by the
+    // scene each frame; the weapon cooldown paces the swings). Doubles as interact when
+    // the attackInteracts setting is on and nothing is in reach (see scene.heroAction).
+    const atk = this.$('.hud-attack');
+    const down = (ev) => { ev.preventDefault(); this._attackHeld = true; if (this.onAttackDown) this.onAttackDown(); };
+    const up = () => { this._attackHeld = false; if (this.onAttackUp) this.onAttackUp(); };
+    atk.addEventListener('pointerdown', down);
+    atk.addEventListener('pointerup', up);
+    atk.addEventListener('pointerleave', up);
+    atk.addEventListener('pointercancel', up);
+    // Recover / rest button.
+    this.$('.hud-recover').addEventListener('click', () => { if (this.onRecover) this.onRecover(); });
+
     this._cache = {};
   }
+
+  // Whether the attack button is currently held (polled by the scene's update loop).
+  attackHeld() { return !!this._attackHeld; }
 
   setModel(model) {
     this.model = model;
@@ -63,14 +96,20 @@ export class HUD {
   update(force) {
     const m = this.model;
     if (!m) return;
+    // Bottom-HUD widgets have their own change-signature guards; run them every frame so
+    // a follower joining or a quickslot item appearing shows up without a stat change.
+    this.renderSkillBar();
+    this.renderQuickslots();
+    this.renderCompanion();
     const hp = Math.ceil(m.hp), maxhp = m.maxHP();
     const mp = Math.ceil(m.mana), maxmp = m.maxMana();
-    const key = `${hp}/${maxhp}|${mp}/${maxmp}|${m.level()}|${Math.round(m.xpProgress() * 100)}|${m.gold}`;
+    const key = `${hp}/${maxhp}|${mp}/${maxmp}|${m.level()}|${Math.round(m.xpProgress() * 100)}|${m.gold}|${this.showNumbers() ? 1 : 0}`;
     if (!force && key === this._cache.key) return;
     this._cache.key = key;
 
-    this.setBar('.hud-hp', hp / maxhp, `${hp} / ${maxhp}`);
-    if (maxmp) this.setBar('.hud-mp', mp / maxmp, `${mp} / ${maxmp}`);
+    const num = this.showNumbers();
+    this.setBar('.hud-hp', hp / maxhp, num ? `${hp} / ${maxhp}` : '');
+    if (maxmp) this.setBar('.hud-mp', mp / maxmp, num ? `${mp} / ${maxmp}` : '');
     this.setBar('.hud-xp', m.xpProgress(), m.xpToNext() ? `XP ${m.xpToNext().toLocaleString()} to next` : 'MAX');
     this.$('.hud-lvl').textContent = `Lv ${m.level()}`;
     this.$('.hud-gold-n').textContent = m.gold.toLocaleString();
@@ -79,7 +118,54 @@ export class HUD {
       if (this._panel === 'char') this.renderCharacter();
       else if (this._panel === 'journal') this.renderJournal();
     }
-    this.renderSkillBar();
+  }
+
+  // Whether numeric values are shown on the bars (Settings.showNumbersBars).
+  showNumbers() { return !!(this.settings && this.settings.showNumbersBars); }
+
+  // Potion / usable-item quickslot row (GameHUD.C[5] — InventorySlotImage). Shows up to
+  // 5 usable backpack items (those with an OnUse). Tap → use it.
+  renderQuickslots() {
+    if (!this.quickslots || !this.model) return;
+    const items = this.items || {};
+    const usable = [];
+    const seen = new Set();
+    for (const id of this.model.backpack) {
+      if (seen.has(id)) continue;
+      const it = items[id];
+      if (it && it.onUse && !it.slot) { usable.push(id); seen.add(id); }
+      if (usable.length >= 5) break;
+    }
+    const sig = usable.join(',');
+    if (sig === this._qsSig) return;
+    this._qsSig = sig;
+    this.quickslots.innerHTML = usable.map(id => {
+      const it = items[id];
+      const n = this.model.backpack.filter(x => x === id).length;
+      return `<button class="qslot" data-id="${id}" title="${(it && it.name) || id}">` +
+             `<span class="qs-name">${((it && it.name) || `#${id}`).split(' ')[0]}</span>` +
+             (n > 1 ? `<span class="qs-n">${n}</span>` : '') + `</button>`;
+    }).join('');
+    this.quickslots.querySelectorAll('.qslot').forEach(b =>
+      b.onclick = () => { if (this.onUseItem) { this.onUseItem(+b.dataset.id); this.update(true); } });
+  }
+
+  // Companion portrait + HP/mana bars (GameHUD.E + f2962w/f2963x), shown when a follower
+  // is in the party. Follower combat state comes from the scene's Combat.
+  renderCompanion() {
+    const comp = this.$('.hud-comp');
+    const f = this.combat && this.combat.follower && this.combat.follower();
+    if (!f || !f.cbt) { comp.style.display = 'none'; return; }
+    comp.style.display = '';
+    const c = f.cbt;
+    const cp = this.$('.hud-comp-portrait');
+    const src = npcPortrait(f.rec) || '';
+    if (cp.getAttribute('src') !== src) cp.setAttribute('src', src);
+    this.$('.hud-comp-name').textContent = (f.npc.name || 'Companion').replace(/_/g, ' ');
+    const hpBar = comp.querySelector('.hud-hp');
+    hpBar.querySelector('.hud-fill').style.width = `${Math.max(0, Math.min(1, c.hp / c.maxHp)) * 100}%`;
+    hpBar.querySelector('.hud-bt').textContent = this.showNumbers() ? `${Math.ceil(c.hp)} / ${c.maxHp}` : '';
+    comp.querySelector('.hud-mp').style.display = 'none';   // followers: HP only for now
   }
 
   // Wire the combat system + a cast callback for the skill bar.
@@ -94,10 +180,11 @@ export class HUD {
     if (sig === this._skillSig) return;
     this._skillSig = sig;
     if (!ids.length) { this.skillbar.innerHTML = ''; return; }
-    this.skillbar.innerHTML = ids.map(id => {
+    this.skillbar.innerHTML = ids.map((id, i) => {
       const fx = SKILL_FX[id], can = this.combat.canCast(id), cf = this.combat.cooldownFrac(id);
-      return `<button class="skbtn ${can ? '' : 'off'}" data-skill="${id}" title="${fx.name}">` +
-             `<span class="sk-name">${fx.name}</span>` +
+      return `<button class="skbtn ${can ? '' : 'off'}" data-skill="${id}" title="${fx.name}" ` +
+             `style="background-image:url(assets/ui/hud/skill_bg${i % 6}.png)">` +
+             `<span class="sk-name">${fx.name.split(' ')[0]}</span>` +
              (cf > 0 ? `<span class="sk-cd" style="height:${Math.round(cf * 100)}%"></span>` : '') +
              `</button>`;
     }).join('');

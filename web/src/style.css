@@ -365,11 +365,44 @@ body.ek-rot-270 #overlay-root {
 .hud-gold { display: flex; align-items: center; gap: 3px; font-size: 13px; color: #f0d98a; white-space: nowrap; }
 .hud-coin { color: #e8c34a; }
 
-.hud-btns { position: absolute; right: 8px; bottom: calc(env(safe-area-inset-bottom, 8px) + 8px);
-  display: flex; gap: 8px; }
-.hud-btn { width: 46px; height: 46px; font-size: 20px; cursor: pointer;
+.hud-btns { position: absolute; right: 8px; top: calc(env(safe-area-inset-top, 8px) + 52px);
+  display: flex; flex-direction: column; gap: 8px; }
+.hud-btn { width: 44px; height: 44px; font-size: 19px; cursor: pointer;
   background: rgba(18,14,8,.85); color: #ece3cf; border: 1px solid #6d5528; border-radius: 10px; }
 .hud-btn:hover { border-color: #caa04a; }
+
+/* Companion portrait + bars, under the player's top bar (GameHUD.E). */
+.hud-comp { position: absolute; top: calc(env(safe-area-inset-top, 8px) + 62px); left: 8px;
+  display: flex; align-items: center; gap: 6px; max-width: min(320px, calc(100vw - 120px));
+  background: linear-gradient(rgba(18,14,8,.78), rgba(10,8,4,.82));
+  border: 1px solid #5a4a24; border-radius: 9px; padding: 4px 6px; }
+.hud-comp-portrait { width: 34px; height: 34px; flex: none; object-fit: cover;
+  border-radius: 6px; border: 2px solid #6d5a2a; background: #14110b; }
+.hud-comp-name { font-size: 11px; font-weight: 700; color: #e6dcc0; }
+.hud-comp .hud-bar { height: 10px; }
+.hud-comp .hud-bt { line-height: 10px; font-size: 8px; }
+
+/* ATTACK button — bottom-right, big, hold to keep striking (GameHUD.f2942d). */
+.hud-attack { position: absolute; right: 10px; bottom: calc(env(safe-area-inset-bottom, 8px) + 10px);
+  width: 108px; height: 108px; padding: 0; border: none; background: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: none; }
+.hud-attack img { width: 100%; height: 100%; -webkit-user-drag: none; user-select: none; }
+.hud-attack:active img { filter: brightness(1.25); transform: scale(.94); }
+
+/* Recover / rest button — left edge (GameHUD.RecoverButton). */
+.hud-recover { position: absolute; left: 10px; bottom: 42%; width: 52px; height: 52px;
+  cursor: pointer; opacity: .9; -webkit-user-drag: none; }
+.hud-recover:hover { opacity: 1; }
+
+/* Potion quickslot row — bottom-centre (GameHUD.C[5]). */
+.hud-quickslots { position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 8px) + 8px); display: flex; gap: 6px; }
+.qslot { position: relative; width: 48px; height: 48px; cursor: pointer; font-family: inherit;
+  font-size: 10px; font-weight: 600; color: #f0e6c8; background: rgba(18,14,8,.85);
+  border: 1px solid #6d5528; border-radius: 9px; padding: 2px; overflow: hidden; }
+.qslot:hover { border-color: #caa04a; }
+.qs-name { display: block; line-height: 1.1; }
+.qs-n { position: absolute; right: 2px; bottom: 1px; font-size: 10px; color: #ffe066; }
 
 .hud-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: min(420px, calc(100vw - 32px)); max-height: 80vh; overflow-y: auto;
@@ -404,14 +437,20 @@ body.ek-rot-270 #overlay-root {
 .bp-item:hover { background: rgba(40,30,12,.7); border-color: #6d5a2a; }
 .bp-tag { font-size: 10px; text-transform: uppercase; color: #caa04a; letter-spacing: .5px; }
 .bp-tag.use { color: #7fd07f; }
-.hud-skillbar { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
-  display: flex; gap: 6px; pointer-events: none; max-width: 96vw; flex-wrap: wrap; justify-content: center; }
+/* Skill bar — bottom-right, above the attack button (GameHUD.B[8]). */
+.hud-skillbar { position: absolute; right: 128px; bottom: calc(env(safe-area-inset-bottom, 8px) + 12px);
+  display: flex; gap: 5px; pointer-events: none; max-width: 52vw; flex-wrap: wrap; justify-content: flex-end; }
 .skbtn { position: relative; overflow: hidden; pointer-events: auto; cursor: pointer;
-  min-width: 62px; height: 40px; padding: 2px 8px; font-family: inherit; font-size: 11px; font-weight: 600;
-  color: #fff5df; background: linear-gradient(#6d4e18, #4a340f); border: 1px solid #caa04a; border-radius: 8px; }
-.skbtn.off { opacity: .45; filter: grayscale(.5); }
-.sk-name { position: relative; z-index: 1; }
-.sk-cd { position: absolute; left: 0; bottom: 0; width: 100%; background: rgba(0,0,0,.55); }
+  width: 52px; height: 52px; padding: 2px; font-family: inherit; font-size: 10px; font-weight: 700;
+  color: #fff5df; text-shadow: 0 1px 2px #000; background-size: cover; background-position: center;
+  border: 1px solid #caa04a; border-radius: 9px; display: flex; align-items: flex-end; justify-content: center; }
+.skbtn.off { opacity: .5; filter: grayscale(.6); }
+.sk-name { position: relative; z-index: 1; line-height: 1.05; }
+.sk-cd { position: absolute; left: 0; bottom: 0; width: 100%; background: rgba(0,0,0,.6); z-index: 0; }
+
+.set-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #e6dcc0;
+  cursor: pointer; padding: 3px 0; }
+.set-check input { width: 16px; height: 16px; accent-color: #caa04a; }
 .hud-dim { font-size: 13px; color: #9c8f6f; font-style: italic; }
 .hud-close { align-self: flex-end; height: 40px; min-width: 110px; cursor: pointer; font-family: inherit;
   font-size: 15px; color: #fff5df; background: linear-gradient(#8a6522,#6d4e18); border: 1px solid #caa04a; border-radius: 9px; }
