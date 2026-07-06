@@ -178,3 +178,63 @@ Current HUD = placeholder: portrait + 4 emoji buttons (🛡 char / 📖 journal 
 
 Layout anchors to mirror: movement bottom-left, attack bottom-right, portrait+bars
 top-left, context buttons top-right, quickslots bottom-center, skills bottom-right.
+
+---
+
+## 9. CharacterWindow (`o0/f`) — the portrait pop-up, EXACT (added on owner request)
+Full-screen `Window` (`setWidth/Height = graphics size`), modal, opened by
+`GameHUD.i()` → `V.T(0,null)` → `U(0,null,player)`. Reused for loot/containers via
+`T(1,lootable)`. Three columns (`columnDefaults width = P0 = 412·scale`).
+
+### Column 1 — `f3472b` (character panel), top→bottom
+1. **Name/class** header `f3500p` (e.g. "Whit Croc, Mage").
+2. **Portrait** `R` (S0²) + level label `f3502q` + **3 bars** `n0.a`: `E0`=XP(gold,type1),
+   `F0`=HP(red,type0), `G0`=mana(blue,type2) — in that vertical order (180×25 each).
+3. `f3486i` = **Traits** table (`o0.z`: STR/END/AGI/INT/AWA/PER + values, w120) **+**
+   **ATTACK_STATS** table `f3476d` (w230): rows `DAMAGE:`+dmg(`o0.c`), `SPEED:`+val,
+   `CRITICAL:`+crit(`o0.b`), `DPS:`+val, `EFFECT:`+val.
+4. `f3484h` = **ARMOR** (`f3482g`: "ARMOR:" + shield img `o0.a` w/value) **+**
+   **RESISTANCES** (`f3480f`: 6 icon+value pairs, row1 fire/cold/shock, row2 death/poison/holy).
+5. **JOURNAL** `y0` + **SKILLS** `z0` (row); **REPUTATION** `A0` + **STAT_DETAILS**("Details") `B0` (row).
+
+### Column 2 — `f3488j` (equipment)
+- `f3490k` = paper-doll grid, char sprite `S` (o0.d) in the centre (colspan 2), 12 slots
+  (`o0.i`) arranged 4 / (2-left + sprite + 2-right) / 4. Slot→equip index (V(2,i)):
+  `f3479e0`=0 mainhand, `f3481f0`=1 offhand, `f3483g0`=2 head, `f3499o0`=9 belt (row1);
+  `f3501p0`=7 ring, `f3491k0`=10 cloak (mid-left); `f3495m0`=6 feet, `f3489j0`=5 legs
+  (mid-right); `f3497n0`=8 ring2, `f3485h0`=3 body, `f3487i0`=4 hands, `f3493l0`=11 necklace
+  (row3). Equip order (CharacterInventory): `mainhand,offhand,head,body,hands,legs,feet,ring,ring2,belt,cloak,necklace`.
+- `f3492l` = item preview/description (`o0.k`) for the selected item.
+- **DROP** `f3477d0` (left) + **EQUIP** `f3475c0` (right) — contextual buttons.
+
+### Column 3 — `f3494m` (backpack)
+- "BACKPACK" label + **5×4 = 20 backpack slots** (`f3503q0[20]`, `o0.i`).
+- `table4`: **QUICK SLOTS** button `b0` + gold-coin img + gold value `P`.
+- `table5`: bag-of-holding img btn `D0` (if owned & `A()`) + companion-swap `C0` (if party)
+  + **BACK** `w0`.
+
+### Every button + where it goes (traced through `o0/e` + `o0/g`)
+| Button | Field | Listener | Destination |
+|---|---|---|---|
+| JOURNAL | `y0` | `o0.g(0)` | `o0.l.e().f()` — **JournalWindow** (quests + rumors) |
+| SKILLS | `z0` | `o0.e(8)` | `z.v().X.p(sheet)` — **SkillWindow** (`o0/t`) |
+| REPUTATION | `A0` | `o0.g(1)` | `o0.n.b().c()` — **ReputationWindow** (FACTION/REPUTATION) |
+| DETAILS (STAT_DETAILS) | `B0` | `o0.e(0)` | `o0.x.b().d(sheet)` — **StatsDetailWindow** |
+| QUICK SLOTS | `b0` | `o0.e(1)` | `o0.m.g().j()` — **QuickSlotWindow** (assign quickslot) |
+| EQUIP / USE / UNEQUIP / BUY / TAKE | `c0` | `o0.e(7)` | `B()` — act on the selected item |
+| DROP / SELL / STORE_CONTAINER | `d0` | `o0.e(2)` | `L()` — drop/sell the selected item |
+| BACK | `w0` | `o0.e(4)` | `E()` — close the window |
+| equip slot ×12 / backpack ×20 / quickslot | (grid) | `o0.e(3)` on window | select → `V(area,i)`; swap/equip |
+| companion swap | `C0` | `o0.e(6)` | `U(0,null,party.f())` — show follower's sheet |
+| bag of holding | `D0` | `o0.e(5)` | `T(1, "bag_of_holding")` — open bag container |
+| TAKE (container) | `v0` | inner `g` | `K0.e()` take-all-of-one |
+| TAKE_ALL (container) | `x0` | inner `C0042f` | `K0.b()` |
+| vault 1–4 (vault container) | — | inner `b/c/d/e` | `T(1, vaultN)` |
+
+The contextual `EQUIP` label morphs by selected item (`X()` refresh, o0/f 1700-1760):
+EQUIP→**USE** (consumable)→**UNEQUIP** (worn)→**BUY** (shop)→**TAKE** (container);
+`DROP`→**SELL** (shop)→**STORE_CONTAINER** (container). Disabled when nothing valid selected.
+
+**Web note:** there is NO Journal/Menu/Inventory button on the *gameplay* HUD — the only
+entry to all of this is tapping the **portrait**. (The prior web build's 📖/☰ buttons were
+not in the source and have been removed.)

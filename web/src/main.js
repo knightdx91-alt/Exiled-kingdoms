@@ -317,7 +317,7 @@ class MapScene extends Phaser.Scene {
       hudShown: () => this.gameHud && this.gameHud.el.style.display !== 'none',
       gainXP: (n) => { this.playerModel && this.playerModel.gainXP(n); return this.playerModel && this.playerModel.level(); },
       hurt: (n) => { this.playerModel && this.playerModel.damage(n); return this.playerModel && Math.ceil(this.playerModel.hp); },
-      openChar: () => { this.gameHud.togglePanel('char'); return !!this.gameHud.panel.innerHTML; },
+      openChar: () => { this.gameHud.openCharWindow(); return !!this.gameHud.cw.innerHTML; },
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -781,6 +781,7 @@ class MapScene extends Phaser.Scene {
     this.heroKey = `hero_${pc.gender.toLowerCase()}`;
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
+    this.gameHud.charSpriteSrc = this.charSpriteFile;   // paper-doll centre in CharacterWindow
     await this.goArea(startMap, startMap === TUTORIAL_MAP ? '0001' : null);
     this.setChromeHidden(false);                      // game is playing -> show tap toggle
     this.gameHud.setModel(this.playerModel);

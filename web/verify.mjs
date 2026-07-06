@@ -309,9 +309,11 @@ const quest = await page.evaluate(async () => {
   await window.__EK.quickStart({ map: 'H10' });
   window.__EK.setVar('want_letter_back', 10);
   window.__EK.setVar('goblin_hunt', 100);
-  document.querySelector('#hud .hud-btn[data-act="journal"]').click();
+  document.querySelector('#hud .hud-portrait').click();          // open CharacterWindow
+  await new Promise(r => setTimeout(r, 60));
+  document.querySelector('#hud .cw [data-nav="journal"]').click(); // -> Journal sub-view
   await new Promise(r => setTimeout(r, 100));
-  const panel = document.querySelector('#hud .hud-panel');
+  const panel = document.querySelector('#hud .cw');
   window.__EK.setVar('gather_ingredients', 20);
   await window.__EK.saveAuto('H10');
   const got = await Saves.get('auto');
@@ -361,9 +363,9 @@ const inv = await page.evaluate(async () => {
   window.__EK.hurt(20); const hpBefore = window.__EK.hp();
   window.__EK.useItem(5000); const hpGain = window.__EK.hp() - hpBefore;
   const potionGone = !window.__EK.inventoryDebug().backpack.includes(5000);
-  document.querySelector('#hud .hud-portrait').click();   // portrait opens char/inventory
+  document.querySelector('#hud .hud-portrait').click();   // portrait opens the CharacterWindow
   await new Promise(r => setTimeout(r, 80));
-  const panel = document.querySelector('#hud .hud-panel').textContent;
+  const panel = document.querySelector('#hud .cw').textContent;
   return { base, gotBackpack, eq, rogueBlocked, hpGain, potionGone,
            doll: /Leather Cuirass/.test(panel) && /Iron Dagger/.test(panel) && /Armor/.test(panel) };
 });

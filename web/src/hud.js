@@ -37,28 +37,23 @@ export class HUD {
           <div class="hud-bar hud-mp"><div class="hud-fill"></div><span class="hud-bt"></span></div>
         </div>
       </div>
-      <div class="hud-btns">
-        <button class="hud-btn" data-act="journal" title="Journal">📖</button>
-        <button class="hud-btn" data-act="menu" title="Menu">☰</button>
-      </div>
       <img class="hud-recover" src="assets/ui/hud/mend.png" alt="" title="Rest &amp; recover">
       <div class="hud-quickslots"></div>
       <div class="hud-skillbar"></div>
       <button class="hud-attack" title="Attack / interact">
         <img src="assets/ui/hud/attackButton.png" alt="Attack">
       </button>
-      <div class="hud-panel" style="display:none"></div>`;
+      <div class="cw" style="display:none"></div>`;
     root.appendChild(this.el);
     this.skillbar = this.el.querySelector('.hud-skillbar');
     this.quickslots = this.el.querySelector('.hud-quickslots');
 
     this.$ = (s) => this.el.querySelector(s);
-    this.panel = this.$('.hud-panel');
-    this.el.querySelectorAll('.hud-btn').forEach(b =>
-      b.addEventListener('click', () => this.onButton(b.dataset.act)));
-    // Tapping the portrait opens the character/inventory screen (owner's request).
+    // The full-screen CharacterWindow (o0/f). The ONLY entry is tapping the portrait —
+    // exactly as in the real game (no HUD Journal/Menu/Inventory buttons exist there).
+    this.cw = this.$('.cw');
     const port = this.$('.hud-portrait');
-    if (port) { port.style.cursor = 'pointer'; port.addEventListener('click', () => this.togglePanel('inv')); }
+    if (port) { port.style.cursor = 'pointer'; port.addEventListener('click', () => this.openCharWindow()); }
 
     // ATTACK button — press & hold to keep attacking (the held flag is polled by the
     // scene each frame; the weapon cooldown paces the swings). Doubles as interact when
@@ -81,6 +76,8 @@ export class HUD {
 
   setModel(model) {
     this.model = model;
+    this.closeCW();                 // a fresh character never inherits an open window
+    this._cwView = 'main';
     const g = model.gender.toLowerCase();
     this.$('.hud-portrait').src = model.portrait
       ? `assets/portraits/${g}/${model.portrait}` : '';
@@ -113,11 +110,8 @@ export class HUD {
     this.setBar('.hud-xp', m.xpProgress(), m.xpToNext() ? `XP ${m.xpToNext().toLocaleString()} to next` : 'MAX');
     this.$('.hud-lvl').textContent = `Lv ${m.level()}`;
     this.$('.hud-gold-n').textContent = m.gold.toLocaleString();
-    // re-render only the currently-open panel (not always Character)
-    if (this.panel.style.display !== 'none') {
-      if (this._panel === 'char') this.renderCharacter();
-      else if (this._panel === 'journal') this.renderJournal();
-    }
+    // keep the open CharacterWindow live (HP/mana/gold change while it's up)
+    if (this.cw.style.display !== 'none') this.renderCW();
   }
 
   // Whether numeric values are shown on the bars (Settings.showNumbersBars).
@@ -198,149 +192,278 @@ export class HUD {
     bar.querySelector('.hud-bt').textContent = text;
   }
 
-  onButton(act) {
-    if (act === 'char') this.togglePanel('char');
-    else if (act === 'journal') this.togglePanel('journal');
-    else if (act === 'inv') this.togglePanel('inv');
-    else if (act === 'menu') this.togglePanel('menu');
-  }
-
   // Quest data + a live variable-store accessor, wired by the scene.
   setQuests(quests, varsFn) { this.quests = quests || {}; this.varsOf = varsFn || (() => ({})); }
 
-  togglePanel(which) {
-    if (this.panel.style.display !== 'none' && this._panel === which) {
-      this.panel.style.display = 'none'; return;
-    }
-    this._panel = which;
-    this.panel.style.display = '';
-    if (which === 'char') this.renderCharacter();
-    else if (which === 'journal') this.renderJournal();
-    else if (which === 'inv') this.renderInventory();
-    else this.panel.innerHTML =
-      `<div class="hud-panel-h">Menu</div><p class="hud-dim">Progress auto-saves. Full save/settings menu TODO.</p>${this.closeBtn()}`;
-    this.wireClose();
+  // ===== CharacterWindow (o0/f) — full-screen, opened by the portrait (GameHUD.i) =====
+  // The 12 equipment slots in CharacterInventory order, laid out around the paper-doll
+  // exactly as f3490k builds them (deobf/GAMEHUD_LAYOUT_SPEC.md §9).
+  // grid = [ row1(4) ][ mid: 2-left / sprite / 2-right ][ row3(4) ]
+  static get CW_SLOTS() {
+    return {
+      row1: [['mainhand', 'Main Hand'], ['offhand', 'Off Hand'], ['head', 'Head'], ['belt', 'Belt']],
+      midL: [['ring', 'Ring'], ['cloak', 'Cloak']],
+      midR: [['feet', 'Feet'], ['legs', 'Legs']],
+      row3: [['ring2', 'Ring 2'], ['body', 'Chest'], ['hands', 'Hands'], ['necklace', 'Necklace']],
+    };
   }
 
-  renderCharacter() {
-    const m = this.model;
+  openCharWindow() {
+    if (this.cw.style.display !== 'none') { this.closeCW(); return; }
+    this._cwView = 'main';
+    this._sel = null;               // { area:'equip'|'backpack', key } selected slot
+    this.cw.style.display = '';
+    this.renderCW();
+  }
+  closeCW() { this.cw.style.display = 'none'; this._sel = null; }
+
+  renderCW() {
+    if (!this.model) return;
+    if (this._cwView === 'journal') return this.renderCWJournal();
+    if (this._cwView === 'skills') return this.renderCWSkills();
+    if (this._cwView === 'reputation') return this.renderCWReputation();
+    if (this._cwView === 'details') return this.renderCWDetails();
+    this.renderCWMain();
+  }
+
+  // The main character sheet — the exact screen in the screenshot.
+  renderCWMain() {
+    const m = this.model, items = this.items || {};
+    const nameOf = (id) => (items[id] && items[id].name) || (id ? `#${id}` : '');
     const cls = m.charClass[0] + m.charClass.slice(1).toLowerCase();
-    const rows = ATTR.map(([id, name]) =>
-      `<div class="hud-stat"><span>${name}</span><b>${m.attributes[id] || 0}</b></div>`).join('');
-    const skills = m.skills.length ? m.skills.map(s => s.name || s).join(', ') : '—';
-    // trainer-taught advanced skills, resolved to display names via the catalog
-    const cat = this.trainers || {};
-    const trained = [...(m.trained || [])].map(id => (cat[id] && cat[id].name) || id);
-    const DISC = { W: 'Warrior', R: 'Rogue', C: 'Cleric', M: 'Mage' };
-    const disc = [...m.usableClasses()].map(l => DISC[l] || l);
-    this.panel.innerHTML = `
-      <div class="hud-panel-h">${m.name} — ${cls} · Lv ${m.level()}</div>
-      <div class="hud-stats">
-        <div class="hud-stat"><span>Health</span><b>${Math.ceil(m.hp)}/${m.maxHP()}</b></div>
-        ${m.isCaster() ? `<div class="hud-stat"><span>Mana</span><b>${Math.ceil(m.mana)}/${m.maxMana()}</b></div>` : ''}
-        <div class="hud-stat"><span>XP</span><b>${m.xp.toLocaleString()}</b></div>
-        <div class="hud-stat"><span>Gold</span><b>${m.gold}</b></div>
-        ${m.skillPoints ? `<div class="hud-stat"><span>Skill Pts</span><b>${m.skillPoints}</b></div>` : ''}
+    const g = m.gender.toLowerCase();
+    const portrait = m.portrait ? `assets/portraits/${g}/${m.portrait}` : '';
+
+    // --- column 1: identity + bars + traits + attack stats + armor + resistances ---
+    const bar = (cls2, frac, txt) => `<div class="cw-bar cw-${cls2}"><div class="cw-fill" style="width:${Math.max(0, Math.min(1, frac)) * 100}%"></div><span>${txt}</span></div>`;
+    const hp = Math.ceil(m.hp), mp = Math.ceil(m.mana);
+    const bars = bar('xp', m.xpProgress(), m.xpToNext() ? `XP ${m.xpToNext().toLocaleString()}` : 'XP MAX')
+      + bar('hp', hp / m.maxHP(), `${hp} / ${m.maxHP()}`)
+      + (m.isCaster() ? bar('mp', mp / m.maxMana(), `${mp} / ${m.maxMana()}`) : '');
+    const traits = ATTR.map(([id]) => `<div class="cw-trait"><span>${id}</span><b>${m.attributes[id] || 0}</b></div>`).join('');
+    // attack stats (Damage / Speed / Critical / DPS / Effect)
+    const w = this.weapons ? this.weapons[m.weaponId()] : null;
+    const db = m.dmgBonus();
+    const dLo = (w ? w.min : 1) + db, dHi = (w ? w.max : 3) + db;
+    const spd = w && w.speed ? w.speed : 10;
+    const critPct = w && w.crit ? w.crit : 0;
+    const critMul = w && w.critMul ? w.critMul : 200;
+    const dps = (((dLo + dHi) / 2) * (60 / (spd * 4.5))).toFixed(1);
+    const effect = w && w.type && w.type !== 'Normal' ? w.type : (w && w.effect) || '—';
+    const attackStats = [
+      ['Damage', `${dLo}-${dHi}`], ['Speed', spd],
+      ['Critical', `${critPct}% (x${(critMul / 100).toFixed(1)})`], ['DPS', dps], ['Effect', effect],
+    ].map(([k, v]) => `<div class="cw-stat"><span>${k}:</span><b>${v}</b></div>`).join('');
+    // resistances (6 elements, real ui_icons)
+    const res = m.resist();
+    const RES = [['fire', 'Fire'], ['cold', 'Cold'], ['shock', 'Shock'], ['death', 'Death'], ['poison', 'Poison'], ['holy', 'Holy']];
+    const resHtml = RES.map(([ic, key]) => {
+      const v = res[key] || res[ic] || res[key[0].toUpperCase() + key.slice(1)] || 0;
+      return `<div class="cw-res"><img src="assets/ui/hud/${ic}.png" alt="${key}"><span>+${v}</span></div>`;
+    }).join('');
+
+    // --- column 2: equipment paper-doll (12 slots) + preview + Equip/Drop ---
+    const CW = HUD.CW_SLOTS;
+    const eqSlot = ([slot, label]) => {
+      const id = m.equipment[slot];
+      const on = this._sel && this._sel.area === 'equip' && this._sel.key === slot;
+      return `<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="equip" data-key="${slot}" title="${label}">` +
+             `<span class="cw-slot-t">${label}</span><span class="cw-slot-n">${nameOf(id)}</span></button>`;
+    };
+    const doll = `
+      <div class="cw-doll-row">${CW.row1.map(eqSlot).join('')}</div>
+      <div class="cw-doll-mid">
+        <div class="cw-doll-col">${CW.midL.map(eqSlot).join('')}</div>
+        <div class="cw-doll-sprite" style="background-image:url(${this.charSpriteSrc || ''})"></div>
+        <div class="cw-doll-col">${CW.midR.map(eqSlot).join('')}</div>
       </div>
-      <div class="hud-panel-sub">Attributes</div>
-      <div class="hud-stats">${rows}</div>
-      <div class="hud-panel-sub">Skills</div>
-      <p class="hud-skills">${skills}</p>
-      ${trained.length ? `<div class="hud-panel-sub">Trained (Advanced)</div><p class="hud-skills">${trained.join(', ')}</p>` : ''}
-      ${m.learnsAll() ? `<div class="hud-panel-sub">Disciplines</div><p class="hud-skills">${disc.length ? disc.join(', ') : '— (train to unlock equipment)'}</p>` : ''}
-      ${this.closeBtn()}`;
-    this.wireClose();
+      <div class="cw-doll-row">${CW.row3.map(eqSlot).join('')}</div>`;
+    // selected-item preview + contextual button labels
+    const sel = this._selectedItem();
+    const preview = sel
+      ? `<div class="cw-preview"><b>${sel.name || ''}</b>${sel.desc ? `<span>${sel.desc}</span>` : ''}</div>`
+      : `<div class="cw-preview cw-dim">Select an item</div>`;
+    const eqLabel = this._equipLabel(sel), dropLabel = this._dropLabel(sel);
+    const canEq = !!(sel && (sel.slotItem || sel.useItem));
+    const canDrop = !!(sel && this._sel && this._sel.area === 'backpack');
+
+    // --- column 3: backpack (20) + quick slots + gold + Back ---
+    const bpSlots = [];
+    for (let i = 0; i < 20; i++) {
+      const id = m.backpack[i] || 0;
+      const on = this._sel && this._sel.area === 'backpack' && this._sel.key === i;
+      bpSlots.push(`<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="backpack" data-key="${i}">` +
+        `<span class="cw-slot-n">${nameOf(id)}</span></button>`);
+    }
+
+    this.cw.innerHTML = `
+      <div class="cw-grid">
+        <div class="cw-col cw-col1">
+          <div class="cw-head">
+            <img class="cw-portrait" src="${portrait}" alt="">
+            <div class="cw-idbars">
+              <div class="cw-name">${m.name}, ${cls}</div>
+              <div class="cw-level">Level ${m.level()}</div>
+              ${bars}
+            </div>
+          </div>
+          <div class="cw-mid2">
+            <div class="cw-traits"><div class="cw-h">Traits</div>${traits}</div>
+            <div class="cw-attack"><div class="cw-h">Attack Stats</div>${attackStats}</div>
+          </div>
+          <div class="cw-armorres">
+            <div class="cw-armor"><div class="cw-h">Armor</div><div class="cw-armorval"><img src="assets/ui/hud/shield.png" alt=""><b>${m.armor()}</b></div></div>
+            <div class="cw-resist"><div class="cw-h">Resistances</div><div class="cw-resrow">${resHtml}</div></div>
+          </div>
+          <div class="cw-navrow">
+            <button class="cw-btn" data-nav="journal">Journal</button>
+            <button class="cw-btn" data-nav="skills">Skills</button>
+          </div>
+          <div class="cw-navrow">
+            <button class="cw-btn" data-nav="reputation">Reputation</button>
+            <button class="cw-btn" data-nav="details">Details</button>
+          </div>
+        </div>
+
+        <div class="cw-col cw-col2">
+          <div class="cw-h cw-c">Equipment</div>
+          <div class="cw-doll">${doll}</div>
+          ${preview}
+          <div class="cw-itembtns">
+            <button class="cw-btn cw-drop" data-act="drop" ${canDrop ? '' : 'disabled'}>${dropLabel}</button>
+            <button class="cw-btn cw-equip" data-act="equip" ${canEq ? '' : 'disabled'}>${eqLabel}</button>
+          </div>
+        </div>
+
+        <div class="cw-col cw-col3">
+          <div class="cw-h cw-c">Backpack</div>
+          <div class="cw-bp">${bpSlots.join('')}</div>
+          <div class="cw-qsrow">
+            <button class="cw-btn cw-qsbtn" data-nav="quickslots">Quick slots</button>
+            <span class="cw-gold"><span class="cw-coin">◉</span>${m.gold.toLocaleString()}</span>
+          </div>
+          <div class="cw-backrow"><button class="cw-btn cw-back" data-act="back">Back</button></div>
+        </div>
+      </div>`;
+    this._wireCW();
   }
 
-  // Journal: every quest whose variable > 0, showing the description for its current
-  // progress value; completed at >= 100 (deobf/QUEST_SPEC.md).
-  renderJournal() {
-    const vars = this.varsOf ? this.varsOf() : {};
-    const quests = this.quests || {};
+  _wireCW() {
+    // slot selection (equipment / backpack)
+    this.cw.querySelectorAll('.cw-slot').forEach(b => b.onclick = () => {
+      const area = b.dataset.area, key = area === 'backpack' ? +b.dataset.key : b.dataset.key;
+      this._sel = (this._sel && this._sel.area === area && String(this._sel.key) === String(key)) ? null : { area, key };
+      this.renderCWMain();
+    });
+    // nav buttons -> sub-windows (Journal / Skills / Reputation / Details / Quick slots)
+    this.cw.querySelectorAll('[data-nav]').forEach(b => b.onclick = () => {
+      const nav = b.dataset.nav;
+      if (nav === 'quickslots') return;            // QuickSlotWindow (assign) — not yet
+      this._cwView = nav; this.renderCW();
+    });
+    // item action buttons + Back
+    this.cw.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+      const act = b.dataset.act;
+      if (act === 'back') return this.closeCW();
+      if (act === 'equip') return this._doEquip();
+      if (act === 'drop') return this._doDrop();
+    });
+  }
+
+  // The currently-selected item (from equipment or backpack), enriched for the preview
+  // and to decide the contextual button labels.
+  _selectedItem() {
+    if (!this._sel) return null;
+    const m = this.model, items = this.items || {};
+    const id = this._sel.area === 'equip' ? m.equipment[this._sel.key] : (m.backpack[this._sel.key] || 0);
+    if (!id) return null;
+    const it = items[id] || {};
+    return { id, name: it.name || `#${id}`, desc: it.desc || '',
+             worn: this._sel.area === 'equip', slotItem: !!it.slot, useItem: !!it.onUse, it };
+  }
+  // EQUIP button morphs: UNEQUIP (worn) / USE (consumable) / EQUIP (equippable). (BUY/TAKE
+  // are shop/container modes, not the character sheet.)
+  _equipLabel(sel) { if (!sel) return 'Equip'; if (sel.worn) return 'Unequip'; if (sel.slotItem) return 'Equip'; if (sel.useItem) return 'Use'; return 'Equip'; }
+  _dropLabel(sel) { return 'Drop'; }
+
+  _doEquip() {
+    const sel = this._selectedItem(); if (!sel) return;
+    const m = this.model;
+    if (sel.worn) { if (m.unequip(this._sel.key)) { m.hp = Math.min(m.hp, m.maxHP()); } }
+    else if (sel.slotItem) { m.equip(sel.id); }
+    else if (sel.useItem && this.onUseItem) { this.onUseItem(sel.id); }
+    this._sel = null; this.update(true); this.renderCWMain();
+  }
+  _doDrop() {
+    const sel = this._selectedItem(); if (!sel || !this._sel || this._sel.area !== 'backpack') return;
+    if (this.model.removeItem(sel.id)) { this._sel = null; this.update(true); this.renderCWMain(); }
+  }
+
+  _cwSubHead(title) {
+    return `<div class="cw-sub"><div class="cw-subhead">${title}</div>`;
+  }
+  _wireCWBack() {
+    const b = this.cw.querySelector('.cw-back');
+    if (b) b.onclick = () => { this._cwView = 'main'; this.renderCW(); };
+  }
+
+  // JOURNAL (o0.g(0) -> JournalWindow): quests whose variable > 0 (deobf/QUEST_SPEC.md).
+  renderCWJournal() {
+    const vars = this.varsOf ? this.varsOf() : {}, quests = this.quests || {};
     const strip = (s) => (s || '').replace(/\[[A-Z]*\]/g, '').replace(/<p>/g, ' ').trim();
     const active = [], done = [];
     for (const [id, q] of Object.entries(quests)) {
-      const v = vars[id] | 0;
-      if (v <= 0) continue;
-      // the state to show: exact match, else the highest state key <= v
+      const v = vars[id] | 0; if (v <= 0) continue;
       const keys = Object.keys(q.states).map(Number).sort((a, b) => a - b);
-      let show = null;
-      for (const k of keys) if (k <= v) show = k;
+      let show = null; for (const k of keys) if (k <= v) show = k;
       if (show == null && keys.length) show = keys[0];
-      const desc = strip(q.states[show]);
-      const item = `<div class="jq"><div class="jq-name">${q.name}${v >= 100 ? ' <span class="jq-done">✓ Completed</span>' : ''}</div>` +
-                   `<div class="jq-desc">${desc || ''}</div></div>`;
+      const item = `<div class="jq"><div class="jq-name">${q.name}${v >= 100 ? ' <span class="jq-done">✓</span>' : ''}</div><div class="jq-desc">${strip(q.states[show]) || ''}</div></div>`;
       (v >= 100 ? done : active).push(item);
     }
     const body = (active.length || done.length)
-      ? `${active.join('')}${done.length ? `<div class="hud-panel-sub">Completed</div>${done.join('')}` : ''}`
-      : `<p class="hud-dim">No quests yet. Talk to people and explore.</p>`;
-    this.panel.innerHTML = `<div class="hud-panel-h">Journal</div>${body}${this.closeBtn()}`;
-    this.wireClose();
+      ? `${active.join('')}${done.length ? `<div class="cw-h">Completed</div>${done.join('')}` : ''}`
+      : `<p class="cw-dim">No quests yet.</p>`;
+    this.cw.innerHTML = this._cwSubHead('Journal') + body + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
+    this._wireCWBack();
   }
 
-  // Character / inventory screen (deobf/INVENTORY_SPEC.md): equipment paper-doll (12
-  // slots), attack/armor/resistance stat blocks, backpack grid + quick slots. Tap a
-  // backpack item to equip (or use a potion); tap an equipped slot to unequip.
-  renderInventory() {
+  // SKILLS (o0.e(8) -> SkillWindow): learned skills + trainer-taught advanced skills.
+  renderCWSkills() {
+    const m = this.model, cat = this.trainers || {};
+    const known = (m.skills || []).map(s => s.name || s);
+    const trained = [...(m.trained || [])].map(id => (cat[id] && cat[id].name) || id);
+    const list = (arr) => arr.length ? arr.map(n => `<div class="cw-skill">${n}</div>`).join('') : `<p class="cw-dim">None</p>`;
+    this.cw.innerHTML = this._cwSubHead('Skills')
+      + `<div class="cw-h">Learned</div>${list(known)}`
+      + (trained.length ? `<div class="cw-h">Advanced (Trained)</div>${list(trained)}` : '')
+      + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
+    this._wireCWBack();
+  }
+
+  // REPUTATION (o0.g(1) -> ReputationWindow): factions + standing. No faction/rep data is
+  // tracked in the web build yet, so this is faithfully empty until it is.
+  renderCWReputation() {
+    const reps = (this.varsOf && this.varsOf().__reputation) || null;
+    const body = reps && Object.keys(reps).length
+      ? Object.entries(reps).map(([f, v]) => `<div class="cw-stat"><span>${f}</span><b>${v > 0 ? '+' : ''}${v}</b></div>`).join('')
+      : `<p class="cw-dim">You have no reputation with any faction yet.</p>`;
+    this.cw.innerHTML = this._cwSubHead('Reputation') + body
+      + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
+    this._wireCWBack();
+  }
+
+  // DETAILS / STAT_DETAILS (o0.e(0) -> StatsDetailWindow): the derived-stat breakdown.
+  renderCWDetails() {
     const m = this.model;
-    const items = this.items || {};
-    const nameOf = (id) => (items[id] && items[id].name) || (id ? `#${id}` : '—');
-    // equipment paper-doll — the 12 slots in a readable order
-    const SLOTS = [['head', 'Head'], ['necklace', 'Necklace'], ['cloak', 'Cloak'],
-      ['body', 'Chest'], ['hands', 'Hands'], ['legs', 'Legs'], ['feet', 'Feet'],
-      ['mainhand', 'Main Hand'], ['offhand', 'Off Hand'], ['belt', 'Belt'],
-      ['ring', 'Ring'], ['ring2', 'Ring 2']];
-    const doll = SLOTS.map(([slot, label]) => {
-      const id = m.equipment[slot];
-      const filled = id ? 'filled' : '';
-      return `<button class="eq-slot ${filled}" data-slot="${slot}" ${id ? '' : 'disabled'} title="${id ? 'Unequip' : ''}">` +
-             `<span class="eq-label">${label}</span><span class="eq-item">${nameOf(id)}</span></button>`;
-    }).join('');
-    // attack block from the equipped/derived weapon
-    const w = this.weapons ? this.weapons[m.weaponId()] : null;
-    const dmgLo = (w ? w.min : 1) + m.dmgBonus(), dmgHi = (w ? w.max : 3) + m.dmgBonus();
-    const atk = w ? `${dmgLo}–${dmgHi} ${w.type}${w.crit ? ` · crit ${w.crit}%` : ''}` : '—';
-    // resistances (only non-zero shown)
-    const res = m.resist();
-    const resStr = Object.entries(res).filter(([, v]) => v).map(([k, v]) => `${k} ${v > 0 ? '+' : ''}${v}`).join(', ') || 'none';
-    // backpack grid — tap to equip/use
-    const bp = m.backpack.length ? m.backpack.map((id, i) => {
-      const it = items[id]; const eq = it && it.slot;
-      const use = it && it.onUse;
-      return `<button class="bp-item" data-idx="${i}" data-id="${id}" title="${eq ? 'Equip' : use ? 'Use' : ''}">` +
-             `<span class="bp-name">${nameOf(id)}</span>${eq ? '<span class="bp-tag">equip</span>' : use ? '<span class="bp-tag use">use</span>' : ''}</button>`;
-    }).join('') : `<p class="hud-dim">Backpack is empty. Defeat foes to find loot.</p>`;
-
-    this.panel.innerHTML = `
-      <div class="hud-panel-h">${m.name} — Inventory</div>
-      <div class="inv-stats">
-        <div class="hud-stat"><span>Attack</span><b>${atk}</b></div>
-        <div class="hud-stat"><span>Armor</span><b>${m.armor()}</b></div>
-        <div class="hud-stat"><span>HP</span><b>${Math.ceil(m.hp)}/${m.maxHP()}</b></div>
-        <div class="hud-stat"><span>Gold</span><b>${m.gold}</b></div>
-      </div>
-      <div class="hud-stat inv-res"><span>Resistances</span><b>${resStr}</b></div>
-      <div class="hud-panel-sub">Equipment</div>
-      <div class="eq-doll">${doll}</div>
-      <div class="hud-panel-sub">Backpack (${m.backpack.length})</div>
-      <div class="bp-grid">${bp}</div>
-      ${this.closeBtn()}`;
-    // wire equip / unequip / use
-    this.panel.querySelectorAll('.eq-slot').forEach(b => b.onclick = () => {
-      if (m.unequip(b.dataset.slot)) { this.model.hp = Math.min(this.model.hp, this.model.maxHP()); this.update(true); this.renderInventory(); }
-    });
-    this.panel.querySelectorAll('.bp-item').forEach(b => b.onclick = () => {
-      const id = +b.dataset.id, it = items[id];
-      if (it && it.slot) { if (m.equip(id)) { this.update(true); this.renderInventory(); } }
-      else if (it && it.onUse && this.onUseItem) { this.onUseItem(id); this.update(true); this.renderInventory(); }
-    });
-    this.wireClose();
-  }
-
-  closeBtn() { return `<button class="hud-close">Close</button>`; }
-  wireClose() {
-    const b = this.panel.querySelector('.hud-close');
-    if (b) b.onclick = () => { this.panel.style.display = 'none'; };
+    const rows = [
+      ['Level', m.level()], ['Experience', m.xp.toLocaleString()],
+      ['Max Health', m.maxHP()], ...(m.isCaster() ? [['Max Mana', m.maxMana()]] : []),
+      ['Armor', m.armor()], ['Damage bonus', m.dmgBonus()], ['Gold', m.gold],
+      ...(m.skillPoints ? [['Unspent skill points', m.skillPoints]] : []),
+    ];
+    this.cw.innerHTML = this._cwSubHead('Details')
+      + rows.map(([k, v]) => `<div class="cw-stat"><span>${k}</span><b>${v}</b></div>`).join('')
+      + `<div class="cw-backrow"><button class="cw-btn cw-back">Back</button></div></div>`;
+    this._wireCWBack();
   }
 }
