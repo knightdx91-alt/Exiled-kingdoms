@@ -107,6 +107,11 @@ export class HUD {
     const rows = ATTR.map(([id, name]) =>
       `<div class="hud-stat"><span>${name}</span><b>${m.attributes[id] || 0}</b></div>`).join('');
     const skills = m.skills.length ? m.skills.map(s => s.name || s).join(', ') : '—';
+    // trainer-taught advanced skills, resolved to display names via the catalog
+    const cat = this.trainers || {};
+    const trained = [...(m.trained || [])].map(id => (cat[id] && cat[id].name) || id);
+    const DISC = { W: 'Warrior', R: 'Rogue', C: 'Cleric', M: 'Mage' };
+    const disc = [...m.usableClasses()].map(l => DISC[l] || l);
     this.panel.innerHTML = `
       <div class="hud-panel-h">${m.name} — ${cls} · Lv ${m.level()}</div>
       <div class="hud-stats">
@@ -114,11 +119,14 @@ export class HUD {
         ${m.isCaster() ? `<div class="hud-stat"><span>Mana</span><b>${Math.ceil(m.mana)}/${m.maxMana()}</b></div>` : ''}
         <div class="hud-stat"><span>XP</span><b>${m.xp.toLocaleString()}</b></div>
         <div class="hud-stat"><span>Gold</span><b>${m.gold}</b></div>
+        ${m.skillPoints ? `<div class="hud-stat"><span>Skill Pts</span><b>${m.skillPoints}</b></div>` : ''}
       </div>
       <div class="hud-panel-sub">Attributes</div>
       <div class="hud-stats">${rows}</div>
       <div class="hud-panel-sub">Skills</div>
       <p class="hud-skills">${skills}</p>
+      ${trained.length ? `<div class="hud-panel-sub">Trained (Advanced)</div><p class="hud-skills">${trained.join(', ')}</p>` : ''}
+      ${m.learnsAll() ? `<div class="hud-panel-sub">Disciplines</div><p class="hud-skills">${disc.length ? disc.join(', ') : '— (train to unlock equipment)'}</p>` : ''}
       ${this.closeBtn()}`;
     this.wireClose();
   }

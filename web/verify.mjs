@@ -309,11 +309,35 @@ const quest = await page.evaluate(async () => {
 console.log('quests:', quest);
 const questOk = quest.names.length >= 2 && quest.hasAdaon && quest.hasCompleted && quest.savedVar === 20;
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk);
+// --- Hero class + trainers: a HERO learns advanced skills from any discipline via the
+// TrainSkill# action and unlocks that discipline's class-restricted gear; a non-HERO is
+// blocked from out-of-discipline skills; HERO is selectable at creation
+// (deobf/TRAINERS_SPEC.md). ---
+const hero = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'H10', pc: { charClass: 'HERO', name: 'Kael' } });
+  window.__EK.runAction('TrainSkill#battle_rage');   // warrior discipline
+  window.__EK.runAction('TrainSkill#fire_mastery');  // wizard discipline
+  const a = window.__EK.playerModelDebug();
+  await window.__EK.quickStart({ map: 'H10', pc: { charClass: 'WARRIOR', name: 'Grom' } });
+  window.__EK.runAction('TrainSkill#fire_mastery');  // wizard-only → rejected for warrior
+  window.__EK.runAction('TrainSkill#battle_rage');   // warrior → allowed
+  const w = window.__EK.playerModelDebug();
+  const classes = (await import('./src/char-create.js')).CLASSES.map(c => c.id);
+  return { learnsAll: a.learnsAll, trained: a.trained.length, disc: a.disciplines,
+           canW: a.canW, canM: a.canM, canR: a.canR, canAny: a.canBlank,
+           warriorTrained: w.trained, warriorCanMage: w.canM, classes };
+});
+console.log('hero/trainers:', hero);
+const heroClassOk = hero.learnsAll && hero.trained === 2 && hero.disc.includes('W') && hero.disc.includes('M') &&
+               hero.canW && hero.canM && !hero.canR && hero.canAny &&
+               hero.warriorTrained.length === 1 && hero.warriorTrained[0] === 'battle_rage' &&
+               !hero.warriorCanMage && hero.classes.includes('HERO');
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

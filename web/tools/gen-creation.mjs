@@ -32,6 +32,11 @@ const data = {
     ROGUE:   { hp: 30, hpPerLevel: 4, mana: 0, manaPerLevel: 0, dmgMul: 0.75 },
     CLERIC:  { hp: 35, hpPerLevel: 5, mana: 12, manaPerLevel: 2, dmgMul: 0.3 },
     WIZARD:  { hp: 20, hpPerLevel: 3, mana: 12, manaPerLevel: 2, dmgMul: 0.0 },
+    // HERO — the owner's design-in-flight class (NOT in base EK). A hybrid that can
+    // train ANY discipline's advanced skills via trainer NPCs, and whose usable
+    // class-restricted equipment is gated by which disciplines it has trained
+    // (deobf/TRAINERS_SPEC.md). Balanced middle-of-the-road base stats.
+    HERO:    { hp: 40, hpPerLevel: 5, mana: 6, manaPerLevel: 1, dmgMul: 0.6, learnsAll: true },
   },
   startLevel: 1,
   startGold: 18,                                       // Player.C1(): this.gold = 18

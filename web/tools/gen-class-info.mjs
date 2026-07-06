@@ -22,5 +22,11 @@ for (const line of readFileSync(src, 'utf8').split('\n')) {
   const f = line.replace(/\r$/, '').split('\t');
   if (keys[f[0]] && f[1]) res[keys[f[0]]] = clean(f[1]);
 }
+// HERO — owner's design-in-flight class (not in base EK), authored here rather than
+// pulled from EK's strings (deobf/TRAINERS_SPEC.md).
+res.HERO = 'A versatile adventurer bound to no single discipline. The Hero learns ' +
+  'skills from every school by seeking out trainers across the land, and may wield any ' +
+  'class-restricted gear once trained in that discipline. Balanced health, modest mana, ' +
+  'and solid melee — a jack of all trades who grows into the master you make.';
 writeFileSync(out, JSON.stringify(res));
 console.log('class-info:', Object.keys(res).join(', '));

@@ -85,14 +85,27 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
    and a Character panel (attributes + derived stats); persisted in the save.
    *(Styling is placeholder EK-theme; exact GameHUD art is a later fidelity pass.
    Inventory/quickslots come with combat.)*
-3. **Combat + followers** — real-time-with-pause from the recovered AI/`Rules`
-   (skills, weapons `weapons.txt`, bestiary, loot); companions physically follow/
-   fight (followers are tracked in state but don't yet move). Enemies from
-   `spawntables`. This is the big one — the tutorial goblin fight lives here.
-4. **Quests + world state** — quest tracking + faction/event flags on `gameState`.
-5. **Hero class + trainers** (design in flight) — a class that learns all skills via
-   RuneScape-style trainer NPCs (dialogue actions set unlock flags), with
-   trained-discipline gates for class-restricted equipment (`items.txt` Classes col).
+3. ~~**Combat + followers**~~ ✅ DONE (`src/combat.js`; spec `deobf/COMBAT_SPEC.md`).
+   Real-time-with-pause: weapon-roll attacks + crits, the exact `g0`/armor mitigation,
+   PatrollerAI enemies (aggro/chase/attack), CompanionAI followers (fight the hero's
+   target / trail him), loot (gold+items) + XP on death, floating combat numbers, space
+   to pause. Data: `weapons.json`, `loot.json`, combat-enriched `bestiary.json`.
+   *(Skill/proc effects, status effects, and the inventory system are the next layer —
+   see DEOBFUSCATION_STATUS.md A8–A11.)*
+4. ~~**Quests + world state**~~ ✅ DONE (`src/hud.js` Journal; spec `deobf/QUEST_SPEC.md`).
+   Key finding: a quest's progress IS the game variable named after its id (`>99` =
+   complete), so world state was already the `gameState.vars` store. Journal (📖) lists
+   active quests with the current-stage text + completed flag; `GainGold/LoseGold` wired;
+   world state (all vars + followers) persists in the save. `quests.json` = 105 quests.
+5. ~~**Hero class + trainers**~~ ✅ DONE (spec `deobf/TRAINERS_SPEC.md`). Reversed the
+   trainer mechanics (`TrainSkill#`, advanced-skill discipline lists, `items.txt` Classes
+   col) and added the owner's **HERO** class: selectable 5th class that learns advanced
+   skills from ANY discipline via trainer NPCs and unlocks that discipline's
+   class-restricted equipment (`PlayerModel.canUseItemClass`). Non-HERO classes are gated
+   to their own discipline. `trainers.json` = 40 advanced skills; trained skills +
+   disciplines show in the Character panel and persist. *(Skill effects + `skill_req`
+   gates + custom HERO art are the follow-ups; equipment gating awaits the inventory
+   system.)*
 6. **Render polish** — recovered roof-fade (A3) + fog-of-war (A5), dynamic lights (A1).
 
 ### UI fidelity note

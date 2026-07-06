@@ -118,6 +118,8 @@ export class Dialogue {
       else if (v === 'gaingold') this._gold(+args[0] || 0);
       else if (v === 'losegold') this._gold(-(+args[0] || 0));
       else if (v === 'gainskillpoint') { const m = this.scene.playerModel; if (m) m.skillPoints = (m.skillPoints || 0) + (+args[0] || 1); }
+      else if (v === 'trainskill') this._train(args[0]);
+      else if (v === 'resetplayerskills') { const m = this.scene.playerModel; if (m) { m.trained.clear(); m.disciplines.clear(); } }
       // other verbs (give items, quests, sounds…) are no-ops for now
     }
     if (travel) {
@@ -131,6 +133,14 @@ export class Dialogue {
   // PlayerRobbed# — the real engine (Player.C1) wipes the inventory and resets gold to
   // 18 (the starting purse). No item system yet, so we mirror the gold reset and clear
   // any tracked items, then refresh the HUD.
+  // TrainSkill#<id> — a trainer NPC teaches an advanced skill (deobf/TRAINERS_SPEC.md).
+  _train(id) {
+    const m = this.scene.playerModel;
+    if (!m) return;
+    const learned = m.learnSkill(id, this.scene.trainers || {});
+    if (learned && this.scene.gameHud) this.scene.gameHud.update(true);
+  }
+
   _gold(n) {
     const m = this.scene.playerModel;
     if (!m) return;

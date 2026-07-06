@@ -17,9 +17,54 @@ export class PlayerModel {
     this.gold = pc.gold != null ? pc.gold : (C.startGold || 0);
     this.hp = pc.hp != null ? pc.hp : this.maxHP();
     this.mana = pc.mana != null ? pc.mana : this.maxMana();
+    // Trainer-taught advanced skills (deobf/TRAINERS_SPEC.md) + spendable skill points.
+    this.trained = new Set(pc.trained || []);
+    this.skillPoints = pc.skillPoints || 0;
+    // Unlocked equipment disciplines: base classes have their own; HERO earns them by
+    // training that discipline's skills. Re-derived on load from `trained`.
+    this.disciplines = new Set(pc.disciplines || []);
   }
 
   cls() { return this.C.classes[this.charClass] || this.C.classes.WARRIOR; }
+  learnsAll() { return !!this.cls().learnsAll; }
+
+  // The single equipment-class letter this character's base class owns (items.txt
+  // Classes col: W/R/C/M). HERO owns none by default — it earns letters by training.
+  baseDiscipline() {
+    return { WARRIOR: 'W', ROGUE: 'R', CLERIC: 'C', WIZARD: 'M' }[this.charClass] || null;
+  }
+  // All equipment-class letters this character can currently use.
+  usableClasses() {
+    const s = new Set(this.disciplines);
+    const b = this.baseDiscipline();
+    if (b) s.add(b);
+    return s;
+  }
+  // Can this character equip an item whose items.txt Classes column is `col` (csv of
+  // W/R/C/M, blank = usable by anyone)? Trained-discipline gating (owner's design).
+  canUseItemClass(col) {
+    const c = (col || '').trim();
+    if (!c) return true;
+    const mine = this.usableClasses();
+    return c.split(',').map(x => x.trim()).some(x => mine.has(x));
+  }
+
+  // Learn an advanced skill from the trainers catalog. Non-HERO classes may only train
+  // skills that include their own discipline; HERO can train any and unlocks that
+  // skill's disciplines (→ their class-restricted equipment). Returns true if learned.
+  learnSkill(id, catalog) {
+    if (!id || this.trained.has(id)) return false;
+    const rec = catalog && catalog[id];
+    const disc = rec ? rec.disciplines : [];
+    if (!this.learnsAll() && rec && disc.length) {
+      const mineC = { WARRIOR: 'WARRIOR', ROGUE: 'ROGUE', CLERIC: 'CLERIC', WIZARD: 'WIZARD' }[this.charClass];
+      if (mineC && !disc.includes(mineC)) return false;   // out of this class's discipline
+    }
+    this.trained.add(id);
+    const LETTER = { WARRIOR: 'W', ROGUE: 'R', CLERIC: 'C', WIZARD: 'M' };
+    for (const d of disc) if (LETTER[d]) this.disciplines.add(LETTER[d]);
+    return true;
+  }
 
   // level from cumulative XP table (Rules.f3252f)
   level() {
@@ -78,7 +123,9 @@ export class PlayerModel {
     return { name: this.name, gender: this.gender, charClass: this.charClass,
              portrait: this.portrait, difficulty: this.difficulty,
              attributes: this.attributes, skills: this.skills,
-             xp: this.xp, gold: this.gold, hp: this.hp, mana: this.mana };
+             xp: this.xp, gold: this.gold, hp: this.hp, mana: this.mana,
+             trained: [...this.trained], skillPoints: this.skillPoints,
+             disciplines: [...this.disciplines] };
   }
   static fromJSON(o, C) { return new PlayerModel(o, C); }
 }

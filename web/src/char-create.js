@@ -11,6 +11,9 @@ export const CLASSES = [
   { id: 'ROGUE',   name: 'Rogue',   img: 'class_rogue' },
   { id: 'CLERIC',  name: 'Cleric',  img: 'class_cleric' },
   { id: 'WIZARD',  name: 'Wizard',  img: 'class_mage' },
+  // HERO — owner's design-in-flight class (not in base EK). Placeholder art reuses the
+  // warrior tile until custom art is supplied (deobf/TRAINERS_SPEC.md).
+  { id: 'HERO',    name: 'Hero',    img: 'class_warrior' },
 ];
 
 // The five EK difficulties, each with its ui_icons artwork medallion. `img` is the

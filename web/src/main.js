@@ -221,6 +221,7 @@ class MapScene extends Phaser.Scene {
         if (!this.weapons) { try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {} }
         if (!this.loot) { try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {} }
         if (!this.quests) { try { this.quests = await (await fetch('assets/data/quests.json')).json(); this.gameHud.setQuests(this.quests, () => this.gameState.vars); } catch {} }
+        if (!this.trainers) { try { this.trainers = await (await fetch('assets/data/trainers.json')).json(); this.gameHud.trainers = this.trainers; } catch {} }
         if (!this._spriteSet) {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
@@ -253,6 +254,13 @@ class MapScene extends Phaser.Scene {
       getVar: (k) => this.gameState.vars[k],
       addFollower: (id) => this.gameState.followers.add(id),
       saveAuto: (area) => this.saveAuto(area),
+      runAction: (s) => this.dialogue.runActions(s),
+      playerModelDebug: () => { const m = this.playerModel; return m ? {
+        learnsAll: m.learnsAll(), trained: [...m.trained], disciplines: [...m.disciplines],
+        skillPoints: m.skillPoints,
+        canW: m.canUseItemClass('W'), canR: m.canUseItemClass('R'),
+        canC: m.canUseItemClass('C'), canM: m.canUseItemClass('M'),
+        canBlank: m.canUseItemClass('') } : null; },
       // combat introspection / drivers for tests
       combatants: () => this.entities.filter(e => e.cbt).map(e => ({
         name: e.npc.name, side: e.cbt.side, hp: e.cbt.hp, maxHp: e.cbt.maxHp,
@@ -694,7 +702,9 @@ class MapScene extends Phaser.Scene {
     try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {}
     try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {}
     try { this.quests = await (await fetch('assets/data/quests.json')).json(); } catch {}
+    try { this.trainers = await (await fetch('assets/data/trainers.json')).json(); } catch {}
     this.gameHud.setQuests(this.quests, () => this.gameState.vars);
+    this.gameHud.trainers = this.trainers;
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game
