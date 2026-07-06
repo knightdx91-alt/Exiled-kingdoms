@@ -220,6 +220,7 @@ class MapScene extends Phaser.Scene {
         }
         if (!this.weapons) { try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {} }
         if (!this.loot) { try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {} }
+        if (!this.quests) { try { this.quests = await (await fetch('assets/data/quests.json')).json(); this.gameHud.setQuests(this.quests, () => this.gameState.vars); } catch {} }
         if (!this._spriteSet) {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
@@ -251,6 +252,7 @@ class MapScene extends Phaser.Scene {
       setVar: (k, v) => { this.gameState.vars[k] = v; },
       getVar: (k) => this.gameState.vars[k],
       addFollower: (id) => this.gameState.followers.add(id),
+      saveAuto: (area) => this.saveAuto(area),
       // combat introspection / drivers for tests
       combatants: () => this.entities.filter(e => e.cbt).map(e => ({
         name: e.npc.name, side: e.cbt.side, hp: e.cbt.hp, maxHp: e.cbt.maxHp,
@@ -691,6 +693,8 @@ class MapScene extends Phaser.Scene {
     try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
     try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {}
     try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {}
+    try { this.quests = await (await fetch('assets/data/quests.json')).json(); } catch {}
+    this.gameHud.setQuests(this.quests, () => this.gameState.vars);
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game
@@ -712,10 +716,23 @@ class MapScene extends Phaser.Scene {
     this.setChromeHidden(false);                      // game is playing -> show tap toggle
     this.gameHud.setModel(this.playerModel);
     this.gameHud.show();
-    try {
-      await Saves.put('auto', { player: this.playerModel.toJSON(), area: startMap },
-                      { name: pc.name, charClass: pc.charClass });
-    } catch {}
+    try { await this.saveAuto(startMap); } catch {}
+  }
+
+  // Serialize the shared world state (all game variables incl. quest progress, and the
+  // party/followers) so quests and flags survive a reload.
+  worldStateJSON() {
+    return { vars: { ...this.gameState.vars }, followers: [...this.gameState.followers] };
+  }
+  restoreWorldState(w) {
+    if (!w) return;
+    this.gameState.vars = w.vars || {};
+    this.gameState.followers = new Set(w.followers || []);
+  }
+  async saveAuto(area) {
+    await Saves.put('auto',
+      { player: this.playerModel.toJSON(), area: area || this._mapName, world: this.worldStateJSON() },
+      { name: this.playerModel.name, charClass: this.playerModel.charClass });
   }
 
   // Dispatch to the right loader: outdoor [worldmap] tiles stream seamlessly (world

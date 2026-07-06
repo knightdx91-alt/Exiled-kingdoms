@@ -145,6 +145,7 @@ reconciled against the recovered class in §2. Grep the code for `APPROX` too.
 | A9 | **Monster HP / damage** | `CharacterStats.g()/d()` derive HP & damage bonus from race+class+level via obfuscated enum ordinals. | Per-race-tier HP table (weak/monster/strong/miniboss/boss) + `dmgMul·level`; the exact enum-ordinal curve isn't mapped. | HP tiers tuned, not reversed. `SPEC`: `deobf/COMBAT_SPEC.md`. |
 | A10 | **Combat in the seamless world** | Enemies persist across the whole overworld. | Web streaming despawns/respawns entity groups per chunk, so a targeted enemy that streams out loses its combat state. Interior fights are stable; distant world enemies reset. | Limitation of the chunk streamer; acceptable (far enemies). |
 | A11 | **Hero death** | Death → game-over / reload last save. | Non-punishing prototype: restore full HP, enemies disengage, flash a notice. | Deliberate placeholder until saves/checkpoints wire in. |
+| A12 | **Quest state actions** | Each quest state's `actions` column fires when the quest reaches that value. | Journal reads quest progress from `gameState.vars[quest_id]` and shows the stage text; the per-state action list isn't auto-run (progress is driven by dialogue/trigger `SetVariable`, which is how quests advance anyway). | Faithful reader; auto-firing state actions is a later pass. `SPEC`: `deobf/QUEST_SPEC.md`. |
 
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,

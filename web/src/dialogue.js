@@ -115,6 +115,9 @@ export class Dialogue {
       else if (v === 'decvariable' || v === 'variablelower') set(args[0], (this.state.vars[args[0]] || 0) - (+args[1] || 1));
       else if (v === 'stoprender' || v === 'sleep') fade = true;
       else if (v === 'playerrobbed') this._robPlayer();
+      else if (v === 'gaingold') this._gold(+args[0] || 0);
+      else if (v === 'losegold') this._gold(-(+args[0] || 0));
+      else if (v === 'gainskillpoint') { const m = this.scene.playerModel; if (m) m.skillPoints = (m.skillPoints || 0) + (+args[0] || 1); }
       // other verbs (give items, quests, sounds…) are no-ops for now
     }
     if (travel) {
@@ -128,6 +131,13 @@ export class Dialogue {
   // PlayerRobbed# — the real engine (Player.C1) wipes the inventory and resets gold to
   // 18 (the starting purse). No item system yet, so we mirror the gold reset and clear
   // any tracked items, then refresh the HUD.
+  _gold(n) {
+    const m = this.scene.playerModel;
+    if (!m) return;
+    if (n >= 0) m.addGold(n); else m.spendGold(-n);
+    if (this.scene.gameHud) this.scene.gameHud.update(true);
+  }
+
   _robPlayer() {
     const pm = this.scene.playerModel;
     if (!pm) return;

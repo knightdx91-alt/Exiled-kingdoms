@@ -25,6 +25,7 @@ export class HUD {
       </div>
       <div class="hud-btns">
         <button class="hud-btn" data-act="char" title="Character">🛡</button>
+        <button class="hud-btn" data-act="journal" title="Journal">📖</button>
         <button class="hud-btn" data-act="inv" title="Inventory">🎒</button>
         <button class="hud-btn" data-act="menu" title="Menu">☰</button>
       </div>
@@ -77,9 +78,13 @@ export class HUD {
 
   onButton(act) {
     if (act === 'char') this.togglePanel('char');
+    else if (act === 'journal') this.togglePanel('journal');
     else if (act === 'inv') this.togglePanel('inv');
     else if (act === 'menu') this.togglePanel('menu');
   }
+
+  // Quest data + a live variable-store accessor, wired by the scene.
+  setQuests(quests, varsFn) { this.quests = quests || {}; this.varsOf = varsFn || (() => ({})); }
 
   togglePanel(which) {
     if (this.panel.style.display !== 'none' && this._panel === which) {
@@ -88,6 +93,7 @@ export class HUD {
     this._panel = which;
     this.panel.style.display = '';
     if (which === 'char') this.renderCharacter();
+    else if (which === 'journal') this.renderJournal();
     else if (which === 'inv') this.panel.innerHTML =
       `<div class="hud-panel-h">Inventory</div><p class="hud-dim">Items &amp; equipment come with the combat/inventory system.</p>${this.closeBtn()}`;
     else this.panel.innerHTML =
@@ -114,6 +120,33 @@ export class HUD {
       <div class="hud-panel-sub">Skills</div>
       <p class="hud-skills">${skills}</p>
       ${this.closeBtn()}`;
+    this.wireClose();
+  }
+
+  // Journal: every quest whose variable > 0, showing the description for its current
+  // progress value; completed at >= 100 (deobf/QUEST_SPEC.md).
+  renderJournal() {
+    const vars = this.varsOf ? this.varsOf() : {};
+    const quests = this.quests || {};
+    const strip = (s) => (s || '').replace(/\[[A-Z]*\]/g, '').replace(/<p>/g, ' ').trim();
+    const active = [], done = [];
+    for (const [id, q] of Object.entries(quests)) {
+      const v = vars[id] | 0;
+      if (v <= 0) continue;
+      // the state to show: exact match, else the highest state key <= v
+      const keys = Object.keys(q.states).map(Number).sort((a, b) => a - b);
+      let show = null;
+      for (const k of keys) if (k <= v) show = k;
+      if (show == null && keys.length) show = keys[0];
+      const desc = strip(q.states[show]);
+      const item = `<div class="jq"><div class="jq-name">${q.name}${v >= 100 ? ' <span class="jq-done">✓ Completed</span>' : ''}</div>` +
+                   `<div class="jq-desc">${desc || ''}</div></div>`;
+      (v >= 100 ? done : active).push(item);
+    }
+    const body = (active.length || done.length)
+      ? `${active.join('')}${done.length ? `<div class="hud-panel-sub">Completed</div>${done.join('')}` : ''}`
+      : `<p class="hud-dim">No quests yet. Talk to people and explore.</p>`;
+    this.panel.innerHTML = `<div class="hud-panel-h">Journal</div>${body}${this.closeBtn()}`;
     this.wireClose();
   }
 

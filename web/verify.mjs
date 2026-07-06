@@ -287,11 +287,33 @@ console.log('combat:', combat);
 const combatOk = combat.attached > 0 && combat.enemyHurt && combat.heroHurt &&
                  combat.xpGain > 0 && combat.pause;
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk);
+// --- Quests + world state: set a quest variable, confirm the Journal shows it with the
+// right stage description, a completed quest is flagged, and world state (vars) persists
+// through a save round-trip (deobf/QUEST_SPEC.md). ---
+const quest = await page.evaluate(async () => {
+  const { Saves } = await import('./src/saves.js');
+  await window.__EK.quickStart({ map: 'H10' });
+  window.__EK.setVar('want_letter_back', 10);
+  window.__EK.setVar('goblin_hunt', 100);
+  document.querySelector('#hud .hud-btn[data-act="journal"]').click();
+  await new Promise(r => setTimeout(r, 100));
+  const panel = document.querySelector('#hud .hud-panel');
+  window.__EK.setVar('gather_ingredients', 20);
+  await window.__EK.saveAuto('H10');
+  const got = await Saves.get('auto');
+  return { names: [...panel.querySelectorAll('.jq-name')].map(n => n.textContent),
+           hasAdaon: /Adaon/i.test(panel.textContent),
+           hasCompleted: /Completed/i.test(panel.textContent),
+           savedVar: got.data.world && got.data.world.vars.gather_ingredients };
+});
+console.log('quests:', quest);
+const questOk = quest.names.length >= 2 && quest.hasAdaon && quest.hasCompleted && quest.savedVar === 20;
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);
