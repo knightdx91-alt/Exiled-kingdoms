@@ -110,7 +110,7 @@ Everything below is **live on `main`** and deployed to GitHub Pages
 
 ### ⚠️ Versioning / cache — HOW TO KNOW A DEPLOY LANDED
 - **A visible build tag `#ek-build` shows in the bottom-left corner** (currently
-  **v8**). It is the owner's ground truth that a fresh copy loaded.
+  **v9**). It is the owner's ground truth that a fresh copy loaded.
 - **On EVERY web change bump BOTH:** `web/index.html` `#ek-build` text AND
   `web/sw.js` `const VERSION` (keep them in sync, e.g. v8 ↔ ek-v8). Tell the owner
   the new number when you push.
@@ -179,17 +179,17 @@ the gate). A tried west-edge-transition hack was **reverted** (it let you wander
 and skipped the sleep beat — wrong).
 
 **TODO to finish this (next):**
-1. Implement the sleep/wake actions in `dialogue.js` `runActions`:
-   - `StopRender#` / `Sleep#` → a **fade-to-black overlay + short delay** (screen
-     goes black like the real game), then continue.
-   - `PlayerRobbed#` → take the player's gold/starting items (story beat).
-   - Make the action ORDER safe: `Travel#` currently `this.end()`s and changes area
-     mid-list, so later actions (`SetVariable#want_letter_back`, `PlayerRobbed#`)
-     may not run — reorder so the fade + variable-set + robbery happen, THEN travel,
-     or make `runActions` finish the whole list before the area swap.
-   - Fix the H10 entry: use `Travel#H10,0001` (existing east-edge entry `c86,r41`,
-     geographically correct — you leave I10 west → enter H10 east → walk west to
-     Lannager) instead of the non-existent `'1'`.
+1. ~~Implement the sleep/wake actions in `dialogue.js` `runActions`~~ ✅ **DONE**
+   (`deobf/TUTORIAL_EXIT_SPEC.md`). `runActions` now runs the whole action list and
+   **defers `Travel#`** to the end, so `SetVariable#want_letter_back,10` +
+   `PlayerRobbed#` still fire. `StopRender#`/`Sleep#` → a **fade-to-black overlay**
+   (`scene.fadeBlack`) wrapping the area swap; `PlayerRobbed#` resets gold to 18
+   (matches `Player.C1`); `NPCStopFollowing#` now drops Adaon (was an unhandled
+   no-op). Also fixed a latent parser bug: EK wraps comma-bearing action fields in
+   `"…"` and the old parser left the quotes on, so the FIRST verb of every quoted
+   list silently failed — `parseConversation` now unquotes. Entry fix: scripted
+   `Travel#` prefers the `0001` marker (`entryOf(..., preferDefault=true)`), so
+   `Travel#H10,1,14` lands at H10's east edge. Covered by `verify.mjs` **tutorial-exit**.
 2. Make the camp reliably reachable/triggering (it is reachable; verify the trigger
    fires when walking the road, and that the conversation can't be closed early
    leaving the player trapped with no exit).

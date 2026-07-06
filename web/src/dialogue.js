@@ -26,13 +26,21 @@ export function parseConversation(txt) {
       index, type,
       text: f[COLS.text] || '',
       goto: (f[COLS.goto] || '').trim() || '0',
-      conditions: (f[COLS.conditions] || '').trim(),
-      actions: (f[COLS.actions] || '').trim(),
+      conditions: unquote((f[COLS.conditions] || '').trim()),
+      actions: unquote((f[COLS.actions] || '').trim()),
     };
     if (!nodes.has(index)) nodes.set(index, []);
     nodes.get(index).push(row);
   }
   return nodes;
+}
+
+// EK TSV wraps condition/action fields in double quotes whenever they contain commas
+// (e.g. "SetVariable#x,10;..."). Strip the wrapping quotes and unescape doubled quotes
+// so the FIRST verb isn't mis-parsed with a leading '"'.
+function unquote(s) {
+  if (s.length >= 2 && s[0] === '"' && s[s.length - 1] === '"') s = s.slice(1, -1);
+  return s.replace(/""/g, '"');
 }
 
 // Split "Verb#a,b;Verb2#c" into [{ verb, args:[..] }].
@@ -87,20 +95,57 @@ export class Dialogue {
     return true;
   }
 
+  // Run a node's action list. Most verbs apply immediately, but Travel# is DEFERRED
+  // until the whole list has run: the real engine executes every action in order
+  // (see ScriptedAction switch), so SetVariable#/PlayerRobbed# that follow a Travel#
+  // must still take effect. StopRender#/Sleep# request a fade-to-black that wraps the
+  // travel — this is the tutorial's camp→sleep→robbed→wake-near-Lannager beat.
   runActions(actStr) {
+    let travel = null, fade = false;
     for (const { verb, args } of parseOps(actStr)) {
       const v = verb.toLowerCase();
       const set = (n, val) => { this.state.vars[n] = val; };
       if (v === 'startconversation') { this.start(args[0], args[1] || '1'); return 'jumped'; }
-      else if (v === 'travel') { this.end(); this.scene.goArea(args[0], args[1]); return 'travelled'; }
+      else if (v === 'travel') { travel = { map: args[0], entry: args[1] }; }
       else if (v === 'npcfollow') this.state.followers.add(args[0]);
-      else if (v === 'npcleaveparty' || v === 'npcstop') this.state.followers.delete(args[0]);
+      else if (v === 'npcleaveparty' || v === 'npcstop' || v === 'npcstopfollowing')
+        this.state.followers.delete(args[0]);
       else if (v === 'setvariable') set(args[0], +args[1]);
       else if (v === 'incvariable' || v === 'variableraise') set(args[0], (this.state.vars[args[0]] || 0) + (+args[1] || 1));
       else if (v === 'decvariable' || v === 'variablelower') set(args[0], (this.state.vars[args[0]] || 0) - (+args[1] || 1));
+      else if (v === 'stoprender' || v === 'sleep') fade = true;
+      else if (v === 'playerrobbed') this._robPlayer();
       // other verbs (give items, quests, sounds…) are no-ops for now
     }
+    if (travel) {
+      this.end();
+      this._travel(travel.map, travel.entry, fade);       // async; fire-and-forget
+      return 'travelled';
+    }
     return 'ok';
+  }
+
+  // PlayerRobbed# — the real engine (Player.C1) wipes the inventory and resets gold to
+  // 18 (the starting purse). No item system yet, so we mirror the gold reset and clear
+  // any tracked items, then refresh the HUD.
+  _robPlayer() {
+    const pm = this.scene.playerModel;
+    if (!pm) return;
+    if (Array.isArray(pm.items)) pm.items.length = 0;
+    pm.gold = 18;
+    if (this.scene.gameHud) this.scene.gameHud.update(true);
+  }
+
+  // Deferred Travel#. When `fade` is set (Sleep#/StopRender#), black the screen out,
+  // swap area behind the curtain, then fade back in — the tutorial wake-up.
+  async _travel(map, entry, fade) {
+    if (fade && this.scene.fadeBlack) {
+      await this.scene.fadeBlack(true);                   // curtain down
+      await this.scene.goArea(map, entry, true);          // preferDefault entry ('0001')
+      await this.scene.fadeBlack(false);                  // curtain up
+    } else {
+      this.scene.goArea(map, entry, true);
+    }
   }
 
   // ---- run --------------------------------------------------------------------

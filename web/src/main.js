@@ -30,6 +30,19 @@ const tintOf = (c) => (Math.round(c.r * 255) << 16) |
 const ORIENTS = [0, 90, 180, 270];
 const TUTORIAL_MAP = 'I10_tutorial';                // Adaon's road — where a new game begins
 const DEV_START_MAP = 'H10';                        // Lannegar Valley — test/quick-start entry
+
+// Resolve a spawn point on `map` for a requested entry id: the named entry, else map
+// centre. When `preferDefault` is set (scripted Travel#, which may name an entry our
+// TMX export doesn't carry), the conventional '0001' arrival marker is tried before
+// centre — e.g. the tutorial's Travel#H10,1,14 → H10's 0001 (east edge, the
+// geographically correct arrival). Normal arch transitions pass preferDefault=false so
+// they never bounce off a map's 0001 portal. APPROX — see DEOBFUSCATION_STATUS.md §3.
+function entryOf(map, entryId, preferDefault = false) {
+  const es = map && map.entries;
+  return (entryId != null && es && es[entryId])
+    || (preferDefault && es && es['0001'])
+    || { c: Math.floor(map.width / 2), r: Math.floor(map.height / 2) };
+}
 // Camera recovered from the base game's GameLevelRenderer (deobfuscated k0/a.java):
 // the phone camera is an OrthographicCamera with a 533x300 world-unit viewport and
 // gameplay zoom 1.0 — i.e. 533 world-px of width fill the screen. We reproduce that
@@ -232,6 +245,12 @@ class MapScene extends Phaser.Scene {
       dlgChoose: (i) => { const bs = [...this.dialogue.$choices.children]; if (bs[i]) bs[i].click(); return this.dialogue.active; },
       followers: () => [...this.gameState.followers],
       setVar: (k, v) => { this.gameState.vars[k] = v; },
+      getVar: (k) => this.gameState.vars[k],
+      addFollower: (id) => this.gameState.followers.add(id),
+      // test helper: open a conversation at a specific node (e.g. the tutorial camp's
+      // sleep/rob/travel node) without having to walk into its trigger zone.
+      startConv: (id, node, speaker) => this.dialogue.start(id, node, speaker),
+      fading: () => !!(this._fadeEl && parseFloat(this._fadeEl.style.opacity) > 0.5),
       // player model + HUD introspection for tests
       stats: () => { const m = this.playerModel; return m ? {
         class: m.charClass, level: m.level(), hp: Math.ceil(m.hp), maxhp: m.maxHP(),
@@ -641,9 +660,37 @@ class MapScene extends Phaser.Scene {
   // Dispatch to the right loader: outdoor [worldmap] tiles stream seamlessly (world
   // mode); everything else (towns, buildings, caves) is a discrete interior reached
   // through an arch/door.
-  goArea(name, entryId) {
-    if (this.overworld && this.overworld.has(name)) return this.enterWorld(name, entryId);
-    return this.enterInterior(name, entryId);
+  goArea(name, entryId, preferDefault = false) {
+    if (this.overworld && this.overworld.has(name)) return this.enterWorld(name, entryId, preferDefault);
+    return this.enterInterior(name, entryId, preferDefault);
+  }
+
+  // Fade the screen to/from black. `down` true = curtain in (screen goes black);
+  // false = curtain out. Returns a promise that resolves when the CSS transition
+  // finishes, so callers can swap the area while the screen is dark (the tutorial's
+  // Sleep#/StopRender# → wake-up beat). A full-viewport fixed overlay is used so it
+  // covers the canvas regardless of engine/DOM rotation.
+  fadeBlack(down, ms = 650) {
+    if (!this._fadeEl) {
+      const el = document.createElement('div');
+      el.id = 'ek-fade';
+      el.style.cssText = 'position:fixed;inset:0;background:#000;opacity:0;z-index:9999;' +
+                         'pointer-events:none;transition:opacity ' + ms + 'ms ease';
+      document.body.appendChild(el);
+      this._fadeEl = el;
+    }
+    const el = this._fadeEl;
+    el.style.transition = 'opacity ' + ms + 'ms ease';
+    return new Promise(resolve => {
+      // force reflow so the transition always runs from the current opacity
+      void el.offsetWidth;
+      el.style.pointerEvents = down ? 'auto' : 'none';
+      el.style.opacity = down ? '1' : '0';
+      let done = false;
+      const finish = () => { if (done) return; done = true; el.removeEventListener('transitionend', finish); resolve(); };
+      el.addEventListener('transitionend', finish);
+      setTimeout(finish, ms + 120);                  // guarantee resolution
+    });
   }
 
   // Tear down whatever is currently rendered, keeping the persistent hero. Pooled
@@ -673,7 +720,7 @@ class MapScene extends Phaser.Scene {
   // Enter the SEAMLESS overworld at chunk `name`, dropping the hero at entry `entryId`
   // (local cell of that chunk) translated into global space, then stream the 3x3
   // window around him. No load screen occurs again until he steps through an arch.
-  async enterWorld(name, entryId) {
+  async enterWorld(name, entryId, preferDefault = false) {
     try {
       this._loading = true;
       this.mode = 'world';
@@ -687,8 +734,7 @@ class MapScene extends Phaser.Scene {
 
       const ch = this.overworld.loaded.get(name);
       this._map = ch.map; this._mapName = name;
-      const e = (entryId != null && ch.map.entries && ch.map.entries[entryId])
-        || { c: Math.floor(ch.map.width / 2), r: Math.floor(ch.map.height / 2) };
+      const e = entryOf(ch.map, entryId, preferDefault);
       const { gc0, gr0 } = this.overworld.originOf(g.col, g.row);
       this.heroCell = this.nearestWalkable(e.c + gc0, e.r + gr0);
       // now that we know his global cell, stream in whatever neighbours he's near
@@ -769,7 +815,7 @@ class MapScene extends Phaser.Scene {
 
   // Load + render a discrete INTERIOR (town/building/cave), placing the hero at entry
   // `entryId` (or the map centre). The hero persists across maps; only tiles clear.
-  async enterInterior(name, entryId) {
+  async enterInterior(name, entryId, preferDefault = false) {
     try {
       this._loading = true;
       this.mode = 'interior';
@@ -787,8 +833,7 @@ class MapScene extends Phaser.Scene {
       this.walk = buildWalkable(map);
 
       // Where to drop the hero: the named entry, else map centre — snapped walkable.
-      const e = (entryId != null && map.entries && map.entries[entryId])
-        || { c: Math.floor(map.width / 2), r: Math.floor(map.height / 2) };
+      const e = entryOf(map, entryId, preferDefault);
       this.heroCell = this.nearestWalkable(e.c, e.r);
       this._transLock = true;                        // don't bounce off the return portal
       const hp = cellToPx(this.heroCell.c, this.heroCell.r, map);

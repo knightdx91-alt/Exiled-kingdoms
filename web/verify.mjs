@@ -235,9 +235,32 @@ const dlgOk = dlg.entTotal > 0 && dlg.who === 'adaon' && !!dlg.firstText &&
               dlg.firstChoices && dlg.firstChoices.length >= 1 &&
               dlg.followers.includes('adaon_tutorial');   // NPCFollow# action ran
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk);
+// --- Tutorial exit: camp → sleep (fade) → robbed → wake in the seamless world near
+// Lannager. Open the camp conversation at node 50 (its Q line runs the sleep/travel
+// actions) and assert the whole beat: Adaon dropped, gold reset to 18, want_letter_back
+// gate set to 10, arrival in world H10, fade cleared. ---
+const exit = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'I10_tutorial' });
+  window.__EK.setVar('want_letter_back', 0);
+  window.__EK.addFollower('adaon_tutorial');
+  window.__EK.startConv('adaon_tutorial_camp', '50', { label: 'Adaon' });
+  const t0 = Date.now();
+  while (window.__EK.map().name !== 'H10' && Date.now() - t0 < 15000)
+    await new Promise(r => setTimeout(r, 120));
+  while (window.__EK.fading() && Date.now() - t0 < 20000)
+    await new Promise(r => setTimeout(r, 120));
+  return { map: window.__EK.map().name, mode: window.__EK.map().mode,
+           gold: window.__EK.stats().gold, wantLetter: window.__EK.getVar('want_letter_back'),
+           followers: window.__EK.followers(), fading: window.__EK.fading() };
+});
+console.log('tutorial-exit:', exit);
+const exitOk = exit.map === 'H10' && exit.mode === 'world' && exit.gold === 18 &&
+               exit.wantLetter === 10 && exit.fading === false &&
+               !exit.followers.includes('adaon_tutorial');
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
   ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
