@@ -124,10 +124,20 @@ a seamless world, meet NPCs, and hold conversations. All verified in headless Ch
    tap to equip/unequip/use). *(Next: item procs + trait/attribute mods + `Requisites`;
    icon art from the atlas; match the screen to the real InventoryScreen — DEOBF A14.)*
 
-### The remaining backlog (post-#1)
-Combat **layer 2**: skill/spell EXECUTION (base + 40 advanced skills are learned but have
-no effect yet — Whirlwind/Fireball/Heal/…), status effects (fury/mage-armor/stun/slow/
-bleed), mana-spend + cooldowns, quickslot use. Then: **faithful UI pass** (match every
+8. ~~**Skill / spell execution**~~ ✅ DONE (spec `deobf/SKILLS_EXEC_SPEC.md`; `src/skills.js`
+   + combat/HUD wiring). Learned skills now DO things: per-rank effects with mana-spend +
+   cooldowns — heals, the 4 caster spells (fireball/lightning/ice-storm/sacred-fire, AoE +
+   stun + undead bonus), warrior/rogue melee actives (whirlwind/charge/bash/kick/stab),
+   self-buffs (resilience/holy-shield/mage-armor/arbenos/evasion), and passives (fury,
+   mana_surge). A HUD **skill bar** casts them (greyed on cooldown/no-mana); `PlayerModel`
+   gains per-skill ranks. Numbers reversed from `SkillActions` + skill texts. *(Long tail —
+   summons/stealth/traps/most masteries/procs + projectile animation — is APPROX; skills
+   outside the effect table are known-but-inert. DEOBF A15.)*
+
+### The remaining backlog (post-#1, post-skills)
+Combat **layer 2 tail**: summons, stealth, traps, the mastery passives, item/skill procs,
+status effects beyond stun/dodge (slow/bleed/fury are partial), projectile travel + spell
+FX/animation. Then: **faithful UI pass** (match every
 screen to the real game), **audio/music** (`music` map prop parsed, nothing plays yet),
 **save/load menu + Continue** (state serializes; no slots UI), minimap/automap, eased
 camera + shake, particles (A4), shops/merchants, reputation UI. See DEOBFUSCATION_STATUS.md

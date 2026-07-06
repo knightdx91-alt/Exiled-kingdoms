@@ -265,6 +265,13 @@ class MapScene extends Phaser.Scene {
       equip: (id) => this.playerModel && this.playerModel.equip(+id),
       unequip: (slot) => this.playerModel && this.playerModel.unequip(slot),
       useItem: (id) => this.useItem(+id),
+      setSkillRank: (id, r) => this.playerModel && this.playerModel.setSkillRank(id, r),
+      castSkill: (id) => this.castSkill(id),
+      refillMana: () => { const m = this.playerModel; if (m) m.mana = m.maxMana(); },
+      skillDebug: () => { const m = this.playerModel, c = this.combat; return m ? {
+        mana: Math.ceil(m.mana), maxMana: m.maxMana(),
+        cooldowns: Object.keys(c.cooldowns), buffs: c.buffs.length,
+        armor: (c._heroCbt() || {}).armor } : null; },
       playerModelDebug: () => { const m = this.playerModel; return m ? {
         learnsAll: m.learnsAll(), trained: [...m.trained], disciplines: [...m.disciplines],
         skillPoints: m.skillPoints,
@@ -742,7 +749,9 @@ class MapScene extends Phaser.Scene {
     this.player = pc;
     this.playerModel = new PlayerModel(pc, this._creation || {});
     this.playerModel.setItemDb(this.items || {});
+    this.combat.reset();
     this.gameHud.onUseItem = (id) => this.useItem(id);
+    this.gameHud.setCombat(this.combat, (id) => this.castSkill(id));
     this.heroKey = `hero_${pc.gender.toLowerCase()}`;
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
@@ -751,6 +760,13 @@ class MapScene extends Phaser.Scene {
     this.gameHud.setModel(this.playerModel);
     this.gameHud.show();
     try { await this.saveAuto(startMap); } catch {}
+  }
+
+  // Cast a learned skill/spell (deobf/SKILLS_EXEC_SPEC.md).
+  castSkill(id) {
+    const r = this.combat ? this.combat.castSkill(id) : { ok: false };
+    if (this.gameHud) this.gameHud.update(true);
+    return r;
   }
 
   // Use a consumable from the backpack: run its OnUse effect (GainHP/GainMana/…), then

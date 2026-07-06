@@ -8,6 +8,7 @@
 
 import { setFacing } from './sprite.js';
 import { facingFor } from './move.js';
+import { SKILL_FX, skillParams, skillCooldown } from './skills.js';
 
 const AGGRO_TILES = 6;      // enemy detection radius
 const LEASH_TILES = 12;     // enemy gives up beyond this
@@ -80,6 +81,9 @@ export class Combat {
     this.paused = false;
     this.floaters = [];          // active floating damage/status texts
     this._target = null;         // the hero's current attack target (entity)
+    this.cooldowns = {};         // skill id -> ms remaining (deobf/SKILLS_EXEC_SPEC.md)
+    this.buffs = [];             // active hero buffs { armor, resist{}, dmgAdd, dodge, until }
+    this.nextHit = 0;            // one-shot bonus on the hero's next melee hit (stab)
   }
 
   // Build combat state for a spawned entity from its bestiary record. Returns the cbt
@@ -113,14 +117,24 @@ export class Combat {
     return f.has(e.npc.name) || f.has(e.npc.tag) || f.has(e.npc.spawn);
   }
 
-  // The hero as a combatant view over the PlayerModel.
+  // The hero as a combatant view over the PlayerModel, with active buffs + passives
+  // folded in (deobf/SKILLS_EXEC_SPEC.md).
   _heroCbt() {
     const m = this.s.playerModel;
     if (!m) return null;
     const w = this.s.weapons ? this.s.weapons[m.weaponId()] : null;
-    return { hp: m.hp, maxHp: m.maxHP(), armor: m.armor(), resist: m.resist(),
-             weapon: w, dmgBonus: m.dmgBonus(), reach: (w && w.reach) || 1,
-             shield: m.hasShield() };
+    let armor = m.armor(), dmgBonus = m.dmgBonus(), dodge = 0;
+    const resist = m.resist();
+    for (const b of this.buffs) {
+      armor += b.armor || 0; dmgBonus += b.dmgAdd || 0; dodge = Math.max(dodge, b.dodge || 0);
+      for (const k in (b.resist || {})) resist[k] = (resist[k] || 0) + b.resist[k];
+    }
+    // Fury passive: below the HP threshold, deal +mul damage.
+    const fr = m.skillRank('fury');
+    if (fr) { const p = skillParams('fury', fr); if (p && m.hp <= p.thr * m.maxHP()) dmgBonus = Math.round(dmgBonus * (1 + p.mul)); }
+    return { hp: m.hp, maxHp: m.maxHP(), armor, resist,
+             weapon: w, dmgBonus, reach: (w && w.reach) || 1,
+             shield: m.hasShield(), dodge, bonusHit: this.nextHit };
   }
 
   // Player taps an enemy → make it the hero's attack target.
@@ -132,6 +146,102 @@ export class Combat {
 
   togglePause() { this.paused = !this.paused; return this.paused; }
 
+  // Clear transient combat state (buffs/cooldowns/target) — on a new game/character.
+  reset() { this.cooldowns = {}; this.buffs = []; this.nextHit = 0; this._target = null; this._heroCd = 0; }
+
+  // ---- skill / spell casting (deobf/SKILLS_EXEC_SPEC.md) -----------------------
+  // Whether the hero can cast `id` right now (learned, off cooldown, enough mana).
+  canCast(id) {
+    const m = this.s.playerModel, fx = SKILL_FX[id];
+    if (!m || !fx || fx.kind === 'passive' || m.skillRank(id) <= 0) return false;
+    if (this.cooldowns[id] > 0) return false;
+    return m.mana >= skillParams(id, m.skillRank(id)).mana;
+  }
+  cooldownFrac(id) { const fx = SKILL_FX[id]; return fx ? Math.max(0, (this.cooldowns[id] || 0) / (fx.cd * 1000)) : 0; }
+
+  castSkill(id) {
+    const m = this.s.playerModel, fx = SKILL_FX[id];
+    if (!m || !fx || fx.kind === 'passive' || m.skillRank(id) <= 0) return { ok: false, reason: 'unknown' };
+    if (this.cooldowns[id] > 0) return { ok: false, reason: 'cooldown' };
+    const p = skillParams(id, m.skillRank(id));
+    if (m.mana < (p.mana || 0)) return { ok: false, reason: 'mana' };
+    if (m.mana) m.mana -= (p.mana || 0);
+    this.cooldowns[id] = skillCooldown(id) * 1000;
+    const hc = this.s.heroCell;
+    if (fx.kind === 'heal') this._castHeal(p);
+    else if (fx.kind === 'damage') this._castDamage(fx, p, hc);
+    else if (fx.kind === 'melee') this._castMelee(fx, p, hc);
+    else if (fx.kind === 'buff') this._castBuff(m, fx, p);
+    if (this.s.gameHud) this.s.gameHud.update(true);
+    return { ok: true };
+  }
+
+  _nearestEnemy(hc, range) {
+    let best = null, bd = (range || 8) + 0.5;
+    for (const e of this.s.entities) {
+      if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
+      const d = this._dist(e.cell, hc); if (d < bd) { bd = d; best = e; }
+    }
+    return best;
+  }
+  _isUndead(e) { return /undead|skeleton|zombie|ghost|wraith|lich|ghoul|vampire/i.test(`${e.rec && e.rec.race || ''} ${e.npc && e.npc.spawn || ''}`); }
+  _typeColor(t) { return { Fire: '#ff7043', Cold: '#8fd0ff', Shock: '#ffe066', Death: '#b39ddb', Toxic: '#9ccc65', Spirit: '#fff59d' }[t] || '#ffffff'; }
+
+  _castHeal(p) {
+    const m = this.s.playerModel, before = m.hp;
+    m.heal(p.heal);
+    this._floater(this.s.hero, `+${Math.round(m.hp - before)}`, false, false, '#7fd07f');
+  }
+
+  _castDamage(fx, p, hc) {
+    const tgt = (this._target && this._target.cbt && !this._target.cbt.dead) ? this._target : this._nearestEnemy(hc, 8);
+    if (!tgt) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
+    const center = tgt.cell, radius = fx.radius || 1;
+    for (const e of this.s.entities.slice()) {
+      if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
+      if (this._dist(e.cell, center) > radius) continue;
+      let raw = rint(p.dmg[0], p.dmg[1]);
+      if (p.undead && this._isUndead(e)) raw += p.undead;
+      const taken = mitigate(raw, fx.type, e.cbt.armor || 0, e.cbt.resist || {}, {});
+      e.cbt.hp = Math.max(0, e.cbt.hp - taken);
+      this._floater(e.sprite, taken, false, false, this._typeColor(fx.type));
+      if (p.stun && rint(1, 100) <= p.stun) e.cbt.stun = 1500;
+      if (e.cbt.hp <= 0) { e.cbt.dead = true; this._onEnemyDeath(e); }
+    }
+  }
+
+  _castMelee(fx, p, hc) {
+    const hero = this._heroCbt(); if (!hero) return;
+    const reach = (hero.reach || 1) + 1;
+    let targets;
+    if (fx.area) targets = this.s.entities.filter(e => e.cbt && !e.cbt.dead && e.cbt.side === 'enemy' && this._dist(e.cell, hc) <= reach);
+    else {
+      const t = (this._target && this._target.cbt && !this._target.cbt.dead && this._dist(this._target.cell, hc) <= reach)
+        ? this._target : this._nearestEnemy(hc, reach);
+      targets = t ? [t] : [];
+    }
+    if (!targets.length) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
+    for (const e of targets.slice()) {
+      const roll = rollDamage(hero.weapon, hero.dmgBonus);
+      const raw = Math.max(1, Math.round(roll.hp * (p.mult || 1)));
+      const taken = mitigate(raw, roll.type, e.cbt.armor || 0, e.cbt.resist || {}, {});
+      e.cbt.hp = Math.max(0, e.cbt.hp - taken);
+      this._floater(e.sprite, taken, roll.crit, false);
+      if (p.stun && rint(1, 100) <= p.stun) e.cbt.stun = 1500;
+      if (p.stunSec) e.cbt.stun = p.stunSec * 1000;
+      if (e.cbt.hp <= 0) { e.cbt.dead = true; this._onEnemyDeath(e); }
+    }
+  }
+
+  _castBuff(m, fx, p) {
+    if (p.nextHit) this.nextHit = Math.round(m.level() * (p.nextHit.mul || 1)) + (p.nextHit.add || 0);
+    if (p.armor || p.resist || p.dmgAdd || p.dodge) {
+      this.buffs.push({ armor: p.armor || 0, resist: p.resist || null, dmgAdd: p.dmgAdd || 0,
+        dodge: p.dodge || 0, until: this.s.time.now + (p.dur || 6) * 1000 });
+    }
+    this._floater(this.s.hero, fx.name, false, false, '#ffe9a8');
+  }
+
   // ---- main tick --------------------------------------------------------------
   tick(dtMs) {
     const dt = dtMs / 1000;
@@ -139,6 +249,10 @@ export class Combat {
     if (this.paused || this.s._dialogue || this.s._loading || !this.s.hero) return;
     const hc = this.s.heroCell;
     if (!hc) return;
+
+    // skill cooldowns + timed buffs
+    for (const id in this.cooldowns) { this.cooldowns[id] -= dtMs; if (this.cooldowns[id] <= 0) delete this.cooldowns[id]; }
+    if (this.buffs.length) { const now = this.s.time.now; this.buffs = this.buffs.filter(b => b.until > now); }
 
     // hero auto-attacks its chosen target
     this._heroTurn(dt, hc);
@@ -148,6 +262,7 @@ export class Combat {
       if (!c || c.dead) continue;
       c.attackCd = Math.max(0, c.attackCd - dtMs);
       c.replan = Math.max(0, c.replan - dtMs);
+      if (c.stun > 0) { c.stun -= dtMs; continue; }   // stunned enemies skip their turn
       if (c.side === 'enemy') this._enemyTurn(e, dt, hc);
       else this._allyTurn(e, dt, hc);
     }
@@ -267,7 +382,13 @@ export class Combat {
   // over the defender's sprite. `defEnt` is the defender entity (or hero descriptor).
   _resolveAttack(atk, def, atkSprite, defEnt, defIsHero) {
     if (!atk || !def) return;
+    // Evasion buff: the hero may dodge an incoming blow entirely.
+    if (defIsHero && def.dodge && rint(1, 100) <= def.dodge) {
+      this._floater(defEnt.sprite || defEnt, 'Dodge!', false, false, '#8fd0ff');
+      return;
+    }
     const roll = rollDamage(atk.weapon, atk.dmgBonus);
+    if (atk.bonusHit) { roll.hp += atk.bonusHit; this.nextHit = 0; }   // stab one-shot bonus
     const taken = mitigate(roll.hp, roll.type, def.armor || 0, def.resist || {},
                            { projectile: roll.projectile, shield: !!def.shield });
     def.hp = Math.max(0, def.hp - taken);

@@ -404,6 +404,14 @@ body.ek-rot-270 #overlay-root {
 .bp-item:hover { background: rgba(40,30,12,.7); border-color: #6d5a2a; }
 .bp-tag { font-size: 10px; text-transform: uppercase; color: #caa04a; letter-spacing: .5px; }
 .bp-tag.use { color: #7fd07f; }
+.hud-skillbar { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+  display: flex; gap: 6px; pointer-events: none; max-width: 96vw; flex-wrap: wrap; justify-content: center; }
+.skbtn { position: relative; overflow: hidden; pointer-events: auto; cursor: pointer;
+  min-width: 62px; height: 40px; padding: 2px 8px; font-family: inherit; font-size: 11px; font-weight: 600;
+  color: #fff5df; background: linear-gradient(#6d4e18, #4a340f); border: 1px solid #caa04a; border-radius: 8px; }
+.skbtn.off { opacity: .45; filter: grayscale(.5); }
+.sk-name { position: relative; z-index: 1; }
+.sk-cd { position: absolute; left: 0; bottom: 0; width: 100%; background: rgba(0,0,0,.55); }
 .hud-dim { font-size: 13px; color: #9c8f6f; font-style: italic; }
 .hud-close { align-self: flex-end; height: 40px; min-width: 110px; cursor: pointer; font-family: inherit;
   font-size: 15px; color: #fff5df; background: linear-gradient(#8a6522,#6d4e18); border: 1px solid #caa04a; border-radius: 9px; }

@@ -365,6 +365,42 @@ const invOk = inv.base.armor === 3 && inv.base.weaponId === 'iron_longsword' && 
               inv.eq.weaponId === 'iron_dagger' && inv.rogueBlocked && inv.eq.backpack.includes(201) &&
               inv.hpGain > 0 && inv.potionGone && inv.doll;
 
+// --- Skill/spell execution: a caster learns skills, the mana_surge passive raises the
+// pool, a fireball damages an enemy + spends mana + goes on cooldown (re-cast blocked),
+// heal restores HP, and a buff raises armor; the HUD skill bar renders
+// (deobf/SKILLS_EXEC_SPEC.md). ---
+const skills = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'C12_cave', pc: { charClass: 'WIZARD', attributes: { STR: 0, END: 0, AGI: 0, INT: 4, AWA: 0, PER: 0 } } });
+  window.__EK.setSkillRank('fireball', 2); window.__EK.setSkillRank('heal_wounds', 2);
+  window.__EK.setSkillRank('resilience', 2); window.__EK.setSkillRank('mana_surge', 3);
+  window.__EK.refillMana();
+  await new Promise(r => setTimeout(r, 500));
+  const foe = window.__EK.combatants().find(c => c.side === 'enemy' && !c.dead);
+  window.__EK.teleport(foe.cell.c + 1, foe.cell.r);
+  const before = window.__EK.skillDebug();
+  const at = (n) => (window.__EK.combatants().find(c => c.name === n && c.cell.c === foe.cell.c && c.cell.r === foe.cell.r) || { hp: 0 }).hp;
+  const foe0 = at(foe.name);
+  const cast1 = window.__EK.castSkill('fireball');
+  await new Promise(r => setTimeout(r, 60));
+  const foe1 = at(foe.name);
+  const after = window.__EK.skillDebug();
+  const cast2 = window.__EK.castSkill('fireball');   // on cooldown
+  window.__EK.togglePause();                          // freeze enemies for heal/buff checks
+  window.__EK.hurt(15); const low = window.__EK.hp();
+  window.__EK.castSkill('heal_wounds'); const healed = window.__EK.hp();
+  const armorBefore = window.__EK.skillDebug().armor;
+  window.__EK.castSkill('resilience'); const sk = window.__EK.skillDebug();
+  window.__EK.togglePause();
+  const barCount = document.querySelectorAll('#hud .hud-skillbar .skbtn').length;
+  return { maxMana: before.maxMana, fireballHit: foe1 < foe0, manaSpent: after.mana < before.mana,
+           cooldownSet: after.cooldowns.includes('fireball'), cast1: cast1.ok, cast2Blocked: cast2.ok === false,
+           healed: healed > low, armorBefore, armorAfter: sk.armor, buffs: sk.buffs, barCount };
+});
+console.log('skills:', skills);
+const skillsOk = skills.maxMana >= 23 && skills.fireballHit && skills.manaSpent && skills.cooldownSet &&
+                 skills.cast1 && skills.cast2Blocked && skills.healed && skills.armorAfter > skills.armorBefore &&
+                 skills.buffs >= 1 && skills.barCount >= 3;
+
 // --- Render polish: in a dark dungeon, fog-of-war hides unexplored tiles and reveals
 // more as the hero moves (explored grows, hidden shrinks, some tiles dim to 1/3),
 // roof/object tiles fade, torch + player lights exist; in the open world the FX is inert
@@ -388,11 +424,11 @@ const fxOk = fx.start.enabled && fx.start.fog && fx.start.hidden > 0 && fx.start
              fx.start.playerGlow && fx.moved.explored > fx.start.explored &&
              fx.moved.hidden < fx.start.hidden && fx.moved.dimmed > 0 && !fx.world.enabled;
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' inv:', invOk, ' render-fx:', fxOk);
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' inv:', invOk, ' skills:', skillsOk, ' render-fx:', fxOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && invOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && invOk && skillsOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, castable skills/spells (damage/heal/buff/passive), dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);

@@ -3,6 +3,8 @@
 // deobf/HUD_SPEC.md); styling is a placeholder EK theme until the exact GameHUD art is
 // matched. A DOM overlay in screen space, so it reflows tall↔wide with the viewport.
 
+import { SKILL_FX, knownActives } from './skills.js';
+
 const ATTR = [['STR', 'Strength'], ['END', 'Endurance'], ['AGI', 'Agility'],
               ['INT', 'Intellect'], ['AWA', 'Awareness'], ['PER', 'Personality']];
 
@@ -29,8 +31,10 @@ export class HUD {
         <button class="hud-btn" data-act="inv" title="Inventory">🎒</button>
         <button class="hud-btn" data-act="menu" title="Menu">☰</button>
       </div>
+      <div class="hud-skillbar"></div>
       <div class="hud-panel" style="display:none"></div>`;
     root.appendChild(this.el);
+    this.skillbar = this.el.querySelector('.hud-skillbar');
 
     this.$ = (s) => this.el.querySelector(s);
     this.panel = this.$('.hud-panel');
@@ -70,7 +74,35 @@ export class HUD {
     this.setBar('.hud-xp', m.xpProgress(), m.xpToNext() ? `XP ${m.xpToNext().toLocaleString()} to next` : 'MAX');
     this.$('.hud-lvl').textContent = `Lv ${m.level()}`;
     this.$('.hud-gold-n').textContent = m.gold.toLocaleString();
-    if (this.panel.style.display !== 'none') this.renderCharacter();
+    // re-render only the currently-open panel (not always Character)
+    if (this.panel.style.display !== 'none') {
+      if (this._panel === 'char') this.renderCharacter();
+      else if (this._panel === 'journal') this.renderJournal();
+    }
+    this.renderSkillBar();
+  }
+
+  // Wire the combat system + a cast callback for the skill bar.
+  setCombat(combat, castFn) { this.combat = combat; this.castFn = castFn; this._skillSig = null; }
+
+  // Skill/quickslot bar: the hero's learned active skills; tap to cast (greyed when on
+  // cooldown or out of mana). Rebuilt only when the castable set changes.
+  renderSkillBar() {
+    if (!this.skillbar || !this.model || !this.combat) return;
+    const ids = knownActives(this.model);
+    const sig = ids.map(id => `${id}:${this.combat.canCast(id) ? 1 : 0}:${Math.round(this.combat.cooldownFrac(id) * 8)}`).join('|');
+    if (sig === this._skillSig) return;
+    this._skillSig = sig;
+    if (!ids.length) { this.skillbar.innerHTML = ''; return; }
+    this.skillbar.innerHTML = ids.map(id => {
+      const fx = SKILL_FX[id], can = this.combat.canCast(id), cf = this.combat.cooldownFrac(id);
+      return `<button class="skbtn ${can ? '' : 'off'}" data-skill="${id}" title="${fx.name}">` +
+             `<span class="sk-name">${fx.name}</span>` +
+             (cf > 0 ? `<span class="sk-cd" style="height:${Math.round(cf * 100)}%"></span>` : '') +
+             `</button>`;
+    }).join('');
+    this.skillbar.querySelectorAll('.skbtn').forEach(b =>
+      b.onclick = () => { if (this.castFn) this.castFn(b.dataset.skill); });
   }
 
   setBar(sel, frac, text) {

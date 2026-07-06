@@ -2,6 +2,15 @@
 // and the recovered formulas (deobf/CHARACTER_STATS_SPEC.md, HUD_SPEC.md; data in
 // assets/data/creation.json). Health/mana/level/gold are what the HUD reads.
 
+import { skillParams } from './skills.js';
+
+// Normalise a skill reference (object from creation, or a bare id/name) to its id.
+export function skillIdOf(s) {
+  if (!s) return null;
+  if (typeof s === 'string') return s;
+  return s.icon || s.id || (s.name ? s.name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') : null);
+}
+
 export class PlayerModel {
   constructor(pc, C) {
     this.C = C;                                   // creation.json constants
@@ -31,7 +40,16 @@ export class PlayerModel {
     this.backpack = (pc.backpack || []).slice();
     this.quickslots = (pc.quickslots || [0, 0, 0, 0]).slice();
     this.itemDb = null;
+    // Per-skill trained rank (deobf/SKILLS_EXEC_SPEC.md). Seed the created starting
+    // ability at rank 1; advanced (trainer) skills are known via `trained`.
+    this.skillRanks = Object.assign({}, pc.skillRanks || {});
+    for (const s of this.skills) { const id = skillIdOf(s); if (id && !this.skillRanks[id]) this.skillRanks[id] = 1; }
   }
+
+  // --- Skills (ranks + passive folding) --------------------------------------------
+  skillRank(id) { return (this.skillRanks && this.skillRanks[id]) || (this.trained && this.trained.has(id) ? 1 : 0); }
+  knowsSkill(id) { return this.skillRank(id) > 0; }
+  setSkillRank(id, r) { this.skillRanks[id] = Math.max(0, r | 0); return this; }
 
   // --- Inventory (deobf/INVENTORY_SPEC.md) -----------------------------------------
   setItemDb(db) { this.itemDb = db || {}; return this; }
@@ -128,7 +146,14 @@ export class PlayerModel {
   }
 
   maxHP() { const c = this.cls(); return c.hp + c.hpPerLevel * this.level() + this.wornHp(); }
-  maxMana() { const c = this.cls(); const b = c.mana ? c.mana + c.manaPerLevel * this.level() : 0; return b ? b + this.wornMana() : 0; }
+  maxMana() {
+    const c = this.cls(); let b = c.mana ? c.mana + c.manaPerLevel * this.level() : 0;
+    if (!b) return 0;
+    b += this.wornMana();
+    const ms = this.skillRank('mana_surge');           // Mana Surge passive: +pool
+    if (ms) { const p = skillParams('mana_surge', ms); if (p) b += p.pool; }
+    return b;
+  }
   isCaster() { return this.cls().mana > 0; }
 
   // --- Combat-derived stats (deobf/COMBAT_SPEC.md, CHARACTER_STATS_SPEC.md) -------
@@ -181,7 +206,8 @@ export class PlayerModel {
              xp: this.xp, gold: this.gold, hp: this.hp, mana: this.mana,
              trained: [...this.trained], skillPoints: this.skillPoints,
              disciplines: [...this.disciplines],
-             equipment: this.equipment, backpack: this.backpack, quickslots: this.quickslots };
+             equipment: this.equipment, backpack: this.backpack, quickslots: this.quickslots,
+             skillRanks: this.skillRanks };
   }
   static fromJSON(o, C) { return new PlayerModel(o, C); }
 }
