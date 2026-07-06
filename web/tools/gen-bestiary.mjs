@@ -16,12 +16,21 @@ for (let i = 1; i < lines.length; i++) {
   const f = lines[i].replace(/\r$/, '').split('\t');
   const id = (f[0] || '').trim();
   if (!id) continue;
+  const t = (n) => (f[n] || '').trim();
+  const resist = t(7).replace(/"/g, '').split(',').map(x => parseInt(x, 10) || 0);
   idx[id] = {
-    class: (f[2] || '').trim(),
-    sprite: (f[11] || '').trim(),
-    faction: (f[15] || '').trim(),
-    gender: (f[16] || '').trim(),
-    portrait: (f[17] || '').trim(),
+    race: t(1), class: t(2),
+    minlevel: parseInt(t(3), 10) || 1, maxlevel: parseInt(t(4), 10) || (parseInt(t(3), 10) || 1),
+    weapon: t(5), armor: parseInt(t(6), 10) || 0,
+    // resist csv is Fire,Cold,Shock,Death,Toxic,Spirit (bestiary.txt order)
+    resist: { Fire: resist[0] || 0, Cold: resist[1] || 0, Shock: resist[2] || 0,
+              Death: resist[3] || 0, Toxic: resist[4] || 0, Spirit: resist[5] || 0 },
+    loot: t(10), size: parseFloat(t(12)) || 1, skillset: t(13).replace(/"/g, ''),
+    ai: t(14),
+    sprite: t(11),
+    faction: t(15),
+    gender: t(16),
+    portrait: t(17),
   };
 }
 writeFileSync(out, JSON.stringify(idx));

@@ -21,6 +21,7 @@ import { Dialogue } from './dialogue.js';
 import { spriteName, loadNpcSheet, makeNpc, bestiaryOf, npcPortrait } from './entity.js';
 import { PlayerModel } from './player.js';
 import { HUD } from './hud.js';
+import { Combat } from './combat.js';
 
 const HERO_SPEED = 140;                             // px/sec along the path (map-space)
 
@@ -135,6 +136,7 @@ class MapScene extends Phaser.Scene {
     this.gameState = { vars: {}, followers: new Set() };
     this.dialogue = new Dialogue(this, root);
     this.gameHud = new HUD(root);
+    this.combat = new Combat(this);
     this._firedTriggers = new Set();
 
     this.boot();
@@ -216,6 +218,8 @@ class MapScene extends Phaser.Scene {
         if (!Object.keys(this.bestiary).length) {
           try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
         }
+        if (!this.weapons) { try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {} }
+        if (!this.loot) { try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {} }
         if (!this._spriteSet) {
           try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
         }
@@ -247,6 +251,18 @@ class MapScene extends Phaser.Scene {
       setVar: (k, v) => { this.gameState.vars[k] = v; },
       getVar: (k) => this.gameState.vars[k],
       addFollower: (id) => this.gameState.followers.add(id),
+      // combat introspection / drivers for tests
+      combatants: () => this.entities.filter(e => e.cbt).map(e => ({
+        name: e.npc.name, side: e.cbt.side, hp: e.cbt.hp, maxHp: e.cbt.maxHp,
+        dead: !!e.cbt.dead, cell: { ...e.cell } })),
+      targetEnemy: () => { const f = this.entities.find(e => e.cbt && e.cbt.side === 'enemy' && !e.cbt.dead); if (f) this.combat.setTarget(f); return f ? f.npc.name : null; },
+      targetByName: (name, cell) => { const f = this.entities.find(e => e.cbt && e.cbt.side === 'enemy' && !e.cbt.dead && e.npc.name === name && (!cell || (e.cell.c === cell.c && e.cell.r === cell.r))); if (f) this.combat.setTarget(f); return !!f; },
+      hp: () => this.playerModel ? Math.ceil(this.playerModel.hp) : null,
+      teleport: (c, r) => { const g = this.nearestWalkable(c, r); this.heroCell = g; const p = this.toPx(g.c, g.r); if (this.hero) this.hero.setPosition(p.x, p.y); this.path = null; return g; },
+      paused: () => this.combat ? this.combat.paused : false,
+      togglePause: () => this.setPaused(this.combat.togglePause()),
+      // damage a named enemy directly (test helper)
+      hurtEnemy: (name, n) => { const e = this.entities.find(x => x.cbt && x.npc.name === name); if (e) { e.cbt.hp = Math.max(0, e.cbt.hp - n); if (e.cbt.hp <= 0) { e.cbt.dead = true; this.combat._onEnemyDeath(e); } } return e ? e.cbt.hp : null; },
       // test helper: open a conversation at a specific node (e.g. the tutorial camp's
       // sleep/rob/travel node) without having to walk into its trigger zone.
       startConv: (id, node, speaker) => this.dialogue.start(id, node, speaker),
@@ -281,6 +297,10 @@ class MapScene extends Phaser.Scene {
       if ([this.input.pointer1, this.input.pointer2].filter(q => q && q.isDown).length) return;
       this.handleTap(p.x, p.y);
     });
+    // Space bar toggles the real-time-with-pause freeze.
+    if (this.input.keyboard) this.input.keyboard.on('keydown-SPACE', () => {
+      if (this.combat) this.setPaused(this.combat.togglePause());
+    });
 
     this.relayout();
   }
@@ -303,6 +323,11 @@ class MapScene extends Phaser.Scene {
           if (this.isWalkable(c, r)) return { c, r };
         }
     return { c: c0, r: r0 };
+  }
+
+  // Cell -> pixel in the current mode's space (world = global cells, interior = local).
+  toPx(c, r) {
+    return this.mode === 'world' ? this.overworld.cellToPx(c, r) : cellToPx(c, r, this._map);
   }
 
   // Plan a path from start->goal in the current mode's cell space.
@@ -329,6 +354,9 @@ class MapScene extends Phaser.Scene {
     const local = this.mapLayer.getWorldTransformMatrix().applyInverse(sx, sy);
     const cell = this.mode === 'world'
       ? this.overworld.pxToCell(local.x, local.y) : pxToCell(local.x, local.y, this._map);
+    // Tapping a live enemy targets it — combat walks the hero into reach and attacks.
+    const foe = this.enemyNear(cell.c, cell.r, 1.8);
+    if (foe && this.combat) { this._pendingTalk = null; this.combat.setTarget(foe); return; }
     const e = this.entityNear(cell.c, cell.r, 1.6);
     if (e) {
       if (Math.hypot(e.cell.c - this.heroCell.c, e.cell.r - this.heroCell.r) <= 1.6) { this.talkTo(e); return; }
@@ -338,6 +366,7 @@ class MapScene extends Phaser.Scene {
       return;
     }
     this._pendingTalk = null;
+    if (this.combat) this.combat.clearTarget();       // tapping the ground disengages
     this.moveTo(sx, sy);
   }
 
@@ -369,6 +398,7 @@ class MapScene extends Phaser.Scene {
     if (this._dialogue) return;                      // gameplay pauses during dialogue
     if (this.control === 'joystick') this.stepJoystick(dtMs / 1000);
     else this.stepHero(dtMs / 1000);
+    if (this.combat) this.combat.tick(dtMs);         // real-time-with-pause combat
   }
 
   // Swap control scheme. Tap-to-move uses Phaser pointer input; the joystick uses its
@@ -382,6 +412,22 @@ class MapScene extends Phaser.Scene {
     document.querySelectorAll('#control-bar button').forEach(b =>
       b.setAttribute('aria-pressed', String(b.dataset.control === this.control)));
     return this.control;
+  }
+
+  // Reflect the combat pause state with a small banner over the game.
+  setPaused(on) {
+    let el = document.getElementById('ek-paused');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'ek-paused';
+      el.textContent = '❚❚ PAUSED';
+      el.style.cssText = 'position:fixed;top:8px;left:50%;transform:translateX(-50%);' +
+        'z-index:50;color:#ffd54a;font:600 14px system-ui;background:rgba(0,0,0,.55);' +
+        'padding:4px 12px;border-radius:12px;pointer-events:none';
+      document.getElementById('overlay-root').appendChild(el);
+    }
+    el.style.display = on ? 'block' : 'none';
+    return on;
   }
 
   // Wire the Settings panel: the gear opens/closes it; inside are the orientation
@@ -483,8 +529,10 @@ class MapScene extends Phaser.Scene {
       if (!key || this._entityGroups && !this._entityGroups.has(group)) continue; // group cleared mid-load
       const p = toPx(npc.c, npc.r);
       const s = makeNpc(this, this.planes.mid, key, p.x, p.y);
-      this.entities.push({ sprite: s, npc, cell: { c: npc.c, r: npc.r }, group,
-        rec: bestiaryOf(this.bestiary, npc) });
+      const e = { sprite: s, npc, cell: { c: npc.c, r: npc.r }, group, key,
+        rec: bestiaryOf(this.bestiary, npc) };
+      this.entities.push(e);
+      if (this.combat) this.combat.attach(e);        // enemies/allies get combat state
     }
     sortMid(this.planes.mid);
   }
@@ -514,6 +562,17 @@ class MapScene extends Phaser.Scene {
       const gc0 = ch.col * this.overworld.CW, gr0 = ch.row * this.overworld.CH;
       this.spawnEntities(ch.map.npcs, name, (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r));
     }
+  }
+
+  // The nearest live enemy combatant to cell (c,r), within `rad`.
+  enemyNear(c, r, rad = 1.8) {
+    let best = null, bestD = rad + 0.001;
+    for (const e of this.entities) {
+      if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
+      const d = Math.hypot(e.cell.c - c, e.cell.r - r);
+      if (d <= bestD) { bestD = d; best = e; }
+    }
+    return best;
   }
 
   // The interactable NPC (has a conversation) nearest to cell (c,r), within `rad`.
@@ -630,6 +689,8 @@ class MapScene extends Phaser.Scene {
       this.overworld = null;
     }
     try { this.bestiary = await (await fetch('assets/data/bestiary.json')).json(); } catch {}
+    try { this.weapons = await (await fetch('assets/data/weapons.json')).json(); } catch {}
+    try { this.loot = await (await fetch('assets/data/loot.json')).json(); } catch {}
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
     if (this._quickStarted) return;                  // a test already started the game

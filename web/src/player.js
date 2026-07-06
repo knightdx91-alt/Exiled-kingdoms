@@ -33,6 +33,26 @@ export class PlayerModel {
   maxMana() { const c = this.cls(); return c.mana ? c.mana + c.manaPerLevel * this.level() : 0; }
   isCaster() { return this.cls().mana > 0; }
 
+  // --- Combat-derived stats (deobf/COMBAT_SPEC.md, CHARACTER_STATS_SPEC.md) -------
+  // Melee damage bonus m(): dmgMul applied to level + STR. APPROX — the exact e()
+  // effective-level curve + SheetBonus equipment terms aren't modelled (no items yet).
+  dmgBonus() {
+    const mul = this.cls().dmgMul != null ? this.cls().dmgMul : 0.5;
+    return Math.max(0, Math.round(mul * (this.level() + (this.attributes.STR || 0))));
+  }
+  // Armor b(): max(STR − k, 0), k = 1/2/1/3 for Warrior/Rogue/Cleric/Wizard.
+  armor() {
+    const k = { WARRIOR: 1, ROGUE: 2, CLERIC: 1, WIZARD: 3 }[this.charClass] ?? 2;
+    return Math.max(0, (this.attributes.STR || 0) - k);
+  }
+  // No equipment/resistance system yet → player base resistances are 0.
+  resist() { return { Fire: 0, Cold: 0, Shock: 0, Death: 0, Toxic: 0, Spirit: 0 }; }
+  // Default starting weapon id per class (resolved against weapons.json).
+  weaponId() {
+    return { WARRIOR: 'iron_longsword', ROGUE: 'iron_dagger',
+             CLERIC: 'iron_mace', WIZARD: 'wand_1' }[this.charClass] || 'iron_dagger';
+  }
+
   // XP progress within the current level, 0..1 (1.0 at max level)
   xpProgress() {
     const t = this.C.xpTable, lv = this.level();

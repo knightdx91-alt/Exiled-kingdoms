@@ -258,11 +258,40 @@ const exitOk = exit.map === 'H10' && exit.mode === 'world' && exit.gold === 18 &
                exit.wantLetter === 10 && exit.fading === false &&
                !exit.followers.includes('adaon_tutorial');
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk);
+// --- Combat: enter a cave, stand next to a monster, target it, and confirm a real
+// melee exchange (enemy loses HP, hero takes damage), then a kill grants XP; pause
+// toggles. Interior map so entities are stable (world streaming despawns them). ---
+const combat = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'C12_cave', pc: { charClass: 'WARRIOR',
+    attributes: { STR: 4, END: 2, AGI: 0, INT: 0, AWA: 0, PER: 0 } } });
+  const t0 = Date.now();
+  while (!window.__EK.combatants().some(c => c.side === 'enemy' && !c.dead) && Date.now() - t0 < 8000)
+    await new Promise(r => setTimeout(r, 120));
+  const foe = window.__EK.combatants().find(c => c.side === 'enemy' && !c.dead);
+  window.__EK.teleport(foe.cell.c + 1, foe.cell.r);
+  const startHp = foe.maxHp, heroStart = window.__EK.hp();
+  window.__EK.targetByName(foe.name, foe.cell);
+  await new Promise(r => setTimeout(r, 5000));
+  const now = window.__EK.combatants().find(c => c.name === foe.name && c.cell.c === foe.cell.c && c.cell.r === foe.cell.r);
+  const before = window.__EK.stats().xp;
+  const alive = window.__EK.combatants().find(c => c.side === 'enemy' && !c.dead);
+  if (alive) window.__EK.hurtEnemy(alive.name, 99999);
+  await new Promise(r => setTimeout(r, 700));
+  const p1 = window.__EK.togglePause(), p2 = window.__EK.togglePause();
+  return { attached: window.__EK.combatants().length,
+           enemyHurt: !now || now.hp < startHp || now.dead,
+           heroHurt: window.__EK.hp() < heroStart,
+           xpGain: window.__EK.stats().xp - before, pause: p1 === true && p2 === false };
+});
+console.log('combat:', combat);
+const combatOk = combat.attached > 0 && combat.enemyHurt && combat.heroHurt &&
+                 combat.xpGain > 0 && combat.pause;
+
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
-  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
+  ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (attacks/mitigation/loot/XP), day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
   : 'VERIFY: FAIL');
 process.exit(ok ? 0 : 1);
