@@ -1,3 +1,4 @@
+import { npcPortrait } from './entity.js';
 // Dialogue reader — parses and runs EK conversation trees.
 //
 // A conversation .txt is tab-separated: index, type(Q|A), text, text_ES, GoTo,
@@ -105,7 +106,20 @@ export class Dialogue {
     for (const { verb, args } of parseOps(actStr)) {
       const v = verb.toLowerCase();
       const set = (n, val) => { this.state.vars[n] = val; };
-      if (v === 'startconversation') { this.start(args[0], args[1] || '1'); return 'jumped'; }
+      if (v === 'startconversation') {
+        // EK ScriptedAction case 51: StartConversation#<npcTag>,<conversationId>. The
+        // FIRST arg is the NPC that speaks (for the portrait/name); the SECOND is the
+        // conversation file, always started at node 1. (Was reversed → tutorial broke.)
+        const npcTag = args[0], conv = args[1] || args[0];
+        const ent = (this.scene.entities || []).find(e => e.npc &&
+          (e.npc.tag === npcTag || e.npc.name === npcTag || e.npc.spawn === npcTag || e.npc.conversation === conv));
+        const cap = (s) => (s || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const speaker = ent
+          ? { label: cap(ent.npc.name || npcTag), portrait: npcPortrait(ent.rec) }
+          : { label: cap(npcTag) };
+        this.start(conv, '1', speaker);
+        return 'jumped';
+      }
       else if (v === 'travel') { travel = { map: args[0], entry: args[1] }; }
       else if (v === 'npcfollow') this.state.followers.add(args[0]);
       else if (v === 'npcleaveparty' || v === 'npcstop' || v === 'npcstopfollowing')

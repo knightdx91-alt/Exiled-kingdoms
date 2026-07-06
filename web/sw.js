@@ -7,7 +7,7 @@
 // - fetch: cache-first, so once cached the game runs with no network at all.
 //   Bookmark the page (or install it) and it opens offline.
 
-const VERSION = 'ek-v19';
+const VERSION = 'ek-v20';
 const SHELL = `${VERSION}-shell`;
 const FULL  = `${VERSION}-full`;
 // App code (HTML/JS/CSS/manifest) is served network-first so new deploys show up
