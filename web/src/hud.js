@@ -469,12 +469,16 @@ export class HUD {
       if (r) return r;
       return (m.skills || []).some(s => (s.name || s) === sk.name) ? 1 : 0;
     };
+    const iconId = (sk) => sk.icon || (sk.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
     const skillRow = (sk) => {
       const r = rankOf(sk), maxL = (sk.levels && sk.levels.length) || 1;
       const tag = sk.type === 'P' ? ' (Passive)' : sk.type === 'A' ? ' (Active)' : '';
-      return `<div class="cw-skill ${r ? 'on' : ''}"><div class="cw-skl-h"><b>${sk.name}</b>` +
+      const ic = iconId(sk);
+      return `<div class="cw-skill ${r ? 'on' : ''}">` +
+        `<img class="cw-skl-ic" src="assets/ui/skills/${ic}.png" alt="" onerror="this.style.visibility='hidden'">` +
+        `<div class="cw-skl-body"><div class="cw-skl-h"><b>${sk.name}</b>` +
         `<span class="cw-skl-lv">${r ? `Lv ${r}/${maxL}` : '—'}</span></div>` +
-        `<div class="cw-skl-d">${sk.desc || ''}${tag}</div></div>`;
+        `<div class="cw-skl-d">${sk.desc || ''}${tag}</div></div></div>`;
     };
     const section = (title, arr) => arr && arr.length
       ? `<div class="cw-h">${title}</div>${arr.map(skillRow).join('')}` : '';
