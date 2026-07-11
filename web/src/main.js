@@ -1074,6 +1074,11 @@ class MapScene extends Phaser.Scene {
       this.load.atlas('projectiles', 'assets/sprites/projectiles/projectiles.png',
         'assets/sprites/projectiles/projectiles.json'); needLoad = true;
     }
+    // Warm the particle textures the spell effects use (assets/particle/*.p, ported by
+    // particles.js) so the first cast doesn't stutter. Keys match its `ptex_<file>` scheme.
+    for (const [k, f] of [['ptex_default_png', 'default.png'], ['ptex_onepixelwhite_png', 'onepixelwhite.png']]) {
+      if (!this.textures.exists(k)) { this.load.image(k, `assets/particle/${f}`); needLoad = true; }
+    }
     if (needLoad) {
       try { await new Promise((res) => { this.load.once('complete', res); this.load.start(); }); }
       catch { /* fall back to drawn markers / placeholder FX */ }

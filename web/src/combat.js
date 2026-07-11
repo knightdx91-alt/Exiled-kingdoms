@@ -9,6 +9,7 @@
 import { setFacing, playAttack } from './sprite.js';
 import { facingFor } from './move.js';
 import { SKILL_FX, skillParams, skillCooldown } from './skills.js';
+import { playParticleEffect, EFFECT_FOR_TYPE } from './particles.js';
 
 const AGGRO_TILES = 6;      // enemy detection radius
 const LEASH_TILES = 12;     // enemy gives up beyond this
@@ -238,13 +239,12 @@ export class Combat {
       Death: 'black_magic', Spirit: 'w_magic', Physical: 'force' };
   }
 
-  // Cast FX using the genuine EK projectile art: a bolt flies from the caster to the
-  // target cell, then bursts (scale-up + fade) at impact. `region` picks the atlas frame;
-  // `hex` tints the burst/fallback. APPROX (deobf/SKILLS_EXEC_SPEC.md §Deviations): EK
-  // layers a libgdx particle explosion (assets/particle/*.p) on top of this — that port
-  // is staged but not yet wired, so the sprite burst stands in for the particle cloud.
-  // Purely cosmetic; self-cleans via tweens.
-  _castFx(cell, hex, tiles, region) {
+  // Cast FX with the genuine EK art: a bolt of the type's real projectile sprite flies
+  // from the caster to the target cell, then on impact plays that type's real libgdx
+  // particle effect (assets/particle/*.p, ported by particles.js) — fire cloud, ice
+  // shards, healing motes, etc. `region` is the projectile atlas frame; `effect` the
+  // particle-file name; `hex` tints the ring fallback. Cosmetic; self-cleans.
+  _castFx(cell, hex, tiles, region, effect) {
     const s = this.s;
     if (!s || !s.add || !s.toPx || !s.world) return;
     const p = s.toPx(cell.c, cell.r);
@@ -254,23 +254,29 @@ export class Combat {
     const haveArt = region && s.textures && s.textures.exists('projectiles');
 
     const burst = () => {
+      // Real particle cloud (fire/ice/heal/...). Async load+play; falls back to the
+      // sprite/ring flash below if the effect file is missing.
+      let played = false;
+      if (effect) { try { playParticleEffect(s, effect, p.x, cy, col); played = true; } catch { /* fall back */ } }
       if (haveArt) {
         const spr = s.add.image(p.x, cy, 'projectiles', region).setScale(0.5).setAlpha(0.95);
         s.world.add(spr);
         s.tweens.add({ targets: spr, scale: Math.max(1.1, (tiles || 1) * 0.9), alpha: 0,
           duration: 320, ease: 'Quad.Out', onComplete: () => spr.destroy() });
       }
-      const rpx = Math.max(22, (tiles || 1) * 34);
-      const ring = s.add.circle(p.x, cy, rpx, col, haveArt ? 0.16 : 0.28)
-        .setStrokeStyle(3, col, 0.9).setScale(0.2);
-      s.world.add(ring);
-      s.tweens.add({ targets: ring, scale: 1.1, alpha: 0, duration: 360, ease: 'Cubic.Out',
-        onComplete: () => ring.destroy() });
-      if (!haveArt) {
-        const core = s.add.circle(p.x, cy, rpx * 0.5, col, 0.6);
-        s.world.add(core);
-        s.tweens.add({ targets: core, scale: 1.6, alpha: 0, duration: 240, ease: 'Quad.Out',
-          onComplete: () => core.destroy() });
+      if (!played || !haveArt) {
+        const rpx = Math.max(22, (tiles || 1) * 34);
+        const ring = s.add.circle(p.x, cy, rpx, col, haveArt ? 0.16 : 0.28)
+          .setStrokeStyle(3, col, 0.9).setScale(0.2);
+        s.world.add(ring);
+        s.tweens.add({ targets: ring, scale: 1.1, alpha: 0, duration: 360, ease: 'Cubic.Out',
+          onComplete: () => ring.destroy() });
+        if (!haveArt && !played) {
+          const core = s.add.circle(p.x, cy, rpx * 0.5, col, 0.6);
+          s.world.add(core);
+          s.tweens.add({ targets: core, scale: 1.6, alpha: 0, duration: 240, ease: 'Quad.Out',
+            onComplete: () => core.destroy() });
+        }
       }
     };
 
@@ -290,7 +296,7 @@ export class Combat {
   _castHeal(p) {
     const m = this.s.playerModel, before = m.hp;
     m.heal(p.heal);
-    if (this.s.heroCell) this._castFx(this.s.heroCell, '#7fd07f', 1);
+    if (this.s.heroCell) this._castFx(this.s.heroCell, '#7fd07f', 1, null, 'healing');
     this._floater(this.s.hero, `+${Math.round(m.hp - before)}`, false, false, '#7fd07f');
   }
 
@@ -298,7 +304,8 @@ export class Combat {
     const tgt = (this._target && this._target.cbt && !this._target.cbt.dead) ? this._target : this._nearestEnemy(hc, 8);
     if (!tgt) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
     const center = tgt.cell, radius = fx.radius || 1;
-    this._castFx(center, this._typeColor(fx.type), radius, Combat.PROJECTILE_REGION[fx.type]);
+    this._castFx(center, this._typeColor(fx.type), radius,
+      Combat.PROJECTILE_REGION[fx.type], EFFECT_FOR_TYPE[fx.type]);
     for (const e of this.s.entities.slice()) {
       if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
       if (this._dist(e.cell, center) > radius) continue;
@@ -342,7 +349,7 @@ export class Combat {
       this.buffs.push({ armor: p.armor || 0, resist: p.resist || null, dmgAdd: p.dmgAdd || 0,
         dodge: p.dodge || 0, until: this.s.time.now + (p.dur || 6) * 1000 });
     }
-    if (this.s.heroCell) this._castFx(this.s.heroCell, '#ffe9a8', 1);
+    if (this.s.heroCell) this._castFx(this.s.heroCell, '#ffe9a8', 1, null, 'casting');
     this._floater(this.s.hero, fx.name, false, false, '#ffe9a8');
   }
 
