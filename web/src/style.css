@@ -60,6 +60,15 @@ body.ek-rot-270 #overlay-root {
   background: rgba(10,12,16,.6); padding: 2px 7px; border-radius: 8px;
 }
 
+/* ---- FPS / diagnostics overlay (top-left, unobtrusive, monospace for stable widths) --- */
+#ek-perf {
+  position: fixed; left: 6px; top: env(safe-area-inset-top, 6px);
+  z-index: 70; pointer-events: none; display: none;
+  font: 600 11px/1.3 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #b7f7c2;
+  background: rgba(10,12,16,.6); padding: 2px 7px; border-radius: 8px; white-space: pre;
+}
+#ek-perf.ek-perf-warn { color: #ffb454; }
+
 /* ---- Free-floating joystick ---- */
 #stick-layer {
   position: fixed; inset: 0; z-index: 20; touch-action: none; pointer-events: auto;

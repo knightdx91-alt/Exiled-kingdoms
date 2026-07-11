@@ -123,6 +123,9 @@ class MapScene extends Phaser.Scene {
     this._pool = { floor: [], mid: [], roof: [] };
     this._active = { floor: [], mid: [], roof: [] };
     this._lastRefreshXY = null;
+    // Perf HUD: rendered/total counts the entity culler below fills in each refresh.
+    this._entityStats = { visible: 0, total: 0 };
+    this._perfNextAt = 0;
 
     // Movement control scheme: 'tap' (tap-to-move A*) or 'joystick' (free-floating).
     this.control = 'tap';
@@ -132,7 +135,7 @@ class MapScene extends Phaser.Scene {
     this.joystick = new Joystick(root);
     // Gameplay settings (mirror SettingsData): attackInteracts folds interact into the
     // attack button; showNumbersBars prints values on the HP/mana bars.
-    this.settings = { attackInteracts: true, showNumbersBars: false };
+    this.settings = { attackInteracts: true, showNumbersBars: false, showPerf: true };
     try {
       const s = JSON.parse(localStorage.getItem('ek_settings') || '{}');
       Object.assign(this.settings, s);
@@ -323,6 +326,16 @@ class MapScene extends Phaser.Scene {
       openChar: () => { this.gameHud.openCharWindow(); return !!this.gameHud.cw.innerHTML; },
       containers: () => this.containers.map(k => ({ cell: { ...k.cell }, items: k.data.items, opened: k.opened })),
       openNearestContainer: () => { const k = this.containerNear(this.heroCell.c, this.heroCell.r, 999); if (k) this.openContainer(k); return k ? k.data.items : null; },
+      // perf introspection: FPS + what's actually being drawn, for diagnosing slowdowns
+      perf: () => ({
+        fps: Math.round(this.game.loop.actualFps || 0),
+        frameMs: this.game.loop.delta || 0,
+        tiles: this._mapTiles || 0,
+        entities: { ...(this._entityStats || { visible: 0, total: 0 }) },
+        chunks: this.overworld ? [...this.overworld.loaded.keys()] : [],
+        cache: window.__EK && window.__EK.cache ? { ...window.__EK.cache } : null,
+      }),
+      setShowPerf: (on) => { this.settings.showPerf = !!on; },
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -459,6 +472,37 @@ class MapScene extends Phaser.Scene {
     if (this.gameHud && this.gameHud.attackHeld() && !this._loading) this.combat.heroSwing();
     if (this.combat) this.combat.tick(dtMs);         // real-time-with-pause combat
     if (this.renderFx) this.renderFx.update(dtMs);   // roof-fade / fog / light flicker
+    this.updatePerfHud(_t);
+  }
+
+  // On-screen FPS + diagnostics ("why is it dropping"): frame rate, tiles/NPCs actually
+  // being drawn this frame vs how many exist in the resident chunks, how many chunks are
+  // streamed in, and whether the game is fully cached for offline (vs still downloading/
+  // hitting the network). Toggled from Settings ("Show performance stats"); throttled to
+  // ~3/sec so the readout itself is not a perf cost.
+  updatePerfHud(t) {
+    if (!this.settings.showPerf) { if (this._perfEl) this._perfEl.style.display = 'none'; return; }
+    if (t < this._perfNextAt) return;
+    this._perfNextAt = t + 300;
+    let el = this._perfEl;
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'ek-perf';
+      document.getElementById('overlay-root').appendChild(el);
+      this._perfEl = el;
+    }
+    el.style.display = 'block';
+    const fps = Math.round(this.game.loop.actualFps || 0);
+    const frameMs = (this.game.loop.delta || 0).toFixed(1);
+    const es = this._entityStats || { visible: 0, total: 0 };
+    const chunks = this.overworld ? this.overworld.loaded.size : (this.mode === 'interior' ? 1 : 0);
+    const cache = window.__EK && window.__EK.cache;
+    const cacheTxt = !cache ? 'cache: n/a' : cache.complete ? 'offline-ready' :
+      cache.total ? `caching ${cache.done}/${cache.total}` : 'caching…';
+    el.textContent =
+      `${fps} fps · ${frameMs}ms  tiles ${this._mapTiles || 0}  npc ${es.visible}/${es.total}  ` +
+      `chunks ${chunks}  ${cacheTxt}`;
+    el.classList.toggle('ek-perf-warn', fps > 0 && fps < 30);
   }
 
   // Swap control scheme. Tap-to-move uses Phaser pointer input; the joystick uses its
@@ -521,6 +565,9 @@ class MapScene extends Phaser.Scene {
       ai.onchange = () => { this.settings.attackInteracts = ai.checked; persist(); }; }
     if (sn) { sn.checked = !!this.settings.showNumbersBars;
       sn.onchange = () => { this.settings.showNumbersBars = sn.checked; persist(); }; }
+    const sp = document.getElementById('set-showperf');
+    if (sp) { sp.checked = this.settings.showPerf !== false;
+      sp.onchange = () => { this.settings.showPerf = sp.checked; persist(); }; }
   }
 
   // The Settings gear stays reachable; nothing else to hide now that the movement
@@ -595,10 +642,17 @@ class MapScene extends Phaser.Scene {
     if (!npcs || !npcs.length) return;
     this._entityGroups = this._entityGroups || new Set();
     this._entityGroups.add(group);
+    // Load every distinct sprite sheet this batch needs IN PARALLEL. A town like
+    // Lannegar (G10, 45 NPCs) used to await loadNpcSheet one NPC at a time here, so
+    // every new sheet was a serial Phaser load-cycle round trip before the next NPC's
+    // load even started -- a multi-second stutter walking near it. Batch instead.
+    const names = new Set(npcs.map(npc => spriteName(this.bestiary, npc, this._spriteSet)));
+    const keyOf = new Map();
+    await Promise.all([...names].map(async (s) => keyOf.set(s, await loadNpcSheet(this, s))));
+    if (this._entityGroups && !this._entityGroups.has(group)) return; // group cleared mid-load
     for (const npc of npcs) {
-      const sprite = spriteName(this.bestiary, npc, this._spriteSet);
-      const key = await loadNpcSheet(this, sprite);
-      if (!key || this._entityGroups && !this._entityGroups.has(group)) continue; // group cleared mid-load
+      const key = keyOf.get(spriteName(this.bestiary, npc, this._spriteSet));
+      if (!key) continue;
       const p = toPx(npc.c, npc.r);
       const s = makeNpc(this, this.planes.mid, key, p.x, p.y);
       const e = { sprite: s, npc, cell: { c: npc.c, r: npc.r }, group, key,
@@ -1145,6 +1199,31 @@ class MapScene extends Phaser.Scene {
         n++;
       }
     this._mapTiles = n;
+
+    // Cull NPC/container sprites to the same viewport window as the tiles above.
+    // Unlike tiles (pooled to the viewport already), every NPC in every resident chunk
+    // used to stay a fully-animated, always-rendered Phaser sprite for as long as its
+    // chunk was streamed in -- fine out in the wilds, but Lannegar (G10) alone spawns
+    // 45 of them, and up to 4 chunks can be resident at once near a corner. That's 100+
+    // live sprites drawing + animating every frame regardless of whether the camera can
+    // even see them. Hide (and pause the animation of) whatever's outside the window;
+    // this is the actual fix for "FPS drops so much I can't move" near town.
+    let visEntities = 0;
+    for (const e of this.entities) {
+      const s = e.sprite;
+      if (!s || !s.scene) continue;
+      const vis = s.x >= minX && s.x <= maxX && s.y >= minY && s.y <= maxY;
+      if (vis !== s.visible) { s.setVisible(vis); if (s.anims) { if (vis) s.anims.resume(); else s.anims.pause(); } }
+      if (vis) visEntities++;
+    }
+    this._entityStats = { visible: visEntities, total: this.entities.length };
+    for (const k of this.containers) {
+      const s = k.sprite;
+      if (!s || !s.scene) continue;
+      const vis = s.x >= minX && s.x <= maxX && s.y >= minY && s.y <= maxY;
+      if (vis !== s.visible) s.setVisible(vis);
+    }
+
     sortMid(this.planes.mid);
     this._lastRefreshXY = { x: cx, y: cy };
   }
@@ -1181,7 +1260,8 @@ class MapScene extends Phaser.Scene {
       this.renderFx.update(0);                        // paint initial fog/roof-fade now
       this.fitMap();
       this._loading = false;
-      this.spawnEntities(map.npcs, 'interior', (c, r) => cellToPx(c, r, map));
+      this.spawnEntities(map.npcs, 'interior', (c, r) => cellToPx(c, r, map))
+        .then(() => { this._entityStats = { visible: this.entities.length, total: this.entities.length }; });
       this.spawnContainers(map.containers, 'interior', (c, r) => cellToPx(c, r, map));
     } catch (err) {
       console.warn('area load failed:', name, err);
