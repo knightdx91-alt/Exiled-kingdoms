@@ -31,8 +31,13 @@ const tintOf = (c) => (Math.round(c.r * 255) << 16) |
 const rint = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 
 const ORIENTS = [0, 90, 180, 270];
-const TUTORIAL_MAP = 'I10_tutorial';                // Adaon's road — where a new game begins
+const TUTORIAL_MAP = 'I10_tutorial';                // Adaon's road — the old (now-skipped) tutorial
 const DEV_START_MAP = 'H10';                        // Lannegar Valley — test/quick-start entry
+// New games skip the playable tutorial and open with the "wake up robbed" beat in
+// Lannegar Valley (H10), at the same east-edge entry the old tutorial's Travel# used.
+// The exact post-tutorial state is set on start — see deobf/TUTORIAL_SKIP_SPEC.md.
+const INTRO_MAP = 'H10';
+const INTRO_ENTRY = '0001';
 
 // Resolve a spawn point on `map` for a requested entry id: the named entry, else map
 // centre. When `preferDefault` is set (scripted Travel#, which may name an entry our
@@ -248,7 +253,7 @@ class MapScene extends Phaser.Scene {
           { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1,
             attributes: { STR: 0, END: 0, AGI: 0, INT: 0, AWA: 0, PER: 0 }, startingSkill: null },
           opts.pc || {});
-        await this.startNewGame(pc, opts.map || DEV_START_MAP);
+        await this.startNewGame(pc, opts.map || DEV_START_MAP, { intro: opts.intro === true });
         return { name: this._mapName, mode: this.mode };
       },
       player: () => this.player ? { ...this.player } : null,
@@ -1060,9 +1065,12 @@ class MapScene extends Phaser.Scene {
     }
   }
 
-  // Apply a created character and drop into the tutorial. `pc` is the PlayerCreation
+  // Apply a created character and begin play. `pc` is the PlayerCreation
   // (name/gender/charClass/portrait/difficulty). Persisted so the run survives reload.
-  async startNewGame(pc, startMap = TUTORIAL_MAP) {
+  // By default a new game opens with the "wake up robbed" intro in Lannegar Valley
+  // (the playable tutorial is skipped); `opts.intro` false (tests/dev) skips the beat.
+  async startNewGame(pc, startMap = INTRO_MAP, opts = {}) {
+    const intro = opts.intro !== false && startMap === INTRO_MAP;
     this.player = pc;
     this.playerModel = new PlayerModel(pc, this._creation || {});
     this.playerModel.setItemDb(this.items || {});
@@ -1078,11 +1086,30 @@ class MapScene extends Phaser.Scene {
     this.charSpriteFile = pc.gender === 'FEMALE'
       ? 'assets/sprites/female_knight.png' : 'assets/sprites/male_knight.png';
     this.gameHud.charSpriteSrc = this.charSpriteFile;   // paper-doll centre in CharacterWindow
-    await this.goArea(startMap, startMap === TUTORIAL_MAP ? '0001' : null);
+    const entry = startMap === TUTORIAL_MAP ? '0001' : (intro ? INTRO_ENTRY : null);
+    await this.goArea(startMap, entry);
     this.setChromeHidden(false);                      // game is playing -> show tap toggle
     this.gameHud.setModel(this.playerModel);
     this.gameHud.show();
+    if (intro) this.playIntro(pc);                    // wake-up-robbed opening
     try { await this.saveAuto(startMap); } catch {}
+  }
+
+  // The "wake up robbed" opening that replaces the playable tutorial. Sets the EXACT
+  // state the old tutorial produced (deobf/TUTORIAL_SKIP_SPEC.md) — in code, so it holds
+  // even if the player dismisses the monologue — then plays the narration. The traced
+  // set is the whole tutorial payload: want_letter_back=10, PlayerRobbed (gold 18),
+  // Adaon not in party.
+  playIntro(pc) {
+    this.gameState.vars.want_letter_back = 10;        // quest "A mysterious letter" @ robbed
+    this.gameState.followers.delete('adaon_tutorial'); // he robbed you and left
+    this.dialogue._robPlayer();                        // PlayerRobbed# → gold 18
+    if (this.gameHud) this.gameHud.update(true);
+    const label = (pc.name || 'You');
+    const portrait = this.playerModel && this.playerModel.portrait != null
+      ? `assets/portraits/${pc.gender === 'FEMALE' ? 'female' : 'male'}/${this.playerModel.portrait}.png` : null;
+    // Start on the next tick so the scene/HUD have settled before the box opens.
+    setTimeout(() => this.dialogue.start('intro_wakeup', '1', { label, portrait }), 350);
   }
 
   // Cast a learned skill/spell (deobf/SKILLS_EXEC_SPEC.md).

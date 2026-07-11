@@ -263,6 +263,29 @@ const exitOk = exit.map === 'H10' && exit.mode === 'world' && exit.gold === 18 &
                exit.wantLetter === 10 && exit.fading === false &&
                !exit.followers.includes('adaon_tutorial');
 
+// --- Intro (tutorial skip): a NEW game opens with the "wake up robbed" beat in Lannegar
+// Valley (H10) — the wake-up monologue plays and the EXACT traced tutorial state is set
+// (want_letter_back=10, gold 18, Adaon not in party). See deobf/TUTORIAL_SKIP_SPEC.md. ---
+const intro = await page.evaluate(async () => {
+  await window.__EK.quickStart({ map: 'H10', intro: true, pc: { name: 'Kael', gender: 'MALE' } });
+  await new Promise(r => setTimeout(r, 700));
+  const first = window.__EK.dlg();
+  // walk the monologue to the end so the box closes (don't leak an open dialogue).
+  let steps = 0;
+  while (window.__EK.dlg() && steps < 12) {
+    const d = window.__EK.dlg(); window.__EK.dlgChoose(Math.max(0, d.choices.length - 1));
+    steps++; await new Promise(r => setTimeout(r, 100));
+  }
+  return { map: window.__EK.map().name, mode: window.__EK.map().mode,
+           dlgName: first && first.name, dlgText: first && first.text, closed: !window.__EK.dlg(),
+           wantLetter: window.__EK.getVar('want_letter_back'), gold: window.__EK.stats().gold,
+           followers: window.__EK.followers() };
+});
+console.log('intro:', intro);
+const introOk = intro.map === 'H10' && intro.mode === 'world' && intro.dlgName === 'Kael' &&
+                /wake/i.test(intro.dlgText || '') && intro.wantLetter === 10 && intro.gold === 18 &&
+                intro.closed && !intro.followers.includes('adaon_tutorial');
+
 // --- Combat: enter a cave, stand next to a monster, target it, and confirm a real
 // melee exchange (enemy loses HP, hero takes damage), then a kill grants XP; pause
 // toggles. Interior map so entities are stable (world streaming despawns them). ---
@@ -442,9 +465,9 @@ const fxOk = fx.start.enabled && fx.start.fog && fx.start.hidden > 0 && fx.start
              fx.start.playerGlow && fx.moved.explored > fx.start.explored &&
              fx.moved.hidden < fx.start.hidden && fx.moved.dimmed > 0 && !fx.world.enabled;
 
-console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' inv:', invOk, ' skills:', skillsOk, ' render-fx:', fxOk);
+console.log('start/creation:', { titleOk, playerOk }, ' joystick:', stickOk, ' dialogue:', dlgOk, ' hud:', hudOk, ' tutorial-exit:', exitOk, ' intro:', introOk, ' combat:', combatOk, ' quests:', questOk, ' hero:', heroClassOk, ' inv:', invOk, ' skills:', skillsOk, ' render-fx:', fxOk);
 const ok = errors.length === 0 && titleOk && playerOk && hudOk && orientOk && mapOk && heroOk && lightOk &&
-           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && combatOk && questOk && heroClassOk && invOk && skillsOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
+           zoomOk && moveOk && stickOk && transOk && dlgOk && exitOk && introOk && combatOk && questOk && heroClassOk && invOk && skillsOk && fxOk && cached.failed === 0 && offlineBooted && saveOk;
 await browser.close(); server.close();
 console.log(ok
   ? `VERIFY: PASS — title + character creation, walking hero (tap-to-move OR free-floating joystick, A* collision) across a 151-map seamless world with arch transitions, on-map NPCs + dialogue reader + player model & HUD, real-time-with-pause combat (hold-to-attack button + attack/interact toggle, mitigation/loot/XP), quest journal + persistent world state, Hero class + skill trainers, items/equipment + inventory screen, castable skills/spells (damage/heal/buff/passive), dungeon fog-of-war + roof-fade + torch lights, day/night, pinch-zoom, 4 orientations, full-game cached offline, saves round-trip`
