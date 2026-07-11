@@ -240,6 +240,7 @@ class MapScene extends Phaser.Scene {
         if (!this._creation) {
           try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
         }
+        await this.loadIconSets();
         const pc = Object.assign(
           { name: 'Tester', gender: 'MALE', charClass: 'WARRIOR', portrait: null, difficulty: 1,
             attributes: { STR: 0, END: 0, AGI: 0, INT: 0, AWA: 0, PER: 0 }, startingSkill: null },
@@ -637,16 +638,30 @@ class MapScene extends Phaser.Scene {
   // real crate/chest art (unavailable without the APK atlas) — logged in §3.
   async spawnContainers(list, group, toPx, off = { c: 0, r: 0 }) {
     if (!list || !list.length) return;
-    if (!this.textures.exists('container_icon')) {
+    // Resolve each container's real object icon (assets/ui/objects/<icon>.png) when it's
+    // been extracted; otherwise use the loot marker. Queue every needed texture, load in
+    // one batch, then place the sprites.
+    const iconKey = (data) => (data.icon && this._objIcons && this._objIcons.has(data.icon))
+      ? `obj_${data.icon}` : 'container_icon';
+    const toLoad = new Map();
+    if (!this.textures.exists('container_icon')) toLoad.set('container_icon', 'assets/sprites/loot.png');
+    for (const data of list) {
+      const k = iconKey(data);
+      if (k !== 'container_icon' && !this.textures.exists(k)) toLoad.set(k, `assets/ui/objects/${data.icon}.png`);
+    }
+    if (toLoad.size) {
       try {
-        this.load.image('container_icon', 'assets/sprites/loot.png');
+        for (const [k, url] of toLoad) this.load.image(k, url);
         await new Promise((res) => { this.load.once('complete', res); this.load.start(); });
       } catch { /* fall back to a drawn marker below */ }
     }
     for (const data of list) {
       const p = toPx(data.c, data.r);
+      const key = iconKey(data);
       let s;
-      if (this.textures.exists('container_icon')) {
+      if (this.textures.exists(key)) {
+        s = this.add.image(p.x, p.y, key).setOrigin(0.5, 0.9);
+      } else if (this.textures.exists('container_icon')) {
         s = this.add.image(p.x, p.y, 'container_icon').setOrigin(0.5, 0.9);
       } else {
         s = this.add.rectangle(p.x, p.y - 10, 20, 16, 0x8a5a22).setStrokeStyle(2, 0xd8b56a).setOrigin(0.5, 1);
@@ -851,11 +866,24 @@ class MapScene extends Phaser.Scene {
     this.gameHud.skillCat = this.skillCat;
     try { this._spriteSet = new Set(await (await fetch('assets/sprites/index.json')).json()); } catch { this._spriteSet = new Set(); }
     try { this._creation = await (await fetch('assets/data/creation.json')).json(); } catch {}
+    await this.loadIconSets();
     if (this._quickStarted) return;                  // a test already started the game
     this.setChromeHidden(true);                       // hide the tap toggle behind the title UI
     const pc = await startFlow(document.getElementById('overlay-root'));
     this.setChromeHidden(false);
     await this.startNewGame(pc);
+  }
+
+  // Load the sets of item/object icon names that were extracted from the game atlases
+  // (tools/gen-icons.mjs → assets/ui/items|objects). Absent until the atlas is extracted,
+  // in which case the sets stay empty and the UI falls back to text / the loot marker.
+  async loadIconSets() {
+    if (this._itemIcons) return;                     // once
+    try { this._itemIcons = new Set(Object.keys(await (await fetch('assets/ui/items/manifest.json')).json())); }
+    catch { this._itemIcons = new Set(); }
+    try { this._objIcons = new Set(Object.keys(await (await fetch('assets/ui/objects/manifest.json')).json())); }
+    catch { this._objIcons = new Set(); }
+    this.gameHud.itemIcons = this._itemIcons;
   }
 
   // Apply a created character and drop into the tutorial. `pc` is the PlayerCreation

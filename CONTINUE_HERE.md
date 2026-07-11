@@ -321,7 +321,7 @@ web/                Track B — Phaser 3 web rebuild (the product)
                     sprite.js, entity.js (NPCs), dialogue.js, char-create.js,
                     joystick.js, saves.js
   web/tools/        tmx2json, gen-manifest, gen-bestiary, gen-skills, gen-creation,
-                    gen-world-grid
+                    gen-world-grid, gen-icons (item/object icons), extract-skin (atlas slicer)
   web/assets/       tmx/ (151 maps), sprites/, portraits/, conversations/, ui/,
                     data/ (bestiary, skills, creation, world-grid)
   web/verify.mjs    end-to-end headless-Chrome check (keep green)

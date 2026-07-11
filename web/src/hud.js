@@ -74,6 +74,16 @@ export class HUD {
   // Whether the attack button is currently held (polled by the scene's update loop).
   attackHeld() { return !!this._attackHeld; }
 
+  // The real item icon (assets/ui/items/<icon>.png, extracted by tools/gen-icons.mjs)
+  // when it exists, else a text fallback. `itemIcons` is the set of extracted icon names
+  // wired by the scene; empty until the atlas is extracted (then everything upgrades to art).
+  itemIconHtml(it, cls, fallbackText) {
+    const ic = it && it.icon;
+    if (ic && this.itemIcons && this.itemIcons.has(ic))
+      return `<img class="${cls}" src="assets/ui/items/${ic}.png" alt="" draggable="false">`;
+    return `<span class="${cls}-txt">${fallbackText || ''}</span>`;
+  }
+
   setModel(model) {
     this.model = model;
     this.closeCW();                 // a fresh character never inherits an open window
@@ -136,8 +146,9 @@ export class HUD {
     this.quickslots.innerHTML = usable.map(id => {
       const it = items[id];
       const n = this.model.backpack.filter(x => x === id).length;
-      return `<button class="qslot" data-id="${id}" title="${(it && it.name) || id}">` +
-             `<span class="qs-name">${((it && it.name) || `#${id}`).split(' ')[0]}</span>` +
+      const name = (it && it.name) || `#${id}`;
+      return `<button class="qslot" data-id="${id}" title="${name}">` +
+             this.itemIconHtml(it, 'qs-ic', name.split(' ')[0]) +
              (n > 1 ? `<span class="qs-n">${n}</span>` : '') + `</button>`;
     }).join('');
     this.quickslots.querySelectorAll('.qslot').forEach(b =>
@@ -269,8 +280,9 @@ export class HUD {
     const eqSlot = ([slot, label]) => {
       const id = m.equipment[slot];
       const on = this._sel && this._sel.area === 'equip' && this._sel.key === slot;
-      return `<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="equip" data-key="${slot}" title="${label}">` +
-             `<span class="cw-slot-t">${label}</span><span class="cw-slot-n">${nameOf(id)}</span></button>`;
+      const body = id ? this.itemIconHtml(items[id], 'cw-slot-ic', nameOf(id)) : `<span class="cw-slot-n">${nameOf(id)}</span>`;
+      return `<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="equip" data-key="${slot}" title="${id ? nameOf(id) : label}">` +
+             `<span class="cw-slot-t">${label}</span>${body}</button>`;
     };
     const doll = `
       <div class="cw-doll-row">${CW.row1.map(eqSlot).join('')}</div>
@@ -294,8 +306,9 @@ export class HUD {
     for (let i = 0; i < 20; i++) {
       const id = m.backpack[i] || 0;
       const on = this._sel && this._sel.area === 'backpack' && this._sel.key === i;
-      bpSlots.push(`<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="backpack" data-key="${i}">` +
-        `<span class="cw-slot-n">${nameOf(id)}</span></button>`);
+      const body = id ? this.itemIconHtml(items[id], 'cw-slot-ic', nameOf(id)) : `<span class="cw-slot-n">${nameOf(id)}</span>`;
+      bpSlots.push(`<button class="cw-slot ${id ? 'filled' : ''} ${on ? 'sel' : ''}" data-area="backpack" data-key="${i}" title="${id ? nameOf(id) : ''}">` +
+        body + `</button>`);
     }
 
     this.cw.innerHTML = `

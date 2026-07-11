@@ -24,30 +24,38 @@ if (!fs.existsSync(`${UI}/${PNG}`))
   fs.copyFileSync(path.join(path.dirname(ATLAS), PNG), `${UI}/${PNG}`);
 const atlas = fs.readFileSync(ATLAS, 'utf8');
 
-// --- parse the libGDX atlas (CRLF-safe): a non-indented no-colon line is a region name;
-//     indented `key: v0, v1, …` lines are its properties; header lines are ignored. ---
+// --- parse the libGDX atlas (CRLF-safe). A non-indented no-colon line is either a PAGE
+//     image (ends .png → starts a new page) or a REGION name; indented `key: v…` lines
+//     are that region's properties. Supports multi-page atlases (items.pack has several
+//     pages) and both the old (xy/size) and new (bounds) region formats + rotate. ---
 const regions = {};
-let cur = null;
+let cur = null, curPage = null;
 for (const raw of atlas.split('\n')) {
   const line = raw.replace(/\r$/, '');
-  if (!line) continue;
+  if (!line.trim()) { continue; }
   if (/^\S/.test(line) && !line.includes(':')) {
-    cur = line === 'uiskin.png' ? null : line;
-    if (cur) regions[cur] = {};
+    if (/\.png$/i.test(line)) { curPage = line; cur = null; continue; }   // page image
+    cur = line; regions[cur] = { page: curPage, rotate: false, split: null };
     continue;
   }
-  const m = line.match(/^\s+([a-z]+):\s*(.+)$/);
-  if (m && cur) regions[cur][m[1]] = m[2].split(',').map(s => +s.trim());
+  const m = line.match(/^\s+([a-zA-Z]+):\s*(.+)$/);
+  if (!m || !cur) continue;
+  const k = m[1], v = m[2].trim();
+  if (k === 'rotate') regions[cur].rotate = (v === 'true' || v === '90');
+  else regions[cur][k] = v.split(',').map(s => +s.trim());
 }
-const list = Object.entries(regions)
-  .filter(([name, v]) => v.xy && v.size && (!FILTER || FILTER.test(name)))
-  .map(([name, v]) => ({
-    name, x: v.xy[0], y: v.xy[1], w: v.size[0], h: v.size[1],
-    split: v.split || null,                          // [left, right, top, bottom]
-  }));
-console.log(`atlas: ${list.length} regions (${list.filter(r => r.split).length} 9-patch)`);
+// Normalise xy/size — the newer format packs both into `bounds: x,y,w,h`.
+const list = Object.entries(regions).map(([name, v]) => {
+  let x, y, w, h;
+  if (v.bounds) { [x, y, w, h] = v.bounds; }
+  else if (v.xy && v.size) { [x, y] = v.xy; [w, h] = v.size; }
+  else return null;
+  return { name, page: v.page, x, y, w, h, rotate: !!v.rotate, split: v.split || null };
+}).filter(r => r && (!FILTER || FILTER.test(r.name)));
+console.log(`atlas: ${list.length} regions across ${new Set(list.map(r => r.page)).size} page(s)` +
+            ` (${list.filter(r => r.split).length} 9-patch)`);
 
-// --- serve web/ and crop each region from uiskin.png via canvas ---
+// --- serve web/ and crop each region from its page image via canvas ---
 const ROOT = path.resolve('.');
 const server = http.createServer((req, res) => {
   const f = path.join(ROOT, decodeURIComponent(req.url.split('?')[0]));
@@ -57,29 +65,51 @@ const server = http.createServer((req, res) => {
 await new Promise(r => server.listen(0, r));
 const port = server.address().port;
 
-const srcUrl = `http://localhost:${port}/${UI}/${PNG}`;
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const page = await browser.newPage();
-await page.goto(srcUrl);
-const pngs = await page.evaluate(async ({ src, list }) => {
-  const img = new Image(); img.src = src;
-  await img.decode();
-  const out = {};
-  for (const r of list) {
-    const c = document.createElement('canvas'); c.width = r.w; c.height = r.h;
-    const ctx = c.getContext('2d');
-    ctx.drawImage(img, r.x, r.y, r.w, r.h, 0, 0, r.w, r.h);
-    out[r.name] = c.toDataURL('image/png').split(',')[1];
-  }
-  return out;
-}, { src: srcUrl, list });
+const pngs = {};
+const byPage = {};
+for (const r of list) (byPage[r.page || PNG] = byPage[r.page || PNG] || []).push(r);
+const tmp = [];
+for (const [pageName, rs] of Object.entries(byPage)) {
+  const localPng = `${UI}/__page_${path.basename(pageName)}`;
+  fs.copyFileSync(path.join(path.dirname(ATLAS), pageName), localPng);
+  tmp.push(localPng);
+  const src = `http://localhost:${port}/${localPng}`;
+  await page.goto(src);
+  const out = await page.evaluate(async ({ src, rs }) => {
+    const img = new Image(); img.src = src; await img.decode();
+    const res = {};
+    for (const r of rs) {
+      // packed size in the atlas; when rotated the source is stored turned 90°.
+      const pw = r.w, ph = r.h;
+      const ow = r.rotate ? ph : pw, oh = r.rotate ? pw : ph;   // upright (original) size
+      const c = document.createElement('canvas'); c.width = ow; c.height = oh;
+      const ctx = c.getContext('2d');
+      if (r.rotate) {
+        ctx.translate(ow / 2, oh / 2); ctx.rotate(-Math.PI / 2);
+        ctx.drawImage(img, r.x, r.y, pw, ph, -pw / 2, -ph / 2, pw, ph);
+      } else {
+        ctx.drawImage(img, r.x, r.y, pw, ph, 0, 0, ow, oh);
+      }
+      res[r.name] = c.toDataURL('image/png').split(',')[1];
+    }
+    return res;
+  }, { src, rs });
+  Object.assign(pngs, out);
+}
 await browser.close(); server.close();
 
-const manifest = {};
+// Merge into any existing manifest so several packs can target one dir (e.g. objects).
+const manifest = fs.existsSync(`${UI}/manifest.json`)
+  ? JSON.parse(fs.readFileSync(`${UI}/manifest.json`, 'utf8')) : {};
 for (const r of list) {
+  if (!pngs[r.name]) continue;
   fs.writeFileSync(`${UI}/${r.name}.png`, Buffer.from(pngs[r.name], 'base64'));
-  manifest[r.name] = { w: r.w, h: r.h, split: r.split };
+  const ow = r.rotate ? r.h : r.w, oh = r.rotate ? r.w : r.h;
+  manifest[r.name] = { w: ow, h: oh, split: r.split };
 }
 fs.writeFileSync(`${UI}/manifest.json`, JSON.stringify(manifest, null, 0));
-fs.rmSync(`${UI}/${PNG}`, { force: true });          // sheet no longer needed once cropped
-console.log(`wrote ${list.length} region PNGs + ${UI}/manifest.json`);
+for (const t of tmp) fs.rmSync(t, { force: true });   // page sheets no longer needed
+fs.rmSync(`${UI}/${PNG}`, { force: true });
+console.log(`wrote ${Object.keys(manifest).length} region PNGs + ${UI}/manifest.json`);
