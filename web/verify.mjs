@@ -365,9 +365,12 @@ const inv = await page.evaluate(async () => {
   const potionGone = !window.__EK.inventoryDebug().backpack.includes(5000);
   document.querySelector('#hud .hud-portrait').click();   // portrait opens the CharacterWindow
   await new Promise(r => setTimeout(r, 80));
-  const panel = document.querySelector('#hud .cw').textContent;
+  // innerHTML so we see either the item NAME (icon-less fallback) or its real icon src
+  // (assets/ui/items/<icon>.png) — the paper-doll shows equipped gear either way.
+  const panel = document.querySelector('#hud .cw').innerHTML;
   return { base, gotBackpack, eq, rogueBlocked, hpGain, potionGone,
-           doll: /Leather Cuirass/.test(panel) && /Iron Dagger/.test(panel) && /Armor/.test(panel) };
+           doll: (/Leather Cuirass/.test(panel) || /armor_leather_chest1\.png/.test(panel)) &&
+                 (/Iron Dagger/.test(panel) || /weapon_dagger\.png/.test(panel)) && /Armor/.test(panel) };
 });
 console.log('inventory:', inv);
 const invOk = inv.base.armor === 3 && inv.base.weaponId === 'iron_longsword' && inv.base.maxHP === 51 &&
