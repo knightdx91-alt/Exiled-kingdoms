@@ -329,6 +329,20 @@ body.ek-rot-270 #overlay-root {
 .sw-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; }
 .sw-actions .cc-btn { flex: 1; height: 46px; }
 .sw-train:disabled { opacity: .55; }
+/* SkillInfoWindow (Details popup) */
+.sw-info-back { position: fixed; inset: 0; z-index: 55; display: flex; align-items: safe center;
+  justify-content: center; padding: 16px; overflow-y: auto; background: rgba(6,5,3,.6); pointer-events: auto; }
+.sw-info { width: min(92vw, 560px); margin: auto; padding: 16px 18px 18px; color: #3a2c18;
+  background: url(../assets/ui/paperbg.png) center/cover no-repeat #cdb886;
+  border: 3px solid #241a0c; outline: 2px solid #7a5a2a; outline-offset: -6px; border-radius: 3px;
+  display: flex; flex-direction: column; gap: 10px; }
+.sw-info-head { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #7a5a2a; padding-bottom: 8px; }
+.sw-info-icon { width: 52px; height: 52px; image-rendering: auto; background: #d9c39a;
+  border: 2px solid #6a4a24; border-radius: 3px; padding: 2px; }
+.sw-info-name { font-size: 21px; font-weight: 700; color: #4a3320; }
+.sw-info-desc { font-size: 15px; line-height: 1.45; color: #3a2c18; }
+.sw-info-lvl { font-size: 14px; line-height: 1.4; }
+.sw-info-close { height: 44px; margin-top: 4px; }
 @media (max-aspect-ratio: 1/1) { .sw-main { grid-template-columns: 1fr; } .sw-detail { min-height: 0; } }
 
 /* ================= Dialogue box (placeholder EK styling) ================= */

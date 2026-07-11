@@ -427,6 +427,8 @@ export function startFlow(root) {
       overlay.appendChild(win);
 
       reset.onclick = () => { for (const k in trained) delete trained[k]; selected = null; select(); };
+      // Details → SkillInfoWindow (o0.Y): full skill info + every rank's description.
+      details.onclick = () => { if (selected) showSkillInfo(selected.s); };
       train.onclick = () => {
         if (!selected) return;
         const s = selected.s, lvl = trained[s.name] || 0, cost = s.cost || 1;
@@ -470,6 +472,36 @@ export function startFlow(root) {
         const cost = s.cost || 1, canTrain = nx && rem >= cost;
         train.textContent = `Train (${cost} SP)`;
         train.disabled = !canTrain;
+      }
+
+      // SkillInfoWindow (o0.Y): a modal listing the skill's type, description and every
+      // rank's blurb + point cost — opened by the Details button.
+      function showSkillInfo(s) {
+        const back = el('div', 'sw-info-back');
+        const box = el('div', 'sw-info');
+        const head = el('div', 'sw-info-head');
+        const ic = el('img', 'sw-info-icon');
+        ic.src = s.icon ? `assets/ui/skills/${s.icon}.png` : 'assets/ui/skills/unknown.png';
+        const ht = el('div', 'sw-info-title');
+        ht.append(el('div', 'sw-info-name', s.name),
+          el('div', 'sw-detail-type ' + (s.type === 'A' ? 'active' : 'passive'),
+             s.type === 'A' ? 'Active Skill' : 'Passive Skill'));
+        head.append(ic, ht);
+        box.appendChild(head);
+        if (s.desc) box.appendChild(el('div', 'sw-info-desc', s.desc));
+        const levels = s.levels || [];
+        levels.forEach((lv, i) => {
+          const row = el('div', 'sw-info-lvl');
+          row.append(el('span', 'sw-lvl-h', `Level ${ROMAN[i + 1] || i + 1}:`),
+            el('span', 'sw-lvl-t', ' ' + ((lv && lv.desc) || '')));
+          box.appendChild(row);
+        });
+        const close = el('button', 'cc-btn cc-btn-primary sw-info-close', 'Close');
+        close.onclick = () => back.remove();
+        box.appendChild(close);
+        back.appendChild(box);
+        back.onclick = (e) => { if (e.target === back) back.remove(); };
+        overlay.appendChild(back);
       }
 
       select();
