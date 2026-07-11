@@ -4,11 +4,16 @@
 
 import { skillParams } from './skills.js';
 
-// Normalise a skill reference (object from creation, or a bare id/name) to its id.
+// Normalise a skill reference (object from creation, or a bare id/name) to its canonical
+// id. The skill system keys everything by the lowercase-underscore id (== SKILL_FX keys
+// == the skill's `icon`), so a display name like "Fireball" or "Ice Storm" MUST be
+// normalised the same way — otherwise the created starting ability is stored under
+// "Fireball" and never matches skillRank('fireball'), so it never shows on the skill bar.
+const normId = (str) => str.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
 export function skillIdOf(s) {
   if (!s) return null;
-  if (typeof s === 'string') return s;
-  return s.icon || s.id || (s.name ? s.name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') : null);
+  if (typeof s === 'string') return normId(s);
+  return s.icon || s.id || (s.name ? normId(s.name) : null);
 }
 
 export class PlayerModel {

@@ -60,14 +60,22 @@ body.ek-rot-270 #overlay-root {
   background: rgba(10,12,16,.6); padding: 2px 7px; border-radius: 8px;
 }
 
-/* ---- FPS / diagnostics overlay (top-left, unobtrusive, monospace for stable widths) --- */
+/* ---- FPS / diagnostics — a narrow vertical strip down the RIGHT edge, centred so it
+   clears the settings gear (top) and attack button (bottom). Stacked label/value rows.
+   Placed right because the owner's screen is cracked at the top-left. --- */
 #ek-perf {
-  position: fixed; left: 6px; top: env(safe-area-inset-top, 6px);
+  position: fixed; right: 3px; top: 50%; transform: translateY(-50%);
   z-index: 70; pointer-events: none; display: none;
-  font: 600 11px/1.3 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #b7f7c2;
-  background: rgba(10,12,16,.6); padding: 2px 7px; border-radius: 8px; white-space: pre;
+  flex-direction: column; gap: 3px;
+  font: 700 10px/1.1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #b7f7c2;
+  background: rgba(10,12,16,.62); padding: 5px 4px; border-radius: 8px;
+  border: 1px solid rgba(120,160,140,.35);
 }
-#ek-perf.ek-perf-warn { color: #ffb454; }
+#ek-perf .ek-perf-row { display: flex; flex-direction: column; align-items: center; min-width: 30px; }
+#ek-perf .ek-perf-k { font-size: 8px; font-weight: 600; color: #8fbfa4; text-transform: uppercase; letter-spacing: .5px; }
+#ek-perf .ek-perf-v { font-size: 12px; color: #d8ffe4; }
+#ek-perf.ek-perf-warn { color: #ffb454; border-color: rgba(255,180,84,.5); }
+#ek-perf.ek-perf-warn .ek-perf-v { color: #ffcf8a; }
 
 /* ---- Free-floating joystick ---- */
 #stick-layer {
@@ -442,6 +450,24 @@ body.ek-rot-270 #overlay-root {
 .hud-recover { position: absolute; left: 10px; bottom: 42%; width: 52px; height: 52px;
   cursor: pointer; opacity: .9; -webkit-user-drag: none; }
 .hud-recover:hover { opacity: 1; }
+
+/* Context / interact buttons — top-right column (GameHUD.f2965z). Pops up icons for
+   nearby interactables (talk / open / pick-up / enter); hidden when nothing's in reach. */
+.hud-ctx { position: absolute; right: 8px; top: calc(env(safe-area-inset-top, 8px) + 56px);
+  display: none; flex-direction: column; gap: 8px; align-items: flex-end; z-index: 2; }
+.ctx-btn { display: flex; align-items: center; gap: 6px; cursor: pointer; font-family: inherit;
+  padding: 5px 9px 5px 6px; color: #f3ecd8; font-size: 12px; font-weight: 700;
+  background: linear-gradient(rgba(18,14,8,.9), rgba(10,8,4,.92));
+  border: 1px solid #8a6d33; border-radius: 22px; box-shadow: 0 2px 8px rgba(0,0,0,.45);
+  animation: ctx-pop .16s ease; -webkit-tap-highlight-color: transparent; }
+.ctx-btn:active { filter: brightness(1.2); transform: scale(.95); }
+.ctx-ic { width: 34px; height: 34px; object-fit: contain; border-radius: 50%;
+  background: #14110b; border: 2px solid #caa04a; -webkit-user-drag: none; }
+.ctx-gl { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  font-size: 19px; border-radius: 50%; background: #14110b; border: 2px solid #caa04a; }
+.ctx-lbl { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+@keyframes ctx-pop { from { opacity: 0; transform: translateX(8px) scale(.9); } to { opacity: 1; } }
 
 /* Potion quickslot row — bottom-centre (GameHUD.C[5]). */
 .hud-quickslots { position: absolute; left: 50%; transform: translateX(-50%);

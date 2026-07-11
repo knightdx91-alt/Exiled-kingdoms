@@ -134,9 +134,14 @@ const stickOk = stick.start && stick.end &&
 // --- Map transitions: walk onto a portal and confirm the area actually changes ---
 const trans = await page.evaluate(async () => {
   const from = window.__EK.map().name;
-  const t = window.__EK.gotoTransition();
+  const arch = (window.__EK.map().transitions || [])[0];   // nearest arch (global cell)
+  if (!arch) return { skipped: true };
+  window.__EK.teleport(arch.c - 2, arch.r - 2);            // hop next to the portal, then
+  const t = window.__EK.gotoTransition();                  // walk the last couple of cells
   if (!t) return { skipped: true };
   const t0 = Date.now();
+  // Only a 1-2 cell walk now, so the transition fires quickly regardless of headless load
+  // (the previous full-chunk hike could crawl under heavy load and time out).
   while (window.__EK.map().name === from && Date.now() - t0 < 15000)
     await new Promise(r => setTimeout(r, 150));
   return { from, target: t.area, to: window.__EK.map().name, tiles: window.__EK.map().tiles };

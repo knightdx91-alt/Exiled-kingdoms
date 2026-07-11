@@ -38,6 +38,7 @@ export class HUD {
         </div>
       </div>
       <img class="hud-recover" src="assets/ui/hud/mend.png" alt="" title="Rest &amp; recover">
+      <div class="hud-ctx"></div>
       <div class="hud-quickslots"></div>
       <div class="hud-skillbar"></div>
       <button class="hud-attack" title="Attack / interact">
@@ -47,6 +48,8 @@ export class HUD {
     root.appendChild(this.el);
     this.skillbar = this.el.querySelector('.hud-skillbar');
     this.quickslots = this.el.querySelector('.hud-quickslots');
+    this.ctxBar = this.el.querySelector('.hud-ctx');
+    this._ctxSig = null;                 // last-rendered signature, to skip rebuilds
 
     this.$ = (s) => this.el.querySelector(s);
     // The full-screen CharacterWindow (o0/f). The ONLY entry is tapping the portrait —
@@ -73,6 +76,32 @@ export class HUD {
 
   // Whether the attack button is currently held (polled by the scene's update loop).
   attackHeld() { return !!this._attackHeld; }
+
+  // Context / interact buttons (top-right), mirroring GameHUD's f2965z button set (see
+  // deobf/CONTEXT_ACTIONS_SPEC.md). `list` is up to 4 nearby interactables, each
+  // { key, kind ('talk'|'open'|'pickup'|'enter'), icon (img url|null), label }. Rebuilt
+  // only when the set changes (signature compare) since the scene calls this every few
+  // frames. Hidden entirely when nothing is in reach. `onPick(key)` fires on tap.
+  setContext(list, onPick) {
+    list = (list || []).slice(0, 4);
+    const sig = list.map(a => `${a.kind}:${a.key}:${a.icon || ''}`).join('|');
+    if (sig === this._ctxSig) return;                // nothing changed this frame
+    this._ctxSig = sig;
+    this.ctxBar.innerHTML = '';
+    this.ctxBar.style.display = list.length ? 'flex' : 'none';
+    const glyph = { talk: '💬', open: '📦', pickup: '💰', enter: '🚪' };
+    for (const a of list) {
+      const b = document.createElement('button');
+      b.className = `ctx-btn ctx-${a.kind}`;
+      b.title = a.label || a.kind;
+      b.innerHTML = a.icon
+        ? `<img class="ctx-ic" src="${a.icon}" alt="" draggable="false">`
+        : `<span class="ctx-gl">${glyph[a.kind] || '❔'}</span>`;
+      if (a.label) b.innerHTML += `<span class="ctx-lbl">${a.label}</span>`;
+      b.addEventListener('click', () => { if (onPick) onPick(a.key); });
+      this.ctxBar.appendChild(b);
+    }
+  }
 
   // The real item icon (assets/ui/items/<icon>.png, extracted by tools/gen-icons.mjs)
   // when it exists, else a text fallback. `itemIcons` is the set of extracted icon names

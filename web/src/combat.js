@@ -482,21 +482,19 @@ export class Combat {
     else this.s.entities = this.s.entities.filter(x => x !== e);
   }
 
+  // Roll the enemy's loot table into a ground loot bag (GameHUD activable type 1) at its
+  // death cell, rather than auto-collecting — so there's a real interactable to pick up
+  // with the context button / a tap (deobf/CONTEXT_ACTIONS_SPEC.md). Nothing rolled → no bag.
   _rollLoot(table, e) {
     const rows = (this.s.loot && this.s.loot[table]) || [];
+    let gold = 0; const items = [];
     for (const row of rows) {
       if (rint(1, 100) > (row.chance || 0)) continue;
-      if (row.item === -2) {                    // gold
-        const g = rint(1, 5) + (e.cbt.level || 1) * 2;
-        if (this.s.playerModel) this.s.playerModel.addGold(g);
-        this._floater(e.sprite, `+${g}g`, false, false, '#ffd54a');
-      } else {                                  // a real item → into the backpack
-        if (this.s.playerModel) this.s.playerModel.addItem(row.item);
-        const nm = (this.s.items && this.s.items[row.item] && this.s.items[row.item].name) || row.name || `item ${row.item}`;
-        this._floater(e.sprite, nm, false, false, '#9ad');
-      }
+      if (row.item === -2) gold += rint(1, 5) + (e.cbt.level || 1) * 2;
+      else items.push(row.item);
     }
-    if (this.s.gameHud) this.s.gameHud.update(true);
+    if (!gold && !items.length) return;
+    if (this.s.dropLootBag) this.s.dropLootBag(e.cell, items, gold);
   }
 
   _onHeroDeath() {

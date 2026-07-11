@@ -473,6 +473,99 @@ class MapScene extends Phaser.Scene {
     if (this.combat) this.combat.tick(dtMs);         // real-time-with-pause combat
     if (this.renderFx) this.renderFx.update(dtMs);   // roof-fade / fog / light flicker
     this.updatePerfHud(_t);
+    this.refreshContext(_t);
+  }
+
+  // Refresh the top-right context/interact buttons from whatever is in reach of the hero
+  // (GameHUD.S(); see deobf/CONTEXT_ACTIONS_SPEC.md). Scans nearby talk-NPCs, containers,
+  // dropped loot bags and door/arch transitions, sends the nearest ≤4 to the HUD, and
+  // hides the bar when nothing's around. Throttled — the button set changes slowly and
+  // setContext() skips the rebuild when the list is unchanged anyway.
+  refreshContext(t = 0) {
+    if (!this.gameHud) return;
+    if (t && t < (this._ctxNextAt || 0)) return;
+    this._ctxNextAt = t + 160;
+    if (this._dialogue || this._loading || !this.hero || !this.heroCell || !this.mode) {
+      this.gameHud.setContext([], null);
+      return;
+    }
+    const hc = this.heroCell;
+    const REACH = 4;                                  // cells; icon appears as you approach
+    const out = [];
+    for (const e of this.entities) {
+      if (!e.npc || !e.npc.conversation || (e.cbt && e.cbt.side === 'enemy')) continue;
+      const d = Math.hypot(e.cell.c - hc.c, e.cell.r - hc.r);
+      if (d > REACH) continue;
+      const label = (e.npc.name || 'NPC').replace(/_/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
+      out.push({ d, kind: 'talk', key: `talk:${e.npc.name}:${e.cell.c},${e.cell.r}`,
+        icon: npcPortrait(e.rec), label, _e: e });
+    }
+    for (const k of this.containers) {
+      if (k.opened) continue;
+      const d = Math.hypot(k.cell.c - hc.c, k.cell.r - hc.r);
+      if (d > REACH) continue;
+      const isLoot = !!k.isLoot;
+      const icon = (!isLoot && k.data.icon && this._objIcons && this._objIcons.has(k.data.icon))
+        ? `assets/ui/objects/${k.data.icon}.png` : 'assets/sprites/loot.png';
+      out.push({ d, kind: isLoot ? 'pickup' : 'open',
+        key: `cont:${k.cell.c},${k.cell.r}`, icon, label: isLoot ? 'Loot' : (k.data.name || 'Open'), _k: k });
+    }
+    for (const tr of this.currentTransitions()) {
+      if (!tr.area) continue;
+      const d = Math.hypot(tr.c - hc.c, tr.r - hc.r);
+      if (d > REACH) continue;
+      out.push({ d, kind: 'enter', key: `enter:${tr.area}:${tr.c},${tr.r}`, icon: null,
+        label: 'Enter', _t: tr });
+    }
+    out.sort((a, b) => a.d - b.d);
+    this._ctxList = out;
+    this.gameHud.setContext(out, (key) => this.doContext(key));
+  }
+
+  // Perform a context button's action (GameHUD.E(i)). Walks the hero up to the target if
+  // he isn't already adjacent, then talks / opens / picks up / travels — reusing the same
+  // pending-arrival hooks as tap-to-interact so behaviour is identical either way.
+  doContext(key) {
+    const a = (this._ctxList || []).find(x => x.key === key);
+    if (!a || this._dialogue || this._loading) return;
+    const hc = this.heroCell;
+    if (a.kind === 'talk' && a._e) {
+      const e = a._e;
+      if (Math.hypot(e.cell.c - hc.c, e.cell.r - hc.r) <= 1.6) { if (this.combat) this.combat.clearTarget(); this.talkTo(e); return; }
+      const path = this.planPath(hc, this.nearestWalkable(e.cell.c, e.cell.r));
+      if (path && path.length > 1) { this.path = path; this.pathIdx = 1; this._pendingTalk = e; }
+    } else if ((a.kind === 'open' || a.kind === 'pickup') && a._k) {
+      const k = a._k;
+      if (Math.hypot(k.cell.c - hc.c, k.cell.r - hc.r) <= 1.6) { this.openContainer(k); return; }
+      const path = this.planPath(hc, this.nearestWalkable(k.cell.c, k.cell.r));
+      if (path && path.length > 1) { this.path = path; this.pathIdx = 1; this._pendingContainer = k; }
+    } else if (a.kind === 'enter' && a._t) {
+      const tr = a._t;
+      if (Math.abs(tr.c - hc.c) <= 1 && Math.abs(tr.r - hc.r) <= 1) { this.path = null; this.goArea(tr.area, tr.entry); return; }
+      const path = this.planPath(hc, this.nearestWalkable(tr.c, tr.r));
+      if (path && path.length > 1) { this.path = path; this.pathIdx = 1; }
+    }
+  }
+
+  // Drop a loot bag at a global/interior cell (an enemy's death spot). It becomes a
+  // tappable, context-button interactable container carrying the rolled gold + item ids
+  // (deobf/CONTEXT_ACTIONS_SPEC.md). Reuses the container render/open path; loaded into
+  // the current entity group so it streams out with its chunk in world mode.
+  dropLootBag(cell, itemIds, gold) {
+    if ((!itemIds || !itemIds.length) && !gold) return;
+    const p = this.toPx(cell.c, cell.r);
+    let s;
+    if (this.textures.exists('container_icon')) {
+      s = this.add.image(p.x, p.y, 'container_icon').setOrigin(0.5, 0.9);
+    } else {
+      s = this.add.rectangle(p.x, p.y - 8, 18, 14, 0xcaa04a).setStrokeStyle(2, 0x8a6d33).setOrigin(0.5, 1);
+    }
+    this.planes.mid.add(s);
+    const group = (this.mode === 'world' && this._curChunk)
+      ? this.overworld.nameAt(this._curChunk.col, this._curChunk.row) : 'interior';
+    this.containers.push({ sprite: s, cell: { c: cell.c, r: cell.r }, group, opened: false,
+      isLoot: true, gold: gold || 0, data: { items: (itemIds || []).join(','), name: 'Loot', icon: 'loot' } });
+    sortMid(this.planes.mid);
   }
 
   // On-screen FPS + diagnostics ("why is it dropping"): frame rate, tiles/NPCs actually
@@ -491,17 +584,26 @@ class MapScene extends Phaser.Scene {
       document.getElementById('overlay-root').appendChild(el);
       this._perfEl = el;
     }
-    el.style.display = 'block';
+    el.style.display = 'flex';
     const fps = Math.round(this.game.loop.actualFps || 0);
-    const frameMs = (this.game.loop.delta || 0).toFixed(1);
+    const frameMs = (this.game.loop.delta || 0).toFixed(0);
     const es = this._entityStats || { visible: 0, total: 0 };
     const chunks = this.overworld ? this.overworld.loaded.size : (this.mode === 'interior' ? 1 : 0);
     const cache = window.__EK && window.__EK.cache;
-    const cacheTxt = !cache ? 'cache: n/a' : cache.complete ? 'offline-ready' :
-      cache.total ? `caching ${cache.done}/${cache.total}` : 'caching…';
-    el.textContent =
-      `${fps} fps · ${frameMs}ms  tiles ${this._mapTiles || 0}  npc ${es.visible}/${es.total}  ` +
-      `chunks ${chunks}  ${cacheTxt}`;
+    const cacheTxt = !cache ? '—' : cache.complete ? 'offline'
+      : cache.total ? `${Math.floor(100 * cache.done / cache.total)}%` : '…';
+    // Stacked stat lines so the readout forms a narrow strip down the RIGHT edge (the
+    // top-left of the owner's screen is cracked). Each line: label over value.
+    const rows = [
+      ['FPS', String(fps)],
+      ['ms', frameMs],
+      ['tiles', String(this._mapTiles || 0)],
+      ['npc', `${es.visible}/${es.total}`],
+      ['chunk', String(chunks)],
+      ['cache', cacheTxt],
+    ];
+    el.innerHTML = rows.map(([k, v]) =>
+      `<div class="ek-perf-row"><span class="ek-perf-k">${k}</span><span class="ek-perf-v">${v}</span></div>`).join('');
     el.classList.toggle('ek-perf-warn', fps > 0 && fps < 30);
   }
 
@@ -638,7 +740,7 @@ class MapScene extends Phaser.Scene {
 
   // Spawn an entity group. `toPx(c,r)` maps a cell (local for interiors, global for
   // world chunks) to pixels. Sheets shared across NPCs load once.
-  async spawnEntities(npcs, group, toPx) {
+  async spawnEntities(npcs, group, toPx, off = { c: 0, r: 0 }) {
     if (!npcs || !npcs.length) return;
     this._entityGroups = this._entityGroups || new Set();
     this._entityGroups.add(group);
@@ -655,7 +757,10 @@ class MapScene extends Phaser.Scene {
       if (!key) continue;
       const p = toPx(npc.c, npc.r);
       const s = makeNpc(this, this.planes.mid, key, p.x, p.y);
-      const e = { sprite: s, npc, cell: { c: npc.c, r: npc.r }, group, key,
+      // Store the cell in the SAME space the scene uses for the hero (global cells in
+      // world mode, local in interiors) so reach tests, combat AI and context buttons all
+      // agree. `toPx` already globalizes the pixel; `off` globalizes the cell to match.
+      const e = { sprite: s, npc, cell: { c: off.c + npc.c, r: off.r + npc.r }, group, key,
         rec: bestiaryOf(this.bestiary, npc) };
       this.entities.push(e);
       if (this.combat) this.combat.attach(e);        // enemies/allies get combat state
@@ -745,6 +850,12 @@ class MapScene extends Phaser.Scene {
     const m = this.playerModel;
     const ids = (k.data.items || '').split(/[,;]/).map(s => s.trim()).filter(Boolean);
     let got = 0;
+    // Loot bags carry an exact gold amount (from the kill); crates roll a small purse.
+    if (k.isLoot && k.gold) {
+      if (m) m.addGold(k.gold);
+      if (this.combat) this.combat._floater(k.sprite, `+${k.gold}g`, false, false, '#ffd54a');
+      got++;
+    }
     for (const raw of ids) {
       const id = +raw;
       if (!id) continue;
@@ -771,7 +882,7 @@ class MapScene extends Phaser.Scene {
       if (this._entityGroups && this._entityGroups.has(name)) continue;
       const gc0 = ch.col * this.overworld.CW, gr0 = ch.row * this.overworld.CH;
       const toPx = (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r);
-      this.spawnEntities(ch.map.npcs, name, toPx);
+      this.spawnEntities(ch.map.npcs, name, toPx, { c: gc0, r: gr0 });
       this.spawnContainers(ch.map.containers, name, toPx, { c: gc0, r: gr0 });
     }
   }
@@ -938,6 +1049,13 @@ class MapScene extends Phaser.Scene {
     try { this._objIcons = new Set(Object.keys(await (await fetch('assets/ui/objects/manifest.json')).json())); }
     catch { this._objIcons = new Set(); }
     this.gameHud.itemIcons = this._itemIcons;
+    // Preload the loot-bag marker so enemy drops (dropLootBag) can place instantly.
+    if (!this.textures.exists('container_icon')) {
+      try {
+        this.load.image('container_icon', 'assets/sprites/loot.png');
+        await new Promise((res) => { this.load.once('complete', res); this.load.start(); });
+      } catch { /* fall back to a drawn marker */ }
+    }
   }
 
   // Apply a created character and drop into the tutorial. `pc` is the PlayerCreation
