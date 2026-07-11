@@ -176,9 +176,11 @@ export class HUD {
     if (!ids.length) { this.skillbar.innerHTML = ''; return; }
     this.skillbar.innerHTML = ids.map((id, i) => {
       const fx = SKILL_FX[id], can = this.combat.canCast(id), cf = this.combat.cooldownFrac(id);
+      // The real skill icon (assets/ui/skills/<id>.png) over the game's skill-button frame
+      // (skill_bg). Same art the creation SkillWindow uses — never a text stand-in.
       return `<button class="skbtn ${can ? '' : 'off'}" data-skill="${id}" title="${fx.name}" ` +
              `style="background-image:url(assets/ui/hud/skill_bg${i % 6}.png)">` +
-             `<span class="sk-name">${fx.name.split(' ')[0]}</span>` +
+             `<img class="sk-icon" src="assets/ui/skills/${id}.png" alt="${fx.name}" draggable="false">` +
              (cf > 0 ? `<span class="sk-cd" style="height:${Math.round(cf * 100)}%"></span>` : '') +
              `</button>`;
     }).join('');

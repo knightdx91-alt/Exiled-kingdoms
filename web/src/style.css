@@ -574,12 +574,12 @@ body.ek-rot-270 #overlay-root {
   display: flex; gap: 5px; pointer-events: none; width: 116px; max-height: 60vh;
   flex-wrap: wrap-reverse; justify-content: flex-end; align-content: flex-end; }
 .skbtn { position: relative; overflow: hidden; pointer-events: auto; cursor: pointer;
-  width: 52px; height: 52px; padding: 2px; font-family: inherit; font-size: 10px; font-weight: 700;
-  color: #fff5df; text-shadow: 0 1px 2px #000; background-size: cover; background-position: center;
-  border: 1px solid #caa04a; border-radius: 9px; display: flex; align-items: flex-end; justify-content: center; }
+  width: 52px; height: 52px; padding: 3px; background-size: cover; background-position: center;
+  border: 1px solid #caa04a; border-radius: 9px; display: flex; align-items: center; justify-content: center; }
 .skbtn.off { opacity: .5; filter: grayscale(.6); }
-.sk-name { position: relative; z-index: 1; line-height: 1.05; }
-.sk-cd { position: absolute; left: 0; bottom: 0; width: 100%; background: rgba(0,0,0,.6); z-index: 0; }
+.sk-icon { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain;
+  image-rendering: auto; -webkit-user-drag: none; user-select: none; }
+.sk-cd { position: absolute; left: 0; bottom: 0; width: 100%; background: rgba(0,0,0,.6); z-index: 2; }
 
 .set-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #e6dcc0;
   cursor: pointer; padding: 3px 0; }
