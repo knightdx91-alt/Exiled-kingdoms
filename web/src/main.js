@@ -492,6 +492,8 @@ class MapScene extends Phaser.Scene {
     const hc = this.heroCell;
     const REACH = 4;                                  // cells; icon appears as you approach
     const out = [];
+    // Talk-NPCs and followers with a conversation (never hostile enemies). Followers are
+    // allies in `entities`; they show a talk icon too so you can speak to your companions.
     for (const e of this.entities) {
       if (!e.npc || !e.npc.conversation || (e.cbt && e.cbt.side === 'enemy')) continue;
       const d = Math.hypot(e.cell.c - hc.c, e.cell.r - hc.r);
@@ -514,8 +516,8 @@ class MapScene extends Phaser.Scene {
       if (!tr.area) continue;
       const d = Math.hypot(tr.c - hc.c, tr.r - hc.r);
       if (d > REACH) continue;
-      out.push({ d, kind: 'enter', key: `enter:${tr.area}:${tr.c},${tr.r}`, icon: null,
-        label: 'Enter', _t: tr });
+      out.push({ d, kind: 'enter', key: `enter:${tr.area}:${tr.c},${tr.r}`,
+        icon: 'assets/ui/objects/door.png', label: 'Enter', _t: tr });
     }
     out.sort((a, b) => a.d - b.d);
     this._ctxList = out;

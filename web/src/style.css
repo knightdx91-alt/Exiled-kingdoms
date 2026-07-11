@@ -455,18 +455,15 @@ body.ek-rot-270 #overlay-root {
    nearby interactables (talk / open / pick-up / enter); hidden when nothing's in reach. */
 .hud-ctx { position: absolute; right: 8px; top: calc(env(safe-area-inset-top, 8px) + 56px);
   display: none; flex-direction: column; gap: 8px; align-items: flex-end; z-index: 2; }
-.ctx-btn { display: flex; align-items: center; gap: 6px; cursor: pointer; font-family: inherit;
-  padding: 5px 9px 5px 6px; color: #f3ecd8; font-size: 12px; font-weight: 700;
-  background: linear-gradient(rgba(18,14,8,.9), rgba(10,8,4,.92));
-  border: 1px solid #8a6d33; border-radius: 22px; box-shadow: 0 2px 8px rgba(0,0,0,.45);
+/* Icon-only round buttons — the interactable's own art (portrait / crate / loot / door). */
+.ctx-btn { padding: 0; cursor: pointer; border: none; background: none; line-height: 0;
+  border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.45);
   animation: ctx-pop .16s ease; -webkit-tap-highlight-color: transparent; }
-.ctx-btn:active { filter: brightness(1.2); transform: scale(.95); }
-.ctx-ic { width: 34px; height: 34px; object-fit: contain; border-radius: 50%;
-  background: #14110b; border: 2px solid #caa04a; -webkit-user-drag: none; }
-.ctx-gl { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
-  font-size: 19px; border-radius: 50%; background: #14110b; border: 2px solid #caa04a; }
-.ctx-lbl { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+.ctx-btn:active { filter: brightness(1.2); transform: scale(.92); }
+.ctx-ic, .ctx-gl { width: 52px; height: 52px; border-radius: 50%; display: block;
+  object-fit: cover; background: #14110b; border: 2px solid #caa04a; -webkit-user-drag: none; }
+.ctx-gl { display: flex; align-items: center; justify-content: center; font-size: 26px; color: #f3ecd8; }
+.ctx-open .ctx-ic, .ctx-pickup .ctx-ic, .ctx-enter .ctx-ic { object-fit: contain; padding: 6px; }
 @keyframes ctx-pop { from { opacity: 0; transform: translateX(8px) scale(.9); } to { opacity: 1; } }
 
 /* Potion quickslot row — bottom-centre (GameHUD.C[5]). */

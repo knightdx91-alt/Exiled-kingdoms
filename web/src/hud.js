@@ -89,15 +89,18 @@ export class HUD {
     this._ctxSig = sig;
     this.ctxBar.innerHTML = '';
     this.ctxBar.style.display = list.length ? 'flex' : 'none';
-    const glyph = { talk: '💬', open: '📦', pickup: '💰', enter: '🚪' };
+    // Icon-only buttons (the owner wants the interactable's icon, not its name). Talk uses
+    // the NPC portrait, open/pickup the object/loot art, enter a door icon; a glyph is only
+    // a last resort when no art resolves. The label lives in `title` (tooltip) only.
+    const glyph = { talk: '🗨', open: '📦', pickup: '💰', enter: '🚪' };
     for (const a of list) {
       const b = document.createElement('button');
       b.className = `ctx-btn ctx-${a.kind}`;
       b.title = a.label || a.kind;
       b.innerHTML = a.icon
-        ? `<img class="ctx-ic" src="${a.icon}" alt="" draggable="false">`
+        ? `<img class="ctx-ic" src="${a.icon}" alt="" draggable="false" ` +
+          `onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ctx-gl',textContent:'${glyph[a.kind] || '❔'}'}))">`
         : `<span class="ctx-gl">${glyph[a.kind] || '❔'}</span>`;
-      if (a.label) b.innerHTML += `<span class="ctx-lbl">${a.label}</span>`;
       b.addEventListener('click', () => { if (onPick) onPick(a.key); });
       this.ctxBar.appendChild(b);
     }
