@@ -7,7 +7,7 @@
 // - fetch: cache-first, so once cached the game runs with no network at all.
 //   Bookmark the page (or install it) and it opens offline.
 
-const VERSION = 'ek-v21';
+const VERSION = 'ek-v22';
 const SHELL = `${VERSION}-shell`;
 const FULL  = `${VERSION}-full`;
 // App code (HTML/JS/CSS/manifest) is served network-first so new deploys show up
@@ -64,6 +64,17 @@ self.addEventListener('fetch', (e) => {
     } catch (err) {
       return caches.match('./index.html');   // offline fallback for navigations
     }
+  })());
+});
+
+// Wipe every cache (shell + full game) so the next load re-fetches fresh copies — the
+// "clear cache / update" button. The page reloads on CACHE_CLEARED; the network-first
+// shell then pulls the latest app code and assets re-download on demand.
+self.addEventListener('message', (e) => {
+  if (!e.data || e.data.type !== 'CLEAR_CACHE') return;
+  e.waitUntil((async () => {
+    for (const k of await caches.keys()) await caches.delete(k);
+    e.source && e.source.postMessage({ type: 'CACHE_CLEARED' });
   })());
 });
 

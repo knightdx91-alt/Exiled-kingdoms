@@ -83,7 +83,63 @@ export function startFlow(root) {
       box.appendChild(start);
       const note = el('p', 'cc-note', 'A web port — recovered from the base game');
       box.appendChild(note);
+      box.appendChild(cacheControls());
       overlay.appendChild(box);
+    }
+
+    // Offline cache controls (title screen): download the whole game for offline play,
+    // and clear the cache so an update re-downloads fresh. The service worker does the
+    // work (sw.js: CACHE_ALL / CLEAR_CACHE); we drive it and show progress.
+    function cacheControls() {
+      const wrap = el('div', 'cc-cache');
+      const status = el('div', 'cc-cache-status', '');
+      const dl = el('button', 'cc-btn cc-cache-btn', 'Download game for offline');
+      const del = el('button', 'cc-btn cc-cache-btn cc-btn-ghost', 'Clear cache (update)');
+      wrap.append(dl, del, status);
+
+      const sw = () => navigator.serviceWorker && navigator.serviceWorker.controller;
+      const cache = () => (window.__EK && window.__EK.cache) || { done: 0, total: 0, complete: false };
+
+      let poll = null;
+      const render = () => {
+        const c = cache();
+        if (!c.total) { status.textContent = ''; return; }
+        if (c.complete || (c.done >= c.total && c.total > 0)) {
+          status.textContent = `Cached for offline ✓  (${c.total} files${c.failed ? `, ${c.failed} failed` : ''})`;
+          dl.disabled = false; dl.textContent = 'Re-check offline cache';
+          if (poll) { clearInterval(poll); poll = null; }
+        } else {
+          const pct = Math.round((c.done / c.total) * 100);
+          status.textContent = `Downloading… ${pct}%  (${c.done}/${c.total})`;
+        }
+      };
+
+      dl.onclick = () => {
+        if (!sw()) { status.textContent = 'Offline cache needs a reload first — reopen the page online.'; return; }
+        dl.disabled = true; dl.textContent = 'Downloading…';
+        sw().postMessage({ type: 'CACHE_ALL' });
+        if (poll) clearInterval(poll);
+        poll = setInterval(render, 400); render();
+      };
+
+      del.onclick = () => {
+        if (!confirm('Clear the offline cache and reload? The game will re-download.')) return;
+        del.disabled = true; del.textContent = 'Clearing…';
+        const done = () => location.reload();
+        if (sw()) {
+          navigator.serviceWorker.addEventListener('message', function once(e) {
+            if (e.data && e.data.type === 'CACHE_CLEARED') { navigator.serviceWorker.removeEventListener('message', once); done(); }
+          });
+          sw().postMessage({ type: 'CLEAR_CACHE' });
+          setTimeout(done, 4000);                 // fall back if the SW doesn't answer
+        } else if (window.caches) {
+          caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))).then(done);
+        } else { done(); }
+      };
+
+      render();                                   // reflect any auto-cache already underway
+      if (cache().total && !cache().complete) { poll = setInterval(render, 400); }
+      return wrap;
     }
 
     // ---------- creation ----------
