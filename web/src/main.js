@@ -1063,12 +1063,20 @@ class MapScene extends Phaser.Scene {
     try { this._objIcons = new Set(Object.keys(await (await fetch('assets/ui/objects/manifest.json')).json())); }
     catch { this._objIcons = new Set(); }
     this.gameHud.itemIcons = this._itemIcons;
-    // Preload the loot-bag marker so enemy drops (dropLootBag) can place instantly.
+    // Preload the loot-bag marker so enemy drops (dropLootBag) can place instantly,
+    // and the real EK projectile atlas (assets/sprites/projectiles, extracted from the
+    // APK) so spell casts show the genuine fire/ice/lightning/magic art (Combat._castFx).
+    let needLoad = false;
     if (!this.textures.exists('container_icon')) {
-      try {
-        this.load.image('container_icon', 'assets/sprites/loot.png');
-        await new Promise((res) => { this.load.once('complete', res); this.load.start(); });
-      } catch { /* fall back to a drawn marker */ }
+      this.load.image('container_icon', 'assets/sprites/loot.png'); needLoad = true;
+    }
+    if (!this.textures.exists('projectiles')) {
+      this.load.atlas('projectiles', 'assets/sprites/projectiles/projectiles.png',
+        'assets/sprites/projectiles/projectiles.json'); needLoad = true;
+    }
+    if (needLoad) {
+      try { await new Promise((res) => { this.load.once('complete', res); this.load.start(); }); }
+      catch { /* fall back to drawn markers / placeholder FX */ }
     }
   }
 

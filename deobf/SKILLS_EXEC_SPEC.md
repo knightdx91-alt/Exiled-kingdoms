@@ -50,9 +50,14 @@ the table are "known but inert" (their passive/active effect is a later pass).
 ## Deviations (DEOBFUSCATION_STATUS.md §3)
 - A representative, high-value set is implemented (heals, the four caster spells, the main
   warrior/rogue actives, the core buffs, `fury`/`mana_surge`). Summons, stealth, traps,
-  most masteries, procs, and exact projectile travel/animation are **not** modelled yet —
-  tagged APPROX; skills outside the table are inert. In place of EK's real per-spell
-  impact art we play a generic type-tinted impact burst at the target (`Combat._castFx`):
-  an expanding ring + core flash + flecks, colour from the damage type (heal green / melee
-  amber / buff gold). Cosmetic only — self-cleans via tweens, no gameplay effect. Cooldowns use the reversed
+  most masteries and procs are **not** modelled yet — tagged APPROX; skills outside the
+  table are inert. Spell visuals now use the **genuine EK projectile art** extracted from
+  the APK (`assets/sprites/projectiles/`, atlas built from `projectiles.pack`): a bolt of
+  the type's real sprite (Fire→fire1, Cold→ice1, Shock→lightning, Toxic→g_magic,
+  Death→black_magic, Spirit→w_magic — sprite ids per `weapons.txt`) flies caster→target
+  then bursts (`Combat._castFx`, `Combat.PROJECTILE_REGION`). Still APPROX: EK layers a
+  libgdx particle explosion (`assets/particle/*.p` — fire.p/ice.p/casting.p/healing.p,
+  staged into the repo) over the sprite; that particle port is not yet wired, so the
+  sprite burst stands in. Melee/heal/buff casts do an in-place tinted burst. Cosmetic
+  only — self-cleans via tweens, no gameplay effect. Cooldowns use the reversed
   `skills.txt` value where present, else a per-kind default.

@@ -231,31 +231,59 @@ export class Combat {
   _isUndead(e) { return /undead|skeleton|zombie|ghost|wraith|lich|ghoul|vampire/i.test(`${e.rec && e.rec.race || ''} ${e.npc && e.npc.spawn || ''}`); }
   _typeColor(t) { return { Fire: '#ff7043', Cold: '#8fd0ff', Shock: '#ffe066', Death: '#b39ddb', Toxic: '#9ccc65', Spirit: '#fff59d' }[t] || '#ffffff'; }
 
-  // Cast impact FX. APPROX (deobf/SKILLS_EXEC_SPEC.md §Deviations): EK plays a real
-  // per-spell projectile/impact animation; we don't have that art, so a type-tinted
-  // expanding ring + a brief core flash + a few flecks stands in so a cast visibly lands
-  // rather than only spawning a damage number. Purely cosmetic; self-cleans via tweens.
-  _castFx(cell, hex, tiles) {
+  // EK damage-type -> real projectile-atlas region (extracted from the APK,
+  // assets/sprites/projectiles; sprite ids from weapons.txt's `sprite` column).
+  static get PROJECTILE_REGION() {
+    return { Fire: 'fire1', Cold: 'ice1', Shock: 'lightning', Toxic: 'g_magic',
+      Death: 'black_magic', Spirit: 'w_magic', Physical: 'force' };
+  }
+
+  // Cast FX using the genuine EK projectile art: a bolt flies from the caster to the
+  // target cell, then bursts (scale-up + fade) at impact. `region` picks the atlas frame;
+  // `hex` tints the burst/fallback. APPROX (deobf/SKILLS_EXEC_SPEC.md §Deviations): EK
+  // layers a libgdx particle explosion (assets/particle/*.p) on top of this — that port
+  // is staged but not yet wired, so the sprite burst stands in for the particle cloud.
+  // Purely cosmetic; self-cleans via tweens.
+  _castFx(cell, hex, tiles, region) {
     const s = this.s;
     if (!s || !s.add || !s.toPx || !s.world) return;
     const p = s.toPx(cell.c, cell.r);
     const col = (typeof hex === 'string' && hex[0] === '#') ? parseInt(hex.slice(1), 16) : (hex || 0xffffff);
-    const rpx = Math.max(22, (tiles || 1) * 34);
     const cy = p.y - 12;
-    const ring = s.add.circle(p.x, cy, rpx, col, 0.28).setStrokeStyle(3, col, 0.9).setScale(0.2);
-    const core = s.add.circle(p.x, cy, rpx * 0.5, col, 0.6);
-    s.world.add(ring); s.world.add(core);
-    s.tweens.add({ targets: ring, scale: 1.1, alpha: 0, duration: 380, ease: 'Cubic.Out',
-      onComplete: () => ring.destroy() });
-    s.tweens.add({ targets: core, scale: 1.6, alpha: 0, duration: 240, ease: 'Quad.Out',
-      onComplete: () => core.destroy() });
-    for (let i = 0; i < 6; i++) {
-      const a = (Math.PI * 2 * i) / 6 + Math.random() * 0.5;
-      const fleck = s.add.circle(p.x, cy, 3 + Math.random() * 2, col, 0.95);
-      s.world.add(fleck);
-      s.tweens.add({ targets: fleck, x: p.x + Math.cos(a) * rpx, y: cy + Math.sin(a) * rpx * 0.6,
-        alpha: 0, duration: 300 + Math.random() * 150, ease: 'Quad.Out',
-        onComplete: () => fleck.destroy() });
+    const hero = s.hero;
+    const haveArt = region && s.textures && s.textures.exists('projectiles');
+
+    const burst = () => {
+      if (haveArt) {
+        const spr = s.add.image(p.x, cy, 'projectiles', region).setScale(0.5).setAlpha(0.95);
+        s.world.add(spr);
+        s.tweens.add({ targets: spr, scale: Math.max(1.1, (tiles || 1) * 0.9), alpha: 0,
+          duration: 320, ease: 'Quad.Out', onComplete: () => spr.destroy() });
+      }
+      const rpx = Math.max(22, (tiles || 1) * 34);
+      const ring = s.add.circle(p.x, cy, rpx, col, haveArt ? 0.16 : 0.28)
+        .setStrokeStyle(3, col, 0.9).setScale(0.2);
+      s.world.add(ring);
+      s.tweens.add({ targets: ring, scale: 1.1, alpha: 0, duration: 360, ease: 'Cubic.Out',
+        onComplete: () => ring.destroy() });
+      if (!haveArt) {
+        const core = s.add.circle(p.x, cy, rpx * 0.5, col, 0.6);
+        s.world.add(core);
+        s.tweens.add({ targets: core, scale: 1.6, alpha: 0, duration: 240, ease: 'Quad.Out',
+          onComplete: () => core.destroy() });
+      }
+    };
+
+    // Fly the projectile in from the caster when we have both the art and a hero anchor;
+    // otherwise just burst in place (heals/buffs, or missing atlas).
+    if (haveArt && hero && (hero.x !== p.x || hero.y !== cy)) {
+      const bolt = s.add.image(hero.x, hero.y - 24, 'projectiles', region).setScale(0.7);
+      bolt.setRotation(Math.atan2(cy - (hero.y - 24), p.x - hero.x));
+      s.world.add(bolt);
+      s.tweens.add({ targets: bolt, x: p.x, y: cy, duration: 180, ease: 'Quad.In',
+        onComplete: () => { bolt.destroy(); burst(); } });
+    } else {
+      burst();
     }
   }
 
@@ -270,7 +298,7 @@ export class Combat {
     const tgt = (this._target && this._target.cbt && !this._target.cbt.dead) ? this._target : this._nearestEnemy(hc, 8);
     if (!tgt) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
     const center = tgt.cell, radius = fx.radius || 1;
-    this._castFx(center, this._typeColor(fx.type), radius);
+    this._castFx(center, this._typeColor(fx.type), radius, Combat.PROJECTILE_REGION[fx.type]);
     for (const e of this.s.entities.slice()) {
       if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
       if (this._dist(e.cell, center) > radius) continue;
