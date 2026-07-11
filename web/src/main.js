@@ -28,6 +28,7 @@ const HERO_SPEED = 140;                             // px/sec along the path (ma
 
 const tintOf = (c) => (Math.round(c.r * 255) << 16) |
                       (Math.round(c.g * 255) << 8) | Math.round(c.b * 255);
+const rint = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 
 const ORIENTS = [0, 90, 180, 270];
 const TUTORIAL_MAP = 'I10_tutorial';                // Adaon's road — where a new game begins
@@ -140,6 +141,7 @@ class MapScene extends Phaser.Scene {
 
     // Entities + dialogue + shared world state (variables/party) for NPCs and quests.
     this.entities = [];                              // { sprite, npc, cell, group }
+    this.containers = [];                            // { sprite, cell, data, group, opened }
     this.bestiary = {};
     this.gameState = { vars: {}, followers: new Set() };
     this.dialogue = new Dialogue(this, root);
@@ -318,6 +320,8 @@ class MapScene extends Phaser.Scene {
       gainXP: (n) => { this.playerModel && this.playerModel.gainXP(n); return this.playerModel && this.playerModel.level(); },
       hurt: (n) => { this.playerModel && this.playerModel.damage(n); return this.playerModel && Math.ceil(this.playerModel.hp); },
       openChar: () => { this.gameHud.openCharWindow(); return !!this.gameHud.cw.innerHTML; },
+      containers: () => this.containers.map(k => ({ cell: { ...k.cell }, items: k.data.items, opened: k.opened })),
+      openNearestContainer: () => { const k = this.containerNear(this.heroCell.c, this.heroCell.r, 999); if (k) this.openContainer(k); return k ? k.data.items : null; },
     });
 
     this.scale.on('resize', () => this.relayout());
@@ -405,6 +409,16 @@ class MapScene extends Phaser.Scene {
       const goal = this.nearestWalkable(e.cell.c, e.cell.r);
       const path = this.planPath(this.heroCell, goal);
       if (path && path.length > 1) { this.path = path; this.pathIdx = 1; this._pendingTalk = e; }
+      return;
+    }
+    // Tapping a crate/chest: open it if adjacent, else walk up and open on arrival.
+    const k = this.containerNear(cell.c, cell.r, 1.6);
+    if (k) {
+      this._pendingTalk = null;
+      if (Math.hypot(k.cell.c - this.heroCell.c, k.cell.r - this.heroCell.r) <= 1.6) { this.openContainer(k); return; }
+      const goal = this.nearestWalkable(k.cell.c, k.cell.r);
+      const path = this.planPath(this.heroCell, goal);
+      if (path && path.length > 1) { this.path = path; this.pathIdx = 1; this._pendingContainer = k; }
       return;
     }
     this._pendingTalk = null;
@@ -599,13 +613,83 @@ class MapScene extends Phaser.Scene {
       if (e.group !== group) return true;
       e.sprite.destroy(); return false;
     });
+    this.containers = this.containers.filter(k => {
+      if (k.group !== group) return true;
+      if (k.sprite) k.sprite.destroy(); return false;
+    });
     if (this._entityGroups) this._entityGroups.delete(group);
   }
 
   clearEntities() {
     for (const e of this.entities) e.sprite.destroy();
     this.entities = [];
+    for (const k of this.containers) if (k.sprite) k.sprite.destroy();
+    this.containers = [];
     this._entityGroups = new Set();
+  }
+
+  // ---- Containers (crates/chests/barrels placed from a map's `containers` objects) ---
+  // EK draws these as interactable world objects (GameHUD context action type 7). The
+  // recovered TMX object gives a cell, an `icon` (atlas region we don't have) and a csv
+  // `items` list. We render each as a loot marker (sprites/loot.png) at its cell so it's
+  // visible + tappable; opening it transfers its items into the backpack (deobf/
+  // GAMEHUD_LAYOUT_SPEC.md §3, INVENTORY_SPEC.md). APPROX: loot icon stands in for the
+  // real crate/chest art (unavailable without the APK atlas) — logged in §3.
+  async spawnContainers(list, group, toPx, off = { c: 0, r: 0 }) {
+    if (!list || !list.length) return;
+    if (!this.textures.exists('container_icon')) {
+      try {
+        this.load.image('container_icon', 'assets/sprites/loot.png');
+        await new Promise((res) => { this.load.once('complete', res); this.load.start(); });
+      } catch { /* fall back to a drawn marker below */ }
+    }
+    for (const data of list) {
+      const p = toPx(data.c, data.r);
+      let s;
+      if (this.textures.exists('container_icon')) {
+        s = this.add.image(p.x, p.y, 'container_icon').setOrigin(0.5, 0.9);
+      } else {
+        s = this.add.rectangle(p.x, p.y - 10, 20, 16, 0x8a5a22).setStrokeStyle(2, 0xd8b56a).setOrigin(0.5, 1);
+      }
+      this.planes.mid.add(s);
+      this.containers.push({ sprite: s, cell: { c: off.c + data.c, r: off.r + data.r }, data, group, opened: false });
+    }
+    sortMid(this.planes.mid);
+  }
+
+  // The nearest un-opened container to cell (c,r), within `rad`.
+  containerNear(c, r, rad = 1.6) {
+    let best = null, bd = rad + 0.001;
+    for (const k of this.containers) {
+      if (k.opened) continue;
+      const d = Math.hypot(k.cell.c - c, k.cell.r - r);
+      if (d <= bd) { bd = d; best = k; }
+    }
+    return best;
+  }
+
+  // Open a container: parse its csv item ids into the backpack (id === -2 → gold), show a
+  // floater per item, then mark it looted (fade the marker out). Empty ones say "Empty".
+  openContainer(k) {
+    if (!k || k.opened) return;
+    k.opened = true;
+    const m = this.playerModel;
+    const ids = (k.data.items || '').split(/[,;]/).map(s => s.trim()).filter(Boolean);
+    let got = 0;
+    for (const raw of ids) {
+      const id = +raw;
+      if (!id) continue;
+      if (id === -2) { if (m) m.addGold(rint(3, 12)); got++; continue; }
+      if (m) m.addItem(id);
+      const nm = (this.items && this.items[id] && this.items[id].name) || `item ${id}`;
+      if (this.combat) this.combat._floater(k.sprite, nm, false, false, '#9ad');
+      got++;
+    }
+    if (!got && this.combat) this.combat._floater(k.sprite, 'Empty', false, false, '#aaa');
+    if (this.gameHud) this.gameHud.update(true);
+    const s = k.sprite;
+    if (s && s.scene) s.scene.tweens.add({ targets: s, alpha: 0, duration: 500,
+      onComplete: () => { if (s) s.destroy(); } });
   }
 
   // Keep world-chunk entity groups in sync with the currently-loaded chunks.
@@ -617,7 +701,9 @@ class MapScene extends Phaser.Scene {
     for (const [name, ch] of loaded) {
       if (this._entityGroups && this._entityGroups.has(name)) continue;
       const gc0 = ch.col * this.overworld.CW, gr0 = ch.row * this.overworld.CH;
-      this.spawnEntities(ch.map.npcs, name, (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r));
+      const toPx = (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r);
+      this.spawnEntities(ch.map.npcs, name, toPx);
+      this.spawnContainers(ch.map.containers, name, toPx, { c: gc0, r: gr0 });
     }
   }
 
@@ -697,6 +783,10 @@ class MapScene extends Phaser.Scene {
         if (this._pendingTalk) {                     // walked up to an NPC -> talk
           const e = this._pendingTalk; this._pendingTalk = null;
           if (Math.hypot(e.cell.c - this.heroCell.c, e.cell.r - this.heroCell.r) <= 1.6) this.talkTo(e);
+        }
+        if (this._pendingContainer) {                // walked up to a crate/chest -> open
+          const k = this._pendingContainer; this._pendingContainer = null;
+          if (!k.opened && Math.hypot(k.cell.c - this.heroCell.c, k.cell.r - this.heroCell.r) <= 1.6) this.openContainer(k);
         }
       }
     } else {
@@ -835,6 +925,8 @@ class MapScene extends Phaser.Scene {
     const hc = this.heroCell;
     const e = this.entityNear(hc.c, hc.r, 1.6);
     if (e) { this.combat.clearTarget(); this.talkTo(e); return true; }
+    const k = this.containerNear(hc.c, hc.r, 1.6);
+    if (k) { this.combat.clearTarget(); this.openContainer(k); return true; }
     const t = this.currentTransitions().find(t =>
       t.area && Math.abs(t.c - hc.c) <= 1 && Math.abs(t.r - hc.r) <= 1);
     if (t) { this.path = null; this.goArea(t.area, t.entry); return true; }
@@ -1062,6 +1154,7 @@ class MapScene extends Phaser.Scene {
       this.fitMap();
       this._loading = false;
       this.spawnEntities(map.npcs, 'interior', (c, r) => cellToPx(c, r, map));
+      this.spawnContainers(map.containers, 'interior', (c, r) => cellToPx(c, r, map));
     } catch (err) {
       console.warn('area load failed:', name, err);
       this._loading = false;

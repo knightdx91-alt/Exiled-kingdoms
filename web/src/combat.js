@@ -6,7 +6,7 @@
 // the exact g0/armor mitigation. Death drops loot (gold/items) and awards XP. A pause
 // toggle freezes ticks — EK's "real-time with pause".
 
-import { setFacing } from './sprite.js';
+import { setFacing, playAttack } from './sprite.js';
 import { facingFor } from './move.js';
 import { SKILL_FX, skillParams, skillCooldown } from './skills.js';
 
@@ -167,7 +167,7 @@ export class Combat {
       this._target = target;
       if (!this._heroCd || this._heroCd <= 0) {
         const hero = this._heroCbt();
-        this._resolveAttack(hero, target.cbt, this.s.hero, target, false);
+        this._resolveAttack(hero, target.cbt, this.s.hero, target, false, this.s.heroKey);
         this._heroCd = (hero.weapon && hero.weapon.speed || 10) * 45;
         this._face(this.s.hero, this.s.heroKey, hc, target.cell);
         if (target.cbt.dead) this._onEnemyDeath(target);
@@ -323,7 +323,7 @@ export class Combat {
     if (d <= hero.reach) {
       this.s.path = null;                       // stop walking; we're in range
       if (!this._heroCd || this._heroCd <= 0) {
-        this._resolveAttack(hero, t.cbt, this.s.hero, t, false);
+        this._resolveAttack(hero, t.cbt, this.s.hero, t, false, this.s.heroKey);
         this._heroCd = (hero.weapon && hero.weapon.speed || 10) * 45;
         this._face(this.s.hero, this.s.heroKey, hc, t.cell);
         if (t.cbt.dead) this._onEnemyDeath(t);
@@ -349,7 +349,7 @@ export class Combat {
       c.path = null;
       if (c.attackCd <= 0) {
         const hero = this._heroCbt();
-        this._resolveAttack(c, hero, e.sprite, { sprite: this.s.hero, cell: hc }, true);
+        this._resolveAttack(c, hero, e.sprite, { sprite: this.s.hero, cell: hc }, true, e.key);
         c.attackCd = (c.weapon && c.weapon.speed || 12) * 60;
         this._face(e.sprite, e.key, e.cell, hc);
         this._syncHeroHp(hero);
@@ -376,7 +376,7 @@ export class Combat {
       const d = this._dist(e.cell, tgt.cell);
       if (d <= c.reach) {
         if (c.attackCd <= 0) {
-          this._resolveAttack(c, tgt.cbt, e.sprite, tgt, false);
+          this._resolveAttack(c, tgt.cbt, e.sprite, tgt, false, e.key);
           c.attackCd = (c.weapon && c.weapon.speed || 12) * 60;
           this._face(e.sprite, e.key, e.cell, tgt.cell);
           if (tgt.cbt.dead) this._onEnemyDeath(tgt);
@@ -424,11 +424,19 @@ export class Combat {
 
   // Resolve one attack from `atk` (cbt) against `def` (cbt), spawning a floating number
   // over the defender's sprite. `defEnt` is the defender entity (or hero descriptor).
-  _resolveAttack(atk, def, atkSprite, defEnt, defIsHero) {
+  _resolveAttack(atk, def, atkSprite, defEnt, defIsHero, atkKey) {
     if (!atk || !def) return;
+    const sprite = defEnt.sprite || defEnt;
+    // Face the defender and play the sheet's swing animation (rows 6-10). If the sheet
+    // has no attack rows (small monster), playAttack returns false → brief lunge instead.
+    let swung = false;
+    if (atkSprite && atkKey && sprite) {
+      const f = facingFor(sprite.x - atkSprite.x, sprite.y - atkSprite.y);
+      swung = playAttack(atkSprite, atkKey, f.name, f.flip);
+    }
     // Evasion buff: the hero may dodge an incoming blow entirely.
     if (defIsHero && def.dodge && rint(1, 100) <= def.dodge) {
-      this._floater(defEnt.sprite || defEnt, 'Dodge!', false, false, '#8fd0ff');
+      this._floater(sprite, 'Dodge!', false, false, '#8fd0ff');
       return;
     }
     const roll = rollDamage(atk.weapon, atk.dmgBonus);
@@ -437,10 +445,9 @@ export class Combat {
                            { projectile: roll.projectile, shield: !!def.shield });
     def.hp = Math.max(0, def.hp - taken);
     if (def.hp <= 0) def.dead = true;
-    const sprite = defEnt.sprite || defEnt;
     this._floater(sprite, taken, roll.crit, defIsHero);
-    // brief lunge for feedback
-    if (atkSprite && atkSprite.scene) {
+    // brief lunge for feedback when there's no attack animation on the sheet
+    if (!swung && atkSprite && atkSprite.scene) {
       const ox = atkSprite.x, oy = atkSprite.y;
       atkSprite.scene.tweens.add({ targets: atkSprite, x: ox + (defEnt.sprite ? 3 : 0),
         duration: 60, yoyo: true, onComplete: () => atkSprite.setPosition(ox, oy) });

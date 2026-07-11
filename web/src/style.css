@@ -351,7 +351,13 @@ body.ek-rot-270 #overlay-root {
 /* ================= In-game HUD (placeholder EK theme) ================= */
 #hud { position: fixed; inset: 0; z-index: 35; pointer-events: none;
   font-family: "Georgia", "Times New Roman", serif; color: #ece3cf; }
-#hud button, #hud .hud-panel { pointer-events: auto; }
+/* Re-enable pointer input on interactive HUD elements. #hud is pointer-events:none so
+   taps fall through to the canvas (move the hero); each control that should be tappable
+   opts back in. The portrait (opens CharacterWindow) and recover button are <img>s, so
+   they need to be listed explicitly — the bare `button` selector doesn't cover them. */
+#hud button, #hud .hud-panel, #hud .hud-portrait, #hud .hud-recover,
+#hud .qslot, #hud .skbtn, #hud .cw { pointer-events: auto; }
+#hud .hud-portrait { cursor: pointer; }
 
 .hud-top {
   position: absolute; top: env(safe-area-inset-top, 8px); left: 8px;
@@ -535,9 +541,12 @@ body.ek-rot-270 #overlay-root {
 .jq-desc { font-size: 12.5px; color: #4a3410; line-height: 1.45; }
 .jq-done { font-size: 12px; font-weight: 700; color: #2f7a2f; }
 
-/* Skill bar — bottom-right, above the attack button (GameHUD.B[8]). */
-.hud-skillbar { position: absolute; right: 128px; bottom: calc(env(safe-area-inset-bottom, 8px) + 12px);
-  display: flex; gap: 5px; pointer-events: none; max-width: 52vw; flex-wrap: wrap; justify-content: flex-end; }
+/* Skill bar — bottom-right, directly ABOVE the attack button (GameHUD.B[8]). The attack
+   button is 108px tall at bottom (safe+10), so the skills stack above it. A 2-column grid
+   that wraps upward, right-aligned to the attack button. */
+.hud-skillbar { position: absolute; right: 10px; bottom: calc(env(safe-area-inset-bottom, 8px) + 128px);
+  display: flex; gap: 5px; pointer-events: none; width: 116px; max-height: 60vh;
+  flex-wrap: wrap-reverse; justify-content: flex-end; align-content: flex-end; }
 .skbtn { position: relative; overflow: hidden; pointer-events: auto; cursor: pointer;
   width: 52px; height: 52px; padding: 2px; font-family: inherit; font-size: 10px; font-weight: 700;
   color: #fff5df; text-shadow: 0 1px 2px #000; background-size: cover; background-position: center;
