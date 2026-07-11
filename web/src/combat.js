@@ -472,7 +472,10 @@ export class Combat {
     const s = e.sprite;
     const dx = tp.x - s.x, dy = tp.y - s.y;
     const dist = Math.hypot(dx, dy) || 1;
-    const step = MOVE_SPEED * dt;
+    // Slow proc (weapon proc 'slow') halves move speed until it expires.
+    let slowMul = 1;
+    if (c.slow) { if (this.s.time.now >= c.slow.until) c.slow = null; else slowMul = c.slow.mul; }
+    const step = MOVE_SPEED * dt * slowMul;
     this._face(s, e.key, e.cell, next);
     if (dist <= step) {
       s.setPosition(tp.x, tp.y);
@@ -489,11 +492,44 @@ export class Combat {
     try { setFacing(sprite, key, f.name, f.flip, false); } catch { /* non-animated */ }
   }
 
+  // Apply a weapon's on-hit proc to the defender (WeaponStats: stun/slow/paralyze/emp).
+  // Durations reversed from Character.z1/s0 + the proc log strings. APPROX: exact resist
+  // scaling (sheet.f0) and EMP's robot-only 35-75 hit aren't modelled — we roll the flat
+  // proc chance and apply the effect. deobf/COMBAT_SPEC.md.
+  _applyProc(defCbt, proc, sprite) {
+    if (!proc || !proc.effect) return;
+    if (rint(1, 100) > (proc.chance || 0)) return;
+    const lvl = proc.level || 1;
+    if (proc.effect === 'stun' || proc.effect === 'paralyze' || proc.effect === 'emp') {
+      defCbt.stun = Math.max(defCbt.stun || 0, lvl * 1000);   // Character.z1: level seconds
+      this._floater(sprite, proc.effect === 'paralyze' ? 'Paralyzed!' : 'Stun!', false, false, '#ffe066');
+    } else if (proc.effect === 'slow') {
+      defCbt.slow = { until: this.s.time.now + ((lvl * 2) + 3) * 1000, mul: 0.5 };  // s0: (level*2)+3 s
+      this._floater(sprite, 'Slow!', false, false, '#8fd0ff');
+    }
+  }
+
+  // Fly a projectile of atlas `region` from (fx,fy) to (tx,ty), invoking onHit() on
+  // arrival. Falls back to calling onHit() immediately if the atlas is missing (A16).
+  _projectileTo(fx, fy, tx, ty, region, onHit) {
+    const s = this.s;
+    if (!s || !s.add || !s.world || !region || !s.textures || !s.textures.exists('projectiles')) { onHit(); return; }
+    const bolt = s.add.image(fx, fy, 'projectiles', region).setScale(0.7);
+    bolt.setRotation(Math.atan2(ty - fy, tx - fx));
+    s.world.add(bolt);
+    const dur = Math.min(320, Math.max(90, Math.hypot(tx - fx, ty - fy) * 1.4));
+    s.tweens.add({ targets: bolt, x: tx, y: ty, duration: dur, ease: 'Linear',
+      onComplete: () => { bolt.destroy(); onHit(); } });
+  }
+
   // Resolve one attack from `atk` (cbt) against `def` (cbt), spawning a floating number
   // over the defender's sprite. `defEnt` is the defender entity (or hero descriptor).
+  // Ranged weapons fly a projectile and land the damage on arrival (A16); melee lands now.
   _resolveAttack(atk, def, atkSprite, defEnt, defIsHero, atkKey) {
     if (!atk || !def) return;
     const sprite = defEnt.sprite || defEnt;
+    const w = atk.weapon;
+    const ranged = !!(w && w.ranged);
     // Face the defender and play the sheet's swing animation (rows 6-10). If the sheet
     // has no attack rows (small monster), playAttack returns false → brief lunge instead.
     let swung = false;
@@ -506,18 +542,39 @@ export class Combat {
       this._floater(sprite, 'Dodge!', false, false, '#8fd0ff');
       return;
     }
-    const roll = rollDamage(atk.weapon, atk.dmgBonus);
+    const roll = rollDamage(w, atk.dmgBonus);
     if (atk.bonusHit) { roll.hp += atk.bonusHit; this.nextHit = 0; }   // stab one-shot bonus
-    const taken = mitigate(roll.hp, roll.type, def.armor || 0, def.resist || {},
-                           { projectile: roll.projectile, shield: !!def.shield });
-    def.hp = Math.max(0, def.hp - taken);
-    if (def.hp <= 0) def.dead = true;
-    this._floater(sprite, taken, roll.crit, defIsHero);
-    // brief lunge for feedback when there's no attack animation on the sheet
-    if (!swung && atkSprite && atkSprite.scene) {
-      const ox = atkSprite.x, oy = atkSprite.y;
-      atkSprite.scene.tweens.add({ targets: atkSprite, x: ox + (defEnt.sprite ? 3 : 0),
-        duration: 60, yoyo: true, onComplete: () => atkSprite.setPosition(ox, oy) });
+
+    const land = () => {
+      if (def.dead) return;
+      const taken = mitigate(roll.hp, roll.type, def.armor || 0, def.resist || {},
+                             { projectile: roll.projectile, shield: !!def.shield });
+      def.hp = Math.max(0, def.hp - taken);
+      this._floater(sprite, taken, roll.crit, defIsHero);
+      // Secondary elemental damage (weapons.txt cols 15/16) — its own mitigation + floater.
+      if (w && w.secondary) {
+        const sec = mitigate(w.secondary.dmg, w.secondary.type, def.armor || 0, def.resist || {}, {});
+        if (sec > 0) { def.hp = Math.max(0, def.hp - sec); this._floater(sprite, sec, false, defIsHero, this._typeColor(w.secondary.type)); }
+      }
+      // On-hit proc (stun/slow/paralyze) unless the blow already killed.
+      if (def.hp > 0 && w && w.proc) this._applyProc(def, w.proc, sprite);
+      if (def.hp <= 0) def.dead = true;
+      if (defIsHero) this._syncHeroHp(def);
+      else if (def.dead && defEnt && defEnt.cbt) this._onEnemyDeath(defEnt);
+    };
+
+    if (ranged) {
+      const reg = (w.sprite && this.s.textures && this.s.textures.exists('projectiles')) ? w.sprite : 'arrow1';
+      const fx = atkSprite ? atkSprite.x : sprite.x, fy = atkSprite ? atkSprite.y - 24 : sprite.y;
+      this._projectileTo(fx, fy, sprite.x, sprite.y - 12, reg, land);
+    } else {
+      land();
+      // brief lunge for feedback when there's no attack animation on the sheet
+      if (!swung && atkSprite && atkSprite.scene) {
+        const ox = atkSprite.x, oy = atkSprite.y;
+        atkSprite.scene.tweens.add({ targets: atkSprite, x: ox + (defEnt.sprite ? 3 : 0),
+          duration: 60, yoyo: true, onComplete: () => atkSprite.setPosition(ox, oy) });
+      }
     }
   }
 
