@@ -887,6 +887,13 @@ class MapScene extends Phaser.Scene {
       if (g !== 'interior' && !loaded.has(g)) this.despawnGroup(g);
     for (const [name, ch] of loaded) {
       if (this._entityGroups && this._entityGroups.has(name)) continue;
+      // Register the group here, not (only) inside spawnEntities: a chunk with containers
+      // but zero NPCs makes spawnEntities early-return before it records the group, so it
+      // would never be marked resident and its containers would be re-spawned on every
+      // stream cycle -- an unbounded sprite leak. Marking it here makes the skip guard
+      // above cover container-only chunks too.
+      this._entityGroups = this._entityGroups || new Set();
+      this._entityGroups.add(name);
       const gc0 = ch.col * this.overworld.CW, gr0 = ch.row * this.overworld.CH;
       const toPx = (c, r) => this.overworld.cellToPx(gc0 + c, gr0 + r);
       this.spawnEntities(ch.map.npcs, name, toPx, { c: gc0, r: gr0 });
@@ -1355,12 +1362,23 @@ class MapScene extends Phaser.Scene {
     // live sprites drawing + animating every frame regardless of whether the camera can
     // even see them. Hide (and pause the animation of) whatever's outside the window;
     // this is the actual fix for "FPS drops so much I can't move" near town.
+    // Hiding a sprite stops it drawing, but a culled NPC still stays a child of the
+    // depth-sorted `mid` plane -- so sortMid() (run every frame while walking) pays for
+    // every NPC in every resident chunk, not just the handful on screen. Near a town
+    // corner that's 200+ sprites sorted 60x/sec: the real "drags to a halt". Pull culled
+    // sprites OUT of the plane on the visibility transition and re-add them when they
+    // return, so the per-frame sort cost is bounded to the viewport regardless of town
+    // size. (mid tiles are already pooled to the viewport, so mid stays viewport-sized.)
     let visEntities = 0;
     for (const e of this.entities) {
       const s = e.sprite;
       if (!s || !s.scene) continue;
       const vis = s.x >= minX && s.x <= maxX && s.y >= minY && s.y <= maxY;
-      if (vis !== s.visible) { s.setVisible(vis); if (s.anims) { if (vis) s.anims.resume(); else s.anims.pause(); } }
+      if (vis !== s.visible) {
+        s.setVisible(vis);
+        if (s.anims) { if (vis) s.anims.resume(); else s.anims.pause(); }
+        if (vis) this.planes.mid.add(s); else this.planes.mid.remove(s);
+      }
       if (vis) visEntities++;
     }
     this._entityStats = { visible: visEntities, total: this.entities.length };
@@ -1368,7 +1386,10 @@ class MapScene extends Phaser.Scene {
       const s = k.sprite;
       if (!s || !s.scene) continue;
       const vis = s.x >= minX && s.x <= maxX && s.y >= minY && s.y <= maxY;
-      if (vis !== s.visible) s.setVisible(vis);
+      if (vis !== s.visible) {
+        s.setVisible(vis);
+        if (vis) this.planes.mid.add(s); else this.planes.mid.remove(s);
+      }
     }
 
     sortMid(this.planes.mid);

@@ -51,5 +51,8 @@ the table are "known but inert" (their passive/active effect is a later pass).
 - A representative, high-value set is implemented (heals, the four caster spells, the main
   warrior/rogue actives, the core buffs, `fury`/`mana_surge`). Summons, stealth, traps,
   most masteries, procs, and exact projectile travel/animation are **not** modelled yet —
-  tagged APPROX; skills outside the table are inert. Cooldowns use the reversed
+  tagged APPROX; skills outside the table are inert. In place of EK's real per-spell
+  impact art we play a generic type-tinted impact burst at the target (`Combat._castFx`):
+  an expanding ring + core flash + flecks, colour from the damage type (heal green / melee
+  amber / buff gold). Cosmetic only — self-cleans via tweens, no gameplay effect. Cooldowns use the reversed
   `skills.txt` value where present, else a per-kind default.

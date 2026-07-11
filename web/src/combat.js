@@ -231,9 +231,38 @@ export class Combat {
   _isUndead(e) { return /undead|skeleton|zombie|ghost|wraith|lich|ghoul|vampire/i.test(`${e.rec && e.rec.race || ''} ${e.npc && e.npc.spawn || ''}`); }
   _typeColor(t) { return { Fire: '#ff7043', Cold: '#8fd0ff', Shock: '#ffe066', Death: '#b39ddb', Toxic: '#9ccc65', Spirit: '#fff59d' }[t] || '#ffffff'; }
 
+  // Cast impact FX. APPROX (deobf/SKILLS_EXEC_SPEC.md §Deviations): EK plays a real
+  // per-spell projectile/impact animation; we don't have that art, so a type-tinted
+  // expanding ring + a brief core flash + a few flecks stands in so a cast visibly lands
+  // rather than only spawning a damage number. Purely cosmetic; self-cleans via tweens.
+  _castFx(cell, hex, tiles) {
+    const s = this.s;
+    if (!s || !s.add || !s.toPx || !s.world) return;
+    const p = s.toPx(cell.c, cell.r);
+    const col = (typeof hex === 'string' && hex[0] === '#') ? parseInt(hex.slice(1), 16) : (hex || 0xffffff);
+    const rpx = Math.max(22, (tiles || 1) * 34);
+    const cy = p.y - 12;
+    const ring = s.add.circle(p.x, cy, rpx, col, 0.28).setStrokeStyle(3, col, 0.9).setScale(0.2);
+    const core = s.add.circle(p.x, cy, rpx * 0.5, col, 0.6);
+    s.world.add(ring); s.world.add(core);
+    s.tweens.add({ targets: ring, scale: 1.1, alpha: 0, duration: 380, ease: 'Cubic.Out',
+      onComplete: () => ring.destroy() });
+    s.tweens.add({ targets: core, scale: 1.6, alpha: 0, duration: 240, ease: 'Quad.Out',
+      onComplete: () => core.destroy() });
+    for (let i = 0; i < 6; i++) {
+      const a = (Math.PI * 2 * i) / 6 + Math.random() * 0.5;
+      const fleck = s.add.circle(p.x, cy, 3 + Math.random() * 2, col, 0.95);
+      s.world.add(fleck);
+      s.tweens.add({ targets: fleck, x: p.x + Math.cos(a) * rpx, y: cy + Math.sin(a) * rpx * 0.6,
+        alpha: 0, duration: 300 + Math.random() * 150, ease: 'Quad.Out',
+        onComplete: () => fleck.destroy() });
+    }
+  }
+
   _castHeal(p) {
     const m = this.s.playerModel, before = m.hp;
     m.heal(p.heal);
+    if (this.s.heroCell) this._castFx(this.s.heroCell, '#7fd07f', 1);
     this._floater(this.s.hero, `+${Math.round(m.hp - before)}`, false, false, '#7fd07f');
   }
 
@@ -241,6 +270,7 @@ export class Combat {
     const tgt = (this._target && this._target.cbt && !this._target.cbt.dead) ? this._target : this._nearestEnemy(hc, 8);
     if (!tgt) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
     const center = tgt.cell, radius = fx.radius || 1;
+    this._castFx(center, this._typeColor(fx.type), radius);
     for (const e of this.s.entities.slice()) {
       if (!e.cbt || e.cbt.dead || e.cbt.side !== 'enemy') continue;
       if (this._dist(e.cell, center) > radius) continue;
@@ -264,6 +294,7 @@ export class Combat {
         ? this._target : this._nearestEnemy(hc, reach);
       targets = t ? [t] : [];
     }
+    this._castFx(hc, '#ffd08a', fx.area ? reach : 1);
     if (!targets.length) { this._floater(this.s.hero, 'No target', false, false, '#aaa'); return; }
     for (const e of targets.slice()) {
       const roll = rollDamage(hero.weapon, hero.dmgBonus);
@@ -283,6 +314,7 @@ export class Combat {
       this.buffs.push({ armor: p.armor || 0, resist: p.resist || null, dmgAdd: p.dmgAdd || 0,
         dodge: p.dodge || 0, until: this.s.time.now + (p.dur || 6) * 1000 });
     }
+    if (this.s.heroCell) this._castFx(this.s.heroCell, '#ffe9a8', 1);
     this._floater(this.s.hero, fx.name, false, false, '#ffe9a8');
   }
 
