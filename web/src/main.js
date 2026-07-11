@@ -1278,6 +1278,14 @@ class MapScene extends Phaser.Scene {
     this.LW = rot ? SH : SW;
     this.LH = rot ? SW : SH;
 
+    // Expose the current LOGICAL orientation as a body class so DOM overlays (e.g. the
+    // CharacterWindow grid) can lay out per portrait/landscape. This is correct in both
+    // orientation modes — device-rotation (real viewport) and in-engine rotation (LW/LH
+    // derived from `orient`) — unlike a raw CSS viewport media query.
+    const landscape = this.LW >= this.LH;
+    document.body.classList.toggle('ek-landscape', landscape);
+    document.body.classList.toggle('ek-portrait', !landscape);
+
     // place + rotate the world container so logical [0..LW]x[0..LH] fills the screen
     const T = {
       0:   { r: 0,               x: 0,  y: 0  },
