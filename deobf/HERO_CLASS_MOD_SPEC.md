@@ -54,3 +54,17 @@ three edits confirmed present in the final dex/assets.
   mod only removes the class restriction, it does not alter skill behavior.
 - Not playtested on-device here (no emulator). Static verification only: patches present in
   final dex, signature valid, label present.
+
+## v2 — scrollable, all-skills-pickable skill screen (EXPERIMENTAL)
+The base-game skill window (`o0/t.l()`) is a fixed grid: 8 class + 4 general + 8
+specialist slots (array `o0/t.k` size 20), no scroll. So v1's Hero was *eligible* for all
+37 basic skills but the screen only rendered the first 8. v2 fixes that additively:
+1. Icon array `o0/t.k` enlarged 20 → 80.
+2. The skill Table is wrapped in a **ScrollPane** in the constructor (vertical scroll,
+   ~420×520 cell) so overflow rows are reachable.
+3. A new **"All Skills"** section is appended at the end of `l()`: a loop over
+   `Skills.b(class)` (all 37 for the Hero) that builds an `o0/q` icon per skill with the
+   real `o0/v` click-listener, laid out in rows of 4 (array indices 20+).
+The three original sections are untouched (low risk). **EXPERIMENTAL / not playtested on
+device** — hand-written scene2d smali; scroll sizing and register reuse are unverified.
+v1 (`dist/ExiledKingdoms-hero.apk`) remains the safe fallback.
