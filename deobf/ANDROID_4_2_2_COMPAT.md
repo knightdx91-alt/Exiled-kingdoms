@@ -12,7 +12,12 @@ built 2025-07-26). Inspecting it:
 |----------------------------|--------------------------------|-----------------------------|
 | Native libs (`lib/`)       | **`arm64-v8a` only**           | `armeabi-v7a` (32-bit ARM)  |
 | `classes.dex` format       | **038** (`dex\n038\0`)         | **035** (Dalvik max)        |
+| `minSdkVersion`            | **26** (Android 8.0)           | ≤ 17                        |
 | Engine                     | libGDX **1.9.12**              | —                           |
+
+For reference, the 4.2.2-native community mods (`EK_ENB_eng`, `EK_SM_*` a.k.a.
+"Sorrows") declare `minSdkVersion 16`, ship `armeabi-v7a`, and use dex 035 —
+which is exactly why they install and run on the tablet untouched.
 
 1. **arm64-only native code.** Android 4.2.2 is 32-bit; the arm64 runtime did
    not exist until Android 5.0. `System.loadLibrary("gdx")` finds no loadable
@@ -38,14 +43,18 @@ base APK's `lib/` untouched, leaving it arm64-only → still crash (wall 1).
 2. **Downgrade dex 038 → 035** via `baksmali d` + `smali a --api 15` (skipped if
    already 035, so it's a no-op on mod outputs). Safe here because the dex uses
    no 038-only opcodes (no `invoke-custom` / `MethodHandle`).
-3. **Add storage permissions** (`WRITE_EXTERNAL_STORAGE`, `READ_EXTERNAL_STORAGE`)
-   so the game can export `.bak` save files. On API 17 these are install-time
-   permissions — granted at install, no runtime prompt. Done by
-   `tools/axml_add_perms.py`, a surgical binary-`AndroidManifest.xml` editor that
-   appends the value strings to the string pool and clones an existing
-   `<uses-permission>` chunk (validated with androguard; `resources.arsc` and all
-   other entries are left byte-identical).
-4. **Re-sign** v1+v2 (API 17 uses the v1 JAR signature; v2 is ignored there).
+3. **Lower `minSdkVersion` 26 → 16** and **add storage permissions**
+   (`WRITE_EXTERNAL_STORAGE`, `READ_EXTERNAL_STORAGE`, so `.bak` save export
+   works; install-time perms on API 17, no runtime prompt). Both are done by
+   `tools/axml_add_perms.py --min-sdk 16`, a surgical binary-`AndroidManifest.xml`
+   editor: minSdk is a fixed-size in-place integer edit; permissions append value
+   strings to the string pool and clone an existing `<uses-permission>` chunk
+   (validated with androguard; `resources.arsc` and every other entry stay
+   byte-identical). `targetSdkVersion` is left at 35 — an old OS ignores it.
+   Lowering minSdk is what lets a strict installer accept the APK on 4.2.2 at all.
+4. **Re-sign** v1+v2. Because minSdk is now 16, apksig auto-selects **SHA1** v1
+   digests — required by API 17, which cannot verify the SHA-256 v1 signature a
+   minSdk-26 APK would otherwise get. (v2 is ignored on 4.2.2.)
 
 ## Build
 ```bash
@@ -64,11 +73,19 @@ tools/build_arm32_compat.sh hero-raw.apk  ExiledKingdoms-hero-4.2.2.apk
 - `lib/armeabi-v7a/` **and** `lib/arm64-v8a/` present; the 32-bit `libgdx.so` is a
   real ARM EABI5 ELF exporting all 58 `Java_com_badlogic…` symbols.
 - `classes.dex` magic = `035`.
-- `AndroidManifest.xml` lists both storage permissions (androguard parse OK).
-- `jarsigner -verify` → *jar verified*.
+- `AndroidManifest.xml`: `minSdkVersion=16`, `targetSdkVersion=35`, both storage
+  permissions listed (androguard parse OK).
+- v1 signature present with **SHA1** digests (API-17-compatible). Modern
+  `jarsigner -verify` prints "treated as unsigned … weak algorithm" — that is the
+  local JDK's SHA1 policy, **not** an APK defect; 4.2.2 requires SHA1 here.
 
 ## Residual risk (needs on-device confirmation — can't be checked off-device)
-The three hard blockers above are fixed. What can't be proven without the tablet:
+All install-time blockers are fixed (ABI, dex, minSdk, SHA1 sig), so the APK now
+*installs* on 4.2.2 the same way Sorrows/ENB do. The remaining unknown is
+**runtime**: unlike Sorrows/ENB (built for Android 4.1+), this is a **minSdk-26
+codebase** — the developers targeted Android 8.0, so the Java may call an API
+newer than 17 during startup and crash even though it installs. Lowering minSdk
+removes the *gate*, not that possibility. What can't be proven without the tablet:
 - Startup Java may touch a framework API newer than API 17 (the APK references
   `JobScheduler` and Google Play Games sign-in). These are normally
   version-guarded (`JobIntentService`; libGDX's own floor is API 14, per its

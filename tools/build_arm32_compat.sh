@@ -55,9 +55,11 @@ else
   cp "$WORK/dexin/classes.dex" "$WORK/stage/classes.dex"
 fi
 
-# --- AndroidManifest.xml: add storage permissions ---
+# --- AndroidManifest.xml: lower minSdk (26->16) + add storage permissions ---
+# The 2025 base declares minSdkVersion 26 (Android 8.0), so a strict installer
+# refuses it on 4.2.2. Sorrows/ENB install because they declare 16 — match that.
 unzip -o -q "$IN" AndroidManifest.xml -d "$WORK/mf"
-python3 "$HERE/axml_add_perms.py" "$WORK/mf/AndroidManifest.xml" "$WORK/stage/AndroidManifest.xml"
+python3 "$HERE/axml_add_perms.py" "$WORK/mf/AndroidManifest.xml" "$WORK/stage/AndroidManifest.xml" --min-sdk 16
 
 # --- repackage: keep original zip, swap/add our entries ---
 cp "$IN" "$WORK/out.apk"

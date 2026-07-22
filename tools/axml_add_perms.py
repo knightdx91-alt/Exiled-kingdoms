@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Add <uses-permission> entries to a binary AndroidManifest.xml (AXML).
+"""Add <uses-permission> entries to a binary AndroidManifest.xml (AXML) and/or
+lower minSdkVersion.
 
 Surgical, resources.arsc-free: only the manifest is rewritten. Appends the
 permission value strings to the string pool and clones existing
 <uses-permission> START/END chunks pointing at the new strings. Idempotent —
-permissions already present are skipped.
+permissions already present are skipped. minSdkVersion is a fixed-size in-place
+integer edit (only lowered, never raised).
 
-Usage: axml_add_perms.py <AndroidManifest.xml in> <out> [PERM ...]
+Usage: axml_add_perms.py <in> <out> [--min-sdk N] [PERM ...]
 Default PERMs: WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 """
 import struct, sys
@@ -80,14 +82,58 @@ def set_attr_string(block, str_idx):
     struct.pack_into('<I', b, 52, str_idx)
     return bytes(b)
 
+def lower_min_sdk(d, target):
+    """In-place (same length): set <uses-sdk> minSdkVersion attr down to target.
+    Returns (new_bytes, old_value_or_None)."""
+    d = bytearray(d)
+    sp_off, sp_size, flags, strings = parse_pool(d)
+    try:
+        ms_idx = strings.index('minSdkVersion')
+    except ValueError:
+        return bytes(d), None
+    o = sp_off + sp_size
+    assert u16(d, o) == 0x0180
+    o += u32(d, o + 4)
+    while o < len(d):
+        t = u16(d, o); sz = u32(d, o + 4)
+        if t == 0x0102:                                   # START element
+            hs = u16(d, o + 2); ac = u16(d, o + 28)
+            ao = o + hs
+            for _ in range(ac):
+                if u32(d, ao + 4) == ms_idx:              # attribute name == minSdkVersion
+                    old = u32(d, ao + 16)
+                    if old > target:
+                        struct.pack_into('<I', d, ao + 16, target)  # typed data
+                        if u32(d, ao + 8) != 0xffffffff:            # rawValue (if a string) stays
+                            pass
+                    return bytes(d), old
+                ao += 20
+        o += sz
+    return bytes(d), None
+
+
 def main():
-    src, dst = sys.argv[1], sys.argv[2]
-    perms = sys.argv[3:] or [
+    argv = sys.argv[1:]
+    min_sdk = None
+    if '--min-sdk' in argv:
+        i = argv.index('--min-sdk'); min_sdk = int(argv[i + 1]); del argv[i:i + 2]
+    src, dst = argv[0], argv[1]
+    perms = argv[2:] or [
         'android.permission.WRITE_EXTERNAL_STORAGE',
         'android.permission.READ_EXTERNAL_STORAGE',
     ]
     d = open(src, 'rb').read()
     assert u32(d, 0) == 0x00080003, "not AXML"
+
+    if min_sdk is not None:
+        d, old = lower_min_sdk(d, min_sdk)
+        if old is None:
+            print("minSdkVersion attribute not found; left unchanged")
+        elif old > min_sdk:
+            print(f"minSdkVersion {old} -> {min_sdk}")
+        else:
+            print(f"minSdkVersion already {old} (<= {min_sdk}); unchanged")
+
     sp_off, sp_size, flags, strings = parse_pool(d)
     pool_end = sp_off + sp_size
 
