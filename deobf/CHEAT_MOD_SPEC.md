@@ -64,6 +64,25 @@ apply the two smali edits + append item rows → smali reassemble → swap `clas
 -verify` (v1) + `apksig ApkVerifier` (v2), and both patched methods confirmed present in
 the final dex.
 
+## Applied to the 2023 / Android-4.2.2 base (owner-supplied APK)
+The owner's `Exiled Kingdoms.apk` (build dated 2023-01-06, single `classes.dex`,
+`armeabi-v7a` libs, low `minSdkVersion` — installs natively on Android 4.2.2) uses a
+**different method-name obfuscation** than the 2025 base, so the smali anchors were
+re-reversed. Same three changes, remapped:
+
+| Purpose | 2025 base | 2023 / 4.2.2 base |
+|---------|-----------|-------------------|
+| `GameData` self-accessor | `->v()` | `->O()` |
+| GameMap class / walkability method | `m0/b` `->C(II)Z` | `e/a/c/b` (`.source "GameMap.java"`) `->c(II)Z` (reads `p:[[I`) |
+| Base-inventory reset (grants + robbery reset) | `Player->C1()V` | `Player->y0()V` (gold `0x12`, fresh `CharacterInventory`, `inventory.a(0)`) |
+| Add-item-by-id | `CharacterInventory->c(I)Z` | `CharacterInventory->a(I)Z` |
+| Variable getter | `GameVariables->b(String)I` | `GameVariables->b(String)I` (unchanged) |
+
+`items.txt` (25 cols), the 23 factions, and the `book4`/`ring1` icons all exist unchanged
+in this base. Built with `tools/build_cheat_mod.sh`'s pipeline using the remapped anchors;
+signed v1 (**SHA1withRSA** — required by 4.2.2) + v2/v3. Output:
+`dist/ExiledKingdoms-cheats-4.2.2.apk`.
+
 ## Deliberate deviations / APPROX
 - No-clip is global, not player-only (choke point limitation). Documented above.
 - Cheat delivery is **new-characters-only** (owner's choice); existing saves would need an
