@@ -249,3 +249,29 @@ the path the literal `"nullEK.bak"`), and the directory is not guaranteed to exi
 **Result:** the backup lands at `/sdcard/EK.bak`, which is also far easier to retrieve on
 a 4.2.2 device than `Android/data/...`.
 
+---
+
+## ⚠️ STILL OPEN as of 2026-07-24 (owner device testing)
+
+**No-clip — still broken.** The polarity fix (return `false`/passable for in-bounds tiles
+when `noclip == 1`) shipped, but the owner reports it still does not behave correctly.
+Conclusion: `e/a/c/b->c(II)Z` is **not the only** collision gate. Next step is to trace the
+actual movement path rather than patch blind — start at `Player`/`Character` movement and at
+`GameLevelData.c(II)Z`, which `c()` calls **first** and which returns early (`return v2`,
+i.e. blocked) before the tile array is ever consulted. That early-out is the prime suspect
+for a second gate. Use `tools/trace_calls.py`.
+
+**Export save — still broken.** Neither the storage permission nor repointing the external
+root to `/sdcard/` fixed it. **Pre-scoped next step (owner's suggestion, and cheap):** write
+the backup to the **Downloads** folder. `Serializer.a()Z` (import) *already* probes
+`download/EK.bak`, `Download/EK.bak`, `downloads/EK.bak`, `Downloads/EK.bak`,
+`sdcard/download/EK.bak`, `sdcard/Download/EK.bak` relative to the external root — which now
+points at `/sdcard/`, so those resolve to the real Downloads folder. **Only the write side
+needs changing:** in `Serializer.a(Z)V` change the filename constant `"EK.bak"` →
+`"Download/EK.bak"`, and `mkdirs()` the parent first (`FileOutputStream` does not create
+parent directories). Import then finds it unchanged.
+
+**Diagnostic already in the build:** the export's silent `catch` now forwards the exception
+text to `GameConsole`, so pressing Export should surface a real message in-game. Get that
+message before changing anything else — it names the actual failure.
+

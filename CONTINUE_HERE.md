@@ -11,6 +11,96 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ---
 
+## ⚠️ OPEN WORK — 4.2.2 mod APK (read this first, 2026-07-24)
+
+Track C (not A/B): modding the owner's **Android 4.2.2** device build.
+Deliverable: `dist/ExiledKingdoms-cheats-4.2.2.apk` (one APK, all features).
+Base: `dist/ExiledKingdoms-base-4.2.2.apk` (owner-supplied, clean, Git LFS).
+Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk out.apk`
+
+### Status
+
+| Feature | Status |
+|---|---|
+| Install on 4.2.2 | ✅ **working** (needed SHA1withRSA cert **and** the zip-swap pipeline) |
+| Max reputation (Tome of Renown) | ✅ working |
+| Cheat items appear / usable | ✅ working |
+| **No-clip** (Phase/Anchor Stone) | ❌ **still broken — needs work** |
+| **Export save** | ❌ **still broken — needs work** |
+| Janod mage companion | ❓ untested on device |
+| Hero class + per-class skill pager | ❓ untested on device — **needs work** |
+
+### 1. Export save — NEXT STEP IS ALREADY SCOPED
+
+Two things were tried and were **not** the fix: adding `WRITE/READ_EXTERNAL_STORAGE`
+(shipped, harmless, keep it), and redirecting the external root to `/sdcard/`
+(shipped — `tools/patch_export_fix.py`).
+
+**Owner's suggestion is the right next move, and it is nearly free**: write the backup
+into the **Downloads** folder. The engine's *import* side **already probes** these paths,
+relative to the external root (`Serializer.a()Z`, verified in the dex):
+
+```
+EK.bak · download/EK.bak · Download/EK.bak · downloads/EK.bak
+Downloads/EK.bak · sdcard/download/EK.bak · sdcard/Download/EK.bak
+```
+
+Since `patch_export_fix.py` already repointed the external root at `/sdcard/`, those now
+resolve to the **real** `/sdcard/Download/EK.bak`. So **only the write side needs changing**:
+in `Serializer.a(Z)V` change the filename constant `"EK.bak"` → `"Download/EK.bak"`
+(and `"EK_GPGS.bak"` likewise if wanted). Import then finds it with no further change.
+⚠️ `new FileOutputStream(...)` does **not** create parent dirs — `/sdcard/Download` usually
+exists, but add an explicit `mkdirs()` on the parent to be safe.
+
+**Diagnostic already shipped:** the export's silent `catch` now pushes the exception text to
+`GameConsole` (`tools/patch_export_fix.py`). Ask the owner what message appears in-game when
+export is pressed — that names the real failure instead of another guess.
+
+### 2. No-clip — still wrong
+
+`e/a/c/b->c(II)Z` is a **solid/blocked** predicate (true = blocked). v1 returned `true`
+(froze everyone); the current build returns `false` for in-bounds tiles when
+`noclip == 1` (`tools/patch_cheats_v2.py`). Owner reports it still isn't right — so
+`c(II)Z` is evidently **not the only** collision gate. Do **not** patch it further blind:
+trace the movement path properly (`tools/trace_calls.py`), starting from `Player`/`Character`
+movement and `GameLevelData.c(II)Z` (called *first* inside `c()` and returning early), which
+is the most likely second gate. Confirm which predicate the player's step actually consults.
+
+### 3. Hero class — untested, UI is the risk
+
+`tools/patch_hero_class.py`, spec `deobf/HERO_CLASS_MOD_SPEC.md` §v3. Logic side should be
+sound (single choke point `ClassRestriction.a(CharacterClass)`, gated by the new
+`ekSuppress` flag). **Unverified part is the layout**: the pager `TextButton` added to
+Table `l` in `c()`. If it renders badly, adjust placement — it is a standalone
+`add()`+`row()` at the top of the table, easy to move.
+
+### Build pipeline — DO NOT reintroduce `apktool b`
+
+`apktool b` re-encodes `AndroidManifest.xml`/`resources.arsc` and rewrites the zip
+(META-INF at the front) → **`INSTALL_PARSE_FAILED_NO_CERTIFICATES` on 4.2.2**, even though
+the signature verifies on desktop. `tools/build_mod_4_2_2.sh` instead zip-swaps only changed
+entries into a copy of the base APK (`resources.arsc` stays byte-identical) and edits the
+binary manifest via `tools/axml_add_perms.py`.
+
+Signing must be: cert **SHA1withRSA** (`keytool -genkeypair -sigalg SHA1withRSA` — keytool
+defaults to SHA384 and old Android then reports *no certificate at all*), digests SHA1,
+signed with Google `apksig` `setMinSdkVersion(16)`. Pre-ship check:
+`keytool -printcert -jarfile <apk> | grep -i "signature algorithm"` must say SHA1withRSA.
+
+Patchers must stay **disassembler-agnostic**: apktool emits sequential labels (`:cond_1`),
+baksmali offset-based (`:cond_17`). Anchor on instruction sequences and capture labels by
+regex — never hardcode a label name.
+
+### Specs
+`deobf/CHEAT_MOD_SPEC.md` (cheats, signing, export) · `deobf/COMPANION_SPEC.md` (companion
+system + Janod) · `deobf/HERO_CLASS_MOD_SPEC.md` (Hero, §v3 current).
+
+Key reversing result worth remembering: **`world/companions.txt` is a dead file** — nothing
+loads it. Companion identity is hardcoded by `spawn_id` in `NPC.<init>` (the `companionSpawn`
+whitelist) and in `ScriptedAction`'s `UpgradeCompanion` branch.
+
+---
+
 ## What's NOT in git (and how to get it)
 
 Kept out of the repo on purpose (size / third-party copyright). All re-derivable:

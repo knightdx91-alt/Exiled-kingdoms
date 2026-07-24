@@ -143,3 +143,13 @@ learnable by the Hero.
   assembles (which validates registers and label targets), and every edit was confirmed
   present in the shipped dex by re-disassembling it.
 
+## ⚠️ STATUS 2026-07-24 — shipped, NOT yet verified on device
+Owner has not playtested the Hero build. Open questions, in likely order of risk:
+1. **Pager button layout** — does it render sensibly at the top of Table `l`? It is a
+   standalone `add()` + `row()`, so it can be relocated without touching other cells.
+2. Does cycling HERO → ROGUE → CLERIC → MAGE repopulate the 8-slot grid correctly?
+3. Are skills from a non-native page actually learnable (they should be — the learn path
+   runs with `ekSuppress` clear, so the bypass is live)?
+4. Does the Hero show mana, and are spells castable?
+5. Do Rogue/Cleric/Mage characters still behave exactly as before (no pager button)?
+
