@@ -5,6 +5,14 @@ cheats, delivered as **activatable inventory items** plus one small engine hook.
 from the decompiled sources; every change is anchored to a real game mechanic.
 
 ## What the mod does
+> **Item type = `wand` (not `general`).** `Item.g()` only reports an item as *usable* when
+> its type is `potion`, `scroll`, or `wand`; a `general` item shows **only a Drop button**,
+> no **Use**. `wand` is the right pick: it is usable, it is **not** equippable (`Rules.l()`
+> excludes it, so the action button reads **USE**, not EQUIP), and — unlike potion/scroll —
+> the loader does not append a hidden "remove self" action, so the item is **reusable** (the
+> no-clip on/off toggles must survive repeated use). weaponStats stays null (empty col 3),
+> which is safe because the item-preview UI only reads weaponStats for `type == weapon`.
+
 Three new items are granted to every **newly created** character (they also survive the
 tutorial robbery, since they are seeded in the same reset the robbery uses):
 

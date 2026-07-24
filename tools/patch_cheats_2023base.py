@@ -55,11 +55,17 @@ reps=['varsilia','mercia','ilmara','thuram','the_three','town_lannegar','town_ki
 'town_rhoneis','town_jabal','town_sydarun','town_new_anthur','town_fogas','town_whitetower',
 'varannari','loreseekers','goldenhand','seventhhouse','wizardsguild','warriorsguild',
 'friguld_governor','town_lamis','town_port_malan','town_solliga']
+# type MUST be one of {potion, scroll, wand} or Item.g() returns false and the item shows
+# only a Drop option -- no Use button. We use `wand`: it is usable (g() allows it), NOT
+# equippable (Rules.l() excludes it, so the action button reads USE, not EQUIP), and -- unlike
+# potion/scroll -- the loader does NOT append a "remove self" action, so the item is reusable
+# (the no-clip on/off toggles must survive repeated use). weaponStats is left null (empty
+# col 3); that is safe because the preview UI only reads weaponStats for type == WEAPON.
 rows=[
- row(item_ID='9990',name='Tome of Renown',type='general',armor='0',value='-1',icon='book4',hp='0',mana='0',
+ row(item_ID='9990',name='Tome of Renown',type='wand',armor='0',value='-1',icon='book4',hp='0',mana='0',
      OnUse=';'.join(f'SetVariable#REP_{f},100' for f in reps)),
- row(item_ID='9991',name='Phase Stone',type='general',armor='0',value='-1',icon='ring1',hp='0',mana='0',OnUse='SetVariable#noclip,1'),
- row(item_ID='9992',name='Anchor Stone',type='general',armor='0',value='-1',icon='ring1',hp='0',mana='0',OnUse='SetVariable#noclip,0'),
+ row(item_ID='9991',name='Phase Stone',type='wand',armor='0',value='-1',icon='ring1',hp='0',mana='0',OnUse='SetVariable#noclip,1'),
+ row(item_ID='9992',name='Anchor Stone',type='wand',armor='0',value='-1',icon='ring1',hp='0',mana='0',OnUse='SetVariable#noclip,0'),
 ]
 open(p,'w',encoding='utf-8').write(raw.rstrip('\n')+'\n'+'\n'.join(rows)+'\n')
 
