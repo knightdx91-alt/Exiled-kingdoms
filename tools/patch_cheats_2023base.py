@@ -62,4 +62,23 @@ rows=[
  row(item_ID='9992',name='Anchor Stone',type='general',armor='0',value='-1',icon='ring1',hp='0',mana='0',OnUse='SetVariable#noclip,0'),
 ]
 open(p,'w',encoding='utf-8').write(raw.rstrip('\n')+'\n'+'\n'.join(rows)+'\n')
-print("patched: noclip(e/a/c/b.c) + grant(Player.y0) + items.txt")
+
+# --- items_text.txt: append matching name/description rows (REQUIRED) ---
+# Rules.Load() resolves every item's on-screen name/description by looking its item_ID
+# up in items_text.txt. An item present in items.txt but MISSING from items_text.txt
+# fails that lookup and NPEs during "loading items" -> crash on the loading screen,
+# before the main menu. So the three cheat items MUST also be declared here.
+p2=f'{w}/assets/assets/data/rules/items_text.txt'; raw2=open(p2,encoding='utf-8').read()
+tcols=raw2.split('\n')[0].lstrip('﻿').split('\t'); tn=len(tcols); tix={c:i for i,c in enumerate(tcols)}
+def trow(item_ID,name,description):
+    r=['']*tn
+    r[tix['item_ID']]=item_ID; r[tix['name']]=name; r[tix['description']]=description
+    return '\t'.join(r)
+trows=[
+ trow('9990','Tome of Renown','Reading it fills you with renown. Sets your reputation to Legendary Hero with every faction.'),
+ trow('9991','Phase Stone','A shimmering stone that lets you slip through solid matter. Turns no-clip ON.'),
+ trow('9992','Anchor Stone','A heavy grey stone that pulls you back into the world. Turns no-clip OFF.'),
+]
+open(p2,'w',encoding='utf-8').write(raw2.rstrip('\n')+'\n'+'\n'.join(trows)+'\n')
+
+print("patched: noclip(e/a/c/b.c) + grant(Player.y0) + items.txt + items_text.txt")

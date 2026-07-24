@@ -51,8 +51,13 @@ interior map defined — only genuinely enterable structures.
   `inventory.c(9990/9991/9992)` calls are appended before `return-void`, so the items are
   part of the starting kit and reappear after the tutorial robbery.
 
-## Files changed (2 smali methods + 1 asset)
+## Files changed (2 smali methods + 2 assets)
 - `assets/data/rules/items.txt` — 3 appended rows (25 cols each, ids 9990-9992).
+- `assets/data/rules/items_text.txt` — 3 appended rows (19 cols each, ids 9990-9992):
+  the item name/description. **Required:** `Rules.Load()` resolves every item's on-screen
+  name by looking its `item_ID` up in `items_text.txt`; an item present in `items.txt` but
+  missing here NPEs during "loading items" (subtask 6/12) → **crash on the loading screen,
+  before the main menu**. All 130 stock `general` items have an `items_text.txt` entry.
 - `m0/b.smali` — `C(II)Z`: no-clip check.
 - `net/fdgames/GameEntities/Final/Player.smali` — `C1()V`: grant the 3 items.
 
