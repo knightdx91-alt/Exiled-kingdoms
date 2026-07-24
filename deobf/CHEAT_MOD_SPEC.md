@@ -75,7 +75,16 @@ re-reversed. Same three changes, remapped:
 | `GameData` self-accessor | `->v()` | `->O()` |
 | GameMap class / walkability method | `m0/b` `->C(II)Z` | `e/a/c/b` (`.source "GameMap.java"`) `->c(II)Z` (reads `p:[[I`) |
 | Base-inventory reset (grants + robbery reset) | `Player->C1()V` | `Player->y0()V` (gold `0x12`, fresh `CharacterInventory`, `inventory.a(0)`) |
-| Add-item-by-id | `CharacterInventory->c(I)Z` | `CharacterInventory->a(I)Z` |
+| Add-item-by-id | `CharacterInventory->c(I)Z` | `CharacterSheet->a(I)Z` (backpack.a(id) → Rules.f(id)) |
+
+> **Load-crash fix (corrected anchor).** The add-item anchor was originally
+> mis-mapped to `CharacterInventory->a(I)Z`. In this 2023 base that method is **not**
+> add-by-id — it treats its argument as a **backpack slot index** (`Items.e(p1)` →
+> `array[p1]`), so `inventory.a(9990)` threw `ArrayIndexOutOfBoundsException` during the
+> new-game inventory reset (`y0()`), which is the "loads for a moment, then crashes"
+> symptom. The correct add-by-id here is `CharacterSheet->a(I)Z` — exactly what the
+> unmodified `y0()` already uses for the starting weapon (`sheet.a(0x1f5)`). The three
+> grants now call `sheet.a(9990/9991/9992)`.
 | Variable getter | `GameVariables->b(String)I` | `GameVariables->b(String)I` (unchanged) |
 
 `items.txt` (25 cols), the 23 factions, and the `book4`/`ring1` icons all exist unchanged

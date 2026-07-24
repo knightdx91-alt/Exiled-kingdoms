@@ -32,11 +32,15 @@ p=f'{w}/smali/net/fdgames/GameEntities/Final/Player.smali'; s=open(p,encoding='u
 a=s.index('.method public y0()V'); b=s.index('.end method',a); body=s[a:b]
 assert body.rstrip().endswith('return-void')
 g=''
+# Add-item-by-id in this 2023 base is CharacterSheet.a(I)Z (backpack.a(id) -> Rules.f(id));
+# it is exactly what the original y0() uses for the starting weapon (sheet.a(0x1f5)).
+# NOTE: CharacterInventory.a(I)Z is NOT add-by-id here -- it treats the arg as a backpack
+# SLOT INDEX (Items.e(p1) -> array[p1]), so passing an item id (9990+) throws
+# ArrayIndexOutOfBoundsException during the new-game inventory reset (the load-screen crash).
 for h in ('0x2706','0x2707','0x2708'):
     g+=('    iget-object v0, p0, Lnet/fdgames/GameEntities/Character;->sheet:Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;\n\n'
-        '    iget-object v0, v0, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;->inventory:Lnet/fdgames/GameEntities/CharacterSheet/CharacterInventory;\n\n'
         f'    const v1, {h}\n\n'
-        '    invoke-virtual {v0, v1}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterInventory;->a(I)Z\n\n')
+        '    invoke-virtual {v0, v1}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;->a(I)Z\n\n')
 nb=body[:body.rindex('return-void')]+g+'    return-void\n'
 open(p,'w',encoding='utf-8').write(s[:a]+nb+s[b:])
 
