@@ -314,6 +314,26 @@ Sorrow Mod, ENB authors) — permission needed to ship any of it.
 
 ---
 
+## Cheat mod on the owner's 4.2.2 base APK — DONE & working
+Owner-requested cheats (no-clip toggle + max reputation) on the owner's 2023 32-bit
+`Exiled Kingdoms.apk` (installs on Android 4.2.2). Delivered as three usable inventory
+items (Tome of Renown = max rep for 23 factions; Phase Stone = no-clip ON; Anchor Stone
+= no-clip OFF), seeded into every new character. Full spec + **the debugging log of how
+it was made to work** are in `deobf/CHEAT_MOD_SPEC.md` ("How we got it working"). Short
+version — three bugs, each found by disassembling the 2023 dex and cross-reading the
+decompiled sources:
+1. **Boot crash (loading screen, before main menu):** cheat items missing from
+   `items_text.txt` → name lookup NPE. Fix: add matching name/desc rows there too.
+2. **New-Game crash:** grant used `CharacterInventory.a(I)Z` (= equip backpack slot #i,
+   AIOOBE), not add-by-id. Fix: grant via `CharacterSheet.a(I)Z`.
+3. **No Use button (Drop only):** items were type `general` (never usable). Fix: type
+   `wand` — usable, not equippable (button reads USE), not consumed (reusable toggles).
+Reproduce: `tools/build_cheat_mod.sh` pipeline + `tools/patch_cheats_2023base.py` (the
+2023-anchor patcher); **sign v1 with a SHA1withRSA cert** (old Android rejects SHA-256/384
+certs). Output: `dist/ExiledKingdoms-cheats-4.2.2.apk` (Git LFS).
+
+---
+
 ## Repo map
 ```
 web/                Track B — Phaser 3 web rebuild (the product)

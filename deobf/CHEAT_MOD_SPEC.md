@@ -105,6 +105,44 @@ in this base. Built with `tools/build_cheat_mod.sh`'s pipeline using the remappe
 signed v1 (**SHA1withRSA** — required by 4.2.2) + v2/v3. Output:
 `dist/ExiledKingdoms-cheats-4.2.2.apk`.
 
+## How we got it working (debugging log, 4.2.2 base)
+
+The first cheat build installed and ran but **crashed on the loading screen before the main
+menu**; once that was fixed it crashed **on New Game**; once that was fixed the items
+appeared but **couldn't be used** (Drop only). Three distinct bugs, each verified against the
+disassembled 2023 `classes.dex` (`baksmali`) and the decompiled 2025 sources (same game
+logic, different obfuscation), then fixed in `tools/patch_cheats_2023base.py` and rebuilt:
+
+1. **Startup crash — missing `items_text.txt` rows.**
+   `Rules.Load()` (subtask 6/12, "loading items") resolves each item's on-screen
+   name/description by matching its `item_ID` in `data/rules/items_text.txt`; on no match it
+   sets `gameText = null` then calls `gameText.get()` → **NullPointerException during boot**.
+   All 130 stock `general` items have an `items_text.txt` entry; our cheat items (9990-9992)
+   were only in `items.txt`. **Fix:** also append 3 rows (19 cols) to `items_text.txt`.
+
+2. **New-Game crash — wrong add-item anchor.**
+   The grant in `Player.y0()` called `CharacterInventory.a(I)Z`, assuming add-by-id. In this
+   2023 base that method is **"equip backpack slot #i"** (`Items.e(p1)` → `array[p1]`), so
+   `a(9990)` indexed far out of range → **ArrayIndexOutOfBoundsException** during the
+   new-game inventory reset. The real add-by-id is `CharacterSheet.a(I)Z` — what the stock
+   `y0()` already uses for the starting weapon (`sheet.a(0x1f5)`). **Fix:** grant via
+   `sheet.a(9990/9991/9992)`.
+
+3. **No Use button — wrong item type.**
+   `Item.g()` reports an item usable only if its type is `potion`/`scroll`/`wand`; a
+   `general` item shows **Drop only**. **Fix:** set the three items to `wand` — usable, and
+   **not** equippable (`Rules.l()` excludes wand, so the button reads **USE** and fires
+   `OnUse`), and **not** consumed (only potion/scroll get a loader-appended "remove self"
+   action), so the no-clip on/off stones stay reusable. Null `weaponStats` (empty col 3) is
+   safe: the preview UI only reads `weaponStats` for `type == weapon`.
+
+Every build: `baksmali classes.dex` → apply the 2 smali edits → append rows to `items.txt`
++ `items_text.txt` → `smali a --api 15` (dex 035, for Dalvik) → swap `classes.dex` + the two
+data files into a copy of the base APK → strip `META-INF` → **sign v1 with a SHA1withRSA
+cert** (older Android can't parse SHA-256/384 cert signatures) + v2. Verified each time:
+packaged dex is byte-identical to the patched dex, cert sig alg is SHA1withRSA, and every
+`item_ID` parses as an integer with correct column counts.
+
 ## Deliberate deviations / APPROX
 - No-clip is global, not player-only (choke point limitation). Documented above.
 - Cheat delivery is **new-characters-only** (owner's choice); existing saves would need an
