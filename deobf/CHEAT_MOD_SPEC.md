@@ -191,3 +191,26 @@ SHA1withRSA** (`jarsigner -digestalg SHA1 -sigalg SHA1withRSA`, with a
 `dist/ExiledKingdoms-cheats-4.2.2.apk`. Reputation grant + wand-type usable items are
 unchanged from the prior build (they worked); only the two fixes above and the single-
 `assets/` path layout differ.
+
+### `INSTALL_PARSE_FAILED_NO_CERTIFICATES` — signing gotcha (hit 2026-07)
+The first 2026-07 build would not install (Lucky Patcher reported
+`INSTALL_PARSE_FAILED_NO_CERTIFICATES`). Cause: **the signing certificate itself** was
+`SHA384withRSA`. `jarsigner -digestalg SHA1 -sigalg SHA1withRSA` only controls the manifest
+digests and the signature block — it does **not** control how the self-signed cert in the
+keystore was signed, and `keytool -genkeypair` silently defaults to SHA-384 on modern JDKs.
+Android ≤ 4.2.2 (API 17) cannot parse SHA-256/384 certificate signatures, so it rejects the
+APK as having *no* certificate at all.
+
+**`-sigalg SHA1withRSA` must be passed to `keytool -genkeypair` as well:**
+```
+keytool -genkeypair -keystore ek.keystore -alias ek -keyalg RSA -keysize 2048 \
+  -sigalg SHA1withRSA -validity 10000 -storepass … -keypass … -dname "…" \
+  -J-Djava.security.properties=relax.security
+```
+Verify before shipping — this must print `SHA1withRSA`:
+```
+keytool -printcert -jarfile <out.apk> | grep -i "signature algorithm"
+```
+Full 4.2.2-safe checklist: cert alg = SHA1withRSA, manifest digests = `SHA1-Digest`,
+`SHA1-Digest-Manifest` in the `.SF`, and every content entry signed (`jarsigner -verify`
+reports `jar verified`; entry count should exceed the manifest `Name:` count by exactly 3).
