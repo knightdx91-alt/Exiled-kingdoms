@@ -7,7 +7,7 @@ Two smali edits are unavoidable: companion identity is hardcoded by spawn_id in
 NPC.<init> (the `companionSpawn` whitelist) and in the UpgradeCompanion action.
 Everything else is data.
 """
-import sys
+import sys, re
 w = "."
 
 # ---------------------------------------------------------------------------
@@ -24,46 +24,31 @@ w = "."
 p = f'{w}/smali/net/fdgames/GameEntities/Final/NPC.smali'
 s = open(p, encoding='utf-8').read()
 
-anchor = """    invoke-virtual {v1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+# Label names differ per disassembler (apktool :cond_0 vs baksmali :cond_2f), so match
+# the instruction pattern and CAPTURE whatever labels this build uses.
+pat = re.compile(
+    r'    invoke-virtual \{v1, v3\}, Ljava/lang/String;->equals\(Ljava/lang/Object;\)Z\n\n'
+    r'    move-result v1\n\n'
+    r'    if-eqz v1, :(cond_[0-9a-f]+)\n\n'
+    r'    goto/16 :(goto_[0-9a-f]+)\n')
+m = pat.search(s)
+assert m, "NPC companion-whitelist anchor not found"
+cond_lbl, goto_lbl = m.group(1), m.group(2)
 
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    goto/16 :goto_2
-
-    :cond_0
-"""
-assert s.count(anchor) == 1, "NPC companion-whitelist anchor not unique/found"
-
-repl = """    invoke-virtual {v1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-nez v1, :ekjanod_iscompanion
-
-    iget-object v1, p0, Lnet/fdgames/GameEntities/Final/NPC;->spawn_id:Ljava/lang/String;
-
-    sget-object v7, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
-
-    invoke-virtual {v1, v7}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
-
-    move-result-object v1
-
-    const-string v7, "janod"
-
-    invoke-virtual {v1, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    :ekjanod_iscompanion
-    goto/16 :goto_2
-
-    :cond_0
-"""
-s = s.replace(anchor, repl, 1)
+repl = ("    invoke-virtual {v1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z\n\n"
+        "    move-result v1\n\n"
+        "    if-nez v1, :ekjanod_iscompanion\n\n"
+        "    iget-object v1, p0, Lnet/fdgames/GameEntities/Final/NPC;->spawn_id:Ljava/lang/String;\n\n"
+        "    sget-object v7, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;\n\n"
+        "    invoke-virtual {v1, v7}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;\n\n"
+        "    move-result-object v1\n\n"
+        '    const-string v7, "janod"\n\n'
+        "    invoke-virtual {v1, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z\n\n"
+        "    move-result v1\n\n"
+        f"    if-eqz v1, :{cond_lbl}\n\n"
+        "    :ekjanod_iscompanion\n"
+        f"    goto/16 :{goto_lbl}\n")
+s = s[:m.start()] + repl + s[m.end():]
 open(p, 'w', encoding='utf-8').write(s)
 print("patched NPC.<init>: janod -> companionSpawn=true")
 

@@ -27,34 +27,38 @@ w="."
 # ---------------------------------------------------------------------------
 p=f'{w}/smali/e/a/c/b.smali'; s=open(p,encoding='utf-8').read()
 
-# widen locals 3 -> 4 so we get a scratch register (v3) without disturbing v0/v1/v2.
-sig='.method public c(II)Z\n    .locals 3\n'
-assert s.count(sig)==1, "c(II)Z signature not found"
-s=s.replace(sig, '.method public c(II)Z\n    .locals 4\n', 1)
+# Anchor on INSTRUCTIONS, not label names: apktool emits sequential labels (:cond_1)
+# while plain baksmali emits offset-based ones (:cond_17). The first
+# GameLevelData.s() call inside c(II)Z is the in-bounds entry point (the jump target
+# reached only after the bounds check), so inserting immediately after that label --
+# i.e. directly before the invoke -- is equivalent and disassembler-independent.
+ms = s.index('.method public c(II)Z'); me = s.index('.end method', ms)
+method = s[ms:me]
 
-# Insert the noclip test at the in-bounds entry label :cond_1. At this point the tile is
-# guaranteed in bounds. If noclip is on we return 0 (passable). We use v3 as scratch and
-# build our own 0 in v0 for the return (v2 is not yet 0 here).
-anchor='    :cond_1\n'
-assert s.count(anchor)>=1, ":cond_1 anchor not found"
-inject=('    :cond_1\n'
-        '    invoke-static {}, Lnet/fdgames/GameWorld/GameData;->O()Lnet/fdgames/GameWorld/GameData;\n\n'
-        '    move-result-object v3\n\n'
-        '    iget-object v3, v3, Lnet/fdgames/GameWorld/GameData;->gameVariables:Lnet/fdgames/GameWorld/GameVariables;\n\n'
-        '    const-string v1, "noclip"\n\n'
-        '    invoke-virtual {v3, v1}, Lnet/fdgames/GameWorld/GameVariables;->b(Ljava/lang/String;)I\n\n'
-        '    move-result v3\n\n'
-        '    const/4 v1, 0x1\n\n'
-        '    if-ne v3, v1, :ekcheat_noclip_off\n\n'
-        '    const/4 v0, 0x0\n\n'
-        '    return v0\n\n'
-        '    :ekcheat_noclip_off\n')
-# Replace only the FIRST :cond_1 (the one inside c(II)Z). Guard by patching within the method.
-ms=s.index('.method public c(II)Z'); me=s.index('.end method', ms)
-method=s[ms:me]
-assert method.count('    :cond_1\n')==1, "unexpected :cond_1 count inside c(II)Z"
-method=method.replace(anchor, inject, 1)
-s=s[:ms]+method+s[me:]
+sig = '.method public c(II)Z\n    .locals 3\n'
+assert method.startswith(sig), "c(II)Z signature not found"
+method = method.replace(sig, '.method public c(II)Z\n    .locals 4\n', 1)  # v3 scratch
+
+anchor = '    invoke-static {}, Lnet/fdgames/GameLevel/GameLevelData;->s()Lnet/fdgames/GameLevel/GameLevelData;\n'
+assert anchor in method, "GameLevelData.s() anchor not found in c(II)Z"
+i = method.index(anchor)
+
+# v0 currently holds 1 (blocked). Return 0 (passable) when noclip is on.
+# v1/v3 are clobbered, which is safe: the original code immediately overwrites v1
+# via `move-result-object v1`, and v2 is only assigned further down.
+inject = ('    invoke-static {}, Lnet/fdgames/GameWorld/GameData;->O()Lnet/fdgames/GameWorld/GameData;\n\n'
+          '    move-result-object v3\n\n'
+          '    iget-object v3, v3, Lnet/fdgames/GameWorld/GameData;->gameVariables:Lnet/fdgames/GameWorld/GameVariables;\n\n'
+          '    const-string v1, "noclip"\n\n'
+          '    invoke-virtual {v3, v1}, Lnet/fdgames/GameWorld/GameVariables;->b(Ljava/lang/String;)I\n\n'
+          '    move-result v3\n\n'
+          '    const/4 v1, 0x1\n\n'
+          '    if-ne v3, v1, :ekcheat_noclip_off\n\n'
+          '    const/4 v0, 0x0\n\n'
+          '    return v0\n\n'
+          '    :ekcheat_noclip_off\n')
+method = method[:i] + inject + method[i:]
+s = s[:ms] + method + s[me:]
 open(p,'w',encoding='utf-8').write(s)
 print("patched noclip: e/a/c/b.c(II)Z -> passable when noclip==1")
 
