@@ -68,3 +68,78 @@ specialist slots (array `o0/t.k` size 20), no scroll. So v1's Hero was *eligible
 The three original sections are untouched (low risk). **EXPERIMENTAL / not playtested on
 device** — hand-written scene2d smali; scroll sizing and register reuse are unverified.
 v1 (`dist/ExiledKingdoms-hero.apk`) remains the safe fallback.
+
+---
+
+# v3 — rebuilt on the owner's 2023 / 4.2.2 base (CURRENT)
+
+v1/v2 were written against the **2025** base and their anchors do not exist here. Re-reversed
+against the owner's base; `tools/patch_hero_class.py` is the current implementation, applied
+by `tools/build_mod_4_2_2.sh`.
+
+## Remapped anchors (2025 base -> 2023/4.2.2 base)
+
+| Purpose | 2025 base | 2023 / 4.2.2 base |
+|---|---|---|
+| `CharacterClass` enum fields | `a`=WARRIOR … | **shifted by one**: `b`=WARRIOR(Hero), `c`=ROGUE, `d`=CLERIC, `e`=WIZARD, `f`=MONSTER, `g`=GENERAL, `h`=NONE |
+| Restriction choke point | `ClassRestriction->c(...)` | `ClassRestriction->a(CharacterClass)Ljava/lang/Boolean;` |
+| Max mana | `CharacterStats->h()` | `CharacterStats->g()I` |
+| Skill screen | `o0/t`, array `k` size 20 | `e/a/d/e/c0` (`.source "SkillWindow.java"`), array `n:[Le/a/d/e/z;` size `0x14` |
+
+Verified callers of the choke point — one method gates **all** of it:
+`Item` (equipment), `Skill` x2 (basic skills + advanced/trainers), `Rules`.
+
+## The suppress flag (why a plain bypass is not enough)
+
+Making `a(WARRIOR)` unconditionally true means `Skills.a(WARRIOR)` returns **all 37** basic
+skills — so there is then no way to ask for "just the warrior list", which the per-class
+pager needs. The bypass is therefore gated on a new
+`public static ClassRestriction.ekSuppress:Z` (default `false` = bypass **live**):
+
+```
+a(CharacterClass p1):
+    if (!ekSuppress && p1 == CharacterClass.b) return TRUE;   // Hero: unrestricted
+    <original: empty set, or set contains p1>
+```
+
+The pager sets `ekSuppress = true` *only* while building one page's list, and clears it
+immediately after. Everywhere else — equipping, learning, trainers — the bypass is live, so
+the Hero is unrestricted, which is the owner's requirement ("shouldn't be restricted from
+anything").
+
+## Per-class pager (owner's preferred design over a ScrollPane)
+
+The screen's class-skill section drew from `Skills.a(sheet.n())` into a fixed 8-slot grid, so
+v1's Hero was *eligible* for 37 skills but only the first 8 ever rendered. v2 tried to fix
+that with a hand-written ScrollPane and was never playtested. v3 pages instead, which reuses
+the existing layout code untouched:
+
+- new fields `c0.ekPage:I`, `c0.ekPageBtn:TextButton`
+- `c()` sources the list via new helper `ekClassSkills(CharacterSheet, page)`, replacing the
+  `sheet.n()` → `Skills.a()` sequence **in place, with identical register usage (v0/v1)**
+- `ekClassSkills` maps page `0..3` → `b/c/d/e` (HERO/ROGUE/CLERIC/MAGE), wraps the
+  `Skills.a()` call in `ekSuppress = true/false`, and returns the **real 8-skill list** for
+  that class. Page 0 (`b` + suppress) yields the genuine warrior list.
+- a `TextButton` labelled with the current page is added on **its own row** at the top of the
+  table (a standalone `add()` + `row()`, so no existing cell/colspan is disturbed), and only
+  when the character actually is the Hero — the other three classes render exactly as before
+- `ekNextPage()` advances `(page+1) % 4` and re-runs `c()`
+- listener `e/a/d/e/c0$ekp` mirrors the existing `c0$d` `InputListener` verbatim
+
+Because the *learn* path runs with `ekSuppress` clear, a skill listed on any page is
+learnable by the Hero.
+
+## Other changes
+- `CharacterStats.g()I`: the non-caster exit now also grants `WARRIOR` the caster branch
+  (`e()`), so the Hero has mana and spells are actually usable.
+- `strings.txt`: `WARRIOR` → `Hero` (English column; BOM + CRLF preserved).
+
+## Deliberate deviations / APPROX
+- Hero **replaces** the Warrior slot (owner-approved) rather than adding a 5th enum value.
+- The class-section **header** still reads "Hero skills" on every page; the pager button
+  itself shows which class list is displayed. Cosmetic only.
+- Page 0 shows the warrior list, so the Hero's own skills are page 1 of 4, not a merged list.
+- **Not playtested on device** (no emulator here). Static verification only: the dex
+  assembles (which validates registers and label targets), and every edit was confirmed
+  present in the shipped dex by re-disassembling it.
+

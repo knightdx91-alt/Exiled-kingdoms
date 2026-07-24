@@ -29,12 +29,14 @@ unzip -o -q "$BASE" \
   assets/data/rules/items_text.txt \
   assets/data/rules/bestiary.txt \
   assets/data/conversations/kingsbridge_wizard.txt \
+  assets/data/ui/strings/strings.txt \
   -d "$WORK"
 
 echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_companion_janod.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_export_fix.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_hero_class.py" )
 
 echo "== 4. reassemble dex (api 15 -> dex 035, Dalvik) =="
 java -jar "$LIB/smali-2.5.2.jar" a --api 15 "$WORK/smali" -o "$WORK/classes.dex"
@@ -55,7 +57,8 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/rules/items.txt \
     assets/data/rules/items_text.txt \
     assets/data/rules/bestiary.txt \
-    assets/data/conversations/kingsbridge_wizard.txt )
+    assets/data/conversations/kingsbridge_wizard.txt \
+    assets/data/ui/strings/strings.txt )
 
 echo "== 7. sign (SHA1withRSA cert + apksig v1/v2, minSdk 16) =="
 cat > "$WORK/relax.security" <<'EOF'
