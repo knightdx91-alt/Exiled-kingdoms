@@ -42,16 +42,38 @@ interior map defined — only genuinely enterable structures.
   town_whitetower, varannari, loreseekers, goldenhand, seventhhouse, wizardsguild,
   warriorsguild, friguld_governor, town_lamis, town_port_malan, town_solliga.
 
-### No-clip
-- Movement/pathfinding walkability is `GameMap.C(int x, int y)` (obf `m0/b->C(II)Z`),
-  called by `Player`/`Character`. Returns `f2431p[x][y] == 1` (plus door/bounds handling).
-- Engine variables default to **-255** for unknown names (`GameVariables` line 38), so an
-  "odd = on" scheme would read ON by default. The patch instead tests `noclip == 1`, which
-  a fresh game (default -255) never satisfies → off until the Phase Stone sets it to 1.
-- Patch prepends to `C(II)Z`: read `GameData.v().gameVariables.b("noclip")`; if `== 1`
-  return `true` (walkable); else fall through to the original body.
-- No-clip is **global** (NPCs/monsters also ignore collision while it is on) because `C()`
-  has no per-actor context. Toggle it off with the Anchor Stone.
+### No-clip  ⚠️ POLARITY CORRECTED (2026-07 build)
+- The tile-collision method in the **2023/4.2.2 base** is `e/a/c/b->c(II)Z`
+  (`.source "GameMap.java"`). **It is a SOLID/BLOCKED predicate, not a walkable one.**
+  Reading the real smali, it returns:
+  - `true` (blocked) for: out-of-bounds tiles, tiles where `p[x][y] > 0`, and **closed doors**;
+  - `false` (passable) for open passage.
+- **The previous build had this inverted.** It prepended `if noclip==1 return true`, which
+  made *every* tile report as SOLID → the player and all NPCs/monsters froze in place
+  (attacks still landed because combat never consults tile collision; ranged still fired
+  from a distance). That is exactly the "I can't move at all, enemies can't move, but I can
+  still attack" symptom the owner reported.
+- **Corrected patch:** insert the noclip test at the in-bounds entry (`:cond_1`, reached
+  only *after* the bounds check). If `GameData.O().gameVariables.b("noclip") == 1`, return
+  **`false`** (passable) so every in-bounds tile can be walked through. Out-of-bounds stays
+  SOLID (the bounds branch is untouched), so pathfinding never indexes `p[x][y]` out of
+  range. `.locals` is widened `3 → 4` to get a scratch register without disturbing the
+  original body.
+- Engine variables default to **-255** for unknown names, so testing `== 1` keeps no-clip
+  **off** on a fresh game until the Phase Stone sets `noclip = 1`.
+- No-clip is **global** (NPCs/monsters also ignore tile collision while it is on) because
+  `c()` has no per-actor context. Toggle it off with the Anchor Stone.
+
+### Export-save storage permission  ⚠️ NEW (2026-07 build)
+- Export writes `EK.bak` via `Gdx.files.external(...)`, which in this build resolves to the
+  app's **external files dir** (`getExternalFilesDir(null)` →
+  `Android/data/net.fdgames.ek.android/files/`). On **Android 4.2.2 (API 17)** writing there
+  still requires `WRITE_EXTERNAL_STORAGE` (the permission only became implicit for the
+  app-specific dir on API 19+). The clean base declares **no** storage permission, so the
+  export silently failed on the owner's 4.2.2 device.
+- Fix: add `WRITE_EXTERNAL_STORAGE` + `READ_EXTERNAL_STORAGE` (both `maxSdkVersion=29`) to
+  the manifest. The app already declares `requestLegacyExternalStorage="true"` for
+  API-29 scoped-storage compatibility, so no further change is needed.
 
 ### Delivery
 - `Player.C1()` (obf `Final/Player->C1()V`) is the base-inventory reset (gold=18, fresh
@@ -149,3 +171,23 @@ packaged dex is byte-identical to the patched dex, cert sig alg is SHA1withRSA, 
   early merchant stocking the items — not included.
 - Signed with a throwaway self-signed key → sideload install (not a Play update of the
   original). Uninstall the Play version first (different signer).
+
+## 2026-07 rebuild (owner's new base — current)
+The owner supplied a fresh, **unmodified** `Exiled Kingdoms.apk` (Drive) as the base to use
+going forward; it is committed as `dist/ExiledKingdoms-base-4.2.2.apk` (Git LFS, 126 MB,
+`classes.dex` dated 2023-01-06, `armeabi-v7a`, `minSdk 16` / `target 29`). Two owner-reported
+regressions were fixed on top of it:
+
+1. **No-clip froze everyone (polarity bug).** `e/a/c/b->c(II)Z` is a *solid* predicate, not
+   *walkable* — the old `return true` made all tiles solid. Corrected to `return false`
+   (passable) for in-bounds tiles when `noclip==1`. See the No-clip section above.
+2. **Export save did nothing (missing permission).** Added `WRITE/READ_EXTERNAL_STORAGE`
+   to the manifest so `EK.bak` can be written on Android 4.2.2. See the Export-save section.
+
+Build tooling for this base is `tools/patch_cheats_v2.py`, applied to an **apktool**-decoded
+tree (`apktool d` → run patcher + manifest edit → `apktool b`), then **v1-signed with
+SHA1withRSA** (`jarsigner -digestalg SHA1 -sigalg SHA1withRSA`, with a
+`jdk.jar.disabledAlgorithms=` security override since modern JDKs disable SHA1). Output:
+`dist/ExiledKingdoms-cheats-4.2.2.apk`. Reputation grant + wand-type usable items are
+unchanged from the prior build (they worked); only the two fixes above and the single-
+`assets/` path layout differ.
