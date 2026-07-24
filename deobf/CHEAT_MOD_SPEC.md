@@ -214,3 +214,38 @@ keytool -printcert -jarfile <out.apk> | grep -i "signature algorithm"
 Full 4.2.2-safe checklist: cert alg = SHA1withRSA, manifest digests = `SHA1-Digest`,
 `SHA1-Digest-Manifest` in the `.SF`, and every content entry signed (`jarsigner -verify`
 reports `jar verified`; entry count should exceed the manifest `Name:` count by exactly 3).
+
+### Export-save, take 2 — the permission was not the cause
+Adding WRITE/READ_EXTERNAL_STORAGE was necessary but did **not** make export work. The
+actual reason, reversed rather than assumed:
+
+`Serializer.a(Z)V` writes the backup with
+`new FileOutputStream(Gdx.files.getExternalStoragePath() + "EK.bak")`, and
+`AndroidFiles.getExternalStoragePath()` returns the `externalFilesPath` field, set in the
+constructor from `getExternalFilesDir(null)` -> `/sdcard/Android/data/net.fdgames.ek.android/files/`.
+The entire export body sits inside `catch (Exception) { printStackTrace(); }`, so **every
+failure is silent** — precisely the "nothing happens" symptom.
+
+On Android 4.2.2 that app-external dir is unreliable: `getExternalFilesDir()` returns null
+when the volume is not mounted at construction (AndroidFiles then stores **null**, making
+the path the literal `"nullEK.bak"`), and the directory is not guaranteed to exist —
+`new FileOutputStream(path)` does not create parent directories, so it throws
+`FileNotFoundException`/ENOENT straight into the silent catch.
+
+**Fix (`tools/patch_export_fix.py`, 2 smali edits):**
+1. `AndroidFiles.getExternalStoragePath()` now returns
+   `Environment.getExternalStorageDirectory().getAbsolutePath() + "/"` (i.e. `/sdcard/`),
+   falling back to the original field if unavailable. `/sdcard` always exists (no mkdirs
+   needed) and `WRITE_EXTERNAL_STORAGE` covers it. This also matches the game's own
+   help text for this era — `BACKUP_INFO_FILE_TEXT`: *"exported to a file called EK.bak,
+   on the root of your phone storage"* — and makes the import fallbacks the engine already
+   probes (`download/EK.bak`, `Download/EK.bak`, `sdcard/Download/EK.bak`) resolve to real
+   folders. Export/import stay symmetric: `FileHandle.file()` resolves `FileType.External`
+   through this same method. Scope is safe — the only consumers of this root are
+   `Serializer` (backup/restore) and the two backup-window classes that display the path.
+2. The swallowed exception in `Serializer.a(Z)V` is now also pushed to `GameConsole`, so a
+   future failure is diagnosable instead of invisible.
+
+**Result:** the backup lands at `/sdcard/EK.bak`, which is also far easier to retrieve on
+a 4.2.2 device than `Android/data/...`.
+

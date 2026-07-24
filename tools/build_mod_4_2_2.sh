@@ -34,6 +34,7 @@ unzip -o -q "$BASE" \
 echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_companion_janod.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_export_fix.py" )
 
 echo "== 4. reassemble dex (api 15 -> dex 035, Dalvik) =="
 java -jar "$LIB/smali-2.5.2.jar" a --api 15 "$WORK/smali" -o "$WORK/classes.dex"
