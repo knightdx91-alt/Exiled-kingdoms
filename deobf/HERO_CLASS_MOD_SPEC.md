@@ -143,7 +143,31 @@ learnable by the Hero.
   assembles (which validates registers and label targets), and every edit was confirmed
   present in the shipped dex by re-disassembling it.
 
-## ⚠️ STATUS 2026-07-24 — shipped, NOT yet verified on device
+## ⚠️ STATUS 2026-07-26 — owner reports a crash between loading screen and main menu
+
+Static analysis **exonerated every edit** (done against the real base dex, re-obtained
+via the owner's Drive after the LFS budget lockout):
+- `CharacterStats.g()`: `.locals 5`; `v3` really holds `characterClass` at `:cond_32`;
+  the captured join `:goto_25` is the right one. Sound.
+- `ClassRestriction.a()`: `.locals 1`, straight-line prepend. Sound.
+- `c0` ctor (`.locals 8`) and `c()` (`.locals 15`): all clobbered registers are dead;
+  the `:ekp_nobutton` merge leaves only conflict registers that are overwritten before
+  any read (legal on Dalvik). Every referenced symbol exists in the base
+  (`Assets.e()`, `TextButton(String,Skin,String)`, `Table.add(Actor)`, `setText`,
+  `row`, style `menuSmallButton`).
+- Whole patched dex passes D8 (`--min-api 15`) with zero diagnostics; jadx decompiles
+  every touched method cleanly (its one type-inference warning is the benign merge).
+- `strings.txt` edit is byte-safe (same line count/tabs/BOM/CRLF) and the loader is
+  try/catch-wrapped anyway.
+
+**Key context:** `MainMenuScreen` (`e/a/b/e`) constructs the SkillWindow (`c0`), so a
+c0 failure WOULD crash exactly there — but none was found. Next step is empirical:
+every build now installs an UncaughtExceptionHandler (`tools/patch_crashlog.py`)
+that writes the stack trace to **`/sdcard/EK_crash.txt`**. Ask the owner to run the
+Hero build once and send that file; fix from the real trace, not another guess.
+The build script supports `EK_SKIP_HERO=1` for the safe no-Hero APK meanwhile.
+
+## Previous status 2026-07-24 — shipped, NOT yet verified on device
 Owner has not playtested the Hero build. Open questions, in likely order of risk:
 1. **Pager button layout** — does it render sensibly at the top of Table `l`? It is a
    standalone `add()` + `row()`, so it can be relocated without touching other cells.

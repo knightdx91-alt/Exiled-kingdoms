@@ -141,6 +141,30 @@ already the game's only player-faction wizard NPC.
    plus dismiss and the full battle-orders tree, mirroring `mercenary_grisenda.txt`.
    8 columns, UTF-8 **BOM**, **CRLF** — all preserved.
 
+## 5. v2 (2026-07-26) — the on-device freeze, root-caused and fixed
+
+Owner report: game plays, but **the moment Janod spawns on screen the game grinds to
+a halt** (UI still clickable). Two real bugs in v1, both found by reading the base
+dex + the readable multiplayer-mod decompile of the same engine:
+
+1. **Skipped stat init.** v1 jumped `janod` into the ctor's companion path
+   (`:goto_10d`). That path does NOT run the normal init
+   (`CharacterSheet.a(weaponStats, baseArmor, level, resists, attrs)` at `:cond_ab`) —
+   each vanilla companion instead has a **hardcoded gear/level block** there, and
+   janod matches none, so his sheet was never initialized (no level/weapon/HP).
+   **Fix:** janod now takes the NORMAL init path (full bestiary stats, same as his
+   vanilla miniboss spawn) and only sets `companionSpawn = true` on the way in.
+2. **Companion sprite dead end.** `NPC.W()` (sprite build) routes any
+   `companionSpawn` NPC into a composite paper-doll with a **hardcoded head per
+   companion** (`_head3`/`_head2`/`_head_leather`). Janod matches none → head lookup
+   fails → the failure flag **clears the whole spriteIndex** → he can never resolve
+   a sprite. **Fix:** `W()`'s `companionSpawn` read is swapped for a helper
+   (`ekCompanionSprite`) that returns false for janod, so he always renders his
+   bestiary sprite (`male_tunic_blue`) — also the faithful look.
+
+Both fixes are in `tools/patch_companion_janod.py`, verified in the assembled dex
+(baksmali round-trip) and D8-clean.
+
 ### Deliberate deviations / APPROX
 - Only **one** companion may be active at a time (engine-wide `activeCompanion`); Janod
   respects that via `HasNoCompanion#`, exactly like Grissenda.
