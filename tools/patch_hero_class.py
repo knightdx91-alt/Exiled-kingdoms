@@ -123,33 +123,64 @@ s = s.replace(src,
               f'    invoke-static {{v0, v1}}, {SW}->ekClassSkills({SHEET}I)Ljava/util/ArrayList;\n\n'
               '    move-result-object v1\n', 1)
 
-# 3d) c(): add the pager button row (Hero only), right after the table pad()
+# 3d) c(): add the pager button row (Hero only), right after the table pad().
+#     v2 (2026-07-27): the v1 inline block created a branch inside c() whose two
+#     paths reached the join with DIFFERENT reference types in v0/v1
+#     (Table/TextButton vs CharacterClass). ART/D8 accept that (dead conflict
+#     regs), but the device's Dalvik 4.2.2 verifier rejected the class:
+#     "java.lang.VerifyError: e/a/d/e/c0" at MainMenuScreen.<init> (owner's
+#     EK_crash.txt). Fix: c() gets a single straight-line invoke -- all
+#     branching lives in a new method with its own frame, and even there both
+#     paths leave identical register types at every join.
 pad = ('    invoke-virtual {v0, v1}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->pad(F)'
        'Lcom/badlogic/gdx/scenes/scene2d/ui/Table;\n')
 i = s.index('.method private c()V')
 j = s.index(pad, i) + len(pad)
-btnrow = (f'\n    iget-object v0, p0, {SW}->j:{SHEET}\n\n'
-          f'    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
-          '    move-result-object v0\n\n'
-          f'    sget-object v1, {CC}->b:{CC}\n\n'
-          '    if-ne v0, v1, :ekp_nobutton\n\n'
-          f'    iget v0, p0, {SW}->ekPage:I\n\n'
-          f'    invoke-static {{v0}}, {SW}->ekPageName(I)Ljava/lang/String;\n\n'
-          '    move-result-object v0\n\n'
-          f'    iget-object v1, p0, {SW}->ekPageBtn:{TB}\n\n'
-          f'    invoke-virtual {{v1, v0}}, {TB}->setText(Ljava/lang/String;)V\n\n'
-          f'    iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;\n\n'
-          f'    iget-object v1, p0, {SW}->ekPageBtn:{TB}\n\n'
-          '    invoke-virtual {v0, v1}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add'
-          '(Lcom/badlogic/gdx/scenes/scene2d/Actor;)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\n'
-          f'    iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;\n\n'
-          '    invoke-virtual {v0}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->row()'
-          'Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\n'
-          '    :ekp_nobutton\n')
-s = s[:j] + btnrow + s[j:]
+s = s[:j] + f'\n    invoke-virtual {{p0}}, {SW}->ekMaybeAddPagerRow()V\n' + s[j:]
 
 # 3e) helper methods
 helpers = f'''
+.method public ekMaybeAddPagerRow()V
+    .locals 2
+
+    iget-object v0, p0, {SW}->j:{SHEET}
+
+    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;
+
+    move-result-object v0
+
+    sget-object v1, {CC}->b:{CC}
+
+    if-ne v0, v1, :ekp_nobutton
+
+    iget v0, p0, {SW}->ekPage:I
+
+    invoke-static {{v0}}, {SW}->ekPageName(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    iget-object v1, p0, {SW}->ekPageBtn:{TB}
+
+    invoke-virtual {{v1, v0}}, {TB}->setText(Ljava/lang/String;)V
+
+    iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;
+
+    iget-object v1, p0, {SW}->ekPageBtn:{TB}
+
+    invoke-virtual {{v0, v1}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add(Lcom/badlogic/gdx/scenes/scene2d/Actor;)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;
+
+    invoke-virtual {{v0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->row()Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    sget-object v0, {CC}->b:{CC}
+
+    sget-object v1, {CC}->b:{CC}
+
+    :ekp_nobutton
+    return-void
+.end method
+
 .method public static ekPageName(I)Ljava/lang/String;
     .locals 1
 
