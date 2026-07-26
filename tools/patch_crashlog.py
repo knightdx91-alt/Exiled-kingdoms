@@ -66,6 +66,86 @@ open(f'{w}/smali/net/fdgames/ek/android/EkCrashLog.smali', 'w', encoding='utf-8'
 .end method
 
 
+# append a logcat dump (own-process VFY/verifier detail lines) to the report
+.method private static a(Ljava/io/Writer;)V
+    .locals 5
+
+    :try_start_lc
+    const/4 v0, 0x4
+
+    new-array v0, v0, [Ljava/lang/String;
+
+    const/4 v1, 0x0
+
+    const-string v2, "logcat"
+
+    aput-object v2, v0, v1
+
+    const/4 v1, 0x1
+
+    const-string v2, "-d"
+
+    aput-object v2, v0, v1
+
+    const/4 v1, 0x2
+
+    const-string v2, "-v"
+
+    aput-object v2, v0, v1
+
+    const/4 v1, 0x3
+
+    const-string v2, "threadtime"
+
+    aput-object v2, v0, v1
+
+    invoke-static {{}}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
+
+    move-result-object v1
+
+    invoke-virtual {{v1, v0}}, Ljava/lang/Runtime;->exec([Ljava/lang/String;)Ljava/lang/Process;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/lang/Process;->getInputStream()Ljava/io/InputStream;
+
+    move-result-object v0
+
+    const-string v1, "\\n\\n---- logcat -d ----\\n"
+
+    invoke-virtual {{p0, v1}}, Ljava/io/Writer;->write(Ljava/lang/String;)V
+
+    const/16 v1, 0x1000
+
+    new-array v1, v1, [B
+
+    :ekcl_rdloop
+    invoke-virtual {{v0, v1}}, Ljava/io/InputStream;->read([B)I
+
+    move-result v2
+
+    if-lez v2, :ekcl_rddone
+
+    new-instance v3, Ljava/lang/String;
+
+    const/4 v4, 0x0
+
+    invoke-direct {{v3, v1, v4, v2}}, Ljava/lang/String;-><init>([BII)V
+
+    invoke-virtual {{p0, v3}}, Ljava/io/Writer;->write(Ljava/lang/String;)V
+
+    goto :ekcl_rdloop
+
+    :ekcl_rddone
+    invoke-virtual {{v0}}, Ljava/io/InputStream;->close()V
+    :try_end_lc
+    .catch Ljava/lang/Exception; {{:try_start_lc .. :try_end_lc}} :ekcl_lcfail
+
+    :ekcl_lcfail
+    return-void
+.end method
+
+
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
     .locals 4
@@ -95,6 +175,8 @@ open(f'{w}/smali/net/fdgames/ek/android/EkCrashLog.smali', 'w', encoding='utf-8'
 
     invoke-virtual {{v0, v3}}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
 
+    invoke-static {{v0}}, {CL}->a(Ljava/io/Writer;)V
+
     invoke-virtual {{v0}}, Ljava/io/FileWriter;->close()V
     :try_end_0
     .catch Ljava/lang/Exception; {{:try_start_0 .. :try_end_0}} :catch_0
@@ -110,6 +192,8 @@ open(f'{w}/smali/net/fdgames/ek/android/EkCrashLog.smali', 'w', encoding='utf-8'
     invoke-direct {{v0, v1}}, Ljava/io/FileWriter;-><init>(Ljava/lang/String;)V
 
     invoke-virtual {{v0, v3}}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
+
+    invoke-static {{v0}}, {CL}->a(Ljava/io/Writer;)V
 
     invoke-virtual {{v0}}, Ljava/io/FileWriter;->close()V
     :try_end_1
