@@ -94,7 +94,14 @@ open(p, 'w', encoding='utf-8').write(s)
 print("patched AndroidFiles.getExternalStoragePath() -> external storage root (/sdcard/)")
 
 # ---------------------------------------------------------------------------
-# 2) Surface the swallowed export exception on the in-game console
+# 2) Write the backup into Download/ (v2, 2026-07-26).
+#    /sdcard-root writes never landed anywhere the owner could see (the crash
+#    logger's /sdcard file suffered the same fate), so target the Downloads
+#    folder instead -- which is also what the IMPORT side already probes
+#    ("Download/EK.bak" etc., relative to the external root, verified in the
+#    dex). Only the write side needs changing: the two filename constants gain
+#    a "Download/" prefix, and since FileOutputStream does not create parent
+#    dirs, mkdirs() runs on the parent first.
 # ---------------------------------------------------------------------------
 p = f'{w}/smali/net/fdgames/Helpers/Serializer.smali'
 s = open(p, encoding='utf-8').read()
@@ -102,6 +109,23 @@ s = open(p, encoding='utf-8').read()
 ms = s.index('.method public static a(Z)V')
 me = s.index('.end method', ms)
 method = s[ms:me]
+
+for name in ('EK_GPGS.bak', 'EK.bak'):
+    old = f'    const-string p0, "{name}"\n'
+    assert method.count(old) == 1, f"filename constant {name} not found/unique"
+    method = method.replace(old, f'    const-string p0, "Download/{name}"\n', 1)
+
+# full path is in p0 right before the FileOutputStream ctor; v1 is dead here
+mk_anchor = '    invoke-direct {v0, p0}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V\n'
+assert method.count(mk_anchor) == 1, "FileOutputStream ctor anchor not found/unique"
+mkdirs = ('    new-instance v1, Ljava/io/File;\n\n'
+          '    invoke-direct {v1, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V\n\n'
+          '    invoke-virtual {v1}, Ljava/io/File;->getParentFile()Ljava/io/File;\n\n'
+          '    move-result-object v1\n\n'
+          '    if-eqz v1, :ekexp_nomk\n\n'
+          '    invoke-virtual {v1}, Ljava/io/File;->mkdirs()Z\n\n'
+          '    :ekexp_nomk\n')
+method = method.replace(mk_anchor, mkdirs + mk_anchor, 1)
 
 old_catch = """    move-exception p0
 
@@ -122,5 +146,5 @@ new_catch = """    move-exception p0
 method = method.replace(old_catch, new_catch, 1)
 s = s[:ms] + method + s[me:]
 open(p, 'w', encoding='utf-8').write(s)
-print("patched Serializer.a(Z)V: export errors now reported to GameConsole")
+print("patched Serializer.a(Z)V: export -> Download/EK.bak (+mkdirs), errors on GameConsole")
 print("DONE")

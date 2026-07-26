@@ -68,26 +68,55 @@ open(f'{w}/smali/net/fdgames/ek/android/EkCrashLog.smali', 'w', encoding='utf-8'
 
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 2
+    .locals 4
+
+    invoke-static {{p2}}, Landroid/util/Log;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
+
+    move-result-object v3
 
     :try_start_0
+    sget-object v0, Landroid/os/Environment;->DIRECTORY_DOWNLOADS:Ljava/lang/String;
+
+    invoke-static {{v0}}, Landroid/os/Environment;->getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/io/File;->mkdirs()Z
+
+    new-instance v1, Ljava/io/File;
+
+    const-string v2, "EK_crash.txt"
+
+    invoke-direct {{v1, v0, v2}}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    new-instance v0, Ljava/io/FileWriter;
+
+    invoke-direct {{v0, v1}}, Ljava/io/FileWriter;-><init>(Ljava/io/File;)V
+
+    invoke-virtual {{v0, v3}}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
+
+    invoke-virtual {{v0}}, Ljava/io/FileWriter;->close()V
+    :try_end_0
+    .catch Ljava/lang/Exception; {{:try_start_0 .. :try_end_0}} :catch_0
+
+    goto :ekcl_delegate
+
+    :catch_0
+    :try_start_1
     new-instance v0, Ljava/io/FileWriter;
 
     const-string v1, "/sdcard/EK_crash.txt"
 
     invoke-direct {{v0, v1}}, Ljava/io/FileWriter;-><init>(Ljava/lang/String;)V
 
-    invoke-static {{p2}}, Landroid/util/Log;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {{v0, v1}}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
+    invoke-virtual {{v0, v3}}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
 
     invoke-virtual {{v0}}, Ljava/io/FileWriter;->close()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {{:try_start_0 .. :try_end_0}} :catch_0
+    :try_end_1
+    .catch Ljava/lang/Exception; {{:try_start_1 .. :try_end_1}} :catch_1
 
-    :catch_0
+    :catch_1
+    :ekcl_delegate
     iget-object v0, p0, {CL}->a:{UEH}
 
     if-eqz v0, :ekcl_done
