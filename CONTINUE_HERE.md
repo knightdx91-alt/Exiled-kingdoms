@@ -28,6 +28,7 @@ Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk 
 | **No-clip** (Phase/Anchor Stone) | ❌ **still broken — needs work** |
 | **Export save** | ❌ **still broken — needs work** |
 | Janod mage companion | ✅ **fixed 2026-07-26** (v1 froze on spawn: skipped stat init + sprite dead end — see `COMPANION_SPEC.md` §5); awaiting owner re-test |
+| Summon Familiar → skeletons | 📋 **requested, spec'd, not built** — feasible with 2 string edits (`familiar1/2` → skeleton bestiary ids); fully data-driven, no verifier risk. Awaiting owner's design picks (which skeletons/ranks, level cap, one-vs-pack). See `deobf/SUMMON_SKELETON_SPEC.md` |
 | Hero class + per-class skill pager | ❌ crashes loading→menu; ALL edits statically exonerated vs the real dex (D8-clean) — crash logger now ships in every build, need `/sdcard/EK_crash.txt` from the owner (see `HERO_CLASS_MOD_SPEC.md` status) |
 
 **2026-07-26 build notes:** the base APK is no longer fetchable from Git LFS (repo
