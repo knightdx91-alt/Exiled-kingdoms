@@ -51,7 +51,7 @@ echo "== 5. patch binary AndroidManifest.xml (storage perms, no resources.arsc t
 unzip -o -q "$BASE" AndroidManifest.xml -d "$WORK/mf"
 python3 "$REPO/tools/axml_add_perms.py" \
   "$WORK/mf/AndroidManifest.xml" "$WORK/AndroidManifest.xml" \
-  WRITE_EXTERNAL_STORAGE READ_EXTERNAL_STORAGE
+  android.permission.WRITE_EXTERNAL_STORAGE android.permission.READ_EXTERNAL_STORAGE
 
 echo "== 6. zip-swap into a copy of the base APK =="
 cp "$BASE" "$WORK/out.apk"
