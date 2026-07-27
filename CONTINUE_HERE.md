@@ -29,7 +29,8 @@ Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk 
 | **Export save** | ❌ **still broken — needs work** |
 | Janod mage companion | ✅ **fixed 2026-07-26** (v1 froze on spawn: skipped stat init + sprite dead end — see `COMPANION_SPEC.md` §5); awaiting owner re-test |
 | Summon Familiar → skeletons | 📋 **requested, spec'd, not built** — feasible with 2 string edits (`familiar1/2` → skeleton bestiary ids); fully data-driven, no verifier risk. Awaiting owner's design picks (which skeletons/ranks, level cap, one-vs-pack). See `deobf/SUMMON_SKELETON_SPEC.md` |
-| Hero class + per-class skill pager | ❌ crashes loading→menu; ALL edits statically exonerated vs the real dex (D8-clean) — crash logger now ships in every build, need `/sdcard/EK_crash.txt` from the owner (see `HERO_CLASS_MOD_SPEC.md` status) |
+| Hero class + per-class skill pager | ✅ **root-caused & fixed 2026-07-27 (v3)** — owner's `EK_crash.txt` logcat showed the VFY detail: the v2 pager patch left `v0` holding the **CharacterSheet** where the rest of `c0.c()` expects the **CharacterClass** (`CharacterClass.a(v0)` header labels) → Dalvik rejected the class. v3 restores `v0` via new `ekPageClass()` helper (+`ekSkillsSuppressed()`); verified in the assembled dex. Awaiting owner re-test |
+| Janod recruit after wolf-cloak quest | ✅ **2026-07-27**: recruit offer now ALSO unlocks after `fair_deal>99` (Cloak of the Wolf), guarded by `mad_wizard<10` + Adaon-not-in-party (so the "damn thief!" scene still fires). Previously only `mad_wizard>99` (A Mad Wizard resolved) unlocked him |
 
 **2026-07-26 build notes:** the base APK is no longer fetchable from Git LFS (repo
 exceeded its LFS budget) — it was re-obtained from the owner's Drive link (sha256

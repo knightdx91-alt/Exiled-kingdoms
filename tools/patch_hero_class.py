@@ -111,6 +111,16 @@ mkbtn = (ctor_anchor +
 s = s.replace(ctor_anchor, mkbtn, 1)
 
 # 3c) c(): source the class-skill list from the pager instead of sheet.n()
+#     v3 (2026-07-27): THE crash was here, and the owner's logcat named it exactly:
+#       VFY: CharacterSheet is not instance of Rules$CharacterClass
+#       VFY: rejecting call to Rules$CharacterClass.a(Rules$CharacterClass)String
+#       VFY: rejected Le/a/d/e/c0;.c()V  ->  VerifyError e/a/d/e/c0
+#     The original block leaves v0 = sheet.n() (a CharacterClass) and c() REUSES
+#     v0 much later (if-ne v0 vs CharacterClass->g, and CharacterClass.a(v0) for
+#     the section headers). The v2 replacement left v0 holding the CharacterSheet.
+#     Fix: replacement is straight-line and restores the original register types:
+#     v0 = the page's effective CharacterClass, v1 = its skill list. Bonus: the
+#     section headers now name the paged class (ROGUE/CLERIC/MAGE) on Hero pages.
 src = (f'    iget-object v0, p0, {SW}->j:{SHEET}\n\n'
        f'    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
        '    move-result-object v0\n\n'
@@ -120,7 +130,9 @@ assert s.count(src) == 1, "c() class-skill source not unique (expected exactly 1
 s = s.replace(src,
               f'    iget-object v0, p0, {SW}->j:{SHEET}\n\n'
               f'    iget v1, p0, {SW}->ekPage:I\n\n'
-              f'    invoke-static {{v0, v1}}, {SW}->ekClassSkills({SHEET}I)Ljava/util/ArrayList;\n\n'
+              f'    invoke-static {{v0, v1}}, {SW}->ekPageClass({SHEET}I){CC}\n\n'
+              '    move-result-object v0\n\n'
+              f'    invoke-static {{v0}}, {SW}->ekSkillsSuppressed({CC})Ljava/util/ArrayList;\n\n'
               '    move-result-object v1\n', 1)
 
 # 3d) c(): add the pager button row (Hero only), right after the table pad().
@@ -216,7 +228,7 @@ helpers = f'''
     return-object p0
 .end method
 
-.method public static ekClassSkills({SHEET}I)Ljava/util/ArrayList;
+.method public static ekPageClass({SHEET}I){CC}
     .locals 3
 
     invoke-virtual {{p0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;
@@ -225,53 +237,52 @@ helpers = f'''
 
     sget-object v1, {CC}->b:{CC}
 
-    if-ne v0, v1, :ekcs_plain
+    if-ne v0, v1, :ekpc_ret
 
     const/4 v2, 0x1
 
-    if-ne p1, v2, :ekcs_p2
+    if-ne p1, v2, :ekpc_p2
 
     sget-object v0, {CC}->c:{CC}
 
-    goto :ekcs_have
+    goto :ekpc_ret
 
-    :ekcs_p2
+    :ekpc_p2
     const/4 v2, 0x2
 
-    if-ne p1, v2, :ekcs_p3
+    if-ne p1, v2, :ekpc_p3
 
     sget-object v0, {CC}->d:{CC}
 
-    goto :ekcs_have
+    goto :ekpc_ret
 
-    :ekcs_p3
+    :ekpc_p3
     const/4 v2, 0x3
 
-    if-ne p1, v2, :ekcs_have
+    if-ne p1, v2, :ekpc_ret
 
     sget-object v0, {CC}->e:{CC}
 
-    :ekcs_have
-    const/4 v2, 0x1
-
-    sput-boolean v2, {CR}->ekSuppress:Z
-
-    invoke-static {{v0}}, Lnet/fdgames/Rules/Skills;->a(Lnet/fdgames/Rules/Rules$CharacterClass;)Ljava/util/ArrayList;
-
-    move-result-object v0
-
-    const/4 v2, 0x0
-
-    sput-boolean v2, {CR}->ekSuppress:Z
-
+    :ekpc_ret
     return-object v0
+.end method
 
-    :ekcs_plain
-    invoke-static {{v0}}, Lnet/fdgames/Rules/Skills;->a(Lnet/fdgames/Rules/Rules$CharacterClass;)Ljava/util/ArrayList;
+.method public static ekSkillsSuppressed({CC})Ljava/util/ArrayList;
+    .locals 1
 
-    move-result-object v0
+    const/4 v0, 0x1
 
-    return-object v0
+    sput-boolean v0, {CR}->ekSuppress:Z
+
+    invoke-static {{p0}}, Lnet/fdgames/Rules/Skills;->a(Lnet/fdgames/Rules/Rules$CharacterClass;)Ljava/util/ArrayList;
+
+    move-result-object p0
+
+    const/4 v0, 0x0
+
+    sput-boolean v0, {CR}->ekSuppress:Z
+
+    return-object p0
 .end method
 
 .method public ekNextPage()V

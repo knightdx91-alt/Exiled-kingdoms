@@ -249,6 +249,17 @@ hooks = [
                   'My research here is done, friend. And yet I find I am reluctant to '
                   'return to Whitetower alone. Would you have a sorcerer at your side?',
         '61', '"VariableGreater#mad_wizard,99;HasNoCompanion#"'),
+    # ALSO offer after the Cloak of the Wolf quest (fair_deal>99) -- the owner
+    # finished that quest and expected the recruit option. Guards: mad_wizard<10
+    # (not while he considers you a criminal / hostile) and Adaon not in party
+    # (so this hook can't shadow the scripted "damn thief!" recognition scene,
+    # which is also the only way the mad_wizard quest starts).
+    row('1', 'Q', '[BLUE](Janod sets down the enchanted cloak-clasp he was toying '
+                  'with)[] That cloak of yours has held up well, I see. My work in '
+                  'Kingsbridge is nearly done... perhaps a road with you would teach '
+                  'me more than these books. Would you have a sorcerer at your side?',
+        '61', '"VariableGreater#fair_deal,99;VariableLower#mad_wizard,10;'
+              'NPCIsNotInParty#adaon,adaon;HasNoCompanion#"'),
 ]
 
 first_idx1 = next(i for i, ln in enumerate(lines) if ln.split('\t')[0] == '1')
