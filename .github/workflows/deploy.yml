@@ -25,6 +25,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # Mod APKs over GitHub's 100MB git limit live in dist/ as split parts;
+      # reassemble them into the published site so the owner gets a single
+      # direct download link (Pages artifact deploys have no per-file limit).
+      - name: Assemble mod APKs into site
+        run: |
+          mkdir -p web/dist
+          for d in dist/*/; do
+            name=$(basename "$d")
+            if ls "$d"*.part00 >/dev/null 2>&1; then
+              base=$(basename "$d"*.part00 .part00)
+              cat "$d$base".part?? > "web/dist/$base"
+              ls -la "web/dist/$base"
+            fi
+          done
       - uses: actions/configure-pages@v5
         with:
           enablement: true
