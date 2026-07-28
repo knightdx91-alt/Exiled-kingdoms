@@ -271,7 +271,7 @@ tail = [
     row('60', 'A', 'Nothing, let us move on.'),
     row('60', 'A', 'I have some battle orders for you.', '62'),
     row('60', 'A', 'Please step aside for a moment.', '0', '', 'NPCMoveRandom#'),
-    row('60', 'A', 'I no longer need your help. Return to Whitetower, with my thanks.',
+    row('60', 'A', 'I no longer need your help. You can return to Kingsbridge, with my thanks.',
         '68', '"AreaIsnt#I9_castle;AreaIsnt#I9_temple"'),
 
     # 61: the join offer
@@ -298,7 +298,10 @@ tail = [
                    'Then let us see what the world has been hiding. Lead on.'),
     row('67', 'Q', 'The offer stands, friend. You will find me here, among my books.'),
     row('68', 'Q', 'A fair road to you. Should you need a Weaver again, you know where '
-                   'my books are.', '0', '', 'NPCStopFollowing#'),
+                   'my books are.', '0', '',
+        # Despawn returns him to his Kingsbridge spawn point, exactly how
+        # Grissenda's dismissal works (mercenary_grisenda row 11).
+        '"NPCStopFollowing#;NPCDespawn#janod"'),
 ]
 while lines and lines[-1].strip() == '':
     lines.pop()
