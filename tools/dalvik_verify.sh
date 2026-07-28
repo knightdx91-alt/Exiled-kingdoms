@@ -21,10 +21,15 @@ W="$(mktemp -d)"; trap 'rm -rf "$W"' EXIT
 
 [ -e /system/bin/dexopt ] || { echo "setup missing: see header comments"; exit 2; }
 
-# ashmem shim (raw-syscall, no libc; sysv hash for the 2012 bionic linker)
+# ashmem shim (raw-syscall, no libc; sysv hash for the 2012 bionic linker).
+# Source lives next to this script so the oracle is reproducible from a clean
+# container -- it was previously only in a build tree and got lost with it.
 SHIM=/tmp/adata/libashmem_shim.so
 if [ ! -e "$SHIM" ]; then
-  echo "shim missing: build per repo history (tools/ commit 'Dalvik oracle')"; exit 2
+  mkdir -p "$(dirname "$SHIM")"
+  gcc -m32 -shared -fPIC -nostdlib -O2 -Wl,--hash-style=sysv \
+      -o "$SHIM" "$(dirname "$0")/ashmem_shim.c" \
+    || { echo "cannot build ashmem shim (need gcc with -m32 / gcc-multilib)"; exit 2; }
 fi
 
 case "$IN" in

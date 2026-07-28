@@ -29,6 +29,7 @@ unzip -o -q "$BASE" \
   assets/data/rules/items_text.txt \
   assets/data/rules/bestiary.txt \
   assets/data/conversations/kingsbridge_wizard.txt \
+  assets/data/tmx/G9.tmx \
   assets/data/ui/strings/strings.txt \
   -d "$WORK"
 
@@ -64,6 +65,7 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/rules/items_text.txt \
     assets/data/rules/bestiary.txt \
     assets/data/conversations/kingsbridge_wizard.txt \
+    assets/data/tmx/G9.tmx \
     assets/data/ui/strings/strings.txt )
 
 echo "== 7. sign (SHA1withRSA cert + apksig v1/v2, minSdk 16) =="

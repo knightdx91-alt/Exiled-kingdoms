@@ -182,3 +182,126 @@ weapon fire_shot2 -> wand_3 (4-8 magic), defense 10 -> 0, resist 40x6 -> none.
 Recruit-time XP catch-up is engine-generic (Party.r(): XP -> player_XP/2) and now
 actually applies. DELIBERATE DEVIATION: the hostile Janod fight (mock him in
 A Mad Wizard) is much easier now that his row is companion-grade.
+
+---
+
+## 6. Dismissal — how a companion actually goes home (reversed 2026-07-28, v6)
+
+Owner report on v5: *"grissenda isn't going Kingsbridge when I dismissed her, and janod
+isn't either. He should go back to the same spot he was at when I recruited him."*
+Grissenda is **untouched vanilla** in this mod, so the v5 assumption — that
+`NPCDespawn#` sends a companion home "exactly how Grissenda's dismissal works" — was
+wrong about vanilla too. Here is what the engine really does.
+
+### 6.1 Dismissal is two steps, and neither one moves anybody
+
+| Conversation verb | Executor | Effect |
+|---|---|---|
+| `NPCStopFollowing#` | `ScriptedAction` case 31 → `NPC.V1()` | restores the bestiary `AI_type`/faction, then `Party.b(spawn_id, tag, name)` → `activeCompanion = ""`. **The NPC object stays in `party.companions` forever** — that is what preserves a companion's level/XP across a re-recruit. |
+| `NPCDespawn#<tag>` | `ScriptedAction` case 25 | `destroy = true` on every `MapActor`/`StaticNPC` whose **TMX object tag** matches. Current map only. |
+
+`GameLevelData.x()` then culls destroyed NPCs — and resets `destroy = false` on the way
+out, so the stored companion object is left clean. No teleport, no "home" coordinate:
+after dismissal the companion simply **does not exist anywhere**.
+
+### 6.2 Coming home is the map's job — `MonsterSpawn.Q()`
+
+```java
+// MonsterSpawn.u("SPAWN"):
+if (party.p(spawn_id, tag) || !spawnConditions.a()) return;   // active companion -> skip
+Q();
+// MonsterSpawn.Q():
+if (party.m(spawn_id)) {          // "spawn_id is a KNOWN companion"
+    NPC c = party.b(spawn_id);    // the stored object, with all its levels
+    c.w(); c.x = this.x; c.y = this.y;      // <- dropped on the TMX spawn point
+    c.visibleToPlayer = TRUE; c.spriteIndex = null;
+    if (c.getName().equals("Grisenda")) c.setName("Grissenda");   // ← tell-tale
+    GameLevel.a(c); c.V1();
+    return;
+}
+… // otherwise build a fresh NPC from the bestiary
+```
+
+So the mechanism is **fully generic** and driven entirely by the companion's own TMX
+spawn object: run that spawn again and the dismissed companion reappears **at that exact
+spot with the character they had**. `party.p()` in `u("SPAWN")` makes it impossible to
+duplicate or steal a companion who is still travelling with you.
+
+### 6.3 Why it never fired
+
+1. **Janod's Kingsbridge spawn is switched off for good by his own quest.**
+   `G9.tmx` → `<object name="wizard" … tag="janod">` is gated
+   `VariableLower#mad_wizard,100`. `mad_wizard` = 100 (paid 10,000g) / 110 (Orb returned)
+   / 200 (mocked him) — i.e. the spawn dies exactly when the quest resolves, which is the
+   state the mod recruits him in. He could never return, and by the same token the
+   `mad_wizard>99` recruit hook added in v1 was barely reachable in the first place
+   (he despawns from Kingsbridge on the next area reset after you settle the debt).
+2. **Level state is cached, so spawn objects do not re-run on demand.** Each map is
+   persisted to `data/saves/<slot>/levels/<map>.sav` and only rebuilt from the TMX once
+   `GameLevelData.E()` finds it ~**1080 game-seconds** stale (`gameTime`; a rest adds
+   270–540). Until Kingsbridge resets, *no* spawn object runs — which is why **Grissenda**
+   also fails to show up, even though her spawn condition (`VariableGreater#warrior_honor,100`,
+   satisfied at 110 after you return the ring) is perfectly fine.
+
+### 6.4 v6 fix — `NPCSpawn#` homecoming triggers (data only)
+
+Vanilla precedent: `H10_mine.tmx` forces Teram to appear with
+`actions=NPCSpawn#teram`, `conditions=VariableEqual#goblin_hunt2,10;NPCNotinArea#teram`.
+`NPCSpawn#<tag>` (case 24) calls `MonsterSpawn.Q()` **directly**, bypassing both the
+stale-cache wait and the dead spawn condition. Three map-wide triggers added to `G9.tmx`
+(x=0,y=0,w=3072,h=3072 — the object layer is 96×96 tiles):
+
+| trigger | conditions | action |
+|---|---|---|
+| `ek_janod_homecoming` | `VariableGreater#mad_wizard,99;VariableLower#mad_wizard,200;NPCNotinArea#janod;HasNoCompanion#` | `NPCSpawn#janod` |
+| `ek_janod_homecoming2` | `VariableGreater#fair_deal,99;VariableLower#mad_wizard,10;NPCNotinArea#janod;HasNoCompanion#` | `NPCSpawn#janod` |
+| `ek_grissenda_homecoming` | `VariableGreater#warrior_honor,100;NPCNotinArea#mercenary_grisenda;HasNoCompanion#` | `NPCSpawn#mercenary_grisenda` |
+
+`NPCNotinArea#` (`GameLevel.d(tag)`: a live, non-destroyed actor with that tag) makes each
+one a no-op while they are already standing in Kingsbridge; `HasNoCompanion#` makes it a
+no-op while they travel with you; `Trigger.c()` has a 3 s cooldown. The two Janod condition
+sets are mutually exclusive (`mad_wizard>99` vs `<10`). `mad_wizard<200` keeps the trigger
+off after you mock him — a hostile Janod is not a resident.
+
+**Deliberate deviation (APPROX):** with `ek_janod_homecoming` in place Janod stays in
+Kingsbridge after settling his debt instead of leaving for Whitetower. That is required
+for the mod to work at all — he has to be somewhere you can find him — and it is what
+makes the `mad_wizard>99` recruit offer reachable.
+
+## 7. v6 — starting equipment (`ekJanodGear`)
+
+Owner report: *"his stats were still lvl 14 with no starting equipment."*
+
+**Equipment.** The three vanilla companions get real item ids written into
+`CharacterInventory.slot_*` by a hardcoded block at the end of `NPC.<init>`'s companion
+path. Janod deliberately takes the **normal** init path (the v2 freeze fix), which never
+touches the inventory and instead stashes `hardcoded_weapon` / `hardcoded_defense` from
+his bestiary row. Those two fields **short-circuit the gear system**:
+`CharacterSheet.j()` returns `stats + hardcoded_defense` whenever
+`hardcoded_defense != -999`, and damage reads `hardcoded_weapon` before the equipped
+mainhand — so handing him items alone would have changed nothing.
+
+Fix: `NPC.ekJanodGear(NPC)` (new static, called from the top of `Party.a(NPC)` — the one
+registration point every companion passes through) equips a level-6/7 sorcerer kit and
+then calls `CharacterSheet.ekDropHardcoded()` so the gear actually drives his damage and
+armour, exactly like Grissenda/Hirge/Adaon. Guarded by `slot_mainhand == 0`, so it runs
+once per character — and because it hangs off registration rather than construction it
+**self-heals a Janod already stored in an existing save**.
+
+| slot | item | notes |
+|---|---|---|
+| mainhand | 391 Elm Wand | weaponstats `wand_3` — identical damage to his bestiary weapon |
+| body | 332 High Mage Robes | armor 3, +15 mana |
+| head | 312 Conjurer Hood | armor 1, +5 mana |
+| feet | 311 Conjurer Boots | armor 1, +6 mana |
+| ring | 3034 Ring of the Scholar | +4 mana, 10 % death resist |
+
+**"Still level 14" is mostly the engine working as intended.** Two effects stack:
+`party.companions` is serialised, and `MonsterSpawn.Q()` re-uses the stored object
+forever, so a Janod first recruited on an older build keeps that build's stats for the
+life of the save; and `Party.r()` gives any companion `player_XP / 2` on recruit, which
+at a high player level lands around level 14 on its own. The v3 bestiary numbers (6/7)
+are only the *starting* point.
+
+Dalvik oracle: `tools/dalvik_verify.sh` on the v6 APK → `dexopt: OK`, identical output to
+the untouched base APK.

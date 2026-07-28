@@ -14,10 +14,10 @@ Three lines of work:
 
 ## Current mod build (Track C)
 
-Latest: **hero-v5**. Download (assembled automatically by the Pages deploy):
+Latest: **hero-v6**. Download (assembled automatically by the Pages deploy):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v5.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v6.apk
 ```
 
 Build it yourself:

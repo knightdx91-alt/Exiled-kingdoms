@@ -133,8 +133,145 @@ helper = f'''
 '''
 tail = s.rindex('.end method') + len('.end method')
 s = s[:tail] + '\n' + helper + s[tail:]
-open(p, 'w', encoding='utf-8').write(s)
 print("patched NPC.W(): janod keeps bestiary sprite (+helper ekCompanionSprite)")
+
+# ---------------------------------------------------------------------------
+# 1c) Starting equipment for Janod (v6, owner feedback: "no starting equipment").
+#
+#     WHY he has none. The three vanilla companions get their gear from a
+#     HARDCODED block at the end of NPC.<init>'s companion path -- real item ids
+#     written straight into CharacterInventory.slot_* (grissenda: ring 2502 /
+#     body 100 / offhand 120 / mainhand 522). Janod deliberately takes the
+#     NORMAL init path instead (that is the v2 freeze fix), and the normal path
+#     never touches the inventory: it calls CharacterSheet.h0(weaponStats,
+#     defense, level, resists, attrs), which stashes `hardcoded_weapon` and
+#     `hardcoded_defense` from his bestiary row. Those two fields SHORT-CIRCUIT
+#     the gear system -- CharacterSheet.j() returns `stats + hardcoded_defense`
+#     whenever hardcoded_defense != -999, and damage reads hardcoded_weapon
+#     before the equipped mainhand -- so simply handing him items would have
+#     changed nothing anyway.
+#
+#     Fix: a static helper that, the first time janod is registered as a
+#     companion, equips a level-6/7 sorcerer kit and then drops the two
+#     hardcoded overrides so the gear actually drives his damage and armour,
+#     exactly like Grissenda/Hirge/Adaon. Elm Wand carries the SAME weaponstats
+#     (wand_3) his bestiary row already used, so his damage is unchanged.
+#
+#     Hooked at the top of Party.a(NPC) -- the single registration point every
+#     companion goes through (NPC.C1() -> party.addCompanion). That makes it
+#     self-healing: a Janod already stored in an existing save (party.companions
+#     is serialised, and MonsterSpawn.Q() re-uses the stored object forever) is
+#     repaired the next time he is recruited or the level reloads. Guarded by
+#     `slot_mainhand == 0`, so it runs exactly once per character.
+# ---------------------------------------------------------------------------
+CS = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
+CI = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterInventory;'
+
+# item_ID -> slot. Value ~2900 gold, in line with Hirge's kit; every piece is a
+# real items.txt row (Classes=M) so the companion sheet shows proper equipment.
+JANOD_GEAR = [
+    ('slot_mainhand', 391),   # Elm Wand          - weaponstats wand_3 (4-8, ranged)
+    ('slot_body',     332),   # High Mage Robes   - armor 3, +15 mana
+    ('slot_head',     312),   # Conjurer Hood     - armor 1, +5 mana
+    ('slot_feet',     311),   # Conjurer Boots    - armor 1, +6 mana
+    ('slot_ring',    3034),   # Ring of the Scholar - +4 mana, 10% death resist
+]
+
+gear_ops = ''
+for slot, item in JANOD_GEAR:
+    gear_ops += (f'    const/16 v2, 0x{item:x}\n\n'
+                 f'    iput v2, v1, {CI}->{slot}:I\n\n')
+
+gear_helper = f'''
+.method public static ekJanodGear({NPCC})V
+    .locals 3
+
+    if-eqz p0, :ekjg_done
+
+    iget-object v0, p0, {NPCC}->spawn_id:Ljava/lang/String;
+
+    if-eqz v0, :ekjg_done
+
+    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+
+    invoke-virtual {{v0, v1}}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "janod"
+
+    invoke-virtual {{v0, v1}}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :ekjg_done
+
+    iget-object v0, p0, Lnet/fdgames/GameEntities/Character;->sheet:{CS}
+
+    if-eqz v0, :ekjg_done
+
+    iget-object v1, v0, {CS}->inventory:{CI}
+
+    if-eqz v1, :ekjg_done
+
+    iget v2, v1, {CI}->slot_mainhand:I
+
+    if-nez v2, :ekjg_done
+
+{gear_ops}    invoke-virtual {{v1}}, {CI}->u()V
+
+    invoke-virtual {{v0}}, {CS}->ekDropHardcoded()V
+
+    :ekjg_done
+    return-void
+.end method
+'''
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + '\n' + gear_helper + s[tail:]
+open(p, 'w', encoding='utf-8').write(s)
+print("patched NPC: +ekJanodGear (%d items)" % len(JANOD_GEAR))
+
+# CharacterSheet.ekDropHardcoded(): the two override fields are PRIVATE, so the
+# method that clears them has to live in CharacterSheet itself.
+p = f'{w}/smali/net/fdgames/GameEntities/CharacterSheet/CharacterSheet.smali'
+s = open(p, encoding='utf-8').read()
+for fld in ('hardcoded_weapon:Lnet/fdgames/Rules/WeaponStats;',
+            'hardcoded_defense:I'):
+    assert f'.field private {fld}' in s, f"CharacterSheet.{fld} not private as expected"
+drop_helper = f'''
+.method public ekDropHardcoded()V
+    .locals 2
+
+    const/4 v0, 0x0
+
+    iput-object v0, p0, {CS}->hardcoded_weapon:Lnet/fdgames/Rules/WeaponStats;
+
+    iput-object v0, p0, {CS}->hardcoded_resistances:Lnet/fdgames/GameEntities/CharacterSheet/CharacterResistances;
+
+    const/16 v1, -0x3e7
+
+    iput v1, p0, {CS}->hardcoded_defense:I
+
+    return-void
+.end method
+'''
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + '\n' + drop_helper + s[tail:]
+open(p, 'w', encoding='utf-8').write(s)
+print("patched CharacterSheet: +ekDropHardcoded")
+
+# Call site: top of Party.a(NPC), just after the null check, before the NPC is
+# recorded as the active companion.
+p = f'{w}/smali/net/fdgames/GameWorld/Party.smali'
+s = open(p, encoding='utf-8').read()
+anchor = (f'    iget-object v0, p1, {NPCC}->spawn_id:Ljava/lang/String;\n\n'
+          '    iput-object v0, p0, Lnet/fdgames/GameWorld/Party;'
+          '->activeCompanion:Ljava/lang/String;\n')
+assert s.count(anchor) == 1, "Party.addCompanion anchor not unique/found"
+s = s.replace(anchor,
+              f'    invoke-static {{p1}}, {NPCC}->ekJanodGear({NPCC})V\n\n' + anchor, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched Party.addCompanion: -> ekJanodGear")
 
 # ---------------------------------------------------------------------------
 # 2) ScriptedAction.a() UpgradeCompanion: add a janod branch.
@@ -311,8 +448,11 @@ tail = [
     row('67', 'Q', 'The offer stands, friend. You will find me here, among my books.'),
     row('68', 'Q', 'A fair road to you. Should you need a Weaver again, you know where '
                    'my books are.', '0', '',
-        # Despawn returns him to his Kingsbridge spawn point, exactly how
-        # Grissenda's dismissal works (mercenary_grisenda row 11).
+        # NPCStopFollowing# de-registers him (Party.b -> activeCompanion = "")
+        # and NPCDespawn#janod removes the actor from the map he was dismissed
+        # on. Getting him HOME is a separate step -- see the G9.tmx triggers
+        # below; the tag "janod" is the TMX object tag, which is what both
+        # NPCDespawn and NPCSpawn match on.
         '"NPCStopFollowing#;NPCDespawn#janod"'),
 ]
 while lines and lines[-1].strip() == '':
@@ -322,4 +462,80 @@ lines.extend(tail)
 open(p, 'w', encoding='utf-8', newline='').write(bom + nl.join(lines) + nl)
 print("patched kingsbridge_wizard.txt: +%d rows (recruit/dismiss/orders)"
       % (len(hooks) + len(tail)))
+
+# ---------------------------------------------------------------------------
+# 5) G9.tmx (Kingsbridge): send a dismissed companion back to their own spot.
+#
+#     REVERSED MECHANISM (v6 -- do not guess this again). Dismissal is TWO
+#     separate engine steps, and only the first one is in the conversation:
+#
+#       NPCStopFollowing# -> NPC.V1(): restores the bestiary AI/faction and
+#           calls Party.b(spawn_id, tag, name), which clears activeCompanion.
+#           The NPC object STAYS in party.companions forever (that is what keeps
+#           a re-recruited companion's level and XP).
+#       NPCDespawn#<tag>  -> destroys the actor on the CURRENT map only.
+#
+#     Nothing in either step moves anyone. Coming home is done by the map:
+#     MonsterSpawn.Q() checks `party.m(spawn_id)` (== "this spawn_id is a known
+#     companion") FIRST and, when true, does not build a new NPC at all -- it
+#     takes the stored companion object, drops it on the spawn point, re-adds it
+#     to the level and calls V1(). (It even contains a "Grisenda"->"Grissenda"
+#     name fixup, which is how you can tell that branch exists for exactly this.)
+#     MonsterSpawn.u("SPAWN") additionally refuses to fire while the NPC is the
+#     ACTIVE companion (`party.p(spawn_id, tag)`), so this can never duplicate
+#     or steal a companion who is still with you.
+#
+#     So a dismissed companion returns iff their TMX spawn object runs again.
+#     Two things stop that:
+#       (a) Janod's Kingsbridge spawn is gated `VariableLower#mad_wizard,100`,
+#           i.e. it is switched OFF for good the moment his quest is settled
+#           (100 = paid, 110 = orb returned) -- which is precisely the state the
+#           mod recruits him in. He could never come back, and for the same
+#           reason the mad_wizard recruit offer was barely reachable at all.
+#       (b) Level state is cached per map (data/saves/<slot>/levels/<map>.sav)
+#           and only rebuilt from the TMX once it is ~1080 game-seconds stale
+#           (GameLevelData.E). Until Kingsbridge resets, no spawn object runs --
+#           which is why Grissenda also "isn't going to Kingsbridge" even though
+#           her own spawn condition (warrior_honor > 100) is satisfied.
+#
+#     Fix, entirely in data and with a vanilla precedent (H10_mine.tmx uses the
+#     identical shape to force Teram to appear): a map-wide trigger that calls
+#     NPCSpawn#<tag>, which invokes MonsterSpawn.Q() directly -- bypassing both
+#     the stale-cache wait and, for Janod, the dead spawn condition.
+#     NPCNotinArea#<tag> makes it a no-op whenever they are already standing in
+#     Kingsbridge, and HasNoCompanion# makes it a no-op while they travel with
+#     you, so the trigger can only ever fire when they are genuinely missing.
+# ---------------------------------------------------------------------------
+p = f'{w}/assets/data/tmx/G9.tmx'
+raw = open(p, encoding='utf-8', newline='').read()
+assert '<property name="spawn" value="janod"/>' in raw, "janod spawn missing from G9.tmx"
+assert 'value="mercenary_grisenda"' in raw, "grissenda spawn missing from G9.tmx"
+
+# The Kingsbridge object layer is 96x96 tiles; every object in it sits inside
+# 0..3072 on both axes, so this rect is "anywhere in Kingsbridge".
+MAP_RECT = 'x="0" y="0" width="3072" height="3072"'
+homecoming = f'''  <object name="ek_janod_homecoming" type="trigger" {MAP_RECT}>
+   <properties>
+    <property name="actions" value="NPCSpawn#janod"/>
+    <property name="conditions" value="VariableGreater#mad_wizard,99;VariableLower#mad_wizard,200;NPCNotinArea#janod;HasNoCompanion#"/>
+   </properties>
+  </object>
+  <object name="ek_janod_homecoming2" type="trigger" {MAP_RECT}>
+   <properties>
+    <property name="actions" value="NPCSpawn#janod"/>
+    <property name="conditions" value="VariableGreater#fair_deal,99;VariableLower#mad_wizard,10;NPCNotinArea#janod;HasNoCompanion#"/>
+   </properties>
+  </object>
+  <object name="ek_grissenda_homecoming" type="trigger" {MAP_RECT}>
+   <properties>
+    <property name="actions" value="NPCSpawn#mercenary_grisenda"/>
+    <property name="conditions" value="VariableGreater#warrior_honor,100;NPCNotinArea#mercenary_grisenda;HasNoCompanion#"/>
+   </properties>
+  </object>
+'''
+close = ' </objectgroup>\n'
+assert raw.count(close) == 1, "G9.tmx objectgroup close not unique"
+raw = raw.replace(close, homecoming + close, 1)
+open(p, 'w', encoding='utf-8', newline='').write(raw)
+print("patched G9.tmx: +3 homecoming triggers (janod x2, grissenda)")
 print("DONE")
