@@ -125,3 +125,41 @@ Both are **directly reusable data** for Track B (same `.tmx`/`.txt`/PNG formats 
 tooling handles) — no native code to reimplement, unlike Multiplayer. ENB's English
 -only layout is actually convenient for a first web build. **Shipping any of it
 still needs the creators' permission** (Sorrow Mod = tatanaandatun; ENB authors).
+
+---
+
+## Sorrow Mod (EK_SM_7.5_English_text.apk) — diffed 2026-07-28 vs owner's 4.2.2 base
+
+Game code: stock **1.3.1182** (owner's base is 1.3.1207). Dex differences vs base are
+version drift only; SM-vs-ENB dex diffs are recompile noise (register renaming). **Pure
+data/asset expansion — no modder code.** Re-adds `lib/arm64-v8a` (runs on 64-bit).
+
+Scale: +2227 files, ~506 changed, -62 (drops some res densities).
+- **+52 quests**, **+170 maps (tmx)**, **+728 English conversations**
+- bestiary: **+933 spawns**, ~205 modified; items: **+955**; weapons: **+519**
+  (incl. a whole `bewitched2_*` enchant tier)
+- **+13 skill lines** (necromancy/mastery flavored: Necromancy, Dark Call, Fyre/Icy/
+  Shock Mastery, …) in skills2/advanced tables
+- +31 music tracks, ~397 new graphics, 363 sprites, 311 sounds
+- new spawntables incl. `roads_sorrowland` (the mod's namesake region), moy*, sky_*
+
+## ENB mod (EK_ENB_eng.apk) — diffed 2026-07-28 vs owner's 4.2.2 base
+
+Game code: stock **1.3.1182**, apktool-rebuilt (cosmetic dex churn only). **Pure
+data/asset overhaul + additions — no modder code.** English-text edition: strips all
+localization dirs (−2695 localized conversations, −579 localized quests, −30 rules).
+
+Scale: +1557 files, ~1041 changed, -3383 (mostly the dropped translations).
+- **+24 quests** (arena, NG_djeck, gurd/gurdfury, tearalove, …), **+27 maps**,
+  **+218 English conversations**, but also **299 base conversations rewritten**
+- heavy rebalance: **417 of 420 base bestiary rows modified**, 127 items modified,
+  traps/rewards/map_effects retuned; `1`-prefixed weapon tier (+557 weapons, NG+-style)
+- big cosmetic pass: 459 new + 282 changed sprites, 195 changed graphics, 42 UI
+  files, 22 music tracks replaced, particle effects
+- no new skill rows
+
+**Takeaway:** SM = huge *content expansion* stacked on vanilla (new region/quests/
+bestiary); ENB = *overhaul/rebalance* of the base game with some added content. Both
+are data-only, so features port to the owner's 1.3.1207 base by copying/merging data
+files — subject to engine compat of any 1182-vs-1207 data format drift (none seen in
+the tables inspected).
