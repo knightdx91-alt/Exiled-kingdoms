@@ -1,1 +1,0 @@
-copy /b ExiledKingdoms-hero-v3.apk.part00+ExiledKingdoms-hero-v3.apk.part01+ExiledKingdoms-hero-v3.apk.part02+ExiledKingdoms-hero-v3.apk.part03+ExiledKingdoms-hero-v3.apk.part04 ExiledKingdoms-hero-v3.apk
