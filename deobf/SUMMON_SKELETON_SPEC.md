@@ -150,3 +150,78 @@ Base also already has, unused by any summon skill: `skeleton` L3, `skeleton_arch
 creature required is already in the base bestiary, and the change stays the 2-string edit
 this spec described. SM is useful as *confirmation of the mechanism* and as a level-cap /
 duration reference (300s and caps up to 25 are evidently safe).
+
+---
+
+## Addendum 2 (2026-07-28) — the hired necromancer, and how SM really gets an army
+
+Owner asked about "a person you can hire that summons skeletons". **It is Sorrow Mod**,
+and the mechanism is *not* the skill system — it is the **`Summon#` dialogue action**,
+which is **native to the owner's base game**.
+
+### The two hireable necromancers (SM)
+
+`conversations/necromanc.txt` and `necromanc2.txt`. Both are ordinary **followers**
+(`NPCFollow#`, gated `hasNoFollower#`), hired for **level-scaled gold**
+(`{LEVELx100}` basic, `{LEVELx500}` advanced — the `{LEVELxN}` token is a vanilla
+conversation feature). Dismissal is the standard `NPCStopFollowing#`. Spawns are the
+`necromancer_female` / `necromancer_female3` rows (`faction=player`).
+
+While hired, asking "can you do magic?" spends a mana potion for an **army**:
+
+| conversation | potion | summons (id, level, seconds) |
+|---|---|---|
+| necromanc | small mana / deepfrost | 5x `zombie2` lvl 3, 30s |
+| necromanc | mana potion | 5x `zombie2` lvl 5, 30s |
+| necromanc | greater mana | 5x `zombie2` lvl 9, 30s |
+| necromanc2 | small mana / deepfrost | 2x `skeleton_archer` 6, `alive_carrion` 8, 2x `death_knight` 8 — 40s |
+| necromanc2 | mana potion | 2x `skeleton_archer` 9, `alive_carrion` 14, 2x `death_knight` 12 — 40s |
+| necromanc2 | greater mana | **`lich` lvl 20, 120s** |
+
+`necromanc2` also offers `Teleport#`. Both files additionally carry a "collar of
+submission" (item 10402) branch — SM's adult-flavoured content; drop those rows if
+porting.
+
+### Why their army persists but a player's summon does not — RESOLVED
+
+`SkillActions.a(caster, spawnId, levelCap, secs)` branches on the **caster**:
+
+```
+if (caster.uniqueID == 1 || caster.P()) {     // GameObject.m() == uniqueID; player is 1
+    party.b();                                 // = source Party.e(): despawn every
+                                               //   follower tagged "...summon..."
+    npc.tag = "player_summon";  npc.z0();      // join the player's party
+} else {
+    npc.b(caster.n());                         // just place it next to the caster
+}                                              // NO clear, NO party join
+```
+`MapActor.P()` returns constant `false` (overridden only by the Player). So:
+
+- **Player casts a summon skill → the clear runs → strictly one summon at a time.**
+  This confirms open decision #3 and proves SM's duplicated *skill* calls
+  (bat x6, lorette x4, illusory_bro x3/x4, star_rider x3 — see Addendum 1) are a
+  **modder error**: each call despawns the previous, netting one creature.
+- **Any NPC summons (dialogue `Summon#`) → no clear → the creatures stack.** That is
+  how the hired necromancer fields a real 5-strong undead army, and it needs no code.
+
+### Portability — army route is FREE on the owner's base
+
+`ScriptedAction$ActionType` is **byte-identical** between base and SM and already
+contains `Summon` (ordinal 0x52), and base `ScriptedAction` already calls
+`SkillActions.a(Character,String,II)`. **`Summon#<spawn_id>,<level>,<seconds>` works in
+the owner's 1.3.1207 base today** — pure conversation data, zero smali, zero verifier risk.
+
+Creatures used by the SM necromancers vs the owner's base bestiary:
+`skeleton_archer` **yes**, `death_knight` **yes**, `lich` **yes**;
+`zombie2` and `alive_carrion` are SM-only but both use sprite `adt_zombie`, which the
+base already ships (base `zombie` uses it) → portable as **pure bestiary rows, no art**.
+
+### Consequence for the owner's original request
+
+Two independent, non-conflicting options:
+1. **Summon Familiar → skeletons** (the original 2-string edit): a *personal* summon,
+   inherently one at a time.
+2. **A skeleton army**: give an NPC (a new hireable necromancer, or an existing one) a
+   conversation branch running several `Summon#skeleton...` actions. Data-only, and it
+   genuinely stacks. Base already has skeleton/skeleton_warrior/archer/evoker/champion/
+   hero/dragoon/warlord/giant + zombie to build the roster from.
