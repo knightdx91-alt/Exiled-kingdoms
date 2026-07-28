@@ -1,5 +1,9 @@
 # Exiled Kingdoms — project handoff / continue here
 
+> **See `README.md` first for the quick orientation + the standing findings**
+> (locked doors are conversations; `Summon#` is native and NPC summons stack;
+> mod diffs; Elisse has no quest). This file remains the detailed handoff.
+
 Everything done so far, how to reproduce it, and what's planned. Start here.
 
 The goal: **a browser-playable version of Exiled Kingdoms** (Chrome on Android),
