@@ -173,3 +173,12 @@ Both fixes are in `tools/patch_companion_janod.py`, verified in the assembled de
 - `UpgradeCompanion#janod` grants passives only — active mage spells (`fireball`,
   `ice_storm`, …) are `npc=N` and the companion AI does not fire them; his damage comes
   from the `fire_shot2` ranged weapon, which is how every caster NPC in the game works.
+
+### v3 (2026-07-28) — companion-grade stats
+Owner reported: level 14 start, 8-13 fire damage, high armor/resists, XP not moving.
+All were his miniboss bestiary row leaking through the normal init path. Fixed in
+data (patch_companion_janod.py step 3): minlevel/maxlevel 6/7 (Hirge-style),
+weapon fire_shot2 -> wand_3 (4-8 magic), defense 10 -> 0, resist 40x6 -> none.
+Recruit-time XP catch-up is engine-generic (Party.r(): XP -> player_XP/2) and now
+actually applies. DELIBERATE DEVIATION: the hostile Janod fight (mock him in
+A Mad Wizard) is much easier now that his row is companion-grade.

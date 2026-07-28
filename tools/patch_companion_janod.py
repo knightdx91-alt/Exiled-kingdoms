@@ -206,6 +206,18 @@ for i, ln in enumerate(lines):
         f = ln.split('\t')
         f[ix['race']] = 'npc'                              # match the other 3 companions
         f[ix['Skillset']] = '"wand_mastery#3;mana_surge#2"'
+        # v3 (owner feedback): his miniboss row leaked into companion stats --
+        # level 14 start, 8-13 FIRE wand, defense 10, resist 40x6. Real
+        # companion rows (adaon/hirge/grissenda) are low-level, weaponless-ish,
+        # defense 0, no resists; armor comes from gear and XP comes from the
+        # recruit-time catch-up (Party.r(): companion XP -> player XP / 2).
+        # Hirge-style start; deliberate deviation: the hostile "mock Janod"
+        # fight in A Mad Wizard gets much easier (logged in COMPANION_SPEC).
+        f[ix['minlevel']] = '6'
+        f[ix['maxlevel']] = '7'
+        f[ix['weapon_id']] = 'wand_3'      # Conjurer Wand: 4-8 plain magic bolt
+        f[ix['defense']] = '0'
+        f[ix['resist']] = ''
         lines[i] = '\t'.join(f)
         found = True
         break
