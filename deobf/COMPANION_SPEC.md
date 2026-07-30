@@ -413,3 +413,56 @@ deduction disappears. The tax constant `0x3f4ccccd` occurs exactly once in
 **Rule going forward:** any future XP sharing (summons, second companions) must be
 *additive* — computed from the full reward and paid out of nothing — never a deduction
 from the player's share.
+
+---
+
+## 10. v13 — summons earn XP; dismissal promotes the other companion
+
+### 10.1 Summons level up if they survive
+`NPC.ekSummonXP(I)`, called from the top of `Player.k(I)V` — the single funnel every
+reward passes through (kills, `GainXP`, traps). Each live NPC with `summoned == true`,
+`destroy == false` and `tag == "player_summon"` receives **the companion's share, 0.56 of
+the full reward**, computed the same way the companion's is: `CharacterSheet.h(I)I`
+applies the sheet's XP bonuses, `CharacterSheet.b(I)V` adds it (→ `CharacterStats.c(I)V`,
+which recaches, so the level follows on its own).
+
+Additive, per the §9 rule: the share comes off the full reward and is paid out of
+nothing. The player's own XP is untouched.
+
+*Base-name trap:* `CharacterStats.a(I)V` is **missingHP** in this build, not XP — the
+readable decompile's letters do not carry over. XP is `c(I)V`.
+
+*Why not `NPC.O0(I)`:* the NPC's own XP entry dereferences `party.getCompanion()`
+unguarded to decide whether to draw the floating "+N xp", which NPEs when there is no
+active companion.
+
+Persistence is free: `GameLevelData.K()` stores `follower.lastLevel` on unload and `I()`
+restores it with `sheet.i0(lastLevel)`, so a surviving summon keeps what it earned across
+maps. Death or timer expiry drops the follower record, so the next summon starts fresh —
+which is the intent ("keep it alive and it levels").
+
+*Register trap:* `Player.k(I)V` is `.locals 19`, so `p1` sits above v15 and a plain
+`invoke-static` fails to assemble (`Invalid register: v20. Must be between v0 and v15`).
+The hook uses `invoke-static/range {p1 .. p1}`.
+
+### 10.2 Dismissing one of two companions promotes the other
+With two companions (§8/PARTY_AI_SPEC §3) the second travels as a **follower**.
+`Party.a(String,String,String)` — the dismissal path — clears `activeCompanion` and
+returns, which left the second one following but not selectable: no character sheet, no
+battle orders, no XP catch-up.
+
+`NPC.ekPromoteFollower()` is called on that branch. It finds a live, still-following
+`companionSpawn` NPC (the field is private, so the helper lives in `NPC`) and:
+
+1. calls `Party.a(spawn_id, tag, name)` with its identity, which removes its **follower
+   record** — without this, `GameLevelData.I()` rebuilds a duplicate on the next map.
+   Safe to reuse: `activeCompanion` is `""` at that moment, so the call cannot take the
+   early-return branch and recurse into the hook;
+2. calls `Party.a(NPC)`, registering it exactly like a fresh recruit — `activeCompanion`,
+   the `companions` list, and the `Party.r()` XP catch-up.
+
+### 10.3 Cheat items and no-clip are out of the default build
+Owner's request. `tools/patch_cheats_v2.py` (Tome of Renown, Phase/Anchor Stone, and the
+`e/a/c/b.c(II)Z` no-clip predicate) is now opt-in behind `EK_CHEATS=1`; the normal build
+ships neither the items nor the collision patch. Verified in the built APK: no `noclip`
+reference anywhere in the dex and no 9990/9991/9992 rows in `items.txt`.

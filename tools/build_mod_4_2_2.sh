@@ -40,10 +40,15 @@ unzip -o -q "$BASE" \
 
 echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_crashlog.py" )
-( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
+# Cheat items (Tome of Renown / Phase Stone / Anchor Stone) + no-clip are OPT-IN as of
+# v13 -- the owner asked for them out of the normal build. EK_CHEATS=1 puts them back.
+if [ -n "${EK_CHEATS:-}" ]; then
+  ( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
+fi
 ( cd "$WORK" && python3 "$REPO/tools/patch_companion_janod.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_party_ai.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_summon_routes.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_party_fixes.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_xp_share.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_export_fix.py" )
 # Hero class is opt-out while its pre-menu crash is being hunted:

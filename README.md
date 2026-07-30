@@ -14,14 +14,14 @@ Three lines of work:
 
 ## Current mod build (Track C)
 
-Latest: **hero-v12**. Download (assembled automatically by the Pages deploy):
+Latest: **hero-v13**. Download (assembled automatically by the Pages deploy):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v12.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v13.apk
 ```
 
 Previous build (fallback):
-`https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v11.apk`
+`https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v12.apk`
 
 Build it yourself:
 ```
@@ -29,6 +29,8 @@ EK_LIB=/tmp/eklib tools/build_mod_4_2_2.sh <base.apk> out.apk
 ```
 Jars needed in `EK_LIB`: baksmali/smali 2.5.2, `apksig8.jar` (apksig 8.3.1).
 `EK_SKIP_HERO=1` builds without the Hero class.
+`EK_CHEATS=1` re-adds the cheat items (Tome of Renown, Phase/Anchor Stone) and no-clip,
+which are out of the default build as of v13.
 
 **APK distribution:** the repo's Git LFS budget is spent and GitHub rejects any file
 over 100 MB, so built APKs are committed to `dist/<name>/` as 25 MB split parts, and
