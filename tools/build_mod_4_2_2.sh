@@ -28,7 +28,12 @@ unzip -o -q "$BASE" \
   assets/data/rules/items.txt \
   assets/data/rules/items_text.txt \
   assets/data/rules/bestiary.txt \
+  assets/data/rules/skills2.txt \
+  assets/data/rules/skills_advanced2.txt \
   assets/data/conversations/kingsbridge_wizard.txt \
+  assets/data/conversations/hirge.txt \
+  assets/data/conversations/adaon.txt \
+  assets/data/conversations/mercenary_grisenda.txt \
   assets/data/tmx/G9.tmx \
   assets/data/ui/strings/strings.txt \
   -d "$WORK"
@@ -37,6 +42,7 @@ echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_crashlog.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_companion_janod.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_party_ai.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_export_fix.py" )
 # Hero class is opt-out while its pre-menu crash is being hunted:
 # EK_SKIP_HERO=1 builds the safe cheats+janod+export APK.
@@ -64,7 +70,12 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/rules/items.txt \
     assets/data/rules/items_text.txt \
     assets/data/rules/bestiary.txt \
+    assets/data/rules/skills2.txt \
+    assets/data/rules/skills_advanced2.txt \
     assets/data/conversations/kingsbridge_wizard.txt \
+    assets/data/conversations/hirge.txt \
+    assets/data/conversations/adaon.txt \
+    assets/data/conversations/mercenary_grisenda.txt \
     assets/data/tmx/G9.tmx \
     assets/data/ui/strings/strings.txt )
 
