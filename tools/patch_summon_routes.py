@@ -37,8 +37,14 @@ VAR = "summon_path"
 ROUTES = {
     1: ("Necromancer", [("skeleton", 5), ("skeleton_warrior", 8),
                         ("skeleton_champion", 11), ("skeleton_hero", 14)]),
+    # NOT elementals: Fire/Ice/Earth Mastery (bought from the mage-tower trainers)
+    # already summon fire_elemental_1/2/3, ice_elemental_1/2/3 and
+    # elemental_earth_lesser/elemental_earth/golem_iron_1. The arcane route escalates
+    # into CONSTRUCTS instead -- classic conjuration, no overlap with any trainer
+    # skill, and the tankiest rank-4 of the three (its rank 1-2 familiars are the
+    # weakest opening, so it pays off latest and hardest).
     2: ("Arcane", [("familiar1", 3), ("familiar2", 6),
-                   ("fire_elemental_1", 8), ("fire_elemental_2", 11)]),
+                   ("golem_iron_lesser", 12), ("golem_iron", 15)]),
     3: ("Beast", [("grey_wolf", 5), ("dire_wolf", 8),
                   ("bear_summoned", 11), ("spirit_wolf", 14)]),
 }
@@ -322,7 +328,7 @@ print("patched SkillWindow: first lesser_summoning purchase asks for a route")
 # ---------------------------------------------------------------------------
 PROMPT = ("[BLACK]How will you call your ally?[]  This choice is permanent.\\n\\n"
           "UNDEAD - raise skeletons that grow into champions and heroes.\\n"
-          "ARCANE - the Plane of Energy: familiars, then elementals.\\n"
+          "ARCANE - familiars from the Plane of Energy, then iron golems.\\n"
           "BEAST - wolves, bears, and at last a spirit wolf.")
 
 buttons = ''
@@ -452,10 +458,10 @@ lines[start + 1:end] = [
     rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
              "or a Dire Wolf.", 2, 30, 20,
              "Un aliado mas poderoso, segun tu camino."),
-    rank_row("A Level 10-11 Skeleton Champion, a Fire Elemental, "
+    rank_row("A Level 10-11 Skeleton Champion, a Lesser Iron Golem, "
              "or a Summoned Bear.", 3, 30, 28,
              "Un aliado de alto nivel, segun tu camino."),
-    rank_row("A Level 13-14 Skeleton Hero, a greater Fire Elemental, "
+    rank_row("A Level 13-14 Skeleton Hero, an Iron Golem, "
              "or a Spirit Wolf.", 3, 30, 36,
              "El aliado mas poderoso de tu camino."),
 ]

@@ -68,8 +68,19 @@ call — passing it would have meant register surgery.
 |---|---|---|---|
 | 1 | `skeleton` (cap 5) | `familiar1` (cap 3) | `grey_wolf` (cap 5) |
 | 2 | `skeleton_warrior` (cap 8) | `familiar2` (cap 6) | `dire_wolf` (cap 8) |
-| 3 | `skeleton_champion` (cap 11) | `fire_elemental_1` (cap 8) | `bear_summoned` (cap 11) |
-| 4 | `skeleton_hero` (cap 14) | `fire_elemental_2` (cap 11) | `spirit_wolf` (cap 14) |
+| 3 | `skeleton_champion` (cap 11) | `golem_iron_lesser` (cap 12) | `bear_summoned` (cap 11) |
+| 4 | `skeleton_hero` (cap 14) | `golem_iron` (cap 15) | `spirit_wolf` (cap 14) |
+
+**Why the arcane route is constructs, not elementals (v10).** Owner: *"arcane doesn't
+really make sense with making it fire elementals because you can do the fire elementals
+when you buy the skill from one of the trainers in the mages towers."* Correct, and
+confirmed in `Character`'s dispatch — the trainer-bought masteries already summon
+`fire_elemental_1/2/3` (Fire Mastery), `ice_elemental_1/2/3` (Ice Mastery) and
+`elemental_earth_lesser`/`elemental_earth`/`golem_iron_1` (Earth Mastery). A v9 arcane
+route ending in fire elementals was selling the trainer's own product. Constructs are
+classic conjuration, overlap nothing (the `golem_iron_lesser`/`golem_iron` rows are
+distinct from Earth Mastery's `golem_iron_1`), and give the ladder that opens weakest
+(familiars, L2-6) the toughest rank 4 of the three.
 
 `SkillActions` levels a summon to `min(cap, casterLevel) + summonerRank`, so a cap is a
 ceiling, not a grant. An unset variable resolves to the ARCANE ladder, i.e. an existing
