@@ -43,6 +43,7 @@ echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_cheats_v2.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_companion_janod.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_party_ai.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_summon_routes.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_export_fix.py" )
 # Hero class is opt-out while its pre-menu crash is being hunted:
 # EK_SKIP_HERO=1 builds the safe cheats+janod+export APK.
