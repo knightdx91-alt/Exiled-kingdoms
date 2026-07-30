@@ -305,3 +305,73 @@ are only the *starting* point.
 
 Dalvik oracle: `tools/dalvik_verify.sh` on the v6 APK → `dexopt: OK`, identical output to
 the untouched base APK.
+
+---
+
+## 8. v7 (2026-07-30) — why v5/v6 could still fail, and the two fixes
+
+Owner report on v5: *"janod and grissenda are not appearing when dismissed back in
+Kingsbridge, and janod's stats are still not right — they were supposed to be fixed to
+the regular companions stuff."*
+
+The v6 mechanism (§6) was re-verified against the base APK and is correct:
+
+* `NPCSpawn#<tag>` (`ScriptedAction` case 24) iterates `GameLevelData.o().spawns` and
+  calls `MonsterSpawn.Q()` on every spawn whose **tag** matches. Confirmed in the base
+  dex.
+* The TMX loader adds a `type="spawn"` object to `spawns` **regardless of its
+  `conditions`** (conditions are stored on the object and only evaluated by
+  `u("SPAWN")`). So Janod's dead `VariableLower#mad_wizard,100` gate does **not**
+  prevent `NPCSpawn#janod` from working — the vanilla Teram precedent, whose gate is
+  satisfied when its trigger fires, did not prove this on its own.
+* `Q()` takes the **stored companion object** when `spawn_id` is in `party.companions`
+  and drops it on the spawn point (`x/y`, `visibleToPlayer`, `spriteIndex=null`,
+  `GameLevel.a()`, `V1()`).
+* `NPCNotinArea` / `HasNoCompanion` / `VariableGreater|Lower` all parse
+  case-insensitively (`Condition(String,String)`), so the trigger strings are valid.
+* Vanilla dismissal despawns the companion on the spot
+  (`mercenary_grisenda.txt` row 11 = `NPCStopFollowing#;NPCDespawn#mercenary_grisenda`),
+  so a homecoming spawn can never leave a duplicate behind on the map they were
+  dismissed on. The Janod dismissal row mirrors it exactly.
+
+### 8.1 The gap v6 still had: triggers live in the LEVEL CACHE
+
+`GameLevelData` — including `triggers` — is persisted per save slot
+(`data/saves/<slot>/levels/G9.sav`) and is only rebuilt from the TMX once it is
+~1080 game-seconds stale (`GameLevelData.E`). **New TMX triggers therefore do not
+exist in an existing save's Kingsbridge until that map next resets**, so on the next
+visit after installing the mod nothing would fire — indistinguishable, from the
+owner's side, from the bug not being fixed at all.
+
+**Fix (v7): `NPC.ekHomecomingTick()`** runs the *same three condition/action sets* in
+code, so it does not depend on the map cache. It is hooked into the engine's own
+trigger-overlap scan (`e/a/c/b->e(II)Z`, called on player movement), throttled to
+every 64th call (`NPC.ekHcTick`), and wrapped in a `.catchall` so a bad evaluation can
+never crash the game. Outside Kingsbridge `NPCSpawn#` is a natural no-op (case 24 only
+matches spawns in the current level). The G9.tmx triggers are kept as the faithful,
+vanilla-shaped mechanism; the two are mutually idempotent (`NPCNotinArea#`).
+
+### 8.2 Stats: level normalisation on registration
+
+`ekJanodGear` (§7) already drops the miniboss overrides (`hardcoded_weapon` fire_shot2
+8-13, `hardcoded_defense` 10, `hardcoded_resistances` 40×6) and equips the sorcerer
+kit, which self-heals a Janod stored in an old save. v7 adds the missing piece: the
+stored sheet still carried the **level 14** the old bestiary row gave him
+(`CharacterStats.XP` is serialised). After the gear step, if his level is above the
+companion-grade start he is reset with `CharacterStats.e(7)` (XP → the level-7
+threshold). `Party.r()`, which runs immediately afterwards on registration, then applies
+the engine-generic catch-up (`companion XP → player XP / 2`) — i.e. exactly what
+Hirge/Grissenda/Adaon get. Guarded by `slot_mainhand == 0`, so it happens once per
+character and never demotes a companion who has since earned levels.
+
+Dalvik oracle: `tools/dalvik_verify.sh` on the v7 APK → `dexopt: OK`, byte-identical
+complaint list to the untouched base APK.
+
+### 8.3 What the owner should see
+1. Install v7 over the existing save.
+2. Walk around Kingsbridge. Within a few seconds of movement a dismissed Grissenda
+   (`warrior_honor > 100`) and/or Janod (`mad_wizard > 99`, or `fair_deal > 99` with
+   `mad_wizard < 10`) reappears on their own spawn point, with the character they had.
+3. Re-recruiting Janod repairs his sheet: Elm Wand 4-8 magic, gear-driven armour, no
+   miniboss resistances, level reset to companion grade and then XP-matched to half the
+   player's XP.

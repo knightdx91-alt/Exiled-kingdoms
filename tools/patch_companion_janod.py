@@ -166,6 +166,7 @@ print("patched NPC.W(): janod keeps bestiary sprite (+helper ekCompanionSprite)"
 # ---------------------------------------------------------------------------
 CS = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
 CI = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterInventory;'
+CST = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;'
 
 # item_ID -> slot. Value ~2900 gold, in line with Hirge's kit; every piece is a
 # real items.txt row (Classes=M) so the companion sheet shows proper equipment.
@@ -222,14 +223,134 @@ gear_helper = f'''
 
     invoke-virtual {{v0}}, {CS}->ekDropHardcoded()V
 
+    iget-object v1, v0, {CS}->stats:{CST}
+
+    invoke-virtual {{v1}}, {CST}->e()I
+
+    move-result v2
+
+    const/4 v0, 0x7
+
+    if-le v2, v0, :ekjg_done
+
+    invoke-virtual {{v1, v0}}, {CST}->e(I)V
+
     :ekjg_done
     return-void
 .end method
 '''
 tail = s.rindex('.end method') + len('.end method')
 s = s[:tail] + '\n' + gear_helper + s[tail:]
+
+# ---------------------------------------------------------------------------
+# 1d) v7: cache-proof homecoming -- NPC.ekHomecomingTick()
+#
+#     The G9.tmx homecoming triggers (§5 below) are the faithful, vanilla-shaped
+#     mechanism, but they live in the LEVEL DATA -- and level data is persisted
+#     per save slot (data/saves/<slot>/levels/G9.sav) and only rebuilt from the
+#     TMX once it is ~1080 game-seconds stale (GameLevelData.E). On an existing
+#     save the new triggers therefore do not exist in Kingsbridge until the map
+#     next resets, so a dismissed companion would still be missing on the very
+#     next visit -- exactly the symptom the owner keeps reporting.
+#
+#     This helper runs the SAME conditions/actions in code, so it does not
+#     depend on the map cache at all. It is hooked into the engine's own trigger
+#     scan (e/a/c/b->e(II)Z, the player-movement overlap check), throttled to
+#     every 64th call, and wrapped in a catch-all so a bad evaluation can never
+#     take the game down. NPCSpawn# is a no-op outside Kingsbridge (case 24 only
+#     matches spawns in the CURRENT level's spawn list), and every condition set
+#     is a no-op while the companion is already standing there (NPCNotinArea#)
+#     or still travelling with the player (HasNoCompanion#).
+# ---------------------------------------------------------------------------
+HOMECOMING = [
+    # (conditions, actions) -- identical to the G9.tmx triggers
+    ("VariableGreater#mad_wizard,99;VariableLower#mad_wizard,200;"
+     "NPCNotinArea#janod;HasNoCompanion#", "NPCSpawn#janod"),
+    ("VariableGreater#fair_deal,99;VariableLower#mad_wizard,10;"
+     "NPCNotinArea#janod;HasNoCompanion#", "NPCSpawn#janod"),
+    ("VariableGreater#warrior_honor,100;"
+     "NPCNotinArea#mercenary_grisenda;HasNoCompanion#",
+     "NPCSpawn#mercenary_grisenda"),
+]
+CONDSET = 'Lnet/fdgames/GameLogic/ConditionsSet;'
+ACTSET = 'Lnet/fdgames/GameLogic/ActionsSet;'
+
+hc_body = ''
+for n, (cond, act) in enumerate(HOMECOMING):
+    hc_body += f'''    new-instance v0, {CONDSET}
+
+    const-string v1, "{cond}"
+
+    invoke-direct {{v0, v1}}, {CONDSET}-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {{v0}}, {CONDSET}->a()Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-eqz v0, :ekhc_next{n}
+
+    new-instance v0, {ACTSET}
+
+    const-string v1, "{act}"
+
+    invoke-direct {{v0, v1}}, {ACTSET}-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {{v0}}, {ACTSET}->a()V
+
+    :ekhc_next{n}
+'''
+
+hc_helper = f'''
+.method public static ekHomecomingTick()V
+    .locals 2
+
+    sget v0, {NPCC}->ekHcTick:I
+
+    add-int/lit8 v0, v0, 0x1
+
+    sput v0, {NPCC}->ekHcTick:I
+
+    and-int/lit8 v0, v0, 0x3f
+
+    if-nez v0, :ekhc_done
+
+    :ekhc_try_start
+{hc_body}    :ekhc_try_end
+    goto :ekhc_done
+
+    :ekhc_catch
+    move-exception v0
+
+    :ekhc_done
+    return-void
+
+    .catchall {{:ekhc_try_start .. :ekhc_try_end}} :ekhc_catch
+.end method
+'''
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + '\n' + hc_helper + s[tail:]
+
+# throttle counter (static int, defaults to 0 -- no <clinit> change needed)
+first_field = s.index('\n.field ') + 1
+s = s[:first_field] + f'.field public static ekHcTick:I\n\n' + s[first_field:]
 open(p, 'w', encoding='utf-8').write(s)
-print("patched NPC: +ekJanodGear (%d items)" % len(JANOD_GEAR))
+print("patched NPC: +ekJanodGear (%d items) +ekHomecomingTick (%d rules)"
+      % (len(JANOD_GEAR), len(HOMECOMING)))
+
+# Call site: the engine's trigger-overlap scan, run on every player move.
+p = f'{w}/smali/e/a/c/b.smali'
+s = open(p, encoding='utf-8').read()
+scan = re.search(r'(\.method public e\(II\)Z\n    \.locals \d+\n\n)', s)
+assert scan, "trigger-scan method e(II)Z not found"
+s = (s[:scan.end()]
+     + f'    invoke-static {{}}, {NPCC}->ekHomecomingTick()V\n\n'
+     + s[scan.end():])
+open(p, 'w', encoding='utf-8').write(s)
+print("patched e/a/c/b.e(II)Z: -> ekHomecomingTick")
 
 # CharacterSheet.ekDropHardcoded(): the two override fields are PRIVATE, so the
 # method that clears them has to live in CharacterSheet itself.
