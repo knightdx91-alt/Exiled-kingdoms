@@ -153,6 +153,25 @@ reconciled against the recovered class in §2. Grep the code for `APPROX` too.
 | A17 | **Containers (crates/chests)** | Object-layer `container`s open a loot window (`GameHUD` context action type 7); art is the object atlas tile (`icon` region: crate1/chest_small1/…). | **PORTED (interaction):** every map's `containers` render as tappable markers and are picked up by the attack/interact button + tap-to-open; their csv `items` (and gold `-2`) transfer into the backpack. **Art now shipped:** the real `activables`/`plants`/`mapitems` atlas tiles (crate1/chest_small1/barrel1/sarcophagus/nest/…) are extracted to `assets/ui/objects/` and each container renders its own icon; `loot.png` only stands in for a missing icon. Still APPROX: no separate loot *window* (items auto-collect with a floater). | Interaction reversed from `GAMEHUD_LAYOUT_SPEC.md` §3; art shipped. |
 | A18 | **Context / interact buttons + loot bags** | Top-right `f2965z[4]` FlashingImageButton set: up to 4 icons for nearby activables (talk/open/pick-up/enter/sleep), refreshed each frame (`GameHUD.S()`), hidden when nothing's in reach, tap → `E(i)`. Enemy loot drops on the ground as a type-1 pick-up. | **PORTED:** top-right context bar (`HUD.setContext`) pops up icons for nearby talk-NPCs/containers/loot-bags/arches within reach and routes taps to the matching walk-up + talk/open/pickup/travel (`refreshContext`/`doContext`). Enemy loot now drops a **loot bag** (`sprites/loot.png`) at the kill cell instead of auto-collecting (`dropLootBag`). Also fixed a latent bug where world-mode entity cells were stored in LOCAL chunk coords while the hero's cell is GLOBAL, so no reach test matched — nothing outdoors was interactable. **APPROX:** button art is a portrait/object/`loot.png` stand-in, not the real skin; types 6/9/10/11 (harvest/manual-trigger/sleep-inn/recall) have no exported nodes yet; loot auto-transfers on open (no per-item TAKE window). | Reversed from `GAMEHUD_LAYOUT_SPEC.md` §3. `SPEC`: `deobf/CONTEXT_ACTIONS_SPEC.md`. |
 
+### Track C (the 4.2.2 mod APK) — deliberate deviations
+
+These change the owner's device build, not `web/`. Each is intentional and reversible; the
+reasoning and the reversed evidence live in the linked spec.
+
+| # | Deviation | Why | Spec |
+|---|---|---|---|
+| C1 | Janod is a companion (hardcoded whitelist extended) and keeps his bestiary sprite instead of a paper-doll head | the companion sprite path hardcodes a head per companion; he matches none, which cleared his sprite entirely | `COMPANION_SPEC.md` §4-5 |
+| C2 | Janod's bestiary row is companion-grade (L6-7, wand, no boss armour/resists) | his miniboss row leaked into companion stats; side effect: the hostile "mock Janod" fight is much easier | `COMPANION_SPEC.md` §4 (v3) |
+| C3 | Janod stays in Kingsbridge after his quest resolves | his own spawn is gated off at exactly that point, so he could never be found or come home | `COMPANION_SPEC.md` §6.4 |
+| C4 | Hostile wizard NPCs can now cast (the AI branch is class-driven, not companion-specific) | there was no WIZARD branch at all; adding one is engine-wide | `PARTY_AI_SPEC.md` §1 |
+| C5 | Player summons stack and last 5× longer | the one-at-a-time rule was a single call on the player branch only — NPC casters always stacked | `PARTY_AI_SPEC.md` §2 |
+| C6 | Companion #2 is a *follower*: fights and travels, but no XP catch-up, upgrade grants or battle orders | those are all written against the single `activeCompanion` | `PARTY_AI_SPEC.md` §3 |
+| C7 | `HasFollower#` now means "party full" on recruit rows, and it also counts summons | no "party is full" condition exists in the engine | `PARTY_AI_SPEC.md` §3 |
+| C8 | Summon route choice is permanent (an ordinary game variable, no respec) | no respec UI exists; a trainer conversation could re-open it later | `SUMMON_ROUTES_SPEC.md` §5 |
+| C9 | The player no longer loses 20% XP for having a companion | vanilla penalty; the companion's share is generated separately, so nothing is rebalanced by removing it | `COMPANION_SPEC.md` §9 |
+| C10 | Summons earn the companion's XP share and level while alive | new behaviour; additive, never deducted from the player | `COMPANION_SPEC.md` §10.1 |
+| C11 | Cheat items + no-clip are out of the default build (`EK_CHEATS=1` restores them) | owner's request | `COMPANION_SPEC.md` §10.3 |
+
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,
 **minimap/automap** (`GameHUD` + `WorldMapImage`; `nominimap` map prop), floating combat

@@ -10,7 +10,7 @@ Three lines of work:
 |---|---|---|
 | **A** | Source recovery / de-obfuscation of the APK | `recovered/`, `port/`, `deobf/`, `tools/` |
 | **B** | Phaser 3 browser rebuild (the product) | `web/` — verify with `cd web && node verify.mjs` |
-| **C** | Mod of the owner's Android **4.2.2** APK (cheats, Hero class, Janod) | `tools/patch_*.py`, `tools/build_mod_4_2_2.sh` |
+| **C** | Mod of the owner's Android **4.2.2** APK (Hero class, companions, summoning) | `tools/patch_*.py`, `tools/build_mod_4_2_2.sh` |
 
 ## Current mod build (Track C)
 
@@ -22,6 +22,16 @@ https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v14.ap
 
 Previous build (fallback):
 `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v13.apk`
+
+What's in it (each reversed first; specs in `deobf/`):
+* **Hero class** + per-class skill pager (`HERO_CLASS_MOD_SPEC.md`)
+* **Janod** as a full mage companion — recruit, dismiss, gear, companion-grade stats
+* **Companions come home** to their own spawn point when dismissed
+* **Mage AI** — wizards actually cast (the engine had no WIZARD branch at all)
+* **Two companions** at once; dismissing one promotes the other
+* **No companion XP tax** (vanilla quietly took 20% of everything)
+* **Summon Familiar → 3 routes** (Undead / Arcane / Beast), chosen on first purchase,
+  4 ranks each; summons **stack**, last 10 minutes, and **gain XP and level** while alive
 
 Build it yourself:
 ```
@@ -38,9 +48,12 @@ over 100 MB, so built APKs are committed to `dist/<name>/` as 25 MB split parts,
 where the single-file download link above comes from. Base APK sha256
 `5fc7c866…` (owner's Drive).
 
-Working: install on 4.2.2, max-reputation + cheat items, export save, Janod companion,
-Hero class + per-class skill pager. Still broken: **no-clip** (see below — it was the
-wrong tool for the job anyway).
+Working (all dexopt-verified, none device-confirmed since v6): install on 4.2.2, Janod as
+a full mage companion, Hero class + per-class skill pager, companions coming home when
+dismissed, wizard AI, stacking summons, a second companion, the 3-route Summon Familiar,
+no companion XP tax, summons that level. Cheat items + no-clip were **removed** at the
+owner's request in v13 (`EK_CHEATS=1` restores them). Export save is shipped but was never
+confirmed on device.
 
 ## Findings worth keeping
 

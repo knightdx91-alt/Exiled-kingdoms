@@ -18,20 +18,31 @@ shippable web game; Track A is the source-recovery that feeds it.
 ## ⚠️ OPEN WORK — 4.2.2 mod APK (read this first, 2026-07-24)
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
-Deliverable: `dist/ExiledKingdoms-cheats-4.2.2.apk` (one APK, all features).
-Base: `dist/ExiledKingdoms-base-4.2.2.apk` (owner-supplied, clean, Git LFS).
-Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk out.apk`
+
+**Current deliverable: `hero-v14`.** One APK, every feature below. The owner gets it as a
+single direct download from Pages (the repo stores it as 25 MB split parts because of
+GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
+
+```
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v14.apk
+```
+
+The previous build stays up next to it as a fallback; keep exactly two in `dist/` and drop
+older ones (they are ~120 MB each of git objects).
+
+Base: owner-supplied clean APK, sha256 `5fc7c866…` (Drive link; the repo's LFS budget is
+spent, so it is NOT in git — re-fetch it from the owner when starting fresh).
+Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh <base.apk> out.apk`
+Verify: `tools/dalvik_verify.sh out.apk` → must print `dexopt: OK` with the same complaint
+list as the untouched base.
 
 ### Status
 
 | Feature | Status |
 |---|---|
 | Install on 4.2.2 | ✅ **working** (needed SHA1withRSA cert **and** the zip-swap pipeline) |
-| Max reputation (Tome of Renown) | ✅ working |
-| Cheat items appear / usable | ✅ working |
-| **No-clip** (Phase/Anchor Stone) | ❌ **still broken — needs work** |
-| **Export save** | ❌ **still broken — needs work** |
-| Janod mage companion | ✅ **fixed 2026-07-26** (v1 froze on spawn: skipped stat init + sprite dead end — see `COMPANION_SPEC.md` §5); awaiting owner re-test |
+| **Export save** | ⚠️ **shipped, unconfirmed** — write side repointed to `/sdcard/Download/EK.bak` + `mkdirs()`, and the silent `catch` now prints to `GameConsole`. Never confirmed working on device; ask the owner what the console says when export is pressed |
+| Janod mage companion | ✅ **working since v2** (v1 froze on spawn: skipped stat init + sprite dead end — `COMPANION_SPEC.md` §5). Stats, gear, dismissal and casting all fixed later; see the rows below |
 | Summons gain XP | ✅ **v13 (2026-07-30)** — `NPC.ekSummonXP()` off `Player.k(I)V`: every live `player_summon` earns the companion's 0.56 share, additive. Levels persist across maps via the existing `follower.lastLevel`, and reset when the summon dies or expires. **v14** adds the feedback: floating "+N xp", and on level-up a blue LEVEL UP + the levelup sound + a battle-log line. See `deobf/COMPANION_SPEC.md` §10.1 |
 | Dismiss 1 of 2 companions | ✅ **v13 (2026-07-30)** — the dismissal path cleared `activeCompanion` and returned, leaving the second companion following but unselectable. `NPC.ekPromoteFollower()` removes its follower record and re-registers it through `Party.a(NPC)`. See `deobf/COMPANION_SPEC.md` §10.2 |
 | Cheat items + no-clip | 🚫 **removed from the default build (v13)** — opt back in with `EK_CHEATS=1`. Verified absent: no `noclip` in the dex, no 9990-9992 rows in `items.txt` |
@@ -41,8 +52,8 @@ Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk 
 | Second companion at once | ✅ **v8 (2026-07-30)** — `NPC.z0()`'s `companionSpawn` fork now routes a companion recruited while the slot is taken into the (unlimited, persisted) follower list; recruit refusals re-gated to "party is full". See `deobf/PARTY_AI_SPEC.md` §3 |
 | Mage skills on a companion sheet | ✅ **v8 (2026-07-30)** — `SkillWindow` shows an NPC only skills flagged `NPC=Y`, and 4 of the 8 mage skills were `N` (the owner's "only the top row"). Flagged `Y` in `skills2.txt` / `skills_advanced2.txt` |
 | Summon Familiar → 3 routes | ✅ **v9 (2026-07-30)** — one skill, no new tree entries (the mage basic page is capped at 8 slots and holds 8). First purchase pops a route dialog (`e/a/d/e/eksp`, extends the game's own SimpleDialog); the route is a saved game variable and `SkillActions.ekSummonId/ekSummonCap` turn route+rank into a bestiary id. Ranks extended to 4: skeleton→hero / familiar→golem→acid elemental / wolf→bear→werewolf. Every rung is checked against what trainers already sell (v10: arcane is constructs, not elementals; v11: beast drops dire/spirit wolf, which are the cleric Guardian Wolf). See `deobf/SUMMON_ROUTES_SPEC.md` |
-| Summon Familiar → skeletons | 📋 **requested, spec'd, not built** — feasible with 2 string edits (`familiar1/2` → skeleton bestiary ids); fully data-driven, no verifier risk. Awaiting owner's design picks (which skeletons/ranks, level cap, one-vs-pack). See `deobf/SUMMON_SKELETON_SPEC.md` |
-| Hero class + per-class skill pager | ✅ **root-caused & fixed 2026-07-27 (v3)** — owner's `EK_crash.txt` logcat showed the VFY detail: the v2 pager patch left `v0` holding the **CharacterSheet** where the rest of `c0.c()` expects the **CharacterClass** (`CharacterClass.a(v0)` header labels) → Dalvik rejected the class. v3 restores `v0` via new `ekPageClass()` helper (+`ekSkillsSuppressed()`); verified in the assembled dex. Awaiting owner re-test |
+| Summon Familiar → skeletons | ⤴️ **superseded by the 3-route feature above (v9-v11)** — the original single-ladder sketch | is kept for its reversing notes only. See `deobf/SUMMON_SKELETON_SPEC.md` |
+| Hero class + per-class skill pager | ✅ **root-caused & fixed 2026-07-27 (v3)** — owner's `EK_crash.txt` logcat showed the VFY detail: the v2 pager patch left `v0` holding the **CharacterSheet** where the rest of `c0.c()` expects the **CharacterClass** (`CharacterClass.a(v0)` header labels) → Dalvik rejected the class. v3 restores `v0` via new `ekPageClass()` helper (+`ekSkillsSuppressed()`); verified in the assembled dex. Owner has been playing on it since |
 | Janod recruit after wolf-cloak quest | ✅ **2026-07-27**: recruit offer now ALSO unlocks after `fair_deal>99` (Cloak of the Wolf), guarded by `mad_wizard<10` + Adaon-not-in-party (so the "damn thief!" scene still fires). Previously only `mad_wizard>99` (A Mad Wizard resolved) unlocked him |
 | Companion dismissal → goes home | ✅ **v6 mechanism + v7 cache-proof fallback (2026-07-30)** — `NPCSpawn#` → `MonsterSpawn.Q()` re-drops the stored companion on their TMX spawn point; G9.tmx triggers cover a fresh map load, and `NPC.ekHomecomingTick()` (hooked into the trigger scan) covers the ~1080-game-second level cache that made the v6 triggers invisible to an existing save. See `deobf/COMPANION_SPEC.md` §8 |
 | Janod companion-grade stats | ✅ **v7 (2026-07-30)** — `NPC.ekJanodGear()` at `Party.a(NPC)` equips the sorcerer kit, `CharacterSheet.ekDropHardcoded()` kills the miniboss weapon/armour/resist overrides, and the sheet's stored level is reset to companion grade (`CharacterStats.e(7)`) before `Party.r()` applies the standard XP catch-up. Self-heals a Janod already in a save. See `deobf/COMPANION_SPEC.md` §7–8 |
@@ -80,17 +91,56 @@ exists, but add an explicit `mkdirs()` on the parent to be safe.
 `GameConsole` (`tools/patch_export_fix.py`). Ask the owner what message appears in-game when
 export is pressed — that names the real failure instead of another guess.
 
-### 2. No-clip — still wrong
+### 2. No-clip and the cheat items — REMOVED from the build (v13, owner's request)
 
-`e/a/c/b->c(II)Z` is a **solid/blocked** predicate (true = blocked). v1 returned `true`
-(froze everyone); the current build returns `false` for in-bounds tiles when
-`noclip == 1` (`tools/patch_cheats_v2.py`). Owner reports it still isn't right — so
-`c(II)Z` is evidently **not the only** collision gate. Do **not** patch it further blind:
-trace the movement path properly (`tools/trace_calls.py`), starting from `Player`/`Character`
-movement and `GameLevelData.c(II)Z` (called *first* inside `c()` and returning early), which
-is the most likely second gate. Confirm which predicate the player's step actually consults.
+`tools/patch_cheats_v2.py` (Tome of Renown, Phase/Anchor Stone, and the `e/a/c/b.c(II)Z`
+collision patch) is now **opt-in behind `EK_CHEATS=1`**. The default build ships none of
+it — verified in the APK: no `noclip` reference anywhere in the dex, no 9990/9991/9992
+rows in `items.txt`.
 
-### 3. Hero class — untested, UI is the risk
+Do not resurrect no-clip without reading the door finding in `README.md` first: a "locked
+door" in EK is a **TMX conversation object** whose exit is a `Travel#map,entry` action, not
+adjacent geometry, so no amount of collision patching can open one. If the goal is
+"go through locked doors", the mechanism to patch is the conversation row picker (take the
+branch that leads to a `Travel#`), not the movement predicate. Two collision patches were
+already burned learning this.
+
+### 3. 2026-07-30 session — v6 → v14 (all built, dexopt-clean, all deployed)
+
+Every one of these was reversed against the base dex first and written up before coding;
+each row names the spec section that holds the evidence.
+
+| build | change | spec |
+|---|---|---|
+| v7 | Dismissed companions actually come home — `NPCSpawn#`→`MonsterSpawn.Q()`, plus `ekHomecomingTick()` because level data (triggers included) is cached ~1080 game-seconds | `COMPANION_SPEC.md` §8 |
+| v7 | Janod's stored sheet reset to companion grade (the miniboss overrides survived in old saves) | `COMPANION_SPEC.md` §7-8 |
+| v8 | `ekWizardAI()` — `AISkillUsage` had no WIZARD branch at all, so mage companions could never cast; race NPC also had a 0 mana pool | `PARTY_AI_SPEC.md` §1 |
+| v8 | Player summons stack (one `Party.b()` call was the whole limit) + ×5 duration | `PARTY_AI_SPEC.md` §2 |
+| v8 | Second companion travels as a follower (`ekTakesCompanionSlot`) | `PARTY_AI_SPEC.md` §3 |
+| v8 | Mage skills visible on a companion sheet (`SkillWindow` filters on the `NPC=Y` column) | `PARTY_AI_SPEC.md` §1.1 |
+| v9-v11 | Summon Familiar → three routes chosen on first purchase, 4 ranks each, no new tree entries; ladders checked against every trainer-bought skill | `SUMMON_ROUTES_SPEC.md` |
+| v12 | Companions stopped taxing the player 20% of ALL xp | `COMPANION_SPEC.md` §9 |
+| v13 | Cheats/no-clip out of the build; summons gain XP; dismissal promotes the other companion | `COMPANION_SPEC.md` §10 |
+| v14 | Summon XP feedback: floating "+N xp", LEVEL UP, sound, battle-log line | `COMPANION_SPEC.md` §10.1 |
+
+**Nothing in v6→v14 has been confirmed on the owner's device yet.** Everything is verified
+two ways only: the reassembled dex was read back, and `tools/dalvik_verify.sh` (real
+Android 4.2 `dexopt`) returns OK with output identical to the untouched base. That proves
+classes load and control flow is what was intended; it proves nothing about behaviour.
+
+**Three traps this session, all worth remembering:**
+1. `dexopt: OK` does **not** mean the edit is right. A rank-test anchor matched the wrong
+   `if-ne`, assembled clean, verified clean, and would have double-summoned at rank 2 and
+   capped rank-4 creatures at level 3. Read the disassembled branch structure back for any
+   edit that moves a comparison (`SUMMON_ROUTES_SPEC.md` §4).
+2. **Base method letters do not match the readable decompile.** `CharacterStats.a(I)V` is
+   `missingHP` in this APK, not XP (XP is `c(I)V` via `CharacterSheet.b(I)V`). Always map
+   the letter in the base dex before using it.
+3. **Register width.** `Player.k(I)V` is `.locals 19`, so `p1` is above v15 and plain
+   `invoke-static` will not assemble; and any constructor with >5 args needs
+   `invoke-direct/range` over contiguous registers.
+
+### 4. Hero class — untested, UI is the risk
 
 `tools/patch_hero_class.py`, spec `deobf/HERO_CLASS_MOD_SPEC.md` §v3. Logic side should be
 sound (single choke point `ClassRestriction.a(CharacterClass)`, gated by the new
