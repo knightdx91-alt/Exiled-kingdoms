@@ -375,3 +375,41 @@ complaint list to the untouched base APK.
 3. Re-recruiting Janod repairs his sheet: Elm Wand 4-8 magic, gear-driven armour, no
    miniboss resistances, level reset to companion grade and then XP-matched to half the
    player's XP.
+
+---
+
+## 9. v12 — companions no longer tax the player's XP
+
+Owner: *"I'm honestly not a fan of your companions taking away from your xp."*
+Correct, and it is vanilla behaviour. `Player.k(I)V` (`Player.O0(int)` in the readable
+decompile) is the single funnel for **all** experience — kill rewards
+(`NPC.O0 → player.O0`), quest rewards (`ScriptedAction` GainXP), traps, everything:
+
+```java
+if (party.hasCompanion()) {
+    int mine      = (int)(xp * 0.8f);     // 20% gone, purely for having company
+    int companion = (int)(mine * 0.7f);   // == 56% of the original xp
+    …
+} else {
+    mine = sheet.h(xp);                   // no companion -> full XP
+}
+```
+
+The companion's share is *generated*, not deducted — it comes from a separate call on the
+companion's own sheet. So the `0.8f` is not "splitting the pot", it is a flat penalty on
+the player for travelling with anyone.
+
+**Fix (two float constants, no structural change):**
+
+| constant | vanilla | v12 | effect |
+|---|---|---|---|
+| player's multiplier | `0.8f` | `1.0f` | full XP, companion or not |
+| companion's multiplier | `0.7f` (of the taxed 80%) | `0.56f` (of the full amount) | companion receives *exactly* what it did before |
+
+`0.8 × 0.7 = 0.56`, so companion levelling is bit-for-bit unchanged; only the player's
+deduction disappears. The tax constant `0x3f4ccccd` occurs exactly once in
+`Player.smali`, which makes the anchor unambiguous — the patch asserts that.
+
+**Rule going forward:** any future XP sharing (summons, second companions) must be
+*additive* — computed from the full reward and paid out of nothing — never a deduction
+from the player's share.

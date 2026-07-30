@@ -32,6 +32,7 @@ Build: `EK_LIB=/tmp tools/build_mod_4_2_2.sh dist/ExiledKingdoms-base-4.2.2.apk 
 | **No-clip** (Phase/Anchor Stone) | ❌ **still broken — needs work** |
 | **Export save** | ❌ **still broken — needs work** |
 | Janod mage companion | ✅ **fixed 2026-07-26** (v1 froze on spawn: skipped stat init + sprite dead end — see `COMPANION_SPEC.md` §5); awaiting owner re-test |
+| Companion XP tax | ✅ **v12 (2026-07-30)** — vanilla `Player.k(I)V` gave the player only 80% of ALL xp whenever a companion was in the party (the companion's 56% is generated separately, so it was a pure penalty). Player multiplier 0.8→1.0, companion 0.7→0.56 so its share is bit-for-bit unchanged. See `deobf/COMPANION_SPEC.md` §9 |
 | Wizard/mage AI | ✅ **v8 (2026-07-30)** — `AISkillUsage` only ever had warrior/rogue/cleric branches, so a mage companion could never cast. `ekWizardAI()` adds the WIZARD (ordinal 3) case; `CharacterStats.g()` gives race NPC a real mana pool. See `deobf/PARTY_AI_SPEC.md` §1 |
 | Player summon army | ✅ **v8 (2026-07-30)** — the one-at-a-time rule was the single `Party.b()` call on the player branch of `SkillActions.a(Character,String,II)`; dropped, duration ×5. NPC summons already stacked. See `deobf/PARTY_AI_SPEC.md` §2 |
 | Second companion at once | ✅ **v8 (2026-07-30)** — `NPC.z0()`'s `companionSpawn` fork now routes a companion recruited while the slot is taken into the (unlimited, persisted) follower list; recruit refusals re-gated to "party is full". See `deobf/PARTY_AI_SPEC.md` §3 |
