@@ -40,13 +40,18 @@ ROUTES = {
     # NOT elementals: Fire/Ice/Earth Mastery (bought from the mage-tower trainers)
     # already summon fire_elemental_1/2/3, ice_elemental_1/2/3 and
     # elemental_earth_lesser/elemental_earth/golem_iron_1. The arcane route escalates
-    # into CONSTRUCTS instead -- classic conjuration, no overlap with any trainer
+    # into CONSTRUCTS instead (capstone: the acid elemental, whose sprite is golem_green,
+    # so it reads as the next construct up) -- classic conjuration, no overlap with any trainer
     # skill, and the tankiest rank-4 of the three (its rank 1-2 familiars are the
     # weakest opening, so it pays off latest and hardest).
     2: ("Arcane", [("familiar1", 3), ("familiar2", 6),
-                   ("golem_iron_lesser", 12), ("golem_iron", 15)]),
-    3: ("Beast", [("grey_wolf", 5), ("dire_wolf", 8),
-                  ("bear_summoned", 11), ("spirit_wolf", 14)]),
+                   ("golem_iron_lesser", 11), ("elemental_acid", 14)]),
+    # NOT dire_wolf / spirit_wolf: those are ranks 1 and 3 of the cleric skill
+    # Guardian Wolf (dire_wolf -> white_wolf -> spirit_wolf, in e/a/d/m1). A pure mage
+    # can't take that skill, but the Hero class in this mod ignores class restrictions,
+    # so a Hero would have been buying the same wolves twice.
+    3: ("Beast", [("grey_wolf", 5), ("wolf", 8),
+                  ("bear_summoned", 11), ("wild_werewolf", 14)]),
 }
 DEFAULT_ROUTE = 2          # unset variable behaves exactly like vanilla
 
@@ -328,8 +333,8 @@ print("patched SkillWindow: first lesser_summoning purchase asks for a route")
 # ---------------------------------------------------------------------------
 PROMPT = ("[BLACK]How will you call your ally?[]  This choice is permanent.\\n\\n"
           "UNDEAD - raise skeletons that grow into champions and heroes.\\n"
-          "ARCANE - familiars from the Plane of Energy, then iron golems.\\n"
-          "BEAST - wolves, bears, and at last a spirit wolf.")
+          "ARCANE - familiars from the Plane of Energy, then conjured golems.\\n"
+          "BEAST - wolves, bears, and at last a wild werewolf.")
 
 buttons = ''
 for route, (name, _ladder) in ROUTES.items():
@@ -456,13 +461,13 @@ lines[start + 1:end] = [
              "or a Grey Wolf, depending on the path you chose.", 2, 30, 12,
              "Invoca a tu aliado, segun el camino que elegiste."),
     rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
-             "or a Dire Wolf.", 2, 30, 20,
+             "or a Wolf.", 2, 30, 20,
              "Un aliado mas poderoso, segun tu camino."),
     rank_row("A Level 10-11 Skeleton Champion, a Lesser Iron Golem, "
              "or a Summoned Bear.", 3, 30, 28,
              "Un aliado de alto nivel, segun tu camino."),
-    rank_row("A Level 13-14 Skeleton Hero, an Iron Golem, "
-             "or a Spirit Wolf.", 3, 30, 36,
+    rank_row("A Level 13-14 Skeleton Hero, an Acid Elemental, "
+             "or a Wild Werewolf.", 3, 30, 36,
              "El aliado mas poderoso de tu camino."),
 ]
 

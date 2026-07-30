@@ -67,9 +67,9 @@ call — passing it would have meant register surgery.
 | rank | 1 UNDEAD | 2 ARCANE (default) | 3 BEAST |
 |---|---|---|---|
 | 1 | `skeleton` (cap 5) | `familiar1` (cap 3) | `grey_wolf` (cap 5) |
-| 2 | `skeleton_warrior` (cap 8) | `familiar2` (cap 6) | `dire_wolf` (cap 8) |
-| 3 | `skeleton_champion` (cap 11) | `golem_iron_lesser` (cap 12) | `bear_summoned` (cap 11) |
-| 4 | `skeleton_hero` (cap 14) | `golem_iron` (cap 15) | `spirit_wolf` (cap 14) |
+| 2 | `skeleton_warrior` (cap 8) | `familiar2` (cap 6) | `wolf` (cap 8) |
+| 3 | `skeleton_champion` (cap 11) | `golem_iron_lesser` (cap 11) | `bear_summoned` (cap 11) |
+| 4 | `skeleton_hero` (cap 14) | `elemental_acid` (cap 14) | `wild_werewolf` (cap 14) |
 
 **Why the arcane route is constructs, not elementals (v10).** Owner: *"arcane doesn't
 really make sense with making it fire elementals because you can do the fire elementals
@@ -79,8 +79,21 @@ confirmed in `Character`'s dispatch — the trainer-bought masteries already sum
 `elemental_earth_lesser`/`elemental_earth`/`golem_iron_1` (Earth Mastery). A v9 arcane
 route ending in fire elementals was selling the trainer's own product. Constructs are
 classic conjuration, overlap nothing (the `golem_iron_lesser`/`golem_iron` rows are
-distinct from Earth Mastery's `golem_iron_1`), and give the ladder that opens weakest
-(familiars, L2-6) the toughest rank 4 of the three.
+distinct from Earth Mastery's `golem_iron_1`). v11 caps the route with `elemental_acid`
+at the owner's request — its sprite is `golem_green`, so it still reads as the next
+construct up, and it brings [detector] and toxic damage that nothing else on the routes has.
+
+**Why the beast route drops dire/spirit wolf (v11).** `e/a/d/m1` shows the cleric skill
+**Guardian Wolf** summoning `dire_wolf` → `white_wolf` → `spirit_wolf`. A pure mage cannot
+take that skill, but the Hero class in this mod bypasses class restrictions, so a Hero
+would have been buying the same wolves twice. Beast ranks 2 and 4 are now `wolf` and
+`wild_werewolf`, which nothing else summons.
+
+**Not a duplicate, for the record:** no skill or base-game conversation summons any
+`imp_*`. The eleven `Summon#imp_fire` calls live in Sorrow Mod (`demonessa.txt`) and one
+in ENB (`magistr_lorain.txt`) — mods, not this base. The base game's entire scripted
+summon set is `wolf`, `dire_wolf`, `golem_iron`, `fire_elemental_2`, `ice_elemental_2`,
+`elemental_earth_lesser`.
 
 `SkillActions` levels a summon to `min(cap, casterLevel) + summonerRank`, so a cap is a
 ceiling, not a grant. An unset variable resolves to the ARCANE ladder, i.e. an existing
