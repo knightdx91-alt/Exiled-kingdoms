@@ -26,6 +26,7 @@ ALIST = 'Ljava/util/ArrayList;'
 # The companion's cut of a reward. v12 set Player's own multiplier to 1.0f and the
 # companion's to 0.56f (== vanilla 0.8 x 0.7 of the full amount); summons match it.
 SHARE = '0x3f0f5c29'      # 0.56f
+SHARE_TXT = '0x3f333333'  # 0.7f -- floating-text fade/scale args, same as the companion's
 
 # ---------------------------------------------------------------------------
 # 1) NPC.ekSummonXP(I) -- every live player summon earns the companion's share.
@@ -42,14 +43,28 @@ SHARE = '0x3f0f5c29'      # 0.56f
 #
 #    NPC.O0(I) (the NPC's own XP entry) is deliberately NOT used: it dereferences
 #    party.getCompanion() unguarded to decide whether to draw the floating "+N xp",
-#    which NPEs when you have no active companion.
+#    which NPEs when you have no active companion. The visuals are rebuilt here instead,
+#    copying the companion's own idiom out of Player.k(I)V:
+#      * "+N xp" in yellow over the summon on every gain;
+#      * on a level-up, "LEVEL UP" in blue + the levelup sound + a battle-log line
+#        "<Name> reaches level N" (GameLog.a(String)).
+#    The floating-text constructor takes 6 args, so it needs invoke-direct/range over
+#    seven CONTIGUOUS registers (v4..v10 here) -- the non-range form caps at five.
 # ---------------------------------------------------------------------------
 p = f'{w}/smali/net/fdgames/GameEntities/Final/NPC.smali'
 s = open(p, encoding='utf-8').read()
 
+FLOAT = 'Le/a/d/x;'                       # floating combat text
+FLOATMGR = 'Le/a/a/a;'                    # its manager (static h())
+COLOR = 'Lcom/badlogic/gdx/graphics/Color;'
+GLOG = 'Lnet/fdgames/GameWorld/GameLog;'
+GSTR = 'Lnet/fdgames/Helpers/GameString;'
+ASSETS = 'Lnet/fdgames/assets/GameAssets;'
+STR = 'Ljava/lang/String;'
+
 summon_xp = f'''
 .method public static ekSummonXP(I)V
-    .locals 5
+    .locals 12
 
     if-lez p0, :eksx_done
 
@@ -100,6 +115,10 @@ summon_xp = f'''
 
     if-eqz v2, :eksx_loop
 
+    invoke-virtual {{v2}}, {CS}->z()I
+
+    move-result v11
+
     int-to-float v3, p0
 
     const v4, {SHARE}
@@ -114,7 +133,124 @@ summon_xp = f'''
 
     move-result v3
 
+    if-lez v3, :eksx_loop
+
     invoke-virtual {{v2, v3}}, {CS}->b(I)V
+
+    const-string v6, "+"
+
+    invoke-static {{v3}}, Ljava/lang/Integer;->toString(I){STR}
+
+    move-result-object v7
+
+    invoke-virtual {{v6, v7}}, {STR}->concat({STR}){STR}
+
+    move-result-object v6
+
+    const-string v7, "xp"
+
+    invoke-virtual {{v6, v7}}, {STR}->concat({STR}){STR}
+
+    move-result-object v6
+
+    invoke-static {{}}, {FLOATMGR}->h(){FLOATMGR}
+
+    move-result-object v3
+
+    if-eqz v3, :eksx_loop
+
+    new-instance v4, {FLOAT}
+
+    invoke-virtual {{v1}}, {GO}->m()I
+
+    move-result v5
+
+    const v7, 0x3fa66666
+
+    sget-object v8, {COLOR}->YELLOW:{COLOR}
+
+    const v9, {SHARE_TXT}
+
+    const v10, {SHARE_TXT}
+
+    invoke-direct/range {{v4 .. v10}}, {FLOAT}-><init>(I{STR}F{COLOR}FF)V
+
+    invoke-virtual {{v3, v4}}, {FLOATMGR}->a({FLOAT})V
+
+    invoke-virtual {{v2}}, {CS}->z()I
+
+    move-result v5
+
+    if-le v5, v11, :eksx_loop
+
+    move v11, v5
+
+    invoke-static {{}}, {FLOATMGR}->h(){FLOATMGR}
+
+    move-result-object v3
+
+    if-eqz v3, :eksx_log
+
+    new-instance v4, {FLOAT}
+
+    invoke-virtual {{v1}}, {GO}->m()I
+
+    move-result v5
+
+    const-string v6, "LEVEL_UP"
+
+    invoke-static {{v6}}, {GSTR}->a({STR}){STR}
+
+    move-result-object v6
+
+    const/high16 v7, 0x3f800000
+
+    sget-object v8, {COLOR}->BLUE:{COLOR}
+
+    const/high16 v9, 0x3f800000
+
+    const v10, {SHARE_TXT}
+
+    invoke-direct/range {{v4 .. v10}}, {FLOAT}-><init>(I{STR}F{COLOR}FF)V
+
+    invoke-virtual {{v3, v4}}, {FLOATMGR}->a({FLOAT})V
+
+    const-string v3, "levelup"
+
+    invoke-static {{v3}}, {ASSETS}->i({STR})V
+
+    :eksx_log
+    invoke-static {{}}, {GD}->O(){GD}
+
+    move-result-object v3
+
+    if-eqz v3, :eksx_loop
+
+    iget-object v3, v3, {GD}->log:{GLOG}
+
+    if-eqz v3, :eksx_loop
+
+    invoke-virtual {{v1}}, {CHAR}->getName(){STR}
+
+    move-result-object v4
+
+    if-eqz v4, :eksx_loop
+
+    const-string v5, " reaches level "
+
+    invoke-virtual {{v4, v5}}, {STR}->concat({STR}){STR}
+
+    move-result-object v4
+
+    invoke-static {{v11}}, Ljava/lang/Integer;->toString(I){STR}
+
+    move-result-object v5
+
+    invoke-virtual {{v4, v5}}, {STR}->concat({STR}){STR}
+
+    move-result-object v4
+
+    invoke-virtual {{v3, v4}}, {GLOG}->a({STR})V
 
     goto :eksx_loop
 

@@ -436,6 +436,15 @@ readable decompile's letters do not carry over. XP is `c(I)V`.
 unguarded to decide whether to draw the floating "+N xp", which NPEs when there is no
 active companion.
 
+**Feedback (v14).** The visuals are rebuilt in the helper, copying the companion's own
+idiom out of `Player.k(I)V`: a yellow **"+N xp"** over the summon on every gain, and on a
+level-up a blue **LEVEL UP**, the `levelup` sound (`GameAssets.i(String)`), and a
+battle-log line **"&lt;Name&gt; reaches level N"** via `GameLog.a(String)`.
+The floating-text class `e/a/d/x` takes six constructor args, so it needs
+`invoke-direct/range` over seven contiguous registers (v4..v10) — the non-range form caps
+at five. Level-up is detected by comparing `CharacterSheet.z()` either side of the XP
+add.
+
 Persistence is free: `GameLevelData.K()` stores `follower.lastLevel` on unload and `I()`
 restores it with `sheet.i0(lastLevel)`, so a surviving summon keeps what it earned across
 maps. Death or timer expiry drops the follower record, so the next summon starts fresh —
