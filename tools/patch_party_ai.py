@@ -41,8 +41,12 @@ FDU = 'Lnet/fdgames/Helpers/FDUtils;'
 p = f'{w}/smali/net/fdgames/GameEntities/AI/AISkillUsage.smali'
 s = open(p, encoding='utf-8').read()
 
-# (skill id, percent chance). Ordered: best damage first, cheap filler last.
-WIZARD_SPELLS = [("fireball", 40), ("ice_storm", 35), ("lightning_bolt", 45)]
+# (skill id, percent chance). Ordered: offence first (returns on the first hit), then the
+# defensive self-buff last. mage_armor is a buff -- Character.c(id) applies it to the
+# caster and the trailing o(enemyID) target is ignored -- and it is what makes the
+# passive Mage Barrier live (the barrier only fires while Mage Armor is active).
+WIZARD_SPELLS = [("fireball", 40), ("ice_storm", 35), ("lightning_bolt", 45),
+                 ("mage_armor", 50)]
 
 blocks = ''
 for n, (sk, chance) in enumerate(WIZARD_SPELLS):
@@ -272,11 +276,13 @@ print("patched NPC.z0(): 2nd companion -> follower path (+ekTakesCompanionSlot)"
 # 3) skills2.txt / skills_advanced2.txt -- let the mage kit show on an NPC sheet.
 #    Column 2 ("NPC") N -> Y for the skills a companion mage should display and use.
 # ---------------------------------------------------------------------------
-NPC_VISIBLE = {
-    'skills2.txt': ("Lightning Bolt", "Fireball", "Ice Storm", "Mage Armor"),
-    'skills_advanced2.txt': ("Mage Barrier", "Arcanist"),
-}
-for fname, names in NPC_VISIBLE.items():
+# Owner: "make sure ALL the skills are showing ... for every companion, even Grissenda
+# who is a Hero class." SkillWindow lists a skill on a companion sheet only when its
+# `NPC` column (col 2) is Y. Flip EVERY skill row to Y across the six base skill files
+# so the full basic + advanced set is available to any companion of any class.
+SKILL_FILES = ('skills.txt', 'skills2.txt', 'skills3.txt',
+               'skills_advanced.txt', 'skills_advanced2.txt', 'skills_advanced3.txt')
+for fname in SKILL_FILES:
     p = f'{w}/assets/data/rules/{fname}'
     raw = open(p, encoding='utf-8', newline='').read()
     bom = '﻿' if raw.startswith('﻿') else ''
@@ -284,16 +290,16 @@ for fname, names in NPC_VISIBLE.items():
     nl = '\r\n' if '\r\n' in body else '\n'
     lines = body.split(nl)
     hits = 0
-    for i, ln in enumerate(lines):
+    for i, ln in enumerate(lines[1:], start=1):     # skip the header row
         f = ln.split('\t')
-        if len(f) > 2 and f[0].strip() in names:
-            assert f[2] in ('N', 'Y'), f"{fname}: unexpected NPC column {f[2]!r}"
+        # a skill's header row has a non-empty name in col 0 and N/Y in col 2;
+        # its per-rank rows have an empty col 0 and are left untouched.
+        if len(f) > 2 and f[0].strip() and f[2] == 'N':
             f[2] = 'Y'
             lines[i] = '\t'.join(f)
             hits += 1
-    assert hits == len(names), f"{fname}: matched {hits}/{len(names)} skills"
     open(p, 'w', encoding='utf-8', newline='').write(bom + nl.join(lines))
-    print(f"patched {fname}: {hits} mage skills now visible on NPC sheets")
+    print(f"patched {fname}: {hits} skills flipped to NPC-visible")
 
 # ---------------------------------------------------------------------------
 # 6) Data: Janod knows offensive spells; recruit gates become "party is full".

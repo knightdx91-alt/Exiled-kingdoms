@@ -19,13 +19,30 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
 
-**Current deliverable: `hero-v14`.** One APK, every feature below. The owner gets it as a
+**Current deliverable: `hero-v15`.** One APK, every feature below. The owner gets it as a
 single direct download from Pages (the repo stores it as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v14.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v15.apk
 ```
+
+### v15 (2026-08-04) — five owner-reported fixes. Full reversing: `deobf/V15_FIXES_SPEC.md`.
+
+| # | Report | Root cause (read from the base dex) | Fix |
+|---|---|---|---|
+| 1 | Wizard companion ignores bought spells (Mage Barrier) | `ekWizardAI` only rolled the 3 offensive spells; **Mage Barrier is a passive that only fires while Mage Armor is active**, and the AI never cast Mage Armor | add `mage_armor` self-buff to `WIZARD_SPELLS` |
+| 2 | Buying a mage skill on the Hero grants no usable mana | `CharacterSheet.C()` (max mana) returns 0 unless `V()` is true, and `V()` is WIZARD/CLERIC-only → the Hero's pool is 0, so the v3 `g()` grant was dead code | `V()` also true for WARRIOR(Hero); Hero `g()` pool scales `level*2+12` |
+| 3 | Not all skills show for a companion (incl. Grissenda) | `SkillWindow` lists a skill on an NPC sheet only when its `NPC` column is `Y`; most rows were `N` | flip every skill row to `NPC=Y` across the six base skill files (four newly wired into the build) |
+| 4 | Familiar route dialog never pops; summons vanilla familiars | **`GameVariables.b()` returns `-255` (not 0) for an unset variable** → the "first purchase" gate (`if-nez`) always skipped, and the route lookup fell through to the Arcane default | prompt when route `<= 0` (`if-gtz`); drop the `rank==0` gate so pre-mod saves can still choose |
+| 5 | "Details" on the skill screen → NullPointerException | `c0.b()` passes the *selected* skill `s` (null until a row is tapped, and the pager never selects a default) to `SkillInfoWindow`, which derefs it | guard `c0.b()` to no-op when `s` is null. **Needs device confirmation** — if the owner's crash is with a skill selected, `/sdcard/EK_crash.txt` names the real site |
+
+> ⚠️ v15 was built + signed + statically verified (every edited method round-trips through
+> the reassembled Dalvik dex with consistent register types, and none introduce the
+> branch-join reference-type conflict that caused the earlier Hero VerifyErrors). The
+> on-host `tools/dalvik_verify.sh` dexopt oracle could **not** be re-established this
+> session (the pure-Python yaffs extractor mis-detects the 4.2 system image geometry);
+> re-run it from a clean container before treating v15 as device-verified.
 
 The previous build stays up next to it as a fallback; keep exactly two in `dist/` and drop
 older ones (they are ~120 MB each of git objects).

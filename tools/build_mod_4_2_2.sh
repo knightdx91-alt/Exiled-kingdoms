@@ -28,8 +28,12 @@ unzip -o -q "$BASE" \
   assets/data/rules/items.txt \
   assets/data/rules/items_text.txt \
   assets/data/rules/bestiary.txt \
+  assets/data/rules/skills.txt \
   assets/data/rules/skills2.txt \
+  assets/data/rules/skills3.txt \
+  assets/data/rules/skills_advanced.txt \
   assets/data/rules/skills_advanced2.txt \
+  assets/data/rules/skills_advanced3.txt \
   assets/data/conversations/kingsbridge_wizard.txt \
   assets/data/conversations/hirge.txt \
   assets/data/conversations/adaon.txt \
@@ -77,8 +81,12 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/rules/items.txt \
     assets/data/rules/items_text.txt \
     assets/data/rules/bestiary.txt \
+    assets/data/rules/skills.txt \
     assets/data/rules/skills2.txt \
+    assets/data/rules/skills3.txt \
+    assets/data/rules/skills_advanced.txt \
     assets/data/rules/skills_advanced2.txt \
+    assets/data/rules/skills_advanced3.txt \
     assets/data/conversations/kingsbridge_wizard.txt \
     assets/data/conversations/hirge.txt \
     assets/data/conversations/adaon.txt \

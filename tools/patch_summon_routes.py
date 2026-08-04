@@ -291,16 +291,6 @@ need = f'''
 
     if-eqz v2, :ekn_no
 
-    iget-object v1, v1, {CS}->skillSet:{SKS}
-
-    const-string v2, "{SKILL_ID}"
-
-    invoke-virtual {{v1, v2}}, {SKS}->c(Ljava/lang/String;)I
-
-    move-result v1
-
-    if-nez v1, :ekn_no
-
     invoke-static {{}}, {GD}->O(){GD}
 
     move-result-object v1
@@ -313,7 +303,7 @@ need = f'''
 
     move-result v1
 
-    if-nez v1, :ekn_no
+    if-gtz v1, :ekn_no
 
     const/4 v0, 0x1
 

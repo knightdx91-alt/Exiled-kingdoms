@@ -25,6 +25,7 @@ CR = 'Lnet/fdgames/Rules/ClassRestriction;'
 SW = 'Le/a/d/e/c0;'
 TB = 'Lcom/badlogic/gdx/scenes/scene2d/ui/TextButton;'
 SHEET = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
+SKILL_ = 'Lnet/fdgames/Rules/Skill;'
 
 # ---------------------------------------------------------------------------
 # 1) ClassRestriction: add the suppress flag + the Hero bypass
@@ -70,11 +71,15 @@ lbl = m.group(1)
 gm = re.search(r'    move-result v1\n\n    goto :(goto_[0-9a-f]+)\n', method)
 assert gm, "CharacterStats.g() caster join label not found"
 join = gm.group(1)
+# The caster join is `mul v1,v1,v0 ; add v1,v2` where v0 = k()?2:0 (0 for a non-monster
+# player) and v2 = race==HUMAN?12:0. Leaving v0=0 makes the Hero pool a flat 12; force
+# v0=2 so it scales as level*2 + 12, the same pool the mod gives race-NPC casters.
 new_tail = (f'    :{lbl}\n'
             f'    sget-object v4, {CC}->b:{CC}\n\n'
             '    if-ne v3, v4, :ekhero_nomana\n\n'
             '    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;->e()I\n\n'
             '    move-result v1\n\n'
+            '    const/4 v0, 0x2\n\n'
             f'    goto :{join}\n\n'
             '    :ekhero_nomana\n'
             '    return v1\n')
@@ -82,6 +87,47 @@ method = method[:m.start()] + new_tail + method[m.end():]
 s = s[:ms] + method + s[me:]
 open(p, 'w', encoding='utf-8').write(s)
 print("patched CharacterStats.g(): Hero gets caster mana")
+
+# ---------------------------------------------------------------------------
+# 2b) CharacterSheet.V()Z : the mana-pool gate. C() (max mana) returns 0 unless V()
+#     is true, and V() is true only for WIZARD(e)/CLERIC(d). Without this the Hero's
+#     whole pool is 0 and the g() grant above is dead code. Add WARRIOR(b) to V().
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/net/fdgames/GameEntities/CharacterSheet/CharacterSheet.smali'
+s = open(p, encoding='utf-8').read()
+vsig = '.method public V()Z\n    .locals 2\n'
+assert s.count(vsig) == 1, "CharacterSheet.V() not found"
+vpre = (vsig +
+        '\n    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
+        '->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
+        '    move-result-object v0\n\n'
+        f'    sget-object v1, {CC}->b:{CC}\n\n'
+        '    if-ne v0, v1, :ekhero_notwarrior\n\n'
+        '    const/4 v0, 0x1\n\n'
+        '    return v0\n\n'
+        '    :ekhero_notwarrior\n')
+s = s.replace(vsig, vpre, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched CharacterSheet.V(): Hero (WARRIOR) has a mana pool")
+
+# ---------------------------------------------------------------------------
+# 5) SkillWindow Details (c0.b): guard against a null selected skill.
+#     b() passes c0->s (the tapped skill) to SkillInfoWindow.a(sheet,skill), which
+#     dereferences it. s is null until a skill row is tapped (and the pager rebuild
+#     never selects a default), so clicking Details first -> NPE. No-op when null.
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/e/a/d/e/c0.smali'
+s = open(p, encoding='utf-8').read()
+bsig = '.method static synthetic b(Le/a/d/e/c0;)V\n    .locals 2\n'
+assert s.count(bsig) == 1, "c0.b() Details handler not found"
+guard = (bsig +
+         f'\n    iget-object v0, p0, {SW}->s:{SKILL_}\n\n'
+         '    if-nez v0, :ekdetails_ok\n\n'
+         '    return-void\n\n'
+         '    :ekdetails_ok\n')
+s = s.replace(bsig, guard, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched SkillWindow.b(): Details no-ops when no skill is selected (was NPE)")
 
 # ---------------------------------------------------------------------------
 # 3) SkillWindow (e/a/d/e/c0): per-class pager
