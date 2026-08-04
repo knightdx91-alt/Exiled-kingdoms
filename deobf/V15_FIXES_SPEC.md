@@ -48,12 +48,26 @@ so an unset `-255` correctly prompts; and drop the `rank == 0` gate so players w
 knew `lesser_summoning` before the mod still get to pick a path on their next purchase.
 (The saved routes are 1/2/3, always `> 0`, so a set route still suppresses the prompt.)
 
-## 5. "Details" on the skill screen → NullPointerException
-`c0.b()` (the Details button handler) passes `c0->s` (the *selected* skill) to
-`SkillInfoWindow.a(sheet, skill)`, which dereferences it. `s` is only assigned when a
-skill row is tapped (`c0` line 1096); it is **null** until then, and the pager rebuild
-(`ekNextPage → c()`) never selects a default. Tapping Details before selecting a skill
-(or right after a page flip) passes null → NPE.
-**Fix (safe):** guard `c0.b()` to no-op when `s` is null. This removes the crash path.
-*Needs device confirmation:* if the owner's crash is with a skill actually selected, the
-`/sdcard/EK_crash.txt` line will name the real site — ask for it.
+## 5. Viewing character Details → NullPointerException (CONFIRMED from device log)
+Owner's `EK_crash.txt` (2026-08-05):
+```
+java.lang.NullPointerException
+  at ...SpriteBatch.draw  ->  ...TextureRegionDrawable.draw
+  at ...InventorySlotImage.draw   (e/a/d/e/r)
+  ... Stage.draw  ->  e.a.d.y.j (GameHUD.java)
+```
+`InventorySlotImage.a(I)` sets a slot to an item id: it scans `Rules.a[]` for the item,
+reads its `icon`, and `Assets.b(icon)` → `TextureRegion`. **If the id is not in `Rules.a[]`
+(row removed) or the icon asset is missing, the region register stays null**, yet the code
+still builds `new TextureRegionDrawable(null)` and stores it as `e`; `draw()` then draws
+`e` and NPEs inside `SpriteBatch.draw`. This is triggered whenever the character screen /
+details panel redraws a slot holding such an item — most notably the **cheat items
+(Tome of Renown / Phase Stone / Anchor Stone, ids 9990-9992) removed from `items.txt` in
+v13**: any save that picked one up before v13 now holds an orphaned id.
+**Fix (`tools/patch_inventory_icon_fix.py`):** in `a(I)`, when the resolved region is null,
+leave `e` null (which `draw()` already skips) instead of wrapping null. The orphaned item
+just shows an empty slot; no crash.
+
+*(A separate, harmless hardening also went in: `c0.b()` — the skill-window Details button —
+no-ops when no skill is selected, closing a latent null-deref there. It is not the crash
+above.)*
