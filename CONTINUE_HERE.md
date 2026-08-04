@@ -19,13 +19,22 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
 
-**Current deliverable: `hero-v15`.** One APK, every feature below. The owner gets it as a
+**Current deliverable: `hero-v16`.** One APK, every feature below. The owner gets it as a
 single direct download from Pages (the repo stores it as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v15.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v16.apk
 ```
+
+### v16 (2026-08-05) — second Details crash, on-device. Spec appended to `deobf/V15_FIXES_SPEC.md` §6.
+
+After v15 fixed the `InventorySlotImage` draw NPE, the owner's next `EK_crash.txt` showed a
+*different* crash on the Details button: `CharacterWindow` → `StatsDetailWindow` fires an
+analytics / Play-Games update that calls `MainActivity.f()`, which reads the secure setting
+`"android_ld"` and calls `.length()` on it. On the 4.2.2 device that row is **null** → NPE.
+`f()` already has a `"99999"` fallback for a non-hex id; the fix routes a null id down that
+same fallback (`tools/patch_gpgs_deviceid_fix.py`). Build-verified; round-trips clean.
 
 ### v15 (2026-08-04) — five owner-reported fixes. Full reversing: `deobf/V15_FIXES_SPEC.md`.
 

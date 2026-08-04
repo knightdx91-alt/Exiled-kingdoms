@@ -71,3 +71,19 @@ just shows an empty slot; no crash.
 *(A separate, harmless hardening also went in: `c0.b()` — the skill-window Details button —
 no-ops when no skill is selected, closing a latent null-deref there. It is not the crash
 above.)*
+
+## 6. (v16) Character Details → NullPointerException, second crash (device-confirmed)
+After §5 stopped the draw NPE, the owner's next `EK_crash.txt` named a different site:
+```
+RuntimeException: Actor: u: Details
+Caused by: NullPointerException
+  at MainActivity.f  <- SettingsData.a <- Settings.e <- Analytics.a <- GPGSUpdate.a
+  at StatsDetailWindow(h0).a  <- CharacterWindow(e).touchDown
+```
+`MainActivity.f()` (a device-id hash used by analytics / Play-Games) reads
+`Settings.Secure.getString(resolver, "android_ld")` and immediately calls `.length()`.
+On the 4.2.2 device that secure row is **null** → NPE, and opening the stats-detail
+window runs the analytics update that calls it. `f()` already computes a `"99999"`
+fallback when the id tail isn't hex.
+**Fix (`tools/patch_gpgs_deviceid_fix.py`):** null-check the getString result; a null id
+takes the existing `"99999"` fallback instead of being dereferenced.
