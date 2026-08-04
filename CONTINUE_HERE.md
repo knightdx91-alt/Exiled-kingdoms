@@ -19,13 +19,23 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
 
-**Current deliverable: `hero-v17`.** One APK, every feature below. The owner gets it as a
+**Current deliverable: `hero-v18`.** One APK, every feature below. The owner gets it as a
 single direct download from Pages (the repo stores it as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v17.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v18.apk
 ```
+
+### v18 (2026-08-05) — wizard companion uses the full mage kit
+
+`ekWizardAI`'s `WIZARD_SPELLS` widened from 4 to 9: added `disintegrate` (next-hit buff)
+and the summons `lesser_summoning` + `fire_mastery` / `ice_mastery` / `earth_mastery`.
+Offence stays first (the loop returns on the first spell that fires); summons sit mid-list
+at a low roll chance and are further throttled by their 12-80 mana cost; Mage Armor is the
+fallback. Every entry still fires only if the companion actually learned it and can afford
+it, so purchases drive behaviour. `gate` is deliberately excluded (teleport, not combat).
+`tools/patch_party_ai.py`.
 
 ### v17 (2026-08-05) — three owner requests
 

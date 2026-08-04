@@ -45,7 +45,16 @@ s = open(p, encoding='utf-8').read()
 # defensive self-buff last. mage_armor is a buff -- Character.c(id) applies it to the
 # caster and the trailing o(enemyID) target is ignored -- and it is what makes the
 # passive Mage Barrier live (the barrier only fires while Mage Armor is active).
+#   Offence first (the loop returns on the first spell that fires), then the summons at a
+#   low chance -- their 12-80 mana cost is the real throttle, and offence rolling first
+#   keeps them occasional -- then Mage Armor as the fallback buff. Every entry is only
+#   ever cast if the companion actually LEARNED it (SkillSet.e) and can pay for it, so the
+#   owner's purchases drive what he uses. Gate is left out on purpose (it is a teleport,
+#   not a combat spell, and would warp the companion out of the fight).
 WIZARD_SPELLS = [("fireball", 40), ("ice_storm", 35), ("lightning_bolt", 45),
+                 ("disintegrate", 30),
+                 ("lesser_summoning", 18), ("fire_mastery", 15),
+                 ("ice_mastery", 15), ("earth_mastery", 15),
                  ("mage_armor", 50)]
 
 blocks = ''
