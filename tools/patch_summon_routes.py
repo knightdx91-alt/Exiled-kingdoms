@@ -448,7 +448,7 @@ def rank_row(desc, cost, cooldown, mana, desc_es):
 
 lines[start + 1:end] = [
     rank_row("Summon your ally: a Level 3-5 Skeleton, a Lesser Sparkling, "
-             "or a Grey Wolf, depending on the path you chose.", 2, 30, 12,
+             "or a Grey Wolf, depending on the path you chose.", 1, 30, 12,
              "Invoca a tu aliado, segun el camino que elegiste."),
     rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
              "or a Wolf.", 2, 30, 20,

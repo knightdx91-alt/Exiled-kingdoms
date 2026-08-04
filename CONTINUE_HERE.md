@@ -19,13 +19,26 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
 
-**Current deliverable: `hero-v16`.** One APK, every feature below. The owner gets it as a
+**Current deliverable: `hero-v17`.** One APK, every feature below. The owner gets it as a
 single direct download from Pages (the repo stores it as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v16.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v17.apk
 ```
+
+### v17 (2026-08-05) — three owner requests
+
+1. **Completely remove the orphaned cheat items** (they were still crashing on a save that
+   held them). The backpack is `GameData.backpack` (`Helpers/Items`, 20-slot `itemList[I`).
+   New `Items.ekPurge()` zeroes any slot whose id no longer resolves (`Rules.c(id) == null`),
+   called from `CharacterSheet.l()` so the bag self-cleans on every access. Keys on
+   `Rules.c()` (not `Rules.f()`, which is the *stackable* flag). `tools/patch_purge_orphan_items.py`.
+2. **Show the Hero's mana bar.** `Character.s0()` is the "draw the mana bar" gate used by
+   both the HUD (`e/a/d/y`) and the character screen (`e/a/d/e/h`), and it was WIZARD/CLERIC
+   only. Added WARRIOR(Hero), same as the `V()` fix. `tools/patch_hero_class.py` §2c.
+3. **Familiar rank 1 costs 1 skill point** (was 2) — `skills2.txt` Lesser Summoning rank 1
+   cost column, in `tools/patch_summon_routes.py`.
 
 ### v16 (2026-08-05) — second Details crash, on-device. Spec appended to `deobf/V15_FIXES_SPEC.md` §6.
 

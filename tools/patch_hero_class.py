@@ -111,6 +111,29 @@ open(p, 'w', encoding='utf-8').write(s)
 print("patched CharacterSheet.V(): Hero (WARRIOR) has a mana pool")
 
 # ---------------------------------------------------------------------------
+# 2c) Character.s0()Z : the "show the mana bar" gate (WIZARD/CLERIC only). Both the
+#     HUD (e/a/d/y) and the character screen (e/a/d/e/h) toggle the mana bar/number on
+#     s0(); without this the Hero has mana but no bar. Add WARRIOR(b), like V().
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/net/fdgames/GameEntities/Character.smali'
+s = open(p, encoding='utf-8').read()
+s0sig = '.method public s0()Z\n    .locals 2\n'
+assert s.count(s0sig) == 1, "Character.s0() not found"
+s0pre = (s0sig +
+         '\n    iget-object v0, p0, Lnet/fdgames/GameEntities/Character;->sheet:'
+         f'{SHEET}\n\n'
+         f'    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
+         '    move-result-object v0\n\n'
+         f'    sget-object v1, {CC}->b:{CC}\n\n'
+         '    if-ne v0, v1, :ekhero_nos0\n\n'
+         '    const/4 v0, 0x1\n\n'
+         '    return v0\n\n'
+         '    :ekhero_nos0\n')
+s = s.replace(s0sig, s0pre, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched Character.s0(): Hero shows the mana bar (HUD + character screen)")
+
+# ---------------------------------------------------------------------------
 # 5) SkillWindow Details (c0.b): guard against a null selected skill.
 #     b() passes c0->s (the tapped skill) to SkillInfoWindow.a(sheet,skill), which
 #     dereferences it. s is null until a skill row is tapped (and the pager rebuild
