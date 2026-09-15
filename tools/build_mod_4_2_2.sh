@@ -97,16 +97,38 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/tmx/G9.tmx \
     assets/data/ui/strings/strings.txt )
 
+# 6b. Add arm64-v8a natives so the APK is universal: armeabi-v7a keeps the owner's
+# Android 4.2.2 phone working, arm64-v8a lets it install on 64-bit-only devices
+# (modern Snapdragon flagships, e.g. Galaxy Z Fold 8) that otherwise reject a
+# 32-bit-only APK with INSTALL_FAILED_NO_MATCHING_ABIS. Libs are the official libGDX
+# 1.9.12 arm64 natives (symbol-verified against the game's 32-bit libs); see
+# tools/natives/README.md. extractNativeLibs defaults true here, so they're extracted
+# at install and compression/alignment inside the APK is irrelevant.
+if [ -d "$REPO/tools/natives/arm64-v8a" ]; then
+  mkdir -p "$WORK/lib/arm64-v8a"
+  cp "$REPO/tools/natives/arm64-v8a/"*.so "$WORK/lib/arm64-v8a/"
+  ( cd "$WORK" && zip -q out.apk lib/arm64-v8a/libgdx.so lib/arm64-v8a/libgdx-box2d.so )
+  echo "added arm64-v8a natives (universal APK: armeabi-v7a + arm64-v8a)"
+fi
+
 echo "== 7. sign (SHA1withRSA cert + apksig v1/v2, minSdk 16) =="
 cat > "$WORK/relax.security" <<'EOF'
 jdk.jar.disabledAlgorithms=
 EOF
+# Reuse a STABLE committed keystore when present, so every build shares one signing
+# certificate and new versions update over old ones in place (no uninstall between
+# versions). Falls back to a throwaway per-build key only if the committed one is missing.
 # NOTE: -sigalg on genkeypair is REQUIRED. keytool defaults to SHA384withRSA, which
 # Android <=4.2.2 cannot parse -> INSTALL_PARSE_FAILED_NO_CERTIFICATES.
-keytool -genkeypair -keystore "$WORK/ek.keystore" -alias ek -keyalg RSA -keysize 2048 \
-  -sigalg SHA1withRSA -validity 10000 -storepass exiled123 -keypass exiled123 \
-  -dname "CN=EK Mod, O=EK, C=US" -J-Djava.security.properties="$WORK/relax.security" \
-  >/dev/null 2>&1
+if [ -f "$REPO/tools/ek-release.keystore" ]; then
+  cp "$REPO/tools/ek-release.keystore" "$WORK/ek.keystore"
+  echo "using committed stable keystore (in-place updates across versions)"
+else
+  keytool -genkeypair -keystore "$WORK/ek.keystore" -alias ek -keyalg RSA -keysize 2048 \
+    -sigalg SHA1withRSA -validity 10000 -storepass exiled123 -keypass exiled123 \
+    -dname "CN=EK Mod, O=EK, C=US" -J-Djava.security.properties="$WORK/relax.security" \
+    >/dev/null 2>&1
+fi
 cat > "$WORK/Sign.java" <<'JAVA'
 import com.android.apksig.ApkSigner; import java.io.File; import java.security.*;
 import java.security.cert.X509Certificate; import java.util.Collections;

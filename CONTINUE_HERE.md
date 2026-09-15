@@ -19,13 +19,33 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 Track C (not A/B): modding the owner's **Android 4.2.2** device build.
 
-**Current deliverable: `hero-v18`.** One APK, every feature below. The owner gets it as a
+**Current deliverable: `hero-v19`.** One APK, every feature below. The owner gets it as a
 single direct download from Pages (the repo stores it as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v18.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19.apk
 ```
+
+### v19 (2026-09-15) — install on 64-bit-only devices (Galaxy Z Fold 8) + stable signing
+
+**Won't-install diagnosis:** the base APK ships **only `lib/armeabi-v7a/`** (32-bit) natives
+(`libgdx.so`, `libgdx-box2d.so`). Modern Snapdragon flagships are 64-bit-only, so a
+32-bit-only APK is rejected with `INSTALL_FAILED_NO_MATCHING_ABIS` → "App not installed."
+(Not a Play-Protect/signature issue; `targetSdk=29` is fine.)
+
+**Fix — universal APK.** Added `lib/arm64-v8a/libgdx.so` + `libgdx-box2d.so` (official
+libGDX **1.9.12** Android natives from Maven Central) alongside the existing armeabi-v7a,
+so one APK installs on both the owner's 4.2.2 phone and modern 64-bit devices. Version
+1.9.12 was pinned by **exact JNI symbol-set match** against the game's own 32-bit libs
+(58/58 gdx + 266/266 box2d, 0 diff); LOAD-segment alignment is 64 KB (16 KB-page safe).
+`extractNativeLibs` defaults true (libs compressed, extracted at install). Libs live in
+`tools/natives/arm64-v8a/`, wired into build step 6b. See `tools/natives/README.md`.
+
+**Stable signing key.** The build now reuses a committed keystore
+(`tools/ek-release.keystore`, cert SHA-256 `53:8B:43:22…`) instead of generating a fresh
+random key per build, so future versions **update in place** without uninstalling. (Moving
+to v19 from an earlier mod build is a one-time uninstall, because those used random keys.)
 
 ### v18 (2026-08-05) — wizard companion uses the full mage kit
 
