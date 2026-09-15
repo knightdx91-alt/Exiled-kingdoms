@@ -23,16 +23,30 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v19-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v19.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v20-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v20.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v20-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v20.apk
 ```
+
+### v20 (2026-09-15) — skill icons render at their true colour (were all green on the Z Fold 8)
+
+Owner saw every skill-icon background as bright green on the Fold 8. The bg is
+`skill_bg<rank>` from `ui_icons.pack` (bg0 grey / bg1 yellow / bg2 green / bg3 blue /
+bg4 red / bg5 purple), indexed by trained rank; untrained = grey. The game selects grey
+correctly (`SkillSet.c(id)` = rank = 0), but `SkillImage.draw` (`e/a/d/e/z`) only ever
+calls `setColor` for its ORANGE highlight and never resets to white otherwise, so the
+neutral grey background inherits whatever tint the previously-drawn actor left on the batch
+(a green UI element → green backgrounds). Draw order/tint differs by GPU, so it was fine on
+the old device and green on the new one. Fix: `SkillImage.draw` sets the batch colour to
+WHITE at the top when not highlighted. `tools/patch_skillicon_tint_fix.py` (a base-build
+dex fix, so it is in **both** `hero-v20` and `hero-v20-fold`). Build-verified; round-trips
+clean. Applies to every device, not just the Fold.
 
 ### v19 (2026-09-15) — install on 64-bit-only devices (Galaxy Z Fold 8) + stable signing
 

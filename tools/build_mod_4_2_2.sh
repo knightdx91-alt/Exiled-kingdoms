@@ -58,6 +58,7 @@ fi
 ( cd "$WORK" && python3 "$REPO/tools/patch_inventory_icon_fix.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_purge_orphan_items.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_gpgs_deviceid_fix.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_skillicon_tint_fix.py" )
 # Hero class is opt-out while its pre-menu crash is being hunted:
 # EK_SKIP_HERO=1 builds the safe cheats+janod+export APK.
 if [ -z "${EK_SKIP_HERO:-}" ]; then
