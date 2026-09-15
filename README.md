@@ -1,4 +1,4 @@
-# Exiled Kingdoms — recovery, web rebuild, and 4.2.2 mod
+# Exiled Kingdoms — recovery, web rebuild, and the Android mod
 
 Working notes for the owner's Exiled Kingdoms project. **Read `CONTINUE_HERE.md` for the
 full handoff**; this file is the quick orientation plus the findings worth not
@@ -10,46 +10,83 @@ Three lines of work:
 |---|---|---|
 | **A** | Source recovery / de-obfuscation of the APK | `recovered/`, `port/`, `deobf/`, `tools/` |
 | **B** | Phaser 3 browser rebuild (the product) | `web/` — verify with `cd web && node verify.mjs` |
-| **C** | Mod of the owner's Android **4.2.2** APK (Hero class, companions, summoning) | `tools/patch_*.py`, `tools/build_mod_4_2_2.sh` |
+| **C** | Mod of the owner's APK (Hero class, companions, summoning) — built for the **4.2.2 tablet** *and* for a **Galaxy Z Fold 8** | `tools/patch_*.py`, `tools/build_mod_4_2_2.sh`, `tools/build_modern_compat.sh` |
 
-## Current mod build (Track C)
+## Current mod builds (Track C)
 
-Latest: **hero-v14**. Download (assembled automatically by the Pages deploy):
+Latest: **hero-v19**, in two device flavours with the same feature set and the same signing key.
+
+| Device | APK | Built by |
+|---|---|---|
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v19-fold.apk` | the tablet APK, then `tools/build_modern_compat.sh` |
+| Owner's Android **4.2.2** tablet | `ExiledKingdoms-hero-v19.apk` | `tools/build_mod_4_2_2.sh` (universal since v19: both ABIs) |
+
+Downloads (assembled automatically by the Pages deploy):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v14.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19-fold.apk   <- Galaxy Z Fold 8
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19.apk        <- 4.2.2 tablet
 ```
-
-Previous build (fallback):
-`https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v13.apk`
 
 What's in it (each reversed first; specs in `deobf/`):
 * **Hero class** + per-class skill pager (`HERO_CLASS_MOD_SPEC.md`)
 * **Janod** as a full mage companion — recruit, dismiss, gear, companion-grade stats
 * **Companions come home** to their own spawn point when dismissed
-* **Mage AI** — wizards actually cast (the engine had no WIZARD branch at all)
+* **Mage AI** — wizards actually cast (the engine had no WIZARD branch at all), and as of
+  v18 they use the full offensive/summon kit, not 4 spells
 * **Two companions** at once; dismissing one promotes the other
 * **No companion XP tax** (vanilla quietly took 20% of everything)
 * **Summon Familiar → 3 routes** (Undead / Arcane / Beast), chosen on first purchase,
   4 ranks each; summons **stack**, last 10 minutes, and **gain XP and level** while alive
+* v15–v17: five owner-reported fixes, two character-Details crashes, orphaned cheat items
+  purged, Hero mana bar
 
-Build it yourself:
+### The Fold 8 build — what makes it different
+Four walls stopped the tablet APK dead on a modern phone; all four are measured, not
+assumed (`deobf/MODERN_DEVICE_COMPAT.md`):
+1. **ABI** — the APK shipped **`armeabi-v7a` natives only** and the Fold's SoC is
+   64-bit-only → `INSTALL_FAILED_NO_MATCHING_ABIS`. Fixed in **v19** by adding
+   **libGDX 1.9.12 `arm64-v8a`** natives, verified as a drop-in (identical 58 + 266 JNI
+   symbols; 64 KB-aligned, so 16 KB-page devices are fine). `build_modern_compat.sh`
+   re-checks both properties on every build and fails on a mismatch.
+2. **Foldable** — `MainActivity` didn't handle `screenLayout`/`smallestScreenSize`, so
+   **every fold or unfold destroyed the activity** and libGDX restarted the game at the
+   title screen → `configChanges` widened to `0x40003ffc` (a 4-byte in-place manifest edit).
+3. **External storage** — `/sdcard` needs a runtime grant on Android 11+ that this 2023
+   build never asks for, so save export, save import *and* the crash log all failed into a
+   silent catch → `tools/patch_modern_device.py` asks for it once at startup and falls back
+   to the app-private external dir when refused, so they always land somewhere real.
+4. **Signature** — signed **v1+v2+v3** (verified API 16–36) with the same committed
+   keystore as v19, so the Fold build installs straight over v19 with no uninstall.
+
+**Installing it on the phone** — three Samsung-specific gotchas that are not the APK's
+fault: turn off **Auto Blocker** (Settings → Security and privacy → Auto Blocker), which
+blocks sideloading outright on One UI 6.1+; **uninstall any Play-Store copy of Exiled
+Kingdoms first** (same package name, different signing key → "App not installed"; export
+its save first); and after the first launch, allow **Files/media** permission if you want
+`EK.bak` under `/sdcard/Download`.
+
+Build them yourself:
 ```
-EK_LIB=/tmp/eklib tools/build_mod_4_2_2.sh <base.apk> out.apk
+EK_LIB=/tmp/eklib tools/build_mod_4_2_2.sh <base.apk> ExiledKingdoms-hero-v19.apk
+EK_LIB=/tmp/eklib tools/build_modern_compat.sh ExiledKingdoms-hero-v19.apk \
+                                               ExiledKingdoms-hero-v19-fold.apk
 ```
-Jars needed in `EK_LIB`: baksmali/smali 2.5.2, `apksig8.jar` (apksig 8.3.1).
+Jars needed in `EK_LIB`: baksmali/smali 2.5.2, `apksig8.jar` (apksig 8.3.1) —
+`build_modern_compat.sh` fetches everything it needs itself.
 `EK_SKIP_HERO=1` builds without the Hero class.
 `EK_CHEATS=1` re-adds the cheat items (Tome of Renown, Phase/Anchor Stone) and no-clip,
 which are out of the default build as of v13.
+`EK_KEEP_CONFIGCHANGES=1` reverts the Fold build to restart-on-fold behaviour.
 
 **APK distribution:** the repo's Git LFS budget is spent and GitHub rejects any file
 over 100 MB, so built APKs are committed to `dist/<name>/` as 25 MB split parts, and
 `.github/workflows/deploy.yml` reassembles them into `web/dist/` on deploy — that's
-where the single-file download link above comes from. Base APK sha256
+where the single-file download links above come from. Base APK sha256
 `5fc7c866…` (owner's Drive).
 
-Working (all dexopt-verified, none device-confirmed since v6): install on 4.2.2, Janod as
-a full mage companion, Hero class + per-class skill pager, companions coming home when
+Working (all statically verified, none device-confirmed since v6): install on 4.2.2, Janod
+as a full mage companion, Hero class + per-class skill pager, companions coming home when
 dismissed, wizard AI, stacking summons, a second companion, the 3-route Summon Familiar,
 no companion XP tax, summons that level. Cheat items + no-clip were **removed** at the
 owner's request in v13 (`EK_CHEATS=1` restores them). Export save is shipped but was never

@@ -15,15 +15,22 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ---
 
-## ⚠️ OPEN WORK — 4.2.2 mod APK (read this first, 2026-07-24)
+## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-15)
 
-Track C (not A/B): modding the owner's **Android 4.2.2** device build.
+Track C (not A/B): modding the owner's game APK. It started as a 4.2.2-tablet build; the
+owner has since moved to a **Galaxy Z Fold 8**, so there are now **two artifacts** with
+the same feature set and the **same signing key**:
 
-**Current deliverable: `hero-v19`.** One APK, every feature below. The owner gets it as a
-single direct download from Pages (the repo stores it as 25 MB split parts because of
+| Device | APK | Built by |
+|---|---|---|
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v19-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v19.apk` | `build_mod_4_2_2.sh` |
+
+Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19-fold.apk
 https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19.apk
 ```
 
@@ -46,6 +53,56 @@ so one APK installs on both the owner's 4.2.2 phone and modern 64-bit devices. V
 (`tools/ek-release.keystore`, cert SHA-256 `53:8B:43:22…`) instead of generating a fresh
 random key per build, so future versions **update in place** without uninstalling. (Moving
 to v19 from an earlier mod build is a one-time uninstall, because those used random keys.)
+### v19-fold (2026-09-15) — the foldable + modern-storage layer on top of v19
+
+`v19` (above) clears the wall that stopped the install: the missing 64-bit natives. Three
+more walls are still in the way of actually *living on* a Galaxy Z Fold 8, all measured off
+the shipped APK rather than assumed. Full write-up: **`deobf/MODERN_DEVICE_COMPAT.md`**.
+
+```
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v19-fold.apk
+```
+
+| Wall | Measured fact | Fix |
+|---|---|---|
+| **ABI** *(already fixed in v19)* | `lib/` held `armeabi-v7a` only | v19's arm64-v8a natives. `build_modern_compat.sh` re-checks them every build: JNI symbol sets must match the 32-bit libs exactly (58 core + 266 box2d, `nm -D` diff 0) and every `LOAD p_align` must be a multiple of 16 KB (they are 64 KB, so 16 KB-page devices are safe) — a mismatch **fails the build** |
+| **Foldable** | `MainActivity configChanges=0x4a0` = `keyboardHidden\|orientation\|screenSize` — **no `screenLayout`, no `smallestScreenSize`** → the activity is destroyed on every fold/unfold and libGDX restarts the game at the title screen, losing unsaved progress. Same on every move between the cover and inner displays | widen to `0x40003ffc` — a **4-byte in-place** binary-manifest edit (`tools/axml_set_config.py`); `resources.arsc` and every other entry stay byte-identical |
+| **Storage** | `patch_export_fix.py` repointed libGDX's external root to `/sdcard/`, right on 4.2.2 (install-time perms) and wrong on Android 11+, where it needs a **runtime** grant this 2023 build never asks for → save export, save *import* and the crash log all fail into a silent `catch`. That also blocks carrying the tablet's `EK.bak` across | `tools/patch_modern_device.py`: new `EkStorage` asks for the grant once at startup, probe-tests `<sdcard>/Download` (write + delete, cached), and falls back to the app-private external dir when refused. `AndroidFiles.getExternalStoragePath()` and `EkCrashLog` route through it |
+| **Signature** | v19 signs v1+v2 with minSdk 16 | v19-fold adds **v3**, and signs with the **same committed keystore**, so it installs straight over v19 with no uninstall. `ApkVerifier`: verified at API 16, 24, 29, 34 **and** 36 |
+
+`targetSdkVersion` deliberately **stays 29**: ≥ 24 clears Android 14/15's
+minimum-installable-target block, and ≤ 29 keeps `requestLegacyExternalStorage` working
+(raising it would switch the game to scoped storage and kill save export outright).
+
+Build (post-processor over a finished mod APK, so it never needs the clean base):
+```
+EK_LIB=/tmp/eklib tools/build_modern_compat.sh ExiledKingdoms-hero-v19.apk \
+                                               ExiledKingdoms-hero-v19-fold.apk
+```
+`EK_KEEP_CONFIGCHANGES=1` reverts to restart-on-fold; `EK_SKIP_STORAGE=1` skips the dex patch.
+
+**Verified off-device** (nothing here is device-confirmed): the patched dex round-trips
+through baksmali **and** passes a clean **D8 `--min-api 24`** pass over the whole dex;
+`ApkVerifier` verified for API 16–36 with the same cert fingerprint as v19
+(`53:8B:43:22…`); entry-by-entry CRC diff vs `hero-v19` is **0 added, 0 removed, 3 changed**
+(`classes.dex`, `AndroidManifest.xml`, signature) — 6089 entries byte-identical.
+
+**Which APK does the owner install?**
+`hero-v19-fold` on the Fold 8 (it is v19 plus the three fixes above, same signing key);
+`hero-v19` on the 4.2.2 tablet. The storage patch deliberately stays out of the tablet
+build: it calls API-23 methods behind an `SDK_INT` guard, and this project has burned two
+builds on Dalvik verification surprises — no reason to risk the known-good build.
+
+**Three install gotchas on a 2026 Samsung, none of them the APK's fault:**
+1. **Auto Blocker** (Settings → Security and privacy) blocks sideloading outright on
+   One UI 6.1+ — turn it off before installing.
+2. Any **Play-Store copy of Exiled Kingdoms must be uninstalled first** — same package
+   name (`net.fdgames.ek.android`), different signing key, so the install is refused with
+   "App not installed". **Export its save first**; that copy's saves go with it.
+3. To get `EK.bak` at `/sdcard/Download` (so the tablet's exported save imports straight
+   away), allow **Files/media** when the game asks on first launch, or in
+   Settings → Apps → Exiled Kingdoms → Permissions. If it is refused, export still works —
+   it lands in `Android/data/net.fdgames.ek.android/files/Download/` instead.
 
 ### v18 (2026-08-05) — wizard companion uses the full mage kit
 
