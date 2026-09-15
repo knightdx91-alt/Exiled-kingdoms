@@ -220,3 +220,11 @@ change keeps export, import and the displayed path in sync. The export target is
 - **Storage:** if Android 16 refuses to grant `WRITE_EXTERNAL_STORAGE` to a legacy-target
   app at all, export silently lands in `Android/data/…/files/` instead — by design, and
   the in-game console line from `patch_export_fix.py` reports the real path/exception.
+- **Permission-request timing:** `ekInit` runs at the top of `MainActivity.onCreate`,
+  *before* `super.onCreate()` — that is where the crash-logger hook already sits, and it
+  guarantees `appDir` is set before libGDX's `initialize()` (line ~50 of the same method)
+  constructs `AndroidFiles`. `requestPermissions()` only needs the activity to be attached
+  (`mToken`/`mMainThread` come from `attach()`, which precedes `onCreate`), so this is
+  legal; and if any device disagrees, the `catch Throwable` skips the request and the root
+  simply falls back to the app-private directory. Worst case is a lost permission prompt,
+  never a crash — grant it by hand in Settings → Apps → Exiled Kingdoms → Permissions.
