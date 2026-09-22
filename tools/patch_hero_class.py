@@ -99,10 +99,9 @@ vsig = '.method public V()Z\n    .locals 2\n'
 assert s.count(vsig) == 1, "CharacterSheet.V() not found"
 vpre = (vsig +
         '\n    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
-        '->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
-        '    move-result-object v0\n\n'
-        f'    sget-object v1, {CC}->b:{CC}\n\n'
-        '    if-ne v0, v1, :ekhero_notwarrior\n\n'
+        '->ekIsHero()Z\n\n'
+        '    move-result v0\n\n'
+        '    if-eqz v0, :ekhero_notwarrior\n\n'
         '    const/4 v0, 0x1\n\n'
         '    return v0\n\n'
         '    :ekhero_notwarrior\n')
@@ -128,10 +127,9 @@ assert s.count(canchor) == 1, "CharacterSheet.C() mana_surge anchor not found"
 cstart = s.index('.method public C()I\n')
 assert cstart < s.index(canchor) < s.index('.end method', cstart), "anchor not inside C()"
 chero = ('    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
-         f'->n(){CC}\n\n'
-         '    move-result-object v5\n\n'
-         f'    sget-object v6, {CC}->b:{CC}\n\n'
-         '    if-ne v5, v6, :ekhero_trait_mana_done\n\n'
+         '->ekIsHero()Z\n\n'
+         '    move-result v5\n\n'
+         '    if-eqz v5, :ekhero_trait_mana_done\n\n'
          '    if-ge v0, v2, :ekhero_trait_mana_sorted\n\n'
          '    move v5, v0\n\n'
          '    move v0, v2\n\n'
@@ -162,10 +160,9 @@ assert s.count(s0sig) == 1, "Character.s0() not found"
 s0pre = (s0sig +
          '\n    iget-object v0, p0, Lnet/fdgames/GameEntities/Character;->sheet:'
          f'{SHEET}\n\n'
-         f'    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;\n\n'
-         '    move-result-object v0\n\n'
-         f'    sget-object v1, {CC}->b:{CC}\n\n'
-         '    if-ne v0, v1, :ekhero_nos0\n\n'
+         f'    invoke-virtual {{v0}}, {SHEET}->ekIsHero()Z\n\n'
+         '    move-result v0\n\n'
+         '    if-eqz v0, :ekhero_nos0\n\n'
          '    const/4 v0, 0x1\n\n'
          '    return v0\n\n'
          '    :ekhero_nos0\n')
@@ -266,13 +263,11 @@ helpers = f'''
 
     iget-object v0, p0, {SW}->j:{SHEET}
 
-    invoke-virtual {{v0}}, {SHEET}->n()Lnet/fdgames/Rules/Rules$CharacterClass;
+    invoke-virtual {{v0}}, {SHEET}->ekIsHero()Z
 
-    move-result-object v0
+    move-result v0
 
-    sget-object v1, {CC}->b:{CC}
-
-    if-ne v0, v1, :ekp_nobutton
+    if-eqz v0, :ekp_nobutton
 
     iget v0, p0, {SW}->ekPage:I
 
@@ -294,9 +289,9 @@ helpers = f'''
 
     invoke-virtual {{v0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->row()Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
 
-    sget-object v0, {CC}->b:{CC}
+    const/4 v0, 0x0
 
-    sget-object v1, {CC}->b:{CC}
+    const/4 v1, 0x0
 
     :ekp_nobutton
     return-void
@@ -344,9 +339,11 @@ helpers = f'''
 
     move-result-object v0
 
-    sget-object v1, {CC}->b:{CC}
+    invoke-virtual {{p0}}, {SHEET}->ekIsHero()Z
 
-    if-ne v0, v1, :ekpc_ret
+    move-result v2
+
+    if-eqz v2, :ekpc_ret
 
     const/4 v2, 0x1
 
@@ -453,6 +450,150 @@ open(f'{w}/smali/e/a/d/e/c0$ekp.smali', 'w', encoding='utf-8').write(f'''.class 
 .end method
 ''')
 print("added listener class e/a/d/e/c0$ekp")
+
+# ---------------------------------------------------------------------------
+# 6) Hero perks are the PLAYER's only (v23). The Hero reuses the WARRIOR enum, so every
+#    warrior-class NPC -- above all the companion Grissenda -- was silently a Hero too:
+#    unrestricted gear/skills, a mana pool + bar, the class pager. Owner wants her a
+#    straight warrior again. Every Hero hook now asks CharacterSheet.ekIsHero()
+#    (= class WARRIOR && this is the player's sheet) instead of "class == WARRIOR".
+#    ekIsPlayer() mirrors the game's own W() test (GameData.player.sheet == this), but
+#    null-safe (no player yet -> treated as the player, e.g. at creation/load) and with
+#    no branch joins at all (Dalvik 4.2.2 verifier).
+#    ClassRestriction.a(class) has no sheet, so the three sheet-aware call sites
+#    (Item [equip], Skill.a(sheet) [learn/trainers], Rules.a(I,sheet)) now go through
+#    ClassRestriction.ekAllowed(restriction, sheet), which runs a non-Hero warrior with
+#    ekSuppress on (= vanilla warrior rules). The class-list builder is already
+#    suppressed by the pager, and ekPageClass() keeps an NPC warrior on page 0.
+# ---------------------------------------------------------------------------
+GDATA = 'Lnet/fdgames/GameWorld/GameData;'
+PLAYER = 'Lnet/fdgames/GameEntities/Final/Player;'
+p = f'{w}/smali/net/fdgames/GameEntities/CharacterSheet/CharacterSheet.smali'
+s = open(p, encoding='utf-8').read()
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + f"""
+
+.method public ekIsPlayer()Z
+    .locals 2
+
+    invoke-static {{}}, {GDATA}->O(){GDATA}
+
+    move-result-object v0
+
+    if-nez v0, :ekip_gd
+
+    const/4 v1, 0x1
+
+    return v1
+
+    :ekip_gd
+    iget-object v0, v0, {GDATA}->player:{PLAYER}
+
+    if-nez v0, :ekip_pl
+
+    const/4 v1, 0x1
+
+    return v1
+
+    :ekip_pl
+    iget-object v0, v0, Lnet/fdgames/GameEntities/Character;->sheet:{SHEET}
+
+    if-eq v0, p0, :ekip_yes
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekip_yes
+    const/4 v1, 0x1
+
+    return v1
+.end method
+
+.method public ekIsHero()Z
+    .locals 2
+
+    invoke-virtual {{p0}}, {SHEET}->n(){CC}
+
+    move-result-object v0
+
+    sget-object v1, {CC}->b:{CC}
+
+    if-eq v0, v1, :ekih_warrior
+
+    const/4 v0, 0x0
+
+    return v0
+
+    :ekih_warrior
+    invoke-virtual {{p0}}, {SHEET}->ekIsPlayer()Z
+
+    move-result v0
+
+    return v0
+.end method
+""" + s[tail:]
+open(p, 'w', encoding='utf-8').write(s)
+
+p = f'{w}/smali/net/fdgames/Rules/ClassRestriction.smali'
+s = open(p, encoding='utf-8').read()
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + f"""
+
+.method public static ekAllowed({CR}{SHEET})Ljava/lang/Boolean;
+    .locals 2
+
+    invoke-virtual {{p1}}, {SHEET}->n(){CC}
+
+    move-result-object v0
+
+    invoke-virtual {{p1}}, {SHEET}->ekIsHero()Z
+
+    move-result v1
+
+    if-nez v1, :ekal_hero
+
+    const/4 v1, 0x1
+
+    sput-boolean v1, {CR}->ekSuppress:Z
+
+    invoke-virtual {{p0, v0}}, {CR}->a({CC})Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    sput-boolean v1, {CR}->ekSuppress:Z
+
+    return-object v0
+
+    :ekal_hero
+    invoke-virtual {{p0, v0}}, {CR}->a({CC})Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+""" + s[tail:]
+open(p, 'w', encoding='utf-8').write(s)
+
+CRA = f'{CR}->a({CC})Ljava/lang/Boolean;'
+def _site(path, old, new, what):
+    t = open(path, encoding='utf-8').read()
+    assert t.count(old) == 1, f"{what}: call site not found"
+    open(path, 'w', encoding='utf-8').write(t.replace(old, new, 1))
+
+_site(f'{w}/smali/net/fdgames/Rules/Item.smali',
+      f'    invoke-virtual {{v0, v1}}, {CRA}\n',
+      f'    invoke-static {{v0, p1}}, {CR}->ekAllowed({CR}{SHEET})Ljava/lang/Boolean;\n', 'Item.a(sheet)')
+_site(f'{w}/smali/net/fdgames/Rules/Rules.smali',
+      f'    invoke-virtual {{v0, v2}}, {CRA}\n',
+      f'    invoke-static {{v0, p1}}, {CR}->ekAllowed({CR}{SHEET})Ljava/lang/Boolean;\n', 'Rules.a(I,sheet)')
+_site(f'{w}/smali/net/fdgames/Rules/Skill.smali',
+      f'    invoke-virtual {{p1}}, {SHEET}->n(){CC}\n\n    move-result-object p1\n\n'
+      f'    invoke-virtual {{v0, p1}}, {CRA}\n',
+      f'    invoke-static {{v0, p1}}, {CR}->ekAllowed({CR}{SHEET})Ljava/lang/Boolean;\n', 'Skill.a(sheet)')
+print("patched Hero perks -> player only (ekIsHero): V, C, s0, pager, equip/learn/trainer gates")
 
 # ---------------------------------------------------------------------------
 # 4) strings.txt: WARRIOR -> Hero (English column only; CRLF/BOM preserved)

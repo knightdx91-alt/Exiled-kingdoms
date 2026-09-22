@@ -183,3 +183,13 @@ Owner has not playtested the Hero build. Open questions, in likely order of risk
 PER never raised mana (Mana Surge was the only growth). The Hero now gets
 `level * (max(INT,PER) + 2 + min(INT,PER)/2)`: the better of the Mage and Cleric formulas.
 `tools/patch_hero_class.py` §2d; full reversing in `STACK_TRAITS_SPEC.md` §1.
+
+## v23 — Hero perks are player-only (Grissenda is a warrior again)
+Hero = WARRIOR enum, so warrior NPCs (Grissenda) inherited every Hero perk. New
+`CharacterSheet.ekIsPlayer()` (null-safe `GameData.player.sheet == this`, the game's own `W()`
+test) and `ekIsHero()` (= WARRIOR && ekIsPlayer). Used by `V()`, `C()` trait mana,
+`Character.s0()`, `c0.ekMaybeAddPagerRow`/`ekPageClass`. `ClassRestriction.a(class)` has no
+sheet, so its three sheet-aware callers (`Item.a(sheet)`, `Skill.a(sheet)`, `Rules.a(I,sheet)`)
+call `ClassRestriction.ekAllowed(r, sheet)`, which evaluates a non-Hero warrior with
+`ekSuppress` on (vanilla warrior rules). `CharacterStats.g()` needs no gate: its Hero pool is
+only reachable through `C()`, which returns 0 when `V()` is false.

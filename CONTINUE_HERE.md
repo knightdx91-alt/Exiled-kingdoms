@@ -23,16 +23,27 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v22-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v22.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v23-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v23.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v22-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v22.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v23-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v23.apk
 ```
+
+### v23 (2026-09-22) — Hero perks are the player's only; Grissenda is a straight warrior again
+
+The Hero reuses the WARRIOR enum, so every warrior-class NPC — above all **Grissenda** — had
+silently become a Hero: any gear, any skill, a mana pool + bar, the class pager. Every Hero
+hook now asks `CharacterSheet.ekIsHero()` (WARRIOR **and** the player's sheet; null-safe,
+branch-join-free) instead of `class == WARRIOR`: `V()`, `C()`, `s0()`, the pager row/page, and
+the three sheet-aware restriction sites (equip, learn/trainer, `Rules.a(I,sheet)`) via
+`ClassRestriction.ekAllowed`. Skills/gear she already has stay (learned/equipped state is in
+the save); she just can't get new non-warrior ones. `patch_hero_class.py` §6. D8 clean (15/24),
+update gate OK.
 
 ### v22 (2026-09-22) — Arcane summon = the elemental line; builds hard-gated for update installs
 
