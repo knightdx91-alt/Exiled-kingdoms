@@ -15,7 +15,7 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ---
 
-## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-15)
+## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-22)
 
 Track C (not A/B): modding the owner's game APK. It started as a 4.2.2-tablet build; the
 owner has since moved to a **Galaxy Z Fold 8**, so there are now **two artifacts** with
@@ -23,16 +23,28 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v20-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v20.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v21-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v21.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v20-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v20.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v21-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v21.apk
 ```
+
+### v21 (2026-09-22) — four owner requests. Full reversing: `deobf/STACK_TRAITS_SPEC.md`
+
+| # | Request | Root cause / anchor | Fix |
+|---|---|---|---|
+| 1 | Hero's INT/PER don't raise mana (only Mana Surge does) | `CharacterSheet.C()` trait-mana term is WIZARD/CLERIC only | Hero gets `level*(max(INT,PER)+2+min/2)` — `patch_hero_class.py` §2d |
+| 2 | Rename Lesser Summoning → Summon | English name column is also the id source (`lesser_summoning`) | display-only swap in `Skill.<init>` — `patch_summon_routes.py` §6 |
+| 3 | Arcane ranks 3-4 not Earth/Iron/Fire/Ice | were `golem_iron_lesser` / `elemental_acid` (golem sprites) | `wyvern` / `manticore` |
+| 4 | Trait items stack (+1,+2,+2 STR = +5) | `CharacterInventory.u()` keeps the max per trait | sum of positive bonuses; "won't stack" popup off — new `patch_stack_traits.py` |
+
+**Installs as an update** over v20 (same committed key, cert `53:8B:43:22…`; manifest byte-identical → same package + versionCode). D8 clean at min-api 15 and 24. Not playtested on device. v20 is dropped from `dist/` (still in git history).
+Base APK: the LFS object is fetchable again via the LFS batch API (curl POST to `…/info/lfs/objects/batch`); jars: smali/baksmali 2.5.2 fat jars from bitbucket, apksig from dl.google.com. If Maven Central returns 429, prefill `EK_LIB` from `https://maven-central.storage-download.googleapis.com/maven2`.
 
 ### v20 (2026-09-15) — skill icons render at their true colour (were all green on the Z Fold 8)
 

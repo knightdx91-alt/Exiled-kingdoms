@@ -40,6 +40,7 @@ unzip -o -q "$BASE" \
   assets/data/conversations/mercenary_grisenda.txt \
   assets/data/tmx/G9.tmx \
   assets/data/ui/strings/strings.txt \
+  assets/data/ui/strings/texts.txt \
   -d "$WORK"
 
 echo "== 3. apply patches =="
@@ -59,6 +60,7 @@ fi
 ( cd "$WORK" && python3 "$REPO/tools/patch_purge_orphan_items.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_gpgs_deviceid_fix.py" )
 ( cd "$WORK" && python3 "$REPO/tools/patch_skillicon_tint_fix.py" )
+( cd "$WORK" && python3 "$REPO/tools/patch_stack_traits.py" )
 # Hero class is opt-out while its pre-menu crash is being hunted:
 # EK_SKIP_HERO=1 builds the safe cheats+janod+export APK.
 if [ -z "${EK_SKIP_HERO:-}" ]; then
@@ -96,7 +98,8 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/conversations/adaon.txt \
     assets/data/conversations/mercenary_grisenda.txt \
     assets/data/tmx/G9.tmx \
-    assets/data/ui/strings/strings.txt )
+    assets/data/ui/strings/strings.txt \
+    assets/data/ui/strings/texts.txt )
 
 # 6b. Add arm64-v8a natives so the APK is universal: armeabi-v7a keeps the owner's
 # Android 4.2.2 phone working, arm64-v8a lets it install on 64-bit-only devices

@@ -111,6 +111,46 @@ open(p, 'w', encoding='utf-8').write(s)
 print("patched CharacterSheet.V(): Hero (WARRIOR) has a mana pool")
 
 # ---------------------------------------------------------------------------
+# 2d) CharacterSheet.C()I : trait mana. Vanilla adds level * (INT + 2 + PER/2) for
+#     WIZARD(e) and level * (PER + 2 + INT/2) for CLERIC(d); every other class gets 0,
+#     so the Hero's INT/PER did nothing and Mana Surge was the only way to grow the
+#     pool (owner report, v21). The Hero now gets the better of the two formulas:
+#     level * (max(INT,PER) + 2 + min(INT,PER)/2). Inserted at the join after the
+#     cleric branch, where (for a non-cleric) v0 = INT (trait 3) and v2 = PER (trait 5)
+#     are still intact and v3 is the trait-mana term. v6 must be 2 again afterwards
+#     (the mana_surge ladder compares against it); v5 is dead past this point.
+# ---------------------------------------------------------------------------
+s = open(p, encoding='utf-8').read()
+canchor = ('    iget-object v0, p0, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
+           '->skillSet:Lnet/fdgames/GameEntities/Helpers/SkillSet;\n\n'
+           '    const-string v2, "mana_surge"\n')
+assert s.count(canchor) == 1, "CharacterSheet.C() mana_surge anchor not found"
+cstart = s.index('.method public C()I\n')
+assert cstart < s.index(canchor) < s.index('.end method', cstart), "anchor not inside C()"
+chero = ('    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;'
+         f'->n(){CC}\n\n'
+         '    move-result-object v5\n\n'
+         f'    sget-object v6, {CC}->b:{CC}\n\n'
+         '    if-ne v5, v6, :ekhero_trait_mana_done\n\n'
+         '    if-ge v0, v2, :ekhero_trait_mana_sorted\n\n'
+         '    move v5, v0\n\n'
+         '    move v0, v2\n\n'
+         '    move v2, v5\n\n'
+         '    :ekhero_trait_mana_sorted\n'
+         '    div-int/lit8 v2, v2, 0x2\n\n'
+         '    add-int/lit8 v0, v0, 0x2\n\n'
+         '    add-int/2addr v0, v2\n\n'
+         '    invoke-virtual {p0}, Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;->z()I\n\n'
+         '    move-result v2\n\n'
+         '    mul-int v3, v2, v0\n\n'
+         '    :ekhero_trait_mana_done\n'
+         '    const/4 v5, 0x0\n\n'
+         '    const/4 v6, 0x2\n\n')
+s = s.replace(canchor, chero + canchor, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched CharacterSheet.C(): Hero mana scales with INT and PER")
+
+# ---------------------------------------------------------------------------
 # 2c) Character.s0()Z : the "show the mana bar" gate (WIZARD/CLERIC only). Both the
 #     HUD (e/a/d/y) and the character screen (e/a/d/e/h) toggle the mana bar/number on
 #     s0(); without this the Hero has mana but no bar. Add WARRIOR(b), like V().

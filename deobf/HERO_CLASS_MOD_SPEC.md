@@ -177,3 +177,9 @@ Owner has not playtested the Hero build. Open questions, in likely order of risk
 4. Does the Hero show mana, and are spells castable?
 5. Do Rogue/Cleric/Mage characters still behave exactly as before (no pager button)?
 
+
+## v21 — Hero mana now scales with INT and PER
+`CharacterSheet.C()` gave the trait-mana term only to WIZARD/CLERIC, so the Hero's INT and
+PER never raised mana (Mana Surge was the only growth). The Hero now gets
+`level * (max(INT,PER) + 2 + min(INT,PER)/2)`: the better of the Mage and Cleric formulas.
+`tools/patch_hero_class.py` §2d; full reversing in `STACK_TRAITS_SPEC.md` §1.

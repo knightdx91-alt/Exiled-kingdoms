@@ -68,8 +68,8 @@ call — passing it would have meant register surgery.
 |---|---|---|---|
 | 1 | `skeleton` (cap 5) | `familiar1` (cap 3) | `grey_wolf` (cap 5) |
 | 2 | `skeleton_warrior` (cap 8) | `familiar2` (cap 6) | `wolf` (cap 8) |
-| 3 | `skeleton_champion` (cap 11) | `golem_iron_lesser` (cap 11) | `bear_summoned` (cap 11) |
-| 4 | `skeleton_hero` (cap 14) | `elemental_acid` (cap 14) | `wild_werewolf` (cap 14) |
+| 3 | `skeleton_champion` (cap 11) | `wyvern` (cap 11) — *v21; was `golem_iron_lesser`* | `bear_summoned` (cap 11) |
+| 4 | `skeleton_hero` (cap 14) | `manticore` (cap 14) — *v21; was `elemental_acid`* | `wild_werewolf` (cap 14) |
 
 **Why the arcane route is constructs, not elementals (v10).** Owner: *"arcane doesn't
 really make sense with making it fire elementals because you can do the fire elementals
@@ -124,3 +124,9 @@ meant. Diff the disassembled branch structure for any edit that moves a comparis
   a future trainer conversation would re-open it, since it is an ordinary game variable.
 * Rank 3-4 creatures are `race=strong` bestiary rows; with v8's stacking summons and the
   ×5 duration, a rank-4 route is a genuine retinue rather than a single pet.
+
+## 6. v21 changes
+* Arcane ranks 3-4 are now `wyvern` / `manticore`: the golem + green-golem acid elemental
+  read as Earth/Iron, and the owner wanted the top of the line to be anything but
+  Earth/Iron, Fire or Ice. See `STACK_TRAITS_SPEC.md` §3.
+* The skill displays as **Summon** (id stays `lesser_summoning`). See `STACK_TRAITS_SPEC.md` §2.

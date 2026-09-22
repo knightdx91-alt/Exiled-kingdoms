@@ -39,13 +39,14 @@ ROUTES = {
                         ("skeleton_champion", 11), ("skeleton_hero", 14)]),
     # NOT elementals: Fire/Ice/Earth Mastery (bought from the mage-tower trainers)
     # already summon fire_elemental_1/2/3, ice_elemental_1/2/3 and
-    # elemental_earth_lesser/elemental_earth/golem_iron_1. The arcane route escalates
-    # into CONSTRUCTS instead (capstone: the acid elemental, whose sprite is golem_green,
-    # so it reads as the next construct up) -- classic conjuration, no overlap with any trainer
-    # skill, and the tankiest rank-4 of the three (its rank 1-2 familiars are the
-    # weakest opening, so it pays off latest and hardest).
+    # elemental_earth_lesser/elemental_earth/golem_iron_1. v10-v20 escalated into
+    # constructs (golem_iron_lesser -> elemental_acid), but both render as golems
+    # (golem / golem_green) and read as more Earth/Iron -- owner asked (v21) for the
+    # last two to be anything but Earth/Iron, Fire or Ice. Ranks 3-4 are now
+    # conjured MAGICAL BEASTS: the Wyvern (strong, 10-12) and the Manticore
+    # (strong, 14). Neither is summoned by any other skill, route or base-game script.
     2: ("Arcane", [("familiar1", 3), ("familiar2", 6),
-                   ("golem_iron_lesser", 11), ("elemental_acid", 14)]),
+                   ("wyvern", 11), ("manticore", 14)]),
     # NOT dire_wolf / spirit_wolf: those are ranks 1 and 3 of the cleric skill
     # Guardian Wolf (dire_wolf -> white_wolf -> spirit_wolf, in e/a/d/m1). A pure mage
     # can't take that skill, but the Hero class in this mod ignores class restrictions,
@@ -323,7 +324,7 @@ print("patched SkillWindow: first lesser_summoning purchase asks for a route")
 # ---------------------------------------------------------------------------
 PROMPT = ("[BLACK]How will you call your ally?[]  This choice is permanent.\\n\\n"
           "UNDEAD - raise skeletons that grow into champions and heroes.\\n"
-          "ARCANE - familiars from the Plane of Energy, then conjured golems.\\n"
+          "ARCANE - familiars from the Plane of Energy, then a wyvern and a manticore.\\n"
           "BEAST - wolves, bears, and at last a wild werewolf.")
 
 buttons = ''
@@ -453,10 +454,10 @@ lines[start + 1:end] = [
     rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
              "or a Wolf.", 2, 30, 20,
              "Un aliado mas poderoso, segun tu camino."),
-    rank_row("A Level 10-11 Skeleton Champion, a Lesser Iron Golem, "
+    rank_row("A Level 10-11 Skeleton Champion, a Wyvern, "
              "or a Summoned Bear.", 3, 30, 28,
              "Un aliado de alto nivel, segun tu camino."),
-    rank_row("A Level 13-14 Skeleton Hero, an Acid Elemental, "
+    rank_row("A Level 13-14 Skeleton Hero, a Manticore, "
              "or a Wild Werewolf.", 3, 30, 36,
              "El aliado mas poderoso de tu camino."),
 ]
@@ -469,4 +470,27 @@ lines[start] = '\t'.join(hdr_fields)
 
 open(p, 'w', encoding='utf-8', newline='').write(bom + nl.join(lines))
 print("patched skills2.txt: Lesser Summoning now has 4 ranks")
+
+# ---------------------------------------------------------------------------
+# 6) Display name "Lesser Summoning" -> "Summon" (v21, owner request).
+#    NOT done in skills2.txt: Skill.<init> derives the skill ID from the same English
+#    name column (lowercase, spaces -> '_'), so renaming the row would change the id
+#    from `lesser_summoning` and break saves, the route patch above, the wizard AI's
+#    spell list and the rank dispatch in Character. Instead the constructor swaps only
+#    the display name (Skill->name, read solely by the getter b()) once the id is set.
+#    Localized names (e.g. ES "Invocaciones Menores") are left alone.
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/net/fdgames/Rules/Skill.smali'
+s = open(p, encoding='utf-8').read()
+nanchor = '    iput-object p1, p0, Lnet/fdgames/Rules/Skill;->name:Ljava/lang/String;\n'
+assert s.count(nanchor) == 1, "Skill.<init> name store not found"
+s = s.replace(nanchor,
+              '    const-string v1, "Lesser Summoning"\n\n'
+              '    invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z\n\n'
+              '    move-result v1\n\n'
+              '    if-eqz v1, :ek_skillname_keep\n\n'
+              '    const-string p1, "Summon"\n\n'
+              '    :ek_skillname_keep\n' + nanchor, 1)
+open(p, 'w', encoding='utf-8').write(s)
+print('patched Skill.<init>: "Lesser Summoning" displays as "Summon"')
 print("DONE")
