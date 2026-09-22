@@ -124,15 +124,12 @@ EOF
 # versions). Falls back to a throwaway per-build key only if the committed one is missing.
 # NOTE: -sigalg on genkeypair is REQUIRED. keytool defaults to SHA384withRSA, which
 # Android <=4.2.2 cannot parse -> INSTALL_PARSE_FAILED_NO_CERTIFICATES.
-if [ -f "$REPO/tools/ek-release.keystore" ]; then
-  cp "$REPO/tools/ek-release.keystore" "$WORK/ek.keystore"
-  echo "using committed stable keystore (in-place updates across versions)"
-else
-  keytool -genkeypair -keystore "$WORK/ek.keystore" -alias ek -keyalg RSA -keysize 2048 \
-    -sigalg SHA1withRSA -validity 10000 -storepass exiled123 -keypass exiled123 \
-    -dname "CN=EK Mod, O=EK, C=US" -J-Djava.security.properties="$WORK/relax.security" \
-    >/dev/null 2>&1
-fi
+# ALWAYS the committed stable keystore, so every build updates the installed one in
+# place. There is deliberately NO random-key fallback any more: a fresh key would make
+# Android refuse the update and force an uninstall (losing saves). Missing key = hard fail.
+[ -f "$REPO/tools/ek-release.keystore" ] || { echo "tools/ek-release.keystore missing -- refusing to sign with a new key"; exit 1; }
+cp "$REPO/tools/ek-release.keystore" "$WORK/ek.keystore"
+echo "using committed stable keystore (in-place updates across versions)"
 cat > "$WORK/Sign.java" <<'JAVA'
 import com.android.apksig.ApkSigner; import java.io.File; import java.security.*;
 import java.security.cert.X509Certificate; import java.util.Collections;
@@ -154,4 +151,5 @@ echo "== 8. verify =="
 keytool -printcert -jarfile "$OUT" 2>/dev/null | grep -i "signature algorithm" | head -1
 jarsigner -J-Djava.security.properties="$WORK/relax.security" -verify "$OUT" 2>/dev/null \
   | grep -i "^jar verified" || { echo "SIGNATURE VERIFY FAILED"; exit 1; }
+"$REPO/tools/check_update_compat.sh" "$OUT" "$LIB/apksig8.jar"
 echo "built: $OUT"

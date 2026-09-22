@@ -37,3 +37,12 @@ Required per feature, in order:
 look like 5 fields with no allocation — wrong, because the trait/skill pages are opened by
 the orchestrator (`q()`→Traits, `r()`→Skill), not by NewGameWindow. Always trace to the
 orchestrator. Full map: `deobf/CREATION_FLOW_SPEC.md`.
+
+## Mod APKs must ALWAYS install as an update (never force a reinstall)
+Every mod build must install straight over the owner's current one, keeping saves:
+- Sign ONLY with the committed `tools/ek-release.keystore` (cert SHA-256 `538B4322…832F`).
+  Never generate a new key; both build scripts now hard-fail if the keystore is missing.
+- Keep package `net.fdgames.ek.android` and a versionCode `>=` the installed one (1207).
+- `tools/check_update_compat.sh <apk> <apksig.jar>` enforces all three; `build_mod_4_2_2.sh`
+  and `build_modern_compat.sh` run it on their output and fail the build otherwise.
+  Don't bypass or weaken it.

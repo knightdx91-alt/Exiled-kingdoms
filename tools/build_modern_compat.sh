@@ -128,14 +128,9 @@ echo "== 5. wall 2: sign v1+v2+v3 =="
 # signs with, so this APK installs straight over that build with no uninstall. Its cert
 # is SHA1withRSA (required by 4.2.2); that is the certificate's own self-signature and
 # is unrelated to the v2/v3 block, which is SHA-256 either way.
-if [ -f "$REPO/tools/ek-release.keystore" ]; then
-  cp "$REPO/tools/ek-release.keystore" "$WORK/ek.keystore"
-  echo "   using the committed stable keystore (in-place updates across versions)"
-else
-  keytool -genkeypair -keystore "$WORK/ek.keystore" -alias ek -keyalg RSA -keysize 2048 \
-    -sigalg SHA256withRSA -validity 10000 -storepass exiled123 -keypass exiled123 \
-    -dname "CN=EK Mod, O=EK, C=US" >/dev/null 2>&1
-fi
+[ -f "$REPO/tools/ek-release.keystore" ] || { echo "tools/ek-release.keystore missing -- refusing to sign with a new key"; exit 1; }
+cp "$REPO/tools/ek-release.keystore" "$WORK/ek.keystore"
+echo "   using the committed stable keystore (in-place updates across versions)"
 cat > "$WORK/Sign.java" <<'JAVA'
 import com.android.apksig.ApkSigner; import com.android.apksig.ApkVerifier;
 import java.io.File; import java.security.*; import java.security.cert.X509Certificate;
@@ -166,4 +161,5 @@ echo "== 6. report =="
 unzip -l "$OUT" | grep -E "lib/|classes.dex" || true
 python3 "$REPO/tools/axml_set_config.py" <(unzip -p "$OUT" AndroidManifest.xml) --print 2>/dev/null \
   || { unzip -o -q "$OUT" AndroidManifest.xml -d "$WORK/chk" && python3 "$REPO/tools/axml_set_config.py" "$WORK/chk/AndroidManifest.xml" --print; }
+"$REPO/tools/check_update_compat.sh" "$OUT" "$LIB/apksig.jar"
 echo "== done: $OUT ($(du -h "$OUT" | cut -f1)) =="
