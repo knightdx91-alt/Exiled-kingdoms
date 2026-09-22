@@ -596,6 +596,219 @@ _site(f'{w}/smali/net/fdgames/Rules/Skill.smali',
 print("patched Hero perks -> player only (ekIsHero): V, C, s0, pager, equip/learn/trainer gates")
 
 # ---------------------------------------------------------------------------
+# 7) One-time cleanup of the skills a warrior NPC (Grissenda) picked up while the Hero
+#    leak was open (v24, owner request). SkillSet.ekPurgeSheet(sheet): for a WARRIOR
+#    sheet that is NOT the player's, remove every learned skill whose class restriction
+#    rejects a (vanilla) warrior -- evaluated through ClassRestriction.ekAllowed, i.e.
+#    with ekSuppress on. Points refund themselves: an NPC's free points are
+#    CharacterSheet.J() = level - SkillSet.d() (+bonus), and d() sums the costs of the
+#    skills still in the list. SkillSet.f() then rebuilds the passive bonus set.
+#    Her scripted grants (shield_expert W, infantry_training W, precission_strikes /
+#    heavyhand W,R,C, body_development / massive_criticals unrestricted) all pass.
+#    Hooks, so an existing save heals without re-recruiting:
+#      * Party.a(NPC)            -- recruit / re-registration
+#      * SkillWindow c0.a(sheet) -- opening anyone's skill screen
+#      * trigger scan e/a/c/b.e  -- SkillSet.ekPurgeParty(), every 256th call, walks
+#                                   GameData.party.companions (the saved NPC objects)
+# ---------------------------------------------------------------------------
+SKS = 'Lnet/fdgames/GameEntities/Helpers/SkillSet;'
+CSK = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterSkill;'
+GDATA = 'Lnet/fdgames/GameWorld/GameData;'
+PARTY = 'Lnet/fdgames/GameWorld/Party;'
+NPCC = 'Lnet/fdgames/GameEntities/Final/NPC;'
+p = f'{w}/smali/net/fdgames/GameEntities/Helpers/SkillSet.smali'
+s = open(p, encoding='utf-8').read()
+s = s.replace('.field public bonusPoints:I', '.field public static ekPurgeTick:I\n\n.field public bonusPoints:I', 1)
+tail = s.rindex('.end method') + len('.end method')
+s = s[:tail] + f"""
+
+.method public static ekPurgeSheet({SHEET})V
+    .locals 5
+
+    if-nez p0, :ekps_a
+
+    return-void
+
+    :ekps_a
+    invoke-virtual {{p0}}, {SHEET}->n(){CC}
+
+    move-result-object v0
+
+    sget-object v1, {CC}->b:{CC}
+
+    if-eq v0, v1, :ekps_b
+
+    return-void
+
+    :ekps_b
+    invoke-virtual {{p0}}, {SHEET}->ekIsPlayer()Z
+
+    move-result v0
+
+    if-eqz v0, :ekps_c
+
+    return-void
+
+    :ekps_c
+    iget-object v0, p0, {SHEET}->skillSet:{SKS}
+
+    if-nez v0, :ekps_d
+
+    return-void
+
+    :ekps_d
+    iget-object v1, v0, {SKS}->characterSkills:Ljava/util/ArrayList;
+
+    if-nez v1, :ekps_e
+
+    return-void
+
+    :ekps_e
+    invoke-virtual {{v1}}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    const/4 v4, 0x0
+
+    :ekps_loop
+    invoke-interface {{v1}}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :ekps_done
+
+    invoke-interface {{v1}}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, {CSK}
+
+    iget-object v2, v2, {CSK}->skillID:Ljava/lang/String;
+
+    invoke-static {{v2}}, Lnet/fdgames/Rules/Skills;->a(Ljava/lang/String;)Lnet/fdgames/Rules/Skill;
+
+    move-result-object v2
+
+    if-eqz v2, :ekps_loop
+
+    iget-object v2, v2, Lnet/fdgames/Rules/Skill;->skillClass:{CR}
+
+    if-eqz v2, :ekps_loop
+
+    invoke-static {{v2, p0}}, {CR}->ekAllowed({CR}{SHEET})Ljava/lang/Boolean;
+
+    move-result-object v2
+
+    invoke-virtual {{v2}}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v2
+
+    if-nez v2, :ekps_loop
+
+    invoke-interface {{v1}}, Ljava/util/Iterator;->remove()V
+
+    const/4 v4, 0x1
+
+    goto :ekps_loop
+
+    :ekps_done
+    if-eqz v4, :ekps_ret
+
+    invoke-virtual {{v0}}, {SKS}->f()V
+
+    :ekps_ret
+    return-void
+.end method
+
+.method public static ekPurgeParty()V
+    .locals 4
+
+    sget v0, {SKS}->ekPurgeTick:I
+
+    add-int/lit8 v0, v0, 0x1
+
+    sput v0, {SKS}->ekPurgeTick:I
+
+    and-int/lit16 v0, v0, 0xff
+
+    if-eqz v0, :ekpp_go
+
+    return-void
+
+    :ekpp_go
+    invoke-static {{}}, {GDATA}->O(){GDATA}
+
+    move-result-object v0
+
+    if-nez v0, :ekpp_a
+
+    return-void
+
+    :ekpp_a
+    iget-object v0, v0, {GDATA}->party:{PARTY}
+
+    if-nez v0, :ekpp_b
+
+    return-void
+
+    :ekpp_b
+    iget-object v0, v0, {PARTY}->companions:Ljava/util/ArrayList;
+
+    if-nez v0, :ekpp_c
+
+    return-void
+
+    :ekpp_c
+    const/4 v1, 0x0
+
+    :ekpp_loop
+    invoke-virtual {{v0}}, Ljava/util/ArrayList;->size()I
+
+    move-result v2
+
+    if-ge v1, v2, :ekpp_done
+
+    invoke-virtual {{v0, v1}}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, {NPCC}
+
+    if-eqz v2, :ekpp_next
+
+    iget-object v3, v2, Lnet/fdgames/GameEntities/Character;->sheet:{SHEET}
+
+    invoke-static {{v3}}, {SKS}->ekPurgeSheet({SHEET})V
+
+    :ekpp_next
+    add-int/lit8 v1, v1, 0x1
+
+    goto :ekpp_loop
+
+    :ekpp_done
+    return-void
+.end method
+""" + s[tail:]
+open(p, 'w', encoding='utf-8').write(s)
+
+def _hook(path, old, new, what):
+    t = open(path, encoding='utf-8').read()
+    assert t.count(old) == 1, f"{what}: anchor not found ({t.count(old)})"
+    open(path, 'w', encoding='utf-8').write(t.replace(old, new, 1))
+
+jg = f'    invoke-static {{p1}}, {NPCC}->ekJanodGear({NPCC})V\n'
+_hook(f'{w}/smali/net/fdgames/GameWorld/Party.smali', jg,
+      jg + f'\n    iget-object v0, p1, Lnet/fdgames/GameEntities/Character;->sheet:{SHEET}\n\n'
+      f'    invoke-static {{v0}}, {SKS}->ekPurgeSheet({SHEET})V\n', 'Party.a(NPC)')
+sig = f'.method public a({SHEET}Lcom/badlogic/gdx/scenes/scene2d/Stage;)V\n    .locals 1\n'
+_hook(f'{w}/smali/e/a/d/e/c0.smali', sig,
+      sig + f'\n    invoke-static {{p1}}, {SKS}->ekPurgeSheet({SHEET})V\n', 'SkillWindow.a(sheet,stage)')
+hc = f'    invoke-static {{}}, {NPCC}->ekHomecomingTick()V\n'
+_hook(f'{w}/smali/e/a/c/b.smali', hc,
+      hc + f'\n    invoke-static {{}}, {SKS}->ekPurgeParty()V\n', 'trigger scan')
+print("patched SkillSet: +ekPurgeSheet/+ekPurgeParty (warrior NPCs lose off-class skills, points refunded)")
+
+# ---------------------------------------------------------------------------
 # 4) strings.txt: WARRIOR -> Hero (English column only; CRLF/BOM preserved)
 # ---------------------------------------------------------------------------
 p = f'{w}/assets/data/ui/strings/strings.txt'

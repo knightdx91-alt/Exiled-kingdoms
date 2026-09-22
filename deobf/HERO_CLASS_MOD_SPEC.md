@@ -193,3 +193,14 @@ sheet, so its three sheet-aware callers (`Item.a(sheet)`, `Skill.a(sheet)`, `Rul
 call `ClassRestriction.ekAllowed(r, sheet)`, which evaluates a non-Hero warrior with
 `ekSuppress` on (vanilla warrior rules). `CharacterStats.g()` needs no gate: its Hero pool is
 only reachable through `C()`, which returns 0 when `V()` is false.
+
+## v24 — cleanup of skills Grissenda learned during the leak
+`SkillSet.ekPurgeSheet(sheet)` removes off-class skills from any non-player WARRIOR sheet
+(evaluated with `ekSuppress` on, i.e. vanilla warrior rules) and calls `SkillSet.f()`.
+Refund is implicit: `CharacterSheet.J()` for an NPC = `level − SkillSet.d() + bonusPoints`,
+and `d()` sums the costs of skills still listed. Hooks: `Party.a(NPC)` (after `ekJanodGear`),
+`c0.a(sheet,stage)` (skill window open), and `SkillSet.ekPurgeParty()` from the trigger scan
+(`e/a/c/b.e(II)Z`, every 256th call) over `GameData.party.companions`. Vanilla Grissenda
+grants (ScriptedAction: body_development, massive_criticals, infantry_training,
+precission_strikes, heavyhand; bestiary shield_expert) are all W-legal or unrestricted.
+Off-class *equipment* is not touched (not requested).

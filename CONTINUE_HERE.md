@@ -23,16 +23,25 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v23-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v23.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v24-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v24.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v23-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v23.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v24-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v24.apk
 ```
+
+### v24 (2026-09-22) — Grissenda's off-class skills are cleaned up, points refunded
+
+`SkillSet.ekPurgeSheet(sheet)`: for a WARRIOR sheet that is not the player's, removes every
+learned skill whose class restriction rejects a vanilla warrior (via `ClassRestriction.ekAllowed`).
+Points refund automatically (NPC free points = `J()` = level − `SkillSet.d()` + bonus). Runs on
+recruit (`Party.a(NPC)`), on opening any skill screen (`c0.a(sheet,stage)`), and every 256th
+trigger scan over `GameData.party.companions`, so an existing save heals by itself. Her
+scripted grants are all warrior-legal (checked). `patch_hero_class.py` §7. D8 clean, gate OK.
 
 ### v23 (2026-09-22) — Hero perks are the player's only; Grissenda is a straight warrior again
 
