@@ -37,16 +37,17 @@ VAR = "summon_path"
 ROUTES = {
     1: ("Necromancer", [("skeleton", 5), ("skeleton_warrior", 8),
                         ("skeleton_champion", 11), ("skeleton_hero", 14)]),
-    # NOT elementals: Fire/Ice/Earth Mastery (bought from the mage-tower trainers)
+    # The ELEMENTAL line. Fire/Ice/Earth Mastery (bought from the mage-tower trainers)
     # already summon fire_elemental_1/2/3, ice_elemental_1/2/3 and
-    # elemental_earth_lesser/elemental_earth/golem_iron_1. v10-v20 escalated into
-    # constructs (golem_iron_lesser -> elemental_acid), but both render as golems
-    # (golem / golem_green) and read as more Earth/Iron -- owner asked (v21) for the
-    # last two to be anything but Earth/Iron, Fire or Ice. Ranks 3-4 are now
-    # conjured MAGICAL BEASTS: the Wyvern (strong, 10-12) and the Manticore
-    # (strong, 14). Neither is summoned by any other skill, route or base-game script.
+    # elemental_earth_lesser/elemental_earth/golem_iron_1, so this route must avoid
+    # Fire, Ice and Earth/Iron. Ranks 1-2 are the Sparklings ([shock_elemental]
+    # outsiders from the Plane of Energy); ranks 3-4 are the TOXIC elementals:
+    # elemental_acid "Acid Elemental" (lvl 12, acid_touch) and elemental_acid_epic
+    # "Animated Waste" (strong, lvl 19, poison_claw_15), capped like every rung.
+    # History: v10-v20 rank 3 was golem_iron_lesser (read as Earth/Iron); v21 briefly
+    # used wyvern/manticore, which the owner rejected (creatures, not elementals).
     2: ("Arcane", [("familiar1", 3), ("familiar2", 6),
-                   ("wyvern", 11), ("manticore", 14)]),
+                   ("elemental_acid", 11), ("elemental_acid_epic", 14)]),
     # NOT dire_wolf / spirit_wolf: those are ranks 1 and 3 of the cleric skill
     # Guardian Wolf (dire_wolf -> white_wolf -> spirit_wolf, in e/a/d/m1). A pure mage
     # can't take that skill, but the Hero class in this mod ignores class restrictions,
@@ -324,7 +325,7 @@ print("patched SkillWindow: first lesser_summoning purchase asks for a route")
 # ---------------------------------------------------------------------------
 PROMPT = ("[BLACK]How will you call your ally?[]  This choice is permanent.\\n\\n"
           "UNDEAD - raise skeletons that grow into champions and heroes.\\n"
-          "ARCANE - familiars from the Plane of Energy, then a wyvern and a manticore.\\n"
+          "ARCANE - sparkling elementals of Energy, then acid elementals of Toxin.\\n"
           "BEAST - wolves, bears, and at last a wild werewolf.")
 
 buttons = ''
@@ -454,10 +455,10 @@ lines[start + 1:end] = [
     rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
              "or a Wolf.", 2, 30, 20,
              "Un aliado mas poderoso, segun tu camino."),
-    rank_row("A Level 10-11 Skeleton Champion, a Wyvern, "
+    rank_row("A Level 10-11 Skeleton Champion, an Acid Elemental, "
              "or a Summoned Bear.", 3, 30, 28,
              "Un aliado de alto nivel, segun tu camino."),
-    rank_row("A Level 13-14 Skeleton Hero, a Manticore, "
+    rank_row("A Level 13-14 Skeleton Hero, an Animated Waste (greater acid elemental), "
              "or a Wild Werewolf.", 3, 30, 36,
              "El aliado mas poderoso de tu camino."),
 ]

@@ -30,6 +30,10 @@ on it). So the constructor swaps only `Skill->name` (read solely by the getter `
 equals "Lesser Summoning". Spanish/other localized names are untouched.
 
 ## 3. Arcane route ranks 3-4 — `tools/patch_summon_routes.py` `ROUTES[2]`
+
+> **Superseded in v22:** owner rejected the beasts; ranks 3-4 are now `elemental_acid` →
+> `elemental_acid_epic` ("Animated Waste"). See `SUMMON_ROUTES_SPEC.md` §7. v21 notes kept below.
+
 v10-v20: `golem_iron_lesser` (sprite `golem`) → `elemental_acid` (sprite `golem_green`), which
 read as Earth/Iron. Owner: last two must not be Earth/Iron, Fire or Ice. Now:
 

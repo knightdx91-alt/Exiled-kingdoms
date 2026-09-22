@@ -68,8 +68,8 @@ call — passing it would have meant register surgery.
 |---|---|---|---|
 | 1 | `skeleton` (cap 5) | `familiar1` (cap 3) | `grey_wolf` (cap 5) |
 | 2 | `skeleton_warrior` (cap 8) | `familiar2` (cap 6) | `wolf` (cap 8) |
-| 3 | `skeleton_champion` (cap 11) | `wyvern` (cap 11) — *v21; was `golem_iron_lesser`* | `bear_summoned` (cap 11) |
-| 4 | `skeleton_hero` (cap 14) | `manticore` (cap 14) — *v21; was `elemental_acid`* | `wild_werewolf` (cap 14) |
+| 3 | `skeleton_champion` (cap 11) | `elemental_acid` "Acid Elemental" (cap 11) — *v22* | `bear_summoned` (cap 11) |
+| 4 | `skeleton_hero` (cap 14) | `elemental_acid_epic` "Animated Waste" (cap 14) — *v22* | `wild_werewolf` (cap 14) |
 
 **Why the arcane route is constructs, not elementals (v10).** Owner: *"arcane doesn't
 really make sense with making it fire elementals because you can do the fire elementals
@@ -130,3 +130,8 @@ meant. Diff the disassembled branch structure for any edit that moves a comparis
   read as Earth/Iron, and the owner wanted the top of the line to be anything but
   Earth/Iron, Fire or Ice. See `STACK_TRAITS_SPEC.md` §3.
 * The skill displays as **Summon** (id stays `lesser_summoning`). See `STACK_TRAITS_SPEC.md` §2.
+
+## 7. v22 — Arcane is the elemental line
+Owner: arcane shouldn't be creatures. Ladder is now Sparkling (energy elemental) x2 →
+`elemental_acid` → `elemental_acid_epic` (its in-game name is "Animated Waste"; kept, since the
+row is also a world enemy). History: v10-v20 `golem_iron_lesser`/`elemental_acid`; v21 `wyvern`/`manticore`.

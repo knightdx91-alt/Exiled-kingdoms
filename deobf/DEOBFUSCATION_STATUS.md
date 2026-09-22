@@ -172,7 +172,7 @@ reasoning and the reversed evidence live in the linked spec.
 | C10 | Summons earn the companion's XP share and level while alive | new behaviour; additive, never deducted from the player | `COMPANION_SPEC.md` §10.1 |
 | C11 | Cheat items + no-clip are out of the default build (`EK_CHEATS=1` restores them) | owner's request | `COMPANION_SPEC.md` §10.3 |
 | C12 | Equipment trait bonuses stack (sum), not max-of | owner's request (v21); vanilla told the player only the highest applies | `STACK_TRAITS_SPEC.md` §4 |
-| C13 | Hero trait mana = best of the Mage/Cleric formulas; "Lesser Summoning" displays as "Summon"; Arcane summon ranks 3-4 are Wyvern/Manticore | owner's requests (v21) | `STACK_TRAITS_SPEC.md` §1-3 |
+| C13 | Hero trait mana = best of the Mage/Cleric formulas; "Lesser Summoning" displays as "Summon"; Arcane summon ranks 3-4 are Acid Elemental / Animated Waste (v22) | owner's requests (v21) | `STACK_TRAITS_SPEC.md` §1-3 |
 
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,
