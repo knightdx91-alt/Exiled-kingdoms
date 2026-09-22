@@ -612,6 +612,7 @@ print("patched Hero perks -> player only (ekIsHero): V, C, s0, pager, equip/lear
 #                                   GameData.party.companions (the saved NPC objects)
 # ---------------------------------------------------------------------------
 SKS = 'Lnet/fdgames/GameEntities/Helpers/SkillSet;'
+INV = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterInventory;'
 CSK = 'Lnet/fdgames/GameEntities/CharacterSheet/CharacterSkill;'
 GDATA = 'Lnet/fdgames/GameWorld/GameData;'
 PARTY = 'Lnet/fdgames/GameWorld/Party;'
@@ -650,6 +651,13 @@ s = s[:tail] + f"""
     return-void
 
     :ekps_c
+    iget-object v0, p0, {SHEET}->inventory:{INV}
+
+    if-eqz v0, :ekps_noinv
+
+    invoke-static {{v0, p0}}, {INV}->ekStripOffClass({INV}{SHEET})V
+
+    :ekps_noinv
     iget-object v0, p0, {SHEET}->skillSet:{SKS}
 
     if-nez v0, :ekps_d
@@ -790,6 +798,127 @@ s = s[:tail] + f"""
 .end method
 """ + s[tail:]
 open(p, 'w', encoding='utf-8').write(s)
+
+# 7b) Off-class GEAR (v25, owner request): CharacterInventory.ekStripOffClass(inv, sheet)
+#     walks the 12 equipment slots; an item the (vanilla) warrior may not use is moved to
+#     the PLAYER's backpack (Items.a(I)Z, the game's own add; false when full) and only
+#     then unequipped, so nothing is ever lost -- a full backpack just leaves it on her
+#     until a later pass. Then u() recomputes bonuses, exactly like the game's unequip
+#     (CharacterInventory.a(IZ)Z zeroes the slot then calls u()).
+SLOTS = ['slot_mainhand', 'slot_offhand', 'slot_head', 'slot_body', 'slot_hands',
+         'slot_legs', 'slot_feet', 'slot_ring', 'slot_ring2', 'slot_belt',
+         'slot_cloak', 'slot_necklace']
+strip = ''
+for sl in SLOTS:
+    strip += f"""    iget v0, p0, {INV}->{sl}:I
+
+    invoke-static {{v0, p1}}, {INV}->ekOffClass(I{SHEET})Z
+
+    move-result v1
+
+    if-eqz v1, :ekst_{sl}
+
+    const/4 v1, 0x0
+
+    iput v1, p0, {INV}->{sl}:I
+
+    const/4 v2, 0x1
+
+    :ekst_{sl}
+"""
+p = f'{w}/smali/net/fdgames/GameEntities/CharacterSheet/CharacterInventory.smali'
+t = open(p, encoding='utf-8').read()
+tail = t.rindex('.end method') + len('.end method')
+t = t[:tail] + f"""
+
+.method public static ekOffClass(I{SHEET})Z
+    .locals 2
+
+    if-nez p0, :ekoc_a
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_a
+    invoke-static {{p0}}, Lnet/fdgames/Rules/Rules;->c(I)Lnet/fdgames/Rules/Item;
+
+    move-result-object v0
+
+    if-nez v0, :ekoc_b
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_b
+    iget-object v0, v0, Lnet/fdgames/Rules/Item;->classes:{CR}
+
+    if-nez v0, :ekoc_c
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_c
+    invoke-static {{v0, p1}}, {CR}->ekAllowed({CR}{SHEET})Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-eqz v0, :ekoc_d
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_d
+    invoke-static {{}}, {GDATA}->O(){GDATA}
+
+    move-result-object v0
+
+    if-nez v0, :ekoc_e
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_e
+    iget-object v0, v0, {GDATA}->backpack:Lnet/fdgames/GameEntities/Helpers/Items;
+
+    if-nez v0, :ekoc_f
+
+    const/4 v1, 0x0
+
+    return v1
+
+    :ekoc_f
+    invoke-virtual {{v0, p0}}, Lnet/fdgames/GameEntities/Helpers/Items;->a(I)Z
+
+    move-result v1
+
+    return v1
+.end method
+
+.method public static ekStripOffClass({INV}{SHEET})V
+    .locals 3
+
+    const/4 v2, 0x0
+
+{strip}
+    if-eqz v2, :ekst_done
+
+    invoke-virtual {{p0}}, {INV}->u()V
+
+    :ekst_done
+    return-void
+.end method
+""" + t[tail:]
+open(p, 'w', encoding='utf-8').write(t)
+print("patched CharacterInventory: +ekStripOffClass/+ekOffClass (off-class gear -> player backpack)")
 
 def _hook(path, old, new, what):
     t = open(path, encoding='utf-8').read()

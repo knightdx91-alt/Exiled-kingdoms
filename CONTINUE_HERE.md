@@ -23,16 +23,25 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v24-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v24.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v25-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v25.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v24-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v24.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v25-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v25.apk
 ```
+
+### v25 (2026-09-22) — Grissenda's off-class gear goes back to the player's backpack
+
+`CharacterInventory.ekStripOffClass(inv, sheet)` (called from `SkillSet.ekPurgeSheet`, so same
+hooks and same non-player-WARRIOR guard): each of the 12 slots whose item a vanilla warrior may
+not use (`ClassRestriction.ekAllowed`) is added to `GameData.backpack` via the game's own
+`Items.a(I)Z`, and only unequipped if that succeeded — a full backpack leaves it on her for a
+later pass, so nothing is lost. Then `u()` recomputes bonuses, as the game's unequip does.
+`patch_hero_class.py` §7b. D8 clean (15/24), update gate OK.
 
 ### v24 (2026-09-22) — Grissenda's off-class skills are cleaned up, points refunded
 

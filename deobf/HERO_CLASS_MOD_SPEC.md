@@ -203,4 +203,11 @@ and `d()` sums the costs of skills still listed. Hooks: `Party.a(NPC)` (after `e
 (`e/a/c/b.e(II)Z`, every 256th call) over `GameData.party.companions`. Vanilla Grissenda
 grants (ScriptedAction: body_development, massive_criticals, infantry_training,
 precission_strikes, heavyhand; bestiary shield_expert) are all W-legal or unrestricted.
-Off-class *equipment* is not touched (not requested).
+Off-class *equipment*: see v25.
+
+## v25 — off-class gear stripped to the player's backpack
+`CharacterInventory.ekStripOffClass(inv, sheet)` runs first inside `ekPurgeSheet`. Per slot,
+`ekOffClass(id, sheet)`: item exists, `ClassRestriction.ekAllowed(item.classes, sheet)` is false,
+and `GameData.backpack.a(id)` (the game's add-to-backpack, false when full) succeeded → the slot
+is zeroed. Afterwards `u()` (as in the game's `CharacterInventory.a(IZ)Z` unequip). No joins with
+mixed reference types (each exit returns on its own).
