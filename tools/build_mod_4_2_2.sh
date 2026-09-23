@@ -43,6 +43,15 @@ unzip -o -q "$BASE" \
   assets/data/ui/strings/texts.txt \
   -d "$WORK"
 
+# 2b. The Multiplayer mod's content pack (Sorrow-Mod maps/quests/sprites, arena, redesigned UI
+# art, music...): EK_MP_APK=<Exiled-Kingdoms-Multiplayer-PVP-v1-3-1218-mod.apk>. Merged BEFORE the
+# patches so ours apply on top of the mod's versions of shared files. deobf/MP_CONTENT_SPEC.md
+: > "$WORK/mp_merged.txt"
+if [ -n "${EK_MP_APK:-}" ]; then
+  echo "== 2b. merge the MP content pack =="
+  python3 "$REPO/tools/merge_mp_content.py" "$BASE" "$(realpath "$EK_MP_APK")" "$WORK"
+fi
+
 echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_crashlog.py" )
 # Cheat items (Tome of Renown / Phase Stone / Anchor Stone) + no-clip are OPT-IN as of
@@ -114,6 +123,13 @@ cp "$BASE" "$WORK/out.apk"
     assets/data/tmx/G9.tmx \
     assets/data/ui/strings/strings.txt \
     assets/data/ui/strings/texts.txt )
+
+# 6a. the MP content pack files (media stored uncompressed like the base: Android streams music
+# and sounds through openFd, which needs STORED entries)
+if [ -s "$WORK/mp_merged.txt" ]; then
+  ( cd "$WORK" && zip -q -n .mp3:.ogg:.wav:.png:.jpg out.apk -@ < mp_merged.txt )
+  echo "added $(wc -l < "$WORK/mp_merged.txt") MP content files"
+fi
 
 # 6b. Add arm64-v8a natives so the APK is universal: armeabi-v7a keeps the owner's
 # Android 4.2.2 phone working, arm64-v8a lets it install on 64-bit-only devices

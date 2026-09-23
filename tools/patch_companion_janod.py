@@ -629,7 +629,9 @@ print("patched kingsbridge_wizard.txt: +%d rows (recruit/dismiss/orders)"
 # ---------------------------------------------------------------------------
 p = f'{w}/assets/data/tmx/G9.tmx'
 raw = open(p, encoding='utf-8', newline='').read()
-assert '<property name="spawn" value="janod"/>' in raw, "janod spawn missing from G9.tmx"
+# whitespace-tolerant: the MP content pack re-saved G9.tmx in Tiled (` />`, object ids, no
+# unique_tag on janod -- NPCSpawn/NPCDespawn match the `tag`, which it keeps)
+assert re.search(r'<property name="spawn" value="janod"\s*/>', raw), "janod spawn missing from G9.tmx"
 assert 'value="mercenary_grisenda"' in raw, "grissenda spawn missing from G9.tmx"
 
 # The Kingsbridge object layer is 96x96 tiles; every object in it sits inside
@@ -654,9 +656,9 @@ homecoming = f'''  <object name="ek_janod_homecoming" type="trigger" {MAP_RECT}>
    </properties>
   </object>
 '''
-close = ' </objectgroup>\n'
+close = '</objectgroup>'
 assert raw.count(close) == 1, "G9.tmx objectgroup close not unique"
-raw = raw.replace(close, homecoming + close, 1)
+raw = raw.replace(close, '\n' + homecoming + ' ' + close, 1)
 open(p, 'w', encoding='utf-8', newline='').write(raw)
 print("patched G9.tmx: +3 homecoming triggers (janod x2, grissenda)")
 print("DONE")
