@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v54.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v55.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v54.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v55.apk
 ```
+
+### v55 (2026-09-23) — join request shows at once; friends status fixed
+
+Owner: the join request only appeared after the host left the multiplayer screen (it was shown on the game
+screen behind the lobby); now it shows on the lobby. Friends showed "not hosting" while hosting: UDP-only probe
+(not forwarded over the internet) and ip:port saved as the address. Now host/port are split and the probe
+falls back to a TCP connect on the game port. Joiner sees "the host has to accept you".
+`deobf/MULTIPLAYER_PORT_SPEC.md` v55. dist: base + v55 + v54.
 
 ### v54 (2026-09-23) — mobile data: clear message instead of a timeout
 

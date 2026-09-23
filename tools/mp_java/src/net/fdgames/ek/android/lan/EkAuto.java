@@ -117,7 +117,11 @@ public final class EkAuto {
     /** true = let this player in. Friends (by address) always; others after the host taps Allow. */
     public static boolean approveJoin(Socket s, String name) {
         try {
-            final MainActivity a = activity();
+            // v55: show the request on the screen that's in front. It used to go to the game screen,
+            // which sits behind the multiplayer lobby, so the host only saw it after leaving the lobby
+            // and the joiner thought joining had failed.
+            final android.app.Activity lob = EkFriends.lobbyIfOpen();
+            final android.app.Activity a = lob != null ? lob : activity();
             if (a == null || s == null) {
                 return false;
             }

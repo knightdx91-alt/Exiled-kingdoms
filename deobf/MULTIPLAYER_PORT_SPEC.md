@@ -205,3 +205,16 @@ per-connection queue drained in order by a daemon sender; from other threads it'
 write holds the PrintWriter's lock around print+newline+flush. `postGameLog` is wrapped so the log line is
 added via `Gdx.app.postRunnable` on the game thread. Test: a GL-named thread queued 20,000 lines (~4 MB)
 to a non-reading peer in 35 ms; all arrived in order once it read; mixed GL/reader sends → 0 corrupted lines.
+
+## v55 — join request on the lobby; friends shown "not hosting" while hosting
+1. `EkAuto.approveJoin` (hooked in `handleIncomingClient` after the `JOIN` line) showed its AlertDialog on
+   MainActivity. While LanLobbyActivity is open it covers MainActivity, so the host only saw the request after
+   leaving the lobby, and the joiner (waiting up to 45 s) thought joining failed. Now the dialog goes to the
+   lobby when it's open (`EkFriends.lobbyIfOpen()`, registered in `relayoutLobby` and `remember`). The joiner
+   gets a "the host has to accept you" toast.
+2. Friends status: `EkFriends.probe` only sent one UDP `EK_DISCOVER` to 32123 with a 1.2 s wait. Over the
+   internet only TCP 32124 is forwarded (UPnP maps TCP only) and mobile networks often drop the UDP, so hosting
+   friends showed "not hosting". Also since v49 a typed `ip:port` was saved whole as the friend's address, which
+   the probe then tried to resolve as a host name. Now: `remember` splits host/port (old entries are repaired
+   on probe), two UDP asks of 1.5 s, then a TCP connect to the game port (3 s). A connection that sends no
+   `JOIN` line is dropped by `handleIncomingClient` (readLine → null) without any prompt.

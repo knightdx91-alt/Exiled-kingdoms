@@ -44,6 +44,18 @@ public final class EkFriends {
         return s == null ? "" : s.replace('\t', ' ').replace('\n', ' ').replace('\r', ' ').trim();
     }
 
+    /** The lobby screen while it's open (join requests are shown on it, not behind it). */
+    static java.lang.ref.WeakReference<android.app.Activity> lobby;
+
+    static android.app.Activity lobbyIfOpen() {
+        try {
+            android.app.Activity a = lobby == null ? null : lobby.get();
+            return a != null && !a.isFinishing() ? a : null;
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
     static List<Friend> load(android.app.Activity a) {
         List<Friend> out = new ArrayList<Friend>();
         try {
@@ -101,7 +113,17 @@ public final class EkFriends {
     /** Hooked at the start of LanLobbyActivity.joinHostAsync: every host you join is remembered. */
     public static void remember(LanLobbyActivity a, String ip, int port) {
         try {
+            lobby = new java.lang.ref.WeakReference<android.app.Activity>(a);
+            // v55: "1.2.3.4:32125" (typed since v49) was saved whole as the address, so the friend probe
+            // looked up "1.2.3.4:32125" as a host name and always said "not hosting".
+            port = EkNat.portPart(ip, port);
+            ip = EkNat.hostPart(clean(ip));
             ip = clean(ip);
+            try {
+                Toast.makeText(a, "Connecting... the host has to accept you, this can take a moment.", 1).show();
+            } catch (Throwable e) {
+                // ignore
+            }
             if (ip.length() == 0) {
                 return;
             }
@@ -174,11 +196,51 @@ public final class EkFriends {
 
     // ---- status probe --------------------------------------------------------------------------
 
+    /**
+     * v55: over the internet only the game port (TCP 32124, what the router opening forwards) reaches the
+     * host; the UDP discovery port usually doesn't (not forwarded, often dropped on mobile networks), so
+     * friends who were hosting showed "not hosting". Now: two UDP asks (name + player count when it
+     * answers), then a plain TCP connect to the game port (the host drops a connection that sends no JOIN
+     * line; no join request is shown).
+     */
     private static void probe(Friend f) {
+        if (f.ip != null && f.ip.indexOf(':') > 0) {
+            f.port = EkNat.portPart(f.ip, f.port);
+            f.ip = EkNat.hostPart(f.ip);
+        }
+        if (probeUdp(f)) {
+            return;
+        }
+        java.net.Socket t = new java.net.Socket();
+        try {
+            t.connect(new java.net.InetSocketAddress(f.ip, f.port > 0 ? f.port : GAME_PORT), 3000);
+            f.hosting = true;
+            f.status = "hosting";
+        } catch (Throwable e) {
+            f.status = "not hosting";
+        } finally {
+            try {
+                t.close();
+            } catch (Throwable e) {
+                // ignore
+            }
+        }
+    }
+
+    private static boolean probeUdp(Friend f) {
+        for (int attempt = 0; attempt < 2; attempt++) {
+            if (probeUdpOnce(f)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean probeUdpOnce(Friend f) {
         DatagramSocket s = null;
         try {
             s = new DatagramSocket();
-            s.setSoTimeout(1200);
+            s.setSoTimeout(1500);
             byte[] q = "EK_DISCOVER".getBytes("UTF-8");
             s.send(new DatagramPacket(q, q.length, InetAddress.getByName(f.ip), DISCOVERY_PORT));
             byte[] buf = new byte[512];
@@ -200,16 +262,16 @@ public final class EkFriends {
                 }
                 f.hosting = true;
                 f.status = "hosting" + (p.length > 4 ? " " + p[3] + "/" + p[4] : "");
-                return;
+                return true;
             }
-            f.status = "not hosting";
         } catch (Throwable e) {
-            f.status = "not hosting";
+            // no answer
         } finally {
             if (s != null) {
                 s.close();
             }
         }
+        return false;
     }
 
     private static String decode(String s) {
@@ -292,7 +354,7 @@ public final class EkFriends {
                     }
                     for (Thread t : ts) {
                         try {
-                            t.join(2000);
+                            t.join(7000);
                         } catch (InterruptedException e) {
                             // ignore
                         }
@@ -423,6 +485,7 @@ public final class EkFriends {
      * TextView header, TextView (players).
      */
     public static android.view.View relayoutLobby(android.app.Activity a, android.view.View rootView) {
+        lobby = new java.lang.ref.WeakReference<android.app.Activity>(a);
         try {
             if (!(rootView instanceof android.widget.LinearLayout)) {
                 return rootView;
