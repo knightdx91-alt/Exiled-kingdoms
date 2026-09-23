@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v57.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v58.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v57.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v58.apk
 ```
+
+### v58 (2026-09-23) — online play by room code + online friends
+
+Lobby: Host online / Join by code through the relay (Cloudflare Worker `ek-relay.knightdx91.workers.dev`,
+relay/cf, deployed from the repo by Cloudflare Workers Builds, root relay/cf). Works on any network, mobile
+data included. After playing together once, both sides are saved as online friends (pairwise tokens): Friends
+list shows online/offline, one tap joins, no approval prompt. `deobf/RELAY_SPEC.md`. dist: base + v58 + v57.
 
 ### v57 (2026-09-23) — PvP is each player's own choice
 
