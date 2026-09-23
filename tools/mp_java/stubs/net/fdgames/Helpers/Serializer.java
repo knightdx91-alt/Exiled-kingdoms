@@ -1,0 +1,1 @@
+package net.fdgames.Helpers; public class Serializer { public static void a(java.util.zip.ZipOutputStream z, java.io.File f, String prefix) {} public static void a(java.io.File zip, java.io.File dir) {} public static void i() {} }

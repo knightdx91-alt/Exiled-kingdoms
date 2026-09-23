@@ -1,1 +1,1 @@
-package net.fdgames.Rules; public class Item { public String sprite; }
+package net.fdgames.Rules; public class Item { public enum ItemType { b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q } public String sprite; public String name; public ItemType type; public int value; public WeaponStats weaponStats; }

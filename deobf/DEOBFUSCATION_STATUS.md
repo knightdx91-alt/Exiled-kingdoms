@@ -176,6 +176,7 @@ reasoning and the reversed evidence live in the linked spec.
 | C14 | Hero perks apply only to the player's sheet; warrior NPCs (Grissenda) follow vanilla warrior rules | owner's request (v23); Hero reuses the WARRIOR enum | `HERO_CLASS_MOD_SPEC.md` §v23 |
 | C15 | Multiplayer engine (MP mod) ported onto our base; spawn scaling non-stacking; peers keep a sprite when a weapon layer is missing; wizard peers use `blue_wizard` not `janod` | our base differs (Janod companion, older assets); owner request | `MULTIPLAYER_PORT_SPEC.md` §6 |
 | C16 | MP phase 2a: arena peer-death rule tests `CurrentLevel` (mod tested `currentMapName`, never set → dead code); elimination chat without the emoji the font can't draw; world-map name labels restore the shared font scale (mod left it at 0.5); added missing `logLanError(String)` the mod calls | make the mod's evident intent work; avoid side effects on other screens; mod crash path | `MULTIPLAYER_PORT_SPEC.md` §7 |
+| C17 | MP features 6–11: English upgrade messages; SAF only on Android 4.4+ with our saves.bak rule; Recover = LAN publish only; forward shot already vanilla (no port); ModMenuDialog cheats not ported | owner: "No cheats at all"; our base's behaviour kept where it differs | `MP_FEATURES_SPEC.md` |
 
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,

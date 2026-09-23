@@ -79,6 +79,9 @@ fi
 # EK_SKIP_MP=1 builds without it.
 if [ -z "${EK_SKIP_MP:-}" ]; then
   ( cd "$WORK" && python3 "$REPO/tools/patch_multiplayer.py" )
+  # The MP mod's gameplay features 6-11 (no cheats; deobf/MP_FEATURES_SPEC.md). Needs the glue
+  # compiled by patch_multiplayer.py.
+  ( cd "$WORK" && python3 "$REPO/tools/patch_mp_features.py" )
 fi
 
 echo "== 4. reassemble dex (api 15 -> dex 035, Dalvik) =="

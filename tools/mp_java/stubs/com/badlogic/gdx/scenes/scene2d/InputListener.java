@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d; public class InputListener implements EventListener { public InputListener() {} public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) { return false; } }

@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d.ui; public class Cell { public Cell width(float w) { return this; } public Cell height(float h) { return this; } public Cell pad(float p) { return this; } public Cell padRight(float p) { return this; } public Cell expandX() { return this; } public Cell center() { return this; } }

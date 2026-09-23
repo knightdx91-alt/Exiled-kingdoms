@@ -1,1 +1,1 @@
-package net.fdgames.GameEntities.CharacterSheet; public class CharacterInventory { public int slot_body; public int slot_head; }
+package net.fdgames.GameEntities.CharacterSheet; public class CharacterInventory { public int slot_body, slot_head, slot_hands, slot_legs, slot_feet, slot_mainhand, slot_offhand, slot_ring, slot_ring2, slot_belt, slot_cloak, slot_necklace; }

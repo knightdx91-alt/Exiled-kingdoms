@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d.ui; public class Table extends com.badlogic.gdx.scenes.scene2d.Actor { public Cell add(com.badlogic.gdx.scenes.scene2d.Actor a) { return null; } public Cell row() { return null; } }

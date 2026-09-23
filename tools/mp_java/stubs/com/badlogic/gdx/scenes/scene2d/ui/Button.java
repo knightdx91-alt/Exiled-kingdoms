@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d.ui; public class Button extends Table { public void setDisabled(boolean d) {} public boolean isDisabled() { return false; } public static class ButtonStyle {} }

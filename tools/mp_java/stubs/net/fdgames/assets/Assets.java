@@ -1,1 +1,1 @@
-package net.fdgames.assets; public class Assets { public static com.badlogic.gdx.scenes.scene2d.ui.Skin e() { return null; } }
+package net.fdgames.assets; public class Assets { public static com.badlogic.gdx.scenes.scene2d.ui.Skin e() { return null; } public static com.badlogic.gdx.graphics.g2d.TextureRegion b(String s) { return null; } }

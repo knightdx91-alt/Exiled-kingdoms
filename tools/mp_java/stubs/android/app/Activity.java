@@ -1,0 +1,1 @@
+package android.app; public class Activity extends android.content.Context { public void startActivityForResult(android.content.Intent i, int code) {} public android.content.ContentResolver getContentResolver() { return null; } public java.io.File getCacheDir() { return null; } public java.io.File getFilesDir() { return null; } }
