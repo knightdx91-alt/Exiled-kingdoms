@@ -98,3 +98,23 @@ buttons open through our own `CharacterWindow.a(1, container)`; SAF import keeps
 `data/saves.bak` backup rule (mod: `data/saves_backup/`) and runs our restore steps; the SAF
 path is used only on Android 4.4+ (the picker does not exist below); Recover publishes state only
 (our HUD redraws every frame; Fury refresh is 2025-only code).
+
+## Item 4 (code side) — every UI code change in the mod, accounted for
+Method: all string constants per `.source` file, MP 1218 vs vanilla 1217 (the `.line`-stripped
+sizes differ only by debug info). The "redesigned menus" are the art in `data/ui` (merged by
+`merge_mp_content.py`); the code changes are:
+
+| Source | Change | Disposition |
+|---|---|---|
+| MainMenuScreen | LAN ON/OFF button; DONATE→STORE | LAN = our MULTIPLAYER button (B17); STORE is the purchase screen — not ported |
+| MainMenuScreen | new logo 512×341 | laid out in the same 360×128 cell in theirs and ours — identical, nothing to do |
+| GameHUD | CHAT button (+ "CHAT!"), WARNING_STORE | CHAT = B14; store warning not ported |
+| GameOptionsWindow | Raise Difficulty | §6 |
+| CharacterWindow / ItemPreviewTable / InventorySlotImage | upgrades, vault button, bag tabs 1–5, MODS | §7, §8; MODS (cheats) not ported |
+| BackupWindow / MainActivity | SAF pickers; `…multiplayer/files/EK.bak` path | §11; the path is their package name, ours stays |
+| WorldMapImage, GameData | peer markers, world-event chat | PORT_SPEC §7 |
+| Player / NPC | arena elimination; composite sprite by gender | PORT_SPEC §7; peers use `EkMp.buildPeerSprite` |
+| ModMenuDialog, SkillWindow, TraitsWindow, CharacterStats/Sheet `mod_*` | cheats (+1 SP/AP, XP×3, no damage…) | not ported |
+| LicenseUtils/LicenseTable/LockedDialog/StoreWindow/Settings/Patching | trial-area list and license/store handling | not ported (licensing, not gameplay) |
+| TeleportWindow | one button relabelled with hard-coded Portuguese "Torre de Tremadan" | not ported (a localisation regression) |
+| Rules (EK_LOOT), GameWorld.ensureLoaded | debug logging; reload guard of their 2025 engine | not ported |
