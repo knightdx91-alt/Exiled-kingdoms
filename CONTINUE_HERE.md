@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v59.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v60.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v59.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v60.apk
 ```
+
+### v60 (2026-09-23) — summons fight back only for their player
+
+Owner: PvP is player vs player; a player's summons attack you only if you attacked that player. The attacker's
+phone reports `EKAGGRO` when its player hits a PvP puppet; the victim's own summons/companions (CompanionAI, not
+peer puppets) may fight that attacker for 30 s after the last hit. `deobf/MULTIPLAYER_PORT_SPEC.md` §v60.
+dist: base + v60 + v59.
 
 ### v59 (2026-09-23) — PvP opponent hostile to you only; monster jitter and slow health bars
 

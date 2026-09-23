@@ -205,3 +205,5 @@ and readable bodies — Track A).
 - **APPROX (v59) World NPC sync smoothing** — joiner ignores a host HP *rise* until it has held 1.2 s, zeroes
   host-driven NPC velocity, and sends only the newest queued `NPCSTATE2`/`PSTATE`. The MP mod applied the host
   HP % directly. `deobf/MULTIPLAYER_PORT_SPEC.md` §v59.
+- **APPROX (v60) Summon retaliation window** — a player's summons/companions fight an attacker for 30 s after the
+  last hit (aggression reports at most every 5 s). `deobf/MULTIPLAYER_PORT_SPEC.md` §v60.

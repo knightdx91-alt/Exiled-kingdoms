@@ -447,8 +447,10 @@ wrap_method('net/fdgames/GameEntities/Character', 'a' + CSIG, 'ekMpMsg', True, f
 
     invoke-static {{p0, p2, p1, p3, p4}}, {LAN}->publishPeerDamageIfNeeded({CHAR}ILjava/lang/String;Ljava/lang/String;Lnet/fdgames/GameEntities/Helpers/DamageData;)V
 
+    invoke-static {{p0, p2, p1, p4}}, Lnet/fdgames/ek/android/lan/EkItems;->pvpOnHit({CHAR}ILjava/lang/String;Ljava/lang/Object;)V
+
     return-void
-.end method""", "Character.a(msg): publishPeerDamageIfNeeded")
+.end method""", "Character.a(msg): publishPeerDamageIfNeeded + PvP aggression report (v60)")
 
 # ---- B4: Character.i(I) attack start (their E0) -> publishLocalAttackStart(this, lastTargetHit_id)
 edit_method('net/fdgames/GameEntities/Character', 'i(I)V', lambda m: sub1(

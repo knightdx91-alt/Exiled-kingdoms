@@ -446,6 +446,12 @@ public final class EkItems {
         return "player".equals(faction) && pvpWithState(st) ? "player,neutral" : faction;
     }
 
+    // Whose puppet is this (faction arrays are per actor; the puppet's array is replaced every sync, weak keys).
+    private static final java.util.Map<int[], String> PUPPET_BY_FACTIONS =
+            java.util.Collections.synchronizedMap(new java.util.WeakHashMap<int[], String>());
+    private static final java.util.Map<Object, String> PUPPET_BY_NPC =
+            java.util.Collections.synchronizedMap(new java.util.WeakHashMap<Object, String>());
+
     /** getOrCreatePeerActor: mark / unmark an existing puppet that has the player faction (not the arena's "enemy"). */
     public static void pvpMarkActor(net.fdgames.GameEntities.Final.NPC npc, String name) {
         if (npc == null) {
@@ -456,6 +462,101 @@ public final class EkItems {
             return;
         }
         f[1] = pvpWith(name) ? FACTION_NEUTRAL : 0;
+        if (name != null) {
+            PUPPET_BY_FACTIONS.put(f, name.trim());
+            PUPPET_BY_NPC.put(npc, name.trim());
+        }
+    }
+
+    // ---- v60 retaliation: a player's summons/companions fight back only at someone who attacked that player ----
+    static final long AGGRO_MS = 30000;          // how long after the last hit the summons keep fighting back
+    private static final long AGGRO_RESEND_MS = 5000;
+    private static final java.util.concurrent.ConcurrentHashMap<String, Long> AGGRESSORS =
+            new java.util.concurrent.ConcurrentHashMap<String, Long>();   // attacker name -> last hit on me
+    private static final java.util.concurrent.ConcurrentHashMap<String, Long> AGGRO_SENT =
+            new java.util.concurrent.ConcurrentHashMap<String, Long>();   // victim name -> last EKAGGRO sent
+    private static java.util.Set<int[]> allyFactions = java.util.Collections.emptySet();
+    private static long allyAt;
+
+    static boolean isAggressor(String name) {
+        Long t = name == null ? null : AGGRESSORS.get(name);
+        return t != null && System.currentTimeMillis() - t < AGGRO_MS;
+    }
+
+    /** Faction arrays of my own summons and companions (CompanionAI; peers' puppets run "idle"), cached 0.5 s. */
+    private static java.util.Set<int[]> myAllies() {
+        long now = System.currentTimeMillis();
+        if (now - allyAt < 500) {
+            return allyFactions;
+        }
+        allyAt = now;
+        java.util.Set<int[]> s = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<int[], Boolean>());
+        try {
+            ArrayList<?> actors = GameLevel.e();
+            if (actors != null) {
+                for (Object o : new ArrayList<Object>(actors)) {
+                    if (o instanceof net.fdgames.GameEntities.Final.NPC) {
+                        net.fdgames.GameEntities.Final.NPC n = (net.fdgames.GameEntities.Final.NPC) o;
+                        if (!n.lanPeerVisual && !n.destroy && n.worldfactions != null && n.I0()) {
+                            s.add(n.worldfactions);
+                        }
+                    }
+                }
+            }
+        } catch (Throwable e) {
+            // keep the last set
+            return allyFactions;
+        }
+        allyFactions = s;
+        return s;
+    }
+
+    /** Character.a(msg, source, ...) hook: I hit a PvP puppet -> tell its player that I attacked them. */
+    public static void pvpOnHit(net.fdgames.GameEntities.Character target, int source, String msg, Object damage) {
+        try {
+            if (!(target instanceof net.fdgames.GameEntities.Final.NPC) || !pvpMarked(target.worldfactions)) {
+                return;
+            }
+            if (damage == null && !"ATTACK".equals(msg)) {
+                return;
+            }
+            GameData gd = GameData.O();
+            Player p = gd == null ? null : gd.player;
+            if (p == null || source != p.m() || source == target.m()) {
+                return;
+            }
+            String victim = PUPPET_BY_NPC.get(target);
+            if (victim == null) {
+                return;
+            }
+            long now = System.currentTimeMillis();
+            Long last = AGGRO_SENT.get(victim);
+            if (last != null && now - last < AGGRO_RESEND_MS) {
+                return;
+            }
+            AGGRO_SENT.put(victim, now);
+            send("EKAGGRO\t" + java.net.URLEncoder.encode(me().trim(), "UTF-8") + "\t"
+                    + java.net.URLEncoder.encode(victim, "UTF-8"));
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    /** EKAGGRO\tattacker\tvictim: if I'm the victim, my summons may fight the attacker for AGGRO_MS. */
+    private static void onAggro(String line) {
+        try {
+            String[] p = line.split("\t", -1);
+            if (p.length < 3) {
+                return;
+            }
+            String attacker = java.net.URLDecoder.decode(p[1], "UTF-8").trim();
+            String victim = java.net.URLDecoder.decode(p[2], "UTF-8").trim();
+            if (!attacker.isEmpty() && victim.equals(me().trim()) && !attacker.equals(victim)) {
+                AGGRESSORS.put(attacker, System.currentTimeMillis());
+            }
+        } catch (Throwable e) {
+            // ignore
+        }
     }
 
     /** WorldFactions "is this faction set hostile to faction `who`": a marked puppet is hostile to the player. */
@@ -463,17 +564,24 @@ public final class EkItems {
         return who != null && who.intValue() == FACTION_PLAYER && pvpMarked(f);
     }
 
-    /** WorldFactions "are these two hostile": true only for the local player and a marked puppet. */
+    /** WorldFactions "are these two hostile": the local player and a marked puppet; my summons/companions and a
+     *  marked puppet whose player attacked me recently (retaliation). Nobody else. */
     public static boolean pvpPair(int[] a, int[] b) {
         boolean ma = pvpMarked(a);
         boolean mb = pvpMarked(b);
         if (ma == mb) {
             return false;
         }
+        int[] puppet = ma ? a : b;
+        int[] other = ma ? b : a;
         GameData gd = GameData.O();
         Player me = gd == null ? null : gd.player;
         int[] mine = me == null ? null : me.worldfactions;
-        return mine != null && (ma ? b == mine : a == mine);
+        if (mine != null && other == mine) {
+            return true;
+        }
+        // my summons/companions: only against a player who attacked me in the last AGGRO_MS
+        return !AGGRESSORS.isEmpty() && isAggressor(PUPPET_BY_FACTIONS.get(puppet)) && myAllies().contains(other);
     }
 
     private static String peerName(Object peer) {
@@ -624,6 +732,14 @@ public final class EkItems {
 
     /** Host side. true = handled. */
     public static boolean hostLine(Object peer, String line) {
+        if (line.startsWith("EKAGGRO\t")) {
+            onAggro(line);                           // the host may be the victim
+            LanSessionManager m = mgr();
+            if (m != null) {
+                m.ekBroadcast(line);                 // or another guest is
+            }
+            return true;
+        }
         if (line.startsWith("EKPVPME\t")) {
             String n = peerName(peer);
             if (n != null) {
@@ -672,6 +788,10 @@ public final class EkItems {
         }
         if (line.startsWith("EKDENY\t")) {
             applyDeny(line);
+            return true;
+        }
+        if (line.startsWith("EKAGGRO\t")) {
+            onAggro(line);
             return true;
         }
         if (line.startsWith("EKPVPT")) {

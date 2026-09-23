@@ -1,1 +1,1 @@
-package net.fdgames.GameEntities.Final; public class NPC extends net.fdgames.GameEntities.Character { public boolean lanPeerVisual; public String spawn_id; public boolean summoned; public boolean P() { return false; } }
+package net.fdgames.GameEntities.Final; public class NPC extends net.fdgames.GameEntities.Character { public boolean lanPeerVisual; public String spawn_id; public boolean summoned; public boolean P() { return false; } public boolean I0() { return false; } }

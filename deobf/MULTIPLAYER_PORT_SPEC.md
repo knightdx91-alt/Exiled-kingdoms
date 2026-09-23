@@ -286,3 +286,20 @@ no longer bounce back up after a hit. APPROX (the MP mod applied the host % dire
 Tested offline: 2 000 snapshots to a stalled link → 13 sent, newest last, all 20 chat lines in order, GL thread
 never blocked; faction pair: me↔marked puppet hostile both orders, summon/guard/monster-hook false, unmarked
 false, marked hostile to 100 but not to a town faction.
+
+## v60 — summons fight back only for their player
+Owner: "PvP is player vs player. NPCs have nothing to do with it, enemies obviously are going to attack you anyway.
+Players' summons should only attack you if you attack the player who summoned them."
+After v59 summons never joined PvP. Now they retaliate:
+- Attacker's phone: the B3 hook on `Character.a(msg, sourceId, …, DamageData)` (4.2.2 `v` → `u(sourceId,…)`, the
+  int is the sender's uniqueID) calls `EkItems.pvpOnHit`. If the target is a PvP-marked puppet, the source is my
+  own player, and it's an attack (damage data or `ATTACK`), send `EKAGGRO\t<me>\t<victim>` (URL-encoded, at most
+  every 5 s per victim). Host: handles it (it may be the victim) and rebroadcasts; guests: handle it.
+- Victim's phone: remembers the attacker for 30 s after the last report. `pvpPair` is also true between that
+  attacker's puppet and the faction arrays of **my own** summons/companions: NPCs on the level with CompanionAI
+  (`NPC.I0()`, 4.2.2 `M1`) that aren't peer visuals (peers' summon/companion puppets run the `idle` AI), cached
+  0.5 s. Their hits on the puppet reach the attacker through the MP mod's normal PDMG2 path.
+Nobody else changes: NPCs and guards stay out, monsters attack everyone as usual, and my summons don't start fights
+for me. APPROX: the 30 s memory and 5 s resend are ours.
+Tested offline: before any attack my summon vs Bob = false; after `EKAGGRO Bob→me` true (both orders); Bob's
+summon puppet vs Bob false; an attack on someone else doesn't make my summons fight.
