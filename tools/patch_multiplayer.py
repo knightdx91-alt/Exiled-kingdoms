@@ -1187,4 +1187,45 @@ add_method(f'{DST}/e/a/d/e/eksp.smali', '''
 .end method
 ''', "summon route dialog: own preferred size (content height, 660c wide)")
 
+# ---- B63: talking to some NPCs crashed (owner EK_crash.txt: ArrayIndexOutOfBounds length=116 index=116
+#          in Assets.a(Gender,I) from StaticNPC.t). The MP content ships portraits male/0..357 and
+#          female/0..221 and its NPCs use them, but 4.2.2's Assets.c() sizes the caches 116 / 68 (and
+#          walks 0..115 / 0..67 when resetting and disposing). The MP mod's own Assets uses 358 / 222.
+#          Port that, and clamp any other out-of-range index to portrait 0 instead of crashing.
+_PORTRAIT_SIZES = [('0x74', '0x166'), ('0x44', '0xde'), ('0x73', '0x165'), ('0x43', '0xdd')]
+def _portraits(m):
+    for old, new in _PORTRAIT_SIZES:
+        m, k = re.subn(r'(const/16 v\d+, )' + old + r'\n', lambda g: g.group(1) + new + '\n', m)
+    return m
+edit_method('net/fdgames/assets/Assets', 'c()V', _portraits, "Assets.c(): portrait caches sized for the MP content (358 male / 222 female)")
+edit_method('net/fdgames/assets/Assets', 'dispose()V', _portraits, "Assets.dispose(): walks the whole portrait caches")
+edit_method('net/fdgames/assets/Assets', 'a(Lnet/fdgames/GameEntities/Character$Gender;I)Lcom/badlogic/gdx/graphics/g2d/TextureRegion;', lambda m: sub1(
+    r'(\.locals 5\n)', r'''\1
+    sget-object v0, Lnet/fdgames/assets/Assets;->a:Lnet/fdgames/assets/Assets;
+
+    iget-object v1, v0, Lnet/fdgames/assets/Assets;->malePortraits:[Lcom/badlogic/gdx/graphics/g2d/TextureRegion;
+
+    invoke-virtual {p0}, Ljava/lang/Enum;->ordinal()I
+
+    move-result v2
+
+    const/4 v3, 0x1
+
+    if-ne v2, v3, :ek_pt_male
+
+    iget-object v1, v0, Lnet/fdgames/assets/Assets;->femalePortraits:[Lcom/badlogic/gdx/graphics/g2d/TextureRegion;
+
+    :ek_pt_male
+    array-length v1, v1
+
+    if-ltz p1, :ek_pt_fix
+
+    if-lt p1, v1, :ek_pt_ok
+
+    :ek_pt_fix
+    const/4 p1, 0x0
+
+    :ek_pt_ok
+''', m, 'portrait lookup entry'), "Assets.a(Gender,I): out-of-range portrait index -> portrait 0")
+
 print("DONE")

@@ -178,3 +178,12 @@ Marker look (ours, APPROX): the marker texture is a 1x1 white pixel, which drawn
 covered the whole area; now a dot 40% of the cell, black outline, side by side for players sharing an
 area, name scaled with the screen. There is no separate in-area minimap in 4.2.2 (the HUD map button
 opens this world map; maps flagged `nominimap` disable it).
+
+## v48 — "My address": Tailscale label was wrong on mobile data
+Owner log (Fold host): `localIps=rmnet_data8=100.82.180.215 | wlan0=192.168.1.151` with no tun0.
+`EkAuto.myAddresses` labelled any 100.64/10 address "Tailscale", but carriers use that CGNAT range on
+the cellular interface, so the lobby offered an unreachable "Tailscale" address. Now: Android's
+ConnectivityManager (by reflection; ACCESS_NETWORK_STATE is already granted) marks VPN (TRANSPORT_VPN)
+and cellular interfaces; only VPN addresses are called Tailscale/ZeroTier, cellular ones are hidden
+with a note, and when no VPN is visible the lobby says so (VPN off, or the game excluded in the VPN
+app's split tunnelling). Name-based detection (tun*/zt*/wg*/rmnet*/ccmni*) stays as the fallback.

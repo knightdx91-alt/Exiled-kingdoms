@@ -65,3 +65,10 @@ condition/action name against `Condition`/`ActionsSet`'s string tables):
 * After: init OK, 1284/1284 conversations, no unknown condition/action names (one left is vanilla:
   `test_inventory.txt`). Map (`.tmx`) conditions/actions: all known names.
 **Not covered offline:** texture/atlas/sound loading and map rendering (needs a GPU).
+
+## v48 — portrait caches (owner crash: talking to an NPC)
+`ArrayIndexOutOfBoundsException length=116 index=116` in `Assets.a(Gender,I)` from `StaticNPC.t()`.
+The MP content ships `portraits/male/0..357` and `female/0..221`, and its NPCs use indices past the
+4.2.2 caches (`Assets.c()`: `new TextureRegion[116]` male / `[68]` female; the reset/dispose loops walk
+0..115 / 0..67). The MP mod's own Assets sizes them 0x166 / 0xde. B63 ports those sizes (and loop
+bounds 0x165 / 0xdd) and clamps any other out-of-range index to portrait 0 instead of crashing.
