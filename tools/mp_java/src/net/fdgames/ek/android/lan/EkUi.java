@@ -140,4 +140,22 @@ public final class EkUi {
             // keep vanilla
         }
     }
+
+    /**
+     * Details window value column (480 x height/720): a wrapped sentence. The table asked for its height
+     * while the label's width was still 0, so the row came out shorter than the wrapped text and the
+     * extra lines ran over the rows below. Give it its column width first.
+     */
+    public static void sizeWrapped(Object o) {
+        try {
+            if (o instanceof Label) {
+                Label lb = (Label) o;
+                lb.setWrap(true);
+                lb.setWidth(480f * (Gdx.graphics.getHeight() / 720f));
+                lb.invalidateHierarchy();
+            }
+        } catch (Throwable e) {
+            // keep vanilla
+        }
+    }
 }

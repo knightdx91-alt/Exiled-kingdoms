@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v42.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v43.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v42.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v43.apk
 ```
+
+### v43 (2026-09-23) — Details: description sentences no longer run over the rows below
+
+Owner: the overlapping thing in Details is a sentence. The value column (wrapped sentence, 480xS) was
+measured while its width was 0 → row too short → extra lines over the next rows. B60 sizes it to its
+column first. `deobf/UI_SCALING_SPEC.md`. dist: base + v43 + v42. (Disk note: clean /tmp/ek old builds.)
 
 ### v42 (2026-09-23) — Details: stat names stay on one line (no overlap)
 

@@ -62,3 +62,7 @@ a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
 * **v42 correction**: wrapping the name (v40) didn't work — the table sizes the row before the label
   knows its wrapped height, so a two-line name ran into the next row ("character stats" section).
   Now the name stays one line, shrinks to fit 240xS (not below 60%), "..." beyond that.
+* **v43, the real overlap (owner: "it had a sentence, not just a word")**: the value column — a wrapped
+  sentence in a 480xS cell — asks for its height while its width is still 0, so the row is shorter than
+  the wrapped text and the extra lines run over the rows below. B60: the value label gets its column
+  width (`setWidth(480xS)`) before it is added, so the row is as tall as the sentence.

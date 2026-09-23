@@ -1146,4 +1146,13 @@ def _h0(m):
 edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0, "StatsDetailWindow row: name column wraps in its own width")
 edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0, "StatsDetailWindow sheet rows: name column wraps in its own width")
 
+# ---- B60: Details window value column: wrapped sentences ran over the rows below (UI_SCALING_SPEC.md) ----
+def _h0v(m):
+    new, k = re.subn(r'(    invoke-virtual \{(\w+), (\w+)\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add\(Lcom/badlogic/gdx/scenes/scene2d/Actor;\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\s*move-result-object \w+\n\s*(?:sget \w+, [^\n]+\n\s*)?const/high16 \w+, 0x43f00000    # 480\.0f\n)',
+                     lambda g: '    invoke-static/range {' + g.group(3) + ' .. ' + g.group(3) + '}, Lnet/fdgames/ek/android/lan/EkUi;->sizeWrapped(Ljava/lang/Object;)V\n\n' + g.group(1), m)
+    assert k == 1, f"h0 value column: {k}"
+    return new
+edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0v, "StatsDetailWindow row: value sentence sized to its column before layout")
+edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0v, "StatsDetailWindow sheet rows: value sentence sized to its column before layout")
+
 print("DONE")
