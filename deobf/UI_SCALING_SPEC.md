@@ -78,3 +78,25 @@ a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
 * **Skill description panel** (`SkillDetailTable` y in `SkillWindow`): no scrolling; long descriptions
   (summon rank tables) ran past the window bottom / behind Back. Now in a vertical ScrollPane like the
   skill list (`patch_hero_class.py` §7b2), reset to the top whenever another skill is selected.
+
+## v47 — Details overlap and the route chooser, redone from measurements (owner screenshots)
+Both v44 and v45 fixes failed on the owner's Fold, so this round was checked in an offline layout
+simulation that runs the game's own libGDX classes (dex2jar of the built APK) with the real
+`tahoma25white.fnt` metrics — no guessing from screenshots.
+
+**Details (h0).** Measured against the screenshot, the drawn wrap is not width-driven: "5% chance of
+finding secrets." and "0% chance of disabling traps." have identical glyph widths (331 units), yet one
+drew wrapped and the other didn't, while every row kept a one-line height. Whatever makes the device's
+draw-time wrap differ from the measured one, relying on libGDX wrapping can't be made reliable here.
+Fix: B61 now calls `EkUi.prewrap(cell)` right after the value cell gets its 480·h width. It measures
+words with the label's own font at its own font scale, inserts explicit `\n` breaks at 96% of the cell
+width, and turns wrapping off. Row height and drawn lines now come from the same text. B60 (width
+preset) is dropped. The sim confirms row height = label height for every row at 2000x1510 and 1300x1800.
+
+**Route chooser (eksp < l1).** l1 overrides `getPrefWidth()` = 430c and `getPrefHeight()` =
+max(315c, lines·58c), and `Dialog.show()` packs to those. That undid v45's resize and left the widened
+text and buttons clipped on both sides. eksp now overrides both, via `EkUi.dialogPrefWidth` =
+min(660c, 94% of the screen width) and `dialogPrefHeight` = content + buttons + pads (capped at 94% of
+the screen height). `growDialog` fits the text column (width − 90c, explicit lines) and the three
+buttons (min(170c, share of the width)) inside that width. Sim: everything sits inside the box at
+2000x1510, 1300x1800 and 2520x1080.

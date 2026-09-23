@@ -27,14 +27,23 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v46.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v47.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v46.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v47.apk
 ```
+
+### v47 (2026-09-23) — Details overlap + summon route chooser, fixed from measurements
+
+Owner screenshots showed both v44/v45 fixes failing. Checked this time in an offline layout sim (the
+game's own libGDX classes + real tahoma25 metrics). Details: value sentences are broken into explicit
+lines at the cell width (EkUi.prewrap, B61) and libGDX wrapping is off, so row height = drawn lines.
+Route chooser: l1 hard-codes its pref size and show() packs to it; eksp now overrides
+getPrefWidth/Height (EkUi.dialogPrefWidth/Height), text + 3 buttons fitted inside.
+`deobf/UI_SCALING_SPEC.md` v47. dist: base + v47 + v46.
 
 ### v46 (2026-09-23) — Summon text shows only your chosen route
 

@@ -1,6 +1,8 @@
 package net.fdgames.ek.android.lan;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -143,54 +145,94 @@ public final class EkUi {
     }
 
     /**
-     * Details window value column (480 x height/720): a wrapped sentence. The table asked for its height
-     * while the label's width was still 0, so the row came out shorter than the wrapped text and the
-     * extra lines ran over the rows below. Give it its column width first.
+     * Break a label's text into explicit lines that fit {@code width}, using the label's own font at its
+     * own font scale, and turn libGDX wrapping off. With explicit lines the height the table reserves and
+     * the lines that get drawn come from the same text, so rows can't run into each other. (v43-v46 kept
+     * libGDX wrapping and only corrected the width/height it measured; on the owner's Fold the drawn
+     * wrap still differed from the measured one - two sentences of identical width, one wrapped and one
+     * not - so the rows stayed one line tall while the text drew two.)
      */
-    public static void sizeWrapped(Object o) {
-        try {
-            if (o instanceof Label) {
-                Label lb = (Label) o;
-                lb.setWrap(true);
-                lb.setWidth(480f * (Gdx.graphics.getHeight() / 720f));
-                lb.invalidateHierarchy();
-            }
-        } catch (Throwable e) {
-            // keep vanilla
+    static void wrapTo(Label lb, float width) {
+        if (lb == null || width <= 0f || lb.getText() == null || lb.getStyle() == null) {
+            return;
         }
+        BitmapFont font = lb.getStyle().font;
+        if (font == null) {
+            return;
+        }
+        String text = lb.getText().toString();
+        BitmapFont.BitmapFontData d = font.getData();
+        float osx = d.scaleX;
+        float osy = d.scaleY;
+        float sx = lb.getFontScaleX();
+        float sy = lb.getFontScaleY();
+        if (sx != 1f || sy != 1f) {
+            d.setScale(sx, sy);
+        }
+        StringBuilder out = new StringBuilder();
+        try {
+            GlyphLayout gl = new GlyphLayout();
+            float max = width * 0.96f; // a little slack for kerning/markup rounding
+            String[] paras = text.split("\n", -1);
+            for (int p = 0; p < paras.length; p++) {
+                String[] words = paras[p].split(" ", -1);
+                String line = "";
+                for (int i = 0; i < words.length; i++) {
+                    String cand = i == 0 ? words[i] : line + " " + words[i];
+                    gl.setText(font, cand);
+                    if (i > 0 && gl.width > max && line.trim().length() > 0) {
+                        out.append(line).append('\n');
+                        line = words[i];
+                    } else {
+                        line = cand;
+                    }
+                }
+                out.append(line);
+                if (p < paras.length - 1) {
+                    out.append('\n');
+                }
+            }
+        } finally {
+            d.setScale(osx, osy);
+        }
+        lb.setWrap(false);
+        lb.setText(out.toString());
+        lb.invalidateHierarchy();
     }
 
     /**
-     * Right after the value label's cell got its 480xS width: measure the wrapped sentence at that width
-     * and pin the row's height to it (v43's early setWidth alone wasn't picked up - owner's screenshot
-     * still showed every row one line tall, wrapped lines landing on the next row).
+     * Details window value column (StatsDetailWindow h0, cell width 480 x h): called right after the
+     * value label's cell got its width; breaks the sentence into lines of that width.
      */
-    public static void fitCell(Object o) {
+    public static void prewrap(Object o) {
         try {
             if (!(o instanceof Cell)) {
                 return;
             }
             Cell c = (Cell) o;
-            if (c.getActor() instanceof Label) {
-                Label lb = (Label) c.getActor();
-                lb.setWrap(true);
-                lb.setWidth(480f * (Gdx.graphics.getHeight() / 720f));
-                lb.invalidateHierarchy();
-                float h = lb.getPrefHeight();
-                if (h > 0f) {
-                    c.height(h);
-                }
+            if (c.getActor() instanceof Label && c.getPrefWidthValue() != null) {
+                wrapTo((Label) c.getActor(), c.getPrefWidthValue().get(c.getActor()));
             }
         } catch (Throwable e) {
             // keep vanilla
         }
     }
 
+    /** SimpleDialog (e/a/d/l1) scale: screen height / 720, as l1.c. */
+    private static float dlgScale() {
+        return Gdx.graphics.getHeight() / 720f;
+    }
+
+    /** Route chooser box width: 660 x c, but never wider than 94% of the screen. */
+    private static float dlgWidth() {
+        return Math.min(660f * dlgScale(), Gdx.graphics.getWidth() * 0.94f);
+    }
+
     /**
-     * Summon route chooser (e/a/d/e/eksp, a SimpleDialog l1): l1 is a fixed 700x240 x c box with a 380 x c
-     * text column, made for one-liners. Our 5-line prompt wrapped far past 240 and ran under the route
-     * buttons (beta tester: "text gets cut off"). Widen the text column (620c) and the buttons (170c),
-     * let the box take its content's height, and centre it again.
+     * Summon route chooser (e/a/d/e/eksp extends SimpleDialog l1). l1 reports a fixed preferred size
+     * (430c wide, height from a line count) and Dialog.show() packs to it, which undid v45's resize and
+     * left the widened text and buttons clipped on both sides. eksp now overrides getPrefWidth/Height
+     * with these; growDialog fits the text and the three buttons inside that width.
      */
     public static void growDialog(Object o) {
         try {
@@ -198,31 +240,45 @@ public final class EkUi {
                 return;
             }
             Dialog d = (Dialog) o;
-            float c = d.getWidth() / 700f;
-            if (c <= 0f) {
-                c = scale();
-            }
+            float c = dlgScale();
+            float w = dlgWidth();
+            float textW = w - 90f * c;
             com.badlogic.gdx.utils.a cells = d.getContentTable().getCells();
             for (int i = 0; i < cells.c; i++) {
                 Cell cell = (Cell) cells.get(i);
-                cell.width(620f * c);
+                cell.width(textW);
                 if (cell.getActor() instanceof Label) {
-                    Label lb = (Label) cell.getActor();
-                    lb.setWrap(true);
-                    lb.setWidth(620f * c);
-                    lb.invalidateHierarchy();
+                    wrapTo((Label) cell.getActor(), textW);
                 }
             }
             com.badlogic.gdx.utils.a buttons = d.getButtonTable().getCells();
+            int n = Math.max(1, buttons.c);
+            // l1's button defaults space them 40c apart
+            float bw = Math.min(170f * c, (w - 80f * c - 40f * c * (n - 1)) / n);
             for (int i = 0; i < buttons.c; i++) {
-                ((Cell) buttons.get(i)).width(170f * c);
+                ((Cell) buttons.get(i)).width(bw);
             }
-            d.pack();
-            float w = Math.max(d.getWidth(), 700f * c);
-            d.setWidth(w);
-            d.setPosition((Gdx.graphics.getWidth() - w) / 2f, (Gdx.graphics.getHeight() - d.getHeight()) / 2f);
         } catch (Throwable e) {
             // keep vanilla
+        }
+    }
+
+    public static float dialogPrefWidth(Object o) {
+        try {
+            return dlgWidth();
+        } catch (Throwable e) {
+            return 700f;
+        }
+    }
+
+    public static float dialogPrefHeight(Object o) {
+        try {
+            Dialog d = (Dialog) o;
+            float c = dlgScale();
+            float h = d.getContentTable().getPrefHeight() + d.getButtonTable().getPrefHeight() + d.getPadY() + 30f * c;
+            return Math.min(h, Gdx.graphics.getHeight() * 0.94f);
+        } catch (Throwable e) {
+            return 240f * dlgScale();
         }
     }
 }

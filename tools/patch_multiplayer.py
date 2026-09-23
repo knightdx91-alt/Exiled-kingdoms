@@ -1146,27 +1146,45 @@ def _h0(m):
 edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0, "StatsDetailWindow row: name column wraps in its own width")
 edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0, "StatsDetailWindow sheet rows: name column wraps in its own width")
 
-# ---- B60: Details window value column: wrapped sentences ran over the rows below (UI_SCALING_SPEC.md) ----
-def _h0v(m):
-    new, k = re.subn(r'(    invoke-virtual \{(\w+), (\w+)\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add\(Lcom/badlogic/gdx/scenes/scene2d/Actor;\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\s*move-result-object \w+\n\s*(?:sget \w+, [^\n]+\n\s*)?const/high16 \w+, 0x43f00000    # 480\.0f\n)',
-                     lambda g: '    invoke-static/range {' + g.group(3) + ' .. ' + g.group(3) + '}, Lnet/fdgames/ek/android/lan/EkUi;->sizeWrapped(Ljava/lang/Object;)V\n\n' + g.group(1), m)
-    assert k == 1, f"h0 value column: {k}"
-    return new
-edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0v, "StatsDetailWindow row: value sentence sized to its column before layout")
-edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0v, "StatsDetailWindow sheet rows: value sentence sized to its column before layout")
+# ---- B60: (v43-v46 preset the value label's width before layout; superseded by B61's explicit lines) ----
 
-# ---- B61: Details window value rows: pin each row's height to its wrapped sentence (owner screenshot) ----
+# ---- B61: Details window value rows: break each sentence into explicit lines of its cell's width (v47) ---
+#          The drawn libGDX wrap differed from the measured one on the owner's Fold, so pinning heights
+#          (v44) still overlapped. EkUi.prewrap turns wrapping off and inserts the line breaks itself.
 def _h0h(m):
     new, k = re.subn(r'(    const/high16 (\w+), 0x43f00000    # 480\.0f\n(?:\s*sget \w+, [^\n]+\n)?\s*mul-float (\w+), \w+, \w+\n\s*invoke-virtual \{(\w+), \3\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->width\(F\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n)',
-                     lambda g: g.group(1) + '\n    invoke-static/range {' + g.group(4) + ' .. ' + g.group(4) + '}, Lnet/fdgames/ek/android/lan/EkUi;->fitCell(Ljava/lang/Object;)V\n', m)
+                     lambda g: g.group(1) + '\n    invoke-static/range {' + g.group(4) + ' .. ' + g.group(4) + '}, Lnet/fdgames/ek/android/lan/EkUi;->prewrap(Ljava/lang/Object;)V\n', m)
     assert k == 1, f"h0 value cell: {k}"
     return new
-edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0h, "StatsDetailWindow row: row height = wrapped sentence height")
-edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0h, "StatsDetailWindow sheet rows: row height = wrapped sentence height")
+edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0h, "StatsDetailWindow row: value sentence in explicit lines of its column width")
+edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0h, "StatsDetailWindow sheet rows: value sentence in explicit lines of its column width")
 
 # ---- B62: summon route chooser text ran under its buttons (fixed-size SimpleDialog) — grow the dialog -----
 edit_method('e/a/d/e/eksp', '<init>(Le/a/d/e/c0;)V', lambda m: sub1(
     r'(\n    return-void\n\.end method)$', r'\n    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkUi;->growDialog(Ljava/lang/Object;)V\n\1', m, 'route dialog end'),
-    "summon route dialog: sized to its text + buttons, centred")
+    "summon route dialog: text + buttons fitted to the box width")
+# l1 hard-codes getPrefWidth/Height (430c x line-count) and Dialog.show() packs to them, which undid
+# the v45 resize; the route dialog reports its own size instead (v47, owner screenshot).
+add_method(f'{DST}/e/a/d/e/eksp.smali', '''
+.method public getPrefWidth()F
+    .locals 1
+
+    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkUi;->dialogPrefWidth(Ljava/lang/Object;)F
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public getPrefHeight()F
+    .locals 1
+
+    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkUi;->dialogPrefHeight(Ljava/lang/Object;)F
+
+    move-result v0
+
+    return v0
+.end method
+''', "summon route dialog: own preferred size (content height, 660c wide)")
 
 print("DONE")
