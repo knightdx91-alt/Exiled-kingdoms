@@ -234,10 +234,11 @@ public final class EkAuto {
                 vpn.append(ip).append("   (").append(vpnLabel(n, ip)).append(")\n");
             }
         }
-        StringBuilder s = new StringBuilder(vpn).append(other);
+        StringBuilder s = new StringBuilder(EkNat.describe()).append("\n\n").append(vpn).append(other);
         if (vpn.length() == 0) {
-            s.append("\nNo Tailscale/ZeroTier address visible to this game. Turn the VPN on in the"
-                    + " Tailscale (or ZeroTier) app, and check Exiled Kingdoms isn't in its excluded apps.");
+            s.append("\n(No Tailscale/ZeroTier address visible to this game. Only needed if the Internet"
+                    + " line above doesn't work: turn the VPN on in that app, and check Exiled Kingdoms"
+                    + " isn't in its excluded apps.)");
         }
         if (cellular) {
             s.append("\n(Mobile-data address hidden: carriers use 100.x too, but it can't be reached by other players.)");

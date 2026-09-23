@@ -1228,4 +1228,30 @@ edit_method('net/fdgames/assets/Assets', 'a(Lnet/fdgames/GameEntities/Character$
     :ek_pt_ok
 ''', m, 'portrait lookup entry'), "Assets.a(Gender,I): out-of-range portrait index -> portrait 0")
 
+# ---- B64: internet play without extra apps: open the game port on the home router (UPnP) while
+#          hosting, close it when hosting stops, and accept "host:port" when joining. NAT_UPNP_SPEC.md
+NAT = 'Lnet/fdgames/ek/android/lan/EkNat;'
+edit_method(LSM, 'startHosting(Ljava/lang/String;I)V', lambda m: sub1(
+    r'^(\.method public startHosting\(Ljava/lang/String;I\)V\n    \.(?:registers|locals) \d+\n)',
+    r'\1' + '\n    invoke-static {}, ' + NAT + '->onHostStart()V\n', m, 'nat start', re.M),
+    "LanSessionManager.startHosting: ask the router to open the game port")
+edit_method(LSM, 'stopAll()V', lambda m: sub1(
+    r'^(\.method public stopAll\(\)V\n    \.(?:registers|locals) \d+\n)',
+    r'\1' + '\n    invoke-static {}, ' + NAT + '->onHostStop()V\n', m, 'nat stop', re.M),
+    "LanSessionManager.stopAll: close the router port")
+edit_method(LSM, 'joinHost(Ljava/lang/String;Ljava/lang/String;I)V', lambda m: sub1(
+    r'(    invoke-static \{\}, ' + re.escape(AU) + r'->noteJoin\(\)V\n)',
+    r'\1' + '''
+    invoke-static {}, ''' + NAT + '''->onHostStop()V
+
+    invoke-static {p2, p3}, ''' + NAT + '''->portPart(Ljava/lang/String;I)I
+
+    move-result p3
+
+    invoke-static {p2}, ''' + NAT + '''->hostPart(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p2
+''', m, 'nat join'),
+    "LanSessionManager.joinHost: close our router port; accept host:port")
+
 print("DONE")

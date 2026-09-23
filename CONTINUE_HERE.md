@@ -27,14 +27,24 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v48.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v49.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v48.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v49.apk
 ```
+
+### v49 (2026-09-23) — internet play without extra apps (router port opening)
+
+Owner: friends in other states on home Wi-Fi, no Tailscale, no manual port forwarding, free. New
+`EkNat`: while hosting, UPnP-IGD asks the home router to forward TCP 32124 (falls back to 32125..32134
+on conflict, lease 3600 renewed / permanent if the router insists), shows "Internet (friends
+anywhere): <public IP>[:port]" in My address, removes the mapping when hosting stops. Detects
+provider-shared addresses (CGNAT) and says to use Tailscale. Join by IP accepts host:port. Router
+HTTP goes over a raw socket (SDK 29 blocks cleartext HttpURLConnection). Tested against a fake
+router offline; not yet on a real router. `deobf/NAT_UPNP_SPEC.md`. B64. dist: base + v49 + v48.
 
 ### v48 (2026-09-23) — NPC portrait crash + Tailscale address label
 

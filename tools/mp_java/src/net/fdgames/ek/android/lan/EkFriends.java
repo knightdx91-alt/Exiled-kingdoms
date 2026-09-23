@@ -149,7 +149,8 @@ public final class EkFriends {
         try {
             final boolean on = EkAuto.autoHostEnabled(a);
             new AlertDialog.Builder(a).setTitle("My address")
-                    .setMessage("Give a friend one of these (use the ZeroTier/Tailscale one over the internet):\n\n"
+                    .setMessage("Friends type one of these in Join by IP. Friends elsewhere use the Internet address;"
+                            + " on the same Wi-Fi use the Wi-Fi/local one.\n\n"
                             + EkAuto.myAddresses()
                             + "\n\nHost automatically while playing: " + (on ? "ON" : "OFF"))
                     .setPositiveButton(on ? "Turn auto-host OFF" : "Turn auto-host ON", new DialogInterface.OnClickListener() {
