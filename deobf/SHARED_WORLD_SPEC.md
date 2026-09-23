@@ -69,3 +69,50 @@ and its numbers/flow pinned here before coding.
 * Lobby row: Friends / Add friend / **My address** (VPN addresses first: ZeroTier `zt*`, Tailscale
   100.64/10, `tun`/`wg`; plus the auto-host ON/OFF switch, pref `ek_autohost`).
 * In game: Options → **MULTIPLAYER** opens the lobby.
+
+## 7. Phases B + C — technical design (reversed 2026-09-23)
+**Save format.** `Serializer.d(slot,sub)` (Save; Options "Save & Exit" uses sub 0) builds
+`SaveGameData{gamedata=GameData.O(), leveldata=GameLevelData.s(), queue=MessageRouter.a(),
+version}`, clears `player.conversations`/`activables` first (as every save does), `Json.prettyPrint`s
+it, Base64-encodes it (`Serializer.b`) and writes `data/saves/<slot>/game*.sav`. `Serializer.a(slot,sub)`
+(LoadGame) reads, Base64-decodes (`Serializer.a(String)`), `fromJson(SaveGameData)`, then
+`GameData.a(gamedata)` and starts the game screen at `CurrentLevel` with `leveldata`. `GameData`'s
+constructor has no static side effects, so extra `SaveGameData` objects can be parsed on the side.
+The load screen only lists slots 0–9 (`Serializer.a[]` latest-sub table, `e(I)`), so **slot 42 =
+guest world**, invisible in the UI and never indexed in that table.
+
+**Character block** (`EkShare.Block`, the game's own Json): `player`, `backpack`, `party`, the
+companion NPC actors (level `npcs` whose tag is in `party.companions`), and the character variables
+(`REP_*`, `know_*`, `item_upg_*`; `GameVariables.variables` via a new accessor). Captured with
+`activables`/`conversations` cleared and then restored, as the save does.
+
+**One graft path.** `LoadGame` is hooked right after the save is parsed and before
+`GameData.a(gd)`: if a pending block file exists for the slot being loaded
+(`data/saves/ek_block_<slot>.json`), it replaces `player` (keeping the position of the one it replaces),
+`backpack`, `party` and the character variables, swaps the old party's companion NPCs in the level for
+the block's, and for slot 42 sets `gamedata.slot = 42` so every save while joined goes to the guest
+slot. The home block file is deleted only after a successful save to the home slot (hook around
+`Serializer.d`), so a crash anywhere just re-applies it on the next load of home.
+* **Join** (only from inside a game): Save & Exit–style save of home (sub 0), capture block, remember
+  home slot, `joinHost`. On `WELCOME` the client sends `EKWREQ`; the host builds a snapshot on the game
+  thread (`Serializer.ekSnapshot()`, a clone of the save minus the file write) and sends
+  `EKWORLD⇥<base64>`; the client writes it to slot 42, writes the block for 42, loads slot 42.
+* **While joined**: each save to 42 refreshes `ek_block_<home>.json` with the live character.
+* **Leave / disconnect / host quits** (keeper sees guest mode + not connected): capture block → write
+  `ek_block_<home>` → load home latest (`Serializer.f(home)`) → graft → save home (sub 0) next tick.
+
+**World sync (C).** Host = authority; lines on the engine's TCP link:
+`EKVAR⇥name⇥value` (world variables only: set through `GameVariables.b(String,I)`),
+`EKDEAD⇥tag` (`GameData.l`), `EKLOOT⇥id` (`GameData.i`). A joiner's change goes to the host, the host
+applies it through the game (so quest side effects run) and its own hooks broadcast to every client;
+applying a received change is done with forwarding suppressed. Vault button / bag tabs are disabled
+for guests (vaults are the host's world storage; a guest taking from a copy would duplicate items).
+
+**Phases B + C — done (code).** `EkShare` + hooks B30–B40 (`patch_multiplayer.py`) and the guest
+bag block (`patch_mp_features.py`); design as §7. Checked: `Player`'s `containers/shops/toggles/loots/
+plants/beds/restpoints/mapCastles` are per-frame proximity caches rebuilt in `Player.a(F)`, so a
+grafted player carries no level state. Variables `lan_*`/`pvp_*` (written by the engine every frame,
+per player) are never synced; a variable is only sent when its value changed. Known limits: areas
+other than the host's current one start from the game's defaults for the guest (their per-level
+cache lives in the host's `data/saves/<slot>/cache/`), except looted chests and killed uniques,
+which are synced lists; joining from the main menu (no character loaded) only chats.

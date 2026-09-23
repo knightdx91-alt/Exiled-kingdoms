@@ -1,0 +1,1 @@
+package net.fdgames.Helpers; public class SaveGameData { public net.fdgames.GameWorld.GameData gamedata; public net.fdgames.GameLevel.GameLevelData leveldata; public java.util.ArrayList queue; public String version; }

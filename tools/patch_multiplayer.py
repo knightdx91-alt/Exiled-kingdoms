@@ -737,4 +737,188 @@ edit_method('e/a/b/b', 'a(F)V', lambda m: sub1(
     '    invoke-static {}, ' + AU + r'->tick()V' + '\n\n' + r'\1', m, 'autohost tick'),
     "GameScreen.a(F): auto-host keeper")
 
+# ---- B30-B40: shared world phases B+C (character block, guest slot 42, world sync) SHARED_WORLD_SPEC §7
+SH = 'Lnet/fdgames/ek/android/lan/EkShare;'
+SER = 'net/fdgames/Helpers/Serializer'
+SE = 'L' + SER + ';'
+GD_ = 'Lnet/fdgames/GameWorld/GameData;'
+PL_ = 'Lnet/fdgames/GameEntities/Final/Player;'
+SGD = 'Lnet/fdgames/Helpers/SaveGameData;'
+JS = 'Lnet/fdgames/Helpers/Json;'
+add_method(f'{DST}/{SER}.smali', f"""
+.method public static ekJson(){JS}
+    .locals 1
+
+    sget-object v0, {SE}->d:{JS}
+
+    return-object v0
+.end method
+
+.method public static ekSnapshot()Ljava/lang/String;
+    .locals 4
+
+    invoke-static {{}}, {EK}->stripPeersCurrent()V
+
+    invoke-static {{}}, {GD_}->O(){GD_}
+
+    move-result-object v0
+
+    if-nez v0, :ok
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    :ok
+    iget-object v1, v0, {GD_}->player:{PL_}
+
+    const/4 v2, 0x0
+
+    iput-object v2, v1, {PL_}->conversations:Ljava/util/ArrayList;
+
+    new-instance v1, {SGD}
+
+    invoke-direct {{v1}}, {SGD}-><init>()V
+
+    iput-object v0, v1, {SGD}->gamedata:{GD_}
+
+    invoke-static {{}}, Lnet/fdgames/GameLevel/GameLevelData;->s()Lnet/fdgames/GameLevel/GameLevelData;
+
+    move-result-object v2
+
+    iput-object v2, v1, {SGD}->leveldata:Lnet/fdgames/GameLevel/GameLevelData;
+
+    invoke-static {{}}, Lnet/fdgames/GameWorld/MessageRouter;->a()Ljava/util/ArrayList;
+
+    move-result-object v2
+
+    iput-object v2, v1, {SGD}->queue:Ljava/util/ArrayList;
+
+    const-string v2, "1.3.1207"
+
+    iput-object v2, v1, {SGD}->version:Ljava/lang/String;
+
+    iget-object v2, v0, {GD_}->player:{PL_}
+
+    const/4 v3, 0x0
+
+    iput-object v3, v2, {PL_}->activables:[Lnet/fdgames/GameEntities/Helpers/Activable;
+
+    iput v3, v2, {PL_}->numActivables:I
+
+    sget-object v2, {SE}->d:{JS}
+
+    const/4 v3, 0x1
+
+    invoke-virtual {{v2, v3}}, {JS}->setIgnoreUnknownFields(Z)V
+
+    invoke-virtual {{v2, v1}}, {JS}->prettyPrint(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {{v1}}, {SE}->b(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    return-object v1
+.end method""", "Serializer.ekJson / ekSnapshot (the save, as a string)")
+edit_method(SER, 'a(II)V', lambda m: sub1(
+    r'^(\.method public static a\(II\)V\n    \.locals \d+\n)', r'\1' + '\n    invoke-static {p0, p1}, ' + SH + '->onLoadStart(II)V\n', m, 'load start', re.M),
+    "Serializer.a(II) LoadGame: remember the slot")
+edit_method(SER, 'a(II)V', lambda m: sub1(
+    r'(    iget-object p0, v5, ' + re.escape(SGD) + r'->gamedata:' + re.escape(GD_) + r'\n\n    invoke-static \{p0\}, ' + re.escape(GD_) + r'->a\(' + re.escape(GD_) + r'\)V\n)',
+    '    invoke-static {v5}, ' + SH + '->onLoaded(' + SGD + r')V' + '\n\n' + r'\1', m, 'graft'),
+    "Serializer.a(II) LoadGame: graft a pending character block before the save goes live")
+wrap_method(SER, 'd(II)V', 'ekSaveOrig', True, f"""
+.method public static d(II)V
+    .locals 0
+
+    invoke-static {{p0, p1}}, {SE}->ekSaveOrig(II)V
+
+    invoke-static {{p0}}, {SH}->onSaveAfter(I)V
+
+    return-void
+.end method""", "Serializer.d(II) SaveGame: mirror the character into the home save while joined")
+GV = 'net/fdgames/GameWorld/GameVariables'
+add_method(f'{DST}/{GV}.smali', """
+.method public ekVars()Ljava/util/ArrayList;
+    .locals 1
+
+    iget-object v0, p0, Lnet/fdgames/GameWorld/GameVariables;->variables:Ljava/util/ArrayList;
+
+    return-object v0
+.end method""", "GameVariables.ekVars()")
+wrap_method(GV, 'b(Ljava/lang/String;I)Z', 'ekSetOrig', True, f"""
+.method public b(Ljava/lang/String;I)Z
+    .locals 1
+
+    invoke-direct {{p0, p1, p2}}, L{GV};->ekSetOrig(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    invoke-static {{p1, p2}}, {SH}->onVar(Ljava/lang/String;I)V
+
+    return v0
+.end method""", "GameVariables.b(String,I): world variables sync")
+for sig, orig, fn in (('l(Ljava/lang/String;)V', 'ekDeadOrig', 'onDead'), ('i(Ljava/lang/String;)V', 'ekLootOrig', 'onLooted')):
+    wrap_method('net/fdgames/GameWorld/GameData', sig, orig, True, f"""
+.method public {sig}
+    .locals 0
+
+    invoke-direct {{p0, p1}}, {GD_}->{orig}(Ljava/lang/String;)V
+
+    invoke-static {{p1}}, {SH}->{fn}(Ljava/lang/String;)V
+
+    return-void
+.end method""", f"GameData.{sig}: {fn} sync")
+CP = 'Lnet/fdgames/ek/android/lan/LanSessionManager$ClientPeer;'
+add_method(f'{DST}/{LSM}.smali', f"""
+.method public ekSendToHost(Ljava/lang/String;)V
+    .registers 3
+
+    iget-boolean v0, p0, {LS}->connected:Z
+
+    if-eqz v0, :done
+
+    iget-object v0, p0, {LS}->clientWriter:Ljava/io/PrintWriter;
+
+    if-eqz v0, :done
+
+    invoke-direct {{p0, v0, p1}}, {LS}->sendLine(Ljava/io/PrintWriter;Ljava/lang/String;)V
+
+    :done
+    return-void
+.end method
+
+.method public ekSendTo(Ljava/lang/Object;Ljava/lang/String;)V
+    .registers 4
+
+    instance-of v0, p1, {CP}
+
+    if-eqz v0, :done
+
+    check-cast p1, {CP}
+
+    invoke-static {{p1, p2}}, {CP}->access$900({CP}Ljava/lang/String;)V
+
+    :done
+    return-void
+.end method
+
+.method public ekBroadcast(Ljava/lang/String;)V
+    .registers 2
+
+    invoke-direct {{p0, p1}}, {LS}->broadcastToClients(Ljava/lang/String;)V
+
+    return-void
+.end method""", "LanSessionManager.ekSendToHost / ekSendTo / ekBroadcast")
+edit_method(LSM, 'handleIncomingClient(Ljava/net/Socket;)V', lambda m: sub1(
+    r'(    :(goto_\w+)\n    invoke-virtual \{v2\}, Ljava/io/BufferedReader;->readLine\(\)Ljava/lang/String;\n\n    move-result-object v1\n\n    if-eqz v1, :cond_\w+\n)',
+    r'\1' + '\n    invoke-static {p0, v6, v1}, ' + SH + '->hostLine(' + LS + r'Ljava/lang/Object;Ljava/lang/String;)Z' + '\n\n    move-result v4\n\n    if-nez v4, :\\2\n', m, 'host line'),
+    "LanSessionManager host read loop: shared-world messages first")
+edit_method(LSM, 'handleServerMessage(Ljava/lang/String;)V', lambda m: sub1(
+    r'^(\.method private handleServerMessage\(Ljava/lang/String;\)V\n    \.registers \d+\n)',
+    r'\1' + '\n    invoke-static {p0, p1}, ' + SH + '->clientLine(' + LS + 'Ljava/lang/String;)Z\n\n    move-result v0\n\n    if-eqz v0, :ekshare_no\n\n    return-void\n\n    :ekshare_no\n', m, 'client line', re.M),
+    "LanSessionManager client dispatch: shared-world messages first")
+
 print("DONE")

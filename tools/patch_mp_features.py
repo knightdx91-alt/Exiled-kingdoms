@@ -497,6 +497,12 @@ edit_method('e/a/d/e/h', 'u()V', lambda m: sub1(
     r'\1    invoke-direct {p0}, Le/a/d/e/h;->ekBagTabs()V\n\n' + r'\2', m, 'bag tabs'),
     "CharacterWindow.u(): bag-of-holding tabs 1-5")
 
+# guests: the vanilla bag-of-holding button would open the HOST's bag (world storage) -> blocked
+edit_method('e/a/d/e/k', 'touchDown(Lcom/badlogic/gdx/scenes/scene2d/InputEvent;FFII)Z', lambda m: sub1(
+    r'^(\.method public touchDown\(Lcom/badlogic/gdx/scenes/scene2d/InputEvent;FFII\)Z\n    \.locals \d+\n)',
+    r'\1' + '\n    invoke-static {}, ' + EK + '->bagBlocked()Z\n\n    move-result p1\n\n    if-eqz p1, :ekf_bag\n\n    const/4 p1, 0x0\n\n    return p1\n\n    :ekf_bag\n', m, 'bag', re.M),
+    "bag of holding button: blocked for guests in a shared world")
+
 # ======================= 9. recover ===========================================================
 for sig in ('I0()V', 'b(Z)V'):
     edit_method('net/fdgames/GameEntities/Final/Player', sig, lambda m: m.replace(

@@ -59,6 +59,7 @@ public final class EkAuto {
     /** Hooked at the start of LanSessionManager.joinHost: keep the keeper from re-hosting mid-join. */
     public static void noteJoin() {
         lastJoinAttempt = System.currentTimeMillis();
+        EkShare.prepareJoin();
     }
 
     /** Called every frame from the game screen (before LanGameBridge.tick); runs every 3 s. */
@@ -69,6 +70,7 @@ public final class EkAuto {
                 return;
             }
             lastCheck = now;
+            EkShare.tick();
             final MainActivity a = activity();
             GameData gd = GameData.O();
             if (a == null || gd == null || gd.player == null || starting) {

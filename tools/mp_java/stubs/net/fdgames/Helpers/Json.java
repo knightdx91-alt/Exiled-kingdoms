@@ -1,0 +1,1 @@
+package net.fdgames.Helpers; public class Json { public void setIgnoreUnknownFields(boolean b) {} public String prettyPrint(Object o) { return null; } public Object fromJson(Class c, String s) { return null; } }
