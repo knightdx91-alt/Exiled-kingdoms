@@ -54,3 +54,19 @@ There's no real home router here, only a fake router run offline. Whether it wor
 owner's router (UPnP on) and provider (no CGNAT). Tested offline against a fake router (SSDP responder
 + SOAP) written in Python: discovery, description parsing, mapping, conflict fallback, lease-725
 fallback, CGNAT detection and delete.
+
+## v50 — joining your own house's public address; lobby layout
+Owner test at home: the Fold (192.168.1.151) joined 97.237.209.123:32125, the address the tablet
+(192.168.1.155) showed, and got ECONNREFUSED. Many home routers don't support NAT loopback (a
+connection from inside the house to the house's own public address). A friend elsewhere doesn't hit
+this. Now `EkNat.resolveJoin` (in the joinHost hook, on the lobby's join thread) checks: when the typed
+host is a public address equal to our router's `GetExternalIPAddress`, it asks the router
+`GetSpecificPortMappingEntry(port, TCP)` and connects to the `NewInternalClient:NewInternalPort` it
+names, the host on the Wi-Fi. Other addresses pass through unchanged. A failed router search is
+remembered for 5 min so joining someone else's public address isn't delayed each time.
+(The port fallback 32125 in the screenshot means another device in the house held 32124, most
+likely the Fold's own auto-host mapping.)
+
+Lobby (B65, `EkFriends.relayoutLobby`): the chat was a weight-1 box after fixed boxes (diag 44dp,
+sessions 140dp, players 90dp) and got about one line. Sessions and players now sit side by side
+(130dp each), and the diagnostics strip is 84dp tall. The chat takes the freed space.

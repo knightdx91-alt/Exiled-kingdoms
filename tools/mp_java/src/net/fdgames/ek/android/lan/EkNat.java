@@ -124,6 +124,72 @@ public final class EkNat {
         return dflt;
     }
 
+    // ---- joining your own house's public address (no NAT loopback) -------------------------------
+
+    private static volatile String joinHostResolved;
+    private static volatile int joinPortResolved;
+    private static volatile long noRouterAt;      // a failed search is remembered for 5 minutes
+
+    /**
+     * Hooked in LanSessionManager.joinHost (runs on the lobby's join thread). Splits "host:port"; and
+     * when the host is this house's own public address, asks the router which device on the Wi-Fi owns
+     * that port and connects there directly. Many home routers refuse a connection from inside the
+     * house to their own public address ("NAT loopback"), which is what the owner hit testing two
+     * devices at home (ECONNREFUSED to 97.x:32125 while the host was 192.168.1.155).
+     */
+    public static void resolveJoin(String typed, int dflt) {
+        final String h = hostPart(typed);
+        final int p = portPart(typed, dflt);
+        joinHostResolved = h;
+        joinPortResolved = p;
+        if (h == null || !isPublic(h) || "main".equals(Thread.currentThread().getName())) {
+            return;
+        }
+        try {
+            java.util.concurrent.Future<?> f = WORKER.submit(new Runnable() {
+                public void run() {
+                    try {
+                        if (controlUrl == null) {
+                            if (System.currentTimeMillis() - noRouterAt < 5 * 60 * 1000L) {
+                                return;
+                            }
+                            if (!discover()) {
+                                noRouterAt = System.currentTimeMillis();
+                                return;
+                            }
+                        }
+                        if (!h.equals(externalIp())) {
+                            return;                 // somebody else's house: connect normally
+                        }
+                        String r = soap("GetSpecificPortMappingEntry", "<NewRemoteHost></NewRemoteHost>"
+                                + "<NewExternalPort>" + p + "</NewExternalPort><NewProtocol>TCP</NewProtocol>");
+                        String client = tag(r, "NewInternalClient");
+                        String iport = tag(r, "NewInternalPort");
+                        if (client != null && client.trim().length() > 0) {
+                            joinHostResolved = client.trim();
+                            if (iport != null && isDigits(iport.trim())) {
+                                joinPortResolved = Integer.parseInt(iport.trim());
+                            }
+                        }
+                    } catch (Throwable e) {
+                        // keep the public address
+                    }
+                }
+            });
+            f.get(9, java.util.concurrent.TimeUnit.SECONDS);
+        } catch (Throwable e) {
+            // keep the public address
+        }
+    }
+
+    public static String joinHost() {
+        return joinHostResolved;
+    }
+
+    public static int joinPort() {
+        return joinPortResolved;
+    }
+
     private static boolean isDigits(String s) {
         if (s.length() == 0 || s.length() > 5) {
             return false;

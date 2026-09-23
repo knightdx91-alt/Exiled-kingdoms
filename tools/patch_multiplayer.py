@@ -1244,14 +1244,23 @@ edit_method(LSM, 'joinHost(Ljava/lang/String;Ljava/lang/String;I)V', lambda m: s
     r'\1' + '''
     invoke-static {}, ''' + NAT + '''->onHostStop()V
 
-    invoke-static {p2, p3}, ''' + NAT + '''->portPart(Ljava/lang/String;I)I
+    invoke-static {p2, p3}, ''' + NAT + '''->resolveJoin(Ljava/lang/String;I)V
+
+    invoke-static {}, ''' + NAT + '''->joinPort()I
 
     move-result p3
 
-    invoke-static {p2}, ''' + NAT + '''->hostPart(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {}, ''' + NAT + '''->joinHost()Ljava/lang/String;
 
     move-result-object p2
 ''', m, 'nat join'),
-    "LanSessionManager.joinHost: close our router port; accept host:port")
+    "LanSessionManager.joinHost: close our router port; accept host:port; own public IP -> LAN host")
+
+# ---- B65: lobby layout (owner screenshot): chat got ~1 line. Sessions + players side by side, taller
+#          diagnostics strip; the chat keeps its weight and takes the freed space. EkFriends.relayoutLobby
+edit_method(LOBBY, 'onCreate(Landroid/os/Bundle;)V', lambda m: sub1(
+    r'(    invoke-direct \{p0\}, Lnet/fdgames/ek/android/lan/LanLobbyActivity;->buildContentView\(\)Landroid/view/View;\n\n    move-result-object p1\n)',
+    r'\1\n    invoke-static {p0, p1}, Lnet/fdgames/ek/android/lan/EkFriends;->relayoutLobby(Landroid/app/Activity;Landroid/view/View;)Landroid/view/View;\n\n    move-result-object p1\n', m, 'lobby relayout'),
+    "LanLobbyActivity.onCreate: sessions/players side by side, bigger chat + log")
 
 print("DONE")

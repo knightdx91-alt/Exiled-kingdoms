@@ -414,4 +414,74 @@ public final class EkFriends {
             // ignore
         }
     }
+
+    /**
+     * Lobby layout (owner screenshot, v50): the room chat only got what was left after fixed-height
+     * boxes and showed about one line. "Discovered sessions" and "Players in room" now sit side by side,
+     * the orange diagnostics strip is taller, and the chat keeps its weight, so it gets the freed space.
+     * Found by type in LanLobbyActivity.buildContentView's root: TextView header, ListView (sessions),
+     * TextView header, TextView (players).
+     */
+    public static android.view.View relayoutLobby(android.app.Activity a, android.view.View rootView) {
+        try {
+            if (!(rootView instanceof android.widget.LinearLayout)) {
+                return rootView;
+            }
+            android.widget.LinearLayout root = (android.widget.LinearLayout) rootView;
+            float d = a.getResources().getDisplayMetrics().density;
+            int list = -1;
+            for (int i = 0; i < root.getChildCount(); i++) {
+                if (root.getChildAt(i) instanceof android.widget.ListView) {
+                    list = i;
+                    break;
+                }
+            }
+            // taller diagnostics strip: the first ScrollView above the sessions list
+            for (int i = 0; i < root.getChildCount() && (list < 0 || i < list); i++) {
+                android.view.View v = root.getChildAt(i);
+                if (v instanceof android.widget.ScrollView && v.getLayoutParams() != null) {
+                    android.view.ViewGroup.LayoutParams lp = v.getLayoutParams();
+                    lp.height = (int) (84 * d);
+                    v.setLayoutParams(lp);
+                    break;
+                }
+            }
+            if (list < 1 || list + 2 >= root.getChildCount()) {
+                return rootView;
+            }
+            android.view.View h1 = root.getChildAt(list - 1);
+            android.view.View sessions = root.getChildAt(list);
+            android.view.View h2 = root.getChildAt(list + 1);
+            android.view.View players = root.getChildAt(list + 2);
+            if (!(h1 instanceof android.widget.TextView) || !(h2 instanceof android.widget.TextView)
+                    || !(players instanceof android.widget.TextView)) {
+                return rootView;
+            }
+            int boxH = (int) (130 * d);
+            root.removeView(h1);
+            root.removeView(sessions);
+            root.removeView(h2);
+            root.removeView(players);
+            android.widget.LinearLayout row = new android.widget.LinearLayout(a);
+            row.setOrientation(0);
+            android.widget.LinearLayout left = new android.widget.LinearLayout(a);
+            left.setOrientation(1);
+            android.widget.LinearLayout right = new android.widget.LinearLayout(a);
+            right.setOrientation(1);
+            left.addView(h1);
+            left.addView(sessions, new android.widget.LinearLayout.LayoutParams(-1, boxH));
+            right.addView(h2);
+            right.addView(players, new android.widget.LinearLayout.LayoutParams(-1, boxH));
+            android.widget.LinearLayout.LayoutParams lp = new android.widget.LinearLayout.LayoutParams(0, -2, 1f);
+            android.widget.LinearLayout.LayoutParams rp = new android.widget.LinearLayout.LayoutParams(0, -2, 1f);
+            row.addView(left, lp);
+            row.addView(right, rp);
+            left.setPadding(0, 0, (int) (6 * d), 0);
+            right.setPadding((int) (6 * d), 0, 0, 0);
+            root.addView(row, list - 1, new android.widget.LinearLayout.LayoutParams(-1, -2));
+        } catch (Throwable e) {
+            // keep the stock layout
+        }
+        return rootView;
+    }
 }
