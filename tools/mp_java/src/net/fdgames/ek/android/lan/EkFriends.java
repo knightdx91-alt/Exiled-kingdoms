@@ -181,11 +181,12 @@ public final class EkFriends {
                             Toast.makeText(a, "Auto-host " + (on ? "off" : "on"), 0).show();
                         }
                     })
-                    .setNeutralButton(EkItems.hostPvpPref(a) ? "PvP everywhere: ON" : "PvP everywhere: OFF", new DialogInterface.OnClickListener() {
+                    .setNeutralButton(EkItems.myPvp() ? "My PvP: ON" : "My PvP: OFF", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface d, int w) {
-                            boolean now = !EkItems.hostPvpPref(a);
-                            EkItems.setHostPvp(a, now);
-                            Toast.makeText(a, "PvP everywhere " + (now ? "ON" : "OFF") + " (when you host)", 0).show();
+                            boolean now = !EkItems.myPvp();
+                            EkItems.setMyPvp(now);
+                            Toast.makeText(a, now ? "PvP on: you can attack and be attacked by players who also have it on"
+                                    : "PvP off: it stays off until you turn it back on", 1).show();
                         }
                     })
                     .setNegativeButton("Close", null).show();

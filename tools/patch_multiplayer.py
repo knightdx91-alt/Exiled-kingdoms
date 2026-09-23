@@ -1006,14 +1006,28 @@ edit_method(LGB, RRC, lambda m: sub1(
     r'(    if-lt v4, v5, :cond_\w+\n\n    const/4 v4, 0x0\n\n    iput v4, v3, Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;->missingHP:I\n)',
     r'\1\n    invoke-static {}, ' + IT + r'->onPvpDefeat()V' + '\n', m, 'pvp defeat'),
     "LanGameBridge.receiveRemoteCombat: PvP defeat outside the arena drops a loot bag")
-def _hostile(m):
-    new, k = re.subn(r'(    iget-object (v\d+), \2, Lnet/fdgames/GameWorld/GameData;->CurrentLevel:Ljava/lang/String;\n\n    if-eqz \2, :cond_\w+\n\n)(    const-string (v\d+), "H10_pvp_arena"\n(?:(?!\.end method).*\n)*?    if-lt v\d+, v\d+, :cond_\w+\n\n    :(cond_\w+)\n)',
-                     lambda g: g.group(1) + '    invoke-static {}, ' + IT + '->pvpAnywhere()Z\n\n    move-result ' + g.group(4) + '\n\n    if-nez ' + g.group(4) + ', :' + g.group(5) + '\n\n' + g.group(3), m, count=1)
-    assert k == 1, "hostile anchor"
-    return new
-for sig in ('createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
-            'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;'):
-    edit_method(LGB, sig, _hostile, f"LanGameBridge.{sig.split('(')[0]}: peers hostile everywhere when PvP everywhere is on")
+def _hostile_with(call):
+    """v57: hostile when THIS peer and I both have PvP on (EkItems.pvpWith*), not one global switch."""
+    def _hostile(m):
+        new, k = re.subn(r'(    iget-object (v\d+), \2, Lnet/fdgames/GameWorld/GameData;->CurrentLevel:Ljava/lang/String;\n\n    if-eqz \2, :cond_\w+\n\n)(    const-string (v\d+), "H10_pvp_arena"\n(?:(?!\.end method).*\n)*?    if-lt v\d+, v\d+, :cond_\w+\n\n    :(cond_\w+)\n)',
+                         lambda g: g.group(1) + '    invoke-static {p0}, ' + IT + call + '\n\n    move-result ' + g.group(4) + '\n\n    if-nez ' + g.group(4) + ', :' + g.group(5) + '\n\n' + g.group(3), m, count=1)
+        assert k == 1, "hostile anchor"
+        return new
+    return _hostile
+for sig, call in (('createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+                   '->pvpWithState(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Z'),
+                  ('getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+                   '->pvpWith(Ljava/lang/String;)Z')):
+    edit_method(LGB, sig, _hostile_with(call), f"LanGameBridge.{sig.split('(')[0]}: peer hostile when both players have PvP on")
+def _friendly_again(m):
+    """v57: outside the arena a peer that's no longer PvP goes back to the player faction at once (the MP
+    code only reset it inside the arena, so a switched-off peer stayed attackable until recreated)."""
+    lab = re.search(r'    :(cond_\w+)\n+    const-string (v\d+), "player"\n+    invoke-static \{\2\}, Lnet/fdgames/GameWorld/WorldFactions;', m)
+    assert lab, "player label"
+    return sub1(r'(    const-string (v\d+), "H10_pvp_arena"\n+    invoke-virtual \{(v\d+), \2\}, Ljava/lang/String;->equals\(Ljava/lang/Object;\)Z\n+    move-result \3\n+    if-eqz \3, :)(cond_\w+)(\n)',
+                r'\g<1>' + lab.group(1) + r'\5', m, 'arena check -> player')
+edit_method(LGB, 'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+            _friendly_again, "LanGameBridge.getOrCreatePeerActor: not PvP outside the arena -> player faction again")
 
 # ---- B49-B50: closing the shared-world gaps (SHARED_WORLD_SPEC §9) -------------------------------
 add_method(f'{DST}/{SER}.smali', f"""

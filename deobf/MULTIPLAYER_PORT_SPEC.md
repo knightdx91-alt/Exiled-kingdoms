@@ -229,3 +229,18 @@ nobody could attack anybody outside the arena.
 Fix: on the host `pvpAnywhere()` reads the saved setting directly; `EkItems.hostTick()` (from `EkAuto.tick`,
 every 3 s) resends EKPVP to guests. Default is now ON (owner: "I can't attack the host, which is wrong");
 "PvP everywhere" in My address still turns it off (an explicit OFF saved earlier is kept).
+
+## v57 — PvP is each player's own choice (owner request)
+"It should automatically make everyone PvP enabled but give a notification that PvP is enabled and give them
+an option to turn it off. If the player turns it off it should stay off until they change it."
+- Saved per phone (`ek_pvp_me`, default ON). The host-only "PvP everywhere" switch is replaced by **My PvP** in
+  My address.
+- Two players can hurt each other only when **both** have it on. Peer puppet hostility
+  (`createPeerActor` / `getOrCreatePeerActor`) now asks `EkItems.pvpWithState/pvpWith(peer name)`; incoming
+  player damage outside the arena (`receiveRemoteCombat`) asks `pvpAnywhere()` = in session and my PvP on.
+  The arena works as before either way.
+- Clients send `EKPVPME\t0|1` to the host every 3 s and on change. The host keys it by the name it knows that
+  connection by (`ClientPeer.playerName`, which handles duplicate names like two "Player"s) and broadcasts
+  `EKPVPT\t<name>=0|1…` every 3 s and on change. Unknown players count as off until the table arrives.
+- On entering a session (host or guest) a dialog says "PvP is ON…" with **Keep PvP on / Turn PvP off**. If the
+  player's choice is off, a short note says so instead.

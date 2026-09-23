@@ -1,5 +1,8 @@
 package net.fdgames.ek.android.lan;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.Toast;
 import com.badlogic.gdx.Gdx;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +29,6 @@ public final class EkItems {
     static final String PREF_PVP = "ek_pvp";
     private static final Random RNG = new Random();
     private static volatile boolean applying;
-    private static volatile boolean sessionPvp;
 
     /** Host registry: drop id -> (item -> units left), gold under key 0. */
     private static final Map<String, Map<Integer, Integer>> registry = new HashMap<String, Map<Integer, Integer>>();
@@ -369,63 +371,160 @@ public final class EkItems {
         });
     }
 
-    // ---- PvP everywhere --------------------------------------------------------------------------
+    // ---- PvP: each player's own choice (v57) ----------------------------------------------------
+    // Everyone starts with PvP ON. A player who turns it off stays off (saved on their phone) until they
+    // turn it back on. Two players can hurt each other only when BOTH have it on. The host keeps the
+    // table (name -> on/off) under the names it knows each connection by and broadcasts it every 3 s;
+    // clients report their own choice to the host. deobf/MULTIPLAYER_PORT_SPEC.md v57.
 
-    /**
-     * v56: the host now uses its saved setting directly (it used to count only when toggled while already
-     * hosting), and guests learn it from EKPVP, which the host resends every 3 s (hostTick) - the join-time
-     * send (onClientJoined) was never hooked, so guests always had PvP off.
-     */
-    public static boolean pvpAnywhere() {
-        if (!inSession()) {
-            return false;
-        }
-        LanSessionManager m = mgr();
-        if (m != null && m.isHosting()) {
-            Object o = Gdx.app;
-            if (o instanceof android.app.Activity) {
-                return hostPvpPref((android.app.Activity) o);
-            }
-        }
-        return sessionPvp;
+    static final String PREF_PVP_ME = "ek_pvp_me";
+    private static final java.util.concurrent.ConcurrentHashMap<String, Boolean> PVP_TABLE =
+            new java.util.concurrent.ConcurrentHashMap<String, Boolean>();      // everyone (from host)
+    private static final java.util.concurrent.ConcurrentHashMap<String, Boolean> PVP_CLIENTS =
+            new java.util.concurrent.ConcurrentHashMap<String, Boolean>();      // host: reported by clients
+    private static volatile boolean wasInSession;
+
+    private static android.app.Activity act() {
+        Object o = Gdx.app;
+        return o instanceof android.app.Activity ? (android.app.Activity) o : null;
     }
 
-    /** From EkAuto.tick (every 3 s): the host keeps every guest in step with its PvP setting. */
-    public static void hostTick() {
+    /** My own PvP choice (default ON). */
+    public static boolean myPvp() {
+        try {
+            android.app.Activity a = act();
+            return a == null || !"0".equals(a.getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_PVP_ME, "1"));
+        } catch (Throwable e) {
+            return true;
+        }
+    }
+
+    public static void setMyPvp(boolean on) {
+        try {
+            android.app.Activity a = act();
+            if (a != null) {
+                a.getSharedPreferences(EkFriends.PREFS, 0).edit().putString(PREF_PVP_ME, on ? "1" : "0").commit();
+            }
+        } catch (Throwable e) {
+            // ignore
+        }
+        Thread t = new Thread(new Runnable() {       // tell the others right away (never on the UI thread)
+            public void run() {
+                pvpTick();
+            }
+        }, "ek-pvp");
+        t.setDaemon(true);
+        t.start();
+    }
+
+    /** receiveRemoteCombat (damage from another player outside the arena): only if I have PvP on. */
+    public static boolean pvpAnywhere() {
+        return inSession() && myPvp();
+    }
+
+    /** Peer puppet hostility: both of us have PvP on. Unknown players count as off until the table says. */
+    public static boolean pvpWith(String name) {
+        return name != null && inSession() && myPvp() && Boolean.TRUE.equals(PVP_TABLE.get(name.trim()));
+    }
+
+    public static boolean pvpWithState(LanSessionManager.PlayerState st) {
+        return st != null && pvpWith(st.playerName);
+    }
+
+    private static String peerName(Object peer) {
+        try {
+            java.lang.reflect.Field f = peer.getClass().getDeclaredField("playerName");
+            f.setAccessible(true);
+            Object v = f.get(peer);
+            return v == null ? null : v.toString().trim();
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    /** Every 3 s (EkAuto.tick) and on changes: host broadcasts the table, a client reports its choice. */
+    public static synchronized void pvpTick() {
         try {
             LanSessionManager m = mgr();
-            Object o = Gdx.app;
-            if (m != null && m.isHosting() && m.getPlayerCount() >= 2 && o instanceof android.app.Activity) {
-                sessionPvp = hostPvpPref((android.app.Activity) o);
-                m.ekBroadcast("EKPVP\t" + (sessionPvp ? 1 : 0));
+            boolean in = inSession();
+            if (in && !wasInSession) {
+                announcePvp();
+            }
+            wasInSession = in;
+            if (m == null || !in) {
+                return;
+            }
+            if (m.isHosting()) {
+                String me = me().trim();
+                PVP_TABLE.put(me, myPvp());
+                StringBuilder sb = new StringBuilder("EKPVPT");
+                java.util.Set<String> live = new java.util.HashSet<String>();
+                live.add(me);
+                try {
+                    java.lang.reflect.Field f = m.getClass().getDeclaredField("hostPeers");
+                    f.setAccessible(true);
+                    Object list = f.get(m);
+                    if (list instanceof java.util.List) {
+                        for (Object peer : new ArrayList<Object>((java.util.List<?>) list)) {
+                            String n = peerName(peer);
+                            if (n != null) {
+                                live.add(n);
+                                PVP_TABLE.put(n, Boolean.TRUE.equals(PVP_CLIENTS.get(n)));
+                            }
+                        }
+                    }
+                } catch (Throwable e) {
+                    // table as far as known
+                }
+                for (String n : new ArrayList<String>(PVP_TABLE.keySet())) {
+                    if (!live.contains(n)) {
+                        PVP_TABLE.remove(n);
+                    }
+                }
+                for (java.util.Map.Entry<String, Boolean> e : PVP_TABLE.entrySet()) {
+                    sb.append('\t').append(java.net.URLEncoder.encode(e.getKey(), "UTF-8")).append('=')
+                            .append(e.getValue() ? '1' : '0');
+                }
+                m.ekBroadcast(sb.toString());
+            } else {
+                m.ekSendToHost("EKPVPME\t" + (myPvp() ? 1 : 0));
             }
         } catch (Throwable e) {
             // next tick
         }
     }
 
-    static boolean hostPvpPref(android.app.Activity a) {
-        try {
-            // default ON (v56, owner: players must be able to attack each other); "PvP everywhere" in
-            // My address turns it off
-            return !"0".equals(a.getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_PVP, "1"));
-        } catch (Throwable e) {
-            return false;
+    /** Joining (or someone joining you): say PvP is on and offer to turn it off; or note it's off. */
+    private static void announcePvp() {
+        final android.app.Activity lob = EkFriends.lobbyIfOpen();
+        final android.app.Activity a = lob != null ? lob : act();
+        if (a == null) {
+            return;
         }
-    }
-
-    /** Host: turn PvP everywhere on/off for the room. */
-    public static void setHostPvp(android.app.Activity a, boolean on) {
-        try {
-            a.getSharedPreferences(EkFriends.PREFS, 0).edit().putString(PREF_PVP, on ? "1" : "0").commit();
-        } catch (Throwable e) {
-            // ignore
-        }
-        LanSessionManager m = mgr();
-        if (m != null && m.isHosting()) {
-            sessionPvp = on;
-            m.ekBroadcast("EKPVP\t" + (on ? 1 : 0));
-        }
+        final boolean on = myPvp();
+        a.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    if (!on) {
+                        Toast.makeText(a, "PvP is OFF for you (your setting). Turn it on in My address.", 1).show();
+                        return;
+                    }
+                    new AlertDialog.Builder(a).setTitle("PvP is ON")
+                            .setMessage("Other players can attack you, and you can attack them, anywhere in the"
+                                    + " world. Anyone who turns PvP off can't attack or be attacked.\n\nYour choice is"
+                                    + " remembered until you change it (My address in the multiplayer menu).")
+                            .setPositiveButton("Keep PvP on", null)
+                            .setNegativeButton("Turn PvP off", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface d, int w) {
+                                    setMyPvp(false);
+                                    Toast.makeText(a, "PvP off. It stays off until you turn it back on.", 1).show();
+                                }
+                            }).show();
+                } catch (Throwable e) {
+                    // ignore
+                }
+            }
+        });
     }
 
     /** Engine elimination branch (receiveRemoteCombat) outside the arena: drop the PvP loot bag. */
@@ -480,6 +579,14 @@ public final class EkItems {
 
     /** Host side. true = handled. */
     public static boolean hostLine(Object peer, String line) {
+        if (line.startsWith("EKPVPME\t")) {
+            String n = peerName(peer);
+            if (n != null) {
+                PVP_CLIENTS.put(n, line.endsWith("1"));
+                pvpTick();                           // everyone learns the change right away
+            }
+            return true;
+        }
         if (line.startsWith("EKDROP\t")) {
             String[] p = line.split("\t", -1);
             if (p.length >= 7) {
@@ -522,24 +629,31 @@ public final class EkItems {
             applyDeny(line);
             return true;
         }
-        if (line.startsWith("EKPVP\t")) {
-            sessionPvp = line.endsWith("1");
+        if (line.startsWith("EKPVPT")) {
+            java.util.HashMap<String, Boolean> t = new java.util.HashMap<String, Boolean>();
+            String[] p = line.split("\t");
+            for (int i = 1; i < p.length; i++) {
+                int eq = p[i].lastIndexOf('=');
+                if (eq > 0) {
+                    try {
+                        t.put(java.net.URLDecoder.decode(p[i].substring(0, eq), "UTF-8").trim(), p[i].endsWith("1"));
+                    } catch (Throwable e) {
+                        // skip
+                    }
+                }
+            }
+            PVP_TABLE.clear();
+            PVP_TABLE.putAll(t);
             return true;
+        }
+        if (line.startsWith("EKPVP\t")) {
+            return true;                             // pre-v57 host: ignored
         }
         return false;
     }
 
-    /** Host: a client joined -> tell it the PvP setting. */
+    /** Host: a client joined -> send it the PvP table now (and every 3 s after). */
     public static void onClientJoined() {
-        MainActivity a = null;
-        Object o = Gdx.app;
-        if (o instanceof MainActivity) {
-            a = (MainActivity) o;
-        }
-        LanSessionManager m = mgr();
-        if (a != null && m != null && m.isHosting()) {
-            sessionPvp = hostPvpPref(a);
-            m.ekBroadcast("EKPVP\t" + (sessionPvp ? 1 : 0));
-        }
+        pvpTick();
     }
 }
