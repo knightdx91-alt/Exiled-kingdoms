@@ -50,3 +50,20 @@ Minimal RFC 6455 client over TLS (no libraries). Host online: control socket; pe
 bridged to 127.0.0.1:32124 (the game's own host socket). Join by code: `join` socket, wait for `OK`, then a local
 listener on 127.0.0.1 that the game's normal `joinHost` connects to. The MP engine is unchanged; relay joiners
 appear as 127.0.0.1, so loopback is never auto-approved nor saved as a friend.
+
+## Friends over the relay (owner: "once they have played together once" no codes)
+- Each phone has a private secret and a stable room code. Pairwise token `T(A→B) = sha256(secretA + ":" + codeB)`
+  (first 16 bytes, hex): what A presents when joining B's room. It can't be reused against anyone else.
+- The join URL carries `tok`, `mycode`, `name`. The Worker passes them to the host as `CONN <token> <tok> <mycode>
+  <name>` (URL-encoded). The host maps its bridge socket's local port to the joiner's info (`EkRelay.joinerFor`),
+  so `approveJoin` (which sees 127.0.0.1) can recognise a relay friend: a saved `relay:<code>` entry whose token
+  matches is auto-approved. "Allow + add friend" saves the joiner as `relay:<their code>` with their token.
+- The host's bridge sends `HI <T(host→joiner code)> <host code> <host name>` on the accept socket. The joiner saves
+  the host as a relay friend automatically (as it does for LAN hosts). Next time either side joins the other from the
+  Friends list, with no code and no approval prompt.
+- Friends list: relay friends show online/offline from `GET /?code=X&role=status` (doesn't start a join); Join goes
+  by code.
+- Relay address baked in: `wss://ek-relay.knightdx91.workers.dev` (the owner's workers.dev subdomain).
+Tested against the Worker in wrangler dev: status goes offline → online → offline; the host learns the joiner's
+name/code/token (token matches); the joiner learns host token = T(host→joiner code); a different device's token
+differs.

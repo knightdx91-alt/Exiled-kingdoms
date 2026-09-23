@@ -22,11 +22,101 @@ public final class EkRelay {
     private EkRelay() {}
 
     /** Set once the Cloudflare Worker is deployed (ek-relay.<account>.workers.dev). */
-    static final String DEFAULT_URL = "";
+    static final String DEFAULT_URL = "wss://ek-relay.knightdx91.workers.dev";
     static final String ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     private static final SecureRandom RND = new SecureRandom();
 
     private static volatile HostSession hosting;
+
+    /** Who a relay joiner is, by the host-side local port of its bridge socket (see approveJoin). */
+    static final class Joiner {
+        String tok;
+        String code;
+        String name;
+    }
+
+    private static final java.util.concurrent.ConcurrentHashMap<Integer, Joiner> JOINERS =
+            new java.util.concurrent.ConcurrentHashMap<Integer, Joiner>();
+
+    static Joiner joinerFor(int port) {
+        return JOINERS.get(port);
+    }
+
+    /**
+     * Pairwise friend token: what device A presents when joining room B. Derived from A's private secret and
+     * B's room code, so a host that learns it can't reuse it to pose as A anywhere else.
+     */
+    static String tokFor(String secret, String roomCode) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] h = md.digest((secret + ":" + roomCode).getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 16; i++) {
+                sb.append(String.format("%02x", h[i] & 0xff));
+            }
+            return sb.toString();
+        } catch (Throwable e) {
+            return "-";
+        }
+    }
+
+    static String enc(String s) {
+        try {
+            return java.net.URLEncoder.encode(s == null ? "" : s, "UTF-8");
+        } catch (Throwable e) {
+            return "";
+        }
+    }
+
+    static String dec(String s) {
+        try {
+            return java.net.URLDecoder.decode(s == null || s.equals("-") ? "" : s, "UTF-8");
+        } catch (Throwable e) {
+            return "";
+        }
+    }
+
+    static String mySecret(android.app.Activity a) {
+        String s = pref(a, "ek_relay_secret", "");
+        if (s.length() < 16) {
+            s = Long.toHexString(RND.nextLong()) + Long.toHexString(RND.nextLong()) + Long.toHexString(RND.nextLong());
+            putPref(a, "ek_relay_secret", s);
+        }
+        return s;
+    }
+
+    static String myCode(android.app.Activity a) {
+        String code = cleanCode(pref(a, "ek_relay_code", ""));
+        if (code.length() != 6) {
+            code = newCode();
+            putPref(a, "ek_relay_code", code);
+        }
+        return code;
+    }
+
+    static String myName(android.app.Activity a) {
+        String n = pref(a, "lan_player_name", "Player");
+        return n == null || n.trim().length() == 0 ? "Player" : n.trim();
+    }
+
+    /** Friends list: is that room's host online right now? (asks the relay; doesn't start a join) */
+    static boolean isOnline(android.app.Activity a, String code) {
+        java.net.HttpURLConnection c = null;
+        try {
+            String u = relayUrl(a).replaceFirst("^wss://", "https://").replaceFirst("^ws://", "http://");
+            c = (java.net.HttpURLConnection) new java.net.URL(u + "/?code=" + code + "&role=status").openConnection();
+            c.setConnectTimeout(5000);
+            c.setReadTimeout(5000);
+            java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(c.getInputStream(), "UTF-8"));
+            return "online".equals(r.readLine());
+        } catch (Throwable e) {
+            return false;
+        } finally {
+            if (c != null) {
+                c.disconnect();
+            }
+        }
+    }
 
     static String relayUrl(android.app.Activity a) {
         String p = System.getProperty("ek.relay");
@@ -94,8 +184,16 @@ public final class EkRelay {
         t.start();
     }
 
-    /** relay -> socket; text messages (OK etc.) are control, not game data */
+    interface Hi {
+        void hi(String tok, String code, String name);
+    }
+
     private static void pumpDown(final EkWs ws, final Socket s) {
+        pumpDown(ws, s, null);
+    }
+
+    /** relay -> socket; text messages (OK, HI) are control, not game data */
+    private static void pumpDown(final EkWs ws, final Socket s, final Hi onHi) {
         Thread t = new Thread(new Runnable() {
             public void run() {
                 try {
@@ -106,6 +204,18 @@ public final class EkRelay {
                             byte[] b = (byte[]) m[1];
                             out.write(b);
                             out.flush();
+                        } else if (onHi != null) {
+                            String t = new String((byte[]) m[1], "UTF-8");
+                            if (t.startsWith("HI ")) {
+                                String[] p = t.split(" ");
+                                if (p.length >= 4) {
+                                    try {
+                                        onHi.hi(p[1], p[2], dec(p[3]));
+                                    } catch (Throwable e) {
+                                        // ignore
+                                    }
+                                }
+                            }
                         }
                     }
                 } catch (Throwable e) {
@@ -141,6 +251,8 @@ public final class EkRelay {
         final String dev;
         final int localPort;
         final Status status;
+        String secret = "";
+        String hostName = "Player";
         volatile boolean stop;
         volatile EkWs ctrl;
 
@@ -175,7 +287,7 @@ public final class EkRelay {
                         if (((Integer) m[0]) == EkWs.TEXT) {
                             String t = new String((byte[]) m[1], "UTF-8");
                             if (t.startsWith("CONN ")) {
-                                bridge(t.substring(5).trim());
+                                bridge(t.substring(5).trim().split(" "));
                             }
                         }
                     }
@@ -215,17 +327,43 @@ public final class EkRelay {
             t.start();
         }
 
-        private void bridge(final String token) {
+        /** CONN token [tok mycode name]: bridge that joiner to the local game port and say who we are. */
+        private void bridge(final String[] p) {
+            final String token = p[0];
+            final Joiner who = new Joiner();
+            who.tok = p.length > 1 ? p[1] : "-";
+            who.code = p.length > 2 ? cleanCode(p[2]) : "";
+            who.name = p.length > 3 ? dec(p[3]) : "";
             Thread t = new Thread(new Runnable() {
                 public void run() {
                     EkWs data = null;
                     Socket game = null;
                     try {
                         data = EkWs.connect(url + "/?code=" + code + "&role=accept&token=" + token, 10000);
+                        if (who.code.length() == 6) {    // our pairwise token for their room, for next time
+                            data.sendText("HI " + tokFor(secret, who.code) + " " + code + " " + enc(hostName));
+                        }
                         game = new Socket(InetAddress.getByName("127.0.0.1"), localPort);
                         game.setTcpNoDelay(true);
+                        final int lp = game.getLocalPort();
+                        JOINERS.put(lp, who);
+                        final Socket g = game;
                         pumpUp(game, data);
                         pumpDown(data, game);
+                        Thread cleanup = new Thread(new Runnable() {
+                            public void run() {
+                                while (!g.isClosed()) {
+                                    try {
+                                        Thread.sleep(5000);
+                                    } catch (InterruptedException e) {
+                                        break;
+                                    }
+                                }
+                                JOINERS.remove(lp);
+                            }
+                        }, "ek-relay-gc");
+                        cleanup.setDaemon(true);
+                        cleanup.start();
                     } catch (Throwable e) {
                         if (data != null) {
                             data.close();
@@ -255,7 +393,13 @@ public final class EkRelay {
      * IOException("NOROOM"/"TIMEOUT"/...) with a reason.
      */
     static int openJoin(String url, String code) throws IOException {
-        final EkWs ws = EkWs.connect(url + "/?code=" + code + "&role=join", 10000);
+        return openJoin(url, code, "-", "-", "-", null);
+    }
+
+    static int openJoin(String url, String code, String tok, String myCode, String myName, final Hi onHi)
+            throws IOException {
+        final EkWs ws = EkWs.connect(url + "/?code=" + code + "&role=join&tok=" + enc(tok) + "&mycode=" + enc(myCode)
+                + "&name=" + enc(myName), 10000);
         ws.setReadTimeout(20000);
         Object[] m;
         try {
@@ -276,7 +420,7 @@ public final class EkRelay {
                     Socket game = ss.accept();
                     game.setTcpNoDelay(true);
                     pumpUp(game, ws);
-                    pumpDown(ws, game);
+                    pumpDown(ws, game, onHi);
                 } catch (Throwable e) {
                     ws.close();
                 } finally {
@@ -339,11 +483,7 @@ public final class EkRelay {
                     }).show();
             return;
         }
-        String code = cleanCode(pref(a, "ek_relay_code", ""));
-        if (code.length() != 6) {
-            code = newCode();
-            putPref(a, "ek_relay_code", code);
-        }
+        String code = myCode(a);
         String dev = pref(a, "ek_relay_dev", "");
         if (dev.length() < 8) {
             dev = Long.toHexString(RND.nextLong()) + Long.toHexString(RND.nextLong());
@@ -386,6 +526,8 @@ public final class EkRelay {
                 }
             }
         });
+        hs.secret = mySecret(a);
+        hs.hostName = myName(a);
         hosting = hs;
         Thread t = new Thread(hs, "ek-relay-host");
         t.setDaemon(true);
@@ -411,34 +553,50 @@ public final class EkRelay {
                             return;
                         }
                         putPref(a, "ek_relay_last", code);
-                        Toast.makeText(a, "Finding room " + code + "...", 0).show();
-                        final String url = relayUrl(a);
-                        Thread t = new Thread(new Runnable() {
-                            public void run() {
-                                try {
-                                    final int port = openJoin(url, code);
-                                    a.runOnUiThread(new Runnable() {
-                                        public void run() {
-                                            a.ekJoin("127.0.0.1", port);
-                                        }
-                                    });
-                                } catch (final Throwable err) {
-                                    final String why = String.valueOf(err.getMessage());
-                                    a.runOnUiThread(new Runnable() {
-                                        public void run() {
-                                            Toast.makeText(a, why.startsWith("NOROOM")
-                                                    ? "No open room " + code + ". The host has to tap Host online."
-                                                    : why.startsWith("TIMEOUT") ? "The host's game didn't answer. Try again."
-                                                    : "Couldn't reach the online relay (" + why + ")", 1).show();
-                                        }
-                                    });
-                                }
-                            }
-                        }, "ek-relay-joining");
-                        t.setDaemon(true);
-                        t.start();
+                        joinCode(a, code);
                     }
                 })
                 .setNegativeButton("Cancel", null).show();
+    }
+
+    /** Join a room by code (typed, or a friend tapped in the Friends list). */
+    static void joinCode(final LanLobbyActivity a, final String code) {
+        if (!ready(a)) {
+            return;
+        }
+        Toast.makeText(a, "Finding room " + code + "...", 0).show();
+        final String url = relayUrl(a);
+        final String tok = tokFor(mySecret(a), code);
+        final String mine = myCode(a);
+        final String me = myName(a);
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    final int port = openJoin(url, code, tok, mine, me, new Hi() {
+                        public void hi(String hostTok, String hostCode, String hostName) {
+                            // played together: keep the host as a friend (no code, no approval next time)
+                            EkFriends.upsertRelayFriend(a, hostName, hostCode, hostTok);
+                        }
+                    });
+                    a.runOnUiThread(new Runnable() {
+                        public void run() {
+                            a.ekJoin("127.0.0.1", port);
+                        }
+                    });
+                } catch (final Throwable err) {
+                    final String why = String.valueOf(err.getMessage());
+                    a.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(a, why.startsWith("NOROOM")
+                                    ? "Room " + code + " isn't open. The host has to tap Host online."
+                                    : why.startsWith("TIMEOUT") ? "The host's game didn't answer. Try again."
+                                    : "Couldn't reach the online relay (" + why + ")", 1).show();
+                        }
+                    });
+                }
+            }
+        }, "ek-relay-joining");
+        t.setDaemon(true);
+        t.start();
     }
 }

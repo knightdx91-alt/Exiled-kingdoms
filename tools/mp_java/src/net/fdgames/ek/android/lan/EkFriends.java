@@ -36,6 +36,16 @@ public final class EkFriends {
         int port = GAME_PORT;
         String status = "";
         boolean hosting;
+        /** online friends: ip = "relay:<their room code>", tok = the token they present when joining me */
+        String tok = "";
+
+        boolean relay() {
+            return ip != null && ip.startsWith("relay:");
+        }
+
+        String code() {
+            return relay() ? ip.substring(6) : "";
+        }
     }
 
     // ---- storage ---------------------------------------------------------------------------------
@@ -77,6 +87,7 @@ public final class EkFriends {
                 } catch (NumberFormatException e) {
                     fr.port = GAME_PORT;
                 }
+                fr.tok = f.length > 3 ? f[3].trim() : "";
                 out.add(fr);
             }
         } catch (Throwable e) {
@@ -93,7 +104,8 @@ public final class EkFriends {
                 if (sb.length() > 0) {
                     sb.append('\n');
                 }
-                sb.append(clean(f.name)).append('\t').append(clean(f.ip)).append('\t').append(f.port);
+                sb.append(clean(f.name)).append('\t').append(clean(f.ip)).append('\t').append(f.port)
+                        .append('\t').append(clean(f.tok == null ? "" : f.tok));
             }
             a.getSharedPreferences(PREFS, 0).edit().putString(KEY, sb.toString()).commit();
         } catch (Throwable e) {
@@ -108,6 +120,44 @@ public final class EkFriends {
             }
         }
         return -1;
+    }
+
+    /** An online (relay) friend: saved/updated after playing together; no code or approval next time. */
+    static synchronized void upsertRelayFriend(android.app.Activity a, String name, String code, String tok) {
+        try {
+            code = EkRelay.cleanCode(code);
+            if (code.length() != 6 || tok == null || tok.length() < 8) {
+                return;
+            }
+            List<Friend> list = load(a);
+            int i = indexOf(list, "relay:" + code);
+            Friend f = i >= 0 ? list.remove(i) : new Friend();
+            f.ip = "relay:" + code;
+            f.port = 0;
+            f.tok = tok;
+            if (name != null && name.trim().length() > 0) {
+                f.name = name.trim();
+            } else if (f.name == null || f.name.length() == 0) {
+                f.name = "Online friend " + code;
+            }
+            list.add(0, f);
+            save(a, list);
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    /** Host side: is this relay joiner (their room code + token) a saved friend? */
+    static boolean isRelayFriend(android.app.Activity a, String code, String tok) {
+        if (code == null || tok == null || tok.length() < 8) {
+            return false;
+        }
+        for (Friend f : load(a)) {
+            if (f.relay() && f.code().equals(code) && tok.equals(f.tok)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Hooked at the start of LanLobbyActivity.joinHostAsync: every host you join is remembered. */
@@ -211,6 +261,12 @@ public final class EkFriends {
      * line; no join request is shown).
      */
     private static void probe(Friend f) {
+        if (f.relay()) {
+            android.app.Activity a = lobbyIfOpen();
+            f.hosting = EkRelay.isOnline(a, f.code());
+            f.status = f.hosting ? "online" : "offline";
+            return;
+        }
         if (f.ip != null && f.ip.indexOf(':') > 0) {
             f.port = EkNat.portPart(f.ip, f.port);
             f.ip = EkNat.hostPart(f.ip);
@@ -402,7 +458,8 @@ public final class EkFriends {
             CharSequence[] items = new CharSequence[list.size()];
             for (int i = 0; i < list.size(); i++) {
                 Friend f = list.get(i);
-                items[i] = (f.hosting ? "● " : "○ ") + f.name + "  -  " + f.status + "  (" + f.ip + ")";
+                items[i] = (f.hosting ? "● " : "○ ") + f.name + "  -  " + f.status
+                        + (f.relay() ? "  (online friend)" : "  (" + f.ip + ")");
             }
             new AlertDialog.Builder(a).setTitle("Friends")
                     .setItems(items, new DialogInterface.OnClickListener() {
@@ -432,10 +489,14 @@ public final class EkFriends {
         }
         final Friend f = list.get(idx);
         new AlertDialog.Builder(a).setTitle(f.name)
-                .setMessage(f.ip + ":" + f.port + "\n" + f.status)
+                .setMessage((f.relay() ? "Online friend (room " + f.code() + ")" : f.ip + ":" + f.port) + "\n" + f.status)
                 .setPositiveButton("Join", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface d, int w) {
-                        a.ekJoin(f.ip, f.port);
+                        if (f.relay()) {
+                            EkRelay.joinCode(a, f.code());
+                        } else {
+                            a.ekJoin(f.ip, f.port);
+                        }
                     }
                 })
                 .setNeutralButton("Remove", new DialogInterface.OnClickListener() {

@@ -12,11 +12,14 @@ export class Room {
   }
 
   async fetch(req) {
+    const url = new URL(req.url);
+    const role = url.searchParams.get("role");
+    if (role === "status") {                  // friends list: is this room's host online? (no join started)
+      return new Response(this.host ? "online" : "offline", { status: 200, headers: { "Cache-Control": "no-store" } });
+    }
     if (req.headers.get("Upgrade") !== "websocket") {
       return new Response("Exiled Kingdoms relay", { status: 200 });
     }
-    const url = new URL(req.url);
-    const role = url.searchParams.get("role");
     const pair = new WebSocketPair();
     const client = pair[0], ws = pair[1];
     ws.accept();
@@ -52,7 +55,10 @@ export class Room {
         ws.addEventListener("message", (ev) => { if (p.buf) p.buf.push(ev.data); });
         ws.addEventListener("close", () => { this.pending.delete(token); clearTimeout(p.timer); });
         this.pending.set(token, p);
-        try { this.host.send("CONN " + token); } catch (e) { ws.close(4404, "NOROOM"); }
+        // friend handshake (pairwise token, joiner's own room code, name) goes to the host with the request
+        const q = (k) => encodeURIComponent((url.searchParams.get(k) || "").slice(0, 100)) || "-";
+        try { this.host.send("CONN " + token + " " + q("tok") + " " + q("mycode") + " " + q("name")); }
+        catch (e) { ws.close(4404, "NOROOM"); }
       }
     } else if (role === "accept") {
       const token = url.searchParams.get("token") || "";

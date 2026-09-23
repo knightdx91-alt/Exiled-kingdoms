@@ -133,6 +133,11 @@ public final class EkAuto {
                     return true;
                 }
             }
+            // online (relay) joiners arrive as 127.0.0.1: recognise friends by their pairwise token
+            final EkRelay.Joiner rj = EkRelay.isLoopback(ip) ? EkRelay.joinerFor(s.getPort()) : null;
+            if (rj != null && EkFriends.isRelayFriend(a, rj.code, rj.tok)) {
+                return true;
+            }
             final String who = name == null || name.trim().length() == 0 ? "A player" : name.trim();
             final CountDownLatch done = new CountDownLatch(1);
             final int[] answer = {0}; // 0 deny, 1 allow, 2 allow + friend
@@ -169,7 +174,11 @@ public final class EkAuto {
                 return false;
             }
             if (answer[0] == 2) {
-                EkFriends.addFriend(a, who, ip, EkFriends.GAME_PORT);
+                if (rj != null) {
+                    EkFriends.upsertRelayFriend(a, rj.name != null && rj.name.length() > 0 ? rj.name : who, rj.code, rj.tok);
+                } else {
+                    EkFriends.addFriend(a, who, ip, EkFriends.GAME_PORT);
+                }
             }
             return answer[0] != 0;
         } catch (Throwable e) {
