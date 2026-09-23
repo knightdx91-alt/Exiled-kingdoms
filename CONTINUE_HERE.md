@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v37.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v38.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v37.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v38.apk
 ```
+
+### v38 (2026-09-23) — shared kills: only other players get a share
+
+Owner: split only between actual players, never for your companions/summons. Verified in the game code
+(summons are tagged `player_summon` only when cast by you or a party companion) and hardened: other
+players' summons are no longer tracked as monsters either. `deobf/KILL_REWARDS_SPEC.md`. dist: base + v38 + v37.
 
 ### v37 (2026-09-23) — shared kills: XP and loot split by damage
 

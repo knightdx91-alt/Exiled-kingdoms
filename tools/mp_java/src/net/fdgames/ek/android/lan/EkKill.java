@@ -94,9 +94,23 @@ public final class EkKill {
         return s == null ? "" : s.replace('\t', ' ').replace('\n', ' ').replace('\r', ' ');
     }
 
-    /** Allies and other players' stand-ins are never "monsters" for the ledger. */
+    /**
+     * Only real monsters are split. Never: my companions (P()), my or my companions' summons (SkillActions
+     * tags only those "player_summon"), other players' stand-ins, or other players' summons.
+     */
     private static boolean tracked(NPC n) {
-        return n != null && !n.P() && !n.lanPeerVisual && !(n.summoned && "player_summon".equals(n.tag));
+        if (n == null || n.P() || n.lanPeerVisual || (n.summoned && "player_summon".equals(n.tag))) {
+            return false;
+        }
+        try {
+            LinkedHashMap owners = LanGameBridge.ekPeerSummonOwners();
+            if (owners != null && owners.containsKey(Integer.valueOf(n.m()))) {
+                return false;
+            }
+        } catch (Throwable e) {
+            // treat as a monster
+        }
+        return true;
     }
 
     /** Which side dealt a hit from actor id `from`: me (player, companions, summons) or a peer's name. */

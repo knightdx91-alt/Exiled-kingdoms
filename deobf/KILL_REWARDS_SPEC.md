@@ -57,3 +57,11 @@ Known limits: damage over time (poison/burn effects ticking without an attacker 
 a peer's companions' hits are only known through that peer's own EKDMG report, so if the monster never
 dies on that peer's device (its copy desynced) their companions' part is missing; the unique-boss bonus
 XP (`sheet.z()*100`, second `Player.k` in `NPC.E`) stays with the killer (vanilla).
+
+### Who counts as a separate party (owner: "only other actual players", 2026-09-23)
+Only other players (names in `LanGameBridge.peerActors`) are separate shares. Companions (`NPC.P()`)
+and summons cast by you or your companions (`SkillActions.a(Character,…)` tags a summon `player_summon`
+only when the caster is the player, id 1, or `P()`; enemy summons skip that branch) are credited to
+you and never get a share of their own; a kill involving only you and your companions/summons is
+vanilla. Never split/tracked as monsters: companions, your summons, other players' stand-ins
+(`lanPeerVisual`) and other players' summons (`peerSummonOwners`, v38).
