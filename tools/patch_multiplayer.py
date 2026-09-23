@@ -1051,4 +1051,11 @@ wrap_method(SER, 'f()V', 'ekSaveLevelOrig', True, f"""
     return-void
 .end method""", "Serializer.f() saveLevel: share the area you just left (level cache)")
 
+# ---- B51: checkboxes drawn at 20x20 screen px on high-res screens (deobf/UI_SCALING_SPEC.md) --------
+edit_method('net/fdgames/assets/GameAssets', 'b()V', lambda m: sub1(
+    r'(    iput-object v1, v0, Lcom/badlogic/gdx/scenes/scene2d/ui/CheckBox\$CheckBoxStyle;->checkboxOn:Lcom/badlogic/gdx/scenes/scene2d/utils/Drawable;\n)',
+    r'\1\n    sget-object v0, Lnet/fdgames/assets/GameAssets;->r0:Lcom/badlogic/gdx/scenes/scene2d/ui/CheckBox$CheckBoxStyle;\n\n'
+    r'    invoke-static {v0}, Lnet/fdgames/ek/android/lan/EkUi;->scaleCheckboxes(Lcom/badlogic/gdx/scenes/scene2d/ui/CheckBox$CheckBoxStyle;)V\n',
+    m, 'checkbox style'), "GameAssets.b(): checkbox images follow the UI scale (screen height / 720)")
+
 print("DONE")

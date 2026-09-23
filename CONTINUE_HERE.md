@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v33.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v34.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v33.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v34.apk
 ```
+
+### v34 (2026-09-23) — checkboxes sized for the screen
+
+Owner: checkboxes in the menus are "SUPER small". Vanilla bug on high-res screens: libGDX `CheckBox`
+draws its image with `Scaling.none`, i.e. at the 20x20 png size, ignoring the `20 x (height/720)` cell
+size the Settings/Options windows set (journal filters don't size it at all). `EkUi.scaleCheckboxes`
+(B51) wraps the shared style's drawables so they report 20 x height/720 (live; fold/unfold safe).
+Sliders were already scaled by the game. Spec: `deobf/UI_SCALING_SPEC.md`. dist: base + v34 + v33.
 
 ### v33 (2026-09-23) — lobby: Back button + current texts
 

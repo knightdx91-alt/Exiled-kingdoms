@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d.utils; public class BaseDrawable implements Drawable { public BaseDrawable() {} public float getMinWidth() { return 0; } public float getMinHeight() { return 0; } }
