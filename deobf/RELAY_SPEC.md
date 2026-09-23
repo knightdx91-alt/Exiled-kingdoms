@@ -67,3 +67,9 @@ appear as 127.0.0.1, so loopback is never auto-approved nor saved as a friend.
 Tested against the Worker in wrangler dev: status goes offline → online → offline; the host learns the joiner's
 name/code/token (token matches); the joiner learns host token = T(host→joiner code); a different device's token
 differs.
+
+## Deployed (2026-09-23)
+Owner added the two repo secrets; `relay.yml` deployed the Worker. Live checks against
+`https://ek-relay.knightdx91.workers.dev`: `/` → "Exiled Kingdoms relay: ok"; `role=status` → offline for an
+empty room; host socket gets `OK`; a join delivers `CONN <token> - - <name>` to the host; the accept socket pairs,
+the joiner's early bytes arrive, and a 300 KB binary round trip matches.
