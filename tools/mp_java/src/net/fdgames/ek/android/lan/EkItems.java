@@ -371,13 +371,44 @@ public final class EkItems {
 
     // ---- PvP everywhere --------------------------------------------------------------------------
 
+    /**
+     * v56: the host now uses its saved setting directly (it used to count only when toggled while already
+     * hosting), and guests learn it from EKPVP, which the host resends every 3 s (hostTick) - the join-time
+     * send (onClientJoined) was never hooked, so guests always had PvP off.
+     */
     public static boolean pvpAnywhere() {
-        return sessionPvp && inSession();
+        if (!inSession()) {
+            return false;
+        }
+        LanSessionManager m = mgr();
+        if (m != null && m.isHosting()) {
+            Object o = Gdx.app;
+            if (o instanceof android.app.Activity) {
+                return hostPvpPref((android.app.Activity) o);
+            }
+        }
+        return sessionPvp;
+    }
+
+    /** From EkAuto.tick (every 3 s): the host keeps every guest in step with its PvP setting. */
+    public static void hostTick() {
+        try {
+            LanSessionManager m = mgr();
+            Object o = Gdx.app;
+            if (m != null && m.isHosting() && m.getPlayerCount() >= 2 && o instanceof android.app.Activity) {
+                sessionPvp = hostPvpPref((android.app.Activity) o);
+                m.ekBroadcast("EKPVP\t" + (sessionPvp ? 1 : 0));
+            }
+        } catch (Throwable e) {
+            // next tick
+        }
     }
 
     static boolean hostPvpPref(android.app.Activity a) {
         try {
-            return "1".equals(a.getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_PVP, "0"));
+            // default ON (v56, owner: players must be able to attack each other); "PvP everywhere" in
+            // My address turns it off
+            return !"0".equals(a.getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_PVP, "1"));
         } catch (Throwable e) {
             return false;
         }

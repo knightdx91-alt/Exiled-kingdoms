@@ -71,6 +71,7 @@ public final class EkAuto {
             }
             lastCheck = now;
             EkShare.tick();
+            EkItems.hostTick();
             final MainActivity a = activity();
             GameData gd = GameData.O();
             if (a == null || gd == null || gd.player == null || starting) {

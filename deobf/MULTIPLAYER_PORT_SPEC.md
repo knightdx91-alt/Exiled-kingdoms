@@ -218,3 +218,14 @@ to a non-reading peer in 35 ms; all arrived in order once it read; mixed GL/read
    the probe then tried to resolve as a host name. Now: `remember` splits host/port (old entries are repaired
    on probe), two UDP asks of 1.5 s, then a TCP connect to the game port (3 s). A connection that sends no
    `JOIN` line is dropped by `handleIncomingClient` (readLine → null) without any prompt.
+
+## v56 — players couldn't attack each other outside the arena
+Reversed: peer puppets get `worldfactions` "enemy" (attackable) in `getOrCreatePeerActor` only when
+`EkItems.pvpAnywhere()` is true (or inside `H10_pvp_arena` with `pvp_arena_won` ≥ 1); `receiveRemoteCombat`
+applies peer damage outside the arena under the same check. `pvpAnywhere()` was `sessionPvp && inSession()`,
+and `sessionPvp` was only set when the host flipped the toggle *while hosting*, or by `onClientJoined`, which
+was never hooked. So the host's saved setting was ignored in new sessions, and guests never received EKPVP:
+nobody could attack anybody outside the arena.
+Fix: on the host `pvpAnywhere()` reads the saved setting directly; `EkItems.hostTick()` (from `EkAuto.tick`,
+every 3 s) resends EKPVP to guests. Default is now ON (owner: "I can't attack the host, which is wrong");
+"PvP everywhere" in My address still turns it off (an explicit OFF saved earlier is kept).
