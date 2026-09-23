@@ -1,0 +1,1 @@
+package net.fdgames.ek.android.lan; public class LanLobbyActivity extends android.app.Activity { void ekAddButton(android.widget.LinearLayout row, String label, android.view.View.OnClickListener l) {} void ekJoin(String ip, int port) {} }

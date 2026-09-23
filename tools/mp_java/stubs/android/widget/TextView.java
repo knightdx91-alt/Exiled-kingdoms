@@ -1,0 +1,1 @@
+package android.widget; public class TextView extends android.view.View { public TextView(android.content.Context c) { super(c); } public void setHint(CharSequence h) {} public void setSingleLine(boolean s) {} public void setInputType(int t) {} public void setText(CharSequence t) {} public android.text.Editable getText() { return null; } }

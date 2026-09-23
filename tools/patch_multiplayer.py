@@ -630,4 +630,49 @@ edit_method('net/fdgames/GameWorld/GameData', 'f()V', lambda m: sub1(
     r'\1' + '\n    invoke-static {\\2}, ' + EK + '->worldEvent(Lnet/fdgames/GameWorld/DynamicEvent;)V\n', m, 'world event'),
     "GameData.f(): world-event log + broadcast")
 
+# ---- B22-B24: friends list in the lobby (owner request, not in the mod; PORT_SPEC §8) ----------
+LOBBY = 'net/fdgames/ek/android/lan/LanLobbyActivity'
+LL = 'L' + LOBBY + ';'
+FR = 'Lnet/fdgames/ek/android/lan/EkFriends;'
+add_method(f'{DST}/{LOBBY}.smali', f"""
+.method ekAddButton(Landroid/widget/LinearLayout;Ljava/lang/String;Landroid/view/View$OnClickListener;)V
+    .locals 0
+
+    invoke-direct {{p0, p1, p2, p3}}, {LL}->addControlButton(Landroid/widget/LinearLayout;Ljava/lang/String;Landroid/view/View$OnClickListener;)V
+
+    return-void
+.end method
+
+.method ekJoin(Ljava/lang/String;I)V
+    .locals 1
+
+    invoke-direct {{p0}}, {LL}->savePlayerName()V
+
+    iget-object v0, p0, {LL}->playerNameInput:Landroid/widget/EditText;
+
+    invoke-virtual {{v0}}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {{v0}}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {{p0, v0, p1, p2}}, {LL}->joinHostAsync(Ljava/lang/String;Ljava/lang/String;I)V
+
+    return-void
+.end method""", "LanLobbyActivity.ekAddButton / ekJoin (friends bridge)")
+edit_method(LOBBY, 'joinHostAsync(Ljava/lang/String;Ljava/lang/String;I)V', lambda m: sub1(
+    r'^(\.method private joinHostAsync\(Ljava/lang/String;Ljava/lang/String;I\)V\n    \.registers \d+\n)',
+    r'\1' + '\n    invoke-static {p0, p2, p3}, ' + FR + '->remember(' + LL + 'Ljava/lang/String;I)V\n', m, 'remember', re.M),
+    "LanLobbyActivity.joinHostAsync: remember the host as a friend")
+edit_method(LOBBY, 'buildContentView()Landroid/view/View;', lambda m: sub1(
+    r'(    new-instance (v\d+), ' + re.escape(LL[:-1]) + r'\$4;\n\n    invoke-direct \{\2, p0\}, ' + re.escape(LL[:-1]) + r'\$4;-><init>\(' + re.escape(LL) + r'\)V\n\n    invoke-direct \{p0, v3, v\d+, \2\}, ' + re.escape(LL) + r'->addControlButton\(Landroid/widget/LinearLayout;Ljava/lang/String;Landroid/view/View\$OnClickListener;\)V\n)',
+    r'\1\n    invoke-static {p0, v1}, ' + FR + '->addLobbyRow(' + LL + r'Landroid/widget/LinearLayout;)V' + '\n', m, 'friends row'),
+    "LanLobbyActivity.buildContentView: Friends / Add friend row")
+
 print("DONE")

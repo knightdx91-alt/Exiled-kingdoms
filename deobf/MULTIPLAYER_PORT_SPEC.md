@@ -150,3 +150,18 @@ destroyed), issues arena kit 523/525/380/601 + 2×5000, travels to `H10_pvp_aren
 Also fixed: the engine calls `LanSessionManager.logLanError(String)` on one error path, but only the
 `(String,Throwable)` overload exists (in the mod too) → forwarder added. Found by re-running the
 member-resolution scan over the whole dex, intra-engine calls included.
+
+## 8. Friends list (owner request — not in the MP mod)
+Lobby row under Host / Join IP / Scan LAN / Leave: **Friends** and **Add friend** (`EkFriends`,
+hooks B22–B24 in `patch_multiplayer.py`).
+* **Remembered automatically**: every host you join (`joinHostAsync` → `EkFriends.remember`), most
+  recent first, max 30. **Add friend**: name + IP (`ip` or `ip:port`, default port 32124).
+* **Status**: opening the list sends the engine's own `EK_DISCOVER` UDP packet **straight to each
+  friend's IP** on 32123 (1.2 s timeout, all friends in parallel, off the UI thread). A host answers
+  `EK_HOST⇥name⇥port⇥players⇥max`; the list shows ● "hosting 2/6" or ○ "not hosting", and learns the
+  friend's session name (decoded with the engine's `%09/%0A/%0D/%25` rules) for auto-added IPs.
+  Unicast works over ZeroTier/Tailscale, where the broadcast "Scan LAN" does not.
+* **Tap a friend** → Join (uses the name typed in the lobby, same path as Join IP) / Remove / Back.
+* Stored in the lobby's prefs file `ek_lan_prefs`, key `ek_friends` (`name⇥ip⇥port` per line).
+* Limits: a friend who is not hosting cannot be seen as "online" (the engine has no presence
+  server); after a friend's VPN address changes, re-add them.
