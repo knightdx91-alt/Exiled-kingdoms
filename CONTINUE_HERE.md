@@ -27,14 +27,28 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v29.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v30.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v29.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v30.apk
 ```
+
+### v30 (2026-09-23) — shared world: host's world, your own character (phases A–D)
+
+Spec + status: `deobf/SHARED_WORLD_SPEC.md`. Java in `tools/mp_java/src/.../lan/Ek{Auto,Share,Items,Trade}.java`,
+hooks B25–B48 in `patch_multiplayer.py`.
+* **A** auto-host while you play (Options → MULTIPLAYER → My address has the ON/OFF switch); strangers
+  need the host's Allow (friends skip it); solo never counts as a session.
+* **B+C** one save per player: joining saves home, receives the host's world (slot 42, hidden), grafts
+  your character (player, backpack, party, companions, REP_/know_/item_upg_ vars); leaving/disconnect
+  takes your character home and saves it. Host is authority for world vars, kills, looted chests.
+* **D** shared ground drops (host arbitrates pickups — no dupes), "PvP everywhere" host switch (loser
+  drops one random backpack stack + 10 % gold), Trade window (lobby → Trade).
+* Dedupe confirmed on the real release: 14 of 15 parts identical to v29.
+* Static checks only (access, invoke kinds, D8, update gate). **Nothing device-tested yet.**
 
 ### v29 (2026-09-23) — Fold only, WITH the MP content pack; releases now dedupe in git
 
