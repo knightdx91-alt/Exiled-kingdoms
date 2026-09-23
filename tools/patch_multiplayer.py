@@ -1164,4 +1164,9 @@ def _h0h(m):
 edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0h, "StatsDetailWindow row: row height = wrapped sentence height")
 edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0h, "StatsDetailWindow sheet rows: row height = wrapped sentence height")
 
+# ---- B62: summon route chooser text ran under its buttons (fixed-size SimpleDialog) — grow the dialog -----
+edit_method('e/a/d/e/eksp', '<init>(Le/a/d/e/c0;)V', lambda m: sub1(
+    r'(\n    return-void\n\.end method)$', r'\n    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkUi;->growDialog(Ljava/lang/Object;)V\n\1', m, 'route dialog end'),
+    "summon route dialog: sized to its text + buttons, centred")
+
 print("DONE")

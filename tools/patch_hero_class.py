@@ -1010,6 +1010,21 @@ s = s.replace(old, f'    iget-object v3, p0, {SW}->l:{TBL}\n\n    invoke-static 
               f'    invoke-virtual {{v2, v3}}, {TBL}->add({ACT}){CELL}\n\n    move-result-object v3\n\n'
               f'    invoke-virtual {{v3}}, {CELL}->expand(){CELL}\n\n    move-result-object v3\n\n    invoke-virtual {{v3}}, {CELL}->fill(){CELL}\n', 1)
 
+# 7b2) the skill description panel (SkillDetailTable m) scrolls too: long descriptions (summons: rank
+#      tables + route text) ran past the window's bottom / behind the Back button (beta tester report)
+YT = 'Le/a/d/e/y;'
+old = f'    iget-object v3, p0, {SW}->m:{YT}\n\n    invoke-virtual {{v2, v3}}, {TBL}->add({ACT}){CELL}\n\n    move-result-object v3\n'
+assert s.count(old) == 1, f"m add: {s.count(old)}"
+s = s.replace(old, f'    iget-object v3, p0, {SW}->m:{YT}\n\n    invoke-static {{v3}}, {SW}->ekScroll({TBL}){ACT}\n\n    move-result-object v3\n\n'
+              f'    invoke-virtual {{v2, v3}}, {TBL}->add({ACT}){CELL}\n\n    move-result-object v3\n\n'
+              f'    invoke-virtual {{v3}}, {CELL}->expandY(){CELL}\n\n    move-result-object v3\n\n    invoke-virtual {{v3}}, {CELL}->fillY(){CELL}\n\n    move-result-object v3\n', 1)
+# picking another skill starts its description at the top
+old = f'.method private a({SK})V\n    .registers 10\n'
+if s.count(old) != 1:
+    old = f'.method private a({SK})V\n    .locals 8\n'
+assert s.count(old) == 1, "a(Skill) header"
+s = s.replace(old, old + f'\n    iget-object v0, p0, {SW}->m:{YT}\n\n    invoke-static {{v0}}, {SW}->ekScrollTop({ACT})V\n', 1)
+
 # 7c) the other classes' sections, right after the Hero's own (before General)
 old = (f'    sget-object v0, {CC}->g:{CC}\n\n'
        f'    invoke-static {{v0}}, Lnet/fdgames/Rules/Skills;->a({CC})Ljava/util/ArrayList;\n')
@@ -1087,6 +1102,29 @@ s = s.rstrip('\n') + f"""
     invoke-virtual {{v0, v2, v2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;->setOverscroll(ZZ)V
 
     return-object v0
+.end method
+
+.method public static ekScrollTop({ACT})V
+    .locals 2
+
+    if-eqz p0, :ekst_done
+
+    invoke-virtual {{p0}}, {ACT}->getParent()Lcom/badlogic/gdx/scenes/scene2d/Group;
+
+    move-result-object v0
+
+    instance-of v1, v0, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;
+
+    if-eqz v1, :ekst_done
+
+    check-cast v0, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {{v0, v1}}, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;->setScrollY(F)V
+
+    :ekst_done
+    return-void
 .end method
 
 .method public ekAddOtherClasses()V

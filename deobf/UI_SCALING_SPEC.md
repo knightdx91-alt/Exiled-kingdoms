@@ -69,3 +69,12 @@ a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
 * **v44**: owner's screenshot (Details → Character Stats) still showed one-line rows with wrapped lines on
   the next row. Each row (label cell 480xS) now gets an explicit height = the label's wrapped pref
   height measured at 480xS, set right after the cell's width (B61, `EkUi.fitCell`).
+
+## Cut-off text in the summon skill screens (beta tester report, v45)
+* **Summon route chooser** (ours, `patch_summon_routes.py` → `e/a/d/e/eksp`, a `SimpleDialog l1`): l1 is a
+  fixed 700x240·c box with a 380·c wrapped text column and 90·c buttons — built for one-liners. The
+  5-sentence route prompt wraps far past 240·c and runs under UNDEAD/ARCANE/BEAST. B62 `EkUi.growDialog`:
+  text column 620·c, buttons 170·c, `pack()` to the content's height, centred again.
+* **Skill description panel** (`SkillDetailTable` y in `SkillWindow`): no scrolling; long descriptions
+  (summon rank tables) ran past the window bottom / behind Back. Now in a vertical ScrollPane like the
+  skill list (`patch_hero_class.py` §7b2), reset to the top whenever another skill is selected.

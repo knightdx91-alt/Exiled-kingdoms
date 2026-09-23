@@ -3,6 +3,7 @@ package net.fdgames.ek.android.lan;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -180,6 +181,46 @@ public final class EkUi {
                     c.height(h);
                 }
             }
+        } catch (Throwable e) {
+            // keep vanilla
+        }
+    }
+
+    /**
+     * Summon route chooser (e/a/d/e/eksp, a SimpleDialog l1): l1 is a fixed 700x240 x c box with a 380 x c
+     * text column, made for one-liners. Our 5-line prompt wrapped far past 240 and ran under the route
+     * buttons (beta tester: "text gets cut off"). Widen the text column (620c) and the buttons (170c),
+     * let the box take its content's height, and centre it again.
+     */
+    public static void growDialog(Object o) {
+        try {
+            if (!(o instanceof Dialog)) {
+                return;
+            }
+            Dialog d = (Dialog) o;
+            float c = d.getWidth() / 700f;
+            if (c <= 0f) {
+                c = scale();
+            }
+            com.badlogic.gdx.utils.a cells = d.getContentTable().getCells();
+            for (int i = 0; i < cells.c; i++) {
+                Cell cell = (Cell) cells.get(i);
+                cell.width(620f * c);
+                if (cell.getActor() instanceof Label) {
+                    Label lb = (Label) cell.getActor();
+                    lb.setWrap(true);
+                    lb.setWidth(620f * c);
+                    lb.invalidateHierarchy();
+                }
+            }
+            com.badlogic.gdx.utils.a buttons = d.getButtonTable().getCells();
+            for (int i = 0; i < buttons.c; i++) {
+                ((Cell) buttons.get(i)).width(170f * c);
+            }
+            d.pack();
+            float w = Math.max(d.getWidth(), 700f * c);
+            d.setWidth(w);
+            d.setPosition((Gdx.graphics.getWidth() - w) / 2f, (Gdx.graphics.getHeight() - d.getHeight()) / 2f);
         } catch (Throwable e) {
             // keep vanilla
         }
