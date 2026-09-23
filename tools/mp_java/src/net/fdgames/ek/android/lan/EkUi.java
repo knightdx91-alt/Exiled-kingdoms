@@ -118,11 +118,23 @@ public final class EkUi {
         lb.invalidateHierarchy();
     }
 
-    /** Details window name column: wrap inside its own 240xS column instead of running into the value. */
+    /**
+     * Details window name column (240 x height/720 wide, StatsDetailWindow.h): one line, shrunk to fit
+     * (not below 60%), "..." beyond that. Wrapping it (v40) made the row shorter than the wrapped
+     * text, so it ran into the rows below.
+     */
     public static void wrapLabel(Object o) {
         try {
             if (o instanceof Label) {
-                ((Label) o).setWrap(true);
+                Label lb = (Label) o;
+                lb.setWrap(false);
+                float avail = 240f * (Gdx.graphics.getHeight() / 720f);
+                float base = lb.getFontScaleX();
+                float w = lb.getPrefWidth();
+                if (w > avail && w > 0f) {
+                    lb.setFontScale(base * Math.max(0.6f, avail / w));
+                }
+                lb.setEllipsis(true);
             }
         } catch (Throwable e) {
             // keep vanilla

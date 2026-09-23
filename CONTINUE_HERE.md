@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v41.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v42.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v41.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v42.apk
 ```
+
+### v42 (2026-09-23) — Details: stat names stay on one line (no overlap)
+
+Owner: Details → character stats still wraps and overlaps the rows below. v40's wrap was the cause (the
+row is sized before the label knows its wrapped height). Names now stay one line, shrink to fit the
+240xS column (≥60%), "..." beyond. `EkUi.wrapLabel`, `deobf/UI_SCALING_SPEC.md`. dist: base + v42 + v41.
 
 ### v41 (2026-09-23) — Hero: all skills on one scrollable page
 

@@ -58,3 +58,7 @@ a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
   + value label in a 480xS cell (wrap). A long stat name is wider than 240xS and runs into the value
   text. B59: the name label wraps inside its own column (both row builders:
   `a(String,String,Z)Table` and `a(CharacterSheet)`).
+
+* **v42 correction**: wrapping the name (v40) didn't work — the table sizes the row before the label
+  knows its wrapped height, so a two-line name ran into the next row ("character stats" section).
+  Now the name stays one line, shrinks to fit 240xS (not below 60%), "..." beyond that.
