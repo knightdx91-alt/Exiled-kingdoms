@@ -1058,4 +1058,12 @@ edit_method('net/fdgames/assets/GameAssets', 'b()V', lambda m: sub1(
     r'    invoke-static {v0}, Lnet/fdgames/ek/android/lan/EkUi;->scaleCheckboxes(Lcom/badlogic/gdx/scenes/scene2d/ui/CheckBox$CheckBoxStyle;)V\n',
     m, 'checkbox style'), "GameAssets.b(): checkbox images follow the UI scale (screen height / 720)")
 
+# ---- B52: the skin's menu-button-font was scaled (w/1280, h/720) -> stretched text on non-16:9
+#          screens (Fold inner ~1.2:1 = tall/narrow, outer 21:9 = wide). One uniform scale, the
+#          min(w/1280, h/720) most windows already use for their layout. deobf/UI_SCALING_SPEC.md
+edit_method('net/fdgames/assets/Assets', 'a()V', lambda m: sub1(
+    r'(    div-float/2addr v4, v5\n\n)(    invoke-virtual \{v2, v3, v4\}, Lcom/badlogic/gdx/graphics/g2d/BitmapFont\$BitmapFontData;->setScale\(FF\)V\n)',
+    r'\1    invoke-static {v3, v4}, Ljava/lang/Math;->min(FF)F\n\n    move-result v3\n\n    move v4, v3\n\n\2',
+    m, 'menu font scale'), "Assets.a(): menu-button-font keeps its proportions (uniform min scale)")
+
 print("DONE")

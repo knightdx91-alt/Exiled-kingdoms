@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v34.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v35.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v34.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v35.apk
 ```
+
+### v35 (2026-09-23) — UI scaling audit: button text keeps its proportions
+
+Owner asked what else doesn't scale. Audit in `deobf/UI_SCALING_SPEC.md`. One more real bug (vanilla):
+the skin's `menu-button-font` was scaled (w/1280, h/720) separately, so button text was stretched on the
+Fold (inner ~1.2:1 → tall/narrow; outer 21:9 → wide). B52 makes it uniform `min(w/1280, h/720)`, the
+scale most windows use. Everything else checked out. dist: base + v35 + v34.
 
 ### v34 (2026-09-23) — checkboxes sized for the screen
 
