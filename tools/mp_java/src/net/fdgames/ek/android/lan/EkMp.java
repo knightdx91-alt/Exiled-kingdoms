@@ -1,8 +1,11 @@
 package net.fdgames.ek.android.lan;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -13,9 +16,11 @@ import net.fdgames.GameEntities.Character;
 import net.fdgames.GameEntities.CharacterSheet.CharacterInventory;
 import net.fdgames.GameEntities.CharacterSheet.CharacterSheet;
 import net.fdgames.GameEntities.Final.NPC;
+import net.fdgames.GameEntities.Final.Player;
 import net.fdgames.GameEntities.MapActor;
 import net.fdgames.GameLevel.GameLevel;
 import net.fdgames.GameLevel.GameLevelData;
+import net.fdgames.GameWorld.DynamicEvent;
 import net.fdgames.GameWorld.GameData;
 import net.fdgames.Rules.Item;
 import net.fdgames.Rules.Rules;
@@ -272,6 +277,159 @@ public final class EkMp {
                 float fy = ps.y + 52;
                 gl.setText(f, n);
                 f.draw(batch, n, fx - gl.width / 2f, fy);
+            }
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    // ---- PvP arena (map H10_pvp_arena, content: pvp_arena_master/exit/chest) ---------------------
+    // pvp_arena_won: 2 = fight on, 1 = won, 0 = lost; pvp_fight_active: 1 while a fight runs.
+    static final String ARENA = "H10_pvp_arena";
+
+    private static boolean inArena() {
+        GameData gd = GameData.O();
+        return gd != null && ARENA.equals(gd.CurrentLevel);
+    }
+
+    /** Player death (our Player.E, their X): in the arena you are eliminated, not killed —
+     *  full HP, idle, the fight is lost and everyone is told. true = death handled. */
+    public static boolean arenaPlayerDeath(Player p) {
+        try {
+            if (p == null || !inArena()) {
+                return false;
+            }
+            GameData gd = GameData.O();
+            if (gd.gameVariables != null) {
+                gd.gameVariables.b("pvp_arena_won", 0);
+                gd.gameVariables.b("pvp_fight_active", 0);
+            }
+            try {
+                LanGameBridge.forcePublishLocalState();
+                LanSessionManager m = LanSessionManager.getInstanceIfReady();
+                if (m != null) {
+                    String n = p.getName();
+                    // APPROX: the mod prefixed a crossed-swords emoji the game font cannot draw.
+                    m.sendChat("[PVP] " + (n != null ? n : "Player") + " has been eliminated!");
+                }
+            } catch (Throwable e) {
+                // network trouble must not turn an arena knock-out into a game over
+            }
+            p.sheet.stats.missingHP = 0;
+            p.a(MapActor.ActorState.b);
+            try {
+                LanGameBridge.forcePublishLocalState();
+            } catch (Throwable e) {
+                // ignore
+            }
+            return true;
+        } catch (Throwable e) {
+            return false;
+        }
+    }
+
+    /** A peer's puppet dies here (our NPC.E after MapActor.E, their NPC.X): remove it, and when no
+     *  other peer is still standing the fight is won. APPROX: the mod tested GameData.currentMapName,
+     *  which the game never sets (always ""), so its branch never ran; we test CurrentLevel like the
+     *  rest of the engine. */
+    public static void arenaPeerDeath(NPC npc) {
+        try {
+            if (npc == null || !npc.lanPeerVisual || !inArena()) {
+                return;
+            }
+            npc.destroy = true;
+            List all = GameLevel.e();
+            if (all == null) {
+                return;
+            }
+            int alive = 0;
+            for (Object o : all) {
+                if (o == npc || !(o instanceof NPC)) {
+                    continue;
+                }
+                NPC n = (NPC) o;
+                if (n.lanPeerVisual && n.J() != MapActor.ActorState.j && !n.destroy) {
+                    alive++;
+                }
+            }
+            GameData gd = GameData.O();
+            if (alive == 0 && gd.gameVariables != null) {
+                gd.gameVariables.b("pvp_arena_won", 1);
+            }
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    // ---- world map (our e/a/d/r1.draw, their z0/q1.draw): peers in this area as coloured markers
+    // with their names, drawn right after the red "you are here" corners -----------------------
+    private static final Color[] PEER_COLORS = {Color.BLUE, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA};
+
+    public static void drawWorldPeers(Actor map, Batch batch, String area, TextureRegion marker, float size) {
+        try {
+            if (map == null || batch == null || marker == null) {
+                return;
+            }
+            float[] xy = LanGameBridge.getPeerMarkerPairs(area, size);
+            if (xy == null || xy.length == 0) {
+                return;
+            }
+            String[] names = LanGameBridge.getPeerMarkerNames(area);
+            for (int i = 0; i + 1 < xy.length; i += 2) {
+                int k = i >> 1;
+                batch.setColor(PEER_COLORS[k % PEER_COLORS.length]);
+                float x = map.getX() + xy[i];
+                float y = map.getY() + xy[i + 1];
+                batch.draw(marker, x, y, size, size);
+                if (names != null && k < names.length && names[k] != null) {
+                    BitmapFont f = GameAssets.d0;
+                    if (f != null) {
+                        // APPROX: the mod set the shared font's scale to 0.5 and left it there;
+                        // we restore it so other screens using this font keep their size.
+                        BitmapFont.BitmapFontData d = f.getData();
+                        float sx = d.scaleX;
+                        float sy = d.scaleY;
+                        f.setColor(Color.WHITE);
+                        d.scaleX = 0.5f;
+                        d.scaleY = 0.5f;
+                        f.draw(batch, names[k], x, y + size);
+                        d.scaleX = sx;
+                        d.scaleY = sy;
+                    }
+                }
+            }
+        } catch (Throwable e) {
+            // ignore
+        } finally {
+            try {
+                if (batch != null) {
+                    batch.setColor(Color.RED);
+                }
+            } catch (Throwable e) {
+                // ignore
+            }
+        }
+    }
+
+    // ---- world events (our GameData.f(), their Z(F)): a newly started dynamic event is written to
+    // the game log and announced to the other players ------------------------------------------
+    public static void worldEvent(DynamicEvent ev) {
+        try {
+            if (ev == null) {
+                return;
+            }
+            String s = ev.e();
+            if (s == null) {
+                return;
+            }
+            GameData gd = GameData.O();
+            if (gd != null && gd.log != null) {
+                gd.log.a(s);
+            }
+            LanSessionManager m = LanSessionManager.getInstanceIfReady();
+            if (m != null && m.isSessionRunning()) {
+                String plain = s.replace("[BLUE]", "").replace("[BLACK]", "").replace("[]", "");
+                m.sendChatAsync(">>> [World Event] " + plain);
             }
         } catch (Throwable e) {
             // ignore

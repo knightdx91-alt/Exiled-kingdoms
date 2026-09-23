@@ -129,3 +129,24 @@ Built by `tools/patch_multiplayer.py` (after all other patches) + manifest step 
 APPROX (logged in DEOBFUSCATION_STATUS §3 C15): spawn scaling does not stack across respawns;
 peer sprite keeps a peer visible when a weapon layer is missing; peer update runs movement/animation
 only (no AI/regen — the engine syncs HP).
+
+## 7. Phase 2a — arena rules, world-map peers, world events (v29)
+Recovered from the MP mod (their → ours), installed by `patch_multiplayer.py` B18–B21; glue in `EkMp`.
+
+| # | Theirs | Ours | Behaviour |
+|---|---|---|---|
+| B18 | `Player.X()` arena branch | `Player.E()V` prepend → `EkMp.arenaPlayerDeath` | On `H10_pvp_arena`: `pvp_arena_won=0`, `pvp_fight_active=0`, publish state, chat "[PVP] <name> has been eliminated!", `missingHP=0`, state `ActorState.b` (idle), publish; **no game over**. Elsewhere: normal death. |
+| B19 | `NPC.X()` after `super.X()` | `NPC.E()V` after `MapActor.E()` → `EkMp.arenaPeerDeath` | A peer puppet (`lanPeerVisual`) dying in the arena is destroyed; if no other live peer (state ≠ `j`, not destroyed) remains → `pvp_arena_won=1`. APPROX: tests `CurrentLevel` (theirs `currentMapName`, never assigned, so their branch never ran). |
+| B20 | `WorldMapImage.draw` (`z0/q1`) | `e/a/d/r1.draw` after the 4 red corners | `LanGameBridge.getPeerMarkerPairs(area, g)` → marker `c` at (x+px, y+py) size g, colours BLUE/GREEN/YELLOW/CYAN/MAGENTA by peer index; name from `getPeerMarkerNames` in `GameAssets.d0` at scale 0.5, white, above the marker; batch colour reset to RED. |
+| B21 | `GameData.Z(F)` new dynamic event | `GameData.f()V` after `r().add(ev)` → `EkMp.worldEvent` | Event text `ev.e()` → game log (not in vanilla), and in a session chat ">>> [World Event] <text>" with `[BLUE]`/`[BLACK]`/`[]` stripped. |
+
+Arena content (merged, `MP_CONTENT_SPEC.md`): `pvp_arena_master` (entry: needs `lan_pvp_active=1`, refuses while
+`pvp_fight_active=1`; sets fight on, `pvp_arena_won=2`, **HideParty + LoseInventory** (stashed, not
+destroyed), issues arena kit 523/525/380/601 + 2×5000, travels to `H10_pvp_arena`), `pvp_arena_exit`
+(won → 200 gold; every outcome: kit removed, `RecoverInventory`, ShowParty, Teleport Scroll 6011),
+`pvp_arena_chest` (manual `RecoverInventory`). All script actions are vanilla. The engine's
+`tick` writes `lan_pvp_active`/`pvp_fight_active`; peers count as `enemy` while `pvp_arena_won ≥ 1`.
+
+Also fixed: the engine calls `LanSessionManager.logLanError(String)` on one error path, but only the
+`(String,Throwable)` overload exists (in the mod too) → forwarder added. Found by re-running the
+member-resolution scan over the whole dex, intra-engine calls included.

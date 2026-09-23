@@ -77,4 +77,4 @@ renderer, minimap. **Fix found & applied:** the sprite hook now uses their exact
   LAN search, chat; takes a Wi-Fi multicast lock for discovery.
 
 ## G. Known open items (by design, for phase 2)
-Arena death rules (`Player`/`NPC` death hooks), world-map peer markers, world-event broadcast.
+Arena death rules, world-map peer markers, world-event broadcast: done in phase 2a (PORT_SPEC §7). Correction: §E missed one intra-engine call (`logLanError(String)`, absent in the mod too) — now forwarded.

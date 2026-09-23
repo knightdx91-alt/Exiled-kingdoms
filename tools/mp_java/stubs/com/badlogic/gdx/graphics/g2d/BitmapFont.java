@@ -1,1 +1,1 @@
-package com.badlogic.gdx.graphics.g2d; public class BitmapFont { public GlyphLayout draw(Batch b, CharSequence s, float x, float y) { return null; } }
+package com.badlogic.gdx.graphics.g2d; public class BitmapFont { public static class BitmapFontData { public float scaleX, scaleY; } public GlyphLayout draw(Batch b, CharSequence s, float x, float y) { return null; } public BitmapFontData getData() { return null; } public void setColor(com.badlogic.gdx.graphics.Color c) {} }

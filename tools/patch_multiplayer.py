@@ -242,6 +242,19 @@ def add_method(path, text, what):
     print(f"added {what}")
 
 
+# The mod's own engine calls LanSessionManager.logLanError(String) on one error path, but only the
+# (String,Throwable) overload exists -- a NoSuchMethodError waiting to happen (in the mod too).
+add_method(f'{DST}/net/fdgames/ek/android/lan/LanSessionManager.smali', '''
+.method private logLanError(Ljava/lang/String;)V
+    .locals 1
+
+    const/4 v0, 0x0
+
+    invoke-direct {p0, p1, v0}, Lnet/fdgames/ek/android/lan/LanSessionManager;->logLanError(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    return-void
+.end method''', "LanSessionManager.logLanError(String) (missing in the mod) -> (String,null)")
+
 add_method(f'{DST}/net/fdgames/GameWorld/GameVariables.smali', '''
 .method public e(ILjava/lang/String;)V
     .locals 0
@@ -588,4 +601,33 @@ t = blk.sub(_menu, t)
 assert made == 2, f"main menu builders patched: {made}"
 open(path, 'w', encoding='utf-8').write(t)
 print("B: main menu: MULTIPLAYER button (both layouts)")
+
+# ---- B18: Player.E() death (their X) -> in the PvP arena you are eliminated, not killed --------
+edit_method('net/fdgames/GameEntities/Final/Player', 'E()V', lambda m: sub1(
+    r'^(\.method protected E\(\)V\n    \.locals \d+\n)',
+    r'\1' + '\n    invoke-static {p0}, ' + EK + '->arenaPlayerDeath(Lnet/fdgames/GameEntities/Final/Player;)Z\n\n'
+    '    move-result v0\n\n    if-eqz v0, :ekmp_die\n\n    return-void\n\n    :ekmp_die\n', m, 'player death', re.M),
+    "Player.E(): arena elimination instead of game over")
+
+# ---- B19: NPC.E() death (their X) -> a peer puppet dying in the arena is removed; last one = won
+edit_method('net/fdgames/GameEntities/Final/NPC', 'E()V', lambda m: sub1(
+    r'(    invoke-super/range \{p0 \.\. p0\}, Lnet/fdgames/GameEntities/MapActor;->E\(\)V\n)',
+    r'\1' + '\n    invoke-static/range {p0 .. p0}, ' + EK + '->arenaPeerDeath(' + NPC_ + ')V\n', m, 'npc death'),
+    "NPC.E(): arena peer elimination")
+
+# ---- B20: world map (e/a/d/r1.draw, their z0/q1.draw) -> peer markers + names after the red corners
+edit_method('e/a/d/r1', 'draw(Lcom/badlogic/gdx/graphics/g2d/Batch;F)V', lambda m: sub1(
+    r'(    invoke-interface/range \{v2 \.\. v7\}, Lcom/badlogic/gdx/graphics/g2d/Batch;->draw\(Lcom/badlogic/gdx/graphics/g2d/TextureRegion;FFFF\)V\n\n)'
+    r'(    iget-object p2, p0, Le/a/d/r1;->b:Ljava/lang/String;\n\n    invoke-static \{p2\}, Lnet/fdgames/GameWorld/Areas;->j\(Ljava/lang/String;\)Z\n)',
+    r'\1    iget-object p2, p0, Le/a/d/r1;->b:Ljava/lang/String;' + '\n\n    iget-object v1, p0, Le/a/d/r1;->c:Lcom/badlogic/gdx/graphics/g2d/TextureRegion;\n\n'
+    '    iget v0, p0, Le/a/d/r1;->g:F\n\n'
+    '    invoke-static {p0, p1, p2, v1, v0}, ' + EK + '->drawWorldPeers(Lcom/badlogic/gdx/scenes/scene2d/Actor;Lcom/badlogic/gdx/graphics/g2d/Batch;Ljava/lang/String;Lcom/badlogic/gdx/graphics/g2d/TextureRegion;F)V\n\n' + r'\2', m, 'world map'),
+    "WorldMapImage.draw: peer markers")
+
+# ---- B21: GameData.f() new dynamic event (their Z(F)) -> game log + chat broadcast -------------
+edit_method('net/fdgames/GameWorld/GameData', 'f()V', lambda m: sub1(
+    r'(    invoke-virtual \{p0\}, Lnet/fdgames/GameWorld/GameData;->r\(\)Ljava/util/ArrayList;\n\n    move-result-object v0\n\n    invoke-virtual \{v0, (v\d+)\}, Ljava/util/ArrayList;->add\(Ljava/lang/Object;\)Z\n)',
+    r'\1' + '\n    invoke-static {\\2}, ' + EK + '->worldEvent(Lnet/fdgames/GameWorld/DynamicEvent;)V\n', m, 'world event'),
+    "GameData.f(): world-event log + broadcast")
+
 print("DONE")

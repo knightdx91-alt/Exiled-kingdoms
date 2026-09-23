@@ -1,1 +1,1 @@
-package net.fdgames.GameEntities; public class MapActor extends MapSprite { public enum ActorState { b, c, d, e, f } public ActorState J() { return null; } }
+package net.fdgames.GameEntities; public class MapActor extends MapSprite { public enum ActorState { b, c, d, e, f, g, h, i, j, k, l } public ActorState J() { return null; } public void a(ActorState s) {} }
