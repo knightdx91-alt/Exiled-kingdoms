@@ -165,3 +165,16 @@ hooks B22–B24 in `patch_multiplayer.py`).
 * Stored in the lobby's prefs file `ek_lan_prefs`, key `ek_friends` (`name⇥ip⇥port` per line).
 * Limits: a friend who is not hosting cannot be seen as "online" (the engine has no presence
   server); after a friend's VPN address changes, re-add them.
+
+### §7 addendum (2026-09-23): world-map markers only worked in the big cities — fixed (B53)
+The engine's `resolveMarker` gets an area's map cell via reflection `invokeStatic("…Areas", "g", level)`.
+Our audit renamed their `h` → our `g` but missed that 4.2.2's `Areas.g(String)Coords` is an **instance**
+method on `GameWorld.f` (the static-only `Areas.j` is fine). `Method.invoke(null, …)` threw, the catch
+returned null, so a peer was drawn only in the four hard-coded cities (NG/FT/NI/IM). Now called exactly
+as `WorldMapImage.a(String)` does: `GameWorld.f.g(level)`. Checked offline with the game's own code
+(tools/init_harness + a direct `resolveMarker` call): v35 → null for H10/C11/G9/E10_cave/F6_temple;
+v36 → their cells. All other reflective calls in the engine were re-checked for static/instance: OK.
+Marker look (ours, APPROX): the marker texture is a 1x1 white pixel, which drawn at the area-cell size
+covered the whole area; now a dot 40% of the cell, black outline, side by side for players sharing an
+area, name scaled with the screen. There is no separate in-area minimap in 4.2.2 (the HUD map button
+opens this world map; maps flagged `nominimap` disable it).

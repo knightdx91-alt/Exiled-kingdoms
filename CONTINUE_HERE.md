@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v35.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v36.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v35.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v36.apk
 ```
+
+### v36 (2026-09-23) — other players now show on the map everywhere
+
+Owner asked to check the minimap. 4.2.2 has no in-area minimap; the HUD map button opens the world
+map, where peers are drawn (B20). Bug: outside the 4 hard-coded cities their marker never appeared —
+the engine called 4.2.2's instance method `Areas.g` as static via reflection (B53 fixes it; verified
+offline by calling the real `resolveMarker`). Markers are now a dot with the name, not a block covering
+the area. Details: `deobf/MULTIPLAYER_PORT_SPEC.md` §7 addendum. dist: base + v36 + v35.
 
 ### v35 (2026-09-23) — UI scaling audit: button text keeps its proportions
 

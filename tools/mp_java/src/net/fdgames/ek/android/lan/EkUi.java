@@ -23,6 +23,16 @@ public final class EkUi {
         }
     }
 
+    /** The uniform scale most windows use: min(width / 1280, height / 720), never below 1. */
+    static float uniformScale() {
+        try {
+            float s = Math.min(Gdx.graphics.getWidth() / 1280f, Gdx.graphics.getHeight() / 720f);
+            return s < 1f ? 1f : s;
+        } catch (Throwable e) {
+            return 1f;
+        }
+    }
+
     /** A drawable that reports its source size x the current UI scale (fold/unfold safe). */
     static final class Scaled extends TextureRegionDrawable {
         private final float w;

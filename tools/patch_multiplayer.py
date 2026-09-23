@@ -1066,4 +1066,17 @@ edit_method('net/fdgames/assets/Assets', 'a()V', lambda m: sub1(
     r'\1    invoke-static {v3, v4}, Ljava/lang/Math;->min(FF)F\n\n    move-result v3\n\n    move v4, v3\n\n\2',
     m, 'menu font scale'), "Assets.a(): menu-button-font keeps its proportions (uniform min scale)")
 
+# ---- B53: world-map peer markers never showed outside the big cities: the engine calls Areas.g(String)
+#          (their static Areas.h) by reflection as a STATIC method, but in 4.2.2 it is an instance
+#          method on GameWorld.f -> Method.invoke(null, ..) throws, caught, marker skipped. Call it the
+#          way WorldMapImage.a(String) does: GameWorld.f.g(level). MULTIPLAYER_PORT_SPEC §7.
+edit_method(LGB, 'resolveMarker(Ljava/lang/String;F)[F', lambda m: sub1(
+    r'    const-string (v\d+), "net\.fdgames\.GameWorld\.Areas"\n\n    const-string (v\d+), "g"\n\n    const-class (v\d+), Ljava/lang/String;\n\n'
+    r'    invoke-static \{\1, \2, \3, p0\}, Lnet/fdgames/ek/android/lan/LanGameBridge;->invokeStatic\(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;\)Ljava/lang/Object;\n\n'
+    r'    move-result-object p0\n',
+    r'    sget-object \1, Lnet/fdgames/GameWorld/GameWorld;->f:Lnet/fdgames/GameWorld/Areas;\n\n'
+    r'    invoke-virtual {\1, p0}, Lnet/fdgames/GameWorld/Areas;->g(Ljava/lang/String;)Lnet/fdgames/TiledMap/Objects/Coords;\n\n'
+    r'    move-result-object p0\n',
+    m, 'areas coords'), "LanGameBridge.resolveMarker: area position via GameWorld.f.g(level) (was a failing static reflection)")
+
 print("DONE")

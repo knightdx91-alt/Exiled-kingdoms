@@ -375,24 +375,35 @@ public final class EkMp {
                 return;
             }
             String[] names = LanGameBridge.getPeerMarkerNames(area);
+            // A dot in the middle of the peer's area (the marker texture is a 1x1 white pixel: drawn at
+            // the full cell size it hid the whole area). Players sharing an area sit side by side.
+            float dot = Math.max(6f, size * 0.4f);
+            java.util.HashMap<String, Integer> seen = new java.util.HashMap<String, Integer>();
             for (int i = 0; i + 1 < xy.length; i += 2) {
                 int k = i >> 1;
+                String key = (int) xy[i] + "," + (int) xy[i + 1];
+                Integer n = seen.get(key);
+                int slot = n == null ? 0 : n.intValue();
+                seen.put(key, slot + 1);
+                float x = map.getX() + xy[i] + (size - dot) / 2f + slot * dot * 0.6f;
+                float y = map.getY() + xy[i + 1] + (size - dot) / 2f - slot * dot * 0.3f;
+                batch.setColor(Color.BLACK);
+                batch.draw(marker, x - 2f, y - 2f, dot + 4f, dot + 4f);
                 batch.setColor(PEER_COLORS[k % PEER_COLORS.length]);
-                float x = map.getX() + xy[i];
-                float y = map.getY() + xy[i + 1];
-                batch.draw(marker, x, y, size, size);
+                batch.draw(marker, x, y, dot, dot);
                 if (names != null && k < names.length && names[k] != null) {
                     BitmapFont f = GameAssets.d0;
                     if (f != null) {
-                        // APPROX: the mod set the shared font's scale to 0.5 and left it there;
-                        // we restore it so other screens using this font keep their size.
+                        // APPROX: the mod set the shared font's scale to 0.5 and left it there; we
+                        // restore it, and scale with the screen like the game's windows do.
                         BitmapFont.BitmapFontData d = f.getData();
                         float sx = d.scaleX;
                         float sy = d.scaleY;
+                        float fs = 0.5f * EkUi.uniformScale();
                         f.setColor(Color.WHITE);
-                        d.scaleX = 0.5f;
-                        d.scaleY = 0.5f;
-                        f.draw(batch, names[k], x, y + size);
+                        d.scaleX = fs;
+                        d.scaleY = fs;
+                        f.draw(batch, names[k], x, y + dot + 4f + fs * 20f);
                         d.scaleX = sx;
                         d.scaleY = sy;
                     }
