@@ -70,3 +70,13 @@ likely the Fold's own auto-host mapping.)
 Lobby (B65, `EkFriends.relayoutLobby`): the chat was a weight-1 box after fixed boxes (diag 44dp,
 sessions 140dp, players 90dp) and got about one line. Sessions and players now sit side by side
 (130dp each), and the diagnostics strip is 84dp tall. The chat takes the freed space.
+
+## v54 — both devices on mobile data (owner screenshot: "couldn't open the port (SocketTimeoutException)")
+No home router exists on mobile data, and carriers never allow inbound connections to phones (CGNAT), so
+router port opening can't apply there. The timeout came from a router remembered from an earlier Wi-Fi
+session (`controlUrl` cached) being called over mobile data. Now: `open()` always rediscovers; if the device
+has no Wi-Fi/Ethernet address (`EkAuto.hasHomeNetwork()`: only cellular and/or VPN interfaces), the lobby
+says "you're on mobile data… use Tailscale or ZeroTier" without probing; a router that stops answering is
+forgotten. Joining skips the router lookup on mobile data.
+Two phones both on mobile data can only reach each other through something in the middle: Tailscale /
+ZeroTier (their relays), or a relay server of our own (not built; owner offered the free-tier option).

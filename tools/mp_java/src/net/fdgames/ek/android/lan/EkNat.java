@@ -68,8 +68,9 @@ public final class EkNat {
                 try {
                     open();
                 } catch (Throwable e) {
-                    status = "Internet: couldn't open the port (" + e.getClass().getSimpleName()
-                            + "). Friends on the same Wi-Fi, Tailscale or ZeroTier can still join.";
+                    controlUrl = null;
+                    status = "Internet: the router stopped answering (" + e.getClass().getSimpleName()
+                            + "). Try hosting again; friends on the same Wi-Fi, Tailscale or ZeroTier can still join.";
                 } finally {
                     busy = false;
                 }
@@ -149,6 +150,9 @@ public final class EkNat {
             java.util.concurrent.Future<?> f = WORKER.submit(new Runnable() {
                 public void run() {
                     try {
+                        if (!EkAuto.hasHomeNetwork()) {
+                            return;                 // mobile data: no home router to ask
+                        }
                         if (controlUrl == null) {
                             if (System.currentTimeMillis() - noRouterAt < 5 * 60 * 1000L) {
                                 return;
@@ -205,7 +209,16 @@ public final class EkNat {
     // ---- router work (worker thread) ------------------------------------------------------------
 
     private static void open() throws Exception {
-        if (controlUrl == null && !discover()) {
+        // v54: never reuse a router found on an earlier network (owner on mobile data got
+        // "SocketTimeoutException": the game kept calling the home router it had found over Wi-Fi).
+        controlUrl = null;
+        if (!EkAuto.hasHomeNetwork()) {
+            status = "Internet: you're on mobile data. Mobile carriers don't let other players connect in to"
+                    + " a phone, so hosting over the internet needs home Wi-Fi (router with UPnP on). On mobile"
+                    + " data, use Tailscale or ZeroTier on both devices instead.";
+            return;
+        }
+        if (!discover()) {
             status = "Internet: your router didn't answer (UPnP may be off in its settings). Friends on"
                     + " the same Wi-Fi, Tailscale or ZeroTier can still join.";
             return;

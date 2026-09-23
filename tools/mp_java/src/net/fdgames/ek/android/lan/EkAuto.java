@@ -247,6 +247,38 @@ public final class EkAuto {
         return out.length() == 0 ? "No network address found." : out;
     }
 
+    /**
+     * True when this device has a Wi-Fi/Ethernet (home network) IPv4 address, i.e. not only mobile data
+     * and/or a VPN. Router port opening (EkNat) only makes sense then.
+     */
+    static boolean hasHomeNetwork() {
+        java.util.Set<String> vpnIfs = new java.util.HashSet<String>();
+        java.util.Set<String> cellIfs = new java.util.HashSet<String>();
+        scanConnectivity(vpnIfs, cellIfs, new java.util.LinkedHashMap<String, String>());
+        try {
+            Enumeration<NetworkInterface> ifs = NetworkInterface.getNetworkInterfaces();
+            while (ifs != null && ifs.hasMoreElements()) {
+                NetworkInterface ni = ifs.nextElement();
+                if (!ni.isUp() || ni.isLoopback()) {
+                    continue;
+                }
+                String n = ni.getName() == null ? "" : ni.getName();
+                if (kindOf(n, vpnIfs, cellIfs) != 0) {
+                    continue;
+                }
+                Enumeration<InetAddress> as = ni.getInetAddresses();
+                while (as.hasMoreElements()) {
+                    if (as.nextElement() instanceof Inet4Address) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Throwable e) {
+            return true;                              // can't tell: let the router search decide
+        }
+        return false;
+    }
+
     /** 1 = VPN, 2 = cellular, 0 = Wi-Fi/local. */
     private static int kindOf(String n, java.util.Set<String> vpnIfs, java.util.Set<String> cellIfs) {
         if (vpnIfs.contains(n) || n.startsWith("zt") || n.startsWith("tun") || n.startsWith("wg")
