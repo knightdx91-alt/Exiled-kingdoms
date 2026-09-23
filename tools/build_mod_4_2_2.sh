@@ -66,6 +66,11 @@ fi
 if [ -z "${EK_SKIP_HERO:-}" ]; then
   ( cd "$WORK" && python3 "$REPO/tools/patch_hero_class.py" )
 fi
+# Multiplayer (MP mod engine ported onto our base; deobf/MULTIPLAYER_PORT_SPEC.md).
+# EK_SKIP_MP=1 builds without it.
+if [ -z "${EK_SKIP_MP:-}" ]; then
+  ( cd "$WORK" && python3 "$REPO/tools/patch_multiplayer.py" )
+fi
 
 echo "== 4. reassemble dex (api 15 -> dex 035, Dalvik) =="
 java -jar "$LIB/smali-2.5.2.jar" a --api 15 "$WORK/smali" -o "$WORK/classes.dex"
@@ -73,10 +78,19 @@ head -c 8 "$WORK/classes.dex" | grep -q "dex" || { echo "bad dex"; exit 1; }
 
 echo "== 5. patch binary AndroidManifest.xml (storage perms, no resources.arsc touch) =="
 unzip -o -q "$BASE" AndroidManifest.xml -d "$WORK/mf"
+MP_PERMS=""
+[ -z "${EK_SKIP_MP:-}" ] && MP_PERMS="android.permission.ACCESS_WIFI_STATE android.permission.CHANGE_WIFI_MULTICAST_STATE"
 python3 "$REPO/tools/axml_add_perms.py" \
-  "$WORK/mf/AndroidManifest.xml" "$WORK/AndroidManifest.xml" \
+  "$WORK/mf/AndroidManifest.xml" "$WORK/mf/perms.xml" \
   android.permission.WRITE_EXTERNAL_STORAGE android.permission.READ_EXTERNAL_STORAGE \
-  android.permission.READ_LOGS
+  android.permission.READ_LOGS $MP_PERMS
+if [ -z "${EK_SKIP_MP:-}" ]; then
+  # the multiplayer lobby screen (deobf/MULTIPLAYER_PORT_SPEC.md)
+  ( cd "$REPO/tools" && python3 axml_add_activity.py "$WORK/mf/perms.xml" "$WORK/AndroidManifest.xml" \
+      net.fdgames.ek.android.lan.LanLobbyActivity )
+else
+  cp "$WORK/mf/perms.xml" "$WORK/AndroidManifest.xml"
+fi
 
 echo "== 6. zip-swap into a copy of the base APK =="
 cp "$BASE" "$WORK/out.apk"

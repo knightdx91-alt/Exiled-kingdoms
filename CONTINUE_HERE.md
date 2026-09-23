@@ -23,16 +23,26 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v25-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v25.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v26-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v26.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v25-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v25.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v26-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v26.apk
 ```
+
+### v26 (2026-09-23) — MULTIPLAYER, phase 1: the MP mod's engine ported onto our base
+
+Main menu → **MULTIPLAYER** opens the lobby (host / join by IP / LAN search, chat). In game: peers
+appear as their characters with name labels and minimap pins, monsters engage every player and
+scale +2 levels per extra player, combat and damage are mirrored, a CHAT button shows while in a
+session. Internet play = both devices on one **ZeroTier or Tailscale** network, then join by the
+host's VPN IP. Not device-tested. Spec + everything checked: `deobf/MULTIPLAYER_PORT_SPEC.md` §6.
+Build now needs `r8.jar` (D8) in `EK_LIB` for the Java glue (`tools/mp_java`); `EK_SKIP_MP=1` skips it.
+Next: phase 2 (arena + their menus/content), phase 3 (PvP anywhere, item drop/pickup, trading).
 
 ### v25 (2026-09-22) — Grissenda's off-class gear goes back to the player's backpack
 

@@ -174,6 +174,7 @@ reasoning and the reversed evidence live in the linked spec.
 | C12 | Equipment trait bonuses stack (sum), not max-of | owner's request (v21); vanilla told the player only the highest applies | `STACK_TRAITS_SPEC.md` §4 |
 | C13 | Hero trait mana = best of the Mage/Cleric formulas; "Lesser Summoning" displays as "Summon"; Arcane summon ranks 3-4 are Acid Elemental / Animated Waste (v22) | owner's requests (v21) | `STACK_TRAITS_SPEC.md` §1-3 |
 | C14 | Hero perks apply only to the player's sheet; warrior NPCs (Grissenda) follow vanilla warrior rules | owner's request (v23); Hero reuses the WARRIOR enum | `HERO_CLASS_MOD_SPEC.md` §v23 |
+| C15 | Multiplayer engine (MP mod) ported onto our base; spawn scaling non-stacking; peers keep a sprite when a weapon layer is missing; wizard peers use `blue_wizard` not `janod`; arena death rules + world-map markers deferred | our base differs (Janod companion, older assets); owner request | `MULTIPLAYER_PORT_SPEC.md` §6 |
 
 ## 4. Known-missing (not started, not yet approximated)
 Day/night ✅ done. Still absent: camera **shake**, cinematic **zoom transitions**,

@@ -1,0 +1,1 @@
+package net.fdgames.GameEntities.CharacterSheet; public class CharacterSheet { public CharacterInventory inventory; public int z() { return 0; } public String A() { return null; } public String F() { return null; } }

@@ -1,0 +1,1 @@
+package net.fdgames.GameEntities; public class Character extends MapActor { public enum Gender { b, c } public net.fdgames.GameEntities.CharacterSheet.CharacterSheet sheet; public Gender gender; public com.badlogic.gdx.utils.a spriteIndex; }

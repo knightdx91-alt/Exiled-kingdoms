@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d.utils; public class ClickListener implements com.badlogic.gdx.scenes.scene2d.EventListener { public ClickListener() {} public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent e, float x, float y) {} }

@@ -1,0 +1,1 @@
+package com.badlogic.gdx.scenes.scene2d; public class Actor { public void setVisible(boolean v) {} public void setPosition(float x, float y) {} public float getWidth() { return 0; } public void toFront() {} public boolean addListener(EventListener l) { return false; } }
