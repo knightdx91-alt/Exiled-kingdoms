@@ -123,6 +123,47 @@ public final class EkFriends {
         }
     }
 
+    /** Used by join approval ("Allow + add friend"). */
+    static void addFriend(android.app.Activity a, String name, String ip, int port) {
+        try {
+            ip = clean(ip);
+            if (ip.length() == 0) {
+                return;
+            }
+            List<Friend> list = load(a);
+            int i = indexOf(list, ip);
+            Friend f = i >= 0 ? list.remove(i) : new Friend();
+            f.ip = ip;
+            f.port = port > 0 ? port : GAME_PORT;
+            String n = clean(name);
+            f.name = n.length() > 0 ? n : (f.name != null ? f.name : ip);
+            list.add(0, f);
+            save(a, list);
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    /** "My address": what a friend types to join you, plus the auto-host switch. */
+    static void showMyAddress(final LanLobbyActivity a) {
+        try {
+            final boolean on = EkAuto.autoHostEnabled(a);
+            new AlertDialog.Builder(a).setTitle("My address")
+                    .setMessage("Give a friend one of these (use the ZeroTier/Tailscale one over the internet):\n\n"
+                            + EkAuto.myAddresses()
+                            + "\n\nHost automatically while playing: " + (on ? "ON" : "OFF"))
+                    .setPositiveButton(on ? "Turn auto-host OFF" : "Turn auto-host ON", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface d, int w) {
+                            EkAuto.setAutoHost(a, !on);
+                            Toast.makeText(a, "Auto-host " + (on ? "off" : "on"), 0).show();
+                        }
+                    })
+                    .setNegativeButton("Close", null).show();
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
     // ---- status probe --------------------------------------------------------------------------
 
     private static void probe(Friend f) {
@@ -183,6 +224,11 @@ public final class EkFriends {
             a.ekAddButton(row, "Add friend", new View.OnClickListener() {
                 public void onClick(View v) {
                     promptAdd(a);
+                }
+            });
+            a.ekAddButton(row, "My address", new View.OnClickListener() {
+                public void onClick(View v) {
+                    showMyAddress(a);
                 }
             });
         } catch (Throwable e) {

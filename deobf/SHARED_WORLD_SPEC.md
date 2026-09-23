@@ -55,3 +55,17 @@ C. World sync: snapshot on join, joiner→host world ops, host broadcast, join/l
 D. Items: trade, drop/pick up, PvP loot.
 Each phase is reversed from the real classes first (Serializer, GameData, Party, WorldContainer…)
 and its numbers/flow pinned here before coding.
+
+## Status
+**Phase A — done (code).** `EkAuto` + hooks B25–B29 in `patch_multiplayer.py`:
+* keeper in the game-screen tick (every 3 s): hosts with the lobby name (else the character's) when
+  auto-host is on, you're in game, not hosting/connected, and no join started in the last 20 s;
+  `joinHost` already stops the local host; after leaving, the keeper re-hosts.
+* `isSessionRunning()`/`isInSession()` = connected, or hosting with ≥2 players — so the arena gate
+  (`lan_pvp_active`), per-frame sync, spawn scaling, CHAT button all stay off while alone.
+* `handleIncomingClient`: after reading `JOIN⇥name`, `EkAuto.approveJoin` — a friend's IP passes;
+  otherwise the host gets "Allow + add friend / Allow once / Deny" (45 s timeout = deny); denied →
+  `CLOSE⇥The host declined the join request.` and the socket is closed.
+* Lobby row: Friends / Add friend / **My address** (VPN addresses first: ZeroTier `zt*`, Tailscale
+  100.64/10, `tun`/`wg`; plus the auto-host ON/OFF switch, pref `ek_autohost`).
+* In game: Options → **MULTIPLAYER** opens the lobby.

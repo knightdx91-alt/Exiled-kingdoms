@@ -211,7 +211,19 @@ edit_method(B0, '<init>()V', lambda m: sub1(
     invoke-direct {{v1, p0}}, Le/a/d/b0$ekR;-><init>(Le/a/d/b0;)V
 
     invoke-virtual {{v0, v1}}, Lcom/badlogic/gdx/scenes/scene2d/Actor;->addListener(Lcom/badlogic/gdx/scenes/scene2d/EventListener;)Z
-''', m, 'layout raise row'), "b0.<init>: Raise row under Lower + listener")
+
+    invoke-virtual {{p0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->row()Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    invoke-static {{}}, {EK}->mpOptionsButton(){TB}
+
+    move-result-object v0
+
+    invoke-virtual {{p0, v0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add(Lcom/badlogic/gdx/scenes/scene2d/Actor;)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    move-result-object v0
+
+    invoke-virtual {{v0, v2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->space(F)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+''', m, 'layout raise row'), "b0.<init>: Raise row under Lower + listener; MULTIPLAYER row (opens the lobby)")
 add_methods(B0, f'''
 .method private ekRefreshRaise()V
     .locals 3

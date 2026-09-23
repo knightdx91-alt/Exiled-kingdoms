@@ -675,4 +675,66 @@ edit_method(LOBBY, 'buildContentView()Landroid/view/View;', lambda m: sub1(
     r'\1\n    invoke-static {p0, v1}, ' + FR + '->addLobbyRow(' + LL + r'Landroid/widget/LinearLayout;)V' + '\n', m, 'friends row'),
     "LanLobbyActivity.buildContentView: Friends / Add friend row")
 
+# ---- B25-B29: shared world phase A (auto-host, join approval, solo != session) SHARED_WORLD_SPEC §5
+LSM = 'net/fdgames/ek/android/lan/LanSessionManager'
+LS = 'L' + LSM + ';'
+AU = 'Lnet/fdgames/ek/android/lan/EkAuto;'
+SESSION = f"""
+    iget-boolean v0, p0, {LS}->connected:Z
+
+    if-nez v0, :yes
+
+    iget-boolean v0, p0, {LS}->hosting:Z
+
+    if-eqz v0, :no
+
+    iget-object v0, p0, {LS}->players:Ljava/util/ArrayList;
+
+    invoke-virtual {{v0}}, Ljava/util/ArrayList;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x2
+
+    if-lt v0, v1, :no
+
+    :yes
+    const/4 v0, 0x1
+
+    return v0
+
+    :no
+    const/4 v0, 0x0
+
+    return v0
+.end method"""
+for sig in ('isSessionRunning()Z', 'isInSession()Z'):
+    edit_method(LSM, sig, lambda m, sig=sig: f'.method public {sig}\n    .registers 3\n' + SESSION,
+                f"LanSessionManager.{sig}: hosting alone is not a session (>=2 players or connected)")
+add_method(f'{DST}/{LSM}.smali', f"""
+.method public ekConnected()Z
+    .registers 2
+
+    iget-boolean v0, p0, {LS}->connected:Z
+
+    return v0
+.end method""", "LanSessionManager.ekConnected()")
+edit_method(LSM, 'joinHost(Ljava/lang/String;Ljava/lang/String;I)V', lambda m: sub1(
+    r'^(\.method public joinHost\(Ljava/lang/String;Ljava/lang/String;I\)V\n    \.registers \d+\n)',
+    r'\1' + '\n    invoke-static {}, ' + AU + '->noteJoin()V\n', m, 'noteJoin', re.M),
+    "LanSessionManager.joinHost: pause auto-host while joining")
+edit_method(LSM, 'handleIncomingClient(Ljava/net/Socket;)V', lambda m: sub1(
+    r'(    invoke-direct \{p0, v4\}, ' + re.escape(LS) + r'->decode\(Ljava/lang/String;\)Ljava/lang/String;\n\n    move-result-object v4\n)(\n    iget-object v5, p0, ' + re.escape(LS) + r'->lock:Ljava/lang/Object;\n)',
+    r'\1' + '\n    invoke-static {p1, v4}, ' + AU + r'->approveJoin(Ljava/net/Socket;Ljava/lang/String;)Z' + '\n\n    move-result v5\n\n    if-nez v5, :ekauto_ok\n\n'
+    '    const-string v5, "CLOSE\\tThe host declined the join request."\n\n'
+    '    invoke-direct {p0, v3, v5}, ' + LS + '->sendLine(Ljava/io/PrintWriter;Ljava/lang/String;)V\n\n'
+    '    invoke-direct {p0, v3}, ' + LS + '->closeQuietly(Ljava/io/PrintWriter;)V\n\n'
+    '    invoke-direct {p0, v2}, ' + LS + '->closeQuietly(Ljava/io/BufferedReader;)V\n\n'
+    '    invoke-direct {p0, p1}, ' + LS + '->closeQuietly(Ljava/net/Socket;)V\n\n    return-void\n\n    :ekauto_ok\n' + r'\2', m, 'approve'),
+    "LanSessionManager.handleIncomingClient: host approves strangers (friends skip)")
+edit_method('e/a/b/b', 'a(F)V', lambda m: sub1(
+    r'(    invoke-static \{\}, ' + re.escape(LAN) + r'->tick\(\)V\n)',
+    '    invoke-static {}, ' + AU + r'->tick()V' + '\n\n' + r'\1', m, 'autohost tick'),
+    "GameScreen.a(F): auto-host keeper")
+
 print("DONE")

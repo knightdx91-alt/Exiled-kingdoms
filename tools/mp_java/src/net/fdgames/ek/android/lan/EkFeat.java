@@ -421,6 +421,17 @@ public final class EkFeat {
         }
     }
 
+    // ============ shared world phase A: Options -> MULTIPLAYER (opens the lobby) ==================
+    public static TextButton mpOptionsButton() {
+        TextButton b = new e.a.d.u("MULTIPLAYER", Assets.e(), "menuButton");
+        try {
+            b.addListener(EkMp.lobbyListener());
+        } catch (Throwable e) {
+            // ignore
+        }
+        return b;
+    }
+
     // ================================ 9. recover ================================================
 
     /** After Recover / rest: other players see the restored HP at once. */
