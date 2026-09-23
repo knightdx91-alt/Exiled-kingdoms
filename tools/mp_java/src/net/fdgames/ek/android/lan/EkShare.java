@@ -463,6 +463,13 @@ public final class EkShare {
         if (line == null || !line.startsWith("EK")) {
             return false;
         }
+        if (line.startsWith("EKHELLO")) {
+            EkItems.onClientJoined();
+            return true;
+        }
+        if (EkItems.hostLine(peer, line) || EkTrade.line(line, true)) {
+            return true;
+        }
         if (line.startsWith("EKWREQ")) {
             runOnGame(new Runnable() {
                 public void run() {
@@ -498,10 +505,14 @@ public final class EkShare {
             return false;
         }
         if (line.startsWith("WELCOME\t")) {
+            m.ekSendToHost("EKHELLO");
             if (joinPrepared) {
                 m.ekSendToHost("EKWREQ");
             }
             return false; // the engine handles WELCOME as usual
+        }
+        if (line.startsWith("EK") && (EkItems.clientLine(line) || EkTrade.line(line, false))) {
+            return true;
         }
         if (line.startsWith("EKWORLD\t")) {
             final String b64 = line.substring(8);

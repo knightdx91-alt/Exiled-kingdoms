@@ -158,6 +158,13 @@ public final class EkFriends {
                             Toast.makeText(a, "Auto-host " + (on ? "off" : "on"), 0).show();
                         }
                     })
+                    .setNeutralButton(EkItems.hostPvpPref(a) ? "PvP everywhere: ON" : "PvP everywhere: OFF", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface d, int w) {
+                            boolean now = !EkItems.hostPvpPref(a);
+                            EkItems.setHostPvp(a, now);
+                            Toast.makeText(a, "PvP everywhere " + (now ? "ON" : "OFF") + " (when you host)", 0).show();
+                        }
+                    })
                     .setNegativeButton("Close", null).show();
         } catch (Throwable e) {
             // ignore
@@ -229,6 +236,11 @@ public final class EkFriends {
             a.ekAddButton(row, "My address", new View.OnClickListener() {
                 public void onClick(View v) {
                     showMyAddress(a);
+                }
+            });
+            a.ekAddButton(row, "Trade", new View.OnClickListener() {
+                public void onClick(View v) {
+                    EkTrade.pickPartner(a);
                 }
             });
         } catch (Throwable e) {

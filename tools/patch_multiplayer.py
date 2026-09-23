@@ -921,4 +921,90 @@ edit_method(LSM, 'handleServerMessage(Ljava/lang/String;)V', lambda m: sub1(
     r'\1' + '\n    invoke-static {p0, p1}, ' + SH + '->clientLine(' + LS + 'Ljava/lang/String;)Z\n\n    move-result v0\n\n    if-eqz v0, :ekshare_no\n\n    return-void\n\n    :ekshare_no\n', m, 'client line', re.M),
     "LanSessionManager client dispatch: shared-world messages first")
 
+# ---- B41-B48: shared world phase D (shared drops, PvP everywhere + loot bag, trade) SHARED_WORLD_SPEC §8
+IT = 'Lnet/fdgames/ek/android/lan/EkItems;'
+LOOT = 'net/fdgames/GameEntities/Final/Loot'
+LT = 'L' + LOOT + ';'
+edit_method('net/fdgames/GameLevel/GameLevel', 'a(III)V', lambda m: f""".method public static a(III)V
+    .locals 1
+
+    new-instance v0, {LT}
+
+    invoke-direct {{v0, p0, p1, p2}}, {LT}-><init>(III)V
+
+    invoke-static {{v0}}, Lnet/fdgames/GameLevel/GameLevelData;->a({LT})V
+
+    invoke-static {{v0}}, {IT}->onNewDrop({LT})V
+
+    return-void
+.end method""", "GameLevel.a(III) drop: shared drop in a session")
+add_method(f'{DST}/{LOOT}.smali', f"""
+.method public ekSetGold(I)V
+    .locals 0
+
+    iput p1, p0, {LT}->gold:I
+
+    return-void
+.end method""", "Loot.ekSetGold")
+wrap_method(LOOT, 'removeItem(I)V', 'ekRemoveOrig', True, f"""
+.method public removeItem(I)V
+    .locals 1
+
+    invoke-virtual {{p0, p1}}, {LT}->getItem(I)I
+
+    move-result v0
+
+    invoke-direct {{p0, p1}}, {LT}->ekRemoveOrig(I)V
+
+    invoke-static {{p0, v0}}, {IT}->onTake({LT}I)V
+
+    return-void
+.end method""", "Loot.removeItem: shared-drop pick")
+wrap_method(LOOT, 'd()V', 'ekGoldOrig', True, f"""
+.method public d()V
+    .locals 1
+
+    invoke-virtual {{p0}}, {LT}->g()I
+
+    move-result v0
+
+    invoke-direct {{p0}}, {LT}->ekGoldOrig()V
+
+    invoke-static {{p0, v0}}, {IT}->onTakeGold({LT}I)V
+
+    return-void
+.end method""", "Loot.d: shared-drop gold pick")
+wrap_method(LOOT, 'b()V', 'ekAllOrig', True, f"""
+.method public b()V
+    .locals 1
+
+    invoke-static {{p0}}, {IT}->snapshot({LT})Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {{p0}}, {LT}->ekAllOrig()V
+
+    invoke-static {{p0, v0}}, {IT}->onTakeAll({LT}Ljava/lang/String;)V
+
+    return-void
+.end method""", "Loot.b take-all: shared-drop pick")
+LGB = 'net/fdgames/ek/android/lan/LanGameBridge'
+RRC = 'receiveRemoteCombat(Ljava/lang/String;ILjava/lang/String;ILjava/lang/String;IILjava/lang/String;Ljava/lang/String;II)V'
+edit_method(LGB, RRC, lambda m: sub1(
+    r'(    iget-object v1, v0, Lnet/fdgames/GameWorld/GameData;->CurrentLevel:Ljava/lang/String;\n\n    if-eqz v1, :cond_\w+\n\n)(    const-string v2, "H10_pvp_arena"\n(?:.*\n)*?    if-lt v2, v3, :cond_\w+\n\n    :(cond_\w+)\n)',
+    r'\1    invoke-static {}, ' + IT + r'->pvpAnywhere()Z' + '\n\n    move-result v2\n\n    if-nez v2, :\\3\n\n' + r'\2', m, 'pvp damage'),
+    "LanGameBridge.receiveRemoteCombat: peer damage outside the arena when PvP everywhere is on")
+edit_method(LGB, RRC, lambda m: sub1(
+    r'(    if-lt v4, v5, :cond_\w+\n\n    const/4 v4, 0x0\n\n    iput v4, v3, Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;->missingHP:I\n)',
+    r'\1\n    invoke-static {}, ' + IT + r'->onPvpDefeat()V' + '\n', m, 'pvp defeat'),
+    "LanGameBridge.receiveRemoteCombat: PvP defeat outside the arena drops a loot bag")
+def _hostile(m):
+    new, k = re.subn(r'(    iget-object (v\d+), \2, Lnet/fdgames/GameWorld/GameData;->CurrentLevel:Ljava/lang/String;\n\n    if-eqz \2, :cond_\w+\n\n)(    const-string (v\d+), "H10_pvp_arena"\n(?:(?!\.end method).*\n)*?    if-lt v\d+, v\d+, :cond_\w+\n\n    :(cond_\w+)\n)',
+                     lambda g: g.group(1) + '    invoke-static {}, ' + IT + '->pvpAnywhere()Z\n\n    move-result ' + g.group(4) + '\n\n    if-nez ' + g.group(4) + ', :' + g.group(5) + '\n\n' + g.group(3), m, count=1)
+    assert k == 1, "hostile anchor"
+    return new
+for sig in ('createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+            'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;'):
+    edit_method(LGB, sig, _hostile, f"LanGameBridge.{sig.split('(')[0]}: peers hostile everywhere when PvP everywhere is on")
+
 print("DONE")

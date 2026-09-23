@@ -116,3 +116,39 @@ per player) are never synced; a variable is only sent when its value changed. Kn
 other than the host's current one start from the game's defaults for the guest (their per-level
 cache lives in the host's `data/saves/<slot>/cache/`), except looted chests and killed uniques,
 which are synced lists; joining from the main menu (no character loaded) only chats.
+
+## 8. Phase D — items between players (reversed 2026-09-23)
+**Drops.** Vanilla drop = `CharacterWindow.t()` → `GameLevel.a(x,y,item)` → `new Loot(x,y,item)` →
+`GameLevelData.a(Loot)`. `Loot` (a `MapSprite`, so it has the public `tag`) holds `Items` + `gold`;
+taking goes through `removeItem(slot)` (one unit), `d()` (gold) and `b()` (take all: `d()` + clear).
+In a session every new drop gets `tag = ekdrop_<random>` and is announced
+`EKDROP⇥id⇥level⇥x⇥y⇥gold⇥itemId:count,…`; players on that level spawn the same bag
+(`new Loot(x,y,ArrayList<Integer>,gold)`). The **host keeps the registry** of what is still in each
+shared bag. Taking is optimistic, then arbitrated: `EKPICK⇥id⇥item⇥player` (or `EKPICKG⇥id⇥gold⇥player`)
+→ host: still there → `EKGONE…` to everyone (others remove it from their copy); already taken →
+`EKDENY…` to that player, whose game takes the unit back out of the backpack (gold back out of the
+purse). So an item can't be duplicated by two players grabbing it at once.
+
+**PvP anywhere.** Host setting "PvP everywhere" (lobby → My address; default **off**), announced as
+`EKPVP⇥0/1` (on WELCOME and on change). When on, peers are hostile everywhere (the engine's arena
+branches in `createPeerActor`/`getOrCreatePeerActor` take the "enemy" path), and a lethal peer hit
+outside the arena goes through the engine's elimination branch of `receiveRemoteCombat` (you get up
+with full HP, "[PVP] name has been eliminated!") and then **you drop a loot bag at your feet: one random
+item stack from your backpack (never equipped gear) and 10 % of your gold** — a shared drop anyone
+can pick up, so the winner keeps it and it goes home with them. Deaths to monsters stay vanilla.
+
+**Trade.** Lobby → **Trade** → pick a player. Messages `EKTRADE⇥to⇥from⇥kind⇥payload` go through the host
+(broadcast; each device acts on its own name): REQ → accept/decline → each side picks backpack items
+(+ gold) and taps Ready (OFFER) → both see "You give / You get" and Confirm (CONFIRM with the pair of
+offers) → when a device holds both confirmations for the same offers it verifies its own items are
+still there, removes them and adds what it receives (full backpack → dropped at your feet). Cancel
+at any point.
+
+**Phase D — done (code).** `EkItems` (shared drops, host registry/arbitration, PvP-anywhere and the
+PvP loot drop) + `EkTrade` (trade dialogs, execute on the game thread) and hooks B41–B48
+(`patch_multiplayer.py`): `GameLevel.a(III)` tags/announces new drops, `Loot.ekSetGold`, wrappers on
+`Loot.removeItem`/`d()`/`b()`, `receiveRemoteCombat` (PvP anywhere → elimination branch → loot drop),
+`createPeerActor`/`getOrCreatePeerActor` hostility. Lobby: **Trade** button; My address: "PvP
+everywhere" switch. Static checks pass (access, invoke kinds, D8, update gate); not device-tested.
+Known limit: a trade whose items change between Ready and Confirm is cancelled on that device only
+(the other side may already have executed) — rare, logged as a race risk.

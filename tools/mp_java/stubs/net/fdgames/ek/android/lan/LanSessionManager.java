@@ -1,5 +1,5 @@
 package net.fdgames.ek.android.lan; public class LanSessionManager {
  public static class PlayerState { public String playerName; public int x; public int y; }
  public static LanSessionManager getInstanceIfReady() { return null; }
- public static LanSessionManager get(android.content.Context c) { return null; } public boolean isHosting() { return false; } public void ekSendToHost(String l) {} public void ekSendTo(Object peer, String l) {} public void ekBroadcast(String l) {} public boolean ekConnected() { return false; } public void startHosting(String n, int max) {} public void stopAll() {}
+ public static LanSessionManager get(android.content.Context c) { return null; } public boolean isHosting() { return false; } public String getLocalPlayerName() { return null; } public java.util.List getPlayersSnapshot() { return null; } public void ekSendToHost(String l) {} public void ekSendTo(Object peer, String l) {} public void ekBroadcast(String l) {} public boolean ekConnected() { return false; } public void startHosting(String n, int max) {} public void stopAll() {}
  public boolean isInSession() { return false; } public void sendChat(String s) {} public void sendChatAsync(String s) {} public boolean isSessionRunning() { return false; } public int getPlayerCount() { return 0; } public int getUnreadChatCount() { return 0; } }

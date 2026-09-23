@@ -1,1 +1,1 @@
-package android.content; public interface DialogInterface { interface OnClickListener { void onClick(DialogInterface d, int which); } }
+package android.content; public interface DialogInterface { interface OnClickListener { void onClick(DialogInterface d, int which); } interface OnMultiChoiceClickListener { void onClick(DialogInterface d, int which, boolean isChecked); } }
