@@ -135,3 +135,22 @@ meant. Diff the disassembled branch structure for any edit that moves a comparis
 Owner: arcane shouldn't be creatures. Ladder is now Sparkling (energy elemental) x2 →
 `elemental_acid` → `elemental_acid_epic` (its in-game name is "Animated Waste"; kept, since the
 row is also a world enemy). History: v10-v20 `golem_iron_lesser`/`elemental_acid`; v21 `wyvern`/`manticore`.
+
+## 8. v46 — route-specific skill text
+Owner: once a route is chosen, the Summon skill text should describe only that route.
+
+Reversed (4.2.2): the text lives in `skills2.txt` and is read through exactly two getters,
+`Skill.a()` (→ `baseDescription`, the header) and `SkillLevel.a()` (→ `description`, per rank,
+falls back to `UNTRAINED_SKILL`). No other class reads either field; the only callers are in
+`SkillDetailTable` (`e/a/d/e/y`), so filtering in the getters covers every place the text shows.
+
+Encoding: an English cell may be `@@<generic>~~<undead>~~<arcane>~~<beast>`. New static
+`SkillLevel.ekRoute(String)` sees the `@@` prefix, splits on `~~` and returns the entry for
+`GameData.O().gameVariables.b("summon_path")` (1-3), or the generic text when the route is
+unset (0) or out of range. Any cell without the prefix passes through untouched, so no other
+skill changes. The Spanish column stays generic ("segun tu camino"), no marker.
+The route-choice dialog still lists all three routes — that is where you choose.
+
+Multiplayer: `summon_path` was being treated as a world variable (host's value overwrote a
+guest's route, and a guest's choice was broadcast to everyone). It is a character choice, so
+it is added to `EkShare.isCharVar` alongside `REP_`/`know_`/`item_upg_`.

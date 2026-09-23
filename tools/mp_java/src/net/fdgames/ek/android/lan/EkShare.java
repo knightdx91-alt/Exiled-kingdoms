@@ -64,7 +64,8 @@ public final class EkShare {
     }
 
     static boolean isCharVar(String n) {
-        return n != null && (n.startsWith("REP_") || n.startsWith("know_") || n.startsWith("item_upg_"));
+        return n != null && (n.startsWith("REP_") || n.startsWith("know_") || n.startsWith("item_upg_")
+                || n.equals("summon_path"));
     }
 
     private static File blockFile(int slot) {

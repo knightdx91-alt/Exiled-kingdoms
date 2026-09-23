@@ -448,25 +448,50 @@ def rank_row(desc, cost, cooldown, mana, desc_es):
     return '\t'.join(f)
 
 
+def by_route(generic, undead, arcane, beast):
+    """'@@generic~~r1~~r2~~r3': SkillLevel.ekRoute (section 7) shows only the chosen
+    route's text once summon_path is set, and the generic text before that."""
+    return '@@' + '~~'.join([generic, undead, arcane, beast])
+
+
 lines[start + 1:end] = [
-    rank_row("Summon your ally: a Level 3-5 Skeleton, a Lesser Sparkling, "
-             "or a Grey Wolf, depending on the path you chose.", 1, 30, 12,
+    rank_row(by_route("Summon your ally: a Level 3-5 Skeleton, a Lesser Sparkling, "
+                      "or a Grey Wolf, depending on the path you chose.",
+                      "Raise a Level 3-5 Skeleton to fight for you.",
+                      "Summon a Lesser Sparkling, an elemental of pure Energy.",
+                      "Summon a Grey Wolf to fight for you."), 1, 30, 12,
              "Invoca a tu aliado, segun el camino que elegiste."),
-    rank_row("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
-             "or a Wolf.", 2, 30, 20,
+    rank_row(by_route("A Level 6-8 Skeleton Warrior, a Level 4-6 Sparkling, "
+                      "or a Wolf.",
+                      "Raise a Level 6-8 Skeleton Warrior.",
+                      "Summon a Level 4-6 Sparkling.",
+                      "Summon a Wolf."), 2, 30, 20,
              "Un aliado mas poderoso, segun tu camino."),
-    rank_row("A Level 10-11 Skeleton Champion, an Acid Elemental, "
-             "or a Summoned Bear.", 3, 30, 28,
+    rank_row(by_route("A Level 10-11 Skeleton Champion, an Acid Elemental, "
+                      "or a Summoned Bear.",
+                      "Raise a Level 10-11 Skeleton Champion.",
+                      "Summon an Acid Elemental, an elemental of Toxin.",
+                      "Summon a Bear."), 3, 30, 28,
              "Un aliado de alto nivel, segun tu camino."),
-    rank_row("A Level 13-14 Skeleton Hero, an Animated Waste (greater acid elemental), "
-             "or a Wild Werewolf.", 3, 30, 36,
+    rank_row(by_route("A Level 13-14 Skeleton Hero, an Animated Waste (greater acid elemental), "
+                      "or a Wild Werewolf.",
+                      "Raise a Level 13-14 Skeleton Hero.",
+                      "Summon an Animated Waste, a greater acid elemental.",
+                      "Summon a Wild Werewolf."), 3, 30, 36,
              "El aliado mas poderoso de tu camino."),
 ]
 
 hdr_fields = lines[start].split('\t')
-hdr_fields[5] = ("Call an ally to fight for you. The FIRST time you learn this skill "
-                 "you choose your path -- Undead, Arcane or Beast -- and every rank "
-                 "after that summons a stronger ally of that path.")
+hdr_fields[5] = by_route(
+    "Call an ally to fight for you. The FIRST time you learn this skill "
+    "you choose your path -- Undead, Arcane or Beast -- and every rank "
+    "after that summons a stronger ally of that path.",
+    "Call an ally to fight for you. You walk the UNDEAD path: every rank "
+    "raises a stronger skeleton, from a lowly Skeleton to a Skeleton Hero.",
+    "Call an ally to fight for you. You walk the ARCANE path: sparkling "
+    "elementals of Energy at first, then acid elementals of Toxin.",
+    "Call an ally to fight for you. You walk the BEAST path: wolves, then "
+    "a bear, and at last a wild werewolf.")
 lines[start] = '\t'.join(hdr_fields)
 
 open(p, 'w', encoding='utf-8', newline='').write(bom + nl.join(lines))
@@ -494,4 +519,103 @@ s = s.replace(nanchor,
               '    :ek_skillname_keep\n' + nanchor, 1)
 open(p, 'w', encoding='utf-8').write(s)
 print('patched Skill.<init>: "Lesser Summoning" displays as "Summon"')
+# ---------------------------------------------------------------------------
+# 7) Route-specific skill text (v46, owner request). Spec: SUMMON_ROUTES_SPEC.md sec. 8.
+#    The only readers of the text are the getters Skill.a() (header) and SkillLevel.a()
+#    (per rank); both now pass their result through SkillLevel.ekRoute, which picks the
+#    chosen route's entry out of a '@@generic~~undead~~arcane~~beast' cell. Cells
+#    without the '@@' prefix (every other skill) pass through unchanged.
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/net/fdgames/Rules/SkillLevel.smali'
+s = open(p, encoding='utf-8').read()
+m0 = s.index('.method public a()Ljava/lang/String;')
+m1 = s.index('.end method', m0)
+body = s[m0:m1]
+assert body.count('    return-object v0\n') == 2, "SkillLevel.a() shape changed"
+body = body.replace('    return-object v0\n',
+                    '    invoke-static {v0}, Lnet/fdgames/Rules/SkillLevel;->ekRoute(Ljava/lang/String;)Ljava/lang/String;\n\n'
+                    '    move-result-object v0\n\n'
+                    '    return-object v0\n')
+s = s[:m0] + body + s[m1:]
+s += f'''
+.method public static ekRoute(Ljava/lang/String;)Ljava/lang/String;
+    .locals 4
+
+    if-eqz p0, :ekrt_raw
+
+    const-string v0, "@@"
+
+    invoke-virtual {{p0, v0}}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :ekrt_raw
+
+    const/4 v0, 0x2
+
+    invoke-virtual {{p0, v0}}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "~~"
+
+    invoke-virtual {{v0, v1}}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    invoke-static {{}}, {GD}->O(){GD}
+
+    move-result-object v2
+
+    if-eqz v2, :ekrt_pick
+
+    iget-object v2, v2, {GD}->gameVariables:{GV}
+
+    if-eqz v2, :ekrt_pick
+
+    const-string v3, "{VAR}"
+
+    invoke-virtual {{v2, v3}}, {GV}->b(Ljava/lang/String;)I
+
+    move-result v1
+
+    :ekrt_pick
+    if-lez v1, :ekrt_generic
+
+    array-length v2, v0
+
+    if-ge v1, v2, :ekrt_generic
+
+    aget-object v2, v0, v1
+
+    return-object v2
+
+    :ekrt_generic
+    const/4 v1, 0x0
+
+    aget-object v2, v0, v1
+
+    return-object v2
+
+    :ekrt_raw
+    return-object p0
+.end method
+'''
+open(p, 'w', encoding='utf-8').write(s)
+
+p = f'{w}/smali/net/fdgames/Rules/Skill.smali'
+s = open(p, encoding='utf-8').read()
+getter = ('    iget-object v0, p0, Lnet/fdgames/Rules/Skill;->baseDescription:Ljava/lang/String;\n\n'
+          '    return-object v0\n')
+assert s.count(getter) == 1, "Skill.a() getter not found"
+s = s.replace(getter,
+              '    iget-object v0, p0, Lnet/fdgames/Rules/Skill;->baseDescription:Ljava/lang/String;\n\n'
+              '    invoke-static {v0}, Lnet/fdgames/Rules/SkillLevel;->ekRoute(Ljava/lang/String;)Ljava/lang/String;\n\n'
+              '    move-result-object v0\n\n'
+              '    return-object v0\n', 1)
+open(p, 'w', encoding='utf-8').write(s)
+print("patched Skill/SkillLevel description getters: summon text follows the chosen route")
+
 print("DONE")
