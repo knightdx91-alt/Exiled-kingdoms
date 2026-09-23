@@ -40,3 +40,12 @@ that never scale. Results:
   (sized like the game's Lower Difficulty row), lobby (Android views, text in sp) — fine.
 **Known leftover (vanilla):** the fonts/layouts are computed when a screen is built, so folding or
 unfolding while a window is open keeps the old size until it is reopened.
+
+## Save slots: name and class/level on top of each other (owner report, v39, B58)
+`SlotDescriptionTable` (`e/a/d/e1/w`, used by `ChooseGameWindow` in 380xS-wide, 85xS-tall cells):
+a filled slot puts portrait (72xS) + an inner table [name label `g` / description label `h`]; both
+labels `setWrap(true)` but their cells get **no width** (the empty/incompatible branches do set one:
+190xS / 300xS). A wrapped libGDX label with no width can't compute its height, so long names wrap onto
+extra lines, the name looks oversized, and the two lines overlap. Fix (`EkUi.fixSlot`, called before
+`pack()`): filled slots only — both lines one line, cell width 285xS (380 - 72 - margins), left-aligned;
+a line too wide shrinks to fit (not below 70%), anything longer ends in "...".

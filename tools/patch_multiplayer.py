@@ -1128,4 +1128,13 @@ def _kill(m):
     return m
 edit_method('net/fdgames/GameEntities/Final/NPC', 'E()V', _kill, "NPC.E() death: own-side damage report; shared kills' loot + XP go to the host")
 
+# ---- B58: save slots: name and "class (level)" drawn on top of each other (deobf/UI_SCALING_SPEC.md) ----
+SLOT = 'Le/a/d/e1/w;'
+LBL = 'Lcom/badlogic/gdx/scenes/scene2d/ui/Label;'
+edit_method('e/a/d/e1/w', 'a(Lnet/fdgames/GameWorld/BasicGameData;)V', lambda m: sub1(
+    r'(    :goto_\w+\n\s*invoke-virtual \{p0\}, Lcom/badlogic/gdx/scenes/scene2d/ui/WidgetGroup;->pack\(\)V\n)',
+    lambda g: g.group(1).replace('    invoke-virtual {p0}', f'    iget-object v0, p0, {SLOT}->g:{LBL}\n\n    iget-object v1, p0, {SLOT}->h:{LBL}\n\n'
+        f'    sget v2, {SLOT}->l:F\n\n    invoke-static {{v0, v1, v2}}, Lnet/fdgames/ek/android/lan/EkUi;->fixSlot({LBL}{LBL}F)V\n\n    invoke-virtual {{p0}}', 1),
+    m, 'slot fit'), "SlotDescriptionTable.a(): name + class/level each one line, fitted to the slot")
+
 print("DONE")
