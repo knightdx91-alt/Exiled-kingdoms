@@ -43,3 +43,25 @@ Legit files starting with "old" elsewhere (e.g. `sprites/staticNPC/old_female.pn
 * The main-menu logo image is taller (512×341); the mod's redesigned menu doesn't draw it — handled
   with the menu work (item 4, code side).
 * APK grows from ~127 MB to ~374 MB.
+
+## Format drift fix-ups (2026-09-23, after the owner's startup crash on v29-v31)
+**Crash:** `Error in ExiledKingdoms.initialize: For input string: "m_118"` → quests never loaded →
+NPE in `GameVariables.b` from `Settings.b` at the loading screen. The mod's `bestiary.txt` writes
+gendered portrait ids (`m_118`, `m_80`); the 1207 parser does `Integer.parseInt(portrait)`.
+The claim above ("every enum and script command matches") was wrong for the mod's *edited* files.
+
+**Checker:** `tools/init_harness/run.sh <apk>` runs the game's own `GameString.a()`, `Rules.a()`,
+`GameWorld.a()` and every `Conversation` on the desktop JVM (dex2jar; Android classes stubbed on
+demand). Base 4.2.2: init OK, 539/539 conversations. v31: init FAILED (m_118). It is now a hard gate
+at the end of `build_mod_4_2_2.sh`.
+
+**Repairs in `merge_mp_content.py`** (all found by the checker, then by a scan of every
+condition/action name against `Condition`/`ActionsSet`'s string tables):
+* bestiary portrait `m_N`/`f_N` → `N` (2 rows).
+* conversations (19 files failed to parse): repeated BOMs, literal `` `t `` (PowerShell tab escape),
+  blank lines, short rows, node ids `8b`/`8c`; condition names `VariableSmaller`, `VariableEquals`,
+  `HasItem`; condition names written in the actions column (dropped: the engine can't run them —
+  it would log an error and send an error report); bare `REP_sorrowland,7` → `IncVariable#…`.
+* After: init OK, 1284/1284 conversations, no unknown condition/action names (one left is vanilla:
+  `test_inventory.txt`). Map (`.tmx`) conditions/actions: all known names.
+**Not covered offline:** texture/atlas/sound loading and map rendering (needs a GPU).

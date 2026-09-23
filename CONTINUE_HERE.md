@@ -27,14 +27,29 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v31.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v32.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v31.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v32.apk
 ```
+
+### v32 (2026-09-23) — fixes the startup crash of v29–v31
+
+Owner's `EK_crash.txt`: NPE `Quests.b` at the loading screen. Real cause, earlier in the log:
+`Error in ExiledKingdoms.initialize: For input string: "m_118"` — the MP content's bestiary uses
+gendered portrait ids our 1207 parser can't read, so game data init aborted before quests loaded.
+Every build since v29 (the first with the content pack) crashed at launch.
+* New `tools/init_harness/run.sh <apk>`: runs the game's own data loaders + every conversation offline
+  (dex2jar on the desktop JVM). Hard gate in `build_mod_4_2_2.sh` — a build that would crash like
+  this now fails instead. Details: `deobf/MP_CONTENT_SPEC.md` "Format drift fix-ups".
+* `merge_mp_content.py` repairs the bestiary rows and 19 broken MP conversations (editing damage +
+  names the 1207 engine lacks). v32: init OK, 1284/1284 conversations parse.
+* `dist/` = base + `hero-v32` only (v29–v31 all crash at launch; no working fallback to keep).
+  This release shares no split parts with v31 (715 conversation files normalised); later ones will.
+* Offline check can't cover textures/sounds/map rendering. Still not device-tested.
 
 ### v31 (2026-09-23) — shared-world gaps closed; dist cleaned
 

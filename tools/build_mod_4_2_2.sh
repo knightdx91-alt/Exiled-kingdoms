@@ -185,4 +185,17 @@ keytool -printcert -jarfile "$OUT" 2>/dev/null | grep -i "signature algorithm" |
 jarsigner -J-Djava.security.properties="$WORK/relax.security" -verify "$OUT" 2>/dev/null \
   | grep -i "^jar verified" || { echo "SIGNATURE VERIFY FAILED"; exit 1; }
 "$REPO/tools/check_update_compat.sh" "$OUT" "$LIB/apksig8.jar"
+
+# startup gate: run the game's own data loaders offline (tools/init_harness). A data file the 1207
+# parser rejects aborts ExiledKingdoms.initialize and crashes the app at launch (v29-v31, bestiary
+# "m_118"); a conversation it rejects breaks that NPC. Either fails the build.
+echo "== startup data check (game's own loaders, offline) =="
+if CHK="$("$REPO/tools/init_harness/run.sh" "$OUT" 2>&1)"; then
+  echo "$CHK"
+  if ! echo "$CHK" | grep -q "INIT OK" || ! echo "$CHK" | grep -q "conversations ok=[0-9]* failed=0"; then
+    echo "STARTUP DATA CHECK FAILED -- this build would crash or break conversations" >&2; exit 1
+  fi
+else
+  echo "$CHK"; echo "startup data check could not run (see above)" >&2; exit 1
+fi
 echo "built: $OUT"
