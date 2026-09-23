@@ -481,10 +481,12 @@ edit_method('net/fdgames/GameEntities/Final/MonsterSpawn', 'y()V', lambda m: sub
     r'\1    invoke-static {v6, v5}, ' + EK + r'->scaledSpawnLevel(I' + NPC_ + r')I' + '\n\n    move-result v6\n\n' + r'\2', m, 'spawn level'),
     "MonsterSpawn.y(): party-size level scaling")
 
-# ---- B10: NPC.W() sprite build (their v0) -> peers build a composite player sprite --------
+# ---- B10: NPC.W() sprite build (their v0) -> peers build a composite player sprite. Exactly the
+#          MP condition: !companionSpawn && lanPeerVisual (a peer's companion keeps the companion path).
 edit_method('net/fdgames/GameEntities/Final/NPC', 'W()V', lambda m: sub1(
     r'^(\.method public W\(\)V\n    \.locals \d+\n)',
-    r'\1' + '\n    iget-boolean v0, p0, ' + NPC_ + '->lanPeerVisual:Z\n\n    if-eqz v0, :ekmp_nopeer\n\n'
+    r'\1' + '\n    iget-boolean v0, p0, ' + NPC_ + '->companionSpawn:Z\n\n    if-nez v0, :ekmp_nopeer\n\n'
+    '    iget-boolean v0, p0, ' + NPC_ + '->lanPeerVisual:Z\n\n    if-eqz v0, :ekmp_nopeer\n\n'
     '    invoke-static {p0}, ' + EK + '->buildPeerSprite(' + NPC_ + ')V\n\n    return-void\n\n    :ekmp_nopeer\n', m, 'W prepend', re.M),
     "NPC.W(): peer composite sprite")
 
