@@ -766,7 +766,7 @@ public final class EkShare {
             EkItems.onClientJoined();
             return true;
         }
-        if (EkItems.hostLine(peer, line) || EkTrade.line(line, true)) {
+        if (EkItems.hostLine(peer, line) || EkTrade.line(line, true) || EkKill.line(line, true)) {
             return true;
         }
         if (line.startsWith("EKWREQ")) {
@@ -819,7 +819,7 @@ public final class EkShare {
             requestWorldIfReady();
             return false; // the engine handles WELCOME as usual
         }
-        if (line.startsWith("EK") && (EkItems.clientLine(line) || EkTrade.line(line, false))) {
+        if (line.startsWith("EK") && (EkItems.clientLine(line) || EkTrade.line(line, false) || EkKill.line(line, false))) {
             return true;
         }
         if (line.startsWith("EKCACHE\t")) {

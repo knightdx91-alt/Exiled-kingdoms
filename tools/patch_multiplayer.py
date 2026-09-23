@@ -1079,4 +1079,53 @@ edit_method(LGB, 'resolveMarker(Ljava/lang/String;F)[F', lambda m: sub1(
     r'    move-result-object p0\n',
     m, 'areas coords'), "LanGameBridge.resolveMarker: area position via GameWorld.f.g(level) (was a failing static reflection)")
 
+# ---- B54-B57: kill rewards split by damage share (deobf/KILL_REWARDS_SPEC.md) --------------------------
+KL = 'Lnet/fdgames/ek/android/lan/EkKill;'
+NPCD = 'Lnet/fdgames/GameEntities/Final/NPC;'
+add_method(f'{DST}/{LGB}.smali', """
+.method public static ekPeerActors()Ljava/util/LinkedHashMap;
+    .locals 1
+
+    sget-object v0, Lnet/fdgames/ek/android/lan/LanGameBridge;->peerActors:Ljava/util/LinkedHashMap;
+
+    return-object v0
+.end method
+
+.method public static ekPeerSummonOwners()Ljava/util/LinkedHashMap;
+    .locals 1
+
+    sget-object v0, Lnet/fdgames/ek/android/lan/LanGameBridge;->peerSummonOwners:Ljava/util/LinkedHashMap;
+
+    return-object v0
+.end method""", "LanGameBridge.ekPeerActors / ekPeerSummonOwners (who a hit belongs to)")
+DSIG = '(Lnet/fdgames/GameEntities/Helpers/Damage;IZI)V'
+wrap_method('net/fdgames/GameEntities/Character', 'a' + DSIG, 'ekDmgOrig', True, f"""
+.method public a{DSIG}
+    .locals 1
+
+    invoke-static {{p0}}, {KL}->before({CHAR})I
+
+    move-result v0
+
+    invoke-direct {{p0, p1, p2, p3, p4}}, {CHAR}->ekDmgOrig{DSIG}
+
+    invoke-static {{p0, p2, v0}}, {KL}->after({CHAR}II)V
+
+    return-void
+.end method""", "Character.a(Damage,I,Z,I): damage ledger (HP removed per attacker side)")
+def _kill(m):
+    m = sub1(r'^(\.method public E\(\)V\n    \.locals \d+\n)', r'\1' + '\n    invoke-static/range {p0 .. p0}, ' + KL + '->onDeath(' + NPCD + ')V\n', m, 'death start', re.M)
+    m = sub1(r'(    iget (v\d+), (v\d+), Lnet/fdgames/GameEntities/MapObject;->x:I\n\s*add-int/2addr \2, (v\d+)\n\s*'
+             r'iget (v\d+), \3, Lnet/fdgames/GameEntities/MapObject;->y:I\n\s*add-int/2addr \5, \4\n\s*)'
+             r'invoke-static \{\2, \5, (v\d+), (v\d+)\}, Lnet/fdgames/GameLevel/GameLevel;->a\(IILjava/util/ArrayList;I\)V\n',
+             lambda g: g.group(1) + 'invoke-static {' + g.group(3) + ', ' + g.group(2) + ', ' + g.group(5) + ', ' + g.group(6) + ', ' + g.group(7)
+             + '}, ' + KL + '->loot(' + NPCD + 'IILjava/util/ArrayList;I)V\n', m, 'loot bag')
+    m = sub1(r'(    iget-boolean (v\d+), (v\d+), Lnet/fdgames/GameEntities/Final/NPC;->respawned:Z\n\s*if-eqz \2, :cond_\w+\n\s*div-int/lit8 (v\d+), \4, 0xa\n\s*:cond_\w+\n\s*'
+             r'invoke-static \{\}, Lnet/fdgames/GameLevel/GameLevel;->h\(\)Lnet/fdgames/GameEntities/Final/Player;\n\s*move-result-object (v\d+)\n\s*)'
+             r'invoke-virtual \{\5, \4\}, Lnet/fdgames/GameEntities/Final/Player;->k\(I\)V\n',
+             lambda g: g.group(1) + 'invoke-static {' + g.group(3) + ', ' + g.group(5) + ', ' + g.group(4) + '}, ' + KL
+             + '->xp(' + NPCD + 'Lnet/fdgames/GameEntities/Final/Player;I)V\n', m, 'kill xp')
+    return m
+edit_method('net/fdgames/GameEntities/Final/NPC', 'E()V', _kill, "NPC.E() death: own-side damage report; shared kills' loot + XP go to the host")
+
 print("DONE")

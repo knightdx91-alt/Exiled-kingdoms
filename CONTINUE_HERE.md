@@ -27,14 +27,23 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v36.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v37.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v36.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v37.apk
 ```
+
+### v37 (2026-09-23) — shared kills: XP and loot split by damage
+
+Owner: both players fighting a monster must both get XP/loot, split by damage dealt, companions and
+summons included. Before: the last hitter got everything (a peer's replayed hit counts as an NPC kill on
+the other device). Now (`deobf/KILL_REWARDS_SPEC.md`, `EkKill`, B54–B57): per-monster damage ledger by
+side; the killer's device sends the rolled loot + XP to the host, other devices send their own side's
+damage; host splits XP/gold by share and gives each item to one side weighted by share; each player gets
+a personal bag where it died (or into the backpack if they left). Solo = vanilla. dist: base + v37 + v36.
 
 ### v36 (2026-09-23) — other players now show on the map everywhere
 
