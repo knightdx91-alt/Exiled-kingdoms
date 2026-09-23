@@ -27,14 +27,28 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v30.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v31.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v30.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v31.apk
 ```
+
+### v31 (2026-09-23) — shared-world gaps closed; dist cleaned
+
+Spec: `deobf/SHARED_WORLD_SPEC.md` §9. Hooks B49–B50.
+* **Other areas**: the host's level cache (`data/saves/<slot>/cache/`) arrives with the world; the guest
+  world loads as sub 0 (`auto.sav`) so LoadGame keeps it; every area exit shares that area's cache
+  (host → all; guest → host, which keeps it unless it's standing there → all).
+* **Join from the main menu**: your newest save's character comes along (home = that slot/sub).
+* **Vaults and bags of holding** are yours: they travel in the character block (guest blocks removed).
+* **Trade** is settled by the host: both sides escrow, host says COMMIT/ABORT; 60 s no answer = refund.
+* `dist/` now holds only: `ExiledKingdoms-base-4.2.2.apk` (the clean build input, sha `5fc7c866…`),
+  `hero-v31` (current) and `hero-v30` (fallback). Old cheat/tablet/hero builds removed.
+  14 of 15 parts are shared between v30 and v31.
+* Static checks only. **Nothing device-tested yet.**
 
 ### v30 (2026-09-23) — shared world: host's world, your own character (phases A–D)
 
