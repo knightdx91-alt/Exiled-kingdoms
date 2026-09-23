@@ -72,3 +72,16 @@ The MP content ships `portraits/male/0..357` and `female/0..221`, and its NPCs u
 4.2.2 caches (`Assets.c()`: `new TextureRegion[116]` male / `[68]` female; the reset/dispose loops walk
 0..115 / 0..67). The MP mod's own Assets sizes them 0x166 / 0xde. B63 ports those sizes (and loop
 bounds 0x165 / 0xdd) and clamps any other out-of-range index to portrait 0 instead of crashing.
+
+## v52 — enemy levels back to normal (owner: "it messed with the enemies levels, they are too high")
+Measured in bestiary.txt (columns `minlevel`/`maxlevel`):
+- The official 4.2.2 and 1.2.17 rows are identical. The MP mod raises **all 419** original enemies by exactly
+  +3/+3 (418 plain shifts; `janod` it also reworked into an NPC, and our own `patch_companion_janod.py` sets
+  him afterwards).
+- The MP mod's **945 new** enemies show the same shift: none sits at level 1–3 (the originals have 42 there),
+  71 sit at exactly level 4, and their variants of original enemies are most often exactly +3 (for example
+  `goblin_mini` 4 against `goblin` 1).
+- Map files don't set enemy levels differently; the difficulty feature only acts when "Raise Difficulty" is
+  pressed. Only the bestiary is shifted.
+Fix (`merge_mp_content.py`, `fix_levels`): rows whose id exists in the base bestiary get the base's
+min/max levels back exactly; every MP-only row gets −3 on both (never below 1). Other columns are untouched.

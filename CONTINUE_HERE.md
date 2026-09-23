@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v51.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v52.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v51.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v52.apk
 ```
+
+### v52 (2026-09-23) — enemy levels back to normal
+
+Owner: enemies too high since the MP merge. The MP mod's bestiary shifts every enemy +3 (all 419 originals vs
+official 4.2.2/1.2.17; its 945 new ones too: none at 1-3, 71 at exactly 4). merge_mp_content.fix_levels
+restores the originals' official levels and takes 3 off MP-only rows (min 1). Janod stays at our companion
+patch's 6-7. `deobf/MP_CONTENT_SPEC.md` v52. dist: base + v52 + v51.
 
 ### v51 (2026-09-23) — network no longer freezes the game
 

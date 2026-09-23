@@ -90,6 +90,48 @@ def fix_bestiary(path):
     return fixed
 
 
+def fix_levels(path):
+    """The MP mod shifted every enemy +3 levels (MP_CONTENT_SPEC.md v52). Original ids get the base
+    4.2.2 levels back exactly; MP-only ids get -3 (min 1)."""
+    def rows(text):
+        out = {}
+        lines = text.split('\n')
+        head = lines[0].rstrip('\r').split('\t')
+        for ln in lines[1:]:
+            f = ln.rstrip('\r').split('\t')
+            if f and f[0].strip() and f[0].strip() not in out:
+                out[f[0].strip()] = f
+        return head, out
+    bhead, brows = rows(zipfile.ZipFile(base_apk).read('assets/data/rules/bestiary.txt').decode('utf-8-sig'))
+    bmin, bmax = bhead.index('minlevel'), bhead.index('maxlevel')
+    raw = open(path, 'rb').read()
+    bom = raw.startswith(b'\xef\xbb\xbf')
+    lines = raw.decode('utf-8-sig').split('\n')
+    head = lines[0].rstrip('\r').split('\t')
+    mi, ma = head.index('minlevel'), head.index('maxlevel')
+    restored = lowered = 0
+    for k in range(1, len(lines)):
+        cr = lines[k].endswith('\r')
+        f = lines[k].rstrip('\r').split('\t')
+        if len(f) <= ma or not f[0].strip():
+            continue
+        sid = f[0].strip()
+        if sid in brows and len(brows[sid]) > bmax:
+            if (f[mi], f[ma]) != (brows[sid][bmin], brows[sid][bmax]):
+                f[mi], f[ma] = brows[sid][bmin], brows[sid][bmax]
+                restored += 1
+        else:
+            try:
+                f[mi] = str(max(1, int(f[mi]) - 3))
+                f[ma] = str(max(1, int(f[ma]) - 3))
+                lowered += 1
+            except ValueError:
+                continue
+        lines[k] = '\t'.join(f) + ('\r' if cr else '')
+    open(path, 'wb').write((b'\xef\xbb\xbf' if bom else b'') + '\n'.join(lines).encode('utf-8'))
+    return restored, lowered
+
+
 COND_RENAMES = [(re.compile(r'(?<![A-Za-z])VariableSmaller#'), 'VariableLower#'),
                 (re.compile(r'(?<![A-Za-z])VariableEquals#'), 'VariableEqual#'),
                 (re.compile(r'(?<![A-Za-z])HasItem#'), 'PlayerHasItem#')]
@@ -175,6 +217,8 @@ print(f"fix-up conversations: {nconv} files repaired")
 bp = os.path.join(work, 'assets/data/rules/bestiary.txt')
 if 'assets/data/rules/bestiary.txt' in merged:
     print(f"fix-up bestiary.txt: {fix_bestiary(bp)} gendered portrait ids -> numbers")
+    r_, l_ = fix_levels(bp)
+    print(f"fix-up bestiary.txt: enemy levels back to normal ({r_} original enemies restored, {l_} MP enemies -3)")
 
 open(os.path.join(work, 'mp_merged.txt'), 'w').write('\n'.join(merged) + '\n')
 print(f"merged MP content: {new} new + {changed} changed files ({skipped_junk} non-content excluded)")
