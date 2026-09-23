@@ -363,10 +363,6 @@ public final class EkFeat {
         @Override
         public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
             try {
-                if (EkShare.isGuest()) {
-                    GameConsole.a("Vaults and bags stay in your own world.");
-                    return false;
-                }
                 GameData gd = GameData.O();
                 String target = id;
                 if (target == null) { // the vault button: first owned vault
@@ -388,7 +384,7 @@ public final class EkFeat {
     public static void addVaultButton(e.a.d.e.h win, Table row, float p0, float s0) {
         try {
             GameData gd = GameData.O();
-            if (EkShare.isGuest() || gd == null || !(gd.hasVault || gd.hasVault2 || gd.hasVault3 || gd.hasVault4)) {
+            if (gd == null || !(gd.hasVault || gd.hasVault2 || gd.hasVault3 || gd.hasVault4)) {
                 return;
             }
             ImageButton b = new ImageButton(GameAssets.a(Assets.b("vault")));
@@ -439,16 +435,11 @@ public final class EkFeat {
     // ================================ 9. recover ================================================
 
     /** After Recover / rest: other players see the restored HP at once. */
-    /** The vanilla bag-of-holding button (e/a/d/e/k): not while in someone else's world. */
+    /**
+     * The vanilla bag-of-holding button (e/a/d/e/k). Never blocked any more: vaults and bags travel in
+     * your character block (SHARED_WORLD_SPEC §9), so in someone else's world they are still yours.
+     */
     public static boolean bagBlocked() {
-        if (EkShare.isGuest()) {
-            try {
-                GameConsole.a("Vaults and bags stay in your own world.");
-            } catch (Throwable e) {
-                // ignore
-            }
-            return true;
-        }
         return false;
     }
 

@@ -105,8 +105,7 @@ slot. The home block file is deleted only after a successful save to the home sl
 `EKVAR⇥name⇥value` (world variables only: set through `GameVariables.b(String,I)`),
 `EKDEAD⇥tag` (`GameData.l`), `EKLOOT⇥id` (`GameData.i`). A joiner's change goes to the host, the host
 applies it through the game (so quest side effects run) and its own hooks broadcast to every client;
-applying a received change is done with forwarding suppressed. Vault button / bag tabs are disabled
-for guests (vaults are the host's world storage; a guest taking from a copy would duplicate items).
+applying a received change is done with forwarding suppressed. (Superseded by §9: vaults and bags travel in the character block.)
 
 **Phases B + C — done (code).** `EkShare` + hooks B30–B40 (`patch_multiplayer.py`) and the guest
 bag block (`patch_mp_features.py`); design as §7. Checked: `Player`'s `containers/shops/toggles/loots/
@@ -152,3 +151,44 @@ PvP loot drop) + `EkTrade` (trade dialogs, execute on the game thread) and hooks
 everywhere" switch. Static checks pass (access, invoke kinds, D8, update gate); not device-tested.
 Known limit: a trade whose items change between Ready and Confirm is cancelled on that device only
 (the other side may already have executed) — rare, logged as a race risk.
+
+## 9. Closing the known gaps (reversed 2026-09-23, 4.2.2 names)
+**Other areas (level cache).** 4.2.2 `Serializer`: `a(I)` = `data/saves/<slot>/cache/`; `f()V` =
+saveLevel (on every area exit, `e/a/b/b` loading screen: writes `cache/<CurrentLevel>.sav`, Base64 of
+the `GameLevelData` Json); `f(String)` = loadLevel (reads that file, `""` → the map's defaults);
+`h(String)` = cache file exists; `c(I)` deletes the cache and is called by LoadGame when `sub != 0`
+(`e(II)`: sub 0 = `auto.sav`, 1 = `game.sav`, …). So the guest world must be loaded with **sub 0**
+(`auto.sav`) or its cache is wiped. Flow:
+* join: the guest empties `data/saves/42/` before `EKWREQ`; the host sends `EKCACHE⇥level⇥<file text>`
+  for every file in its cache (except its current level, which is inside the snapshot), then
+  `EKWORLD`; the guest writes them to `data/saves/42/cache/`, the world to `42/auto.sav`, loads (42,0).
+* live: `f()V` wrapped (level name taken before the call). Host in a session → broadcasts the new
+  cache file; guest → sends it to the host, which stores it (unless the host is standing in that
+  area: the host's live area wins) and re-broadcasts. Receivers ignore the area they are standing in.
+* going home loads the home slot with sub 0 (the save made when joining), keeping the home cache.
+
+**Joining from the main menu.** No game loaded: pick the newest save file among slots 0–9 / subs
+0–7 (`Serializer.e(II)`), decode it (`Serializer.a(String)`, private → public `ekDecode`), parse
+`SaveGameData` with the game's Json (as the load screen does; no static side effects), build the
+character block from it (its `leveldata.npcs` for companions), home = that slot + sub. Then the normal
+EKWREQ/EKWORLD flow. `The world is requested once both the block is ready and `WELCOME` arrived, in either order (the game thread is paused while the lobby activity is open).
+
+**Vaults and bags travel with you.** `GameData.worldContainers` (private list of `WorldContainer
+{id, items, gold}`) holds `vault`, `vault2..4` (`hasVault*` flags; vanilla inventory buttons in
+`e/a/d/e/h`) and `bag_of_holding` (button `e/a/d/e/k`; flag `bagHolding`, private) plus the mod's
+`bag_of_holding2..5`. They are the character's own storage, so the block now carries those containers
+and flags (reflection on the two private fields); the graft replaces the world's copies. Guests use
+their own vault/bags everywhere; the host's never reach a guest. Old block files (no `stores`) leave
+containers untouched. Guest blocks removed.
+
+**Trade settled by the host (escrow).** After both CONFIRMs match, each side, on the game thread,
+checks and removes what it gives (held in escrow) and sends `HELD` (or `FAIL`). The **host** decides:
+both `HELD` → `COMMIT` to both; any `FAIL` → `ABORT`. On `COMMIT` a side adds what it gets; on
+`ABORT` it gets its own items back. Trade key = both names sorted + their offers in the same order.
+A held trade with no decision after 60 s (connection lost) is refunded — the only remaining window is
+a link dropping between the host's COMMIT reaching one side and the other.
+
+**§9 — done (code).** `EkShare` (level-cache transfer, menu join, stores in the block, sub-0 home),
+`EkTrade` (escrow + host arbitration), `EkFeat` (guest storage blocks removed), hooks B49–B50
+(`Serializer.ekDecode`, `f()V` wrapped → `EkShare.onLevelSaved`). Static checks pass (access, invoke
+kinds, D8, update gate); not device-tested.

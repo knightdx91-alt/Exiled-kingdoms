@@ -16,6 +16,7 @@ import net.fdgames.GameLevel.GameLevelData;
 import net.fdgames.GameWorld.GameData;
 import net.fdgames.GameWorld.Party;
 import net.fdgames.GameWorld.Variable;
+import net.fdgames.GameWorld.WorldContainer;
 import net.fdgames.Helpers.GameConsole;
 import net.fdgames.Helpers.Json;
 import net.fdgames.Helpers.SaveGameData;
@@ -32,6 +33,7 @@ public final class EkShare {
 
     public static final int GUEST_SLOT = 42;
     static final String PREF_HOME = "ek_home_slot";
+    static final String PREF_HOME_SUB = "ek_home_sub";
 
     /** The character block: exactly what travels between worlds. */
     public static class Block {
@@ -40,12 +42,17 @@ public final class EkShare {
         public Party party;
         public ArrayList<NPC> companions;
         public ArrayList<Variable> vars;
+        /** Your own storage (§9): vault, vault2-4, bag_of_holding, bag_of_holding2-5; null = old block. */
+        public ArrayList<WorldContainer> stores;
+        public boolean hasVault, hasVault2, hasVault3, hasVault4, bagHolding;
         public Block() {}
     }
 
     private static volatile boolean applying;     // suppress forwarding while applying remote changes
     private static volatile boolean joinPrepared;  // we started a join from inside a game
     private static volatile String joinBlock;      // character captured when the join started
+    private static volatile boolean welcomed;      // WELCOME seen for the current join
+    private static volatile boolean reqSent;       // EKWREQ sent for the current join
     private static int loadSlot = -1;
     private static boolean saveHomeNextTick;
 
@@ -101,9 +108,18 @@ public final class EkShare {
         }
     }
 
-    private static void setHomeSlot(int s) {
+    static int homeSub() {
         try {
-            activity().getSharedPreferences(EkFriends.PREFS, 0).edit().putString(PREF_HOME, String.valueOf(s)).commit();
+            return Integer.parseInt(activity().getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_HOME_SUB, "0"));
+        } catch (Throwable e) {
+            return 0;
+        }
+    }
+
+    private static void setHomeSlot(int s, int sub) {
+        try {
+            activity().getSharedPreferences(EkFriends.PREFS, 0).edit().putString(PREF_HOME, String.valueOf(s))
+                    .putString(PREF_HOME_SUB, String.valueOf(sub)).commit();
         } catch (Throwable e) {
             // ignore
         }
@@ -139,6 +155,12 @@ public final class EkShare {
     /** Live character -> JSON (game thread). Mirrors the save's clearing of activables/conversations. */
     static String captureBlock() {
         GameData gd = GameData.O();
+        GameLevelData ld = GameLevelData.s();
+        return captureBlock(gd, ld == null ? null : ld.npcs);
+    }
+
+    /** Any GameData (live, or parsed from a save file when joining from the menu) -> block JSON. */
+    static String captureBlock(GameData gd, ArrayList npcs) {
         if (gd == null || gd.player == null) {
             return null;
         }
@@ -155,9 +177,8 @@ public final class EkShare {
             b.backpack = gd.backpack;
             b.party = gd.party;
             b.companions = new ArrayList<NPC>();
-            GameLevelData ld = GameLevelData.s();
-            if (ld != null && ld.npcs != null && gd.party != null && gd.party.companions != null) {
-                for (Object o : ld.npcs) {
+            if (npcs != null && gd.party != null && gd.party.companions != null) {
+                for (Object o : npcs) {
                     if (o instanceof NPC && inParty((NPC) o, gd.party)) {
                         b.companions.add((NPC) o);
                     }
@@ -172,6 +193,17 @@ public final class EkShare {
                     }
                 }
             }
+            b.stores = new ArrayList<WorldContainer>();
+            for (Object o : containers(gd)) {
+                if (o instanceof WorldContainer && isStore(((WorldContainer) o).id)) {
+                    b.stores.add((WorldContainer) o);
+                }
+            }
+            b.hasVault = gd.hasVault;
+            b.hasVault2 = gd.hasVault2;
+            b.hasVault3 = gd.hasVault3;
+            b.hasVault4 = gd.hasVault4;
+            b.bagHolding = getBool(gd, "bagHolding");
             Json j = Serializer.ekJson();
             j.setIgnoreUnknownFields(true);
             return j.prettyPrint(b);
@@ -180,6 +212,68 @@ public final class EkShare {
             p.numActivables = nact;
             p.conversations = conv;
         }
+    }
+
+    // ---- own storage (vaults, bags of holding): GameData private fields, by reflection ----------------
+
+    static boolean isStore(String id) {
+        return id != null && (id.startsWith("vault") || id.startsWith("bag_of_holding")) && !id.equals("vault_active");
+    }
+
+    @SuppressWarnings("unchecked")
+    static ArrayList<Object> containers(GameData gd) {
+        try {
+            java.lang.reflect.Field f = GameData.class.getDeclaredField("worldContainers");
+            f.setAccessible(true);
+            ArrayList<Object> l = (ArrayList<Object>) f.get(gd);
+            if (l == null) {
+                l = new ArrayList<Object>();
+                f.set(gd, l);
+            }
+            return l;
+        } catch (Throwable e) {
+            return new ArrayList<Object>();
+        }
+    }
+
+    private static boolean getBool(GameData gd, String name) {
+        try {
+            java.lang.reflect.Field f = GameData.class.getDeclaredField(name);
+            f.setAccessible(true);
+            return f.getBoolean(gd);
+        } catch (Throwable e) {
+            return false;
+        }
+    }
+
+    private static void setBool(GameData gd, String name, boolean v) {
+        try {
+            java.lang.reflect.Field f = GameData.class.getDeclaredField(name);
+            f.setAccessible(true);
+            f.setBoolean(gd, v);
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    /** The world's vaults/bags become the block's (the world's own never reach this character). */
+    private static void graftStores(GameData gd, Block b) {
+        if (b.stores == null) {
+            return; // block written by an older build: leave storage alone
+        }
+        ArrayList<Object> l = containers(gd);
+        for (int i = l.size() - 1; i >= 0; i--) {
+            Object o = l.get(i);
+            if (o instanceof WorldContainer && isStore(((WorldContainer) o).id)) {
+                l.remove(i);
+            }
+        }
+        l.addAll(b.stores);
+        gd.hasVault = b.hasVault;
+        gd.hasVault2 = b.hasVault2;
+        gd.hasVault3 = b.hasVault3;
+        gd.hasVault4 = b.hasVault4;
+        setBool(gd, "bagHolding", b.bagHolding);
     }
 
     private static boolean inParty(NPC n, Party party) {
@@ -241,6 +335,7 @@ public final class EkShare {
                     list.addAll(b.vars);
                 }
             }
+            graftStores(gd, b);
             if (sgd.leveldata != null && sgd.leveldata.npcs != null) {
                 ArrayList npcs = sgd.leveldata.npcs;
                 for (int i = npcs.size() - 1; i >= 0; i--) {
@@ -297,15 +392,25 @@ public final class EkShare {
     public static void prepareJoin() {
         joinPrepared = false;
         joinBlock = null;
+        welcomed = false;
+        reqSent = false;
+        GameData now = GameData.O();
+        if (now == null || now.player == null || !now.B()) {
+            prepareFromMenu(); // no game loaded: your newest save comes along (plain file work)
+            requestWorldIfReady();
+            return;
+        }
+        // in a game: save + capture on the game thread (it may be paused while the lobby is open;
+        // the world is requested once both this and the host's WELCOME have happened, in any order)
         runOnGame(new Runnable() {
             public void run() {
                 try {
                     GameData gd = GameData.O();
                     if (gd == null || gd.player == null || !gd.B()) {
-                        return; // not in a game: joining from the menu only chats / shows peers
+                        return;
                     }
                     if (gd.slot != GUEST_SLOT) {
-                        setHomeSlot(gd.slot);
+                        setHomeSlot(gd.slot, 0);
                         Serializer.d(gd.slot, 0); // your own world, saved as you leave it
                     }
                     joinBlock = captureBlock();
@@ -313,13 +418,82 @@ public final class EkShare {
                 } catch (Throwable e) {
                     joinPrepared = false;
                 }
+                requestWorldIfReady();
             }
         });
+    }
+
+    /** Sends EKWREQ once, when the character is ready and the host has welcomed us. */
+    private static void requestWorldIfReady() {
+        synchronized (EkShare.class) {
+            if (!welcomed || !joinPrepared || reqSent) {
+                return;
+            }
+            reqSent = true;
+        }
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    LanSessionManager m = mgr();
+                    if (m != null && m.ekConnected()) {
+                        clearGuestSlot();
+                        m.ekSendToHost("EKWREQ");
+                    }
+                } catch (Throwable e) {
+                    // ignore
+                }
+            }
+        }, "ek-world-req");
+        t.setDaemon(true);
+        t.start();
+    }
+
+    /** Joining from the main menu (§9): the newest save file becomes home and brings the character. */
+    private static void prepareFromMenu() {
+        MainActivity a = activity();
+        if (a == null) {
+            return;
+        }
+        int bestSlot = -1;
+        int bestSub = 0;
+        long bestTime = 0;
+        for (int slot = 0; slot < 10; slot++) {
+            for (int sub = 0; sub < 8; sub++) {
+                File f = new File(a.getFilesDir(), Serializer.e(slot, sub));
+                if (f.exists() && f.lastModified() > bestTime) {
+                    bestTime = f.lastModified();
+                    bestSlot = slot;
+                    bestSub = sub;
+                }
+            }
+        }
+        if (bestSlot < 0) {
+            say("No saved game to bring along: start or load a game, then join.");
+            return;
+        }
+        try {
+            String text = Serializer.ekDecode(readText(new File(a.getFilesDir(), Serializer.e(bestSlot, bestSub))));
+            Json j = Serializer.ekJson();
+            j.setIgnoreUnknownFields(true);
+            SaveGameData sgd = (SaveGameData) j.fromJson(SaveGameData.class, text);
+            if (sgd == null || sgd.gamedata == null) {
+                return;
+            }
+            String block = captureBlock(sgd.gamedata, sgd.leveldata == null ? null : sgd.leveldata.npcs);
+            if (block != null) {
+                setHomeSlot(bestSlot, bestSub);
+                joinBlock = block;
+                joinPrepared = true;
+            }
+        } catch (Throwable e) {
+            say("Could not read your save: " + e);
+        }
     }
 
     /** Called by EkAuto.tick every 3 s (game thread). */
     public static void tick() {
         try {
+            EkTrade.tick();
             GameData gd = GameData.O();
             if (gd == null) {
                 return;
@@ -350,11 +524,136 @@ public final class EkShare {
             if (s != null) {
                 writeText(blockFile(home), s);
             }
-            Integer sub = Serializer.f(home);
+            int sub = homeSub(); // 0 = the save made when joining (keeps your areas' cache)
+            MainActivity a = activity();
+            if (a != null && !new File(a.getFilesDir(), Serializer.e(home, sub)).exists()) {
+                Integer latest = Serializer.f(home);
+                sub = latest == null ? 0 : latest.intValue();
+            }
             say("Returning to your world...");
-            Serializer.a(home, sub == null ? 0 : sub.intValue());
+            Serializer.a(home, sub);
         } catch (Throwable e) {
             say("Could not return home: " + e);
+        }
+    }
+
+    // ---- other areas: the level cache (§9) -----------------------------------------------------------
+
+    private static File cacheDir(int slot) {
+        MainActivity a = activity();
+        return a == null || slot < 0 ? null : new File(a.getFilesDir(), Serializer.a(slot));
+    }
+
+    private static boolean okLevel(String n) {
+        return n != null && n.length() > 0 && n.indexOf('/') < 0 && n.indexOf('\\') < 0 && !n.contains("..");
+    }
+
+    private static void deleteTree(File f) {
+        if (f == null || !f.exists()) {
+            return;
+        }
+        File[] kids = f.listFiles();
+        if (kids != null) {
+            for (File k : kids) {
+                deleteTree(k);
+            }
+        }
+        f.delete();
+    }
+
+    /** Before asking for a world: no leftovers from an earlier visit. */
+    private static void clearGuestSlot() {
+        MainActivity a = activity();
+        if (a != null) {
+            deleteTree(new File(a.getFilesDir(), "data/saves/" + GUEST_SLOT));
+        }
+    }
+
+    /** Host, join: every cached area except the one the snapshot already holds live. */
+    static void sendCaches(LanSessionManager m, Object peer, File dir, String here) {
+        try {
+            File[] fs = dir == null ? null : dir.listFiles();
+            if (fs == null) {
+                return;
+            }
+            for (File f : fs) {
+                String n = f.getName();
+                if (!n.endsWith(".sav")) {
+                    continue;
+                }
+                String level = n.substring(0, n.length() - 4);
+                if (!okLevel(level) || level.equals(here)) {
+                    continue;
+                }
+                m.ekSendTo(peer, "EKCACHE\t" + level + "\t" + readText(f).replace("\n", "").replace("\r", ""));
+            }
+        } catch (Throwable e) {
+            // the guest then sees defaults in the areas that are missing
+        }
+    }
+
+    /** Serializer.f()V wrapper (after the area you are leaving was cached): share it. */
+    public static void onLevelSaved(final String level) {
+        try {
+            final LanSessionManager m = mgr();
+            GameData gd = GameData.O();
+            if (m == null || gd == null || !okLevel(level)) {
+                return;
+            }
+            final boolean host = hostingSession(m);
+            if (!host && !(m.ekConnected() && isGuest())) {
+                return;
+            }
+            final File f = new File(cacheDir(gd.slot), level + ".sav");
+            if (!f.exists() || System.currentTimeMillis() - f.lastModified() > 10000L) {
+                return; // nothing new was written
+            }
+            Thread t = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        String line = "EKCACHE\t" + level + "\t" + readText(f).replace("\n", "").replace("\r", "");
+                        if (host) {
+                            m.ekBroadcast(line);
+                        } else {
+                            m.ekSendToHost(line);
+                        }
+                    } catch (Throwable e) {
+                        // ignore
+                    }
+                }
+            }, "ek-cache-send");
+            t.setDaemon(true);
+            t.start();
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    /** An area's cache from the other side. Never overwrites the area you are standing in. */
+    static boolean receiveCache(String line, boolean asHost) {
+        try {
+            String[] p = line.split("\t", 3);
+            if (p.length < 3 || !okLevel(p[1])) {
+                return false;
+            }
+            GameData gd = GameData.O();
+            int slot;
+            if (asHost) {
+                if (gd == null || gd.slot < 0 || gd.slot == GUEST_SLOT || p[1].equals(gd.CurrentLevel)) {
+                    return false;
+                }
+                slot = gd.slot;
+            } else if (joinPrepared) {
+                slot = GUEST_SLOT; // arriving with the world
+            } else if (isGuest() && !p[1].equals(gd.CurrentLevel)) {
+                slot = GUEST_SLOT;
+            } else {
+                return false;
+            }
+            writeText(new File(cacheDir(slot), p[1] + ".sav"), p[2]);
+            return true;
+        } catch (Throwable e) {
+            return false;
         }
     }
 
@@ -478,8 +777,12 @@ public final class EkShare {
                         if (snap == null) {
                             return;
                         }
+                        GameData gd = GameData.O();
+                        final File cache = cacheDir(gd.slot);
+                        final String here = gd.CurrentLevel;
                         Thread t = new Thread(new Runnable() {
                             public void run() {
+                                sendCaches(m, peer, cache, here);
                                 m.ekSendTo(peer, "EKWORLD\t" + snap);
                             }
                         }, "ek-world-send");
@@ -496,6 +799,12 @@ public final class EkShare {
             applyOnGame(line);
             return true;
         }
+        if (line.startsWith("EKCACHE\t")) {
+            if (receiveCache(line, true)) {
+                m.ekBroadcast(line); // everyone's copy of that area follows
+            }
+            return true;
+        }
         return false;
     }
 
@@ -506,12 +815,15 @@ public final class EkShare {
         }
         if (line.startsWith("WELCOME\t")) {
             m.ekSendToHost("EKHELLO");
-            if (joinPrepared) {
-                m.ekSendToHost("EKWREQ");
-            }
+            welcomed = true;
+            requestWorldIfReady();
             return false; // the engine handles WELCOME as usual
         }
         if (line.startsWith("EK") && (EkItems.clientLine(line) || EkTrade.line(line, false))) {
+            return true;
+        }
+        if (line.startsWith("EKCACHE\t")) {
+            receiveCache(line, false);
             return true;
         }
         if (line.startsWith("EKWORLD\t")) {
@@ -527,10 +839,10 @@ public final class EkShare {
                         MainActivity a = activity();
                         File dir = new File(a.getFilesDir(), "data/saves/" + GUEST_SLOT);
                         dir.mkdirs();
-                        writeText(new File(dir, "game.sav"), b64);
+                        writeText(new File(a.getFilesDir(), Serializer.e(GUEST_SLOT, 0)), b64);
                         writeText(blockFile(GUEST_SLOT), block);
                         say("Entering the host's world...");
-                        Serializer.a(GUEST_SLOT, 1);
+                        Serializer.a(GUEST_SLOT, 0); // sub 0: LoadGame keeps the cache (other areas)
                     } catch (Throwable e) {
                         say("Could not enter the host's world: " + e);
                     }

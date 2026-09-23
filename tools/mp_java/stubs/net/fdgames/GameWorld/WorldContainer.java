@@ -1,1 +1,1 @@
-package net.fdgames.GameWorld; public class WorldContainer implements net.fdgames.GameEntities.Helpers.Lootable { public String getName() { return null; } }
+package net.fdgames.GameWorld; public class WorldContainer implements net.fdgames.GameEntities.Helpers.Lootable { public String id; public net.fdgames.GameEntities.Helpers.Items items; public int gold; public WorldContainer() {} public String getName() { return null; } }

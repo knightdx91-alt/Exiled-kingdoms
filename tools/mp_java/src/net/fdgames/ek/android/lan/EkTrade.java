@@ -22,7 +22,8 @@ import net.fdgames.ek.android.MainActivity;
 /**
  * Two-sided trade between players (deobf/SHARED_WORLD_SPEC.md §8). Messages
  * EKTRADE⇥to⇥from⇥kind⇥payload are relayed by the host to everyone; each device acts on its own name.
- * kind: REQ, ACK, NAK, OFFER (items "id:n,…" + ";gold"), CONFIRM (both offers), CANCEL.
+ * kind: REQ, ACK, NAK, OFFER (items "id:n,…" + ";gold"), CONFIRM (both offers), CANCEL; then the
+ * host-settled escrow (§9): each side HELD/FAIL, the host answers COMMIT/ABORT to both.
  */
 public final class EkTrade {
     private EkTrade() {}
@@ -34,6 +35,19 @@ public final class EkTrade {
     private static String myConfirm;
     private static String theirConfirm;
     private static boolean done;
+
+    // escrow (game thread): what this device has taken out of its backpack, waiting for the host
+    private static String heldKey;
+    private static String heldGive;
+    private static String heldGet;
+    private static String heldWho;
+    private static int heldGold;
+    private static long heldAt;
+
+    // host arbitration: trade key -> names that have HELD
+    private static final Map<String, java.util.Set<String>> arb = new java.util.HashMap<String, java.util.Set<String>>();
+    private static final java.util.Set<String> decided = new java.util.HashSet<String>();
+    static final String HOST = "*host";
 
     private static android.app.Activity ui() {
         Object a = Gdx.app;
@@ -58,6 +72,9 @@ public final class EkTrade {
         }
         if (m.isHosting()) {
             m.ekBroadcast(line);
+            if (kind.equals("HELD") || kind.equals("FAIL")) {
+                arbitrate(me(), kind, payload); // the host is one of the traders
+            }
         } else {
             m.ekSendToHost(line);
         }
@@ -114,13 +131,16 @@ public final class EkTrade {
         if (!line.startsWith("EKTRADE\t")) {
             return false;
         }
+        final String[] p = line.split("\t", -1);
         if (relay) {
             LanSessionManager m = mgr();
             if (m != null) {
                 m.ekBroadcast(line);
             }
+            if (p.length >= 5 && (p[3].equals("HELD") || p[3].equals("FAIL"))) {
+                arbitrate(p[2], p[3], p[4]);
+            }
         }
-        final String[] p = line.split("\t", -1);
         if (p.length < 5 || !p[1].equals(me())) {
             return true;
         }
@@ -136,8 +156,17 @@ public final class EkTrade {
         return true;
     }
 
-    private static void handle(final android.app.Activity a, final String from, String kind, String payload) {
+    private static void handle(final android.app.Activity a, final String from, String kind, final String payload) {
         try {
+            if (from.equals(HOST) && (kind.equals("COMMIT") || kind.equals("ABORT"))) {
+                final boolean commit = kind.equals("COMMIT");
+                Gdx.app.postRunnable(new Runnable() {
+                    public void run() {
+                        settle(payload, commit);
+                    }
+                });
+                return;
+            }
             if (kind.equals("REQ")) {
                 new AlertDialog.Builder(a).setTitle("Trade request").setMessage(from + " wants to trade with you.")
                         .setCancelable(false)
@@ -165,6 +194,9 @@ public final class EkTrade {
                 GameConsole.a(from + " declined the trade.");
                 reset();
             } else if (kind.equals("CANCEL")) {
+                if (done) {
+                    return; // escrow running: the host's COMMIT/ABORT decides
+                }
                 GameConsole.a(from + " cancelled the trade.");
                 reset();
             } else if (kind.equals("OFFER")) {
@@ -319,7 +351,7 @@ public final class EkTrade {
                 }).show();
     }
 
-    // ---- execute ---------------------------------------------------------------------------------------
+    // ---- escrow ----------------------------------------------------------------------------------------
 
     private static void maybeExecute() {
         if (done || myConfirm == null || theirConfirm == null) {
@@ -337,7 +369,7 @@ public final class EkTrade {
         final String who = partner;
         Gdx.app.postRunnable(new Runnable() {
             public void run() {
-                execute(give, get, who);
+                hold(give, get, who);
             }
         });
     }
@@ -368,51 +400,156 @@ public final class EkTrade {
         }
     }
 
-    /** Game thread: remove what I give, add what I get. */
-    static void execute(String give, String get, String who) {
+    /** Same string on both devices and the host: names sorted, each one's offer in that order. */
+    static String key(String a, String offerA, String b, String offerB) {
+        return a.compareTo(b) <= 0 ? a + "|" + b + "|" + offerA + "|" + offerB : b + "|" + a + "|" + offerB + "|" + offerA;
+    }
+
+    /** Game thread, both confirmed: take what I give out of the backpack (escrow), tell the host. */
+    static void hold(String give, String get, String who) {
+        String k = key(me(), give, who, get);
         try {
             GameData gd = GameData.O();
             Items bag = gd.backpack;
             Map<Integer, Integer> out = parse(give);
+            boolean ok = gold(give) <= gd.player.g();
             for (Map.Entry<Integer, Integer> e : out.entrySet()) {
                 if (bag.g(e.getKey()) < e.getValue()) {
                     GameConsole.a("[YELLOW]Trade failed: you no longer have " + itemName(e.getKey()) + ".[]");
-                    send(who, "CANCEL", "");
-                    reset();
-                    return;
+                    ok = false;
                 }
             }
-            int gGive = Math.min(gold(give), gd.player.g());
+            if (!ok) {
+                send(who, "FAIL", k);
+                reset();
+                return;
+            }
             for (Map.Entry<Integer, Integer> e : out.entrySet()) {
                 for (int n = 0; n < e.getValue(); n++) {
                     bag.i(e.getKey());
                 }
             }
-            if (gGive > 0) {
-                gd.player.s(-gGive);
+            heldGold = gold(give);
+            if (heldGold > 0) {
+                gd.player.s(-heldGold);
             }
-            ArrayList<Integer> overflow = new ArrayList<Integer>();
-            for (Map.Entry<Integer, Integer> e : parse(get).entrySet()) {
-                for (int n = 0; n < e.getValue(); n++) {
-                    if (!bag.a(e.getKey())) {
-                        overflow.add(e.getKey());
-                    }
+            heldKey = k;
+            heldGive = give;
+            heldGet = get;
+            heldWho = who;
+            heldAt = System.currentTimeMillis();
+            GameConsole.a("Trade with " + who + ": waiting for the host…");
+            send(who, "HELD", k);
+        } catch (Throwable e) {
+            send(who, "FAIL", k);
+            reset();
+        }
+    }
+
+    /** Game thread: the host's decision for the trade I hold. */
+    static void settle(String k, boolean commit) {
+        if (heldKey == null || !heldKey.equals(k)) {
+            return;
+        }
+        try {
+            GameData gd = GameData.O();
+            if (commit) {
+                give(gd, heldGet, true);
+                GameConsole.a("[GREEN]Trade with " + heldWho + " complete.[]");
+            } else {
+                give(gd, heldGive, false);
+                if (heldGold > 0) {
+                    gd.player.s(heldGold);
                 }
+                GameConsole.a("[YELLOW]Trade with " + heldWho + " cancelled; your items are back.[]");
             }
-            int gGet = gold(get);
-            if (gGet > 0) {
-                gd.player.s(gGet);
-            }
-            if (!overflow.isEmpty()) {
-                Loot l = new Loot(gd.player.x + 16, gd.player.y + 16, overflow, 0);
-                GameLevelData.a(l);
-                GameConsole.a("[YELLOW]Backpack full: the rest is on the ground at your feet.[]");
-            }
-            GameConsole.a("[GREEN]Trade with " + who + " complete.[]");
         } catch (Throwable e) {
             GameConsole.a("Trade error: " + e);
         } finally {
+            heldKey = null;
+            heldGive = null;
+            heldGet = null;
+            heldWho = null;
+            heldGold = 0;
             reset();
+        }
+    }
+
+    /** Adds an offer's items (and its gold when withGold) to me; what doesn't fit lands at my feet. */
+    private static void give(GameData gd, String offer, boolean withGold) {
+        Items bag = gd.backpack;
+        ArrayList<Integer> overflow = new ArrayList<Integer>();
+        for (Map.Entry<Integer, Integer> e : parse(offer).entrySet()) {
+            for (int n = 0; n < e.getValue(); n++) {
+                if (!bag.a(e.getKey())) {
+                    overflow.add(e.getKey());
+                }
+            }
+        }
+        if (withGold) {
+            int g = gold(offer);
+            if (g > 0) {
+                gd.player.s(g);
+            }
+        }
+        if (!overflow.isEmpty()) {
+            Loot l = new Loot(gd.player.x + 16, gd.player.y + 16, overflow, 0);
+            GameLevelData.a(l);
+            GameConsole.a("[YELLOW]Backpack full: the rest is on the ground at your feet.[]");
+        }
+    }
+
+    /** From EkShare.tick (game thread, every 3 s): no decision for 60 s = the link is gone, refund. */
+    public static void tick() {
+        if (heldKey != null && System.currentTimeMillis() - heldAt > 60000L) {
+            settle(heldKey, false);
+        }
+    }
+
+    // ---- host: the one place that decides ----------------------------------------------------------
+
+    static void arbitrate(String from, String kind, String k) {
+        final String[] names = k.split("\\|", -1);
+        if (names.length < 4) {
+            return;
+        }
+        boolean commit;
+        synchronized (arb) {
+            if (decided.contains(k)) {
+                return;
+            }
+            if (kind.equals("FAIL")) {
+                commit = false;
+            } else {
+                java.util.Set<String> held = arb.get(k);
+                if (held == null) {
+                    held = new java.util.HashSet<String>();
+                    arb.put(k, held);
+                }
+                held.add(from);
+                if (!(held.contains(names[0]) && held.contains(names[1]))) {
+                    return;
+                }
+                commit = true;
+            }
+            arb.remove(k);
+            decided.add(k);
+        }
+        String kindOut = commit ? "COMMIT" : "ABORT";
+        LanSessionManager m = mgr();
+        for (int i = 0; i < 2; i++) {
+            String to = names[i];
+            if (to.equals(me())) {
+                final boolean c = commit;
+                final String kk = k;
+                Gdx.app.postRunnable(new Runnable() {
+                    public void run() {
+                        settle(kk, c);
+                    }
+                });
+            } else if (m != null) {
+                m.ekBroadcast("EKTRADE\t" + to + "\t" + HOST + "\t" + kindOut + "\t" + k);
+            }
         }
     }
 }

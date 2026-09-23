@@ -1007,4 +1007,40 @@ for sig in ('createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$Playe
             'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;'):
     edit_method(LGB, sig, _hostile, f"LanGameBridge.{sig.split('(')[0]}: peers hostile everywhere when PvP everywhere is on")
 
+# ---- B49-B50: closing the shared-world gaps (SHARED_WORLD_SPEC §9) -------------------------------
+add_method(f'{DST}/{SER}.smali', f"""
+.method public static ekDecode(Ljava/lang/String;)Ljava/lang/String;
+    .locals 0
+
+    invoke-static {{p0}}, {SE}->a(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method""", "Serializer.ekDecode (a save file's text -> Json, for joining from the menu)")
+wrap_method(SER, 'f()V', 'ekSaveLevelOrig', True, f"""
+.method public static f()V
+    .locals 1
+
+    invoke-static {{}}, {GD_}->O(){GD_}
+
+    move-result-object v0
+
+    if-nez v0, :hasgd
+
+    const/4 v0, 0x0
+
+    goto :lvl
+
+    :hasgd
+    iget-object v0, v0, {GD_}->CurrentLevel:Ljava/lang/String;
+
+    :lvl
+    invoke-static {{}}, {SE}->ekSaveLevelOrig()V
+
+    invoke-static {{v0}}, {SH}->onLevelSaved(Ljava/lang/String;)V
+
+    return-void
+.end method""", "Serializer.f() saveLevel: share the area you just left (level cache)")
+
 print("DONE")
