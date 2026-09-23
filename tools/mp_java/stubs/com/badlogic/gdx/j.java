@@ -1,0 +1,1 @@
+package com.badlogic.gdx; public interface j { boolean keyDown(int k); boolean keyUp(int k); boolean keyTyped(char c); boolean touchDown(int x, int y, int p, int b); boolean touchUp(int x, int y, int p, int b); boolean touchDragged(int x, int y, int p); boolean mouseMoved(int x, int y); boolean scrolled(float a, float b); }

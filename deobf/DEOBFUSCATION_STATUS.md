@@ -198,3 +198,7 @@ Regenerate by decompiling **all** `classes*.dex` (see `CAMERA.md`) and reading t
 `// compiled from:` headers; owner/status are curated. The 185 fully-recovered
 `net.fdgames.*` game-logic classes are **not** listed here (they already have real names
 and readable bodies — Track A).
+
+- **APPROX (v53) Floating joystick** — added option, not in stock EK (Options: JOYSTICK: FLOATING/FIXED,
+  default floating). Zone (left 45% × bottom 65%) and tap thresholds (3% of height, 0.35 s) are ours.
+  `deobf/FLOATING_JOYSTICK_SPEC.md`.

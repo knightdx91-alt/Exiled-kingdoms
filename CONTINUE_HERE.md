@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v52.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v53.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v52.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v53.apk
 ```
+
+### v53 (2026-09-23) — floating joystick
+
+Owner request. EkStick sits in front of the HUD stage in GameScreen's InputMultiplexer: a touch in empty
+bottom-left space moves the HUD Touchpad under the thumb (stage then hands it the touch), it returns home
+on release, quick taps are replayed to the world. Options: JOYSTICK: FLOATING/FIXED (default floating).
+Verified offline against the game's own libGDX classes. `deobf/FLOATING_JOYSTICK_SPEC.md`. B67.
+dist: base + v53 + v52.
 
 ### v52 (2026-09-23) — enemy levels back to normal
 

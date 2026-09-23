@@ -532,4 +532,21 @@ wrap_method('net/fdgames/ek/android/MainActivity', 'onActivityResult(IILandroid/
     :done
     return-void
 .end method''', "MainActivity.onActivityResult: SAF results first")
+# ======================= Floating joystick option (v53, FLOATING_JOYSTICK_SPEC.md) ==============
+# One more Options row under MULTIPLAYER: "JOYSTICK: FLOATING" / "JOYSTICK: FIXED" (EkStick).
+edit_method(B0, '<init>()V', lambda m: sub1(
+    r'(    invoke-static \{\}, ' + re.escape(EK) + r'->mpOptionsButton\(\)' + re.escape(TB) + r'\n\n    move-result-object v0\n\n    invoke-virtual \{p0, v0\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add\(Lcom/badlogic/gdx/scenes/scene2d/Actor;\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\n    move-result-object v0\n\n    invoke-virtual \{v0, v2\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->space\(F\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n)',
+    r'\1' + f'''
+    invoke-virtual {{p0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->row()Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    invoke-static {{}}, Lnet/fdgames/ek/android/lan/EkStick;->optionsButton(){TB}
+
+    move-result-object v0
+
+    invoke-virtual {{p0, v0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add(Lcom/badlogic/gdx/scenes/scene2d/Actor;)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    move-result-object v0
+
+    invoke-virtual {{v0, v2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->space(F)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+''', m, 'joystick row'), "b0.<init>: JOYSTICK: FLOATING/FIXED row under MULTIPLAYER")
 print("DONE")

@@ -1,1 +1,1 @@
-package com.badlogic.gdx.scenes.scene2d; public class Stage { public float getWidth() { return 0; } public float getHeight() { return 0; } public void addActor(Actor a) {} }
+package com.badlogic.gdx.scenes.scene2d; public class Stage { public float getWidth() { return 0; } public float getHeight() { return 0; } public void addActor(Actor a) {} public Actor hit(float x, float y, boolean t) { return null; } public com.badlogic.gdx.math.s screenToStageCoordinates(com.badlogic.gdx.math.s v) { return v; } }

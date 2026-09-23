@@ -1292,4 +1292,34 @@ wrap_method(LGB, 'postGameLog(Ljava/lang/String;)V', 'ekPostGameLogNow', False, 
     return-void
 .end method""", "LanGameBridge.postGameLog: onto the game thread")
 
+# ---- B67: floating joystick (FLOATING_JOYSTICK_SPEC.md): EkStick sits in front of the HUD stage in
+#          GameScreen's InputMultiplexer and moves the HUD Touchpad under the thumb.
+add_method(f'{DST}/e/a/d/y.smali', '''
+.method public static ekTouchpad()Lcom/badlogic/gdx/scenes/scene2d/ui/Touchpad;
+    .locals 1
+
+    sget-object v0, Le/a/d/y;->u0:Le/a/d/y;
+
+    if-eqz v0, :ek_none
+
+    iget-object v0, v0, Le/a/d/y;->c:Lcom/badlogic/gdx/scenes/scene2d/ui/Touchpad;
+
+    return-object v0
+
+    :ek_none
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+''', "GameHUD.ekTouchpad(): the HUD joystick (or null before the HUD exists)")
+edit_method('e/a/b/b', '<init>(Lcom/badlogic/gdx/e;Lnet/fdgames/TiledMap/Objects/Transition;)V', lambda m: sub1(
+    r'(    invoke-static \{\}, Le/a/d/y;->J\(\)Le/a/d/y;\n\n    move-result-object v0\n\n    invoke-virtual \{v0\}, Le/a/d/y;->a\(\)Lcom/badlogic/gdx/scenes/scene2d/Stage;\n\n    move-result-object v0\n\n    invoke-virtual \{p1, v0\}, Lcom/badlogic/gdx/i;->a\(Lcom/badlogic/gdx/j;\)V\n)',
+    r'''    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkStick;->install(Ljava/lang/Object;)Lcom/badlogic/gdx/j;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Lcom/badlogic/gdx/i;->a(Lcom/badlogic/gdx/j;)V
+
+\1''', m, 'multiplexer stage add'), "GameScreen.<init>: EkStick in front of the HUD stage")
+
 print("DONE")
