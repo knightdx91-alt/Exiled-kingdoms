@@ -129,7 +129,7 @@ public final class EkAuto {
             final String ip = s.getInetAddress().getHostAddress();
             List<EkFriends.Friend> friends = EkFriends.load(a);
             for (EkFriends.Friend f : friends) {
-                if (f.ip.equals(ip)) {
+                if (f.ip.equals(ip) && !EkRelay.isLoopback(ip)) {
                     return true;
                 }
             }
@@ -140,7 +140,7 @@ public final class EkAuto {
                 public void run() {
                     try {
                         new AlertDialog.Builder(a).setTitle("Join request")
-                                .setMessage(who + " (" + ip + ") wants to join your game.")
+                                .setMessage(who + (EkRelay.isLoopback(ip) ? " (online, by room code)" : " (" + ip + ")") + " wants to join your game.")
                                 .setCancelable(false)
                                 .setPositiveButton("Allow + add friend", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface d, int w) {

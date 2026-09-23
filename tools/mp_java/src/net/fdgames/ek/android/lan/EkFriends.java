@@ -119,6 +119,9 @@ public final class EkFriends {
             port = EkNat.portPart(ip, port);
             ip = EkNat.hostPart(clean(ip));
             ip = clean(ip);
+            if (EkRelay.isLoopback(ip)) {
+                return;                              // a relay join (local bridge), not a friend's address
+            }
             try {
                 Toast.makeText(a, "Connecting... the host has to accept you, this can take a moment.", 1).show();
             } catch (Throwable e) {
@@ -147,6 +150,9 @@ public final class EkFriends {
 
     /** Used by join approval ("Allow + add friend"). */
     static void addFriend(android.app.Activity a, String name, String ip, int port) {
+        if (EkRelay.isLoopback(ip)) {
+            return;                                  // relay joiners all arrive as 127.0.0.1
+        }
         try {
             ip = clean(ip);
             if (ip.length() == 0) {
@@ -318,6 +324,24 @@ public final class EkFriends {
             a.ekAddButton(row, "Trade", new View.OnClickListener() {
                 public void onClick(View v) {
                     EkTrade.pickPartner(a);
+                }
+            });
+        } catch (Throwable e) {
+            // ignore
+        }
+        try {
+            // online play by room code through the relay (RELAY_SPEC.md)
+            LinearLayout row2 = new LinearLayout(a);
+            row2.setOrientation(0);
+            root.addView(row2, new LinearLayout.LayoutParams(-1, -2));
+            a.ekAddButton(row2, "Host online", new View.OnClickListener() {
+                public void onClick(View v) {
+                    EkRelay.hostOnline(a);
+                }
+            });
+            a.ekAddButton(row2, "Join by code", new View.OnClickListener() {
+                public void onClick(View v) {
+                    EkRelay.joinByCode(a);
                 }
             });
         } catch (Throwable e) {

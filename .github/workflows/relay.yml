@@ -1,0 +1,29 @@
+# Deploys the online relay (relay/cf, a Cloudflare Worker) when it changes. Needs repo secrets
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; skips cleanly while they're missing. deobf/RELAY_SPEC.md
+name: Deploy relay (Cloudflare)
+
+on:
+  push:
+    branches: [main]
+    paths: ['relay/cf/**', '.github/workflows/relay.yml']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check secrets
+        id: chk
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$T" ] && [ -n "$A" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "Cloudflare secrets not set yet - skipping"; fi
+      - name: Deploy worker
+        if: steps.chk.outputs.ok == '1'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: relay/cf
