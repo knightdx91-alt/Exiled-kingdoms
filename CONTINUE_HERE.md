@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v50.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v51.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v50.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v51.apk
 ```
+
+### v51 (2026-09-23) — network no longer freezes the game
+
+Owner: sending a chat message froze the other device until it arrived. Packet writes were synchronous on
+the GL thread (and not atomic across threads); a full peer receive window stalled the game. EkNet (B66):
+GL-thread sends are queued to a per-connection background sender, one atomic line per write. Chat lines
+reach the game log on the game thread. `deobf/MULTIPLAYER_PORT_SPEC.md` v51. dist: base + v51 + v50.
 
 ### v50 (2026-09-23) — join your own public address at home; bigger lobby chat
 

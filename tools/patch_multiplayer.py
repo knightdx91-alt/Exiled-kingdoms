@@ -1263,4 +1263,33 @@ edit_method(LOBBY, 'onCreate(Landroid/os/Bundle;)V', lambda m: sub1(
     r'\1\n    invoke-static {p0, p1}, Lnet/fdgames/ek/android/lan/EkFriends;->relayoutLobby(Landroid/app/Activity;Landroid/view/View;)Landroid/view/View;\n\n    move-result-object p1\n', m, 'lobby relayout'),
     "LanLobbyActivity.onCreate: sessions/players side by side, bigger chat + log")
 
+# ---- B66: network sends no longer freeze the game (owner: "when I sent a message the other device
+#          stopped until the message came through"). All packet writes go through EkNet.send: queued
+#          on a background sender when called from the GL thread, one atomic line per write.
+#          Chat lines reach GameData.log on the game thread (EkMp.postGameLog). MULTIPLAYER_PORT_SPEC
+def _sendline(m):
+    return sub1(r'(\.method private sendLine\(Ljava/io/PrintWriter;Ljava/lang/String;\)V\n)(.*?)(\.end method)',
+                r'\1    .locals 0\n\n    invoke-static {p1, p2}, Lnet/fdgames/ek/android/lan/EkNet;->send(Ljava/io/PrintWriter;Ljava/lang/String;)V\n\n    return-void\n\3',
+                m, 'sendLine body', re.S)
+edit_method(LSM, 'sendLine(Ljava/io/PrintWriter;Ljava/lang/String;)V', _sendline, "LanSessionManager.sendLine -> EkNet.send")
+def _peersend(m):
+    return sub1(r'(\.method private send\(Ljava/lang/String;\)V\n)(.*?)(\.end method)',
+                r'''\1    .locals 1
+
+    iget-object v0, p0, Lnet/fdgames/ek/android/lan/LanSessionManager$ClientPeer;->writer:Ljava/io/PrintWriter;
+
+    invoke-static {v0, p1}, Lnet/fdgames/ek/android/lan/EkNet;->send(Ljava/io/PrintWriter;Ljava/lang/String;)V
+
+    return-void
+\3''', m, 'peer send body', re.S)
+edit_method(LSM + '$ClientPeer', 'send(Ljava/lang/String;)V', _peersend, "LanSessionManager$ClientPeer.send -> EkNet.send")
+wrap_method(LGB, 'postGameLog(Ljava/lang/String;)V', 'ekPostGameLogNow', False, """
+.method public static postGameLog(Ljava/lang/String;)V
+    .locals 0
+
+    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkMp;->postGameLog(Ljava/lang/String;)V
+
+    return-void
+.end method""", "LanGameBridge.postGameLog: onto the game thread")
+
 print("DONE")

@@ -187,3 +187,21 @@ ConnectivityManager (by reflection; ACCESS_NETWORK_STATE is already granted) mar
 and cellular interfaces; only VPN addresses are called Tailscale/ZeroTier, cellular ones are hidden
 with a note, and when no VPN is visible the lobby says so (VPN off, or the game excluded in the VPN
 app's split tunnelling). Name-based detection (tun*/zt*/wg*/rmnet*/ccmni*) stays as the fallback.
+
+## v51 — "when I sent a message the other device stopped until it came through"
+Reversed (LanSessionManager, MP mod): every packet write is synchronous on the calling thread.
+`sendLine(PrintWriter,String)` and `ClientPeer.send(String)` do `print(line)`, `print('\n')`, `flush()`.
+The GL thread calls them every frame (`publishLiveState`, `ekBroadcast`, `broadcastNpcState`,
+`ekSendToHost`, EKWORLD/level snapshots), and `sendChat` holds `lock` while broadcasting. A socket write
+blocks once the peer's receive window is full (Wi-Fi power-save, a busy peer, an internet hop), so the
+game froze until the other side drained. The three calls were also not atomic across threads, so two
+threads could interleave halves of lines.
+Separately, a received CHAT runs `postChatAlert` → `LanGameBridge.postGameLog` on the reader thread. 4.2.2
+has no `GameVariables.g(String)`, so it falls through to `GameData.O().log.a(String)`, which edits the
+log's ArrayList and rebuilds the text the HUD is drawing at that moment: a cross-thread race with the
+renderer.
+Fix (B66): both writers call `EkNet.send`. From the GL thread (name `GLThread…`) the line goes into a
+per-connection queue drained in order by a daemon sender; from other threads it's written directly. Every
+write holds the PrintWriter's lock around print+newline+flush. `postGameLog` is wrapped so the log line is
+added via `Gdx.app.postRunnable` on the game thread. Test: a GL-named thread queued 20,000 lines (~4 MB)
+to a non-reading peer in 35 ms; all arrived in order once it read; mixed GL/reader sends → 0 corrupted lines.

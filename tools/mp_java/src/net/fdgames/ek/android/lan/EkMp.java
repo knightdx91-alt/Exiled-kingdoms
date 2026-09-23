@@ -446,4 +446,25 @@ public final class EkMp {
             // ignore
         }
     }
+
+    /**
+     * LanGameBridge.postGameLog, moved onto the game thread (v51). The chat reader thread used to add
+     * the line to GameData.log directly (GameLog.a(String) edits an ArrayList and rebuilds the log text
+     * the HUD is drawing at that moment), racing the renderer.
+     */
+    public static void postGameLog(final String s) {
+        try {
+            if (com.badlogic.gdx.Gdx.app != null) {
+                com.badlogic.gdx.Gdx.app.postRunnable(new Runnable() {
+                    public void run() {
+                        LanGameBridge.ekPostGameLogNow(s);
+                    }
+                });
+                return;
+            }
+        } catch (Throwable e) {
+            // fall through
+        }
+        LanGameBridge.ekPostGameLogNow(s);
+    }
 }
