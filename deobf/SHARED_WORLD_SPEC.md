@@ -192,3 +192,20 @@ a link dropping between the host's COMMIT reaching one side and the other.
 `EkTrade` (escrow + host arbitration), `EkFeat` (guest storage blocks removed), hooks B49–B50
 (`Serializer.ekDecode`, `f()V` wrapped → `EkShare.onLevelSaved`). Static checks pass (access, invoke
 kinds, D8, update gate); not device-tested.
+
+## 10. Coming back to where you left off (v61)
+Owner: "when I log off from someone else's world my position needs to be logged on my device so when I join their
+game again it spawns me in the same place."
+Before: the guest loads the host's snapshot (slot 42) and `onLoaded` puts the grafted player on the snapshot
+player's spot, i.e. next to the host, in the host's area.
+- **World id.** The host sends `EKWID⇥<id>:<slot>` right before its caches and `EKWORLD` (same thread, in order).
+  `<id>` is a random 64-bit hex made once per phone (pref `ek_world_id`; not the relay code, which can change on a
+  code clash), `<slot>` the host's save slot, so each of the host's characters/worlds is its own place.
+- **Recording (guest's phone only).** While in slot 42 and connected, `EkShare.tick` (game thread, every 3 s)
+  stores `level⇥x⇥y` under `ek_wpos_<world id>`; `goHome` records once more before leaving. Not recorded for 5 s
+  after the world loads, 10 s after a restore travel, in arenas, or at x/y ≤ 0.
+- **Restoring.** `onLoaded` for slot 42: saved area == snapshot's `CurrentLevel` → the player is placed at the saved
+  x/y (companions follow, as before). Another area → after 1.5 s in the world `Player.a(Transition)` (4.2.2 `Y1`,
+  what scripted `travel` uses) with `entry_id = 0` and `coords = (x, y)`; the map's entry resolver
+  (`e.a.c.b.a(Transition)`, 4.2.2 `m0.b.t`) returns those coords for entry 0, so the game's own loading screen lands
+  you on the spot. Old hosts (no `EKWID`) → no restore, the old behaviour.

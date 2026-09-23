@@ -21,6 +21,8 @@ import net.fdgames.Helpers.GameConsole;
 import net.fdgames.Helpers.Json;
 import net.fdgames.Helpers.SaveGameData;
 import net.fdgames.Helpers.Serializer;
+import net.fdgames.TiledMap.Objects.Coords;
+import net.fdgames.TiledMap.Objects.Transition;
 import net.fdgames.ek.android.MainActivity;
 
 /**
@@ -53,6 +55,11 @@ public final class EkShare {
     private static volatile String joinBlock;      // character captured when the join started
     private static volatile boolean welcomed;      // WELCOME seen for the current join
     private static volatile boolean reqSent;       // EKWREQ sent for the current join
+    // v61: where I was in each host's world (owner: "when I join their game again it spawns me in the same place")
+    private static volatile String worldId;        // EKWID from the host of the current join
+    private static String[] pendingTravel;         // saved spot in another area: travel there once loaded
+    private static long pendingSince;
+    private static long noRecordUntil;
     private static int loadSlot = -1;
     private static boolean saveHomeNextTick;
 
@@ -317,6 +324,18 @@ public final class EkShare {
                 b.player.x = old.x;
                 b.player.y = old.y;
             }
+            if (loadSlot == GUEST_SLOT) {
+                pendingTravel = null;
+                String[] at = savedSpot();
+                if (at != null && at[0].equals(gd.CurrentLevel)) {
+                    b.player.x = Integer.parseInt(at[1]);   // same area as the host: just stand there
+                    b.player.y = Integer.parseInt(at[2]);
+                } else if (at != null) {
+                    pendingTravel = at;                      // another area: the game's own travel, once live
+                    pendingSince = System.currentTimeMillis();
+                }
+                noRecordUntil = System.currentTimeMillis() + 5000L;
+            }
             Party oldParty = gd.party;
             gd.player = b.player;
             if (b.backpack != null) {
@@ -392,6 +411,8 @@ public final class EkShare {
     /** Called from EkAuto.noteJoin (join thread): prepare on the game thread. */
     public static void prepareJoin() {
         joinPrepared = false;
+        worldId = null;                               // the host sends it again (EKWID) with the world
+        pendingTravel = null;
         joinBlock = null;
         welcomed = false;
         reqSent = false;
@@ -507,10 +528,91 @@ public final class EkShare {
                 LanSessionManager m = LanSessionManager.getInstanceIfReady();
                 if (m == null || !m.ekConnected()) {
                     goHome();
+                } else if (pendingTravel != null) {
+                    if (System.currentTimeMillis() - pendingSince >= 1500L && gd.player != null) {
+                        String[] at = pendingTravel;
+                        pendingTravel = null;
+                        Transition tr = new Transition(at[0], 0);   // entry 0 + coords = land exactly there
+                        tr.coords = new Coords(Integer.parseInt(at[1]), Integer.parseInt(at[2]));
+                        noRecordUntil = System.currentTimeMillis() + 10000L;
+                        say("Back to where you left off...");
+                        gd.player.a(tr);
+                    }
+                } else {
+                    recordSpot(gd);
                 }
             }
         } catch (Throwable e) {
             // ignore
+        }
+    }
+
+    // ---- v61: my spot in each host's world, kept on this phone -------------------------------------------
+
+    /** This phone's world id (random, made once) + the save slot: one id per host character/world. */
+    private static String hostWorldId(GameData gd) {
+        try {
+            MainActivity a = activity();
+            if (a == null || gd == null) {
+                return null;
+            }
+            android.content.SharedPreferences sp = a.getSharedPreferences(EkFriends.PREFS, 0);
+            String id = sp.getString("ek_world_id", null);
+            if (id == null || id.length() < 8) {
+                id = Long.toHexString(new java.security.SecureRandom().nextLong());
+                sp.edit().putString("ek_world_id", id).commit();
+            }
+            return id + ":" + gd.slot;
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    private static String spotKey() {
+        String w = worldId;
+        return w == null || w.length() == 0 ? null : "ek_wpos_" + w;
+    }
+
+    /** {level, x, y} saved for the current host's world, or null. Arenas are never restored. */
+    static String[] savedSpot() {
+        try {
+            String k = spotKey();
+            MainActivity a = activity();
+            if (k == null || a == null) {
+                return null;
+            }
+            String v = a.getSharedPreferences(EkFriends.PREFS, 0).getString(k, null);
+            String[] p = v == null ? null : v.split("\t");
+            if (p == null || p.length < 3 || !okLevel(p[0]) || p[0].contains("arena")) {
+                return null;
+            }
+            int x = Integer.parseInt(p[1]);
+            int y = Integer.parseInt(p[2]);
+            return x > 0 && y > 0 ? p : null;
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    /** Every tick while in someone's world, and when leaving it. */
+    static void recordSpot(GameData gd) {
+        try {
+            String k = spotKey();
+            MainActivity a = activity();
+            if (k == null || a == null || gd == null || gd.player == null || System.currentTimeMillis() < noRecordUntil) {
+                return;
+            }
+            String lvl = gd.CurrentLevel;
+            if (!okLevel(lvl) || lvl.contains("arena") || gd.player.x <= 0 || gd.player.y <= 0) {
+                return;
+            }
+            String v = lvl + "\t" + gd.player.x + "\t" + gd.player.y;
+            android.content.SharedPreferences sp = a.getSharedPreferences(EkFriends.PREFS, 0);
+            if (!v.equals(sp.getString(k, null))) {
+                sp.edit().putString(k, v).apply();
+            }
+        } catch (Throwable e) {
+            // next tick
         }
     }
 
@@ -520,6 +622,11 @@ public final class EkShare {
             int home = homeSlot();
             if (home < 0) {
                 return;
+            }
+            GameData now = GameData.O();
+            if (now != null && now.slot == GUEST_SLOT && pendingTravel == null) {
+                noRecordUntil = 0L;
+                recordSpot(now);
             }
             String s = captureBlock();
             if (s != null) {
@@ -781,8 +888,12 @@ public final class EkShare {
                         GameData gd = GameData.O();
                         final File cache = cacheDir(gd.slot);
                         final String here = gd.CurrentLevel;
+                        final String wid = hostWorldId(gd);
                         Thread t = new Thread(new Runnable() {
                             public void run() {
+                                if (wid != null) {
+                                    m.ekSendTo(peer, "EKWID\t" + wid);
+                                }
                                 sendCaches(m, peer, cache, here);
                                 m.ekSendTo(peer, "EKWORLD\t" + snap);
                             }
@@ -825,6 +936,10 @@ public final class EkShare {
         }
         if (line.startsWith("EKCACHE\t")) {
             receiveCache(line, false);
+            return true;
+        }
+        if (line.startsWith("EKWID\t")) {
+            worldId = line.substring(6).trim();
             return true;
         }
         if (line.startsWith("EKWORLD\t")) {

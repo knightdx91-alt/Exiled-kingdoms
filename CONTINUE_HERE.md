@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v60.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v61.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v60.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v61.apk
 ```
+
+### v61 (2026-09-23) — back to where you left off in a friend's world
+
+The host sends a stable world id (`EKWID`, random per phone + save slot) with the world; the guest's phone keeps
+its area + x/y per world id (every 3 s and on leaving) and on the next join is placed there (same area) or
+travels there with the game's own transition (entry 0 + coords). `deobf/SHARED_WORLD_SPEC.md` §10.
+dist: base + v61 + v60.
 
 ### v60 (2026-09-23) — summons fight back only for their player
 
