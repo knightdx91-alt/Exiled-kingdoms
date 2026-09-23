@@ -1006,19 +1006,71 @@ edit_method(LGB, RRC, lambda m: sub1(
     r'(    if-lt v4, v5, :cond_\w+\n\n    const/4 v4, 0x0\n\n    iput v4, v3, Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;->missingHP:I\n)',
     r'\1\n    invoke-static {}, ' + IT + r'->onPvpDefeat()V' + '\n', m, 'pvp defeat'),
     "LanGameBridge.receiveRemoteCombat: PvP defeat outside the arena drops a loot bag")
-def _hostile_with(call):
-    """v57: hostile when THIS peer and I both have PvP on (EkItems.pvpWith*), not one global switch."""
-    def _hostile(m):
-        new, k = re.subn(r'(    iget-object (v\d+), \2, Lnet/fdgames/GameWorld/GameData;->CurrentLevel:Ljava/lang/String;\n\n    if-eqz \2, :cond_\w+\n\n)(    const-string (v\d+), "H10_pvp_arena"\n(?:(?!\.end method).*\n)*?    if-lt v\d+, v\d+, :cond_\w+\n\n    :(cond_\w+)\n)',
-                         lambda g: g.group(1) + '    invoke-static {p0}, ' + IT + call + '\n\n    move-result ' + g.group(4) + '\n\n    if-nez ' + g.group(4) + ', :' + g.group(5) + '\n\n' + g.group(3), m, count=1)
-        assert k == 1, "hostile anchor"
-        return new
-    return _hostile
-for sig, call in (('createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
-                   '->pvpWithState(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Z'),
-                  ('getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
-                   '->pvpWith(Ljava/lang/String;)Z')):
-    edit_method(LGB, sig, _hostile_with(call), f"LanGameBridge.{sig.split('(')[0]}: peer hostile when both players have PvP on")
+# v59: a PvP peer used to become faction "enemy" outside the arena, so every guard, townsperson and summon attacked it
+# (and monsters treated it as one of their own). Now the peer stays "player" and is only marked ("player,neutral");
+# WorldFactions' two hostility checks make a marked peer hostile to the local player and nobody else.
+edit_method(LGB, 'createPeerActor(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+            lambda m: sub1(r'(    :goto_\w+\n+)(    const/4 (v\d+), 0x0\n+    iput \3, (v\d+), Lnet/fdgames/Rules/Spawn;->wander:I\n)',
+                           lambda g: g.group(1) + f'    iget-object {g.group(3)}, {g.group(4)}, Lnet/fdgames/Rules/Spawn;->faction:Ljava/lang/String;\n\n'
+                           f'    invoke-static {{p0, {g.group(3)}}}, {IT}->pvpFactionState(Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;Ljava/lang/String;)Ljava/lang/String;\n\n'
+                           f'    move-result-object {g.group(3)}\n\n'
+                           f'    iput-object {g.group(3)}, {g.group(4)}, Lnet/fdgames/Rules/Spawn;->faction:Ljava/lang/String;\n\n' + g.group(2), m, 'peer spawn faction'),
+            "LanGameBridge.createPeerActor: PvP peer = player faction + PvP mark")
+edit_method(LGB, 'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Lnet/fdgames/GameEntities/Final/NPC;',
+            lambda m: sub1(r'(    iput-object (v\d+), (v\d+), Lnet/fdgames/GameEntities/GameObject;->worldfactions:\[I\n+(?:    :\w+\n+)+)(    return-object \3\n)',
+                           lambda g: g.group(1) + f'    invoke-static {{{g.group(3)}, p0}}, {IT}->pvpMarkActor(Lnet/fdgames/GameEntities/Final/NPC;Ljava/lang/String;)V\n\n' + g.group(4), m, 'peer faction mark'),
+            "LanGameBridge.getOrCreatePeerActor: mark/unmark the PvP peer")
+# v59: joiner-side world NPC smoothing (EkSync): no local drift under the host's position, no health bounce.
+SY = 'Lnet/fdgames/ek/android/lan/EkSync;'
+edit_method(LGB, 'applyReceivedWorldNpcStatesV2(Lnet/fdgames/ek/android/lan/LanSessionManager;Ljava/lang/String;Ljava/lang/String;)V',
+            lambda m: sub1(r'(    iput-boolean (v\d+), (\w\d+), Lnet/fdgames/GameEntities/Final/NPC;->ai_disabled:Z\n)',
+                           lambda g: g.group(1) + f'\n    invoke-static {{{g.group(3)}}}, {SY}->remoteNpc(Lnet/fdgames/GameEntities/Final/NPC;)V\n', m, 'npc ai off'),
+            "LanGameBridge.applyReceivedWorldNpcStatesV2: host-driven NPC keeps no local velocity")
+def _npc_hp(m):
+    npc = re.search(r'    iput-boolean v\d+, (\w\d+), Lnet/fdgames/GameEntities/Final/NPC;->ai_disabled:Z', m).group(1)
+    return sub1(r'    iput (v\d+), (v\d+), Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;->missingHP:I\n',
+                lambda g: f'    invoke-static {{{npc}, {g.group(2)}, {g.group(1)}}}, {SY}->npcHp(Lnet/fdgames/GameEntities/Final/NPC;Lnet/fdgames/GameEntities/CharacterSheet/CharacterStats;I)V\n', m, 'npc hp')
+edit_method(LGB, 'applyReceivedWorldNpcStatesV2(Lnet/fdgames/ek/android/lan/LanSessionManager;Ljava/lang/String;Ljava/lang/String;)V',
+            _npc_hp, "LanGameBridge.applyReceivedWorldNpcStatesV2: host health without the bounce-back")
+WF = 'Lnet/fdgames/GameWorld/WorldFactions;'
+wrap_method('net/fdgames/GameWorld/WorldFactions', 'a([ILjava/lang/Integer;)Z', 'ekHostileToOrig', True, f"""
+.method public a([ILjava/lang/Integer;)Z
+    .locals 1
+
+    invoke-static {{p1, p2}}, {IT}->pvpHostileTo([ILjava/lang/Integer;)Z
+
+    move-result v0
+
+    if-eqz v0, :orig
+
+    return v0
+
+    :orig
+    invoke-direct {{p0, p1, p2}}, {WF}->ekHostileToOrig([ILjava/lang/Integer;)Z
+
+    move-result v0
+
+    return v0
+.end method""", "WorldFactions.a([I,Integer): PvP-marked peer is hostile to the player")
+wrap_method('net/fdgames/GameWorld/WorldFactions', 'a([I[I)Z', 'ekHostileOrig', True, f"""
+.method public a([I[I)Z
+    .locals 1
+
+    invoke-static {{p1, p2}}, {IT}->pvpPair([I[I)Z
+
+    move-result v0
+
+    if-eqz v0, :orig
+
+    return v0
+
+    :orig
+    invoke-direct {{p0, p1, p2}}, {WF}->ekHostileOrig([I[I)Z
+
+    move-result v0
+
+    return v0
+.end method""", "WorldFactions.a([I,[I): only the local player and a PvP-marked peer fight")
 def _friendly_again(m):
     """v57: outside the arena a peer that's no longer PvP goes back to the player faction at once (the MP
     code only reset it inside the arena, so a switched-off peer stayed attackable until recreated)."""

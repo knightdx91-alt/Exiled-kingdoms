@@ -202,3 +202,6 @@ and readable bodies — Track A).
 - **APPROX (v53) Floating joystick** — added option, not in stock EK (Options: JOYSTICK: FLOATING/FIXED,
   default floating). Zone (left 45% × bottom 65%) and tap thresholds (3% of height, 0.35 s) are ours.
   `deobf/FLOATING_JOYSTICK_SPEC.md`.
+- **APPROX (v59) World NPC sync smoothing** — joiner ignores a host HP *rise* until it has held 1.2 s, zeroes
+  host-driven NPC velocity, and sends only the newest queued `NPCSTATE2`/`PSTATE`. The MP mod applied the host
+  HP % directly. `deobf/MULTIPLAYER_PORT_SPEC.md` §v59.

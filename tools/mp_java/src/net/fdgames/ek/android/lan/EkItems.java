@@ -431,6 +431,51 @@ public final class EkItems {
         return st != null && pvpWith(st.playerName);
     }
 
+    // v59: a PvP peer keeps the player faction (guards, townsfolk, summons and companions leave it alone, monsters
+    // still hunt it) and gets "neutral" as its second faction. That pair is a marker no game data uses; the two
+    // WorldFactions hostility checks treat it as hostile to the local player only (deobf/MULTIPLAYER_PORT_SPEC.md).
+    static final int FACTION_PLAYER = 100;
+    static final int FACTION_NEUTRAL = 105;
+
+    static boolean pvpMarked(int[] f) {
+        return f != null && f.length > 1 && f[0] == FACTION_PLAYER && f[1] == FACTION_NEUTRAL;
+    }
+
+    /** createPeerActor: the spawn's faction string. */
+    public static String pvpFactionState(LanSessionManager.PlayerState st, String faction) {
+        return "player".equals(faction) && pvpWithState(st) ? "player,neutral" : faction;
+    }
+
+    /** getOrCreatePeerActor: mark / unmark an existing puppet that has the player faction (not the arena's "enemy"). */
+    public static void pvpMarkActor(net.fdgames.GameEntities.Final.NPC npc, String name) {
+        if (npc == null) {
+            return;
+        }
+        int[] f = npc.worldfactions;
+        if (f == null || f.length < 2 || f[0] != FACTION_PLAYER || (f[1] != 0 && f[1] != FACTION_NEUTRAL)) {
+            return;
+        }
+        f[1] = pvpWith(name) ? FACTION_NEUTRAL : 0;
+    }
+
+    /** WorldFactions "is this faction set hostile to faction `who`": a marked puppet is hostile to the player. */
+    public static boolean pvpHostileTo(int[] f, Integer who) {
+        return who != null && who.intValue() == FACTION_PLAYER && pvpMarked(f);
+    }
+
+    /** WorldFactions "are these two hostile": true only for the local player and a marked puppet. */
+    public static boolean pvpPair(int[] a, int[] b) {
+        boolean ma = pvpMarked(a);
+        boolean mb = pvpMarked(b);
+        if (ma == mb) {
+            return false;
+        }
+        GameData gd = GameData.O();
+        Player me = gd == null ? null : gd.player;
+        int[] mine = me == null ? null : me.worldfactions;
+        return mine != null && (ma ? b == mine : a == mine);
+    }
+
     private static String peerName(Object peer) {
         try {
             java.lang.reflect.Field f = peer.getClass().getDeclaredField("playerName");

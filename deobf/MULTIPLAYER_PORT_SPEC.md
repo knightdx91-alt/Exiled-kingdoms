@@ -244,3 +244,45 @@ an option to turn it off. If the player turns it off it should stay off until th
   `EKPVPT\t<name>=0|1…` every 3 s and on change. Unknown players count as off until the table arrives.
 - On entering a session (host or guest) a dialog says "PvP is ON…" with **Keep PvP on / Turn PvP off**. If the
   player's choice is off, a short note says so instead.
+
+## v59 — PvP opponent hostile to me only; world NPC jitter and slow health
+Owner: "when PvP is on, if I join someone else's game every NPC and enemy counts me as a mob, even the player's
+summons attack me" and "the enemy health isn't updated fast enough, NPCs and enemies are twitching trying to move
+back and forth".
+
+**Factions (reversed from `WorldFactions` / `data/world/factions.txt`).** An NPC aggroes on actors whose faction
+its own `hostileto` list contains (`m0.b.d(Coords,int[],int)` → `WorldFactions.g(mine, theirs)`); projectiles and
+skills use `g` in either order; "hostile to the player" is `f(arr)` = arr's list contains 100 (tap-to-attack, red
+name, reputation loss on kill only when false, and only for codes 1..99). `enemy` (101) is listed by every town,
+kingdom and guild faction (1..23) and by the player (100), so a puppet with faction `enemy` was attacked by
+guards, townsfolk, companions and summons, while monsters (also 101) ignored it.
+Now outside the arena the peer puppet keeps faction `player` and, when both players have PvP on, gets `neutral`
+(105) as its **second** faction: `[100, 105]`, a pair no game data uses (`player,<x>` appears nowhere). With the
+game's own rules that pair behaves exactly like `player` (105 lists nobody). Two wrappers add the PvP rule:
+- `WorldFactions.a([I,Integer)` (4.2.2 `f`): a marked puppet is hostile to faction 100 (tap to attack, red name).
+- `WorldFactions.a([I,[I)` (4.2.2 `g`): true only for the local player's own `worldfactions` array (identity; every
+  actor gets its own array from `WorldFactions.c`) against a marked puppet, either order. Summons and companions
+  are faction 100 too but have their own arrays, so they stay out of it; guards and townsfolk never list 100.
+  Everything else falls through to the original check, so monsters still hunt the puppet like any player.
+Setting it: `createPeerActor` passes the spawn faction through `EkItems.pvpFactionState` ("player" →
+"player,neutral"); `getOrCreatePeerActor` calls `EkItems.pvpMarkActor` on return (sets/clears the 105 on a
+`[100,x]` array, leaves the arena's `enemy` alone). The v57 hooks that jumped to the `enemy` branch are removed;
+the arena (`H10_pvp_arena`) behaves as the MP mod made it.
+
+**World NPC sync (host → joiner, `NPCSTATE2`).** The host sends every authoritative NPC (position, state, facing,
+HP %) at 20 Hz (`LAN_PUBLISH_INTERVAL_MS` 50, from `tick`); the joiner applies the latest snapshot every frame
+(`applyReceivedWorldNpcStatesV2`: 40 % step toward the host position, snap under 3 px or over 96 px, AI off,
+`missingHP` from the %). Two causes of the reported behaviour:
+1. Queue lag: since v51 every send from the GL thread goes through `EkNet`'s FIFO (up to 20 000 lines). The host
+   queues a whole-level `NPCSTATE2` plus a `PSTATE` 20×/s; on a link slower than that (relay, mobile data) the
+   queue grew and every update arrived later and later. `EkNet` now replaces a still-queued snapshot line with
+   the newer one in place (`NPCSTATE2` per connection, `PSTATE` per player name); other lines keep their order.
+2. Local drift: turning the AI off does not clear `MapActor.speedX/speedY`, so `MapActor.M` kept moving the NPC
+   the way its local AI last chose while the snapshot pulled it back. `EkSync.remoteNpc` zeroes the velocity
+   where the apply sets `ai_disabled`; the host position is the only thing that moves it.
+Health: `EkSync.npcHp` replaces the `missingHP` store. More damage from the host applies at once; less damage
+(regen/heal, or the host not having processed my hit yet) only after the host has said so for 1.2 s, so bars
+no longer bounce back up after a hit. APPROX (the MP mod applied the host % directly).
+Tested offline: 2 000 snapshots to a stalled link → 13 sent, newest last, all 20 chat lines in order, GL thread
+never blocked; faction pair: me↔marked puppet hostile both orders, summon/guard/monster-hook false, unmarked
+false, marked hostile to 100 but not to a town faction.

@@ -27,14 +27,25 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v58.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v59.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v58.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v59.apk
 ```
+
+### v59 (2026-09-23) — PvP opponent hostile to you only; monster jitter and slow health bars
+
+- PvP: the other player's puppet no longer turns faction `enemy` (which every guard, townsperson and summon
+  attacked, and monsters ignored). It stays `player` with a `neutral` second faction as a PvP mark; hooks on
+  `WorldFactions`' two hostility checks make it hostile to the local player only.
+- Sync: `EkNet` sends only the newest queued `NPCSTATE2`/`PSTATE` (the FIFO fell further and further behind on
+  slow links); joiner zeroes host-driven NPC velocity (it slid on the local AI's last speed, then got pulled
+  back); host HP rises apply after 1.2 s so bars don't bounce. `deobf/MULTIPLAYER_PORT_SPEC.md` §v59.
+- Relay deployed: secrets added, `relay.yml` ran, `ek-relay.knightdx91.workers.dev` verified live end to end.
+- Fold build needs `EK_LIB=/tmp/eklib` (cached jars) or Maven Central may answer 429. dist: base + v59 + v58.
 
 ### v58 (2026-09-23) — online play by room code + online friends
 
