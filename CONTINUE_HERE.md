@@ -23,16 +23,36 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v27-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v27.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v28-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| Android **4.2.2** tablet | `ExiledKingdoms-hero-v28.apk` | `build_mod_4_2_2.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v27-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v27.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v28-fold.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v28.apk
 ```
+
+### v28 (2026-09-23) — MP mod items 1–12 (no cheats) + friends list
+
+Everything the MP mod had beyond the engine, except its cheat menu:
+* **Arena**: dying in `H10_pvp_arena` eliminates you (full HP, "[PVP] name has been eliminated!"), no
+  game over; the last peer standing wins. **World map** shows other players as coloured markers with
+  names. New **world events** go to the game log and the room chat. (PORT_SPEC §7)
+* **Options → Raise Difficulty** (Story → Casual → Normal → Hard → Ironman).
+* **Equipment upgrades +1…+10** (select an equipped item → UPGRADE; gold + gems): main-hand damage and
+  elemental, plus armor/HP/mana for every upgraded piece; preview shows the next cost, slots a "+N".
+* **Vault button** in your inventory when you own a vault; **bag of holding tabs 1–5**.
+* Recover/rest sync HP to other players at once; **SAF backup** (Android's file picker) on 4.4+.
+* **Friends list** in the lobby: hosts you join are remembered, add by name + IP, shows who is
+  hosting (direct UDP probe, works over ZeroTier/Tailscale), one tap joins. (PORT_SPEC §8)
+* Forward shot without a target was already in 4.2.2 — nothing to add.
+Specs: `deobf/MP_FEATURES_SPEC.md`, `MULTIPLAYER_PORT_SPEC.md` §7–8. Not device-tested.
+
+**Content pack (item 12) is NOT in these APKs.** `EK_MP_APK=<mod apk> build_mod_4_2_2.sh …` merges the
+mod's maps/quests/sprites/arena/UI art (`deobf/MP_CONTENT_SPEC.md`); the result is ~374 MB, too big for
+the repo's split-part releases, so it is built on request. The arena map comes with it.
 
 ### v27 (2026-09-23) — multiplayer audit: everything matched and documented
 
