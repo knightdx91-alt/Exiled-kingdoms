@@ -158,4 +158,30 @@ public final class EkUi {
             // keep vanilla
         }
     }
+
+    /**
+     * Right after the value label's cell got its 480xS width: measure the wrapped sentence at that width
+     * and pin the row's height to it (v43's early setWidth alone wasn't picked up - owner's screenshot
+     * still showed every row one line tall, wrapped lines landing on the next row).
+     */
+    public static void fitCell(Object o) {
+        try {
+            if (!(o instanceof Cell)) {
+                return;
+            }
+            Cell c = (Cell) o;
+            if (c.getActor() instanceof Label) {
+                Label lb = (Label) c.getActor();
+                lb.setWrap(true);
+                lb.setWidth(480f * (Gdx.graphics.getHeight() / 720f));
+                lb.invalidateHierarchy();
+                float h = lb.getPrefHeight();
+                if (h > 0f) {
+                    c.height(h);
+                }
+            }
+        } catch (Throwable e) {
+            // keep vanilla
+        }
+    }
 }

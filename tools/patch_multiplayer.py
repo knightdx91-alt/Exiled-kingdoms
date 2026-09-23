@@ -1155,4 +1155,13 @@ def _h0v(m):
 edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0v, "StatsDetailWindow row: value sentence sized to its column before layout")
 edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0v, "StatsDetailWindow sheet rows: value sentence sized to its column before layout")
 
+# ---- B61: Details window value rows: pin each row's height to its wrapped sentence (owner screenshot) ----
+def _h0h(m):
+    new, k = re.subn(r'(    const/high16 (\w+), 0x43f00000    # 480\.0f\n(?:\s*sget \w+, [^\n]+\n)?\s*mul-float (\w+), \w+, \w+\n\s*invoke-virtual \{(\w+), \3\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->width\(F\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n)',
+                     lambda g: g.group(1) + '\n    invoke-static/range {' + g.group(4) + ' .. ' + g.group(4) + '}, Lnet/fdgames/ek/android/lan/EkUi;->fitCell(Ljava/lang/Object;)V\n', m)
+    assert k == 1, f"h0 value cell: {k}"
+    return new
+edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0h, "StatsDetailWindow row: row height = wrapped sentence height")
+edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0h, "StatsDetailWindow sheet rows: row height = wrapped sentence height")
+
 print("DONE")

@@ -66,3 +66,6 @@ a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
   sentence in a 480xS cell — asks for its height while its width is still 0, so the row is shorter than
   the wrapped text and the extra lines run over the rows below. B60: the value label gets its column
   width (`setWidth(480xS)`) before it is added, so the row is as tall as the sentence.
+* **v44**: owner's screenshot (Details → Character Stats) still showed one-line rows with wrapped lines on
+  the next row. Each row (label cell 480xS) now gets an explicit height = the label's wrapped pref
+  height measured at 480xS, set right after the cell's width (B61, `EkUi.fitCell`).
