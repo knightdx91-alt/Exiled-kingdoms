@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v40.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v41.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v40.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v41.apk
 ```
+
+### v41 (2026-09-23) — Hero: all skills on one scrollable page
+
+Owner: one long scrollable skill page instead of the HERO/ROGUE/CLERIC/MAGE pager. `patch_hero_class.py`
+§7: SkillWindow's button array 20→44, ROGUE/CLERIC/MAGE sections added after the Hero's own (same
+widgets/filter/listener/sizes), list in a vertical ScrollPane, pager button removed, highlight loop over
+all buttons. Spec: `deobf/HERO_CLASS_MOD_SPEC.md`. dist: base + v41 + v40.
 
 ### v40 (2026-09-23) — character sheet: Hero page button sized, Details rows don't overlap
 

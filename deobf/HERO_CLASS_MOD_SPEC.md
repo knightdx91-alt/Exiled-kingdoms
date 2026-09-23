@@ -211,3 +211,17 @@ Off-class *equipment*: see v25.
 and `GameData.backpack.a(id)` (the game's add-to-backpack, false when full) succeeded → the slot
 is zeroed. Afterwards `u()` (as in the game's `CharacterInventory.a(IZ)Z` unequip). No joins with
 mixed reference types (each exit returns on its own).
+
+## One scrollable skill page (owner request 2026-09-23, v41)
+Owner: instead of paging HERO/ROGUE/CLERIC/MAGE, one long scrollable page with every skill.
+Reversed `SkillWindow` (`e/a/d/e/c0`): skill buttons live in a fixed array `n` (20 = 8 class + 4
+general + 8 specialist, `e/a/d/e/z(Skill,rank)`), laid out in table `l` by `c()` with hard-coded indices:
+per section a header label (colspan 4, `setFontScale(u)`), then 2 rows (`pad`/`spaceBottom` 6·t) of 4
+buttons sized `o`×`o`. Class skills take the per-page class (`ekPageClass`) and keep only skills with
+`sheet.W()` or `NPCSkill`; a tap = listener `e0(c0, index, id)` → selected index `k` + details.
+`draw()` highlights `n[k]` over a hard-coded 20. `l` sits in the left column (window cell 550·t tall).
+Change (Hero only; other classes unchanged):
+* `n` grows to 44; after the Hero's own section, `ekAddOtherClasses()` appends ROGUE/CLERIC/MAGE
+  sections (same widgets, filter, listener, sizes; indices 20–43), before General/Specialist.
+* `l` is wrapped in a `ScrollPane` (vertical only), the pager button is gone (page fixed to 0).
+* `draw()` loops over `n.length` with a null check.

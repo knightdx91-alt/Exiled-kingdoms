@@ -984,4 +984,380 @@ for i, ln in enumerate(lines):
 assert hit == 1, f"expected 1 WARRIOR row, found {hit}"
 open(p, 'w', encoding='utf-8', newline='').write(bom + nl.join(lines))
 print("patched strings.txt: WARRIOR -> Hero")
+
+# ---------------------------------------------------------------------------
+# 7) One scrollable skill page for the Hero (deobf/HERO_CLASS_MOD_SPEC.md "One scrollable skill page")
+# ---------------------------------------------------------------------------
+p = f'{w}/smali/e/a/d/e/c0.smali'
+s = open(p, encoding='utf-8').read()
+TBL = 'Lcom/badlogic/gdx/scenes/scene2d/ui/Table;'
+CELL = 'Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;'
+ACT = 'Lcom/badlogic/gdx/scenes/scene2d/Actor;'
+SK = 'Lnet/fdgames/Rules/Skill;'
+Z = 'Le/a/d/e/z;'
+LBL = 'Lcom/badlogic/gdx/scenes/scene2d/ui/Label;'
+
+# 7a) 44 skill buttons (20 vanilla + 3 x 8 for ROGUE/CLERIC/MAGE)
+import re as _re
+new, k = _re.subn(r'(    const/16 (v\d+), 0x14\n\n    new-array \2, \2, \[Le/a/d/e/z;\n)', lambda g: g.group(1).replace('0x14', '0x2c'), s)
+assert k == 1, f"n array size: {k}"
+s = new
+
+# 7b) the skill list scrolls (vertical)
+old = f'    iget-object v3, p0, {SW}->l:{TBL}\n\n    invoke-virtual {{v2, v3}}, {TBL}->add({ACT}){CELL}\n'
+assert s.count(old) == 1, f"l add: {s.count(old)}"
+s = s.replace(old, f'    iget-object v3, p0, {SW}->l:{TBL}\n\n    invoke-static {{v3}}, {SW}->ekScroll({TBL}){ACT}\n\n    move-result-object v3\n\n'
+              f'    invoke-virtual {{v2, v3}}, {TBL}->add({ACT}){CELL}\n\n    move-result-object v3\n\n'
+              f'    invoke-virtual {{v3}}, {CELL}->expand(){CELL}\n\n    move-result-object v3\n\n    invoke-virtual {{v3}}, {CELL}->fill(){CELL}\n', 1)
+
+# 7c) the other classes' sections, right after the Hero's own (before General)
+old = (f'    sget-object v0, {CC}->g:{CC}\n\n'
+       f'    invoke-static {{v0}}, Lnet/fdgames/Rules/Skills;->a({CC})Ljava/util/ArrayList;\n')
+i = s.index('.method private c()V')
+j = s.index('.end method', i)
+assert s[i:j].count(old) == 1, f"general section anchor: {s[i:j].count(old)}"
+s = s[:i] + s[i:j].replace(old, f'    invoke-virtual {{p0}}, {SW}->ekAddOtherClasses()V\n\n' + old, 1) + s[j:]
+
+# 7d) no pager button any more (page stays 0 = the Hero's own)
+old = '    invoke-virtual {p0}, Le/a/d/e/c0;->ekMaybeAddPagerRow()V\n'
+assert s.count(old) == 1
+s = s.replace(old, '', 1)
+
+# 7e) highlight over every button (was a hard-coded 20)
+i = s.index('.method public draw(Lcom/badlogic/gdx/graphics/g2d/Batch;F)V')
+j = s.index('.end method', i) + len('.end method')
+s = s[:i] + f""".method public draw(Lcom/badlogic/gdx/graphics/g2d/Batch;F)V
+    .locals 4
+
+    invoke-super {{p0, p1, p2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Window;->draw(Lcom/badlogic/gdx/graphics/g2d/Batch;F)V
+
+    iget-object v0, p0, {SW}->n:[{Z}
+
+    array-length v1, v0
+
+    const/4 p2, 0x0
+
+    :ekd_loop
+    if-ge p2, v1, :ekd_end
+
+    aget-object v2, v0, p2
+
+    if-eqz v2, :ekd_next
+
+    iget v3, p0, {SW}->k:I
+
+    if-ne p2, v3, :ekd_off
+
+    const/4 v3, 0x1
+
+    iput-boolean v3, v2, {Z}->d:Z
+
+    goto :ekd_next
+
+    :ekd_off
+    const/4 v3, 0x0
+
+    iput-boolean v3, v2, {Z}->d:Z
+
+    :ekd_next
+    add-int/lit8 p2, p2, 0x1
+
+    goto :ekd_loop
+
+    :ekd_end
+    return-void
+.end method""" + s[j:]
+
+# 7f) helpers
+s = s.rstrip('\n') + f"""
+
+.method public static ekScroll({TBL}){ACT}
+    .locals 3
+
+    new-instance v0, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;
+
+    invoke-direct {{v0, p0}}, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;-><init>({ACT})V
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    invoke-virtual {{v0, v1, v2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;->setScrollingDisabled(ZZ)V
+
+    invoke-virtual {{v0, v2, v2}}, Lcom/badlogic/gdx/scenes/scene2d/ui/ScrollPane;->setOverscroll(ZZ)V
+
+    return-object v0
+.end method
+
+.method public ekAddOtherClasses()V
+    .locals 2
+
+    iget-object v0, p0, {SW}->j:{SHEET}
+
+    invoke-virtual {{v0}}, {SHEET}->ekIsHero()Z
+
+    move-result v0
+
+    if-eqz v0, :eko_done
+
+    const/4 v1, 0x1
+
+    :eko_loop
+    const/4 v0, 0x4
+
+    if-ge v1, v0, :eko_done
+
+    invoke-virtual {{p0, v1}}, {SW}->ekAddClassSection(I)V
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :eko_loop
+
+    :eko_done
+    return-void
+.end method
+
+.method public ekAddClassSection(I)V
+    .locals 12
+
+    iget-object v0, p0, {SW}->j:{SHEET}
+
+    invoke-static {{v0, p1}}, {SW}->ekPageClass({SHEET}I){CC}
+
+    move-result-object v0
+
+    invoke-static {{v0}}, {SW}->ekSkillsSuppressed({CC})Ljava/util/ArrayList;
+
+    move-result-object v1
+
+    invoke-virtual {{v1}}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    add-int/lit8 v2, p1, -0x1
+
+    mul-int/lit8 v2, v2, 0x8
+
+    add-int/lit8 v2, v2, 0x14
+
+    const/4 v3, 0x0
+
+    :eks_loop
+    invoke-interface {{v1}}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v4
+
+    if-eqz v4, :eks_fill
+
+    invoke-interface {{v1}}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, {SK}
+
+    const/4 v5, 0x7
+
+    if-gt v3, v5, :eks_loop
+
+    iget-object v5, p0, {SW}->j:{SHEET}
+
+    invoke-virtual {{v5}}, {SHEET}->W()Z
+
+    move-result v5
+
+    if-nez v5, :eks_ok
+
+    iget-boolean v5, v4, {SK}->NPCSkill:Z
+
+    if-eqz v5, :eks_loop
+
+    :eks_ok
+    iget-object v5, p0, {SW}->j:{SHEET}
+
+    iget-object v5, v5, {SHEET}->skillSet:Lnet/fdgames/GameEntities/Helpers/SkillSet;
+
+    iget-object v6, v4, {SK}->id:Ljava/lang/String;
+
+    invoke-virtual {{v5, v6}}, Lnet/fdgames/GameEntities/Helpers/SkillSet;->c(Ljava/lang/String;)I
+
+    move-result v5
+
+    add-int v6, v2, v3
+
+    new-instance v8, {Z}
+
+    invoke-direct {{v8, v4, v5}}, {Z}-><init>({SK}I)V
+
+    iget-object v9, p0, {SW}->n:[{Z}
+
+    aput-object v8, v9, v6
+
+    invoke-virtual {{v8}}, {ACT}->clearListeners()V
+
+    iget-object v10, v4, {SK}->id:Ljava/lang/String;
+
+    new-instance v11, Le/a/d/e/e0;
+
+    invoke-direct {{v11, p0, v6, v10}}, Le/a/d/e/e0;-><init>({SW}ILjava/lang/String;)V
+
+    invoke-virtual {{v8, v11}}, {ACT}->addListener(Lcom/badlogic/gdx/scenes/scene2d/EventListener;)Z
+
+    add-int/lit8 v3, v3, 0x1
+
+    goto :eks_loop
+
+    :eks_fill
+    const/4 v5, 0x7
+
+    if-gt v3, v5, :eks_layout
+
+    add-int v6, v2, v3
+
+    new-instance v8, {Z}
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    invoke-direct {{v8, v4, v5}}, {Z}-><init>({SK}I)V
+
+    iget-object v9, p0, {SW}->n:[{Z}
+
+    aput-object v8, v9, v6
+
+    invoke-virtual {{v8}}, {ACT}->clearListeners()V
+
+    add-int/lit8 v3, v3, 0x1
+
+    goto :eks_fill
+
+    :eks_layout
+    new-instance v4, {LBL}
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    const-string v6, " "
+
+    invoke-direct {{v5, v6}}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-static {{v0}}, {CC}->a({CC})Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {{v5, v7}}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {{v5, v6}}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v7, "SKILLS"
+
+    invoke-static {{v7}}, Lnet/fdgames/Helpers/GameString;->a(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {{v5, v7}}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {{v5}}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {{}}, Lnet/fdgames/assets/Assets;->e()Lcom/badlogic/gdx/scenes/scene2d/ui/Skin;
+
+    move-result-object v6
+
+    const-string v7, "menuLabelStrongStyle"
+
+    invoke-direct {{v4, v5, v6, v7}}, {LBL}-><init>(Ljava/lang/CharSequence;Lcom/badlogic/gdx/scenes/scene2d/ui/Skin;Ljava/lang/String;)V
+
+    sget v5, {SW}->u:F
+
+    invoke-virtual {{v4, v5}}, {LBL}->setFontScale(F)V
+
+    iget-object v5, p0, {SW}->l:{TBL}
+
+    invoke-virtual {{v5}}, {TBL}->row(){CELL}
+
+    move-result-object v6
+
+    const/4 v7, 0x4
+
+    invoke-virtual {{v6, v7}}, {CELL}->colspan(I){CELL}
+
+    invoke-virtual {{v5, v4}}, {TBL}->add({ACT}){CELL}
+
+    move-result-object v6
+
+    invoke-virtual {{v6}}, {CELL}->center(){CELL}
+
+    move-result-object v6
+
+    invoke-virtual {{v6}}, {CELL}->expandX(){CELL}
+
+    const/4 v3, 0x0
+
+    :ekr_rows
+    const/4 v4, 0x2
+
+    if-ge v3, v4, :ekr_done
+
+    invoke-virtual {{v5}}, {TBL}->row(){CELL}
+
+    move-result-object v6
+
+    sget v7, {SW}->t:F
+
+    const/high16 v8, 0x40c00000    # 6.0f
+
+    mul-float v7, v7, v8
+
+    invoke-virtual {{v6, v7}}, {CELL}->pad(F){CELL}
+
+    move-result-object v6
+
+    invoke-virtual {{v6, v7}}, {CELL}->spaceBottom(F){CELL}
+
+    const/4 v4, 0x0
+
+    :ekr_cols
+    const/4 v6, 0x4
+
+    if-ge v4, v6, :ekr_next
+
+    mul-int/lit8 v6, v3, 0x4
+
+    add-int/2addr v6, v2
+
+    add-int/2addr v6, v4
+
+    iget-object v7, p0, {SW}->n:[{Z}
+
+    aget-object v7, v7, v6
+
+    invoke-virtual {{v5, v7}}, {TBL}->add({ACT}){CELL}
+
+    move-result-object v7
+
+    iget v8, p0, {SW}->o:F
+
+    invoke-virtual {{v7, v8}}, {CELL}->width(F){CELL}
+
+    move-result-object v7
+
+    invoke-virtual {{v7, v8}}, {CELL}->height(F){CELL}
+
+    add-int/lit8 v4, v4, 0x1
+
+    goto :ekr_cols
+
+    :ekr_next
+    add-int/lit8 v3, v3, 0x1
+
+    goto :ekr_rows
+
+    :ekr_done
+    return-void
+.end method
+"""
+open(p, 'w', encoding='utf-8').write(s)
+print("patched SkillWindow: one scrollable page, all classes (Hero)")
+
 print("DONE")
