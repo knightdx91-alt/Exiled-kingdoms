@@ -122,6 +122,9 @@ echo "== 4. zip-swap into a copy of the input APK =="
 cp "$IN" "$WORK/out.apk"
 ( cd "$WORK" && zip -q -d out.apk 'META-INF/*' >/dev/null 2>&1 || true )
 ( cd "$WORK/stage" && zip -q -r "$WORK/out.apk" . )
+# stable entry order so releases deduplicate in git (tools/zip_stable_order.py)
+python3 "$REPO/tools/zip_stable_order.py" "$WORK/out.apk" "$WORK/out.stable.apk" "$REPO/tools/apk_volatile_entries.txt"
+mv "$WORK/out.stable.apk" "$WORK/out.apk"
 
 echo "== 5. wall 2: sign v1+v2+v3 =="
 # Reuse the committed stable keystore when present -- the SAME key build_mod_4_2_2.sh

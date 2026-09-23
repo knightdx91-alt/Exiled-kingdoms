@@ -27,16 +27,23 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v28-fold.apk` | `build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
-| Android **4.2.2** tablet | `ExiledKingdoms-hero-v28.apk` | `build_mod_4_2_2.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v29.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v28-fold.apk
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v28.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v29.apk
 ```
+
+### v29 (2026-09-23) — Fold only, WITH the MP content pack; releases now dedupe in git
+
+Same code as v28 plus the mod's content (maps incl. the PvP arena, quests, sprites, menu art, music):
+built with `EK_MP_APK=<Exiled-Kingdoms-Multiplayer-PVP-v1-3-1218-mod.apk>` (owner's Drive). ~374 MB.
+`build_modern_compat.sh` now runs `tools/zip_stable_order.py`: unchanged entries first (sorted,
+fixed timestamps), the files a release edits last (`tools/apk_volatile_entries.txt`). Measured: after
+editing one text file, 14 of 15 split parts were byte-identical, so a new release adds ~6 MB to git.
+Keep that list up to date when a patch starts editing another asset.
 
 ### v28 (2026-09-23) — MP mod items 1–12 (no cheats) + friends list
 
