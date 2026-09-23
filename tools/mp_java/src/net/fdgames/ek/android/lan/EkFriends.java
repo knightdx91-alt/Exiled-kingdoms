@@ -220,6 +220,19 @@ public final class EkFriends {
     /** Hooked after the lobby's Host / Join IP / Scan LAN / Leave row: a second row with Friends. */
     public static void addLobbyRow(final LanLobbyActivity a, LinearLayout root) {
         try {
+            // Back (owner request): closes the lobby and returns to the game / main menu.
+            LinearLayout top = new LinearLayout(a);
+            top.setOrientation(0);
+            root.addView(top, 0, new LinearLayout.LayoutParams(-1, -2));
+            a.ekAddButton(top, "< Back", new View.OnClickListener() {
+                public void onClick(View v) {
+                    a.finish();
+                }
+            });
+        } catch (Throwable e) {
+            // ignore
+        }
+        try {
             LinearLayout row = new LinearLayout(a);
             row.setOrientation(0);
             root.addView(row, new LinearLayout.LayoutParams(-1, -2));

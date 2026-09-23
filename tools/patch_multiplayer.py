@@ -675,6 +675,14 @@ edit_method(LOBBY, 'buildContentView()Landroid/view/View;', lambda m: sub1(
     r'\1\n    invoke-static {p0, v1}, ' + FR + '->addLobbyRow(' + LL + r'Landroid/widget/LinearLayout;)V' + '\n', m, 'friends row'),
     "LanLobbyActivity.buildContentView: Friends / Add friend row")
 
+# ---- B24b: lobby texts: the mod's placeholder title/subtitle predate sync (it now exists) --------
+def _lobby_texts(m):
+    m = sub1(r'const-string (v\d+), "LAN / CHAT BETA"', r'const-string \1, "MULTIPLAYER"', m, 'lobby title')
+    return sub1(r'const-string (v\d+), "Host, join, discover LAN sessions and chat\. Map/combat sync will arrive in phases\."',
+                r'const-string \1, "Play together in the host\'s world with your own character. Host, join by address or a friend, chat and trade."',
+                m, 'lobby subtitle')
+edit_method(LOBBY, 'buildContentView()Landroid/view/View;', _lobby_texts, "LanLobbyActivity: current title/subtitle")
+
 # ---- B25-B29: shared world phase A (auto-host, join approval, solo != session) SHARED_WORLD_SPEC §5
 LSM = 'net/fdgames/ek/android/lan/LanSessionManager'
 LS = 'L' + LSM + ';'
