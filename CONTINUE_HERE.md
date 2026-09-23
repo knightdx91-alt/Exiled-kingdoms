@@ -17,6 +17,10 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-22)
 
+> **2026-09-23 owner decisions:** the Android 4.2.2 tablet is retired — ship the **Fold build only**
+> (still must install as an update). Multiplayer moves to a **shared world** (host's world, each
+> player keeps their own character): `deobf/SHARED_WORLD_SPEC.md`.
+
 Track C (not A/B): modding the owner's game APK. It started as a 4.2.2-tablet build; the
 owner has since moved to a **Galaxy Z Fold 8**, so there are now **two artifacts** with
 the same feature set and the **same signing key**:
