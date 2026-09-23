@@ -49,3 +49,12 @@ labels `setWrap(true)` but their cells get **no width** (the empty/incompatible 
 extra lines, the name looks oversized, and the two lines overlap. Fix (`EkUi.fixSlot`, called before
 `pack()`): filled slots only — both lines one line, cell width 285xS (380 - 72 - margins), left-aligned;
 a line too wide shrinks to fit (not below 70%), anything longer ends in "...".
+
+## Character sheet (owner report, v40)
+* **Hero skill-page button (ours, `patch_hero_class.py` §3d)**: a plain `menuSmallButton` TextButton
+  added with no cell size and no font scale → tiny on the Fold. Now like the SkillWindow's own Details
+  button (`c0.d`: label `setFontScale(c0.u)`, cell 100x40 x `c0.t`): text x `c0.u`, cell 160x40 x `c0.t`.
+* **Details window (`StatsDetailWindow` e/a/d/e/h0)**: each row = name label in a 240xS cell (no wrap)
+  + value label in a 480xS cell (wrap). A long stat name is wider than 240xS and runs into the value
+  text. B59: the name label wraps inside its own column (both row builders:
+  `a(String,String,Z)Table` and `a(CharacterSheet)`).

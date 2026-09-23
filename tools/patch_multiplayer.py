@@ -1137,4 +1137,13 @@ edit_method('e/a/d/e1/w', 'a(Lnet/fdgames/GameWorld/BasicGameData;)V', lambda m:
         f'    sget v2, {SLOT}->l:F\n\n    invoke-static {{v0, v1, v2}}, Lnet/fdgames/ek/android/lan/EkUi;->fixSlot({LBL}{LBL}F)V\n\n    invoke-virtual {{p0}}', 1),
     m, 'slot fit'), "SlotDescriptionTable.a(): name + class/level each one line, fitted to the slot")
 
+# ---- B59: Details window (StatsDetailWindow e/a/d/e/h0): long stat names ran into the value column --------
+def _h0(m):
+    new, k = re.subn(r'(    invoke-virtual \{(\w+), (\w+)\}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add\(Lcom/badlogic/gdx/scenes/scene2d/Actor;\)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;\n\s*move-result-object \w+\n\s*(?:sget \w+, [^\n]+\n\s*)?const/high16 \w+, 0x43700000    # 240\.0f\n)',
+                     lambda g: '    invoke-static/range {' + g.group(3) + ' .. ' + g.group(3) + '}, Lnet/fdgames/ek/android/lan/EkUi;->wrapLabel(Ljava/lang/Object;)V\n\n' + g.group(1), m)
+    assert k == 1, f"h0 name column: {k}"
+    return new
+edit_method('e/a/d/e/h0', 'a(Ljava/lang/String;Ljava/lang/String;Z)Lcom/badlogic/gdx/scenes/scene2d/ui/Table;', _h0, "StatsDetailWindow row: name column wraps in its own width")
+edit_method('e/a/d/e/h0', 'a(Lnet/fdgames/GameEntities/CharacterSheet/CharacterSheet;)V', _h0, "StatsDetailWindow sheet rows: name column wraps in its own width")
+
 print("DONE")

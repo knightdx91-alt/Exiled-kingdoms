@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v39.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v40.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v39.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v40.apk
 ```
+
+### v40 (2026-09-23) — character sheet: Hero page button sized, Details rows don't overlap
+
+Owner: the skill-page switch button is tiny; words overlap in the Details screen. Hero pager button now
+scaled/sized like the window's Details button (`patch_hero_class.py` §3d v4); Details window name column
+wraps in its own width instead of running into the value (B59). `deobf/UI_SCALING_SPEC.md`. dist: base + v40 + v39.
 
 ### v39 (2026-09-23) — save slots: name and class/level no longer overlap
 

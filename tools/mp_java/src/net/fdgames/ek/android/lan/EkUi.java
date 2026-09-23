@@ -117,4 +117,15 @@ public final class EkUi {
         }
         lb.invalidateHierarchy();
     }
+
+    /** Details window name column: wrap inside its own 240xS column instead of running into the value. */
+    public static void wrapLabel(Object o) {
+        try {
+            if (o instanceof Label) {
+                ((Label) o).setWrap(true);
+            }
+        } catch (Throwable e) {
+            // keep vanilla
+        }
+    }
 }

@@ -242,6 +242,8 @@ s = s.replace(src,
               '    move-result-object v1\n', 1)
 
 # 3d) c(): add the pager button row (Hero only), right after the table pad().
+#     v4 (2026-09-23, owner: "the button that switches skill pages is small"): text scaled by the
+#     window's c0.u and the cell sized 160x40 x c0.t, like the window's own Details button.
 #     v2 (2026-07-27): the v1 inline block created a branch inside c() whose two
 #     paths reached the join with DIFFERENT reference types in v0/v1
 #     (Table/TextButton vs CharacterClass). ART/D8 accept that (dead conflict
@@ -259,7 +261,7 @@ s = s[:j] + f'\n    invoke-virtual {{p0}}, {SW}->ekMaybeAddPagerRow()V\n' + s[j:
 # 3e) helper methods
 helpers = f'''
 .method public ekMaybeAddPagerRow()V
-    .locals 2
+    .locals 4
 
     iget-object v0, p0, {SW}->j:{SHEET}
 
@@ -279,11 +281,33 @@ helpers = f'''
 
     invoke-virtual {{v1, v0}}, {TB}->setText(Ljava/lang/String;)V
 
+    invoke-virtual {{v1}}, {TB}->getLabel()Lcom/badlogic/gdx/scenes/scene2d/ui/Label;
+
+    move-result-object v2
+
+    sget v3, {SW}->u:F
+
+    invoke-virtual {{v2, v3}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Label;->setFontScale(F)V
+
     iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;
 
-    iget-object v1, p0, {SW}->ekPageBtn:{TB}
-
     invoke-virtual {{v0, v1}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Table;->add(Lcom/badlogic/gdx/scenes/scene2d/Actor;)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    move-result-object v0
+
+    sget v2, {SW}->t:F
+
+    const/high16 v3, 0x43200000    # 160.0f
+
+    mul-float v3, v3, v2
+
+    invoke-virtual {{v0, v3}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->width(F)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
+
+    const/high16 v3, 0x42200000    # 40.0f
+
+    mul-float v3, v3, v2
+
+    invoke-virtual {{v0, v3}}, Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;->height(F)Lcom/badlogic/gdx/scenes/scene2d/ui/Cell;
 
     iget-object v0, p0, {SW}->l:Lcom/badlogic/gdx/scenes/scene2d/ui/Table;
 
@@ -292,6 +316,10 @@ helpers = f'''
     const/4 v0, 0x0
 
     const/4 v1, 0x0
+
+    const/4 v2, 0x0
+
+    const/4 v3, 0x0
 
     :ekp_nobutton
     return-void
