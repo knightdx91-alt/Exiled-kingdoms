@@ -10,6 +10,12 @@
 const CODE_RE = /^[A-HJ-NP-Z2-9]{6}$/;
 const JOIN_WAIT_MS = 15000;
 const EARLY_MAX = 1500;           // bytes kept in the joiner's attachment until the host's accept socket arrives
+// v4 public rooms: one extra object (the "lobby", same class, name LOBBY_NAME) keeps code -> {name, t}. A room whose
+// host connected with public=1 registers there, re-registers every REFRESH_MS (alarm) and unregisters on close.
+const LOBBY_NAME = "__lobby__";
+const REFRESH_MS = 10 * 60 * 1000;
+const STALE_MS = 25 * 60 * 1000;
+const LIST_MAX = 50;
 
 function b64(buf) {
   const u = new Uint8Array(buf);
@@ -33,6 +39,7 @@ function closeQuietly(ws, code, why) {
 export class Room {
   constructor(state, env) {
     this.state = state;
+    this.env = env;
     this.early = new Map();       // token -> [message] (in memory; the attachment keeps a small copy)
     state.setWebSocketAutoResponse(new WebSocketRequestResponsePair("PING", "PONG"));
   }
@@ -46,9 +53,44 @@ export class Room {
     return h.length ? h[0] : null;
   }
 
+  lobby() {
+    return this.env.ROOMS.get(this.env.ROOMS.idFromName(LOBBY_NAME));
+  }
+
+  async publish(on) {
+    const pub = await this.state.storage.get("pub");
+    if (!pub) return;
+    const q = on ? "role=register&code=" + pub.code + "&name=" + encodeURIComponent(pub.name) : "role=unregister&code=" + pub.code;
+    try { await this.lobby().fetch("https://lobby/?" + q); } catch (e) {}
+    if (!on) await this.state.storage.delete("pub");
+  }
+
+  async lobbyFetch(url, role) {                // runs in the lobby object only
+    let rooms = (await this.state.storage.get("rooms")) || {};
+    const now = Date.now();
+    const code = (url.searchParams.get("code") || "").toUpperCase();
+    let changed = false;
+    if (role === "register" && CODE_RE.test(code)) {
+      rooms[code] = { name: (url.searchParams.get("name") || "Player").slice(0, 24), t: now };
+      changed = true;
+    } else if (role === "unregister" && rooms[code]) {
+      delete rooms[code];
+      changed = true;
+    }
+    for (const c of Object.keys(rooms)) if (now - rooms[c].t > STALE_MS) { delete rooms[c]; changed = true; }
+    if (changed) await this.state.storage.put("rooms", rooms);
+    if (role !== "list") return new Response("ok");
+    const lines = Object.keys(rooms).sort((a, b) => rooms[b].t - rooms[a].t).slice(0, LIST_MAX)
+      .map((c) => c + "\t" + encodeURIComponent(rooms[c].name));
+    return new Response(lines.join("\n"), { status: 200, headers: { "Cache-Control": "no-store" } });
+  }
+
   async fetch(req) {
     const url = new URL(req.url);
     const role = url.searchParams.get("role");
+    if (role === "list" || role === "register" || role === "unregister") {
+      return this.lobbyFetch(url, role);
+    }
     if (role === "status") {                  // friends list: is this room's host online? (no join started)
       return new Response(this.host() ? "online" : "offline", { status: 200, headers: { "Cache-Control": "no-store" } });
     }
@@ -69,6 +111,15 @@ export class Room {
         this.state.acceptWebSocket(ws, ["host"]);
         ws.serializeAttachment({ role: "host", dev });
         ws.send("OK");
+        const code = (url.searchParams.get("code") || "").toUpperCase();
+        if (url.searchParams.get("public") === "1") {
+          const name = (url.searchParams.get("name") || "Player").slice(0, 24);
+          await this.state.storage.put("pub", { code, name });
+          await this.publish(true);
+          await this.state.storage.setAlarm(Date.now() + REFRESH_MS);
+        } else {
+          await this.publish(false);
+        }
       }
     } else if (role === "join") {
       const host = this.host();
@@ -136,17 +187,18 @@ export class Room {
   }
 
   async webSocketClose(ws, code, reason, wasClean) {
-    this.gone(ws);
+    await this.gone(ws);
   }
 
   async webSocketError(ws, err) {
-    this.gone(ws);
+    await this.gone(ws);
   }
 
-  gone(ws) {
+  async gone(ws) {
     const a = att(ws);
     if (a.role === "host") {
-      if (this.host()) return;                 // a newer host socket of the same device replaced this one
+      if (this.sockets("host", "host").some((w) => w !== ws)) return;   // a newer host socket replaced this one
+      await this.publish(false);
       for (const j of this.state.getWebSockets("join")) {
         if (!att(j).paired) closeQuietly(j, 4404, "NOROOM");
       }
@@ -171,13 +223,21 @@ export class Room {
         waiting = true;
       }
     }
-    if (waiting) await this.state.storage.setAlarm(now + 2000);
+    let next = waiting ? now + 2000 : 0;
+    if (this.host() && (await this.state.storage.get("pub"))) {
+      await this.publish(true);                // keep the public listing fresh
+      if (!next) next = now + REFRESH_MS;
+    }
+    if (next) await this.state.storage.setAlarm(next);
   }
 }
 
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    if (url.searchParams.get("role") === "list") {
+      return env.ROOMS.get(env.ROOMS.idFromName(LOBBY_NAME)).fetch(req);
+    }
     const code = (url.searchParams.get("code") || "").toUpperCase();
     if (!CODE_RE.test(code)) {
       return new Response("Exiled Kingdoms relay: ok", { status: 200 });

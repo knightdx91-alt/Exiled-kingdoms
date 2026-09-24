@@ -98,3 +98,16 @@ rooms per player would have used the free plan's daily allowance.
   only after the background host had started (a second tick). The lobby's 1 s tick now opens it too
   (`EkLobby.autoOpen`: a save is loaded, Open to friends ON, no room yet, not joined to someone else), and
   `openRoom` starts the background host on its own thread (never the UI thread).
+
+## v4 — public rooms / Browse rooms (v70)
+Owner: "can we have a scan for open rooms thing for the multiplayer? Not everyone has friends they can play with."
+- Worker: one more object of the same class, named `__lobby__`, keeps `{code: {name, t}}` in storage. A host that
+  connects with `public=1&name=…` stores `pub` on its room and registers with the lobby; the room's alarm re-registers
+  every 10 min while the host is there (one wake-up per 10 min per public room); closing the host socket unregisters
+  (the closing socket is excluded from the "was it replaced?" check). The lobby drops entries older than 25 min.
+  `GET /?role=list` → newest first, up to 50 lines `CODE⇥urlencoded name`; only `list` reaches the lobby from outside.
+- Game: **Public room** (pref `ek_public_room`, default OFF, opt-in because it shows your multiplayer name to
+  strangers) adds `&public=1&name=` to the host URL; toggling reconnects the room so it's listed/unlisted at once.
+  **Browse rooms** lists "<name>'s world" (your own code left out); tap → `joinCode` (the host still approves).
+- Tested in wrangler dev: public room listed / private not / public joinable / unlisted when its host leaves; the
+  game's `HostSession` with `extra` + `listRooms` end to end; the v3 regression suite unchanged.

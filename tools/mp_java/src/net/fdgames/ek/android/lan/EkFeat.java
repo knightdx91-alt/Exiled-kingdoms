@@ -301,25 +301,91 @@ public final class EkFeat {
         }
     }
 
-    /** Item preview (their cdxUpgradePreview): "Upgrade: +L/10" and the next level's price. */
+    /**
+     * Item preview (their cdxUpgradePreview). v70: one line only. The four lines (level, price, two gems) made the
+     * item box taller than the screen and pushed its EQUIP/DROP button row (same table, next row) off the bottom,
+     * so players couldn't equip (owner's tester screenshot). The price is shown when you tap UPGRADE.
+     */
     public static void upgPreview(StringBuilder sb, int itemId) {
         try {
             if (sb == null || itemId <= 0 || !equippable(itemId)) {
                 return;
             }
             int lvl = upgLevel(itemId);
-            sb.append("\nUpgrade: +").append(lvl).append("/10");
-            if (lvl >= UPG_MAX) {
-                sb.append("\nMaximum level reached");
-                return;
-            }
-            int n = lvl + 1;
-            sb.append("\nNext: ").append(goldCost(itemId, n)).append(" gold\n")
-                    .append(primaryQty(n)).append("x ").append(itemName(primaryId(itemId, n), "Material 1")).append('\n')
-                    .append(secondaryQty(n)).append("x ").append(itemName(secondaryId(itemId, n), "Material 2"));
+            sb.append("\nUpgrade: +").append(lvl).append("/10").append(lvl >= UPG_MAX ? " (max)" : "");
         } catch (Throwable e) {
             // ignore
         }
+    }
+
+    /** v70 UPGRADE (CharacterWindow, equipped item): show the price first; upgrade on confirm. Always false. */
+    public static boolean askUpgrade(final Object window, final int itemId, final Character who) {
+        try {
+            final android.app.Activity a = EkItems.act();
+            GameData gd = GameData.O();
+            if (a == null || gd == null || itemId <= 0) {
+                return tryUpgrade(itemId, who);            // no Android UI: old behaviour
+            }
+            int lvl = upgLevel(itemId);
+            Item it = item(itemId);
+            final String name = it == null ? "this item" : it.name;
+            if (lvl >= UPG_MAX) {
+                log("[YELLOW]This item is already at the maximum level.[]");
+                return false;
+            }
+            int n = lvl + 1;
+            int gold = goldCost(itemId, n);
+            int m1 = primaryId(itemId, n);
+            int q1 = primaryQty(n);
+            int m2 = secondaryId(itemId, n);
+            int q2 = secondaryQty(n);
+            Player p = gd.player;
+            Items bag = gd.backpack;
+            int haveGold = p == null ? 0 : p.g();
+            int have1 = bag == null ? 0 : bag.g(m1);
+            int have2 = bag == null ? 0 : bag.g(m2);
+            final boolean ok = haveGold >= gold && have1 >= q1 && have2 >= q2;
+            final String msg = "Upgrade " + name + " to +" + n + "?\n\n"
+                    + mark(haveGold >= gold) + gold + " gold  (you have " + haveGold + ")\n"
+                    + mark(have1 >= q1) + q1 + "x " + itemName(m1, "material 1") + "  (you have " + have1 + ")\n"
+                    + mark(have2 >= q2) + q2 + "x " + itemName(m2, "material 2") + "  (you have " + have2 + ")"
+                    + (ok ? "" : "\n\nYou don't have everything yet.");
+            a.runOnUiThread(new Runnable() {
+                public void run() {
+                    try {
+                        android.app.AlertDialog.Builder b = new android.app.AlertDialog.Builder(a).setTitle("Upgrade")
+                                .setMessage(msg).setNegativeButton(ok ? "Cancel" : "OK", null);
+                        if (ok) {
+                            b.setPositiveButton("Upgrade", new android.content.DialogInterface.OnClickListener() {
+                                public void onClick(android.content.DialogInterface d, int w) {
+                                    com.badlogic.gdx.Gdx.app.postRunnable(new Runnable() {
+                                        public void run() {
+                                            if (tryUpgrade(itemId, who) && window != null) {
+                                                try {
+                                                    window.getClass().getMethod("l").invoke(window);   // refresh
+                                                } catch (Throwable e) {
+                                                    // the window refreshes next time it's opened
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                        b.show();
+                    } catch (Throwable e) {
+                        // ignore
+                    }
+                }
+            });
+        } catch (Throwable e) {
+            // ignore
+        }
+        return false;
+    }
+
+    private static String mark(boolean ok) {
+        return ok ? "✓ " : "✗ ";
     }
 
     /** "+L" badge on an inventory slot (their InventorySlotImage.draw). */

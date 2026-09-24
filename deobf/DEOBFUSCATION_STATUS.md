@@ -207,3 +207,6 @@ and readable bodies — Track A).
   HP % directly. `deobf/MULTIPLAYER_PORT_SPEC.md` §v59.
 - **APPROX (v60) Summon retaliation window** — a player's summons/companions fight an attacker for 30 s after the
   last hit (aggression reports at most every 5 s). `deobf/MULTIPLAYER_PORT_SPEC.md` §v60.
+- **v70 Upgrade preview one line** — the MP mod's item preview listed level + price + two gems (4 lines) and pushed
+  the CharacterWindow's EQUIP/DROP row (same table, next row) off screen; now "Upgrade: +L/10", the price moved to a
+  confirmation dialog on UPGRADE (`EkFeat.askUpgrade`).

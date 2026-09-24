@@ -255,6 +255,7 @@ public final class EkRelay {
         String hostName = "Player";
         volatile boolean stop;
         volatile boolean online;                     // the relay confirmed the room at least once
+        String extra = "";                           // v70: "&public=1&name=..." for a listed room
         volatile EkWs ctrl;
 
         HostSession(String url, String code, String dev, int localPort, Status status) {
@@ -269,7 +270,7 @@ public final class EkRelay {
             int backoff = 2000;
             while (!stop) {
                 try {
-                    EkWs ws = EkWs.connect(url + "/?code=" + code + "&role=host&dev=" + dev, 10000);
+                    EkWs ws = EkWs.connect(url + "/?code=" + code + "&role=host&dev=" + dev + extra, 10000);
                     ctrl = ws;
                     ws.setReadTimeout(60000);
                     Object[] m = ws.read();
@@ -497,6 +498,100 @@ public final class EkRelay {
         putPref(a, PREF_OPEN, on ? "1" : "0");
     }
 
+    // ---- v70: public rooms (deobf/RELAY_SPEC.md "v4") --------------------------------------------------
+    static final String PREF_PUBLIC = "ek_public_room";
+
+    /** Listed in Browse rooms (opt-in: shows your multiplayer name to strangers; you still approve them). */
+    static boolean publicRoom(android.app.Activity a) {
+        return "1".equals(pref(a, PREF_PUBLIC, "0"));
+    }
+
+    static void setPublicRoom(android.app.Activity a, boolean on) {
+        putPref(a, PREF_PUBLIC, on ? "1" : "0");
+        if (roomActive()) {                          // reconnect so the relay lists / unlists it
+            closeRoom();
+            openRoom(a, true);
+        }
+    }
+
+    /** Public rooms: {code, name}, newest first. Empty on any error. */
+    static java.util.List<String[]> listRooms(android.app.Activity a) {
+        java.util.List<String[]> out = new java.util.ArrayList<String[]>();
+        java.net.HttpURLConnection c = null;
+        try {
+            String u = relayUrl(a).replaceFirst("^wss://", "https://").replaceFirst("^ws://", "http://");
+            c = (java.net.HttpURLConnection) new java.net.URL(u + "/?role=list").openConnection();
+            c.setConnectTimeout(6000);
+            c.setReadTimeout(6000);
+            java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(c.getInputStream(), "UTF-8"));
+            String mine = myCode(a);
+            String l;
+            while ((l = r.readLine()) != null) {
+                String[] p = l.split("\t");
+                if (p.length >= 2 && cleanCode(p[0]).length() == 6 && !p[0].equals(mine)) {
+                    out.add(new String[] {cleanCode(p[0]), java.net.URLDecoder.decode(p[1], "UTF-8")});
+                }
+            }
+        } catch (Throwable e) {
+            // empty list
+        } finally {
+            if (c != null) {
+                c.disconnect();
+            }
+        }
+        return out;
+    }
+
+    /** Lobby "Browse rooms": pick a public room, join it by code (the host approves you). */
+    static void browse(final LanLobbyActivity a) {
+        Toast.makeText(a, "Looking for open rooms...", 0).show();
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                final java.util.List<String[]> rooms = listRooms(a);
+                a.runOnUiThread(new Runnable() {
+                    public void run() {
+                        try {
+                            if (rooms.isEmpty()) {
+                                new AlertDialog.Builder(a).setTitle("Open rooms")
+                                        .setMessage("No public rooms right now. Try again in a bit, or turn on Public"
+                                                + " room so other players can find yours.")
+                                        .setPositiveButton("Refresh", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface d, int w) {
+                                                browse(a);
+                                            }
+                                        })
+                                        .setNegativeButton("Close", null).show();
+                                return;
+                            }
+                            CharSequence[] items = new CharSequence[rooms.size()];
+                            for (int i = 0; i < rooms.size(); i++) {
+                                items[i] = rooms.get(i)[1] + "'s world";
+                            }
+                            new AlertDialog.Builder(a).setTitle("Open rooms (" + rooms.size() + ")")
+                                    .setItems(items, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface d, int which) {
+                                            String[] r = rooms.get(which);
+                                            Toast.makeText(a, "Asking " + r[1] + " to let you in...", 1).show();
+                                            joinCode(a, r[0]);
+                                        }
+                                    })
+                                    .setPositiveButton("Refresh", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface d, int w) {
+                                            browse(a);
+                                        }
+                                    })
+                                    .setNegativeButton("Close", null).show();
+                        } catch (Throwable e) {
+                            // ignore
+                        }
+                    }
+                });
+            }
+        }, "ek-browse");
+        t.setDaemon(true);
+        t.start();
+    }
+
     /** A room session exists (online or still connecting). */
     static boolean roomActive() {
         HostSession h = hosting;
@@ -587,6 +682,13 @@ public final class EkRelay {
         });
         hs.secret = mySecret(a);
         hs.hostName = myName(a);
+        if (publicRoom(a)) {
+            try {
+                hs.extra = "&public=1&name=" + java.net.URLEncoder.encode(myName(a), "UTF-8");
+            } catch (Throwable e) {
+                hs.extra = "&public=1";
+            }
+        }
         hosting = hs;
         Thread t = new Thread(hs, "ek-relay-host");
         t.setDaemon(true);

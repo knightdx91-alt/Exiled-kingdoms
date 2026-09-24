@@ -402,7 +402,7 @@ add_methods('e/a/d/e/h', f'''
 
     iget-object v1, p0, {H}->p:Lnet/fdgames/GameEntities/Character;
 
-    invoke-static {{v0, v1}}, {EK}->tryUpgrade(ILnet/fdgames/GameEntities/Character;)Z
+    invoke-static {{p0, v0, v1}}, {EK}->askUpgrade(Ljava/lang/Object;ILnet/fdgames/GameEntities/Character;)Z
 
     move-result v0
 

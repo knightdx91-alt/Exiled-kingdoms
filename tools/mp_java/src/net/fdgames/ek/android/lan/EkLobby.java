@@ -180,6 +180,25 @@ public final class EkLobby {
         });
         root.addView(r2, new LinearLayout.LayoutParams(-1, -2));
 
+        LinearLayout r3 = row(a);                       // v70: find strangers' rooms / list yours
+        lob.ekAddButton(r3, "Browse rooms", new View.OnClickListener() {
+            public void onClick(View v) {
+                EkRelay.browse(lob);
+            }
+        });
+        lob.ekAddButton(r3, publicLabel(a), new View.OnClickListener() {
+            public void onClick(View v) {
+                boolean now = !EkRelay.publicRoom(a);
+                EkRelay.setPublicRoom(a, now);
+                if (v instanceof TextView) {
+                    ((TextView) v).setText(publicLabel(a));
+                }
+                Toast.makeText(a, now ? "Your room is listed in Browse rooms while it's open. You still approve"
+                        + " everyone who asks to join." : "Your room is no longer listed. Friends and codes still work.", 1).show();
+            }
+        });
+        root.addView(r3, new LinearLayout.LayoutParams(-1, -2));
+
         root.addView(heading(a, "Players"));
         detach(players);
         root.addView(players, new LinearLayout.LayoutParams(-1, (int) (84 * d)));
@@ -367,6 +386,10 @@ public final class EkLobby {
         } catch (Throwable e) {
             // next second
         }
+    }
+
+    private static String publicLabel(Activity a) {
+        return EkRelay.publicRoom(a) ? "Public room: ON" : "Public room: OFF";
     }
 
     private static String openLabel(Activity a) {
