@@ -80,6 +80,16 @@ public final class EkAuto {
             if (now - lastJoinAttempt < JOIN_GRACE_MS || !autoHostEnabled(a)) {
                 return;
             }
+            String saved = EkLobby.mpName(a);          // v67: this save's multiplayer name drives the engine
+            if (saved != null) {
+                try {
+                    if (!saved.equals(a.getSharedPreferences(EkFriends.PREFS, 0).getString("lan_player_name", null))) {
+                        a.getSharedPreferences(EkFriends.PREFS, 0).edit().putString("lan_player_name", saved).commit();
+                    }
+                } catch (Throwable e) {
+                    // ignore
+                }
+            }
             final LanSessionManager m = LanSessionManager.get(a);
             if (m != null && m.isHosting() && !m.ekConnected() && EkRelay.openToFriends(a) && !EkRelay.roomActive()) {
                 EkRelay.openRoom(a, true);           // v66: friends can join you while you play

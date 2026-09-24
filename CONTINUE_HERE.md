@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v66.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v67.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v66.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v67.apk
 ```
+
+### v67 (2026-09-24) — multiplayer name per save; last diagnostic line gone
+
+Lobby asks for a multiplayer name the first time on a save (prefilled with the character's name), keeps it per save
+(`ek_mp_name_<slot>_<character>`), shows it with a Change button, and re-syncs the engine's name. "LAN DIAG …
+preferred=" lines filtered. `deobf/LOBBY_CLEANUP_SPEC.md` §3. dist: base + v67 + v66.
 
 ### v66 (2026-09-24) — rooms stay open for friends (free); area files replaced atomically
 

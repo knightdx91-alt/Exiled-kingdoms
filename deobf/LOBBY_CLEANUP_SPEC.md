@@ -48,3 +48,17 @@ Now:
   itself when the session ends.
 - Where: each other player and the area they're in (English), shown under the chat for 20 s.
 APPROX: panel size/placement/colours are ours (the MP mod used a dialog).
+
+## 3. v67: a leftover diagnostic line; one multiplayer name per save
+Owner (screenshot): the lobby chat still showed "[System] LAN DIAG host udp=…:32123 preferred=the host", and "when you
+pick your name it's not persistent … it changes back to Player 2. Make you pick a name when you start multiplayer …
+permanent on that save."
+- `EkLobby.systemLine` / `gameLogLine` also drop `LAN DIAG`, `HOST ready`, `preferred=`, `udp=`, `tcp=`, `bind=` lines
+  (the IP was already masked, the line itself wasn't).
+- Why the name reverted: the stock box is saved only by the stock Host/Join IP buttons (both gone), and
+  `refreshUi` overwrites it with the engine's name (a clash gives "Player 2"), which `savePlayerName` then stores.
+- Now: the name row shows the name + **Change**; the stock box stays hidden (the engine reads and writes it) and is
+  re-synced every second. The name is stored per save: `ek_mp_name_<home slot>_<character>` (the home slot while
+  joined as a guest), and mirrored into `lan_player_name` (engine, auto-host, relay) by the lobby and by `EkAuto.tick`
+  while playing. First lobby visit on a save with no name → "Choose your multiplayer name" (prefilled with the
+  character's name; "Use character name" or Save; not cancelable). Tabs/newlines removed, 20 characters max.

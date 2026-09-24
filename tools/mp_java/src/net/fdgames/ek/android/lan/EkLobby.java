@@ -94,15 +94,33 @@ public final class EkLobby {
         sp.topMargin = (int) (6 * d);
         root.addView(status, sp);
 
+        // v67: one multiplayer name per save (owner: "pick a name when you start multiplayer ... permanent on that
+        // save"). The stock name box stays (hidden) because the engine reads and overwrites it; it's kept in sync.
         LinearLayout nameRow = row(a);
         TextView nl = new TextView(a);
-        nl.setText("Your name  ");
+        nl.setText("Your name:  ");
         nl.setTextColor(HEAD);
         nl.setTextSize(15f);
         nameRow.addView(nl, new LinearLayout.LayoutParams(-2, -2));
+        final TextView shownName = new TextView(a);
+        shownName.setTextColor(-1);
+        shownName.setTextSize(18f);
+        nameRow.addView(shownName, new LinearLayout.LayoutParams(0, -2, 1f));
+        final EditText stockName = name;
+        lob.ekAddButton(nameRow, "Change", new View.OnClickListener() {
+            public void onClick(View v) {
+                askName(a, stockName, shownName, false);
+            }
+        });
         detach(name);
-        nameRow.addView(name, new LinearLayout.LayoutParams(0, -2, 1f));
+        name.setVisibility(8);                          // View.GONE
+        nameRow.addView(name, new LinearLayout.LayoutParams(0, -2, 0f));
         root.addView(nameRow, new LinearLayout.LayoutParams(-1, -2));
+        String cur = mpName(a);
+        applyName(a, cur != null ? cur : prefName(a), stockName, shownName, false);
+        if (cur == null && saveKey() != null) {
+            askName(a, stockName, shownName, true);    // first time on this save
+        }
 
         LinearLayout r1 = row(a);
         lob.ekAddButton(r1, "Host", new View.OnClickListener() {
@@ -178,11 +196,156 @@ public final class EkLobby {
                     return;
                 }
                 status.setText(statusText(a));
+                syncName(a, stockName, shownName);
                 status.postDelayed(tick[0], 1000L);
             }
         };
         tick[0].run();
         return rootView;
+    }
+
+    // ---- v67: multiplayer name per save -----------------------------------------------------------------
+    static final String PREF_ENGINE_NAME = "lan_player_name";   // what the engine, relay and auto-host use
+
+    /** "ek_mp_name_<home slot>_<character>" for the loaded save, or null at the main menu. */
+    static String saveKey() {
+        try {
+            net.fdgames.GameWorld.GameData gd = net.fdgames.GameWorld.GameData.O();
+            if (gd == null || gd.player == null) {
+                return null;
+            }
+            int slot = gd.slot == EkShare.GUEST_SLOT ? EkShare.homeSlot() : gd.slot;
+            String who = gd.player.getName();
+            if (slot < 0 || who == null || who.trim().length() == 0) {
+                return null;
+            }
+            return "ek_mp_name_" + slot + "_" + who.trim().replaceAll("[^A-Za-z0-9]", "_");
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    static String characterName() {
+        try {
+            net.fdgames.GameWorld.GameData gd = net.fdgames.GameWorld.GameData.O();
+            String n = gd == null || gd.player == null ? null : gd.player.getName();
+            return n == null || n.trim().length() == 0 ? null : n.trim();
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    static String mpName(Activity a) {
+        String k = saveKey();
+        if (k == null) {
+            return null;
+        }
+        try {
+            String n = a.getSharedPreferences(EkFriends.PREFS, 0).getString(k, null);
+            return n == null || n.trim().length() == 0 ? null : n.trim();
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    private static String prefName(Activity a) {
+        try {
+            String n = a.getSharedPreferences(EkFriends.PREFS, 0).getString(PREF_ENGINE_NAME, null);
+            if (n != null && n.trim().length() > 0) {
+                return n.trim();
+            }
+        } catch (Throwable e) {
+            // fall through
+        }
+        String c = characterName();
+        return c != null ? c : "Player";
+    }
+
+    static String cleanName(String s) {
+        if (s == null) {
+            return null;
+        }
+        String n = s.replaceAll("[\\t\\r\\n]", " ").trim();
+        if (n.length() > 20) {
+            n = n.substring(0, 20).trim();
+        }
+        return n.length() == 0 ? null : n;
+    }
+
+    /** Store the name for this save (if a save is loaded) and for the engine; show it. */
+    static void applyName(Activity a, String n, EditText stock, TextView shown, boolean store) {
+        n = cleanName(n);
+        if (n == null) {
+            return;
+        }
+        try {
+            android.content.SharedPreferences.Editor e = a.getSharedPreferences(EkFriends.PREFS, 0).edit();
+            String k = saveKey();
+            if (store && k != null) {
+                e.putString(k, n);
+            }
+            e.putString(PREF_ENGINE_NAME, n);
+            e.commit();
+        } catch (Throwable e) {
+            // ignore
+        }
+        if (stock != null && !n.equals(String.valueOf(stock.getText()).trim())) {
+            stock.setText(n);
+        }
+        if (shown != null) {
+            shown.setText(n);
+        }
+    }
+
+    /** The engine rewrites the stock box (e.g. "Player 2" after a clash); put this save's name back. */
+    private static void syncName(Activity a, EditText stock, TextView shown) {
+        String want = mpName(a);
+        if (want == null) {
+            want = prefName(a);
+        }
+        if (stock != null && !want.equals(String.valueOf(stock.getText()).trim())) {
+            applyName(a, want, stock, shown, false);
+        }
+    }
+
+    static void askName(final Activity a, final EditText stock, final TextView shown, final boolean first) {
+        try {
+            final EditText in = new EditText(a);
+            in.setSingleLine(true);
+            String cur = mpName(a);
+            if (cur == null) {
+                cur = characterName();
+            }
+            if (cur == null) {
+                cur = prefName(a);
+            }
+            in.setText(cur);
+            new android.app.AlertDialog.Builder(a).setTitle(first ? "Choose your multiplayer name" : "Multiplayer name")
+                    .setMessage("This is the name other players see. It's saved with this character, so you only"
+                            + " pick it once." + (saveKey() == null ? " (Load a save to keep a name per character.)" : ""))
+                    .setView(in)
+                    .setPositiveButton("Save", new android.content.DialogInterface.OnClickListener() {
+                        public void onClick(android.content.DialogInterface d, int w) {
+                            String n = cleanName(String.valueOf(in.getText()));
+                            if (n == null) {
+                                n = characterName() != null ? characterName() : "Player";
+                            }
+                            applyName(a, n, stock, shown, true);
+                            Toast.makeText(a, "You're \"" + n + "\" in multiplayer", 0).show();
+                        }
+                    })
+                    .setNegativeButton(first ? "Use character name" : "Cancel",
+                            first ? new android.content.DialogInterface.OnClickListener() {
+                                public void onClick(android.content.DialogInterface d, int w) {
+                                    String n = characterName() != null ? characterName() : prefName(a);
+                                    applyName(a, n, stock, shown, true);
+                                }
+                            } : null)
+                    .setCancelable(!first)
+                    .show();
+        } catch (Throwable e) {
+            // ignore
+        }
     }
 
     private static String openLabel(Activity a) {
@@ -240,6 +403,9 @@ public final class EkLobby {
             if (EkRelay.roomActive()) {
                 return "Opening your room...";
             }
+            if (EkRelay.openToFriends(a) && characterName() == null) {
+                return "Load your game: your room opens by itself while you play. Or Join by code to join someone.";
+            }
             return "Your room is closed. Tap Host to open it, or Join by code to join someone.";
         } catch (Throwable e) {
             return "";
@@ -275,7 +441,9 @@ public final class EkLobby {
             return null;
         }
         String l = s.toLowerCase();
-        if (l.contains("target=") || l.contains("localips") || l.contains("socket=") || l.contains("host fail")
+        if (l.contains("lan diag") || l.contains("host ready") || l.contains("preferred=") || l.contains("udp=")
+                || l.contains("tcp=") || l.contains("bind=")
+                || l.contains("target=") || l.contains("localips") || l.contains("socket=") || l.contains("host fail")
                 || l.contains("join fail") || l.contains("port=") || l.contains("lan room created")
                 || l.contains("sala lan criada") || l.contains("error=")) {
             return null;
@@ -315,6 +483,7 @@ public final class EkLobby {
         String l = s.toLowerCase();
         if (l.contains("lan diag") || l.contains("host ready") || l.contains("join fail") || l.contains("host fail")
                 || l.contains("tcp connect") || l.contains("localips") || l.contains("target=") || l.contains("port=")
+                || l.contains("preferred=") || l.contains("udp=") || l.contains("tcp=") || l.contains("bind=")
                 || l.contains("lan session hosted") || l.contains("sessao lan hospedada") || l.contains("lan session closed")
                 || l.contains("sessao lan encerrada") || l.contains("error=") || l.contains("exception")) {
             return null;
