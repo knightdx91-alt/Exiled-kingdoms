@@ -332,3 +332,13 @@ Owner (screenshot, solo): "the enemies are not attacking me. Also, IP and LAN st
    `LanGameBridge.postGameLog` → `EkMp.postGameLog`, which now runs `EkLobby.gameLogLine`: diagnostics ("LAN DIAG",
    "HOST ready", join/host failures) and the background auto-host's "LAN session hosted/closed" are dropped; join/
    leave/connected/chat lines say "Party" instead of "LAN" (Portuguese ones translated); any IPv4 → "the host".
+
+## v68 — other players on the maps: names instead of boxes
+Owner: "on the map, it shows like a box that indicates where a person is … change it to just showing their name."
+- Area map (minimap, our `e/a/c/a.e()`, hook B16): the MP mod's `LanGameBridge.drawPeerMapPins` drew the player-pin
+  texture tinted per player plus a small white name. Now `EkMp.drawPeerMapNames` draws only the name, centred where the
+  pin was (same position maths: `ekMapA(140, x + speed·dt, y + speed·dt)` + 32), in the player's colour with a 1 px
+  dark outline. Players in other areas are listed at the left as "Name: Area" in their colour (as the mod did).
+- World map (`e/a/d/r1.draw`, hook B20): `EkMp.drawWorldPeers` no longer draws the square; the name (font 0.75 ×
+  UI scale, was 0.5) is centred on the player's area in their colour with an outline; several players in one area
+  stack. The player's own red "you are here" corners are the game's and unchanged.

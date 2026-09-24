@@ -571,8 +571,8 @@ edit_method('e/a/a/a', 'a(F)V', lambda m: sub1(
 # ---- B16: minimap (e/a/c/a.e(), their ADTIsometricTiledMapRenderer.h) -> peer pins after the player pin
 edit_method('e/a/c/a', 'e()V', lambda m: sub1(
     r'(    sget-object (v\d+), Lnet/fdgames/assets/GameAssets;->v0:Lcom/badlogic/gdx/graphics/Texture;\n(?:.*\n){1,14}?    invoke-interface \{(v\d+), \2, v\d+, v\d+\}, Lcom/badlogic/gdx/graphics/g2d/Batch;->draw\(Lcom/badlogic/gdx/graphics/Texture;FF\)V\n)',
-    r'\1\n    invoke-static {\3, \2}, ' + LAN + r'->drawPeerMapPins(Lcom/badlogic/gdx/graphics/g2d/Batch;Lcom/badlogic/gdx/graphics/Texture;)V' + '\n', m, 'minimap'),
-    "minimap: peer pins")
+    r'\1\n    invoke-static {\3, \2}, ' + EK + r'->drawPeerMapNames(Lcom/badlogic/gdx/graphics/g2d/Batch;Lcom/badlogic/gdx/graphics/Texture;)V' + '\n', m, 'minimap'),
+    "minimap: other players' names (v68: names instead of the MP mod's coloured pins)")
 
 # ---- B17: main menu (e/a/b/e) -> a MULTIPLAYER button right after CREDITS, in both builders --
 path = f'{DST}/e/a/b/e.smali'

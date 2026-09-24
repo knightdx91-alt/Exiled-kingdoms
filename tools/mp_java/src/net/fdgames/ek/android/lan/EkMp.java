@@ -383,60 +383,123 @@ public final class EkMp {
     private static final Color[] PEER_COLORS = {Color.BLUE, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA};
 
     public static void drawWorldPeers(Actor map, Batch batch, String area, TextureRegion marker, float size) {
+        // v68 (owner: "change the box to just showing their name, so you can tell who is where"): names only,
+        // centred on the peer's area in the peer's colour with a dark outline; several players in one area stack.
         try {
-            if (map == null || batch == null || marker == null) {
+            if (map == null || batch == null) {
                 return;
             }
             float[] xy = LanGameBridge.getPeerMarkerPairs(area, size);
-            if (xy == null || xy.length == 0) {
+            String[] names = LanGameBridge.getPeerMarkerNames(area);
+            BitmapFont f = GameAssets.d0;
+            if (xy == null || xy.length == 0 || names == null || f == null) {
                 return;
             }
-            String[] names = LanGameBridge.getPeerMarkerNames(area);
-            // A dot in the middle of the peer's area (the marker texture is a 1x1 white pixel: drawn at
-            // the full cell size it hid the whole area). Players sharing an area sit side by side.
-            float dot = Math.max(6f, size * 0.4f);
-            java.util.HashMap<String, Integer> seen = new java.util.HashMap<String, Integer>();
-            for (int i = 0; i + 1 < xy.length; i += 2) {
-                int k = i >> 1;
-                String key = (int) xy[i] + "," + (int) xy[i + 1];
-                Integer n = seen.get(key);
-                int slot = n == null ? 0 : n.intValue();
-                seen.put(key, slot + 1);
-                float x = map.getX() + xy[i] + (size - dot) / 2f + slot * dot * 0.6f;
-                float y = map.getY() + xy[i + 1] + (size - dot) / 2f - slot * dot * 0.3f;
-                batch.setColor(Color.BLACK);
-                batch.draw(marker, x - 2f, y - 2f, dot + 4f, dot + 4f);
-                batch.setColor(PEER_COLORS[k % PEER_COLORS.length]);
-                batch.draw(marker, x, y, dot, dot);
-                if (names != null && k < names.length && names[k] != null) {
-                    BitmapFont f = GameAssets.d0;
-                    if (f != null) {
-                        // APPROX: the mod set the shared font's scale to 0.5 and left it there; we
-                        // restore it, and scale with the screen like the game's windows do.
-                        BitmapFont.BitmapFontData d = f.getData();
-                        float sx = d.scaleX;
-                        float sy = d.scaleY;
-                        float fs = 0.5f * EkUi.uniformScale();
-                        f.setColor(Color.WHITE);
-                        d.scaleX = fs;
-                        d.scaleY = fs;
-                        f.draw(batch, names[k], x, y + dot + 4f + fs * 20f);
-                        d.scaleX = sx;
-                        d.scaleY = sy;
+            BitmapFont.BitmapFontData d = f.getData();
+            float sx = d.scaleX;
+            float sy = d.scaleY;
+            float fs = 0.75f * EkUi.uniformScale();
+            d.scaleX = fs;
+            d.scaleY = fs;
+            try {
+                java.util.HashMap<String, Integer> seen = new java.util.HashMap<String, Integer>();
+                for (int i = 0; i + 1 < xy.length; i += 2) {
+                    int k = i >> 1;
+                    if (k >= names.length || names[k] == null) {
+                        continue;
                     }
+                    String key = (int) xy[i] + "," + (int) xy[i + 1];
+                    Integer n = seen.get(key);
+                    int slot = n == null ? 0 : n.intValue();
+                    seen.put(key, slot + 1);
+                    float cx = map.getX() + xy[i] + size / 2f;
+                    float cy = map.getY() + xy[i + 1] + size / 2f + fs * 12f - slot * fs * 26f;
+                    drawName(f, batch, names[k], cx, cy, PEER_COLORS[k % PEER_COLORS.length]);
                 }
+            } finally {
+                d.scaleX = sx;
+                d.scaleY = sy;
+                f.setColor(Color.WHITE);
             }
         } catch (Throwable e) {
             // ignore
         } finally {
             try {
                 if (batch != null) {
-                    batch.setColor(Color.RED);
+                    batch.setColor(Color.RED);      // what the world map draws next expects red
                 }
             } catch (Throwable e) {
                 // ignore
             }
         }
+    }
+
+    /** Area map (minimap, our e/a/c/a.e()): other players' names where they stand; players elsewhere listed. */
+    public static void drawPeerMapNames(Batch batch, com.badlogic.gdx.graphics.Texture pin) {
+        try {
+            LanSessionManager m = LanSessionManager.getInstanceIfReady();
+            GameData gd = GameData.O();
+            BitmapFont f = GameAssets.f0;
+            if (batch == null || m == null || !m.isSessionRunning() || gd == null || gd.CurrentLevel == null || f == null) {
+                return;
+            }
+            List peers = m.getPeerStatesSnapshot();
+            if (peers == null) {
+                return;
+            }
+            batch.setColor(Color.WHITE);
+            int k = 0;
+            float listY = 160f;
+            for (Object o : peers) {
+                if (!(o instanceof LanSessionManager.PlayerState)) {
+                    continue;
+                }
+                LanSessionManager.PlayerState ps = (LanSessionManager.PlayerState) o;
+                String n = ps.playerName == null ? "" : ps.playerName.trim();
+                Color c = PEER_COLORS[k % PEER_COLORS.length];
+                k++;
+                if (n.length() == 0) {
+                    continue;
+                }
+                if (gd.CurrentLevel.equals(ps.currentLevelId)) {
+                    long dt = Math.min(200L, Math.max(0L, System.currentTimeMillis() - ps.sampleTimeMs));
+                    float t = dt / 1000f;
+                    net.fdgames.TiledMap.Objects.Coords at = LanGameBridge.ekMapA(140, new net.fdgames.TiledMap.Objects.Coords(
+                            Math.round(ps.x + ps.speedX * t), Math.round(ps.y + ps.speedY * t)));
+                    if (at != null) {
+                        drawName(f, batch, n, at.x + 32f + 8f, at.y + 14f, c);   // centred where the pin was
+                    }
+                } else {
+                    String where = ps.currentMapName == null ? "" : ps.currentMapName.trim();
+                    drawName(f, batch, n + (where.length() > 0 ? ": " + where : ""), -1f, listY, c);
+                    listY -= 16f;
+                }
+            }
+            f.setColor(Color.WHITE);
+            batch.setColor(Color.WHITE);
+        } catch (Throwable e) {
+            // ignore
+        }
+    }
+
+    private static final GlyphLayout NAME_LAYOUT = new GlyphLayout();
+
+    /** Text with a 1-pixel dark outline; cx < 0 = left-aligned at x 10. */
+    private static void drawName(BitmapFont f, Batch batch, String s, float cx, float y, Color c) {
+        float x;
+        if (cx < 0f) {
+            x = 10f;
+        } else {
+            NAME_LAYOUT.setText(f, s);
+            x = cx - NAME_LAYOUT.width / 2f;
+        }
+        f.setColor(Color.BLACK);
+        f.draw(batch, s, x - 1f, y);
+        f.draw(batch, s, x + 1f, y);
+        f.draw(batch, s, x, y - 1f);
+        f.draw(batch, s, x, y + 1f);
+        f.setColor(c);
+        f.draw(batch, s, x, y);
     }
 
     // ---- world events (our GameData.f(), their Z(F)): a newly started dynamic event is written to
