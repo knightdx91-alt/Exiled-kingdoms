@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v63.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v64.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v63.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v64.apk
 ```
+
+### v64 (2026-09-24) — the MP mod's joke content tidied
+
+`tools/clean_mp_items.py` (run by `merge_mp_content.py`): crude/modern/junk items renamed (every language) and no
+longer dropping (loot rows + chests swapped for stock items of the same kind, shop lists trimmed), crude in-hand
+dagger art swapped for the stock dagger, crude NPC display names renamed. Ids unchanged, so saves/quests work.
+`deobf/MP_ITEMS_REVIEW.md` (+ `MP_ITEMS_ALL.tsv`, all 961 added items). dist: base + v64 + v63.
 
 ### v63 (2026-09-24) — clean multiplayer page, Cloudflare only; small in-game chat box
 

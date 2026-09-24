@@ -220,5 +220,8 @@ if 'assets/data/rules/bestiary.txt' in merged:
     r_, l_ = fix_levels(bp)
     print(f"fix-up bestiary.txt: enemy levels back to normal ({r_} original enemies restored, {l_} MP enemies -3)")
 
+import clean_mp_items   # the mod's joke content (deobf/MP_ITEMS_REVIEW.md)
+print(f"fix-up joke content: {clean_mp_items.run(work, merged, base_apk)}")
+
 open(os.path.join(work, 'mp_merged.txt'), 'w').write('\n'.join(merged) + '\n')
 print(f"merged MP content: {new} new + {changed} changed files ({skipped_junk} non-content excluded)")
