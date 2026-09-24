@@ -315,3 +315,20 @@ into another zone left a frozen puppet behind until they came back or disconnect
 Fix: the `HashSet.add` moves after the location check (only same-zone players are kept); the existing removal pass
 then removes the puppet with its summon/companion/followers and cached state. Coming back into my zone recreates
 it (`getOrCreatePeerActor`).
+
+## v65 — enemies not attacking the host; LAN diagnostics in the game log
+Owner (screenshot, solo): "the enemies are not attacking me. Also, IP and LAN stuff still show in chat."
+1. `NPC.ai_disabled` (public, not transient) is saved with every NPC. A joiner's `applyReceivedWorldNpcStatesV2`
+   sets it on the host's NPCs (the host drives them); the joiner's area file (`Serializer.f()` saveLevel →
+   `EkShare.onLevelSaved` → `EKCACHE`) goes to the host, which stores it as its own copy of that area. The host's
+   enemies there then loaded with the AI off: `NPC.a(F)` skips `ai.c(id)`, so they never detect or attack. Checked
+   first and ruled out: the v59 faction hooks (the built APK's own `WorldFactions` in the init harness: every monster
+   faction hostile to `player` both ways, towns not), the MP detection redirect (`EkMp.hostileChar` returns the
+   player when solo), and the data (bestiary AI/faction/movement identical to the base for all base monsters).
+   Fix: `EkMp.stripPeers` (runs on every level load: `Serializer.a(II)` LoadGame and `f(String)` loadLevel) clears
+   `ai_disabled` on every non-peer NPC. Repairs saves already affected; a joiner re-disables host-driven NPCs on the
+   next frame. The game's own transient disable (`NPC.O1`, 4 s, re-enabled by a timed message) never survives a load.
+2. `LanSessionManager.logLanDebug/logLanError` and the session lines go to the game log through
+   `LanGameBridge.postGameLog` → `EkMp.postGameLog`, which now runs `EkLobby.gameLogLine`: diagnostics ("LAN DIAG",
+   "HOST ready", join/host failures) and the background auto-host's "LAN session hosted/closed" are dropped; join/
+   leave/connected/chat lines say "Party" instead of "LAN" (Portuguese ones translated); any IPv4 → "the host".

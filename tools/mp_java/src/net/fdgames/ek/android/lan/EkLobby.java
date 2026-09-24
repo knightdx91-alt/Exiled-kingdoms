@@ -284,6 +284,28 @@ public final class EkLobby {
         return IP.matcher(s).replaceAll("the host");
     }
 
+    /** v65 game log (LanGameBridge.postGameLog): no diagnostics, no addresses, no "LAN" wording. null = drop. */
+    public static String gameLogLine(String s) {
+        if (s == null) {
+            return null;
+        }
+        String l = s.toLowerCase();
+        if (l.contains("lan diag") || l.contains("host ready") || l.contains("join fail") || l.contains("host fail")
+                || l.contains("tcp connect") || l.contains("localips") || l.contains("target=") || l.contains("port=")
+                || l.contains("lan session hosted") || l.contains("sessao lan hospedada") || l.contains("lan session closed")
+                || l.contains("sessao lan encerrada") || l.contains("error=") || l.contains("exception")) {
+            return null;
+        }
+        String t = s.replace("[CYAN]LAN[] HOST left the LAN session.", "[CYAN]Party[] The host left.")
+                .replace("[CYAN]LAN[] HOST saiu da sessao.", "[CYAN]Party[] The host left.")
+                .replace(" joined the LAN session.", " joined your game.").replace(" entrou na sessao.", " joined your game.")
+                .replace(" left the LAN session.", " left.").replace(" saiu da sessao.", " left.")
+                .replace("Connected to a LAN session.", "Connected to the host's world.")
+                .replace(" foi derrotado!", " was defeated!")
+                .replace("[CYAN]LAN[] ", "[CYAN]Party[] ");
+        return IP.matcher(t).replaceAll("the host");
+    }
+
     /** formatPlayerLineLocked: "Name - Lv 12 Warrior - Lannegar" (no area codes, no gold). */
     public static String playerLine(String name, LanSessionManager.PlayerState st) {
         if (st == null) {

@@ -108,6 +108,13 @@ public final class EkMp {
                 Object o = it.next();
                 if (o instanceof NPC && ((NPC) o).lanPeerVisual) {
                     it.remove();
+                } else if (o instanceof NPC) {
+                    // v65 (owner: "playing by myself, the enemies are not attacking me"): a joiner's game switches
+                    // off the AI of the host's NPCs (the host drives them). ai_disabled is saved with the area, and a
+                    // joiner's area file is sent to the host, so the host's own enemies came back brain-dead. No
+                    // NPC is legitimately saved disabled (the game's own 4 s disable never survives a load); a
+                    // joiner's game switches host-driven NPCs off again on the next frame.
+                    ((NPC) o).ai_disabled = false;
                 }
             }
         } catch (Throwable e) {
@@ -462,7 +469,11 @@ public final class EkMp {
      * the line to GameData.log directly (GameLog.a(String) edits an ArrayList and rebuilds the log text
      * the HUD is drawing at that moment), racing the renderer.
      */
-    public static void postGameLog(final String s) {
+    public static void postGameLog(final String raw) {
+        final String s = EkLobby.gameLogLine(raw);
+        if (s == null) {
+            return;
+        }
         try {
             if (com.badlogic.gdx.Gdx.app != null) {
                 com.badlogic.gdx.Gdx.app.postRunnable(new Runnable() {

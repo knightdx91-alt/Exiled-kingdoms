@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v64.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v65.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v64.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v65.apk
 ```
+
+### v65 (2026-09-24) — enemies attack the host again; no LAN diagnostics in the game log
+
+A joiner's area files carried `NPC.ai_disabled` (set on host-driven NPCs) back to the host, whose enemies then never
+attacked. `EkMp.stripPeers` clears it on every level load (repairs affected saves). Game-log lines filtered by
+`EkLobby.gameLogLine`. `deobf/MULTIPLAYER_PORT_SPEC.md` §v65. dist: base + v65 + v64.
 
 ### v64 (2026-09-24) — the MP mod's joke content tidied
 
