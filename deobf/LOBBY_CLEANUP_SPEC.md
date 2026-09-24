@@ -47,7 +47,10 @@ Now:
   joystick owns the bottom-left and the keyboard covers the bottom. Touches outside the panel reach the game. Closes
   itself when the session ends.
 - Where: each other player and the area they're in (English), shown under the chat for 20 s.
-APPROX: panel size/placement/colours are ours (the MP mod used a dialog).
+- v71 movable button: press and slide moves it (slop 3 % of HUD height, so a wobble is still a tap); a tap toggles the
+  panel. Position = fraction (0..1) of the free area (stage − button) for left/bottom, clamped on screen, saved in
+  `ek_lan_prefs` as `ek_chat_btn_x/y` (float; −1 = never moved → stock spot). Same spot on any screen size/fold state.
+APPROX: panel size/placement/colours are ours (the MP mod used a dialog); the drag-to-move button is ours.
 
 ## 3. v67: a leftover diagnostic line; one multiplayer name per save
 Owner (screenshot): the lobby chat still showed "[System] LAN DIAG host udp=…:32123 preferred=the host", and "when you

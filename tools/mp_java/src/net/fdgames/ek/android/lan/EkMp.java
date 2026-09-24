@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -212,6 +213,91 @@ public final class EkMp {
 
     private static TextButton chatBtn;
     private static Stage chatStage;
+    // v71 (owner: "the chat button covers up stuff, can we make it movable?"): drag the button anywhere, a tap still
+    // opens the chat. Position is kept as a fraction of the free HUD area (0..1, left/bottom) in the lobby prefs, so it
+    // survives restarts and lands in the same spot on any screen size. -1 = never moved (stock spot, right side).
+    private static final String PREF_CHAT_X = "ek_chat_btn_x";
+    private static final String PREF_CHAT_Y = "ek_chat_btn_y";
+    private static float chatFx = -2f;               // -2 = not read yet
+    private static float chatFy = -2f;
+    private static boolean chatDragging;
+
+    private static void loadChatPos() {
+        chatFx = -1f;
+        chatFy = -1f;
+        try {
+            android.content.SharedPreferences sp = EkItems.act().getSharedPreferences(EkFriends.PREFS, 0);
+            chatFx = sp.getFloat(PREF_CHAT_X, -1f);
+            chatFy = sp.getFloat(PREF_CHAT_Y, -1f);
+        } catch (Throwable e) {
+            // stock spot
+        }
+    }
+
+    private static void saveChatPos() {
+        try {
+            EkItems.act().getSharedPreferences(EkFriends.PREFS, 0).edit()
+                    .putFloat(PREF_CHAT_X, chatFx).putFloat(PREF_CHAT_Y, chatFy).apply();
+        } catch (Throwable e) {
+            // kept for this run only
+        }
+    }
+
+    private static float clamp01(float v) {
+        return v < 0f ? 0f : (v > 1f ? 1f : v);
+    }
+
+    /** Tap = open/close the chat; press and slide = move the button (a small wobble still counts as a tap). */
+    private static InputListener chatListener(final Stage stage) {
+        return new InputListener() {
+            private float sx;
+            private float sy;
+            private float bx;
+            private float by;
+
+            @Override
+            public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+                if (pointer != 0 || chatBtn == null) {
+                    return false;
+                }
+                sx = e.getStageX();
+                sy = e.getStageY();
+                bx = chatBtn.getX();
+                by = chatBtn.getY();
+                chatDragging = false;
+                return true;
+            }
+
+            @Override
+            public void touchDragged(InputEvent e, float x, float y, int pointer) {
+                if (chatBtn == null) {
+                    return;
+                }
+                float dx = e.getStageX() - sx;
+                float dy = e.getStageY() - sy;
+                float slop = stage.getHeight() * 0.03f;
+                if (!chatDragging && dx * dx + dy * dy < slop * slop) {
+                    return;
+                }
+                chatDragging = true;
+                float fw = Math.max(1f, stage.getWidth() - chatBtn.getWidth());
+                float fh = Math.max(1f, stage.getHeight() - chatBtn.getHeight());
+                chatFx = clamp01((bx + dx) / fw);
+                chatFy = clamp01((by + dy) / fh);
+                chatBtn.setPosition(chatFx * fw, chatFy * fh);
+            }
+
+            @Override
+            public void touchUp(InputEvent e, float x, float y, int pointer, int button) {
+                if (chatDragging) {
+                    chatDragging = false;
+                    saveChatPos();
+                } else {
+                    EkChat.toggle();                 // v63: small see-through box instead of the full-screen dialog
+                }
+            }
+        };
+    }
 
     /** Called every HUD frame (GameHUD.j, before stage.draw): CHAT button while in a session. */
     public static void hudChat(Stage stage) {
@@ -225,12 +311,7 @@ public final class EkMp {
                     return;
                 }
                 chatBtn = new TextButton("CHAT", Assets.e(), "menuSmallButton");
-                chatBtn.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        EkChat.toggle();             // v63: small see-through box instead of the full-screen dialog
-                    }
-                });
+                chatBtn.addListener(chatListener(stage));
                 // v63 (owner: "the chat button needs to be bigger"): larger label, at least ~11 % of the HUD height
                 try {
                     chatBtn.getLabel().setFontScale(1.5f);
@@ -244,6 +325,9 @@ public final class EkMp {
             if (!on) {
                 return;
             }
+            if (chatFx < -1.5f) {
+                loadChatPos();
+            }
             String t = "CHAT";
             LanSessionManager m = LanSessionManager.getInstanceIfReady();
             if (m != null && m.getUnreadChatCount() > 0) {
@@ -254,7 +338,15 @@ public final class EkMp {
             float bh = Math.max(chatBtn.getHeight(), stage.getHeight() * 0.11f);
             float bw = Math.max(chatBtn.getWidth(), bh * 1.7f);
             chatBtn.setSize(bw, bh);
-            chatBtn.setPosition(stage.getWidth() - bw - 10f, stage.getHeight() * 0.58f);
+            if (!chatDragging) {
+                float fw = Math.max(1f, stage.getWidth() - bw);
+                float fh = Math.max(1f, stage.getHeight() - bh);
+                if (chatFx < 0f || chatFy < 0f) {
+                    chatBtn.setPosition(stage.getWidth() - bw - 10f, stage.getHeight() * 0.58f);   // stock spot
+                } else {
+                    chatBtn.setPosition(chatFx * fw, chatFy * fh);
+                }
+            }
             chatBtn.toFront();
         } catch (Throwable e) {
             // ignore

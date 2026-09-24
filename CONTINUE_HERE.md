@@ -27,14 +27,19 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v70.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v71.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v70.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v71.apk
 ```
+
+### v71 (2026-09-24) — movable CHAT button
+
+Press and slide the in-game CHAT button to move it anywhere (a tap still opens the chat); spot saved in prefs as a
+fraction of the screen. `deobf/LOBBY_CLEANUP_SPEC.md` §2. dist: base + v71 + v70.
 
 ### v70 (2026-09-24) — equip button back (upgrade preview one line); Browse rooms / Public room
 
