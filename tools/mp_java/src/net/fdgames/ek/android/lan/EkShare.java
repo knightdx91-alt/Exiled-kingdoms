@@ -80,13 +80,32 @@ public final class EkShare {
         return a == null ? null : new File(a.getFilesDir(), "data/saves/ek_block_" + slot + ".json");
     }
 
+    /**
+     * v66: written to a temporary file and renamed over the target, so a reader (the game loading an area while the
+     * other player's copy of it arrives from the network, deobf/SHARED_WORLD_SPEC.md §9) sees the whole old file or
+     * the whole new one, never half of each.
+     */
     private static void writeText(File f, String s) throws Exception {
         f.getParentFile().mkdirs();
-        OutputStream o = new FileOutputStream(f);
+        File tmp = new File(f.getParentFile(), f.getName() + ".ek" + Long.toHexString(System.nanoTime()) + ".tmp");
+        OutputStream o = new FileOutputStream(tmp);
         try {
             o.write(s.getBytes("UTF-8"));
+            o.flush();
+            try {
+                ((FileOutputStream) o).getFD().sync();
+            } catch (Throwable e) {
+                // best effort
+            }
         } finally {
             o.close();
+        }
+        if (!tmp.renameTo(f)) {                     // rename(2) replaces atomically; this is a fallback only
+            f.delete();
+            if (!tmp.renameTo(f)) {
+                tmp.delete();
+                throw new java.io.IOException("could not replace " + f.getName());
+            }
         }
     }
 

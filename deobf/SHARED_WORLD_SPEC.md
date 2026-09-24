@@ -209,3 +209,10 @@ player's spot, i.e. next to the host, in the host's area.
   what scripted `travel` uses) with `entry_id = 0` and `coords = (x, y)`; the map's entry resolver
   (`e.a.c.b.a(Transition)`, 4.2.2 `m0.b.t`) returns those coords for entry 0, so the game's own loading screen lands
   you on the spot. Old hosts (no `EKWID`) → no restore, the old behaviour.
+
+## 11. Area files arriving while an area loads (v66)
+`receiveCache` wrote the other player's area file on the network thread straight over `cache/<level>.sav`; the game
+thread could be reading that file (`Serializer.f(String)` loadLevel) at the same moment and get half of each. Every
+`EkShare.writeText` (area files, character blocks, the guest world) now writes a temporary file and renames it over the
+target (rename(2) is atomic), so a reader sees the whole old or the whole new file. Tested: a writer replacing a
+400 KB file 300× while a reader reads it continuously → 701 reads, 0 torn, no temp files left.

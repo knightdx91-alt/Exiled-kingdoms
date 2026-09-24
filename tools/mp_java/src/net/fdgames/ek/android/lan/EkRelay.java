@@ -294,6 +294,7 @@ public final class EkRelay {
                         }
                     }
                 } catch (Throwable e) {
+                    online = false;
                     if (!stop) {
                         status.update("RETRY " + e.getMessage());
                     }
@@ -307,7 +308,7 @@ public final class EkRelay {
                     } catch (InterruptedException e) {
                         return;
                     }
-                    backoff = Math.min(backoff * 2, 30000);
+                    backoff = Math.min(backoff * 2, 300000);   // v66: rooms stay open; don't hammer while offline
                 }
             }
         }
@@ -428,6 +429,10 @@ public final class EkRelay {
         if (m == null) {
             throw new IOException(ws.closeCode == 4404 ? "NOROOM" : ws.closeCode == 4408 ? "TIMEOUT" : "CLOSED " + ws.closeCode);
         }
+        if (((Integer) m[0]).intValue() != EkWs.TEXT || !"OK".equals(new String((byte[]) m[1], "UTF-8").trim())) {
+            ws.close();                              // v66: only the relay's OK starts the game's connection
+            throw new IOException("TIMEOUT");
+        }
         ws.setReadTimeout(0);
         final ServerSocket ss = new ServerSocket(0, 1, InetAddress.getByName("127.0.0.1"));
         ss.setSoTimeout(30000);
@@ -481,23 +486,51 @@ public final class EkRelay {
     }
 
     /** "Host online": start hosting if needed, open the room, show the code. Tap again to stop. */
+    // ---- v66: "open to friends" (deobf/RELAY_SPEC.md "v3"): the room opens by itself while you play ----------
+    static final String PREF_OPEN = "ek_open_room";
+
+    static boolean openToFriends(android.app.Activity a) {
+        return !"0".equals(pref(a, PREF_OPEN, "1"));
+    }
+
+    static void setOpenToFriends(android.app.Activity a, boolean on) {
+        putPref(a, PREF_OPEN, on ? "1" : "0");
+    }
+
+    /** A room session exists (online or still connecting). */
+    static boolean roomActive() {
+        HostSession h = hosting;
+        return h != null && !h.stop;
+    }
+
+    /** "Host": the room's code (and Close room), or open it now. */
     static void hostOnline(final LanLobbyActivity a) {
-        if (!ready(a)) {
+        if (relayUrl(a).length() == 0) {
+            Toast.makeText(a, "Online play isn't set up yet (no relay address in this version).", 1).show();
             return;
         }
         final HostSession cur = hosting;
         if (cur != null && !cur.stop) {
-            new AlertDialog.Builder(a).setTitle("Online room")
-                    .setMessage("Your room code: " + cur.code + "\n\nFriends tap Join by code and type it. You still"
-                            + " approve each player.")
+            new AlertDialog.Builder(a).setTitle("Your room")
+                    .setMessage("Room code: " + cur.code + "\n\nFriends tap Join by code and type it; friends you've played"
+                            + " with join from their Friends list. You still approve new players.")
                     .setPositiveButton("Keep open", null)
                     .setNegativeButton("Close room", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface d, int w) {
-                            cur.shutdown();
-                            hosting = null;
-                            Toast.makeText(a, "Online room closed", 0).show();
+                            setOpenToFriends(a, false);
+                            closeRoom();
+                            Toast.makeText(a, "Room closed. It stays closed until you open it again (Host).", 1).show();
                         }
                     }).show();
+            return;
+        }
+        setOpenToFriends(a, true);
+        openRoom(a, false);
+    }
+
+    /** Start hosting if needed and open the relay room. quiet = no dialog/toast (auto-open while playing). */
+    static void openRoom(final android.app.Activity a, final boolean quiet) {
+        if (relayUrl(a).length() == 0 || roomActive()) {
             return;
         }
         String code = myCode(a);
@@ -515,9 +548,8 @@ public final class EkRelay {
         } catch (Throwable e) {
             // the room still opens; joins work once hosting runs
         }
-        final String startCode = code;
         HostSession hs = new HostSession(relayUrl(a), code, dev, EkNat.GAME_PORT, new Status() {
-            boolean shown;
+            boolean shown = quiet;
 
             public void update(final String s) {
                 if (s.startsWith("NEWCODE ")) {
@@ -530,10 +562,10 @@ public final class EkRelay {
                     a.runOnUiThread(new Runnable() {
                         public void run() {
                             try {
-                                new AlertDialog.Builder(a).setTitle("You're online")
+                                new AlertDialog.Builder(a).setTitle("Your room is open")
                                         .setMessage("Room code:\n\n        " + c + "\n\nFriends on any Wi-Fi or mobile"
-                                                + " data tap Join by code and type it. The code stays the same next"
-                                                + " time. Tap Host again to close the room.")
+                                                + " data tap Join by code and type it. The code stays the same, and the"
+                                                + " room opens by itself while you play. Tap Host to close it.")
                                         .setPositiveButton("OK", null).show();
                             } catch (Throwable e) {
                                 // ignore
@@ -549,10 +581,11 @@ public final class EkRelay {
         Thread t = new Thread(hs, "ek-relay-host");
         t.setDaemon(true);
         t.start();
-        Toast.makeText(a, "Opening your room...", 0).show();
+        if (!quiet) {
+            Toast.makeText(a, "Opening your room...", 0).show();
+        }
     }
 
-    /** "Join by code". */
     static void joinByCode(final LanLobbyActivity a) {
         if (!ready(a)) {
             return;

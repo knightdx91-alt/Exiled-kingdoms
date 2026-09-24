@@ -144,6 +144,22 @@ public final class EkLobby {
                         : "PvP off: it stays off until you turn it back on", 1).show();
             }
         });
+        lob.ekAddButton(r2, openLabel(a), new View.OnClickListener() {
+            public void onClick(View v) {
+                boolean now = !EkRelay.openToFriends(a);
+                EkRelay.setOpenToFriends(a, now);
+                if (now) {
+                    EkRelay.openRoom(a, true);
+                } else {
+                    EkRelay.closeRoom();
+                }
+                if (v instanceof TextView) {
+                    ((TextView) v).setText(openLabel(a));
+                }
+                Toast.makeText(a, now ? "Your room opens by itself while you play, so friends can join any time"
+                        : "Room closed. Friends can't join until you open it again", 1).show();
+            }
+        });
         root.addView(r2, new LinearLayout.LayoutParams(-1, -2));
 
         root.addView(heading(a, "Players"));
@@ -167,6 +183,10 @@ public final class EkLobby {
         };
         tick[0].run();
         return rootView;
+    }
+
+    private static String openLabel(Activity a) {
+        return EkRelay.openToFriends(a) ? "Open to friends: ON" : "Open to friends: OFF";
     }
 
     private static String pvpLabel() {
@@ -215,9 +235,12 @@ public final class EkLobby {
             }
             if (code != null) {
                 return "Your room is open. Code: " + code + (count > 1 ? "   (" + count + " players)" : "")
-                        + "\nFriends tap Join by code. Tap Host to see the code or close the room.";
+                        + "\nFriends join by code or from their Friends list.";
             }
-            return "Not connected. Tap Host to open your room to friends, or Join by code to join someone.";
+            if (EkRelay.roomActive()) {
+                return "Opening your room...";
+            }
+            return "Your room is closed. Tap Host to open it, or Join by code to join someone.";
         } catch (Throwable e) {
             return "";
         }

@@ -27,14 +27,20 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v65.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v66.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v65.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v66.apk
 ```
+
+### v66 (2026-09-24) — rooms stay open for friends (free); area files replaced atomically
+
+Relay Worker moved to the WebSocket Hibernation API (idle rooms cost nothing; protocol unchanged). Game: "Open to
+friends" (default ON) opens your room quietly while you play; Host shows the code / closes it. `EkShare.writeText`
+writes temp + rename. `deobf/RELAY_SPEC.md` v3, `deobf/SHARED_WORLD_SPEC.md` §11. dist: base + v66 + v65.
 
 ### v65 (2026-09-24) — enemies attack the host again; no LAN diagnostics in the game log
 

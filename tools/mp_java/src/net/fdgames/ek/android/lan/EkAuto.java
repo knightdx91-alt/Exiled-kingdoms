@@ -81,6 +81,9 @@ public final class EkAuto {
                 return;
             }
             final LanSessionManager m = LanSessionManager.get(a);
+            if (m != null && m.isHosting() && !m.ekConnected() && EkRelay.openToFriends(a) && !EkRelay.roomActive()) {
+                EkRelay.openRoom(a, true);           // v66: friends can join you while you play
+            }
             if (m == null || m.isHosting() || m.ekConnected()) {
                 return;
             }

@@ -73,3 +73,23 @@ Owner added the two repo secrets; `relay.yml` deployed the Worker. Live checks a
 `https://ek-relay.knightdx91.workers.dev`: `/` → "Exiled Kingdoms relay: ok"; `role=status` → offline for an
 empty room; host socket gets `OK`; a join delivers `CONN <token> - - <name>` to the host; the accept socket pairs,
 the joiner's early bytes arrive, and a 300 KB binary round trip matches.
+
+## v3 — hibernation: an open room costs nothing (v66)
+Owner: "do both" (idle rooms free, and the area-loading race). v2 held every socket with `ws.accept()` and kept pairing
+state in memory, so a Durable Object stayed resident (billed duration) for as long as a room was open; always-open
+rooms per player would have used the free plan's daily allowance.
+- `relay/cf/worker.js` uses the WebSocket Hibernation API: `state.acceptWebSocket(ws, tags)` +
+  `webSocketMessage/Close/Error`; the host's `PING` is answered by `setWebSocketAutoResponse(PING→PONG)` without
+  waking the object. State lives on the sockets: host `["host"]` {dev}; joiner `["join", token]` {t0, paired, early
+  bytes ≤ 1500 as a fallback copy}; host data socket `["accept", token]`. `status` = a `host` socket exists. The 15 s
+  join timeout is a storage alarm. Protocol unchanged (OK / CONN token tok mycode name / 4404 / 4408 / 4409 / 4410),
+  so v58–v65 phones keep working.
+- Tested in wrangler dev (workerd): status offline→online→offline, PING→PONG auto-response, CONN carries tok/code/name,
+  the joiner's early bytes arrive after pairing, 300 KB round trip, other device → 4409, wrong code → 4404, joiner
+  after host left → 4404, a paired pipe survives the host's control socket closing; the game's own `EkRelay`
+  (HostSession + openJoin) end to end through a local echo "game". (Local dev delivered the alarm's `close(4408)` as
+  no close frame; the phone's own 20 s read timeout covers it, and `openJoin` now accepts only a text `OK`.)
+- Game side: **Open to friends** (pref `ek_open_room`, default ON; lobby button). While you play, the auto-host opens
+  the room quietly (`EkAuto.tick` → `EkRelay.openRoom(a, quiet)`), so friends see you online and join from their list.
+  Host shows the code; Close room there switches the setting off (stays closed until opened again). Joining someone
+  else closes it (`EkNat.onHostStop` → `closeRoom`). Reconnect backoff up to 5 min.
