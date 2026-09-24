@@ -93,3 +93,8 @@ rooms per player would have used the free plan's daily allowance.
   the room quietly (`EkAuto.tick` → `EkRelay.openRoom(a, quiet)`), so friends see you online and join from their list.
   Host shows the code; Close room there switches the setting off (stays closed until opened again). Joining someone
   else closes it (`EkNat.onHostStop` → `closeRoom`). Reconnect backoff up to 5 min.
+- v68 fix (owner: "I was already loaded in a game, I just had not clicked Host; once I clicked Host it changed"):
+  the room was opened only by `EkAuto.tick` on the game thread, which pauses while the lobby activity is open, and
+  only after the background host had started (a second tick). The lobby's 1 s tick now opens it too
+  (`EkLobby.autoOpen`: a save is loaded, Open to friends ON, no room yet, not joined to someone else), and
+  `openRoom` starts the background host on its own thread (never the UI thread).

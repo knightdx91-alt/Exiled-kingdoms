@@ -195,6 +195,7 @@ public final class EkLobby {
                 if (a.isFinishing()) {
                     return;
                 }
+                autoOpen(a);
                 status.setText(statusText(a));
                 syncName(a, stockName, shownName);
                 status.postDelayed(tick[0], 1000L);
@@ -345,6 +346,26 @@ public final class EkLobby {
                     .show();
         } catch (Throwable e) {
             // ignore
+        }
+    }
+
+    /**
+     * v68 (owner: "I was already loaded in a game, I just had not clicked Host; once I clicked Host it changed"):
+     * the room was only opened by EkAuto.tick on the game thread, which is paused while this screen is open, and
+     * only after the background host had started. In a loaded game with Open to friends on, open it from here.
+     */
+    private static void autoOpen(Activity a) {
+        try {
+            if (characterName() == null || !EkRelay.openToFriends(a) || EkRelay.roomActive()) {
+                return;
+            }
+            LanSessionManager m = LanSessionManager.get(a);
+            if (m != null && m.ekConnected()) {
+                return;                                 // joined someone else: no room of your own
+            }
+            EkRelay.openRoom(a, true);
+        } catch (Throwable e) {
+            // next second
         }
     }
 

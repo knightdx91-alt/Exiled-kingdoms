@@ -540,10 +540,20 @@ public final class EkRelay {
             putPref(a, "ek_relay_dev", dev);
         }
         try {
-            LanSessionManager m = LanSessionManager.get(a);
+            final LanSessionManager m = LanSessionManager.get(a);
             if (m != null && !m.isHosting()) {
-                String name = pref(a, "lan_player_name", "Player");
-                m.startHosting(name, EkAuto.MAX_PLAYERS);
+                final String name = pref(a, "lan_player_name", "Player");
+                Thread h = new Thread(new Runnable() {    // v68: never on the UI thread (sockets)
+                    public void run() {
+                        try {
+                            m.startHosting(name, EkAuto.MAX_PLAYERS);
+                        } catch (Throwable e) {
+                            // the room still opens; joins work once hosting runs
+                        }
+                    }
+                }, "ek-room-host");
+                h.setDaemon(true);
+                h.start();
             }
         } catch (Throwable e) {
             // the room still opens; joins work once hosting runs

@@ -27,14 +27,19 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v68.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v69.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v68.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v69.apk
 ```
+
+### v69 (2026-09-24) — room opens from the lobby too
+
+In a loaded game with Open to friends ON, the lobby opens the room itself (the game-thread tick is paused while the
+lobby is open); the background host starts off the UI thread. `deobf/RELAY_SPEC.md` v3. dist: base + v69 + v68.
 
 ### v68 (2026-09-24) — other players shown by name on the area map and world map
 
