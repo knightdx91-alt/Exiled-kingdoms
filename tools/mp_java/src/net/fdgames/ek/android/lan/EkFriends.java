@@ -345,6 +345,9 @@ public final class EkFriends {
 
     /** Hooked after the lobby's Host / Join IP / Scan LAN / Leave row: a second row with Friends. */
     public static void addLobbyRow(final LanLobbyActivity a, LinearLayout root) {
+        if (LOBBY_REBUILT) {
+            return;                                  // v63: EkLobby builds the whole page
+        }
         try {
             // Back (owner request): closes the lobby and returns to the game / main menu.
             LinearLayout top = new LinearLayout(a);
@@ -407,15 +410,16 @@ public final class EkFriends {
 
     static void open(final LanLobbyActivity a) {
         try {
-            final List<Friend> list = load(a);
+            final List<Friend> list = new ArrayList<Friend>();
+            for (Friend f : load(a)) {
+                if (f.relay()) {
+                    list.add(f);                     // v63: address-based (LAN/IP) friends aren't shown any more
+                }
+            }
             if (list.isEmpty()) {
                 new AlertDialog.Builder(a).setTitle("Friends")
-                        .setMessage("No friends yet. Hosts you join are added here automatically, or use Add friend.")
-                        .setPositiveButton("Add friend", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface d, int w) {
-                                promptAdd(a);
-                            }
-                        })
+                        .setMessage("No friends yet. When you play with someone through Host or Join by code,"
+                                + " you're added to each other's list. After that, one tap joins.")
                         .setNegativeButton("Close", null).show();
                 return;
             }
@@ -440,7 +444,7 @@ public final class EkFriends {
                             // ignore
                         }
                     }
-                    save(a, list); // keeps names learned from the hosts
+                    saveMerged(a, list); // keeps names learned from the hosts
                     a.runOnUiThread(new Runnable() {
                         public void run() {
                             showList(a, list);
@@ -458,8 +462,7 @@ public final class EkFriends {
             CharSequence[] items = new CharSequence[list.size()];
             for (int i = 0; i < list.size(); i++) {
                 Friend f = list.get(i);
-                items[i] = (f.hosting ? "● " : "○ ") + f.name + "  -  " + f.status
-                        + (f.relay() ? "  (online friend)" : "  (" + f.ip + ")");
+                items[i] = (f.hosting ? "● " : "○ ") + f.name + "  -  " + (f.hosting ? "online" : "offline");
             }
             new AlertDialog.Builder(a).setTitle("Friends")
                     .setItems(items, new DialogInterface.OnClickListener() {
@@ -472,15 +475,22 @@ public final class EkFriends {
                             open(a);
                         }
                     })
-                    .setNeutralButton("Add friend", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface d, int w) {
-                            promptAdd(a);
-                        }
-                    })
                     .setNegativeButton("Close", null).show();
         } catch (Throwable e) {
             // ignore
         }
+    }
+
+    /** Save probe results for the shown (online) friends without dropping the hidden address entries. */
+    private static void saveMerged(android.app.Activity a, List<Friend> shown) {
+        List<Friend> all = load(a);
+        for (Friend f : shown) {
+            int i = indexOf(all, f.ip);
+            if (i >= 0) {
+                all.set(i, f);
+            }
+        }
+        save(a, all);
     }
 
     static void showFriend(final LanLobbyActivity a, final List<Friend> list, final int idx) {
@@ -489,7 +499,7 @@ public final class EkFriends {
         }
         final Friend f = list.get(idx);
         new AlertDialog.Builder(a).setTitle(f.name)
-                .setMessage((f.relay() ? "Online friend (room " + f.code() + ")" : f.ip + ":" + f.port) + "\n" + f.status)
+                .setMessage(f.hosting ? "Online now: their room is open." : "Offline: their room isn't open right now.")
                 .setPositiveButton("Join", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface d, int w) {
                         if (f.relay()) {
@@ -570,8 +580,13 @@ public final class EkFriends {
      * Found by type in LanLobbyActivity.buildContentView's root: TextView header, ListView (sessions),
      * TextView header, TextView (players).
      */
+    static final boolean LOBBY_REBUILT = true;
+
     public static android.view.View relayoutLobby(android.app.Activity a, android.view.View rootView) {
         lobby = new java.lang.ref.WeakReference<android.app.Activity>(a);
+        if (LOBBY_REBUILT) {
+            return EkLobby.build(a, rootView);
+        }
         try {
             if (!(rootView instanceof android.widget.LinearLayout)) {
                 return rootView;

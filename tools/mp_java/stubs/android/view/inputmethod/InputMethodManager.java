@@ -1,0 +1,1 @@
+package android.view.inputmethod; public class InputMethodManager { public boolean hideSoftInputFromWindow(android.os.IBinder t, int f) { return true; } public boolean showSoftInput(android.view.View v, int f) { return true; } }

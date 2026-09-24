@@ -254,6 +254,7 @@ public final class EkRelay {
         String secret = "";
         String hostName = "Player";
         volatile boolean stop;
+        volatile boolean online;                     // the relay confirmed the room at least once
         volatile EkWs ctrl;
 
         HostSession(String url, String code, String dev, int localPort, Status status) {
@@ -280,6 +281,7 @@ public final class EkRelay {
                         }
                         throw new IOException("closed " + ws.closeCode);
                     }
+                    online = true;
                     status.update("ONLINE " + code);
                     backoff = 2000;
                     startPinger(ws);
@@ -383,6 +385,21 @@ public final class EkRelay {
             if (ctrl != null) {
                 ctrl.close();
             }
+        }
+    }
+
+    /** v63 lobby status: the open room's code, or null. */
+    static String roomCode() {
+        HostSession h = hosting;
+        return h != null && !h.stop && h.online ? h.code : null;
+    }
+
+    /** v63: Leave, or hosting stopped (joining someone else, session closed): the online room closes too. */
+    static void closeRoom() {
+        HostSession h = hosting;
+        hosting = null;
+        if (h != null) {
+            h.shutdown();
         }
     }
 
@@ -516,7 +533,7 @@ public final class EkRelay {
                                 new AlertDialog.Builder(a).setTitle("You're online")
                                         .setMessage("Room code:\n\n        " + c + "\n\nFriends on any Wi-Fi or mobile"
                                                 + " data tap Join by code and type it. The code stays the same next"
-                                                + " time. Tap Host online again to close the room.")
+                                                + " time. Tap Host again to close the room.")
                                         .setPositiveButton("OK", null).show();
                             } catch (Throwable e) {
                                 // ignore
@@ -532,7 +549,7 @@ public final class EkRelay {
         Thread t = new Thread(hs, "ek-relay-host");
         t.setDaemon(true);
         t.start();
-        Toast.makeText(a, "Opening online room " + startCode + "...", 0).show();
+        Toast.makeText(a, "Opening your room...", 0).show();
     }
 
     /** "Join by code". */

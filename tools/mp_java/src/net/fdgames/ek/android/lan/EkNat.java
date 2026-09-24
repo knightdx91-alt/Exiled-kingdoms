@@ -58,6 +58,11 @@ public final class EkNat {
 
     /** Hooked at the start of LanSessionManager.startHosting. */
     public static void onHostStart() {
+        // v63: online play goes through the Cloudflare relay; the router is no longer asked to open a port
+        // (deobf/LOBBY_CLEANUP_SPEC.md). onHostStop still removes a mapping an older version left open.
+        if (!UPNP_ENABLED) {
+            return;
+        }
         if (busy || mappedPort != 0 || System.currentTimeMillis() - lastFail < 5 * 60 * 1000L) {
             return;
         }
@@ -83,7 +88,10 @@ public final class EkNat {
     }
 
     /** Hooked at the start of LanSessionManager.stopAll and joinHost. */
+    static final boolean UPNP_ENABLED = false;
+
     public static void onHostStop() {
+        EkRelay.closeRoom();
         WORKER.execute(new Runnable() {
             public void run() {
                 close();

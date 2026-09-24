@@ -1403,4 +1403,23 @@ edit_method('e/a/b/b', '<init>(Lcom/badlogic/gdx/e;Lnet/fdgames/TiledMap/Objects
 
 \1''', m, 'multiplexer stage add'), "GameScreen.<init>: EkStick in front of the HUD stage")
 
+# ---- B68 (v63): clean multiplayer page, no addresses anywhere (deobf/LOBBY_CLEANUP_SPEC.md) ----------------
+LOB = 'Lnet/fdgames/ek/android/lan/EkLobby;'
+for meth, fn in (('addSystemLineLocked(Ljava/lang/String;)V', 'systemLine'), ('toast(Ljava/lang/String;)V', 'toastText')):
+    edit_method(LSM, meth, lambda m, fn=fn, meth=meth: sub1(
+        r'^(\.method private ' + re.escape(meth) + r'\n    \.(?:registers|locals) \d+\n)',
+        r'\1' + '\n    invoke-static {p1}, ' + LOB + '->' + fn + '(Ljava/lang/String;)Ljava/lang/String;\n\n    move-result-object p1\n',
+        m, meth, re.M), f"LanSessionManager.{meth.split('(')[0]}: friendly text, no addresses")
+wrap_method(LSM, 'formatPlayerLineLocked(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Ljava/lang/String;',
+            'ekFormatPlayerLineOrig', True, f"""
+.method private formatPlayerLineLocked(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Ljava/lang/String;
+    .locals 0
+
+    invoke-static {{p1, p2}}, {LOB}->playerLine(Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager$PlayerState;)Ljava/lang/String;
+
+    move-result-object p1
+
+    return-object p1
+.end method""", "LanSessionManager.formatPlayerLineLocked: name, level, class, area name")
+
 print("DONE")

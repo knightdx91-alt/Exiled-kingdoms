@@ -145,7 +145,7 @@ public final class EkAuto {
                 public void run() {
                     try {
                         new AlertDialog.Builder(a).setTitle("Join request")
-                                .setMessage(who + (EkRelay.isLoopback(ip) ? " (online, by room code)" : " (" + ip + ")") + " wants to join your game.")
+                                .setMessage(who + (EkRelay.isLoopback(ip) ? " (by room code)" : " (same Wi-Fi)") + " wants to join your game.")
                                 .setCancelable(false)
                                 .setPositiveButton("Allow + add friend", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface d, int w) {

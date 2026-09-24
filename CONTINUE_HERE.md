@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v62.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v63.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v62.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v63.apk
 ```
+
+### v63 (2026-09-24) — clean multiplayer page, Cloudflare only; small in-game chat box
+
+Lobby rebuilt by `EkLobby` (Back, status, name, Host / Join by code / Friends / Leave, Trade / PvP, players, chat);
+no addresses anywhere (Join IP, Scan LAN, sessions list, diagnostics, My address, Add friend by address removed;
+system lines, toasts and player lines filtered). UPnP router opening off. Relay room closes on Leave / when hosting
+stops. In-game: bigger CHAT button; `EkChat` see-through panel (top-centre, 50 % × 40 %) replaces the full-screen
+dialog. `deobf/LOBBY_CLEANUP_SPEC.md`. dist: base + v63 + v62.
 
 ### v62 (2026-09-24) — no frozen player left behind on the old map
 

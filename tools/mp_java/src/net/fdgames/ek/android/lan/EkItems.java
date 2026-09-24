@@ -384,7 +384,7 @@ public final class EkItems {
             new java.util.concurrent.ConcurrentHashMap<String, Boolean>();      // host: reported by clients
     private static volatile boolean wasInSession;
 
-    private static android.app.Activity act() {
+    static android.app.Activity act() {
         Object o = Gdx.app;
         return o instanceof android.app.Activity ? (android.app.Activity) o : null;
     }

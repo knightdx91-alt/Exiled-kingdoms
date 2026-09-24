@@ -221,9 +221,15 @@ public final class EkMp {
                 chatBtn.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        LanGameBridge.openChat();
+                        EkChat.toggle();             // v63: small see-through box instead of the full-screen dialog
                     }
                 });
+                // v63 (owner: "the chat button needs to be bigger"): larger label, at least ~11 % of the HUD height
+                try {
+                    chatBtn.getLabel().setFontScale(1.5f);
+                } catch (Throwable e) {
+                    // stock size
+                }
                 stage.addActor(chatBtn);
                 chatStage = stage;
             }
@@ -237,7 +243,11 @@ public final class EkMp {
                 t = "CHAT!";
             }
             chatBtn.setText(t);
-            chatBtn.setPosition(stage.getWidth() - chatBtn.getWidth() - 10f, stage.getHeight() * 0.62f);
+            chatBtn.pack();
+            float bh = Math.max(chatBtn.getHeight(), stage.getHeight() * 0.11f);
+            float bw = Math.max(chatBtn.getWidth(), bh * 1.7f);
+            chatBtn.setSize(bw, bh);
+            chatBtn.setPosition(stage.getWidth() - bw - 10f, stage.getHeight() * 0.58f);
             chatBtn.toFront();
         } catch (Throwable e) {
             // ignore
