@@ -303,3 +303,15 @@ Nobody else changes: NPCs and guards stay out, monsters attack everyone as usual
 for me. APPROX: the 30 s memory and 5 s resend are ours.
 Tested offline: before any attack my summon vs Bob = false; after `EKAGGRO Bob→me` true (both orders); Bob's
 summon puppet vs Bob false; an attack on someone else doesn't make my summons fight.
+
+## v62 — a player who changes zone no longer stays frozen on the old map
+Owner's testers: "Player 2 was walking around in the other zone, but player 1 just saw them frozen in the previous
+zone" (it looked like one player had to wait for the other before changing maps; nobody was actually blocked:
+EK's exit check, `Player.M` → `m0.b.m(x,y)`, looks only at the local player).
+Cause (MP mod, `LanGameBridge.syncPeerActors`): every connected player's name went into the keep-set before
+`samePeerLocation(level, map, state)` was checked. Out-of-zone players are skipped for updates, and the removal
+pass only drops puppets whose player is *not* in the keep-set, i.e. who left the session. So a player who walked
+into another zone left a frozen puppet behind until they came back or disconnected.
+Fix: the `HashSet.add` moves after the location check (only same-zone players are kept); the existing removal pass
+then removes the puppet with its summon/companion/followers and cached state. Coming back into my zone recreates
+it (`getOrCreatePeerActor`).

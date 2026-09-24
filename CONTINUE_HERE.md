@@ -27,14 +27,21 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v61.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v62.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v61.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v62.apk
 ```
+
+### v62 (2026-09-24) — no frozen player left behind on the old map
+
+MP mod bug in `syncPeerActors`: every connected player went into the keep-set before the same-zone check, so a
+player who changed zone stayed on the old map, frozen (testers read it as "had to wait for the other to change
+maps"). The keep-set add now comes after `samePeerLocation`. `deobf/MULTIPLAYER_PORT_SPEC.md` §v62.
+dist: base + v62 + v61.
 
 ### v61 (2026-09-23) — back to where you left off in a friend's world
 

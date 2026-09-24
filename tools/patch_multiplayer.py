@@ -1022,6 +1022,19 @@ edit_method(LGB, 'getOrCreatePeerActor(Ljava/lang/String;Lnet/fdgames/ek/android
             lambda m: sub1(r'(    iput-object (v\d+), (v\d+), Lnet/fdgames/GameEntities/GameObject;->worldfactions:\[I\n+(?:    :\w+\n+)+)(    return-object \3\n)',
                            lambda g: g.group(1) + f'    invoke-static {{{g.group(3)}, p0}}, {IT}->pvpMarkActor(Lnet/fdgames/GameEntities/Final/NPC;Ljava/lang/String;)V\n\n' + g.group(4), m, 'peer faction mark'),
             "LanGameBridge.getOrCreatePeerActor: mark/unmark the PvP peer")
+# v62: a player who walks into another zone stayed on screen frozen where they left (owner's testers: "player 2
+# was walking around in the other zone, but player 1 saw them frozen in the previous zone"). syncPeerActors put
+# every connected player in its keep-set before checking samePeerLocation, so an out-of-zone puppet was neither
+# updated nor removed. Keep a puppet only when that player is in my zone; the existing removal pass does the rest.
+def _keep_same_zone(m):
+    new, k = re.subn(r'    invoke-virtual \{(v\d+), (v\d+)\}, Ljava/util/HashSet;->add\(Ljava/lang/Object;\)Z\n+'
+                     r'(    invoke-static \{[^}]*\}, Lnet/fdgames/ek/android/lan/LanGameBridge;->samePeerLocation\(Ljava/lang/String;Ljava/lang/String;Lnet/fdgames/ek/android/lan/LanSessionManager\$PlayerState;\)Z\n+'
+                     r'    move-result (v\d+)\n+    if-nez \4, :(cond_\w+)\n+(?:.*\n+)*?    :\5\n)',
+                     lambda g: g.group(3) + f'    invoke-virtual {{{g.group(1)}, {g.group(2)}}}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z\n\n', m, count=1)
+    assert k == 1, "keep-set anchor"
+    return new
+edit_method(LGB, 'syncPeerActors(Ljava/util/List;Ljava/lang/String;)V', _keep_same_zone,
+            "LanGameBridge.syncPeerActors: only players in my zone keep a puppet (no frozen ghosts)")
 # v59: joiner-side world NPC smoothing (EkSync): no local drift under the host's position, no health bounce.
 SY = 'Lnet/fdgames/ek/android/lan/EkSync;'
 edit_method(LGB, 'applyReceivedWorldNpcStatesV2(Lnet/fdgames/ek/android/lan/LanSessionManager;Ljava/lang/String;Ljava/lang/String;)V',
