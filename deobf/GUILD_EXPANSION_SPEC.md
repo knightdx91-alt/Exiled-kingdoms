@@ -113,3 +113,30 @@ Variables are prefixed `ekg_` (not `ek_`) so `EkShare.isCharVar` keeps them with
 with a `conditions` column; new rows are English), `quests/` (+`list.txt`), map objects (`shop_items`,
 `shop_modifier`). Java: `EkGuild.java`; smali: `patch_mp_features.py` appends `EkGuild.apply` to `u()V`.
 APPROX: new content (not EK's), logged in `DEOBFUSCATION_STATUS.md` §3.
+
+## 10. Story engine (v75)
+Owner: the quest lines need "actual meat". `tools/guild_story.py` compiles `tools/guild_story_data.py`:
+- **States**: journal quest `ekg_st_<g>` counts steps 1..N across chapters, each chapter followed by a "done" state;
+  100 = Guild Master. Chapter k is offered at the leader's node 720 when `ekg_st` = previous done state, level ≥ L,
+  contracts ≥ R (and `ekg_gm` = 0 for the master chapter). Promotions happen at the end of chapters marked
+  `promote` (5 per story; the last also takes the seat and revokes other memberships).
+- **Scenes**: a step's scene is injected at node 1 (above every other line) of the speaker's conversation, under
+  `ekg_st = step` + the step's `need` (`NPCIsDead#`, `PlayerHasItems#`, or `alt_need` alternatives); beats become
+  Q/A nodes from 800 up (free numbers per file). An option with go=None finishes the step.
+- **New characters**: map objects added to the objectgroup of existing spawns, at coordinates of existing objects
+  (walkable), with `conditions` = the story range they belong to. `static` = staticNPC (sprite/portrait); `talker`
+  = spawn with faction `neutral` + conversation + `unique_tag`, made hostile by `NPCHostile#<tag>` (EK's own
+  pattern; `ScriptedAction` case 26); `foe` = hostile spawn (`hostile` VariableLower#false,1, faction
+  bandits/enemy). `unique_tag` makes deaths count (`NPC.X` → `deadNPCs`) and stops respawns.
+- **Items**: quest items appended to `rules/items.txt` / `items_text.txt` (ids 9501+), type general, value -1.
+- **Migration**: a v74 save with rank r jumps to the done state of the chapter that grants rank r.
+- **Check**: `tools/guild_story_sim.py <data dir> <g> [runs]` plays the story with first/last/random choice policies
+  and fails on any dead end, missing speaker or NPCIsDead tag that no map defines.
+
+Warriors' Guild — "The Iron Oath" (8 chapters, 21 steps): Blood on the Road (Brann's patrol ambushed, Crimson
+scouts; → Soldier), Red Sashes (Toel, Lyse Corwen, Garrick the Knife; choice: protect / pay off / hand over Lyse),
+The Beast-Binder (Oreth: spare or kill; King Gurguth; → Veteran), The Giants' Price (Morg, Captain Sera Blackwell:
+fight or turn her; giant chief), Crown and Coin (courier Maddoc; Vane's letters: Magistrate or leverage; →
+Champion), Horns of the Underking (beastbinder + Underking; → Warmaster), The Crimson Company (Brann's past;
+Varrek Dunmore: duel, or surrender if Vane fell publicly), The Founders' Oath (blessings of Toel and Morg,
+Basrudaxul; ceremony reflects earlier choices; → Guild Master).

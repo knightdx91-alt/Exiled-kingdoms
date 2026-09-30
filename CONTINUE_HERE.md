@@ -27,14 +27,26 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v74.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v75.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v74.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v75.apk
 ```
+
+### v75 (2026-09-30) — Warriors' Guild story, "The Iron Oath"
+
+Owner: guild quest lines must have "actual meat", story and otherwise. New story engine (`tools/guild_story.py`,
+data `tools/guild_story_data.py`): chapters of multi-beat dialogue scenes at existing or **new** characters, new
+named enemies/ambushes placed on real maps (shown only for their story steps; talkers turn hostile via
+`NPCHostile#<tag>`), quest items, choices remembered in `ekg_c_<g>_*` and referenced later. Warriors: 8 chapters,
+21 steps, 4 new characters (Brann Holloway, Lyse Corwen, Oreth the Binder, Captain Sera Blackwell) + Varrek Dunmore
+and the Crimson Company, 5 choices with consequences (Lyse, Oreth, Sera, Vane's letters, Varrek's fate). Journal
+`ekg_st_warriors`; v74 saves continue from their rank. `tools/guild_story_sim.py` plays the arc with 60 choice
+policies on the built data (60/60 reach Guild Master). The other three guilds still use the v74 chapters (their
+stories next). dist: base + v75 + v74.
 
 ### v74 (2026-09-30) — guilds that matter
 
@@ -46,7 +58,7 @@ members' stock at 15% off, journal entries (standing + main quest). Data: `tools
 2d). Perks: `EkGuild.java` (reflection-added to the player's inventory recompute tail; `EkAuto.tick` refresh +
 Guild Master rule). `ekg_*` variables travel with the character in shared worlds. Spec
 `deobf/GUILD_EXPANSION_SPEC.md`; flows checked with a dialogue simulator (all 4 careers to Guild Master, seat
-exclusivity, oaths closed afterwards). dist: base + v74 + v73.
+exclusivity, oaths closed afterwards). dist (at the time): base + v74 + v73.
 
 ### v73 (2026-09-30) — the whole MP mod in English
 

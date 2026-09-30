@@ -28,7 +28,7 @@ XP = [500, 2000, 4500, 8000, 12500]
 
 GUILDS = {
     'warriors': dict(
-        name="Warriors' Guild", leader='NG_warriors_daukar', menu=60, menu_goto=63, lname='Sergeant',
+        name="Warriors' Guild", leader_name='Sergeant Daukar', leader='NG_warriors_daukar', menu=60, menu_goto=63, lname='Sergeant',
         titles=['Recruit', 'Soldier', 'Veteran', 'Champion', 'Warmaster', 'Guild Master'],
         stock_npc=('NG_warriors', 'NG_warriors_daukar'),
         stock='115,116,117,118,119,534,537,539,185,191,4021',
@@ -70,7 +70,7 @@ GUILDS = {
                  report="Basrudaxul is dead. By the founders' oath I stand aside: Guild Master, the Warriors' Guild is yours to lead."),
         ]),
     'seventh': dict(
-        name='Seventh House', leader='NG_sewers_kardagis', menu=60, lname='Sister',
+        name='Seventh House', leader_name='Sister Kardagis', leader='NG_sewers_kardagis', menu=60, lname='Sister',
         titles=['Associate', 'Operative', 'Shadow', 'Master Thief', 'Hand of the House', 'Master of the House'],
         stock_npc=('NG_sewers', 'NG_sewers_torja'),
         stock='146,147,406,407,409,410,611,730,5006',
@@ -113,7 +113,7 @@ GUILDS = {
                  report="The tribute is counted and the House bows. Master of the House, the sewers are yours."),
         ]),
     'wizards': dict(
-        name="Wizard's Guild", leader='IM_ilemma', menu=60, lname='High Mage',
+        name="Wizard's Guild", leader_name='High Mage Ilemma', leader='IM_ilemma', menu=60, lname='High Mage',
         titles=['Apprentice', 'Adept', 'Magus', 'Master Magus', 'Archmagus', 'Grand Magus'],
         stock_npc=('IM', 'IM_ilemma'),
         stock='381,382,387,388,392,325,341,3036,3038,460,4018',
@@ -155,7 +155,7 @@ GUILDS = {
                  report="The Flame Lord is gone, and the Council has voted. Grand Magus, the Guild is yours."),
         ]),
     'three': dict(
-        name='Church of the Three', leader='NI_hall_archbishop', menu=2, lname='Your Grace',
+        name='Church of the Three', leader_name='Archbishop Dilla', leader='NI_hall_archbishop', menu=2, lname='Your Grace',
         member_greet='[BLUE](The Archbishop looks up from her prayer and smiles)[] Welcome home, child of the Three.',
         titles=['Acolyte', 'Deacon', 'Priest', 'Templar', 'Exemplar', 'Hierophant'],
         stock_npc=('NI_hall', 'NI_hall_archbishop'),
@@ -195,6 +195,27 @@ GUILDS = {
                  report="The Void is sealed. Kneel, and rise Hierophant of the Church of the Three."),
         ]),
 }
+
+
+# ------------------------------------------------------------------------------------------------ v75 stories
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from guild_story import Story                      # noqa: E402
+from guild_story_data import STORIES               # noqa: E402
+STORY = {}
+for _g, _d in STORIES.items():
+    _d.setdefault('quest', GUILDS[_g]['quest'])
+    STORY[_g] = Story(_g, _d, None)
+
+
+def reward_actions(g, r, master=False):
+    G = GUILDS[g]
+    n = ORDER.index(g) + 1
+    act = ['SetVariable#ekg_rank_%s,%d' % (g, r), 'SetVariable#ekg_gq_%s,%d' % (g, 60 if r == 5 else 10 + 10 * r),
+           'GainItem#%d' % G['rewards'][r - 1], 'GainGold#%d' % GOLD[r - 1], 'GainXP#%d' % XP[r - 1]]
+    if master:
+        act.append('SetVariable#ekg_gm,%d' % n)
+        act += ['SetVariable#%s,0' % MEMBER[o] for o in ORDER if o != g]
+    return act
 
 
 # ------------------------------------------------------------------------------------------------ helpers
@@ -311,6 +332,11 @@ def leader_rows(g, G):
     else:
         rows.append(R(740, 'Q', 'Take a look. Members pay less, of course.', 0, '', 'OpenShop#'))
     # --- advancement (first matching Q row wins)
+    if g in STORY:
+        rows += STORY[g].hub(R, G, rk, rep, T)
+        for r in range(5):
+            rows.append(R(720, 'Q', "You are a %s of the %s." % (T[r], G['name']), 701, 'VariableEqual#%s,%d' % (rk, r)))
+        return leader_tail(g, G, rows)
     rows.append(R(720, 'Q', G['gm_text'], 701, 'VariableEqual#%s,5' % rk))
     for k, ch in enumerate(G['chapters'], 1):
         ready = ready_cond(g, k, ch)
@@ -344,6 +370,12 @@ def leader_rows(g, G):
     for r in range(5):
         rows.append(R(720, 'Q', "You are a %s of the %s. When you have fulfilled at least [BLUE]%d guild contracts[] and reached [BLUE]level %d[], come to me: I will have work worthy of a %s."
                       % (T[r], G['name'], R_NEED[r], L_NEED[r], T[r + 1]), 701, 'VariableEqual#%s,%d' % (rk, r)))
+    return leader_tail(g, G, rows)
+
+
+def leader_tail(g, G, rows):
+    T = G['titles']
+    mem, gq = 'ekg_mem_' + g, 'ekg_gq_' + g
     # first talk as a member: journal + perks start
     greet = R(1, 'Q', "Welcome, %s. As a sworn member of the %s you may now take on guild business: contracts, promotions and the members' stock. [BLUE](New: Guild business)[]"
               % (T[0], G['name']), G['menu'], 'VariableEqual#%s,1;VariableLower#%s,1' % (MEMBER[g], mem),
@@ -387,9 +419,12 @@ for g, G in GUILDS.items():
     for n, (lines, nl, bom) in conv_files(G['leader']):
         head = [h.strip() for h in lines[0].lstrip('﻿').split('\t')]
         ii = head.index('index')
-        assert not any(l.split('\t')[ii].strip().isdigit() and 698 <= int(l.split('\t')[ii]) < 760
+        assert not any(l.split('\t')[ii].strip().isdigit() and 698 <= int(l.split('\t')[ii]) < 800
                        for l in lines[1:] if l.strip()), n + ': node range 700-759 already used'
         insert_greet(lines, head, greet, MEMBER[g])
+        if g in STORY:                      # v74 saves that already hold a rank continue the story from it
+            for mr in STORY[g].migrate_rows(R, G, 'ekg_rank_' + g, G['menu'] if G.get('menu_goto') else 699, G['titles']):
+                insert_greet(lines, head, mr, MEMBER[g])
         if G.get('menu_goto'):              # reuse the leader's own (dead-end) answer instead of adding one
             gi, ci = head.index('Go To'), head.index('conditions')
             hit = [i for i, l in enumerate(lines[1:], 1) if l.split('\t')[ii].strip() == str(G['menu'])
@@ -421,7 +456,7 @@ for g, G in GUILDS.items():
         insert_rows(lines, head, rows, 'end')
         save_tsv(n, lines, nl, bom)
     # remote visits
-    for k, ch in enumerate(G['chapters'], 1):
+    for k, ch in enumerate([] if g in STORY else G['chapters'], 1):
         if 'visit' not in ch:
             continue
         mode, npc = ch['visit']
@@ -445,6 +480,105 @@ for g, G in GUILDS.items():
                                         'VariableEqual#guild_seventh,1;VariableGreater#ekg_rank_seventh,0')], ('after_a', 2))
             insert_rows(lines, head, [R(750, 'Q', 'Members only, and members pay less. Take a look.', 0, '', 'OpenShop#')], 'end')
             save_tsv(n, lines, nl, bom)
+
+# ------------------------------------------------------------------------------------------------ story scenes
+USED = {}
+
+
+def used_nodes(base):
+    if base not in USED:
+        u = set()
+        got = load_tsv('assets/data/conversations/%s.txt' % base)
+        if got:
+            head = [h.strip() for h in got[0][0].lstrip('\ufeff').split('\t')]
+            ii = head.index('index')
+            for l in got[0][1:]:
+                v = l.split('\t')[ii].strip().split(',')[0] if l.strip() else ''
+                if v.isdigit():
+                    u.add(int(v))
+        USED[base] = u
+    return USED[base]
+
+
+def alloc(base):
+    u = used_nodes(base)
+    n = 800
+    while n in u:
+        n += 1
+    u.add(n)
+    return n
+
+
+NEW_CONV_HEAD = ['index', 'type', 'text', 'text_ES', 'Go To', 'conditions', 'actions']
+for g, S in STORY.items():
+    S.compile(R, alloc, GUILDS[g], lambda r, master=False, g=g: reward_actions(g, r, master))
+    for base, idle in S.newfiles.items():
+        rows = [x for kind, x in S.rows.get(base, [])]
+        entry = [x for kind, x in S.rows.get(base, []) if kind == 'entry']
+        body = [x for kind, x in S.rows.get(base, []) if kind == 'body']
+        lines = ['\t'.join(NEW_CONV_HEAD)] + [row(NEW_CONV_HEAD, **x) for x in entry + idle + body]
+        write('assets/data/conversations/%s.txt' % base, '\r\n'.join(lines).encode('utf-8'))
+        STATS['rows'] += len(lines) - 1
+    for base, rws in S.rows.items():
+        if base in S.newfiles:
+            continue
+        done = 0
+        for n, (lines, nl, bom) in conv_files(base):
+            head = [h.strip() for h in lines[0].lstrip('\ufeff').split('\t')]
+            insert_rows(lines, head, [x for kind, x in rws if kind == 'entry'], ('top_q', 1))
+            insert_rows(lines, head, [x for kind, x in rws if kind == 'body'], 'end')
+            save_tsv(n, lines, nl, bom)
+            done += 1
+        assert done, 'story npc %s has no conversation' % base
+
+# new characters / ambushes on the maps
+for g, S in STORY.items():
+    for mp, objs in S.objects().items():
+        n = 'assets/data/tmx/%s.tmx' % mp
+        s = src_bytes(n).decode('utf-8')
+        gid = re.search(r'<object\b[^>]*type="(?:spawn|staticNPC)"[^>]*gid="(\d+)"', s).group(1)
+        ids = [int(x) for x in re.findall(r'<object id="(\d+)"', s)]
+        nxt = max(ids) + 1 if ids else None
+        m = re.search(r'<object\b[^>]*type="(?:spawn|staticNPC)"', s)
+        end = s.index('</objectgroup>', m.start())
+        ind = re.search(r'\n(\s*)<object\b[^>]*type="(?:spawn|staticNPC)"', s).group(1)
+        xml = ''
+        for typ, oid, (x, y), props in objs:
+            idattr = ''
+            if nxt is not None:
+                idattr = ' id="%d"' % nxt
+                nxt += 1
+            xml += '%s<object%s name="%s" type="%s" gid="%s" x="%d" y="%d">\n%s <properties>\n' % (ind, idattr, oid, typ, gid, x, y, ind)
+            for k2, v2 in sorted(props):
+                xml += '%s  <property name="%s" value="%s"/>\n' % (ind, k2, v2.replace('&', '&amp;').replace('"', '&quot;'))
+            xml += '%s </properties>\n%s</object>\n' % (ind, ind)
+            STATS['npcs'] = STATS.get('npcs', 0) + 1
+        pos = s.rindex('\n', 0, end) + 1
+        s = s[:pos] + xml + s[pos:]
+        write(n, s.encode('utf-8'))
+
+# quest items
+ITEM_ROWS = [it for S in STORY.values() for it in S.d.get('items', [])]
+if ITEM_ROWS:
+    for fn in ('items.txt', 'items_text.txt'):
+        n = 'assets/data/rules/' + fn
+        raw = src_bytes(n)
+        bom = raw.startswith(b'\xef\xbb\xbf')
+        text = raw[3 if bom else 0:].decode('utf-8', errors='surrogateescape')
+        nl = '\r\n' if '\r\n' in text else '\n'
+        lines = text.rstrip('\r\n').split(nl)
+        head = lines[0].split('\t')
+        have = {l.split('\t')[0].strip() for l in lines[1:]}
+        for iid, name, desc, icon in ITEM_ROWS:
+            assert str(iid) not in have, 'item id %d already used' % iid
+            if fn == 'items.txt':
+                r = [''] * len(head)
+                r[0], r[1], r[2], r[4], r[8], r[9], r[10], r[11] = str(iid), name, 'general', '0', '-1', icon, '0', '0'
+            else:
+                r = [str(iid)] + [name if i % 2 == 1 else desc for i in range(1, len(head))]
+            lines.append('\t'.join(r))
+            ITEM_VALUE[iid] = -1
+        write(n, (b'\xef\xbb\xbf' if bom else b'') + (nl.join(lines) + nl).encode('utf-8', errors='surrogateescape'))
 
 # one Guild Master seat: no oath (any guild, incl. the Church's "renounce" row) once ekg_gm is set
 OATH = re.compile(r'SetVariable#guild_(warriors|seventh|wizards|three),1')
@@ -492,6 +626,9 @@ for g, G in GUILDS.items():
     for r in range(5):
         st[90 + r] = 'Former %s of the %s. I left when I took another guild\'s seat; my rank\'s perks remain: %s.' % (T[r], G['name'], G['perks'][r])
     new_q.append(quest('ekg_gq_' + g, '%s: Standing' % G['name'], st))
+    if g in STORY:
+        new_q.append(quest('ekg_st_' + g, '%s: %s' % (G['name'], G['quest']), STORY[g].journal(G, T)))
+        continue
     st = {}
     for k, ch in enumerate(G['chapters'], 1):
         st[10 * k] = ch['j0']
@@ -530,6 +667,7 @@ for g, G in GUILDS.items():
 if ADDED:
     with open(LISTED_PATH, 'a') as fh:
         fh.write(''.join(a + '\n' for a in ADDED))
-print('guild expansion: %(files)d files written, %(rows)d rows added, %(oaths)d oath rows gated, %(quests)d journal quests, %(shops)d guild shops' % STATS)
-if STATS['shops'] < 4 or STATS['quests'] != 8 or STATS['oaths'] < 5:
+STATS.setdefault('npcs', 0)
+print('guild expansion: %(files)d files written, %(rows)d rows added, %(oaths)d oath rows gated, %(quests)d journal quests, %(shops)d guild shops, %(npcs)d story characters' % STATS)
+if STATS['shops'] < 4 or STATS['quests'] != 8 or STATS['oaths'] < 5 or STATS.get('npcs', 0) < len(STORY) * 5:
     sys.exit('guild expansion: incomplete (%s)' % STATS)
