@@ -213,3 +213,6 @@ and readable bodies — Track A).
 - **APPROX (v72) Hero joins every guild** — the Hero passes the one-oath rule (`PlayerHasGuild#`) and the Wizard's
   Guild / Church class gates, so it can take all four oaths and use every guild trainer. The oath text ("you won't be
   able to join other guilds") is unchanged. Data-only (`tools/hero_guilds.py`); `deobf/HERO_GUILDS_SPEC.md`.
+- **APPROX (v73) MP mod text translated** — the MP mod's Russian dialogue and quest journal are replaced with an
+  English translation made for this port (`tools/mp_en.tsv`, 7,069 strings); the mod had no English. Crude lines are
+  rendered faithfully but not graphically. Language folders keep the mod's Russian. `deobf/MP_ENGLISH_SPEC.md`.

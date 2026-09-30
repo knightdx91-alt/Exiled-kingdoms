@@ -1,4 +1,4 @@
-# MP mod dialogue in English — spec (v72)
+# MP mod dialogue in English — spec (v72, completed v73)
 
 Owner report: "Sir Irolio chat is broken" — his window shows only punctuation (`( ) . , ?`).
 
@@ -15,13 +15,18 @@ font used for English has no Cyrillic glyphs, so every Russian letter is dropped
   folders hold the same Russian).
 
 ## Change
-`tools/mp_english.py`, run right after the MP merge (build step 2b), on the top-level conversations of the merge:
-1. Russian row that exists in the official file (same index/type/Spanish) → official English line.
-2. Otherwise, exact match in `tools/mp_translations.tsv` (ru⇥en) → that translation. v72 ships the 16 lines the
-   three official NPCs need (so Irolio, the hunter and the Varannari hunters are fully English).
+`tools/mp_english.py`, run right after the MP merge (build step 2b), on every top-level `conversations` (`text`) and
+`quests` (`description`) file the merge put in the work dir:
+1. Russian row that exists in the official file (same keys + Spanish text) → official English line (27 rows).
+2. Otherwise → `tools/mp_en.tsv` (`id<TAB>English`, id = `sha1(trimmed Russian cell)[:10]`). v72 shipped the 16
+   lines of the three official NPCs; **v73 ships all 7,069 unique strings** (dialogue + quest journal), so the build
+   log reads `0 Russian lines left`.
 3. The mod's English collar lines "…on he" / "Take off he…" → "him" / "his".
-The build log prints how many Russian lines remain. Growing `mp_translations.tsv` translates the rest (the owner
-decides whether/when; it is ~7k lines).
+4. Any top-level data cell that is Latin text with ≤3 Cyrillic look-alike letters ("Leather Сloak") → Latin letters.
+
+Translation rules (v73): official EK names kept (items_text, bestiary_names, regions, factions, quest titles, place
+names such as Rhöneis, Sol-Laqueul, Icemist, Thelume); `[BLUE](…)[]` markup and `{LEVELxN}` placeholders kept
+verbatim; crude/sexual/slur-heavy lines rendered faithfully but not graphically (APPROX, DEOBFUSCATION_STATUS §3).
 
 ## Not changed
 Language-folder copies (`FR/`, `PT/`, … hold the same Russian; stock EK falls back to them only in that language),

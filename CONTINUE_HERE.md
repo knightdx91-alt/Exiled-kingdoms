@@ -27,14 +27,23 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v72.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v73.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v72.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v73.apk
 ```
+
+### v73 (2026-09-30) — the whole MP mod in English
+
+Owner: "translate the rest". Every Russian line of the MP mod's content (dialogue in its 588 conversations + the
+quest journal, 7,069 unique strings) now has an English line in `tools/mp_en.tsv` (id = sha1 of the Russian cell),
+applied by `tools/mp_english.py` in build step 2b; the build log reports **0 Russian lines left**. Official names are
+kept (items_text, bestiary, regions, EK place names). The mod's crude/sexual/slur-heavy lines are translated
+faithfully but not graphically (owner can ask to tone them down). `tools/mp_translations.tsv` replaced by
+`tools/mp_en.tsv`. `deobf/MP_ENGLISH_SPEC.md`. dist: base + v73 + v72. PC port (Option B) paused, not started in code.
 
 ### v72 (2026-09-30) — Hero can join every guild
 
@@ -42,7 +51,7 @@ Tester suggestion. The Hero skips the one-oath rule and the Wizard's Guild / Chu
 four guilds and learn every guild trainer's advanced skills. Data-only (`tools/hero_guilds.py`, build step 2c);
 `deobf/HERO_GUILDS_SPEC.md`. Also: Sir Irolio (and 2 other official NPCs the MP mod rewrote) showed only punctuation —
 the mod wrote dialogue in Russian into the English column. `tools/mp_english.py` restores official English and applies
-`tools/mp_translations.tsv`; 8,921 Russian lines remain in the mod's own 588 conversations (`deobf/MP_ENGLISH_SPEC.md`). dist: base + v72 + v71. (PC port in progress: see `deobf/PC_PORT_SPEC.md` once written.)
+`tools/mp_translations.tsv`; 8,921 Russian lines remain in the mod's own 588 conversations (`deobf/MP_ENGLISH_SPEC.md`). dist (at the time): base + v72 + v71.
 
 ### v71 (2026-09-24) — movable CHAT button
 
