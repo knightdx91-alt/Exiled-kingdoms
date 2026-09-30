@@ -155,3 +155,26 @@ the smuggler hideout, G8_hideout; → Hand of the House), The Long Game (Magiste
 fight, or exile him if Wren was turned or Brand walked away), The Seventh Seat (Kardagis is the Seventh; blessings
 of Torja and Arkados; the White King, IM_white_king; ceremony reflects Wren/Maribel; → Master of the House).
 Choice variables `ekg_c_seventh_{anselm,wren,brand,maribel,hale}`. Items 9511 Gilded Token, 9512 Hale's Letters.
+
+Wizard's Guild — "Echoes of the Council" (8 chapters, 20 steps; v77). Sources: `IM_ilemma` (her agelessness:
+"much older than she appears"), `D9_tower_aglaron`, `E11_tower_arabelle`, the four Enclaves (`E11_wizard`,
+`G8_tower`), Icemist's unexplored depths (`IM_torden`), `IM_sewer`, `IM_underlevel`, `IM_planeoffire`. Chapters: The
+Hollow Apprentice (Neris Vale drained of her gift, Hollow Shades outside the Inori Enclave; → Adept), Cold Iron
+(Aglaron; renegade necromancer D9_crypt_necro; ledger names 'the Keeper'), The Keeper (Magus Orrin Castellane lies
+about the Mausoleum lich; Arabelle's records; tell Ilemma now or keep watching; → Magus), Echoes Below (Tobin Marsh
+under the Sewer of Horrors lich; Resonance Shard; the Crown of Echoes; Ilemma's confession), The Keeper of the Vault
+(Iselde Rook: turn her with the shard or fight; → Master Magus), The Flame Lord (IM_lord_flame; → Archmagus), The
+Crown of Echoes (Orrin in the Underlevels: fight, or he frees the gifts if Iselde was turned; Crown broken or
+sealed), The Grand Chair (Aglaron, Arabelle, Pit Lord IM_lord_pit; → Grand Magus). Choices
+`ekg_c_wizards_{told,iselde,orrin,crown}`; items 9521-9523.
+
+Church of the Three — "The Long Vigil" (8 chapters, 21 steps; v77). Sources: `NI_hall_archbishop` (Duremas, the
+burned *Oppalan Frontier* with its pre-Three priests, the Archbishop's unease), `altar_the_three` (Arbenos, Thelume,
+Nivaria), `G9_priest` (Sister Arta), lich_G7, lich_H7 (Thelume's shrine), D11_abbey / D11_greater_demon, C13_lord.
+Chapters: The Empty Ossuary (Brother Tamsin; Bonepickers at the Iron Valley graveyard; Saint Aldwen; Pale Token;
+→ Deacon), The Risen of Irazur (Arta; lich_G7; Ada Fenn: comfort her or hand her to the Inquisition), The
+Inquisitor (Hesper Crowe: side with fire or mercy; lich_H7; Mord's journal; → Priest), The Pale Flock (Sorrel the
+Bone-Caller: fight, or her flock goes home if Ada did), The Hellish Cave (greater demon; → Templar), The Burned Book
+(the Archbishop's confession; stop Crowe burning a village: fight, or she stands down if you argued for mercy; →
+Exemplar), The Pale Shepherd (Corvane Mord: fight, or he repents), The Long Vigil (Arta, Tamsin, the Void Lord; →
+Hierophant). Choices `ekg_c_three_{ada,crowe,sorrel,crowefate,mord}`; items 9531-9532.

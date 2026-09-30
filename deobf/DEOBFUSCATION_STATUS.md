@@ -220,7 +220,7 @@ and readable bodies — Track A).
   memberships revoked, perks kept), passive rank perks and members' stock are new content, not EK's. Guild progress
   (`ekg_*`) is character state in shared worlds; membership flags (`guild_*`) stay world state as in EK.
   `deobf/GUILD_EXPANSION_SPEC.md`.
-- **APPROX (v75-v76) Guild story lines** — the Warriors' Guild ("The Iron Oath", v75) and Seventh House ("The Long
-  Game", v76) main quest lines are new stories with new characters, enemies, quest items and choices, placed on EK's
-  own maps and built around EK's own lore (the Golden Hand, the Golden Cove Bank, the unseen boss). They replace the
-  v74 chapter lists of those guilds. `deobf/GUILD_EXPANSION_SPEC.md` §10.
+- **APPROX (v75-v77) Guild story lines** — the Warriors' Guild ("The Iron Oath", v75), Seventh House ("The Long
+  Game", v76), Wizard's Guild ("Echoes of the Council") and Church ("The Long Vigil", v77) main quest lines are new stories with new characters, enemies, quest items and choices, placed on EK's
+  own maps and built around EK's own lore (the Golden Hand, the unseen boss, Ilemma's agelessness, the burned Oppalan Frontier). They replace the
+  v74 chapter lists. `deobf/GUILD_EXPANSION_SPEC.md` §10.

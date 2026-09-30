@@ -27,14 +27,24 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v76.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v77.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v76.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v77.apk
 ```
+
+### v77 (2026-09-30) — Wizard's Guild and Church stories; all four guilds now have full story lines
+
+Wizard's Guild "Echoes of the Council" (8 chapters, 20 steps): Neris Vale's stolen gift, Aglaron, the Keeper Orrin
+Castellane, Tobin Marsh under the Sewer of Horrors, Iselde Rook, the Flame Lord, the Crown of Echoes (Orrin fights
+or frees the gifts; Crown broken or sealed), Ilemma's confession, Pit Lord finale. Church of the Three "The Long
+Vigil" (8 chapters, 21 steps): Brother Tamsin and Saint Aldwen's bones, Sister Arta, Ada Fenn, Inquisitor Hesper
+Crowe, Sorrel the Bone-Caller, the Hellish Cave demon, the Archbishop's confession about the burned Oppalan
+Frontier, Corvane Mord the Pale Shepherd (fight or repentance), Void Lord finale. Sim: all four guilds 60/60 reach
+Guild Master. No guild uses the v74 chapter lists any more. dist: base + v77 + v76.
 
 ### v76 (2026-09-30) — Seventh House story, "The Long Game"
 
