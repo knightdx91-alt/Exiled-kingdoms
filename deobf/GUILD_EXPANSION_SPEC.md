@@ -140,3 +140,18 @@ fight or turn her; giant chief), Crown and Coin (courier Maddoc; Vane's letters:
 Champion), Horns of the Underking (beastbinder + Underking; → Warmaster), The Crimson Company (Brann's past;
 Varrek Dunmore: duel, or surrender if Vane fell publicly), The Founders' Oath (blessings of Toel and Morg,
 Basrudaxul; ceremony reflects earlier choices; → Guild Master).
+
+Seventh House — "The Long Game" (8 chapters, 23 steps; v76). Sources: Kardagis/Torja/Arkados conversations
+(`NG_sewers_kardagis`, `NG_sewers_torja`, `FT_seventh_arkados`), the Golden Hand of the Grey Library
+(`FT_library`, `FT_library_guardian`, lost_good_book), the Golden Cove Bank (`H6_bank`, `H6_vault_door` colours
+red-blue-green-blue-yellow, `H6_director`), and EK's own hints that "the boss" is a woman ("the boss is in, if you
+need to see her"). Chapters: Loose Lips (Torja; runner Pell hunted by Gilded Blades east of Kingsbridge, G9; Golden
+Hand token; → Operative), The Gilded Ledger (Arkados; clerk Anselm Tully in the Grey Library: bribe / threaten /
+silence; Hale's letters), The Rat (fence Silas Wren sold the weekly password: turn him / Torja's judgement / kill;
+→ Shadow), The Thief-Taker (Captain Odran Brand at the Iron Valley signpost, D9: fight, or show him Hale's letters
+and he tears up the writ), The Golden Cove Job (Maribel Oste outside the bank in Friguld: full share on the House's
+word / 500 gold now; kill H6_director; → Master Thief), Blood Price (Pell kidnapped; Sable and the Gilded Knives in
+the smuggler hideout, G8_hideout; → Hand of the House), The Long Game (Magister Corvin Hale in the Grey Library:
+fight, or exile him if Wren was turned or Brand walked away), The Seventh Seat (Kardagis is the Seventh; blessings
+of Torja and Arkados; the White King, IM_white_king; ceremony reflects Wren/Maribel; → Master of the House).
+Choice variables `ekg_c_seventh_{anselm,wren,brand,maribel,hale}`. Items 9511 Gilded Token, 9512 Hale's Letters.

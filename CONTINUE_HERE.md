@@ -27,14 +27,25 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v75.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v76.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v75.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v76.apk
 ```
+
+### v76 (2026-09-30) — Seventh House story, "The Long Game"
+
+Same engine as v75. Seventh House: 8 chapters, 23 steps, built on EK's own lore (the Golden Hand of the Grey
+Library, the Golden Cove Bank and its demon director, "the boss" nobody sees). New characters: the runner Pell,
+the clerk Anselm Tully, the fence Silas Wren, the thief-taker Captain Odran Brand, the dismissed bank clerk Maribel
+Oste, the kidnapper Sable, and the antagonist Magister Corvin Hale; the finale reveals Kardagis is "the Seventh"
+and ends at the White King's hoard. Choices: Anselm (bribe/threaten/silence), Wren (turn/Torja's judgement/kill),
+Brand (fight or show him Hale's letters), Maribel (share/pay now), Hale (fight, or exile him if Wren was turned or
+Brand walked away). Items 9511-9512. Sim: 60/60 reach Master of the House (Warriors still 30/30). Wizards and
+Church stories next. dist: base + v76 + v75.
 
 ### v75 (2026-09-30) — Warriors' Guild story, "The Iron Oath"
 
