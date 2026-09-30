@@ -50,6 +50,12 @@ unzip -o -q "$BASE" \
 if [ -n "${EK_MP_APK:-}" ]; then
   echo "== 2b. merge the MP content pack =="
   python3 "$REPO/tools/merge_mp_content.py" "$BASE" "$(realpath "$EK_MP_APK")" "$WORK"
+  # the mod's Russian-only dialogue: official English back + translations (deobf/MP_ENGLISH_SPEC.md)
+  python3 "$REPO/tools/mp_english.py" "$BASE" "$WORK"
+fi
+# 2c. Hero may join every guild (deobf/HERO_GUILDS_SPEC.md); adds its files to mp_merged.txt
+if [ -z "${EK_SKIP_HERO:-}" ]; then
+  python3 "$REPO/tools/hero_guilds.py" "$BASE" "$WORK"
 fi
 
 echo "== 3. apply patches =="

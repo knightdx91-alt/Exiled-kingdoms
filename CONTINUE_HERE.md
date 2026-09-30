@@ -27,14 +27,22 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v71.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v72.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v71.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v72.apk
 ```
+
+### v72 (2026-09-30) — Hero can join every guild
+
+Tester suggestion. The Hero skips the one-oath rule and the Wizard's Guild / Church class checks, so it can join all
+four guilds and learn every guild trainer's advanced skills. Data-only (`tools/hero_guilds.py`, build step 2c);
+`deobf/HERO_GUILDS_SPEC.md`. Also: Sir Irolio (and 2 other official NPCs the MP mod rewrote) showed only punctuation —
+the mod wrote dialogue in Russian into the English column. `tools/mp_english.py` restores official English and applies
+`tools/mp_translations.tsv`; 8,921 Russian lines remain in the mod's own 588 conversations (`deobf/MP_ENGLISH_SPEC.md`). dist: base + v72 + v71. (PC port in progress: see `deobf/PC_PORT_SPEC.md` once written.)
 
 ### v71 (2026-09-24) — movable CHAT button
 

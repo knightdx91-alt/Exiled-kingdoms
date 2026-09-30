@@ -210,3 +210,6 @@ and readable bodies — Track A).
 - **v70 Upgrade preview one line** — the MP mod's item preview listed level + price + two gems (4 lines) and pushed
   the CharacterWindow's EQUIP/DROP row (same table, next row) off screen; now "Upgrade: +L/10", the price moved to a
   confirmation dialog on UPGRADE (`EkFeat.askUpgrade`).
+- **APPROX (v72) Hero joins every guild** — the Hero passes the one-oath rule (`PlayerHasGuild#`) and the Wizard's
+  Guild / Church class gates, so it can take all four oaths and use every guild trainer. The oath text ("you won't be
+  able to join other guilds") is unchanged. Data-only (`tools/hero_guilds.py`); `deobf/HERO_GUILDS_SPEC.md`.
