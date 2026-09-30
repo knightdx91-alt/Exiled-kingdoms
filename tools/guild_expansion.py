@@ -19,7 +19,8 @@ LISTED = set(open(LISTED_PATH).read().split()) if os.path.exists(LISTED_PATH) el
 ADDED = []
 STATS = dict(files=0, rows=0, oaths=0, quests=0, shops=0)
 
-ORDER = ['warriors', 'seventh', 'wizards', 'three']       # ekg_gm numbering 1..4
+ORDER = ['warriors', 'seventh', 'wizards', 'three', 'loreseekers', 'golden']   # ekg_gm numbering 1..6
+# guild_loreseekers / guild_golden are EK's own (Condition.PlayerHasGuild checks them), never given a join path in 4.2.2
 MEMBER = {g: 'guild_' + g for g in ORDER}
 R_NEED = [2, 4, 7, 10, 14]                                # contracts before chapter k (1..5)
 L_NEED = [8, 12, 15, 18, 21]                              # level before chapter k
@@ -194,6 +195,42 @@ GUILDS = {
                  remind="The Void Lord, in the Forbidden Pit.",
                  report="The Void is sealed. Kneel, and rise Hierophant of the Church of the Three."),
         ]),
+    'loreseekers': dict(
+        name='Loreseekers', leader_name='Master Librarian Rurazar', leader='NG_library_librarian', menu=5, lname='Master',
+        member_greet='[BLUE](The Master Librarian looks up from his reading, and for once does not frown)[] Ah. A fellow seeker.',
+        join=dict(node=5, rep='REP_loreseekers', rep_min=10, bond=1500, ask='I wish to join the Loreseekers.',
+                  explain="The Loreseekers serve the King by recovering what the Empire knew and the Exile lost. We take few: those our order already counts as friends [BLUE](Friendly reputation with the Loreseekers)[], or patrons whose gold keeps these halls lit [BLUE](a bond of 1500 gold)[]. A member swears the [BLUE]Loyalty Oath[] like any guild's. It binds for life, and you won't be able to join any other guild.",
+                  welcome="Then welcome, Initiate. Knowledge is a debt we owe the dead; now you owe it too. Come to me when you want work."),
+        titles=['Initiate', 'Scribe', 'Archivist', 'Loreseeker', 'Loremaster', 'Master Librarian'],
+        stock_npc=('NG_loreseekers', 'NG_library_librarian'),
+        stock='6001,6002,6003,6004,6010,6011,5013,5020,5021,5025',
+        perks=['+1 HP, +2 mana, +1 detection'] * 3 + ['+1 HP, +2 mana, +1 detection, +1 Intellect'] * 2
+              + ['+1 HP, +2 mana, +1 detection, +1 Intellect, +1 Awareness (Master Librarian)'],
+        contracts=[(1022, 2, "Muud'ari Energy Cells"), (1018, 1, 'Vorator Egg'), (1025, 1, 'Demonic Wolf Skull')],
+        contract_intro="Our scholars study what the rest of the Kingdoms kill and throw away. The order pays for [BLUE]2 Muud'ari Energy Cells[] from the old ruins, a [BLUE]Vorator Egg[] or a [BLUE]Demonic Wolf Skull[]. Bring them intact.",
+        quest='The Last Codex',
+        rewards=[3014, 3023, 3027, 4502, 3018],
+        gm_text="The Great Library is yours, Master Librarian. Try to leave it better catalogued than I did.",
+        chapters=[]),
+    'golden': dict(
+        name='Golden Hand', leader_name='the Guardian of the Grey Library', leader='FT_library_guardian', menu=2, lname='Guardian',
+        member_greet='[BLUE](The Guardian inclines his head)[] Partner. The Hand opens for you.',
+        greet_before='VariableEqual#FT_access_library,1',
+        join=dict(node=2, rep='REP_goldenhand', rep_min=3, bond=2500, ask='I want to become a partner of the Golden Hand.',
+                  explain="The Golden Hand is the greatest trading guild in the Kingdoms, and a partnership in it is worth more than a title. We admit those our records show have served our interests [BLUE](reputation 3 or more with the Golden Hand)[], or who buy in with a partner's bond [BLUE](2500 gold)[]. Partners swear the [BLUE]Loyalty Oath[] like any guild. It binds for life, and you won't be able to join any other guild.",
+                  welcome="Signed, sealed and entered in the ledger. Welcome, Clerk. The left hall is open to you now, and so is our business.",
+                  extra='SetVariable#FT_access_library,1'),
+        titles=['Clerk', 'Factor', 'Broker', 'Consul', 'Magnate', 'Master of the Hand'],
+        stock_npc=('FT_library', 'FT_library_guardian'),
+        stock='2001,2002,2003,2004,3002,3009,3010,3011,5001,5003,5016',
+        perks=['+2 HP, +1 armor'] * 3 + ['+2 HP, +1 armor, +1 Personality'] * 2
+              + ['+2 HP, +1 armor, +1 Personality, +1 Agility (Master of the Hand)'],
+        contracts=[(2015, 1, 'Pearl'), (2013, 1, 'Ruby'), (2014, 1, 'Sapphire')],
+        contract_intro="The Hand's buyers in Freetown pay above any merchant for fine stones. Bring a [BLUE]Pearl[], a [BLUE]Ruby[] or a [BLUE]Sapphire[] and the Hand buys it at a partner's premium.",
+        quest='The Gilded Oath',
+        rewards=[3029, 3019, 3020, 7010, 7002],
+        gm_text="Every ledger of the Golden Hand closes at your desk now, Master of the Hand.",
+        chapters=[]),
 }
 
 
@@ -275,7 +312,8 @@ def conv_files(base):
 
 
 def insert_rows(lines, head, rows, where):
-    """where: ('top_q', idx) before the first Q row of idx; ('after_a', idx) after the last A row of idx; 'end'."""
+    """where: ('top_q', idx) before the first Q row of idx; ('after_a', idx) after the last A row of idx;
+    ('first_a', idx) before its first A row (EK shows only the first 4 matching answers); 'end'."""
     out = [row(head, **r) for r in rows]
     ii = head.index('index')
     ti = head.index('type')
@@ -288,12 +326,12 @@ def insert_rows(lines, head, rows, where):
                 if len(l.split('\t')) > ti and l.split('\t')[ii].strip() == str(idx)
                 and l.split('\t')[ti].strip() == ('Q' if kind == 'top_q' else 'A')]
         assert hits, 'anchor %s %s not found' % (kind, idx)
-        pos = hits[0] if kind == 'top_q' else hits[-1] + 1
+        pos = hits[0] if kind in ('top_q', 'first_a') else hits[-1] + 1
     lines[pos:pos] = out
     STATS['rows'] += len(out)
 
 
-def insert_greet(lines, head, greet, member_var):
+def insert_greet(lines, head, greet, member_var, before=None):
     """Just before the leader's own member greeting (else before the default node-1 line): keeps the MP
     mod's follower/companion lines, which sit above it, working."""
     ii, ti, ci = head.index('index'), head.index('type'), head.index('conditions')
@@ -302,7 +340,8 @@ def insert_greet(lines, head, greet, member_var):
     assert q1, 'no node 1'
     mem = [i for i in q1 if member_var in lines[i].split('\t')[ci]]
     dflt = [i for i in q1 if lines[i].split('\t')[ci].strip() == '']
-    pos = (mem or dflt or q1)[0]
+    first = [i for i in q1 if before and before in lines[i].split('\t')[ci]]
+    pos = (first or mem or dflt or q1)[0]
     lines[pos:pos] = [row(head, **greet)]
     STATS['rows'] += 1
 
@@ -384,6 +423,24 @@ def leader_tail(g, G, rows):
     return greet, menu, rows
 
 
+def join_rows(g, G):
+    """New guilds (EK's own guild_loreseekers / guild_golden): the oath, gated like EK's four."""
+    J, m = G['join'], MEMBER[g]
+    oath = 'SetVariable#%s,1;IncVariable#%s,5' % (m, J['rep']) + (';' + J['extra'] if J.get('extra') else '')
+    tag = ' [BLUE](Take the Oath and become a member of the %s)[] [RED](NOTE: This decision has no way back!)[]' % G['name']
+    return [R(790, 'Q', 'You already lead another guild. A Guild Master serves one guild alone; I cannot take your oath.', 0,
+              'VariableGreater#ekg_gm,0'),
+            R(790, 'Q', 'I am afraid you are already loyal to another guild. A Loyalty Oath can only be taken once, in a lifetime.', 0,
+              'PlayerHasGuild#;PlayerIsntClass#warrior'),
+            R(790, 'Q', J['explain'], 791),
+            R(791, 'A', 'Very well.' + tag, 792, 'VariableGreater#%s,%d;VariableLower#ekg_gm,1' % (J['rep'], J['rep_min'] - 1), oath),
+            R(791, 'A', '[BLUE](Pay the %d gold bond)[]' % J['bond'] + tag, 792,
+              'VariableLower#%s,%d;PlayerHasGold#%d;VariableLower#ekg_gm,1' % (J['rep'], J['rep_min'], J['bond']),
+              'LoseGold#%d;' % J['bond'] + oath),
+            R(791, 'A', "I'll have to think about it.", 0),
+            R(792, 'Q', J['welcome'], 0)]
+
+
 def ready_cond(g, k, ch):
     mq = 'ekg_mq_' + g
     visit = ch.get('visit')
@@ -421,7 +478,11 @@ for g, G in GUILDS.items():
         ii = head.index('index')
         assert not any(l.split('\t')[ii].strip().isdigit() and 698 <= int(l.split('\t')[ii]) < 800
                        for l in lines[1:] if l.strip()), n + ': node range 700-759 already used'
-        insert_greet(lines, head, greet, MEMBER[g])
+        insert_greet(lines, head, greet, MEMBER[g], G.get('greet_before'))
+        if G.get('join'):
+            insert_rows(lines, head, join_rows(g, G), 'end')
+            insert_rows(lines, head, [R(G['join']['node'], 'A', G['join']['ask'], 790, 'VariableLower#%s,1' % MEMBER[g])],
+                        ('first_a', G['join']['node']))
         if g in STORY:                      # v74 saves that already hold a rank continue the story from it
             for mr in STORY[g].migrate_rows(R, G, 'ekg_rank_' + g, G['menu'] if G.get('menu_goto') else 699, G['titles']):
                 insert_greet(lines, head, mr, MEMBER[g])
@@ -581,7 +642,7 @@ if ITEM_ROWS:
         write(n, (b'\xef\xbb\xbf' if bom else b'') + (nl.join(lines) + nl).encode('utf-8', errors='surrogateescape'))
 
 # one Guild Master seat: no oath (any guild, incl. the Church's "renounce" row) once ekg_gm is set
-OATH = re.compile(r'SetVariable#guild_(warriors|seventh|wizards|three),1')
+OATH = re.compile(r'SetVariable#guild_(warriors|seventh|wizards|three|loreseekers|golden),1')
 conv_names = sorted({n for n in NAMES if n.startswith('assets/data/conversations/') and n.endswith('.txt')}
                     | {n for n in LISTED if n.startswith('assets/data/conversations/') and n.endswith('.txt')})
 for n in conv_names:
@@ -669,5 +730,5 @@ if ADDED:
         fh.write(''.join(a + '\n' for a in ADDED))
 STATS.setdefault('npcs', 0)
 print('guild expansion: %(files)d files written, %(rows)d rows added, %(oaths)d oath rows gated, %(quests)d journal quests, %(shops)d guild shops, %(npcs)d story characters' % STATS)
-if STATS['shops'] < 4 or STATS['quests'] != 8 or STATS['oaths'] < 5 or STATS.get('npcs', 0) < len(STORY) * 5:
+if STATS['shops'] < len(GUILDS) or STATS['quests'] != 2 * len(GUILDS) or STATS['oaths'] < 5 or STATS.get('npcs', 0) < len(STORY) * 5:
     sys.exit('guild expansion: incomplete (%s)' % STATS)

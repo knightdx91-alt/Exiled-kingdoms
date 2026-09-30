@@ -178,3 +178,44 @@ Bone-Caller: fight, or her flock goes home if Ada did), The Hellish Cave (greate
 (the Archbishop's confession; stop Crowe burning a village: fight, or she stands down if you argued for mercy; →
 Exemplar), The Pale Shepherd (Corvane Mord: fight, or he repents), The Long Vigil (Arta, Tamsin, the Void Lord; →
 Hierophant). Choices `ekg_c_three_{ada,crowe,sorrel,crowefate,mord}`; items 9531-9532.
+
+## 11. Two more guilds: Loreseekers and Golden Hand (v78)
+Source: `Condition.java` case 35 (`PlayerHasGuild`) already tests **six** variables: guild_seventh, guild_warriors,
+**guild_golden**, **guild_loreseekers**, guild_wizards, guild_three. EK 4.2.2 never sets the two middle ones (no join
+path), so the developer planned them. v78 uses exactly those variables, so the one-oath rule (non-Hero classes)
+covers them natively; ORDER grows to 6 (`ekg_gm` 5 = Loreseekers, 6 = Golden Hand) and the Guild Master seat
+revokes all five other memberships (EkGuild.tick loops over all six).
+
+Join (new, `join_rows`): an answer at the top of the leader's usual menu (first A row; EK shows only 4) opens node 790:
+refused if `ekg_gm` > 0 or `PlayerHasGuild#;PlayerIsntClass#warrior`; else the oath needs Friendly standing
+(REP_loreseekers ≥ 10, the Librarian's own "friend of our order" bar; REP_goldenhand ≥ 3, the Guardian's "records show
+you've helped" bar) or a bond (1500 / 2500 gold). Taking it sets guild_X=1 and +5 reputation (Golden Hand also sets
+FT_access_library=1). Everything after that (welcome row, 699 two-step menu, hub 700+, contracts, stock, journal,
+story) is the same machinery as the four EK guilds.
+
+| | Loreseekers | Golden Hand |
+|---|---|---|
+| Leader | Master Librarian Rurazar (`NG_library_librarian`, Great Library, New Garand) | the Guardian (`FT_library_guardian`, Grey Library, Freetown) |
+| Ranks | Initiate, Scribe, Archivist, Loreseeker, Loremaster, Master Librarian | Clerk, Factor, Broker, Consul, Magnate, Master of the Hand |
+| Contracts | 2 Muud'ari Energy Cells, Vorator Egg, Demonic Wolf Skull | Pearl, Ruby, Sapphire |
+| Perks per tier | +1 HP, +2 mana, +1 detection; Intellect at tier 4; Awareness as GM | +2 HP, +½ armor; Personality at tier 4; Agility as GM |
+| Stock (0.85) | scrolls, tomes, mana potions | gems, rings, healing/shield potions |
+
+Loreseekers — "The Last Codex" (8 chapters, 22 steps). Built on EK's Loreseeker lore (`H4_explorer`: an Imperial
+Loreseeker studied one subject for decades, wrote a Codex, then became a Loremaster; Tangir's Lost Coven and Jorgus the
+Red, master of earth elementals; Tremadan of Myros). New cast: Sabine Holt (Scribe), Loremaster Evander Quill. The Cut
+Page (page-cutters in the farmlands; → Scribe), The Earthen Door (Jorgus's Abandoned Tower, g11 guardians), Loremaster
+Quill (Lannegar's dead city, H10_undead_lady; give him the folio or not; → Archivist), The Cave of Echoes (E12 golem;
+Quill's hirelings), The Deep City (H10_lich; the Witch Queens of Orogg; → Loreseeker), The Maze of Lamth (zombie
+dragon; → Loremaster), The Reader (Quill in the Witch Queens' cave: fight, or he yields if you trusted him; publish /
+seal / burn the Codex), The Master's Chair (Tangir, Gebadi, the three Witch Queens; → Master Librarian).
+
+Golden Hand — "The Gilded Oath" (8 chapters, 22 steps). Built on EK's Golden Hand lore (`FT_library_guardian`: King
+Danar II gave them the Grey Library; the founder's sword taken from a vampire-hunter, from the MP content). New cast:
+Lisbet Marrow, Old Nandor, Pim Ashgrove, Consul Aurel Vesk. Bad Debts (Mudrats on the Iron Valley road; → Factor),
+Cooked Books (Pim in Friguld: bribe or threaten; the Salt Road), The Consul (Primzar was Vesk's own man; report openly
+or keep it; → Broker), The Dragon's Tithe (Urcrymdrax; the Salt Road manifest), Hostile Takeover (Lisbet framed; Gilded
+Knives in the Jabal Hills; Vesk's seal; → Consul), Dawnbrand (the founder's sword in the white dragon's hoard; →
+Magnate), The Final Audit (Vesk: fight, expose him, or take his 20,000-crown bribe and expose him anyway), The
+Northern Charter (Lisbet, Nandor, the Ice Elemental Lord; → Master of the Hand).
+Items 9551-9552, 9541-9544. Sim: all six guilds 60/60.

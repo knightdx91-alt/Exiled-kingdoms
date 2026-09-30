@@ -1374,4 +1374,583 @@ THREE = dict(
              ]),
     ])
 
-STORIES = {'warriors': WARRIORS, 'seventh': SEVENTH, 'wizards': WIZARDS, 'three': THREE}
+
+
+# ================================================================================================ Loreseekers
+L_NPCS = [
+    # --- Sabine Holt, a young Scribe of the Great Library
+    dict(id='ekg_l_sabine', map='NG_loreseekers', at=(928, 544), kind='static', name='Sabine Holt', sprite='female_blue_2',
+         portrait=19, gender='f', show=('1.1', None)),
+    # --- chapter 1: page-cutters in the New Garand Farmlands
+    dict(id='ekg_l_cutter1', map='H8', at=(1056, 1824), kind='foe', spawn='guild_mercenary', name='Page-Cutter', faction='bandits',
+         show=('1.1', '1.2')),
+    dict(id='ekg_l_cutter2', map='H8', at=(1184, 1888), kind='foe', spawn='guild_mercenary', name='Page-Cutter', faction='bandits',
+         show=('1.1', '1.2')),
+    dict(id='ekg_l_cutter3', map='H8', at=(992, 1568), kind='foe', spawn='bandit_male_assasin', name='Page-Cutter Captain',
+         faction='bandits', show=('1.1', '1.2')),
+    # --- chapters 3-5: Loremaster Evander Quill in the Great Library
+    dict(id='ekg_l_quill', map='NG_loreseekers', at=(1056, 608), kind='static', name='Loremaster Evander Quill', sprite='wizard_black',
+         portrait=16, show=('3.1', '5.done')),
+    # --- chapter 7: Quill in the Witch Queens' cave
+    dict(id='ekg_l_quill_c', map='C12_cave', at=(416, 352), kind='talker', spawn='blue_wizard', name='Loremaster Evander Quill',
+         portrait=16, show=('7.2', '7.2'), group='ekg_l_reader'),
+    dict(id='ekg_l_golem1', map='C12_cave', at=(480, 480), kind='talker', spawn='golem_steel', name='Codex Golem',
+         show=('7.2', '7.2'), group='ekg_l_reader', talk=False),
+    dict(id='ekg_l_golem2', map='C12_cave', at=(352, 480), kind='talker', spawn='golem_steel', name='Codex Golem',
+         show=('7.2', '7.2'), group='ekg_l_reader', talk=False),
+]
+
+L_ITEMS = [
+    (9551, 'Ciphered Leaf', "A leaf of Imperial vellum, cut from an atlas, written over in a Loreseeker's cipher and sealed with a spiral.", 'letters'),
+    (9552, 'Folio of the Fall', "A folio of the Codex of the Fall, the last Imperial Loreseeker's work. The ink has not faded in four hundred years.", 'letters'),
+]
+
+LORESEEKERS = dict(
+    npcs=L_NPCS, items=L_ITEMS,
+    idle={
+        'ekg_l_sabine': [('VariableEqual#ekg_st_loreseekers,100', "Master Librarian. [BLUE](Sabine grins, and then tries to look solemn)[] I've re-catalogued the whole east wing. Twice. Rurazar says I'm a menace."),
+                         (None, "[BLUE](Sabine Holt is copying a map by candlelight, tongue between her teeth)[] Shh. If I lose count of the rivers I have to start again.")],
+        'ekg_l_quill': "[BLUE](Quill turns a page without looking up)[] Twenty years in the field, and they still make me sign for a pencil.",
+        'ekg_l_quill_c': "...",
+    },
+    chapters=[
+        # ------------------------------------------------------------------ 1
+        dict(title='The Cut Page', level=8, rep=2, promote=True,
+             brief="Someone has taken a knife to the Great Library. Three atlases, a dozen pages cut out as neatly as a surgeon would. Our youngest Scribe, [BLUE]Sabine Holt[], found the damage and has been following it ever since. She is in the east hall. Help her, Initiate.",
+             steps=[
+                 dict(label='sabine', at='ekg_l_sabine',
+                      j="Someone cut pages from the Great Library's Imperial atlases. Sabine Holt, a young Scribe, is investigating in the library's east hall.",
+                      scene=[
+                          dict(t=B % "A young woman with ink to her elbows holds up a ruined atlas" + " Look at this. Imperial Geography, the third volume, four hundred years old, and some brute cut it like bacon. They only took pages about the north-west. Rivers, passes, one old tower.",
+                               o=[dict(t='Any idea who?', go=1)]),
+                          dict(t="A man came in last week asking for those volumes. Paid the reading fee in gold, smelled of horse. The farmers south of the city say a gang of rough scholars are camped in the [BLUE]New Garand Farmlands[], selling maps. Scholars don't camp in fields.",
+                               o=[dict(t="I'll get the pages back.", go=None)]),
+                      ]),
+                 dict(label='cutters', at='ekg_l_sabine',
+                      need=['NPCIsDead#ekg_l_cutter1', 'NPCIsDead#ekg_l_cutter2', 'NPCIsDead#ekg_l_cutter3'],
+                      j="A gang of page-cutters camps in the New Garand Farmlands, south of the city. I must recover the stolen pages and return to Sabine.",
+                      scene=[
+                          dict(t=B % "Sabine lays the recovered pages out on her desk, one by one, like a card game" + " All here. Rivers, passes, the tower. And... [BLUE](She stops)[] This one wasn't in any atlas.",
+                               o=[dict(t='What is it?', go=1)]),
+                          dict(t="Imperial vellum, written over in cipher. A Loreseeker's cipher: the old ones used it so rivals couldn't steal their research. And this seal, the spiral. [BLUE](Her voice drops)[] That's the mark of the [BLUE]Codex of the Fall[]. It's supposed to be a legend. Take it to Master Rurazar. Please. I'm not brave enough.",
+                               o=[dict(t="I'll take it to him.", go=None, a='GainItem#9551;GainXP#300')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian', need=['PlayerHasItems#9551,1'],
+                      j="Among the stolen pages was a ciphered leaf bearing the spiral seal of the 'Codex of the Fall'. I must bring it to Master Librarian Rurazar.",
+                      scene=[
+                          dict(t=B % "The Master Librarian looks at the spiral seal for a long time without touching it" + " In the Empire, a Loreseeker chose one subject and spent a life on it. When the work was done, the Codex was made public and its author became a [BLUE]Loremaster[]. Every codex was finished. Except one.",
+                               o=[dict(t='The Codex of the Fall.', go=1)]),
+                          dict(t="Written by the last Imperial Loreseeker, a student of Tremadan of Myros, in the years the Empire died. The subject: why it died. She never published it. She cut it into five folios and hid them across Varannar, and we have been arguing about whether it existed for four centuries. [BLUE](He taps the leaf)[] This is a map to the first. And someone else is reading it too.",
+                               o=[dict(t="Then we'd better read faster.", go=2)]),
+                          dict(t="[BLUE](The ghost of a smile)[] Good answer. You recovered stolen knowledge and brought it to the order instead of selling it. That is a [BLUE]Scribe[] of the Loreseekers. Sign here. No, the other line.",
+                               o=[dict(t=B % "Sign", go=None, a='LoseItems#9551,1')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 2
+        dict(title='The Earthen Door', level=10, rep=3,
+             brief="[BLUE]Tangir[] has spent half his life on the mages who fled Thuram. The cipher's 'old tower' is one of theirs, I think. Take the leaf's copy to him, in the south hall; he will tell you more than I can.",
+             steps=[
+                 dict(label='tangir', at='NG_library_tangir',
+                      j="Master Rurazar sent me to Tangir, the Loreseeker sorcerer in the Great Library, to read the cipher's 'old tower'.",
+                      scene=[
+                          dict(t="[BLUE](Tangir's eyes light up)[] A tower in the north-west, sealed with the likeness of an earth elemental. My friend, that is the [BLUE]Abandoned Tower[] of the [BLUE]Crimson Hills[]. Jorgus the Red built it, when the Lost Coven fled Icemist. Jorgus was a master of earth elementals. They still guard his door.",
+                               o=[dict(t='Why would the Codex be there?', go=1)]),
+                          dict(t="Because Jorgus knew the last Loreseeker. Perhaps she trusted him with a folio; perhaps he stole it. Either way, the guardians will not let you in politely. The door opens when its guardian dies, and there are more inside. Bring me whatever you find.",
+                               o=[dict(t="I'll go to the Crimson Hills.", go=None)]),
+                      ]),
+                 dict(label='tower', at='NG_library_tangir',
+                      need=['NPCIsDead#g11_guardian_1', 'NPCIsDead#g11_guardian_2', 'NPCIsDead#g11_guardian_3'],
+                      j="The first folio may lie in Jorgus the Red's Abandoned Tower in the Crimson Hills, guarded by earth elementals. I must break the guardians and bring what I find to Tangir.",
+                      scene=[
+                          dict(t=B % "You lay a folio bound in grey leather on Tangir's desk. The spiral seal is pressed into the cover" + " [BLUE](Tangir does not breathe for a moment)[] The first folio. In my lifetime. In my hands.",
+                               o=[dict(t='What does it say?', go=1, a='GainItem#9552')]),
+                          dict(t="Much of it is her method: which archives, which witnesses. And a list of the other four hiding places, in her cipher. [BLUE](He frowns)[] And this, in Jorgus's hand, on the flyleaf: 'Q. came asking. I sent him away.' Q. Who in the Kingdoms still reads this cipher, besides me and Rurazar?",
+                               o=[dict(t="I think we're about to find out.", go=None, a='GainXP#600')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 3
+        dict(title='Loremaster Quill', level=12, rep=4, promote=True,
+             brief="We have a visitor. [BLUE]Loremaster Evander Quill[], who left this library twenty years ago to walk the Kingdoms and has written half the books on its shelves since. He came back yesterday, and the first thing he asked for was the Codex of the Fall. He is in the west hall. Speak with him, and remember that the order does not keep secrets from its Loremasters. Only from its enemies.",
+             steps=[
+                 dict(label='quill', at='ekg_l_quill',
+                      j="Loremaster Evander Quill has returned to the Great Library after twenty years and asked about the Codex of the Fall.",
+                      scene=[
+                          dict(t=B % "A lean, weathered man with a traveller's tan and ink on his cuffs looks up and smiles" + " The Scribe who found the first folio. Jorgus's tower, yes? I tried that door fifteen years ago. It tried me back. [BLUE](He shows a burn scar across his palm)[]",
+                               o=[dict(t="Jorgus wrote that you came asking.", go=1),
+                                  dict(t='Why do you want the Codex?', go=1)]),
+                          dict(t="Because I was the last student of the last student of the woman who wrote it, and because every Loremaster since the Exile has been a Loremaster of nothing. Catalogues. Indexes. [BLUE](His voice goes quiet)[] She knew why the Empire died. I want to know. Is that so wicked?",
+                               o=[dict(t='Where is the second folio?', go=2)]),
+                          dict(t="Under the [BLUE]Lannegar Mine[], in the Lannegar Valley. The miners broke into an Imperial city down there a century ago and fled. Its dead Lady still keeps its archive. Kill her, bring me the folio, and we will read it together.",
+                               o=[dict(t="I'll go to Lannegar.", go=None)]),
+                      ]),
+                 dict(label='lady', at='ekg_l_quill', need=['NPCIsDead#H10_undead_lady'],
+                      j="Quill says the second folio lies in the dead city beneath the Lannegar Mine, kept by its undead Lady. I must destroy her and bring the folio back.",
+                      scene=[
+                          dict(t=B % "Quill's hands tremble when he sees the spiral seal" + " The second folio. [BLUE](He reaches for it, then stops himself)[] Forgive me. It is yours; you bled for it. What will you do with it?",
+                               o=[dict(t="Take it. Read it. You've waited long enough.", go=1, a='SetVariable#ekg_c_loreseekers_quill,1'),
+                                  dict(t="It goes to Master Rurazar, like the first.", go=2, a='SetVariable#ekg_c_loreseekers_quill,2;GainItem#9552')]),
+                          dict(t="[BLUE](He takes it as if it might break)[] Thank you. I will not forget this. [BLUE](He is already reading)[] ...She names the witnesses of the Fall. Arch-Mages. And at the end of this folio, a word I have only seen once before: [BLUE]Orogg[].",
+                               o=[dict(t="Tell me what you find.", go=None, a='GainXP#900')]),
+                          dict(t="[BLUE](His smile doesn't move, but something behind it does)[] Of course. The order's property. Quite right. [BLUE](He turns back to his book)[] Give Rurazar my regards.",
+                               o=[dict(t="I will.", go=None, a='GainXP#900')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian',
+                      j="The second folio of the Codex of the Fall is recovered. I must report to Master Rurazar.",
+                      scene=[
+                          dict(t=[('VariableEqual#ekg_c_loreseekers_quill,1', "You gave it to Quill. [BLUE](Rurazar sighs)[] Generous. Perhaps wise; he will trust you now. Evander was my best student, and my most impatient. I hope he has learned the difference between knowledge and hunger."),
+                                  (None, B % "Rurazar sets the second folio beside the first in a locked case" + " Two of five. Evander asked me for them this morning. I said no. [BLUE](He looks tired)[] He was my best student, and my most impatient.")],
+                               o=[dict(t="He mentioned Orogg.", go=1)]),
+                          dict(t="The Witches of Orogg. The Empire's oldest enemies. [BLUE](He is quiet for a moment)[] You went beneath Lannegar and came back with a folio and your wits. That is an [BLUE]Archivist[] of the Loreseekers. The east wing is yours to catalogue. Condolences.",
+                               o=[dict(t="Thank you, Master.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 4
+        dict(title='The Cave of Echoes', level=14, rep=6,
+             brief="Sabine has broken more of the cipher than Tangir and I together, and she is insufferable about it. The third folio is in the [BLUE]Cave of Echoes[], in the [BLUE]Thyr Ridges[]. She wants to tell you herself.",
+             steps=[
+                 dict(label='sabine', at='ekg_l_sabine',
+                      j="Sabine has deciphered the location of the third folio: the Cave of Echoes in the Thyr Ridges.",
+                      scene=[
+                          dict(t="[BLUE](Sabine is bouncing on her toes)[] The Cave of Echoes! The last Loreseeker hid it where the Imperial golem-wrights kept their workshop. Iron golems still guard it; they were built to guard it. And... [BLUE](She stops bouncing)[] someone's hired men went in there last month. They didn't come out.",
+                               o=[dict(t="Whose men?", go=1)]),
+                          dict(t="I don't know. They paid for their supplies in Lannegar with gold from the Great Library's own reading fees. [BLUE](She bites her lip)[] That's our money. Somebody here is paying for it.",
+                               o=[dict(t="I'll find out.", go=None)]),
+                      ]),
+                 dict(label='cave', at='ekg_l_sabine', need=['NPCIsDead#E12_golem_2'],
+                      j="The third folio lies in the Cave of Echoes, in the Thyr Ridges, guarded by Imperial iron golems. Someone's hirelings went in before me. I must destroy the golem and bring back the folio.",
+                      scene=[
+                          dict(t=B % "You lay the third folio on Sabine's desk, and beside it a letter you took from a dead hireling in the cave" + " [BLUE](Sabine reads the letter, and goes white)[] 'Bring the folio to the west hall. Tell no one. Q.'",
+                               o=[dict(t="Quill.", go=1, a='GainItem#9552')]),
+                          dict(t="He's been sending people to die for it. Hirelings, desperate ones. [BLUE](Her hands shake)[] He's been kind to me. He lent me his own notes on the cipher. [BLUE](She swallows)[] Take this to Rurazar. I can't look at Quill right now.",
+                               o=[dict(t="I'll go to Rurazar.", go=None, a='GainXP#1200')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian',
+                      j="Quill has been sending hirelings to their deaths for the folios. I must tell Master Rurazar.",
+                      scene=[
+                          dict(t="[BLUE](Rurazar reads the letter twice)[] Evander. [BLUE](He sets it down very gently)[] I cannot expel a Loremaster on one letter. The Council of the order would call it jealousy; I am old and he is famous.",
+                               o=[dict(t="Then what do we do?", go=1)]),
+                          dict(t="We keep going. We find the fourth and fifth folios before he does. And from tonight the first three sleep in the vault, with a guard. [BLUE](He looks at you)[] Watch him. And watch yourself.",
+                               o=[dict(t="I will.", go=None, a='GainXP#1500;GainGold#800')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 5
+        dict(title='The Deep City', level=16, rep=7, promote=True,
+             brief="The fourth folio is where the second was: beneath Lannegar, deeper, in the drowned heart of the Imperial city. A [BLUE]lich[] rules there, older than the Exile. Tangir believes it was one of the Arch-Mages the Codex names. Bring back the folio, and then go to Tangir; he wants to be the first to read it.",
+             steps=[
+                 dict(label='lich', at='NG_library_tangir', need=['NPCIsDead#H10_lich'],
+                      j="The fourth folio lies in the depths of the dead city beneath the Lannegar Mine, where an ancient lich rules. I must destroy it and bring the folio to Tangir.",
+                      scene=[
+                          dict(t=B % "Tangir reads the fourth folio in silence, all night. At dawn he takes off his spectacles" + " I know why the Empire fell, my friend. I think I would rather not.",
+                               o=[dict(t='Tell me.', go=1, a='GainItem#9552')]),
+                          dict(t="The Arch-Mages made a bargain with the [BLUE]Witch Queens of Orogg[] for the power to hold back the storm that became the Exile. The Witches gave it. The price was the Empire. [BLUE](He rubs his eyes)[] Three of them still sleep in a cave in the far north-west, beyond the Varannari hills. The Codex says where.",
+                               o=[dict(t="And Quill wants to wake them?", go=2)]),
+                          dict(t="I don't think he knows what he wants any more. I think he just wants to finish reading. [BLUE](He hands you the folio)[] To Rurazar. And then sleep, if you can.",
+                               o=[dict(t="Thank you, Tangir.", go=None, a='GainXP#1500')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian',
+                      j="The fourth folio names the Witch Queens of Orogg as the price of the Empire's fall. I must report to Master Rurazar.",
+                      scene=[
+                          dict(t="[BLUE](Rurazar listens without interrupting)[] The Witches. The oldest story in Varannar, and it was true. [BLUE](He straightens)[] You faced a lich older than this library and came back with the truth. That is a [BLUE]Loreseeker[], in the old sense. The Empire's sense. I have not given that title in thirty years.",
+                               o=[dict(t="I'll try to deserve it.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 6
+        dict(title='The Maze of Lamth', level=18, rep=10, promote=True,
+             brief="Evander broke into the vault last night with hired swords and took every folio we had. He is gone north-west, to the Witches' cave. But he doesn't have the fifth folio. No one does, yet. [BLUE]Sabine[] thinks she knows where it is. Speak to her.",
+             steps=[
+                 dict(label='sabine', at='ekg_l_sabine',
+                      j="Quill has stolen the folios from the Great Library's vault and fled north-west. Sabine believes she knows where the fifth folio is hidden.",
+                      scene=[
+                          dict(t=[('VariableEqual#ekg_c_loreseekers_quill,1', "[BLUE](Sabine has a black eye and a bandaged wrist)[] He was polite about it. He said to tell you he still has the second folio, the one you gave him, and that he was grateful. Then his golems threw me into a bookcase."),
+                                  (None, "[BLUE](Sabine has a black eye and a bandaged wrist)[] He didn't even look at me. His golems threw me into a bookcase and he just walked past, reading.")],
+                               o=[dict(t="Where is the fifth folio?", go=1)]),
+                          dict(t="The [BLUE]Maze of Lamth[], in the Northern Jabal Hills. She hid the last folio at its heart, under a dead dragon the minotaurs worship. Quill can't finish reading without it. [BLUE](She grips your sleeve)[] Get it first. Please.",
+                               o=[dict(t="I'll get it first.", go=None)]),
+                      ]),
+                 dict(label='maze', at='ekg_l_sabine', need=['NPCIsDead#zombie_dragon'],
+                      j="The fifth and last folio of the Codex of the Fall lies at the heart of the Maze of Lamth, in the Northern Jabal Hills, beneath an undead dragon. I must get it before Quill and bring it to Sabine.",
+                      scene=[
+                          dict(t=B % "Sabine holds the fifth folio in both hands and reads the last page. Then she reads it again" + " It ends mid-sentence. [BLUE](She looks up)[] 'Whoever reads this whole, in the Witches' presence, will hear them answer. Do not.' ...That's what Quill wants. He wants to ask them.",
+                               o=[dict(t="Then he mustn't finish reading.", go=None, a='GainItem#9552;GainXP#2000')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian',
+                      j="I have the fifth folio. Its last page warns that whoever reads the whole Codex before the Witch Queens will hear them answer. I must report to Rurazar.",
+                      scene=[
+                          dict(t="[BLUE](Rurazar reads the last page and closes his eyes)[] He always wanted to ask one more question. [BLUE](He rises)[] You have read deeper into the Codex of the Fall than any Loreseeker living but Evander. That is what the Empire called a [BLUE]Loremaster[]. Rise, and go and stop him.",
+                               o=[dict(t="I'll stop him.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 7
+        dict(title='The Reader', level=20, rep=12,
+             brief="Evander is in the Witch Queens' cave, far to the north-west beyond the Varannari hills, north of the Fögas Forest. He has four folios and needs the fifth. You have it. Go, before he finds another way to finish. Tangir wants a word first.",
+             steps=[
+                 dict(label='tangir', at='NG_library_tangir',
+                      j="Quill waits in the Witch Queens' cave with four folios. Tangir wants to see me before I go.",
+                      scene=[
+                          dict(t="[BLUE](Tangir looks older than you have ever seen him)[] Evander and I studied together, forty years ago. He was the one who always asked 'and then?' at the end of every story. [BLUE](He pauses)[] If there is a way to bring him home, find it. If there isn't, don't let him read the last page.",
+                               o=[dict(t="I'll find a way if there is one.", go=None)]),
+                      ]),
+                 dict(label='quill', at='ekg_l_quill_c',
+                      j="Loremaster Evander Quill waits in the Witch Queens' cave, far to the north-west, with four folios and two golems.",
+                      scene=[
+                          dict(t=B % "Quill sits cross-legged on the cave floor, four folios open around him in a ring. Deeper in the dark, something vast breathes slowly" + " You brought it. [BLUE](He doesn't turn)[] I knew you would. Can you hear them? They've been waiting four hundred years for someone to ask the right question.",
+                               o=[dict(t="The last page says not to read it here.", go=1),
+                                  dict(t="Step away from the folios, Evander.", go=2)]),
+                          dict(t="Of course it does. She was afraid. She stopped mid-sentence because she was afraid of the answer. [BLUE](He finally looks at you, and his eyes are wet)[] I have spent my life reading other people's endings. Let me read this one.",
+                               o=[dict(t="Then let's read it at the Library, all of us, where it can't wake anything. And publish it, every word. I trusted you once.", go=3, c='VariableEqual#ekg_c_loreseekers_quill,1'),
+                                  dict(t="No.", go=2)]),
+                          dict(t="[BLUE](He stands, and the golems step forward)[] Then I'll take it from you. I'm sorry. I truly am.",
+                               o=[dict(t="So am I.", go=None, a='SetVariable#ekg_c_loreseekers_reader,1;NPCHostile#ekg_l_reader')]),
+                          dict(t="[BLUE](For a long moment only the breathing in the dark answers)[] ...You gave me the second folio when Rurazar wouldn't. You didn't have to. [BLUE](He closes the folios one by one, and the breathing grows fainter)[] Publish it. Every word. And put my name second, after hers. [BLUE](He stands, and the golems power down)[]",
+                               o=[dict(t="Let's go home, Loremaster.", go=None, a='SetVariable#ekg_c_loreseekers_reader,2;NPCDespawn#ekg_l_reader;GainXP#3000')]),
+                      ]),
+                 dict(label='report', at='NG_library_librarian', need=[],
+                      alt_need=[['VariableEqual#ekg_c_loreseekers_reader,2'], ['NPCIsDead#ekg_l_quill_c']],
+                      j="It is over in the Witch Queens' cave. I must bring the Codex home to Master Rurazar.",
+                      scene=[
+                          dict(t=[('VariableEqual#ekg_c_loreseekers_reader,2', "Evander came home. [BLUE](Rurazar's voice is not quite steady)[] He sat down at his old desk in the west hall and asked for a pencil. I made him sign for it. We both laughed until Sabine threw us out."),
+                                  (None, B % "You lay all five folios of the Codex of the Fall on Rurazar's desk" + " Evander is dead, then. [BLUE](Rurazar closes his eyes)[] He was the best of us, once.")],
+                               o=[dict(t="What happens to the Codex now?", go=1)]),
+                          dict(t="That is for you to say. You carried it out of the dark.",
+                               o=[dict(t="Publish it. Every word. The Kingdoms deserve to know why the Empire fell.", go=2, a='SetVariable#ekg_c_loreseekers_codex,1'),
+                                  dict(t="Seal it in the restricted archive. Only Loremasters, and never before the Witches.", go=3, a='SetVariable#ekg_c_loreseekers_codex,2'),
+                                  dict(t="Burn it. Some questions shouldn't be asked twice.", go=4, a='SetVariable#ekg_c_loreseekers_codex,3')]),
+                          dict(t="[BLUE](Rurazar nods slowly)[] Then the last Imperial Codex becomes the first of the Exile. The scholars of Thuram will hate us for it. Good. Come back to me when you are ready for the last thing I will ask of you.",
+                               o=[dict(t="I'll come back.", go=None, a='GainXP#3000;GainGold#3000')]),
+                          dict(t="The prudent choice. [BLUE](He locks the case with a key he wears around his neck)[] Come back to me when you are ready for the last thing I will ask of you.",
+                               o=[dict(t="I'll come back.", go=None, a='GainXP#3000;GainGold#3000')]),
+                          dict(t="[BLUE](Rurazar looks at you for a very long time, then feeds the first folio to the fire himself)[] Four hundred years. [BLUE](The spiral seal curls and blackens)[] Perhaps she would have thanked you. Come back to me when you are ready for the last thing I will ask of you.",
+                               o=[dict(t="I'll come back.", go=None, a='GainXP#3000;GainGold#3000')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 8
+        dict(title="The Master's Chair", level=21, rep=14, promote=True, master=True,
+             brief="I am old, and the Great Library needs a Master who has read the whole of the Codex of the Fall and walked out of the Witches' cave. There is one task left, the one the last Loreseeker could not do: end the [BLUE]Witch Queens[] in their cave, so no one can ever ask them again. First, the order's two eldest must give their blessing: [BLUE]Tangir[] and [BLUE]Gebadi[].",
+             steps=[
+                 dict(label='tangir', at='NG_library_tangir',
+                      j="To become Master Librarian I need the blessings of Tangir and Gebadi, then I must destroy the three Witch Queens in their cave in the far north-west.",
+                      scene=[
+                          dict(t="[BLUE](Tangir takes both your hands)[] Forty years I chased the Lost Coven and never found an ending. You found the Codex's. The sorcerers of this order give their blessing, Loremaster.",
+                               o=[dict(t="Thank you, Tangir.", go=None, a='GainXP#1000')]),
+                      ]),
+                 dict(label='gebadi', at='NG_library_gebadi',
+                      j="Tangir has given his blessing. Next, Gebadi, instructor in the Mystical Arts.",
+                      scene=[
+                          dict(t="[BLUE](Gebadi bows)[] The instructors of the Great Library give their blessing. I have taught Death Ward to a hundred students, and never once expected one of them to need it against three queens at once. Do take a potion or two.",
+                               o=[dict(t="I will.", go=None, a='GainXP#1000')]),
+                      ]),
+                 dict(label='queens', at='NG_library_librarian',
+                      need=['NPCIsDead#C12_lich_varessa', 'NPCIsDead#C12_lich_mylora', 'NPCIsDead#C12_lich_blafarne'],
+                      j="Both blessings are given. I must destroy the three Witch Queens, Varessa, Mylora and Blafarne, in their cave in the far north-west, and return to Rurazar.",
+                      scene=[
+                          dict(t=B % "The Great Library is full: scholars, scribes, instructors, Sabine at the front with a fresh quill behind her ear" + " The Witch Queens are ended. [BLUE](Rurazar's voice carries to the highest shelf)[] The question the Empire asked has no one left to answer it.",
+                               o=[dict(t=B % "Step forward", go=1)]),
+                          dict(t=[('VariableEqual#ekg_c_loreseekers_reader,2', "[BLUE](Evander Quill, grey and smiling, stands beside Tangir with a copy of the Codex under his arm)[] The Master Librarian keeps no secrets from the order, and keeps the order's secrets from its enemies. Will you keep this library?"),
+                                  (None, "The Master Librarian keeps no secrets from the order, and keeps the order's secrets from its enemies. Will you keep this library?")],
+                               o=[dict(t="I will keep it.", go=2)]),
+                          dict(t=[('VariableEqual#ekg_c_loreseekers_codex,1', "Then rise, [BLUE]Master Librarian[] of the Loreseekers. [BLUE](Rurazar steps aside)[] The first printing of the Codex of the Fall sold out in a day, by the way. I am going to go and read something with a happy ending."),
+                                  (None, "Then rise, [BLUE]Master Librarian[] of the Loreseekers. [BLUE](Rurazar steps aside)[] I am going to go and read something with a happy ending.")],
+                               o=[dict(t="Thank you, Rurazar. For everything.", go=None)]),
+                      ]),
+             ]),
+    ])
+
+
+# ================================================================================================ Golden Hand
+G_NPCS = [
+    # --- Lisbet Marrow, a sharp young factor, in the Grey Library (away while hiding in chapter 5)
+    dict(id='ekg_g_lisbet', map='FT_library', at=(352, 416), kind='static', name='Lisbet Marrow', sprite='female_white_2',
+         portrait=30, gender='f', show=('1.1', '4.done')),
+    dict(id='ekg_g_lisbet2', map='FT_library', at=(352, 416), kind='static', name='Lisbet Marrow', sprite='female_white_2',
+         portrait=30, gender='f', show=('5.3', None)),
+    # --- Old Nandor, keeper of the Hand's contracts
+    dict(id='ekg_g_nandor', map='FT_library', at=(352, 288), kind='static', name='Old Nandor', sprite='oldman_grey', portrait=79,
+         show=('2.1', None)),
+    # --- Consul Aurel Vesk
+    dict(id='ekg_g_vesk', map='FT_library', at=(480, 352), kind='static', name='Consul Aurel Vesk', sprite='male_noble_green',
+         portrait=100, show=('3.1', '6.done')),
+    dict(id='ekg_g_vesk_t', map='FT_library', at=(608, 352), kind='talker', spawn='H6_chancellor', name='Consul Aurel Vesk',
+         portrait=100, show=('7.2', '7.2'), group='ekg_g_vesk_band'),
+    dict(id='ekg_g_knifeguard1', map='FT_library', at=(736, 352), kind='talker', spawn='forsaken_assassin', name='Gilded Knife',
+         show=('7.2', '7.2'), group='ekg_g_vesk_band', talk=False),
+    dict(id='ekg_g_knifeguard2', map='FT_library', at=(864, 352), kind='talker', spawn='forsaken_knight', name='Gilded Knife',
+         show=('7.2', '7.2'), group='ekg_g_vesk_band', talk=False),
+    # --- chapter 1: Mudrats on the Iron Valley road north of Freetown's gate
+    dict(id='ekg_g_mudrat1', map='D9', at=(1312, 864), kind='foe', spawn='guild_mercenary', name='Mudrat', faction='bandits',
+         show=('1.1', '1.2')),
+    dict(id='ekg_g_mudrat2', map='D9', at=(1312, 736), kind='foe', spawn='guild_mercenary', name='Mudrat', faction='bandits',
+         show=('1.1', '1.2')),
+    dict(id='ekg_g_mudrat3', map='D9', at=(1376, 1120), kind='foe', spawn='bandit_male_assasin', name='Mudrat Boss', faction='bandits',
+         show=('1.1', '1.2')),
+    # --- chapter 2: Pim Ashgrove, money-changer in Friguld
+    dict(id='ekg_g_pim', map='H6', at=(736, 2272), kind='static', name='Pim Ashgrove', sprite='male_black_1', portrait=90,
+         show=('2.2', '2.2')),
+    # --- chapter 5: Lisbet hiding in the Southern Jabal Hills; Vesk's Gilded Knives hunting her
+    dict(id='ekg_g_lisbet_e9', map='E9', at=(1696, 1120), kind='static', name='Lisbet Marrow', sprite='female_white_2',
+         portrait=30, gender='f', show=('5.1', '5.2')),
+    dict(id='ekg_g_knife1', map='E9', at=(1760, 1248), kind='foe', spawn='female_nightblade', name='Gilded Knife', faction='bandits',
+         show=('5.1', '5.2')),
+    dict(id='ekg_g_knife2', map='E9', at=(1632, 992), kind='foe', spawn='male_nightblade', name='Gilded Knife', faction='bandits',
+         show=('5.1', '5.2')),
+    dict(id='ekg_g_knife3', map='E9', at=(1824, 1376), kind='foe', spawn='outlaw_king', name='Gilded Knife Captain', faction='bandits',
+         show=('5.1', '5.2')),
+]
+
+G_ITEMS = [
+    (9541, 'Strongbox Ledger', "The quarter's accounts of a Golden Hand caravan. Some payments go to 'S.R.', through a money-changer in Friguld.", 'letters'),
+    (9542, 'Salt Road Manifest', "A smuggler's manifest: Golden Hand goods, a dragon's tithe, and a Consul's seal on every page.", 'letters'),
+    (9543, "Consul's Seal Impression", "Wax impressions of Consul Vesk's private seal-ring, taken from orders to kill a partner of the Hand.", 'letters'),
+    (9544, 'Dawnbrand', "The founder's sword of the Golden Hand, on which every partner's oath is sworn. Too precious to swing.", 'letters'),
+]
+
+GOLDEN = dict(
+    npcs=G_NPCS, items=G_ITEMS,
+    idle={
+        'ekg_g_lisbet': "[BLUE](Lisbet runs a finger down a column of figures, frowning)[] Somebody here can't add. Or can add very well.",
+        'ekg_g_lisbet2': [('VariableEqual#ekg_st_golden,100', "Master. [BLUE](Lisbet slides a ledger across the desk)[] The northern route turned a profit in its first month. I've taken the liberty of being smug about it."),
+                          (None, "[BLUE](Lisbet has a new scar and a new office)[] Back at my desk. It's the most dangerous place in Freetown, apparently.")],
+        'ekg_g_nandor': "[BLUE](The old archivist blows dust off a contract older than the Exile)[] Every promise the Hand ever made is in these shelves. Most of them were kept.",
+        'ekg_g_vesk': "[BLUE](Consul Vesk smiles warmly and does not stop writing)[] Partner. Busy day. Profit waits for no one.",
+        'ekg_g_pim': "[BLUE](Pim counts coins with the speed of a card sharp)[] Changing money? No? Then you're blocking my light.",
+        'ekg_g_lisbet_e9': "[BLUE](Lisbet is crouched behind a rock with a very small knife)[] If you're here to kill me, get on with it. If you're not, get down!",
+        'ekg_g_vesk_t': "...",
+    },
+    chapters=[
+        # ------------------------------------------------------------------ 1
+        dict(title='Bad Debts', level=8, rep=2, promote=True,
+             brief="A caravan of ours was robbed on the Iron Valley road, just north of the city gate. The goods can be replaced. The strongbox cannot; it held the quarter's accounts. [BLUE]Lisbet Marrow[] ran that caravan. She's in the hall, and she'd like her ledgers back.",
+             steps=[
+                 dict(label='lisbet', at='ekg_g_lisbet',
+                      j="A Golden Hand caravan was robbed on the Iron Valley road north of Freetown's gate. Lisbet Marrow, who ran it, wants the strongbox back.",
+                      scene=[
+                          dict(t=B % "A sharp-faced young woman with ink on her cuffs doesn't look up from her abacus" + " The new partner. Good, I need someone expendable. [BLUE](She looks up)[] That was a joke. Mostly.",
+                               o=[dict(t='Tell me about the robbery.', go=1)]),
+                          dict(t="Mudrats. Road bandits, the stupid kind. They took the wagons, the mules and the strongbox, and they're still camped by the road [BLUE]north of the gate[] as if nobody could possibly object. I object. The strongbox has the quarter's books in it, and I'd like to know why somebody paid them to hit my caravan and not the three before it.",
+                               o=[dict(t="Paid them?", go=2)]),
+                          dict(t="Mudrats don't know which caravan carries ledgers. Somebody told them. Get me the box.",
+                               o=[dict(t="I'll get the box.", go=None)]),
+                      ]),
+                 dict(label='box', at='ekg_g_lisbet',
+                      need=['NPCIsDead#ekg_g_mudrat1', 'NPCIsDead#ekg_g_mudrat2', 'NPCIsDead#ekg_g_mudrat3'],
+                      j="The Mudrats who robbed Lisbet's caravan are camped on the Iron Valley road, north of Freetown's gate. I must recover the strongbox and bring it to Lisbet.",
+                      scene=[
+                          dict(t=B % "Lisbet breaks the strongbox's seal and pages through the ledger at a speed that makes your eyes hurt" + " Wool, salt, copper... [BLUE](She stops)[] And here. Forty payments this year to 'S.R.', cleared through a money-changer in [BLUE]Friguld[]. Signed off with a Consul's authority. Nobody told me about S.R.",
+                               o=[dict(t="Who is S.R.?", go=1)]),
+                          dict(t="Nobody. There is no S.R. in our books, which is exactly the problem. [BLUE](She closes the ledger and hands it to you)[] Take it to the Guardian. Say you found it. If I bring it in, it looks like I'm covering myself.",
+                               o=[dict(t="I'll take it to him.", go=None, a='GainItem#9541;GainXP#300')]),
+                      ]),
+                 dict(label='report', at='FT_library_guardian', need=['PlayerHasItems#9541,1'],
+                      j="The strongbox ledger shows forty payments to an unknown 'S.R.' through a money-changer in Friguld, under a Consul's authority. I must bring it to the Guardian.",
+                      scene=[
+                          dict(t=B % "The Guardian reads the ledger once, slowly, and then closes it" + " A partner of the Golden Hand swears on [BLUE]Dawnbrand[], the founder's sword, that the Hand's books are the truth. Forty lies in one ledger is forty broken oaths.",
+                               o=[dict(t="Whose authority signed them?", go=1)]),
+                          dict(t="That is the question. [BLUE](He sets the ledger in a drawer and locks it)[] You recovered what was stolen and brought it to the Hand, not to a buyer. That is a [BLUE]Factor[] of the Golden Hand. Your commission is attached. Try not to spend it all at once; it looks bad.",
+                               o=[dict(t="Thank you, Guardian.", go=None, a='LoseItems#9541,1')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 2
+        dict(title='Cooked Books', level=10, rep=3,
+             brief="Our archivist, [BLUE]Old Nandor[], has kept every contract the Hand has signed for fifty years. If anyone can find 'S.R.' in our records, he can. He's by the shelves.",
+             steps=[
+                 dict(label='nandor', at='ekg_g_nandor',
+                      j="Old Nandor, the Golden Hand's archivist, is searching the records for 'S.R.'",
+                      scene=[
+                          dict(t="[BLUE](Old Nandor peers at you over spectacles held together with wire)[] S.R. Not in fifty years of contracts. But the money goes through a changer in [BLUE]Friguld[], one [BLUE]Pim Ashgrove[]. Pim has a stall outside the Golden Cove Bank. Pim would sell his own teeth if the price were right.",
+                               o=[dict(t="Then I'll make him an offer.", go=None)]),
+                      ]),
+                 dict(label='pim', at='ekg_g_pim',
+                      j="Pim Ashgrove, a money-changer outside the Golden Cove Bank in Friguld, cleared the payments to 'S.R.'",
+                      scene=[
+                          dict(t=B % "A small man with very quick hands looks up from his scales" + " Golden Hand. I can smell the ledgers on you. S.R.? Never heard of it.",
+                               o=[dict(t=B % "Put 400 gold on his scales" + " Hear of it now.", go=1, a='LoseGold#400;SetVariable#ekg_c_golden_pim,1', c='PlayerHasGold#400'),
+                                  dict(t="The Hand is about to audit everyone who touched that money. Talk, and you're a witness. Don't, and you're a suspect.", go=2, a='SetVariable#ekg_c_golden_pim,2')]),
+                          dict(t="[BLUE](The coins vanish)[] The [BLUE]Salt Road[]. A smugglers' route north through the Sagar forests, run by somebody high up in your Hand, carrying the Hand's own goods and selling them under its nose. The orders come sealed with a Consul's ring.",
+                               o=[dict(t="Which Consul?", go=3)]),
+                          dict(t="[BLUE](Pim goes pale)[] A witness. Yes. A witness sounds much better. The [BLUE]Salt Road[]. A smugglers' route north through the Sagar forests, run by somebody high up in your Hand, carrying the Hand's own goods. The orders come sealed with a Consul's ring.",
+                               o=[dict(t="Which Consul?", go=3)]),
+                          dict(t="I never saw a face. But the courier wore green and gold, and he bought his wine at the Grey Library's own cellar. [BLUE](He shrugs)[] Your house, friend. Not mine.",
+                               o=[dict(t="Thank you, Pim.", go=None, a='GainXP#500')]),
+                      ]),
+                 dict(label='report', at='ekg_g_nandor',
+                      j="Pim says 'S.R.' is the Salt Road, a smuggling route run from inside the Golden Hand under a Consul's seal. I must tell Nandor.",
+                      scene=[
+                          dict(t="The Salt Road. [BLUE](Nandor sits down heavily)[] There are three Consuls in Freetown. Two are over seventy and one of them can't read. The third wears green and gold. [BLUE](He looks at you)[] I'd rather be wrong.",
+                               o=[dict(t="Who is he?", go=1)]),
+                          dict(t="[BLUE]Consul Aurel Vesk[]. The best trader the Hand has had in a generation, and the Guardian's chosen successor. [BLUE](He takes off his spectacles)[] Be careful, Factor. Men like Vesk don't get caught. They get promoted.",
+                               o=[dict(t="I'll be careful.", go=None, a='GainXP#600')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 3
+        dict(title='The Consul', level=12, rep=4, promote=True,
+             brief="Consul Vesk has asked for you by name. He says he has work for our newest Factor. [BLUE](The Guardian's face gives away nothing)[] Go and see what he wants. Keep your ledgers close.",
+             steps=[
+                 dict(label='vesk', at='ekg_g_vesk',
+                      j="Consul Aurel Vesk has asked for me by name in the Grey Library.",
+                      scene=[
+                          dict(t=B % "A handsome man in green and gold rises to shake your hand, and holds it a moment too long" + " The Factor who found the strongbox. Remarkable work. The Hand needs people who notice things. [BLUE](He smiles)[] I have a small problem that needs noticing.",
+                               o=[dict(t="What problem?", go=1)]),
+                          dict(t="A hedge-wizard called [BLUE]Primzar[] has been extorting our caravans in the [BLUE]Zamohr Mountains[]. Threats, curses, the usual. He holes up in a cave there. Remove him, quietly, and I'll see the Guardian hears your name.",
+                               o=[dict(t="I'll deal with him.", go=None)]),
+                      ]),
+                 dict(label='primzar', at='ekg_g_lisbet', need=['NPCIsDead#D8_primzar'],
+                      j="Consul Vesk wants Primzar, a hedge-wizard who extorts caravans, removed from his cave in the Zamohr Mountains. I found papers on him; Lisbet should see them.",
+                      scene=[
+                          dict(t=B % "Lisbet reads the papers you took from Primzar's cave, and her mouth goes thin" + " He wasn't extorting our caravans. He was being paid by them. By the Salt Road. Look: 'Consul's courier, fifty crowns, for services.' Primzar was Vesk's man. And now he's a dead man who can't testify.",
+                               o=[dict(t="Vesk sent me to silence his own witness.", go=1)]),
+                          dict(t="And you did it, and he'll thank you for it in front of everyone. [BLUE](She looks at you)[] What do we do with these papers?",
+                               o=[dict(t="Take them to the Guardian now. Openly.", go=2, a='SetVariable#ekg_c_golden_told,1'),
+                                  dict(t="Keep them. Let Vesk think Primzar died with his secrets.", go=3, a='SetVariable#ekg_c_golden_told,2')]),
+                          dict(t="Openly. [BLUE](She nods slowly)[] Brave. Vesk will know we know. Watch your back.",
+                               o=[dict(t="I will.", go=None, a='GainXP#900')]),
+                          dict(t="[BLUE](A slow smile)[] A secret held is worth more than a secret told. You're learning the Hand's trade. I'll keep them in my own ledger, where nobody looks.",
+                               o=[dict(t="Good.", go=None, a='GainXP#900')]),
+                      ]),
+                 dict(label='report', at='FT_library_guardian',
+                      j="Primzar was Vesk's own man. I must report to the Guardian.",
+                      scene=[
+                          dict(t=[('VariableEqual#ekg_c_golden_told,1', "[BLUE](The Guardian reads Primzar's papers)[] Aurel. [BLUE](Nothing moves in his face)[] I chose him to follow me. I am not often wrong. I would like very much to be wrong now."),
+                                  (None, "Vesk tells me Primzar is dead, and praises your discretion. [BLUE](The Guardian studies you)[] I suspect you know more than you are telling me. Good. So do I.")],
+                               o=[dict(t="What happens now?", go=1)]),
+                          dict(t="Now you are a [BLUE]Broker[] of the Hand, which means you may sign contracts in its name. And a Broker may audit a Consul's accounts, which a Factor may not. [BLUE](He almost smiles)[] Use it wisely.",
+                               o=[dict(t="I will, Guardian.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 4
+        dict(title="The Dragon's Tithe", level=14, rep=6,
+             brief="The Salt Road runs north through the Sagar forests, and every smuggler on it pays the same toll: a tithe of our goods to [BLUE]Urcrymdrax[], the dragon of the [BLUE]Merdxan Cave[], in the North Sagar forest. Break the tithe, and the road breaks with it. [BLUE]Nandor[] has the route.",
+             steps=[
+                 dict(label='nandor', at='ekg_g_nandor',
+                      j="The Salt Road pays a tithe of Golden Hand goods to the dragon Urcrymdrax in the Merdxan Cave, North Sagar forest. Nandor has the route.",
+                      scene=[
+                          dict(t="[BLUE](Nandor spreads an old map)[] The Salt Road. Here, here, and here, the Merdxan Cave. Smugglers leave a tenth of their load at the cave mouth and the dragon lets them pass. Our wool, our silver, our wine. [BLUE](He taps the cave)[] The dragon keeps its own books. Dragons always do. If you kill it, bring me whatever it wrote down.",
+                               o=[dict(t="A dragon that keeps books?", go=1)]),
+                          dict(t="A manifest, pinned to the hoard with a knife. Smugglers are superstitious; they write down what they pay, so the dragon can't claim they cheated. Bring it back and we can prove every coin.",
+                               o=[dict(t="I'll bring it back.", go=None)]),
+                      ]),
+                 dict(label='dragon', at='ekg_g_nandor', need=['NPCIsDead#urcrymdrax'],
+                      j="I must slay Urcrymdrax in the Merdxan Cave, North Sagar forest, and bring the Salt Road's manifest to Nandor.",
+                      scene=[
+                          dict(t=B % "Nandor unrolls the smugglers' manifest with gloves on, as if it might bite" + " Two years of tithes. Every load stamped with a Consul's seal. [BLUE](He looks at the seal for a long time)[] Vesk's. Not a copy. His.",
+                               o=[dict(t="Then we have him.", go=1, a='GainItem#9542')]),
+                          dict(t="We have his seal. He'll say it was stolen, forged, borrowed. Men like Vesk always have a story. [BLUE](He rolls up the manifest and hands it to you)[] Keep this safe. When we go to the partners, we'll need more than a seal.",
+                               o=[dict(t="I'll keep it safe.", go=None, a='GainXP#1500;GainGold#800')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 5
+        dict(title='Hostile Takeover', level=16, rep=7, promote=True,
+             brief="Vesk has moved first. He stood up before the partners and accused Lisbet Marrow of running the Salt Road herself, with her own caravan's ledgers as proof. She fled Freetown last night, and Vesk has sent men after her. [BLUE]Nandor[] knows where she went.",
+             steps=[
+                 dict(label='nandor', at='ekg_g_nandor',
+                      j="Vesk accused Lisbet of running the Salt Road. She has fled Freetown with his men on her trail. Nandor knows where she went.",
+                      scene=[
+                          dict(t="She came to me before dawn. [BLUE](Nandor's hands are shaking)[] She has something, she said, something that will hang him. She's gone to ground in the [BLUE]Southern Jabal Hills[], near the old grotto. And Vesk has hired [BLUE]Gilded Knives[]: the Hand's own enforcers, the ones we pretend we don't have. Go. Quickly.",
+                               o=[dict(t="I'm going.", go=None)]),
+                      ]),
+                 dict(label='lisbet', at='ekg_g_lisbet_e9',
+                      need=['NPCIsDead#ekg_g_knife1', 'NPCIsDead#ekg_g_knife2', 'NPCIsDead#ekg_g_knife3'],
+                      j="Lisbet hides in the Southern Jabal Hills, near the grotto, with three Gilded Knives hunting her. I must kill them and speak to her.",
+                      scene=[
+                          dict(t=B % "Lisbet climbs out from behind a boulder, bloody, furious and very much alive" + " Three Gilded Knives. For me. I'm almost flattered.",
+                               o=[dict(t="Nandor said you have something.", go=1)]),
+                          dict(t="This. [BLUE](She holds out a strip of wax impressions)[] Vesk's orders to the Knives, sealed with his own ring. His private one, the one he never lets out of his sight. The Knives' captain kept a copy of every order, for insurance. Thieves' honour. [BLUE](She presses it into your hand)[] Take it to the Guardian. I'll walk back. Slowly.",
+                               o=[dict(t="I'll see you in Freetown.", go=None, a='GainItem#9543;GainXP#2000')]),
+                      ]),
+                 dict(label='report', at='FT_library_guardian', need=['PlayerHasItems#9543,1'],
+                      j="Lisbet gave me wax impressions of Vesk's private seal on his orders to the Gilded Knives. I must bring them to the Guardian.",
+                      scene=[
+                          dict(t="[BLUE](The Guardian holds the wax to the light)[] His ring. The one his father gave him. [BLUE](A long silence)[] Lisbet is cleared. I have told the partners so myself, and they did not like hearing it from me.",
+                               o=[dict(t="And Vesk?", go=1)]),
+                          dict(t="Is still a Consul, still popular and still very rich. We need one thing more. [BLUE](He rises)[] You saved a partner of the Hand from its own knives. You are a [BLUE]Consul[] now, Aurel's equal. He will notice.",
+                               o=[dict(t="Let him notice.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 6
+        dict(title='Dawnbrand', level=18, rep=10, promote=True,
+             brief="[BLUE](The Guardian looks grey)[] Nandor opened the founder's vault this morning, to swear the partners on [BLUE]Dawnbrand[]. The case was empty. Dawnbrand is the sword our founder bought from a dying vampire-hunter, the sword every partner's oath is sworn on. Vesk had the only other key. Nandor has traced where it went.",
+             steps=[
+                 dict(label='nandor', at='ekg_g_nandor',
+                      j="Dawnbrand, the Golden Hand's founding sword, is missing from the founder's vault. Nandor has traced where it went.",
+                      scene=[
+                          dict(t="He pawned it. [BLUE](Nandor's voice cracks)[] To a sea-captain, to pay the Salt Road's debts once the dragon's tithe stopped. The captain sailed north-east with it in his hold and his ship broke on the ice. The white dragon of [BLUE]Nilorth Cave[], in the frozen north, took the wreck for its hoard. The founder's sword is sitting in a dragon's bed.",
+                               o=[dict(t="Then I'll take it back.", go=None)]),
+                      ]),
+                 dict(label='dragon', at='FT_library_guardian', need=['NPCIsDead#G13_dragon_white'],
+                      j="Dawnbrand lies in the hoard of the white dragon of Nilorth Cave, in the frozen north. I must slay the dragon and bring the founder's sword to the Guardian.",
+                      scene=[
+                          dict(t=B % "You lay Dawnbrand on the Guardian's desk. The old steel still gleams, and the gold hand on its pommel catches the light" + " [BLUE](The Guardian touches the hilt, very gently)[] The founder's sword. Home.",
+                               o=[dict(t="Vesk pawned it to pay his debts.", go=1, a='GainItem#9544')]),
+                          dict(t="Then he sold the Hand's oath for coin. [BLUE](He stands)[] You slew a dragon to recover a sword you will never swing, because it mattered to people you had never met. That is what the founder meant by 'partner'. You are a [BLUE]Magnate[] of the Golden Hand. Now let us end this.",
+                               o=[dict(t="Let's end it.", go=None)]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 7
+        dict(title='The Final Audit', level=20, rep=12,
+             brief="Vesk knows the sword is back. He has shut himself in the Consuls' hall upstairs with two Gilded Knives and every ledger he can carry, and sent word that he wishes to 'renegotiate'. [BLUE]Lisbet[] insists on speaking to you first.",
+             steps=[
+                 dict(label='lisbet', at='ekg_g_lisbet2',
+                      j="Consul Vesk has barricaded himself upstairs in the Grey Library. Lisbet wants to speak to me first.",
+                      scene=[
+                          dict(t="[BLUE](Lisbet is sharpening a very small knife)[] He'll try to buy you. He buys everyone. The trick is to let him think it's working. [BLUE](She looks up)[] And if he gives you the chance to take his money and ruin him anyway, take it. The Hand could use the funds.",
+                               o=[dict(t="Noted.", go=None)]),
+                      ]),
+                 dict(label='vesk', at='ekg_g_vesk_t',
+                      j="Consul Aurel Vesk waits upstairs in the Grey Library with two Gilded Knives.",
+                      scene=[
+                          dict(t=B % "Vesk sits behind a desk piled with ledgers, a glass of wine in his hand, two Gilded Knives at his back" + " The Magnate. Congratulations. I was going to be Guardian, you know. [BLUE](He pours a second glass)[] Let's talk like traders. Everyone has a price.",
+                               o=[dict(t="Name yours.", go=1),
+                                  dict(t="You sold Dawnbrand, Vesk.", go=2)]),
+                          dict(t="Twenty thousand crowns, in bearer notes, and a ship to Varsilia. In return you tell the Guardian the evidence was forged, and I retire with honour. [BLUE](He slides a thick envelope across the desk)[] It's a good price. Better than the truth will get you.",
+                               o=[dict(t=B % "Take the envelope, then lay the manifest and the seal on the desk" + " Thank you. The Hand could use the funds. Now read these.", go=3, a='SetVariable#ekg_c_golden_vesk,3;GainGold#20000', c='PlayerHasItems#9542,1;PlayerHasItems#9543,1'),
+                                  dict(t="No price.", go=4)]),
+                          dict(t="I pawned it. There's a difference, though I don't expect a sword-kisser to understand it. The Hand was built on a dead man's weapon and a lot of pretty words. I kept it alive for twenty years with numbers.",
+                               o=[dict(t=B % "Lay the manifest and the seal impressions on the desk" + " Then let's talk numbers.", go=3, a='SetVariable#ekg_c_golden_vesk,2', c='PlayerHasItems#9542,1;PlayerHasItems#9543,1'),
+                                  dict(t="Enough.", go=4)]),
+                          dict(t=B % "Vesk reads the manifest and the wax impressions. His face does not change, but his hand stops holding the glass" + " ...Every coin. You found every coin. [BLUE](A long silence)[] Very well. I resign my seat. I'll take the Varsilia ship without the bearer notes. [BLUE](He stands, and the Knives step aside)[] You'd have made a fine Consul, if you weren't so dull.",
+                               o=[dict(t="Go, Vesk.", go=None, a='NPCDespawn#ekg_g_vesk_band;GainXP#3000')]),
+                          dict(t="[BLUE](Vesk sighs and sets down his glass)[] Pity. [BLUE](The Gilded Knives draw)[]",
+                               o=[dict(t="Pity.", go=None, a='SetVariable#ekg_c_golden_vesk,1;NPCHostile#ekg_g_vesk_band')]),
+                      ]),
+                 dict(label='report', at='FT_library_guardian', need=[],
+                      alt_need=[['VariableGreater#ekg_c_golden_vesk,1'], ['NPCIsDead#ekg_g_vesk_t']],
+                      j="Consul Vesk is finished. I must report to the Guardian.",
+                      scene=[
+                          dict(t=[('VariableEqual#ekg_c_golden_vesk,3', "He resigned. And you took his bribe first. [BLUE](The Guardian's mouth twitches, which for him is a roar of laughter)[] Twenty thousand crowns of Salt Road money, paid back into the Hand by the man who stole it. Lisbet has been giggling for an hour."),
+                                  ('VariableEqual#ekg_c_golden_vesk,2', "He resigned before the partners and sailed for Varsilia with nothing but his coat. [BLUE](The Guardian nods slowly)[] You did not have to draw a blade. The founder would have liked that."),
+                                  (None, "Vesk is dead, and his Knives with him. [BLUE](The Guardian closes his eyes)[] I chose him. That is on me, not you.")],
+                               o=[dict(t="The Salt Road is closed.", go=1)]),
+                          dict(t="It is. And the Hand's books balance for the first time in twenty years. [BLUE](He looks at you with something like decision)[] Come back to me when you are ready for the last thing I will ask of you.",
+                               o=[dict(t="I'll come back.", go=None, a='GainXP#3000;GainGold#3000')]),
+                      ]),
+             ]),
+        # ------------------------------------------------------------------ 8
+        dict(title='The Northern Charter', level=21, rep=14, promote=True, master=True,
+             brief="I have guarded this Library for thirty years, and I am tired. The Hand chooses its Master the old way: the partners' blessing, and a new charter. Every Master of the Hand has opened a road no one else could. The northern pass to the ice kingdoms has been shut for a century by the [BLUE]Elemental Lord[] of the frozen fortress beyond the northern passes, east of the giants' hills. Open it. First, [BLUE]Lisbet[] and [BLUE]Nandor[] must give their blessing.",
+             steps=[
+                 dict(label='lisbet', at='ekg_g_lisbet2',
+                      j="To become Master of the Hand I need the blessings of Lisbet and Nandor, then I must slay the Elemental Lord of the frozen fortress to open the northern pass.",
+                      scene=[
+                          dict(t="[BLUE](Lisbet closes her ledger with a snap)[] The factors give their blessing. All of us. We voted. It was unanimous, which has never happened before, so I checked the count twice.",
+                               o=[dict(t="Thank you, Lisbet.", go=None, a='GainXP#1000')]),
+                      ]),
+                 dict(label='nandor', at='ekg_g_nandor',
+                      j="Lisbet has given her blessing. Next, Old Nandor.",
+                      scene=[
+                          dict(t="[BLUE](Nandor opens a new ledger, and writes on the first page in his careful, shaking hand)[] 'The Northern Charter, opened by...' I'll fill in the rest when you come back. The archive gives its blessing, Magnate. Come back, so I don't have to leave it blank.",
+                               o=[dict(t="I'll come back.", go=None, a='GainXP#1000')]),
+                      ]),
+                 dict(label='lord', at='FT_library_guardian', need=['NPCIsDead#j12_elemental_lord_ice'],
+                      j="Both blessings are given. I must slay the Elemental Lord in the frozen fortress beyond the northern passes, east of the giants' hills, and return to the Guardian.",
+                      scene=[
+                          dict(t=B % "Every partner of the Golden Hand is in the Grey Library tonight. Dawnbrand lies on the Guardian's table, and the first caravan of the Northern Charter is already loading in the square outside" + " The northern pass is open. [BLUE](The Guardian's voice fills the hall)[] Partners. You know the custom.",
+                               o=[dict(t=B % "Lay your hand on Dawnbrand", go=1)]),
+                          dict(t=[('VariableEqual#ekg_c_golden_vesk,3', "[BLUE](Lisbet, at the front, is holding up a very thick envelope and grinning)[] The Master of the Hand swears that the Hand's books are the truth, and that its word is worth more than its gold. Do you swear it?"),
+                                  (None, "The Master of the Hand swears that the Hand's books are the truth, and that its word is worth more than its gold. Do you swear it?")],
+                               o=[dict(t="I swear it.", go=2)]),
+                          dict(t="Then rise, [BLUE]Master of the Hand[]. [BLUE](The Guardian steps back, and for the first time you see him smile properly)[] I am going to take the first caravan north and see what the ice kingdoms will pay for Freetown wine. Don't send me letters. Send me invoices.",
+                               o=[dict(t="Thank you, Guardian. For everything.", go=None)]),
+                      ]),
+             ]),
+    ])
+
+STORIES = {'warriors': WARRIORS, 'seventh': SEVENTH, 'wizards': WIZARDS, 'three': THREE, 'loreseekers': LORESEEKERS,
+           'golden': GOLDEN}

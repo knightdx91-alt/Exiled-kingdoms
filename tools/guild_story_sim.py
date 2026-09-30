@@ -16,8 +16,10 @@ D, g = sys.argv[1], sys.argv[2]
 RUNS = int(sys.argv[3]) if len(sys.argv) > 3 else 40
 CONV = os.path.join(D, 'conversations')
 LEADER = {'warriors': ('NG_warriors_daukar', 'Are there any contracts'), 'seventh': ('NG_sewers_kardagis', 'Guild business'),
-          'wizards': ('IM_ilemma', 'Guild business'), 'three': ('NI_hall_archbishop', 'Guild business')}[g]
-CONTRACT = {'warriors': (1001, 3), 'seventh': (1008, 4), 'wizards': (1005, 3), 'three': (1009, 10)}[g]
+          'wizards': ('IM_ilemma', 'Guild business'), 'three': ('NI_hall_archbishop', 'Guild business'),
+          'loreseekers': ('NG_library_librarian', 'Guild business'), 'golden': ('FT_library_guardian', 'Guild business')}[g]
+CONTRACT = {'warriors': (1001, 3), 'seventh': (1008, 4), 'wizards': (1005, 3), 'three': (1009, 10),
+            'loreseekers': (1022, 2), 'golden': (2015, 1)}[g]
 SV = 'ekg_st_' + g
 CACHE = {}
 
@@ -50,6 +52,7 @@ class Game:
         self.V = collections.defaultdict(int)
         self.dead, self.inv, self.gold, self.rng = set(), collections.Counter(), 100000, rng
         self.V['guild_' + g] = 1
+        self.V['talked_librarian'] = 1      # joining the Loreseekers means you have met Rurazar already
 
     def cond(self, c):
         for x in [x for x in c.split(';') if x]:

@@ -14,9 +14,10 @@ import net.fdgames.GameWorld.GameVariables;
 public final class EkGuild {
     private EkGuild() {}
 
-    /** Guild keys, in ekg_gm numbering order (1..4). */
-    static final String[] G = {"warriors", "seventh", "wizards", "three"};
-    static final String[] MEMBER_VAR = {"guild_warriors", "guild_seventh", "guild_wizards", "guild_three"};
+    /** Guild keys, in ekg_gm numbering order (1..6). guild_loreseekers / guild_golden are EK's own (PlayerHasGuild). */
+    static final String[] G = {"warriors", "seventh", "wizards", "three", "loreseekers", "golden"};
+    static final String[] MEMBER_VAR = {"guild_warriors", "guild_seventh", "guild_wizards", "guild_three",
+            "guild_loreseekers", "guild_golden"};
 
     private static Field fDef, fHp, fMana, fDev, fDet, fTraits;
     private static boolean fieldsTried;
@@ -107,6 +108,17 @@ public final class EkGuild {
             mana += 2 * t;
             if (t >= 4) tr[5]++;
             if (t >= 6) tr[1]++;
+            t = tier(v, 4);                      // Loreseekers
+            hp += t;
+            mana += 2 * t;
+            det2 += 2 * t;
+            if (t >= 4) tr[3]++;
+            if (t >= 6) tr[4]++;
+            t = tier(v, 5);                      // Golden Hand
+            hp += 2 * t;
+            def2 += t;
+            if (t >= 4) tr[5]++;
+            if (t >= 6) tr[2]++;
             add(fHp, inv, hp);
             add(fMana, inv, mana);
             add(fDef, inv, def2 / 2);
@@ -136,8 +148,8 @@ public final class EkGuild {
             GameVariables v = gd.gameVariables;
             int gm = var(v, "ekg_gm");
             StringBuilder sig = new StringBuilder();
-            for (int i = 0; i < 4; i++) {
-                if (gm >= 1 && gm <= 4 && gm - 1 != i) {
+            for (int i = 0; i < G.length; i++) {
+                if (gm >= 1 && gm <= G.length && gm - 1 != i) {
                     if (var(v, MEMBER_VAR[i]) != 0) {
                         v.b(MEMBER_VAR[i], 0);
                     }
