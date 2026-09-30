@@ -1,0 +1,115 @@
+# Guild expansion — spec (v74)
+
+Owner: "expand all the guild stuff … joining a guild doesn't really do much". Chosen scope (AskUserQuestion):
+ranks you climb, guild quest lines (repeatable contracts **and** a dedicated main quest line per guild), passive
+member bonuses, guild shops/gear; **modest, lore-friendly** strength. Follow-up: "you should be able to eventually
+become the guild master for each guild, but only for one; becoming guild master revokes your membership in the
+other guilds, but you don't lose any perks or anything you got from those guilds".
+
+## 1. Reversed (what the engine already gives us)
+- Membership = variable `guild_warriors|guild_seventh|guild_wizards|guild_three` (0/1), `HERO_GUILDS_SPEC.md`.
+- Conversation files (`Conversation.java`): rows `index type text text_ES "Go To" conditions actions`.
+  **Q**: the first row (file order) with that index whose conditions hold is shown; its actions fire; its Go To
+  names the answer set. **A**: the first **4** matching rows with that index are listed (`ConversationAnswers`
+  breaks at 4); Go To 0 ends. Conditions `;`-separated, all must hold.
+- Conditions used: `VariableEqual/Greater/Lower#v,n`, `PlayerIsLevel#n` (level ≥ n), `PlayerHasItems#id,n`,
+  `NPCIsDead#unique_tag` (persistent dead list: a boss killed before the chapter still counts).
+- Actions used: `SetVariable/IncVariable#v,n`, `GainGold#n`, `GainXP#n`, `GainItem#id`, `LoseItems#id,n`,
+  `OpenShop#` (opens the **talking NPC's** shop, e.g. `D9_wizard_member` node 80).
+- Journal (`QUEST_SPEC.md`): quest progress **is** the variable named after the quest id; `quests/list.txt` +
+  `quests/<id>.txt` (`progress description description_ES actions`, row 0 = name). ≥100 = completed.
+- Shops: a map `spawn`/`staticNPC` object's `shop_items` (+ `shop_modifier`, a buy-price multiplier:
+  `o0/f`: price = value × modifier) becomes that NPC's shop (`MonsterSpawn`, `l0/b`).
+- Passive bonuses: `CharacterInventory.u()V` (theirs; our decompile `s()`) recomputes `DefenseBonus`, `HPBonus`,
+  `ManaBonus`, `devicesBonus`, `detectionBonus`, `traits[6]` (0 STR 1 END 2 AGI 3 INT 4 AWA 5 PER, `CharacterTraits`)
+  from the equipped items; the v-upgrade feature already appends to its tail (`patch_mp_features.py`).
+- Daukar already has an unanswered "Are there any contracts available?" (node 63 "Not at the moment") — the hook.
+
+## 2. Leaders, guild menu, variables
+| Guild | g | Leader (menu node) | Stock NPC | Visit NPCs |
+|---|---|---|---|---|
+| Warriors' Guild | warriors | Sgt. Daukar `NG_warriors_daukar` (60) | Daukar | Toel `FT_warriors_toel` (Freetown), Morg `NI_warriors_morg` (Nivarian) |
+| Seventh House | seventh | Sister Kardagis `NG_sewers_kardagis` (60) | Torja `NG_sewers_torja` | Arkados `FT_seventh_arkados` (Freetown), Torja |
+| Wizard's Guild | wizards | High Mage Ilemma `IM_ilemma` (60) | Ilemma | Aglaron `D9_tower_aglaron`, Arabelle `E11_tower_arabelle` |
+| Church of the Three | three | Archbishop Dilla `NI_hall_archbishop` (2) | Dilla | — |
+
+Daukar: her existing dead-end answer "Are there any contracts available?" (node 60→63) now opens the guild menu
+(members only). Kardagis, Ilemma, Dilla: their member greeting leads to a two-answer choice (699: "(Guild business)"
+/ "Something else..." → 698 → their usual menu), so the 4-answer cap never hides a quest option. The guild menu is
+our nodes 700+ (contracts / standing & chapter / members' stock / back). Variables (all per guild g):
+`ekg_mem_<g>` 1 once greeted as a member (perks + journal), `ekg_rank_<g>` 0..5 (5 = Guild Master),
+`ekg_rep_<g>` contract count, `ekg_mq_<g>` main-quest progress (journal quest), `ekg_gq_<g>` standing journal
+quest; global `ekg_gm` = 0 or the guild number (1 warriors, 2 seventh, 3 wizards, 4 three).
+
+## 3. Ranks
+Titles r0..r4 + master; promotion to r+1 needs: chapter r+1 of the main quest finished, `ekg_rep ≥ R`, level ≥ L.
+
+| r→r+1 | 0→1 | 1→2 | 2→3 | 3→4 | 4→GM |
+|---|---|---|---|---|---|
+| contracts R | 2 | 4 | 7 | 10 | 14 |
+| level L | 8 | 12 | 15 | 18 | 21 |
+
+Warriors: Recruit, Soldier, Veteran, Champion, Warmaster, **Guild Master**. Seventh: Associate, Operative, Shadow,
+Master Thief, Hand of the House, **Master of the House**. Wizards: Apprentice, Adept, Magus, Master Magus,
+Archmagus, **Grand Magus**. Church: Acolyte, Deacon, Priest, Templar, Exemplar, **Hierophant**.
+
+## 4. Repeatable contracts (existing loot, +1 `ekg_rep` each, pay ≈ 1.3× item value + XP)
+| Guild | Contracts |
+|---|---|
+| Warriors | 3 Minotaur Horn (1001), 2 Troll Hide (1011), 3 Chitin Carapace (1015) |
+| Seventh | 4 Poison Sac (1008), 2 Emerald (2012), 1 Gold Ingot (1021) |
+| Wizards | 3 Fire Salts (1005), 3 Living Ice (1006), 3 Sparkling Powder (1007) |
+| Church | 10 Zombie Flesh (1009), 6 Skull (1010), 1 Demonic Skull (1013) |
+Three per guild so the node keeps a "back" answer (4-answer cap).
+
+## 5. Main quest lines (5 chapters; chapter k unlocks promotion to rank k)
+Objectives use always-present world bosses (`NPCIsDead#tag`, spawn objects with no conditions) and visits to
+guild NPCs (a Q row injected at the top of their node 1 while the chapter waits for the visit).
+
+| | Ch1 | Ch2 | Ch3 | Ch4 | Ch5 (Guild Master) |
+|---|---|---|---|---|---|
+| Warriors "The Iron Oath" | visit Toel (Freetown) → Kakrak, Imperial Fortress (Steel Coast) | King Gurguth, Gurguth Cave (Trollfens) | Giant chief, Sanctuary Peak | Minotaur Underking, Sunken Citadel (Ashen Wastes) → report to Morg (Nivarian) | Basrudaxul, Bappasalar Cave |
+| Seventh "The Long Game" | visit Arkados (Freetown) → Surtag, Jabal Grotto | Xidar, Jabal Grotto | Director, Golden Cove Bank | Castle Storme executioner → report to Torja | tribute: 3 Gold Ingot + 15000 gold |
+| Wizards "Echoes of the Council" | visit Aglaron (Iron Valley enclave) + 3 Sparkling Powder | Crypt necromancer, Mercian Royal Crypt | Mausoleum lich (Deadwood) → report to Arabelle (Solliga enclave) | Lich of the Sewer of Horrors (Icemist) | Flame Lord, Icemist Underlevels |
+| Church "The Long Vigil" | 6 Skulls for the ossuary | Lich of Irazur Tomb (Great Inori) | Lich of the Forgotten Temple (Eastern Inori) | Greater demon, Hellish Cave (Fögas Forest) | Void Lord, Forbidden Pit (Mount Orogg) |
+
+Promotion rewards (class-free gear, gold, XP):
+| | r1 | r2 | r3 | r4 | GM |
+|---|---|---|---|---|---|
+| Warriors | Greater Ring of Endurance 3024 | Ring of the Bull 3032 | Iron Will Mantle 3505 | Ring of Health 3012 | Superior Belt of Might 7005 |
+| Seventh | Ring of the Trader 3039 | Ring of Charm 3022 | Spectral Cloak 3504 | Belt of Agility 7001 | Superior Belt of Agility 7004 |
+| Wizards | Lesser Ring of Learning 3021 | Oasis Ring 3013 | Tiara of the Heavens 4500 | Ring of the Star Traveller 3033 | Greater Tiara of the Heavens 4503 |
+| Church | Greater Ring of Death Ward 3015 | Ring of Vitality 3026 | Totem of Protection 463 | The Abbot's Ring 3028 | Bishop Ring 3030 |
+
+## 6. Guild Master (one guild only)
+Chapter 5 is offered only while `ekg_gm = 0`. Accepting the seat sets `ekg_gm`, `ekg_rank_<g> = 5` and
+`guild_<other> = 0` for the other three (membership, trainers and guild menus there close). **Perks, ranks, items
+and journal history stay**: perks read `ekg_mem`/`ekg_rank`, never `guild_*`. Every oath answer (any row whose actions
+set `guild_*,1`, incl. the Church's "renounce" option) gets `VariableLower#ek_gm,1`, so nobody (the Hero included)
+can re-take an oath after becoming a Guild Master. Other guilds' standing journals show "former member".
+
+## 7. Passive perks (tier t = rank+1; the Guild Master seat counts t = 6 for its own guild)
+| Guild | Per tier | Attributes |
+|---|---|---|
+| Warriors | +3 HP, +½ armor | STR +1 at t≥4, END +1 at t=6 |
+| Seventh | +2 HP, +2 devices, +1 detection | AGI +1 at t≥4, AWA +1 at t=6 |
+| Wizards | +4 mana | INT +1 at t≥4, AWA +1 at t=6 |
+| Church | +2 HP, +2 mana | PER +1 at t≥4, END +1 at t=6 |
+Max per guild ≈ one good ring. `EkGuild.apply(inv)` adds them at the tail of the player's `CharacterInventory.u()`
+(only the player's inventory); `EkGuild.tick()` (from `EkAuto.tick`, every 3 s) re-runs `u()` when a rank changes.
+
+## 8. Members' stock (shop_modifier 0.85, opened from "Guild business" at rank ≥ 1)
+Warriors (Daukar): platemail pieces 115-119, Bluesteel Greatsword 534, Maul 537, Greataxe 539, Hero's Shield 185,
+Scutum 191, Warrior's Gorget 4021. Seventh (Torja): Assassin's Cuirass/Leggings 146/147, dirks 406/407/409/410,
+Stiletto 611, Assassin's Longbow 730. Wizards (Ilemma): staves 381/382/387/388/392, robes 325/341, rings
+3036/3038, Pouch of Reagents 460, Imperial College Emblem 4018. Church (Dilla): Blessed coif/boots/helm 131/145/161,
+Holy Helm 221, Anointed Shield 193, Shield of Life 187, Bone maces 617/618.
+Staves/robes keep their own class requirements (the store only lists them).
+
+## 9. Implementation
+Variables are prefixed `ekg_` (not `ek_`) so `EkShare.isCharVar` keeps them with the character.
+
+`tools/guild_expansion.py` (build step 2d, after `hero_guilds.py`): conversations (root + every language copy
+with a `conditions` column; new rows are English), `quests/` (+`list.txt`), map objects (`shop_items`,
+`shop_modifier`). Java: `EkGuild.java`; smali: `patch_mp_features.py` appends `EkGuild.apply` to `u()V`.
+APPROX: new content (not EK's), logged in `DEOBFUSCATION_STATUS.md` §3.

@@ -57,6 +57,10 @@ fi
 if [ -z "${EK_SKIP_HERO:-}" ]; then
   python3 "$REPO/tools/hero_guilds.py" "$BASE" "$WORK"
 fi
+# 2d. guild ranks, contracts, main quest lines, Guild Master, members' stock (deobf/GUILD_EXPANSION_SPEC.md)
+if [ -z "${EK_SKIP_GUILDS:-}" ]; then
+  python3 "$REPO/tools/guild_expansion.py" "$BASE" "$WORK"
+fi
 
 echo "== 3. apply patches =="
 ( cd "$WORK" && python3 "$REPO/tools/patch_crashlog.py" )

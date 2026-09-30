@@ -366,6 +366,11 @@ edit_method('net/fdgames/GameEntities/CharacterSheet/CharacterInventory', 'u()V'
     :ekf_noupg
 ''' + r'\2', m, 'recompute tail'),
     "CharacterInventory.u(): armor +S, HP +2S, mana +2S")
+# v74 guild perks (deobf/GUILD_EXPANSION_SPEC.md §7): EkGuild.apply(this) at the tail of the recompute
+edit_method('net/fdgames/GameEntities/CharacterSheet/CharacterInventory', 'u()V', lambda m: sub1(
+    r'(    invoke-static \{\}, Lnet/fdgames/GameLevel/GameLevelData;->s\(\)Lnet/fdgames/GameLevel/GameLevelData;\n\n    move-result-object v0\n\n    invoke-virtual \{v0\}, Lnet/fdgames/GameLevel/GameLevelData;->e\(\)V\n\n    return-void\n)',
+    '    invoke-static {p0}, Lnet/fdgames/ek/android/lan/EkGuild;->apply(Ljava/lang/Object;)V\n\n' + r'\1', m, 'guild perks tail'),
+    "CharacterInventory.u(): + guild perks (EkGuild.apply)")
 
 # CharacterWindow: UPGRADE button on an equipped item
 H = 'Le/a/d/e/h;'

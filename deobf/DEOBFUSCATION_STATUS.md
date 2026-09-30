@@ -216,3 +216,7 @@ and readable bodies — Track A).
 - **APPROX (v73) MP mod text translated** — the MP mod's Russian dialogue and quest journal are replaced with an
   English translation made for this port (`tools/mp_en.tsv`, 7,069 strings); the mod had no English. Crude lines are
   rendered faithfully but not graphically. Language folders keep the mod's Russian. `deobf/MP_ENGLISH_SPEC.md`.
+- **APPROX (v74) Guild expansion** — ranks, contracts, per-guild main quest lines, Guild Master (one seat; other
+  memberships revoked, perks kept), passive rank perks and members' stock are new content, not EK's. Guild progress
+  (`ekg_*`) is character state in shared worlds; membership flags (`guild_*`) stay world state as in EK.
+  `deobf/GUILD_EXPANSION_SPEC.md`.

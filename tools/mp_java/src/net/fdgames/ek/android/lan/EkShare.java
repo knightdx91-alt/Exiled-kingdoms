@@ -72,7 +72,7 @@ public final class EkShare {
 
     static boolean isCharVar(String n) {
         return n != null && (n.startsWith("REP_") || n.startsWith("know_") || n.startsWith("item_upg_")
-                || n.equals("summon_path"));
+                || n.startsWith("ekg_") || n.equals("summon_path"));   // v74: guild ranks/perks/story travel with the character
     }
 
     private static File blockFile(int slot) {

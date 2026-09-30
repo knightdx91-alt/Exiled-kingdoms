@@ -27,14 +27,26 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v73.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v74.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v73.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v74.apk
 ```
+
+### v74 (2026-09-30) — guilds that matter
+
+Owner: guild membership "doesn't really do much"; wants ranks, repeatable guild quests plus a main quest line per
+guild, passive bonuses, guild shops (modest), and Guild Master of one guild only (taking the seat revokes the other
+memberships, but earned perks stay). Per guild: 6 ranks, 3 repeatable item contracts, a 5-chapter main quest line
+on always-present world bosses + visits to guild members in other cities, promotion rewards (class-free gear),
+members' stock at 15% off, journal entries (standing + main quest). Data: `tools/guild_expansion.py` (build step
+2d). Perks: `EkGuild.java` (reflection-added to the player's inventory recompute tail; `EkAuto.tick` refresh +
+Guild Master rule). `ekg_*` variables travel with the character in shared worlds. Spec
+`deobf/GUILD_EXPANSION_SPEC.md`; flows checked with a dialogue simulator (all 4 careers to Guild Master, seat
+exclusivity, oaths closed afterwards). dist: base + v74 + v73.
 
 ### v73 (2026-09-30) — the whole MP mod in English
 
@@ -43,7 +55,7 @@ quest journal, 7,069 unique strings) now has an English line in `tools/mp_en.tsv
 applied by `tools/mp_english.py` in build step 2b; the build log reports **0 Russian lines left**. Official names are
 kept (items_text, bestiary, regions, EK place names). The mod's crude/sexual/slur-heavy lines are translated
 faithfully but not graphically (owner can ask to tone them down). `tools/mp_translations.tsv` replaced by
-`tools/mp_en.tsv`. `deobf/MP_ENGLISH_SPEC.md`. dist: base + v73 + v72. PC port (Option B) paused, not started in code.
+`tools/mp_en.tsv`. `deobf/MP_ENGLISH_SPEC.md`. dist (at the time): base + v73 + v72. PC port (Option B) paused, not started in code.
 
 ### v72 (2026-09-30) — Hero can join every guild
 
