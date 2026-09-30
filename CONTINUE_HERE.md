@@ -27,14 +27,23 @@ the same feature set and the **same signing key**:
 
 | Device | APK | Built by |
 |---|---|---|
-| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v77.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
+| **Galaxy Z Fold 8** (Android 16, 64-bit-only, foldable) | `ExiledKingdoms-hero-v78.apk` | `EK_MP_APK=<mod apk> build_mod_4_2_2.sh`, then `build_modern_compat.sh` |
 
 Direct downloads from Pages (the repo stores each as 25 MB split parts because of
 GitHub's 100 MB file limit; `.github/workflows/deploy.yml` reassembles them):
 
 ```
-https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v77.apk
+https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-hero-v78.apk
 ```
+
+### v78 (2026-09-30) — Loreseekers and Golden Hand become joinable guilds
+
+EK's own `PlayerHasGuild` checks guild_loreseekers and guild_golden, but 4.2.2 never lets you join them. Now each
+leader (Master Librarian Rurazar; the Guardian of the Grey Library) offers the oath (Friendly standing or a gold
+bond), with 6 ranks, contracts, perks (EkGuild, ekg_gm 5/6), members' stock and a full story: Loreseekers "The Last
+Codex" (22 steps: the Codex of the Fall, Loremaster Quill, the Witch Queens) and Golden Hand "The Gilded Oath"
+(22 steps: the Salt Road, Consul Vesk, the founder's sword Dawnbrand, the Northern Charter). Only one Guild Master seat
+across all six guilds. Sim: all six 60/60. Spec: GUILD_EXPANSION_SPEC.md §11. dist: base + v78 + v77.
 
 ### v77 (2026-09-30) — Wizard's Guild and Church stories; all four guilds now have full story lines
 

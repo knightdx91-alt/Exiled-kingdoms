@@ -224,3 +224,7 @@ and readable bodies — Track A).
   Game", v76), Wizard's Guild ("Echoes of the Council") and Church ("The Long Vigil", v77) main quest lines are new stories with new characters, enemies, quest items and choices, placed on EK's
   own maps and built around EK's own lore (the Golden Hand, the unseen boss, Ilemma's agelessness, the burned Oppalan Frontier). They replace the
   v74 chapter lists. `deobf/GUILD_EXPANSION_SPEC.md` §10.
+- **APPROX (v78) Loreseekers and Golden Hand are joinable** — EK's `PlayerHasGuild` already counts guild_loreseekers
+  and guild_golden, but 4.2.2 has no way to join either. v78 adds an oath at each leader (Friendly standing or a gold
+  bond), ranks, contracts, perks, stock and a full story line for each, on the same one-Guild-Master rule as the others.
+  `deobf/GUILD_EXPANSION_SPEC.md` §11.
