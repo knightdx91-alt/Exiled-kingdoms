@@ -162,6 +162,7 @@ public class Scene3D {
 
     // per-frame classification scratch
     final byte[] kind = new byte[Rec.MAX];               // 0 floor, 1 upright, 2 upright-translucent, 3 additive
+    final float[] fade = new float[Rec.MAX];            // alpha multiplier (occluders between viewer and hero)
     final float[] ax = new float[Rec.MAX], az = new float[Rec.MAX], aBase = new float[Rec.MAX], aCx = new float[Rec.MAX];
 
     /**
@@ -190,6 +191,7 @@ public class Scene3D {
             aBase[i] = minY + 16;
             ax[i] = gi(aCx[i], aBase[i]);
             az[i] = -go(aCx[i], aBase[i]);
+            fade[i] = 1f;
             if (!floor && !rec.tileDraw[i] && maxY - minY >= 60 && actors < actorIdx.length) actorIdx[actors++] = i;
             // small quads just above a character (health bars, names, status icons) ride on it
             if (!floor && !rec.tileDraw[i] && maxY - minY < 40) {
@@ -200,6 +202,17 @@ public class Scene3D {
                         break;
                     }
                 }
+            }
+        }
+        // V4: upright things standing between the viewer and the hero turn see-through
+        float sx = heroX - vx, sz = heroZ - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
+        if (sl > 1e-3f) {
+            sx /= sl; sz /= sl;
+            for (int i = 0; i < n; i++) {
+                if (kind[i] != 1 || !rec.tileDraw[i]) continue;          // map objects only, never characters
+                float px = ax[i] - vx, pz = az[i] - vz;
+                float along = px * sx + pz * sz, side = Math.abs(px * sz - pz * sx);
+                if (along > 0.3f && along < sl - 0.4f && side < 1.6f) { kind[i] = 2; fade[i] = 0.3f; }
             }
         }
         UiLayer.clientArrays(gl);
@@ -241,7 +254,7 @@ public class Scene3D {
             cur = rec.tex[i];
             int o = i * 16;
             int c = Float.floatToRawIntBits(rec.col[i]);
-            float r = (c & 0xff) / 255f, g = ((c >>> 8) & 0xff) / 255f, b = ((c >>> 16) & 0xff) / 255f, a = ((c >>> 24) & 0xfe) / 254f;
+            float r = (c & 0xff) / 255f, g = ((c >>> 8) & 0xff) / 255f, b = ((c >>> 16) & 0xff) / 255f, a = ((c >>> 24) & 0xfe) / 254f * fade[i];
             float rx = 0, rz = 0;
             if (k != 0) {
                 float tx = vx - ax[i], tz = vz - az[i];

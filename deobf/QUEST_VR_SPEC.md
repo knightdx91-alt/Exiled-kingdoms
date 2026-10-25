@@ -58,6 +58,7 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   centre) as a Y-billboard facing the viewer. Art px → units: √2/64 horizontally,
   (√2/64)/cos 30° vertically (EK's 2:1 view looks down 30°). Small quads drawn just above a
   character (health bars, labels) ride on that character.
+- Map objects between the viewer and the hero fade to 30 % (V4).
 - Alpha-tested cut-outs; translucent quads (fading roofs, ghosts) and additive particles last.
 - **Light**: the RayHandler's ambient colour (day/night by hour, dungeon darkness) tints the
   scene. Point lights are not drawn yet (V3).
@@ -116,5 +117,6 @@ frame rate, the GLES3 context under libGDX 1.9.12). First thing to check on the 
 - **V2** Buildings and walls are billboards → next: boxes textured by projecting their
   iso art onto the faces (correct from the iso direction, solid from the others).
 - **V3** No 3D point lights (torches, fires) yet; ambient only.
-- **V4** Trees between the camera and the hero are not faded yet (walk-inside).
+- **V4** ~~Trees between the camera and the hero are not faded~~ DONE: map objects standing
+  between the viewer and the hero (within 1.6 cells of the line) draw at 30 % alpha.
 - **V5** UI is the game's own 2D screen on a panel (not re-laid out for VR).

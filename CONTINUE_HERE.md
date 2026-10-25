@@ -38,8 +38,7 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   controls → the camp's real exit → Lannegar Valley in 3D.
 - **Not yet verified on a headset.** First check: `adb logcat -s ekxr ekvr`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
-- Next: buildings/walls as projected boxes (V2), fade trees between camera and hero (V4),
-  point lights (V3).
+- Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 
 ## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-22)
 
