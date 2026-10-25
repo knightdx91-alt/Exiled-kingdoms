@@ -39,6 +39,10 @@ jobs:
               ls -la "web/dist/$base"
             fi
           done
+      # Quest VR builds are committed as a small overlay on a mod APK (dist/quest-vr-vN):
+      # rebuild + sign the full APK here, byte-identical to tools/build_vr.sh's (sha256-checked).
+      - name: Assemble Quest VR APKs into site
+        run: tools/vr/deploy_vr.sh web/dist
       - uses: actions/configure-pages@v5
         with:
           enablement: true

@@ -15,30 +15,31 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ---
 
-## Track D — Meta Quest 3S, 3D (started 2026-10-25)
+## Track D — Meta Quest 3S VR build (restarted 2026-10-25)
 
-Owner request: EK in 3D on a **Quest 3S**, "the way the OG Pokémon games were made 3D on
-PC", starting with **the whole tutorial area**, built from **their mod APK (hero-v78)**,
-delivered as an **installable Quest APK**.
+Owner: "It should be 3D … a standalone app you can install on the Meta Quest 3S, with network
+support for the multiplayer too … start fresh using the APK" (not the web build). The first
+attempt (a Godot re-implementation of the tutorial, `quest/`) was removed.
 
-- Project: `quest/` (Godot **4.6.2**, GL Compatibility renderer, OpenXR + GodotOpenXRVendors
-  **5.1.0** Meta plugin, passthrough). Scripts in `quest/scripts/`: `game.gd` (rules: ported
-  from web/ move.js, combat.js, player.js), `dialogue.gd`, `board.gd` (3D diorama),
-  `panel3d.gd` + `ui_theme.gd` (floating panels), `main.gd` (XR / desktop input),
-  `autotest.gd` (full playthrough).
-- Data: `tools/quest_extract.py` → `quest/data/` from `dist/hero-v78` (v78's tutorial map
-  differs from stock only in the two crates: Potion of Light Healing + Lesser Ring of
-  Endurance).
-- Build: `ANDROID_SDK_ROOT=… tools/build_quest.sh 1` → `dist/quest-v1/ExiledKingdomsVR-v1.apk.part*`
-  (Pages: `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdomsVR-v1.apk`).
-  Signed with `tools/ek-release.keystore`; package `net.fdgames.ek.quest` (separate app, does
-  not touch the mod install). The build fails unless the desktop autotest passes.
-- Spec, checklist, controls, deviations Q1–Q7: `deobf/QUEST_3D_TUTORIAL_SPEC.md`.
-- Install: enable developer mode on the headset, then `adb install ExiledKingdomsVR-v1.apk`
-  (or SideQuest); it shows under **Unknown Sources**.
-- **Not yet verified on a headset** (controller bindings, passthrough, frame rate).
-  First thing to check when the owner tries it.
-- Next: H10 → Lannegar (the next area), skills, inventory screen.
+**What it is:** hero-v78 itself + a VR layer. The game (menus, tutorial → H10, world, quests,
+saves, Hero class, guilds, the LAN/relay multiplayer engine) is v78's own code, unchanged; the
+layer wraps its render callback (`MainActivity.onCreate`: `initialize(Vr.wrap(game))`), records
+the map draws and re-places them in 3D, shows the game's UI on a floating panel and maps the
+Touch controllers onto the game's touch input. Same package/key/versionCode as the mod.
+
+- Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
+  (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 1` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v1.apk` + `dist/quest-vr-v1/vr-overlay.zip` (2.3 MB). The Pages
+  deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v1.apk`
+- Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
+  (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
+  controls → the camp's real exit → Lannegar Valley in 3D.
+- **Not yet verified on a headset.** First check: `adb logcat -s ekxr ekvr`.
+- Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
+- Next: buildings/walls as projected boxes (V2), fade trees between camera and hero (V4),
+  point lights (V3).
 
 ## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-22)
 

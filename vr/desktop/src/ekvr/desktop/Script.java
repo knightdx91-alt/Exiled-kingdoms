@@ -1,0 +1,106 @@
+package ekvr.desktop;
+
+import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
+/**
+ * Sequential scripted input for desktop tests (-Dekvr.script=file). One command per line,
+ * each runs after the previous one finished:
+ *   still            wait until the screen has not changed for 25 frames (animations done)
+ *   wait <frames>    wait a fixed number of frames
+ *   click <x> <y>    tap at window pixel (x, y)
+ *   down/drag/up <x> <y>
+ *   key <gdxKeyCode> press + release
+ *   hold <gdxKeyCode> <frames>
+ *   pad <axis> <value> <frames>   push a virtual gamepad axis (ekvr.Pad) for N frames
+ *   shot <name>      save shotDir/<name>.png
+ *   quit
+ *   actions <EK action list>   run it through the game's ActionsSet (e.g. Travel#H10,1,14)
+ * Lines starting with # are comments.
+ */
+public class Script implements Runnable {
+    final List<String[]> cmds = new ArrayList<>();
+    int next, waitLeft = 0, stillFrames = 0, holdKey = -1, padAxis = -1;
+    long lastHash;
+    final String dir;
+
+    public Script(String file, String dir) throws Exception {
+        this.dir = dir;
+        for (String l : Files.readAllLines(Paths.get(file))) {
+            l = l.trim();
+            if (l.isEmpty() || l.startsWith("#")) continue;
+            cmds.add(l.split("\\s+"));
+        }
+    }
+
+    long screenHash() {
+        int w = DeskBackend.width, h = DeskBackend.height;
+        ByteBuffer b = BufferUtils.createByteBuffer(w * h * 4);
+        GL11.glReadPixels(0, 0, w, h, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, b);
+        long hsh = 1125899906842597L;
+        for (int i = 0; i < w * h * 4; i += 4 * 97) hsh = 31 * hsh + b.get(i) + 7 * b.get(i + 1);
+        return hsh;
+    }
+
+    public void run() {
+        if (waitLeft > 0) {
+            if (--waitLeft == 0) {
+                if (holdKey >= 0) { DeskInput.key(holdKey, false); holdKey = -1; }
+                if (padAxis >= 0) { ekvr.Pad.PAD.axes[padAxis] = 0; padAxis = -1; }
+            }
+            return;
+        }
+        if (stillFrames > 0) {
+            long hh = screenHash();
+            if (hh == lastHash) stillFrames++; else stillFrames = 1;
+            lastHash = hh;
+            if (stillFrames < 25) return;
+            stillFrames = 0;
+        }
+        if (next >= cmds.size()) return;
+        String[] c = cmds.get(next++);
+        System.out.println("[script] frame " + DeskBackend.frameId + ": " + String.join(" ", c));
+        switch (c[0]) {
+            case "still": stillFrames = 1; lastHash = 0; break;
+            case "wait": waitLeft = Integer.parseInt(c[1]); break;
+            case "click": {
+                int x = Integer.parseInt(c[1]), y = Integer.parseInt(c[2]);
+                if (DeskBackend.vr) { DeskInput.rawPress(x, y); DeskInput.rawRelease(x, y); }   // straight to the game's screen
+                else { DeskInput.move(x, y); DeskInput.press(x, y); DeskInput.release(x, y); }
+                waitLeft = 2;
+                break;
+            }
+            case "down": DeskInput.press(Integer.parseInt(c[1]), Integer.parseInt(c[2])); break;
+            case "drag": DeskInput.move(Integer.parseInt(c[1]), Integer.parseInt(c[2])); break;
+            case "up": DeskInput.release(Integer.parseInt(c[1]), Integer.parseInt(c[2])); break;
+            case "key": { int k = Integer.parseInt(c[1]); DeskInput.key(k, true); DeskInput.key(k, false); waitLeft = 2; break; }
+            case "hold": holdKey = Integer.parseInt(c[1]); DeskInput.key(holdKey, true); waitLeft = Integer.parseInt(c[2]); break;
+            case "pad": padAxis = Integer.parseInt(c[1]); ekvr.Pad.PAD.axes[padAxis] = Float.parseFloat(c[2]); waitLeft = Integer.parseInt(c[3]); break;
+            case "shot": Shot.save(dir + "/" + c[1] + ".png"); break;
+            case "quit": DeskBackend.app().exit(); break;
+            // simulated Quest (mode=vr)
+            case "aim": SimXr.aimX = Integer.parseInt(c[1]); SimXr.aimY = Integer.parseInt(c[2]); break;
+            case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
+            case "stick": SimXr.stickX = Float.parseFloat(c[1]); SimXr.stickY = Float.parseFloat(c[2]); break;
+            case "btn": {
+                boolean on = c.length < 3 || c[2].equals("1");
+                switch (c[1]) { case "a": SimXr.a = on; break; case "b": SimXr.b = on; break; case "x": SimXr.x = on; break; case "click": SimXr.click = on; break; }
+                waitLeft = 2; break;
+            }
+            case "look": SimXr.headYaw = Float.parseFloat(c[1]); SimXr.headPitch = Float.parseFloat(c[2]); break;
+            case "vrmode": SimXr.core.setMode(c[1].equals("walk") ? ekvr.VrCore.Mode.WALK : ekvr.VrCore.Mode.TABLE, SimXr.headPose); break;
+            case "actions": {   // run an EK action list through the game's own ActionsSet (e.g. the camp exit)
+                String acts = String.join(" ", java.util.Arrays.copyOfRange(c, 1, c.length));
+                new net.fdgames.GameLogic.ActionsSet(acts).a();
+                break;
+            }
+            case "hover": System.out.println("[script] hover=" + SimXr.core.hover); break;
+            default: System.out.println("[script] unknown: " + c[0]);
+        }
+    }
+}
