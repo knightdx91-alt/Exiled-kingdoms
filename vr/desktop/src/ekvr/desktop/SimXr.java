@@ -30,6 +30,8 @@ public class SimXr {
                 public void drag(int x, int y) { DeskInput.rawMove(x, y); }
                 public void up(int x, int y) { DeskInput.rawRelease(x, y); }
                 public void key(int code) { DeskInput.key(code, true); DeskInput.key(code, false); }
+                public void keyDown(int code) { DeskInput.key(code, true); }
+                public void keyUp(int code) { DeskInput.key(code, false); }
             };
             String vm = System.getProperty("ekvr.vrmode");
             if (vm != null) core.mode = VrCore.Mode.valueOf(vm.toUpperCase());

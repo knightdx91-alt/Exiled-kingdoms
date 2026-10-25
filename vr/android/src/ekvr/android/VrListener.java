@@ -91,6 +91,8 @@ public class VrListener implements com.badlogic.gdx.a {
                 public void drag(int x, int y) { touch(MotionEvent.ACTION_MOVE, x, y); }
                 public void up(int x, int y) { touch(MotionEvent.ACTION_UP, x, y); }
                 public void key(int code) { sendKey(KeyEvent.ACTION_DOWN, code); sendKey(KeyEvent.ACTION_UP, code); }
+                public void keyDown(int code) { sendKey(KeyEvent.ACTION_DOWN, code); }
+                public void keyUp(int code) { sendKey(KeyEvent.ACTION_UP, code); }
             };
             forceSize();
             // the Touch controllers as a gamepad: the game's own controller code walks, acts, etc.

@@ -127,6 +127,14 @@ EK has complete gamepad support, unused by v1/v2 (they faked touches instead):
 - **cancel** → close the window / back. skill1..8 → `z.k(i)`; nextItem/prevItem cycle the
   selected quick slot, useItem uses it (`z.a0()`), recovery = `z.G()`.
 
+- **Buttons are also keys** (v9): a real Android gamepad sends each button as a controller
+  button *and* as a key event with the same code (KEYCODE_BUTTON_A = 96, B = 97, X = 99 …,
+  which is why EK's defaults are 96…). EK depends on the key half: with a controller
+  connected, `GameScreen` clears the attacking flag (`z.j0`) every frame unless
+  `Gdx.input.isKeyPressed(Settings.a.action.id)`. `ekvr.Pad` therefore keeps 256 button slots
+  (v3–v8 kept 32, so EK's 96+ codes were dropped: Attack, Cancel and skills never reached the
+  game) and VrCore mirrors every pad button as Android key down/up events.
+
 ### 5.1b Game settings the VR build sets (v5)
 
 Two of EK's own options (`SettingsData`, held in `Settings.c` in v78) are set by the VR layer

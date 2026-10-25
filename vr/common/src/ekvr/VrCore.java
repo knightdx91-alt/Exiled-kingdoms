@@ -21,6 +21,9 @@ public class VrCore {
         void drag(int x, int y);
         void up(int x, int y);
         void key(int androidKeyCode);
+        /** Hold / release a key (a gamepad button's key event). */
+        void keyDown(int androidKeyCode);
+        void keyUp(int androidKeyCode);
     }
 
     /** One controller this frame (OpenXR aim pose, stage space). */
@@ -327,8 +330,27 @@ public class VrCore {
                 }
             } else if (stickHeld) { touch.up(lastX, lastY); stickHeld = false; }
         }
+        mirrorKeys();
         cameraFollow(dt);
         System.arraycopy(now, 0, was, 0, now.length);
+    }
+
+    final boolean[] keyHeld = new boolean[256];
+
+    /**
+     * A real Android gamepad sends each button twice: as a controller button and as a key event
+     * with the same code (KEYCODE_BUTTON_A = 96 ...). EK relies on the key half: with a controller
+     * connected, GameScreen clears the "attacking" flag every frame unless the action's code is
+     * held as a key (Gdx.input.isKeyPressed(Settings.a.action.id)), so the attack stopped the
+     * frame it started. Send the key events for the pad's buttons too (QUEST_VR_SPEC.md §5.1).
+     */
+    void mirrorKeys() {
+        if (touch == null || !Pad.active()) return;
+        boolean[] b = Pad.PAD.buttons;
+        for (int i = 0; i < keyHeld.length && i < b.length; i++) {
+            if (b[i] && !keyHeld[i]) { touch.keyDown(i); keyHeld[i] = true; }
+            else if (!b[i] && keyHeld[i]) { touch.keyUp(i); keyHeld[i] = false; }
+        }
     }
 
     boolean settingsDone;
@@ -356,7 +378,7 @@ public class VrCore {
         if (trigHeld && touch != null) touch.up(lastX, lastY);
         if (stickHeld && touch != null) touch.up(lastX, lastY);
         trigHeld = stickHeld = false; clickBtn = null;
-        if (Pad.active()) Pad.PAD.clear();
+        if (Pad.active()) { Pad.PAD.clear(); mirrorKeys(); }
     }
 
     void menuInput(Binds.Btn anyDown, Binds.Btn pressed) {

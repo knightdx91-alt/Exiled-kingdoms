@@ -15,7 +15,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 public class Pad implements Controller {
     public static final Pad PAD = new Pad();
     public final float[] axes = new float[8];
-    public final boolean[] buttons = new boolean[32];
+    public final boolean[] buttons = new boolean[256];   // EK uses Android gamepad key codes: A = 96 ...
     public boolean connected;
 
     public PovDirection a(int pov) { return PovDirection.values()[0]; }
