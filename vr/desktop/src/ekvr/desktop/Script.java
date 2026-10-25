@@ -113,6 +113,7 @@ public class Script implements Runnable {
                 break;
             }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
+            case "uiaim": SimXr.aimFrom = null; SimXr.aimStage = SimXr.core.uiPoint(Integer.parseInt(c[1]), Integer.parseInt(c[2])); break;
             case "menurow": SimXr.aimFrom = null; SimXr.aimStage = SimXr.core.menu.rowPoint(Integer.parseInt(c[1])); break;
             case "opts": try {
                 java.lang.reflect.Field f = net.fdgames.ek.Settings.class.getDeclaredField("c"); f.setAccessible(true);

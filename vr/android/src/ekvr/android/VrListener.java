@@ -152,18 +152,26 @@ public class VrListener implements com.badlogic.gdx.a {
             float[] eye0 = Mat.pose(v[0], v[1], v[2], v[3], v[4], v[5], v[6]);
             float[] head = eye0.clone();
             head[12] = (v[4] + v[15]) / 2; head[13] = (v[5] + v[16]) / 2; head[14] = (v[6] + v[17]) / 2;
-            core.input(head, dt);
+            // the VR layer must never take the game down: log its errors (adb logcat -s ekvr) and go on
+            try { core.input(head, dt); } catch (Throwable t) { vrError("input", t); }
             GL20 gl = ((GlTap) Gdx.gl20).gl;
             for (int e = 0; e < 2; e++) {
                 int o = e * 11;
                 float[] pose = Mat.pose(v[o], v[o + 1], v[o + 2], v[o + 3], v[o + 4], v[o + 5], v[o + 6]);
                 float[] proj = Mat.frustum(v[o + 7], v[o + 8], v[o + 9], v[o + 10], 0.05f, 500f);
                 gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, fbo[e][images.get(e)]);
-                core.drawEye(proj, Mat.rigidInverse(pose), ew, eh);
+                try { core.drawEye(proj, Mat.rigidInverse(pose), ew, eh); } catch (Throwable t) { vrError("draw", t); }
             }
             gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, 0);
         }
         Xr.endFrame(st == 1, core.passthrough && core.mode == VrCore.Mode.TABLE);
+    }
+
+    long lastErr;
+
+    void vrError(String where, Throwable t) {
+        long now = System.currentTimeMillis();
+        if (now - lastErr > 2000) { Log.e(TAG, "VR layer error in " + where + " (game continues)", t); lastErr = now; }
     }
 
     public void pause() { game.pause(); }

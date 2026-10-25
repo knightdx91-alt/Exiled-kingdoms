@@ -63,11 +63,23 @@ public class DeskInput implements com.badlogic.gdx.g {
         if (in.processor != null) in.processor.touchUp(mx, my, 0, 0);
     }
     public static void key(int gdxKey, boolean down) {
-        in.keys[gdxKey] = down;
-        if (down) in.justPressed[gdxKey] = true;
-        if (in.processor != null) { if (down) in.processor.keyDown(gdxKey); else in.processor.keyUp(gdxKey); }
+        // like Android's event queue: the game sees the key on its next frame (a key sent after
+        // the game read its input this frame used to be cleared before it could see it)
+        pending.add(new int[]{gdxKey, down ? 1 : 0});
     }
-    static void endFrame() { java.util.Arrays.fill(in.justPressed, false); in.dx = in.dy = 0; }
+    static final java.util.ArrayList<int[]> pending = new java.util.ArrayList<>();
+
+    static void endFrame() {
+        java.util.Arrays.fill(in.justPressed, false); in.dx = in.dy = 0;
+        java.util.ArrayList<int[]> p = new java.util.ArrayList<>(pending);
+        pending.clear();
+        for (int[] k : p) {
+            boolean down = k[1] == 1;
+            if (down) { in.keys[k[0]] = true; in.justPressed[k[0]] = true; }
+            if (in.processor != null) { if (down) in.processor.keyDown(k[0]); else in.processor.keyUp(k[0]); }
+            if (!down) in.keys[k[0]] = false;
+        }
+    }
 
     /** GLFW key -> libGDX Input.Keys code, for the keys the game reads. */
     static int gdxKey(int k) {

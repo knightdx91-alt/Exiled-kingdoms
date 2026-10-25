@@ -162,8 +162,9 @@ axis under |0.2| (`ExiledKingdoms` command reader), which bent some directions b
 **Both controllers point** (v6): the laser comes from the pointer hand — by default whichever
 trigger you pulled last (setting: auto / right / left). Whatever is bound, **the pointer hand's
 trigger always clicks the game's UI** when the laser is on the
-UI panel (opaque pixel), so menus and windows always work. A button has at most one
-function; binding it elsewhere moves it. Laser clicks: a press is a tap at the press point;
+UI panel (opaque pixel), so menus and windows always work. Only **Attack / act** repeats while its button is held; every other command fires once per
+press (v7: a grip squeezed just by holding the controller kept firing its skill). A button has
+at most one function; binding it elsewhere moves it. Laser clicks: a press is a tap at the press point;
 it becomes a drag only after moving 16 px.
 
 ### 5.3 Views
@@ -191,7 +192,8 @@ first person / tabletop), v6: **Move with** (left / right stick), **Move relativ
 **Pointer hand** (auto / right / left), **Camera distance**, **Camera height**, **Recenter
 now** (recalibrate: forward = where you look, the hero back in front of you), **Reset to defaults**, **Close**. Point the laser at a row and pull
 either trigger: an option row cycles its value; a function row shows "PRESS A BUTTON" —
-once every button is released, the next button pressed (any of A B X Y, both triggers, both
+the next button newly pressed (v7: not "after every button is released" — holding a Touch
+controller squeezes the grip, so that never happened on the headset) (any of A B X Y, both triggers, both
 grips, both stick clicks) is bound to it; Menu cancels. Saved immediately.
 
 ## 6. Desktop test bed (`vr/desktop`, `tools/vr/run_desktop.sh`)

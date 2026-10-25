@@ -73,6 +73,12 @@ public class VrCore {
 
     public VrCore(int vw, int vh) { this.vw = vw; this.vh = vh; }
 
+    /** (tests) the stage point of the game's screen pixel (x, y) on the UI panel. */
+    public float[] uiPoint(int x, int y) {
+        float u = x / (float) (vw - 1) * 2 - 1, v = 1 - y / (float) (vh - 1) * 2;
+        return new float[]{pc[0] + pr[0] * u + pu[0] * v, pc[1] + pr[1] * u + pu[1] * v, pc[2] + pr[2] * u + pu[2] * v};
+    }
+
     /** (tests) the world's yaw in radians. */
     public float yaw() { return yaw; }
 
@@ -86,7 +92,8 @@ public class VrCore {
         ui.end(defaultFbo);
         scene.endFrame();
         scene.hideHero = mode == Mode.FIRST;
-        scene.classify();                                      // also finds where the hero is drawn
+        try { scene.classify(); }                              // also finds where the hero is drawn
+        catch (Throwable t) { System.out.println("[ekvr] classify: " + t); }
         if (!haveFocus) { fx = scene.dispX(); fz = scene.dispZ(); haveFocus = true; }
         // follow the hero: exactly when walking (lag reads as the floor sliding / the hero drifting)
         float k = mode == Mode.TABLE ? 0.25f : 1f;
@@ -287,6 +294,9 @@ public class VrCore {
                 }
                 for (Binds.Btn b : all) {
                     if (!now[b.ordinal()] || (b == Binds.Btn.LGRIP && boardGrab)) continue;
+                    // only Attack / act repeats while held; every other command fires once per press
+                    // (a grip squeezed just by holding the controller must not keep firing a skill)
+                    if (binds.fn(b) != Binds.Fn.ACT && was[b.ordinal()]) continue;
                     if (b == ptrTrig && (onUi || clickBtn == b)) continue;   // that press is a UI click
                     switch (binds.fn(b)) {
                         case ACT: pad.set(cc.action, 1); break;
@@ -352,9 +362,10 @@ public class VrCore {
         laserEnd = p != null ? end : ptr.active ? Mat.xform(ptr.aim, 0, 0, -3) : null;
         hover = p != null ? "menu" : "";
         if (menu.waiting != null) {
-            // bind the first button pressed after everything (incl. the trigger that chose the row) was let go
-            if (anyDown == null) menu.capture(null);
-            else if (pressed != null) menu.capture(pressed);
+            // bind the next button that goes down. Only a fresh press counts (the trigger that chose
+            // the row is still held; a grip squeezed just by holding the controller never "releases"
+            // -- waiting for every button to be let go never happened on the headset)
+            if (pressed != null) menu.capture(pressed);
             menuTrigWas = right.trigger > 0.6f || left.trigger > 0.6f;
             return;
         }

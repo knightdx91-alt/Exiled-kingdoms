@@ -68,7 +68,6 @@ public class VrMenu {
     final Binds binds;
     /** Function being rebound (waiting for a button), or null. */
     Binds.Fn waiting;
-    boolean released;                      // while waiting: every button has been let go since
     int hover = -1;
     /** Set when a row asks VrCore to recenter (calibrate) the view. */
     public boolean recenter;
@@ -123,7 +122,7 @@ public class VrMenu {
     void click() {
         if (hover < 0) return;
         Object o = rows.get(hover);
-        if (o instanceof Binds.Fn) { waiting = (Binds.Fn) o; released = false; note = ""; }
+        if (o instanceof Binds.Fn) { waiting = (Binds.Fn) o; note = ""; }
         else switch ((String) o) {
             case "turn": binds.smoothTurn = !binds.smoothTurn; break;
             case "speed": binds.nextSpeed(); break;
@@ -142,11 +141,9 @@ public class VrMenu {
         dirty = true;
     }
 
-    /** While waiting for a button: feed the pressed buttons (null = none). Returns true once bound. */
+    /** While waiting for a button: a button that was just pressed. Returns true once bound. */
     boolean capture(Binds.Btn pressed) {
-        if (waiting == null) return false;
-        if (pressed == null) { released = true; return false; }
-        if (!released) return false;
+        if (waiting == null || pressed == null) return false;
         binds.bind(pressed, waiting);
         note = pressed.label + " = " + waiting.label;
         waiting = null;
