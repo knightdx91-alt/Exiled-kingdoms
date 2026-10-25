@@ -114,6 +114,11 @@ public class Script implements Runnable {
             }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
             case "menurow": SimXr.aimFrom = null; SimXr.aimStage = SimXr.core.menu.rowPoint(Integer.parseInt(c[1])); break;
+            case "opts": try {
+                java.lang.reflect.Field f = net.fdgames.ek.Settings.class.getDeclaredField("c"); f.setAccessible(true);
+                net.fdgames.ek.SettingsData d = (net.fdgames.ek.SettingsData) f.get(null);
+                System.out.println("[script] showControls=" + d.showControls + " attackInteracts=" + d.attackInteracts);
+            } catch (Exception e) { System.out.println("[script] opts: " + e); } break;
             case "rstick": SimXr.rstickX = Float.parseFloat(c[1]); SimXr.rstickY = Float.parseFloat(c[2]); break;
             case "yaw": System.out.println("[script] yaw=" + Math.round(Math.toDegrees(SimXr.core.yaw())) ); break;
             case "stick": SimXr.stickX = Float.parseFloat(c[1]); SimXr.stickY = Float.parseFloat(c[2]); break;

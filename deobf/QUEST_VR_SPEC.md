@@ -105,6 +105,19 @@ EK has complete gamepad support, unused by v1/v2 (they faked touches instead):
 - **cancel** → close the window / back. skill1..8 → `z.k(i)`; nextItem/prevItem cycle the
   selected quick slot, useItem uses it (`z.a0()`), recovery = `z.G()`.
 
+### 5.1b Game settings the VR build sets (v5)
+
+Two of EK's own options (`SettingsData`, held in `Settings.c` in v78) are set by the VR layer
+on every frame until the first map is shown (so they win over the settings file loaded at
+start-up), then left alone, so the game's own Options screen can still change them:
+
+- `showControls = false` — EK's "show on-screen controls with a controller" (default **true**
+  on Android, false on desktop): with it on, `z.r()` keeps the touch joystick and its attack
+  button on screen even with a controller. The Touch controllers replace them.
+- `attackInteracts = true` — with it off (the default), **action** only ever attacks
+  (`GameScreen.l()`); on, it uses what's in reach when no enemy is near. Without it the
+  trigger couldn't open chests or talk.
+
 ### 5.2 Mapping (v4: remappable)
 
 Owner feedback on v3 (2026-10-25): movement good; "the camera control is not smooth at all

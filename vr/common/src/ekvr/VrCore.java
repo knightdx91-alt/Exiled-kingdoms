@@ -187,6 +187,7 @@ public class VrCore {
             mode = Mode.values()[binds.startView];
         }
         if (!placed) recenter(headPose);
+        if (!settingsDone) settingsDone = gameSettings();
         head[0] = headPose[12]; head[1] = headPose[13]; head[2] = headPose[14];
         Binds.Btn[] all = Binds.Btn.values();
         boolean[] now = new boolean[all.length];
@@ -303,6 +304,26 @@ public class VrCore {
         }
         cameraFollow(dt);
         System.arraycopy(now, 0, was, 0, now.length);
+    }
+
+    boolean settingsDone;
+
+    /**
+     * EK's own options the controllers need (QUEST_VR_SPEC.md §5.1b): no on-screen joystick,
+     * and "attack interacts" so the action button opens / talks / loots. Applied every frame
+     * until a map is shown (the settings file loads during start-up), then left to the player.
+     */
+    static boolean gameSettings() {
+        try {
+            java.lang.reflect.Field f = net.fdgames.ek.Settings.class.getDeclaredField("c");
+            f.setAccessible(true);
+            net.fdgames.ek.SettingsData d = (net.fdgames.ek.SettingsData) f.get(null);
+            if (d != null) { d.showControls = false; d.attackInteracts = true; }
+            return d != null && net.fdgames.GameLevel.GameLevel.h() != null;
+        } catch (Throwable t) {
+            System.out.println("[ekvr] can't set game options: " + t);
+            return true;
+        }
     }
 
     /** Let go of everything the game is holding (opening the VR menu). */

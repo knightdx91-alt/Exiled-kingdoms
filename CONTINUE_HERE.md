@@ -29,10 +29,10 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 4` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v4.apk` + `dist/quest-vr-v4/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 5` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v5.apk` + `dist/quest-vr-v5/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v4.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v5.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
@@ -45,7 +45,9 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   buttons (attack on the trigger) → v4: third person default with gentle camera follow, smooth
   turning (the old turn direction was inverted), remap screen on the Menu button
   (`ekvr.Binds`/`ekvr.VrMenu`, QUEST_VR_SPEC §5.2–5.4). Desktop test: `tutorial_v4.txt`.
-  v4 not yet tried on the headset. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  v5: EK's own options set at start-up — showControls off (on-screen joystick gone),
+  attackInteracts on (the action button opens/talks/loots) — QUEST_VR_SPEC §5.1b.
+  v4/v5 not yet tried on the headset. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 
