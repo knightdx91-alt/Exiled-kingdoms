@@ -52,7 +52,12 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   viewer (QUEST_VR_SPEC §3), views follow the hero's drawn sprite (~1.5 cells off its logical
   point), stick directions exact (EK's 0.2 axis deadzone), view-relative movement, follow only
   within 50°, laser/menu from either hand, move-stick/pointer/camera distance+height/recenter
-  rows in the VR controls screen. v6 not yet tried on the headset. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  rows in the VR controls screen. v6 on the headset: remapping never assigned
+  (fixed in v7: bind the next fresh press — a Touch controller held normally keeps a grip
+  squeezed, so "all released" never happened; non-act commands fire once per press), and
+  **loading a save / Save and Exit crashes on the Quest** ("game stopped") — NOT reproducible
+  on desktop (`vr/desktop/scripts/save_load.txt` saves, exits and loads fine), so Android-side:
+  waiting on the owner's logcat. v7 logs VR-layer errors instead of crashing (tag ekvr). Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 
