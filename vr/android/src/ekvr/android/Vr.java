@@ -15,6 +15,7 @@ public final class Vr {
         config.r = config.g = config.b = config.a = 8;
         config.depth = 16;
         config.useImmersiveMode = true;
+        ExitLog.install(activity);      // record a crash's stack trace (shown in VR on the next start)
         return new VrListener(activity, game);
     }
 }

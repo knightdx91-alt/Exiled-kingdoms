@@ -216,6 +216,10 @@ public class VrCore {
             }
         }
         menuWas = left.menu;
+        if (menu.report != null && !menu.showingReport && !menu.open) {      // why the game closed last time
+            float hy = headYawOf(headPose);
+            menu.showReport(head, (float) -Math.sin(hy), (float) -Math.cos(hy));
+        }
         if (menu.recenter) { menu.recenter = false; recenter(headPose); }
         if (menu.open) {
             menuInput(anyDown, pressed);

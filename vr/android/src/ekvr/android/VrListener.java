@@ -85,6 +85,7 @@ public class VrListener implements com.badlogic.gdx.a {
             raw.glBindFramebuffer(GL20.GL_FRAMEBUFFER, 0);
             core = new VrCore(VW, VH);
             core.passthrough = Xr.hasPassthrough();
+            try { core.menu.report = ExitLog.collect(activity); } catch (Throwable t) { Log.w(TAG, "exit report: " + t); }
             core.touch = new VrCore.Touch() {
                 public void down(int x, int y) { touch(MotionEvent.ACTION_DOWN, x, y); }
                 public void drag(int x, int y) { touch(MotionEvent.ACTION_MOVE, x, y); }

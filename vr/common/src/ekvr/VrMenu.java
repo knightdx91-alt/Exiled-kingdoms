@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Drawn into its own texture with a built-in 5x7 pixel font, so it needs nothing from the game.
  */
 public class VrMenu {
-    static final String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-/&:,.()><?=";
+    static final String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-/&:,.()><?=_$@[]'+#*;\"!%";
     static final int[][] FONT = {
             {14, 17, 17, 31, 17, 17, 17},   // A
             {30, 17, 17, 30, 17, 17, 30},   // B
@@ -61,10 +61,26 @@ public class VrMenu {
             {2, 4, 8, 16, 8, 4, 2},   // <
             {14, 17, 1, 2, 4, 0, 4},   // ?
             {0, 0, 31, 0, 31, 0, 0},   // =
+            {0, 0, 0, 0, 0, 0, 31},   // _
+            {4, 15, 20, 14, 5, 30, 4},   // $
+            {14, 17, 23, 21, 23, 16, 14},   // @
+            {14, 8, 8, 8, 8, 8, 14},   // [
+            {14, 2, 2, 2, 2, 2, 14},   // ]
+            {4, 4, 8, 0, 0, 0, 0},   // '
+            {0, 4, 4, 31, 4, 4, 0},   // +
+            {10, 10, 31, 10, 31, 10, 10},   // #
+            {0, 4, 21, 14, 21, 4, 0},   // *
+            {0, 12, 12, 0, 12, 4, 8},   // ;
+            {10, 10, 10, 0, 0, 0, 0},   // "
+            {4, 4, 4, 4, 4, 0, 4},   // !
+            {24, 25, 2, 4, 8, 19, 3},   // %
     };
     static final int TW = 640, TH = 646, SC = 2, CW = 6 * SC, ROW = 22, TOP = 52;
 
     public boolean open;
+    /** Why the game closed last time (ekvr.android.ExitLog), shown once at start; null = none. */
+    public String report;
+    boolean showingReport;
     final Binds binds;
     /** Function being rebound (waiting for a button), or null. */
     Binds.Fn waiting;
@@ -103,7 +119,13 @@ public class VrMenu {
         return new float[]{c[0] + r[0] * uu + u[0] * vv, c[1] + r[1] * uu + u[1] * vv, c[2] + r[2] * uu + u[2] * vv};
     }
 
-    public void close() { open = false; waiting = null; }
+    public void close() { open = false; waiting = null; if (showingReport) { showingReport = false; report = null; } }
+
+    /** Open the last-exit report in front of the head. */
+    public void showReport(float[] head, float fx, float fz) {
+        show(head, fx, fz);
+        showingReport = true;
+    }
 
     /** Laser hit on the panel as texture pixel (x, y), or null. */
     int[] hit(float[] aim, float[] end) {
@@ -120,6 +142,7 @@ public class VrMenu {
 
     /** Trigger on the hovered row. */
     void click() {
+        if (showingReport) { close(); return; }
         if (hover < 0) return;
         Object o = rows.get(hover);
         if (o instanceof Binds.Fn) { waiting = (Binds.Fn) o; note = ""; }
@@ -178,6 +201,7 @@ public class VrMenu {
     }
 
     void render() {
+        if (showingReport) { renderReport(); return; }
         fill(0, 0, TW, TH, 12, 14, 22, 235);
         fill(0, 0, TW, 4, 200, 160, 70, 255);
         text(16, 12, "VR CONTROLS", 240, 200, 110);
@@ -210,6 +234,23 @@ public class VrMenu {
             text(20, y + 2, left, opt ? 150 : 230, opt ? 200 : 230, opt ? 240 : 230);
             text(300, y + 2, right, w ? 255 : 240, w ? 220 : 200, w ? 90 : 110);
         }
+    }
+
+    void renderReport() {
+        fill(0, 0, TW, TH, 30, 10, 10, 250);
+        fill(0, 0, TW, 4, 230, 90, 70, 255);
+        text(16, 12, "THE GAME CLOSED LAST TIME - SEND THIS TO CLAUDE:", 250, 200, 120);
+        int y = 34, max = (TW - 32) / CW;
+        for (String line : report.split("\n")) {
+            line = line.replace('\t', ' ').trim();
+            while (line.length() > 0 && y < TH - 40) {
+                String part = line.length() > max ? line.substring(0, max) : line;
+                text(16, y, part, 225, 225, 225);
+                y += 17;
+                line = line.length() > max ? "  " + line.substring(max) : "";
+            }
+        }
+        text(16, TH - 30, "FILE: DOWNLOAD/EK_VR_LAST_EXIT.TXT  TRIGGER=CLOSE", 170, 175, 190);
     }
 
     /** Draw the panel (stage space) through {@code ui}'s textured-quad shader. */

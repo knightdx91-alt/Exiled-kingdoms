@@ -83,6 +83,20 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   tabletop when available.
 - Touch controllers (oculus/touch_controller + meta/touch_controller_plus bindings).
 
+### 4.1 Why did it close? (`ekvr.android.ExitLog`, v8)
+
+On the headset the owner can't read the game's log (a terminal app's `logcat` only sees its own
+process). So the VR build records it itself: an uncaught Java exception's stack trace goes to
+`files/ek_crash.txt` as it happens; on the next start Android's record of the last exit
+(`ApplicationExitInfo`, API 30+: crash, native crash, low-memory kill, ANR, the game exiting
+itself, with description and trace) is combined with it, shown once on a red VR panel, saved
+as `Download/EK_VR_last_exit.txt`, and logged (tag ekvr). Normal exits (user closed it, app
+updated) are not reported.
+
+Note: EK's own Settings → **Controller Setup** waits for a raw gamepad button (`Controller.b(i)`
+for any i); the Touch controllers only drive EK commands through `ekvr.Pad`, so that screen
+waits forever. Button mapping in VR is the Menu-button screen (§5.4).
+
 ## 5. Controls (`ekvr.VrCore`, shared by the Quest and the desktop simulator)
 
 Owner feedback on v2 (first run on the headset, 2026-10-25): "the controls are atrocious …
