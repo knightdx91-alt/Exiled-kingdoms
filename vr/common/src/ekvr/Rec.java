@@ -112,7 +112,10 @@ public class Rec implements Batch {
     }
 
     // ---- Batch: state -----------------------------------------------------------------------
-    public void begin() { drawing = true; }
+    /** Called on begin() (Scene3D turns the characters to face the viewer for this frame's drawing). */
+    public Runnable onBegin;
+
+    public void begin() { drawing = true; if (onBegin != null) onBegin.run(); }
     public void end() { drawing = false; }
     public void flush() {}
     public void disableBlending() { blending = false; }

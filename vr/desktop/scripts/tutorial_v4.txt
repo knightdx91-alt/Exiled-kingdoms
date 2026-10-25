@@ -69,6 +69,18 @@ wait 20
 yaw
 opts
 shot v4_start
+# facing: walk away from the camera (shows the back), then left (shows the left side)
+stick 0 1
+wait 40
+shot v6_away
+stick -1 0
+wait 40
+shot v6_left
+stick 0 -1
+wait 40
+shot v6_toward
+stick 0 0
+wait 5
 # smooth turn: right stick right for 0.5 s at 90 deg/s -> about +45 (view turns right)
 rstick 1 0
 wait 30

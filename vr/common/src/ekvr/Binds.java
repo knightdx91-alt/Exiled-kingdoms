@@ -29,6 +29,11 @@ public class Binds {
     public boolean smoothTurn = true, follow = true;
     public int turnSpeed = 90;                       // degrees per second (smooth)
     public int startView = 1;                        // VrCore.Mode ordinal: 0 FIRST, 1 WALK, 2 TABLE
+    public boolean moveRight;                        // move with the right stick (turn with the left)
+    public boolean moveHead;                         // stick directions relative to the head, not the view
+    public int pointer;                              // laser hand: 0 auto (last trigger), 1 right, 2 left
+    public int camDist = 1, camHeight = 1;           // third person: index into DISTS / HEIGHTS
+    public static final float[] DISTS = {1.6f, 2.4f, 3.2f}, HEIGHTS = {1.5f, 2.0f, 2.5f};
     static final int[] SPEEDS = {60, 90, 120, 180};
     static final String FILE = "ekvr.properties";
 
@@ -47,6 +52,7 @@ public class Binds {
         map.put(Btn.RSTICK, Fn.VIEW);
         map.put(Btn.LSTICK, Fn.RECENTER);
         smoothTurn = true; follow = true; turnSpeed = 90; startView = 1;
+        moveRight = false; moveHead = false; pointer = 0; camDist = 1; camHeight = 1;
     }
 
     public Fn fn(Btn b) { Fn f = map.get(b); return f == null ? Fn.NONE : f; }
@@ -80,6 +86,11 @@ public class Binds {
             follow = !"off".equals(p.getProperty("follow", "on"));
             turnSpeed = Integer.parseInt(p.getProperty("turnSpeed", "90"));
             startView = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("startView", "1"))));
+            moveRight = "right".equals(p.getProperty("moveStick", "left"));
+            moveHead = "head".equals(p.getProperty("moveRelative", "view"));
+            pointer = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("pointer", "0"))));
+            camDist = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("camDist", "1"))));
+            camHeight = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("camHeight", "1"))));
         } catch (Throwable t) {
             System.out.println("[ekvr] can't read " + FILE + ": " + t);
             defaults();
@@ -94,6 +105,11 @@ public class Binds {
             sb.append("follow=").append(follow ? "on" : "off").append('\n');
             sb.append("turnSpeed=").append(turnSpeed).append('\n');
             sb.append("startView=").append(startView).append('\n');
+            sb.append("moveStick=").append(moveRight ? "right" : "left").append('\n');
+            sb.append("moveRelative=").append(moveHead ? "head" : "view").append('\n');
+            sb.append("pointer=").append(pointer).append('\n');
+            sb.append("camDist=").append(camDist).append('\n');
+            sb.append("camHeight=").append(camHeight).append('\n');
             com.badlogic.gdx.Gdx.files.local(FILE).writeString(sb.toString(), false);
         } catch (Throwable t) {
             System.out.println("[ekvr] can't save " + FILE + ": " + t);

@@ -62,7 +62,7 @@ public class VrMenu {
             {14, 17, 1, 2, 4, 0, 4},   // ?
             {0, 0, 31, 0, 31, 0, 0},   // =
     };
-    static final int TW = 640, TH = 528, SC = 2, CW = 6 * SC, ROW = 22, TOP = 52;
+    static final int TW = 640, TH = 646, SC = 2, CW = 6 * SC, ROW = 22, TOP = 52;
 
     public boolean open;
     final Binds binds;
@@ -70,6 +70,8 @@ public class VrMenu {
     Binds.Fn waiting;
     boolean released;                      // while waiting: every button has been let go since
     int hover = -1;
+    /** Set when a row asks VrCore to recenter (calibrate) the view. */
+    public boolean recenter;
     String note = "";
     final ArrayList<Object> rows = new ArrayList<>();   // Binds.Fn, or a String option key
     int tex;
@@ -81,7 +83,9 @@ public class VrMenu {
     public VrMenu(Binds b) {
         binds = b;
         for (Binds.Fn f : Binds.Fn.values()) if (f != Binds.Fn.NONE) rows.add(f);
-        rows.add("turn"); rows.add("speed"); rows.add("follow"); rows.add("view"); rows.add("reset"); rows.add("close");
+        rows.add("turn"); rows.add("speed"); rows.add("follow"); rows.add("view");
+        rows.add("move"); rows.add("rel"); rows.add("pointer"); rows.add("dist"); rows.add("height");
+        rows.add("recenter"); rows.add("reset"); rows.add("close");
     }
 
     /** Open in front of the head (stage space). */
@@ -125,7 +129,13 @@ public class VrMenu {
             case "speed": binds.nextSpeed(); break;
             case "follow": binds.follow = !binds.follow; break;
             case "view": binds.startView = (binds.startView + 2) % 3; break;   // third -> first -> table
-            case "reset": binds.defaults(); note = "DEFAULTS RESTORED"; break;
+            case "move": binds.moveRight = !binds.moveRight; break;
+            case "rel": binds.moveHead = !binds.moveHead; break;
+            case "pointer": binds.pointer = (binds.pointer + 1) % 3; break;
+            case "dist": binds.camDist = (binds.camDist + 1) % 3; recenter = true; break;
+            case "height": binds.camHeight = (binds.camHeight + 1) % 3; recenter = true; break;
+            case "recenter": recenter = true; note = "RECENTERED: FORWARD IS WHERE YOU LOOK"; break;
+            case "reset": binds.defaults(); note = "DEFAULTS RESTORED"; recenter = true; break;
             case "close": close(); break;
         }
         binds.save();
@@ -175,7 +185,7 @@ public class VrMenu {
         fill(0, 0, TW, 4, 200, 160, 70, 255);
         text(16, 12, "VR CONTROLS", 240, 200, 110);
         text(16, 30, waiting != null ? "PRESS A BUTTON FOR " + waiting.label + "   (MENU = CANCEL)"
-                : note.length() > 0 ? note : "POINT + RIGHT TRIGGER TO CHANGE.  MENU = CLOSE", 170, 175, 190);
+                : note.length() > 0 ? note : "POINT + TRIGGER TO CHANGE.  MENU = CLOSE", 170, 175, 190);
         for (int i = 0; i < rows.size(); i++) {
             int y = TOP + i * ROW;
             Object o = rows.get(i);
@@ -190,6 +200,12 @@ public class VrMenu {
                 case "speed": left = "TURN SPEED"; right = binds.turnSpeed + " DEG/S"; break;
                 case "follow": left = "CAMERA FOLLOWS HERO"; right = binds.follow ? "ON" : "OFF"; break;
                 case "view": left = "START VIEW"; right = viewName(binds.startView); break;
+                case "move": left = "MOVE WITH"; right = binds.moveRight ? "RIGHT STICK (TURN: LEFT)" : "LEFT STICK (TURN: RIGHT)"; break;
+                case "rel": left = "MOVE RELATIVE TO"; right = binds.moveHead ? "HEAD" : "VIEW"; break;
+                case "pointer": left = "POINTER HAND"; right = binds.pointer == 1 ? "RIGHT" : binds.pointer == 2 ? "LEFT" : "AUTO (LAST TRIGGER)"; break;
+                case "dist": left = "CAMERA DISTANCE"; right = Binds.DISTS[binds.camDist] + " M"; break;
+                case "height": left = "CAMERA HEIGHT"; right = Binds.HEIGHTS[binds.camHeight] + " M"; break;
+                case "recenter": left = "RECENTER NOW"; right = ""; break;
                 case "reset": left = "RESET TO DEFAULTS"; right = ""; break;
                 default: left = "CLOSE"; right = ""; break;
             }

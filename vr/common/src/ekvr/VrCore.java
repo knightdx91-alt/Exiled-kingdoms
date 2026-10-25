@@ -85,12 +85,13 @@ public class VrCore {
         renderGame.run();
         ui.end(defaultFbo);
         scene.endFrame();
-        if (!haveFocus) { fx = scene.heroX; fz = scene.heroZ; haveFocus = true; }
         scene.hideHero = mode == Mode.FIRST;
+        scene.classify();                                      // also finds where the hero is drawn
+        if (!haveFocus) { fx = scene.dispX(); fz = scene.dispZ(); haveFocus = true; }
         // follow the hero: exactly when walking (lag reads as the floor sliding / the hero drifting)
         float k = mode == Mode.TABLE ? 0.25f : 1f;
-        fx += (scene.heroX - fx) * k;
-        fz += (scene.heroZ - fz) * k;
+        fx += (scene.dispX() - fx) * k;
+        fz += (scene.dispZ() - fz) * k;
     }
 
     /** World (map units) -> stage (metres). */
@@ -113,7 +114,8 @@ public class VrCore {
             anchor[0] = head[0] + fx_ * 0.6f; anchor[1] = Math.max(0.5f, head[1] - 0.5f); anchor[2] = head[2] + fz_ * 0.6f;
         } else if (mode == Mode.WALK) {
             // third person: the hero 2.4 m ahead, the map floor 2.0 m below your eyes (seated works)
-            anchor[0] = head[0] + fx_ * 2.4f; anchor[1] = head[1] - 2.0f; anchor[2] = head[2] + fz_ * 2.4f;
+            float dist = Binds.DISTS[binds.camDist], hgt = Binds.HEIGHTS[binds.camHeight];
+            anchor[0] = head[0] + fx_ * dist; anchor[1] = head[1] - hgt; anchor[2] = head[2] + fz_ * dist;
         } else {                                                            // FIRST: the hero's spot is yours
             anchor[0] = head[0]; anchor[1] = head[1] - EYE; anchor[2] = head[2];
         }
@@ -207,14 +209,15 @@ public class VrCore {
             }
         }
         menuWas = left.menu;
+        if (menu.recenter) { menu.recenter = false; recenter(headPose); }
         if (menu.open) {
             menuInput(anyDown, pressed);
             System.arraycopy(now, 0, was, 0, now.length);
             return;
         }
         turning(dt);
-        if (mode == Mode.TABLE && Math.abs(right.sy) > 0.4f)
-            tableScale = Math.max(0.015f, Math.min(0.2f, tableScale * (1 + right.sy * dt * 1.2f)));
+        if (mode == Mode.TABLE && Math.abs(turnStick().sy) > 0.4f)
+            tableScale = Math.max(0.015f, Math.min(0.2f, tableScale * (1 + turnStick().sy * dt * 1.2f)));
         // left grip: move the board with your hand (tabletop; the grip's binding is ignored meanwhile)
         boolean boardGrab = false;
         if (mode == Mode.TABLE && left.active) {
@@ -227,14 +230,16 @@ public class VrCore {
         }
         if (mode != Mode.TABLE && !trigHeld) panelFollow(headPose, dt);
         // the laser: where it points this frame (UI, a thing, the ground)
-        int[] at = right.active ? laserTarget(right.aim) : null;
+        Hand ptr = pointerHand(now);
+        Binds.Btn ptrTrig = ptr == left ? Binds.Btn.LTRIG : Binds.Btn.RTRIG;
+        int[] at = ptr.active ? laserTarget(ptr.aim) : null;
         boolean onUi = "ui".equals(hover);
         // one-shot functions on a button's press
         for (Binds.Btn b : all) {
             if (!now[b.ordinal()] || was[b.ordinal()]) continue;
             if (b == Binds.Btn.LGRIP && boardGrab) continue;
             Binds.Fn f = binds.fn(b);
-            if (b == Binds.Btn.RTRIG && onUi) f = Binds.Fn.CLICK;      // the right trigger always clicks the UI
+            if (b == ptrTrig && onUi) f = Binds.Fn.CLICK;              // the pointer's trigger always clicks the UI
             switch (f) {
                 case VIEW: nextMode(headPose); break;
                 case RECENTER: recenter(headPose); break;
@@ -258,7 +263,8 @@ public class VrCore {
             }
         }
         // the game's own controller (§5.1): stick walks, held buttons drive EK commands
-        float m = (float) Math.sqrt(left.sx * left.sx + left.sy * left.sy);
+        Hand mv = moveStick();
+        float m = (float) Math.sqrt(mv.sx * mv.sx + mv.sy * mv.sy);
         float[] wd = m > 0.25f ? stickWorldDir(headPose) : null;
         if (Pad.active()) {
             Pad pad = Pad.PAD;
@@ -271,12 +277,17 @@ public class VrCore {
                     float f2 = (dx + dy) / 2, f3 = (dy - dx) / 2;
                     float l = Math.abs(f2) + Math.abs(f3);
                     f2 /= l; f3 /= l;                                   // full speed; the game clamps |f2|+|f3| to 1
+                    // EK ignores an axis under |0.2|: scale both up so the smaller one passes; z.D
+                    // divides by |f2|+|f3| (> 1 now), so the direction stays exact (§5.2)
+                    float lo = Math.min(Math.abs(f2), Math.abs(f3));
+                    if (lo < 0.02f) { if (Math.abs(f2) < 0.02f) f2 = 0; else f3 = 0; }
+                    else if (lo < 0.25f) { float k = 0.25f / lo; f2 *= k; f3 *= k; }
                     pad.set(f2 > 0 ? cc.right : cc.left, Math.abs(f2));
                     pad.set(f3 > 0 ? cc.up : cc.down, Math.abs(f3));
                 }
                 for (Binds.Btn b : all) {
                     if (!now[b.ordinal()] || (b == Binds.Btn.LGRIP && boardGrab)) continue;
-                    if (b == Binds.Btn.RTRIG && (onUi || clickBtn == b)) continue;   // that press is a UI click
+                    if (b == ptrTrig && (onUi || clickBtn == b)) continue;   // that press is a UI click
                     switch (binds.fn(b)) {
                         case ACT: pad.set(cc.action, 1); break;
                         case CANCEL: pad.set(cc.cancel, 1); break;
@@ -336,18 +347,19 @@ public class VrCore {
 
     void menuInput(Binds.Btn anyDown, Binds.Btn pressed) {
         float[] end = new float[3];
-        int[] p = right.active ? menu.hit(right.aim, end) : null;
-        laserEnd = p != null ? end : right.active ? Mat.xform(right.aim, 0, 0, -3) : null;
+        Hand ptr = pointerHand(null);
+        int[] p = ptr.active ? menu.hit(ptr.aim, end) : null;
+        laserEnd = p != null ? end : ptr.active ? Mat.xform(ptr.aim, 0, 0, -3) : null;
         hover = p != null ? "menu" : "";
         if (menu.waiting != null) {
             // bind the first button pressed after everything (incl. the trigger that chose the row) was let go
             if (anyDown == null) menu.capture(null);
             else if (pressed != null) menu.capture(pressed);
-            menuTrigWas = right.trigger > 0.6f;
+            menuTrigWas = right.trigger > 0.6f || left.trigger > 0.6f;
             return;
         }
         menu.setHover(p);
-        boolean trig = right.trigger > 0.6f;
+        boolean trig = right.trigger > 0.6f || left.trigger > 0.6f;
         if (trig && !menuTrigWas) menu.click();
         menuTrigWas = trig;
     }
@@ -358,7 +370,7 @@ public class VrCore {
      * world heading + yaw and headings grow to the left, so the world's yaw grows.
      */
     void turning(float dt) {
-        float sx = right.sx;
+        float sx = turnStick().sx;
         if (binds.smoothTurn) {
             if (Math.abs(sx) > 0.2f) {
                 float k = (Math.abs(sx) - 0.2f) / 0.8f * Math.signum(sx);
@@ -382,22 +394,38 @@ public class VrCore {
         // stage heading = world heading + yaw; we want the move to head where you face (headYaw)
         float moveH = (float) Math.atan2(-mx, -mz);
         float diff = (float) Math.IEEEremainder(headYaw - moveH - yaw, 2 * Math.PI);
-        if (Math.abs(diff) > Math.toRadians(135)) return;
-        if (Math.abs(right.sx) > 0.2f) return;                          // you are turning yourself
+        if (Math.abs(diff) > Math.toRadians(50)) return;                // walking sideways / back: leave the view alone
+        if (Math.abs(turnStick().sx) > 0.2f) return;                    // you are turning yourself
         // gentle (<= 40°/s, slower the closer): holding the stick sideways makes a wide arc, not a spin
         float rate = (float) Math.toRadians(40) * Math.min(1f, Math.abs(diff) / (float) Math.toRadians(90));
         float step = Math.min(Math.abs(diff), rate * dt);
         yaw += Math.signum(diff) * step;
     }
 
-    /** The left stick as a world direction (X, Z), relative to where the head looks. */
+    /** The move stick as a world direction (X, Z), relative to the view's forward (or the head). */
     float[] stickWorldDir(float[] headPose) {
-        float hy = headYawOf(headPose);
-        float dx = (float) (Math.cos(hy) * left.sx - Math.sin(hy) * left.sy);
-        float dz = (float) (-Math.sin(hy) * left.sx - Math.cos(hy) * left.sy);
+        Hand st = moveStick();
+        float hy = binds.moveHead ? headYawOf(headPose) : headYaw;
+        float dx = (float) (Math.cos(hy) * st.sx - Math.sin(hy) * st.sy);
+        float dz = (float) (-Math.sin(hy) * st.sx - Math.cos(hy) * st.sy);
         // stage direction -> world direction (undo the world yaw)
         float c = (float) Math.cos(-yaw), s = (float) Math.sin(-yaw);
         return new float[]{c * dx + s * dz, -s * dx + c * dz};
+    }
+
+    Hand moveStick() { return binds.moveRight ? right : left; }
+    Hand turnStick() { return binds.moveRight ? left : right; }
+
+    Hand lastPtr;
+
+    /** The laser hand: fixed by the setting, or (auto) whichever trigger was pulled last. */
+    Hand pointerHand(boolean[] now) {
+        if (binds.pointer == 1) return right;
+        if (binds.pointer == 2) return left;
+        if (left.trigger > 0.6f && !(right.trigger > 0.6f) && lastPtr != left) lastPtr = left;
+        else if (right.trigger > 0.6f && !(left.trigger > 0.6f) && lastPtr != right) lastPtr = right;
+        if (lastPtr == null || !lastPtr.active) lastPtr = right.active || !left.active ? right : left;
+        return lastPtr;
     }
 
     void tap(int x, int y) { if (touch != null) { touch.down(x, y); touch.up(x, y); } }
@@ -517,6 +545,7 @@ public class VrCore {
         float[] eye = Mat.xform(Mat.rigidInverse(view), 0, 0, 0);
         float[] eyeW = Mat.xform(inv, eye[0], eye[1], eye[2]);
         scene.draw(Mat.mul(pv, wm), eyeW[0], eyeW[2]);
+        scene.viewX = eyeW[0]; scene.viewZ = eyeW[2]; scene.haveViewer = true;
         if (ui != null) {
             float[] tl = {pc[0] - pr[0] + pu[0], pc[1] - pr[1] + pu[1], pc[2] - pr[2] + pu[2]};
             float[] tr = {pc[0] + pr[0] + pu[0], pc[1] + pr[1] + pu[1], pc[2] + pr[2] + pu[2]};
@@ -525,7 +554,8 @@ public class VrCore {
             ui.draw(pv, tl, tr, br, bl);
         }
         if (menu.open) menu.draw(ui, pv);
-        if (right.active && laserEnd != null) line(gl, pv, right.aim[12], right.aim[13], right.aim[14], laserEnd);
+        Hand ptr = pointerHand(null);
+        if (ptr.active && laserEnd != null) line(gl, pv, ptr.aim[12], ptr.aim[13], ptr.aim[14], laserEnd);
     }
 
     void line(GL20 gl, float[] pv, float x, float y, float z, float[] end) {

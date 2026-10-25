@@ -59,6 +59,14 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   (√2/64)/cos 30° vertically (EK's 2:1 view looks down 30°). Small quads drawn just above a
   character (health bars, labels) ride on that character.
 - Map objects between the viewer and the hero fade to 30 % (V4).
+- **Facing** (v6): EK draws a character with one of 8 screen directions
+  (`MapActor.facing`, enum U, RU, R, RD, D, LD, L, LU = ordinals 0..7, clockwise; chosen from
+  its velocity in `MapActor.u0`: x+y vs y−x in world px). Ordinal k = world heading
+  45° − 45°·k (heading 0 = −Z, growing to the left; U = up the screen = world (−X, −Z)). The 2D
+  camera looks up the screen (heading 45°). In 3D each actor is seen from heading φv (viewer →
+  actor), so while the map is drawn (from the recording batch's begin() until the frame ends)
+  its facing is shown as k + round((φv − 45°)/45°) mod 8, then restored: game logic never sees
+  the change. Owner (v5): "it's model isn't facing the way I'm moving".
 - Alpha-tested cut-outs; translucent quads (fading roofs, ghosts) and additive particles last.
 - **Light**: the RayHandler's ambient colour (day/night by hour, dungeon darkness) tints the
   scene. Point lights are not drawn yet (V3).
@@ -129,8 +137,12 @@ The Touch controllers drive a virtual `Controller` (`ekvr.Pad`) installed before
 starts, so `ExiledKingdoms.n` is it and the game runs its own controller code. Game commands
 are set through `Settings.a`, so a custom controls.ini still works.
 
-Fixed: **left stick** = walk (EK's analog movement, relative to where you look); **right
-stick ←/→** = turn (smooth by default, or snap; setting); right stick ↑/↓ = tabletop zoom;
+Sticks (v6): the **move stick** (left by default; setting) walks with EK's analog movement,
+**relative to the view** — stick up = away from you along the view's forward (set by
+recenter and by turning), not wherever your head points (setting: or the head). EK drops an
+axis under |0.2| (`ExiledKingdoms` command reader), which bent some directions by up to
+~14°; both components are scaled up together so neither falls under it (`z.D` divides by
+|f2|+|f3| when > 1, so the direction is exact). The other stick ←/→ = turn (smooth by default, or snap; setting); right stick ↑/↓ = tabletop zoom;
 **Menu (left ☰)** = the VR controls screen (§5.4). Everything else is a binding
 (`ekvr.Binds`, saved in the game's local storage as `ekvr.properties`):
 
@@ -147,19 +159,22 @@ stick ←/→** = turn (smooth by default, or snap; setting); right stick ↑/�
 | Change view | Right stick click | third person → first person → tabletop |
 | Recenter | Left stick click | |
 
-Whatever is bound, the **right trigger always clicks the game's UI** when the laser is on the
+**Both controllers point** (v6): the laser comes from the pointer hand — by default whichever
+trigger you pulled last (setting: auto / right / left). Whatever is bound, **the pointer hand's
+trigger always clicks the game's UI** when the laser is on the
 UI panel (opaque pixel), so menus and windows always work. A button has at most one
 function; binding it elsewhere moves it. Laser clicks: a press is a tap at the press point;
 it becomes a drag only after moving 16 px.
 
 ### 5.3 Views
 
-- **WALK = third person (default)** — 1 cell = 1 m; the hero stands 2.4 m ahead on the map
-  floor, which sits 2.0 m below your eyes whatever your real height (seated works). The world
+- **WALK = third person (default)** — 1 cell = 1 m; the hero stands 2.4 m ahead (camera distance setting:
+  1.6 / 2.4 / 3.2 m) on the map floor, 2.0 m below your eyes (camera height: 1.5 / 2.0 / 2.5 m), whatever your real height (seated works). The world
   follows the hero exactly (the hero never drifts in view). **Camera follows** (setting, on by
   default): while the hero walks, the view swings gently (≤ 40°/s, slower the closer it gets; not while you turn with the right stick)
-  until the walking direction points away from you — the camera stays behind the hero. It
-  doesn't swing for walking back toward you (more than 135° off). Turning orbits the hero.
+  until the walking direction points away from you — the camera stays behind the hero. v6: it
+  only corrects while the hero walks roughly away from you (within 50°), so walking left /
+  right goes straight instead of curving (owner, v5: left and right felt wrong). Turning orbits the hero.
 - **FIRST** — you are the hero: eyes 1.55 m above the map floor, the world moves with the
   hero exactly, the hero's sprite and bars hidden, things within 1.6 cells see-through.
 - **TABLE** — 4.5 cm per cell, board 0.6 m ahead, the game's screen behind it, passthrough.
@@ -172,8 +187,10 @@ Menu button opens/closes it: a panel 1.25 m ahead at eye level, drawn with a bui
 dependency on the game's fonts). While it is open the game gets no controller input. Rows:
 each function with its button(s); then **Turning** (smooth / snap), **Turn speed** (60 / 90 /
 120 / 180 °/s; snap: 30°), **Camera follows hero** (on / off), **Start view** (third person /
-first person / tabletop), **Reset to defaults**, **Close**. Point the laser at a row and pull
-the right trigger: an option row cycles its value; a function row shows "PRESS A BUTTON" —
+first person / tabletop), v6: **Move with** (left / right stick), **Move relative to** (view / head),
+**Pointer hand** (auto / right / left), **Camera distance**, **Camera height**, **Recenter
+now** (recalibrate: forward = where you look, the hero back in front of you), **Reset to defaults**, **Close**. Point the laser at a row and pull
+either trigger: an option row cycles its value; a function row shows "PRESS A BUTTON" —
 once every button is released, the next button pressed (any of A B X Y, both triggers, both
 grips, both stick clicks) is bound to it; Menu cancels. Saved immediately.
 

@@ -34,6 +34,11 @@ public class Scene3D {
     public final float[] tint = {1, 1, 1, 1};
     public float heroX, heroZ;                   // hero ground position (units)
     public boolean hideHero;                     // first person: don't draw the hero (you are the hero)
+    float offX, offZ;                            // hero sprite's drawn spot minus its logical point
+    int heroSprite = -1;
+    /** Where the hero is drawn (units): what the views follow. */
+    public float dispX() { return heroX + offX; }
+    public float dispZ() { return heroZ + offZ; }
     boolean ready, classified;
     Object lastMap;
     final HashSet<Long> floorKeys = new HashSet<>();
@@ -49,6 +54,7 @@ public class Scene3D {
     public void beginFrame() {
         rec.reset();
         classified = false;
+        if (rec.onBegin == null) rec.onBegin = this::faceViewer;
         try {
             if (fLevelR == null) {
                 fLevelR = field(e.a.a.a.class, "w");
@@ -111,8 +117,51 @@ public class Scene3D {
         System.out.println("[ekvr] floor tile kinds: " + floorKeys.size());
     }
 
+    // ---- facing (QUEST_VR_SPEC.md §3) -------------------------------------------------------
+    /** Where the viewer stands (world units), from the last drawn eye; set by VrCore. */
+    public float viewX, viewZ;
+    public boolean haveViewer;
+    final java.util.ArrayList<net.fdgames.GameEntities.MapActor> turned = new java.util.ArrayList<>();
+    final java.util.ArrayList<net.fdgames.GameEntities.MapActor.Facing> was = new java.util.ArrayList<>(), shown = new java.util.ArrayList<>();
+
+    /**
+     * Map drawing starts: show each character's 8-way facing as seen from the viewer instead of
+     * from the 2D camera (which looks up the screen, heading 45°). Restored in endFrame, so the
+     * game's logic never sees it. Facing ordinal k = world heading 45° - 45°·k.
+     */
+    void faceViewer() {
+        if (!haveViewer || !turned.isEmpty()) return;
+        try {
+            net.fdgames.GameEntities.MapActor.Facing[] f = net.fdgames.GameEntities.MapActor.Facing.values();
+            java.util.ArrayList<net.fdgames.GameEntities.MapActor> list = net.fdgames.GameLevel.GameLevel.c;
+            net.fdgames.GameEntities.MapActor hero = net.fdgames.GameLevel.GameLevel.h();
+            int n = list == null ? 0 : list.size();
+            for (int i = 0; i <= n; i++) {
+                net.fdgames.GameEntities.MapActor a = i < n ? list.get(i) : hero;
+                if (a == null || a.facing == null || (i == n && list != null && list.contains(hero))) continue;
+                float dx = a.x / 32f - 1f + offX - viewX, dz = -(a.y / 32f - 1f) + offZ - viewZ;   // drawn spot
+                if (dx * dx + dz * dz < 1e-4f) continue;
+                double hv = Math.toDegrees(Math.atan2(-dx, -dz));               // heading viewer -> actor
+                int steps = (int) Math.round((hv - 45) / 45.0);
+                int k = ((a.facing.ordinal() + steps) % 8 + 8) % 8;
+                turned.add(a); was.add(a.facing); shown.add(f[k]);
+                a.facing = f[k];
+            }
+        } catch (Throwable t) {
+            restoreFacing();
+        }
+    }
+
+    void restoreFacing() {
+        // only where it is still our value: if the game changed it meanwhile, the game's wins
+        for (int i = 0; i < turned.size(); i++) if (turned.get(i).facing == shown.get(i)) turned.get(i).facing = was.get(i);
+        shown.clear();
+        turned.clear(); was.clear();
+    }
+
     /** After the game frame: read the scene ambient from the (silenced) RayHandler. */
     public void endFrame() {
+        restoreFacing();
         try {
             e.a.a.a lr = (e.a.a.a) fLevelR.get(null);
             Object lights = lr == null ? null : fLights.get(lr);
@@ -220,9 +269,18 @@ public class Scene3D {
                 }
             }
         }
+        // where the hero is drawn: EK draws a character's sprite ~1.5 cells from the point
+        // (x/32 - 1, -(y/32 - 1)), so track the hero's own sprite and remember the offset
+        float best = 2.5f * 2.5f; int bi = -1;
+        for (int k = 0; k < actors; k++) {
+            int j2 = actorIdx[k];
+            float dx = ax[j2] - (heroX + offX), dz = az[j2] - (heroZ + offZ), d = dx * dx + dz * dz;
+            if (d < best) { best = d; bi = j2; }
+        }
+        if (bi >= 0) { offX = ax[bi] - heroX; offZ = az[bi] - heroZ; heroSprite = bi; } else heroSprite = -1;
         if (hideHero)
             for (int i = 0; i < n; i++)
-                if (kind[i] != 0 && !rec.tileDraw[i] && Math.abs(ax[i] - heroX) < 0.45f && Math.abs(az[i] - heroZ) < 0.45f)
+                if (kind[i] != 0 && !rec.tileDraw[i] && Math.abs(ax[i] - dispX()) < 0.45f && Math.abs(az[i] - dispZ()) < 0.45f)
                     kind[i] = 4;
     }
 
@@ -238,7 +296,7 @@ public class Scene3D {
             }
             return;
         }
-        float sx = heroX - vx, sz = heroZ - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
+        float sx = dispX() - vx, sz = dispZ() - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
         if (sl > 1e-3f) {
             sx /= sl; sz /= sl;
             for (int i = 0; i < n; i++) {
