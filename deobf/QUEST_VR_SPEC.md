@@ -105,38 +105,64 @@ EK has complete gamepad support, unused by v1/v2 (they faked touches instead):
 - **cancel** → close the window / back. skill1..8 → `z.k(i)`; nextItem/prevItem cycle the
   selected quick slot, useItem uses it (`z.a0()`), recovery = `z.G()`.
 
-### 5.2 Mapping (v3)
+### 5.2 Mapping (v4: remappable)
+
+Owner feedback on v3 (2026-10-25): movement good; "the camera control is not smooth at all
+… you click it once in a direction and it changes" (30° snap turn); "the camera needs to stay
+behind the player"; "the attack needs to be able to be mapped to the large trigger … give it
+an option to map things, like an emulator does, where you click a button and it maps it".
 
 The Touch controllers drive a virtual `Controller` (`ekvr.Pad`) installed before the game
-starts, so `ExiledKingdoms.n` is it and the game runs its own controller code. Buttons are set
-through the commands in `Settings.a`, so a custom controls.ini still works.
+starts, so `ExiledKingdoms.n` is it and the game runs its own controller code. Game commands
+are set through `Settings.a`, so a custom controls.ini still works.
 
-| Input | Action |
-|---|---|
-| Left stick | **walk** (EK's analog controller movement), relative to where you look |
-| A | EK **action**: use what's in reach (chest, door, NPC, loot) or attack; continue a conversation |
-| B | EK **cancel** (close the window) |
-| Y / Menu | the phone's Back key (game menu) |
-| X | next quick-slot item; **left trigger** = use it |
-| Right grip / left grip | skill 1 / skill 2 (left grip moves the board in tabletop) |
-| Right trigger (laser) | point and click: the UI panel where it is opaque; else a **thing** the laser hits (character, chest, door, tree — alpha-tested) → a tap on its cell; else the ground → a tap there (walk) |
-| Right stick ←/→ | snap turn 30° |
-| Right stick ↑/↓ | tabletop zoom |
-| Right stick click | view: first person → third person → tabletop |
-| Left stick click | recenter |
+Fixed: **left stick** = walk (EK's analog movement, relative to where you look); **right
+stick ←/→** = turn (smooth by default, or snap; setting); right stick ↑/↓ = tabletop zoom;
+**Menu (left ☰)** = the VR controls screen (§5.4). Everything else is a binding
+(`ekvr.Binds`, saved in the game's local storage as `ekvr.properties`):
 
-Laser taps: a press is a tap at the press point; it becomes a drag only after moving 16 px
-(hand jitter used to turn clicks into drags). Taps on a thing never drag.
+| Function | Default button | Does |
+|---|---|---|
+| Attack / act | **Right trigger** | EK action: attack the nearest enemy, else use what's in reach (chest, door, NPC, loot); continue a conversation |
+| Point & click | A | a tap where the laser points: UI, a thing (its cell), or the ground (walk there) |
+| Close / cancel | B | EK cancel |
+| Game menu | Y | the phone's Back key |
+| Next quick item | X | EK nextItem |
+| Use quick item | Left trigger | EK useItem |
+| Skill 1 / Skill 2 | Right grip / Left grip | EK skill1 / skill2 |
+| Previous quick item, Recovery, Skill 3, Skill 4 | (none) | EK prevItem, recovery, skill3, skill4 |
+| Change view | Right stick click | third person → first person → tabletop |
+| Recenter | Left stick click | |
+
+Whatever is bound, the **right trigger always clicks the game's UI** when the laser is on the
+UI panel (opaque pixel), so menus and windows always work. A button has at most one
+function; binding it elsewhere moves it. Laser clicks: a press is a tap at the press point;
+it becomes a drag only after moving 16 px.
 
 ### 5.3 Views
 
-- **FIRST (default)** — you are the hero: 1 cell = 1 m, eyes 1.55 m above the map floor
-  whatever your real height (seated works), the world moves with the hero exactly (no lag),
-  the hero's own sprite and its bars hidden. The UI panel floats 1.3 m ahead, a little low,
-  and re-centres on your gaze when you turn more than 50° away from it.
-- **WALK (third person)** — 1 cell = 1 m, the hero 2.6 m ahead on the floor, follows the hero.
-- **TABLE** — 4.5 cm per cell, board 0.6 m ahead at sitting-table height, the game's screen
-  standing 1.15 m away behind it, over passthrough.
+- **WALK = third person (default)** — 1 cell = 1 m; the hero stands 2.4 m ahead on the map
+  floor, which sits 2.0 m below your eyes whatever your real height (seated works). The world
+  follows the hero exactly (the hero never drifts in view). **Camera follows** (setting, on by
+  default): while the hero walks, the view swings gently (≤ 40°/s, slower the closer it gets; not while you turn with the right stick)
+  until the walking direction points away from you — the camera stays behind the hero. It
+  doesn't swing for walking back toward you (more than 135° off). Turning orbits the hero.
+- **FIRST** — you are the hero: eyes 1.55 m above the map floor, the world moves with the
+  hero exactly, the hero's sprite and bars hidden, things within 1.6 cells see-through.
+- **TABLE** — 4.5 cm per cell, board 0.6 m ahead, the game's screen behind it, passthrough.
+- The game's UI panel re-centres on your gaze when you look more than 50° away from it
+  (walking views).
+
+### 5.4 VR controls screen (`ekvr.VrMenu`)
+
+Menu button opens/closes it: a panel 1.25 m ahead at eye level, drawn with a built-in 5×7 pixel font (no
+dependency on the game's fonts). While it is open the game gets no controller input. Rows:
+each function with its button(s); then **Turning** (smooth / snap), **Turn speed** (60 / 90 /
+120 / 180 °/s; snap: 30°), **Camera follows hero** (on / off), **Start view** (third person /
+first person / tabletop), **Reset to defaults**, **Close**. Point the laser at a row and pull
+the right trigger: an option row cycles its value; a function row shows "PRESS A BUTTON" —
+once every button is released, the next button pressed (any of A B X Y, both triggers, both
+grips, both stick clicks) is bound to it; Menu cancels. Saved immediately.
 
 ## 6. Desktop test bed (`vr/desktop`, `tools/vr/run_desktop.sh`)
 

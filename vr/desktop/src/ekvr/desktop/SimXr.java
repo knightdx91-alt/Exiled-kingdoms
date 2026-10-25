@@ -17,6 +17,9 @@ public class SimXr {
     public static int aimX = -1, aimY = -1;
     public static float[] aimStage, aimFrom;        // script "aimsprite": aim at a stage point (from a point) instead
     public static boolean trigger, a, b, x, click;
+    public static float rstickX, rstickY;
+    public static final java.util.HashSet<String> held = new java.util.HashSet<>();   // y menu ltrig lgrip rgrip rclick
+    static boolean on(String k) { return held.contains(k); }
     static float[] proj, view, headPose;
 
     static void frame(com.badlogic.gdx.a game, int w, int h, float dt) {
@@ -57,6 +60,9 @@ public class SimXr {
         r.a = a; r.b = b;
         core.left.sx = stickX; core.left.sy = stickY;
         core.left.a = x; core.left.stick = click;
+        core.left.b = on("y"); core.left.menu = on("menu"); core.left.trigger = on("ltrig") ? 1 : 0;
+        core.left.grip = on("lgrip") ? 1 : 0; r.grip = on("rgrip") ? 1 : 0; r.stick = on("rclick");
+        r.sx = rstickX; r.sy = rstickY;
         core.input(headPose, dt);
         core.drawEye(proj, view, w, h);
     }

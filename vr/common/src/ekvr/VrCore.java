@@ -44,7 +44,10 @@ public class VrCore {
     public final Scene3D scene = new Scene3D();
     public UiLayer ui;
     public final int vw, vh;                       // the game's virtual screen (UI layer pixels)
-    public Mode mode = Mode.FIRST;
+    public Mode mode = Mode.WALK;
+    public final Binds binds = new Binds();
+    public final VrMenu menu = new VrMenu(binds);
+    boolean bindsLoaded;
     public boolean passthrough;                    // TABLE over the real room when the headset can
     public float tableScale = 0.045f;              // metres per cell on the table
     float yaw;                                     // board / world rotation about Y
@@ -58,7 +61,10 @@ public class VrCore {
     // UI panel (stage space): centre, right and up half-extent vectors
     final float[] pc = new float[3], pr = new float[3], pu = new float[3];
     // pointer state
-    boolean trigHeld, stickHeld, bWas, clickWas, turnLatch, gripWas, modeWas, trigDrag, trigThing;
+    boolean trigHeld, stickHeld, turnLatch, gripWas, menuWas, menuTrigWas, trigDrag, trigThing;
+    final boolean[] was = new boolean[Binds.Btn.values().length];   // buttons last frame (edges)
+    Binds.Btn clickBtn;                            // the button holding the current laser press
+    float prevHX, prevHZ;                          // hero last frame (camera follow)
     int lastX, lastY, downX, downY;
     final float[] grabFrom = new float[3];
     float[] laserEnd;
@@ -66,6 +72,9 @@ public class VrCore {
     public String hoverAt = "";                     // (tests) the thing's cell and the tap it makes
 
     public VrCore(int vw, int vh) { this.vw = vw; this.vh = vh; }
+
+    /** (tests) the world's yaw in radians. */
+    public float yaw() { return yaw; }
 
     // ---- per frame -------------------------------------------------------------------------
     /** Run the real game for one frame: map recorded for 3D, UI into the layer. */
@@ -78,8 +87,8 @@ public class VrCore {
         scene.endFrame();
         if (!haveFocus) { fx = scene.heroX; fz = scene.heroZ; haveFocus = true; }
         scene.hideHero = mode == Mode.FIRST;
-        // follow the hero: exactly in first person (any lag reads as the floor sliding)
-        float k = mode == Mode.FIRST ? 1f : mode == Mode.WALK ? 0.2f : 0.25f;
+        // follow the hero: exactly when walking (lag reads as the floor sliding / the hero drifting)
+        float k = mode == Mode.TABLE ? 0.25f : 1f;
         fx += (scene.heroX - fx) * k;
         fz += (scene.heroZ - fz) * k;
     }
@@ -98,16 +107,20 @@ public class VrCore {
         float l = (float) Math.sqrt(fx_ * fx_ + fz_ * fz_);
         if (l < 1e-3) { fx_ = 0; fz_ = -1; l = 1; }
         fx_ /= l; fz_ /= l;
+        float oldYaw = headYaw;
         headYaw = (float) Math.atan2(-fx_, -fz_);
         if (mode == Mode.TABLE) {
             anchor[0] = head[0] + fx_ * 0.6f; anchor[1] = Math.max(0.5f, head[1] - 0.5f); anchor[2] = head[2] + fz_ * 0.6f;
         } else if (mode == Mode.WALK) {
-            anchor[0] = head[0] + fx_ * 2.6f; anchor[1] = 0; anchor[2] = head[2] + fz_ * 2.6f;
+            // third person: the hero 2.4 m ahead, the map floor 2.0 m below your eyes (seated works)
+            anchor[0] = head[0] + fx_ * 2.4f; anchor[1] = head[1] - 2.0f; anchor[2] = head[2] + fz_ * 2.4f;
         } else {                                                            // FIRST: the hero's spot is yours
             anchor[0] = head[0]; anchor[1] = head[1] - EYE; anchor[2] = head[2];
         }
-        // the map's "up the screen" direction (iso view: world -X,-Z) points away from the user
-        yaw = headYaw - (float) Math.toRadians(45);
+        // first time: the map's "up the screen" direction (iso view: world -X,-Z) points away from
+        // the user; later (recenter, view change): whatever was ahead of you stays ahead
+        if (!placed) yaw = headYaw - (float) Math.toRadians(45);
+        else yaw += headYaw - oldYaw;
         placed = true;
         placePanel(fx_, fz_);
     }
@@ -126,36 +139,82 @@ public class VrCore {
 
     public void setMode(Mode m, float[] headPose) { mode = m; recenter(headPose); }
 
-    /** Right stick click: first person -> third person -> tabletop -> first person. */
-    public void nextMode(float[] headPose) { setMode(Mode.values()[(mode.ordinal() + 1) % 3], headPose); }
+    /** Change view: third person -> first person -> tabletop -> third person. */
+    public void nextMode(float[] headPose) {
+        setMode(mode == Mode.WALK ? Mode.FIRST : mode == Mode.FIRST ? Mode.TABLE : Mode.WALK, headPose);
+    }
 
-    /** The UI panel follows your gaze lazily (walking views): re-place it when you look > 50° away. */
-    void panelFollow(float[] headPose) {
+    /**
+     * The UI panel follows your gaze lazily (walking views): once you look more than 40° away it
+     * glides (up to 120°/s) back in front of you, instead of jumping.
+     */
+    void panelFollow(float[] headPose, float dt) {
         float hy = headYawOf(headPose);
         float px = pc[0] - head[0], pz = pc[2] - head[2];
         float py = (float) Math.atan2(-px, -pz);
-        float d = Math.abs((float) Math.IEEEremainder(hy - py, 2 * Math.PI));
-        if (d > Math.toRadians(50)) placePanel((float) -Math.sin(hy), (float) -Math.cos(hy));
+        float d = (float) Math.IEEEremainder(hy - py, 2 * Math.PI);
+        if (Math.abs(d) > Math.toRadians(40)) panelGliding = true;
+        if (!panelGliding) return;
+        if (Math.abs(d) < Math.toRadians(3)) { panelGliding = false; return; }
+        float step = Math.signum(d) * Math.min(Math.abs(d), (float) Math.toRadians(120) * dt);
+        float ny = py + step;
+        placePanel((float) -Math.sin(ny), (float) -Math.cos(ny));
     }
 
+    boolean panelGliding;
+
     // ---- input -------------------------------------------------------------------------------
-    /** Map the controllers onto the game. {@code headPose} is the head (centre eye) matrix. */
+    boolean down(Binds.Btn b) {
+        switch (b) {
+            case A: return right.a;
+            case B: return right.b;
+            case X: return left.a;
+            case Y: return left.b;
+            case RTRIG: return right.trigger > 0.6f;
+            case LTRIG: return left.trigger > 0.6f;
+            case RGRIP: return right.grip > 0.6f;
+            case LGRIP: return left.grip > 0.6f;
+            case RSTICK: return right.stick;
+            default: return left.stick;
+        }
+    }
+
+    /** Map the controllers onto the game (QUEST_VR_SPEC.md §5). {@code headPose} = the head (centre eye) matrix. */
     public void input(float[] headPose, float dt) {
+        if (!bindsLoaded) {
+            bindsLoaded = true;
+            binds.load();
+            mode = Mode.values()[binds.startView];
+        }
         if (!placed) recenter(headPose);
         head[0] = headPose[12]; head[1] = headPose[13]; head[2] = headPose[14];
-        // right stick click: next view;  left stick click: recenter
-        if (right.stick && !modeWas) nextMode(headPose);
-        modeWas = right.stick;
-        if (left.stick && !clickWas) recenter(headPose);
-        clickWas = left.stick;
-        if (mode != Mode.TABLE && !trigHeld) panelFollow(headPose);
-        // right stick X: snap turn;  Y: zoom (table)
-        if (Math.abs(right.sx) > 0.7f) {
-            if (!turnLatch) { yaw += (float) Math.toRadians(right.sx > 0 ? -30 : 30); turnLatch = true; }
-        } else if (Math.abs(right.sx) < 0.4f) turnLatch = false;
+        Binds.Btn[] all = Binds.Btn.values();
+        boolean[] now = new boolean[all.length];
+        Binds.Btn pressed = null, anyDown = null;
+        for (Binds.Btn b : all) {
+            now[b.ordinal()] = down(b);
+            if (now[b.ordinal()]) anyDown = b;
+            if (now[b.ordinal()] && !was[b.ordinal()] && pressed == null) pressed = b;
+        }
+        // Menu button: the VR controls screen
+        if (left.menu && !menuWas) {
+            if (menu.open) menu.close();
+            else {
+                float hy = headYawOf(headPose);
+                releaseAll();
+                menu.show(head, (float) -Math.sin(hy), (float) -Math.cos(hy));
+            }
+        }
+        menuWas = left.menu;
+        if (menu.open) {
+            menuInput(anyDown, pressed);
+            System.arraycopy(now, 0, was, 0, now.length);
+            return;
+        }
+        turning(dt);
         if (mode == Mode.TABLE && Math.abs(right.sy) > 0.4f)
             tableScale = Math.max(0.015f, Math.min(0.2f, tableScale * (1 + right.sy * dt * 1.2f)));
-        // left grip: move the board with your hand (tabletop)
+        // left grip: move the board with your hand (tabletop; the grip's binding is ignored meanwhile)
         boolean boardGrab = false;
         if (mode == Mode.TABLE && left.active) {
             float[] p = {left.aim[12], left.aim[13], left.aim[14]};
@@ -165,11 +224,39 @@ public class VrCore {
                 gripWas = true; boardGrab = true;
             } else gripWas = false;
         }
-        // Y / menu: the phone's Back key (game menu)
-        boolean back = left.b || left.menu;
-        if (back && !bWas && touch != null) touch.key(4);
-        bWas = back;
-        // the game's own controller (QUEST_VR_SPEC.md §5): stick walks, A = action, B = cancel ...
+        if (mode != Mode.TABLE && !trigHeld) panelFollow(headPose, dt);
+        // the laser: where it points this frame (UI, a thing, the ground)
+        int[] at = right.active ? laserTarget(right.aim) : null;
+        boolean onUi = "ui".equals(hover);
+        // one-shot functions on a button's press
+        for (Binds.Btn b : all) {
+            if (!now[b.ordinal()] || was[b.ordinal()]) continue;
+            if (b == Binds.Btn.LGRIP && boardGrab) continue;
+            Binds.Fn f = binds.fn(b);
+            if (b == Binds.Btn.RTRIG && onUi) f = Binds.Fn.CLICK;      // the right trigger always clicks the UI
+            switch (f) {
+                case VIEW: nextMode(headPose); break;
+                case RECENTER: recenter(headPose); break;
+                case GAME_MENU: if (touch != null) touch.key(4); break;
+                case CLICK:
+                    if (touch != null && at != null && !trigHeld) {
+                        touch.down(at[0], at[1]);
+                        downX = lastX = at[0]; downY = lastY = at[1];
+                        trigHeld = true; trigDrag = false; trigThing = "thing".equals(hover); clickBtn = b;
+                    }
+                    break;
+                default: break;
+            }
+        }
+        // the laser press: a tap, a drag once it really moves (hand jitter), released with its button
+        if (trigHeld && touch != null) {
+            if (clickBtn == null || !now[clickBtn.ordinal()]) { touch.up(lastX, lastY); trigHeld = false; clickBtn = null; }
+            else if (at != null && !trigThing) {
+                if (!trigDrag && Math.abs(at[0] - downX) + Math.abs(at[1] - downY) > 16) trigDrag = true;
+                if (trigDrag && (at[0] != lastX || at[1] != lastY)) { touch.drag(at[0], at[1]); lastX = at[0]; lastY = at[1]; }
+            }
+        }
+        // the game's own controller (§5.1): stick walks, held buttons drive EK commands
         float m = (float) Math.sqrt(left.sx * left.sx + left.sy * left.sy);
         float[] wd = m > 0.25f ? stickWorldDir(headPose) : null;
         if (Pad.active()) {
@@ -186,12 +273,23 @@ public class VrCore {
                     pad.set(f2 > 0 ? cc.right : cc.left, Math.abs(f2));
                     pad.set(f3 > 0 ? cc.up : cc.down, Math.abs(f3));
                 }
-                if (right.a) pad.set(cc.action, 1);
-                if (right.b) pad.set(cc.cancel, 1);
-                if (left.a) pad.set(cc.nextItem, 1);
-                if (left.trigger > 0.6f) pad.set(cc.useItem, 1);
-                if (right.grip > 0.6f) pad.set(cc.skill1, 1);
-                if (left.grip > 0.6f && !boardGrab && mode != Mode.TABLE) pad.set(cc.skill2, 1);
+                for (Binds.Btn b : all) {
+                    if (!now[b.ordinal()] || (b == Binds.Btn.LGRIP && boardGrab)) continue;
+                    if (b == Binds.Btn.RTRIG && (onUi || clickBtn == b)) continue;   // that press is a UI click
+                    switch (binds.fn(b)) {
+                        case ACT: pad.set(cc.action, 1); break;
+                        case CANCEL: pad.set(cc.cancel, 1); break;
+                        case NEXT_ITEM: pad.set(cc.nextItem, 1); break;
+                        case PREV_ITEM: pad.set(cc.prevItem, 1); break;
+                        case USE_ITEM: pad.set(cc.useItem, 1); break;
+                        case RECOVERY: pad.set(cc.recovery, 1); break;
+                        case SKILL1: pad.set(cc.skill1, 1); break;
+                        case SKILL2: pad.set(cc.skill2, 1); break;
+                        case SKILL3: pad.set(cc.skill3, 1); break;
+                        case SKILL4: pad.set(cc.skill4, 1); break;
+                        default: break;
+                    }
+                }
             }
         } else if (touch != null && !trigHeld) {
             // no controller support (shouldn't happen): hold a touch on the ground ahead of the hero
@@ -203,20 +301,72 @@ public class VrCore {
                 }
             } else if (stickHeld) { touch.up(lastX, lastY); stickHeld = false; }
         }
-        // right trigger: point and click (UI, then a thing, then the ground)
-        int[] at = right.active ? laserTarget(right.aim) : null;
-        boolean trig = right.trigger > 0.6f;
-        if (touch != null) {
-            if (trig && !trigHeld && at != null) {
-                touch.down(at[0], at[1]);
-                downX = lastX = at[0]; downY = lastY = at[1];
-                trigHeld = true; trigDrag = false; trigThing = "thing".equals(hover);
-            } else if (trig && trigHeld && at != null && !trigThing) {
-                // a click stays a click until the laser really moves (hand jitter)
-                if (!trigDrag && Math.abs(at[0] - downX) + Math.abs(at[1] - downY) > 16) trigDrag = true;
-                if (trigDrag && (at[0] != lastX || at[1] != lastY)) { touch.drag(at[0], at[1]); lastX = at[0]; lastY = at[1]; }
-            } else if (!trig && trigHeld) { touch.up(lastX, lastY); trigHeld = false; }
+        cameraFollow(dt);
+        System.arraycopy(now, 0, was, 0, now.length);
+    }
+
+    /** Let go of everything the game is holding (opening the VR menu). */
+    void releaseAll() {
+        if (trigHeld && touch != null) touch.up(lastX, lastY);
+        if (stickHeld && touch != null) touch.up(lastX, lastY);
+        trigHeld = stickHeld = false; clickBtn = null;
+        if (Pad.active()) Pad.PAD.clear();
+    }
+
+    void menuInput(Binds.Btn anyDown, Binds.Btn pressed) {
+        float[] end = new float[3];
+        int[] p = right.active ? menu.hit(right.aim, end) : null;
+        laserEnd = p != null ? end : right.active ? Mat.xform(right.aim, 0, 0, -3) : null;
+        hover = p != null ? "menu" : "";
+        if (menu.waiting != null) {
+            // bind the first button pressed after everything (incl. the trigger that chose the row) was let go
+            if (anyDown == null) menu.capture(null);
+            else if (pressed != null) menu.capture(pressed);
+            menuTrigWas = right.trigger > 0.6f;
+            return;
         }
+        menu.setHover(p);
+        boolean trig = right.trigger > 0.6f;
+        if (trig && !menuTrigWas) menu.click();
+        menuTrigWas = trig;
+    }
+
+    /**
+     * Right stick X: smooth turn (deg/s from the settings) or 30° snaps; the world turns about its
+     * anchor (third person: orbit the hero). Stick right = view turns right: stage heading =
+     * world heading + yaw and headings grow to the left, so the world's yaw grows.
+     */
+    void turning(float dt) {
+        float sx = right.sx;
+        if (binds.smoothTurn) {
+            if (Math.abs(sx) > 0.2f) {
+                float k = (Math.abs(sx) - 0.2f) / 0.8f * Math.signum(sx);
+                yaw += (float) Math.toRadians(binds.turnSpeed) * k * dt;
+            }
+        } else if (Math.abs(sx) > 0.7f) {
+            if (!turnLatch) { yaw += (float) Math.toRadians(sx > 0 ? 30 : -30); turnLatch = true; }
+        } else if (Math.abs(sx) < 0.4f) turnLatch = false;
+    }
+
+    /**
+     * Third person: while the hero walks, swing the view smoothly until the walking direction
+     * points away from you (the camera stays behind the hero). Not for walking back toward you.
+     */
+    void cameraFollow(float dt) {
+        float mx = scene.heroX - prevHX, mz = scene.heroZ - prevHZ;
+        prevHX = scene.heroX; prevHZ = scene.heroZ;
+        if (mode != Mode.WALK || !binds.follow || dt <= 0) return;
+        float sp = (float) Math.sqrt(mx * mx + mz * mz) / dt;
+        if (sp < 0.5f || sp > 40f) return;                              // standing / teleported
+        // stage heading = world heading + yaw; we want the move to head where you face (headYaw)
+        float moveH = (float) Math.atan2(-mx, -mz);
+        float diff = (float) Math.IEEEremainder(headYaw - moveH - yaw, 2 * Math.PI);
+        if (Math.abs(diff) > Math.toRadians(135)) return;
+        if (Math.abs(right.sx) > 0.2f) return;                          // you are turning yourself
+        // gentle (<= 40°/s, slower the closer): holding the stick sideways makes a wide arc, not a spin
+        float rate = (float) Math.toRadians(40) * Math.min(1f, Math.abs(diff) / (float) Math.toRadians(90));
+        float step = Math.min(Math.abs(diff), rate * dt);
+        yaw += Math.signum(diff) * step;
     }
 
     /** The left stick as a world direction (X, Z), relative to where the head looks. */
@@ -234,6 +384,26 @@ public class VrCore {
     /** Yaw of a pose's forward (−Z) direction: forward = (−sin h, −cos h). */
     static float headYawOf(float[] pose) {
         return (float) Math.atan2(pose[8], pose[10]);
+    }
+
+    /**
+     * Laser vs a panel (centre c, right/up half-extents r/u, stage space): its (u, v) in -1..1
+     * (v up), or null; the hit point goes to {@code end}.
+     */
+    static float[] panelHit(float[] aim, float[] c, float[] r, float[] u, float[] end) {
+        float ox = aim[12], oy = aim[13], oz = aim[14];
+        float dx = -aim[8], dy = -aim[9], dz = -aim[10];
+        float nx = r[1] * u[2] - r[2] * u[1], ny = r[2] * u[0] - r[0] * u[2], nz = r[0] * u[1] - r[1] * u[0];
+        float den = nx * dx + ny * dy + nz * dz;
+        if (Math.abs(den) < 1e-6) return null;
+        float t = (nx * (c[0] - ox) + ny * (c[1] - oy) + nz * (c[2] - oz)) / den;
+        if (t <= 0) return null;
+        float hx = ox + dx * t - c[0], hy = oy + dy * t - c[1], hz = oz + dz * t - c[2];
+        float pu = (hx * r[0] + hy * r[1] + hz * r[2]) / (r[0] * r[0] + r[1] * r[1] + r[2] * r[2]);
+        float pv = (hx * u[0] + hy * u[1] + hz * u[2]) / (u[0] * u[0] + u[1] * u[1] + u[2] * u[2]);
+        if (Math.abs(pu) > 1 || Math.abs(pv) > 1) return null;
+        end[0] = ox + dx * t; end[1] = oy + dy * t; end[2] = oz + dz * t;
+        return new float[]{pu, pv};
     }
 
     /** Where the laser lands, as a pixel of the game's screen (UI or the ground), or null. */
@@ -333,6 +503,7 @@ public class VrCore {
             float[] bl = {pc[0] - pr[0] - pu[0], pc[1] - pr[1] - pu[1], pc[2] - pr[2] - pu[2]};
             ui.draw(pv, tl, tr, br, bl);
         }
+        if (menu.open) menu.draw(ui, pv);
         if (right.active && laserEnd != null) line(gl, pv, right.aim[12], right.aim[13], right.aim[14], laserEnd);
     }
 

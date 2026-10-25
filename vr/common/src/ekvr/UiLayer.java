@@ -91,9 +91,14 @@ public class UiLayer {
 
     /** Draw the layer as a quad: corners (x0,y0)-(x1,y1) at depth z in the space of {@code mvp}. */
     public void draw(float[] mvp, float[] tl, float[] tr, float[] br, float[] bl) {
+        drawTexture(tex, mvp, bl, br, tr, tl);         // the layer's row 0 is its bottom
+    }
+
+    /** Draw a premultiplied texture as a quad; pXY = where texture coordinate (X, Y) goes. */
+    public void drawTexture(int tex, float[] mvp, float[] p00, float[] p10, float[] p11, float[] p01) {
         GL20 gl = gl();
         quad.clear();
-        float[][] v = {bl, br, tr, bl, tr, tl};
+        float[][] v = {p00, p10, p11, p00, p11, p01};
         float[][] uv = {{0, 0}, {1, 0}, {1, 1}, {0, 0}, {1, 1}, {0, 1}};
         for (int i = 0; i < 6; i++) quad.put(v[i][0]).put(v[i][1]).put(v[i][2]).put(uv[i][0]).put(uv[i][1]);
         clientArrays(gl);

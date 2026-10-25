@@ -113,10 +113,17 @@ public class Script implements Runnable {
                 break;
             }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
+            case "menurow": SimXr.aimFrom = null; SimXr.aimStage = SimXr.core.menu.rowPoint(Integer.parseInt(c[1])); break;
+            case "rstick": SimXr.rstickX = Float.parseFloat(c[1]); SimXr.rstickY = Float.parseFloat(c[2]); break;
+            case "yaw": System.out.println("[script] yaw=" + Math.round(Math.toDegrees(SimXr.core.yaw())) ); break;
             case "stick": SimXr.stickX = Float.parseFloat(c[1]); SimXr.stickY = Float.parseFloat(c[2]); break;
             case "btn": {
                 boolean on = c.length < 3 || c[2].equals("1");
-                switch (c[1]) { case "a": SimXr.a = on; break; case "b": SimXr.b = on; break; case "x": SimXr.x = on; break; case "click": SimXr.click = on; break; }
+                switch (c[1]) {
+                    case "a": SimXr.a = on; break; case "b": SimXr.b = on; break; case "x": SimXr.x = on; break;
+                    case "click": SimXr.click = on; break; case "trig": SimXr.trigger = on; break;
+                    default: if (on) SimXr.held.add(c[1]); else SimXr.held.remove(c[1]);
+                }
                 waitLeft = 2; break;
             }
             case "look": SimXr.headYaw = Float.parseFloat(c[1]); SimXr.headPitch = Float.parseFloat(c[2]); break;

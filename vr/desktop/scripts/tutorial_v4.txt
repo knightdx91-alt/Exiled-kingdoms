@@ -1,0 +1,118 @@
+# main menu -> slot 1 -> create hero -> traits -> skill -> start
+wait 450
+click 640 255
+wait 120
+click 410 168
+wait 120
+click 747 595
+wait 120
+click 447 318
+wait 120
+click 588 432
+wait 120
+click 749 318
+wait 120
+click 588 432
+wait 120
+click 447 540
+wait 120
+click 588 432
+wait 120
+click 749 540
+wait 120
+click 588 432
+wait 120
+click 941 600
+wait 120
+click 614 604
+wait 120
+click 588 432
+wait 120
+click 972 604
+wait 100
+shot intro
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+wait 300
+shot tut1
+click 640 548
+wait 60
+# third person is the default view, the camera behind the hero
+look 0 -25
+wait 20
+yaw
+shot v4_start
+# smooth turn: right stick right for 0.5 s at 90 deg/s -> about +45 (view turns right)
+rstick 1 0
+wait 30
+rstick 0 0
+yaw
+shot v4_turned
+# walk right: the camera swings round behind the hero
+stick 1 0
+wait 150
+stick 0 0
+wait 10
+yaw
+hero
+shot v4_follow
+# the VR controls screen: map ATTACK / ACT (row 0) to the left trigger
+look 0 0
+btn menu 1
+btn menu 0
+wait 5
+shot v4_menu
+menurow 0
+wait 3
+trig 1
+trig 0
+wait 3
+shot v4_waiting
+btn ltrig 1
+btn ltrig 0
+wait 3
+shot v4_bound
+# turning: smooth -> snap (row 14)
+menurow 14
+wait 3
+trig 1
+trig 0
+wait 3
+shot v4_snap
+btn menu 1
+btn menu 0
+wait 5
+rstick 1 0
+wait 10
+rstick 0 0
+yaw
+look 0 -25
+wait 5
+shot v4_closed
+quit
