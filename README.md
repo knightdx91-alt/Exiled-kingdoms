@@ -11,6 +11,7 @@ Three lines of work:
 | **A** | Source recovery / de-obfuscation of the APK | `recovered/`, `port/`, `deobf/`, `tools/` |
 | **B** | Phaser 3 browser rebuild (the product) | `web/` — verify with `cd web && node verify.mjs` |
 | **C** | Mod of the owner's APK (Hero class, companions, summoning) — built for the **4.2.2 tablet** *and* for a **Galaxy Z Fold 8** | `tools/patch_*.py`, `tools/build_mod_4_2_2.sh`, `tools/build_modern_compat.sh` |
+| **D** | **Meta Quest 3S** 3D build (tabletop mixed reality) of the tutorial area, from hero-v78 | `quest/` (Godot 4.6), `tools/build_quest.sh` — see `deobf/QUEST_3D_TUTORIAL_SPEC.md` |
 
 ## Current mod builds (Track C)
 

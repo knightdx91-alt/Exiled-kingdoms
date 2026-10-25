@@ -1,0 +1,362 @@
+{
+ "source": "hero-v78 2e002c035327",
+ "monsters": {
+  "goblin": {
+   "race": "weak",
+   "class": "warrior",
+   "minlevel": 1,
+   "maxlevel": 1,
+   "weapon": {
+    "id": "goblin_spear",
+    "name": "Goblin Spear",
+    "min": 1,
+    "max": 4,
+    "crit": 1,
+    "critMul": 200,
+    "speed": 11,
+    "reach": 1,
+    "ranged": false,
+    "type": "Normal"
+   },
+   "armor": 0,
+   "resist": {
+    "Fire": 10,
+    "Cold": 0,
+    "Shock": 0,
+    "Death": 0,
+    "Toxic": 0,
+    "Spirit": 0
+   },
+   "loot": "goblins_lannegar",
+   "sprite": "adt_goblin_warrior",
+   "faction": "enemy",
+   "gender": "M",
+   "portrait": "0",
+   "aggroSounds": [
+    "goblin-7",
+    "goblin-11",
+    "goblin-13"
+   ]
+  },
+  "adaon_tutorial": {
+   "race": "boss",
+   "class": "strong",
+   "minlevel": 3,
+   "maxlevel": 3,
+   "weapon": {
+    "id": "steel_longsword",
+    "name": "Steel longsword",
+    "min": 5,
+    "max": 9,
+    "crit": 6,
+    "critMul": 200,
+    "speed": 10,
+    "reach": 1,
+    "ranged": false,
+    "type": "Normal"
+   },
+   "armor": 20,
+   "resist": {
+    "Fire": 0,
+    "Cold": 0,
+    "Shock": 0,
+    "Death": 0,
+    "Toxic": 0,
+    "Spirit": 0
+   },
+   "loot": "",
+   "sprite": "adaon",
+   "faction": "player",
+   "gender": "M",
+   "portrait": "21",
+   "aggroSounds": []
+  },
+  "grey_wolf": {
+   "race": "",
+   "class": "warrior",
+   "minlevel": 2,
+   "maxlevel": 3,
+   "weapon": {
+    "id": "wolf_bite",
+    "name": "Wolf Bite",
+    "min": 2,
+    "max": 5,
+    "crit": 1,
+    "critMul": 200,
+    "speed": 10,
+    "reach": 1,
+    "ranged": false,
+    "type": "Normal"
+   },
+   "armor": 0,
+   "resist": {
+    "Fire": -25,
+    "Cold": 25,
+    "Shock": 0,
+    "Death": 0,
+    "Toxic": 0,
+    "Spirit": 0
+   },
+   "loot": "grey_wolf",
+   "sprite": "wolf",
+   "faction": "beasts",
+   "gender": "M",
+   "portrait": "0",
+   "aggroSounds": [
+    "beast1"
+   ]
+  }
+ },
+ "loot": {
+  "goblins_lannegar": [
+   {
+    "item": 102,
+    "chance": 8
+   },
+   {
+    "item": 201,
+    "chance": 15
+   },
+   {
+    "item": -1,
+    "chance": 50
+   }
+  ],
+  "grey_wolf": [
+   {
+    "item": -1,
+    "chance": 50
+   },
+   {
+    "item": 1002,
+    "chance": 38
+   },
+   {
+    "item": 1003,
+    "chance": 23
+   },
+   {
+    "item": 2001,
+    "chance": 2
+   },
+   {
+    "item": 2002,
+    "chance": 2
+   }
+  ]
+ },
+ "items": {
+  "102": {
+   "name": "Leather Bracers",
+   "type": "armor_arms",
+   "icon": "armor_leather_hands1",
+   "armor": 0,
+   "hp": 2,
+   "resist": {},
+   "onUse": "",
+   "value": 30
+  },
+  "201": {
+   "name": "Goblin Flesh-Cutter",
+   "type": "WEAPON",
+   "icon": "weapon_dagger4",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "",
+   "value": 25
+  },
+  "1002": {
+   "name": "Damaged Wolf Pelt",
+   "type": "general",
+   "icon": "grey_pelt",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "",
+   "value": 50
+  },
+  "1003": {
+   "name": "Perfect Wolf Pelt",
+   "type": "general",
+   "icon": "grey_pelt",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "",
+   "value": 200
+  },
+  "2001": {
+   "name": "Small Ruby",
+   "type": "general",
+   "icon": "gem_ruby1",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "",
+   "value": 250
+  },
+  "2002": {
+   "name": "Small Emerald",
+   "type": "general",
+   "icon": "gem_emerald1",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "",
+   "value": 400
+  },
+  "3010": {
+   "name": "Lesser Ring of Endurance",
+   "type": "ring",
+   "icon": "ring5",
+   "armor": 0,
+   "hp": 0,
+   "resist": {
+    "Toxic": 10
+   },
+   "onUse": "",
+   "value": 250
+  },
+  "5000": {
+   "name": "Potion of Light Healing",
+   "type": "POTION",
+   "icon": "potion_red",
+   "armor": 0,
+   "hp": 0,
+   "resist": {},
+   "onUse": "GainHP#30",
+   "value": 100
+  }
+ },
+ "starterWeapons": {
+  "WARRIOR": {
+   "id": "iron_longsword",
+   "name": "Iron Longsword",
+   "min": 4,
+   "max": 8,
+   "crit": 6,
+   "critMul": 200,
+   "speed": 10,
+   "reach": 1,
+   "ranged": false,
+   "type": "Normal"
+  },
+  "ROGUE": {
+   "id": "iron_dagger",
+   "name": "Iron Dagger",
+   "min": 1,
+   "max": 5,
+   "crit": 7,
+   "critMul": 300,
+   "speed": 13,
+   "reach": 1,
+   "ranged": false,
+   "type": "Normal"
+  },
+  "CLERIC": {
+   "id": "iron_mace",
+   "name": "Iron Mace",
+   "min": 5,
+   "max": 7,
+   "crit": 5,
+   "critMul": 200,
+   "speed": 9,
+   "reach": 1,
+   "ranged": false,
+   "type": "Normal"
+  },
+  "WIZARD": {
+   "id": "wand_1",
+   "name": "Apprentice Wand",
+   "min": 2,
+   "max": 5,
+   "crit": 6,
+   "critMul": 200,
+   "speed": 11,
+   "reach": 7,
+   "ranged": true,
+   "type": "Normal"
+  },
+  "HERO": {
+   "id": "iron_longsword",
+   "name": "Iron Longsword",
+   "min": 4,
+   "max": 8,
+   "crit": 6,
+   "critMul": 200,
+   "speed": 10,
+   "reach": 1,
+   "ranged": false,
+   "type": "Normal"
+  }
+ },
+ "classes": {
+  "WARRIOR": {
+   "hp": 45,
+   "hpPerLevel": 6,
+   "mana": 0,
+   "manaPerLevel": 0,
+   "dmgMul": 0.5
+  },
+  "ROGUE": {
+   "hp": 30,
+   "hpPerLevel": 4,
+   "mana": 0,
+   "manaPerLevel": 0,
+   "dmgMul": 0.75
+  },
+  "CLERIC": {
+   "hp": 35,
+   "hpPerLevel": 5,
+   "mana": 12,
+   "manaPerLevel": 2,
+   "dmgMul": 0.3
+  },
+  "WIZARD": {
+   "hp": 20,
+   "hpPerLevel": 3,
+   "mana": 12,
+   "manaPerLevel": 2,
+   "dmgMul": 0
+  },
+  "HERO": {
+   "hp": 40,
+   "hpPerLevel": 5,
+   "mana": 6,
+   "manaPerLevel": 1,
+   "dmgMul": 0.6,
+   "learnsAll": true
+  }
+ },
+ "xpTable": [
+  0,
+  0,
+  300,
+  1000,
+  3000,
+  6000,
+  11000,
+  18000,
+  27000,
+  38000,
+  50000,
+  64000,
+  80000,
+  100000,
+  125000,
+  160000,
+  200000,
+  250000,
+  310000,
+  380000,
+  460000,
+  560000,
+  700000,
+  1000000,
+  1500000,
+  2400000
+ ],
+ "maxLevel": 25,
+ "startGold": 18
+}

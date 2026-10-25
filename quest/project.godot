@@ -1,0 +1,29 @@
+; Exiled Kingdoms — Quest 3S tabletop build (Godot 4.6, OpenXR)
+config_version=5
+
+[application]
+config/name="Exiled Kingdoms VR"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="res://data/ui/icon_128.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=2
+
+[xr]
+openxr/enabled=true
+openxr/extensions/meta/passthrough=true
+openxr/foveation_level=2
+shaders/enabled=true
+
+[importer_defaults]
+
+texture={
+"mipmaps/generate": true,
+"process/fix_alpha_border": true
+}

@@ -15,6 +15,31 @@ shippable web game; Track A is the source-recovery that feeds it.
 
 ---
 
+## Track D — Meta Quest 3S, 3D (started 2026-10-25)
+
+Owner request: EK in 3D on a **Quest 3S**, "the way the OG Pokémon games were made 3D on
+PC", starting with **the whole tutorial area**, built from **their mod APK (hero-v78)**,
+delivered as an **installable Quest APK**.
+
+- Project: `quest/` (Godot **4.6.2**, GL Compatibility renderer, OpenXR + GodotOpenXRVendors
+  **5.1.0** Meta plugin, passthrough). Scripts in `quest/scripts/`: `game.gd` (rules: ported
+  from web/ move.js, combat.js, player.js), `dialogue.gd`, `board.gd` (3D diorama),
+  `panel3d.gd` + `ui_theme.gd` (floating panels), `main.gd` (XR / desktop input),
+  `autotest.gd` (full playthrough).
+- Data: `tools/quest_extract.py` → `quest/data/` from `dist/hero-v78` (v78's tutorial map
+  differs from stock only in the two crates: Potion of Light Healing + Lesser Ring of
+  Endurance).
+- Build: `ANDROID_SDK_ROOT=… tools/build_quest.sh 1` → `dist/quest-v1/ExiledKingdomsVR-v1.apk.part*`
+  (Pages: `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdomsVR-v1.apk`).
+  Signed with `tools/ek-release.keystore`; package `net.fdgames.ek.quest` (separate app, does
+  not touch the mod install). The build fails unless the desktop autotest passes.
+- Spec, checklist, controls, deviations Q1–Q7: `deobf/QUEST_3D_TUTORIAL_SPEC.md`.
+- Install: enable developer mode on the headset, then `adb install ExiledKingdomsVR-v1.apk`
+  (or SideQuest); it shows under **Unknown Sources**.
+- **Not yet verified on a headset** (controller bindings, passthrough, frame rate).
+  First thing to check when the owner tries it.
+- Next: H10 → Lannegar (the next area), skills, inventory screen.
+
 ## ⚠️ OPEN WORK — the mod APK (read this first, updated 2026-09-22)
 
 > **2026-09-23 owner decisions:** the Android 4.2.2 tablet is retired — ship the **Fold build only**
