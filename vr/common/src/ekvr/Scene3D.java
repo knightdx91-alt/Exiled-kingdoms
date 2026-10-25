@@ -33,7 +33,8 @@ public class Scene3D {
     public float zoom = 2.6f;                    // how much of the map the 2D renderer culls to (bigger = more)
     public final float[] tint = {1, 1, 1, 1};
     public float heroX, heroZ;                   // hero ground position (units)
-    boolean ready;
+    public boolean hideHero;                     // first person: don't draw the hero (you are the hero)
+    boolean ready, classified;
     Object lastMap;
     final HashSet<Long> floorKeys = new HashSet<>();
     Object origBatch;
@@ -47,6 +48,7 @@ public class Scene3D {
     /** Point the game's map drawing at our recorder. Call every frame before the game renders. */
     public void beginFrame() {
         rec.reset();
+        classified = false;
         try {
             if (fLevelR == null) {
                 fLevelR = field(e.a.a.a.class, "w");
@@ -173,6 +175,20 @@ public class Scene3D {
     public void draw(float[] mvp, float vx, float vz) {
         if (!ready) init();
         GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
+        classify();
+        int n = rec.n;
+        for (int i = 0; i < n; i++) { fade[i] = 1f; if (kind[i] == 5) kind[i] = 1; }
+        fadeOccluders(vx, vz);
+        drawPasses(gl, mvp, vx, vz);
+    }
+
+    /**
+     * Sort this frame's quads into floor / upright / translucent / additive (kind 0..3; 4 =
+     * hidden: the hero in first person) and give each its ground anchor. Once per game frame.
+     */
+    void classify() {
+        if (classified) return;
+        classified = true;
         int n = rec.n;
         float[] q = rec.q;
         // 1. classify + anchors of big sprites (characters)
@@ -204,7 +220,24 @@ public class Scene3D {
                 }
             }
         }
-        // V4: upright things standing between the viewer and the hero turn see-through
+        if (hideHero)
+            for (int i = 0; i < n; i++)
+                if (kind[i] != 0 && !rec.tileDraw[i] && Math.abs(ax[i] - heroX) < 0.45f && Math.abs(az[i] - heroZ) < 0.45f)
+                    kind[i] = 4;
+    }
+
+    /** V4: upright map objects standing between the viewer and the hero turn see-through (kind 5 = faded upright). */
+    void fadeOccluders(float vx, float vz) {
+        int n = rec.n;
+        if (hideHero) {
+            // first person: whatever stands right in your face (a tree you walked into) turns see-through
+            for (int i = 0; i < n; i++) {
+                if (kind[i] != 1 && kind[i] != 2) continue;
+                float px = ax[i] - vx, pz = az[i] - vz;
+                if (px * px + pz * pz < 1.6f * 1.6f) { kind[i] = 5; fade[i] = 0.3f; }
+            }
+            return;
+        }
         float sx = heroX - vx, sz = heroZ - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
         if (sl > 1e-3f) {
             sx /= sl; sz /= sl;
@@ -212,9 +245,12 @@ public class Scene3D {
                 if (kind[i] != 1 || !rec.tileDraw[i]) continue;          // map objects only, never characters
                 float px = ax[i] - vx, pz = az[i] - vz;
                 float along = px * sx + pz * sz, side = Math.abs(px * sz - pz * sx);
-                if (along > 0.3f && along < sl - 0.4f && side < 1.6f) { kind[i] = 2; fade[i] = 0.3f; }
+                if (along > 0.3f && along < sl - 0.4f && side < 1.6f) { kind[i] = 5; fade[i] = 0.3f; }
             }
         }
+    }
+
+    void drawPasses(GL20 gl, float[] mvp, float vx, float vz) {
         UiLayer.clientArrays(gl);
         gl.glUseProgram(prog);
         gl.glUniformMatrix4fv(uMvp, 1, false, mvp, 0);
@@ -234,6 +270,7 @@ public class Scene3D {
         // pass 3: translucent (fading roofs, ghosts, corpses), then additive particles
         gl.glDepthMask(false);
         pass(gl, 2, 0.02f, vx, vz);
+        pass(gl, 5, 0.02f, vx, vz);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         pass(gl, 3, 0.01f, vx, vz);
         gl.glDepthMask(true);
@@ -279,6 +316,82 @@ public class Scene3D {
     }
 
     static final int[] TRI = {0, 1, 2, 0, 2, 3};
+
+    // ---- picking ---------------------------------------------------------------------------
+    /**
+     * The nearest upright thing the ray (world units: origin o, direction d) hits before
+     * {@code tMax}, seen from the viewer at (vx, vz): {t, anchorX, anchorZ}, or null. A hit
+     * counts only where the sprite's texel is not transparent (read back from the GPU), so
+     * the empty parts of a tree's rectangle don't swallow clicks meant for the ground.
+     */
+    public float[] pick(float ox, float oy, float oz, float dx, float dy, float dz, float tMax, float vx, float vz) {
+        classify();
+        int n = rec.n;
+        float[] q = rec.q;
+        int[] cand = new int[8];
+        float[] ct = new float[8];
+        float[] cu = new float[8], cv = new float[8];
+        int nc = 0;
+        for (int i = 0; i < n; i++) {
+            int k = kind[i];
+            if (k != 1 && k != 2 && k != 5) continue;
+            float tx = vx - ax[i], tz = vz - az[i];
+            float l = (float) Math.sqrt(tx * tx + tz * tz);
+            if (l < 1e-4f) continue;
+            float rx = tz / l, rz = -tx / l;                    // billboard right; normal = (tx, tz)/l
+            float den = (dx * tx + dz * tz) / l;
+            if (Math.abs(den) < 1e-6f) continue;
+            float t = ((ax[i] - ox) * tx + (az[i] - oz) * tz) / l / den;
+            if (t <= 0 || t >= tMax) continue;
+            float hx = ox + dx * t - ax[i], hy = oy + dy * t, hz = oz + dz * t - az[i];
+            float sx = aCx[i] + (hx * rx + hz * rz) / S, sy = aBase[i] + hy / SY;   // back to iso screen px
+            int o = i * 16;
+            float x0 = q[o], y0 = q[o + 1], x2 = q[o + 8], y2 = q[o + 9];
+            if (x2 == x0 || y2 == y0) continue;
+            float fu = (sx - x0) / (x2 - x0), fv = (sy - y0) / (y2 - y0);
+            if (fu < 0 || fu > 1 || fv < 0 || fv > 1) continue;
+            // keep the 8 nearest, sorted
+            int p = nc < 8 ? nc++ : 7;
+            if (p == 7 && nc == 8 && t >= ct[7]) continue;
+            while (p > 0 && ct[p - 1] > t) { cand[p] = cand[p - 1]; ct[p] = ct[p - 1]; cu[p] = cu[p - 1]; cv[p] = cv[p - 1]; p--; }
+            cand[p] = i; ct[p] = t;
+            cu[p] = q[o + 2] + fu * (q[o + 10] - q[o + 2]);
+            cv[p] = q[o + 3] + fv * (q[o + 11] - q[o + 3]);
+        }
+        for (int c = 0; c < nc; c++) {
+            int i = cand[c];
+            if (alphaAt(rec.tex[i], cu[c], cv[c]) > 40) return new float[]{ct[c], ax[i], az[i]};
+        }
+        return null;
+    }
+
+    int pickFbo;
+    final ByteBuffer px1 = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder());
+
+    /** Alpha (0..255) of a texture at (u, v): attach it to a scratch framebuffer and read one texel. */
+    int alphaAt(Texture t, float u, float v) {
+        GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
+        if (pickFbo == 0) {
+            java.nio.IntBuffer ib = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asIntBuffer();
+            gl.glGenFramebuffers(1, ib);
+            pickFbo = ib.get(0);
+        }
+        java.nio.IntBuffer prev = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
+        gl.glGetIntegerv(GL20.GL_FRAMEBUFFER_BINDING, prev);
+        gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, pickFbo);
+        gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, t.getTextureObjectHandle(), 0);
+        int a = 255;                                        // can't read it back: count it as solid
+        if (gl.glCheckFramebufferStatus(GL20.GL_FRAMEBUFFER) == GL20.GL_FRAMEBUFFER_COMPLETE) {
+            int x = Math.max(0, Math.min(t.getWidth() - 1, (int) (u * t.getWidth())));
+            int y = Math.max(0, Math.min(t.getHeight() - 1, (int) (v * t.getHeight())));
+            px1.clear();
+            gl.glReadPixels(x, y, 1, 1, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, px1);
+            a = px1.get(3) & 0xff;
+        }
+        gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, 0, 0);
+        gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, prev.get(0));
+        return a;
+    }
 
     void flush(GL20 gl, Texture t, int verts) {
         gl.glBindTexture(GL20.GL_TEXTURE_2D, t.getTextureObjectHandle());

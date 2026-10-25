@@ -84,7 +84,34 @@ public class Script implements Runnable {
             case "shot": Shot.save(dir + "/" + c[1] + ".png"); break;
             case "quit": DeskBackend.app().exit(); break;
             // simulated Quest (mode=vr)
-            case "aim": SimXr.aimX = Integer.parseInt(c[1]); SimXr.aimY = Integer.parseInt(c[2]); break;
+            case "aim": SimXr.aimStage = SimXr.aimFrom = null; SimXr.aimX = Integer.parseInt(c[1]); SimXr.aimY = Integer.parseInt(c[2]); break;
+            case "aimrel": {      // aim the laser at the ground dx, dz cells from the hero
+                float x = SimXr.core.scene.heroX + Float.parseFloat(c[1]), z = SimXr.core.scene.heroZ + Float.parseFloat(c[2]);
+                SimXr.aimStage = ekvr.Mat.xform(SimXr.core.world(), x, 0f, z);
+                SimXr.aimFrom = c.length > 3 ? ekvr.Mat.xform(SimXr.core.world(), x + 0.05f, 30f, z + 0.05f) : null;
+                break;
+            }
+            case "aimsprite": {   // aim the laser at the nearest map sprite whose class name contains c[1], 0.3 m up
+                net.fdgames.GameEntities.MapSprite best = null;
+                float hx = SimXr.core.scene.heroX, hz = SimXr.core.scene.heroZ, bd = 1e9f;
+                for (net.fdgames.GameEntities.MapSprite sp : net.fdgames.GameLevel.GameLevel.d) {
+                    if (!sp.getClass().getSimpleName().contains(c[1])) continue;
+                    float x = sp.x / 32f - 1f, z = -(sp.y / 32f - 1f), d = (x - hx) * (x - hx) + (z - hz) * (z - hz);
+                    if (d < bd) { bd = d; best = sp; }
+                }
+                if (best == null) {
+                    java.util.TreeMap<String, Integer> kinds = new java.util.TreeMap<>();
+                    for (net.fdgames.GameEntities.MapSprite sp : net.fdgames.GameLevel.GameLevel.d) kinds.merge(sp.getClass().getSimpleName(), 1, Integer::sum);
+                    System.out.println("[script] no " + c[1] + "; sprites: " + kinds);
+                    break;
+                }
+                float x = best.x / 32f - 1f, z = -(best.y / 32f - 1f);
+                SimXr.aimStage = ekvr.Mat.xform(SimXr.core.world(), x, 0.3f, z);
+                // "aimsprite NPC top": from straight above it (nothing in between), else from the hand
+                SimXr.aimFrom = c.length > 2 ? ekvr.Mat.xform(SimXr.core.world(), x + 0.05f, 30f, z + 0.05f) : null;
+                System.out.println("[script] aim " + best.getClass().getSimpleName() + " at " + x + "," + z + " (" + Math.sqrt(bd) + " cells)");
+                break;
+            }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
             case "stick": SimXr.stickX = Float.parseFloat(c[1]); SimXr.stickY = Float.parseFloat(c[2]); break;
             case "btn": {
@@ -93,13 +120,14 @@ public class Script implements Runnable {
                 waitLeft = 2; break;
             }
             case "look": SimXr.headYaw = Float.parseFloat(c[1]); SimXr.headPitch = Float.parseFloat(c[2]); break;
-            case "vrmode": SimXr.core.setMode(c[1].equals("walk") ? ekvr.VrCore.Mode.WALK : ekvr.VrCore.Mode.TABLE, SimXr.headPose); break;
+            case "vrmode": SimXr.core.setMode(ekvr.VrCore.Mode.valueOf(c[1].toUpperCase()), SimXr.headPose); break;
             case "actions": {   // run an EK action list through the game's own ActionsSet (e.g. the camp exit)
                 String acts = String.join(" ", java.util.Arrays.copyOfRange(c, 1, c.length));
                 new net.fdgames.GameLogic.ActionsSet(acts).a();
                 break;
             }
-            case "hover": System.out.println("[script] hover=" + SimXr.core.hover); break;
+            case "hover": System.out.println("[script] hover=" + SimXr.core.hover + ("thing".equals(SimXr.core.hover) ? " " + SimXr.core.hoverAt : "")); break;
+            case "hero": System.out.println("[script] hero=" + SimXr.core.scene.heroX + "," + SimXr.core.scene.heroZ); break;
             default: System.out.println("[script] unknown: " + c[0]);
         }
     }

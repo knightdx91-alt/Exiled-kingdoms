@@ -65,7 +65,7 @@ public class DeskBackend implements com.badlogic.gdx.Application {
         Gdx.audio = silentAudio();
         Gdx.net = (com.badlogic.gdx.l) Proxy.newProxyInstance(DeskBackend.class.getClassLoader(),
                 new Class[]{com.badlogic.gdx.l.class}, (o, m, a) -> m.getReturnType() == boolean.class ? false : null);
-        ekvr.Pad.install(false);
+        ekvr.Pad.install(vr);                     // the simulated headset drives the game like the Quest does
         if (System.getProperty("ekvr.script") != null)
             onFrame = new Script(System.getProperty("ekvr.script"), System.getProperty("ekvr.shotDir", "/tmp"));
         listener = make.get();

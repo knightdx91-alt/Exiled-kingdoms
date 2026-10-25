@@ -37,12 +37,14 @@ public class VrCore {
         }
     }
 
-    public enum Mode { TABLE, WALK }
+    /** FIRST: you are the hero; WALK: third person, the hero on the floor ahead; TABLE: a board. */
+    public enum Mode { FIRST, WALK, TABLE }
+    static final float EYE = 1.55f;                // FIRST: eye height above the map floor (m)
 
     public final Scene3D scene = new Scene3D();
     public UiLayer ui;
     public final int vw, vh;                       // the game's virtual screen (UI layer pixels)
-    public Mode mode = Mode.TABLE;
+    public Mode mode = Mode.FIRST;
     public boolean passthrough;                    // TABLE over the real room when the headset can
     public float tableScale = 0.045f;              // metres per cell on the table
     float yaw;                                     // board / world rotation about Y
@@ -56,11 +58,12 @@ public class VrCore {
     // UI panel (stage space): centre, right and up half-extent vectors
     final float[] pc = new float[3], pr = new float[3], pu = new float[3];
     // pointer state
-    boolean trigHeld, stickHeld, aWas, bWas, menuWas, clickWas, turnLatch, gripWas;
-    int lastX, lastY;
+    boolean trigHeld, stickHeld, bWas, clickWas, turnLatch, gripWas, modeWas, trigDrag, trigThing;
+    int lastX, lastY, downX, downY;
     final float[] grabFrom = new float[3];
     float[] laserEnd;
-    public String hover = "";                       // what the laser is on: "ui", "ground", ""
+    public String hover = "";                       // what the laser is on: "ui", "thing", "ground", ""
+    public String hoverAt = "";                     // (tests) the thing's cell and the tap it makes
 
     public VrCore(int vw, int vh) { this.vw = vw; this.vh = vh; }
 
@@ -74,7 +77,9 @@ public class VrCore {
         ui.end(defaultFbo);
         scene.endFrame();
         if (!haveFocus) { fx = scene.heroX; fz = scene.heroZ; haveFocus = true; }
-        float k = mode == Mode.WALK ? 0.08f : 0.25f;          // follow: gentler when walking inside
+        scene.hideHero = mode == Mode.FIRST;
+        // follow the hero: exactly in first person (any lag reads as the floor sliding)
+        float k = mode == Mode.FIRST ? 1f : mode == Mode.WALK ? 0.2f : 0.25f;
         fx += (scene.heroX - fx) * k;
         fz += (scene.heroZ - fz) * k;
     }
@@ -96,8 +101,10 @@ public class VrCore {
         headYaw = (float) Math.atan2(-fx_, -fz_);
         if (mode == Mode.TABLE) {
             anchor[0] = head[0] + fx_ * 0.6f; anchor[1] = Math.max(0.5f, head[1] - 0.5f); anchor[2] = head[2] + fz_ * 0.6f;
-        } else {
+        } else if (mode == Mode.WALK) {
             anchor[0] = head[0] + fx_ * 2.6f; anchor[1] = 0; anchor[2] = head[2] + fz_ * 2.6f;
+        } else {                                                            // FIRST: the hero's spot is yours
+            anchor[0] = head[0]; anchor[1] = head[1] - EYE; anchor[2] = head[2];
         }
         // the map's "up the screen" direction (iso view: world -X,-Z) points away from the user
         yaw = headYaw - (float) Math.toRadians(45);
@@ -109,70 +116,117 @@ public class VrCore {
         float w, h, dist, y;
         // TABLE: like a screen standing behind the board; WALK: a large screen ahead, a bit low
         if (mode == Mode.TABLE) { w = 1.0f; dist = 1.15f; y = anchor[1] + 0.42f; }
-        else { w = 1.6f; dist = 1.5f; y = head[1] - 0.1f; }
+        else if (mode == Mode.WALK) { w = 1.6f; dist = 1.5f; y = head[1] - 0.1f; }
+        else { w = 1.5f; dist = 1.3f; y = head[1] - 0.3f; }
         h = w * vh / vw;
         pc[0] = head[0] + fx_ * dist; pc[1] = y; pc[2] = head[2] + fz_ * dist;
         pr[0] = -fz_ * w / 2; pr[1] = 0; pr[2] = fx_ * w / 2;              // right of the user
         pu[0] = 0; pu[1] = h / 2; pu[2] = 0;
     }
 
-    public void setMode(Mode m, float[] headPose) { mode = m; passthrough = m == Mode.TABLE; recenter(headPose); }
+    public void setMode(Mode m, float[] headPose) { mode = m; recenter(headPose); }
+
+    /** Right stick click: first person -> third person -> tabletop -> first person. */
+    public void nextMode(float[] headPose) { setMode(Mode.values()[(mode.ordinal() + 1) % 3], headPose); }
+
+    /** The UI panel follows your gaze lazily (walking views): re-place it when you look > 50° away. */
+    void panelFollow(float[] headPose) {
+        float hy = headYawOf(headPose);
+        float px = pc[0] - head[0], pz = pc[2] - head[2];
+        float py = (float) Math.atan2(-px, -pz);
+        float d = Math.abs((float) Math.IEEEremainder(hy - py, 2 * Math.PI));
+        if (d > Math.toRadians(50)) placePanel((float) -Math.sin(hy), (float) -Math.cos(hy));
+    }
 
     // ---- input -------------------------------------------------------------------------------
     /** Map the controllers onto the game. {@code headPose} is the head (centre eye) matrix. */
     public void input(float[] headPose, float dt) {
         if (!placed) recenter(headPose);
         head[0] = headPose[12]; head[1] = headPose[13]; head[2] = headPose[14];
-        // left stick click: recenter;  right stick X: snap turn;  Y: zoom (table)
+        // right stick click: next view;  left stick click: recenter
+        if (right.stick && !modeWas) nextMode(headPose);
+        modeWas = right.stick;
         if (left.stick && !clickWas) recenter(headPose);
         clickWas = left.stick;
+        if (mode != Mode.TABLE && !trigHeld) panelFollow(headPose);
+        // right stick X: snap turn;  Y: zoom (table)
         if (Math.abs(right.sx) > 0.7f) {
             if (!turnLatch) { yaw += (float) Math.toRadians(right.sx > 0 ? -30 : 30); turnLatch = true; }
-        } else turnLatch = false;
+        } else if (Math.abs(right.sx) < 0.4f) turnLatch = false;
         if (mode == Mode.TABLE && Math.abs(right.sy) > 0.4f)
             tableScale = Math.max(0.015f, Math.min(0.2f, tableScale * (1 + right.sy * dt * 1.2f)));
-        // left grip: move the board with your hand
+        // left grip: move the board with your hand (tabletop)
+        boolean boardGrab = false;
         if (mode == Mode.TABLE && left.active) {
             float[] p = {left.aim[12], left.aim[13], left.aim[14]};
             if (left.grip > 0.6f) {
                 if (!gripWas) { grabFrom[0] = p[0] - anchor[0]; grabFrom[1] = p[1] - anchor[1]; grabFrom[2] = p[2] - anchor[2]; }
                 else { anchor[0] = p[0] - grabFrom[0]; anchor[1] = p[1] - grabFrom[1]; anchor[2] = p[2] - grabFrom[2]; }
-                gripWas = true;
+                gripWas = true; boardGrab = true;
             } else gripWas = false;
         }
-        // A: the HUD attack button; B / Y / menu: the phone's back key (close window, game menu)
-        if (right.a && !aWas) tap(Math.round(vw * 0.957f), Math.round(vh * 0.9375f));
-        aWas = right.a;
-        boolean back = right.b || left.b || left.menu;
+        // Y / menu: the phone's Back key (game menu)
+        boolean back = left.b || left.menu;
         if (back && !bWas && touch != null) touch.key(4);
         bWas = back;
-        if (left.a && !menuWas) tap(Math.round(vw * 0.03f), Math.round(vh * 0.79f));   // X: the HUD potion slot
-        menuWas = left.a;
-        // right trigger: laser click (UI first, else the ground under the laser)
+        // the game's own controller (QUEST_VR_SPEC.md §5): stick walks, A = action, B = cancel ...
+        float m = (float) Math.sqrt(left.sx * left.sx + left.sy * left.sy);
+        float[] wd = m > 0.25f ? stickWorldDir(headPose) : null;
+        if (Pad.active()) {
+            Pad pad = Pad.PAD;
+            pad.clear();
+            net.fdgames.ek.ControllerConfig cc = net.fdgames.ek.Settings.a;
+            if (cc != null) {
+                if (wd != null) {
+                    // world direction (X = column, Z = -row) -> world px (dx, dy) = (X, -Z) -> z.D(f2, f3)
+                    float dx = wd[0], dy = -wd[1];
+                    float f2 = (dx + dy) / 2, f3 = (dy - dx) / 2;
+                    float l = Math.abs(f2) + Math.abs(f3);
+                    f2 /= l; f3 /= l;                                   // full speed; the game clamps |f2|+|f3| to 1
+                    pad.set(f2 > 0 ? cc.right : cc.left, Math.abs(f2));
+                    pad.set(f3 > 0 ? cc.up : cc.down, Math.abs(f3));
+                }
+                if (right.a) pad.set(cc.action, 1);
+                if (right.b) pad.set(cc.cancel, 1);
+                if (left.a) pad.set(cc.nextItem, 1);
+                if (left.trigger > 0.6f) pad.set(cc.useItem, 1);
+                if (right.grip > 0.6f) pad.set(cc.skill1, 1);
+                if (left.grip > 0.6f && !boardGrab && mode != Mode.TABLE) pad.set(cc.skill2, 1);
+            }
+        } else if (touch != null && !trigHeld) {
+            // no controller support (shouldn't happen): hold a touch on the ground ahead of the hero
+            if (wd != null) {
+                int[] p = UiLayer.groundToTouch(scene.heroX + wd[0] * 2.5f, scene.heroZ + wd[1] * 2.5f, vw, vh);
+                if (p != null) {
+                    if (!stickHeld) { touch.down(p[0], p[1]); stickHeld = true; } else touch.drag(p[0], p[1]);
+                    lastX = p[0]; lastY = p[1];
+                }
+            } else if (stickHeld) { touch.up(lastX, lastY); stickHeld = false; }
+        }
+        // right trigger: point and click (UI, then a thing, then the ground)
         int[] at = right.active ? laserTarget(right.aim) : null;
         boolean trig = right.trigger > 0.6f;
         if (touch != null) {
-            if (trig && !trigHeld && at != null) { touch.down(at[0], at[1]); lastX = at[0]; lastY = at[1]; trigHeld = true; }
-            else if (trig && trigHeld && at != null && (at[0] != lastX || at[1] != lastY)) { touch.drag(at[0], at[1]); lastX = at[0]; lastY = at[1]; }
-            else if (!trig && trigHeld) { touch.up(lastX, lastY); trigHeld = false; }
+            if (trig && !trigHeld && at != null) {
+                touch.down(at[0], at[1]);
+                downX = lastX = at[0]; downY = lastY = at[1];
+                trigHeld = true; trigDrag = false; trigThing = "thing".equals(hover);
+            } else if (trig && trigHeld && at != null && !trigThing) {
+                // a click stays a click until the laser really moves (hand jitter)
+                if (!trigDrag && Math.abs(at[0] - downX) + Math.abs(at[1] - downY) > 16) trigDrag = true;
+                if (trigDrag && (at[0] != lastX || at[1] != lastY)) { touch.drag(at[0], at[1]); lastX = at[0]; lastY = at[1]; }
+            } else if (!trig && trigHeld) { touch.up(lastX, lastY); trigHeld = false; }
         }
-        // left stick: walk — hold a touch on the ground ahead of the hero (EK's hold-to-move)
-        float m = (float) Math.sqrt(left.sx * left.sx + left.sy * left.sy);
-        if (touch != null && !trigHeld) {
-            if (m > 0.3f) {
-                float hy = headYawOf(headPose);
-                float dx = (float) (Math.cos(hy) * left.sx - Math.sin(hy) * left.sy);
-                float dz = (float) (-Math.sin(hy) * left.sx - Math.cos(hy) * left.sy);
-                // stage direction -> world direction (undo the board yaw)
-                float c = (float) Math.cos(-yaw), s = (float) Math.sin(-yaw);
-                float wx = c * dx + s * dz, wz = -s * dx + c * dz;
-                float reach = 2.5f;
-                int[] p = UiLayer.groundToTouch(scene.heroX + wx * reach, scene.heroZ + wz * reach, vw, vh);
-                if (p == null) return;
-                if (!stickHeld) { touch.down(p[0], p[1]); stickHeld = true; } else touch.drag(p[0], p[1]);
-                lastX = p[0]; lastY = p[1];
-            } else if (stickHeld) { touch.up(lastX, lastY); stickHeld = false; }
-        }
+    }
+
+    /** The left stick as a world direction (X, Z), relative to where the head looks. */
+    float[] stickWorldDir(float[] headPose) {
+        float hy = headYawOf(headPose);
+        float dx = (float) (Math.cos(hy) * left.sx - Math.sin(hy) * left.sy);
+        float dz = (float) (-Math.sin(hy) * left.sx - Math.cos(hy) * left.sy);
+        // stage direction -> world direction (undo the world yaw)
+        float c = (float) Math.cos(-yaw), s = (float) Math.sin(-yaw);
+        return new float[]{c * dx + s * dz, -s * dx + c * dz};
     }
 
     void tap(int x, int y) { if (touch != null) { touch.down(x, y); touch.up(x, y); } }
@@ -205,14 +259,27 @@ public class VrCore {
                 }
             }
         }
-        // 2. the map's ground plane
+        // 2. a thing standing on the map (alpha-tested), if nearer than the ground
         float[] w = world();
         float[] inv = invertAffine(w);
         float[] o = Mat.xform(inv, ox, oy, oz);
         float[] o2 = Mat.xform(inv, ox + dx, oy + dy, oz + dz);
         float ddx = o2[0] - o[0], ddy = o2[1] - o[1], ddz = o2[2] - o[2];
+        float tg = Math.abs(ddy) > 1e-6 ? -o[1] / ddy : -1;
+        float[] eyeW = Mat.xform(inv, head[0], head[1], head[2]);
+        float[] hit = scene.pick(o[0], o[1], o[2], ddx, ddy, ddz, tg > 0 ? tg : Float.MAX_VALUE, eyeW[0], eyeW[2]);
+        if (hit != null) {
+            int[] p = UiLayer.groundToTouch(hit[1], hit[2], vw, vh);         // tap the thing's own cell
+            if (p != null) {
+                laserEnd = Mat.xform(w, o[0] + ddx * hit[0], o[1] + ddy * hit[0], o[2] + ddz * hit[0]);
+                hover = "thing";
+                hoverAt = String.format(java.util.Locale.ROOT, "%.1f,%.1f -> %d,%d", hit[1], hit[2], p[0], p[1]);
+                return p;
+            }
+        }
+        // 3. the map's ground plane
         if (Math.abs(ddy) > 1e-6) {
-            float t = -o[1] / ddy;
+            float t = tg;
             if (t > 0) {
                 float gx = o[0] + ddx * t, gz = o[2] + ddz * t;
                 int[] p = UiLayer.groundToTouch(gx, gz, vw, vh);

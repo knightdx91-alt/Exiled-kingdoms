@@ -8,13 +8,14 @@ import ekvr.VrCore;
  * right controller whose laser follows the mouse (or a script's "aim"). Drives the same
  * ekvr.VrCore the headset build uses, rendering one eye to the window.
  * Keys: WASD = left stick, mouse = right laser + trigger, Space = A, Esc = B, X = X,
- * Q/E = turn head, M = switch TABLE / WALK, C = recenter.
+ * Q/E = turn head, M = next view (first person / third person / table), C = recenter.
  */
 public class SimXr {
     public static VrCore core;
     public static float headYaw = 0, headPitch = -38;
     public static float stickX, stickY;
     public static int aimX = -1, aimY = -1;
+    public static float[] aimStage, aimFrom;        // script "aimsprite": aim at a stage point (from a point) instead
     public static boolean trigger, a, b, x, click;
     static float[] proj, view, headPose;
 
@@ -27,7 +28,8 @@ public class SimXr {
                 public void up(int x, int y) { DeskInput.rawRelease(x, y); }
                 public void key(int code) { DeskInput.key(code, true); DeskInput.key(code, false); }
             };
-            if ("walk".equals(System.getProperty("ekvr.vrmode"))) core.mode = VrCore.Mode.WALK;
+            String vm = System.getProperty("ekvr.vrmode");
+            if (vm != null) core.mode = VrCore.Mode.valueOf(vm.toUpperCase());
         }
         core.gameFrame(game::b, 0);
         headPose = Mat.mul(Mat.translate(0, 1.2f, 0),
@@ -36,8 +38,11 @@ public class SimXr {
         proj = Mat.perspective(70, w / (float) h, 0.05f, 300f);
         // right controller: from just below the head, pointing through the aimed pixel
         VrCore.Hand r = core.right;
-        r.active = aimX >= 0;
-        if (r.active) {
+        r.active = aimX >= 0 || aimStage != null;
+        if (aimStage != null) {
+            float[] o = aimFrom != null ? aimFrom : new float[]{0.18f, 1.0f, -0.1f};
+            r.aim = Mat.rigidInverse(Mat.lookAt(o[0], o[1], o[2], aimStage[0], aimStage[1], aimStage[2]));
+        } else if (r.active) {
             float[] inv = DeskBackend.invert(Mat.mul(proj, view));
             float nx = 2f * aimX / w - 1, ny = 1 - 2f * aimY / h;
             float[] p0 = DeskBackend.unproject(inv, nx, ny, -1), p1 = DeskBackend.unproject(inv, nx, ny, 1);

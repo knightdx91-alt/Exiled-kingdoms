@@ -1,0 +1,124 @@
+# main menu -> slot 1 -> create hero -> traits -> skill -> start
+wait 450
+click 640 255
+wait 120
+click 410 168
+wait 120
+click 747 595
+wait 120
+click 447 318
+wait 120
+click 588 432
+wait 120
+click 749 318
+wait 120
+click 588 432
+wait 120
+click 447 540
+wait 120
+click 588 432
+wait 120
+click 749 540
+wait 120
+click 588 432
+wait 120
+click 941 600
+wait 120
+click 614 604
+wait 120
+click 588 432
+wait 120
+click 972 604
+wait 100
+shot intro
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+click 640 360
+wait 60
+wait 300
+shot tut1
+click 640 548
+wait 60
+# first person is the default view: look ahead, a little down
+look 0 -12
+wait 20
+hero
+shot fp_ahead
+look 90 -12
+wait 10
+shot fp_left
+look 0 -12
+# left stick forward: EK's own controller movement, relative to the head
+stick 0 1
+wait 90
+stick 0 0
+wait 20
+hero
+shot fp_walked
+look 0 -35
+wait 10
+shot fp_down
+# point at things
+aim 640 300
+wait 5
+hover
+aim 500 330
+wait 5
+hover
+aim 800 330
+wait 5
+hover
+shot fp_aim
+# A = EK action (use what's in reach / attack)
+btn a 1
+btn a 0
+wait 60
+shot fp_action
+vrmode walk
+wait 30
+shot tp_walk
+vrmode table
+wait 30
+shot tp_table
+# laser-click the ground 3 cells away: the hero walks there
+aimrel 2 2 top
+wait 5
+hover
+trig 1
+trig 0
+wait 200
+hero
+# laser-click the chest on the board: the hero walks to it and opens it
+aimsprite NPC top
+wait 5
+hover
+trig 1
+trig 0
+wait 600
+hero
+shot tp_npc
+quit

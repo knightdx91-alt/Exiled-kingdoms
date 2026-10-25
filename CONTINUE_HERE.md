@@ -29,16 +29,19 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 2` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v2.apk` + `dist/quest-vr-v2/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 3` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v3.apk` + `dist/quest-vr-v3/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v2.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v3.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
 - Headset: v1 installed but crashed at launch (VerifyError in the patched `MainActivity.onCreate`,
   black screen) — fixed in v2, and `build_vr.sh` now gates on `tools/vr/check_regtypes.py`.
-  Not yet seen running on the headset. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  v2 ran on the headset; owner: controls bad, movement off, can't click things, wants to walk
+  around in it → v3: first-person view (default), EK's own gamepad code driven by the Touch
+  controllers (`ekvr.Pad`), laser picks things, click jitter fix (QUEST_VR_SPEC §5). v3 not yet
+  tried on the headset. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 

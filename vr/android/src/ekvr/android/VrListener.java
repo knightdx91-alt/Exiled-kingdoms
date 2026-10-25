@@ -92,6 +92,8 @@ public class VrListener implements com.badlogic.gdx.a {
                 public void key(int code) { sendKey(KeyEvent.ACTION_DOWN, code); sendKey(KeyEvent.ACTION_UP, code); }
             };
             forceSize();
+            // the Touch controllers as a gamepad: the game's own controller code walks, acts, etc.
+            try { ekvr.Pad.install(true); } catch (Exception e) { Log.w(TAG, "no virtual gamepad: " + e); }
         }
         game.a();
         if (xr) game.a(VW, VH);
@@ -150,9 +152,6 @@ public class VrListener implements com.badlogic.gdx.a {
             float[] eye0 = Mat.pose(v[0], v[1], v[2], v[3], v[4], v[5], v[6]);
             float[] head = eye0.clone();
             head[12] = (v[4] + v[15]) / 2; head[13] = (v[5] + v[16]) / 2; head[14] = (v[6] + v[17]) / 2;
-            if (core.right.stick && !modeLatch)
-                core.setMode(core.mode == VrCore.Mode.TABLE ? VrCore.Mode.WALK : VrCore.Mode.TABLE, head);
-            modeLatch = core.right.stick;
             core.input(head, dt);
             GL20 gl = ((GlTap) Gdx.gl20).gl;
             for (int e = 0; e < 2; e++) {
@@ -166,8 +165,6 @@ public class VrListener implements com.badlogic.gdx.a {
         }
         Xr.endFrame(st == 1, core.passthrough && core.mode == VrCore.Mode.TABLE);
     }
-
-    boolean modeLatch;
 
     public void pause() { game.pause(); }
     public void resume() { game.resume(); }

@@ -77,22 +77,66 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
 
 ## 5. Controls (`ekvr.VrCore`, shared by the Quest and the desktop simulator)
 
+Owner feedback on v2 (first run on the headset, 2026-10-25): "the controls are atrocious …
+some of the movement stuff doesn't work right … no way to click on boxes and other things …
+is there any way to make it 3D like you're walking around in it?"
+
+### 5.1 What the game itself offers (source: `GameScreen` l0/b `c(float)`, `ExiledKingdoms`)
+
+EK has complete gamepad support, unused by v1/v2 (they faked touches instead):
+
+- `ExiledKingdoms.n` (v78 name; 1217 sources `f3384n`) = the active libGDX `Controller`,
+  picked in `ExiledKingdoms.initialize()` from `Controllers` (first one, or one named xbox).
+  `ExiledKingdoms.g()` "a controller is connected" switches the HUD to controller mode
+  (`z.r()`: the on-screen touch joystick and its attack button hide; the selected quick slot
+  is highlighted).
+- Commands come from `Settings.a` (v78; `ControllerConfig`, overridable by
+  `data/config/controls.ini`), each `{type: NEGATIVE_AXIS|POSITIVE_AXIS|BUTTON|KEY|POV, id}`.
+  Defaults: left/right = axis 0 −/+, up/down = axis 1 −/+, **action** = button 96 (A),
+  **cancel** = 97 (B), skill1..8 = 99, 100, 101, 102, 103…, invTake 104, invDrop 105,
+  nextItem/prevItem = axis 6 +/−, useItem/recovery = axis 7 +/−. Axes count past |0.2|.
+- In the world (`!GameLevel.l()`): (right−left, up−down) → `z.D(f2, f3)` →
+  `player.N(f2 − f3)`, `player.O(f2 + f3)` = the hero's velocity in world px (x, y): **analog
+  walking**, no pathfinding. So a world direction (dx, dy) needs f2 = (dx+dy)/2, f3 = (dy−dx)/2.
+- **action** → `GameScreen.l()`: if "attack interacts" (settings) and no enemy is near and
+  something activable is in reach (`player.numActivables > 0`) → `z.E(0)` = use it (open the
+  chest/door, talk, loot, pick up); else attack the nearest enemy (`player.E0(-1)`). In a
+  conversation **action** = continue; up/down choose a line.
+- **cancel** → close the window / back. skill1..8 → `z.k(i)`; nextItem/prevItem cycle the
+  selected quick slot, useItem uses it (`z.a0()`), recovery = `z.G()`.
+
+### 5.2 Mapping (v3)
+
+The Touch controllers drive a virtual `Controller` (`ekvr.Pad`) installed before the game
+starts, so `ExiledKingdoms.n` is it and the game runs its own controller code. Buttons are set
+through the commands in `Settings.a`, so a custom controls.ini still works.
+
 | Input | Action |
 |---|---|
-| Right trigger (laser) | a tap on the game: the UI panel where it is opaque, else the ground under the laser → the screen point the 2D game would show it at (walk, attack, talk, open, loot) |
-| Left stick | walk: holds a touch on the ground 2.5 cells ahead in the stick's direction (EK's hold-to-move) |
-| A | the HUD attack button |
-| X | the HUD potion slot |
-| B / Y / Menu | the phone's Back key (close window, game menu) |
-| Right stick ←/→ | turn the world 30° |
+| Left stick | **walk** (EK's analog controller movement), relative to where you look |
+| A | EK **action**: use what's in reach (chest, door, NPC, loot) or attack; continue a conversation |
+| B | EK **cancel** (close the window) |
+| Y / Menu | the phone's Back key (game menu) |
+| X | next quick-slot item; **left trigger** = use it |
+| Right grip / left grip | skill 1 / skill 2 (left grip moves the board in tabletop) |
+| Right trigger (laser) | point and click: the UI panel where it is opaque; else a **thing** the laser hits (character, chest, door, tree — alpha-tested) → a tap on its cell; else the ground → a tap there (walk) |
+| Right stick ←/→ | snap turn 30° |
 | Right stick ↑/↓ | tabletop zoom |
-| Right stick click | switch tabletop ↔ walk-inside |
-| Left grip | move the board (tabletop) |
+| Right stick click | view: first person → third person → tabletop |
 | Left stick click | recenter |
 
-Modes: **TABLE** — 4.5 cm per cell, board 0.6 m ahead at sitting-table height, the game's
-screen standing 1.15 m away behind it, over passthrough. **WALK** — 1 cell = 1 m, the hero
-2.6 m ahead on the floor, the game's screen 1.5 m ahead.
+Laser taps: a press is a tap at the press point; it becomes a drag only after moving 16 px
+(hand jitter used to turn clicks into drags). Taps on a thing never drag.
+
+### 5.3 Views
+
+- **FIRST (default)** — you are the hero: 1 cell = 1 m, eyes 1.55 m above the map floor
+  whatever your real height (seated works), the world moves with the hero exactly (no lag),
+  the hero's own sprite and its bars hidden. The UI panel floats 1.3 m ahead, a little low,
+  and re-centres on your gaze when you turn more than 50° away from it.
+- **WALK (third person)** — 1 cell = 1 m, the hero 2.6 m ahead on the floor, follows the hero.
+- **TABLE** — 4.5 cm per cell, board 0.6 m ahead at sitting-table height, the game's screen
+  standing 1.15 m away behind it, over passthrough.
 
 ## 6. Desktop test bed (`vr/desktop`, `tools/vr/run_desktop.sh`)
 
@@ -126,3 +170,6 @@ Dalvik verifier (`tools/dalvik_verify.sh`) does not catch it, so it is not used 
 - **V4** ~~Trees between the camera and the hero are not faded~~ DONE: map objects standing
   between the viewer and the hero (within 1.6 cells of the line) draw at 30 % alpha.
 - **V5** UI is the game's own 2D screen on a panel (not re-laid out for VR).
+- **V6** First person shows EK's 2D sprites as upright cut-outs at 1 cell = 1 m; walls and
+  buildings are flat until V2. Laser taps on a thing tap its base cell (what a 2D tap on the
+  thing's cell does), not the exact sprite pixel.
