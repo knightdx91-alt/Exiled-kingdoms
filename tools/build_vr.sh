@@ -6,7 +6,8 @@
 #   1. reassemble dist/hero-v78 (sha256-checked)
 #   2. compile vr/common + vr/android against android.jar + the game's classes (dex2jar)
 #      -> D8 -> classes2.dex
-#   3. MainActivity.onCreate: initialize(game) -> initialize(Vr.wrap(game))  (smali, 2 lines)
+#   3. MainActivity.onCreate: initialize(game) -> initialize(Vr.wrap(game))  (smali, 2 lines),
+#      then a register-type gate (tools/vr/check_regtypes.py) for what the device verifier rejects
 #   4. libekxr.so (OpenXR bridge, NDK) + the Khronos OpenXR loader
 #   5. manifest: Quest VR category, OpenXR permissions, head tracking, passthrough (tools/vr/axml.py)
 #   6. zip-swap, zipalign, sign with the committed tools/ek-release.keystore, update gate
@@ -42,12 +43,13 @@ get $M/org/smali/smali/2.5.2/smali-2.5.2.jar "$LIB/smali.jar"
 get $M/org/smali/dexlib2/2.5.2/dexlib2-2.5.2.jar "$LIB/dexlib2.jar"
 get $M/org/smali/util/2.5.2/util-2.5.2.jar "$LIB/smutil.jar"
 get $M/com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.jar "$LIB/guava.jar"
+get $M/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar "$LIB/failureaccess.jar"
 get $M/com/beust/jcommander/1.72/jcommander-1.72.jar "$LIB/jcommander.jar"
 get $M/org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.jar "$LIB/antlr.jar"
 get https://dl.google.com/dl/android/maven2/com/android/tools/build/apksig/8.3.1/apksig-8.3.1.jar "$LIB/apksig.jar"
 OXR=1.1.65
 get $M/org/khronos/openxr/openxr_loader_for_android/$OXR/openxr_loader_for_android-$OXR.aar "$LIB/openxr_loader-$OXR.aar"
-SM="$LIB/baksmali.jar:$LIB/smali.jar:$LIB/dexlib2.jar:$LIB/smutil.jar:$LIB/guava.jar:$LIB/jcommander.jar:$LIB/antlr.jar"
+SM="$LIB/baksmali.jar:$LIB/smali.jar:$LIB/dexlib2.jar:$LIB/smutil.jar:$LIB/guava.jar:$LIB/failureaccess.jar:$LIB/jcommander.jar:$LIB/antlr.jar"
 
 echo "== 1. hero-v78 =="
 cat "$REPO"/dist/hero-v78/*.part* > "$W/v78.apk"
@@ -65,7 +67,11 @@ mv "$W/dex2/classes.dex" "$W/classes2.dex"
 echo "== 3. MainActivity -> Vr.wrap =="
 java -cp "$SM" org.jf.baksmali.Main d -o "$W/smali" "$W/classes.dex"
 python3 "$REPO/tools/vr/patch_mainactivity.py" "$W/smali"
-java -cp "$SM" org.jf.smali.Main a --api 29 -o "$W/classes.dex" "$W/smali"
+java -cp "$SM" org.jf.smali.Main a -o "$W/classes.dex" "$W/smali"   # dex 035, like v78's own
+# gate: register types the device verifier checks (v1 shipped a VerifyError -- check_regtypes.py)
+java -cp "$SM" org.jf.baksmali.Main d -a 17 -b "" -r ARGS,DEST \
+  --classes 'Lnet/fdgames/ek/android/MainActivity;' -o "$W/regs" "$W/classes.dex"
+python3 "$REPO/tools/vr/check_regtypes.py" "$W/regs/net/fdgames/ek/android/MainActivity.smali"
 
 echo "== 4. OpenXR bridge =="
 mkdir -p "$W/oxr" "$W/lib/arm64-v8a"

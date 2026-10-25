@@ -109,7 +109,13 @@ list → Lannegar Valley (H10), Day 1, 8 AM**, robbed, in 3D.
 
 Not verifiable here: anything on the headset (OpenXR init, controller bindings, passthrough,
 frame rate, the GLES3 context under libGDX 1.9.12). First thing to check on the device:
-`adb logcat -s ekxr ekvr`.
+`adb logcat -s ekxr ekvr AndroidRuntime:E`.
+
+Headset history: v1 died at launch with `VerifyError` (MainActivity.onCreate: the Vr.wrap result
+was stored in the game's own register, which onCreate then passes on as an ExiledKingdoms). v2
+puts the wrapper in a free register; `tools/vr/check_regtypes.py` (run by build_vr.sh on
+baksmali's register-type analysis) fails the build on that class of error. Android 4.2's
+Dalvik verifier (`tools/dalvik_verify.sh`) does not catch it, so it is not used here.
 
 ## 7. Deviations / next (logged in DEOBFUSCATION_STATUS.md §3 as V1–V5)
 
