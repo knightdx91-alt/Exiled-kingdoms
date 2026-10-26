@@ -155,7 +155,7 @@ public class Scene3D {
             int o = i * 16;
             float minX = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12])), maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
             float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13])), maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
-            sb.append(String.format("%d k%d tile=%b x %.0f..%.0f y %.0f..%.0f anchor %.2f,%.2f foot %.0f tex %d grp %d sides %b %b%n", i, kind[i], rec.tileDraw[i], minX, maxX, minY, maxY, ax[i], az[i], aFoot[i] - minY, rec.tex[i].getTextureObjectHandle(), gFind(i), rec.tileDraw[i] && sideOpaque(i, false), rec.tileDraw[i] && sideOpaque(i, true))).append(rec.tileDraw[i] ? " mask " + Long.toHexString(colMask(i)) + "\n" : "");
+            sb.append(String.format("%d k%d tile=%b x %.0f..%.0f y %.0f..%.0f anchor %.2f,%.2f foot %.0f tex %d grp %d sides %b %b%n", i, kind[i], rec.tileDraw[i], minX, maxX, minY, maxY, ax[i], az[i], aFoot[i] - minY, rec.tex[i].getTextureObjectHandle(), gFind(i), rec.tileDraw[i] && sideOpaque(i, false), rec.tileDraw[i] && sideOpaque(i, true))).append(rec.tileDraw[i] ? String.format(" uv %.4f,%.4f-%.4f,%.4f%n", q[o + 2], q[o + 3], q[o + 10], q[o + 7]) : "");
         }
         return sb.toString();
     }
@@ -485,7 +485,7 @@ public class Scene3D {
     }
 
     int[] gPar = new int[0], gNext = new int[0], gCount = new int[0];
-    float[] gMinX = new float[0], gMaxX = new float[0];
+    float[] gMinX = new float[0], gMaxX = new float[0], tMinX = new float[0], tMaxX = new float[0];  // group / tile extents
     final java.util.HashMap<Long, Integer> gCell = new java.util.HashMap<>();
 
     int gFind(int i) { while (gPar[i] != i) { gPar[i] = gPar[gPar[i]]; i = gPar[i]; } return i; }
@@ -504,16 +504,18 @@ public class Scene3D {
     void groupProps(int n, float[] q) {
         if (gPar.length < n) {
             int m = n * 2;
-            gPar = new int[m]; gNext = new int[m]; gCount = new int[m]; gMinX = new float[m]; gMaxX = new float[m];
+            gPar = new int[m]; gNext = new int[m]; gCount = new int[m]; gMinX = new float[m]; gMaxX = new float[m]; tMinX = new float[m]; tMaxX = new float[m];
         }
+        if (inGroup.length < n) inGroup = new boolean[n * 2];
+        java.util.Arrays.fill(inGroup, false);
         gCell.clear();
         propGroups = 0;
         for (int i = 0; i < n; i++) {
             gPar[i] = i; gCount[i] = 1; gNext[i] = -1;
             if (!rec.tileDraw[i] || (kind[i] != 1 && kind[i] != 2)) continue;
             int o = i * 16;
-            gMinX[i] = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12]));
-            gMaxX[i] = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
+            gMinX[i] = tMinX[i] = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12]));
+            gMaxX[i] = tMaxX[i] = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
             long c = ((long) Math.round(ax[i]) << 32) ^ (Math.round(az[i]) & 0xffffffffL);
             Integer head = gCell.get(c);
             gNext[i] = head == null ? -1 : head;
@@ -538,17 +540,21 @@ public class Scene3D {
                         // object tiles only (64 px wide): cliffs and trees (128 px) grouped in v17 and
                         // their back pieces floated above the front one's baseline (owner: trees odd
                         // near the mine)
-                        if (gMaxX[i] - gMinX[i] > 66 || gMaxX[j] - gMinX[j] > 66) continue;
-                        int l = gMinX[i] <= gMinX[j] ? i : j, r = l == i ? j : i;
-                        if (gMinX[r] == gMinX[l] || gMinX[r] > gMaxX[l] + 1) continue;   // side by side, touching or overlapping
+                        if (tMaxX[i] - tMinX[i] > 66 || tMaxX[j] - tMinX[j] > 66) continue;
+                        int l = tMinX[i] <= tMinX[j] ? i : j, r = l == i ? j : i;
+                        if (tMinX[r] == tMinX[l] || tMinX[r] > tMaxX[l] + 1) continue;   // side by side, touching or overlapping
                         int a = gFind(i), b = gFind(j);
                         if (a == b) continue;
                         if (Math.max(gMaxX[a], gMaxX[b]) - Math.min(gMinX[a], gMinX[b]) > 160 || gCount[a] + gCount[b] > 4) continue;
                         // the pictures touch: some column of the overlap is opaque in both (v18; the
                         // edge test missed a stall's two tiles)
-                        int d = Math.round(gMinX[r] - gMinX[l]);
-                        boolean touch = d < 64 ? ((colMask(l) >>> d) & colMask(r)) != 0
+                        int d = Math.round(tMinX[r] - tMinX[l]);
+                        // (within 2 px: a stall's middle tile starts exactly where the end tile's art stops)
+                        long rm = colMask(r), rd = rm | (rm << 1) | (rm << 2) | (rm >>> 1) | (rm >>> 2);
+                        long lm = colMask(l), ld = lm | (lm << 1) | (lm << 2);
+                        boolean touch = d < 64 ? ((ld >>> d) & rd) != 0
                                 : d <= 65 && (colMask(l) >>> 63) != 0 && (colMask(r) & 1) != 0;   // edge to edge
+                        if (debugGroups && false) System.out.println("[grp] " + (int) tMinX[l] + "," + (int) q[l * 16 + 1] + "~" + (int) tMinX[r] + "," + (int) q[r * 16 + 1] + " d=" + d + " l=" + Long.toHexString(colMask(l)) + " r=" + Long.toHexString(colMask(r)) + " touch=" + touch);
                         if (!touch) continue;
                         gPar[b] = a; gCount[a] += gCount[b];
                         gMinX[a] = Math.min(gMinX[a], gMinX[b]); gMaxX[a] = Math.max(gMaxX[a], gMaxX[b]);
@@ -572,6 +578,7 @@ public class Scene3D {
             float[] v = acc.get(gFind(i));
             if (v == null) continue;
             ax[i] = v[0] / v[2]; az[i] = v[1] / v[2];
+            inGroup[i] = true;
             aCx[i] = 32f * (ax[i] - az[i]);
             aFoot[i] = v[3];
         }
@@ -579,6 +586,8 @@ public class Scene3D {
     }
 
     public int propGroups;
+    boolean[] inGroup = new boolean[0];
+    public static boolean debugGroups = System.getProperty("ekvr.grp") != null;
 
     /** V4: upright map objects standing between the viewer and the hero turn see-through (kind 5 = faded upright). */
     void fadeOccluders(float vx, float vz) {
@@ -795,7 +804,7 @@ public class Scene3D {
         structs.draw(gl, mvp, this, false, colFade, colHide);
         useMain(gl);
         // pass 2: upright opaque cut-outs
-        pass(gl, 1, 0.5f);
+        if (System.getProperty("ekvr.noprops") == null) pass(gl, 1, 0.5f);
         // pass 3: translucent (fading roofs, ghosts, corpses), then additive particles
         gl.glDepthMask(false);
         pass(gl, 2, 0.02f);
@@ -906,6 +915,17 @@ public class Scene3D {
                     float tx = vx - ax[i], tz = vz - az[i];
                     float l = (float) Math.sqrt(tx * tx + tz * tz);
                     if (l < 1e-4f) { tx = 1; tz = 1; l = 1.4142f; }
+                    if (i < inGroup.length && inGroup[i]) {
+                        // a multi-tile object (stall, rack) keeps its 2D picture plane (facing +X+Z,
+                        // the 2D view), turning at most 30 deg toward the viewer: turned fully it
+                        // swung into the house wall behind it (owner: stalls still messed up, v19)
+                        float a0 = (float) Math.atan2(tz, tx), base = (float) Math.atan2(1, 1);
+                        float da = (float) Math.IEEEremainder(a0 - base, 2 * Math.PI);
+                        if (Math.abs(da) > Math.PI / 2) { base += (float) Math.PI; da = (float) Math.IEEEremainder(a0 - base, 2 * Math.PI); }
+                        float lim = (float) Math.toRadians(30);
+                        float ang = base + Math.max(-lim, Math.min(lim, da));
+                        tx = (float) Math.cos(ang); tz = (float) Math.sin(ang); l = 1f;
+                    }
                     rx = tz / l; rz = -tx / l;                         // screen-right as seen from the viewer
                 }
                 for (int t : TRI) {

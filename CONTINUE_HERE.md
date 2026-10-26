@@ -29,10 +29,10 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 19` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v19.apk` + `dist/quest-vr-v19/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 20` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v20.apk` + `dist/quest-vr-v20/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v19.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v20.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
@@ -104,7 +104,9 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   groups only for touching 64-px tiles, earth under the map edge, hide the building the
   camera is in. Desktop: `structs N` now marks `+` art / `*` prop cells / `#` blocked.
   v19: names 40% size; shrine pieces as props per tile (dungeon grid); faces the 2D view
-  can't see take a blurred building colour (no ghost props on walls). Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  can't see take a blurred building colour (no ghost props on walls).
+  v20: stalls whole (edge-to-edge join, per-tile extents), groups keep the 2D picture plane
+  (±30°), smoother wall fill. Desktop: `-Dekvr.grp=1` logs join tests, `-Dekvr.noprops=1`. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 

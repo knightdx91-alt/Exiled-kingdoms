@@ -170,6 +170,16 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
     stands in front of it in the picture (windows, a stall, the rack: "ghosts"). Such faces
     take the building's blurred colour (mip level 5). Thin regions (walls, fences) keep the
     art on both sides (normal length 2 marks them).
+- **v20** (owner: "the stalls are still messed up"). Measured in Lannegar (town_objects row 1
+  = stall pieces, 64×128): a stall is two tiles on diagonal neighbour cells, 32 px apart on
+  screen, whose art meets *exactly at the tile edge* (the end tile's art stops at column 31,
+  the middle tile's starts at column 32), so "opaque in a common column" never held and the
+  pieces turned separately. Joins now allow a 2 px gap (both masks dilated). The extents
+  used for that test were also overwritten by the group's after a merge (per-tile `tMinX` /
+  `tMaxX` now separate from the group's). A grouped object keeps its 2D picture plane
+  (facing +X+Z, or −X−Z from behind) and turns at most 30° toward the viewer — turned fully,
+  a stall swung into the house wall it stands against. Building faces the art doesn't cover
+  fill from mip level 6+ (levels 2/4 smeared windows and timber into arcs on walls).
 - **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
   EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
   setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame

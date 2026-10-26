@@ -657,12 +657,12 @@ class Structures {
                 // a face the 2D view can't see (north / west walls) would copy whatever stands in front
                 // of it in the picture -- windows, doors, timber of the front (owner: ghost props and
                 // smears on house walls, v18): it takes the building's blurred colour instead (v19)
-                "void main(){ if(v_out<0.0) discard; vec4 c = v_hid < -0.2 ? texture2D(u_tex,v_uv,5.0) : texture2D(u_tex,v_uv);\n" +
+                "void main(){ if(v_out<0.0) discard; vec4 c = v_hid < -0.2 ? texture2D(u_tex,v_uv,6.0) : texture2D(u_tex,v_uv);\n" +
                 "  if(v_hid < -0.2 && c.a > 0.02) c = vec4(c.rgb / c.a, 1.0);\n" +
                 // a face the 2D art doesn't cover (a side / back wall, the edge of a roof) takes the colour
                 // of the nearest art (coarser mip levels of the image: pull fill) instead of a hole (v17)
-                "  if(c.a<0.5){ vec4 f=texture2D(u_tex,v_uv,2.0);\n" +
-                "    if(f.a<0.02) f=texture2D(u_tex,v_uv,4.0); if(f.a<0.02) f=texture2D(u_tex,v_uv,6.0);\n" +
+                "  if(c.a<0.5){ vec4 f=texture2D(u_tex,v_uv,6.0);\n" +   // v19: from level 6 (2 and 4 smeared windows / timber into arcs)
+                "    if(f.a<0.02) f=texture2D(u_tex,v_uv,7.0);\n" +
                 "    if(f.a<0.02) f=texture2D(u_tex,v_uv,8.0); if(f.a<0.02) f=texture2D(u_tex,v_uv,10.0);\n" +
                 "    if(f.a<0.002) discard; c=vec4(f.rgb/f.a,1.0); }\n" +
                 "  gl_FragColor=fog(vec4(c.rgb/c.a*u_tint.rgb, u_alpha), v_w); }");
