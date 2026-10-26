@@ -71,6 +71,15 @@ public final class Mat {
         return r;
     }
 
+    /** Determinant of a 4x4 matrix (its sign tells whether a projection mirrors: winding flips). */
+    public static float det(float[] m) {
+        float a0 = m[0] * m[5] - m[1] * m[4], a1 = m[0] * m[6] - m[2] * m[4], a2 = m[0] * m[7] - m[3] * m[4];
+        float a3 = m[1] * m[6] - m[2] * m[5], a4 = m[1] * m[7] - m[3] * m[5], a5 = m[2] * m[7] - m[3] * m[6];
+        float b0 = m[8] * m[13] - m[9] * m[12], b1 = m[8] * m[14] - m[10] * m[12], b2 = m[8] * m[15] - m[11] * m[12];
+        float b3 = m[9] * m[14] - m[10] * m[13], b4 = m[9] * m[15] - m[11] * m[13], b5 = m[10] * m[15] - m[11] * m[14];
+        return a0 * b5 - a1 * b4 + a2 * b3 + a3 * b2 - a4 * b1 + a5 * b0;
+    }
+
     public static float[] translate(float x, float y, float z) { float[] m = id(); m[12] = x; m[13] = y; m[14] = z; return m; }
     public static float[] scale(float s) { float[] m = id(); m[0] = m[5] = m[10] = s; return m; }
     public static float[] rotY(float rad) {

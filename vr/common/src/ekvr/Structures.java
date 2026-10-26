@@ -30,6 +30,7 @@ class Structures {
     final HashSet<Long> keys = new HashSet<>();
     int mw, mh;                       // nonwalk layer size (cells)
     int[] region;                     // cell -> region id, -1 = walkable
+    int[] edgeDist, regionMaxDist;    // cell -> distance from its region's edge (1 = edge); region -> max
     final ArrayList<int[]> regionCells = new ArrayList<>();   // region id -> packed cells (col | row << 16)
 
     /** Per map: structure tile keys and nonwalk regions. */
@@ -80,6 +81,25 @@ class Structures {
                     }
                     regionCells.add(java.util.Arrays.copyOf(cells, n));
                 }
+                // distance (in cells) of each blocked cell from its region's edge: 1 on the edge
+                edgeDist = new int[mw * mh];
+                regionMaxDist = new int[regionCells.size()];
+                int[] queue = new int[mw * mh];
+                int qh = 0, qt = 0;
+                for (int i = 0; i < b.length; i++) {
+                    if (region[i] < 0) continue;
+                    int cx = i % mw, cy = i / mw, id = region[i];
+                    boolean edge = cx == 0 || cy == 0 || cx == mw - 1 || cy == mh - 1
+                            || region[i - 1] != id || region[i + 1] != id || region[i - mw] != id || region[i + mw] != id;
+                    if (edge) { edgeDist[i] = 1; queue[qt++] = i; }
+                }
+                while (qh < qt) {
+                    int c = queue[qh++], cx = c % mw, cy = c / mw;
+                    int[] nb = {cx > 0 ? c - 1 : -1, cx < mw - 1 ? c + 1 : -1, cy > 0 ? c - mw : -1, cy < mh - 1 ? c + mw : -1};
+                    for (int k : nb)
+                        if (k >= 0 && region[k] == region[c] && edgeDist[k] == 0) { edgeDist[k] = edgeDist[c] + 1; queue[qt++] = k; }
+                }
+                for (int i = 0; i < b.length; i++) if (region[i] >= 0) regionMaxDist[region[i]] = Math.max(regionMaxDist[region[i]], edgeDist[i]);
             }
         } catch (Throwable t) {
             System.out.println("[ekvr] nonwalk layer: " + t);
@@ -95,7 +115,7 @@ class Structures {
     float x0, y0, bw, bh;             // iso bounds of the image
     int imgW, imgH;
     boolean any;
-    FloatBuffer cols = ByteBuffer.allocateDirect(4 * 3 * 6 * 5 * 8192).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    FloatBuffer cols = ByteBuffer.allocateDirect(4 * 6 * 6 * 5 * 8192).order(ByteOrder.nativeOrder()).asFloatBuffer();
     int colVerts;
     float[] colMid = new float[0];    // per column: x, z (centre) for fading
     int[] colStart = new int[0], colCount = new int[0];
@@ -113,26 +133,43 @@ class Structures {
         // 1. bounds + per-region heights
         float minx = Float.MAX_VALUE, miny = Float.MAX_VALUE, maxx = -Float.MAX_VALUE, maxy = -Float.MAX_VALUE;
         HashMap<Integer, Float> heights = new HashMap<>();
+        lastHeights = heights;
         any = false;
         for (int i = 0; i < n; i++) {
             if (sc.kind[i] != Scene3D.STRUCT) continue;
             any = true;
             int o = i * 16;
-            float qmaxY = -Float.MAX_VALUE;
+            float qminY = Float.MAX_VALUE, qmaxY = -Float.MAX_VALUE;
             for (int c = 0; c < 4; c++) {
                 float x = q[o + c * 4], y = q[o + c * 4 + 1];
                 minx = Math.min(minx, x); maxx = Math.max(maxx, x);
                 miny = Math.min(miny, y); maxy = Math.max(maxy, y);
-                qmaxY = Math.max(qmaxY, y);
+                qminY = Math.min(qminY, y); qmaxY = Math.max(qmaxY, y);
             }
-            float h = (qmaxY - sc.aBase[i]) * Scene3D.SY;
+            // the art's top (iso y of its highest opaque row), not the tile's: every tile is the same
+            // size, so v16's tile-top heights made every building the same (2.86 m)
+            float h = qminY + sc.topPx(i, qmaxY - qminY);
             int col = Math.round(sc.ax[i]), row = Math.round(-sc.az[i]) - 1;
-            int reg = regionOf(col, row);
-            int id = reg >= 0 ? reg : -1 - (col | (row << 16));        // no nonwalk: the anchor cell alone
+            // the footprint region this art belongs to: its own cell, else the nearest within 2 cells
+            // (roof and overhang tiles are anchored outside the blocked cells). v15 gave such a tile a
+            // lone column of its own, which showed its art as a floating fragment (owner's screenshot).
+            int id = nearestRegion(col, row, 2);
+            if (id < 0) continue;                                       // no footprint: its art shows on nothing
             Float old = heights.get(id);
             if (old == null || h > old) heights.put(id, h);
         }
         if (!any) return;
+        // art top -> height (§3, v16): the roof's peak (the region's innermost cells) must reach
+        // the art's top, so H = (art top - iso y of the backmost peak cell's centre) x SY
+        for (java.util.Map.Entry<Integer, Float> e : heights.entrySet()) {
+            int id = e.getKey();
+            float back = -Float.MAX_VALUE;
+            for (int cell : regionCells.get(id)) {
+                int col = cell & 0xffff, row = cell >>> 16;
+                if (edgeDist[col + row * mw] == regionMaxDist[id]) back = Math.max(back, 16f * (row + 1 - col));
+            }
+            e.setValue(Math.max(0.5f, Math.min(8f, (e.getValue() - back) * Scene3D.SY)));
+        }
         x0 = minx - 2; y0 = miny - 2; bw = maxx - minx + 4; bh = maxy - miny + 4;
         float scale = Math.min(1f, 4096f / Math.max(bw, bh));
         imgW = Math.max(1, (int) Math.ceil(bw * scale)); imgH = Math.max(1, (int) Math.ceil(bh * scale));
@@ -183,16 +220,51 @@ class Structures {
             int id = e.getKey();
             float h = Math.max(0.3f, e.getValue());
             if (id >= 0) {
+                // a roof-like heightfield (§3, v16): edge cells at wall height, rising to the art's
+                // full height H at the cells farthest inside; thin regions (walls) are H throughout
+                int dmax = regionMaxDist[id];
+                float hw = dmax >= 2 ? Math.max(1.5f, Math.min(3.0f, 0.45f * h)) : h;
+                curH = h; curHw = hw; curDmax = dmax;
                 for (int cell : regionCells.get(id)) {
                     int col = cell & 0xffff, row = cell >>> 16;
                     if (!nearImage(col, row)) continue;
                     column(col, row, h, id);
                 }
-            } else {
-                int cell = -1 - id;
-                column(cell & 0xffff, cell >>> 16, h, Integer.MIN_VALUE);
             }
         }
+    }
+
+    HashMap<Integer, Float> lastHeights;
+
+    /** (tests) the regions around a cell: id letter per cell (lower case = edge), then each id's height. */
+    String dump(int c0, int r0, int rad) {
+        StringBuilder sb = new StringBuilder();
+        java.util.TreeSet<Integer> ids = new java.util.TreeSet<>();
+        for (int r = r0 + rad; r >= r0 - rad; r--) {
+            for (int c = c0 - rad; c <= c0 + rad; c++) {
+                int id = regionOf(c, r);
+                if (c == c0 && r == r0) { sb.append('@'); continue; }
+                if (id < 0) { sb.append('.'); continue; }
+                ids.add(id);
+                char ch = (char) ('A' + id % 26);
+                sb.append(edgeDist[c + r * mw] == 1 ? Character.toLowerCase(ch) : ch);
+            }
+            sb.append('\n');
+        }
+        for (int id : ids) sb.append((char) ('A' + id % 26)).append(id).append(" h=").append(lastHeights == null ? null : lastHeights.get(id)).append(" dmax=").append(regionMaxDist[id]).append(" cells=").append(regionCells.get(id).length).append('\n');
+        return sb.toString();
+    }
+
+    int nearestRegion(int col, int row, int r) {
+        int best = regionOf(col, row), bd = 0;
+        if (best >= 0) return best;
+        bd = Integer.MAX_VALUE;
+        for (int dy = -r; dy <= r; dy++)
+            for (int dx = -r; dx <= r; dx++) {
+                int g = regionOf(col + dx, row + dy), d = dx * dx + dy * dy;
+                if (g >= 0 && d < bd) { bd = d; best = g; }
+            }
+        return best;
     }
 
     int regionOf(int col, int row) {
@@ -206,39 +278,82 @@ class Structures {
         return cx > x0 - 64 && cx < x0 + bw + 64 && cy > y0 - 64 && cy < y0 + bh + 64;
     }
 
+    float curH, curHw;
+    int curDmax;
+
+    /** Height of a cell of region id in the heightfield, or NaN (not in the region). */
+    float cellH(int col, int row, int id) {
+        if (regionOf(col, row) != id) return Float.NaN;
+        if (curDmax < 2) return curH;
+        int d = edgeDist[col + row * mw];
+        return curHw + (curH - curHw) * (d - 1) / (float) (curDmax - 1);
+    }
+
+    /** A corner's height: the mean of the region cells around it. */
+    float cornerH(int id, int ca, int ra, int cb, int rb) {
+        float sum = 0; int n = 0;
+        for (int c = ca; c <= cb; c++)
+            for (int r = ra; r <= rb; r++) {
+                float v = cellH(c, r, id);
+                if (!Float.isNaN(v)) { sum += v; n++; }
+            }
+        return n == 0 ? curHw : sum / n;
+    }
+
     void column(int col, int row, float h, int id) {
-        if (colVerts + 30 > cols.capacity() / 3) return;
+        if (colVerts + 30 > cols.capacity() / 6) return;
         // cell (col, row): X in [col-0.5, col+0.5], Z in [-(row+1.5), -(row+0.5)]
         float xa = col - 0.5f, xb = col + 0.5f, za = -(row + 1.5f), zb = -(row + 0.5f);
         if (ncols == colStart.length) {
             colStart = java.util.Arrays.copyOf(colStart, ncols * 2 + 64);
             colCount = java.util.Arrays.copyOf(colCount, ncols * 2 + 64);
             colMid = java.util.Arrays.copyOf(colMid, (ncols * 2 + 64) * 2);
+            colRoof = java.util.Arrays.copyOf(colRoof, ncols * 2 + 64);
         }
         colStart[ncols] = colVerts; colMid[ncols * 2] = col; colMid[ncols * 2 + 1] = -(row + 1);
+        colRoof[ncols] = false;
         int before = colVerts;
-        boolean same = id != Integer.MIN_VALUE;
-        // sides (skip a side shared with a neighbour cell of the same region)
-        if (!(same && regionOf(col - 1, row) == id)) face(xa, za, xa, zb, h);
-        if (!(same && regionOf(col + 1, row) == id)) face(xb, zb, xb, za, h);
-        if (!(same && regionOf(col, row + 1) == id)) face(xb, za, xa, za, h);   // row+1 = more negative Z
-        if (!(same && regionOf(col, row - 1) == id)) face(xa, zb, xb, zb, h);
-        // top
-        put(xa, h, za); put(xb, h, za); put(xb, h, zb);
-        put(xa, h, za); put(xb, h, zb); put(xa, h, zb);
+        // corner heights (smooth roof surface): (xa,za) (xb,za) (xb,zb) (xa,zb)
+        float hAA = cornerH(id, col - 1, row, col, row + 1), hBA = cornerH(id, col, row, col + 1, row + 1);
+        float hBB = cornerH(id, col, row - 1, col + 1, row), hAB = cornerH(id, col - 1, row - 1, col, row);
+        // sides on the region's edge, up to the corner heights
+        if (regionOf(col - 1, row) != id) face(xa, za, hAA, xa, zb, hAB);
+        if (regionOf(col + 1, row) != id) face(xb, zb, hBB, xb, za, hBA);
+        if (regionOf(col, row + 1) != id) face(xb, za, hBA, xa, za, hAA);   // row+1 = more negative Z
+        if (regionOf(col, row - 1) != id) face(xa, zb, hAB, xb, zb, hBB);
+        // top (outward winding: faces are drawn from outside only)
+        tri(xa, hAA, za, xb, hBB, zb, xb, hBA, za);
+        tri(xa, hAA, za, xa, hAB, zb, xb, hBB, zb);
         colCount[ncols] = colVerts - before;
         ncols++;
     }
 
-    void face(float x1, float z1, float x2, float z2, float h) {
-        put(x1, 0, z1); put(x2, 0, z2); put(x2, h, z2);
-        put(x1, 0, z1); put(x2, h, z2); put(x1, h, z1);
+    void quad(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4) {
+        tri(x1, y1, z1, x2, y2, z2, x3, y3, z3);
+        tri(x1, y1, z1, x3, y3, z3, x4, y4, z4);
     }
 
-    void put(float x, float y, float z) { cols.put(x).put(y).put(z); colVerts++; }
+    boolean[] colRoof = new boolean[0];
+
+    void face(float x1, float z1, float h1, float x2, float z2, float h2) {
+        tri(x1, 0, z1, x2, 0, z2, x2, h2, z2);
+        tri(x1, 0, z1, x2, h2, z2, x1, h1, z1);
+    }
+
+    /**
+     * One triangle, wound counter-clockwise seen from outside; each vertex carries the outward
+     * normal, so the shader can drop the side facing away from the eye (see draw).
+     */
+    void tri(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3) {
+        float ax = x2 - x1, ay = y2 - y1, az = z2 - z1, bx = x3 - x1, by = y3 - y1, bz = z3 - z1;
+        float nx = ay * bz - az * by, ny = az * bx - ax * bz, nz = ax * by - ay * bx;
+        put(x1, y1, z1, nx, ny, nz); put(x2, y2, z2, nx, ny, nz); put(x3, y3, z3, nx, ny, nz);
+    }
+
+    void put(float x, float y, float z, float nx, float ny, float nz) { cols.put(x).put(y).put(z).put(nx).put(ny).put(nz); colVerts++; }
 
     /** Draw the columns (opaque pass, or the faded ones between the viewer and the hero). */
-    void draw(GL20 gl, float[] mvp, Scene3D sc, boolean faded, boolean[] fade) {
+    void draw(GL20 gl, float[] mvp, Scene3D sc, boolean faded, boolean[] fade, boolean[] hide) {
         float[] tint = sc.tint;
         if (!any || colVerts == 0) return;
         if (colProg == 0) initCols(gl);
@@ -255,12 +370,23 @@ class Structures {
         gl.glBindTexture(GL20.GL_TEXTURE_2D, tex);
         cols.position(0);
         gl.glEnableVertexAttribArray(cPos);
-        gl.glVertexAttribPointer(cPos, 3, GL20.GL_FLOAT, false, 12, cols);
+        gl.glVertexAttribPointer(cPos, 3, GL20.GL_FLOAT, false, 24, cols);
+        cols.position(3);
+        gl.glEnableVertexAttribArray(cNrm);
+        gl.glVertexAttribPointer(cNrm, 3, GL20.GL_FLOAT, false, 24, cols);
+        cols.position(0);
+        // outside faces only: seen from below or from inside, a block's top showed its roof art as a
+        // ceiling slab across the view. Decided per fragment from the eye's side of the face (its
+        // outward normal), not by GL winding: v16 first culled with glFrontFace(CW), which on the
+        // test bed kept the inside walls (owner: "all of the buildings"), and a projection's
+        // handedness / depth convention differs between the Quest and the test bed.
+        gl.glUniform3f(cEye, sc.viewEyeX, sc.viewEyeY, sc.viewEyeZ);
         for (int i = 0; i < ncols; i++) {
             boolean f = fade != null && i < fade.length && fade[i];
-            if (f != faded) continue;
+            if (f != faded || (hide != null && i < hide.length && hide[i])) continue;
             gl.glDrawArrays(GL20.GL_TRIANGLES, colStart[i], colCount[i]);
         }
+        gl.glDisableVertexAttribArray(cNrm);
     }
 
     void ensureTarget(GL20 gl, int w, int h) {
@@ -313,20 +439,22 @@ class Structures {
 
     void initCols(GL20 gl) {
         int vs = Scene3D.shader(gl, GL20.GL_VERTEX_SHADER,
-                "attribute vec3 a_pos; uniform mat4 u_mvp; uniform vec4 u_iso; uniform float u_sy; uniform vec2 u_sub;\n" +
-                "varying vec2 v_uv; varying vec2 v_w;\n" +
+                "attribute vec3 a_pos; attribute vec3 a_nrm; uniform mat4 u_mvp; uniform vec4 u_iso; uniform float u_sy; uniform vec2 u_sub;\n" +
+                "uniform vec3 u_eye; varying vec2 v_uv; varying vec2 v_w; varying float v_out;\n" +
                 "void main(){\n" +
-                "  v_w = a_pos.xz;\n" +
+                "  v_w = a_pos.xz; v_out = dot(a_nrm, u_eye - a_pos);\n" +
                 "  float sx = 32.0*(a_pos.x - a_pos.z);\n" +
                 "  float sy = 16.0*(-a_pos.z - a_pos.x) + a_pos.y / u_sy;\n" +
                 "  v_uv = vec2((sx - u_iso.x) / u_iso.z, (sy - u_iso.y) / u_iso.w) * u_sub;\n" +
                 "  gl_Position = u_mvp*vec4(a_pos,1.0); }");
         int fs = Scene3D.shader(gl, GL20.GL_FRAGMENT_SHADER, "#ifdef GL_ES\nprecision highp float;\n#endif\n" +
-                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w;\n" + Scene3D.FOG +
-                "void main(){ vec4 c=texture2D(u_tex,v_uv); if(c.a<0.5) discard;\n" +
+                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w; varying float v_out;\n" + Scene3D.FOG +
+                "void main(){ if(v_out<0.0) discard; vec4 c=texture2D(u_tex,v_uv); if(c.a<0.5) discard;\n" +
                 "  gl_FragColor=fog(vec4(c.rgb/c.a*u_tint.rgb, u_alpha), v_w); }");
         colProg = link(gl, vs, fs);
         cPos = gl.glGetAttribLocation(colProg, "a_pos");
+        cNrm = gl.glGetAttribLocation(colProg, "a_nrm");
+        cEye = gl.glGetUniformLocation(colProg, "u_eye");
         cMvp = gl.glGetUniformLocation(colProg, "u_mvp");
         cIso = gl.glGetUniformLocation(colProg, "u_iso");
         cSy = gl.glGetUniformLocation(colProg, "u_sy");
@@ -338,7 +466,7 @@ class Structures {
         cFogCol = gl.glGetUniformLocation(colProg, "u_fogCol");
     }
 
-    int cSub, cFogC, cFog, cFogCol;
+    int cSub, cFogC, cFog, cFogCol, cNrm, cEye;
 
     void setSub(GL20 gl) { gl.glUniform2f(cSub, imgW / (float) texW, imgH / (float) texH); }
 

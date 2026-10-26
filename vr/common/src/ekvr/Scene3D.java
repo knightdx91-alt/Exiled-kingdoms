@@ -30,6 +30,7 @@ public class Scene3D {
     public static final float SY = S / (float) Math.cos(Math.toRadians(30)); // art px -> units, vertical (2:1 = 30°)
 
     public final Rec rec = new Rec();
+    public float viewEyeX, viewEyeY, viewEyeZ;  // this eye in world units (Structures: which side of a face it sees)
     public float zoom = 4f;                      // draw distance: the map is drawn this many times the 2D view (widenView)
     public final float[] tint = {1, 1, 1, 1};
     public float heroX, heroZ;                   // hero ground position (units)
@@ -55,7 +56,7 @@ public class Scene3D {
     int frame, builtFrame = -1;
     static final byte STRUCT = 6;                // a building / wall quad: drawn as solid columns (Structures)
     final Structures structs = new Structures();
-    boolean[] colFade = new boolean[0];
+    boolean[] colFade = new boolean[0], colHide = new boolean[0];
     Object lastMap;
     final HashSet<Long> floorKeys = new HashSet<>();
     Object origBatch;
@@ -91,6 +92,62 @@ public class Scene3D {
         }
     }
 
+    static Field fBuckets, fRebuilt;
+    float lastRebuild = Float.NaN;
+    final java.util.Set<Object> nearSet = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+    final java.util.ArrayList<Object> farLists = new java.util.ArrayList<>();
+    public final java.util.ArrayList<Object> farSprites = new java.util.ArrayList<>();
+
+    /**
+     * APPROX (DEOBFUSCATION_STATUS V9). Characters at the draw distance (QUEST_VR_SPEC.md §3, v16). EK's map renderer draws a sprite
+     * only from its 96x96 bucket grid `o`, which it fills with the sprites within 288 px (448) of
+     * the hero. Each frame: take back what we added last frame, then add every sprite of
+     * GameLevel.d not in EK's near list but within 14 x zoom cells, with EK's own bucket formula.
+     */
+    @SuppressWarnings("unchecked")
+    void addFarSprites() {
+        try {
+            e.a.a.a lr = (e.a.a.a) fLevelR.get(null);
+            if (lr == null || lr.l == null) return;
+            if (fBuckets == null) { fBuckets = field(e.a.c.a.class, "o"); fRebuilt = field(e.a.c.a.class, "p"); }
+            // when EK rebuilt its grid since last frame our additions are already gone (and a
+            // sprite now near may be back in the same bucket as EK's own entry: don't remove it)
+            float rebuilt = fRebuilt.getFloat(lr.l);
+            boolean same = rebuilt == lastRebuild;
+            lastRebuild = rebuilt;
+            for (int i = 0; same && i < farLists.size(); i++) {
+                java.util.ArrayList<Object> l = (java.util.ArrayList<Object>) farLists.get(i);
+                Object sp = farSprites.get(i);
+                for (int j = l.size() - 1; j >= 0; j--) if (l.get(j) == sp) { l.remove(j); break; }
+            }
+            farLists.clear(); farSprites.clear();
+            net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
+            java.util.ArrayList<net.fdgames.GameEntities.MapSprite> all = net.fdgames.GameLevel.GameLevel.d;
+            if (p == null || all == null) return;
+            java.util.ArrayList<Object>[][] o = (java.util.ArrayList<Object>[][]) fBuckets.get(lr.l);
+            if (o == null) return;
+            // EK's own: its near list as of its last rebuild (not the box around the hero now,
+            // which would double or drop sprites the hero passed since)
+            nearSet.clear();
+            if (lr.l.n != null) nearSet.addAll(lr.l.n);
+            int far = (int) (14 * zoom * 32);
+            for (int i = 0, n = all.size(); i < n; i++) {
+                net.fdgames.GameEntities.MapSprite sp = all.get(i);
+                if (sp == null) continue;
+                int dx = Math.abs(sp.x - p.x), dy = Math.abs(sp.y - p.y);
+                if (dx >= far || dy >= far || nearSet.contains(sp)) continue;
+                int bx = Math.max(0, Math.min(95, (sp.x + 8) / 32)), by = Math.max(0, Math.min(95, (sp.y - 24) / 32));
+                o[bx][by].add(sp);
+                farLists.add(o[bx][by]); farSprites.add(sp);
+            }
+        } catch (Throwable t) {
+            System.out.println("[ekvr] far sprites: " + t);
+        }
+    }
+
+    /** (tests) the structure regions around the hero. */
+    public String structDump(int rad) { return structs.dump(Math.round(heroX), Math.round(-heroZ) - 1, rad); }
+
     /** Point the game's map drawing at our recorder. Call every frame before the game renders. */
     public void beginFrame() {
         rec.reset();
@@ -98,7 +155,7 @@ public class Scene3D {
         classified = false;
         structPrepared = false;
         widened = false;
-        if (rec.onBegin == null) rec.onBegin = () -> { widenView(); faceViewer(); };
+        if (rec.onBegin == null) rec.onBegin = () -> { widenView(); addFarSprites(); faceViewer(); };
         try {
             if (fLevelR == null) {
                 fLevelR = field(e.a.a.a.class, "w");
@@ -273,6 +330,7 @@ public class Scene3D {
     final byte[] kind = new byte[Rec.MAX];               // 0 floor, 1 upright, 2 upright-translucent, 3 additive
     final float[] fade = new float[Rec.MAX];            // alpha multiplier (occluders between viewer and hero)
     final float[] ax = new float[Rec.MAX], az = new float[Rec.MAX], aBase = new float[Rec.MAX], aCx = new float[Rec.MAX];
+    final float[] aFoot = new float[Rec.MAX];           // iso y standing on the ground (the picture's baseline)
 
     /**
      * Draw the recorded map. {@code mvp} maps world units to clip space for this eye/view;
@@ -342,6 +400,10 @@ public class Scene3D {
             aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + groupFoot(minY, aCx[i]);
             ax[i] = gi(aCx[i], aBase[i]);
             az[i] = -go(aCx[i], aBase[i]);
+            // the picture's baseline: its lowest opaque row stands on the ground. Map props (crates,
+            // barrels, trees, rocks) keep their cell (aBase = cell centre) but used to stand on it
+            // at quad bottom + 16 px, sinking up to ~0.4 m (owner: crates not sitting on the ground)
+            aFoot[i] = rec.tileDraw[i] && !floor && kind[i] != STRUCT ? minY + footPx(i, maxY - minY) : aBase[i];
             fade[i] = 1f;
             if (!floor && !rec.tileDraw[i] && maxY - minY >= 60 && actors < actorIdx.length) actorIdx[actors++] = i;
             // small quads just above a character (health bars, names, status icons) ride on it
@@ -349,7 +411,7 @@ public class Scene3D {
                 for (int k = actors - 1; k >= 0; k--) {
                     int j = actorIdx[k];
                     if (Math.abs(aCx[i] - aCx[j]) < 56 && minY >= aBase[j] - 30 && minY < aBase[j] + 170) {
-                        ax[i] = ax[j]; az[i] = az[j]; aCx[i] = aCx[j]; aBase[i] = aBase[j];
+                        ax[i] = ax[j]; az[i] = az[j]; aCx[i] = aCx[j]; aBase[i] = aBase[j]; aFoot[i] = aFoot[j];
                         break;
                     }
                 }
@@ -390,10 +452,14 @@ public class Scene3D {
         int nc = structs.ncols;
         if (colFade.length < nc) colFade = new boolean[nc * 2];
         float sx = dispX() - vx, sz = dispZ() - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
+        if (colHide.length < nc) colHide = new boolean[nc * 2];
         for (int i = 0; i < nc; i++) {
             colFade[i] = false;
-            if (hideHero || sl < 1e-3f) continue;
             float px = structs.colMid[i * 2] - vx, pz = structs.colMid[i * 2 + 1] - vz;
+            // a building block you are (almost) standing in isn't drawn: from inside, its walls and
+            // roof cut across the whole view (third person in a tight village; owner's screenshot)
+            colHide[i] = px * px + pz * pz < 1.8f * 1.8f;
+            if (hideHero || sl < 1e-3f) continue;
             float along = (px * sx + pz * sz) / sl, side = Math.abs(px * sz - pz * sx) / sl;
             colFade[i] = along > 0.3f && along < sl - 0.4f && side < 1.6f;
         }
@@ -415,13 +481,19 @@ public class Scene3D {
      * Height (iso px above the quad's bottom) of a sprite's lowest opaque pixel row: where its feet
      * are. Read once per sprite frame from the texture (QUEST_VR_SPEC.md §3).
      */
-    int footPx(int i, float quadH) {
+    int footPx(int i, float quadH) { return opaqueRow(i, quadH, false); }
+
+    /** Height (iso px above the quad's bottom) of a quad's highest opaque pixel row (Structures: art top). */
+    int topPx(int i, float quadH) { return Math.round(quadH) - opaqueRow(i, quadH, true); }
+
+    /** Rows (iso px) from the quad's bottom (top: from its top) to its first opaque row; cached per frame. */
+    int opaqueRow(int i, float quadH, boolean top) {
         int o = i * 16;
         float[] q = rec.q;
         com.badlogic.gdx.graphics.Texture t = rec.tex[i];
         float u1 = Math.min(q[o + 2], q[o + 10]), u2 = Math.max(q[o + 2], q[o + 10]);
         float vb = q[o + 3], vt = q[o + 7];                      // bottom-left corner's v, top-left's v
-        long k = key(t.getTextureObjectHandle(), u1, vb) * 31 + Math.round(vt * 65536) * 7 + Math.round(u2 * 65536);
+        long k = key(t.getTextureObjectHandle(), u1, vb) * 31 + Math.round(vt * 65536) * 7 + Math.round(u2 * 65536) + (top ? 0x5bd1e995L : 0);
         Integer cached = feet.get(k);
         if (cached == null) {
             int tw = t.getWidth(), th = t.getHeight();
@@ -440,7 +512,7 @@ public class Scene3D {
                     footBuf.clear();
                     gl.glReadPixels(x, r0, w, h, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, footBuf);
                     // texture row r0 = v min; the quad's bottom is at v = vb
-                    boolean bottomIsHigh = vb > vt;
+                    boolean bottomIsHigh = (vb > vt) != top;
                     search:
                     for (int s = 0; s < h; s++) {
                         int row = bottomIsHigh ? h - 1 - s : s;
@@ -476,7 +548,7 @@ public class Scene3D {
         pass(gl, 0, 0.02f);
         gl.glDepthFunc(GL20.GL_LEQUAL);
         // buildings and walls: solid columns textured with their own art (Structures)
-        structs.draw(gl, mvp, this, false, colFade);
+        structs.draw(gl, mvp, this, false, colFade, colHide);
         useMain(gl);
         // pass 2: upright opaque cut-outs
         pass(gl, 1, 0.5f);
@@ -484,7 +556,7 @@ public class Scene3D {
         gl.glDepthMask(false);
         pass(gl, 2, 0.02f);
         pass(gl, 5, 0.02f);
-        structs.draw(gl, mvp, this, true, colFade);                   // columns hiding the hero, faded
+        structs.draw(gl, mvp, this, true, colFade, colHide);                   // columns hiding the hero, faded
         useMain(gl);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         pass(gl, 3, 0.01f);
@@ -563,7 +635,7 @@ public class Scene3D {
                     if (k == 0) {
                         stage[w++] = gi(sx, sy); stage[w++] = 0f; stage[w++] = -go(sx, sy);
                     } else {
-                        float h = (sx - aCx[i]) * S, y = (sy - aBase[i]) * SY;
+                        float h = (sx - aCx[i]) * S, y = (sy - aFoot[i]) * SY;
                         stage[w++] = ax[i] + rx * h; stage[w++] = y; stage[w++] = az[i] + rz * h;
                     }
                     stage[w++] = q[p + 2]; stage[w++] = q[p + 3];
@@ -619,7 +691,7 @@ public class Scene3D {
             float t = ((ax[i] - ox) * tx + (az[i] - oz) * tz) / l / den;
             if (t <= 0 || t >= tMax) continue;
             float hx = ox + dx * t - ax[i], hy = oy + dy * t, hz = oz + dz * t - az[i];
-            float sx = aCx[i] + (hx * rx + hz * rz) / S, sy = aBase[i] + hy / SY;   // back to iso screen px
+            float sx = aCx[i] + (hx * rx + hz * rz) / S, sy = aFoot[i] + hy / SY;   // back to iso screen px
             int o = i * 16;
             float x0 = q[o], y0 = q[o + 1], x2 = q[o + 8], y2 = q[o + 9];
             if (x2 == x0 || y2 == y0) continue;

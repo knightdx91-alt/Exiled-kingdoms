@@ -29,10 +29,10 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 15` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v15.apk` + `dist/quest-vr-v15/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 16` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v16.apk` + `dist/quest-vr-v16/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v15.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v16.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
@@ -89,7 +89,13 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   v15: camera didn't follow the hero on the headset → the hero's position was one cell off
   (x/32 − 1) and v6 compensated by locking onto the nearest sprite each frame, which could
   latch onto a companion/monster/loot. Now heroX = x/32, heroZ = −y/32, no search
-  (QUEST_VR_SPEC §3). Desktop: follow.txt (prints the sprite distance). Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  (QUEST_VR_SPEC §3). Desktop: follow.txt (prints the sprite distance).
+  v16: buildings drawn inside-out (GL culling kept the inside faces) → per-fragment eye-side
+  test with outward normals; every building the same 2.86 m (tile-top height) → height from
+  the art's topmost opaque row; heightfield roofs per footprint region; props (crates,
+  barrels, trees) stand on their lowest opaque row; NPCs/enemies drawn out to the draw
+  distance by adding far sprites to EK's 288-px bucket grid (V9). Desktop: `structs N`
+  (region dump), `vrmode table` for a from-above check, `stats` prints `far=`. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 

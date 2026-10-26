@@ -79,6 +79,33 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
      depth; cells where the art is transparent show nothing (roof outlines, gaps), and the
      backs of buildings repeat the front art (V2 limitation).
   Columns between the viewer and the hero (V4 test) draw at 35 %.
+  v16 (owner: "the buildings are still fucked … all of the buildings"):
+  - a structure tile anchored off its footprint (roofs, overhangs) belongs to the nearest
+    region within 2 cells — v11–v15 gave it a lone 1-cell column, which showed its art as a
+    floating fragment;
+  - **shape**: any geometry covering the art's silhouette reproduces the art exactly from the
+    2D view direction, and the closer it is to the real shape the better it looks from
+    elsewhere. Each region is a **heightfield roof**: cells on its edge at wall height
+    Hw = clamp(0.45 H, 1.5, 3.0), rising linearly with the distance from the edge (BFS) to the
+    full height H at its innermost cells; corners average the cells around them, so the roof
+    is smooth; sides are drawn only on the region's edge. Regions under 2 cells thick (walls,
+    fences) are H throughout. (A gable over the bounding box was tried first: regions connect
+    across a village, so the gable spanned several houses.)
+  - **height H per region from the art itself**: the topmost opaque row of its tiles (read
+    from the texture, like the feet) must sit at the peak, so H = (art top − iso y of the
+    backmost innermost cell) × SY, clamped 0.5–8. v16's first cut used the tile quad's top:
+    every tile is the same size, so every building got the same 2.86 m (measured in Lannegar
+    now: 3.7, 4.1, 5.3, 6.1);
+  - **faces seen from outside only**, decided per fragment: each vertex carries its face's
+    outward normal (triangles wind counter-clockwise from outside), and the fragment is
+    dropped when the eye is behind that plane. v16's first cut used GL culling with
+    glFrontFace(CW), which kept the *inside* faces (from above, on the tabletop, houses showed
+    no roofs; at street level, far walls' insides with concave corners — the owner's "all of
+    the buildings"). The winding test is not used because a projection's handedness / depth
+    convention can differ between the Quest and the test bed (det(mvp) said CCW there while
+    CW was being shown);
+  - blocks within 1.8 units of the viewer are not drawn (the camera inside a building saw its
+    walls/roof across the view).
 - **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
   EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
   setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame
@@ -92,6 +119,20 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   colour fades the ground and everything on it from 8×zoom to 13×zoom cells from the hero (a
   circle inside the drawn iso rectangle, whose half-extents are ~14×zoom cells), hiding its
   square edge. Cost: more quads per frame; the setting lets the owner trade distance for speed.
+  **Characters at the draw distance** (v16; owner: "the enemies / npcs are not being drawn …
+  like the terrain"). Widening the bounds widens the tiles only: EK's map renderer (`e.a.c.a`)
+  draws a map sprite only through its private 96×96 bucket grid `o`, filled by
+  `a(ArrayList<MapSprite>)` (called every frame with `GameLevel.d`, rebuilt every `H` s) with
+  just the sprites within **288 world px (9 cells; 448 when `ExiledKingdoms.h`)** of the hero on
+  both axes, at `o[clamp((x+8)/32)][clamp((y−24)/32)]` (0..95); the objects layer draws a cell's
+  bucket when it reaches that cell (`a(int,int)`, which also sets `visibleToPlayer = true`).
+  So each frame, at the recorder's begin() (after that call, before drawing), the VR layer
+  removes the sprites it added last frame and adds every sprite of `GameLevel.d` outside EK's
+  box but within 14×zoom cells to its bucket by EK's own formula. EK's near list (`n`, used for
+  health bars) is untouched; fog of war still applies (cells are drawn only when
+  `GameMap.m(x,y)`). Far sprites then get `visibleToPlayer = true` as EK's own do — that flag
+  only gates overlays (name labels, off-screen markers), which the VR layer shows for what is
+  drawn anyway.
 - **Following the hero** (v15). A character is drawn on the cell (x/32, −y/32) of its world-px
   position. v1–v14 used (x/32 − 1, −(y/32 − 1)), one cell off; v6 hid that by searching each
   frame for the sprite nearest the expected spot and following it — which could latch onto a
@@ -105,6 +146,9 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   armour, weapon) on one spot; v11-v13 lifted each layer by its own lowest row (the head's is
   its neck) and pulled them apart (owner: head and weapon detached). Sprite quads sharing a
   bottom edge (2 px) and centre (8 px) are one character; all use the group's lowest row.
+  v16: map props too (crates, barrels, trees, rocks: tile quads that are neither floor nor
+  structure) — they keep their cell for position but their picture's lowest opaque row stands
+  on the ground (was quad bottom + 16 px, sinking up to ~0.4 m; owner: crates not sitting right).
 - **Facing** (v6): EK draws a character with one of 8 screen directions
   (`MapActor.facing`, enum U, RU, R, RD, D, LD, L, LU = ordinals 0..7, clockwise; chosen from
   its velocity in `MapActor.u0`: x+y vs y−x in world px). Ordinal k = world heading

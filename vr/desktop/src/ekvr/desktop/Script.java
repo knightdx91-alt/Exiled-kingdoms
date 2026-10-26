@@ -121,7 +121,8 @@ public class Script implements Runnable {
             }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
             case "drawdist": SimXr.core.binds.drawDist = Integer.parseInt(c[1]); break;
-            case "stats": System.out.println("[script] quads=" + SimXr.core.scene.rec.n + " build=" + SimXr.core.scene.buildNs / 1000 + "us zoom=" + SimXr.core.scene.zoom); break;
+            case "structs": System.out.println("[script] structures:\n" + SimXr.core.scene.structDump(Integer.parseInt(c[1]))); break;
+            case "stats": System.out.println("[script] quads=" + SimXr.core.scene.rec.n + " build=" + SimXr.core.scene.buildNs / 1000 + "us zoom=" + SimXr.core.scene.zoom + " far=" + SimXr.core.scene.farSprites.size()); break;
             case "swing": SimXr.handAt = null; SimXr.swingFrames = 6; break;
             case "handslow": SimXr.handAt = null; SimXr.swingFrames = 30; SimXr.slow = true; break;
             case "mouth": SimXr.handAt = c.length > 1 && c[1].equals("off") ? null
@@ -135,6 +136,11 @@ public class Script implements Runnable {
                 break;
             }
             case "menufit": System.out.println("[script] menufit " + SimXr.core.menuFit); break;
+            case "warp": {   // (tests) put the hero at cell (X, Z) of this map
+                net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
+                if (p != null) { p.x = Math.round(Float.parseFloat(c[1]) * 32); p.y = Math.round(-Float.parseFloat(c[2]) * 32); }
+                break;
+            }
             case "fov": SimXr.fov = Float.parseFloat(c[1]); break;
             case "uiclickat": {  // click the UI where it is seen at window pixel (x, y)
                 float[] p = SimXr.uiPointAtPixel(Integer.parseInt(c[1]), Integer.parseInt(c[2]), DeskBackend.width, DeskBackend.height);

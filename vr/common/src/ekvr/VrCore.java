@@ -675,6 +675,7 @@ public class VrCore {
         float[] inv = invertAffine(wm);
         float[] eye = Mat.xform(Mat.rigidInverse(view), 0, 0, 0);
         float[] eyeW = Mat.xform(inv, eye[0], eye[1], eye[2]);
+        scene.viewEyeX = eyeW[0]; scene.viewEyeY = eyeW[1]; scene.viewEyeZ = eyeW[2];
         scene.draw(Mat.mul(pv, wm), eyeW[0], eyeW[2]);
         scene.viewX = eyeW[0]; scene.viewZ = eyeW[2]; scene.haveViewer = true;
         if (ui != null) {
