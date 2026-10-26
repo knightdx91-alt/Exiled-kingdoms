@@ -44,15 +44,20 @@ public class SimXr {
         proj = Mat.perspective(fov, w / (float) h, 0.05f, 300f);
         // right controller: from just below the head, pointing through the aimed pixel
         VrCore.Hand r = core.right;
-        r.active = aimX >= 0 || aimStage != null;
+        r.active = aimX >= 0 || aimStage != null || handAt != null || swingFrames > 0;
+        if (swingFrames > 0) { swingFrames--; swingX += slow ? 0.01f : 0.08f; }   // 0.08 m/frame = 4.8 m/s; slow 0.6 m/s
+        else { swingX = 0; slow = false; }
         if (aimStage != null) {
-            float[] o = aimFrom != null ? aimFrom : new float[]{0.18f, 1.0f, -0.1f};
+            float[] o = aimFrom != null ? aimFrom : hand();
             r.aim = Mat.rigidInverse(Mat.lookAt(o[0], o[1], o[2], aimStage[0], aimStage[1], aimStage[2]));
+        } else if (handAt != null || (swingFrames > 0 || swingX > 0) && aimX < 0) {
+            float[] o = hand();
+            r.aim = Mat.rigidInverse(Mat.lookAt(o[0], o[1], o[2], o[0], o[1], o[2] - 1));
         } else if (r.active) {
             float[] inv = DeskBackend.invert(Mat.mul(proj, view));
             float nx = 2f * aimX / w - 1, ny = 1 - 2f * aimY / h;
             float[] p0 = DeskBackend.unproject(inv, nx, ny, -1), p1 = DeskBackend.unproject(inv, nx, ny, 1);
-            float[] o = {0.18f, 1.0f, -0.1f};
+            float[] o = hand();
             float dx = p1[0] - p0[0], dy = p1[1] - p0[1], dz = p1[2] - p0[2];
             // aim the laser from the hand to where the mouse ray meets a point 3 m out
             float l = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
@@ -76,6 +81,16 @@ public class SimXr {
         float nx = 2f * x / w - 1, ny = 1 - 2f * y / h;
         float[] p0 = DeskBackend.unproject(inv, nx, ny, -1), p1 = DeskBackend.unproject(inv, nx, ny, 1);
         return core.uiHitFromEye(p0, new float[]{p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]});
+    }
+
+    /** (tests) gestures: the right hand's position -- moved by "swing", or put at the mouth by "mouth". */
+    public static float[] handAt;
+    public static int swingFrames;
+    public static boolean slow;
+    static float swingX;
+    static float[] hand() {
+        if (handAt != null) return handAt;
+        return new float[]{0.18f + swingX, 1.0f, -0.1f};
     }
 
     static float[] rotX(float rad) {

@@ -195,7 +195,58 @@ public class VrCore {
             case RGRIP: return right.grip > 0.6f;
             case LGRIP: return left.grip > 0.6f;
             case RSTICK: return right.stick;
-            default: return left.stick;
+            case LSTICK: return left.stick;
+            case SWING_R: return gestureOn(swingUntil[1]);
+            case SWING_L: return gestureOn(swingUntil[0]);
+            case MOUTH_R: return gestureOn(mouthUntil[1]);
+            case MOUTH_L: return gestureOn(mouthUntil[0]);
+            default: return false;
+        }
+    }
+
+    // ---- gestures (QUEST_VR_SPEC.md §5.2b) ----------------------------------------------------
+    float time;                                            // seconds since start (gesture timers)
+    final float[] swingUntil = new float[2], mouthUntil = new float[2];   // [left, right]: input held until
+    final float[] cooldown = new float[2], mouthSince = {-1, -1};
+    final boolean[] mouthArmed = {true, true};
+    final float[][] lastPos = new float[2][], vel = new float[2][2];
+    public String lastGesture = "";                       // (tests)
+
+    boolean gestureOn(float until) { return binds.gestures && time < until; }
+
+    /** Swing: the controller faster than the swing speed for 2 frames. Mouth: held at the mouth 0.25 s. */
+    void gestures(float[] headPose, float dt) {
+        time += dt;
+        if (!binds.gestures || dt <= 0) return;
+        float[] mouth = Mat.xform(headPose, 0, -0.09f, -0.07f);   // below the eyes, a little in front
+        for (int h = 0; h < 2; h++) {
+            Hand hand = h == 0 ? left : right;
+            if (!hand.active || (h == 0 && gripWas)) { lastPos[h] = null; continue; }   // moving the board isn't a swing
+            float[] p = {hand.aim[12], hand.aim[13], hand.aim[14]};
+            if (lastPos[h] != null) {
+                float dx = p[0] - lastPos[h][0], dy = p[1] - lastPos[h][1], dz = p[2] - lastPos[h][2];
+                float v = (float) Math.sqrt(dx * dx + dy * dy + dz * dz) / dt;
+                vel[h][0] = vel[h][1]; vel[h][1] = v;
+                float need = Binds.SWING[binds.swingSens];
+                if (time > cooldown[h] && vel[h][0] > need && vel[h][1] > need && v < 30f) {
+                    swingUntil[h] = time + 0.3f;
+                    cooldown[h] = time + 0.6f;
+                    lastGesture = (h == 0 ? "SWING L" : "SWING R") + " " + Math.round(v * 10) / 10f + " m/s";
+                }
+            }
+            lastPos[h] = p;
+            float mx = p[0] - mouth[0], my = p[1] - mouth[1], mz = p[2] - mouth[2];
+            float d = (float) Math.sqrt(mx * mx + my * my + mz * mz);
+            if (d > 0.35f) mouthArmed[h] = true;
+            if (d < 0.2f && mouthArmed[h]) {
+                if (mouthSince[h] < 0) mouthSince[h] = time;
+                if (time - mouthSince[h] >= 0.25f) {
+                    mouthUntil[h] = time + 0.3f;
+                    mouthArmed[h] = false;
+                    mouthSince[h] = -1;
+                    lastGesture = h == 0 ? "MOUTH L" : "MOUTH R";
+                }
+            } else mouthSince[h] = -1;
         }
     }
 
@@ -209,6 +260,7 @@ public class VrCore {
         if (!placed) recenter(headPose);
         if (!settingsDone) settingsDone = gameSettings();
         head[0] = headPose[12]; head[1] = headPose[13]; head[2] = headPose[14];
+        gestures(headPose, dt);
         Binds.Btn[] all = Binds.Btn.values();
         boolean[] now = new boolean[all.length];
         Binds.Btn pressed = null, anyDown = null;

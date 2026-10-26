@@ -115,6 +115,11 @@ public class Script implements Runnable {
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
             case "drawdist": SimXr.core.binds.drawDist = Integer.parseInt(c[1]); break;
             case "stats": System.out.println("[script] quads=" + SimXr.core.scene.rec.n + " build=" + SimXr.core.scene.buildNs / 1000 + "us zoom=" + SimXr.core.scene.zoom); break;
+            case "swing": SimXr.handAt = null; SimXr.swingFrames = 6; break;
+            case "handslow": SimXr.handAt = null; SimXr.swingFrames = 30; SimXr.slow = true; break;
+            case "mouth": SimXr.handAt = c.length > 1 && c[1].equals("off") ? null
+                    : ekvr.Mat.xform(SimXr.headPose, 0, -0.09f, -0.07f); break;
+            case "gesture": System.out.println("[script] gesture=" + SimXr.core.lastGesture); SimXr.core.lastGesture = ""; break;
             case "fov": SimXr.fov = Float.parseFloat(c[1]); break;
             case "uiclickat": {  // click the UI where it is seen at window pixel (x, y)
                 float[] p = SimXr.uiPointAtPixel(Integer.parseInt(c[1]), Integer.parseInt(c[2]), 1280, 720);

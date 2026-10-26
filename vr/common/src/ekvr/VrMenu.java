@@ -75,7 +75,7 @@ public class VrMenu {
             {4, 4, 4, 4, 4, 0, 4},   // !
             {24, 25, 2, 4, 8, 19, 3},   // %
     };
-    static final int TW = 640, TH = 668, SC = 2, CW = 6 * SC, ROW = 22, TOP = 52;
+    static final int TW = 640, TH = 712, SC = 2, CW = 6 * SC, ROW = 22, TOP = 52;
 
     public boolean open;
     /** Why the game closed last time (ekvr.android.ExitLog), shown once at start; null = none. */
@@ -100,6 +100,7 @@ public class VrMenu {
         for (Binds.Fn f : Binds.Fn.values()) if (f != Binds.Fn.NONE) rows.add(f);
         rows.add("turn"); rows.add("speed"); rows.add("follow"); rows.add("view");
         rows.add("move"); rows.add("rel"); rows.add("pointer"); rows.add("dist"); rows.add("height"); rows.add("draw");
+        rows.add("gestures"); rows.add("sens");
         rows.add("recenter"); rows.add("reset"); rows.add("close");
     }
 
@@ -157,6 +158,8 @@ public class VrMenu {
             case "dist": binds.camDist = (binds.camDist + 1) % 3; recenter = true; break;
             case "height": binds.camHeight = (binds.camHeight + 1) % 3; recenter = true; break;
             case "draw": binds.drawDist = (binds.drawDist + 1) % 4; break;
+            case "gestures": binds.gestures = !binds.gestures; break;
+            case "sens": binds.swingSens = (binds.swingSens + 1) % 3; break;
             case "recenter": recenter = true; note = "RECENTERED: FORWARD IS WHERE YOU LOOK"; break;
             case "reset": binds.defaults(); note = "DEFAULTS RESTORED"; recenter = true; break;
             case "close": close(); break;
@@ -228,6 +231,8 @@ public class VrMenu {
                 case "dist": left = "CAMERA DISTANCE"; right = Binds.DISTS[binds.camDist] + " M"; break;
                 case "height": left = "CAMERA HEIGHT"; right = Binds.HEIGHTS[binds.camHeight] + " M"; break;
                 case "draw": left = "DRAW DISTANCE"; right = Binds.ZOOM_NAMES[binds.drawDist]; break;
+                case "gestures": left = "GESTURES"; right = binds.gestures ? "ON" : "OFF"; break;
+                case "sens": left = "SWING SENSITIVITY"; right = Binds.SENS_NAMES[binds.swingSens]; break;
                 case "recenter": left = "RECENTER NOW"; right = ""; break;
                 case "reset": left = "RESET TO DEFAULTS"; right = ""; break;
                 default: left = "CLOSE"; right = ""; break;

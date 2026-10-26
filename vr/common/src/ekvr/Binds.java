@@ -11,7 +11,10 @@ import java.util.Properties;
 public class Binds {
     public enum Btn {
         A("A"), B("B"), X("X"), Y("Y"), RTRIG("R TRIGGER"), LTRIG("L TRIGGER"),
-        RGRIP("R GRIP"), LGRIP("L GRIP"), RSTICK("R STICK CLICK"), LSTICK("L STICK CLICK");
+        RGRIP("R GRIP"), LGRIP("L GRIP"), RSTICK("R STICK CLICK"), LSTICK("L STICK CLICK"),
+        // gestures (QUEST_VR_SPEC.md §5.2b): detected by VrCore, bound like buttons
+        SWING_R("SWING R"), SWING_L("SWING L"), MOUTH_R("MOUTH R"), MOUTH_L("MOUTH L");
+        public boolean gesture() { return ordinal() >= SWING_R.ordinal(); }
         public final String label;
         Btn(String l) { label = l; }
     }
@@ -55,8 +58,21 @@ public class Binds {
         map.put(Btn.LGRIP, Fn.SKILL2);
         map.put(Btn.RSTICK, Fn.VIEW);
         map.put(Btn.LSTICK, Fn.RECENTER);
+        gestureDefaults(null);
         smoothTurn = true; follow = true; turnSpeed = 90; startView = 1;
         moveRight = false; moveHead = false; pointer = 0; camDist = 1; camHeight = 1; drawDist = 1;
+        gestures = true; swingSens = 1;
+    }
+
+    public boolean gestures = true;
+    public int swingSens = 1;                        // index into SWING (m/s): Low, Medium, High
+    public static final float[] SWING = {3.0f, 2.2f, 1.6f};
+    public static final String[] SENS_NAMES = {"LOW", "MEDIUM", "HIGH"};
+
+    /** Default gesture bindings; with {@code p}, only for gestures that file doesn't mention (older files). */
+    void gestureDefaults(Properties p) {
+        Object[][] d = {{Btn.SWING_R, Fn.ACT}, {Btn.SWING_L, Fn.ACT}, {Btn.MOUTH_R, Fn.USE_ITEM}, {Btn.MOUTH_L, Fn.USE_ITEM}};
+        for (Object[] e : d) if (p == null || p.getProperty("btn." + ((Btn) e[0]).name()) == null) map.put((Btn) e[0], (Fn) e[1]);
     }
 
     public Fn fn(Btn b) { Fn f = map.get(b); return f == null ? Fn.NONE : f; }
@@ -86,6 +102,9 @@ public class Binds {
                 String v = p.getProperty("btn." + b.name());
                 if (v != null) try { Fn fn = Fn.valueOf(v); if (fn != Fn.NONE) map.put(b, fn); } catch (IllegalArgumentException ignored) {}
             }
+            gestureDefaults(p);
+            gestures = !"off".equals(p.getProperty("gestures", "on"));
+            swingSens = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("swingSens", "1"))));
             smoothTurn = !"snap".equals(p.getProperty("turn", "smooth"));
             follow = !"off".equals(p.getProperty("follow", "on"));
             turnSpeed = Integer.parseInt(p.getProperty("turnSpeed", "90"));
@@ -106,6 +125,8 @@ public class Binds {
         try {
             StringBuilder sb = new StringBuilder("# Exiled Kingdoms VR controls (deobf/QUEST_VR_SPEC.md 5.4)\n");
             for (Btn b : Btn.values()) sb.append("btn.").append(b.name()).append('=').append(fn(b).name()).append('\n');
+            sb.append("gestures=").append(gestures ? "on" : "off").append('\n');
+            sb.append("swingSens=").append(swingSens).append('\n');
             sb.append("turn=").append(smoothTurn ? "smooth" : "snap").append('\n');
             sb.append("follow=").append(follow ? "on" : "off").append('\n');
             sb.append("turnSpeed=").append(turnSpeed).append('\n');

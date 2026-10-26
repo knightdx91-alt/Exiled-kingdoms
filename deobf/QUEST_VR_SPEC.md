@@ -225,6 +225,21 @@ press (v7: a grip squeezed just by holding the controller kept firing its skill)
 at most one function; binding it elsewhere moves it. Laser clicks: a press is a tap at the press point;
 it becomes a drag only after moving 16 px.
 
+### 5.2b Gestures (v13)
+
+Owner: "add the sword swing and potion gestures". Gestures are extra inputs of the binding
+system (`Binds.Btn`), so they show on the VR controls screen and can be bound to any function
+— doing the gesture while a row waits for a button binds it:
+
+| Gesture | Detected when | Default |
+|---|---|---|
+| SWING R / SWING L | that controller moves faster than the swing speed (sensitivity: Low 3.0 / **Medium 2.2** / High 1.6 m/s) for 2 frames; then 0.6 s cooldown | R: **Attack / act**, L: Attack / act |
+| HAND TO MOUTH R / L | that controller is within 0.2 m of the mouth (0.09 m below and 0.07 m in front of the eyes) for 0.25 s; re-arms once it is 0.35 m away | **Use quick item** (EK's selected quick slot: potions) — EK's Recovery is resting (`z.G()`), not a potion |
+
+A gesture "holds" its input for 0.3 s (so a swing is one EK action: `GameScreen.l()` has its
+own 0.8 s cooldown). Positions are stage space: smooth locomotion and turning don't move the
+controllers, only your arms do. Settings: **Gestures** on/off, **Swing sensitivity**.
+
 ### 5.3 Views
 
 - **WALK = third person (default)** — 1 cell = 1 m; the hero stands 2.4 m ahead (camera distance setting:
