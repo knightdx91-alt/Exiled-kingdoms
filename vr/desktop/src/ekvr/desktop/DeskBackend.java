@@ -226,6 +226,7 @@ public class DeskBackend implements com.badlogic.gdx.Application {
     public void log(String t, String m) { System.out.println("[I] " + t + ": " + m); }
     public void log(String t, String m, Throwable e) { System.out.println("[I] " + t + ": " + m + " " + e); }
     public void exit() { GLFW.glfwSetWindowShouldClose(window, true); }
+    /** The game object itself, as on the Quest since v10 (EK casts it to Game / ExiledKingdoms). */
     public com.badlogic.gdx.a getApplicationListener() { return listener; }
     public com.badlogic.gdx.b getApplicationLogger() { return null; }
     public com.badlogic.gdx.c getAudio() { return Gdx.audio; }

@@ -51,7 +51,8 @@ for n, line in enumerate(open(sys.argv[1]), 1):
         r = rs[i]
         if p.startswith('Lnet/fdgames/'):
             k, t = types.get(r, ('?', None))
-            if not (k == 'Null' or (k == 'Reference' and t and t.startswith('Lnet/fdgames/'))):
+            # ours: ekvr.android.VrEK extends ExiledKingdoms (v10)
+            if not (k == 'Null' or (k == 'Reference' and t and (t.startswith('Lnet/fdgames/') or t == 'Lekvr/android/VrEK;'))):
                 print(f'line {n}: {r} is {k} {t or ""} but {owner} wants {p}\n  {s}')
                 bad += 1
         i += 2 if p in ('J', 'D') else 1

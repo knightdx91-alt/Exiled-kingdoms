@@ -21,17 +21,18 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 /**
- * The game's ApplicationListener, wrapped for the headset. Runs on libGDX's GL thread:
+ * The game itself, for the headset: a subclass of ExiledKingdoms that MainActivity creates
+ * instead of ExiledKingdoms (tools/vr/patch_mainactivity.py), so Gdx.app's listener IS the game
+ * (EK casts it to Game / ExiledKingdoms to change screens; a separate wrapper crashed v1-v9). Runs on libGDX's GL thread:
  * each frame = one OpenXR frame. The real game renders its UI into VrCore's layer while its
  * map is recorded for Scene3D; then each eye is drawn into its OpenXR swapchain image.
  * If OpenXR is unavailable (e.g. installed on a phone) it simply runs the normal 2D game.
  */
-public class VrListener implements com.badlogic.gdx.a {
+public class VrEK extends net.fdgames.ek.ExiledKingdoms {
     static final String TAG = "ekvr";
     static final int VW = 1280, VH = 720;       // the game's virtual screen inside the headset
 
     final android.app.Activity activity;
-    final com.badlogic.gdx.a game;
     boolean xr;
     VrCore core;
     final FloatBuffer views = ByteBuffer.allocateDirect(22 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -43,7 +44,7 @@ public class VrListener implements com.badlogic.gdx.a {
     long last;
     View view;
 
-    public VrListener(android.app.Activity a, com.badlogic.gdx.a game) { this.activity = a; this.game = game; }
+    public VrEK(net.fdgames.ek.IPlatformResolver r) { super(r); this.activity = (android.app.Activity) r; }
 
     public void a() {                                         // create
         GL20 raw = Gdx.gl20;
@@ -98,8 +99,8 @@ public class VrListener implements com.badlogic.gdx.a {
             // the Touch controllers as a gamepad: the game's own controller code walks, acts, etc.
             try { ekvr.Pad.install(true); } catch (Exception e) { Log.w(TAG, "no virtual gamepad: " + e); }
         }
-        game.a();
-        if (xr) game.a(VW, VH);
+        super.a();
+        if (xr) super.a(VW, VH);
         last = System.nanoTime();
     }
 
@@ -130,11 +131,11 @@ public class VrListener implements com.badlogic.gdx.a {
     }
 
     public void a(int w, int h) {                              // resize
-        if (xr) { forceSize(); game.a(VW, VH); } else game.a(w, h);
+        if (xr) { forceSize(); super.a(VW, VH); } else super.a(w, h);
     }
 
     public void b() {                                         // render
-        if (!xr) { game.b(); return; }
+        if (!xr) { super.b(); return; }
         if (!(Gdx.gl20 instanceof GlTap)) Gdx.gl = Gdx.gl20 = new GlTap(Gdx.gl20);   // context recreated on resume
         forceSize();
         long now = System.nanoTime();
@@ -142,7 +143,7 @@ public class VrListener implements com.badlogic.gdx.a {
         last = now;
         int st = Xr.beginFrame();
         if (st < 0) { activity.finish(); return; }
-        core.gameFrame(game::b, 0);
+        core.gameFrame(() -> super.b(), 0);
         if (st == 1) {
             float[] v = new float[22];
             views.position(0);
@@ -177,7 +178,5 @@ public class VrListener implements com.badlogic.gdx.a {
         if (now - lastErr > 2000) { Log.e(TAG, "VR layer error in " + where + " (game continues)", t); lastErr = now; }
     }
 
-    public void pause() { game.pause(); }
-    public void resume() { game.resume(); }
-    public void dispose() { game.dispose(); }
+    // pause / resume / dispose: ExiledKingdoms' own
 }

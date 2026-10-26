@@ -9,7 +9,7 @@ import java.nio.FloatBuffer;
 /**
  * Everything VR that is not platform plumbing (deobf/QUEST_VR_SPEC.md §5): where the map
  * sits in the room, the two view modes, the game's UI panel, the Touch controllers mapped
- * onto the game's own touch input, and drawing one eye. The Quest (ekvr.android.VrListener)
+ * onto the game's own touch input, and drawing one eye. The Quest (ekvr.android.VrEK)
  * feeds it OpenXR poses; the desktop test bed feeds it a simulated head and controllers.
  *
  * Stage space = OpenXR LOCAL_FLOOR (metres, y up, floor at 0).

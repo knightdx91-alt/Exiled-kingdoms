@@ -26,7 +26,7 @@ to be re-derived and would drift. The earlier Godot tutorial also lacked the gam
 
 | Where | Change |
 |---|---|
-| `MainActivity.onCreate` (smali, 2 lines) | `initialize(game, cfg)` → `initialize(Vr.wrap(this, game, cfg), cfg)` (`tools/vr/patch_mainactivity.py`) |
+| `MainActivity.onCreate` (smali) | v10: `new ExiledKingdoms(this)` → `new ekvr.android.VrEK(this)` (a subclass: VR around `super`'s create/render/resize), and `initialize(game, cfg)` → `initialize(Vr.wrap(this, game, cfg), cfg)` where wrap only sets the config and returns the same object (`tools/vr/patch_mainactivity.py`). v1–v9 passed a separate wrapper object instead; EK casts `Gdx.app.getApplicationListener()` to `Game` and its screens on to `ExiledKingdoms` (Save and Exit, loading a save → `e.a.d.b0$e`, `e.a.b.e`), so the wrapper crashed with ClassCastException on the headset (owner's exit report, 2026-10-25). The desktop test bed always used the game object itself, which is why it never showed. |
 | `AndroidApplicationConfiguration` | `useGL30` (ES 3 context for OpenXR), RGBA8, depth 16 |
 | `Gdx.gl` | wrapped by `ekvr.GlTap` (pass-through; transparent clears while the UI layer renders) |
 | `GameLevelRenderer` (`e.a.a.a`) instance, at runtime | its map renderer's batch (`BatchTiledMapRenderer.c`) → `ekvr.Rec`; its RayHandler (`d`, box2dlights `c.f`) → `Scene3D.NoLight` (keeps the ambient colour, draws no lightmap); camera zoom 2.6 so more of the map is drawn |

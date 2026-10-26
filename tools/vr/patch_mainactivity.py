@@ -9,7 +9,8 @@ insert
 and pass vT to initialize, where vT is a local register onCreate never uses. (vG must keep
 its type: right after initialize, onCreate hands vG on as an ExiledKingdoms — reusing vG for
 the wrapper made ART reject MainActivity with a VerifyError on the headset, v1 of the VR APK.)
-So libGDX starts our VrListener (which owns the real game) with an ES3 context. Idempotent.
+Also `new ExiledKingdoms(this)` -> `new ekvr.android.VrEK(this)`: the game object is our
+subclass (v10; a separate wrapper object made EK's own casts of the listener fail). Idempotent.
 Usage: patch_mainactivity.py <smali dir>
 """
 import re
@@ -43,5 +44,15 @@ hook = (f'\n{ind}invoke-static {{p0, {g}, {c}}}, Lekvr/android/Vr;->wrap(Lnet/fd
         f'\n{ind}move-result-object {t}\n')
 call = m.group(1).replace(f'{{p0, {g}, {c}}}', f'{{p0, {t}, {c}}}')
 s = s[:m.start()] + hook + call + s[m.end():]
+# the game object: ExiledKingdoms -> ekvr.android.VrEK (a subclass; QUEST_VR_SPEC.md §2). EK
+# casts Gdx.app.getApplicationListener() to Game and ExiledKingdoms, so the listener must BE it.
+body = s[ms:s.index('.end method', ms)]
+ctor = re.compile(r'new-instance (\w+), Lnet/fdgames/ek/ExiledKingdoms;(\s+)invoke-direct \{\1, p0\}, '
+                  r'Lnet/fdgames/ek/ExiledKingdoms;-><init>\(Lnet/fdgames/ek/IPlatformResolver;\)V')
+nb, k = ctor.subn(lambda mm: f'new-instance {mm.group(1)}, Lekvr/android/VrEK;{mm.group(2)}invoke-direct {{{mm.group(1)}, p0}}, '
+                  'Lekvr/android/VrEK;-><init>(Lnet/fdgames/ek/IPlatformResolver;)V', body)
+if k != 1:
+    sys.exit(f'new ExiledKingdoms(this) found {k} times in onCreate (expected 1)')
+s = s[:ms] + nb + s[ms + len(body):]
 open(f, 'w').write(s)
-print(f'MainActivity.onCreate: initialize({t}, {c}) with {t} = Vr.wrap(this, {g}, {c}); {g} keeps the game')
+print(f'MainActivity.onCreate: game = new VrEK(this); initialize({t}, {c}) with {t} = Vr.wrap(this, {g}, {c}); {g} keeps the game')
