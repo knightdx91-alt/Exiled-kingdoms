@@ -34,11 +34,23 @@ public class Scene3D {
     public final float[] tint = {1, 1, 1, 1};
     public float heroX, heroZ;                   // hero ground position (units)
     public boolean hideHero;                     // first person: don't draw the hero (you are the hero)
-    float offX, offZ;                            // hero sprite's drawn spot minus its logical point
-    int heroSprite = -1;
+    /** (tests) distance from the hero's position to the nearest character sprite's ground point. */
+    public float nearestSprite() {
+        float best = Float.MAX_VALUE;
+        for (int i = 0; i < rec.n; i++) {
+            if (rec.tileDraw[i] || kind[i] == 0 || kind[i] == 3) continue;
+            int o = i * 16;
+            float h = Math.abs(rec.q[o + 5] - rec.q[o + 1]);
+            if (h < 60) continue;
+            float dx = ax[i] - heroX, dz = az[i] - heroZ;
+            best = Math.min(best, (float) Math.sqrt(dx * dx + dz * dz));
+        }
+        return best;
+    }
+
     /** Where the hero is drawn (units): what the views follow. */
-    public float dispX() { return heroX + offX; }
-    public float dispZ() { return heroZ + offZ; }
+    public float dispX() { return heroX; }
+    public float dispZ() { return heroZ; }
     boolean ready, classified, structPrepared;
     int frame, builtFrame = -1;
     static final byte STRUCT = 6;                // a building / wall quad: drawn as solid columns (Structures)
@@ -109,7 +121,10 @@ public class Scene3D {
             Object map = fMapMap.get(lr.l);
             if (map != lastMap) { lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); structs.build((com.badlogic.gdx.s.j.b) map); }
             net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
-            if (p != null) { heroX = p.x / 32f - 1f; heroZ = -(p.y / 32f - 1f); }
+            // the hero's cell: EK draws a character at (x/32, -y/32) (v15: was x/32 - 1, one cell off,
+            // which v6-v14 compensated by searching for the hero's sprite each frame -- and that search
+            // could latch onto a nearby companion / monster / loot and stop following the hero)
+            if (p != null) { heroX = p.x / 32f; heroZ = -(p.y / 32f); }
         } catch (Throwable t) {
             System.out.println("[ekvr] hook failed: " + t);
         }
@@ -171,7 +186,7 @@ public class Scene3D {
             for (int i = 0; i <= n; i++) {
                 net.fdgames.GameEntities.MapActor a = i < n ? list.get(i) : hero;
                 if (a == null || a.facing == null || (i == n && list != null && list.contains(hero))) continue;
-                float dx = a.x / 32f - 1f + offX - viewX, dz = -(a.y / 32f - 1f) + offZ - viewZ;   // drawn spot
+                float dx = a.x / 32f - viewX, dz = -(a.y / 32f) - viewZ;   // where it is drawn
                 if (dx * dx + dz * dz < 1e-4f) continue;
                 double hv = Math.toDegrees(Math.atan2(-dx, -dz));               // heading viewer -> actor
                 int steps = (int) Math.round((hv - 45) / 45.0);
@@ -340,15 +355,6 @@ public class Scene3D {
                 }
             }
         }
-        // where the hero is drawn: EK draws a character's sprite ~1.5 cells from the point
-        // (x/32 - 1, -(y/32 - 1)), so track the hero's own sprite and remember the offset
-        float best = 2.5f * 2.5f; int bi = -1;
-        for (int k = 0; k < actors; k++) {
-            int j2 = actorIdx[k];
-            float dx = ax[j2] - (heroX + offX), dz = az[j2] - (heroZ + offZ), d = dx * dx + dz * dz;
-            if (d < best) { best = d; bi = j2; }
-        }
-        if (bi >= 0) { offX = ax[bi] - heroX; offZ = az[bi] - heroZ; heroSprite = bi; } else heroSprite = -1;
         if (hideHero)
             for (int i = 0; i < n; i++)
                 if (kind[i] != 0 && !rec.tileDraw[i] && Math.abs(ax[i] - dispX()) < 0.45f && Math.abs(az[i] - dispZ()) < 0.45f)

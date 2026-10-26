@@ -29,10 +29,10 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 14` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v14.apk` + `dist/quest-vr-v14/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 15` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v15.apk` + `dist/quest-vr-v15/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v14.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v15.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
@@ -85,7 +85,11 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   v14: characters' layers (body/head/armour/weapon) share one feet offset (v11 lifted each
   layer separately → head and weapon detached); EK's game menu window grown to its contents
   (top row was cut at 720 px; V8). Desktop: hero_closeup.txt, game_menu.txt; EK_VR_SIZE /
-  EK_VR_KEEP / resize for other screen sizes. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  EK_VR_KEEP / resize for other screen sizes.
+  v15: camera didn't follow the hero on the headset → the hero's position was one cell off
+  (x/32 − 1) and v6 compensated by locking onto the nearest sprite each frame, which could
+  latch onto a companion/monster/loot. Now heroX = x/32, heroZ = −y/32, no search
+  (QUEST_VR_SPEC §3). Desktop: follow.txt (prints the sprite distance). Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 

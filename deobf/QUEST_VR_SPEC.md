@@ -92,6 +92,12 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   colour fades the ground and everything on it from 8×zoom to 13×zoom cells from the hero (a
   circle inside the drawn iso rectangle, whose half-extents are ~14×zoom cells), hiding its
   square edge. Cost: more quads per frame; the setting lets the owner trade distance for speed.
+- **Following the hero** (v15). A character is drawn on the cell (x/32, −y/32) of its world-px
+  position. v1–v14 used (x/32 − 1, −(y/32 − 1)), one cell off; v6 hid that by searching each
+  frame for the sprite nearest the expected spot and following it — which could latch onto a
+  companion, monster or loot near the hero and stay there, so the view stopped following the
+  hero (owner, v13/v14). Now the views, first-person hiding, facing and fog use the hero's own
+  position directly (measured: within 0.0–0.25 cells of its drawn feet while walking).
 - **Feet on the ground** (v11): characters/items (non-tile sprites) stand on their lowest
   opaque pixel row (read once per sprite frame from the texture), not quad bottom + 16 px (a
   tile's cell-centre convention), which sank them by up to ~0.4 m (owner's screenshots).

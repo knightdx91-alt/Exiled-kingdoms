@@ -103,7 +103,7 @@ public class Script implements Runnable {
                 float hx = SimXr.core.scene.heroX, hz = SimXr.core.scene.heroZ, bd = 1e9f;
                 for (net.fdgames.GameEntities.MapSprite sp : net.fdgames.GameLevel.GameLevel.d) {
                     if (!sp.getClass().getSimpleName().contains(c[1])) continue;
-                    float x = sp.x / 32f - 1f, z = -(sp.y / 32f - 1f), d = (x - hx) * (x - hx) + (z - hz) * (z - hz);
+                    float x = sp.x / 32f, z = -(sp.y / 32f), d = (x - hx) * (x - hx) + (z - hz) * (z - hz);
                     if (d < bd) { bd = d; best = sp; }
                 }
                 if (best == null) {
@@ -112,7 +112,7 @@ public class Script implements Runnable {
                     System.out.println("[script] no " + c[1] + "; sprites: " + kinds);
                     break;
                 }
-                float x = best.x / 32f - 1f, z = -(best.y / 32f - 1f);
+                float x = best.x / 32f, z = -(best.y / 32f);
                 SimXr.aimStage = ekvr.Mat.xform(SimXr.core.world(), x, 0.3f, z);
                 // "aimsprite NPC top": from straight above it (nothing in between), else from the hand
                 SimXr.aimFrom = c.length > 2 ? ekvr.Mat.xform(SimXr.core.world(), x + 0.05f, 30f, z + 0.05f) : null;
@@ -172,8 +172,8 @@ public class Script implements Runnable {
                 break;
             }
             case "hover": System.out.println("[script] hover=" + SimXr.core.hover + ("thing".equals(SimXr.core.hover) ? " " + SimXr.core.hoverAt : "")); break;
-            case "hero": System.out.println("[script] hero=" + SimXr.core.scene.heroX + "," + SimXr.core.scene.heroZ
-                    + " drawn-offset=" + (SimXr.core.scene.dispX() - SimXr.core.scene.heroX) + "," + (SimXr.core.scene.dispZ() - SimXr.core.scene.heroZ)); break;
+            case "hero": System.out.println("[script] hero=" + SimXr.core.scene.heroX + "," + SimXr.core.scene.heroZ + " sprite-at=" + SimXr.core.scene.nearestSprite()
+                   ); break;
             default: System.out.println("[script] unknown: " + c[0]);
         }
     }
