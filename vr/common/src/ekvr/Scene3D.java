@@ -39,7 +39,10 @@ public class Scene3D {
     /** Where the hero is drawn (units): what the views follow. */
     public float dispX() { return heroX + offX; }
     public float dispZ() { return heroZ + offZ; }
-    boolean ready, classified;
+    boolean ready, classified, structPrepared;
+    static final byte STRUCT = 6;                // a building / wall quad: drawn as solid columns (Structures)
+    final Structures structs = new Structures();
+    boolean[] colFade = new boolean[0];
     Object lastMap;
     final HashSet<Long> floorKeys = new HashSet<>();
     Object origBatch;
@@ -54,6 +57,7 @@ public class Scene3D {
     public void beginFrame() {
         rec.reset();
         classified = false;
+        structPrepared = false;
         if (rec.onBegin == null) rec.onBegin = this::faceViewer;
         try {
             if (fLevelR == null) {
@@ -75,7 +79,7 @@ public class Scene3D {
             }
             if (lr.g != null) { lr.g.zoom = zoom; lr.g.update(); }
             Object map = fMapMap.get(lr.l);
-            if (map != lastMap) { lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); }
+            if (map != lastMap) { lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); structs.build((com.badlogic.gdx.s.j.b) map); }
             net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
             if (p != null) { heroX = p.x / 32f - 1f; heroZ = -(p.y / 32f - 1f); }
         } catch (Throwable t) {
@@ -225,9 +229,14 @@ public class Scene3D {
         if (!ready) init();
         GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
         classify();
+        if (!structPrepared) {
+            structPrepared = true;
+            try { structs.prepare(this, gl); } catch (Throwable t) { System.out.println("[ekvr] structures: " + t); structs.any = false; }
+        }
         int n = rec.n;
         for (int i = 0; i < n; i++) { fade[i] = 1f; if (kind[i] == 5) kind[i] = 1; }
         fadeOccluders(vx, vz);
+        fadeColumns(vx, vz);
         drawPasses(gl, mvp, vx, vz);
     }
 
@@ -249,11 +258,13 @@ public class Scene3D {
             float maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
             float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13]));
             float maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
-            boolean floor = rec.tileDraw[i] && floorKeys.contains(key(rec.tex[i].getTextureObjectHandle(), q[o + 2], q[o + 3]));
+            long tk = rec.tileDraw[i] ? key(rec.tex[i].getTextureObjectHandle(), q[o + 2], q[o + 3]) : 0;
+            boolean floor = rec.tileDraw[i] && floorKeys.contains(tk);
             int a = (Float.floatToRawIntBits(rec.col[i]) >>> 24) & 0xff;
-            kind[i] = (byte) (floor ? 0 : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
+            kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructure(tk) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
             aCx[i] = (minX + maxX) / 2;
-            aBase[i] = minY + 16;
+            // tiles stand on their cell centre (quad bottom + 16 px); sprites on their lowest opaque row
+            aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + footPx(i, maxY - minY);
             ax[i] = gi(aCx[i], aBase[i]);
             az[i] = -go(aCx[i], aBase[i]);
             fade[i] = 1f;
@@ -308,6 +319,70 @@ public class Scene3D {
         }
     }
 
+    /** V4 for buildings: columns standing between the viewer and the hero draw faded. */
+    void fadeColumns(float vx, float vz) {
+        int nc = structs.ncols;
+        if (colFade.length < nc) colFade = new boolean[nc * 2];
+        float sx = dispX() - vx, sz = dispZ() - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
+        for (int i = 0; i < nc; i++) {
+            colFade[i] = false;
+            if (hideHero || sl < 1e-3f) continue;
+            float px = structs.colMid[i * 2] - vx, pz = structs.colMid[i * 2 + 1] - vz;
+            float along = (px * sx + pz * sz) / sl, side = Math.abs(px * sz - pz * sx) / sl;
+            colFade[i] = along > 0.3f && along < sl - 0.4f && side < 1.6f;
+        }
+    }
+
+    final java.util.HashMap<Long, Integer> feet = new java.util.HashMap<>();
+    java.nio.ByteBuffer footBuf;
+
+    /**
+     * Height (iso px above the quad's bottom) of a sprite's lowest opaque pixel row: where its feet
+     * are. Read once per sprite frame from the texture (QUEST_VR_SPEC.md §3).
+     */
+    int footPx(int i, float quadH) {
+        int o = i * 16;
+        float[] q = rec.q;
+        com.badlogic.gdx.graphics.Texture t = rec.tex[i];
+        float u1 = Math.min(q[o + 2], q[o + 10]), u2 = Math.max(q[o + 2], q[o + 10]);
+        float vb = q[o + 3], vt = q[o + 7];                      // bottom-left corner's v, top-left's v
+        long k = key(t.getTextureObjectHandle(), u1, vb) * 31 + Math.round(vt * 65536) * 7 + Math.round(u2 * 65536);
+        Integer cached = feet.get(k);
+        if (cached == null) {
+            int tw = t.getWidth(), th = t.getHeight();
+            int x = Math.max(0, (int) (u1 * tw)), w = Math.max(1, Math.min(tw - x, Math.round((u2 - u1) * tw)));
+            int r0 = Math.max(0, (int) (Math.min(vb, vt) * th)), h = Math.max(1, Math.min(th - r0, Math.round(Math.abs(vb - vt) * th)));
+            int fromBottom = 0;
+            try {
+                GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
+                if (footBuf == null || footBuf.capacity() < w * h * 4) footBuf = ByteBuffer.allocateDirect(Math.max(w * h * 4, 65536)).order(ByteOrder.nativeOrder());
+                if (pickFbo == 0) { java.nio.IntBuffer ib = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asIntBuffer(); gl.glGenFramebuffers(1, ib); pickFbo = ib.get(0); }
+                java.nio.IntBuffer prev = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
+                gl.glGetIntegerv(GL20.GL_FRAMEBUFFER_BINDING, prev);
+                gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, pickFbo);
+                gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, t.getTextureObjectHandle(), 0);
+                if (gl.glCheckFramebufferStatus(GL20.GL_FRAMEBUFFER) == GL20.GL_FRAMEBUFFER_COMPLETE) {
+                    footBuf.clear();
+                    gl.glReadPixels(x, r0, w, h, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, footBuf);
+                    // texture row r0 = v min; the quad's bottom is at v = vb
+                    boolean bottomIsHigh = vb > vt;
+                    search:
+                    for (int s = 0; s < h; s++) {
+                        int row = bottomIsHigh ? h - 1 - s : s;
+                        for (int c = 0; c < w; c++)
+                            if ((footBuf.get((row * w + c) * 4 + 3) & 0xff) > 40) { fromBottom = s; break search; }
+                    }
+                    fromBottom = Math.round(fromBottom * quadH / h);
+                }
+                gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, 0, 0);
+                gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, prev.get(0));
+            } catch (Throwable ignored) {}
+            cached = fromBottom;
+            feet.put(k, cached);
+        }
+        return cached;
+    }
+
     void drawPasses(GL20 gl, float[] mvp, float vx, float vz) {
         UiLayer.clientArrays(gl);
         gl.glUseProgram(prog);
@@ -322,13 +397,18 @@ public class Scene3D {
         gl.glDepthMask(true);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         pass(gl, 0, 0.02f, vx, vz);
-        // pass 2: upright opaque cut-outs
         gl.glDepthFunc(GL20.GL_LEQUAL);
+        // buildings and walls: solid columns textured with their own art (Structures)
+        structs.draw(gl, mvp, tint, false, colFade);
+        gl.glUseProgram(prog);
+        // pass 2: upright opaque cut-outs
         pass(gl, 1, 0.5f, vx, vz);
         // pass 3: translucent (fading roofs, ghosts, corpses), then additive particles
         gl.glDepthMask(false);
         pass(gl, 2, 0.02f, vx, vz);
         pass(gl, 5, 0.02f, vx, vz);
+        structs.draw(gl, mvp, tint, true, colFade);                   // columns hiding the hero, faded
+        gl.glUseProgram(prog);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         pass(gl, 3, 0.01f, vx, vz);
         gl.glDepthMask(true);

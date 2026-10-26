@@ -82,6 +82,13 @@ public class VrCore {
         return new float[]{pc[0] + pr[0] * u + pu[0] * v, pc[1] + pr[1] * u + pu[1] * v, pc[2] + pr[2] * u + pu[2] * v};
     }
 
+    /** (tests) where the eye ray (origin o, direction d) meets the UI panel, as a stage point, or null. */
+    public float[] uiHitFromEye(float[] o, float[] d) {
+        float[] aim = Mat.rigidInverse(Mat.lookAt(o[0], o[1], o[2], o[0] + d[0], o[1] + d[1], o[2] + d[2]));
+        float[] end = new float[3];
+        return panelHit(aim, pc, pr, pu, end) == null ? null : end;
+    }
+
     /** (tests) the world's yaw in radians. */
     public float yaw() { return yaw; }
 

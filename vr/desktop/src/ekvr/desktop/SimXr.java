@@ -18,6 +18,7 @@ public class SimXr {
     public static float[] aimStage, aimFrom;        // script "aimsprite": aim at a stage point (from a point) instead
     public static boolean trigger, a, b, x, click;
     public static float rstickX, rstickY;
+    public static float fov = 70;                    // script "fov": zoom the simulated eye (tests)
     public static final java.util.HashSet<String> held = new java.util.HashSet<>();   // y menu ltrig lgrip rgrip rclick
     static boolean on(String k) { return held.contains(k); }
     static float[] proj, view, headPose;
@@ -40,7 +41,7 @@ public class SimXr {
         headPose = Mat.mul(Mat.translate(0, 1.2f, 0),
                 Mat.mul(Mat.rotY((float) Math.toRadians(headYaw)), rotX((float) Math.toRadians(headPitch))));
         view = Mat.rigidInverse(headPose);
-        proj = Mat.perspective(70, w / (float) h, 0.05f, 300f);
+        proj = Mat.perspective(fov, w / (float) h, 0.05f, 300f);
         // right controller: from just below the head, pointing through the aimed pixel
         VrCore.Hand r = core.right;
         r.active = aimX >= 0 || aimStage != null;
@@ -67,6 +68,14 @@ public class SimXr {
         r.sx = rstickX; r.sy = rstickY;
         core.input(headPose, dt);
         core.drawEye(proj, view, w, h);
+    }
+
+    /** (tests) the stage point on the UI panel seen at window pixel (x, y), or null. */
+    static float[] uiPointAtPixel(int x, int y, int w, int h) {
+        float[] inv = DeskBackend.invert(Mat.mul(proj, view));
+        float nx = 2f * x / w - 1, ny = 1 - 2f * y / h;
+        float[] p0 = DeskBackend.unproject(inv, nx, ny, -1), p1 = DeskBackend.unproject(inv, nx, ny, 1);
+        return core.uiHitFromEye(p0, new float[]{p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]});
     }
 
     static float[] rotX(float rad) {

@@ -113,6 +113,13 @@ public class Script implements Runnable {
                 break;
             }
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
+            case "fov": SimXr.fov = Float.parseFloat(c[1]); break;
+            case "uiclickat": {  // click the UI where it is seen at window pixel (x, y)
+                float[] p = SimXr.uiPointAtPixel(Integer.parseInt(c[1]), Integer.parseInt(c[2]), 1280, 720);
+                if (p == null) { System.out.println("[script] uiclickat: no panel there"); break; }
+                SimXr.aimFrom = null; SimXr.aimStage = p;
+                break;
+            }
             case "uiaim": SimXr.aimFrom = null; SimXr.aimStage = SimXr.core.uiPoint(Integer.parseInt(c[1]), Integer.parseInt(c[2])); break;
             case "fakereport":   // (tests) show the last-exit report panel with a sample crash
                 SimXr.core.menu.report = "LAST EXIT: JAVA CRASH\nWHEN: Sat Oct 25 15:24:26 GMT 2026\nJAVA EXCEPTION:\njava.lang.NullPointerException: Attempt to invoke virtual method 'int net.fdgames.GameEntities.MapActor.q()' on a null object reference\n\tat net.fdgames.Helpers.Serializer.a(Serializer.java:412)\n\tat l0.b$3.run(b.java:88)";

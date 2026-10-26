@@ -59,6 +59,29 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   (√2/64)/cos 30° vertically (EK's 2:1 view looks down 30°). Small quads drawn just above a
   character (health bars, labels) ride on that character.
 - Map objects between the viewer and the hero fade to 30 % (V4).
+- **Structures as solid blocks** (V2, v11). Source: EK maps are Tiled TMX (`assets/data/tmx`,
+  isometric 64×32): layers `nonwalk` (invisible; blocked cells), water, ground, ground2,
+  scenery, objects, roofs. A building is one image (e.g. house_village_blue_2.png 384×384)
+  cut into 64×128 strips placed on the objects layer cell by cell, so as billboards it fell
+  apart into slabs (owner's screenshots, Lannegar). The loader keeps each tileset's
+  `imagesource` (TiledMapTileSet properties); tiles whose image is a structure — house*,
+  townhall*, manor*, tower*, farmhouse, windmill, wizardtower, *wall*/brickwalls*, palisade,
+  gate*, ruins, tomb*, icemist_walls/large, medieval_building_tiles, adt_tiled_dungeon*, cave*
+  — are not billboarded. Instead, per frame:
+  1. those quads are drawn, in the game's order, into an offscreen **structure image** in iso
+     screen space (exactly the 2D picture of the buildings);
+  2. the `nonwalk` cells are grouped into connected regions; each region touched by a structure
+     quad becomes columns (one per cell, 1×1 cell, shared faces skipped) of height = the
+     tallest structure art anchored in it;
+  3. the columns are textured by projecting the structure image with EK's own projection
+     (world (X, Y, Z) → iso (32(X−Z), 16(−Z−X) + Y/SY)), alpha-tested. From the 2D view
+     direction this reproduces the art exactly; the walls/roofs are solid surfaces with real
+     depth; cells where the art is transparent show nothing (roof outlines, gaps), and the
+     backs of buildings repeat the front art (V2 limitation).
+  Columns between the viewer and the hero (V4 test) draw at 35 %.
+- **Feet on the ground** (v11): characters/items (non-tile sprites) stand on their lowest
+  opaque pixel row (read once per sprite frame from the texture), not quad bottom + 16 px (a
+  tile's cell-centre convention), which sank them by up to ~0.4 m (owner's screenshots).
 - **Facing** (v6): EK draws a character with one of 8 screen directions
   (`MapActor.facing`, enum U, RU, R, RD, D, LD, L, LU = ordinals 0..7, clockwise; chosen from
   its velocity in `MapActor.u0`: x+y vs y−x in world px). Ordinal k = world heading
@@ -244,8 +267,8 @@ Dalvik verifier (`tools/dalvik_verify.sh`) does not catch it, so it is not used 
 ## 7. Deviations / next (logged in DEOBFUSCATION_STATUS.md §3 as V1–V5)
 
 - **V1** 3D presentation itself (§3): billboards for everything upright.
-- **V2** Buildings and walls are billboards → next: boxes textured by projecting their
-  iso art onto the faces (correct from the iso direction, solid from the others).
+- **V2** ~~Buildings and walls are billboards~~ v11: solid columns on their `nonwalk`
+  footprint, textured by projecting their iso art (§3); backs repeat the front art.
 - **V3** No 3D point lights (torches, fires) yet; ambient only.
 - **V4** ~~Trees between the camera and the hero are not faded~~ DONE: map objects standing
   between the viewer and the hero (within 1.6 cells of the line) draw at 30 % alpha.
