@@ -35,7 +35,7 @@ class Structures {
 
     /** Per map: structure tile keys and nonwalk regions. */
     void build(com.badlogic.gdx.s.j.b map) {
-        keys.clear(); regionCells.clear(); regionTex.clear(); texCat.clear(); region = null; propCell = null; mw = mh = 0;
+        keys.clear(); regionCells.clear(); regionTex.clear(); texCat.clear(); region = null; propCell = null; propCell2 = null; mw = mh = 0;
         if (map == null) return;
         int sets = 0;
         try {
@@ -96,6 +96,32 @@ class Structures {
                 int[] cellCat = new int[mw * mh];
                 for (long e : artTex) { int c = (int) (e >>> 32); Integer k = texCat.get((int) e); if (cellCat[c] == 0 && k != null) cellCat[c] = k; }
                 artDbg = art.clone(); nonwalkDbg = b.clone();
+                // dungeon-set art on its own grid: a cell can hold a dungeon piece and a building tile
+                // on different layers (Lannegar shrine / town hall at 91,80); by the first tile alone
+                // the shrine piece counted as building and was dropped (v18 owner: altar missing)
+                boolean[] art2 = new boolean[mw * mh];
+                for (long e : artTex) { Integer k = texCat.get((int) e); if (k != null && k == 2) art2[(int) (e >>> 32)] = true; }
+                propCell2 = new boolean[mw * mh];
+                {
+                    int[] seen = new int[mw * mh], st2 = new int[mw * mh], mem = new int[mw * mh];
+                    for (int i = 0; i < art2.length; i++) {
+                        if (!art2[i] || seen[i] != 0) continue;
+                        int sp = 0, cnt = 0;
+                        st2[sp++] = i; seen[i] = 1;
+                        while (sp > 0) {
+                            int c = st2[--sp], cx = c % mw, cy = c / mw;
+                            mem[cnt++] = c;
+                            for (int dx = -1; dx <= 1; dx++)
+                                for (int dy = -1; dy <= 1; dy++) {
+                                    int nx = cx + dx, ny = cy + dy;
+                                    if (nx < 0 || ny < 0 || nx >= mw || ny >= mh) continue;
+                                    int k = nx + ny * mw;
+                                    if (art2[k] && seen[k] == 0) { seen[k] = 1; st2[sp++] = k; }
+                                }
+                        }
+                        if (cnt < 24) for (int j = 0; j < cnt; j++) propCell2[mem[j]] = true;
+                    }
+                }
                 propCell = new boolean[mw * mh];
                 int[] comp = new int[mw * mh], st = new int[mw * mh];
                 java.util.Arrays.fill(comp, -1);
@@ -121,12 +147,13 @@ class Structures {
                     // only for dungeon / ruin pieces: a building's or wall's art tiles are often stored
                     // a few cells off its footprint in the layers, in sparse diagonal runs that read as
                     // lone pieces (v18 first cut turned house tiles into flat cut-outs)
-                    int limit = cellCat[i] == 2 ? 24 : 0;
+                    int limit = 0;                                              // dungeon pieces: propCell2
                     if (cnt < limit) for (int j = 0; j < cnt; j++) { propCell[members[j]] = true; art[members[j]] = false; }
                 }
                 // reach: a building's art tiles stand along its front edges and roof, so its inner
                 // footprint can be 3-4 cells from any of them (v18 with reach 1 broke houses into
                 // fragments); walls and dungeon pieces stand on their own cells
+                for (int i = 0; i < art.length; i++) if (propCell2[i] && cellCat[i] == 2) art[i] = false;
                 boolean[] near = new boolean[mw * mh];
                 for (int i = 0; i < art.length; i++) {
                     if (!art[i]) continue;
@@ -146,7 +173,7 @@ class Structures {
                 for (long e : artTex) {
                     int c = (int) (e >>> 32);
                     Integer cat = texCat.get((int) e);
-                    if (own[c] == 0 && !propCell[c] && cat != null) own[c] = cat;   // 1 walls, 2 dungeon/ruins, 3 buildings
+                    if (own[c] == 0 && cat != null && !(cat == 2 && propCell2[c])) own[c] = cat;   // 1 walls, 2 dungeon/ruins, 3 buildings
                 }
                 for (int i = 0; i < b.length; i++) {
                     if (!b[i]) continue;
@@ -223,8 +250,8 @@ class Structures {
                 for (int i = 0; i < regionCells.size(); i++) regionTex.add(new java.util.HashSet<>());
                 for (long e : artTex) {
                     int c = (int) (e >>> 32), x = c % mw, y = c / mw, t = (int) e;
-                    if (propCell[c]) continue;
                     Integer tc = texCat.get(t);
+                    if (tc != null && tc == 2 && propCell2[c]) continue;
                     int reach = tc != null && tc == 3 ? 4 : 1;                 // see the near mask
                     for (int dx = -reach; dx <= reach; dx++)
                         for (int dy = -reach; dy <= reach; dy++) {
@@ -242,17 +269,29 @@ class Structures {
                 + mw + "x" + mh + ", " + regionCells.size() + " regions");
     }
 
-    boolean[] propCell, artDbg, nonwalkDbg;
+    boolean[] propCell, propCell2, artDbg, nonwalkDbg;
     final ArrayList<java.util.HashSet<Integer>> regionTex = new ArrayList<>();
     final java.util.HashMap<Integer, Integer> texCat = new java.util.HashMap<>();
 
     boolean isStructure(long key) { return keys.contains(key); }
 
-    /** A structure tile drawn at this cell: false for the lone pieces that are props (see build). */
-    boolean isStructureAt(long key, int col, int row) {
+    /** A structure tile drawn at this cell: false for the dungeon / ruin pieces that are props (see build). */
+    boolean isStructureAt(long key, int tex, int col, int row) {
         if (!keys.contains(key)) return false;
-        return propCell == null || col < 0 || row < 0 || col >= mw || row >= mh || !propCell[col + row * mw];
+        if (col < 0 || row < 0 || col >= mw || row >= mh) return true;
+        Integer cat = texCat.get(tex);
+        if (cat != null && cat == 2 && propCell2 != null) {
+            // the quad's cell or a neighbour (a tile's drawn cell can be one off its layer cell)
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dy = -1; dy <= 1; dy++) {
+                    int x = col + dx, y = row + dy;
+                    if (x >= 0 && y >= 0 && x < mw && y < mh && propCell2[x + y * mw]) return false;
+                }
+            return true;
+        }
+        return propCell == null || !propCell[col + row * mw];
     }
+
 
     // ---- per frame -------------------------------------------------------------------------
     int fbo, tex, texW, texH;
@@ -376,7 +415,7 @@ class Structures {
                 // full height H at the cells farthest inside; thin regions (walls) are H throughout
                 int dmax = regionMaxDist[id];
                 float hw = dmax >= 2 ? Math.max(1.5f, Math.min(3.0f, 0.45f * h)) : h;
-                curH = h; curHw = hw; curDmax = dmax;
+                curH = h; curHw = hw; curDmax = dmax; curThin = dmax < 2;
                 for (int cell : regionCells.get(id)) {
                     int col = cell & 0xffff, row = cell >>> 16;
                     if (!nearImage(col, row)) continue;
@@ -434,6 +473,7 @@ class Structures {
     }
 
     float curH, curHw;
+    boolean curThin;
     int curDmax;
 
     /** Height of a cell of region id in the heightfield, or NaN (not in the region). */
@@ -506,6 +546,10 @@ class Structures {
     void tri(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3) {
         float ax = x2 - x1, ay = y2 - y1, az = z2 - z1, bx = x3 - x1, by = y3 - y1, bz = z3 - z1;
         float nx = ay * bz - az * by, ny = az * bx - ax * bz, nz = ax * by - ay * bx;
+        // unit normal; length 2 marks a thin region (walls, fences: their back side shows the same
+        // stone, so the shader keeps the art there instead of blurring it)
+        float nl = (float) Math.sqrt(nx * nx + ny * ny + nz * nz), sc = (curThin ? 2f : 1f) / Math.max(1e-6f, nl);
+        nx *= sc; ny *= sc; nz *= sc;
         put(x1, y1, z1, nx, ny, nz); put(x2, y2, z2, nx, ny, nz); put(x3, y3, z3, nx, ny, nz);
     }
 
@@ -599,16 +643,22 @@ class Structures {
     void initCols(GL20 gl) {
         int vs = Scene3D.shader(gl, GL20.GL_VERTEX_SHADER,
                 "attribute vec3 a_pos; attribute vec3 a_nrm; uniform mat4 u_mvp; uniform vec4 u_iso; uniform float u_sy; uniform vec2 u_sub;\n" +
-                "uniform vec3 u_eye; varying vec2 v_uv; varying vec2 v_w; varying float v_out;\n" +
+                "uniform vec3 u_eye; varying vec2 v_uv; varying vec2 v_w; varying float v_out; varying float v_hid;\n" +
                 "void main(){\n" +
                 "  v_w = a_pos.xz; v_out = dot(a_nrm, u_eye - a_pos);\n" +
+                // faces turned away from the 2D view (it looks along -X-Z): the art has nothing of them
+                "  vec3 nn = normalize(a_nrm); v_hid = length(a_nrm) > 1.5 ? 1.0 : (nn.x + nn.z) * 0.7071;\n" +
                 "  float sx = 32.0*(a_pos.x - a_pos.z);\n" +
                 "  float sy = 16.0*(-a_pos.z - a_pos.x) + a_pos.y / u_sy;\n" +
                 "  v_uv = vec2((sx - u_iso.x) / u_iso.z, (sy - u_iso.y) / u_iso.w) * u_sub;\n" +
                 "  gl_Position = u_mvp*vec4(a_pos,1.0); }");
         int fs = Scene3D.shader(gl, GL20.GL_FRAGMENT_SHADER, "#ifdef GL_ES\nprecision highp float;\n#endif\n" +
-                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w; varying float v_out;\n" + Scene3D.FOG +
-                "void main(){ if(v_out<0.0) discard; vec4 c=texture2D(u_tex,v_uv);\n" +
+                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w; varying float v_out; varying float v_hid;\n" + Scene3D.FOG +
+                // a face the 2D view can't see (north / west walls) would copy whatever stands in front
+                // of it in the picture -- windows, doors, timber of the front (owner: ghost props and
+                // smears on house walls, v18): it takes the building's blurred colour instead (v19)
+                "void main(){ if(v_out<0.0) discard; vec4 c = v_hid < -0.2 ? texture2D(u_tex,v_uv,5.0) : texture2D(u_tex,v_uv);\n" +
+                "  if(v_hid < -0.2 && c.a > 0.02) c = vec4(c.rgb / c.a, 1.0);\n" +
                 // a face the 2D art doesn't cover (a side / back wall, the edge of a roof) takes the colour
                 // of the nearest art (coarser mip levels of the image: pull fill) instead of a hole (v17)
                 "  if(c.a<0.5){ vec4 f=texture2D(u_tex,v_uv,2.0);\n" +

@@ -156,6 +156,20 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   - *Camera in a building*: the whole building within 2 cells of the eye is hidden at street
     level (the third-person camera ends up inside houses the hero walks along); a building
     fades only within 3 units in front of the hero.
+- **v19** (owner's v18 headset screenshots: names huge, altar hidden until close and wrong,
+  ghost stall/rack painted on a house):
+  - *Names*: a glyph run (≥ 2 glyphs) riding on a character is drawn at 40% about the run's
+    centre and baseline (EK's font is sized for the 2D screen: ~1 m tall letters).
+  - *Shrine*: a cell can hold a dungeon-set piece and a building tile on different layers;
+    the cell's first tile decided its kind, so shrine pieces next to the town hall counted
+    as building art and were extruded / dropped. Dungeon-set art now has its own grid and
+    clusters (< 24 cells), and each dungeon-set quad is a prop if its cell or a neighbour is
+    in such a cluster (`isStructureAt(key, tex, col, row)`).
+  - *Unseen faces*: the 2D picture looks along −X−Z; a building face turned away from it
+    (outward normal with x + z < −0.2·√2) has nothing of its own in the art and sampled what
+    stands in front of it in the picture (windows, a stall, the rack: "ghosts"). Such faces
+    take the building's blurred colour (mip level 5). Thin regions (walls, fences) keep the
+    art on both sides (normal length 2 marks them).
 - **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
   EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
   setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame

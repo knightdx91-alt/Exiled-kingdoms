@@ -151,7 +151,7 @@ public class Scene3D {
         StringBuilder sb = new StringBuilder();
         float[] q = rec.q;
         for (int i = 0; i < rec.n; i++) {
-            if (kind[i] == 0 || kind[i] == STRUCT || Math.abs(ax[i] - heroX) > r || Math.abs(az[i] - heroZ) > r) continue;
+            if (kind[i] == 0 || Math.abs(ax[i] - heroX) > r || Math.abs(az[i] - heroZ) > r) continue;
             int o = i * 16;
             float minX = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12])), maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
             float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13])), maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
@@ -415,7 +415,8 @@ public class Scene3D {
         //     glyph to a character only within 56 px of its centre, so the outer letters of a long
         //     name stayed behind on the ground (owner: "names are showing up in the ground").
         //     Consecutive small quads of one texture on one line form a run, tested by its centre.
-        if (runCx.length < n) runCx = new float[n * 2];
+        if (runCx.length < n) { runCx = new float[n * 2]; runBot = new float[n * 2]; runN = new int[n * 2]; tScale = new float[n * 2]; }
+        java.util.Arrays.fill(tScale, 0, n, 1f);
         for (int i = 0, start = 0; i <= n; i++) {
             boolean joins = false;
             if (i < n && i > start) {
@@ -430,7 +431,9 @@ public class Scene3D {
                 if (i > start) {
                     float lo = Float.MAX_VALUE, hi = -Float.MAX_VALUE;
                     for (int j = start; j < i; j++) { int o = j * 16; lo = Math.min(lo, Math.min(q[o], q[o + 4])); hi = Math.max(hi, Math.max(q[o + 8], q[o + 12])); }
-                    for (int j = start; j < i; j++) runCx[j] = (lo + hi) / 2;
+                    float bot = Float.MAX_VALUE;
+                    for (int j = start; j < i; j++) { int o = j * 16; bot = Math.min(bot, Math.min(q[o + 1], q[o + 5])); }
+                    for (int j = start; j < i; j++) { runCx[j] = (lo + hi) / 2; runBot[j] = bot; runN[j] = i - start; }
                 }
                 start = i;
             }
@@ -447,7 +450,7 @@ public class Scene3D {
             long tk = rec.tileDraw[i] ? key(rec.tex[i].getTextureObjectHandle(), q[o + 2], q[o + 3]) : 0;
             boolean floor = rec.tileDraw[i] && floorKeys.contains(tk);
             int a = (Float.floatToRawIntBits(rec.col[i]) >>> 24) & 0xff;
-            kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructureAt(tk, Math.round(gi((minX + maxX) / 2, minY + 16)), Math.round(go((minX + maxX) / 2, minY + 16)) - 1) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
+            kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructureAt(tk, rec.tex[i].getTextureObjectHandle(), Math.round(gi((minX + maxX) / 2, minY + 16)), Math.round(go((minX + maxX) / 2, minY + 16)) - 1) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
             aCx[i] = (minX + maxX) / 2;
             // tiles stand on their cell centre (quad bottom + 16 px); sprites on their lowest opaque row
             aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + groupFoot(minY, aCx[i]);
@@ -465,6 +468,10 @@ public class Scene3D {
                     int j = actorIdx[k];
                     if (Math.abs(runCx[i] - aCx[j]) < 56 && minY >= aBase[j] - 30 && minY < aBase[j] + 170) {
                         ax[i] = ax[j]; az[i] = az[j]; aCx[i] = aCx[j]; aBase[i] = aBase[j]; aFoot[i] = aFoot[j];
+                        // a name / title over a character: EK's font is sized for the 2D screen and
+                        // came out ~1 m tall over the head (owner: "Brother Janus" across the view);
+                        // shrink the run to 40% about its own centre and baseline
+                        if (runN[i] >= 2) tScale[i] = 0.4f;
                         break;
                     }
                 }
@@ -634,7 +641,8 @@ public class Scene3D {
 
     final java.util.HashMap<Long, Integer> feet = new java.util.HashMap<>();
     final java.util.HashMap<Long, Integer> footGroups = new java.util.HashMap<>();
-    float[] runCx = new float[0];
+    float[] runCx = new float[0], runBot = new float[0], tScale = new float[0];
+    int[] runN = new int[0];
     final java.util.HashSet<Integer> mapTex = new java.util.HashSet<>();
 
     /** Layers of one character: same bottom edge (to 2 px) and centre (to 8 px). */
@@ -906,6 +914,7 @@ public class Scene3D {
                     if (k == 0) {
                         stage[w++] = gi(sx, sy); stage[w++] = 0f; stage[w++] = -go(sx, sy);
                     } else {
+                        if (tScale[i] != 1f) { sx = runCx[i] + (sx - runCx[i]) * tScale[i]; sy = runBot[i] + (sy - runBot[i]) * tScale[i]; }
                         float h = (sx - aCx[i]) * S, y = (sy - aFoot[i]) * SY;
                         stage[w++] = ax[i] + rx * h; stage[w++] = y; stage[w++] = az[i] + rz * h;
                     }
