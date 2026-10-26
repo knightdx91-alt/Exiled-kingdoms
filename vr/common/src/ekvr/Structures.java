@@ -101,7 +101,7 @@ class Structures {
     int[] colStart = new int[0], colCount = new int[0];
     int ncols;
     final IntBuffer ib = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
-    final FloatBuffer quad = ByteBuffer.allocateDirect(Rec.MAX * 6 * 8 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    FloatBuffer quad = ByteBuffer.allocateDirect(1 << 20).order(ByteOrder.nativeOrder()).asFloatBuffer();   // grows as needed
     int imgProg, iPos, iUv, iCol, iMvp;
     int colProg, cPos, cMvp, cIso, cSy, cTint, cAlpha;
 
@@ -156,6 +156,9 @@ class Structures {
         gl.glUniformMatrix4fv(iMvp, 1, false, ortho, 0);
         gl.glActiveTexture(GL20.GL_TEXTURE0);
         com.badlogic.gdx.graphics.Texture cur = null;
+        int need = 0;
+        for (int i = 0; i < n; i++) if (sc.kind[i] == Scene3D.STRUCT) need += 48;
+        if (quad.capacity() < need) quad = ByteBuffer.allocateDirect(need * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
         quad.clear();
         int verts = 0;
         for (int i = 0; i < n; i++) {
@@ -235,7 +238,8 @@ class Structures {
     void put(float x, float y, float z) { cols.put(x).put(y).put(z); colVerts++; }
 
     /** Draw the columns (opaque pass, or the faded ones between the viewer and the hero). */
-    void draw(GL20 gl, float[] mvp, float[] tint, boolean faded, boolean[] fade) {
+    void draw(GL20 gl, float[] mvp, Scene3D sc, boolean faded, boolean[] fade) {
+        float[] tint = sc.tint;
         if (!any || colVerts == 0) return;
         if (colProg == 0) initCols(gl);
         UiLayer.clientArrays(gl);
@@ -246,6 +250,7 @@ class Structures {
         gl.glUniform4f(cTint, tint[0], tint[1], tint[2], 1);
         gl.glUniform1f(cAlpha, faded ? 0.35f : 1f);
         setSub(gl);
+        sc.fogUniforms(gl, cFogC, cFog, cFogCol);
         gl.glActiveTexture(GL20.GL_TEXTURE0);
         gl.glBindTexture(GL20.GL_TEXTURE_2D, tex);
         cols.position(0);
@@ -309,16 +314,17 @@ class Structures {
     void initCols(GL20 gl) {
         int vs = Scene3D.shader(gl, GL20.GL_VERTEX_SHADER,
                 "attribute vec3 a_pos; uniform mat4 u_mvp; uniform vec4 u_iso; uniform float u_sy; uniform vec2 u_sub;\n" +
-                "varying vec2 v_uv;\n" +
+                "varying vec2 v_uv; varying vec2 v_w;\n" +
                 "void main(){\n" +
+                "  v_w = a_pos.xz;\n" +
                 "  float sx = 32.0*(a_pos.x - a_pos.z);\n" +
                 "  float sy = 16.0*(-a_pos.z - a_pos.x) + a_pos.y / u_sy;\n" +
                 "  v_uv = vec2((sx - u_iso.x) / u_iso.z, (sy - u_iso.y) / u_iso.w) * u_sub;\n" +
                 "  gl_Position = u_mvp*vec4(a_pos,1.0); }");
         int fs = Scene3D.shader(gl, GL20.GL_FRAGMENT_SHADER, "#ifdef GL_ES\nprecision highp float;\n#endif\n" +
-                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv;\n" +
+                "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w;\n" + Scene3D.FOG +
                 "void main(){ vec4 c=texture2D(u_tex,v_uv); if(c.a<0.5) discard;\n" +
-                "  gl_FragColor=vec4(c.rgb/c.a*u_tint.rgb, u_alpha); }");
+                "  gl_FragColor=fog(vec4(c.rgb/c.a*u_tint.rgb, u_alpha), v_w); }");
         colProg = link(gl, vs, fs);
         cPos = gl.glGetAttribLocation(colProg, "a_pos");
         cMvp = gl.glGetUniformLocation(colProg, "u_mvp");
@@ -327,9 +333,12 @@ class Structures {
         cTint = gl.glGetUniformLocation(colProg, "u_tint");
         cAlpha = gl.glGetUniformLocation(colProg, "u_alpha");
         cSub = gl.glGetUniformLocation(colProg, "u_sub");
+        cFogC = gl.glGetUniformLocation(colProg, "u_fogC");
+        cFog = gl.glGetUniformLocation(colProg, "u_fog");
+        cFogCol = gl.glGetUniformLocation(colProg, "u_fogCol");
     }
 
-    int cSub;
+    int cSub, cFogC, cFog, cFogCol;
 
     void setSub(GL20 gl) { gl.glUniform2f(cSub, imgW / (float) texW, imgH / (float) texH); }
 

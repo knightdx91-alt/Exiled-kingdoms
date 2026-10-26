@@ -29,7 +29,7 @@ to be re-derived and would drift. The earlier Godot tutorial also lacked the gam
 | `MainActivity.onCreate` (smali) | v10: `new ExiledKingdoms(this)` → `new ekvr.android.VrEK(this)` (a subclass: VR around `super`'s create/render/resize), and `initialize(game, cfg)` → `initialize(Vr.wrap(this, game, cfg), cfg)` where wrap only sets the config and returns the same object (`tools/vr/patch_mainactivity.py`). v1–v9 passed a separate wrapper object instead; EK casts `Gdx.app.getApplicationListener()` to `Game` and its screens on to `ExiledKingdoms` (Save and Exit, loading a save → `e.a.d.b0$e`, `e.a.b.e`), so the wrapper crashed with ClassCastException on the headset (owner's exit report, 2026-10-25). The desktop test bed always used the game object itself, which is why it never showed. |
 | `AndroidApplicationConfiguration` | `useGL30` (ES 3 context for OpenXR), RGBA8, depth 16 |
 | `Gdx.gl` | wrapped by `ekvr.GlTap` (pass-through; transparent clears while the UI layer renders) |
-| `GameLevelRenderer` (`e.a.a.a`) instance, at runtime | its map renderer's batch (`BatchTiledMapRenderer.c`) → `ekvr.Rec`; its RayHandler (`d`, box2dlights `c.f`) → `Scene3D.NoLight` (keeps the ambient colour, draws no lightmap); camera zoom 2.6 so more of the map is drawn |
+| `GameLevelRenderer` (`e.a.a.a`) instance, at runtime | its map renderer's batch (`BatchTiledMapRenderer.c`) → `ekvr.Rec`; its RayHandler (`d`, box2dlights `c.f`) → `Scene3D.NoLight` (keeps the ambient colour, draws no lightmap); the map renderer's view bounds (`d`) widened by the draw distance as drawing begins (§3) |
 | `Controllers` | our ControllerManager (`ekvr.Pad`, a virtual gamepad) — AndroidControllers needs a View we don't have on desktop |
 | `AndroidGraphics.width/height` | held at a virtual 1280×720 screen (the game lays its UI out for it) |
 | manifest (`tools/vr/axml.py`) | Quest VR + OpenXR IMMERSIVE_HMD launcher categories, OpenXR permissions, `android.hardware.vr.headtracking` (required), passthrough (optional), `com.oculus.supportedDevices` |
@@ -79,6 +79,19 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
      depth; cells where the art is transparent show nothing (roof outlines, gaps), and the
      backs of buildings repeat the front art (V2 limitation).
   Columns between the viewer and the hero (V4 test) draw at 35 %.
+- **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
+  EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
+  setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame
+  (GameLevelRenderer: > 1.5 → 1.5, then eased to 1) — so the zoom the VR layer set since v1
+  (2.6) never took effect. v12 widens the view bounds instead, when map drawing begins (the
+  recorder's begin(), after setView, before the culling): × Near 2.6, **Medium 4 (default)**,
+  Far 6, Max 9 of the 2D view. Measured in Lannegar: ~4.8k / 7.9k / 10.7k quads (Max reaches
+  the map edge). The camera itself is left to EK.
+  The recorder holds up to 131072 quads (was 32768). The 3D geometry is built once per frame
+  and drawn for both eyes (billboards face the first eye; was rebuilt per eye). Fog in the sky
+  colour fades the ground and everything on it from 8×zoom to 13×zoom cells from the hero (a
+  circle inside the drawn iso rectangle, whose half-extents are ~14×zoom cells), hiding its
+  square edge. Cost: more quads per frame; the setting lets the owner trade distance for speed.
 - **Feet on the ground** (v11): characters/items (non-tile sprites) stand on their lowest
   opaque pixel row (read once per sprite frame from the texture), not quad bottom + 16 px (a
   tile's cell-centre convention), which sank them by up to ~0.4 m (owner's screenshots).
@@ -234,7 +247,7 @@ dependency on the game's fonts). While it is open the game gets no controller in
 each function with its button(s); then **Turning** (smooth / snap), **Turn speed** (60 / 90 /
 120 / 180 °/s; snap: 30°), **Camera follows hero** (on / off), **Start view** (third person /
 first person / tabletop), v6: **Move with** (left / right stick), **Move relative to** (view / head),
-**Pointer hand** (auto / right / left), **Camera distance**, **Camera height**, **Recenter
+**Pointer hand** (auto / right / left), **Camera distance**, **Camera height**, v12: **Draw distance**, **Recenter
 now** (recalibrate: forward = where you look, the hero back in front of you), **Reset to defaults**, **Close**. Point the laser at a row and pull
 either trigger: an option row cycles its value; a function row shows "PRESS A BUTTON" —
 the next button newly pressed (v7: not "after every button is released" — holding a Touch

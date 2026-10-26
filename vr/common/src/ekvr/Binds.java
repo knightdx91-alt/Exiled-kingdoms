@@ -34,6 +34,10 @@ public class Binds {
     public int pointer;                              // laser hand: 0 auto (last trigger), 1 right, 2 left
     public int camDist = 1, camHeight = 1;           // third person: index into DISTS / HEIGHTS
     public static final float[] DISTS = {1.6f, 2.4f, 3.2f}, HEIGHTS = {1.5f, 2.0f, 2.5f};
+    /** Draw distance = EK's map camera zoom (QUEST_VR_SPEC.md §3): Near, Medium, Far, Max. */
+    public static final float[] ZOOMS = {2.6f, 4f, 6f, 9f};
+    public static final String[] ZOOM_NAMES = {"NEAR", "MEDIUM", "FAR", "MAX"};
+    public int drawDist = 1;
     static final int[] SPEEDS = {60, 90, 120, 180};
     static final String FILE = "ekvr.properties";
 
@@ -52,7 +56,7 @@ public class Binds {
         map.put(Btn.RSTICK, Fn.VIEW);
         map.put(Btn.LSTICK, Fn.RECENTER);
         smoothTurn = true; follow = true; turnSpeed = 90; startView = 1;
-        moveRight = false; moveHead = false; pointer = 0; camDist = 1; camHeight = 1;
+        moveRight = false; moveHead = false; pointer = 0; camDist = 1; camHeight = 1; drawDist = 1;
     }
 
     public Fn fn(Btn b) { Fn f = map.get(b); return f == null ? Fn.NONE : f; }
@@ -91,6 +95,7 @@ public class Binds {
             pointer = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("pointer", "0"))));
             camDist = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("camDist", "1"))));
             camHeight = Math.max(0, Math.min(2, Integer.parseInt(p.getProperty("camHeight", "1"))));
+            drawDist = Math.max(0, Math.min(3, Integer.parseInt(p.getProperty("drawDist", "1"))));
         } catch (Throwable t) {
             System.out.println("[ekvr] can't read " + FILE + ": " + t);
             defaults();
@@ -110,6 +115,7 @@ public class Binds {
             sb.append("pointer=").append(pointer).append('\n');
             sb.append("camDist=").append(camDist).append('\n');
             sb.append("camHeight=").append(camHeight).append('\n');
+            sb.append("drawDist=").append(drawDist).append('\n');
             com.badlogic.gdx.Gdx.files.local(FILE).writeString(sb.toString(), false);
         } catch (Throwable t) {
             System.out.println("[ekvr] can't save " + FILE + ": " + t);

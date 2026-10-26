@@ -96,6 +96,7 @@ public class VrCore {
     /** Run the real game for one frame: map recorded for 3D, UI into the layer. */
     public void gameFrame(Runnable renderGame, int defaultFbo) {
         if (ui == null) ui = new UiLayer(vw, vh);
+        scene.zoom = Binds.ZOOMS[binds.drawDist];                 // draw distance = EK's map camera zoom
         scene.beginFrame();
         ui.begin();
         renderGame.run();
@@ -580,8 +581,14 @@ public class VrCore {
     public void drawEye(float[] proj, float[] view, int w, int h) {
         GL20 gl = UiLayer.gl();
         gl.glViewport(0, 0, w, h);
-        if (passthrough && mode == Mode.TABLE) gl.glClearColor(0, 0, 0, 0);
-        else gl.glClearColor(0.42f * scene.tint[0], 0.55f * scene.tint[1], 0.72f * scene.tint[2], 1);
+        boolean pt = passthrough && mode == Mode.TABLE;
+        float sr = 0.42f * scene.tint[0], sg = 0.55f * scene.tint[1], sbl = 0.72f * scene.tint[2];
+        if (pt) gl.glClearColor(0, 0, 0, 0);
+        else gl.glClearColor(sr, sg, sbl, 1);
+        // fog at the edge of the drawn area (draw distance), in the sky colour (or fading out over passthrough)
+        scene.fogC[0] = scene.dispX(); scene.fogC[1] = scene.dispZ();
+        scene.fogRange[0] = 8f * scene.zoom; scene.fogRange[1] = 13f * scene.zoom;
+        scene.fogCol[0] = sr; scene.fogCol[1] = sg; scene.fogCol[2] = sbl; scene.fogCol[3] = pt ? 1f : 0f;
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         float[] pv = Mat.mul(proj, view);
         float[] wm = world();

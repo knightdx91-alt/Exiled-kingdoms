@@ -77,4 +77,17 @@ look -12 -2
 wait 5
 shot zoom_village_l
 fov 70
+# draw distance: medium (default), then max
+look 6 -12
+wait 10
+stats
+shot dist_medium
+drawdist 3
+wait 30
+stats
+shot dist_max
+drawdist 0
+wait 30
+stats
+shot dist_near
 quit

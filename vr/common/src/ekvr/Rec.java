@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Matrix4;
  * Scene3D re-places them in 3D. Spec: deobf/QUEST_VR_SPEC.md §3.
  */
 public class Rec implements Batch {
-    public static final int MAX = 32768;
+    public static final int MAX = 131072;          // v12: far draw distances (QUEST_VR_SPEC.md §3)
     public final Texture[] tex = new Texture[MAX];
     /** Per quad: x1,y1,u1,v1, x2,y2,u2,v2, x3,y3,u3,v3, x4,y4,u4,v4 (corners in batch order). */
     public final float[] q = new float[MAX * 16];

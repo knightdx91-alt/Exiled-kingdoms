@@ -30,7 +30,7 @@ public class Scene3D {
     public static final float SY = S / (float) Math.cos(Math.toRadians(30)); // art px -> units, vertical (2:1 = 30°)
 
     public final Rec rec = new Rec();
-    public float zoom = 2.6f;                    // how much of the map the 2D renderer culls to (bigger = more)
+    public float zoom = 4f;                      // draw distance: the map is drawn this many times the 2D view (widenView)
     public final float[] tint = {1, 1, 1, 1};
     public float heroX, heroZ;                   // hero ground position (units)
     public boolean hideHero;                     // first person: don't draw the hero (you are the hero)
@@ -40,6 +40,7 @@ public class Scene3D {
     public float dispX() { return heroX + offX; }
     public float dispZ() { return heroZ + offZ; }
     boolean ready, classified, structPrepared;
+    int frame, builtFrame = -1;
     static final byte STRUCT = 6;                // a building / wall quad: drawn as solid columns (Structures)
     final Structures structs = new Structures();
     boolean[] colFade = new boolean[0];
@@ -47,18 +48,45 @@ public class Scene3D {
     final HashSet<Long> floorKeys = new HashSet<>();
     Object origBatch;
     int prog, aPos, aUv, aCol, uMvp, uCut, uTint;
-    FloatBuffer vb = ByteBuffer.allocateDirect(Rec.MAX * 6 * 9 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    FloatBuffer vb = ByteBuffer.allocateDirect(1 << 20).order(ByteOrder.nativeOrder()).asFloatBuffer();   // grows as needed
 
     // ---- hooking -------------------------------------------------------------------------
     static Field field(Class<?> c, String n) throws Exception { Field f = c.getDeclaredField(n); f.setAccessible(true); return f; }
-    static Field fLevelR, fMapBatch, fMapMap, fLights, fWorld, fAmbient;
+    static Field fLevelR, fMapBatch, fMapMap, fLights, fWorld, fAmbient, fViewBounds;
+    boolean widened;
+
+    /**
+     * Draw distance (QUEST_VR_SPEC.md §3). EK culls the map to its renderer's view bounds, set from
+     * its camera just before drawing -- and EK keeps that camera's zoom within 1..1.5 itself every
+     * frame (GameLevelRenderer: zoom > 1.5 -> 1.5, then eased to 1), so zooming the camera does
+     * nothing. Instead, when map drawing begins (the recorder's begin(), after setView, before
+     * the culling), widen the bounds to `zoom` times the 1x view around their centre.
+     */
+    void widenView() {
+        if (widened) return;
+        widened = true;
+        try {
+            e.a.a.a lr = (e.a.a.a) fLevelR.get(null);
+            if (lr == null || lr.l == null || lr.g == null) return;
+            com.badlogic.gdx.math.q r = (com.badlogic.gdx.math.q) fViewBounds.get(lr.l);
+            float f = zoom / Math.max(0.1f, lr.g.zoom);
+            if (r == null || f <= 1f) return;
+            float cx = r.x + r.width / 2, cy = r.y + r.height / 2;
+            r.width *= f; r.height *= f;
+            r.x = cx - r.width / 2; r.y = cy - r.height / 2;
+        } catch (Throwable t) {
+            System.out.println("[ekvr] widen view: " + t);
+        }
+    }
 
     /** Point the game's map drawing at our recorder. Call every frame before the game renders. */
     public void beginFrame() {
         rec.reset();
+        frame++;
         classified = false;
         structPrepared = false;
-        if (rec.onBegin == null) rec.onBegin = this::faceViewer;
+        widened = false;
+        if (rec.onBegin == null) rec.onBegin = () -> { widenView(); faceViewer(); };
         try {
             if (fLevelR == null) {
                 fLevelR = field(e.a.a.a.class, "w");
@@ -67,6 +95,7 @@ public class Scene3D {
                 fLights = field(e.a.a.a.class, "d");
                 fWorld = field(e.a.a.a.class, "c");
                 fAmbient = field(c.f.class, "e");
+                fViewBounds = field(com.badlogic.gdx.s.j.k.a.class, "d");
             }
             e.a.a.a lr = (e.a.a.a) fLevelR.get(null);
             if (lr == null || lr.l == null) return;
@@ -77,7 +106,6 @@ public class Scene3D {
                 Object world = fWorld.get(lr);
                 if (world != null) fLights.set(lr, new NoLight((com.badlogic.gdx.physics.box2d.World) world));
             }
-            if (lr.g != null) { lr.g.zoom = zoom; lr.g.update(); }
             Object map = fMapMap.get(lr.l);
             if (map != lastMap) { lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); structs.build((com.badlogic.gdx.s.j.b) map); }
             net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
@@ -181,11 +209,19 @@ public class Scene3D {
 
     // ---- drawing ---------------------------------------------------------------------------
     static final String VS = "attribute vec3 a_pos; attribute vec2 a_uv; attribute vec4 a_col;\n" +
-            "uniform mat4 u_mvp; varying vec2 v_uv; varying vec4 v_col;\n" +
-            "void main(){ v_uv=a_uv; v_col=a_col; gl_Position=u_mvp*vec4(a_pos,1.0); }";
+            "uniform mat4 u_mvp; varying vec2 v_uv; varying vec4 v_col; varying vec2 v_w;\n" +
+            "void main(){ v_uv=a_uv; v_col=a_col; v_w=a_pos.xz; gl_Position=u_mvp*vec4(a_pos,1.0); }";
+    /** Fog (draw distance edge): mix toward u_fogCol from u_fog.x to u_fog.y cells from u_fogC; u_fogCol.a = 1 fades alpha too (passthrough). */
+    static final String FOG = "uniform vec2 u_fogC; uniform vec2 u_fog; uniform vec4 u_fogCol;\n" +
+            "vec4 fog(vec4 c, vec2 w){ float f=clamp((distance(w,u_fogC)-u_fog.x)/(u_fog.y-u_fog.x),0.0,1.0);\n" +
+            "  return vec4(mix(c.rgb,u_fogCol.rgb,f*(1.0-u_fogCol.a)), c.a*(1.0-f*u_fogCol.a)); }\n";
     static final String FS = "#ifdef GL_ES\nprecision mediump float;\n#endif\n" +
-            "uniform sampler2D u_tex; uniform float u_cut; uniform vec4 u_tint; varying vec2 v_uv; varying vec4 v_col;\n" +
-            "void main(){ vec4 c=texture2D(u_tex,v_uv)*v_col; if(c.a<u_cut) discard; gl_FragColor=vec4(c.rgb*u_tint.rgb,c.a); }";
+            "uniform sampler2D u_tex; uniform float u_cut; uniform vec4 u_tint; varying vec2 v_uv; varying vec4 v_col; varying vec2 v_w;\n" + FOG +
+            "void main(){ vec4 c=texture2D(u_tex,v_uv)*v_col; if(c.a<u_cut) discard; gl_FragColor=fog(vec4(c.rgb*u_tint.rgb,c.a),v_w); }";
+
+    /** Fog: centre (the hero, world units), start/end distance (cells), colour (+ alpha mode); set by VrCore. */
+    public final float[] fogC = new float[2], fogRange = {1e5f, 2e5f}, fogCol = {0.42f, 0.55f, 0.72f, 0f};
+    int uFogC, uFog, uFogCol;
 
     void init() {
         GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
@@ -200,6 +236,9 @@ public class Scene3D {
         uMvp = gl.glGetUniformLocation(prog, "u_mvp");
         uCut = gl.glGetUniformLocation(prog, "u_cut");
         uTint = gl.glGetUniformLocation(prog, "u_tint");
+        uFogC = gl.glGetUniformLocation(prog, "u_fogC");
+        uFog = gl.glGetUniformLocation(prog, "u_fog");
+        uFogCol = gl.glGetUniformLocation(prog, "u_fogCol");
         ready = true;
     }
 
@@ -233,11 +272,15 @@ public class Scene3D {
             structPrepared = true;
             try { structs.prepare(this, gl); } catch (Throwable t) { System.out.println("[ekvr] structures: " + t); structs.any = false; }
         }
-        int n = rec.n;
-        for (int i = 0; i < n; i++) { fade[i] = 1f; if (kind[i] == 5) kind[i] = 1; }
-        fadeOccluders(vx, vz);
-        fadeColumns(vx, vz);
-        drawPasses(gl, mvp, vx, vz);
+        if (builtFrame != frame) {                       // once per frame, shared by both eyes
+            builtFrame = frame;
+            int n = rec.n;
+            for (int i = 0; i < n; i++) { fade[i] = 1f; if (kind[i] == 5) kind[i] = 1; }
+            fadeOccluders(vx, vz);
+            fadeColumns(vx, vz);
+            build(vx, vz);
+        }
+        drawPasses(gl, mvp);
     }
 
     /**
@@ -383,74 +426,136 @@ public class Scene3D {
         return cached;
     }
 
-    void drawPasses(GL20 gl, float[] mvp, float vx, float vz) {
+    void drawPasses(GL20 gl, float[] mvp) {
         UiLayer.clientArrays(gl);
         gl.glUseProgram(prog);
         gl.glUniformMatrix4fv(uMvp, 1, false, mvp, 0);
         gl.glUniform4f(uTint, tint[0], tint[1], tint[2], 1);
+        fogUniforms(gl, uFogC, uFog, uFogCol);
         gl.glEnable(GL20.GL_DEPTH_TEST);
         gl.glEnable(GL20.GL_BLEND);
         gl.glDisable(GL20.GL_CULL_FACE);
         gl.glActiveTexture(GL20.GL_TEXTURE0);
+        useMain(gl);
         // pass 1: floor, painter's order, writes depth
         gl.glDepthFunc(GL20.GL_ALWAYS);
         gl.glDepthMask(true);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        pass(gl, 0, 0.02f, vx, vz);
+        pass(gl, 0, 0.02f);
         gl.glDepthFunc(GL20.GL_LEQUAL);
         // buildings and walls: solid columns textured with their own art (Structures)
-        structs.draw(gl, mvp, tint, false, colFade);
-        gl.glUseProgram(prog);
+        structs.draw(gl, mvp, this, false, colFade);
+        useMain(gl);
         // pass 2: upright opaque cut-outs
-        pass(gl, 1, 0.5f, vx, vz);
+        pass(gl, 1, 0.5f);
         // pass 3: translucent (fading roofs, ghosts, corpses), then additive particles
         gl.glDepthMask(false);
-        pass(gl, 2, 0.02f, vx, vz);
-        pass(gl, 5, 0.02f, vx, vz);
-        structs.draw(gl, mvp, tint, true, colFade);                   // columns hiding the hero, faded
-        gl.glUseProgram(prog);
+        pass(gl, 2, 0.02f);
+        pass(gl, 5, 0.02f);
+        structs.draw(gl, mvp, this, true, colFade);                   // columns hiding the hero, faded
+        useMain(gl);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-        pass(gl, 3, 0.01f, vx, vz);
+        pass(gl, 3, 0.01f);
         gl.glDepthMask(true);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         gl.glDisable(GL20.GL_DEPTH_TEST);
     }
 
-    void pass(GL20 gl, int k, float cut, float vx, float vz) {
-        gl.glUniform1f(uCut, cut);
+    void fogUniforms(GL20 gl, int c, int r, int col) {
+        gl.glUniform2f(c, fogC[0], fogC[1]);
+        gl.glUniform2f(r, fogRange[0], fogRange[1]);
+        gl.glUniform4f(col, fogCol[0], fogCol[1], fogCol[2], fogCol[3]);
+    }
+
+    /** Back to the main program with this frame's vertex arrays bound. */
+    void useMain(GL20 gl) {
+        UiLayer.clientArrays(gl);
+        gl.glUseProgram(prog);
+        vb.position(0);
+        gl.glEnableVertexAttribArray(aPos);
+        gl.glVertexAttribPointer(aPos, 3, GL20.GL_FLOAT, false, 36, vb);
+        vb.position(3);
+        gl.glEnableVertexAttribArray(aUv);
+        gl.glVertexAttribPointer(aUv, 2, GL20.GL_FLOAT, false, 36, vb);
+        vb.position(5);
+        gl.glEnableVertexAttribArray(aCol);
+        gl.glVertexAttribPointer(aCol, 4, GL20.GL_FLOAT, false, 36, vb);
+        vb.position(0);
+    }
+
+    // this frame's geometry: one vertex array, batches by texture, grouped by kind
+    static final int[] ORDER = {0, 1, 2, 5, 3};
+    float[] stage = new float[0];
+    Texture[] bTex = new Texture[256];
+    int[] bStart = new int[256], bCount = new int[256];
+    final int[] kFirst = new int[8], kEnd = new int[8];
+    int nb;
+
+    /** Build every quad's 3D vertices once per frame (billboards face the viewer at (vx, vz)). */
+    public long buildNs;                         // (tests) last build() time
+
+    void build(float vx, float vz) {
+        long t0 = System.nanoTime();
         int n = rec.n;
         float[] q = rec.q;
-        Texture cur = null;
-        vb.clear();
-        int verts = 0;
-        for (int i = 0; i < n; i++) {
-            if (kind[i] != k) continue;
-            if (rec.tex[i] != cur && verts > 0) { flush(gl, cur, verts); verts = 0; }
-            cur = rec.tex[i];
-            int o = i * 16;
-            int c = Float.floatToRawIntBits(rec.col[i]);
-            float r = (c & 0xff) / 255f, g = ((c >>> 8) & 0xff) / 255f, b = ((c >>> 16) & 0xff) / 255f, a = ((c >>> 24) & 0xfe) / 254f * fade[i];
-            float rx = 0, rz = 0;
-            if (k != 0) {
-                float tx = vx - ax[i], tz = vz - az[i];
-                float l = (float) Math.sqrt(tx * tx + tz * tz);
-                if (l < 1e-4f) { tx = 1; tz = 1; l = 1.4142f; }
-                rx = tz / l; rz = -tx / l;                         // screen-right as seen from the viewer
-            }
-            for (int t : TRI) {
-                int p = o + t * 4;
-                float sx = q[p], sy = q[p + 1];
-                if (k == 0) {
-                    vb.put(gi(sx, sy)).put(0f).put(-go(sx, sy));
-                } else {
-                    float h = (sx - aCx[i]) * S, y = (sy - aBase[i]) * SY;
-                    vb.put(ax[i] + rx * h).put(y).put(az[i] + rz * h);
+        if (stage.length < n * 6 * 9) stage = new float[Math.max(n * 6 * 9, 1 << 16)];
+        int w = 0, verts = 0;
+        nb = 0;
+        for (int k : ORDER) {
+            kFirst[k] = nb;
+            Texture cur = null;
+            for (int i = 0; i < n; i++) {
+                if (kind[i] != k) continue;
+                if (rec.tex[i] != cur || nb == kFirst[k]) {
+                    if (nb == bTex.length) {
+                        bTex = java.util.Arrays.copyOf(bTex, nb * 2);
+                        bStart = java.util.Arrays.copyOf(bStart, nb * 2);
+                        bCount = java.util.Arrays.copyOf(bCount, nb * 2);
+                    }
+                    cur = rec.tex[i];
+                    bTex[nb] = cur; bStart[nb] = verts; bCount[nb] = 0; nb++;
                 }
-                vb.put(q[p + 2]).put(q[p + 3]).put(r).put(g).put(b).put(a);
+                int o = i * 16;
+                int c = Float.floatToRawIntBits(rec.col[i]);
+                float r = (c & 0xff) / 255f, g = ((c >>> 8) & 0xff) / 255f, b = ((c >>> 16) & 0xff) / 255f, a = ((c >>> 24) & 0xfe) / 254f * fade[i];
+                float rx = 0, rz = 0;
+                if (k != 0) {
+                    float tx = vx - ax[i], tz = vz - az[i];
+                    float l = (float) Math.sqrt(tx * tx + tz * tz);
+                    if (l < 1e-4f) { tx = 1; tz = 1; l = 1.4142f; }
+                    rx = tz / l; rz = -tx / l;                         // screen-right as seen from the viewer
+                }
+                for (int t : TRI) {
+                    int p = o + t * 4;
+                    float sx = q[p], sy = q[p + 1];
+                    if (k == 0) {
+                        stage[w++] = gi(sx, sy); stage[w++] = 0f; stage[w++] = -go(sx, sy);
+                    } else {
+                        float h = (sx - aCx[i]) * S, y = (sy - aBase[i]) * SY;
+                        stage[w++] = ax[i] + rx * h; stage[w++] = y; stage[w++] = az[i] + rz * h;
+                    }
+                    stage[w++] = q[p + 2]; stage[w++] = q[p + 3];
+                    stage[w++] = r; stage[w++] = g; stage[w++] = b; stage[w++] = a;
+                }
+                verts += 6;
+                bCount[nb - 1] += 6;
             }
-            verts += 6;
+            kEnd[k] = nb;
         }
-        if (verts > 0) flush(gl, cur, verts);
+        if (vb.capacity() < w) vb = ByteBuffer.allocateDirect(w * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+        vb.clear();
+        vb.put(stage, 0, w);
+        vb.position(0);
+        buildNs = System.nanoTime() - t0;
+    }
+
+    void pass(GL20 gl, int k, float cut) {
+        gl.glUniform1f(uCut, cut);
+        for (int b = kFirst[k]; b < kEnd[k]; b++) {
+            if (bCount[b] == 0) continue;
+            gl.glBindTexture(GL20.GL_TEXTURE_2D, bTex[b].getTextureObjectHandle());
+            gl.glDrawArrays(GL20.GL_TRIANGLES, bStart[b], bCount[b]);
+        }
     }
 
     static final int[] TRI = {0, 1, 2, 0, 2, 3};
@@ -531,18 +636,4 @@ public class Scene3D {
         return a;
     }
 
-    void flush(GL20 gl, Texture t, int verts) {
-        gl.glBindTexture(GL20.GL_TEXTURE_2D, t.getTextureObjectHandle());
-        vb.position(0);
-        gl.glEnableVertexAttribArray(aPos);
-        gl.glVertexAttribPointer(aPos, 3, GL20.GL_FLOAT, false, 36, vb);
-        vb.position(3);
-        gl.glEnableVertexAttribArray(aUv);
-        gl.glVertexAttribPointer(aUv, 2, GL20.GL_FLOAT, false, 36, vb);
-        vb.position(5);
-        gl.glEnableVertexAttribArray(aCol);
-        gl.glVertexAttribPointer(aCol, 4, GL20.GL_FLOAT, false, 36, vb);
-        gl.glDrawArrays(GL20.GL_TRIANGLES, 0, verts);
-        vb.clear();
-    }
 }
