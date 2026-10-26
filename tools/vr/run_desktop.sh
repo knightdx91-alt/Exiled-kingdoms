@@ -2,6 +2,7 @@
 # Desktop test bed for the Quest build (deobf/QUEST_VR_SPEC.md §6): runs hero-v78's own game
 # code (dex2jar) in a window through vr/desktop's minimal libGDX backend.
 #   tools/vr/run_desktop.sh [2d|3d|table|vr] [script.txt] [shot dir]
+# EK_VR_SIZE="1600 900": the game's screen size (the Quest uses 1600x900; scripts are in 1280x720 px, scaled).
 # Script commands: vr/desktop/src/ekvr/desktop/Script.java. Needs java 17+, xvfb-run for
 # headless use (EK_XVFB=1), curl. Everything downloaded/extracted is cached in $EK_VR_CACHE.
 set -euo pipefail
@@ -27,8 +28,8 @@ if [ ! -s "$C/game.jar" ] || [ ! -d "$C/assets" ]; then
 fi
 rm -rf "$C/build"; mkdir -p "$C/build"
 javac -nowarn -cp "$C/game.jar:$C/lib/*" -d "$C/build" $(find "$REPO/vr/desktop/src" "$REPO/vr/common/src" -name '*.java')
-rm -rf "$C/storage"; mkdir -p "$C/storage"
+[ "${EK_VR_KEEP:-0}" = 1 ] || rm -rf "$C/storage"; mkdir -p "$C/storage"   # EK_VR_KEEP=1: keep saves from the last run
 RUN=(java -XX:+UnlockDiagnosticVMOptions -XX:-BytecodeVerificationLocal -XX:-BytecodeVerificationRemote
      -Djava.library.path="$C/natives" -Dekvr.mode="$MODE" -Dekvr.storage="$C/storage" -Dekvr.shotDir="$SHOTS"
-     ${SCRIPT:+-Dekvr.script="$SCRIPT"} -cp "$C/build:$C/game.jar:$C/lib/*" ekvr.desktop.DeskBackend "$C/assets" 1280 720)
+     ${SCRIPT:+-Dekvr.script="$SCRIPT"} -cp "$C/build:$C/game.jar:$C/lib/*" ekvr.desktop.DeskBackend "$C/assets" ${EK_VR_SIZE:-1280 720})
 if [ "${EK_XVFB:-0}" = 1 ]; then xvfb-run -a -s "-screen 0 1280x720x24" "${RUN[@]}"; else "${RUN[@]}"; fi

@@ -292,6 +292,23 @@ public class Scene3D {
         classified = true;
         int n = rec.n;
         float[] q = rec.q;
+        // 0. feet per character, not per layer: EK draws a character as stacked layers (body, head,
+        //    armour, weapon) on the same spot; each layer's lowest opaque row differs (the head's is
+        //    the neck), so v11 lifted each layer differently and pulled them apart. Group the
+        //    sprite quads that share a bottom edge and centre, and use the group's lowest row.
+        footGroups.clear();
+        for (int i = 0; i < n; i++) {
+            if (rec.tileDraw[i] || rec.additive[i]) continue;
+            int o = i * 16;
+            float minX = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12]));
+            float maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
+            float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13]));
+            float maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
+            int f = footPx(i, maxY - minY);
+            long k = groupKey(minY, (minX + maxX) / 2);
+            Integer old = footGroups.get(k);
+            if (old == null || f < old) footGroups.put(k, f);
+        }
         // 1. classify + anchors of big sprites (characters)
         int actors = 0;
         int[] actorIdx = new int[512];
@@ -307,7 +324,7 @@ public class Scene3D {
             kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructure(tk) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
             aCx[i] = (minX + maxX) / 2;
             // tiles stand on their cell centre (quad bottom + 16 px); sprites on their lowest opaque row
-            aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + footPx(i, maxY - minY);
+            aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + groupFoot(minY, aCx[i]);
             ax[i] = gi(aCx[i], aBase[i]);
             az[i] = -go(aCx[i], aBase[i]);
             fade[i] = 1f;
@@ -377,6 +394,15 @@ public class Scene3D {
     }
 
     final java.util.HashMap<Long, Integer> feet = new java.util.HashMap<>();
+    final java.util.HashMap<Long, Integer> footGroups = new java.util.HashMap<>();
+
+    /** Layers of one character: same bottom edge (to 2 px) and centre (to 8 px). */
+    static long groupKey(float minY, float cx) { return ((long) Math.round(minY / 2f) << 32) ^ (Math.round(cx / 8f) & 0xffffffffL); }
+
+    int groupFoot(float minY, float cx) {
+        Integer f = footGroups.get(groupKey(minY, cx));
+        return f == null ? 0 : f;
+    }
     java.nio.ByteBuffer footBuf;
 
     /**

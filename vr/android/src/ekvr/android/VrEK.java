@@ -30,7 +30,8 @@ import java.nio.IntBuffer;
  */
 public class VrEK extends net.fdgames.ek.ExiledKingdoms {
     static final String TAG = "ekvr";
-    static final int VW = 1280, VH = 720;       // the game's virtual screen inside the headset
+    // the game's virtual screen inside the headset (its UI layout is tested at this size)
+    static final int VW = 1280, VH = 720;
 
     final android.app.Activity activity;
     boolean xr;
@@ -118,7 +119,7 @@ public class VrEK extends net.fdgames.ek.ExiledKingdoms {
         ((View.OnKeyListener) Gdx.input).onKey(view, code, new KeyEvent(action, code));
     }
 
-    /** The game lays out its UI for the surface size: keep it at our virtual 1280x720 screen. */
+    /** The game lays out its UI for the surface size: keep it at our virtual VW x VH screen. */
     void forceSize() {
         try {
             Class<?> g = Gdx.graphics.getClass();

@@ -97,6 +97,7 @@ public class VrCore {
     public void gameFrame(Runnable renderGame, int defaultFbo) {
         if (ui == null) ui = new UiLayer(vw, vh);
         scene.zoom = Binds.ZOOMS[binds.drawDist];                 // draw distance = EK's map camera zoom
+        fitGameMenu();
         scene.beginFrame();
         ui.begin();
         renderGame.run();
@@ -247,6 +248,33 @@ public class VrCore {
                     lastGesture = h == 0 ? "MOUTH L" : "MOUTH R";
                 }
             } else mouthSince[h] = -1;
+        }
+    }
+
+    static java.lang.reflect.Field fGameMenu;
+    public String menuFit = "";                                 // (tests)
+
+    /**
+     * EK's game menu (e.a.d.b0, a Window; singleton in its static field i) sizes its buttons from
+     * the screen height but its difficulty row and the mod's MULTIPLAYER button are fixed-size, so
+     * at 720 px the contents are taller than the window and the top row is cut off (owner's
+     * screenshot). Grow the window to its contents and re-centre it (QUEST_VR_SPEC.md V8).
+     */
+    void fitGameMenu() {
+        try {
+            if (fGameMenu == null) { fGameMenu = e.a.d.b0.class.getDeclaredField("i"); fGameMenu.setAccessible(true); }
+            com.badlogic.gdx.scenes.scene2d.ui.Window w = (com.badlogic.gdx.scenes.scene2d.ui.Window) fGameMenu.get(null);
+            if (w == null) return;
+            float pref = w.getPrefHeight(), h = w.getHeight();
+            menuFit = "pref " + pref + " height " + h;
+            if (pref > h + 0.5f) {
+                float nh = Math.min(pref, vh);
+                w.setHeight(nh);
+                w.setY((vh - nh) / 2f);
+                w.invalidate();
+            }
+        } catch (Throwable t) {
+            menuFit = t.toString();
         }
     }
 

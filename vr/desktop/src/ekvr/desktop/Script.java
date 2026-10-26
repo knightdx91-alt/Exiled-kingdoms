@@ -65,6 +65,13 @@ public class Script implements Runnable {
         if (next >= cmds.size()) return;
         String[] c = cmds.get(next++);
         System.out.println("[script] frame " + DeskBackend.frameId + ": " + String.join(" ", c));
+        // scripts are written for a 1280x720 game: scale pixel coordinates to the actual size
+        if (c.length >= 3 && java.util.Arrays.asList("click", "down", "drag", "up", "aim", "uiaim", "uiclickat").contains(c[0])
+                && (DeskBackend.width != 1280 || DeskBackend.height != 720)) {
+            c = c.clone();
+            c[1] = String.valueOf(Math.round(Integer.parseInt(c[1]) * DeskBackend.width / 1280f));
+            c[2] = String.valueOf(Math.round(Integer.parseInt(c[2]) * DeskBackend.height / 720f));
+        }
         switch (c[0]) {
             case "still": stillFrames = 1; lastHash = 0; break;
             case "wait": waitLeft = Integer.parseInt(c[1]); break;
@@ -120,9 +127,17 @@ public class Script implements Runnable {
             case "mouth": SimXr.handAt = c.length > 1 && c[1].equals("off") ? null
                     : ekvr.Mat.xform(SimXr.headPose, 0, -0.09f, -0.07f); break;
             case "gesture": System.out.println("[script] gesture=" + SimXr.core.lastGesture); SimXr.core.lastGesture = ""; break;
+            case "resize": {   // (tests) change the game's screen size mid-run (e.g. to the Quest's 1600x900)
+                DeskBackend.width = Integer.parseInt(c[1]); DeskBackend.height = Integer.parseInt(c[2]);
+                org.lwjgl.glfw.GLFW.glfwSetWindowSize(DeskBackend.window, DeskBackend.width, DeskBackend.height);
+                if (SimXr.core != null && SimXr.core.ui != null) SimXr.core = null;     // new UI layer at the new size
+                DeskBackend.listener.a(DeskBackend.width, DeskBackend.height);
+                break;
+            }
+            case "menufit": System.out.println("[script] menufit " + SimXr.core.menuFit); break;
             case "fov": SimXr.fov = Float.parseFloat(c[1]); break;
             case "uiclickat": {  // click the UI where it is seen at window pixel (x, y)
-                float[] p = SimXr.uiPointAtPixel(Integer.parseInt(c[1]), Integer.parseInt(c[2]), 1280, 720);
+                float[] p = SimXr.uiPointAtPixel(Integer.parseInt(c[1]), Integer.parseInt(c[2]), DeskBackend.width, DeskBackend.height);
                 if (p == null) { System.out.println("[script] uiclickat: no panel there"); break; }
                 SimXr.aimFrom = null; SimXr.aimStage = p;
                 break;
@@ -157,7 +172,8 @@ public class Script implements Runnable {
                 break;
             }
             case "hover": System.out.println("[script] hover=" + SimXr.core.hover + ("thing".equals(SimXr.core.hover) ? " " + SimXr.core.hoverAt : "")); break;
-            case "hero": System.out.println("[script] hero=" + SimXr.core.scene.heroX + "," + SimXr.core.scene.heroZ); break;
+            case "hero": System.out.println("[script] hero=" + SimXr.core.scene.heroX + "," + SimXr.core.scene.heroZ
+                    + " drawn-offset=" + (SimXr.core.scene.dispX() - SimXr.core.scene.heroX) + "," + (SimXr.core.scene.dispZ() - SimXr.core.scene.heroZ)); break;
             default: System.out.println("[script] unknown: " + c[0]);
         }
     }

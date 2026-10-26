@@ -95,6 +95,10 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
 - **Feet on the ground** (v11): characters/items (non-tile sprites) stand on their lowest
   opaque pixel row (read once per sprite frame from the texture), not quad bottom + 16 px (a
   tile's cell-centre convention), which sank them by up to ~0.4 m (owner's screenshots).
+  v14: per **character**, not per layer — EK draws a character as stacked layers (body, head,
+  armour, weapon) on one spot; v11-v13 lifted each layer by its own lowest row (the head's is
+  its neck) and pulled them apart (owner: head and weapon detached). Sprite quads sharing a
+  bottom edge (2 px) and centre (8 px) are one character; all use the group's lowest row.
 - **Facing** (v6): EK draws a character with one of 8 screen directions
   (`MapActor.facing`, enum U, RU, R, RD, D, LD, L, LU = ordinals 0..7, clockwise; chosen from
   its velocity in `MapActor.u0`: x+y vs y−x in world px). Ordinal k = world heading
@@ -301,6 +305,11 @@ Dalvik verifier (`tools/dalvik_verify.sh`) does not catch it, so it is not used 
 - **V4** ~~Trees between the camera and the hero are not faded~~ DONE: map objects standing
   between the viewer and the hero (within 1.6 cells of the line) draw at 30 % alpha.
 - **V5** UI is the game's own 2D screen on a panel (not re-laid out for VR).
+- **V8** (v14) EK's game menu (`e.a.d.b0`, singleton `b0.i`) sizes its five buttons from the
+  screen height (height/1.15 window, buttons height/7.4) but the difficulty row and the mod's
+  MULTIPLAYER / JOYSTICK buttons are fixed-size; at the VR layer's 1280×720 the contents
+  (pref height) exceed the window and the top button was cut off (owner's screenshot). Each
+  frame VrCore grows that window to its preferred height (≤ screen) and re-centres it.
 - **V6** First person shows EK's 2D sprites as upright cut-outs at 1 cell = 1 m; walls and
   buildings are flat until V2. Laser taps on a thing tap its base cell (what a 2D tap on the
   thing's cell does), not the exact sprite pixel.
