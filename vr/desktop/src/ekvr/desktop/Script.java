@@ -122,7 +122,8 @@ public class Script implements Runnable {
             case "trig": SimXr.trigger = c[1].equals("1"); waitLeft = 2; break;
             case "drawdist": SimXr.core.binds.drawDist = Integer.parseInt(c[1]); break;
             case "structs": System.out.println("[script] structures:\n" + SimXr.core.scene.structDump(Integer.parseInt(c[1]))); break;
-            case "stats": System.out.println("[script] quads=" + SimXr.core.scene.rec.n + " build=" + SimXr.core.scene.buildNs / 1000 + "us zoom=" + SimXr.core.scene.zoom + " far=" + SimXr.core.scene.farSprites.size()); break;
+            case "props": System.out.println("[script] props:\n" + SimXr.core.scene.propDump(Float.parseFloat(c[1]))); break;
+            case "stats": System.out.println("[script] quads=" + SimXr.core.scene.rec.n + " build=" + SimXr.core.scene.buildNs / 1000 + "us zoom=" + SimXr.core.scene.zoom + " far=" + SimXr.core.scene.farSprites.size() + " propGroups=" + SimXr.core.scene.propGroups); break;
             case "swing": SimXr.handAt = null; SimXr.swingFrames = 6; break;
             case "handslow": SimXr.handAt = null; SimXr.swingFrames = 30; SimXr.slow = true; break;
             case "mouth": SimXr.handAt = c.length > 1 && c[1].equals("off") ? null

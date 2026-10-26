@@ -106,6 +106,27 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
     CW was being shown);
   - blocks within 1.8 units of the viewer are not drawn (the camera inside a building saw its
     walls/roof across the view).
+  v17 (owner: "the buildings you can see through … props and stalls are crooked"):
+  - **no holes**: a face the 2D art doesn't cover (side and back walls, roof edges past the
+    silhouette) sampled transparent texels and was discarded — measured as large holes on
+    every building. The structure image now gets mipmaps each frame and such a texel takes the
+    colour of the nearest art from coarser levels (bias 2, 4, 6, 8, 10: pull fill); only where
+    no art lies within ~1000 px is it dropped;
+  - thin regions (under 2 cells thick: walls, fences) are capped at 3 units (they can take
+    the art top of the building behind them: one stood 6 units tall beside the viewer);
+  - **fading** a block between the viewer and the hero (V4) only where it really cuts the
+    line from the eye to the hero's chest (1 unit up) within 0.9 units sideways — v16 faded
+    every block near that line on the ground, so from the tabletop or over a low wall whole
+    houses turned see-through.
+- **Multi-tile map objects** (v17; owner: "props and stalls are crooked"). EK draws a weapon
+  rack, a market stall or a fence as several tiles of one tileset on neighbouring cells
+  (measured: a rack = three 64×128 tiles 32 px apart). Each upright tile was a billboard
+  turned toward the viewer about its own cell, so the pieces came apart at different angles.
+  Tiles of the same texture on 8-neighbouring cells whose rectangles overlap/touch side by
+  side, where either picture runs into the shared edge (opaque texels in its 2 outer columns;
+  read once per tile frame), are one object (union-find, ≤ 160 px wide): all its pieces share
+  one anchor (the mean of their cells) and baseline (the lowest piece's), so the picture stays
+  whole and turns as one. Trees and barrels have transparent margins and stay single.
 - **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
   EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
   setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame

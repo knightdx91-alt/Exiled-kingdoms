@@ -145,6 +145,21 @@ public class Scene3D {
         }
     }
 
+    /** (tests) the upright map-object quads within r cells of the hero: iso rect and anchor. */
+    public String propDump(float r) {
+        classify();
+        StringBuilder sb = new StringBuilder();
+        float[] q = rec.q;
+        for (int i = 0; i < rec.n; i++) {
+            if (kind[i] == 0 || kind[i] == STRUCT || Math.abs(ax[i] - heroX) > r || Math.abs(az[i] - heroZ) > r) continue;
+            int o = i * 16;
+            float minX = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12])), maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
+            float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13])), maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
+            sb.append(String.format("%d k%d tile=%b x %.0f..%.0f y %.0f..%.0f anchor %.2f,%.2f foot %.0f tex %d grp %d sides %b %b%n", i, kind[i], rec.tileDraw[i], minX, maxX, minY, maxY, ax[i], az[i], aFoot[i] - minY, rec.tex[i].getTextureObjectHandle(), gFind(i), rec.tileDraw[i] && sideOpaque(i, false), rec.tileDraw[i] && sideOpaque(i, true)));
+        }
+        return sb.toString();
+    }
+
     /** (tests) the structure regions around the hero. */
     public String structDump(int rad) { return structs.dump(Math.round(heroX), Math.round(-heroZ) - 1, rad); }
 
@@ -417,11 +432,98 @@ public class Scene3D {
                 }
             }
         }
+        groupProps(n, q);
         if (hideHero)
             for (int i = 0; i < n; i++)
                 if (kind[i] != 0 && !rec.tileDraw[i] && Math.abs(ax[i] - dispX()) < 0.45f && Math.abs(az[i] - dispZ()) < 0.45f)
                     kind[i] = 4;
     }
+
+    int[] gPar = new int[0], gNext = new int[0], gCount = new int[0];
+    float[] gMinX = new float[0], gMaxX = new float[0];
+    final java.util.HashMap<Long, Integer> gCell = new java.util.HashMap<>();
+
+    int gFind(int i) { while (gPar[i] != i) { gPar[i] = gPar[gPar[i]]; i = gPar[i]; } return i; }
+
+    /**
+     * APPROX (DEOBFUSCATION_STATUS V10). One billboard per multi-tile map object (QUEST_VR_SPEC.md §3, v17). EK draws a weapon rack,
+     * a market stall or a fence as several tiles on neighbouring cells (e.g. three 64x128 tiles,
+     * 32 px apart); v1-v16 turned each tile toward the viewer about its own cell, so the pieces
+     * came apart at different angles (owner: "props and stalls are crooked"). Tiles of one
+     * tileset on neighbouring cells whose pictures overlap, where a picture runs into the shared
+     * edge (measured: a rack's end tile is transparent at its inner edge), are one object: they share an anchor (the members' mean cell) and baseline, so the
+     * picture stays whole and turns as one. Trees and barrels have transparent margins and stay
+     * single. A group is capped at 5 cells wide.
+     */
+    void groupProps(int n, float[] q) {
+        if (gPar.length < n) {
+            int m = n * 2;
+            gPar = new int[m]; gNext = new int[m]; gCount = new int[m]; gMinX = new float[m]; gMaxX = new float[m];
+        }
+        gCell.clear();
+        propGroups = 0;
+        for (int i = 0; i < n; i++) {
+            gPar[i] = i; gCount[i] = 1; gNext[i] = -1;
+            if (!rec.tileDraw[i] || (kind[i] != 1 && kind[i] != 2)) continue;
+            int o = i * 16;
+            gMinX[i] = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12]));
+            gMaxX[i] = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
+            long c = ((long) Math.round(ax[i]) << 32) ^ (Math.round(az[i]) & 0xffffffffL);
+            Integer head = gCell.get(c);
+            gNext[i] = head == null ? -1 : head;
+            gCell.put(c, i);
+        }
+        boolean any = false;
+        for (int i = 0; i < n; i++) {
+            if (!rec.tileDraw[i] || (kind[i] != 1 && kind[i] != 2)) continue;
+            int o = i * 16;
+            float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13]));
+            float maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
+            int cx = Math.round(ax[i]), cz = Math.round(az[i]);
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dz = -1; dz <= 1; dz++) {
+                    Integer h = gCell.get(((long) (cx + dx) << 32) ^ ((cz + dz) & 0xffffffffL));
+                    for (int j = h == null ? -1 : h; j >= 0; j = gNext[j]) {
+                        if (j <= i || rec.tex[j] != rec.tex[i]) continue;
+                        int p = j * 16;
+                        float jMinY = Math.min(Math.min(q[p + 1], q[p + 5]), Math.min(q[p + 9], q[p + 13]));
+                        float jMaxY = Math.max(Math.max(q[p + 1], q[p + 5]), Math.max(q[p + 9], q[p + 13]));
+                        if (jMinY >= maxY || minY >= jMaxY) continue;
+                        int l = gMinX[i] <= gMinX[j] ? i : j, r = l == i ? j : i;
+                        if (gMinX[r] == gMinX[l] || gMinX[r] > gMaxX[l] + 1) continue;   // side by side, touching or overlapping
+                        int a = gFind(i), b = gFind(j);
+                        if (a == b) continue;
+                        if (Math.max(gMaxX[a], gMaxX[b]) - Math.min(gMinX[a], gMinX[b]) > 160) continue;
+                        if (!sideOpaque(l, true) && !sideOpaque(r, false)) continue;
+                        gPar[b] = a; gCount[a] += gCount[b];
+                        gMinX[a] = Math.min(gMinX[a], gMinX[b]); gMaxX[a] = Math.max(gMaxX[a], gMaxX[b]);
+                        any = true;
+                    }
+                }
+        }
+        if (!any) return;
+        // group anchor = mean of the members' cells, baseline = the lowest member's
+        java.util.HashMap<Integer, float[]> acc = new java.util.HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (!rec.tileDraw[i] || (kind[i] != 1 && kind[i] != 2)) continue;
+            int g = gFind(i);
+            if (gCount[g] < 2) continue;
+            float[] v = acc.get(g);
+            if (v == null) acc.put(g, v = new float[]{0, 0, 0, Float.MAX_VALUE});
+            v[0] += ax[i]; v[1] += az[i]; v[2]++; v[3] = Math.min(v[3], aFoot[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            if (!rec.tileDraw[i] || (kind[i] != 1 && kind[i] != 2)) continue;
+            float[] v = acc.get(gFind(i));
+            if (v == null) continue;
+            ax[i] = v[0] / v[2]; az[i] = v[1] / v[2];
+            aCx[i] = 32f * (ax[i] - az[i]);
+            aFoot[i] = v[3];
+        }
+        propGroups = acc.size();
+    }
+
+    public int propGroups;
 
     /** V4: upright map objects standing between the viewer and the hero turn see-through (kind 5 = faded upright). */
     void fadeOccluders(float vx, float vz) {
@@ -461,7 +563,11 @@ public class Scene3D {
             colHide[i] = px * px + pz * pz < 1.8f * 1.8f;
             if (hideHero || sl < 1e-3f) continue;
             float along = (px * sx + pz * sz) / sl, side = Math.abs(px * sz - pz * sx) / sl;
-            colFade[i] = along > 0.3f && along < sl - 0.4f && side < 1.6f;
+            // only where it really blocks the eye's line to the hero's chest (1 unit up): v16 faded
+            // every block near the line on the ground, so from above (tabletop) or over a low wall
+            // whole houses turned see-through (owner: "the buildings you can see through")
+            float lineY = viewEyeY + (1f - viewEyeY) * along / sl;
+            colFade[i] = along > 0.3f && along < sl - 0.4f && side < 0.9f && lineY < structs.colTop[i];
         }
     }
 
@@ -500,32 +606,70 @@ public class Scene3D {
             int x = Math.max(0, (int) (u1 * tw)), w = Math.max(1, Math.min(tw - x, Math.round((u2 - u1) * tw)));
             int r0 = Math.max(0, (int) (Math.min(vb, vt) * th)), h = Math.max(1, Math.min(th - r0, Math.round(Math.abs(vb - vt) * th)));
             int fromBottom = 0;
-            try {
-                GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
-                if (footBuf == null || footBuf.capacity() < w * h * 4) footBuf = ByteBuffer.allocateDirect(Math.max(w * h * 4, 65536)).order(ByteOrder.nativeOrder());
-                if (pickFbo == 0) { java.nio.IntBuffer ib = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asIntBuffer(); gl.glGenFramebuffers(1, ib); pickFbo = ib.get(0); }
-                java.nio.IntBuffer prev = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
-                gl.glGetIntegerv(GL20.GL_FRAMEBUFFER_BINDING, prev);
-                gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, pickFbo);
-                gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, t.getTextureObjectHandle(), 0);
-                if (gl.glCheckFramebufferStatus(GL20.GL_FRAMEBUFFER) == GL20.GL_FRAMEBUFFER_COMPLETE) {
-                    footBuf.clear();
-                    gl.glReadPixels(x, r0, w, h, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, footBuf);
-                    // texture row r0 = v min; the quad's bottom is at v = vb
-                    boolean bottomIsHigh = (vb > vt) != top;
-                    search:
-                    for (int s = 0; s < h; s++) {
-                        int row = bottomIsHigh ? h - 1 - s : s;
-                        for (int c = 0; c < w; c++)
-                            if ((footBuf.get((row * w + c) * 4 + 3) & 0xff) > 40) { fromBottom = s; break search; }
-                    }
-                    fromBottom = Math.round(fromBottom * quadH / h);
+            if (readTex(t, x, r0, w, h)) {
+                // texture row r0 = v min; the quad's bottom is at v = vb
+                boolean bottomIsHigh = (vb > vt) != top;
+                search:
+                for (int s = 0; s < h; s++) {
+                    int row = bottomIsHigh ? h - 1 - s : s;
+                    for (int c = 0; c < w; c++)
+                        if ((footBuf.get((row * w + c) * 4 + 3) & 0xff) > 40) { fromBottom = s; break search; }
                 }
-                gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, 0, 0);
-                gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, prev.get(0));
-            } catch (Throwable ignored) {}
+                fromBottom = Math.round(fromBottom * quadH / h);
+            }
             cached = fromBottom;
             feet.put(k, cached);
+        }
+        return cached;
+    }
+
+    /** Read texels (x, r0, w, h) of a texture into footBuf (RGBA rows from r0 up); false if unreadable. */
+    boolean readTex(com.badlogic.gdx.graphics.Texture t, int x, int r0, int w, int h) {
+        boolean ok = false;
+        try {
+            GL20 gl = Gdx.gl20 instanceof GlTap ? ((GlTap) Gdx.gl20).gl : Gdx.gl20;
+            if (footBuf == null || footBuf.capacity() < w * h * 4) footBuf = ByteBuffer.allocateDirect(Math.max(w * h * 4, 65536)).order(ByteOrder.nativeOrder());
+            if (pickFbo == 0) { java.nio.IntBuffer ib = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asIntBuffer(); gl.glGenFramebuffers(1, ib); pickFbo = ib.get(0); }
+            java.nio.IntBuffer prev = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
+            gl.glGetIntegerv(GL20.GL_FRAMEBUFFER_BINDING, prev);
+            gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, pickFbo);
+            gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, t.getTextureObjectHandle(), 0);
+            if (gl.glCheckFramebufferStatus(GL20.GL_FRAMEBUFFER) == GL20.GL_FRAMEBUFFER_COMPLETE) {
+                footBuf.clear();
+                gl.glReadPixels(x, r0, w, h, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, footBuf);
+                ok = true;
+            }
+            gl.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_COLOR_ATTACHMENT0, GL20.GL_TEXTURE_2D, 0, 0);
+            gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, prev.get(0));
+        } catch (Throwable ignored) {}
+        return ok;
+    }
+
+    final java.util.HashMap<Long, Boolean> sides = new java.util.HashMap<>();
+
+    /**
+     * Does the quad's picture reach its left / right edge (opaque texels in the outer 2 columns)?
+     * Pieces of one multi-tile map object continue across their tiles' edges; a tree or a barrel
+     * has a transparent margin. Cached per tile frame.
+     */
+    boolean sideOpaque(int i, boolean right) {
+        int o = i * 16;
+        float[] q = rec.q;
+        com.badlogic.gdx.graphics.Texture t = rec.tex[i];
+        float uL = q[o + 2], uR = q[o + 10], vb = q[o + 3], vt = q[o + 7];   // corners: 0 BL, 1 TL, 2 TR, 3 BR
+        long k = key(t.getTextureObjectHandle(), uL, vb) * 31 + Math.round(vt * 65536) * 7 + Math.round(uR * 65536) * 3 + (right ? 1 : 2);
+        Boolean cached = sides.get(k);
+        if (cached == null) {
+            int tw = t.getWidth(), th = t.getHeight();
+            float us = right ? uR : uL, uo = right ? uL : uR;
+            int xs = Math.round(us * tw), x = uo > us ? xs : xs - 2;           // 2 columns inward from that edge
+            x = Math.max(0, Math.min(tw - 2, x));
+            int r0 = Math.max(0, (int) (Math.min(vb, vt) * th)), h = Math.max(1, Math.min(th - r0, Math.round(Math.abs(vb - vt) * th)));
+            boolean hit = false;
+            if (readTex(t, x, r0, 2, h))
+                for (int j = 0; j < 2 * h && !hit; j++) hit = (footBuf.get(j * 4 + 3) & 0xff) > 40;
+            cached = hit;
+            sides.put(k, cached);
         }
         return cached;
     }

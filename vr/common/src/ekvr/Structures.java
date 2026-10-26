@@ -118,6 +118,7 @@ class Structures {
     FloatBuffer cols = ByteBuffer.allocateDirect(4 * 6 * 6 * 5 * 8192).order(ByteOrder.nativeOrder()).asFloatBuffer();
     int colVerts;
     float[] colMid = new float[0];    // per column: x, z (centre) for fading
+    float[] colTop = new float[0];    // per column: its highest corner (fading: does it block the hero?)
     int[] colStart = new int[0], colCount = new int[0];
     int ncols;
     final IntBuffer ib = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
@@ -168,7 +169,11 @@ class Structures {
                 int col = cell & 0xffff, row = cell >>> 16;
                 if (edgeDist[col + row * mw] == regionMaxDist[id]) back = Math.max(back, 16f * (row + 1 - col));
             }
-            e.setValue(Math.max(0.5f, Math.min(8f, (e.getValue() - back) * Scene3D.SY)));
+            float h = Math.max(0.5f, Math.min(8f, (e.getValue() - back) * Scene3D.SY));
+            // thin regions (walls, fences, a house's yard wall) pick up the art of the building
+            // behind them within 2 cells: cap them (v17: one stood 6 m tall beside the viewer)
+            if (regionMaxDist[id] < 2) h = Math.min(h, 3f);
+            e.setValue(h);
         }
         x0 = minx - 2; y0 = miny - 2; bw = maxx - minx + 4; bh = maxy - miny + 4;
         float scale = Math.min(1f, 4096f / Math.max(bw, bh));
@@ -212,6 +217,8 @@ class Structures {
         }
         if (verts > 0) flushImg(gl, cur, verts);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        gl.glBindTexture(GL20.GL_TEXTURE_2D, tex);
+        gl.glGenerateMipmap(GL20.GL_TEXTURE_2D);                         // for the shader's hole fill
         gl.glBindFramebuffer(GL20.GL_FRAMEBUFFER, prevFbo);
         gl.glViewport(vx, vy, vw, vh);
         // 3. columns
@@ -308,6 +315,7 @@ class Structures {
             colStart = java.util.Arrays.copyOf(colStart, ncols * 2 + 64);
             colCount = java.util.Arrays.copyOf(colCount, ncols * 2 + 64);
             colMid = java.util.Arrays.copyOf(colMid, (ncols * 2 + 64) * 2);
+            colTop = java.util.Arrays.copyOf(colTop, ncols * 2 + 64);
             colRoof = java.util.Arrays.copyOf(colRoof, ncols * 2 + 64);
         }
         colStart[ncols] = colVerts; colMid[ncols * 2] = col; colMid[ncols * 2 + 1] = -(row + 1);
@@ -316,6 +324,7 @@ class Structures {
         // corner heights (smooth roof surface): (xa,za) (xb,za) (xb,zb) (xa,zb)
         float hAA = cornerH(id, col - 1, row, col, row + 1), hBA = cornerH(id, col, row, col + 1, row + 1);
         float hBB = cornerH(id, col, row - 1, col + 1, row), hAB = cornerH(id, col - 1, row - 1, col, row);
+        colTop[ncols] = Math.max(Math.max(hAA, hBA), Math.max(hBB, hAB));
         // sides on the region's edge, up to the corner heights
         if (regionOf(col - 1, row) != id) face(xa, za, hAA, xa, zb, hAB);
         if (regionOf(col + 1, row) != id) face(xb, zb, hBB, xb, za, hBA);
@@ -395,7 +404,7 @@ class Structures {
         if (tex == 0) { ib.clear(); gl.glGenTextures(1, ib); tex = ib.get(0); }
         gl.glBindTexture(GL20.GL_TEXTURE_2D, tex);
         gl.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_RGBA, texW, texH, 0, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, null);
-        gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MIN_FILTER, GL20.GL_LINEAR);
+        gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MIN_FILTER, GL20.GL_LINEAR_MIPMAP_LINEAR);
         gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MAG_FILTER, GL20.GL_LINEAR);
         gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_S, GL20.GL_CLAMP_TO_EDGE);
         gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_T, GL20.GL_CLAMP_TO_EDGE);
@@ -449,7 +458,13 @@ class Structures {
                 "  gl_Position = u_mvp*vec4(a_pos,1.0); }");
         int fs = Scene3D.shader(gl, GL20.GL_FRAGMENT_SHADER, "#ifdef GL_ES\nprecision highp float;\n#endif\n" +
                 "uniform sampler2D u_tex; uniform vec4 u_tint; uniform float u_alpha; varying vec2 v_uv; varying vec2 v_w; varying float v_out;\n" + Scene3D.FOG +
-                "void main(){ if(v_out<0.0) discard; vec4 c=texture2D(u_tex,v_uv); if(c.a<0.5) discard;\n" +
+                "void main(){ if(v_out<0.0) discard; vec4 c=texture2D(u_tex,v_uv);\n" +
+                // a face the 2D art doesn't cover (a side / back wall, the edge of a roof) takes the colour
+                // of the nearest art (coarser mip levels of the image: pull fill) instead of a hole (v17)
+                "  if(c.a<0.5){ vec4 f=texture2D(u_tex,v_uv,2.0);\n" +
+                "    if(f.a<0.02) f=texture2D(u_tex,v_uv,4.0); if(f.a<0.02) f=texture2D(u_tex,v_uv,6.0);\n" +
+                "    if(f.a<0.02) f=texture2D(u_tex,v_uv,8.0); if(f.a<0.02) f=texture2D(u_tex,v_uv,10.0);\n" +
+                "    if(f.a<0.002) discard; c=vec4(f.rgb/f.a,1.0); }\n" +
                 "  gl_FragColor=fog(vec4(c.rgb/c.a*u_tint.rgb, u_alpha), v_w); }");
         colProg = link(gl, vs, fs);
         cPos = gl.glGetAttribLocation(colProg, "a_pos");
