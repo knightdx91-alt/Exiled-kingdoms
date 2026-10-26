@@ -29,10 +29,10 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
 
 - Code: `vr/common` (Scene3D, Rec, UiLayer, VrCore, GlTap, Pad, Mat), `vr/android`
   (Vr, VrListener, Xr + `jni/ekxr.c` OpenXR bridge), `vr/desktop` (test bed).
-- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 17` (needs build-tools 35.0.1, platform 35, NDK 27)
-  → `build/ExiledKingdoms-VR-v17.apk` + `dist/quest-vr-v17/vr-overlay.zip` (2.3 MB). The Pages
+- Build: `ANDROID_SDK_ROOT=… tools/build_vr.sh 18` (needs build-tools 35.0.1, platform 35, NDK 27)
+  → `build/ExiledKingdoms-VR-v18.apk` + `dist/quest-vr-v18/vr-overlay.zip` (2.3 MB). The Pages
   deploy rebuilds the signed APK from hero-v78 + overlay (`tools/vr/deploy_vr.sh`,
-  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v17.apk`
+  sha256-checked, byte-identical): `https://knightdx91-alt.github.io/Exiled-kingdoms/dist/ExiledKingdoms-VR-v18.apk`
 - Test on desktop: `EK_XVFB=1 tools/vr/run_desktop.sh 3d vr/desktop/scripts/tutorial_exit_3d.txt /tmp/shots`
   (modes 2d/3d/table/vr). Verified: menu → hero creation → tutorial in 3D → laser/stick
   controls → the camp's real exit → Lannegar Valley in 3D.
@@ -98,7 +98,11 @@ Touch controllers onto the game's touch input. Same package/key/versionCode as t
   (region dump), `vrmode table` for a from-above check, `stats` prints `far=`.
   v17: holes in buildings (uncovered faces discarded) → mipmap pull fill; thin walls capped
   at 3; fade only blocks that really cut the eye→hero line; multi-tile props (racks, stalls)
-  one billboard per object (V10). Desktop: `props R` dumps prop quads + groups. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
+  one billboard per object (V10). Desktop: `props R` dumps prop quads + groups.
+  v18: town wall back (blocked tiles = footprint, forest edge out), regions split by kind and
+  building tileset, shrine as props, names ride on characters (glyphs aren't tiles), prop
+  groups only for touching 64-px tiles, earth under the map edge, hide the building the
+  camera is in. Desktop: `structs N` now marks `+` art / `*` prop cells / `#` blocked. Desktop: `tools/vr/run_desktop.sh vr vr/desktop/scripts/tutorial_first.txt`. First check: `adb logcat -s ekxr ekvr AndroidRuntime:E`.
 - Spec + controls + obfuscated names + deviations V1–V5: `deobf/QUEST_VR_SPEC.md`.
 - Next: buildings/walls as projected boxes (V2), point lights (V3). (V4 tree fade: done.)
 

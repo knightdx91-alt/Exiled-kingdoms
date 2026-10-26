@@ -127,6 +127,35 @@ recorded with its 4 iso-screen corners, UVs, colour and blend mode, then placed 
   read once per tile frame), are one object (union-find, ≤ 160 px wide): all its pieces share
   one anchor (the mean of their cells) and baseline (the lowest piece's), so the picture stays
   whole and turns as one. Trees and barrels have transparent margins and stay single.
+- **v18** (owner's v17 headset screenshots: "the wall around the town is completely gone,
+  things are merged together, the altar … should be a separate prop, the npcs names are
+  showing up in the ground, trees odd near the cave mouth, the striped stalls still wrong"):
+  - *Footprints* (`Structures.build`, H10 measured): the low town wall's tiles
+    (`wall_stone_low`, image `wall_test.png`) block by their own `blocked` property — the
+    nonwalk layer leaves them out — so they had no region and their art was dropped; now a
+    structure tile with `blocked`/`obstacle` is footprint. Conversely the blocked forest edge
+    joined the wall into one region raised as blank walls in front of the trees: only blocked
+    cells within reach of structure art count (walls / dungeon: 1 cell; buildings: 4 — a
+    building's tiles are stored along its front edges and roof, often a few cells off its
+    footprint in the layers).
+  - *One region per structure*: regions don't cross kinds (wall / dungeon-ruin / building,
+    from the tileset image name), and buildings split by the majority building tileset within
+    3 cells (a house beside the town hall took its 6.9 m height). A tile joins only a region
+    whose own art is of its tileset (`regionTex`).
+  - *Props from structure sets*: a cluster of dungeon / ruin art under 24 cells (the shrine:
+    14 tiles of `adt_tiled_dungeon` — low blocks, braziers, a lectern) is drawn as props, not
+    extruded. Not applied to buildings/walls (their sparse tile runs read as lone pieces).
+  - *Names*: text (BitmapFont) is drawn through the same vertex-array path as map tiles, so
+    glyphs were taken for tiles and stood on the ground. A tile is now that path **and** a map
+    tileset texture; a name is a run of glyphs attached to its character by the run's centre.
+  - *Prop groups*: object tiles (64 px) only, ≤ 4; joined when their pictures touch (opaque in
+    a common column of the overlap, or edge to edge). v17 grouped 128-px cliff/tree tiles,
+    whose back pieces floated.
+  - *Ground*: earth under the whole map and 40 cells around it (the edge cliffs by the mine
+    stood over sky).
+  - *Camera in a building*: the whole building within 2 cells of the eye is hidden at street
+    level (the third-person camera ends up inside houses the hero walks along); a building
+    fades only within 3 units in front of the hero.
 - **Draw distance** (v12; owner: "can you make it draw more, so you can see farther out?").
   EK culls the map to its renderer's view bounds (`BatchTiledMapRenderer.d`, a Rectangle set by
   setView from the camera), but it also keeps the camera zoom within 1–1.5 itself every frame

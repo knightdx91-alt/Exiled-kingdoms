@@ -35,7 +35,7 @@ class Structures {
 
     /** Per map: structure tile keys and nonwalk regions. */
     void build(com.badlogic.gdx.s.j.b map) {
-        keys.clear(); regionCells.clear(); region = null; mw = mh = 0;
+        keys.clear(); regionCells.clear(); regionTex.clear(); texCat.clear(); region = null; propCell = null; mw = mh = 0;
         if (map == null) return;
         int sets = 0;
         try {
@@ -43,9 +43,11 @@ class Structures {
                 Object src = ts.a() == null ? null : ts.a().b("imagesource");
                 if (src == null || !NAME.matcher(String.valueOf(src)).find()) continue;
                 sets++;
+                String name = String.valueOf(src).toLowerCase();
+                int cat = name.matches(".*(wall|palisade|gate).*") ? 1 : name.matches(".*(adt_tiled_dungeon|tomb|ruins|cave).*") ? 2 : 3;
                 for (com.badlogic.gdx.s.j.e t : ts) {
                     com.badlogic.gdx.graphics.g2d.TextureRegion r = t == null ? null : t.b();
-                    if (r != null) keys.add(Scene3D.key(r.getTexture().getTextureObjectHandle(), r.getU(), r.getV2()));
+                    if (r != null) { keys.add(Scene3D.key(r.getTexture().getTextureObjectHandle(), r.getU(), r.getV2())); texCat.put(r.getTexture().getTextureObjectHandle(), cat); }
                 }
             }
         } catch (Throwable t) {
@@ -64,6 +66,122 @@ class Structures {
                         com.badlogic.gdx.s.j.f.a c = f.a(x, y);
                         b[x + y * mw] = c != null && c.a() != null;
                     }
+                // only blocked cells under / beside the structure art itself (v18): the low town wall
+                // joined the blocked forest edge into one region, which was raised as blank walls in
+                // front of the trees while the wall's own art went elsewhere (owner: "the wall
+                // around the town is completely gone")
+                boolean[] art = new boolean[mw * mh];
+                java.util.ArrayList<Long> artTex = new java.util.ArrayList<>();
+                for (com.badlogic.gdx.s.d any : map.a()) {
+                    if (!(any instanceof com.badlogic.gdx.s.j.f) || any == l) continue;
+                    com.badlogic.gdx.s.j.f tl = (com.badlogic.gdx.s.j.f) any;
+                    for (int x = 0; x < mw; x++)
+                        for (int y = 0; y < mh; y++) {
+                            com.badlogic.gdx.s.j.f.a c = tl.a(x, y);
+                            com.badlogic.gdx.graphics.g2d.TextureRegion r = c == null || c.a() == null ? null : c.a().b();
+                            if (r != null && keys.contains(Scene3D.key(r.getTexture().getTextureObjectHandle(), r.getU(), r.getV2()))) {
+                                art[x + y * mw] = true;
+                                // a structure tile that blocks by its own property (the low town wall's
+                                // tiles are "blocked"; the nonwalk layer leaves them out) is footprint too:
+                                // v17 found no region for them and dropped the wall's art
+                                com.badlogic.gdx.s.h props = c.a().c();
+                                if (props != null && (props.a("blocked") || props.a("obstacle"))) b[x + y * mw] = true;
+                                artTex.add(((long) (x + y * mw) << 32) | (r.getTexture().getTextureObjectHandle() & 0xffffffffL));
+                            }
+                        }
+                }
+                // a lone piece from a structure tileset (an altar, a statue from the dungeon set: under
+                // 5 cells of art, 8-connected) is a prop, drawn upright like one (v18; owner: "the altar
+                // ... should be a separate prop")
+                int[] cellCat = new int[mw * mh];
+                for (long e : artTex) { int c = (int) (e >>> 32); Integer k = texCat.get((int) e); if (cellCat[c] == 0 && k != null) cellCat[c] = k; }
+                artDbg = art.clone(); nonwalkDbg = b.clone();
+                propCell = new boolean[mw * mh];
+                int[] comp = new int[mw * mh], st = new int[mw * mh];
+                java.util.Arrays.fill(comp, -1);
+                for (int i = 0; i < art.length; i++) {
+                    if (!art[i] || comp[i] >= 0) continue;
+                    int sp = 0, cnt = 0, head = 0;
+                    int[] members = new int[mw * mh > 4096 ? 4096 : mw * mh];
+                    st[sp++] = i; comp[i] = i;
+                    while (sp > 0) {
+                        int c = st[--sp], cx = c % mw, cy = c / mw;
+                        if (cnt < members.length) members[cnt] = c;
+                        cnt++;
+                        for (int dx = -1; dx <= 1; dx++)
+                            for (int dy = -1; dy <= 1; dy++) {
+                                int nx = cx + dx, ny = cy + dy;
+                                if (nx < 0 || ny < 0 || nx >= mw || ny >= mh) continue;
+                                int k = nx + ny * mw;
+                                if (art[k] && comp[k] < 0 && cellCat[k] == cellCat[i]) { comp[k] = i; st[sp++] = k; }   // one kind of structure
+                            }
+                    }
+                    // dungeon / ruin pieces outdoors (the Lannegar shrine: 14 tiles of the dungeon set,
+                    // low blocks, braziers, a lectern) are props too; a dungeon's walls run to hundreds
+                    // only for dungeon / ruin pieces: a building's or wall's art tiles are often stored
+                    // a few cells off its footprint in the layers, in sparse diagonal runs that read as
+                    // lone pieces (v18 first cut turned house tiles into flat cut-outs)
+                    int limit = cellCat[i] == 2 ? 24 : 0;
+                    if (cnt < limit) for (int j = 0; j < cnt; j++) { propCell[members[j]] = true; art[members[j]] = false; }
+                }
+                // reach: a building's art tiles stand along its front edges and roof, so its inner
+                // footprint can be 3-4 cells from any of them (v18 with reach 1 broke houses into
+                // fragments); walls and dungeon pieces stand on their own cells
+                boolean[] near = new boolean[mw * mh];
+                for (int i = 0; i < art.length; i++) {
+                    if (!art[i]) continue;
+                    int x = i % mw, y = i / mw, reach = cellCat[i] == 3 ? 4 : 1;
+                    for (int dx = -reach; dx <= reach; dx++)
+                        for (int dy = -reach; dy <= reach; dy++) {
+                            int nx = x + dx, ny = y + dy;
+                            if (nx >= 0 && ny >= 0 && nx < mw && ny < mh) near[nx + ny * mw] = true;
+                        }
+                }
+                for (int i = 0; i < b.length; i++) b[i] &= near[i];
+                // regions don't cross kinds of structure: a blocked cell takes the kind (wall /
+                // dungeon-ruin / building, from the tileset's image name) of the art on it, else on a
+                // neighbour (v18: the shrine, the east town wall and a house were one region, so the
+                // shrine stood as tall as the house; per tileset split one house in four)
+                int[] own = new int[mw * mh], label = new int[mw * mh];
+                for (long e : artTex) {
+                    int c = (int) (e >>> 32);
+                    Integer cat = texCat.get((int) e);
+                    if (own[c] == 0 && !propCell[c] && cat != null) own[c] = cat;   // 1 walls, 2 dungeon/ruins, 3 buildings
+                }
+                for (int i = 0; i < b.length; i++) {
+                    if (!b[i]) continue;
+                    label[i] = own[i];
+                    int x = i % mw, y = i / mw;
+                    for (int rr = 1; rr <= 4 && label[i] == 0; rr++)
+                    for (int dx = -rr; dx <= rr && label[i] == 0; dx++)
+                        for (int dy = -rr; dy <= rr && label[i] == 0; dy++) {
+                            int nx = x + dx, ny = y + dy;
+                            if (nx >= 0 && ny >= 0 && nx < mw && ny < mh) label[i] = own[nx + ny * mw];
+                        }
+                }
+                // buildings: one region per building tileset, by the majority of building art within 3
+                // cells (v18: a house beside the town hall was one region and took its 6.9 m height;
+                // the cell's own tile alone flip-flopped between a house's wall and roof sets)
+                int[] tex3 = new int[mw * mh];
+                for (long e : artTex) {
+                    int c = (int) (e >>> 32);
+                    Integer cat = texCat.get((int) e);
+                    if (tex3[c] == 0 && cat != null && cat == 3) tex3[c] = (int) e;
+                }
+                java.util.HashMap<Integer, Integer> votes = new java.util.HashMap<>();
+                for (int i = 0; i < b.length; i++) {
+                    if (!b[i] || label[i] != 3) continue;
+                    votes.clear();
+                    int x = i % mw, y = i / mw, best = 0, bestN = 0;
+                    for (int dx = -3; dx <= 3; dx++)
+                        for (int dy = -3; dy <= 3; dy++) {
+                            int nx = x + dx, ny = y + dy;
+                            if (nx < 0 || ny < 0 || nx >= mw || ny >= mh || tex3[nx + ny * mw] == 0) continue;
+                            int t = tex3[nx + ny * mw], v = votes.merge(t, 1, Integer::sum);
+                            if (v > bestN) { bestN = v; best = t; }
+                        }
+                    if (best != 0) label[i] = 1000 + best;
+                }
                 region = new int[mw * mh];
                 java.util.Arrays.fill(region, -1);
                 int[] stack = new int[mw * mh];
@@ -77,7 +195,7 @@ class Structures {
                         if (n == cells.length) cells = java.util.Arrays.copyOf(cells, n * 2);
                         cells[n++] = cx | (cy << 16);
                         int[] nb = {cx > 0 ? c - 1 : -1, cx < mw - 1 ? c + 1 : -1, cy > 0 ? c - mw : -1, cy < mh - 1 ? c + mw : -1};
-                        for (int k : nb) if (k >= 0 && b[k] && region[k] < 0) { region[k] = id; stack[sp++] = k; }
+                        for (int k : nb) if (k >= 0 && b[k] && region[k] < 0 && label[k] == label[c]) { region[k] = id; stack[sp++] = k; }
                     }
                     regionCells.add(java.util.Arrays.copyOf(cells, n));
                 }
@@ -100,6 +218,22 @@ class Structures {
                         if (k >= 0 && region[k] == region[c] && edgeDist[k] == 0) { edgeDist[k] = edgeDist[c] + 1; queue[qt++] = k; }
                 }
                 for (int i = 0; i < b.length; i++) if (region[i] >= 0) regionMaxDist[region[i]] = Math.max(regionMaxDist[region[i]], edgeDist[i]);
+                // which tilesets' art stands on / beside each region (a tile only joins a region its
+                // own tileset is drawn on: v17 gave the shrine the town hall's roof height)
+                for (int i = 0; i < regionCells.size(); i++) regionTex.add(new java.util.HashSet<>());
+                for (long e : artTex) {
+                    int c = (int) (e >>> 32), x = c % mw, y = c / mw, t = (int) e;
+                    if (propCell[c]) continue;
+                    Integer tc = texCat.get(t);
+                    int reach = tc != null && tc == 3 ? 4 : 1;                 // see the near mask
+                    for (int dx = -reach; dx <= reach; dx++)
+                        for (int dy = -reach; dy <= reach; dy++) {
+                            int id = regionOf(x + dx, y + dy);
+                            Integer cat = texCat.get(t);
+                            int lb = id >= 0 ? label[(x + dx) + (y + dy) * mw] : 0;
+                            if (id >= 0 && cat != null && cat == (lb >= 1000 ? 3 : lb)) regionTex.get(id).add(t);
+                        }
+                }
             }
         } catch (Throwable t) {
             System.out.println("[ekvr] nonwalk layer: " + t);
@@ -108,7 +242,17 @@ class Structures {
                 + mw + "x" + mh + ", " + regionCells.size() + " regions");
     }
 
+    boolean[] propCell, artDbg, nonwalkDbg;
+    final ArrayList<java.util.HashSet<Integer>> regionTex = new ArrayList<>();
+    final java.util.HashMap<Integer, Integer> texCat = new java.util.HashMap<>();
+
     boolean isStructure(long key) { return keys.contains(key); }
+
+    /** A structure tile drawn at this cell: false for the lone pieces that are props (see build). */
+    boolean isStructureAt(long key, int col, int row) {
+        if (!keys.contains(key)) return false;
+        return propCell == null || col < 0 || row < 0 || col >= mw || row >= mh || !propCell[col + row * mw];
+    }
 
     // ---- per frame -------------------------------------------------------------------------
     int fbo, tex, texW, texH;
@@ -118,7 +262,8 @@ class Structures {
     FloatBuffer cols = ByteBuffer.allocateDirect(4 * 6 * 6 * 5 * 8192).order(ByteOrder.nativeOrder()).asFloatBuffer();
     int colVerts;
     float[] colMid = new float[0];    // per column: x, z (centre) for fading
-    float[] colTop = new float[0];    // per column: its highest corner (fading: does it block the hero?)
+    float[] colTop = new float[0];
+    int[] colRegion = new int[0];     // per column: its region (hiding the building the viewer is in)    // per column: its highest corner (fading: does it block the hero?)
     int[] colStart = new int[0], colCount = new int[0];
     int ncols;
     final IntBuffer ib = ByteBuffer.allocateDirect(16 * 4).order(ByteOrder.nativeOrder()).asIntBuffer();
@@ -154,7 +299,7 @@ class Structures {
             // the footprint region this art belongs to: its own cell, else the nearest within 2 cells
             // (roof and overhang tiles are anchored outside the blocked cells). v15 gave such a tile a
             // lone column of its own, which showed its art as a floating fragment (owner's screenshot).
-            int id = nearestRegion(col, row, 2);
+            int id = nearestRegion(col, row, 2, rec.tex[i].getTextureObjectHandle());
             if (id < 0) continue;                                       // no footprint: its art shows on nothing
             Float old = heights.get(id);
             if (old == null || h > old) heights.put(id, h);
@@ -251,7 +396,7 @@ class Structures {
             for (int c = c0 - rad; c <= c0 + rad; c++) {
                 int id = regionOf(c, r);
                 if (c == c0 && r == r0) { sb.append('@'); continue; }
-                if (id < 0) { sb.append('.'); continue; }
+                if (id < 0) { sb.append(propCell != null && c >= 0 && r >= 0 && c < mw && r < mh && propCell[c + r * mw] ? '*' : artDbg != null && c >= 0 && r >= 0 && c < mw && r < mh && artDbg[c + r * mw] ? '+' : nonwalkDbg != null && c >= 0 && r >= 0 && c < mw && r < mh && nonwalkDbg[c + r * mw] ? '#' : '.'); continue; }
                 ids.add(id);
                 char ch = (char) ('A' + id % 26);
                 sb.append(edgeDist[c + r * mw] == 1 ? Character.toLowerCase(ch) : ch);
@@ -262,17 +407,20 @@ class Structures {
         return sb.toString();
     }
 
-    int nearestRegion(int col, int row, int r) {
-        int best = regionOf(col, row), bd = 0;
-        if (best >= 0) return best;
-        bd = Integer.MAX_VALUE;
+    /** The region at / nearest this cell (within r) that art of this texture stands on, or -1. */
+    int nearestRegion(int col, int row, int r, int tex) {
+        int best = regionOf(col, row);
+        if (best >= 0 && regionTex.get(best).contains(tex)) return best;
+        best = -1;
+        int bd = Integer.MAX_VALUE;
         for (int dy = -r; dy <= r; dy++)
             for (int dx = -r; dx <= r; dx++) {
                 int g = regionOf(col + dx, row + dy), d = dx * dx + dy * dy;
-                if (g >= 0 && d < bd) { bd = d; best = g; }
+                if (g >= 0 && d < bd && regionTex.get(g).contains(tex)) { bd = d; best = g; }
             }
         return best;
     }
+
 
     int regionOf(int col, int row) {
         if (region == null || col < 0 || row < 0 || col >= mw || row >= mh) return -1;
@@ -316,6 +464,7 @@ class Structures {
             colCount = java.util.Arrays.copyOf(colCount, ncols * 2 + 64);
             colMid = java.util.Arrays.copyOf(colMid, (ncols * 2 + 64) * 2);
             colTop = java.util.Arrays.copyOf(colTop, ncols * 2 + 64);
+            colRegion = java.util.Arrays.copyOf(colRegion, ncols * 2 + 64);
             colRoof = java.util.Arrays.copyOf(colRoof, ncols * 2 + 64);
         }
         colStart[ncols] = colVerts; colMid[ncols * 2] = col; colMid[ncols * 2 + 1] = -(row + 1);
@@ -324,6 +473,7 @@ class Structures {
         // corner heights (smooth roof surface): (xa,za) (xb,za) (xb,zb) (xa,zb)
         float hAA = cornerH(id, col - 1, row, col, row + 1), hBA = cornerH(id, col, row, col + 1, row + 1);
         float hBB = cornerH(id, col, row - 1, col + 1, row), hAB = cornerH(id, col - 1, row - 1, col, row);
+        colRegion[ncols] = id;
         colTop[ncols] = Math.max(Math.max(hAA, hBA), Math.max(hBB, hAB));
         // sides on the region's edge, up to the corner heights
         if (regionOf(col - 1, row) != id) face(xa, za, hAA, xa, zb, hAB);

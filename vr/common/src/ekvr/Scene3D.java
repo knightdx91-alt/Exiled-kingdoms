@@ -155,13 +155,16 @@ public class Scene3D {
             int o = i * 16;
             float minX = Math.min(Math.min(q[o], q[o + 4]), Math.min(q[o + 8], q[o + 12])), maxX = Math.max(Math.max(q[o], q[o + 4]), Math.max(q[o + 8], q[o + 12]));
             float minY = Math.min(Math.min(q[o + 1], q[o + 5]), Math.min(q[o + 9], q[o + 13])), maxY = Math.max(Math.max(q[o + 1], q[o + 5]), Math.max(q[o + 9], q[o + 13]));
-            sb.append(String.format("%d k%d tile=%b x %.0f..%.0f y %.0f..%.0f anchor %.2f,%.2f foot %.0f tex %d grp %d sides %b %b%n", i, kind[i], rec.tileDraw[i], minX, maxX, minY, maxY, ax[i], az[i], aFoot[i] - minY, rec.tex[i].getTextureObjectHandle(), gFind(i), rec.tileDraw[i] && sideOpaque(i, false), rec.tileDraw[i] && sideOpaque(i, true)));
+            sb.append(String.format("%d k%d tile=%b x %.0f..%.0f y %.0f..%.0f anchor %.2f,%.2f foot %.0f tex %d grp %d sides %b %b%n", i, kind[i], rec.tileDraw[i], minX, maxX, minY, maxY, ax[i], az[i], aFoot[i] - minY, rec.tex[i].getTextureObjectHandle(), gFind(i), rec.tileDraw[i] && sideOpaque(i, false), rec.tileDraw[i] && sideOpaque(i, true))).append(rec.tileDraw[i] ? " mask " + Long.toHexString(colMask(i)) + "\n" : "");
         }
         return sb.toString();
     }
 
     /** (tests) the structure regions around the hero. */
-    public String structDump(int rad) { return structs.dump(Math.round(heroX), Math.round(-heroZ) - 1, rad); }
+    public String structDump(int rad) {
+        return "viewer " + viewX + "," + viewZ + " cell " + Math.round(viewX) + "," + (Math.round(-viewZ) - 1) + " region " + structs.regionOf(Math.round(viewX), Math.round(-viewZ) - 1) + "\n"
+                + structs.dump(Math.round(heroX), Math.round(-heroZ) - 1, rad);
+    }
 
     /** Point the game's map drawing at our recorder. Call every frame before the game renders. */
     public void beginFrame() {
@@ -191,7 +194,13 @@ public class Scene3D {
                 if (world != null) fLights.set(lr, new NoLight((com.badlogic.gdx.physics.box2d.World) world));
             }
             Object map = fMapMap.get(lr.l);
-            if (map != lastMap) { lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); structs.build((com.badlogic.gdx.s.j.b) map); }
+            if (map != lastMap) {
+                lastMap = map; buildFloorKeys((com.badlogic.gdx.s.j.b) map); structs.build((com.badlogic.gdx.s.j.b) map);
+                mapTex.clear();
+                for (com.badlogic.gdx.s.j.g ts : ((com.badlogic.gdx.s.j.b) map).c())
+                    for (com.badlogic.gdx.s.j.e t : ts)
+                        if (t != null && t.b() != null) mapTex.add(t.b().getTexture().getTextureObjectHandle());
+            }
             net.fdgames.GameEntities.Final.Player p = net.fdgames.GameLevel.GameLevel.h();
             // the hero's cell: EK draws a character at (x/32, -y/32) (v15: was x/32 - 1, one cell off,
             // which v6-v14 compensated by searching for the hero's sprite each frame -- and that search
@@ -384,6 +393,11 @@ public class Scene3D {
         //    armour, weapon) on the same spot; each layer's lowest opaque row differs (the head's is
         //    the neck), so v11 lifted each layer differently and pulled them apart. Group the
         //    sprite quads that share a bottom edge and centre, and use the group's lowest row.
+        // a "tile" is a quad drawn through the vertex-array path with a map tileset's texture; text
+        // (BitmapFont) takes the same path, so v1-v17 took name/title glyphs for map tiles: they
+        // stood on the ground as props instead of riding over the character (owner's screenshot)
+        for (int i = 0; i < n; i++)
+            if (rec.tileDraw[i] && !mapTex.isEmpty() && !mapTex.contains(rec.tex[i].getTextureObjectHandle())) rec.tileDraw[i] = false;
         footGroups.clear();
         for (int i = 0; i < n; i++) {
             if (rec.tileDraw[i] || rec.additive[i]) continue;
@@ -397,6 +411,30 @@ public class Scene3D {
             Integer old = footGroups.get(k);
             if (old == null || f < old) footGroups.put(k, f);
         }
+        // 0b. text runs: a name / title is drawn one glyph quad per letter; v1-v17 attached each
+        //     glyph to a character only within 56 px of its centre, so the outer letters of a long
+        //     name stayed behind on the ground (owner: "names are showing up in the ground").
+        //     Consecutive small quads of one texture on one line form a run, tested by its centre.
+        if (runCx.length < n) runCx = new float[n * 2];
+        for (int i = 0, start = 0; i <= n; i++) {
+            boolean joins = false;
+            if (i < n && i > start) {
+                int o = i * 16, p = (i - 1) * 16;
+                joins = !rec.tileDraw[i] && !rec.tileDraw[i - 1] && rec.tex[i] == rec.tex[i - 1]
+                        && Math.abs(Math.min(q[o + 1], q[o + 5]) - Math.min(q[p + 1], q[p + 5])) <= 3
+                        && Math.abs(q[o + 5] - q[o + 1]) < 40
+                        && Math.min(q[o], q[o + 4]) - Math.max(q[p + 8], q[p + 12]) < 24
+                        && Math.min(q[o], q[o + 4]) >= Math.min(q[p], q[p + 4]);
+            }
+            if (!joins) {
+                if (i > start) {
+                    float lo = Float.MAX_VALUE, hi = -Float.MAX_VALUE;
+                    for (int j = start; j < i; j++) { int o = j * 16; lo = Math.min(lo, Math.min(q[o], q[o + 4])); hi = Math.max(hi, Math.max(q[o + 8], q[o + 12])); }
+                    for (int j = start; j < i; j++) runCx[j] = (lo + hi) / 2;
+                }
+                start = i;
+            }
+        }
         // 1. classify + anchors of big sprites (characters)
         int actors = 0;
         int[] actorIdx = new int[512];
@@ -409,7 +447,7 @@ public class Scene3D {
             long tk = rec.tileDraw[i] ? key(rec.tex[i].getTextureObjectHandle(), q[o + 2], q[o + 3]) : 0;
             boolean floor = rec.tileDraw[i] && floorKeys.contains(tk);
             int a = (Float.floatToRawIntBits(rec.col[i]) >>> 24) & 0xff;
-            kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructure(tk) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
+            kind[i] = (byte) (floor ? 0 : rec.tileDraw[i] && structs.isStructureAt(tk, Math.round(gi((minX + maxX) / 2, minY + 16)), Math.round(go((minX + maxX) / 2, minY + 16)) - 1) ? STRUCT : rec.additive[i] ? 3 : a < 250 ? 2 : 1);
             aCx[i] = (minX + maxX) / 2;
             // tiles stand on their cell centre (quad bottom + 16 px); sprites on their lowest opaque row
             aBase[i] = rec.tileDraw[i] || kind[i] == 3 ? minY + 16 : minY + groupFoot(minY, aCx[i]);
@@ -425,7 +463,7 @@ public class Scene3D {
             if (!floor && !rec.tileDraw[i] && maxY - minY < 40) {
                 for (int k = actors - 1; k >= 0; k--) {
                     int j = actorIdx[k];
-                    if (Math.abs(aCx[i] - aCx[j]) < 56 && minY >= aBase[j] - 30 && minY < aBase[j] + 170) {
+                    if (Math.abs(runCx[i] - aCx[j]) < 56 && minY >= aBase[j] - 30 && minY < aBase[j] + 170) {
                         ax[i] = ax[j]; az[i] = az[j]; aCx[i] = aCx[j]; aBase[i] = aBase[j]; aFoot[i] = aFoot[j];
                         break;
                     }
@@ -450,10 +488,11 @@ public class Scene3D {
      * a market stall or a fence as several tiles on neighbouring cells (e.g. three 64x128 tiles,
      * 32 px apart); v1-v16 turned each tile toward the viewer about its own cell, so the pieces
      * came apart at different angles (owner: "props and stalls are crooked"). Tiles of one
-     * tileset on neighbouring cells whose pictures overlap, where a picture runs into the shared
-     * edge (measured: a rack's end tile is transparent at its inner edge), are one object: they share an anchor (the members' mean cell) and baseline, so the
+     * tileset on neighbouring cells whose pictures touch (opaque in a common column of their
+     * overlap) are one object: they share an anchor (the members' mean cell) and baseline, so the
      * picture stays whole and turns as one. Trees and barrels have transparent margins and stay
-     * single. A group is capped at 5 cells wide.
+     * single. A group is at most 4 tiles of 64 px, 5 cells wide (v18: big cliff / tree tiles
+     * grouped and floated).
      */
     void groupProps(int n, float[] q) {
         if (gPar.length < n) {
@@ -489,12 +528,21 @@ public class Scene3D {
                         float jMinY = Math.min(Math.min(q[p + 1], q[p + 5]), Math.min(q[p + 9], q[p + 13]));
                         float jMaxY = Math.max(Math.max(q[p + 1], q[p + 5]), Math.max(q[p + 9], q[p + 13]));
                         if (jMinY >= maxY || minY >= jMaxY) continue;
+                        // object tiles only (64 px wide): cliffs and trees (128 px) grouped in v17 and
+                        // their back pieces floated above the front one's baseline (owner: trees odd
+                        // near the mine)
+                        if (gMaxX[i] - gMinX[i] > 66 || gMaxX[j] - gMinX[j] > 66) continue;
                         int l = gMinX[i] <= gMinX[j] ? i : j, r = l == i ? j : i;
                         if (gMinX[r] == gMinX[l] || gMinX[r] > gMaxX[l] + 1) continue;   // side by side, touching or overlapping
                         int a = gFind(i), b = gFind(j);
                         if (a == b) continue;
-                        if (Math.max(gMaxX[a], gMaxX[b]) - Math.min(gMinX[a], gMinX[b]) > 160) continue;
-                        if (!sideOpaque(l, true) && !sideOpaque(r, false)) continue;
+                        if (Math.max(gMaxX[a], gMaxX[b]) - Math.min(gMinX[a], gMinX[b]) > 160 || gCount[a] + gCount[b] > 4) continue;
+                        // the pictures touch: some column of the overlap is opaque in both (v18; the
+                        // edge test missed a stall's two tiles)
+                        int d = Math.round(gMinX[r] - gMinX[l]);
+                        boolean touch = d < 64 ? ((colMask(l) >>> d) & colMask(r)) != 0
+                                : d <= 65 && (colMask(l) >>> 63) != 0 && (colMask(r) & 1) != 0;   // edge to edge
+                        if (!touch) continue;
                         gPar[b] = a; gCount[a] += gCount[b];
                         gMinX[a] = Math.min(gMinX[a], gMinX[b]); gMaxX[a] = Math.max(gMaxX[a], gMaxX[b]);
                         any = true;
@@ -555,24 +603,39 @@ public class Scene3D {
         if (colFade.length < nc) colFade = new boolean[nc * 2];
         float sx = dispX() - vx, sz = dispZ() - vz, sl = (float) Math.sqrt(sx * sx + sz * sz);
         if (colHide.length < nc) colHide = new boolean[nc * 2];
+        // the whole building the viewer stands in (or is within 2 cells of) isn't drawn: the third-person camera
+        // behind the hero ends up inside a house when the hero walks along it, and the house's
+        // walls and roof showed as slabs across the view (owner's v17 screenshots)
+        java.util.HashSet<Integer> inside = null;
+        int vc = Math.round(vx), vr = Math.round(-vz) - 1;
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dz = -2; dz <= 2; dz++) {
+                int id = structs.regionOf(vc + dx, vr + dz);
+                if (id >= 0) { if (inside == null) inside = new java.util.HashSet<>(); inside.add(id); }
+            }
         for (int i = 0; i < nc; i++) {
             colFade[i] = false;
             float px = structs.colMid[i * 2] - vx, pz = structs.colMid[i * 2 + 1] - vz;
             // a building block you are (almost) standing in isn't drawn: from inside, its walls and
             // roof cut across the whole view (third person in a tight village; owner's screenshot)
-            colHide[i] = px * px + pz * pz < 1.8f * 1.8f;
+            // (only at street level: from above, e.g. the tabletop, nothing is in the way)
+            colHide[i] = viewEyeY < structs.colTop[i] + 0.5f
+                    && (px * px + pz * pz < 1.8f * 1.8f || (inside != null && inside.contains(structs.colRegion[i])));
             if (hideHero || sl < 1e-3f) continue;
             float along = (px * sx + pz * sz) / sl, side = Math.abs(px * sz - pz * sx) / sl;
             // only where it really blocks the eye's line to the hero's chest (1 unit up): v16 faded
             // every block near the line on the ground, so from above (tabletop) or over a low wall
             // whole houses turned see-through (owner: "the buildings you can see through")
             float lineY = viewEyeY + (1f - viewEyeY) * along / sl;
-            colFade[i] = along > 0.3f && along < sl - 0.4f && side < 0.9f && lineY < structs.colTop[i];
+            // ... and only the part just in front of the hero (v18: whole roofs turned see-through)
+            colFade[i] = along > Math.max(0.3f, sl - 3f) && along < sl - 0.4f && side < 0.7f && lineY < structs.colTop[i];
         }
     }
 
     final java.util.HashMap<Long, Integer> feet = new java.util.HashMap<>();
     final java.util.HashMap<Long, Integer> footGroups = new java.util.HashMap<>();
+    float[] runCx = new float[0];
+    final java.util.HashSet<Integer> mapTex = new java.util.HashSet<>();
 
     /** Layers of one character: same bottom edge (to 2 px) and centre (to 8 px). */
     static long groupKey(float minY, float cx) { return ((long) Math.round(minY / 2f) << 32) ^ (Math.round(cx / 8f) & 0xffffffffL); }
@@ -646,6 +709,33 @@ public class Scene3D {
     }
 
     final java.util.HashMap<Long, Boolean> sides = new java.util.HashMap<>();
+    final java.util.HashMap<Long, Long> masks = new java.util.HashMap<>();
+
+    /** Bit c set: column c (from the quad's left, in iso px, up to 64) has an opaque texel. Cached. */
+    long colMask(int i) {
+        int o = i * 16;
+        float[] q = rec.q;
+        com.badlogic.gdx.graphics.Texture t = rec.tex[i];
+        float uL = q[o + 2], uR = q[o + 10], vb = q[o + 3], vt = q[o + 7];
+        long k = key(t.getTextureObjectHandle(), uL, vb) * 31 + Math.round(vt * 65536) * 7 + Math.round(uR * 65536) * 3;
+        Long cached = masks.get(k);
+        if (cached == null) {
+            int tw = t.getWidth(), th = t.getHeight();
+            int x = Math.max(0, Math.round(Math.min(uL, uR) * tw)), w = Math.max(1, Math.min(tw - x, Math.round(Math.abs(uR - uL) * tw)));
+            int r0 = Math.max(0, (int) (Math.min(vb, vt) * th)), h = Math.max(1, Math.min(th - r0, Math.round(Math.abs(vb - vt) * th)));
+            long m = 0;
+            if (readTex(t, x, r0, w, h))
+                for (int row = 0; row < h; row++)
+                    for (int c = 0; c < w; c++)
+                        if ((footBuf.get((row * w + c) * 4 + 3) & 0xff) > 40) {
+                            int col = (int) ((uR >= uL ? c : w - 1 - c) * 64L / w);
+                            m |= 1L << Math.min(63, col);
+                        }
+            cached = m;
+            masks.put(k, cached);
+        }
+        return cached;
+    }
 
     /**
      * Does the quad's picture reach its left / right edge (opaque texels in the outer 2 columns)?
@@ -689,6 +779,8 @@ public class Scene3D {
         gl.glDepthFunc(GL20.GL_ALWAYS);
         gl.glDepthMask(true);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        drawGround(gl);
+        useMain(gl);
         pass(gl, 0, 0.02f);
         gl.glDepthFunc(GL20.GL_LEQUAL);
         // buildings and walls: solid columns textured with their own art (Structures)
@@ -707,6 +799,41 @@ public class Scene3D {
         gl.glDepthMask(true);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         gl.glDisable(GL20.GL_DEPTH_TEST);
+    }
+
+    int whiteTex;
+    final FloatBuffer groundVb = ByteBuffer.allocateDirect(6 * 9 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+
+    /**
+     * Earth under the whole map and 40 cells around it (v18): beyond the map's edge (the black void
+     * of the 2D game) there was only sky, so edge cliffs and trees stood over nothing (owner: the
+     * trees and cliffs by the mine look odd). Drawn first; the floor tiles cover it.
+     */
+    void drawGround(GL20 gl) {
+        if (whiteTex == 0) {
+            java.nio.IntBuffer ib = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asIntBuffer();
+            gl.glGenTextures(1, ib); whiteTex = ib.get(0);
+            gl.glBindTexture(GL20.GL_TEXTURE_2D, whiteTex);
+            ByteBuffer px = ByteBuffer.allocateDirect(4); px.put((byte) -1).put((byte) -1).put((byte) -1).put((byte) -1).flip();
+            gl.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_RGBA, 1, 1, 0, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, px);
+            gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MIN_FILTER, GL20.GL_NEAREST);
+            gl.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MAG_FILTER, GL20.GL_NEAREST);
+        }
+        float w = structs.mw > 0 ? structs.mw : 96, h = structs.mh > 0 ? structs.mh : 96, m = 40;
+        float x0 = -m, x1 = w + m, z0 = m, z1 = -(h + m), y = -0.02f, r = 0.30f, g = 0.25f, b = 0.19f;
+        float[][] c = {{x0, z0}, {x1, z0}, {x1, z1}, {x0, z0}, {x1, z1}, {x0, z1}};
+        groundVb.clear();
+        for (float[] v : c) groundVb.put(v[0]).put(y).put(v[1]).put(0.5f).put(0.5f).put(r).put(g).put(b).put(1f);
+        groundVb.position(0);
+        gl.glVertexAttribPointer(aPos, 3, GL20.GL_FLOAT, false, 36, groundVb);
+        groundVb.position(3);
+        gl.glVertexAttribPointer(aUv, 2, GL20.GL_FLOAT, false, 36, groundVb);
+        groundVb.position(5);
+        gl.glVertexAttribPointer(aCol, 4, GL20.GL_FLOAT, false, 36, groundVb);
+        groundVb.position(0);
+        gl.glUniform1f(uCut, 0.02f);
+        gl.glBindTexture(GL20.GL_TEXTURE_2D, whiteTex);
+        gl.glDrawArrays(GL20.GL_TRIANGLES, 0, 6);
     }
 
     void fogUniforms(GL20 gl, int c, int r, int col) {
